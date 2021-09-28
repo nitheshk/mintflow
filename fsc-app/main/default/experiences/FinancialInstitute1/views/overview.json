@@ -47,7 +47,7 @@
                 {
                   "componentAttributes": {
                     "logoName": "",
-                    "menuName": "FinancialInsituteMenu",
+                    "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"
                   },
                   "componentName": "dau01:financialInsituteNavigationMenu",
