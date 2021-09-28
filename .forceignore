@@ -33,3 +33,20 @@ force-app/main/default/profiles/Custom%3A Support Profile.profile-meta.xml
 *PasswordPolicy*
 
 force-app/main/default/reports
+
+
+# Dotract component
+fsc-app
+
+fsc-app\main\default\navigationMenus\DealerMenu.navigationMenu-meta.xml
+fsc-app\main\default\navigationMenus\DealerRegistrationMenu.navigationMenu-meta.xml
+fsc-app\main\default\navigationMenus\Default_Navigation.navigationMenu-meta.xml
+fsc-app\main\default\navigationMenus\Default_User_Profile_Menu.navigationMenu-meta.xml
+
+fsc-app\main\default\experiences\Dealer1.site-meta.xml
+fsc-app\main\default\experiences\Dealer1
+fsc-app\main\default\networkBranding\cbDealer
+fsc-app\main\default\networkBranding\cbDealer.networkBranding
+fsc-app\main\default\networkBranding\cbDealer.networkBranding-meta.xml
+fsc-app\main\default\networks\Dealer.network-meta.xml
+fsc-app\main\default\profiles\Dealer Profile.profile-meta.xml

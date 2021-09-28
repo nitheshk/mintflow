@@ -31,7 +31,7 @@ gulp.task("gitSetupSubmodule", function (finish) {
 
 //npmRunBuild_DoTract
 gulp.task("npmRunBuild_DoTract", function (finish) {
-  let scriptToRun = `npm run  --prefix ${config.ui.doTract.dOTractUIFolder} build`;
+  let scriptToRun = `npm run  --prefix ${config.ui.doTract.UIFolder} build`;
   console.log("Script To Run - " + scriptToRun);
   utils.runCommand(scriptToRun).then((result) => {
     console.log(result);

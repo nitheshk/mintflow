@@ -89,7 +89,7 @@
   "apexdox.engine.targetDirectory": "${workspaceFolder}/docs/apexDocumentation",
   "apexdox.engine.scope": ["global", "public", "webService"],
   "apexdox.engine.subtitle": "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.digitalalign.com/\">Transforming Financial Services</a>",
-  "apexdox.engine.title": "DoTract Documentation",
+  "apexdox.engine.title": "Online Banking Documentation",
   "apexdox.engine.assets": [
     "${workspaceFolder}/docs/docImages/logo.png",
     "${workspaceFolder}/docs/docImages/icon.png",

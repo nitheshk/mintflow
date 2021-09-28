@@ -14,7 +14,7 @@
       "uiDistFolder": "DoTracker-UI/dist/",
       "staticResourceFolder": "./force-app/main/default/staticresources/",
       "staticResourceName": "DoTract.zip",
-      "dOTractUIFolder": "DoTracker-UI"
+      "UIFolder": "DoTracker-UI"
     }
   },
 
