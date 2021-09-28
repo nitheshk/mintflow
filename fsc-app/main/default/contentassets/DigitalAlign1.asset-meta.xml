@@ -3,7 +3,7 @@
     <isVisibleByExternalUsers>false</isVisibleByExternalUsers>
     <language>en_US</language>
     <masterLabel>DigitalAlign1</masterLabel>
-    <originNetwork>Dealer</originNetwork>
+    <originNetwork>FinancialInstitute</originNetwork>
     <relationships>
         <network>
             <access>VIEWER</access>

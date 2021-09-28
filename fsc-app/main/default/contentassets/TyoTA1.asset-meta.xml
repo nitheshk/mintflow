@@ -3,11 +3,11 @@
     <isVisibleByExternalUsers>false</isVisibleByExternalUsers>
     <language>en_US</language>
     <masterLabel>TyoTA1</masterLabel>
-    <originNetwork>Dealer</originNetwork>
+    <originNetwork>FinancialInstitute</originNetwork>
     <relationships>
         <network>
             <access>VIEWER</access>
-            <name>Dealer</name>
+            <name>FinancialInstitute</name>
         </network>
         <workspace>
             <access>INFERRED</access>
