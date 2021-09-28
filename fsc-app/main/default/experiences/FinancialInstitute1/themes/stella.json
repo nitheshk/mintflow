@@ -92,7 +92,7 @@
                         "buttonText": "Log in",
                         "buttonTextColor": "",
                         "buttonTextHoverColor": "",
-                        "customizableUserProfileMenuEditor": "Default_User_Profile_Menu1",
+                        "customizableUserProfileMenuEditor": "FinancialInstituteProfileMenu",
                         "menuStyleSettings": "{\"selectedMenuStyleSetting\":\"iconOnly\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
                       },
                       "componentName": "forceCommunity:customizableUserProfileMenu",
@@ -140,7 +140,7 @@
                       "componentAttributes": {
                         "navAlignment": "right",
                         "navItemThreshold": 5,
-                        "navigationMenuEditorRefresh": "Default_User_Profile_Menu1"
+                        "navigationMenuEditorRefresh": "FinancialInstituteProfileMenu"
                       },
                       "componentName": "forceCommunity:themeNav",
                       "id": "79673427-c968-4d74-a9da-7581a21e7139",
