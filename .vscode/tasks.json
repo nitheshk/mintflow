@@ -94,18 +94,6 @@
       "problemMatcher": []
     },
     {
-      "label": "sfdx : Create New Scratch Org Without Site",
-      "type": "shell",
-      "command": "gulp",
-      "args": ["newScratchOrgWithoutSite"],
-      "group": "build",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    },
-    {
       "label": "sfdx : Create New Trigger Handler",
       "type": "shell",
       "command": "gulp",

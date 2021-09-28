@@ -426,20 +426,3 @@ gulp.task(
     "systemConfigImport"
   )
 );
-
-gulp.task(
-  "newScratchOrgWithoutSite",
-  gulp.series(
-    "readConfig",
-    "setupDevHub",
-    "deleteScratchOrg",
-    "createScratchOrg",
-    "defaultToScratch",
-    "installPackageFSC",
-    "installPackageFSCExt",
-    "pushToscratch",
-    "updatePermissionSet",
-    "publishCommunities",
-    "systemConfigImport"
-  )
-);

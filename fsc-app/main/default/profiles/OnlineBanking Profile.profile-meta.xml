@@ -3,7 +3,7 @@
   <custom>true</custom>
   <userLicense>Guest User License</userLicense>
   <pageAccesses>
-    <apexPage>dau01__DoTract</apexPage>
+    <apexPage>dau01__OnlineAccount</apexPage>
     <enabled>true</enabled>
   </pageAccesses>
 </Profile>
