@@ -34,6 +34,10 @@
         <application>standard__InsuranceConsole</application>
         <visible>true</visible>
     </applicationVisibilities>
+     <pageAccesses>
+        <apexPage>OnlineAccount</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
     <classAccesses>
         <apexClass>ChartBuilderController</apexClass>
         <enabled>true</enabled>
