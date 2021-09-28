@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <available>true</available>
+    <description>Notification that user has been added to a site.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Dealer : New Member Welcome Email - EN</name>
+    <packageVersions>
+        <majorNumber>230</majorNumber>
+        <minorNumber>3</minorNumber>
+        <namespace>FinServ</namespace>
+    </packageVersions>
+    <style>none</style>
+    <subject>Welcome to {!$Network.Name}</subject>
+    <type>visualforce</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

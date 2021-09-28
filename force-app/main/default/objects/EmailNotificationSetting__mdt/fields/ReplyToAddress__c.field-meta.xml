@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ReplyToAddress__c</fullName>
+    <description>Default reply To Address need to include</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>Default relpay To Address need to include</inlineHelpText>
+    <label>Replay To Address</label>
+    <required>false</required>
+    <type>TextArea</type>
+</CustomField>

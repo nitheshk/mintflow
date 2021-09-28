@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClassType__c</fullName>
+    <description>Class Type indicate to categorize the apex class</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText
+  >Class Type indicate to categorize the apex class</inlineHelpText>
+    <label>Class Type</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Controller</fullName>
+                <default>true</default>
+                <label>Controller</label>
+            </value>
+            <value>
+                <fullName>Extension</fullName>
+                <default>false</default>
+                <label>Extension</label>
+            </value>
+            <value>
+                <fullName>Helper</fullName>
+                <default>false</default>
+                <label>Helper</label>
+            </value>
+            <value>
+                <fullName>Provider</fullName>
+                <default>false</default>
+                <label>Provider</label>
+            </value>
+            <value>
+                <fullName>Repository</fullName>
+                <default>false</default>
+                <label>Repository</label>
+            </value>
+            <value>
+                <fullName>Service</fullName>
+                <default>false</default>
+                <label>Service</label>
+            </value>
+            <value>
+                <fullName>Notification</fullName>
+                <default>false</default>
+                <label>Notification</label>
+            </value>
+            <value>
+                <fullName>Resolver</fullName>
+                <default>false</default>
+                <label>Resolver</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

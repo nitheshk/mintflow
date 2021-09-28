@@ -1,0 +1,111 @@
+<template>
+  <template if:true={isRendered}>
+    <lightning-card title="Contact Information" icon-name="standard:lead">
+      <div class="slds-var-m-around_medium">
+        <div class="slds-grid slds-wrap">
+          <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+            <lightning-input
+              data-fieldname="MobilePhone"
+              label="Mobile Phone"
+              value={dealerRecord.MobilePhone}
+              placeholder="Enter mobile number"
+              field-level-help={phoneNumberValidationMessage}
+              maxlength="10"
+              minlength="10"
+              pattern={phonenumber}
+              message-when-pattern-mismatch={phoneNumberValidationMessage}
+              message-when-too-short={phoneNumberValidationMessage}
+              message-when-bad-input={phoneNumberValidationMessage}
+              onchange={handleChange}
+              class="validation"
+              disabled
+            ></lightning-input>
+          </div>
+
+          <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+            <lightning-input
+              data-fieldname="Phone"
+              label="Phone"
+              value={dealerRecord.Phone}
+              placeholder="Enter phone number"
+              field-level-help={phoneNumberValidationMessage}
+              maxlength="10"
+              minlength="10"
+              pattern={phonenumber}
+              message-when-pattern-mismatch={phoneNumberValidationMessage}
+              message-when-too-short={phoneNumberValidationMessage}
+              message-when-bad-input={phoneNumberValidationMessage}
+              onchange={handleChange}
+              class="validation"
+            ></lightning-input>
+          </div>
+
+          <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+            <lightning-input
+              data-fieldname="Fax"
+              label="Fax"
+              placeholder="Enter fax number"
+              value={dealerRecord.Fax}
+              field-level-help={faxNumberValidationMessage}
+              maxlength="10"
+              minlength="10"
+              pattern={phonenumber}
+              message-when-pattern-mismatch={faxNumberValidationMessage}
+              message-when-too-short={faxNumberValidationMessage}
+              message-when-bad-input={faxNumberValidationMessage}
+              onchange={handleChange}
+              class="validation"
+            ></lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+            <lightning-input
+              required
+              data-fieldname="Email"
+              type="Email"
+              label="Email"
+              placeholder="Email"
+              value={dealerRecord.Email}
+              onchange={handleChange}
+              class="validation"
+            ></lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+            <lightning-input
+              data-fieldname="Website"
+              label="Website"
+              placeholder="ex: www.website.com"
+              pattern={websitePattern}
+              message-when-pattern-mismatch={websitePatternValidation}
+              value={dealerRecord.Website}
+              onchange={handleChange}
+              class="validation"
+            ></lightning-input>
+          </div>
+        </div>
+
+        <div class="slds-var-p-around_medium slds-float_right">
+          <lightning-button-group>
+            <lightning-button
+              variant="brand"
+              label="Prev"
+              title="Prev"
+              class="slds-var-m-left_x-small"
+              icon-name="utility:back"
+              icon-position="left"
+              onclick={handlePrev}
+            ></lightning-button>
+            <lightning-button
+              variant="brand"
+              label="Next"
+              title="Next"
+              onclick={handleNext}
+              class="slds-var-m-left_x-small"
+              icon-name="utility:forward"
+              icon-position="right"
+            ></lightning-button>
+          </lightning-button-group>
+        </div>
+      </div>
+    </lightning-card>
+  </template>
+</template>

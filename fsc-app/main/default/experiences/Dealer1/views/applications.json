@@ -1,0 +1,121 @@
+{
+  "appPageId": "aa96077a-8230-4d52-9f6c-0db1939c14cc",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "2ec4e885-cdf9-4719-ab11-bd3ddff6daed",
+  "label": "Applications",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "c6748caa-3f86-430b-9e4e-361770296c11",
+              "columns": [
+                {
+                  "UUID": "012def02-09b0-4a44-acbb-64e4ae3fcc0c",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "b45516a4-d9b6-4787-98ef-fe45def8aa82",
+                  "columnKey": "404d3",
+                  "columnName": "Column 2",
+                  "columnWidth": "10",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "c6748caa-3f86-430b-9e4e-361770296c11",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "logoName": "",
+                    "menuName": "DealerMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "dau01:dealerNavigationMenu",
+                  "id": "62f241f2-a6ba-4a09-bb74-29854fa9e7b4",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "012def02-09b0-4a44-acbb-64e4ae3fcc0c",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-page-header\"   >\n  <div class=\"slds-page-header__row\"  >\n    <div style=\"width:100%;text-align:center;\">\n       <span style=\"color:#3b4eb0;  float:left;text-align: center;\" class=\"slds-page-header__title slds-truncate\" title=\"All Applications\"><b>All Applications</b></span>                  \n       <button class=\"button button2\" style=\"border-radius: 8px;background-color: #3b4eb0;border: none;float:right; font-weight: bold; color: white; padding: 15px 32px; text-align: center; text-decoration: none; margin: 4px 2px;cursor: pointer;\">Start Application</button>\n    </div>\n  </div>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "ff1bc34b-a33c-4e30-bb1d-95c223085f20",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "metadataName": "FIApplications",
+                    "sortString": "Name"
+                  },
+                  "componentName": "dau01:dynamicDataTable",
+                  "id": "336be872-2cda-4191-b88b-1593dc172d59",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "b45516a4-d9b6-4787-98ef-fe45def8aa82",
+              "regionLabel": "Column 2",
+              "regionName": "404d3",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "72c0e4c3-ac84-4a64-ab8c-2b71f1c6dcdd",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "Applications"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "9949a228-0b09-45fa-a024-76ca6c7cfa42",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "a6ddbc03-1013-4ceb-8b88-057b4cc7bd96",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Inner",
+  "type": "view",
+  "viewType": "custom-applications"
+}

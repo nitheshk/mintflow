@@ -1,0 +1,196 @@
+{
+  "appPageId": "aa96077a-8230-4d52-9f6c-0db1939c14cc",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "8887e17d-5f3e-4b52-920b-2064543c470d",
+  "label": "Overview",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "521cf4f8-6e01-4986-a85e-713a488ada2f",
+              "columns": [
+                {
+                  "UUID": "54ad9fab-a889-412f-bdc9-b4e400ebed50",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "ed7e6bdd-0253-48ce-9e5e-ec6a1a58705c",
+                  "columnKey": "4b764",
+                  "columnName": "Column 2",
+                  "columnWidth": "5",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "076c8b56-a1eb-4819-b428-84fbc9934b6a",
+                  "columnKey": "8f0c0",
+                  "columnName": "Column 3",
+                  "columnWidth": "5",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 32
+          },
+          "componentName": "forceCommunity:section",
+          "id": "521cf4f8-6e01-4986-a85e-713a488ada2f",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "logoName": "",
+                    "menuName": "DealerMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "dau01:dealerNavigationMenu",
+                  "id": "ad42efb9-28ac-4141-b024-5ee6605d22e1",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "54ad9fab-a889-412f-bdc9-b4e400ebed50",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "colorPalette": "default",
+                    "details": "[{ \t\"labels\": [\"Approved\", \"Processing\", \"Review\", \"Rejected\", \"Declined\"], \t\"detail\": [50, 25, 15, 20, 8, 2] }]",
+                    "detailsLabels": "[\"Rejected\",\"Approved\",\"Processing\"]",
+                    "fill": false,
+                    "handler": "",
+                    "legendPosition": "top",
+                    "recordId": "{!recordId}",
+                    "soql": "",
+                    "styleCss": "",
+                    "title": "Loan Applications",
+                    "type": "doughnut"
+                  },
+                  "componentName": "dau01:chartBuilder",
+                  "id": "b1897a82-423e-4432-aeed-484b4125cb8b",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "colorPalette": "watermelon",
+                    "details": "[{ \t\t\"labels\": [\"Crysta\", \"Fortuner\", \"Glanza\", \"Vellfire\", \"Etios\", \"Pirus\", \"Prado\"], \t\t\"detail\": [10, 25, 46, 52, 8, 50, 9] \t}, \t{ \t\t\"labels\": [\"Crysta\", \"Fortuner\", \"Glanza\", \"Vellfire\", \"Etios\", \"Pirus\", \"Prado\"], \t\t\"detail\": [3, 14, 67, 24, 64, 50, 4] \t} ]",
+                    "detailsLabels": "[\"Sold\",\"Booked\"]",
+                    "fill": false,
+                    "handler": "",
+                    "legendPosition": "top",
+                    "recordId": "{!recordId}",
+                    "soql": "",
+                    "styleCss": "",
+                    "title": "Vehicle Inventory",
+                    "type": "bar"
+                  },
+                  "componentName": "dau01:chartBuilder",
+                  "id": "4b970985-8857-4b25-92d5-486f181cce0d",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "ed7e6bdd-0253-48ce-9e5e-ec6a1a58705c",
+              "regionLabel": "Column 2",
+              "regionName": "4b764",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "colorPalette": "colorsafe",
+                    "details": "[{ \t\"labels\": [\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"], \t\"detail\": [210, 230, 326, 269, 568, 690, 530, 423, 236, 469, 569, 896] }, { \t\"labels\": [\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"], \t\"detail\": [235, 324, 467, 244, 644, 150, 444, 263, 125, 758, 636, 990] }, { \t\"labels\": [\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"], \t\"detail\": [335, 633, 544, 144, 554, 50, 444, 563] }]",
+                    "detailsLabels": "[\"2019\",\"2020\",\"2021\"]",
+                    "fill": false,
+                    "handler": "",
+                    "legendPosition": "top",
+                    "recordId": "",
+                    "soql": "",
+                    "styleCss": "",
+                    "title": "Revenue",
+                    "type": "line"
+                  },
+                  "componentName": "dau01:chartBuilder",
+                  "id": "b04c0f38-8763-4f42-a84c-677e8590a7ee",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "colorPalette": "light",
+                    "details": "[{ \t\"labels\": [\"Walkin\", \"Refferal\", \"Web\", \"Financial Institute\"], \t\"detail\": [150, 100, 326, 269]  }]",
+                    "detailsLabels": "",
+                    "fill": true,
+                    "handler": "",
+                    "legendPosition": "top",
+                    "recordId": "{!recordId}",
+                    "soql": "",
+                    "styleCss": "",
+                    "title": "Customers Source",
+                    "type": "pie"
+                  },
+                  "componentName": "dau01:chartBuilder",
+                  "id": "565098ae-6ca0-4e47-82fb-46467b8213be",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "076c8b56-a1eb-4819-b428-84fbc9934b6a",
+              "regionLabel": "Column 3",
+              "regionName": "8f0c0",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "263efb5f-5f19-4b32-92e6-36bdba1e39ce",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "Home"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "d3b6f124-8475-4351-980b-172f409e374a",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "ac9449c8-4425-494b-a411-280b52f47285",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Home",
+  "type": "view",
+  "viewType": "home"
+}

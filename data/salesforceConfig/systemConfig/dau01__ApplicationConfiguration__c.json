@@ -1,0 +1,14 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "dau01__ApplicationConfiguration__c",
+        "referenceId": "ApplicationConfigurationRef_0"
+      },
+      "dau01__CustomerLogs__c": true,
+      "dau01__DebugLogs__c": true,
+      "dau01__IntegrationsLogs__c": true,
+      "dau01__SiteUrl__c": "https://sandbox-data-momentum-3789-dev-ed-17b5d024022.cs6.force.com/HomePage"
+    }
+  ]
+}

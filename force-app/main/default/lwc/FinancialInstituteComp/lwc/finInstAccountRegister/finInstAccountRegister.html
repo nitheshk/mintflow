@@ -1,0 +1,139 @@
+<template>
+  <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
+  <lightning-card
+    title="Financial Institute Account"
+    icon-name="standard:Account"
+  >
+    <div class="slds-var-m-around_medium">
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+          <lightning-input
+            required
+            data-fieldname="Name"
+            label="Account Name"
+            value={accountRecord.Name}
+            placeholder="Account Name"
+            onchange={handleChange}
+            class="validation"
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+          <lightning-input
+            required
+            data-fieldname="Phone"
+            label="Phone"
+            value={accountRecord.Phone}
+            placeholder="Enter Phone number"
+            field-level-help={phoneNumberValidationMessage}
+            maxlength="10"
+            minlength="10"
+            pattern={phonenumber}
+            message-when-pattern-mismatch={phoneNumberValidationMessage}
+            message-when-too-short={phoneNumberValidationMessage}
+            message-when-bad-input={phoneNumberValidationMessage}
+            onchange={handleChange}
+            class="validation"
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+          <lightning-input
+            data-fieldname="Website"
+            label="Website"
+            value={accountRecord.Website}
+            placeholder="www.company.com"
+            onchange={handleChange}
+            class="validation"
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+          <lightning-combobox
+            data-fieldname="Ownership"
+            name="Ownership"
+            label="Ownership"
+            value={accountRecord.Ownership}
+            placeholder="ex.. Public"
+            options={Ownership}
+            onchange={handleChange}
+            class="validation"
+          ></lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+          <lightning-input
+            data-fieldname="AnnualRevenue"
+            type="number"
+            formatter="currency"
+            label="AnnualRevenue"
+            value={accountRecord.AnnualRevenue}
+            message-when-pattern-mismatch="Please enter valid amount"
+            placeholder="$0"
+            onchange={handleChange}
+            class="validation"
+            max="999999999999999999"
+            maxlength="18"
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+          <lightning-input
+            required
+            data-fieldname="NaicsCode"
+            label="NAICS Code"
+            value={accountRecord.NaicsCode}
+            placeholder="XXXXXX"
+            onchange={handleChange}
+            class="validation"
+            pattern={numericValidation}
+            field-level-help="NAICS is the standard used by Federal statistical agencies in classifying business establishments for the purpose of collecting, analyzing, and publishing statistical data related to the U.S. business economy"
+            maxlength="6"
+            minlength="6"
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+          <lightning-input-address
+            address-label="Billing Address"
+            street-label="Billing Street"
+            city-label="Billing City"
+            country-label="Billing Country"
+            province-label="Billing State/Province"
+            postal-code-label="Billing Zip/Postal Code"
+            street={accountRecord.BillingStreet}
+            city={accountRecord.BillingCity}
+            country={accountRecord.BillingCountry}
+            province={accountRecord.BillingState}
+            postal-code={accountRecord.BillingPostalCode}
+            field-level-help="Enter the address"
+            show-address-lookup
+            required
+            onchange={handleAddressChange}
+            class="validation"
+          ></lightning-input-address>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+          <lightning-input
+            pattern={numericValidation}
+            message-when-pattern-mismatch="Please enter valid year"
+            data-fieldname="YearStarted"
+            label="Year Started"
+            value={accountRecord.YearStarted}
+            maxlength="4"
+            placeholder="YYYY"
+            onchange={handleChange}
+            class="validation"
+          ></lightning-input>
+        </div>
+      </div>
+    </div>
+    <div class="slds-var-p-around_medium">
+      <lightning-button-group>
+        <lightning-button
+          variant="brand"
+          label="Save"
+          title="Save"
+          onclick={handleSave}
+          class="slds-var-m-left_x-small"
+          icon-name="utility:save"
+          icon-position="right"
+        ></lightning-button>
+      </lightning-button-group>
+    </div>
+  </lightning-card>
+</template>

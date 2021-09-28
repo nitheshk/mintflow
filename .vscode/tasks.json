@@ -1,0 +1,235 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Task : Create a Scratch Org",
+      "type": "shell",
+      "command": "sfdx",
+      "args": [
+        "force:org:create",
+        "-f",
+        "config\\project-scratch-def.json",
+        "--setalias",
+        "${input:scratchAliasName}",
+        "--durationdays",
+        "${input:numberDays}",
+        "--setdefaultusername",
+        "--json",
+        "--loglevel",
+        "fatal",
+        ">deploy/scratchOrg/scratchOrgDetail.json"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Task : Default to scratch Org",
+      "type": "shell",
+      "command": "sfdx",
+      "args": ["force:config:set", "defaultusername=${input:scratchAliasName}"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Task : Sfdx Push with overwrite",
+      "type": "shell",
+      "command": "sfdx",
+      "args": [
+        "force:source:push",
+        "--targetusername",
+        "${input:scratchAliasName}",
+        "--loglevel",
+        "fatal",
+        "--forceoverwrite"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Task : Delete a Scratch Org",
+      "type": "shell",
+      "command": "sfdx",
+      "args": ["force:org:delete", "-u", "${input:scratchAliasName}", "-p"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Task 6: Retrive from manifest/package.xml",
+      "type": "shell",
+      "command": "sfdx",
+      "args": ["force:source:retrieve", "--manifest", "manifest/package.xml"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sfdx : Create New Scratch Org with Site",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["newScratchOrg"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sfdx : Create New Scratch Org Without Site",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["newScratchOrgWithoutSite"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sfdx : Create New Trigger Handler",
+      "type": "shell",
+      "command": "gulp",
+      "args": [
+        "CreateTriggerHandler",
+        "--triggerName",
+        "${input:triggerHandlerName}"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sfdx : Set Default devhub",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["setupDevHub"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sfdx : Clear Cache",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["sfdxCacheClear"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sfdx : Publish Communities",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["publishCommunities"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "UI : Build Static Resource for DoTrct",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["buildUI_DoTract"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "UI : git Setup Submodule",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["gitSetupSubmodule"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "UI : Git Pull DoTracker-UI Sub-Module",
+      "type": "shell",
+      "command": "git",
+      "args": ["submodule", "foreach", "git", "pull", "origin", "dev"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Formatter : Format workspace using prettier",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "prettier"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "scratchAliasName",
+      "description": "Enter The Alias Name",
+      "type": "promptString",
+      "default": "doTract"
+    },
+    {
+      "id": "numberDays",
+      "description": "Enter The Org Duration in days (max 30)(default 2)",
+      "type": "promptString",
+      "default": "2"
+    },
+    {
+      "id": "orgName",
+      "description": "Enter The Org Name",
+      "type": "promptString",
+      "default": "scratchOrg"
+    },
+    {
+      "id": "triggerHandlerName",
+      "description": "Trigger Handler Name",
+      "type": "promptString",
+      "default": "AccountTriggerHandler"
+    }
+  ]
+}

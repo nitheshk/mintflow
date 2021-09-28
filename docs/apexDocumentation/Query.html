@@ -1,0 +1,3435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>DoTract Documentation</title>
+    <meta charset="UTF-8">
+    <script type="module" src="./assets/index.js"></script>
+    <script type="module" src="./assets/search-idx.js"></script>
+    <script type="module" src="./assets/search.js"></script>
+    <script charset="UTF-8" src="./assets/highlight.js"></script>
+    <script charset="UTF-8" src="./assets/mark.js"></script>
+    <script charset="UTF-8" src="./assets/lunr.js"></script>
+    <link rel="stylesheet" href="./assets/highlight.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/index.css" />
+    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+  </head>
+
+  <body>
+    <div id="side-bar">
+
+      <div id="logo-container">
+        <div class="title">
+          DoTract Documentation
+        </div>
+        <img src="assets/logo.png" />
+        <div class="subtitle">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.digitalalign.com/">Transforming Financial Services</a>
+        </div>
+      </div>
+      <div id="search-wrapper">
+        <div class="search-icon"></div>
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
+      </div>
+      <ul id="search-results" class=""></ul>
+      <div class="navbar">
+        <nav role="navigation">
+          <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
+            Home
+          </a>
+          <details id="Constant" class="group-name">
+            <summary id="header-Constant" class="nav-header">
+              <span>Constant</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="DealerConstants" id="item-DealerConstants" class="nav-item class global" onclick="goToLocation('DealerConstants.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerConstants</a>
+              </li>
+              <li title="FinancialInstituteConstants" id="item-FinancialInstituteConstants" class="nav-item class global" onclick="goToLocation('FinancialInstituteConstants.html');">
+                <a tabindex="1" href="javascript:void(0)">FinancialInstituteConstants</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Controller" class="group-name">
+            <summary id="header-Controller" class="nav-header">
+              <span>Controller</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="EmailController" id="item-EmailController" class="nav-item class global" onclick="goToLocation('EmailController.html');">
+                <a tabindex="1" href="javascript:void(0)">EmailController</a>
+              </li>
+              <li title="DisplayImageController" id="item-DisplayImageController" class="nav-item class public" onclick="goToLocation('DisplayImageController.html');">
+                <a tabindex="1" href="javascript:void(0)">DisplayImageController</a>
+              </li>
+              <li title="LWCDealerSiteController" id="item-LWCDealerSiteController" class="nav-item class global" onclick="goToLocation('LWCDealerSiteController.html');">
+                <a tabindex="1" href="javascript:void(0)">LWCDealerSiteController</a>
+              </li>
+              <li title="UserAccountManagementController" id="item-UserAccountManagementController" class="nav-item class global" onclick="goToLocation('UserAccountManagementController.html');">
+                <a tabindex="1" href="javascript:void(0)">UserAccountManagementController</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Exception" class="group-name">
+            <summary id="header-Exception" class="nav-header">
+              <span>Exception</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="CustomException" id="item-CustomException" class="nav-item class global" onclick="goToLocation('CustomException.html');">
+                <a tabindex="1" href="javascript:void(0)">CustomException</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Miscellaneous" class="group-name">
+            <summary id="header-Miscellaneous" class="nav-header">
+              <span>Miscellaneous</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="ChartRepository" id="item-ChartRepository" class="nav-item class public" onclick="goToLocation('ChartRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">ChartRepository</a>
+              </li>
+              <li title="NotificationService" id="item-NotificationService" class="nav-item class global" onclick="goToLocation('NotificationService.html');">
+                <a tabindex="1" href="javascript:void(0)">NotificationService</a>
+              </li>
+              <li title="DynamicLWCDataTableController" id="item-DynamicLWCDataTableController" class="nav-item class global" onclick="goToLocation('DynamicLWCDataTableController.html');">
+                <a tabindex="1" href="javascript:void(0)">DynamicLWCDataTableController</a>
+              </li>
+              <li title="DynamicLWCDataTableRepository" id="item-DynamicLWCDataTableRepository" class="nav-item class public" onclick="goToLocation('DynamicLWCDataTableRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">DynamicLWCDataTableRepository</a>
+              </li>
+              <li title="DynamicLWCDataTableResponse" id="item-DynamicLWCDataTableResponse" class="nav-item class public" onclick="goToLocation('DynamicLWCDataTableResponse.html');">
+                <a tabindex="1" href="javascript:void(0)">DynamicLWCDataTableResponse</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Repository" class="group-name">
+            <summary id="header-Repository" class="nav-header">
+              <span>Repository</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="EmailNotificationRepository" id="item-EmailNotificationRepository" class="nav-item class public" onclick="goToLocation('EmailNotificationRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">EmailNotificationRepository</a>
+              </li>
+              <li title="DealerSiteRepository" id="item-DealerSiteRepository" class="nav-item class public" onclick="goToLocation('DealerSiteRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerSiteRepository</a>
+              </li>
+              <li title="FinancialInstituteSiteRepository" id="item-FinancialInstituteSiteRepository" class="nav-item class public" onclick="goToLocation('FinancialInstituteSiteRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">FinancialInstituteSiteRepository</a>
+              </li>
+              <li title="SurveyRepository" id="item-SurveyRepository" class="nav-item class public" onclick="goToLocation('SurveyRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">SurveyRepository</a>
+              </li>
+              <li title="UserAccountManagementRepository" id="item-UserAccountManagementRepository" class="nav-item class global" onclick="goToLocation('UserAccountManagementRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">UserAccountManagementRepository</a>
+              </li>
+              <li title="SystemSettingRepository" id="item-SystemSettingRepository" class="nav-item class global" onclick="goToLocation('SystemSettingRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">SystemSettingRepository</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Resolver" class="group-name">
+            <summary id="header-Resolver" class="nav-header">
+              <span>Resolver</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="SurveyResolver" id="item-SurveyResolver" class="nav-item class global" onclick="goToLocation('SurveyResolver.html');">
+                <a tabindex="1" href="javascript:void(0)">SurveyResolver</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Service" class="group-name">
+            <summary id="header-Service" class="nav-header">
+              <span>Service</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="EmailNotificationBuilder" id="item-EmailNotificationBuilder" class="nav-item class global" onclick="goToLocation('EmailNotificationBuilder.html');">
+                <a tabindex="1" href="javascript:void(0)">EmailNotificationBuilder</a>
+              </li>
+              <li title="EmailService" id="item-EmailService" class="nav-item class global" onclick="goToLocation('EmailService.html');">
+                <a tabindex="1" href="javascript:void(0)">EmailService</a>
+              </li>
+              <li title="AbstractAPIProvider" id="item-AbstractAPIProvider" class="nav-item class public" onclick="goToLocation('AbstractAPIProvider.html');">
+                <a tabindex="1" href="javascript:void(0)">AbstractAPIProvider</a>
+              </li>
+              <li title="APICaller" id="item-APICaller" class="nav-item class public" onclick="goToLocation('APICaller.html');">
+                <a tabindex="1" href="javascript:void(0)">APICaller</a>
+              </li>
+              <li title="APIConfiguration" id="item-APIConfiguration" class="nav-item class public" onclick="goToLocation('APIConfiguration.html');">
+                <a tabindex="1" href="javascript:void(0)">APIConfiguration</a>
+              </li>
+              <li title="APINames" id="item-APINames" class="nav-item class global" onclick="goToLocation('APINames.html');">
+                <a tabindex="1" href="javascript:void(0)">APINames</a>
+              </li>
+              <li title="DealerEmailService" id="item-DealerEmailService" class="nav-item class global" onclick="goToLocation('DealerEmailService.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerEmailService</a>
+              </li>
+              <li title="DealerSiteService" id="item-DealerSiteService" class="nav-item class global" onclick="goToLocation('DealerSiteService.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerSiteService</a>
+              </li>
+              <li title="DocumentScanAdapter" id="item-DocumentScanAdapter" class="nav-item class public" onclick="goToLocation('DocumentScanAdapter.html');">
+                <a tabindex="1" href="javascript:void(0)">DocumentScanAdapter</a>
+              </li>
+              <li title="DocumentScanProvider" id="item-DocumentScanProvider" class="nav-item class public" onclick="goToLocation('DocumentScanProvider.html');">
+                <a tabindex="1" href="javascript:void(0)">DocumentScanProvider</a>
+              </li>
+              <li title="FinancialInstituteSiteService" id="item-FinancialInstituteSiteService" class="nav-item class global" onclick="goToLocation('FinancialInstituteSiteService.html');">
+                <a tabindex="1" href="javascript:void(0)">FinancialInstituteSiteService</a>
+              </li>
+              <li title="LWCFinancialInstituteSiteController" id="item-LWCFinancialInstituteSiteController" class="nav-item class global" onclick="goToLocation('LWCFinancialInstituteSiteController.html');">
+                <a tabindex="1" href="javascript:void(0)">LWCFinancialInstituteSiteController</a>
+              </li>
+              <li title="AbstractService" id="item-AbstractService" class="nav-item class global" onclick="goToLocation('AbstractService.html');">
+                <a tabindex="1" href="javascript:void(0)">AbstractService</a>
+              </li>
+              <li title="DealerAccountCreationService" id="item-DealerAccountCreationService" class="nav-item class global" onclick="goToLocation('DealerAccountCreationService.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerAccountCreationService</a>
+              </li>
+              <li title="FinInstAccountService" id="item-FinInstAccountService" class="nav-item class global" onclick="goToLocation('FinInstAccountService.html');">
+                <a tabindex="1" href="javascript:void(0)">FinInstAccountService</a>
+              </li>
+              <li title="ApexResponse" id="item-ApexResponse" class="nav-item class global" onclick="goToLocation('ApexResponse.html');">
+                <a tabindex="1" href="javascript:void(0)">ApexResponse</a>
+              </li>
+              <li title="DynamicLWCDataTableService" id="item-DynamicLWCDataTableService" class="nav-item class global" onclick="goToLocation('DynamicLWCDataTableService.html');">
+                <a tabindex="1" href="javascript:void(0)">DynamicLWCDataTableService</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils" class="group-name">
+            <summary id="header-Utils" class="nav-header">
+              <span>Utils</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="XMLSerializer" id="item-XMLSerializer" class="nav-item class global" onclick="goToLocation('XMLSerializer.html');">
+                <a tabindex="1" href="javascript:void(0)">XMLSerializer</a>
+              </li>
+              <li title="Query" id="item-Query" class="nav-item class global" onclick="goToLocation('Query.html');">
+                <a tabindex="1" href="javascript:void(0)">Query</a>
+              </li>
+              <li title="ApexUtils" id="item-ApexUtils" class="nav-item class public" onclick="goToLocation('ApexUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">ApexUtils</a>
+              </li>
+              <li title="CollectionUtils" id="item-CollectionUtils" class="nav-item class global" onclick="goToLocation('CollectionUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">CollectionUtils</a>
+              </li>
+              <li title="DatabaseUtils" id="item-DatabaseUtils" class="nav-item class global" onclick="goToLocation('DatabaseUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">DatabaseUtils</a>
+              </li>
+              <li title="DateUtils" id="item-DateUtils" class="nav-item class global" onclick="goToLocation('DateUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">DateUtils</a>
+              </li>
+              <li title="GenericUtils" id="item-GenericUtils" class="nav-item class global" onclick="goToLocation('GenericUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">GenericUtils</a>
+              </li>
+              <li title="SecurityUtils" id="item-SecurityUtils" class="nav-item class global" onclick="goToLocation('SecurityUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">SecurityUtils</a>
+              </li>
+              <li title="SObjectUtils" id="item-SObjectUtils" class="nav-item class global" onclick="goToLocation('SObjectUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">SObjectUtils</a>
+              </li>
+              <li title="SObjectWithoutSharing" id="item-SObjectWithoutSharing" class="nav-item class global" onclick="goToLocation('SObjectWithoutSharing.html');">
+                <a tabindex="1" href="javascript:void(0)">SObjectWithoutSharing</a>
+              </li>
+              <li title="SObjectWithSharing" id="item-SObjectWithSharing" class="nav-item class public" onclick="goToLocation('SObjectWithSharing.html');">
+                <a tabindex="1" href="javascript:void(0)">SObjectWithSharing</a>
+              </li>
+              <li title="UserUtils" id="item-UserUtils" class="nav-item class global" onclick="goToLocation('UserUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">UserUtils</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Constant" class="group-name">
+            <summary id="header-Utils_Constant" class="nav-header">
+              <span>Utils Constant</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="QueryConstants" id="item-QueryConstants" class="nav-item class public" onclick="goToLocation('QueryConstants.html');">
+                <a tabindex="1" href="javascript:void(0)">QueryConstants</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Dispatcher" class="group-name">
+            <summary id="header-Utils_Dispatcher" class="nav-header">
+              <span>Utils Dispatcher</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="TriggerDispatcher" id="item-TriggerDispatcher" class="nav-item class global" onclick="goToLocation('TriggerDispatcher.html');">
+                <a tabindex="1" href="javascript:void(0)">TriggerDispatcher</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Enum" class="group-name">
+            <summary id="header-Utils_Enum" class="nav-header">
+              <span>Utils Enum</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="CrudType" id="item-CrudType" class="nav-item class global" onclick="goToLocation('CrudType.html');">
+                <a tabindex="1" href="javascript:void(0)">CrudType</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Handler" class="group-name">
+            <summary id="header-Utils_Handler" class="nav-header">
+              <span>Utils Handler</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="AbstractTriggerHandler" id="item-AbstractTriggerHandler" class="nav-item class global" onclick="goToLocation('AbstractTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">AbstractTriggerHandler</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Repository" class="group-name">
+            <summary id="header-Utils_Repository" class="nav-header">
+              <span>Utils Repository</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="TriggerRepository" id="item-TriggerRepository" class="nav-item class public" onclick="goToLocation('TriggerRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">TriggerRepository</a>
+              </li>
+              <li title="UserRepository" id="item-UserRepository" class="nav-item class global" onclick="goToLocation('UserRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">UserRepository</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Service" class="group-name">
+            <summary id="header-Utils_Service" class="nav-header">
+              <span>Utils Service</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="XMLDom" id="item-XMLDom" class="nav-item class public" onclick="goToLocation('XMLDom.html');">
+                <a tabindex="1" href="javascript:void(0)">XMLDom</a>
+              </li>
+            </ul>
+          </details>
+        </nav>
+      </div>
+    </div>
+    <table id="content">
+      <tr>
+        <td class="scoping-panel">
+          Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+          <label for="cbx-all">All</label>&nbsp;&nbsp;
+          <input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
+          <label for="cbx-webservice">
+            webService
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="doc-page">
+
+          <div class="section">
+
+            <h2 class="class-title top-level-type" id="Query">
+              <span>Query</span>
+            </h2>
+            <div class="class-container">
+
+              <div class="class-description">
+                Copyright (c) Digital Align 2021 @reference https://github.com/4an70m/apex-query-builder @reference https://github.com/jpmonette/q @reference https://github.com/apex-enterprise-patterns/fflib-apex-common Soql/Sosl buidler for salesforce SObjects
+              </div>
+              <div class="class-subtitle">
+                Signature
+              </div>
+
+              <div class="class-signature">
+                global inherited sharing class Query
+              </div>
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">Query Constructors</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.Query">
+                      Query (sType)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Start the query builder
+                    </div>
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#Query.Query_1">
+                      Query (sType, parent)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Create a query for lookup and child
+                    </div>
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#Query.Query_2">
+                      Query ()
+                    </a>
+
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#Query.Query_3">
+                      Query ()
+                    </a>
+
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#Query.Query_4">
+                      Query ()
+                    </a>
+
+                  </li>
+                </ul>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.Query">
+                    <span>Query(sType)</span>
+                  </h4>
+                  <div class="method-description">
+                    Start the query builder
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query(Schema.SObjectType sType)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Schema.SObjectType</div>
+                  <div class="param-description">sType</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-03-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType).toString();</code></pre>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="Query.Query_1">
+                    <span>Query(sType, parent)</span>
+                  </h4>
+                  <div class="method-description">
+                    Create a query for lookup and child
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    private Query(Schema.SObjectType sType, Query parent)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Schema.SObjectType</div>
+                  <div class="param-description">sType</div>
+                  <div class="param-name">Query</div>
+                  <div class="param-description">parent</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-03-2021
+                  </div>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="Query.Query_2">
+                    <span>Query()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    return new Query(field.getDescribe().getReferenceTo().get(0), this)
+                  </div>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="Query.Query_3">
+                    <span>Query()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    return new Query(field.getDescribe().getReferenceTo().get(0), this)
+                  </div>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="Query.Query_4">
+                    <span>Query()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    return new Query(cr.getChildSObject(), this)
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">Query Methods</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.addFields">
+                      addFields ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Add all the field from SObject Type
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.addFields_1">
+                      addFields (fieldNames)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      add all Custom Field by passing list of field names
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.addFields_2">
+                      addFields (fieldNames)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Pass list of field names as string by comma seperated
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.addFieldSet">
+                      addFieldSet (fieldSetName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Add field based on the fieldset name from Sobject Type
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.addLimit">
+                      addLimit (limitClause)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql to add limit
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.addOffset">
+                      addOffset (limitClause)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql to add offset
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.andCon">
+                      andCon ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql for and condition
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.buildChild">
+                      buildChild (childRelationName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      soql child objects by passing relation name, which retrieve all record with all fields
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.buildLookup">
+                      buildLookup (fieldRelationName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      soql lookup object by passing relation name, which retrieve all record with all fields
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.debug">
+                      debug ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Resolve field name relationship
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.enforceFLS">
+                      enforceFLS ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Enforce security level based on the user context
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.groupBy">
+                      groupBy (groupByFieldName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Add group by fieldname
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.grpClose">
+                      grpClose ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql for grouping the condition
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.grpOpen">
+                      grpOpen ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql for grouping the condition
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.havingCon">
+                      havingCon (condition)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Add having custom free condition
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.newInstance">
+                      newInstance (sType)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Initialize variable for query object
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.orCon">
+                      orCon ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql for or condition
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.orderBy">
+                      orderBy (fieldName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      soql for order by ascending by default ( ORDER BY Name ASC )
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.orderBy_1">
+                      orderBy (fieldName, direction)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      soql for order by descending by passing direction true ( ORDER BY Name DESC )
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.orderBy_2">
+                      orderBy (fieldName, direction, nullsLast)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      soql for order by descending by passing direction true ( ORDER BY Name DESC NULLS LAST )
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.orderByDistance">
+                      orderByDistance (fieldName, distinationLocation, unit)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      soql orderby distance between a location by default asscending
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.orderByDistance_1">
+                      orderByDistance (fieldName, distinationLocation, unit, direction)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      soql orderby distance between a location, pass direction true for descensing
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.queryById">
+                      queryById (recordId)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql short cut by passing id directly
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.queryChild">
+                      queryChild (childRelationName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      SOQL with child recording by passing child relationship name
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.queryLookup">
+                      queryLookup (fieldName, byFieldName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Create a relationship between Query object
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.queryLookup_1">
+                      queryLookup (fieldRelationName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      SQOL lookup object using relation name
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.removeFields">
+                      removeFields (fieldNames)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Remove fields by passing list of field names
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.removeFields_1">
+                      removeFields (fieldNames)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Remove fields by passing string of field names
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.removeMergedFields">
+                      removeMergedFields ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Remove Person account merged field to avoid insert/update issue for business account
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.run">
+                      run ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      build a soql for child or parent object
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.toString">
+                      toString (showQuery)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Generate soql with displaying soql in system.debug
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.toString_1">
+                      toString ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Generate final soql
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereAnd">
+                      whereAnd (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition along with AND, which resolve field reference and escape single quotes for value (by default true)
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereAnd_1">
+                      whereAnd (fieldName, value, escapeSingleQuotes)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition along with AND, which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereCon">
+                      whereCon (condition)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding custom where condition without escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereCon_1">
+                      whereCon (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and escape single quotes for value (by default true)
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereCon_2">
+                      whereCon (fieldName, value, escapeSingleQuotes)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereDistance">
+                      whereDistance (fieldName, distinationLocation, unit, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      soql for find distance between a location
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereEq">
+                      whereEq (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereGt">
+                      whereGt (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereGte">
+                      whereGte (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereIn">
+                      whereIn (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where in condition which resolve field reference
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereIn_1">
+                      whereIn (fieldName, values)
+                    </a>
+
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereIn_2">
+                      whereIn (fieldName, values)
+                    </a>
+
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereIn_3">
+                      whereIn (fieldName, values)
+                    </a>
+
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereIn_4">
+                      whereIn (fieldName, values)
+                    </a>
+
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereIncludes">
+                      whereIncludes (fieldName, values)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      SOQL for for mulitple picklist comparision by passing list as list of values
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereIncludes_1">
+                      whereIncludes (fieldName, values)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      SOQL for for mulitple picklist comparision by passing string as list of value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereLeftLike">
+                      whereLeftLike (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql for using left like for wildcards matching (eg %like )
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereLike">
+                      whereLike (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql for using like operator for wildcards matching (eg %like% )
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereLt">
+                      whereLt (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereLte">
+                      whereLte (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereNotEq">
+                      whereNotEq (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereNotIn">
+                      whereNotIn (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where in condition which resolve field reference
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereNotIn_1">
+                      whereNotIn (fieldName, values)
+                    </a>
+
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereNotIn_2">
+                      whereNotIn (fieldName, values)
+                    </a>
+
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereNotIn_3">
+                      whereNotIn (fieldName, values)
+                    </a>
+
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereNotIn_4">
+                      whereNotIn (fieldName, values)
+                    </a>
+
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereNotNull">
+                      whereNotNull (fieldName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereNull">
+                      whereNull (fieldName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereOr">
+                      whereOr (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition along with OR, which resolve field reference and escape single quotes for value (by default true)
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereOr_1">
+                      whereOr (fieldName, value, escapeSingleQuotes)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql adding where condition along with OR, which resolve field reference and pass true to escape single quotes for value
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#Query.whereRightLike">
+                      whereRightLike (fieldName, value)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Soql for using right like for wildcards matching (eg like% )
+                    </div>
+                  </li>
+                </ul>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.addFields">
+                    <span>addFields()</span>
+                  </h4>
+                  <div class="method-description">
+                    Add all the field from SObject Type
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query addFields()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-01-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+    .addFields() 
+    .toString();</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.addFields_1">
+                    <span>addFields(fieldNames)</span>
+                  </h4>
+                  <div class="method-description">
+                    add all Custom Field by passing list of field names
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query addFields(list&lt;String&gt; fieldNames)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">list&lt;String&gt;</div>
+                  <div class="param-description">fieldNames</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-02-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(new list&lt;String&gt;{&#39;Name&#39;,&#39;LastName&#39;}) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.addFields_2">
+                    <span>addFields(fieldNames)</span>
+                  </h4>
+                  <div class="method-description">
+                    Pass list of field names as string by comma seperated
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query addFields(String fieldNames)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldNames</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-03-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name,LastName&#39;) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.addFieldSet">
+                    <span>addFieldSet(fieldSetName)</span>
+                  </h4>
+                  <div class="method-description">
+                    Add field based on the fieldset name from Sobject Type
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query addFieldSet(String fieldSetName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldSetName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-04-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Account.SObjectType) 
+   .addFieldset(&#39;CustomField&#39;) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.addLimit">
+                    <span>addLimit(limitClause)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql to add limit
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query addLimit(Integer limitClause)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Integer</div>
+                  <div class="param-description">limitClause</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-02-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+   .addLimit(5) 
+   .toString();</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.addOffset">
+                    <span>addOffset(limitClause)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql to add offset
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query addOffset(Integer limitClause)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Integer</div>
+                  <div class="param-description">limitClause</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-02-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+   .addOffset(5) 
+   .toString();</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.andCon">
+                    <span>andCon()</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql for and condition
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query andCon()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-04-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+   .addFields() 
+   .whereCon(&#39;LastName&#39;,&#39;=\&#39;Rogers\&#39;&#39;,true) 
+   .andCon() 
+   .whereCon(&#39;FirstName&#39;,&#39;=\&#39;Rogers\&#39;&#39;,true) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.buildChild">
+                    <span>buildChild(childRelationName)</span>
+                  </h4>
+                  <div class="method-description">
+                    soql child objects by passing relation name, which retrieve all record with all fields
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query buildChild(String childRelationName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">childRelationName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+   .addFields() 
+   .buildChild(&#39;Contacts&#39;) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.buildLookup">
+                    <span>buildLookup(fieldRelationName)</span>
+                  </h4>
+                  <div class="method-description">
+                    soql lookup object by passing relation name, which retrieve all record with all fields
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query buildLookup(String fieldRelationName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldRelationName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(new List&lt;String&gt;{&#39;Name&#39;,&#39;LastName&#39;,&#39;FirstName&#39;}) 
+   .buildLookUp(&#39;Account&#39;) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.debug">
+                    <span>debug()</span>
+                  </h4>
+                  <div class="method-description">
+                    Resolve field name relationship
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query debug()
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">relationName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    String
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-02-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.enforceFLS">
+                    <span>enforceFLS()</span>
+                  </h4>
+                  <div class="method-description">
+                    Enforce security level based on the user context
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query enforceFLS()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-03-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+   .addFields() 
+   .enforceFLS() 
+   .toString();</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.groupBy">
+                    <span>groupBy(groupByFieldName)</span>
+                  </h4>
+                  <div class="method-description">
+                    Add group by fieldname
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query groupBy(String groupByFieldName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">groupByFieldName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Opportunity.SObjectType) 
+  .addFields(&#39;CampaignId, AVG(Amount)&#39;) 
+  .groupBy(&#39;CampaignId&#39;) 
+  .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.grpClose">
+                    <span>grpClose()</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql for grouping the condition
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query grpClose()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-04-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Contact.SObjectType) 
+ .addFields() 
+   .grpOpen() 
+   .whereCon(&#39;LastName&#39;,&#39;=\&#39;Rogers\&#39;&#39;,true) 
+   .orCon() 
+   .whereCon(&#39;FirstName&#39;,&#39;=\&#39;Jack\&#39;&#39;,true) 
+   .grpClose() 
+   .andCon() 
+   .whereCon(&#39;Name&#39;,&#39;=\&#39;Jack Rogers\&#39;&#39;,true) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.grpOpen">
+                    <span>grpOpen()</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql for grouping the condition
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query grpOpen()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-04-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Contact.SObjectType) 
+ .addFields() 
+   .grpOpen() 
+   .whereCon(&#39;LastName&#39;,&#39;=\&#39;Rogers\&#39;&#39;,true) 
+   .orCon() 
+   .whereCon(&#39;FirstName&#39;,&#39;=\&#39;Jack\&#39;&#39;,true) 
+   .grpClose() 
+   .andCon() 
+   .whereCon(&#39;Name&#39;,&#39;=\&#39;Jack Rogers\&#39;&#39;,true) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.havingCon">
+                    <span>havingCon(condition)</span>
+                  </h4>
+                  <div class="method-description">
+                    Add having custom free condition
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query havingCon(String condition)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">condition</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Opportunity.SObjectType) 
+  .addFields(&#39;CampaignId, AVG(Amount)&#39;) 
+  .groupBy(&#39;CampaignId&#39;) 
+  .havingCon(&#39; AVG(Amount) &gt; 100 And  AVG(Amount) &lt;20000000&#39;) 
+  .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.newInstance">
+                    <span>newInstance(sType)</span>
+                  </h4>
+                  <div class="method-description">
+                    Initialize variable for query object
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static Query newInstance(Schema.SObjectType sType)
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-03-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.orCon">
+                    <span>orCon()</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql for or condition
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query orCon()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-04-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+   .addFields() 
+   .whereCon(&#39;LastName&#39;,&#39;=\&#39;Rogers\&#39;&#39;,true) 
+   .orCon() 
+   .whereCon(&#39;FirstName&#39;,&#39;=\&#39;Rogers\&#39;&#39;,true) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.orderBy">
+                    <span>orderBy(fieldName)</span>
+                  </h4>
+                  <div class="method-description">
+                    soql for order by ascending by default ( ORDER BY Name ASC )
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query orderBy(String fieldName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Contact.SObjectType) 
+   .addFields() 
+   .orderBy(&#39;Name&#39;) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.orderBy_1">
+                    <span>orderBy(fieldName, direction)</span>
+                  </h4>
+                  <div class="method-description">
+                    soql for order by descending by passing direction true ( ORDER BY Name DESC )
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query orderBy(String fieldName, Boolean direction)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Boolean</div>
+                  <div class="param-description">direction</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Contact.SObjectType) 
+   .addFields() 
+   .orderBy(&#39;Name&#39;,true) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.orderBy_2">
+                    <span>orderBy(fieldName, direction, nullsLast)</span>
+                  </h4>
+                  <div class="method-description">
+                    soql for order by descending by passing direction true ( ORDER BY Name DESC NULLS LAST )
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query orderBy(String fieldName, Boolean direction, Boolean nullsLast)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Boolean</div>
+                  <div class="param-description">direction</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Contact.SObjectType) 
+   .addFields() 
+   .orderBy(&#39;Name&#39;,true,true) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.orderByDistance">
+                    <span>orderByDistance(fieldName, distinationLocation, unit)</span>
+                  </h4>
+                  <div class="method-description">
+                    soql orderby distance between a location by default asscending
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query orderByDistance( String fieldName, System.Location distinationLocation, String unit )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">System.Location</div>
+                  <div class="param-description">distinationLocation</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">unit</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    QueryBuilder
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-07-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+   .addFields() 
+   .orderByDistance(&#39;MailingAddress&#39;,Location.newInstance(28.635308,77.22496),  &#39;mi&#39;) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.orderByDistance_1">
+                    <span>orderByDistance(fieldName, distinationLocation, unit, direction)</span>
+                  </h4>
+                  <div class="method-description">
+                    soql orderby distance between a location, pass direction true for descensing
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query orderByDistance( String fieldName, System.Location distinationLocation, String unit, Boolean direction )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">System.Location</div>
+                  <div class="param-description">distinationLocation</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">unit</div>
+                  <div class="param-name">Boolean</div>
+                  <div class="param-description">direction</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-07-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+   .addFields() 
+   .orderByDistance(&#39;MailingAddress&#39;,Location.newInstance(28.635308,77.22496),  &#39;mi&#39;,true) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.queryById">
+                    <span>queryById(recordId)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql short cut by passing id directly
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global String queryById(Object recordId)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Object</div>
+                  <div class="param-description">recordId</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    String
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-07-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+    .addFields() 
+    .queryById(&#39;0031y00000CZ0sBAAT&#39;);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.queryChild">
+                    <span>queryChild(childRelationName)</span>
+                  </h4>
+                  <div class="method-description">
+                    SOQL with child recording by passing child relationship name
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query queryChild(String childRelationName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">childRelationName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-03-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+     .queryChild(&#39;Contacts&#39;) 
+     .run() 
+     .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.queryLookup">
+                    <span>queryLookup(fieldName, byFieldName)</span>
+                  </h4>
+                  <div class="method-description">
+                    Create a relationship between Query object
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query queryLookup(String fieldName, Boolean byFieldName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Relationship</div>
+                  <div class="param-description">relationType</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">relationName</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-03-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.queryLookup_1">
+                    <span>queryLookup(fieldRelationName)</span>
+                  </h4>
+                  <div class="method-description">
+                    SQOL lookup object using relation name
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query queryLookup(String fieldRelationName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldRelationName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-02-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+   .queryLookup(&#39;Account&#39;) 
+   .run() 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.removeFields">
+                    <span>removeFields(fieldNames)</span>
+                  </h4>
+                  <div class="method-description">
+                    Remove fields by passing list of field names
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query removeFields(list&lt;String&gt; fieldNames)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">list&lt;String&gt;</div>
+                  <div class="param-description">fieldNames</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Contact.SObjectType) 
+    .addFields(new List&lt;String&gt;{&#39;Name&#39;,&#39;LastName&#39;,&#39;FirstName&#39;}) 
+    .removeFields(new List&lt;String&gt;{&#39;LastName&#39;,&#39;FirstName&#39;}) 
+    .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.removeFields_1">
+                    <span>removeFields(fieldNames)</span>
+                  </h4>
+                  <div class="method-description">
+                    Remove fields by passing string of field names
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query removeFields(String fieldNames)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldNames</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  String q = Query.newInstance(Contact.SObjectType) 
+    .addFields(&#39;Name,LastName,FirstName&#39;) 
+    .removeFields(&#39;LastName,FirstName&#39;) 
+    .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.removeMergedFields">
+                    <span>removeMergedFields()</span>
+                  </h4>
+                  <div class="method-description">
+                    Remove Person account merged field to avoid insert/update issue for business account
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query removeMergedFields()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-15-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.run">
+                    <span>run()</span>
+                  </h4>
+                  <div class="method-description">
+                    build a soql for child or parent object
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query run()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-01-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+   .addFields() 
+     .queryLookup(&#39;Account&#39;) 
+     .addFields() 
+     .run() 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.toString">
+                    <span>toString(showQuery)</span>
+                  </h4>
+                  <div class="method-description">
+                    Generate soql with displaying soql in system.debug
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global String toString(Boolean showQuery)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Boolean</div>
+                  <div class="param-description">showQuery</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    String
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-02-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.toString_1">
+                    <span>toString()</span>
+                  </h4>
+                  <div class="method-description">
+                    Generate final soql
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global override String toString()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    String
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-01-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+   .toString();</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereAnd">
+                    <span>whereAnd(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition along with AND, which resolve field reference and escape single quotes for value (by default true)
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereAnd(String fieldName, String value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-04-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  List&lt;Object&gt; parameters = new List&lt;Object&gt; {&#39;Rogers&#39;,&#39;Jack&#39;}; 
+ String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereAnd(&#39;LastName&#39;,&#39;={0}&#39;) 
+   .whereCon(&#39;FirstName&#39;,&#39;={1}&#39;) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q,parameters);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereAnd_1">
+                    <span>whereAnd(fieldName, value, escapeSingleQuotes)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition along with AND, which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereAnd( String fieldName, String value, Boolean escapeSingleQuotes )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="param-name">Boolean</div>
+                  <div class="param-description">escapeSingleQuotes</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>  List&lt;Object&gt; parameters = new List&lt;Object&gt; {&#39;Jack&#39;}; 
+ String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereAnd(&#39;LastName&#39;,&#39;=\&#39;Rogers\&#39;&#39;,false) 
+   .whereCon(&#39;FirstName&#39;,&#39;={0}&#39;) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q,parameters);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereCon">
+                    <span>whereCon(condition)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding custom where condition without escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global query whereCon(String condition)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">condition</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-04-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+  .addFields(&#39;Name&#39;) 
+  .whereCon(&#39;LastName=\&#39;Rogers\&#39;&#39;) 
+  .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereCon_1">
+                    <span>whereCon(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and escape single quotes for value (by default true)
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereCon(String fieldName, String value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-04-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Object&gt; parameters = new List&lt;Object&gt; {&#39;Rogers&#39;}; 
+ String q = Query.newInstance(Contact.SObjectType) 
+  .addFields(&#39;Name&#39;) 
+  .whereCon(&#39;LastName&#39;,&#39;={0}&#39;) 
+  .toString(true); 
+  List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q,parameters);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereCon_2">
+                    <span>whereCon(fieldName, value, escapeSingleQuotes)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereCon( String fieldName, String value, Boolean escapeSingleQuotes )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="param-name">Boolean</div>
+                  <div class="param-description">escapeSingleQuotes</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+  .addFields(&#39;Name&#39;) 
+  .whereCon(&#39;LastName&#39;,&#39;=\&#39;Rogers\&#39;&#39;,false) 
+  .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereDistance">
+                    <span>whereDistance(fieldName, distinationLocation, unit, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    soql for find distance between a location
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereDistance( String fieldName, System.Location distinationLocation, String unit, String value )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">System.Location</div>
+                  <div class="param-description">distinationLocation</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">unit</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-07-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Contact.SObjectType) 
+   .addFields() 
+   .whereDistance(&#39;MailingAddress&#39;, Location.newInstance(28.635308,77.22496)  , &#39;mi&#39;,&#39;&lt;500&#39;) 
+   .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereEq">
+                    <span>whereEq(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereEq(String fieldName, Object value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Object</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query String FirstName=&#39;Tim&#39;; String q = Query.newInstance(Contact.SObjectType) .addFields(&#39;Name&#39;) .whereEq(&#39;LastName&#39;,&#39;Barr&#39;) .AndCon() .whereEq(&#39;FirstName&#39;,FirstName) .toString(true); List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q);
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereGt">
+                    <span>whereGt(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereGt(String fieldName, Object value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Object</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>   String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereGt(&#39;CreatedDate&#39;, DateTime.now()) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereGte">
+                    <span>whereGte(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereGte(String fieldName, Object value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Object</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>   String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereGte(&#39;CreatedDate&#39;, DateTime.now()) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereIn">
+                    <span>whereIn(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where in condition which resolve field reference
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereIn(String fieldName, String value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+     .addFields(&#39;Name&#39;) 
+     .whereIn(&#39;Id&#39;, 
+          Query.newInstance(Contact.SObjectType) 
+          .addFields(&#39;AccountId&#39;) 
+          .whereEq(&#39;FirstName&#39;,&#39;Tim&#39;) 
+          .toString() 
+     ) 
+     .toString(true); 
+   List&lt;Account&gt; sl =(List&lt;Account&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereIn_1">
+                    <span>whereIn(fieldName, values)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereIn(String fieldName, List&lt;SObject&gt; values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">List&lt;SObject&gt;</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Contact&gt; sl = (List&lt;Contact&gt; )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString()); 
+ String q = Query.newInstance(Contact.SObjectType) 
+    .addFields(&#39;Name&#39;) 
+     .whereIn(&#39;Id&#39;, sl) 
+     .toString(true); 
+     sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereIn_2">
+                    <span>whereIn(fieldName, values)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereIn(String fieldName, Set&lt;Id&gt; values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Set&lt;Id&gt;</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Contact&gt; sl = (List&lt;Contact&gt; )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString()); 
+   String q = Query.newInstance(Contact.SObjectType) 
+     .addFields(&#39;Name&#39;) 
+     .whereIn(&#39;Id&#39;, new Map&lt;id,sObject&gt;(sl).keyset()) 
+     .toString(true); 
+     sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereIn_3">
+                    <span>whereIn(fieldName, values)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereIn(String fieldName, set&lt;Object&gt; values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">set&lt;Object&gt;</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Contact&gt; sl = (List&lt;Contact&gt; )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString()); 
+   String q = Query.newInstance(Contact.SObjectType) 
+     .addFields(&#39;Name&#39;) 
+     .whereIn(&#39;Id&#39;, new Map&lt;id,sObject&gt;(sl).keyset()) 
+     .toString(true); 
+     sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereIn_4">
+                    <span>whereIn(fieldName, values)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereIn(String fieldName, List&lt;Object&gt; values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">List&lt;Object&gt;</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Contact&gt; sl = (List&lt;Contact&gt; )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString()); 
+   String q = Query.newInstance(Contact.SObjectType) 
+     .addFields(&#39;Name&#39;) 
+     .whereIn(&#39;Id&#39;, new List&lt;id&gt;(new Map&lt;id,sObject&gt;(sl).keyset())) 
+     .toString(true); 
+     sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereIncludes">
+                    <span>whereIncludes(fieldName, values)</span>
+                  </h4>
+                  <div class="method-description">
+                    SOQL for for mulitple picklist comparision by passing list as list of values
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereIncludes(String fieldName, List&lt;String&gt; values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">List&lt;String&gt;</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-07-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Opportunity.SObjectType) 
+    .addFields(&#39;Name&#39;) 
+    .whereIncludes(&#39;CustomMultiSelect__c&#39;,new list&lt;String&gt; {&#39;one;two&#39;,&#39;three&#39;}) 
+    .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereIncludes_1">
+                    <span>whereIncludes(fieldName, values)</span>
+                  </h4>
+                  <div class="method-description">
+                    SOQL for for mulitple picklist comparision by passing string as list of value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereIncludes(String fieldName, String values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-07-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Opportunity.SObjectType) 
+    .addFields(&#39;Name&#39;) 
+    .whereIncludes(&#39;CustomMultiSelect__c&#39;,&#39;one;two,three&#39;) 
+    .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereLeftLike">
+                    <span>whereLeftLike(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql for using left like for wildcards matching (eg %like )
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global query whereLeftLike(String fieldName, String value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-07-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+       .addFields(&#39;Name&#39;) 
+       .whereLeftLike(&#39;Name&#39;,&#39;Burlington&#39;) 
+       .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereLike">
+                    <span>whereLike(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql for using like operator for wildcards matching (eg %like% )
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global query whereLike(String fieldName, String value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-07-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+       .addFields(&#39;Name&#39;) 
+       .whereLike(&#39;Name&#39;,&#39;Burlington&#39;) 
+       .toString(true);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereLt">
+                    <span>whereLt(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereLt(String fieldName, Object value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Object</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>   String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereLt(&#39;CreatedDate&#39;, DateTime.now()) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereLte">
+                    <span>whereLte(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereLte(String fieldName, Object value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Object</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>   String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereLte(&#39;CreatedDate&#39;, DateTime.now()) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereNotEq">
+                    <span>whereNotEq(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereNotEq(String fieldName, Object value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Object</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query String FirstName=&#39;Tim&#39;; String q = Query.newInstance(Contact.SObjectType) .addFields(&#39;Name&#39;) .whereNotEq(&#39;LastName&#39;,&#39;Barr&#39;) .AndCon() .whereNotEq(&#39;FirstName&#39;,FirstName) .toString(true); List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q);
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereNotIn">
+                    <span>whereNotIn(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where in condition which resolve field reference
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereNotIn(String fieldName, String value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+     .addFields(&#39;Name&#39;) 
+     .whereNotIn(&#39;Id&#39;, 
+          Query.newInstance(Contact.SObjectType) 
+          .addFields(&#39;AccountId&#39;) 
+          .whereEq(&#39;FirstName&#39;,&#39;Tim&#39;) 
+          .toString() 
+     ) 
+     .toString(true); 
+   List&lt;Account&gt; sl =(List&lt;Account&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereNotIn_1">
+                    <span>whereNotIn(fieldName, values)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereNotIn(String fieldName, List&lt;SObject&gt; values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">List&lt;SObject&gt;</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Contact&gt; sl = (List&lt;Contact&gt; )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString()); 
+ String q = Query.newInstance(Contact.SObjectType) 
+    .addFields(&#39;Name&#39;) 
+     .whereNotIn(&#39;Id&#39;, sl) 
+     .toString(true); 
+     sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereNotIn_2">
+                    <span>whereNotIn(fieldName, values)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereNotIn(String fieldName, Set&lt;Id&gt; values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">Set&lt;Id&gt;</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Contact&gt; sl = (List&lt;Contact&gt; )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString()); 
+   String q = Query.newInstance(Contact.SObjectType) 
+     .addFields(&#39;Name&#39;) 
+     .whereNotIn(&#39;Id&#39;, new Map&lt;id,sObject&gt;(sl).keyset()) 
+     .toString(true); 
+     sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereNotIn_3">
+                    <span>whereNotIn(fieldName, values)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereNotIn(String fieldName, set&lt;Object&gt; values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">set&lt;Object&gt;</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Contact&gt; sl = (List&lt;Contact&gt; )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString()); 
+   String q = Query.newInstance(Contact.SObjectType) 
+     .addFields(&#39;Name&#39;) 
+     .whereNotIn(&#39;Id&#39;, new Map&lt;id,sObject&gt;(sl).keyset()) 
+     .toString(true); 
+     sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereNotIn_4">
+                    <span>whereNotIn(fieldName, values)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereNotIn(String fieldName, List&lt;Object&gt; values)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">List&lt;Object&gt;</div>
+                  <div class="param-description">values</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Contact&gt; sl = (List&lt;Contact&gt; )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString()); 
+   String q = Query.newInstance(Contact.SObjectType) 
+     .addFields(&#39;Name&#39;) 
+     .whereNotIn(&#39;Id&#39;, new List&lt;id&gt;(new Map&lt;id,sObject&gt;(sl).keyset())) 
+     .toString(true); 
+     sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q); 
+   system.debug(system.JSON.Serialize(sl));</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereNotNull">
+                    <span>whereNotNull(fieldName)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereNotNull(String fieldName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>   String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereNotNull(&#39;FirstName&#39;) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereNull">
+                    <span>whereNull(fieldName)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereNull(String fieldName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-13-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>   String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereNull(&#39;FirstName&#39;) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereOr">
+                    <span>whereOr(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition along with OR, which resolve field reference and escape single quotes for value (by default true)
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereOr(String fieldName, String value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-04-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> List&lt;Object&gt; parameters = new List&lt;Object&gt; {&#39;Rogers&#39;,&#39;Jack&#39;}; 
+  String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereOr(&#39;LastName&#39;,&#39;={0}&#39;) 
+   .whereCon(&#39;FirstName&#39;,&#39;={1}&#39;) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q,parameters);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereOr_1">
+                    <span>whereOr(fieldName, value, escapeSingleQuotes)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql adding where condition along with OR, which resolve field reference and pass true to escape single quotes for value
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global Query whereOr( String fieldName, String value, Boolean escapeSingleQuotes )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="param-name">Boolean</div>
+                  <div class="param-description">escapeSingleQuotes</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-06-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code>   List&lt;Object&gt; parameters = new List&lt;Object&gt; {&#39;Jack&#39;}; 
+ String q = Query.newInstance(Contact.SObjectType) 
+   .addFields(&#39;Name&#39;) 
+   .whereOr(&#39;LastName&#39;,&#39;=\&#39;Rogers\&#39;&#39;,false) 
+   .whereCon(&#39;FirstName&#39;,&#39;={0}&#39;) 
+   .toString(true); 
+   List&lt;Contact&gt; sl =(List&lt;Contact&gt; ) DatabaseUtils.getRecords(q,parameters);</code></pre>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="Query.whereRightLike">
+                    <span>whereRightLike(fieldName, value)</span>
+                  </h4>
+                  <div class="method-description">
+                    Soql for using right like for wildcards matching (eg like% )
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global query whereRightLike(String fieldName, String value)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">fieldName</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">value</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    query
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 05-07-2021
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> String q = Query.newInstance(Account.SObjectType) 
+       .addFields(&#39;Name&#39;) 
+       .whereRightLike(&#39;Name&#39;,&#39;Burlington&#39;) 
+       .toString(true);</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="footer">
+
+          <div>
+            <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">
+              Powered By ApexDox VS Code
+            </a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+
+</html>

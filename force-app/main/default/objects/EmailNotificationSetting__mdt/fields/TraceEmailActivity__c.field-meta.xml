@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TraceEmailActivity__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Enable Email activity based on the whatId, Track Activities need to enable in object level to use the feature</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText
+  >Enable Email activity based on the whatId, Track Activities need to enable in object level to use the feature</inlineHelpText>
+    <label>Trace Email Activity</label>
+    <type>Checkbox</type>
+</CustomField>

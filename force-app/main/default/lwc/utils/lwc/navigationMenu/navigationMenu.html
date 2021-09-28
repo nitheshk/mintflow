@@ -1,0 +1,40 @@
+<template>
+  <slot name="headerSlot"> </slot>
+  <slot name="contentSlot">
+    <div class="slds-grid slds-wrap slds-grid_vertical-align-center">
+      <div class="slds-col slds-size_1-of-1">
+        <lightning-vertical-navigation>
+          <lightning-vertical-navigation-section label={sectionLabel}>
+            <template for:each={menuItems} for:item="item">
+              <template if:true={item.isActive}>
+                <lightning-vertical-navigation-item-icon
+                  key={item.position}
+                  data-item={item.position}
+                  label={item.label}
+                  name={item.label}
+                  icon-name={item.iconName}
+                  onclick={hanldleNavigation}
+                  class="slds-var-p-around_medium slds-is-active"
+                >
+                </lightning-vertical-navigation-item-icon>
+              </template>
+              <template if:false={item.isActive}>
+                <lightning-vertical-navigation-item-icon
+                  key={item.position}
+                  data-item={item.position}
+                  label={item.label}
+                  name={item.label}
+                  icon-name={item.iconName}
+                  onclick={hanldleNavigation}
+                  class="slds-var-p-around_medium"
+                >
+                </lightning-vertical-navigation-item-icon>
+              </template>
+            </template>
+          </lightning-vertical-navigation-section>
+        </lightning-vertical-navigation>
+      </div>
+    </div>
+  </slot>
+  <slot name="footerSlot"> </slot>
+</template>

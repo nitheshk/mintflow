@@ -1,0 +1,52 @@
+<template>
+  <div class="slds-grid slds-wrap">
+    <div class="slds-col slds-size_1-of-2 otp-banner"></div>
+    <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-large">
+      <lightning-card>
+        <div class="header slds-var-p-around_medium">
+          We sent you a 4 digit code to
+        </div>
+
+        <p class="h1-2 slds-var-p-around_medium slds-text-align_center">
+          {mobileNumber}
+        </p>
+
+        <div class="h2-1 slds-var-p-around_medium">
+          Kindly Confirm the recieved OTP below
+        </div>
+
+        <div class="slds-grid">
+          <div class="slds-col slds-size_1-of-6 slds-var-p-around_small">
+            <lightning-input value="4" maxlength="1"></lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-6 slds-var-p-around_small">
+            <lightning-input value="3" maxlength="1"></lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-6 slds-var-p-around_small">
+            <lightning-input value="6" maxlength="1"></lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-6 slds-var-p-around_small">
+            <lightning-input value="8" maxlength="1"></lightning-input>
+          </div>
+        </div>
+        <lightning-button
+          variant="base"
+          label="Resend OTP"
+          title="Looks like a link"
+          onclick={sendOTP}
+          class="slds-m-left_x-small"
+        ></lightning-button>
+        <footer class="slds-card__footer">
+          <lightning-button
+            variant="brand"
+            label="Verify"
+            title="Verify"
+            icon-name="utility:forward"
+            icon-position="right"
+            onclick={handleNext}
+          ></lightning-button>
+        </footer>
+      </lightning-card>
+    </div>
+  </div>
+</template>

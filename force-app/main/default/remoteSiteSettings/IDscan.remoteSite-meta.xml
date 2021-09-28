@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
+    <disableProtocolSecurity>false</disableProtocolSecurity>
+    <isActive>true</isActive>
+    <url>http://ec2-34-201-6-200.compute-1.amazonaws.com:49204</url>
+</RemoteSiteSetting>

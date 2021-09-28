@@ -1,0 +1,11 @@
+{
+  "activeViewId": "acbe94cf-9f90-4a45-ac26-86029504b849",
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "configurationTags": [],
+  "id": "f4d3ab8c-fc34-43a8-93b6-936ab44a0c52",
+  "label": "Financial Institute Search",
+  "pageAccess": "RequiresLogin",
+  "routeType": "custom-financial-institute-search",
+  "type": "route",
+  "urlPrefix": "FinancialInstituteSearch"
+}

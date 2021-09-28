@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ContentSubType__c</fullName>
+    <description>Secondary Content Type</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Secondary Content Type</inlineHelpText>
+    <label>Content Sub Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>W8Forms</fullName>
+                <default>false</default>
+                <label>W8 Forms</label>
+            </value>
+            <value>
+                <fullName>W9Forms</fullName>
+                <default>false</default>
+                <label>W9 Forms</label>
+            </value>
+            <value>
+                <fullName>DriverLicense</fullName>
+                <default>false</default>
+                <label>Driver License</label>
+            </value>
+            <value>
+                <fullName>MilitaryId</fullName>
+                <default>false</default>
+                <label>Military Id</label>
+            </value>
+            <value>
+                <fullName>StateId</fullName>
+                <default>false</default>
+                <label>State Id</label>
+            </value>
+            <value>
+                <fullName>Passport</fullName>
+                <default>false</default>
+                <label>Passport</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

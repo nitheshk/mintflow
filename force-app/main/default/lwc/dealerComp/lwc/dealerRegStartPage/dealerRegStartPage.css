@@ -1,0 +1,57 @@
+/* @import "c/defaultStyle"; */
+
+@media (min-height: 800px) {
+  .btnNext {
+    font-size: large;
+  }
+}
+
+@media (min-width: 600px) {
+  .btnNext {
+    font-size: small;
+  }
+}
+
+.col-50 {
+  width: 50%;
+}
+
+.col-100-50 {
+  width: 100%;
+  height: 50%;
+}
+
+.back-image {
+  background-image: var(--my-back);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 701px;
+}
+
+.btnNext {
+  font-size: 16px;
+}
+
+:host {
+  --sds-c-button-brand-color-background: #3b4eb0;
+  --sds-c-button-brand-color-background-hover: #3b4eb0;
+  --sds-c-button-line-height: 3rem;
+}
+
+.header {
+  font-weight: 600;
+  /* font-family: emoji; */
+  font-size: 3em;
+  text-transform: uppercase;
+}
+
+.content {
+  /* font-family: emoji; */
+  font-size: 1.5em;
+}
+
+.content1 {
+  /* font-family: emoji; */
+  font-size: 2em;
+}

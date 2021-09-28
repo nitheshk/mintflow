@@ -1,0 +1,73 @@
+{
+  "defaultDevhub": "prod",
+  "defaultDevHubFile": "./deploy/devhubKey.json",
+
+  "scratchOrg": {
+    "devhubCredential": "./deploy/devhub.json",
+    "scratchOrgName": "olb",
+    "durationDays": "20",
+    "scratchOrgjson": "./deploy/scratchOrg/scratchOrgDetail.json"
+  },
+
+  "ui": {
+    "doTract": {
+      "uiDistFolder": "DoTracker-UI/dist/",
+      "staticResourceFolder": "./force-app/main/default/staticresources/",
+      "staticResourceName": "DoTract.zip",
+      "dOTractUIFolder": "DoTracker-UI"
+    }
+  },
+
+  "dataImport": {
+    "systemConfig": {
+      "deleteConfigFile": "./data/salesforceConfig/systemConfig/deleteConfig.apex",
+      "configPlanFile": "./data/salesforceConfig/systemConfig/config-plan.json"
+    },
+    "FSCConfig": {
+      "deleteConfigFile": "",
+      "configPlanFile": ""
+    }
+  },
+
+  "permission": {
+    "permissionSet": {
+      "permissionSet1": "./deploy/scratchOrg/permissionSet/AssignPermissionSet.apex"
+    }
+  },
+
+  "communities": {
+    "links": "communityLinks.json",
+    "publishCommnitiesNames": ["Dealer", "FinancialInstitute"]
+  },
+
+  "siteSetup": {
+    "active": "true",
+    "fileNotFoundPage": "FileNotFound",
+    "genericErrorPage": "Exception",
+    "inMaintenancePage": "InMaintenance",
+    "inactiveIndexPage": "InMaintenance",
+    "indexPage": "DoTract",
+    "siteName": "DoTract",
+    "siteAdmin": "",
+    "siteGuestRecordDefaultOwner": "",
+    "subdomain": "digital-align-developer",
+    "urlPathPrefix": "",
+    "siteSFDXLocation": "./fsc-app/main/default/sites/",
+    "siteProfileSFDXLocation": "./fsc-app/main/default/profiles/",
+    "guestProfile": "DoTract Profile",
+    "skipSiteProfile": false,
+    "template": {
+      "siteFile": "./deploy/scratchOrg/siteTemplates/sites.json",
+      "siteProfile": "./deploy/scratchOrg/siteTemplates/siteProfile.json"
+    }
+  },
+
+  "dependentPackage": {
+    "DigitalAlignUtilities": "04t5g000000DgdzAAC",
+    "FinancialServiceCloud": "04t1E000000jb9R",
+    "FinancialServiceCloudExt": "04t1E000001Iql5"
+  },
+
+  "namespace": "",
+  "projectScratchDef": "./config/project-scratch-def.json"
+}

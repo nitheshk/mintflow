@@ -1,0 +1,11 @@
+{
+  "activeViewId": "f08b4e49-cacd-4494-8877-7a6cd719806b",
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "configurationTags": [],
+  "id": "333b3bb8-11f2-4a29-be06-670a458c6599",
+  "label": "Applications",
+  "pageAccess": "RequiresLogin",
+  "routeType": "custom-applications",
+  "type": "route",
+  "urlPrefix": "Applications"
+}

@@ -1,0 +1,25 @@
+{
+  "recommendations": [
+    "salesforce.salesforcedx-vscode-core",
+    "salesforce.salesforcedx-vscode",
+    "salesforce.salesforcedx-vscode-expanded",
+    "redhat.vscode-xml",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "johnaaronnelson.apex",
+    "financialforce.lana",
+    "chuckjonas.apex-pmd",
+    "janwinkels.ais",
+    "coenraads.bracket-pair-colorizer-2",
+    "audibene.salesforcecodesnippets",
+    "doi.fileheadercomment",
+    "eamodio.gitlens",
+    "santanupal.lwccoder",
+    "ibm.output-colorizer",
+    "mohithshrivastava.dx-code-companion",
+    "vignaeshrama.sfdx-package-xml-generator",
+    "hugoom.sfdx-autoheader",
+    "drossi750.vscode-salesforce-toolkit",
+    "peterweinberg.apexdox-vs-code"
+  ]
+}

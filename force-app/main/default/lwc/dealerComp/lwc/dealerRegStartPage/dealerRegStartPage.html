@@ -1,0 +1,49 @@
+<template>
+  <div class="slds-grid slds-wrap">
+    <div class="slds-col slds-size_1-of-2 back-image"></div>
+    <div class="slds-col slds-size_1-of-2">
+      <div class="slds-card">
+        <div class="slds-p-around_xx-large">
+          <template if:true={isRendered}>
+            <template if:true={leadData}>
+              <div class="header">
+                Hello <span style="color: #3b4eb0">{leadData.Name}</span>
+              </div>
+              <lightning-card class="slds-var-p-around_x-large">
+                <template if:true={isProgress}>
+                  <div class="content">
+                    We are your partner to help move your Credit Union or
+                    Community Bank towards strategic transformation with
+                    automation
+                  </div>
+                  <footer class="slds-card__footer slds-m-top_x-large">
+                    <lightning-button
+                      variant="brand"
+                      label="Let's Complete your Registration"
+                      title="Let's Complete your Registration"
+                      icon-name="utility:forward"
+                      icon-position="right"
+                      class="slds-var-m-left_medium btnNext"
+                      onclick={handleNext}
+                    ></lightning-button>
+                  </footer>
+                </template>
+                <template if:false={isProgress}>
+                  <div class="content">
+                    Your Application is alreay under process. Please wait until
+                    we get back to you.
+                  </div>
+                </template>
+              </lightning-card>
+            </template>
+            <template if:false={leadData}>
+              <div class="content" style="color: red">
+                We are sorry, Unable to find your data
+              </div>
+            </template>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

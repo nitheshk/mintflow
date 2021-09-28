@@ -1,0 +1,36 @@
+{
+  "orgName": "Digital Align Inc",
+  "edition": "Developer",
+  "features": [
+    "EnableSetPasswordInApi",
+    "Sites",
+    "Communities",
+    "FinancialServicesUser:5",
+    "ContactsToMultipleAccounts",
+    "PersonAccounts"
+  ],
+  "hasSampleData": true,
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "experienceBundleSettings": {
+      "enableExperienceBundleMetadata": true
+    },
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    },
+    "enhancedNotesSettings": {
+      "enableEnhancedNotes": true
+    },
+    "apexSettings": {
+      "enableCompileOnDeploy": true
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    }
+  }
+}

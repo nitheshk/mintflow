@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DynamicDataTable__c</fullName>
+    <description
+  >Master table to list the layout name or data table name</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>DynamicDataTable</label>
+    <referenceTo>DynamicDataTable__mdt</referenceTo>
+    <relationshipLabel>DynamicDataTableItems</relationshipLabel>
+    <relationshipName>DynamicDataTableItems</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

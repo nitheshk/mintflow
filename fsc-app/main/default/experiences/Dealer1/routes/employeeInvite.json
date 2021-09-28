@@ -1,0 +1,11 @@
+{
+  "activeViewId": "5e476521-5179-4a63-8649-581881e1c6f7",
+  "appPageId": "aa96077a-8230-4d52-9f6c-0db1939c14cc",
+  "configurationTags": [],
+  "id": "c8152342-4622-422c-bb1e-35894d878e42",
+  "label": "EmployeeInvite",
+  "pageAccess": "UseParent",
+  "routeType": "custom-employee-invite",
+  "type": "route",
+  "urlPrefix": "EmployeeInvite"
+}

@@ -1,0 +1,122 @@
+{
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "03a73c32-ccb5-4971-9041-6690150e17a1",
+  "label": "EmployeeInvite",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "5315eaf8-dfda-4fd8-ac5e-9c6b0ccec13a",
+              "columns": [
+                {
+                  "UUID": "602037c0-47b3-4b04-ae5f-22435c125da3",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "e17c0b21-d9a3-4f9d-8975-87bcd61f578e",
+                  "columnKey": "05d53",
+                  "columnName": "Column 2",
+                  "columnWidth": "8",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "ba651a89-c308-405b-8d19-fb8dbcbae103",
+                  "columnKey": "15e34",
+                  "columnName": "Column 3",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "5315eaf8-dfda-4fd8-ac5e-9c6b0ccec13a",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "logoName": "",
+                    "menuName": "FinancialInsituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "id": "d66eeff0-8e93-41fc-b0c0-551db2f39f1d",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "602037c0-47b3-4b04-ae5f-22435c125da3",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {},
+                  "componentName": "dau01:finInstEmployeeRegister",
+                  "id": "48c2edcc-6c80-489e-a72b-93d2bb875564",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "e17c0b21-d9a3-4f9d-8975-87bcd61f578e",
+              "regionLabel": "Column 2",
+              "regionName": "05d53",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "id": "ba651a89-c308-405b-8d19-fb8dbcbae103",
+              "regionLabel": "Column 3",
+              "regionName": "15e34",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "0e9ef6ae-3299-46b7-9037-3ee1f5f88bf4",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "EmployeeInvite"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "4f9dd035-4e72-41b2-bb62-340b153209b6",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "bb6a4b3c-7a49-420f-bc1a-9333894c0ef0",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
+  "type": "view",
+  "viewType": "custom-employee-invite"
+}

@@ -1,0 +1,121 @@
+{
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "f08b4e49-cacd-4494-8877-7a6cd719806b",
+  "label": "Applications",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "adbe565e-e664-4c6a-b91d-668a3ac7e3bf",
+              "columns": [
+                {
+                  "UUID": "1d148f06-0ce2-4dac-afad-6cd1935be593",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "f7b4c157-46e3-4ab3-a6ee-46849e85753a",
+                  "columnKey": "14130",
+                  "columnName": "Column 2",
+                  "columnWidth": "10",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "adbe565e-e664-4c6a-b91d-668a3ac7e3bf",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "logoName": "",
+                    "menuName": "FinancialInsituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "id": "3d43220b-34d5-4d40-8483-3153a7f83434",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "1d148f06-0ce2-4dac-afad-6cd1935be593",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-page-header\">\n  <div class=\"slds-page-header__row\">\n    <div class=\"slds-page-header__col-title\">\n      <div class=\"slds-media\">\n        <div class=\"slds-media__figure\">\n          <span class=\"slds-icon_container slds-icon-standard-opportunity\" title=\"opportunity\">                       \n          </span>\n        </div>\n        <div class=\"slds-media__body\">\n          <div class=\"slds-page-header__name\">\n            <div class=\"slds-page-header__name-title\">\n              <h1>\n                <span style=\"color:#3b4eb0;\" class=\"slds-page-header__title slds-truncate\" title=\"All Applications\">All Applications</span>\n              </h1>\n            </div>\n          </div>\n          <p class=\"slds-page-header__name-meta\"></p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "1f6bce79-7559-400b-857c-0186c701b970",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "metadataName": "FIApplications",
+                    "sortString": "Name"
+                  },
+                  "componentName": "dau01:dynamicDataTable",
+                  "id": "aa870e0f-33f0-4d97-9e57-ea6ea06f2708",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "f7b4c157-46e3-4ab3-a6ee-46849e85753a",
+              "regionLabel": "Column 2",
+              "regionName": "14130",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "9331a2f5-abca-4da1-bfd8-8fcadf262b7d",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "Applications"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "82cee5aa-07cd-47b8-8185-4cdc2c7252ef",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "3698576d-373f-4652-9f35-ca7c85075193",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
+  "type": "view",
+  "viewType": "custom-applications"
+}

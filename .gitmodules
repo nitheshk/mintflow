@@ -1,0 +1,4 @@
+[submodule "DoTracker-UI"]
+	path = DoTracker-UI
+	url = git@github.com:DigitalAlignInc/DoTracker-UI.git
+	branch = dev

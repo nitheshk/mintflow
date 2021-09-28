@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Primary address</fullName>
+        <default>true</default>
+        <label>Primary address</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Previous address</fullName>
+        <default>false</default>
+        <label>Previous address</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Secondary address</fullName>
+        <default>false</default>
+        <label>Secondary address</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Mailing address</fullName>
+        <default>false</default>
+        <label>Mailing address</label>
+    </standardValue>
+</StandardValueSet>

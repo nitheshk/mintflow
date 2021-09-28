@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disabled__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >True for Trigger to deactivate, False for activate the Trigger</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText
+  >True for Trigger to deactivate, False for activate the Trigger</inlineHelpText>
+    <label>Disabled</label>
+    <type>Checkbox</type>
+</CustomField>

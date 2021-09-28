@@ -1,0 +1,183 @@
+{
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "acbe94cf-9f90-4a45-ac26-86029504b849",
+  "label": "Financial Institute Search",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "c8d94707-ac8a-4cff-ac9c-4a4d4ea51b98",
+              "columns": [
+                {
+                  "UUID": "3460bc3c-ff40-4e8a-b62f-9a1cbff7dd7e",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "39d81b4f-4367-4408-811d-b58e48542ecf",
+                  "columnKey": "3bdb3",
+                  "columnName": "Column 2",
+                  "columnWidth": "10",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "c8d94707-ac8a-4cff-ac9c-4a4d4ea51b98",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "logoName": "",
+                    "menuName": "FinancialInsituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "id": "caca4370-fc54-4c49-a22f-07516b573ecb",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "3460bc3c-ff40-4e8a-b62f-9a1cbff7dd7e",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "tabsetConfig": {
+                      "UUID": "c7796573-79d2-4383-aafa-70c3ff471b6b",
+                      "activeTab": "",
+                      "tabs": [
+                        {
+                          "UUID": "6bf667a3-6625-4f80-80a2-952fe8cb7647",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "1",
+                          "tabName": "Search Dealers"
+                        },
+                        {
+                          "UUID": "f63d1b33-fdae-4e87-926d-103c889b2f33",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "2",
+                          "tabName": "Search Employees"
+                        },
+                        {
+                          "UUID": "8a2c3e0e-4541-47c4-b3bc-a9a0d4ea10f4",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "79d08",
+                          "tabName": "Search Applications"
+                        }
+                      ],
+                      "useOverflowMenu": false
+                    }
+                  },
+                  "componentName": "forceCommunity:tabset",
+                  "id": "c7796573-79d2-4383-aafa-70c3ff471b6b",
+                  "regions": [
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {},
+                          "componentName": "dau01:dealerSearch",
+                          "id": "2b8e24a5-7060-4963-ba63-1329daebb6da",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "6bf667a3-6625-4f80-80a2-952fe8cb7647",
+                      "regionLabel": "Search Dealers",
+                      "regionName": "1",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "employeeContactType": "FinancialInstituteEmployee"
+                          },
+                          "componentName": "dau01:employeeSearch",
+                          "id": "c15045c4-8156-4c94-9583-b9a61f9d1c3a",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "f63d1b33-fdae-4e87-926d-103c889b2f33",
+                      "regionLabel": "Search Employees",
+                      "regionName": "2",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "id": "8a2c3e0e-4541-47c4-b3bc-a9a0d4ea10f4",
+                      "regionLabel": "Search Applications",
+                      "regionName": "79d08",
+                      "renditionMap": {},
+                      "type": "region"
+                    }
+                  ],
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "39d81b4f-4367-4408-811d-b58e48542ecf",
+              "regionLabel": "Column 2",
+              "regionName": "3bdb3",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "9847936f-b512-47c7-b0ba-105da7d6c76c",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "Financial Institute Search"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "f12b41b8-aa2b-4176-a83c-b6060970499b",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "09523481-87cf-43e1-a5dc-a4483fd0785a",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
+  "type": "view",
+  "viewType": "custom-financial-institute-search"
+}

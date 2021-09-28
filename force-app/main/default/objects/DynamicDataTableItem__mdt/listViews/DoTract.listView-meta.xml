@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DoTract</fullName>
+    <columns>MasterLabel</columns>
+    <columns>DeveloperName</columns>
+    <columns>DisplayOrder__c</columns>
+    <columns>DynamicDataTable__c</columns>
+    <columns>FieldName__c</columns>
+    <columns>ParentObjectAPI__c</columns>
+    <columns>Type__c</columns>
+    <columns>CellAttributes__c</columns>
+    <columns>TextAttributes__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>DoTract</label>
+    <language>en_US</language>
+</ListView>

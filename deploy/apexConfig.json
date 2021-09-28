@@ -1,0 +1,8 @@
+{
+  "TriggerHandler": {
+    "namespace": "",
+    "classPath": "./force-app/main/default/classes/",
+    "templateCls": "./deploy/utility/classTemplates/TriggerHandlerName.cls",
+    "templateMetaXml": "./deploy/utility/classTemplates/TriggerHandlerName.cls-meta.xml"
+  }
+}

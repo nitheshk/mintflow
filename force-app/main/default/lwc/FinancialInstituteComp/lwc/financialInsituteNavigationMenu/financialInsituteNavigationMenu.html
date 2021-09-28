@@ -1,0 +1,100 @@
+<template>
+  <lightning-card class="lightningCard slds-border_right">
+    <div class="slds-var-m-around_medium main">
+      <template if:true={logoName}>
+        <span class="slds-var-p-around_small">
+          <a href={href} onclick={handleLogoClick}><img src={logoUrl} /></a>
+        </span>
+      </template>
+
+      <div class="slds-grid slds-wrap slds-grid_vertical-align-center">
+        <div class="slds-col slds-size_1-of-1">
+          <div class="nav-bar">
+            <ul>
+              <template for:each={menuItems} for:item="item">
+                <template if:true={item.isActive}>
+                  <li
+                    key={item.position}
+                    data-item={item.position}
+                    onclick={hanldleNavigation}
+                    class="active-nav"
+                  >
+                    <lightning-icon
+                      icon-name={item.iconName}
+                      alternative-text={item.label}
+                      title={item.label}
+                      size="medium"
+                      variant="inverse"
+                      class="slds-var-m-right_small icon-active-style"
+                    ></lightning-icon>
+                    {item.label}
+                  </li>
+                </template>
+
+                <template if:false={item.isActive}>
+                  <li
+                    key={item.position}
+                    data-item={item.position}
+                    onclick={hanldleNavigation}
+                  >
+                    <lightning-icon
+                      icon-name={item.iconName}
+                      alternative-text={item.label}
+                      title={item.label}
+                      size="medium"
+                      class="slds-var-m-right_small icon-style"
+                    ></lightning-icon>
+                    {item.label}
+                  </li>
+                </template>
+              </template>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <template if:true={isEmployeePage}>
+        <div class="slds-var-p-around_medium invite-card">
+          <div class="slds-var-p-around_small">
+            <h1>Send Invite</h1>
+            <br />
+            <p>Invite New Employee</p>
+          </div>
+          <div class="slds-var-p-around_small">
+            <lightning-button
+              variant="brand-outline"
+              label="Invite"
+              title="Invite"
+              onclick={navigateToInvite}
+              class="buttonBase"
+              icon-name="utility:forward"
+              icon-position="right"
+              data-fieldname="EmployeeInvite"
+            ></lightning-button>
+          </div>
+        </div>
+      </template>
+      <template if:true={isDealerPage}>
+        <div class="slds-var-p-around_medium invite-card">
+          <div class="slds-var-p-around_small">
+            <h1>Send Invite</h1>
+            <br />
+            <p>Invite New Dealer</p>
+          </div>
+          <div class="slds-var-p-around_small">
+            <lightning-button
+              variant="brand-outline"
+              label="Invite"
+              title="Invite"
+              onclick={navigateToInvite}
+              class="buttonBase"
+              icon-name="utility:forward"
+              icon-position="right"
+              data-fieldname="DealerInvite"
+            ></lightning-button>
+          </div>
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,12 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "FinServ__UsePersonAccount__c",
+        "referenceId": "UsePersonAccountRef_0"
+      },
+      "Name": "Use Person Account",
+      "FinServ__Enable__c": true
+    }
+  ]
+}

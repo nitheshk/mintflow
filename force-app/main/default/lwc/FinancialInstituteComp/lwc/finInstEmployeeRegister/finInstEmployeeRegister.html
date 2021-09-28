@@ -1,0 +1,168 @@
+<template>
+  <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
+  <template if:false={isEmployeeCreated}>
+    <div class="slds-align_absolute-center slds-m-around_x-large">
+      <lightning-card title="Register new Employee" icon-name="standard:user">
+        <div class="slds-var-m-around_medium">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+              <lightning-input
+                required
+                data-fieldname="dau01__EmployeeId__c"
+                label="Employee Id"
+                placeholder="Employee Id"
+                pattern={alphanumValidation}
+                message-when-pattern-mismatch={alphanumValidationMessage}
+                field-level-help="Enter employee ID of the person"
+                maxlength="20"
+                value={contactData.dau01__EmployeeId__c}
+                onchange={handleChange}
+                class="validation"
+              ></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+              <lightning-input
+                data-fieldname="FirstName"
+                label="First Name"
+                placeholder="First Name"
+                pattern={alphanumValidation}
+                message-when-pattern-mismatch={alphanumValidationMessage}
+                field-level-help={alphanumHelpText}
+                maxlength="40"
+                value={contactData.FirstName}
+                onchange={handleChange}
+                class="validation"
+              ></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+              <lightning-input
+                required
+                data-fieldname="LastName"
+                label="Last Name"
+                placeholder="Last Name"
+                pattern={alphanumValidation}
+                message-when-pattern-mismatch={alphanumValidationMessage}
+                field-level-help={alphanumHelpText}
+                maxlength="40"
+                value={contactData.LastName}
+                onchange={handleChange}
+                class="validation"
+              ></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+              <lightning-input
+                data-fieldname="Birthdate"
+                type="date"
+                value={contactData.Birthdate}
+                name="Birthdate"
+                label="Enter The Birthdate"
+                field-level-help={birthdateValidationMessage}
+                max={currentDate}
+                onchange={handleChange}
+                placeholder="Enter The Birthdate"
+                class="validation"
+              ></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+              <lightning-input
+                required
+                data-fieldname="Email"
+                label="Email"
+                type="Email"
+                placeholder="example@company.com"
+                value={contactData.Email}
+                onchange={handleChange}
+                class="validation"
+              ></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+              <lightning-input
+                data-fieldname="MobilePhone"
+                type="tel"
+                label="Mobile Phone"
+                name="MobilePhone"
+                value={contactData.MobilePhone}
+                placeholder="Enter mobile number"
+                maxlength="10"
+                minlength="10"
+                pattern={phonenumber}
+                message-when-pattern-mismatch={phoneNumberValidationMessage}
+                message-when-too-short={phoneNumberValidationMessage}
+                message-when-bad-input={phoneNumberValidationMessage}
+                onchange={handleChange}
+                class="validation"
+                required
+              ></lightning-input>
+            </div>
+          </div>
+
+          <div class="slds-var-p-around_medium" style="text-align: end">
+            <lightning-button-group>
+              <lightning-button
+                variant="brand"
+                label="Save"
+                title="Save"
+                onclick={handleSave}
+                class="slds-var-m-left_x-small"
+                icon-name="utility:save"
+                icon-position="left"
+              ></lightning-button>
+
+              <lightning-button
+                variant="brand"
+                label="Cancel"
+                title="Cancel"
+                onclick={handleCancel}
+                class="slds-var-m-left_x-small"
+                icon-name="utility:close"
+                icon-position="right"
+              ></lightning-button>
+            </lightning-button-group>
+          </div>
+        </div>
+      </lightning-card>
+    </div>
+  </template>
+  <template if:true={isEmployeeCreated}>
+    <div class="slds-align_absolute-center slds-m-around_x-large">
+      <lightning-card>
+        <div class="slds-var-m-around_medium">
+          <div class="slds-grid slds-wrap">
+            <div
+              class="
+                slds-col
+                slds-size_1-of-1
+                slds-var-p-around_small
+                slds-text-align_center
+              "
+            >
+              <p class="slds-text-heading_large" style="color: #3b4eb0">
+                <b>Thank you for filling out the information!</b>
+              </p>
+              <br />
+              <p class="slds-text-heading_medium" style="color: #ff7570">
+                We’ve sent an email with login link to {contactData.Email}
+                provided by you.
+              </p>
+              <br />
+              <p class="slds-text-heading_medium">
+                <lightning-button
+                  variant="Brand Outline"
+                  label="Add More Employee"
+                  title="Add More Employee"
+                  onclick={HandleshowEmployeeRegPage}
+                  class="slds-var-m-left_x-small"
+                ></lightning-button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </lightning-card>
+    </div>
+  </template>
+</template>

@@ -1,0 +1,20 @@
+[
+  {
+    "sobject": "dau01__ApplicationConfiguration__c",
+    "saveRefs": false,
+    "resolveRefs": false,
+    "files": ["dau01__ApplicationConfiguration__c.json"]
+  },
+  {
+    "sobject": "FinServ__UsePersonAccount__c",
+    "saveRefs": false,
+    "resolveRefs": false,
+    "files": ["FinServ__UsePersonAccount__c.json"]
+  },
+  {
+    "sobject": "dau01__SurveyTemplate__c",
+    "saveRefs": true,
+    "resolveRefs": true,
+    "files": ["dau01__SurveyTemplate__c.json"]
+  }
+]

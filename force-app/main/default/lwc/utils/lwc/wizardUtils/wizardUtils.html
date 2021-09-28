@@ -1,0 +1,13 @@
+<template>
+  <slot name="containerSlot"> </slot>
+  <slot name="headerSlot">
+    <c-progress-bar-utils
+      steps={steps}
+      type={wizardType}
+      current-step={current}
+      onheaderslot={handleHeaderSlot}
+    ></c-progress-bar-utils>
+  </slot>
+  <slot name="contentSlot"></slot>
+  <slot name="footerSlot"></slot>
+</template>

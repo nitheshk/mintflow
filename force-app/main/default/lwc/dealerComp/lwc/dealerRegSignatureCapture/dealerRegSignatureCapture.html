@@ -1,0 +1,41 @@
+<template>
+  <lightning-card title="Dealer Signature" icon-name="standard:lead">
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-size_1-of-2">
+        <p class="slds-var-p-around_x-large">
+          <canvas
+            name="canvasItem"
+            width="550px"
+            style="
+              border: 2px solid rgb(136, 135, 135);
+              background: transparent;
+            "
+          ></canvas>
+        </p>
+        <p class="slds-p-top_medium slds-float_right">
+          <lightning-button-group>
+            <!--<lightning-button
+              variant="brand"
+              label="Save"
+              title="Save"
+              onclick={handleNext}
+              class="slds-var-m-left_x-small"
+              icon-name="utility:save"
+              icon-position="right"
+            ></lightning-button> -->
+            <lightning-button
+              variant="brand"
+              label="Next"
+              title="Next"
+              onclick={handleNext}
+              class="slds-var-m-left_x-small"
+              icon-name="utility:forward"
+              icon-position="right"
+            ></lightning-button>
+          </lightning-button-group>
+        </p>
+      </div>
+      <div class="slds-col slds-size_1-of-2"></div>
+    </div>
+  </lightning-card>
+</template>

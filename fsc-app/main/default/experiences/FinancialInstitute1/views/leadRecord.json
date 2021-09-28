@@ -1,0 +1,108 @@
+{
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "c5687183-1fd7-4347-9dd0-7c672b737b5e",
+  "label": "LeadRecord",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "45912784-0ac6-4b35-a9ab-bc558899cd47",
+              "columns": [
+                {
+                  "UUID": "5c04c032-8b4c-4c57-8555-5f76a134d5a8",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "aa0af1b3-5917-4136-998c-8b3c7cb49107",
+                  "columnKey": "f41d4",
+                  "columnName": "Column 2",
+                  "columnWidth": "10",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "45912784-0ac6-4b35-a9ab-bc558899cd47",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "logoName": "",
+                    "menuName": "FinancialInsituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "id": "9754940a-84a2-432e-8b44-17195781fd37",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "5c04c032-8b4c-4c57-8555-5f76a134d5a8",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {},
+                  "componentName": "dau01:dealerRecordPage",
+                  "id": "21f5933e-d689-49f6-8984-edda8644ce79",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "aa0af1b3-5917-4136-998c-8b3c7cb49107",
+              "regionLabel": "Column 2",
+              "regionName": "f41d4",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "010e8fc0-e7e6-4dae-9280-256073ccf4c6",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "LeadRecord"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "f17cb48d-3c46-4ba4-b9f7-84d1ca5a78de",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "549718a9-f116-4b3f-8c0e-dae428c12a40",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
+  "type": "view",
+  "viewType": "custom-lead-record"
+}

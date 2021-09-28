@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UserContactType__c</fullName>
+    <description
+  >Field is used to indicate the contact belong to which user type</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Field is used to indicate the contact belong to which user type</inlineHelpText>
+    <label>User Contact Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FinancialInstituteEmployee</fullName>
+                <default>false</default>
+                <label>Financial Institute Employee</label>
+            </value>
+            <value>
+                <fullName>DealerEmployee</fullName>
+                <default>false</default>
+                <label>Dealer Employee</label>
+            </value>
+            <value>
+                <fullName>DealerAdmin</fullName>
+                <default>false</default>
+                <label>Dealer Admin</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

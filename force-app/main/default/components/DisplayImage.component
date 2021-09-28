@@ -1,0 +1,25 @@
+<apex:component
+  id="DisplayImage"
+  controller="DisplayImageController"
+  access="global"
+>
+  <apex:attribute
+    type="String"
+    name="name"
+    assignTo="{!imageName}"
+    description="Image Name"
+  />
+  <apex:attribute
+    type="String"
+    name="width"
+    assignTo="{!imageWidth}"
+    description="Image width"
+  />
+  <apex:attribute
+    type="String"
+    name="height"
+    assignTo="{!imageHeight}"
+    description="Image height"
+  />
+  <img src="{!imageUrl}" width="{!imageWidth}" height="{!imageHeight}" />
+</apex:component>

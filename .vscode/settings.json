@@ -1,0 +1,101 @@
+{
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/.sfdx": true
+  },
+  "fileHeaderComment.template": {
+    "*": [
+      "/**",
+      "* Copyright (c) 2021 Digital Align",
+      "* @group Service",
+      "* @author Digital Align Team",
+      "* @reference ",
+      "* @description ",
+      "**/"
+    ]
+  },
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+
+  "salesforcedx-vscode-core.push-or-deploy-on-save.enabled": false,
+  "SFDoc.EnableForVisualforce": false,
+  "SFDoc.EnableForLightningMarkup": false,
+  "extensions.ignoreRecommendations": true,
+  "explorer.confirmDelete": false,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "SFDoc.IncludParameterTypeInMethodHeader": true,
+  "explorer.confirmDragAndDrop": false,
+  "salesforcedx-vscode-core.retrieve-test-code-coverage": true,
+  "dx-code-companion.autosave.enabled": false,
+  "SFDoc.EnableForApex": false,
+  "files.insertFinalNewline": true,
+  "[xml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[visualforce]": {
+    "editor.defaultFormatter": "salesforce.salesforcedx-vscode-visualforce"
+  },
+  "[apex]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "apexdox.engine.source": [
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/ApexXmlSerializer"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/EmailService"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/QueryGenerator"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/TriggerActionsFramework"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/utils"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/AbstractClass"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/AccountManagement"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/GenericClass"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/Repository"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/Utilities"
+    }
+  ],
+  "apexdox.engine.cleanDir": true,
+  "apexdox.engine.targetDirectory": "${workspaceFolder}/docs/apexDocumentation",
+  "apexdox.engine.scope": ["global", "public", "webService"],
+  "apexdox.engine.subtitle": "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.digitalalign.com/\">Transforming Financial Services</a>",
+  "apexdox.engine.title": "DoTract Documentation",
+  "apexdox.engine.assets": [
+    "${workspaceFolder}/docs/docImages/logo.png",
+    "${workspaceFolder}/docs/docImages/icon.png",
+    "${workspaceFolder}/docs/docImages/homePageImg1.PNG",
+    "${workspaceFolder}/docs/docImages/homePageImg2.PNG"
+  ],
+  "apexdox.engine.showTOCSnippets": true,
+  "apexdox.engine.homePagePath": "${workspaceFolder}/docs/docImages/docHomePage.html"
+}

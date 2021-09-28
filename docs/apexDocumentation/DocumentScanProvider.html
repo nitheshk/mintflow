@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>DoTract Documentation</title>
+    <meta charset="UTF-8">
+    <script type="module" src="./assets/index.js"></script>
+    <script type="module" src="./assets/search-idx.js"></script>
+    <script type="module" src="./assets/search.js"></script>
+    <script charset="UTF-8" src="./assets/highlight.js"></script>
+    <script charset="UTF-8" src="./assets/mark.js"></script>
+    <script charset="UTF-8" src="./assets/lunr.js"></script>
+    <link rel="stylesheet" href="./assets/highlight.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/index.css" />
+    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+  </head>
+
+  <body>
+    <div id="side-bar">
+
+      <div id="logo-container">
+        <div class="title">
+          DoTract Documentation
+        </div>
+        <img src="assets/logo.png" />
+        <div class="subtitle">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.digitalalign.com/">Transforming Financial Services</a>
+        </div>
+      </div>
+      <div id="search-wrapper">
+        <div class="search-icon"></div>
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
+      </div>
+      <ul id="search-results" class=""></ul>
+      <div class="navbar">
+        <nav role="navigation">
+          <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
+            Home
+          </a>
+          <details id="Constant" class="group-name">
+            <summary id="header-Constant" class="nav-header">
+              <span>Constant</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="DealerConstants" id="item-DealerConstants" class="nav-item class global" onclick="goToLocation('DealerConstants.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerConstants</a>
+              </li>
+              <li title="FinancialInstituteConstants" id="item-FinancialInstituteConstants" class="nav-item class global" onclick="goToLocation('FinancialInstituteConstants.html');">
+                <a tabindex="1" href="javascript:void(0)">FinancialInstituteConstants</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Controller" class="group-name">
+            <summary id="header-Controller" class="nav-header">
+              <span>Controller</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="EmailController" id="item-EmailController" class="nav-item class global" onclick="goToLocation('EmailController.html');">
+                <a tabindex="1" href="javascript:void(0)">EmailController</a>
+              </li>
+              <li title="DisplayImageController" id="item-DisplayImageController" class="nav-item class public" onclick="goToLocation('DisplayImageController.html');">
+                <a tabindex="1" href="javascript:void(0)">DisplayImageController</a>
+              </li>
+              <li title="LWCDealerSiteController" id="item-LWCDealerSiteController" class="nav-item class global" onclick="goToLocation('LWCDealerSiteController.html');">
+                <a tabindex="1" href="javascript:void(0)">LWCDealerSiteController</a>
+              </li>
+              <li title="UserAccountManagementController" id="item-UserAccountManagementController" class="nav-item class global" onclick="goToLocation('UserAccountManagementController.html');">
+                <a tabindex="1" href="javascript:void(0)">UserAccountManagementController</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Exception" class="group-name">
+            <summary id="header-Exception" class="nav-header">
+              <span>Exception</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="CustomException" id="item-CustomException" class="nav-item class global" onclick="goToLocation('CustomException.html');">
+                <a tabindex="1" href="javascript:void(0)">CustomException</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Miscellaneous" class="group-name">
+            <summary id="header-Miscellaneous" class="nav-header">
+              <span>Miscellaneous</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="ChartRepository" id="item-ChartRepository" class="nav-item class public" onclick="goToLocation('ChartRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">ChartRepository</a>
+              </li>
+              <li title="NotificationService" id="item-NotificationService" class="nav-item class global" onclick="goToLocation('NotificationService.html');">
+                <a tabindex="1" href="javascript:void(0)">NotificationService</a>
+              </li>
+              <li title="DynamicLWCDataTableController" id="item-DynamicLWCDataTableController" class="nav-item class global" onclick="goToLocation('DynamicLWCDataTableController.html');">
+                <a tabindex="1" href="javascript:void(0)">DynamicLWCDataTableController</a>
+              </li>
+              <li title="DynamicLWCDataTableRepository" id="item-DynamicLWCDataTableRepository" class="nav-item class public" onclick="goToLocation('DynamicLWCDataTableRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">DynamicLWCDataTableRepository</a>
+              </li>
+              <li title="DynamicLWCDataTableResponse" id="item-DynamicLWCDataTableResponse" class="nav-item class public" onclick="goToLocation('DynamicLWCDataTableResponse.html');">
+                <a tabindex="1" href="javascript:void(0)">DynamicLWCDataTableResponse</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Repository" class="group-name">
+            <summary id="header-Repository" class="nav-header">
+              <span>Repository</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="EmailNotificationRepository" id="item-EmailNotificationRepository" class="nav-item class public" onclick="goToLocation('EmailNotificationRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">EmailNotificationRepository</a>
+              </li>
+              <li title="DealerSiteRepository" id="item-DealerSiteRepository" class="nav-item class public" onclick="goToLocation('DealerSiteRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerSiteRepository</a>
+              </li>
+              <li title="FinancialInstituteSiteRepository" id="item-FinancialInstituteSiteRepository" class="nav-item class public" onclick="goToLocation('FinancialInstituteSiteRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">FinancialInstituteSiteRepository</a>
+              </li>
+              <li title="SurveyRepository" id="item-SurveyRepository" class="nav-item class public" onclick="goToLocation('SurveyRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">SurveyRepository</a>
+              </li>
+              <li title="UserAccountManagementRepository" id="item-UserAccountManagementRepository" class="nav-item class global" onclick="goToLocation('UserAccountManagementRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">UserAccountManagementRepository</a>
+              </li>
+              <li title="SystemSettingRepository" id="item-SystemSettingRepository" class="nav-item class global" onclick="goToLocation('SystemSettingRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">SystemSettingRepository</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Resolver" class="group-name">
+            <summary id="header-Resolver" class="nav-header">
+              <span>Resolver</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="SurveyResolver" id="item-SurveyResolver" class="nav-item class global" onclick="goToLocation('SurveyResolver.html');">
+                <a tabindex="1" href="javascript:void(0)">SurveyResolver</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Service" class="group-name">
+            <summary id="header-Service" class="nav-header">
+              <span>Service</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="EmailNotificationBuilder" id="item-EmailNotificationBuilder" class="nav-item class global" onclick="goToLocation('EmailNotificationBuilder.html');">
+                <a tabindex="1" href="javascript:void(0)">EmailNotificationBuilder</a>
+              </li>
+              <li title="EmailService" id="item-EmailService" class="nav-item class global" onclick="goToLocation('EmailService.html');">
+                <a tabindex="1" href="javascript:void(0)">EmailService</a>
+              </li>
+              <li title="AbstractAPIProvider" id="item-AbstractAPIProvider" class="nav-item class public" onclick="goToLocation('AbstractAPIProvider.html');">
+                <a tabindex="1" href="javascript:void(0)">AbstractAPIProvider</a>
+              </li>
+              <li title="APICaller" id="item-APICaller" class="nav-item class public" onclick="goToLocation('APICaller.html');">
+                <a tabindex="1" href="javascript:void(0)">APICaller</a>
+              </li>
+              <li title="APIConfiguration" id="item-APIConfiguration" class="nav-item class public" onclick="goToLocation('APIConfiguration.html');">
+                <a tabindex="1" href="javascript:void(0)">APIConfiguration</a>
+              </li>
+              <li title="APINames" id="item-APINames" class="nav-item class global" onclick="goToLocation('APINames.html');">
+                <a tabindex="1" href="javascript:void(0)">APINames</a>
+              </li>
+              <li title="DealerEmailService" id="item-DealerEmailService" class="nav-item class global" onclick="goToLocation('DealerEmailService.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerEmailService</a>
+              </li>
+              <li title="DealerSiteService" id="item-DealerSiteService" class="nav-item class global" onclick="goToLocation('DealerSiteService.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerSiteService</a>
+              </li>
+              <li title="DocumentScanAdapter" id="item-DocumentScanAdapter" class="nav-item class public" onclick="goToLocation('DocumentScanAdapter.html');">
+                <a tabindex="1" href="javascript:void(0)">DocumentScanAdapter</a>
+              </li>
+              <li title="DocumentScanProvider" id="item-DocumentScanProvider" class="nav-item class public" onclick="goToLocation('DocumentScanProvider.html');">
+                <a tabindex="1" href="javascript:void(0)">DocumentScanProvider</a>
+              </li>
+              <li title="FinancialInstituteSiteService" id="item-FinancialInstituteSiteService" class="nav-item class global" onclick="goToLocation('FinancialInstituteSiteService.html');">
+                <a tabindex="1" href="javascript:void(0)">FinancialInstituteSiteService</a>
+              </li>
+              <li title="LWCFinancialInstituteSiteController" id="item-LWCFinancialInstituteSiteController" class="nav-item class global" onclick="goToLocation('LWCFinancialInstituteSiteController.html');">
+                <a tabindex="1" href="javascript:void(0)">LWCFinancialInstituteSiteController</a>
+              </li>
+              <li title="AbstractService" id="item-AbstractService" class="nav-item class global" onclick="goToLocation('AbstractService.html');">
+                <a tabindex="1" href="javascript:void(0)">AbstractService</a>
+              </li>
+              <li title="DealerAccountCreationService" id="item-DealerAccountCreationService" class="nav-item class global" onclick="goToLocation('DealerAccountCreationService.html');">
+                <a tabindex="1" href="javascript:void(0)">DealerAccountCreationService</a>
+              </li>
+              <li title="FinInstAccountService" id="item-FinInstAccountService" class="nav-item class global" onclick="goToLocation('FinInstAccountService.html');">
+                <a tabindex="1" href="javascript:void(0)">FinInstAccountService</a>
+              </li>
+              <li title="ApexResponse" id="item-ApexResponse" class="nav-item class global" onclick="goToLocation('ApexResponse.html');">
+                <a tabindex="1" href="javascript:void(0)">ApexResponse</a>
+              </li>
+              <li title="DynamicLWCDataTableService" id="item-DynamicLWCDataTableService" class="nav-item class global" onclick="goToLocation('DynamicLWCDataTableService.html');">
+                <a tabindex="1" href="javascript:void(0)">DynamicLWCDataTableService</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils" class="group-name">
+            <summary id="header-Utils" class="nav-header">
+              <span>Utils</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="XMLSerializer" id="item-XMLSerializer" class="nav-item class global" onclick="goToLocation('XMLSerializer.html');">
+                <a tabindex="1" href="javascript:void(0)">XMLSerializer</a>
+              </li>
+              <li title="Query" id="item-Query" class="nav-item class global" onclick="goToLocation('Query.html');">
+                <a tabindex="1" href="javascript:void(0)">Query</a>
+              </li>
+              <li title="ApexUtils" id="item-ApexUtils" class="nav-item class public" onclick="goToLocation('ApexUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">ApexUtils</a>
+              </li>
+              <li title="CollectionUtils" id="item-CollectionUtils" class="nav-item class global" onclick="goToLocation('CollectionUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">CollectionUtils</a>
+              </li>
+              <li title="DatabaseUtils" id="item-DatabaseUtils" class="nav-item class global" onclick="goToLocation('DatabaseUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">DatabaseUtils</a>
+              </li>
+              <li title="DateUtils" id="item-DateUtils" class="nav-item class global" onclick="goToLocation('DateUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">DateUtils</a>
+              </li>
+              <li title="GenericUtils" id="item-GenericUtils" class="nav-item class global" onclick="goToLocation('GenericUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">GenericUtils</a>
+              </li>
+              <li title="SecurityUtils" id="item-SecurityUtils" class="nav-item class global" onclick="goToLocation('SecurityUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">SecurityUtils</a>
+              </li>
+              <li title="SObjectUtils" id="item-SObjectUtils" class="nav-item class global" onclick="goToLocation('SObjectUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">SObjectUtils</a>
+              </li>
+              <li title="SObjectWithoutSharing" id="item-SObjectWithoutSharing" class="nav-item class global" onclick="goToLocation('SObjectWithoutSharing.html');">
+                <a tabindex="1" href="javascript:void(0)">SObjectWithoutSharing</a>
+              </li>
+              <li title="SObjectWithSharing" id="item-SObjectWithSharing" class="nav-item class public" onclick="goToLocation('SObjectWithSharing.html');">
+                <a tabindex="1" href="javascript:void(0)">SObjectWithSharing</a>
+              </li>
+              <li title="UserUtils" id="item-UserUtils" class="nav-item class global" onclick="goToLocation('UserUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">UserUtils</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Constant" class="group-name">
+            <summary id="header-Utils_Constant" class="nav-header">
+              <span>Utils Constant</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="QueryConstants" id="item-QueryConstants" class="nav-item class public" onclick="goToLocation('QueryConstants.html');">
+                <a tabindex="1" href="javascript:void(0)">QueryConstants</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Dispatcher" class="group-name">
+            <summary id="header-Utils_Dispatcher" class="nav-header">
+              <span>Utils Dispatcher</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="TriggerDispatcher" id="item-TriggerDispatcher" class="nav-item class global" onclick="goToLocation('TriggerDispatcher.html');">
+                <a tabindex="1" href="javascript:void(0)">TriggerDispatcher</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Enum" class="group-name">
+            <summary id="header-Utils_Enum" class="nav-header">
+              <span>Utils Enum</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="CrudType" id="item-CrudType" class="nav-item class global" onclick="goToLocation('CrudType.html');">
+                <a tabindex="1" href="javascript:void(0)">CrudType</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Handler" class="group-name">
+            <summary id="header-Utils_Handler" class="nav-header">
+              <span>Utils Handler</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="AbstractTriggerHandler" id="item-AbstractTriggerHandler" class="nav-item class global" onclick="goToLocation('AbstractTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">AbstractTriggerHandler</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Repository" class="group-name">
+            <summary id="header-Utils_Repository" class="nav-header">
+              <span>Utils Repository</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="TriggerRepository" id="item-TriggerRepository" class="nav-item class public" onclick="goToLocation('TriggerRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">TriggerRepository</a>
+              </li>
+              <li title="UserRepository" id="item-UserRepository" class="nav-item class global" onclick="goToLocation('UserRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">UserRepository</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Utils_Service" class="group-name">
+            <summary id="header-Utils_Service" class="nav-header">
+              <span>Utils Service</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="XMLDom" id="item-XMLDom" class="nav-item class public" onclick="goToLocation('XMLDom.html');">
+                <a tabindex="1" href="javascript:void(0)">XMLDom</a>
+              </li>
+            </ul>
+          </details>
+        </nav>
+      </div>
+    </div>
+    <table id="content">
+      <tr>
+        <td class="scoping-panel">
+          Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+          <label for="cbx-all">All</label>&nbsp;&nbsp;
+          <input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
+          <label for="cbx-webservice">
+            webService
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="doc-page">
+
+          <div class="section">
+
+            <h2 class="class-title top-level-type" id="DocumentScanProvider">
+              <span>DocumentScanProvider</span>
+            </h2>
+            <div class="class-container">
+
+              <div class="class-description">
+                Copyright (c) 2021 Digital Align
+              </div>
+              <div class="class-subtitle">
+                Signature
+              </div>
+
+              <div class="class-signature">
+                public with sharing class DocumentScanProvider extends AbstractAPIProvider
+              </div><br />Digital Align Team @reference
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">DocumentScanProvider Constructors</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#DocumentScanProvider.DocumentScanProvider">
+                      DocumentScanProvider ()
+                    </a>
+
+                  </li>
+                </ul>
+                <div class="method public">
+                  <h4 class="method-title " id="DocumentScanProvider.DocumentScanProvider">
+                    <span>DocumentScanProvider()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public DocumentScanProvider()
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="footer">
+
+          <div>
+            <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">
+              Powered By ApexDox VS Code
+            </a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+
+</html>

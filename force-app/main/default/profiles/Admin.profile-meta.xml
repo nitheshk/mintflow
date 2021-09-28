@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <custom>false</custom>
+    <userLicense>Salesforce</userLicense>
+
+    <!--layoutAssignments-->
+    <layoutAssignments>
+        <layout>PersonAccount-Person Account Layout</layout>
+        <recordType>PersonAccount.PersonAccount</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Insurance__c-Insurance Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout
+    >SObjectTriggerSetting__mdt-SObject Trigger Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Survey__c-Survey Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout
+    >VehicleAuctionBreakdown__c-VehicleAuctionBreakdown Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VehicleInformation__c-VehicleInformation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Address-Address Layout</layout>
+    </layoutAssignments>    
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
+    </layoutAssignments>    
+    <layoutAssignments>
+        <layout>ContentVersion-Content Version Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DocumentRequest__c-DocumentRequest Layout</layout>
+    </layoutAssignments>       
+    <layoutAssignments>
+        <layout>Lead-Lead Layout</layout>
+    </layoutAssignments>         
+    <layoutAssignments>
+        <layout>User-User Layout</layout>
+    </layoutAssignments>
+
+    <!--tabVisibilities-->
+    <tabVisibilities>
+        <tab>standard-Lead</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>SurveyTemplate__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>FinancialInstituteAccount</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+
+    <!--applicationVisibilities-->
+    <applicationVisibilities>
+        <application>doTract</application>
+        <visible>true</visible>
+        <default>true</default>
+    </applicationVisibilities>
+
+    <!--recordTypeVisibilities-->
+    <recordTypeVisibilities>
+        <!--<default>true</default>
+        <personAccountDefault>true</personAccountDefault>-->
+        <recordType>Account.Application</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType
+    >FinServ__AssetsAndLiabilities__c.FinServ__Liability</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>FinServ__ChargesAndFees__c.FinServ__Credit</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType
+    >FinServ__FinancialAccountRole__c.FinServ__AccountRole</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType
+    >FinServ__FinancialAccount__c.FinServ__BankingAccount</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>FinServ__ReciprocalRole__c.FinServ__AccountRole</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Lead.FinServ__RetirementPlanning</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Opportunity.FinServ__WalletShareOpportunity</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+
+</Profile>

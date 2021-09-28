@@ -1,0 +1,11 @@
+{
+  "activeViewId": "ee388287-017d-4e6b-9e88-c394c30336b0",
+  "appPageId": "aa96077a-8230-4d52-9f6c-0db1939c14cc",
+  "configurationTags": [],
+  "id": "8bc37379-b589-4978-92cc-dec30be31e46",
+  "label": "Employees",
+  "pageAccess": "UseParent",
+  "routeType": "custom-employees",
+  "type": "route",
+  "urlPrefix": "Employees"
+}

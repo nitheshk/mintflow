@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+  <custom>true</custom>
+  <userLicense>Guest User License</userLicense>
+  <pageAccesses>
+    <apexPage>dau01__DoTract</apexPage>
+    <enabled>true</enabled>
+  </pageAccesses>
+</Profile>

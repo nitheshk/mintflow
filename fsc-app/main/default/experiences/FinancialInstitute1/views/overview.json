@@ -1,0 +1,196 @@
+{
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "4e3ddedc-a2a1-4a73-8938-9297dc06df5d",
+  "label": "Overview",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "fb6ce365-717e-4d45-a57c-ea796fbe78c7",
+              "columns": [
+                {
+                  "UUID": "9a764964-1a38-4bf6-ad95-193849c1c9d7",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "63ef8255-b074-43f8-9006-836970e7ca04",
+                  "columnKey": "2d95f",
+                  "columnName": "Column 2",
+                  "columnWidth": "5",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "65bb2ebb-ae32-45ed-924b-ffc907591403",
+                  "columnKey": "aca05",
+                  "columnName": "Column 3",
+                  "columnWidth": "5",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "fb6ce365-717e-4d45-a57c-ea796fbe78c7",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "logoName": "",
+                    "menuName": "FinancialInsituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "id": "e16a42a2-16b2-43cc-9540-c4305104cee9",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "9a764964-1a38-4bf6-ad95-193849c1c9d7",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "colorPalette": "default",
+                    "details": "",
+                    "detailsLabels": "[\"Status\"]",
+                    "fill": false,
+                    "handler": "",
+                    "legendPosition": "top",
+                    "recordId": "{!recordId}",
+                    "soql": "SELECT count(Id) value, Status label FROM Lead group by Status limit 1000",
+                    "styleCss": "",
+                    "title": "Dealer Leads",
+                    "type": "doughnut"
+                  },
+                  "componentName": "dau01:chartBuilder",
+                  "id": "6c0701c2-be70-4afd-bb1a-36a67396dc26",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "colorPalette": "bluegrass",
+                    "details": "",
+                    "detailsLabels": "[\"Approved Dealers\"]",
+                    "fill": true,
+                    "handler": "",
+                    "legendPosition": "top",
+                    "recordId": "{!recordId}",
+                    "soql": "SELECT count(id) value, ConvertedDate label FROM Lead where status='Closed - Converted' group by ConvertedDate limit 7",
+                    "styleCss": "",
+                    "title": "Dealers Won",
+                    "type": "line"
+                  },
+                  "componentName": "dau01:chartBuilder",
+                  "id": "440e661e-2858-4f6e-a2d0-489d531dc626",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "63ef8255-b074-43f8-9006-836970e7ca04",
+              "regionLabel": "Column 2",
+              "regionName": "2d95f",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "colorPalette": "bluegrass",
+                    "details": "[{\"labels\":\"Auto Loan\",\"detail\":[5,8]},{\"labels\":\"Auto Loan\", \"detail\":[2,1]},{\"labels\":\"Used Car Loan\", \"detail\":[0,1]},{\"labels\":\"Used Car Loan\", \"detail\":[10,15]}]",
+                    "detailsLabels": "[\"Approved\",\"Rejected\",\"Declined\",\"Pending\"]",
+                    "fill": false,
+                    "handler": "",
+                    "legendPosition": "top",
+                    "recordId": "",
+                    "soql": "",
+                    "styleCss": "",
+                    "title": "Applications",
+                    "type": "bar"
+                  },
+                  "componentName": "dau01:chartBuilder",
+                  "id": "beeb39fa-31ef-4bba-8aac-d60aefd15cc2",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "colorPalette": "light",
+                    "details": "[{\"labels\":\"Jan\",\"detail\":[100000, 200000, 705000]},{\"labels\":\"Feb\",\"detail\":[200060,600000,500800]},{\"labels\":\"March\",\"detail\":[500000,700000,600000]}]",
+                    "detailsLabels": "[\"RV\",\"Car\",\"Motor Cycle\"]",
+                    "fill": false,
+                    "handler": "",
+                    "legendPosition": "top",
+                    "recordId": "",
+                    "soql": "",
+                    "styleCss": "",
+                    "title": "Revenue",
+                    "type": "line"
+                  },
+                  "componentName": "dau01:chartBuilder",
+                  "id": "40fc67a8-159b-4f1a-be8e-305fb243142e",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "65bb2ebb-ae32-45ed-924b-ffc907591403",
+              "regionLabel": "Column 3",
+              "regionName": "aca05",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "e0ca6565-aece-4eba-8568-e3d62f2e5f6e",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "Home"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "c907f53a-87c5-4d5b-8425-3751b142b263",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "48cf2f24-e709-4f8e-b037-c4c10a695e64",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
+  "type": "view",
+  "viewType": "home"
+}

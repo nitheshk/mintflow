@@ -1,0 +1,122 @@
+{
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "db1ed9e9-4838-4b9d-9af7-8d7e6c82108d",
+  "label": "Employees",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "a47333af-bab3-428f-ba39-a81f1c4ebdc9",
+              "columns": [
+                {
+                  "UUID": "09271ddd-0c66-45cb-9793-a3f78351138b",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "b3740d8b-52ed-424a-8585-ada4ea7009b7",
+                  "columnKey": "75d38",
+                  "columnName": "Column 2",
+                  "columnWidth": "10",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "a47333af-bab3-428f-ba39-a81f1c4ebdc9",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "logoName": "",
+                    "menuName": "FinancialInsituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "id": "a8f6c021-4d74-4314-9772-f141a30e8503",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "09271ddd-0c66-45cb-9793-a3f78351138b",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-page-header\">\n  <div class=\"slds-page-header__row\">\n    <div class=\"slds-page-header__col-title\">\n      <div class=\"slds-media\">\n        <div class=\"slds-media__figure\">\n          <span class=\"slds-icon_container slds-icon-standard-opportunity\" title=\"opportunity\">                       \n          </span>\n        </div>\n        <div class=\"slds-media__body\">\n          <div class=\"slds-page-header__name\">\n            <div class=\"slds-page-header__name-title\">\n              <h1>\n                <span style=\"color:#3b4eb0;\" class=\"slds-page-header__title slds-truncate\" title=\"All Employees\">All Employees</span>\n              </h1>\n            </div>\n          </div>\n          <p class=\"slds-page-header__name-meta\"></p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "6b43dd54-5fd2-4617-b6bd-c004c65d48e2",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "filterString": "isactive=true and Contact.UserContactType__c ='FinancialInstituteEmployee'",
+                    "metadataName": "FIEmployees",
+                    "sortString": "Name"
+                  },
+                  "componentName": "dau01:dynamicDataTable",
+                  "id": "d2fe5ff3-e20d-4151-8230-00d85885109d",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "b3740d8b-52ed-424a-8585-ada4ea7009b7",
+              "regionLabel": "Column 2",
+              "regionName": "75d38",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "4065b51f-7338-4bce-aca8-7c873b9cffc0",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "Employees"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "e2454f1d-b8bf-4b3d-b1e8-4de41295a842",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "ba2790a1-28a4-4093-9831-803e2985a679",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
+  "type": "view",
+  "viewType": "custom-employees"
+}

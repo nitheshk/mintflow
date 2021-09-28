@@ -1,0 +1,122 @@
+{
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "a7f58888-d052-4172-aaec-9034931b1539",
+  "label": "DealerInvite",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "938e87ac-61fb-4b06-9814-da6c8f6de6bc",
+              "columns": [
+                {
+                  "UUID": "018a7464-0cdb-42c4-a96a-0336d98b4b8e",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "c901da0b-89cd-4e6e-812a-efb6d34ae42d",
+                  "columnKey": "d9a6c",
+                  "columnName": "Column 2",
+                  "columnWidth": "8",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "a22d313e-8b2b-4357-b1eb-595db8a2994d",
+                  "columnKey": "d5af7",
+                  "columnName": "Column 3",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "938e87ac-61fb-4b06-9814-da6c8f6de6bc",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "logoName": "",
+                    "menuName": "FinancialInsituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "id": "173f1c18-1870-4ee0-9aeb-d5e3bcb92357",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "018a7464-0cdb-42c4-a96a-0336d98b4b8e",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {},
+                  "componentName": "dau01:dealerInvite",
+                  "id": "688deb85-df0d-4dfd-9835-95e005568224",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "c901da0b-89cd-4e6e-812a-efb6d34ae42d",
+              "regionLabel": "Column 2",
+              "regionName": "d9a6c",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "id": "a22d313e-8b2b-4357-b1eb-595db8a2994d",
+              "regionLabel": "Column 3",
+              "regionName": "d5af7",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "4e01bb54-18a1-4f0f-9257-f86eb491d7d4",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "DealerInvite"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "8c747ea4-f3ef-4b88-a247-b66b03427b63",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "eca838e5-be56-494e-b837-6b04003452a5",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
+  "type": "view",
+  "viewType": "custom-dealer-invite"
+}

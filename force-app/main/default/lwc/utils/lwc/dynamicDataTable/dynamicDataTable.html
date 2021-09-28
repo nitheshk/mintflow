@@ -1,0 +1,51 @@
+<template>
+  <div class="slds-is-relative">
+    <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
+    <template if:true={isRendered}>
+      <lightning-card>
+        <div class="slds-m-around_medium">
+          <div>
+            <lightning-datatable
+              data={data}
+              columns={columns}
+              key-field="Id"
+              sorted-by={sortBy}
+              sorted-direction={sortDirection}
+              onsort={handleSort}
+              default-sort-direction={defaultSortDirection}
+              hide-checkbox-column="true"
+              onrowaction={handleAction}
+              enable-infinite-loading={isLoaded}
+              onloadmore={loadMoreData}
+              show-row-number-column="true"
+            >
+            </lightning-datatable>
+          </div>
+        </div>
+      </lightning-card>
+      <template if:false={data}>
+        <lightning-card>
+          <div class="slds-var-m-around_medium">
+            <div class="slds-grid slds-wrap">
+              <div
+                class="
+                  slds-col
+                  slds-size_1-of-1
+                  slds-var-p-around_small
+                  slds-text-align_center
+                "
+              >
+                <p class="slds-text-heading_medium">
+                  <b>There are no records to be displayed!</b>
+                </p>
+                <br />
+
+                <br />
+              </div>
+            </div>
+          </div>
+        </lightning-card>
+      </template>
+    </template>
+  </div>
+</template>

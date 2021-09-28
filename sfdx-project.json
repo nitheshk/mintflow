@@ -1,0 +1,65 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "package": "dotDemo1",
+      "versionName": "Version 1.0",
+      "versionNumber": "1.0.0.NEXT",
+      "versionDescription": "Connected Devhuv : nithesh.k@digitalalign.devhub1.com , Managed package without namespace",
+      "default": true,
+      "unpackagedMetadata": {
+        "path": "unpackaged"
+      },
+      "dependencies": [
+        {
+          "subscriberPackageVersionId": "04t1E000000jb9R"
+        },
+        {
+          "subscriberPackageVersionId": "04t1E000001Iql5"
+        }
+      ]
+    },
+    {
+      "path": "force-app",
+      "package": "dotDemo2",
+      "versionName": "Version 1.0",
+      "versionNumber": "1.0.0.NEXT",
+      "versionDescription": "Connected Devhuv : nithesh.k@digitalalign.devhub2.com , Managed package with namespace",
+      "default": false,
+      "unpackagedMetadata": {
+        "path": "unpackaged"
+      },
+      "dependencies": [
+        {
+          "subscriberPackageVersionId": "04t1E000000jb9R"
+        },
+        {
+          "subscriberPackageVersionId": "04t1E000001Iql5"
+        }
+      ]
+    },
+    {
+      "path": "unpackaged",
+      "default": false
+    },
+    {
+      "path": "fsc-app",
+      "package": "fsc-app",
+      "versionName": "Version 1.0",
+      "versionNumber": "1.0.0.NEXT",
+      "versionDescription": "It include other package related Component changes such as FSC, Plan to make it has unlocked package",
+      "default": false
+    }
+  ],
+  "namespace": "dau01",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "51.0",
+  "packageAliases": {
+    "dotDemo1": "0Ho5g000000TNdKCAW",
+    "dotDemo1@1.0.0-1": "04t5g000000EH4nAAG",
+    "dotDemo2": "0Ho5g000000Caj7CAC",
+    "dotDemo1@1.0.0-2": "04t5g000000EHZsAAO",
+    "dotDemo2@1.0.0-1": "04t5g000000csB6AAI",
+    "dotDemo2@1.0.0-2": "04t5g000000csBGAAY"
+  }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomMetadata
+  xmlns="http://soap.sforce.com/2006/04/metadata"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+    <label>View</label>
+    <protected>false</protected>
+    <values>
+        <field>CellAttributes__c</field>
+        <value xsi:nil="true" />
+    </values>
+    <values>
+        <field>DisplayOrder__c</field>
+        <value xsi:type="xsd:double">6.0</value>
+    </values>
+    <values>
+        <field>DynamicDataTable__c</field>
+        <value xsi:type="xsd:string">FIApplications</value>
+    </values>
+    <values>
+        <field>FieldName__c</field>
+        <value xsi:type="xsd:string">FinServ__PrimaryOwner__c</value>
+    </values>
+    <values>
+        <field>ParentObjectAPI__c</field>
+        <value xsi:nil="true" />
+    </values>
+    <values>
+        <field>TextAttributes__c</field>
+        <value
+      xsi:type="xsd:string"
+    >{&quot;label&quot;: &quot;View&quot;,&quot;pageType&quot;: &quot;standard__recordPage&quot;, &quot;iconPosition&quot;: &quot;left&quot;,&quot;variant&quot;: &quot;brand&quot;,&quot;class&quot;: { &quot;fieldName&quot;: &quot;ModeClass&quot; },&quot;attributes&quot;: {&quot;object&quot;: &quot;Account&quot;},&quot;rowaction&quot;: &quot;FinServ__PrimaryOwner__c&quot;,&quot;value&quot;:&quot;view&quot;}</value>
+    </values>
+    <values>
+        <field>Type__c</field>
+        <value xsi:type="xsd:string">button</value>
+    </values>
+</CustomMetadata>

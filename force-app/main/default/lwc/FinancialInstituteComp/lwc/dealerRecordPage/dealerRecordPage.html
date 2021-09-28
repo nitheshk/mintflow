@@ -1,0 +1,498 @@
+<!-- sldsValidatorIgnore -->
+<template>
+  <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
+
+  <template if:true={openModal}>
+    <div class="slds-modal slds-fade-in-open slds-backdrop">
+      <div class="slds-modal__container">
+        <!--HEADER Section-->
+        <div class="slds-modal__header">
+          <lightning-button-icon
+            icon-name="utility:close"
+            alternative-text="Close this window"
+            size="large"
+            variant="bare-inverse"
+            onclick={closeModal}
+            class="slds-modal__close"
+          >
+          </lightning-button-icon>
+          <h2>Lead Conversion</h2>
+        </div>
+        <!-- Body Section-->
+
+        <div class="slds-modal__content slds-p-around_medium">
+          <div class="slds-var-m-around_medium">
+            <div class="slds-grid slds-wrap slds-is-relative">
+              <c-spinner-utils
+                visible={showModelSpinner}
+                size="large"
+              ></c-spinner-utils>
+              <template for:each={finInstSurvey} for:item="survey">
+                <template if:true={survey.dau01__isDisplayed__c}>
+                  <div
+                    key={survey.dau01__QuestionCode__c}
+                    class="
+                      slds-col
+                      slds-size_1-of-1
+                      slds-small-size_1-of-1
+                      slds-medium-size_1-of-1
+                    "
+                  >
+                    <template if:true={survey.isTextBox}>
+                      <div class={survey.dau01__CustomStyle__c}>
+                        <lightning-input
+                          data-questioncode={survey.dau01__QuestionCode__c}
+                          data-fieldtype={survey.dau01__OptionType__c}
+                          label={survey.Label}
+                          value={survey.dau01__Answer__c}
+                          onchange={handleSurveyChange}
+                          maxlength="255"
+                        ></lightning-input>
+                      </div>
+                    </template>
+                    <template if:true={survey.isCheckBox}>
+                      <div class={survey.dau01__CustomStyle__c}>
+                        <lightning-input
+                          data-questioncode={survey.dau01__QuestionCode__c}
+                          data-fieldtype={survey.dau01__OptionType__c}
+                          type="toggle"
+                          label={survey.Label}
+                          onchange={handleSurveyChange}
+                          checked={survey.dau01__Answer__c}
+                          message-toggle-active="Yes"
+                          message-toggle-inactive="No"
+                        >
+                        </lightning-input>
+                      </div>
+                    </template>
+
+                    <template if:true={survey.isPicklist}>
+                      <div class={survey.dau01__CustomStyle__c}>
+                        <lightning-combobox
+                          data-questioncode={survey.dau01__QuestionCode__c}
+                          data-fieldtype={survey.dau01__OptionType__c}
+                          label={survey.Label}
+                          value={survey.dau01__Answer__c}
+                          placeholder="Select the Option"
+                          options={survey.Options}
+                          onchange={handleSurveyChange}
+                        ></lightning-combobox>
+                      </div>
+                    </template>
+
+                    <template if:true={survey.isLabel}>
+                      <div class={survey.dau01__CustomStyle__c}>
+                        <label> {survey.Label} </label>
+                      </div>
+                    </template>
+                  </div>
+                </template>
+              </template>
+              <br />
+              <div
+                class="
+                  slds-col
+                  slds-size_1-of-1
+                  slds-small-size_1-of-1
+                  slds-medium-size_1-of-1
+                "
+              >
+                <lightning-textarea
+                  class="validation"
+                  name="Description"
+                  label="Approval/Rejection Notes"
+                  value={dealerRecord.Description}
+                  maxlength="32000"
+                  data-fieldname="Description"
+                  onchange={handleLeadChange}
+                  placeholder="Approval/Rejection Notes"
+                  required
+                ></lightning-textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer Section-->
+        <div class="slds-modal__footer">
+          <lightning-button-group>
+            <lightning-button
+              variant="brand"
+              label="Approve"
+              title="Approve"
+              data-status="Approve"
+              onclick={handleLeadConversion}
+              class="slds-var-m-left_x-small"
+              icon-name="action:approval"
+              icon-position="right"
+              disabled={disableApproveBtn}
+            ></lightning-button>
+            <lightning-button
+              variant="destructive"
+              label="Reject"
+              title="Reject"
+              data-status="Reject"
+              onclick={handleLeadConversion}
+              class="slds-var-m-left_x-small"
+              icon-name="action:close"
+              icon-position="right"
+              disabled={disableRejectBtn}
+            ></lightning-button>
+          </lightning-button-group>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!--Header section-->
+  <div class="slds-page-header slds-page-header_record-home">
+    <div class="slds-page-header__row">
+      <div class="slds-page-header__col-title">
+        <div class="slds-media">
+          <div class="slds-media__figure">
+            <lightning-icon
+              icon-name="standard:lead"
+              alternative-text="Lead"
+              title="Lead"
+            ></lightning-icon>
+          </div>
+          <div class="slds-media__body">
+            <div class="slds-page-header__name">
+              <div class="slds-page-header__name-title">
+                <h1>
+                  <span>Lead</span>
+                  <span class="slds-page-header__title slds-truncate"
+                    >{dealerRecord.Name}</span
+                  >
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Record details section-->
+    <div class="slds-page-header__row slds-page-header__row_gutters">
+      <div class="slds-page-header__col-details">
+        <ul class="slds-page-header__detail-row">
+          <li class="slds-page-header__detail-block">
+            <div class="slds-text-title slds-truncate">Title</div>
+            <div class="slds-truncate">{dealerRecord.Title}</div>
+          </li>
+          <li class="slds-page-header__detail-block">
+            <div class="slds-text-title slds-truncate">Company</div>
+            <div class="slds-truncate">{dealerRecord.Company}</div>
+          </li>
+          <li class="slds-page-header__detail-block">
+            <div class="slds-text-title slds-truncate">MobilePhone</div>
+            <div class="slds-truncate">{dealerRecord.MobilePhone}</div>
+          </li>
+          <li class="slds-page-header__detail-block">
+            <div class="slds-text-title slds-truncate">Email</div>
+            <div class="slds-truncate">{dealerRecord.Email}</div>
+          </li>
+          <li class="slds-page-header__detail-block">
+            <div class="slds-text-title slds-truncate"><h6>Status</h6></div>
+            <div class="slds-truncate"><h6>{dealerRecord.Status}</h6></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <lightning-tabset variant="scoped">
+    <lightning-tab label="Detail">
+      <template if:true={showBtnAction}>
+        <div class="slds-box slds-theme_shade">
+          <template if:true={showLeadConvertBtn}>
+            <lightning-button
+              class="slds-m-around_medium"
+              label="Convert Lead"
+              onclick={showModal}
+            >
+            </lightning-button>
+          </template>
+          <template if:true={showLinkResetBtn}>
+            <lightning-button
+              class="slds-m-around_medium"
+              label="Reset Invite Link"
+              onclick={resetDealerInviteLink}
+            >
+            </lightning-button>
+          </template>
+        </div>
+      </template>
+      <br />
+      <div class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Name</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{dealerRecord.Name}</div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Phone</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.Phone}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Company</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.Company}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Mobile</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.MobilePhone}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Registration Number</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.dau01__RegistrationNumber__c}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Fax</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">{dealerRecord.Fax}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Title</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.Title}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Email</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.Email}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">AnnualRevenue</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.AnnualRevenue}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Website</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.Website}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Dealership</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.dau01__Dealership__c}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Lead Status</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.Status}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label"
+                >Financial Institution</span
+              >
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.dau01__FinancialInstitution__c}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label"
+                >Approve/Rejection Notes</span
+              >
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.Description}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Routing Number</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.dau01__RoutingNumber__c}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Account Number</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.dau01__AccountNumber__c}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label"> Address</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.State} {dealerRecord.City}
+                  {dealerRecord.PostalCode}
+                  <br />{dealerRecord.Country}
+                  <br />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label"> No. of Employees</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.NumberOfEmployees}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label"> Industry</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {dealerRecord.Industry}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element_stacked slds-form-element_readonly">
+              <span class="slds-form-element__label">Link expire time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  <lightning-formatted-date-time
+                    value={dealerRecord.dau01__LinkExpireTime__c}
+                    year="numeric"
+                    day="2-digit"
+                    month="long"
+                    hour="2-digit"
+                    minute="2-digit"
+                  >
+                  </lightning-formatted-date-time>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </lightning-tab>
+    <lightning-tab label="Dealer Survey">
+      <c-Display-Survey-Detail
+        survey-records={dealerSurvey}
+      ></c-Display-Survey-Detail>
+    </lightning-tab>
+    <lightning-tab label="Approval Survey">
+      <c-Display-Survey-Detail
+        survey-records={finInstSurvey}
+      ></c-Display-Survey-Detail>
+      <br />
+      <lightning-input
+        style="pointer-events: none"
+        label="Approve/Reject Note"
+        value={dealerRecord.Description}
+      ></lightning-input>
+    </lightning-tab>
+    <lightning-tab label="Files">
+      <c-file-explorer
+        record-id={recordId}
+        title="Files"
+        show-file-upload="false"
+        showsync="true"
+        used-in-community="true"
+        show-filters="false"
+        show-download="true"
+        show-delete="false"
+        model-preview="true"
+      ></c-file-explorer>
+    </lightning-tab>
+  </lightning-tabset>
+</template>
