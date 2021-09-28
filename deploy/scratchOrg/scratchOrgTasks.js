@@ -185,7 +185,7 @@ gulp.task("publishCommunities", function (finish) {
         });
     });
 
-  Promise.all([publish(0), publish(1)])
+  Promise.all([publish(1)])
     .then((results) => {
       results.forEach((element) => {
         communityLinks.push(element);
