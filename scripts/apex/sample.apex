@@ -33,9 +33,3 @@ system.debug(
     .fetchContentVersionByIdWithoutBlob('068N0000002BDJzIAO')
 );
 
-Map<String, Object> params = new Map<String, Object>{
-  'Lead' => new List<String>{ 'LeadSource' }
-};
-system.debug(
-  JSON.Serialize(LWCDealerSiteController.fetchPickListValues(params))
-);
