@@ -5,6 +5,14 @@
         <enabled>false</enabled>
     </pageAccesses>
     <classAccesses>
+        <apexClass>OnlineAccountController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ApplicationController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FileController</apexClass>
         <enabled>true</enabled>
     </classAccesses>

@@ -5,6 +5,8 @@
   docType="html-5.0"
   standardStylesheets="false"
   showheader="false"
+  Controller="OnlineAccountController"
+  action="{!initializeApplication}"
 >
   <html lang="">
     <head>

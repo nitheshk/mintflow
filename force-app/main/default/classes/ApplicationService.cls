@@ -57,4 +57,30 @@ global with sharing class ApplicationService extends AbstractService {
     }
     return result;
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-29-2021
+   * @param Map<String Object> params
+   * @return Object
+   **/
+  global Object createApplication(Map<String, Object> params) {
+    // start an application
+    Map<String, Object> result = new Map<String, Object>();
+
+    return result;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-29-2021
+   * @param Map<String Object> params
+   * @return Object
+   **/
+  global Object resumeApplication(Map<String, Object> params) {
+    // start an application
+    Map<String, Object> result = new Map<String, Object>();
+
+    return result;
+  }
 }

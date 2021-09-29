@@ -2,30 +2,11 @@
   "packageDirectories": [
     {
       "path": "force-app",
-      "package": "dotDemo1",
-      "versionName": "Version 1.0",
-      "versionNumber": "1.0.0.NEXT",
-      "versionDescription": "Connected Devhuv : nithesh.k@digitalalign.devhub1.com , Managed package without namespace",
-      "default": true,
-      "unpackagedMetadata": {
-        "path": "unpackaged"
-      },
-      "dependencies": [
-        {
-          "subscriberPackageVersionId": "04t1E000000jb9R"
-        },
-        {
-          "subscriberPackageVersionId": "04t1E000001Iql5"
-        }
-      ]
-    },
-    {
-      "path": "force-app",
       "package": "dotDemo2",
       "versionName": "Version 1.0",
       "versionNumber": "1.0.0.NEXT",
       "versionDescription": "Connected Devhuv : nithesh.k@digitalalign.devhub2.com , Managed package with namespace",
-      "default": false,
+      "default": true,
       "unpackagedMetadata": {
         "path": "unpackaged"
       },

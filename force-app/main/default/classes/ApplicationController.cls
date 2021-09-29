@@ -28,4 +28,48 @@ global with sharing class ApplicationController {
       return ApexResponse.fail(ex);
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-29-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse createApplication(Map<String, String> params) {
+    try {
+      return ApexResponse.ok(
+        ApplicationService.getInstance().createApplication(params)
+      );
+    } catch (CustomException ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-29-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse resumeApplication(Map<String, String> params) {
+    try {
+      return ApexResponse.ok(
+        ApplicationService.getInstance().resumeApplication(params)
+      );
+    } catch (CustomException ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    }
+  }
 }
