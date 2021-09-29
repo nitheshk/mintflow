@@ -1,27 +1,3 @@
-//EmailNotificationBuilder
-EmailNotificationBuilder.newInstance('DealerInvitation', '00QN000000APpJI')
-  .setToAddresses('nithesh.k@digitalalign.com')
-  .setSubstitute(
-    new Map<String, String>{
-      '{{url}}' => 'https://dotract-documentation.herokuapp.com/'
-    }
-  )
-  .setdocumentNames(
-    new List<String>{
-      'DaBackGround1',
-      'DAContent1',
-      'AltifiLogo',
-      'facebook',
-      'twitter',
-      'youtube',
-      'skype'
-    }
-  );
-
-List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
-
-System.debug('result :' + result[0].isSuccess());
-
 //
 system.debug(
   EmailNotificationRepository.fetchEmailTemplateByDevName(
