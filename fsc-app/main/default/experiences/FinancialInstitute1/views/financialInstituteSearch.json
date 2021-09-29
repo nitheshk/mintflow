@@ -65,14 +65,6 @@
                       "activeTab": "",
                       "tabs": [
                         {
-                          "UUID": "6bf667a3-6625-4f80-80a2-952fe8cb7647",
-                          "allowGuestUser": false,
-                          "locked": false,
-                          "seedComponents": [],
-                          "tabKey": "1",
-                          "tabName": "Search Dealers"
-                        },
-                        {
                           "UUID": "f63d1b33-fdae-4e87-926d-103c889b2f33",
                           "allowGuestUser": false,
                           "locked": false,
@@ -95,22 +87,6 @@
                   "componentName": "forceCommunity:tabset",
                   "id": "c7796573-79d2-4383-aafa-70c3ff471b6b",
                   "regions": [
-                    {
-                      "components": [
-                        {
-                          "componentAttributes": {},
-                          "componentName": "dau01:dealerSearch",
-                          "id": "2b8e24a5-7060-4963-ba63-1329daebb6da",
-                          "renditionMap": {},
-                          "type": "component"
-                        }
-                      ],
-                      "id": "6bf667a3-6625-4f80-80a2-952fe8cb7647",
-                      "regionLabel": "Search Dealers",
-                      "regionName": "1",
-                      "renditionMap": {},
-                      "type": "region"
-                    },
                     {
                       "components": [
                         {
