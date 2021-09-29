@@ -64,16 +64,6 @@
               "type": "region"
             },
             {
-              "components": [
-                {
-                  "componentAttributes": {},
-                  "componentName": "dau01:dealerInvite",
-                  "id": "688deb85-df0d-4dfd-9835-95e005568224",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
               "id": "c901da0b-89cd-4e6e-812a-efb6d34ae42d",
               "regionLabel": "Column 2",
               "regionName": "d9a6c",
