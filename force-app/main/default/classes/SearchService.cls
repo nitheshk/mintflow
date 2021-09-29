@@ -26,23 +26,6 @@ global virtual with sharing class SearchService extends AbstractService {
   }
 
   /**
-   * @description Get account records based on filters
-   * @author Digital Align | 09-16-2021
-   * @param Map<String Object> params
-   * @return virtual
-   **/
-  global virtual List<Contact> retriveContacts(Map<String, Object> params) {
-    String searchString = (String) params.get('searchString');
-    map<string, string> searchFilter = (map<string, string>) JSON.deserialize(
-      JSON.serialize(params.get('searchFilter')),
-      map<string, string>.class
-    );
-    system.debug('searchString =' + searchString);
-    system.debug('searchFilter =' + searchFilter);
-    return SearchRepository.retriveContacts(searchString, searchFilter);
-  }
-
-  /**
    * @description
    * @author Digital Align | 09-23-2021
    * @param Map<String Object> params

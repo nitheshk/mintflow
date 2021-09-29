@@ -46,24 +46,6 @@ global with sharing class LWCFinancialInstituteSiteController {
   }
 
   /**
-   * @description Get Contacts records based on filters
-   * @author Digital Align | 09-16-2021
-   * @param Map<String Object> params
-   * @return ApexResponse
-   **/
-  @AuraEnabled(Cacheable=true)
-  public static ApexResponse retriveContacts(Map<String, Object> params) {
-    try {
-      return ApexResponse.ok(
-        SearchService.getInstance().retriveContacts(params)
-      );
-    } catch (Exception ex) {
-      System.debug(ex.getMessage());
-      return ApexResponse.exception(ex);
-    }
-  }
-
-  /**
    * @description Get employee contact records based on filters
    * @author Digital Align | 09-21-2021
    * @param Map<String Object> params
@@ -78,6 +60,23 @@ global with sharing class LWCFinancialInstituteSiteController {
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align | 09-29-2021
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse fetchPickListValues(Map<String, Object> params) {
+    try {
+      return ApexResponse.ok(
+        FinancialInstituteSiteService.getInstance().fetchPickListValues(params)
+      );
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
     }
   }
 }

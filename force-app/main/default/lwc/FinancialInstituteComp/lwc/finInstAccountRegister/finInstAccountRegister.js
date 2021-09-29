@@ -1,5 +1,5 @@
 import { track, wire } from "lwc";
-import getPickListValues from "@salesforce/apex/LWCDealerSiteController.fetchPickListValues";
+import getPickListValues from "@salesforce/apex/LWCFinancialInstituteSiteController.fetchPickListValues";
 import createAccount from "@salesforce/apex/LWCFinancialInstituteSiteController.createFinancialInstituteAccount";
 import fetchAccountRecord from "@salesforce/apex/LWCFinancialInstituteSiteController.fetchFinancialInstituteAccount";
 import constants from "c/validationFormatUtils";

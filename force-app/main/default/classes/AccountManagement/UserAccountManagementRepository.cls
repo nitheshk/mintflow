@@ -81,32 +81,4 @@ global with sharing class UserAccountManagementRepository extends DatabaseUtils 
         .queryById(contactId)
     );
   }
-  /**
-   * @description fetch user data by linked contact id
-   * @author Digital Align | 08-24-2021
-   * @param Id contactId
-   * @return User
-   **/
-  global static User getUserByContactId(Id contactId) {
-    return (User) getRecord(
-      Query.newInstance(User.SObjectType)
-        .addFields()
-        .whereEq('ContactId', contactId)
-        .toString(true)
-    );
-  }
-  /**
-   * @description
-   * @author Digital Align | 09-01-2021
-   * @param string contactId
-   * @return Contact
-   **/
-  public static Contact fetchContactById(string contactId) {
-    return (Contact) getRecord(
-      Query.newInstance(Contact.SObjectType)
-        .addFields()
-        .whereEq('Id', contactId)
-        .toString(true)
-    );
-  }
 }

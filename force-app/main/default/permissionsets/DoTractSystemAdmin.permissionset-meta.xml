@@ -71,14 +71,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>LWCDealerSiteController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>LWCDealerSiteController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>EmailNotificationBuilder</apexClass>
         <enabled>true</enabled>
     </classAccesses>
