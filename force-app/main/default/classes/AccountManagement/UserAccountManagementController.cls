@@ -8,46 +8,6 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class UserAccountManagementController {
   /**
-   * @description Create Dealer Business Account
-   * @author Digital Align Team | 07-15-2021
-   * @param Map<String Object> params
-   * @return ApexResponse
-   **/
-  @AuraEnabled
-  global static ApexResponse createDealerBusinessAccount(
-    Map<String, Object> params
-  ) {
-    try {
-      return ApexResponse.ok(
-        DealerAccountCreationService.getInstance()
-          .createDealerBusinessUserAccount(params)
-      );
-    } catch (Exception ex) {
-      return ApexResponse.exception(ex);
-    }
-  }
-
-  /**
-   * @description Create Dealer Employee Business Account
-   * @author Digital Align Team | 07-15-2021
-   * @param Map<String Object> params
-   * @return ApexResponse
-   **/
-  @AuraEnabled
-  global static ApexResponse createDealerEmployeeAccount(
-    Map<String, Object> params
-  ) {
-    try {
-      return ApexResponse.ok(
-        DealerAccountCreationService.getInstance()
-          .createDealerEmployeeUserAccount(params)
-      );
-    } catch (Exception ex) {
-      return ApexResponse.exception(ex);
-    }
-  }
-
-  /**
    * @description Create financial institue employee Account
    * @author Digital Align Team | 07-27-2021
    * @param Map<String Object> params
