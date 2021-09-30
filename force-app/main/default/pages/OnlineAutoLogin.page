@@ -1,0 +1,7 @@
+<apex:page
+  id="OnlineAccountLogin"
+  controller="OnlineAccountLoginController"
+  action="{!forwardToAccountOpeningPage}"
+  title="{!$Label.site.site_login}"
+>
+</apex:page>

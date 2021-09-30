@@ -36,7 +36,7 @@
     </applicationVisibilities>
      <pageAccesses>
         <apexPage>OnlineAccount</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <classAccesses>
         <apexClass>OnlineAccountController</apexClass>

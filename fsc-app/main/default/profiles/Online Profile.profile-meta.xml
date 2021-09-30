@@ -3,6 +3,16 @@
     <custom>true</custom>
     <userLicense>Guest User License</userLicense>
 
+    <!-- Newly Added , need to move permission set-->
+    <classAccesses>
+        <apexClass>OnlineAccountLoginController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+     <pageAccesses>
+        <apexPage>OnlineAutoLogin</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+
     <!--recordTypeVisibilities-->
     <recordTypeVisibilities>
         <default>true</default>
