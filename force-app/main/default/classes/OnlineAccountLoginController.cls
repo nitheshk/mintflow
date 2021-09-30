@@ -5,6 +5,7 @@
  * @reference
  * @description
  **/
+@SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class OnlineAccountLoginController {
   global PageReference forwardToAccountOpeningPage() {
     system.debug('test-xftprkeohz71@example.com');

@@ -4,7 +4,7 @@
   "configurationTags": [],
   "id": "9b2ce3fa-d248-4d43-8073-75de3ac2cca9",
   "label": "AccountOpening",
-  "pageAccess": "UseParent",
+  "pageAccess": "RequiresLogin",
   "routeType": "custom-account-opening",
   "type": "route",
   "urlPrefix": "AccountOpening"
