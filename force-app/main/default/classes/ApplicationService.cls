@@ -68,7 +68,7 @@ global with sharing class ApplicationService extends AbstractService {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
 
-    return result;
+    return null;
   }
 
   /**
@@ -81,6 +81,6 @@ global with sharing class ApplicationService extends AbstractService {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
 
-    return result;
+    return null;
   }
 }
