@@ -3661,10 +3661,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Lead.Dealer</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>Lead.FinServ__BusinessReferral</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
