@@ -416,6 +416,23 @@ gulp.task(
     "deleteScratchOrg",
     "createScratchOrg",
     "defaultToScratch",
+    "installPackageFSC",
+    "installPackageFSCExt",
+    "pushToscratch",
+    "updatePermissionSet",
+    "publishCommunities",
+    "systemConfigImport"
+  )
+);
+
+gulp.task(
+  "newScratchOrgWithSite",
+  gulp.series(
+    "readConfig",
+    "setupDevHub",
+    "deleteScratchOrg",
+    "createScratchOrg",
+    "defaultToScratch",
     "createSite",
     "createSiteProfile",
     "installPackageFSC",

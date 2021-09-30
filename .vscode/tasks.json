@@ -2,31 +2,6 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Task : Create a Scratch Org",
-      "type": "shell",
-      "command": "sfdx",
-      "args": [
-        "force:org:create",
-        "-f",
-        "config\\project-scratch-def.json",
-        "--setalias",
-        "${input:scratchAliasName}",
-        "--durationdays",
-        "${input:numberDays}",
-        "--setdefaultusername",
-        "--json",
-        "--loglevel",
-        "fatal",
-        ">deploy/scratchOrg/scratchOrgDetail.json"
-      ],
-      "group": "build",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    },
-    {
       "label": "Task : Default to scratch Org",
       "type": "shell",
       "command": "sfdx",
@@ -82,7 +57,7 @@
       "problemMatcher": []
     },
     {
-      "label": "sfdx : Create New Scratch Org with Site",
+      "label": "sfdx : Create New Scratch Org",
       "type": "shell",
       "command": "gulp",
       "args": ["newScratchOrg"],

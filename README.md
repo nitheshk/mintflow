@@ -17,7 +17,7 @@ Install the dependencies by run the below commands for first time for one system
 
 ## Shortcut
 
-Step 1. Update your Devhub configuration detail under **deploy\devhub.json**, update json with following format
+Step 1. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format
 
 ```
 {
@@ -29,7 +29,7 @@ Step 1. Update your Devhub configuration detail under **deploy\devhub.json**, up
 }
 ```
 
-Step 2. Use **Cntr + Shift + B** and Select SFDX: create new scratch org with site
+Step 2. Use **Cntr + Shift + B** and Select `SFDX: create new scratch org`
 
 ### In Case of Failure while creating of scratch
 
