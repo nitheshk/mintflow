@@ -1,8 +1,8 @@
 {
   "appPageId": "62bf51a0-121c-4952-8e6e-8f780a07e682",
   "componentName": "siteforce:dynamicLayout",
-  "id": "b5482a40-5f9a-4750-8658-c6fc8a4f375a",
-  "label": "Overview",
+  "id": "b127c285-f363-4910-bfed-8c3188e1bc85",
+  "label": "AccountOpening",
   "regions": [
     {
       "components": [
@@ -12,10 +12,10 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "1fb39c26-7f4b-406a-9070-89325ebc4dba",
+              "UUID": "3986a17d-baab-4cb7-86ae-b8ddc874ebd7",
               "columns": [
                 {
-                  "UUID": "45f0dc3d-bd1c-4522-ba4d-aee31a5c8f1a",
+                  "UUID": "7156b2e7-6ed8-4da8-8fae-f07ef4dcfc44",
                   "columnKey": "1",
                   "columnName": "Column 1",
                   "columnWidth": "12",
@@ -26,10 +26,10 @@
             "sectionHeight": 300
           },
           "componentName": "forceCommunity:section",
-          "id": "1fb39c26-7f4b-406a-9070-89325ebc4dba",
+          "id": "3986a17d-baab-4cb7-86ae-b8ddc874ebd7",
           "regions": [
             {
-              "id": "45f0dc3d-bd1c-4522-ba4d-aee31a5c8f1a",
+              "id": "7156b2e7-6ed8-4da8-8fae-f07ef4dcfc44",
               "regionLabel": "Column 1",
               "regionName": "1",
               "renditionMap": {},
@@ -41,7 +41,7 @@
           "type": "component"
         }
       ],
-      "id": "8005281c-9bf5-436d-b164-a3326171a570",
+      "id": "637d34a8-7b69-48f6-8e8b-72d76c47ebad",
       "regionName": "content",
       "type": "region"
     },
@@ -51,20 +51,20 @@
           "componentAttributes": {
             "customHeadTags": "",
             "description": "",
-            "title": "Home"
+            "title": "AccountOpening"
           },
           "componentName": "forceCommunity:seoAssistant",
-          "id": "433c8ee7-c0c4-40b8-8d99-cff5f7ff8d3b",
+          "id": "19651d8f-b9ed-47f5-9875-0badc048cbaa",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "c53ddc6c-2cc2-44cf-81fb-1dc3ef83d095",
+      "id": "c78f2f28-84a2-42e1-ac51-93c9569c6b13",
       "regionName": "sfdcHiddenRegion",
       "type": "region"
     }
   ],
-  "themeLayoutType": "Inner",
+  "themeLayoutType": "o5a0wSwnxP0kboQgeuRPK7h6xLS6c0",
   "type": "view",
-  "viewType": "home"
+  "viewType": "custom-account-opening"
 }

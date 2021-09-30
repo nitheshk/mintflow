@@ -5,10 +5,10 @@
   "id": "191b679d-fede-4640-ba0c-98528fe28785",
   "label": "Jepson",
   "layouts": {
-    "Home": "44b5af5a-582b-47d0-8be9-2cc29f81b885",
     "Inner": "8f164c29-0ac2-44b8-8cd4-7a7f21b0ab27",
     "Login": "0559b639-dade-4a14-9c8c-bd78d8793c4b",
-    "ServiceNotAvailable": "c44c9f2f-a609-4562-8251-d5671b97e0c7"
+    "ServiceNotAvailable": "c44c9f2f-a609-4562-8251-d5671b97e0c7",
+    "o5a0wSwnxP0kboQgeuRPK7h6xLS6c0": "18574d72-d58a-451b-801a-8d94d93bce06"
   },
   "type": "theme",
   "views": [
@@ -268,16 +268,43 @@
     {
       "componentAttributes": {
         "fixedPageWidth": 1440,
+        "headerBgColor": "rgba(0, 0, 0, 0)",
+        "isHeaderPinned": false,
+        "isHeroUnderHeader": false,
+        "isPageWidthFixed": true,
+        "showHeader": true,
+        "showHero": true
+      },
+      "componentName": "siteforce:themeLayoutStarter",
+      "id": "c44c9f2f-a609-4562-8251-d5671b97e0c7",
+      "label": "ServiceNotAvailable",
+      "regions": [
+        {
+          "id": "7e0cde81-5093-423a-b6e2-45f82c4860eb",
+          "regionName": "themeHeader",
+          "type": "region"
+        },
+        {
+          "id": "baf499b4-b9ed-4116-b3ed-196293c35d40",
+          "regionName": "themeFooter",
+          "type": "region"
+        }
+      ],
+      "type": "view"
+    },
+    {
+      "componentAttributes": {
+        "fixedPageWidth": 1440,
         "headerBgColor": "rgba(255, 255, 255, 0.8)",
         "isHeaderPinned": false,
         "isHeroUnderHeader": false,
         "isPageWidthFixed": false,
-        "showHeader": true,
+        "showHeader": false,
         "showHero": false
       },
       "componentName": "siteforce:themeLayoutStarter",
-      "id": "44b5af5a-582b-47d0-8be9-2cc29f81b885",
-      "label": "Home",
+      "id": "18574d72-d58a-451b-801a-8d94d93bce06",
+      "label": "AccountOpening",
       "regions": [
         {
           "components": [
@@ -309,7 +336,7 @@
                 "showSearch": false
               },
               "componentName": "forceCommunity:themeHeaderCompact",
-              "id": "c2c6e9d6-3278-437e-ae1c-ab73291aaa68",
+              "id": "d9e3f272-a272-41ed-b008-2f52b347e11a",
               "regions": [
                 {
                   "components": [
@@ -326,12 +353,12 @@
                         "menuStyleSettings": "{\"selectedMenuStyleSetting\":\"iconOnly\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
                       },
                       "componentName": "forceCommunity:customizableUserProfileMenu",
-                      "id": "e8ec692b-4d54-46ca-b418-d4bf22cdb10b",
+                      "id": "af04547c-c54c-4b11-bffe-e7e08adb0171",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "38c3f7a3-fb39-4fb5-9bda-2160505e43e9",
+                  "id": "46fa390c-c92d-45f1-b237-58c219402377",
                   "regionName": "themeHeaderProfileMenu",
                   "type": "region"
                 },
@@ -355,12 +382,12 @@
                         "useTypeahead": true
                       },
                       "componentName": "forceCommunity:themeSearch",
-                      "id": "49d20e64-de80-4a3d-b7aa-51d8c11f2497",
+                      "id": "02e2d0c3-4433-4cf4-ab47-e1fa358240d6",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "aed09cdd-ff7b-4b18-9518-43cdd7f095d2",
+                  "id": "e28117d6-76b0-46ff-8a7b-e510667e6fa0",
                   "regionName": "search",
                   "type": "region"
                 },
@@ -373,17 +400,17 @@
                         "navigationMenuEditorRefresh": ""
                       },
                       "componentName": "forceCommunity:themeNav",
-                      "id": "f950ce77-7187-4175-9d9b-1a9363ad6876",
+                      "id": "376d95d4-b4e6-42a9-aba2-395fdeba3c05",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "a515da43-2cc4-4244-818e-3c43f1b0cf15",
+                  "id": "8fce2926-0aa0-4e3b-86ba-56e96ad5fb9a",
                   "regionName": "nav",
                   "type": "region"
                 },
                 {
-                  "id": "5f69948b-0cb0-43eb-a0b2-90fd4da851d1",
+                  "id": "5c5be895-b2d0-4617-aa60-5d338c35ecac",
                   "regionName": "cartIcon",
                   "type": "region"
                 }
@@ -392,7 +419,7 @@
               "type": "component"
             }
           ],
-          "id": "92961b94-09e7-46e1-b828-a7fa70ea400f",
+          "id": "4e942ec7-8cf8-4038-b3e0-b13b9dbdd24e",
           "regionName": "themeHeader",
           "type": "region"
         },
@@ -441,7 +468,7 @@
                 "type": "callToAction"
               },
               "componentName": "forceCommunity:themeHeroStarter",
-              "id": "81de6cf2-e32d-4c97-bc2e-c94440d7afb8",
+              "id": "6f276755-2024-4809-b982-b6f443b4d1cc",
               "regions": [
                 {
                   "components": [
@@ -468,12 +495,12 @@
                         "useTypeahead": true
                       },
                       "componentName": "forceCommunity:themeSearchHero",
-                      "id": "95fd8e29-5ec9-4af4-aaa5-cdfb641c24e5",
+                      "id": "0efa5ada-aaae-4e73-8b5d-d1afcec74372",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "902a107b-e0f9-487c-bae6-c58949db192a",
+                  "id": "899ccdb6-6ecd-43e3-861c-ebddcd23387d",
                   "regionName": "search",
                   "type": "region"
                 }
@@ -482,39 +509,12 @@
               "type": "component"
             }
           ],
-          "id": "1420e9e6-25b0-4b36-8db1-ac429d4ecd1b",
+          "id": "3921043a-a696-47fc-81c1-35581b69b3af",
           "regionName": "themeHero",
           "type": "region"
         },
         {
-          "id": "f31cd231-c0c3-4968-a515-c1e034b7b3a2",
-          "regionName": "themeFooter",
-          "type": "region"
-        }
-      ],
-      "type": "view"
-    },
-    {
-      "componentAttributes": {
-        "fixedPageWidth": 1440,
-        "headerBgColor": "rgba(0, 0, 0, 0)",
-        "isHeaderPinned": false,
-        "isHeroUnderHeader": false,
-        "isPageWidthFixed": true,
-        "showHeader": true,
-        "showHero": true
-      },
-      "componentName": "siteforce:themeLayoutStarter",
-      "id": "c44c9f2f-a609-4562-8251-d5671b97e0c7",
-      "label": "ServiceNotAvailable",
-      "regions": [
-        {
-          "id": "7e0cde81-5093-423a-b6e2-45f82c4860eb",
-          "regionName": "themeHeader",
-          "type": "region"
-        },
-        {
-          "id": "baf499b4-b9ed-4116-b3ed-196293c35d40",
+          "id": "95869ab8-7851-444f-999b-55ce17e4341d",
           "regionName": "themeFooter",
           "type": "region"
         }
