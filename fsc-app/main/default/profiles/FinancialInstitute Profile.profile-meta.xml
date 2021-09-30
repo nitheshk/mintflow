@@ -46,11 +46,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <recordType>Lead.FinServ__RetirementPlanning</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
         <recordType>Opportunity.FinServ__WalletShareOpportunity</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

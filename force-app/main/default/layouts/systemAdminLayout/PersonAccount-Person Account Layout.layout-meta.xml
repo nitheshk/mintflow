@@ -43,10 +43,6 @@
                 <behavior>Edit</behavior>
                 <field>UserAccountType__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>EmployeeId__pc</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

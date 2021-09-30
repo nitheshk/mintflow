@@ -37,10 +37,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>DocumentRequest__c-DocumentRequest Layout</layout>
-    </layoutAssignments>       
-    <layoutAssignments>
-        <layout>Lead-Lead Layout</layout>
-    </layoutAssignments>         
+    </layoutAssignments>        
     <layoutAssignments>
         <layout>User-User Layout</layout>
     </layoutAssignments>
@@ -105,11 +102,6 @@
     <recordTypeVisibilities>
         <default>true</default>
         <recordType>FinServ__ReciprocalRole__c.FinServ__AccountRole</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Lead.FinServ__RetirementPlanning</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
