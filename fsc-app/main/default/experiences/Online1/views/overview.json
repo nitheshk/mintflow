@@ -1,0 +1,70 @@
+{
+  "appPageId": "62bf51a0-121c-4952-8e6e-8f780a07e682",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "b5482a40-5f9a-4750-8658-c6fc8a4f375a",
+  "label": "Overview",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "1fb39c26-7f4b-406a-9070-89325ebc4dba",
+              "columns": [
+                {
+                  "UUID": "45f0dc3d-bd1c-4522-ba4d-aee31a5c8f1a",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "12",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "1fb39c26-7f4b-406a-9070-89325ebc4dba",
+          "regions": [
+            {
+              "id": "45f0dc3d-bd1c-4522-ba4d-aee31a5c8f1a",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "8005281c-9bf5-436d-b164-a3326171a570",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "Home"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "433c8ee7-c0c4-40b8-8d99-cff5f7ff8d3b",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "c53ddc6c-2cc2-44cf-81fb-1dc3ef83d095",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Home",
+  "type": "view",
+  "viewType": "home"
+}
