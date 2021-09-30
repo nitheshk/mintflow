@@ -225,6 +225,23 @@ gulp.task("publishCommunities", function (finish) {
     });
 });
 
+//createUser
+gulp.task("createUser", function (finish) {
+  let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createUser1}`;
+  console.log("Script To Run - " + scriptToRun);
+
+  utils
+    .runCommand(scriptToRun)
+    .then((result) => {
+      console.log("Result :" + result);
+      finish();
+    })
+    .catch((err) => {
+      console.log("Error :" + err.stdout);
+      process.exit(1);
+    });
+});
+
 //Update Permission Set
 gulp.task("updatePermissionSet", function (finish) {
   let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.permissionSet.permissionSet1}`;
@@ -420,6 +437,7 @@ gulp.task(
     "installPackageFSCExt",
     "pushToscratch",
     "updatePermissionSet",
+    "createUser",
     "publishCommunities",
     "systemConfigImport"
   )
@@ -439,6 +457,7 @@ gulp.task(
     "installPackageFSCExt",
     "pushToscratch",
     "updatePermissionSet",
+    "createUser",
     "publishCommunities",
     "systemConfigImport"
   )

@@ -41,7 +41,7 @@ public static void updateAdminPermissionSet() {
     SELECT Id
     FROM PermissionSet
     WHERE
-      Name = 'DoTractSystemAdmin'
+      Name = 'DoTractCustomerCommunity'
       OR Name = 'FinancialServicesCloudExtension'
       OR Name = 'FinancialServicesCloudBasic'
       OR Name = 'FinancialServicesCloudStandard'

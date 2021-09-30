@@ -31,7 +31,10 @@
 
   "permission": {
     "permissionSet": {
-      "permissionSet1": "./deploy/scratchOrg/permissionSet/AssignPermissionSet.apex"
+      "permissionSet1": "./deploy/scratchOrg/apex/AssignPermissionSet.apex"
+    },
+    "createUser": {
+      "createUser1": "./deploy/scratchOrg/apex/CreateUser.apex"
     }
   },
 

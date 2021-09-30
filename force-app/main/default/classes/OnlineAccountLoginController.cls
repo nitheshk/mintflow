@@ -10,9 +10,9 @@ global with sharing class OnlineAccountLoginController {
   global PageReference forwardToAccountOpeningPage() {
     system.debug('test-xftprkeohz71@example.com');
     return Site.login(
-      'test-xftprkeohz71@example.com',
-      'skL#CB3vxE#SC',
-      '/AccountOpening'
+      'online@user.mflow.1633022570330.com',
+      'Test@123',
+      '/s/AccountOpening'
     );
   }
 }
