@@ -5,8 +5,8 @@ public static void createUser() {
   userObj.FirstName = 'Online';
   userObj.LastName = 'User';
   userObj.Alias = 'any';
-  //userObj.Email = 'Online@User.Mflow.' + System.currentTimeMillis() + '.com';
-  userObj.Email = 'nithesh.k@digitalalign.com';
+  userObj.Email = 'Online@User.Mflow.' + System.currentTimeMillis() + '.com';
+  //userObj.Email = 'nithesh.k@digitalalign.com';
   userObj.Username = 'Online@User.Mflow.' + System.currentTimeMillis() + '.com';
   userObj.CommunityNickname = 'Mflow.' + System.currentTimeMillis();
   userObj.LocaleSidKey = 'en_US';
