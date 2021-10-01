@@ -34,6 +34,7 @@
         <permissionSet>dau01__DoTractCustomerCommunity</permissionSet>
         <profile>admin</profile>
         <profile>FinancialInstitueCommunity Profile</profile>
+        <profile>MFlowOnlineSalesforcePlatform</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting
