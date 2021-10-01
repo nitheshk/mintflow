@@ -33,4 +33,5 @@ force-app/main/default/profiles/Custom%3A Support Profile.profile-meta.xml
 *PasswordPolicy*
 
 force-app/main/default/reports
-
+force-app/main/default/navigationMenus/Default_Navigation.navigationMenu-meta.xml
+force-app/main/default/navigationMenus/Default_Navigation1.navigationMenu-meta.xml
