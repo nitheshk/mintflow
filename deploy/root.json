@@ -40,7 +40,7 @@
 
   "communities": {
     "links": "communityLinks.json",
-    "publishCommnitiesNames": ["Dealer", "FinancialInstitute"]
+    "publishCommnitiesNames": ["Online", "FinancialInstitute"]
   },
 
   "siteSetup": {
