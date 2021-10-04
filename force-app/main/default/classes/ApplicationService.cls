@@ -53,7 +53,11 @@ global with sharing class ApplicationService extends AbstractService {
       }
     } else {
       //start new application, redirect to site url
-      result.put('url', ApplicationConfiguration__c.getInstance().SiteUrl__c);
+      result.put(
+        'url',
+        SiteSetting__c.getInstance().OnlineSiteUrl__c +
+        SiteSetting__c.getInstance().OnlineAccountOpeningUrl__c
+      );
     }
     return result;
   }
