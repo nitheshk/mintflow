@@ -59,6 +59,14 @@
             {
               "components": [
                 {
+                  "componentAttributes": {},
+                  "componentName": "dau01:startOnlineApplication",
+                  "id": "76613772-4203-4529-8460-1400d2314a3b",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
                   "componentAttributes": {
                     "richTextValue": "<div class=\"slds-page-header\">\n  <div class=\"slds-page-header__row\">\n    <div class=\"slds-page-header__col-title\">\n      <div class=\"slds-media\">\n        <div class=\"slds-media__figure\">\n          <span class=\"slds-icon_container slds-icon-standard-opportunity\" title=\"opportunity\">                       \n          </span>\n        </div>\n        <div class=\"slds-media__body\">\n          <div class=\"slds-page-header__name\">\n            <div class=\"slds-page-header__name-title\">\n              <h1>\n                <span style=\"color:#3b4eb0;\" class=\"slds-page-header__title slds-truncate\" title=\"All Applications\">All Applications</span>\n              </h1>\n            </div>\n          </div>\n          <p class=\"slds-page-header__name-meta\"></p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
                   },
