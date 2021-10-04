@@ -185,7 +185,7 @@ gulp.task("publishCommunities", function (finish) {
         });
     });
 
-  Promise.all([publish(1)])
+  Promise.all([publish(0), publish(1)])
     .then((results) => {
       results.forEach((element) => {
         communityLinks.push(element);
@@ -197,22 +197,26 @@ gulp.task("publishCommunities", function (finish) {
           JSON.stringify(communityLinks, null, 2)
         )
         .then(() => {
-          let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/dau01__ApplicationConfiguration__c.json");
+          let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/dau01__SiteSetting__c.json");
           communityLinks.forEach((link) => {
-            if (link.name === "Dealer") {
-              applicationConfiguration.records[0].dau01__SiteUrl__c = link.url;
-
-              utils
-                .createFile(
-                  "./data/salesforceConfig/systemConfig/dau01__ApplicationConfiguration__c.json",
-                  JSON.stringify(applicationConfiguration)
-                )
-                .catch((err) => {
-                  console.log("err :" + JSON.stringify(err));
-                });
-              finish();
+            if (link.name === "Online") {
+              applicationConfiguration.records[0].dau01__OnlineSiteUrl__c =
+                link.url;
+            }
+            if (link.name === "FinancialInstitute") {
+              applicationConfiguration.records[0].dau01__FinInstSiteUrl__c =
+                link.url;
             }
           });
+          utils
+            .createFile(
+              "./data/salesforceConfig/systemConfig/dau01__SiteSetting__c.json",
+              JSON.stringify(applicationConfiguration)
+            )
+            .catch((err) => {
+              console.log("err :" + JSON.stringify(err));
+            });
+          finish();
         })
         .catch((errr) => {
           console.log("errr :" + JSON.stringify(errr));

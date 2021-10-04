@@ -5,10 +5,10 @@
         "type": "dau01__SiteSetting__c",
         "referenceId": "SiteRef_0"
       },
-      "dau01__OnlineSiteUrl__c": "Online Site Url",
-      "dau01__FinInstSiteUrl__c": "Financial Institute Site Url",
+      "dau01__OnlineSiteUrl__c": "https://sandbox-energy-app-8472-dev-ed-17c36d86fa2.cs114.force.com/Online",
+      "dau01__FinInstSiteUrl__c": "https://sandbox-energy-app-8472-dev-ed-17c36d86fa2.cs114.force.com/HomePageFI",
       "dau01__OnlineSiteUserName__c": "Online Site User Name",
-      "dau01__OnlineSitePassword__c": "Online Site Password",
+      "dau01__OnlineSitePassword__c": "Test@123",
       "dau01__OnlineAccountOpeningUrl__c": "/s/AccountOpening"
     }
   ]
