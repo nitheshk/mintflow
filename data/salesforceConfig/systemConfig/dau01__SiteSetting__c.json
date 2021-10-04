@@ -1,0 +1,15 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "dau01__SiteSetting__c",
+        "referenceId": "SiteRef_0"
+      },
+      "dau01__OnlineSiteUrl__c": "Online Site Url",
+      "dau01__FinInstSiteUrl__c": "Financial Institute Site Url",
+      "dau01__OnlineSiteUserName__c": "Online Site User Name",
+      "dau01__OnlineSitePassword__c": "Online Site Password",
+      "dau01__OnlineAccountOpeningUrl__c": "/s/AccountOpening"
+    }
+  ]
+}
