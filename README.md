@@ -84,3 +84,11 @@ Step 5. Export Data (Refer detailed Readme File in **data\salesforceConfig\READM
 
 As an Administrator, you can set the execution policy by typing this into your PowerShell window:
 `Set-ExecutionPolicy RemoteSigned`
+
+3. update sfdx-config.json in case any unknow error on push
+
+```
+  {
+    "restDeploy": "false"
+  }
+```
