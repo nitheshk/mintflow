@@ -141,7 +141,7 @@
                       "componentAttributes": {
                         "navAlignment": "left",
                         "navItemThreshold": 4,
-                        "navigationMenuEditorRefresh": ""
+                        "navigationMenuEditorRefresh": "OnlineMenu"
                       },
                       "componentName": "forceCommunity:themeNav",
                       "id": "b0fb36b3-9581-4608-9bf0-4f0935bfc6b8",
