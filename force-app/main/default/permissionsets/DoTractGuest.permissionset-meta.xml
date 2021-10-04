@@ -112,6 +112,10 @@
         <enabled>true</enabled>
         <name>FinServ__UsePersonAccount__c</name>
     </customSettingAccesses>
+    <customSettingAccesses>
+        <enabled>true</enabled>
+        <name>SiteSetting__c</name>
+    </customSettingAccesses>
     <description>DoTract Site Guest profile</description>
 
     <fieldPermissions>
