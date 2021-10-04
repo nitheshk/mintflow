@@ -14,13 +14,13 @@ utils
       utils.replaceUnwantedFields(item);
       item.attributes.referenceId = "SurveyTemplateRef_" + index;
 
-      if (item.SurveyTemplateItems__r) {
-        item.SurveyTemplateItems__r.records.forEach(function (
+      if (item.dau01__SurveyTemplateItems__r) {
+        item.dau01__SurveyTemplateItems__r.records.forEach(function (
           item_c1,
           index_c1
         ) {
           utils.replaceUnwantedFields(item_c1);
-          delete item_c1.SurveyTemplate__c;
+          delete item_c1.dau01__SurveyTemplate__c;
           item_c1.attributes.referenceId =
             "SurveyTemplateItemRef_" + index + "_" + index_c1;
         });
