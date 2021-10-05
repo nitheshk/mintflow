@@ -6,7 +6,7 @@
  * @description Online Account controller
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class OnlineAccountController {
+global with sharing class OnlineAccountController extends AbstractController {
   public String recordId { get; set; }
   public Account application { get; set; }
   public Map<String, String> pageParams { get; set; }
@@ -24,7 +24,7 @@ global with sharing class OnlineAccountController {
     } else {
       this.application = (Account) ApplicationService.getInstance()
         .CreateApplication(pageParams);
-        this.recordId=this.application.Id; 
+      this.recordId = this.application.Id;
     }
   }
 }

@@ -6,7 +6,9 @@
  * @description main application controller
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicationController {
+global with sharing class ApplicationController extends AbstractController {
+  public ApplicationController(AbstractController controller) {
+  }
   /**
    * @description
    * @author Digital Align Team | 09-29-2021

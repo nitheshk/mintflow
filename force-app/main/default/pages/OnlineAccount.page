@@ -6,6 +6,7 @@
   standardStylesheets="false"
   showheader="false"
   Controller="OnlineAccountController"
+  extensions="ApplicationController"
   action="{!initializeApplication}"
 >
   <html lang="">
