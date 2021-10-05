@@ -2,7 +2,7 @@ var parseString = require("xml2js").parseString;
 var xml2js = require("xml2js");
 const fs = require("fs");
 const gulp = require("gulp");
-const utils = require("./scripts/sfdx/utils.js");
+const utils = require("../../deploy/utils.js");
 var xml = `<?xml version="1.0" encoding="UTF-8" ?>
 <CustomSite xmlns="http://soap.sforce.com/2006/04/metadata">
     <active>true</active>

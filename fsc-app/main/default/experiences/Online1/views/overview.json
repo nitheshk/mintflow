@@ -23,13 +23,69 @@
                 }
               ]
             },
-            "sectionHeight": 300
+            "sectionHeight": 32
           },
           "componentName": "forceCommunity:section",
           "id": "1fb39c26-7f4b-406a-9070-89325ebc4dba",
           "regions": [
             {
+              "components": [
+                {
+                  "componentAttributes": {},
+                  "componentName": "dau01:startOnlineApplication",
+                  "id": "73c5e9c1-9e77-4e1e-a51c-0ce937ab207b",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
               "id": "45f0dc3d-bd1c-4522-ba4d-aee31a5c8f1a",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        },
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "f681a1b8-f99a-4e18-bc5b-0508c4f5ef6e",
+              "columns": [
+                {
+                  "UUID": "53a972b2-5641-4a66-8f75-e1b2f634fc76",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "12",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "f681a1b8-f99a-4e18-bc5b-0508c4f5ef6e",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<p><br></p><p><b>Current Username </b>:&nbsp;&nbsp;<span style=\"color: rgb(8, 7, 7); font-size: 14px;\">{!CurrentUser.userName}</span></p><p><b>Name </b>: <span style=\"font-size: 14px; color: rgb(8, 7, 7);\">{!CurrentUser.name}</span></p><p><span style=\"font-size: 14px; color: rgb(8, 7, 7);\">FirstName : {!CurrentUser.firstName}</span></p><p><span style=\"font-size: 14px; color: rgb(8, 7, 7);\">LastName :﻿{!CurrentUser.lastName}</span></p><p><span style=\"font-size: 14px; color: rgb(8, 7, 7);\">UserName: {!CurrentUser.userName}</span></p><p><span style=\"font-size: 14px; color: rgb(8, 7, 7);\">Email : {!CurrentUser.email}</span></p><p><span style=\"color: rgb(8, 7, 7); font-size: 14px;\">CommunityNickname : {!CurrentUser.communityNickname}﻿</span></p>"
+                  },
+                  "componentName": "forceCommunity:richTextInline",
+                  "id": "3efc7659-8385-41ed-86eb-cce4e81ef4ea",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "53a972b2-5641-4a66-8f75-e1b2f634fc76",
               "regionLabel": "Column 1",
               "regionName": "1",
               "renditionMap": {},

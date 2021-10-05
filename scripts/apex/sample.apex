@@ -66,7 +66,7 @@ primaryRelationObj.ContactId = pc.PersonContactId;
 primaryRelationObj.FinServ__Primary__c = true;
 primaryRelationObj.FinServ__PrimaryGroup__c = true;
 primaryRelationObj.FinServ__Rollups__c = 'All';
-primaryRelationObj.Roles = '	Business User';
+primaryRelationObj.Roles = 'Business User';
 ApplicationRepository.upsertRecord(primaryRelationObj);
 
 ///

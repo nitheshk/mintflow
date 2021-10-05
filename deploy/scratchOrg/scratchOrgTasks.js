@@ -191,6 +191,7 @@ gulp.task("publishCommunities", function (finish) {
         communityLinks.push(element);
       });
 
+      // create community links and update data plan
       utils
         .createFile(
           config.communities.links,
@@ -208,6 +209,7 @@ gulp.task("publishCommunities", function (finish) {
                 link.url;
             }
           });
+          // update site urls
           utils
             .createFile(
               "./data/salesforceConfig/systemConfig/dau01__SiteSetting__c.json",
@@ -216,12 +218,37 @@ gulp.task("publishCommunities", function (finish) {
             .catch((err) => {
               console.log("err :" + JSON.stringify(err));
             });
+
+          // update community logout url
+
+          fs.readFile(
+            "./fsc-app/main/default/networks/Online.network-meta.xml",
+            "utf-8",
+            function (err, data) {
+              if (err) console.log(err);
+              xml2js.parseString(data, function (err, result) {
+                if (err) console.log(err);
+                result.Network.logoutUrl =
+                  applicationConfiguration.records[0].dau01__OnlineSiteUrl__c;
+                var builder = new xml2js.Builder();
+                var xml = builder.buildObject(result);
+                utils
+                  .createFile(
+                    "./fsc-app/main/default/networks/Online.network-meta.xml",
+                    xml
+                  )
+                  .catch((err) => {
+                    console.log("errr :" + JSON.stringify(errr));
+                  });
+              });
+            }
+          );
+
           finish();
         })
         .catch((errr) => {
           console.log("errr :" + JSON.stringify(errr));
         });
-
       finish();
     })
     .catch((error) => {
