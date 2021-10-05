@@ -74,4 +74,48 @@ global with sharing class ApplicationController extends AbstractController {
       return ApexResponse.fail(ex);
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-29-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse readApplication(Map<String, String> params) {
+    try {
+      return ApexResponse.ok(
+        ApplicationService.getInstance().readApplication(params)
+      );
+    } catch (CustomException ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-05-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse updateApplication(Map<String, String> params) {
+    try {
+      return ApexResponse.ok(
+        ApplicationService.getInstance().updateApplication(params)
+      );
+    } catch (CustomException ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    }
+  }
 }

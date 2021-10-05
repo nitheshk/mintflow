@@ -70,7 +70,8 @@ global with sharing class ApplicationService extends AbstractService {
   global virtual Account createApplication(Map<String, Object> params) {
     // start an application
     //Map<String, Object> result = new Map<String, Object>();
-    return ApplicationServiceHelper.getInstance().createHouseholdApplication(params);     
+    return ApplicationServiceHelper.getInstance()
+      .createHouseholdApplication(params);
   }
 
   /**
@@ -83,6 +84,37 @@ global with sharing class ApplicationService extends AbstractService {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
 
+    return null;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-05-2021
+   * @param Map<String Object> params
+   * @return Object
+   **/
+  global Account readApplication(Map<String, Object> params) {
+    // Start an application
+    Map<String, Object> result = new Map<String, Object>();
+    Id applicationId = (Id) params.get('applicationId');
+    Account accountObj = ApplicationRepository.fetchApplicationById(
+      applicationId
+    );
+    // read person
+    // assest
+    // read document
+    return accountObj;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-05-2021
+   * @param Map<String Object> params
+   * @return Account
+   **/
+  global Account updateApplication(Map<String, Object> params) {
+    // Start an application
+    Map<String, Object> result = new Map<String, Object>();
     return null;
   }
 }
