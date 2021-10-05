@@ -367,8 +367,12 @@ global inherited sharing class Query {
    *    .removeFields(new List<String>{'LastName','FirstName'})
    *    .toString(true);
    **/
-  global Query removeFields(list<String> fieldNames) {
-    this.fieldNames.removeAll(fieldNames);
+  global Query removeFields(list<String> fieldNames) {  
+    List<String> resolvedFiledNames=new List<String>();
+    for(String name:fieldNames){
+      resolvedFiledNames.add(this.resolveApiName(name));
+    }
+    this.fieldNames.removeAll(resolvedFiledNames);
     return this;
   }
 

@@ -4,6 +4,14 @@
         <apexPage>OnlineAccount</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
+     <pageAccesses>
+        <apexPage>OnlineAutoLogin</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+     <classAccesses>
+        <apexClass>OnlineAccountLoginController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>    
     <classAccesses>
         <apexClass>OnlineAccountController</apexClass>
         <enabled>true</enabled>
