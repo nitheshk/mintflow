@@ -14,6 +14,7 @@ public static void updateGuestPermissionSet() {
     FROM User
     WHERE
       Profile.Name = 'Dealer Profile'
+      OR Profile.Name = 'Online Profile'
       OR Profile.Name = 'FinancialInstitute Profile'
       OR Profile.Name = 'DoTract Profile'
   ];
