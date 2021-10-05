@@ -71,6 +71,9 @@ Step 5. Export Data (Refer detailed Readme File in **data\salesforceConfig\READM
 
 5.3 To Import Fresh config to salesforce run `gulp systemConfigImport`
 
+Step 3: pulling submodule
+`git clone --recursive git@github.com:DigitalAlignInc/DoTracker-UI.git`
+
 ### ERROR AND ISSUE
 
 1. Unable to find Key.Json
