@@ -19,11 +19,12 @@ global with sharing class OnlineAccountController {
     pageParams = PageUtils.getCurrentPageParameters();
     if (String.isNotBlank(pageParams.get('recordId'))) {
       //resume application with recordId
-      Account application = (Account) ApplicationService.getInstance()
+      this.application = (Account) ApplicationService.getInstance()
         .resumeApplication(pageParams);
     } else {
-      Account application = (Account) ApplicationService.getInstance()
+      this.application = (Account) ApplicationService.getInstance()
         .CreateApplication(pageParams);
+        this.recordId=this.application.Id; 
     }
   }
 }
