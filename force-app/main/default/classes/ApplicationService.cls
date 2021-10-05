@@ -9,7 +9,6 @@
 global with sharing class ApplicationService extends AbstractService {
   @TestVisible
   private static ApplicationService serviceInstance;
-  private static ApplicationServiceHelper helper = new ApplicationServiceHelper();
 
   public ApplicationService() {
     super(ApplicationService.class);
@@ -68,39 +67,11 @@ global with sharing class ApplicationService extends AbstractService {
    * @param Map<String Object> params
    * @return Object
    **/
-  global Object createApplication(Map<String, Object> params) {
+  global virtual Account createApplication(Map<String, Object> params) {
     // start an application
-    Map<String, Object> result = new Map<String, Object>();
-
-    // Create init Account Application
-    Account applicationObj=new Account();
-    applicationObj.Name='Init';
-    applicationObj.RecordTypeId =SObjectUtils.recordTypeIdByDevName(Account.SObjectType , 'Application');     
-    ApplicationRepository.upsertRecord(applicationObj);
-
-    // create person Account
-    Account personAccountObj = new Account();
-    personAccountObj.FirstName = 'Test1';
-    personAccountObj.LastName = 'Test1';
-    personAccountObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(Account.SObjectType , 'PersonAccount');      
-    ApplicationRepository.upsertRecord(personAccountObj);
-
-    Account pc = [select id,PersonContactId from Account where id=:personAccountObj.id];
-
-    //AccountContactRelation
-    AccountContactRelation primaryRelationObj= new AccountContactRelation();
-    primaryRelationObj.AccountId= applicationObj.Id;
-    primaryRelationObj.ContactId=personAccountObj.PersonContactId;
-    primaryRelationObj.FinServ__Primary__c = true;
-    primaryRelationObj.FinServ__PrimaryGroup__c=true;
-    primaryRelationObj.FinServ__Rollups__c='All';
-    primaryRelationObj.Roles='	Business User';
-    ApplicationRepository.upsertRecord(primaryRelationObj);
-
-
-    
-
-    return null;
+    //Map<String, Object> result = new Map<String, Object>();
+    Account applicationObj = ApplicationServiceHelper.getInstance().createHouseholdApplication(params);
+    return applicationObj;
   }
 
   /**
