@@ -70,8 +70,18 @@ global with sharing class ApplicationService extends AbstractService {
   global virtual Account createApplication(Map<String, Object> params) {
     // start an application
     //Map<String, Object> result = new Map<String, Object>();
-    return ApplicationServiceHelper.getInstance()
+    Account applicationObj = ApplicationServiceHelper.getInstance()
       .createHouseholdApplication(params);
+    /*
+    Account personAccountObj = ApplicationServiceHelper.getInstance()
+      .createPrimaryPersonAccount(params);
+    personAccountObj = ApplicationRepository.fetchPersonAccountByAccId(
+      personAccountObj.id
+    );
+    ApplicationServiceHelper.getInstance()
+      .createAccountContactRelation(params, applicationObj, personAccountObj);
+    */
+    return applicationObj;
   }
 
   /**
