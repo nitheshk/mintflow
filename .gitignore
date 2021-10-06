@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Dependency directories
-node_modules/
+**/node_modules/**
 
 # Eslint cache
 .eslintcache
@@ -68,3 +68,4 @@ Trial Customer Portal User.profile
 # Site
 fsc-app/main/default/sites/OnlineBanking.site-meta.xml
 communityLinks.json
+p1fcu-olbui/package-lock.json

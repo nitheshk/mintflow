@@ -71,8 +71,11 @@ Step 5. Export Data (Refer detailed Readme File in **data\salesforceConfig\READM
 
 5.3 To Import Fresh config to salesforce run `gulp systemConfigImport`
 
-Step 3: pulling submodule
-`git clone --recursive git@github.com:DigitalAlignInc/DoTracker-UI.git`
+### Step 3: pulling submodule
+
+Step 3.1 : `git clone --recursive git@github.com:DigitalAlignInc/p1fcu-olbui.git`
+
+Step 3.2 : Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks for Process`
 
 ### ERROR AND ISSUE
 

@@ -81,11 +81,11 @@ String q = new Query(Account.SObjectType)
   .run()
   .run()
   .whereEq('Name', 'Init')
+  .addLimit(1)
   .toString(true);
 List<Account> sl = (List<Account>) DatabaseUtils.getRecords(q);
-//system.debug('all : ' + system.JSON.Serialize(sl));
+system.debug('all : ' + system.JSON.Serialize(sl));
 
 Contact employeeContactObj = sl[0].AccountContactRelations[0].Contact;
-//system.debug(' employeeContactObj: ' + system.JSON.Serialize(employeeContactObj));
 
 update employeeContactObj;
