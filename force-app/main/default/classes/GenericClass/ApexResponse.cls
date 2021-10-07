@@ -119,4 +119,15 @@ global with sharing class ApexResponse {
     this.data = data;
     return this;
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-07-2021
+   * @return ApexResponse
+   **/
+  public ApexResponse serialize() {
+    ApexResponse response = this;
+    response.data = JSON.serialize(response.data);
+    return this;
+  }
 }

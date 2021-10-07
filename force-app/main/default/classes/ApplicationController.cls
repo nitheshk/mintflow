@@ -86,8 +86,9 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse readApplication(Map<String, String> params) {
     try {
       return ApexResponse.ok(
-        ApplicationService.getInstance().readApplication(params)
-      );
+          ApplicationService.getInstance().readApplication(params)
+        )
+        .serialize();
     } catch (CustomException ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
