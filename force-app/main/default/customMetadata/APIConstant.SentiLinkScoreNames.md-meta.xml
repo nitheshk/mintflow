@@ -4,7 +4,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-    <label>SentiLinkAccount</label>
+    <label>SentiLinkScoreNames</label>
     <protected>false</protected>
     <values>
         <field>APISetting__c</field>
@@ -12,11 +12,13 @@
     </values>
     <values>
         <field>Description__c</field>
-        <value xsi:type="xsd:string">Account number of sentilink account</value>
+        <value xsi:type="xsd:string">SentiLink Score Names</value>
     </values>
     <values>
         <field>Value__c</field>
-        <value xsi:type="xsd:string">01ESVTRBVQ8EWAP2SNVR1Y6TH6</value>
+        <value
+      xsi:type="xsd:string"
+    >sentilink_abuse_score,sentilink_first_party_synthetic_score,sentilink_third_party_synthetic_score,sentilink_id_theft_score</value>
     </values>
     <values>
         <field>isActive__c</field>
