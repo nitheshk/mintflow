@@ -11,6 +11,7 @@ public with sharing class SentiLinkProvider extends AbstractAPIProvider {
   }
   protected override Map<String, String> getHeader(Map<String, object> params) {
     Map<String, String> header = new Map<String, String>();
+    header.put('Content-Type', 'application/json');
     header.put('Accept', 'application/json');
     header.put(
       'Authorization',
@@ -26,19 +27,4 @@ public with sharing class SentiLinkProvider extends AbstractAPIProvider {
 
     return header;
   }
-  // public override Map<String, Object> executeRequest(
-  //   Map<String, object> params
-  // ) {
-  //   switch on ((APINames) params.get('APIMapper')) {
-  //     when SentiLinkScores {
-  //       return super.executeRequest(params);
-  //     }
-  //     when SentiLinkIdCompletion {
-  //       return super.executeRequest(params);
-  //     }
-  //     when else {
-  //       throw new CustomException('Undefined Mapper for the API call');
-  //     }
-  //   }
-  // }
 }

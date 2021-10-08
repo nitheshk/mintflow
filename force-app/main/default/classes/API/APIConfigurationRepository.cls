@@ -34,4 +34,15 @@ public without sharing class APIConfigurationRepository extends DatabaseUtils {
       .toString();
     return (APISetting__mdt) getRecord(q);
   }
+  /**
+   * @description setAllAPISettings if no APIMapper is passed
+   * @author Digital Align | 10-08-2021
+   * @return List<APISetting__mdt>
+   **/
+  public static List<APISetting__mdt> setAllAPISettings() {
+    String q = Query.newInstance(APISetting__mdt.SObjectType)
+      .addFields()
+      .toString();
+    return (List<APISetting__mdt>) getRecords(q);
+  }
 }

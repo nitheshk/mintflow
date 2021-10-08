@@ -10,6 +10,7 @@ global virtual with sharing class APIConfigurationService extends AbstractServic
   @TestVisible
   private static APIConfigurationService serviceInstance;
   public static APISetting__mdt apiSetting { get; set; }
+  public static Map<String, APISetting__mdt> apiSettings { get; set; }
 
   public APIConfigurationService() {
     super(APIConfigurationService.class);
@@ -56,5 +57,30 @@ global virtual with sharing class APIConfigurationService extends AbstractServic
     } else {
       return (new APISetting__mdt());
     }
+  }
+
+  /**
+   * @description get alloy API configuration detail based on the api name
+   * @author Digital Align | 10-08-2021
+   * @param APINames apiMapper
+   * @return APISetting__mdt
+   **/
+  public static APISetting__mdt getAPISettings(APINames apiMapper) {
+    if (apiSettings != null) {
+      if (apiSettings.containsKey(String.valueOf(apiMapper))) {
+        return apiSettings.get(String.valueOf(apiMapper));
+      }
+    } else {
+      apiSettings = new Map<String, APISetting__mdt>();
+      for (
+        APISetting__mdt config : APIConfigurationRepository.setAllAPISettings()
+      ) {
+        apiSettings.put(config.DeveloperName, config);
+      }
+      if (apiSettings.containsKey(String.valueOf(apiMapper))) {
+        return apiSettings.get(String.valueOf(apiMapper));
+      }
+    }
+    return new APISetting__mdt();
   }
 }

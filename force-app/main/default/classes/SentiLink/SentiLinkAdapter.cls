@@ -24,8 +24,19 @@ public with sharing class SentiLinkAdapter {
    **/
   private static void setApiConfiguration(Map<String, object> params) {
     system.debug('APIname = ' + (String.valueof(params.get('APIName'))));
-    system.debug('APINames.SentiLinkScores = ' + APINames.SentiLinkScores);
-
-    APIConfigurationService.setAPISettings(APINames.SentiLinkScores);
+    if (
+      ((String) params.get('APIName') == 'SentiLink') &&
+      (APIConfigurationService.getAPISettings(APINames.SentiLink).isActive__c)
+    ) {
+      APIConfigurationService.setAPISettings(APINames.SentiLink);
+    } else if (
+      ((String) params.get('APIName') == 'SentiLinkIdCompletion') &&
+      (APIConfigurationService.getAPISettings(APINames.SentiLinkIdCompletion)
+        .isActive__c)
+    ) {
+      APIConfigurationService.setAPISettings(APINames.SentiLinkIdCompletion);
+    } else {
+      throw new CustomException('API Name not found');
+    }
   }
 }
