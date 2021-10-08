@@ -49,10 +49,10 @@
         <recordType>Opportunity.FinServ__WalletShareOpportunity</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
+    <!--<recordTypeVisibilities>
         <default>true</default>
         <personAccountDefault>true</personAccountDefault>
         <recordType>PersonAccount.PersonAccount</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>
+    </recordTypeVisibilities>-->
 </Profile>

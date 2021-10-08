@@ -76,7 +76,7 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
-    <profileActionOverrides>
+    <!--<profileActionOverrides>
         <actionName>View</actionName>
         <content>ClientRecordPage</content>
         <formFactor>Large</formFactor>
@@ -84,7 +84,7 @@
         <recordType>PersonAccount.PersonAccount</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
-    </profileActionOverrides>
+    </profileActionOverrides>-->
     <profileActionOverrides>
         <actionName>View</actionName>
         <content>ClientRecordPage</content>

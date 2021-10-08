@@ -59,8 +59,8 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
   ) {
     // create person Account
     Account personAccountObj = new Account();
-    personAccountObj.FirstName = 'Test1';
-    personAccountObj.LastName = 'Test1';
+    //personAccountObj.FirstName = 'Test1';
+    //personAccountObj.LastName = 'Test1';
     personAccountObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       Account.SObjectType,
       'PersonAccount'
@@ -85,7 +85,7 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
     //AccountContactRelation
     AccountContactRelation relationObj = new AccountContactRelation();
     relationObj.AccountId = applicationObj.Id;
-    relationObj.ContactId = personAccountObj.PersonContactId;
+    //relationObj.ContactId = personAccountObj.PersonContactId;
     relationObj.FinServ__Primary__c = true;
     relationObj.FinServ__PrimaryGroup__c = true;
     relationObj.FinServ__Rollups__c = 'All';

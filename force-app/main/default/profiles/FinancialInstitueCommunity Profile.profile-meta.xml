@@ -103,10 +103,10 @@
     <layoutAssignments>
         <layout>dau01__Insurance__c-dau01__Insurance Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
+    <!--<layoutAssignments>
         <layout>PersonAccount-Person Account Layout</layout>
         <recordType>PersonAccount.PersonAccount</recordType>
-    </layoutAssignments>
+    </layoutAssignments>-->
     <layoutAssignments>
         <layout
     >dau01__SObjectTriggerSetting__mdt-dau01__SObject Trigger Setting Layout</layout>

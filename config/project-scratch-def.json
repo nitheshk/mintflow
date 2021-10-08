@@ -6,10 +6,9 @@
     "Sites",
     "Communities",
     "FinancialServicesUser:5",
-    "ContactsToMultipleAccounts",
-    "PersonAccounts"
+    "ContactsToMultipleAccounts"
   ],
-  "hasSampleData": true,
+  "hasSampleData": false,
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true

@@ -3538,10 +3538,10 @@
         <recordType>FinServ__ReciprocalRole__c.FinServ__ContactRole</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>   
-    <recordTypeVisibilities>
+    <!--<recordTypeVisibilities>
         <recordType>PersonAccount.PersonAccount</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>     
+    </recordTypeVisibilities>-->
     <!-- Permission Need to Move -->
     <loginIpRanges>
         <endAddress>255.255.255.255</endAddress>
