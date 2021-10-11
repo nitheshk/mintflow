@@ -4,13 +4,13 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-    <label>SentiLink</label>
+    <label>SentiLink IdCompletion</label>
     <protected>false</protected>
     <values>
         <field>EndPoint__c</field>
         <value
       xsi:type="xsd:string"
-    >https://api.sandbox-sentilink.com/v1/query/user</value>
+    >https://api.sandbox-sentilink.com/v1/query/user/complete</value>
     </values>
     <values>
         <field>Method__c</field>

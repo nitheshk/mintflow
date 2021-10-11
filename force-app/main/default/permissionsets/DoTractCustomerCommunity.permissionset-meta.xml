@@ -169,7 +169,16 @@
         <name>SiteSetting__c</name>
     </customSettingAccesses>
     <description>DoTract Customer Community profile</description>
-
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.Birthdate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.SSN__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.UserContactType__c</field>

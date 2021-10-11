@@ -3,12 +3,13 @@ public with sharing class SentiLinkDTO extends AbstractDTO {
   public class Request {
     public Application application;
     public List<Scores> scores;
+    public List<Extra_data> extra_data;
   }
+
   public class Metadata {
     public String account_id;
     public Integer fico;
   }
-
   public class Application {
     public String application_id;
     public String application_created;
@@ -152,6 +153,7 @@ public with sharing class SentiLinkDTO extends AbstractDTO {
     public String phone_type;
   }
   public class Extra_data {
+    public String type;
     public Consumer_history consumer_history;
     public Clusters clusters;
   }
@@ -168,6 +170,7 @@ public with sharing class SentiLinkDTO extends AbstractDTO {
   }
 
   public class Scores {
+    public String score_name;
     public String name;
     public String version;
     public Integer score;
