@@ -5,8 +5,8 @@ public static void createUser() {
   userObj.FirstName = 'Online';
   userObj.LastName = 'User';
   userObj.Alias = 'any';
-  userObj.Email = 'Online@User.Mflow.' + System.currentTimeMillis() + '.com';
-  //userObj.Email = 'nithesh.k@digitalalign.com';
+  //userObj.Email = 'Online@User.Mflow.' + System.currentTimeMillis() + '.com';
+  userObj.Email = 'test@digitalalign.com';
   userObj.Username = 'Online@User.Mflow.' + System.currentTimeMillis() + '.com';
   userObj.CommunityNickname = 'Mflow.' + System.currentTimeMillis();
   userObj.LocaleSidKey = 'en_US';
@@ -19,7 +19,7 @@ public static void createUser() {
   );
   UserRepository.insertRecord(userObj);
 
-  system.setPassword(userObj.Id, 'Test@123');
+  system.setPassword(userObj.Id, 'Test@1234');
 
   List<PermissionSet> permissionSetList = [
     SELECT Id
@@ -33,7 +33,7 @@ public static void createUser() {
   List<User> siteUser = [
     SELECT id, Name
     FROM User
-    WHERE Profile.Name = 'MFlowOnlineSalesforcePlatform'
+    WHERE Profile.Name = 'MFlowOnlineSalesforcePlatform' AND isActive = TRUE
   ];
 
   delete [
@@ -52,4 +52,8 @@ public static void createUser() {
   }
 
   insert permissionSetAssignmentList;
+  Map<String, String> result = new Map<String, String>();
+  result.put('Id', userObj.Id);
+  result.put('Username', userObj.Username);
+  system.debug('{QueryStart} ' + Json.serialize(result) + ' {QueryEnd}');
 }

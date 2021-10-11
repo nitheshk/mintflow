@@ -258,13 +258,61 @@ gulp.task("publishCommunities", function (finish) {
 
 //createUser
 gulp.task("createUser", function (finish) {
-  let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createUser1}`;
+  let scriptToRun = `git config user.email`;
+  utils
+    .runCommand(scriptToRun)
+    .then((result) => {
+      console.log("Result :" + result);
+
+      const contents = fs.readFileSync(
+        "./deploy/scratchOrg/apex/CreateUser.apex",
+        "utf8"
+      );
+
+      let replaced_contents = contents.replace(
+        "test@digitalalign.com",
+        result.trim()
+      );
+
+      fs.writeFileSync(
+        "./deploy/scratchOrg/apex/CreateUser.apex",
+        replaced_contents,
+        "utf8"
+      );
+    })
+    .catch((err) => {
+      console.log("Error :" + err.stdout);
+      process.exit(1);
+    });
+
+  scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createUser1}`;
   console.log("Script To Run - " + scriptToRun);
 
   utils
     .runCommand(scriptToRun)
     .then((result) => {
       console.log("Result :" + result);
+      let jsonString = result.substring(
+        result.lastIndexOf("{QueryStart}") + 12,
+        result.lastIndexOf("{QueryEnd}")
+      );
+      const data = JSON.parse(jsonString);
+      console.log("Username :" + data.Username);
+
+      let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/dau01__SiteSetting__c.json");
+      applicationConfiguration.records[0].dau01__OnlineSiteUserName__c =
+        data.Username;
+      // update site urls
+      utils
+        .createFile(
+          "./data/salesforceConfig/systemConfig/dau01__SiteSetting__c.json",
+          JSON.stringify(applicationConfiguration, null, 2)
+        )
+        .catch((err) => {
+          console.log("err :" + JSON.stringify(err));
+          process.exit(1);
+        });
+
       finish();
     })
     .catch((err) => {
@@ -408,7 +456,7 @@ gulp.task("createSite", function (finish) {
   console.log(`Site created in : ${siteFilePath}`);
 
   utils.createFile(siteFilePath, xml).catch((err) => {
-    console.log("errr :" + JSON.stringify(errr));
+    console.log("errr :" + JSON.stringify(err));
     return;
   });
 

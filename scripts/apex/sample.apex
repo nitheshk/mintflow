@@ -89,3 +89,13 @@ system.debug('all : ' + system.JSON.Serialize(sl));
 Contact employeeContactObj = sl[0].AccountContactRelations[0].Contact;
 
 update employeeContactObj;
+
+//Inactive User
+List<User> users = [
+  SELECT Id
+  FROM User
+  WHERE profile.Name = 'MFlowOnlineSalesforcePlatform'
+];
+for (user u : users)
+  u.isActive = false;
+update users;
