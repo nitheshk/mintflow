@@ -1,6 +1,6 @@
 updateAdminPermissionSet();
 updateGuestPermissionSet();
-updateRoleToCurrentUser();
+//updateRoleToCurrentUser();
 
 public static void updateGuestPermissionSet() {
   List<PermissionSet> permissionSetList = [

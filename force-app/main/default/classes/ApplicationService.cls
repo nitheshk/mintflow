@@ -63,25 +63,19 @@ global with sharing class ApplicationService extends AbstractService {
 
   /**
    * @description
-   * @author Digital Align Team | 09-29-2021
+   * @author Digital Align Team | 10-11-2021
    * @param Map<String Object> params
-   * @return Object
+   * @return Lead
    **/
-  global virtual Account createApplication(Map<String, Object> params) {
-    // start an application
-    //Map<String, Object> result = new Map<String, Object>();
-    Account applicationObj = ApplicationServiceHelper.getInstance()
-      .createHouseholdApplication(params);
-    /*
-    Account personAccountObj = ApplicationServiceHelper.getInstance()
-      .createPrimaryPersonAccount(params);
-    personAccountObj = ApplicationRepository.fetchPersonAccountByAccId(
-      personAccountObj.id
-    );
-    ApplicationServiceHelper.getInstance()
-      .createAccountContactRelation(params, applicationObj, personAccountObj);
-    */
-    return applicationObj;
+  global virtual Lead createLead(Map<String, Object> params) {
+    // start an Lead
+    Lead leadObj = new Lead();
+    leadObj.LastName = 'Unnamed';
+    leadObj.Company = 'Unnamed';
+    //Mapping
+    leadObj.Description = ApplicationServiceHelper.getInstance().getIpAddress();
+    ApplicationRepository.upsertRecord(leadObj);
+    return leadObj;
   }
 
   /**

@@ -30,6 +30,19 @@ global with sharing class ApexResponse {
   }
 
   /**
+   * @description  return status with 200 and data with serialized json
+   * @author Digital Align Team | 07-15-2021
+   * @param object data
+   * @return ApexResponse
+   **/
+  global static ApexResponse success(object data) {
+    ApexResponse response = new ApexResponse();
+    response.status = 200;
+    response.data = JSON.serialize(data);
+    return response;
+  }
+
+  /**
    * @description  return status with 200
    * @author Digital Align Team | 09-02-2021
    * @return ApexResponse

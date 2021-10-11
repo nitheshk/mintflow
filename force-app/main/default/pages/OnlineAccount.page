@@ -44,6 +44,12 @@
         >
       </noscript>
       <div id="app"></div>
+      <script>
+        pageContext = {
+          id: "{!JSENCODE(recordId)}",
+          onlineSiteUrl: "{!JSENCODE(recordId)}"
+        };
+      </script>
       <script
         src="{!URLFOR($Resource.DoTract, 'js/chunk-vendors.js')}"
       ></script>

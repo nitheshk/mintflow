@@ -8,7 +8,7 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class OnlineAccountController extends AbstractController {
   public String recordId { get; set; }
-  public Account application { get; set; }
+  public SObject application { get; set; }
   public Map<String, String> pageParams { get; set; }
 
   /**
@@ -19,11 +19,11 @@ global with sharing class OnlineAccountController extends AbstractController {
     pageParams = PageUtils.getCurrentPageParameters();
     if (String.isNotBlank(pageParams.get('recordId'))) {
       //resume application with recordId
-      this.application = (Account) ApplicationService.getInstance()
+      this.application = (SObject) ApplicationService.getInstance()
         .resumeApplication(pageParams);
     } else {
-      this.application = (Account) ApplicationService.getInstance()
-        .CreateApplication(pageParams);
+      this.application = (SObject) ApplicationService.getInstance()
+        .createLead(pageParams);
       this.recordId = this.application.Id;
     }
   }
