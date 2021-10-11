@@ -125,6 +125,8 @@ global with sharing class ApplicationService extends AbstractService {
     );
     ApplicationRepository.upsertRecord(leadObj);
 
+    leadObj = ApplicationServiceHelper.getInstance().upsertSurvey(leadObj);
+
     return leadObj;
   }
 }

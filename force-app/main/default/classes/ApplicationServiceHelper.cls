@@ -33,7 +33,7 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
    * @author Digital Align Team | 10-11-2021
    * @return String
    **/
-  global String getIpAddress() {
+  global virtual String getIpAddress() {
     String ipAddress;
     //System.auth.SessionManagement.getCurrentSession().get('SourceIp');
 
@@ -51,5 +51,15 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
       }
     }
     return ipAddress;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-11-2021
+   * @param Lead leadObj
+   * @return Lead
+   **/
+  global virtual Lead upsertSurvey(Lead leadObj) {
+    return leadObj;
   }
 }
