@@ -106,11 +106,10 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse updateApplication(Map<String, String> params) {
+  global static ApexResponse updateLead(Map<String, String> params) {
     try {
-      return ApexResponse.ok(
-        ApplicationService.getInstance().updateApplication(params)
-      );
+      Lead leadObj = ApplicationService.getInstance().updateLead(params);
+      return ApexResponse.success(leadObj);
     } catch (CustomException ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);

@@ -116,9 +116,15 @@ global with sharing class ApplicationService extends AbstractService {
    * @param Map<String Object> params
    * @return Account
    **/
-  global Account updateApplication(Map<String, Object> params) {
-    // Start an application
-    Map<String, Object> result = new Map<String, Object>();
-    return null;
+  global Lead updateLead(Map<String, Object> params) {
+    //update leadObj;
+
+    Lead leadObj = (Lead) Json.deserialize(
+      String.valueOf(params.get('lead')),
+      Lead.class
+    );
+    ApplicationRepository.upsertRecord(leadObj);
+
+    return leadObj;
   }
 }
