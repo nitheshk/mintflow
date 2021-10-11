@@ -27,14 +27,11 @@ global virtual with sharing class SentiLinkService extends AbstractService {
   global virtual String customerScores(Map<String, Object> params) {
     Map<String, Object> data = params.clone();
     System.debug(' Old data::' + data);
-    // lead leadObj = (Lead) JSON.deserialize(
-    //   (string) params.get('leadObj'),
-    //   Lead.class
-    // );
     lead leadObj = (lead) params.get('leadObj');
     SentiLinkDTO.Request requestDTO = new SentiLinkDTO.Request();
     List<SentiLinkDTO.Scores> scores = new List<SentiLinkDTO.Scores>();
     SentiLinkDTO.Application application = new SentiLinkDTO.Application();
+    List<SentiLinkDTO.ReqExtraData> extra_data = new List<SentiLinkDTO.ReqExtraData>();
     application.first_name = leadObj.FirstName;
     application.last_name = leadObj.LastName;
     application.user_id = leadObj.Id;
@@ -62,11 +59,11 @@ global virtual with sharing class SentiLinkService extends AbstractService {
       scores.add(score);
       system.debug('score in for =' + scores);
     }
-
     requestDTO.application = application;
     requestDTO.scores = scores;
+
     system.debug('requestDTO =' + requestDTO);
-    params.put('DTO', 'requestDTO');
+    data.put('DTO', requestDTO);
     Map<String, Object> response = SentiLinkAdapter.invokeAPI(data);
     system.debug('response =' + response);
     return '';

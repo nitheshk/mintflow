@@ -3,12 +3,10 @@ public with sharing class SentiLinkDTO extends AbstractDTO {
   public class Request {
     public Application application;
     public List<Scores> scores;
-    public List<Extra_data> extra_data;
-  }
+    public List<ReqExtraData> extra_data;
+    // public Request() {
 
-  public class Metadata {
-    public String account_id;
-    public Integer fico;
+    // }
   }
   public class Application {
     public String application_id;
@@ -46,115 +44,29 @@ public with sharing class SentiLinkDTO extends AbstractDTO {
     public String alt_email;
     public String sentilink_application_sid;
   }
-  public class IdCompletionResponse {
-    public Application application;
-    public String customer_id;
-    public String environment;
-    public Integer latency_ms;
-    public String timestamp;
-    public String transaction_id;
-    public List<String> updated_fields;
-    public String confidence_level;
+  public class ReqExtraData {
+    public String type;
   }
 
-  public class EcbsvResponse {
-    public String application_id;
-    public Boolean ssa_verified;
-    public Boolean deceased;
-    public String customer_id;
-    public String environment;
-    public Integer latency_ms;
-    public String timestamp;
-    public String transaction_id;
+  public class Scores {
+    public String score_name;
   }
-  public class ScoresResponse {
+  public class Metadata {
+    public String any_additional_data;
+  }
+  public class Response {
     public String application_id;
     public String customer_id;
     public String environment;
     public Integer latency_ms;
     public String notes;
-    public List<Scores> scores;
-    public Extra_data extra_data;
+    public List<ResScores> scores;
+    public ResExtraData extra_data;
     public String timestamp;
     public String transaction_id;
   }
-  public class Issuance_lower_bound {
-    public Integer year;
-  }
-  public class First_reported_Z {
-    public Integer year;
-    public Integer month;
-    public Integer day;
-  }
-  public class Data_Z {
-    public List<Nodes> nodes;
-    public List<Edges> edges;
-  }
-  public class Match_info {
-    public List<Match_fields> match_fields;
-    public List<Match_fields> match_details;
-  }
-  public class Nodes {
-    public String node_type;
-    public Integer index;
-    public Application application;
-    public Attribute attribute;
-  }
-  public class Fraud_codes {
-    public String code;
-    public String value;
-  }
-  public class Data {
-    public Attributes attributes;
-    public List<Identities> identities;
-    public Pii_corrections pii_corrections;
-  }
-  public class Ssns {
-    public String ssn;
-    public Issuance_info issuance_info;
-  }
-  public class Consumer_history {
-    public Data data;
-  }
-  public class Identities {
-    public Match_info match_info;
-    public Identity identity;
-  }
-  public class Identity {
-    public List<Names> names;
-    public List<Addresses> addresses;
-    public List<Ssns> ssns;
-    public List<First_reported_Z> dobs;
-    public List<First_reported_Z> origination_dates;
-    public List<Fraud_codes> fraud_codes;
-    public List<Phones> phones;
-    public List<Emails> emails;
-  }
-  public class Emails {
-    public String email;
-    public Boolean format_verified;
-    public Boolean is_valid;
-    public First_reported_Z first_reported;
-    public First_reported_Z last_reported;
-  }
-  public class Clusters {
-    public Data_Z data;
-  }
-  public class Match_fields {
-    public String field;
-    public String match_type;
-    public Integer match_index;
-  }
-  public class Phones {
-    public String phone;
-    public First_reported_Z first_reported;
-    public First_reported_Z last_reported;
-    public Boolean is_possible;
-    public String phone_type;
-  }
-  public class Extra_data {
-    public String type;
-    public Consumer_history consumer_history;
+  public class ResExtraData {
+    public ConsumerHistory consumer_history;
     public Clusters clusters;
   }
 
@@ -163,18 +75,17 @@ public with sharing class SentiLinkDTO extends AbstractDTO {
     public String attribute_type;
   }
 
-  public class Issuance_info {
-    public Issuance_lower_bound issuance_lower_bound;
-    public Issuance_lower_bound issuance_upper_bound;
+  public class IssuanceInfo {
+    public IssuanceLowerBound issuance_lower_bound;
+    public IssuanceLowerBound issuance_upper_bound;
     public String location;
   }
 
-  public class Scores {
-    public String score_name;
+  public class ResScores {
     public String name;
     public String version;
     public Integer score;
-    public List<Reason_codes> reason_codes;
+    public List<ReasonCodes> reason_codes;
   }
 
   public class Attributes {
@@ -187,7 +98,7 @@ public with sharing class SentiLinkDTO extends AbstractDTO {
     public Integer ssn_history_longer_months;
   }
 
-  public class Reason_codes {
+  public class ReasonCodes {
     public String code;
     public Integer rank;
     public String direction;
@@ -209,15 +120,110 @@ public with sharing class SentiLinkDTO extends AbstractDTO {
     public String zip;
     public String city;
     public String state;
-    public First_reported first_reported;
+    public FirstReported first_reported;
   }
 
-  public class First_reported {
+  public class FirstReported {
     public Integer year;
     public Integer month;
   }
 
-  public class Pii_corrections {
+  public class PiiCorrections {
     public String corrected_ssn;
   }
+
+  public class Phones {
+    public String phone;
+    public FirstReportedZ first_reported;
+    public FirstReportedZ last_reported;
+    public Boolean is_possible;
+    public String phone_type;
+  }
+
+  public class MatchFields {
+    public String field;
+    public String match_type;
+    public Integer match_index;
+  }
+
+  public class Clusters {
+    public DataZ data;
+  }
+
+  public class Emails {
+    public String email;
+    public Boolean format_verified;
+    public Boolean is_valid;
+    public FirstReportedZ first_reported;
+    public FirstReportedZ last_reported;
+  }
+
+  public class Identity {
+    public List<Names> names;
+    public List<Addresses> addresses;
+    public List<Ssns> ssns;
+    public List<FirstReportedZ> dobs;
+    public List<FirstReportedZ> origination_dates;
+    public List<FraudCodes> fraud_codes;
+    public List<Phones> phones;
+    public List<Emails> emails;
+  }
+
+  public class Identities {
+    public MatchInfo match_info;
+    public Identity identity;
+  }
+
+  public class ConsumerHistory {
+    public Data data;
+  }
+
+  public class Ssns {
+    public String ssn;
+    public IssuanceInfo issuance_info;
+  }
+
+  public class Data {
+    public Attributes attributes;
+    public List<Identities> identities;
+    public PiiCorrections pii_corrections;
+  }
+
+  public class FraudCodes {
+    public String code;
+    public String value;
+  }
+
+  public class Nodes {
+    public String node_type;
+    public Integer index;
+    public Application application;
+    public Attribute attribute;
+  }
+
+  public class MatchInfo {
+    public List<MatchFields> match_fields;
+    public List<MatchFields> match_details;
+  }
+
+  public class DataZ {
+    public List<Nodes> nodes;
+    public List<Edges> edges;
+  }
+
+  public class FirstReportedZ {
+    public Integer year;
+    public Integer month;
+    public Integer day;
+  }
+
+  public class IssuanceLowerBound {
+    public Integer year;
+  }
+
+  // public class Application {
+  //   public String application_id;
+  //   public String sentilink_application_sid;
+  //   public String application_created;
+  // }
 }
