@@ -19,12 +19,14 @@ global virtual with sharing class SentiLinkService extends AbstractService {
     return serviceInstance;
   }
   /**
-   * @description
+   * @description to get customer fraud scores
    * @author Digital Align | 10-08-2021
    * @param Map<String Object> params
    * @return virtual
    **/
-  global virtual String customerScores(Map<String, Object> params) {
+  global virtual Map<String, Object> customerScores(
+    Map<String, Object> params
+  ) {
     Map<String, Object> data = params.clone();
     lead leadObj = (lead) params.get('leadObj');
     SentiLinkDTO.Request requestDTO = new SentiLinkDTO.Request();
@@ -70,12 +72,8 @@ global virtual with sharing class SentiLinkService extends AbstractService {
     requestDTO.application = application;
     requestDTO.scores = scores;
     requestDTO.extra_data = extra_data;
-    system.debug('requestDTO =' + requestDTO);
     data.put('DTO', requestDTO);
     Map<String, Object> response = SentiLinkAdapter.invokeAPI(data);
-    system.debug('Status =' + response.get('Status'));
-    system.debug('StatusMessage =' + response.get('StatusMessage'));
-    system.debug('Data =' + response.get('Data'));
-    return '';
+    return response;
   }
 }

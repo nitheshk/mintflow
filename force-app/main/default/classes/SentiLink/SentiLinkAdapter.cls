@@ -1,4 +1,17 @@
+/**
+ * Copyright (c) 2021 Digital Align
+ * @group Constant
+ * @author Digital Align Team
+ * @reference
+ * @description
+ **/
 public with sharing class SentiLinkAdapter {
+  /**
+   * @description
+   * @author Digital Align | 10-12-2021
+   * @param Map<String object> params
+   * @return Map<String, object>
+   **/
   public static Map<String, object> invokeAPI(Map<String, object> params) {
     Map<String, Object> data = params.clone();
     try {
@@ -23,7 +36,6 @@ public with sharing class SentiLinkAdapter {
    * @return void
    **/
   private static void setApiConfiguration(Map<String, object> params) {
-    system.debug('APIname = ' + (String.valueof(params.get('APIName'))));
     if (
       ((String) params.get('APIName') == 'SentiLink') &&
       (APIConfigurationService.getAPISettings(APINames.SentiLink).isActive__c)
