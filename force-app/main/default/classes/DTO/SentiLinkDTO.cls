@@ -2,11 +2,8 @@
 public with sharing class SentiLinkDTO extends AbstractDTO {
   public class Request {
     public Application application;
-    public List<Scores> scores;
+    public List<ReqScores> scores;
     public List<ReqExtraData> extra_data;
-    // public Request() {
-
-    // }
   }
   public class Application {
     public String application_id;
@@ -48,7 +45,7 @@ public with sharing class SentiLinkDTO extends AbstractDTO {
     public String type;
   }
 
-  public class Scores {
+  public class ReqScores {
     public String score_name;
   }
   public class Metadata {

@@ -26,10 +26,9 @@ global virtual with sharing class SentiLinkService extends AbstractService {
    **/
   global virtual String customerScores(Map<String, Object> params) {
     Map<String, Object> data = params.clone();
-    System.debug(' Old data::' + data);
     lead leadObj = (lead) params.get('leadObj');
     SentiLinkDTO.Request requestDTO = new SentiLinkDTO.Request();
-    List<SentiLinkDTO.Scores> scores = new List<SentiLinkDTO.Scores>();
+    List<SentiLinkDTO.ReqScores> scores = new List<SentiLinkDTO.ReqScores>();
     SentiLinkDTO.Application application = new SentiLinkDTO.Application();
     List<SentiLinkDTO.ReqExtraData> extra_data = new List<SentiLinkDTO.ReqExtraData>();
     application.first_name = leadObj.FirstName;
@@ -54,18 +53,29 @@ global virtual with sharing class SentiLinkService extends AbstractService {
         )
         .split(',')
     ) {
-      SentiLinkDTO.Scores score = new SentiLinkDTO.Scores();
+      SentiLinkDTO.ReqScores score = new SentiLinkDTO.ReqScores();
       score.score_name = scoreName;
       scores.add(score);
-      system.debug('score in for =' + scores);
+    }
+    for (
+      string extraDataType : APIConfigurationService.getAPIConstants(
+          'SentiLinkExtraData'
+        )
+        .split(',')
+    ) {
+      SentiLinkDTO.ReqExtraData extraData = new SentiLinkDTO.ReqExtraData();
+      extraData.type = extraDataType;
+      extra_data.add(extraData);
     }
     requestDTO.application = application;
     requestDTO.scores = scores;
-
+    requestDTO.extra_data = extra_data;
     system.debug('requestDTO =' + requestDTO);
     data.put('DTO', requestDTO);
     Map<String, Object> response = SentiLinkAdapter.invokeAPI(data);
-    system.debug('response =' + response);
+    system.debug('Status =' + response.get('Status'));
+    system.debug('StatusMessage =' + response.get('StatusMessage'));
+    system.debug('Data =' + response.get('Data'));
     return '';
   }
 }

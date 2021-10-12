@@ -19,7 +19,7 @@ global abstract with sharing class AbstractDTO {
    * @return virtual
    **/
   public virtual String generateRequest(object requestObj) {
-    return System.JSON.serializePretty(requestObj);
+    return JSON.serializePretty(requestObj);
   }
 
   /**
@@ -33,7 +33,7 @@ global abstract with sharing class AbstractDTO {
     object requestObj,
     Boolean suppressNull
   ) {
-    return System.JSON.serializePretty(requestObj, suppressNull);
+    return JSON.serializePretty(requestObj, suppressNull);
   }
 
   /**
@@ -52,14 +52,5 @@ global abstract with sharing class AbstractDTO {
    * @description Parse the request
    */
   global class Response {
-    public Data data;
-    public List<Errors> errors;
-  }
-  public class Data {
-  }
-
-  public class Errors {
-    public String errorProperty;
-    public List<String> errorMessage;
   }
 }

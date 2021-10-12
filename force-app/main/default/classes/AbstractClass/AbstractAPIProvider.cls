@@ -61,4 +61,12 @@ public abstract with sharing class AbstractAPIProvider {
    * @return Map<String,String>
    **/
   protected abstract Map<String, String> getHeader(Map<String, object> params);
+  /**
+   * @description parse the response body
+   * @author Digital Align | 10-12-2021
+   * @param String reponseBody
+   * @param ;
+   * @return abstract
+   **/
+  protected abstract Object parseResponse(String reponseBody);
 }
