@@ -68,5 +68,5 @@ public abstract with sharing class AbstractAPIProvider {
    * @param ;
    * @return abstract
    **/
-  protected abstract Object parseResponse(String reponseBody);
+  // protected abstract Object parseResponse(String reponseBody);
 }

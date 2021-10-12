@@ -45,8 +45,8 @@ public with sharing class SentiLinkProvider extends AbstractAPIProvider {
    * @param String reponseBody
    * @return Object
    **/
-  protected override Object parseResponse(String reponseBody) {
-    // parse respose body
-    return dto.parse(reponseBody);
-  }
+  // protected override Object parseResponse(String reponseBody) {
+  //   // parse respose body
+  //   return dto.parse(reponseBody);
+  // }
 }
