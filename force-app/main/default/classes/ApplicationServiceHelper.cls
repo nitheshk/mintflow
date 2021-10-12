@@ -54,7 +54,7 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
   }
 
   /**
-   * @description
+   * @description save survey record
    * @author Digital Align Team | 10-11-2021
    * @param Lead leadObj
    * @return Lead

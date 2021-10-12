@@ -43,4 +43,16 @@
         <label>Under Review</label>
         <converted>false</converted>
     </standardValue>
+    <standardValue>
+        <fullName>In Progress</fullName>
+        <default>false</default>
+        <label>In Progress</label>
+        <converted>false</converted>
+    </standardValue>
+    <standardValue>
+        <fullName>Abandoned</fullName>
+        <default>false</default>
+        <label>Abandoned</label>
+        <converted>false</converted>
+    </standardValue>
 </StandardValueSet>

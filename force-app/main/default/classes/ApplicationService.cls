@@ -74,8 +74,12 @@ global with sharing class ApplicationService extends AbstractService {
     leadObj.Company = 'Unnamed';
     leadObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       Lead.SObjectType,
-      'BusinessReferral'
+      'Referral'
     );
+    //mandatory field for finServ has validation rule
+    leadObj.FinServ__ReferredByUser__c = UserInfo.getUserId();
+    leadObj.LeadSource = 'Web';
+    leadObj.Status = 'In Progress';
     //Mapping
     leadObj.Description = ApplicationServiceHelper.getInstance().getIpAddress();
     ApplicationRepository.upsertRecord(leadObj);
@@ -88,10 +92,7 @@ global with sharing class ApplicationService extends AbstractService {
    * @param Map<String Object> params
    * @return Object
    **/
-  global Object resumeApplication(Map<String, Object> params) {
-    // start an application
-    Map<String, Object> result = new Map<String, Object>();
-
+  global Account resumeApplication(Map<String, Object> params) {
     return null;
   }
 
@@ -116,7 +117,6 @@ global with sharing class ApplicationService extends AbstractService {
    **/
   global Lead saveLead(Map<String, Object> params) {
     //update leadObj;
-
     Lead leadObj = (Lead) Json.deserialize(
       String.valueOf(params.get('lead')),
       Lead.class

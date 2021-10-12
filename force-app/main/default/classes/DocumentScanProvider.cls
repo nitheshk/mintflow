@@ -31,4 +31,8 @@ public with sharing class DocumentScanProvider extends AbstractAPIProvider {
   protected override Map<String, String> getHeader(Map<String, object> params) {
     return null;
   }
+
+  protected override Object parseResponse(String response) {
+    return null;
+  }
 }

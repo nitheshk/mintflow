@@ -34,6 +34,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         .addFields()
         .queryChild('dau01__Surveys__r')
         .addFields()
+        .orderBy('dau01__Order__c')
         .run()
         .whereEq('Id', leadId)
         .toString(true)

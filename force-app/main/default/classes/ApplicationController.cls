@@ -61,28 +61,6 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse resumeApplication(Map<String, String> params) {
-    try {
-      return ApexResponse.ok(
-        ApplicationService.getInstance().resumeApplication(params)
-      );
-    } catch (CustomException ex) {
-      System.debug(ex.getMessage());
-      return ApexResponse.exception(ex);
-    } catch (Exception ex) {
-      System.debug(ex.getMessage());
-      return ApexResponse.fail(ex);
-    }
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 09-29-2021
-   * @param Map<String String> params
-   * @return ApexResponse
-   **/
-  @AuraEnabled
-  @RemoteAction
   global static ApexResponse readLead(Map<String, String> params) {
     try {
       return ApexResponse.success(
@@ -109,6 +87,28 @@ global with sharing class ApplicationController extends AbstractController {
     try {
       Lead leadObj = ApplicationService.getInstance().saveLead(params);
       return ApexResponse.success(leadObj);
+    } catch (CustomException ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-29-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse resumeApplication(Map<String, String> params) {
+    try {
+      return ApexResponse.ok(
+        ApplicationService.getInstance().resumeApplication(params)
+      );
     } catch (CustomException ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
