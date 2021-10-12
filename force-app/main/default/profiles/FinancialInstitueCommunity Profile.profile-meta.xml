@@ -99,10 +99,8 @@
     <layoutAssignments>
         <layout
     >FinServ__UseStandardTrigger__mdt-FinServ__Use Standard Trigger Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>dau01__Insurance__c-dau01__Insurance Layout</layout>
-    </layoutAssignments>
+    </layoutAssignments>.
+    
     <!--<layoutAssignments>
         <layout>PersonAccount-Person Account Layout</layout>
         <recordType>PersonAccount.PersonAccount</recordType>
@@ -124,14 +122,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>dau01__Survey__c-dau01__Survey Layout</layout>
-    </layoutAssignments>     
-    <layoutAssignments>
-        <layout
-    >dau01__VehicleAuctionBreakdown__c-dau01__VehicleAuctionBreakdown Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout
-    >dau01__VehicleInformation__c-dau01__VehicleInformation Layout</layout>
     </layoutAssignments>
     
     <userLicense>Customer Community</userLicense>

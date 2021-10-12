@@ -10,21 +10,11 @@
         <recordType>PersonAccount.PersonAccount</recordType>
     </layoutAssignments>-->
     <layoutAssignments>
-        <layout>Insurance__c-Insurance Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout
     >SObjectTriggerSetting__mdt-SObject Trigger Setting Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Survey__c-Survey Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout
-    >VehicleAuctionBreakdown__c-VehicleAuctionBreakdown Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>VehicleInformation__c-VehicleInformation Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Address-Address Layout</layout>
