@@ -139,7 +139,61 @@
         <name>SiteSetting__c</name>
     </customSettingAccesses>
     <description>MFlow Online Salesforce Platform</description>
-
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VehicleInformation__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VehicleAuctionBreakdown__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+  <fieldPermissions>
+        <editable>true</editable>
+        <field>ContentVersion.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+        <fieldPermissions>
+        <editable>true</editable>
+        <field>DocumentRequest__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+        <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+            <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+          <fieldPermissions>
+        <editable>true</editable>
+        <field>ContactPointAddress.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+        <fieldPermissions>
+        <editable>true</editable>
+        <field>Insurance__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+        <fieldPermissions>
+        <editable>true</editable>
+        <field>SurveyTemplate__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SurveyTemplateItem__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.UserContactType__c</field>

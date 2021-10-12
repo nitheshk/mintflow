@@ -171,6 +171,21 @@
         <name>SiteSetting__c</name>
     </customSettingAccesses>
     <description>DoTract System Admin profile</description>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>VehicleInformation__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VehicleAuctionBreakdown__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Lead.Birthdate__c</field>
@@ -231,9 +246,19 @@
         <field>EmailNotificationSetting__mdt.TraceEmailActivity__c</field>
         <readable>true</readable>
     </fieldPermissions>
+         <fieldPermissions>
+        <editable>true</editable>
+        <field>ContentVersion.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>ContentVersion.Guest_Record_fileupload__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>DocumentRequest__c.deleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -283,6 +308,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SurveyTemplate__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>SurveyTemplate__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>SurveyTemplateItem__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SurveyTemplateItem__c.Options__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -301,6 +341,12 @@
         <field>SurveyTemplateItem__c.hasChild__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.NaicsCode</field>
@@ -662,6 +708,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Insurance__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Account.FinServ__TotalInsurance__c</field>
         <readable>true</readable>
@@ -894,6 +945,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>AccountContactRelation.StartDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+        <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.deleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1274,6 +1330,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Title</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>ContactPointAddress.deleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
