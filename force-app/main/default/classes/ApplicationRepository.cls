@@ -23,16 +23,19 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   }
 
   /**
-   * @description
-   * @author Digital Align Team | 10-05-2021
-   * @param Id accountId
-   * @return Account
+   * @description fetch lead with child objects
+   * @author Digital Align Team | 10-12-2021
+   * @param Id leadId
+   * @return Lead
    **/
-  global static Account fetchApplicationById(Id accountId) {
-    return (Account) DatabaseUtils.getRecord(
-      new Query(Account.SObjectType)
+  global static Lead fetchLeadById(Id leadId) {
+    return (Lead) DatabaseUtils.getRecord(
+      new Query(Lead.SObjectType)
         .addFields()
-        .whereEq('Id', accountId)
+        .queryChild('dau01__Surveys__r')
+        .addFields()
+        .run()
+        .whereEq('Id', leadId)
         .toString(true)
     );
   }

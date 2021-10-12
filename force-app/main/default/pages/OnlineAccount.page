@@ -46,8 +46,8 @@
       <div id="app"></div>
       <script>
         pageContext = {
-          id: "{!JSENCODE(recordId)}",
-          onlineSiteUrl: "{!JSENCODE(recordId)}"
+          id: "{!JSENCODE(id)}",
+          onlineSiteUrl: "{!JSENCODE(id)}"
         };
       </script>
       <script

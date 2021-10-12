@@ -37,10 +37,10 @@ global with sharing class ApplicationService extends AbstractService {
   global Object startApplication(Map<String, String> params) {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
-    if (String.isNotBlank(params.get('recordId'))) {
+    if (String.isNotBlank(params.get('id'))) {
       // encryption
       // this for start application from existing application
-      Id recordId = (ID) params.get('recordId');
+      Id recordId = (ID) params.get('id');
       String sObjectType = recordId.getSObjectType().getDescribe().getName();
       switch on sObjectType {
         when 'Account' {
@@ -72,6 +72,10 @@ global with sharing class ApplicationService extends AbstractService {
     Lead leadObj = new Lead();
     leadObj.LastName = 'Unnamed';
     leadObj.Company = 'Unnamed';
+    leadObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+      Lead.SObjectType,
+      'BusinessReferral'
+    );
     //Mapping
     leadObj.Description = ApplicationServiceHelper.getInstance().getIpAddress();
     ApplicationRepository.upsertRecord(leadObj);
@@ -97,17 +101,11 @@ global with sharing class ApplicationService extends AbstractService {
    * @param Map<String Object> params
    * @return Object
    **/
-  global Account readApplication(Map<String, Object> params) {
+  global Lead readLead(Map<String, Object> params) {
     // Start an application
-    Map<String, Object> result = new Map<String, Object>();
-    Id applicationId = (Id) params.get('applicationId');
-    Account accountObj = ApplicationRepository.fetchApplicationById(
-      applicationId
-    );
-    // read person
-    // assest
-    // read document
-    return accountObj;
+    Id leadId = (Id) params.get('id');
+    Lead leadObj = ApplicationRepository.fetchLeadById(leadId);
+    return leadObj;
   }
 
   /**
@@ -116,7 +114,7 @@ global with sharing class ApplicationService extends AbstractService {
    * @param Map<String Object> params
    * @return Account
    **/
-  global Lead updateLead(Map<String, Object> params) {
+  global Lead saveLead(Map<String, Object> params) {
     //update leadObj;
 
     Lead leadObj = (Lead) Json.deserialize(
@@ -124,9 +122,7 @@ global with sharing class ApplicationService extends AbstractService {
       Lead.class
     );
     ApplicationRepository.upsertRecord(leadObj);
-
-    leadObj = ApplicationServiceHelper.getInstance().upsertSurvey(leadObj);
-
+    leadObj = ApplicationServiceHelper.getInstance().saveSurvey(leadObj);
     return leadObj;
   }
 }

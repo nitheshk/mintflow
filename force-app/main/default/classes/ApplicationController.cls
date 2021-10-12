@@ -83,12 +83,11 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse readApplication(Map<String, String> params) {
+  global static ApexResponse readLead(Map<String, String> params) {
     try {
-      return ApexResponse.ok(
-          ApplicationService.getInstance().readApplication(params)
-        )
-        .serialize();
+      return ApexResponse.success(
+        ApplicationService.getInstance().readLead(params)
+      );
     } catch (CustomException ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
@@ -106,9 +105,9 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse updateLead(Map<String, String> params) {
+  global static ApexResponse saveLead(Map<String, String> params) {
     try {
-      Lead leadObj = ApplicationService.getInstance().updateLead(params);
+      Lead leadObj = ApplicationService.getInstance().saveLead(params);
       return ApexResponse.success(leadObj);
     } catch (CustomException ex) {
       System.debug(ex.getMessage());

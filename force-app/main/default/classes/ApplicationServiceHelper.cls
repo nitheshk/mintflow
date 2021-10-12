@@ -59,7 +59,25 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
    * @param Lead leadObj
    * @return Lead
    **/
-  global virtual Lead upsertSurvey(Lead leadObj) {
-    return leadObj;
+  global virtual Lead saveSurvey(Lead leadObj) {
+    //when survey is empty
+    if (CollectionUtils.isListEmpty(leadObj.Surveys__r)) {
+      return leadObj;
+    }
+    List<Survey__c> toBeDelete = new List<Survey__c>();
+    List<Survey__c> toBeSave = new List<Survey__c>();
+    for (Survey__c surveyObj : leadObj.Surveys__r) {
+      if (surveyObj.deleteRecord__c == true) {
+        toBeDelete.add(surveyObj);
+      } else {
+        toBeSave.add(surveyObj);
+      }
+    }
+    ApplicationRepository.deleteRecords(toBeDelete);
+    ApplicationRepository.upsertRecords(toBeSave);
+
+    return (Lead) SObjectConstructor.getInstance(leadObj)
+      .setChildObjects('dau01__Surveys__r', toBeSave)
+      .build();
   }
 }
