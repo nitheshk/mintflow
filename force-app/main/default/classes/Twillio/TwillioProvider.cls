@@ -72,8 +72,4 @@ global with sharing class TwillioProvider extends AbstractAPIProvider {
       }
     }
   }
-
-  protected override Object parseResponse(String response) {
-    return null;
-  }
 }
