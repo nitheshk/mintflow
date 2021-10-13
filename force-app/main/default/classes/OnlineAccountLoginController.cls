@@ -8,6 +8,7 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class OnlineAccountLoginController {
   global PageReference forwardToAccountOpeningPage() {
+    PageUtils.setCookie(new Cookie('id', null, null, -1, true));
     SiteSetting__c siteSetting = SiteSetting__c.getInstance();
     return Site.login(
       siteSetting.OnlineSiteUserName__c,

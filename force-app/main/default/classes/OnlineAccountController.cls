@@ -17,14 +17,23 @@ global with sharing class OnlineAccountController extends AbstractController {
    **/
   global void initializeApplication() {
     pageParams = PageUtils.getCurrentPageParameters();
+
+    Cookie currentCookie = PageUtils.getCookie('id');
+    if (currentCookie != null && String.isNotBlank(currentCookie.getValue())) {
+      this.id = currentCookie.getValue();
+      pageParams.put('id', this.id);
+    }
+
     if (String.isNotBlank(pageParams.get('id'))) {
       //resume application with recordId
       this.application = (SObject) ApplicationService.getInstance()
-        .resumeApplication(pageParams);
+        .readLead(pageParams);
+      this.id = this.application.Id;
     } else {
       this.application = (SObject) ApplicationService.getInstance()
         .createLead(pageParams);
       this.id = this.application.Id;
+      PageUtils.setCookie(new Cookie('id', null, this.id, -1, true));
     }
   }
 }

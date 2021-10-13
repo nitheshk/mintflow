@@ -7,6 +7,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <classAccesses>
+        <apexClass>IdentityController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>OnlineAccountController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
