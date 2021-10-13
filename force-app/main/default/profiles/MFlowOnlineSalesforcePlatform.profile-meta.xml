@@ -145,10 +145,35 @@
     <description>MFlow Online Salesforce Platform</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Diagnostic__c.ApplicationName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic__c.Class__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic__c.Entity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic__c.LogLevel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic__c.Message__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Lead.deleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
-  <fieldPermissions>
+   <fieldPermissions>
         <editable>true</editable>
         <field>ContentVersion.deleteRecord__c</field>
         <readable>true</readable>
@@ -3157,7 +3182,15 @@
         <field>User.FinServ__ReferrerScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
-
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Diagnostic__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>

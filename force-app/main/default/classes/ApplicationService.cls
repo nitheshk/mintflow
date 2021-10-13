@@ -37,7 +37,7 @@ global with sharing class ApplicationService extends AbstractService {
   global Object startApplication(Map<String, String> params) {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
-    if (String.isNotBlank(params.get('id'))) {
+    if (String.isNotBlank(params?.get('id'))) {
       // encryption
       // this for start application from existing application
       Id recordId = (ID) params.get('id');
