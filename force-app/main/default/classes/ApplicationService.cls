@@ -70,8 +70,8 @@ global with sharing class ApplicationService extends AbstractService {
   global virtual Lead createLead(Map<String, Object> params) {
     // start an Lead
     Lead leadObj = new Lead();
-    leadObj.LastName = 'Unnamed';
-    leadObj.Company = 'Unnamed';
+    leadObj.LastName = 'Guest';
+    leadObj.Company = 'Guest';
     leadObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       Lead.SObjectType,
       'Referral'
