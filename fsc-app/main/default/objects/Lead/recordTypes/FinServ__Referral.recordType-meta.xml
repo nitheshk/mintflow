@@ -7,6 +7,108 @@
   >A person, business, or organization that is a referral</description>
     <label>Person Referral</label>
     <picklistValues>
+        <picklist>FamilyMemberOneRelationship__c</picklist>
+        <values>
+            <fullName>Aunt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Brother</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Daughter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Father</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grand Father</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grand Mother</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Husband</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mother</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sister</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Son</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Uncle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wife</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FamilyMemberTwoRelationship__c</picklist>
+       <values>
+            <fullName>Aunt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Brother</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Daughter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Father</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grand Father</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grand Mother</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Husband</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mother</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sister</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Son</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Uncle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wife</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>FinServ__ExpressedInterest__c</picklist>
         <values>
             <fullName>Checking Account</fullName>
@@ -54,6 +156,25 @@
         </values>
         <values>
             <fullName>Savings Account</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>IdentityType__c</picklist>
+        <values>
+            <fullName>Driver License</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Military Id</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passport</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>State Id</fullName>
             <default>false</default>
         </values>
     </picklistValues>
