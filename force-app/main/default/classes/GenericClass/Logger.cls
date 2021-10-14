@@ -328,4 +328,19 @@ global with sharing class Logger {
       System.debug(ex.getMessage());
     }
   }
+
+  /**
+   * @description delete debug Logs
+   * @author Digital Align Team | 10-14-2021
+   * @return Boolean
+   **/
+  @AuraEnabled
+  public static ApexResponse deleteLogs() {
+    try {
+      delete [SELECT id FROM diagnostic__c LIMIT 10000];
+      return ApexResponse.ok();
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
 }
