@@ -44,6 +44,7 @@
     <tabs>FinServ__FinancialHolding__c</tabs>
     <tabs>FinServ__Securities__c</tabs>
     <tabs>FinServ__ReciprocalRole__c</tabs>
+    <tabs>Diagnostic__c</tabs>
     <tabs>standard-Lead</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-report</tabs>

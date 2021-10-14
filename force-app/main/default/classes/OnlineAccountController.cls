@@ -11,29 +11,41 @@ global with sharing class OnlineAccountController extends AbstractController {
   public SObject application { get; set; }
   public Map<String, String> pageParams { get; set; }
 
+  public OnlineAccountController() {
+    super(OnlineAccountController.class);
+  }
+
   /**
    * @description
    * @author Digital Align Team | 09-29-2021
    **/
   global void initializeApplication() {
-    pageParams = PageUtils.getCurrentPageParameters();
+    try {
+      pageParams = PageUtils.getCurrentPageParameters();
 
-    Cookie currentCookie = PageUtils.getCookie('id');
-    if (currentCookie != null && String.isNotBlank(currentCookie.getValue())) {
-      this.id = currentCookie.getValue();
-      pageParams.put('id', this.id);
-    }
+      Cookie currentCookie = PageUtils.getCookie('id');
+      if (
+        currentCookie != null && String.isNotBlank(currentCookie.getValue())
+      ) {
+        this.id = currentCookie.getValue();
+        pageParams.put('id', this.id);
+      }
 
-    if (String.isNotBlank(pageParams.get('id'))) {
-      //resume application with recordId
-      this.application = (SObject) ApplicationService.getInstance()
-        .readLead(pageParams);
-      this.id = this.application.Id;
-    } else {
-      this.application = (SObject) ApplicationService.getInstance()
-        .createLead(pageParams);
-      this.id = this.application.Id;
-      PageUtils.setCookie(new Cookie('id', null, this.id, -1, true));
+      if (String.isNotBlank(pageParams.get('id'))) {
+        //resume application with recordId
+        this.application = (SObject) ApplicationService.getInstance()
+          .readLead(pageParams);
+        this.id = this.application.Id;
+      } else {
+        this.application = (SObject) ApplicationService.getInstance()
+          .createLead(pageParams);
+        this.id = this.application.Id;
+        PageUtils.setCookie(new Cookie('id', null, this.id, -1, true));
+      }
+    } catch (Exception ex) {
+      log.error(ex);
+    } finally {
+      Logger.persist();
     }
   }
 }

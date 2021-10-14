@@ -9,7 +9,6 @@
 global with sharing class ApplicationService extends AbstractService {
   @TestVisible
   private static ApplicationService serviceInstance;
-  private logger log = logger.getInstance(ApplicationService.class);
 
   public ApplicationService() {
     super(ApplicationService.class);
@@ -38,7 +37,7 @@ global with sharing class ApplicationService extends AbstractService {
   global Object startApplication(Map<String, String> params) {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
-    log?.fine('startApplication -> params -> ' + Json.serialize(params));
+    log?.fine('Inside startApplication -> params -> ' + Json.serialize(params));
     if (String.isNotBlank(params?.get('id'))) {
       // encryption
       // this for start application from existing application

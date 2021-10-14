@@ -4,6 +4,12 @@
  * @author Digital Align Team
  * @reference
  * @description
+ * Different Logging.level
+ * <Error> - Trace Only error log , Used log error
+ * <Info> - Trace Error and Info , Used to Log Information
+ * <Debug> - Trace Error,Info and Debug logs , Used to log code level debug logs
+ * <Fine> - Trace Error, Info ,Debug abd Fine(package level tracing), Specific to managed package logging
+ *
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class Logger {
@@ -295,7 +301,10 @@ global with sharing class Logger {
     if (!ApplicationConfiguration__c.getInstance().DebugLogs__c) {
       return;
     }
-    if (Logger.level.ordinal() <= level.ordinal()) {
+    if (
+      Logger.level.ordinal() <=
+      LoggingLevel.valueOf(diagnosticLog.LogLevel__c).ordinal()
+    ) {
       if (diagnosticLog.Message__c?.length() > MAXLENGTH) {
         diagnosticLog.Message__c = diagnosticLog.Message__c?.left(MAXLENGTH);
       }
@@ -307,6 +316,7 @@ global with sharing class Logger {
 
   /**
    * @description Persist Logger into diagnostic object
+   * Use this method in controller finaly context
    * @author Digital Align Team | 10-14-2021
    **/
   global static void persist() {

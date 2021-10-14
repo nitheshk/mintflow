@@ -8,13 +8,15 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global virtual with sharing class AbstractService {
   private Type classType = AbstractService.class;
-
+  protected logger log;
   public AbstractService() {
     classType = AbstractService.class;
+    log = logger.getInstance(classType);
   }
 
   public AbstractService(Type classType) {
     this.classType = classType;
+    log = logger.getInstance(this.classType);
   }
 
   /**

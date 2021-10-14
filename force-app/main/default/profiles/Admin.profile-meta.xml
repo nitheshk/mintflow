@@ -51,6 +51,10 @@
         <tab>FinancialInstituteAccount</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>Diagnostic__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
 
     <!--applicationVisibilities-->
     <applicationVisibilities>

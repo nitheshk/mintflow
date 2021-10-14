@@ -7,4 +7,16 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global abstract with sharing class AbstractController {
+  private Type classType = AbstractService.class;
+  protected logger log;
+
+  public AbstractController() {
+    classType = AbstractController.class;
+    log = logger.getInstance(classType);
+  }
+
+  public AbstractController(Type classType) {
+    this.classType = classType;
+    log = logger.getInstance(this.classType);
+  }
 }

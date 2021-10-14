@@ -7,9 +7,10 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class ApplicationController extends AbstractController {
-  //private static logger log = logger.getInstance(ApplicationController.class);
+  private static logger log = logger.getInstance(ApplicationController.class);
 
   public ApplicationController(AbstractController controller) {
+    super(ApplicationController.class);
   }
   /**
    * @description
@@ -25,10 +26,10 @@ global with sharing class ApplicationController extends AbstractController {
         ApplicationService.getInstance().startApplication(params)
       );
     } catch (CustomException ex) {
-      System.debug(ex.getMessage());
+      log.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log.error(ex);
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();
@@ -49,11 +50,13 @@ global with sharing class ApplicationController extends AbstractController {
         ApplicationService.getInstance().createLead(params)
       );
     } catch (CustomException ex) {
-      System.debug(ex.getMessage());
+      log.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log.error(ex);
       return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
     }
   }
 
@@ -71,11 +74,13 @@ global with sharing class ApplicationController extends AbstractController {
         ApplicationService.getInstance().readLead(params)
       );
     } catch (CustomException ex) {
-      System.debug(ex.getMessage());
+      log.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log.error(ex);
       return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
     }
   }
 
@@ -92,11 +97,13 @@ global with sharing class ApplicationController extends AbstractController {
       Lead leadObj = ApplicationService.getInstance().saveLead(params);
       return ApexResponse.success(leadObj);
     } catch (CustomException ex) {
-      System.debug(ex.getMessage());
+      log.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log.error(ex);
       return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
     }
   }
 
@@ -119,6 +126,8 @@ global with sharing class ApplicationController extends AbstractController {
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
     }
   }
 }
