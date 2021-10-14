@@ -9,6 +9,7 @@
   'PMD.CognitiveComplexity,PMD.NcssMethodCount,PMD.AvoidGlobalModifier'
 )
 global without sharing class SObjectWithoutSharing {
+  private static logger log = Logger.getInstance(SObjectWithoutSharing.class);
   /**
    * @description Dynamic SOQL  query
    * @author Digital Align | 05-03-2021
@@ -108,6 +109,7 @@ global without sharing class SObjectWithoutSharing {
         return null;
       }
     }
+    log?.fine(crudType.Name() + ' ' + SObjectUtils.getObjectName(records));
     return records;
   }
 

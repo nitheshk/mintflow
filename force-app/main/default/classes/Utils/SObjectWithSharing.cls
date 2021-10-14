@@ -7,6 +7,7 @@
  **/
 @SuppressWarnings('PMD.CognitiveComplexity,PMD.NcssMethodCount')
 public with sharing class SObjectWithSharing {
+  private static logger log = Logger.getInstance(SObjectWithSharing.class);
   /**
    * @description Dynamic SOQL query
    * @author Digital Align | 05-03-2021
@@ -75,13 +76,13 @@ public with sharing class SObjectWithSharing {
    * @description Perform dml operation
    * @author Digital Align | 05-12-2021
    * @param CrudType crudType
-   * @param List<Sobject> records
+   * @param List<SObject> records
    * @param SObjectField externalFieldName
-   * @return List<Sobject>
+   * @return List<SObject>
    **/
-  public static List<Sobject> processRecords(
+  public static List<SObject> processRecords(
     CrudType crudType,
-    List<Sobject> records,
+    List<SObject> records,
     SObjectField externalFieldName
   ) {
     if (CollectionUtils.isListEmpty(records)) {
@@ -106,6 +107,7 @@ public with sharing class SObjectWithSharing {
         return null;
       }
     }
+    log?.fine(crudType.Name() + ' ' + SObjectUtils.getObjectName(records));
     return records;
   }
 }

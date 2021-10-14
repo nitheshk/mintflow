@@ -105,7 +105,6 @@ global virtual inherited sharing class DatabaseUtils {
    * @return List<SObject>
    **/
   global static List<SObject> insertRecordsBySharing(List<SObject> records) {
-    system.debug('test 0.4:' + records.getSObjectType());
     return processRecordsWithSharing(CrudType.CREATABLE, records, null);
   }
 

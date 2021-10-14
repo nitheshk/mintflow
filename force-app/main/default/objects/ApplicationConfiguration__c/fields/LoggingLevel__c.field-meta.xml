@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LoggingLevel__c</fullName>
+    <description>Support Values are Error,Debug,Info and Fine</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Support Values are Error,Debug,Info and Fine</inlineHelpText>
+    <label>Logging Level</label>
+    <length>20</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

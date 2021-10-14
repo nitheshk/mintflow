@@ -9,6 +9,7 @@
 global with sharing class ApplicationService extends AbstractService {
   @TestVisible
   private static ApplicationService serviceInstance;
+  private logger log = logger.getInstance(ApplicationService.class);
 
   public ApplicationService() {
     super(ApplicationService.class);
@@ -37,6 +38,7 @@ global with sharing class ApplicationService extends AbstractService {
   global Object startApplication(Map<String, String> params) {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
+    log?.fine('startApplication -> params -> ' + Json.serialize(params));
     if (String.isNotBlank(params?.get('id'))) {
       // encryption
       // this for start application from existing application
@@ -57,6 +59,7 @@ global with sharing class ApplicationService extends AbstractService {
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
         SiteSetting__c.getInstance().OnlineAccountOpeningUrl__c
       );
+      log?.info('startApplication -> Url -> ' + result.get('url'));
     }
     return result;
   }

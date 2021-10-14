@@ -7,6 +7,8 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class ApplicationController extends AbstractController {
+  //private static logger log = logger.getInstance(ApplicationController.class);
+
   public ApplicationController(AbstractController controller) {
   }
   /**
@@ -28,6 +30,8 @@ global with sharing class ApplicationController extends AbstractController {
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
     }
   }
 
