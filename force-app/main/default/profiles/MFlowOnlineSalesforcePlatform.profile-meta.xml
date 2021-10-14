@@ -3252,6 +3252,18 @@
         <field>User.FinServ__ReferrerScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <layoutAssignments>
+        <layout>Applicant__c-Applicant Layout</layout>
+    </layoutAssignments>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Applicant__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
