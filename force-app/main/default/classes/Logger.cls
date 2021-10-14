@@ -321,7 +321,9 @@ global with sharing class Logger {
    **/
   global static void persist() {
     try {
-      SystemSettingRepository.upsertRecords(logs);
+      if (!logs.isEmpty()) {
+        SystemSettingRepository.upsertRecords(logs);
+      }
     } catch (Exception ex) {
       System.debug(ex.getMessage());
     }

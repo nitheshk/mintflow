@@ -26,10 +26,10 @@ global with sharing class ApplicationController extends AbstractController {
         ApplicationService.getInstance().startApplication(params)
       );
     } catch (CustomException ex) {
-      log.error(ex);
+      log?.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      log.error(ex);
+      log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();
@@ -50,10 +50,10 @@ global with sharing class ApplicationController extends AbstractController {
         ApplicationService.getInstance().createLead(params)
       );
     } catch (CustomException ex) {
-      log.error(ex);
+      log?.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      log.error(ex);
+      log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();
@@ -74,10 +74,10 @@ global with sharing class ApplicationController extends AbstractController {
         ApplicationService.getInstance().readLead(params)
       );
     } catch (CustomException ex) {
-      log.error(ex);
+      log?.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      log.error(ex);
+      log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();
@@ -97,10 +97,10 @@ global with sharing class ApplicationController extends AbstractController {
       Lead leadObj = ApplicationService.getInstance().saveLead(params);
       return ApexResponse.success(leadObj);
     } catch (CustomException ex) {
-      log.error(ex);
+      log?.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      log.error(ex);
+      log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();

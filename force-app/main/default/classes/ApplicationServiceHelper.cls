@@ -50,7 +50,7 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
         ipAddress = ApexPages.currentPage().getHeaders().get('X-Forwarded-For');
       }
     }
-    log.info('getIpAddress -> IP address -> ' + ipAddress);
+    log?.info('getIpAddress -> IP address -> ' + ipAddress);
     return ipAddress;
   }
 

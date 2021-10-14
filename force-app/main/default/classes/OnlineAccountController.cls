@@ -43,7 +43,7 @@ global with sharing class OnlineAccountController extends AbstractController {
         PageUtils.setCookie(new Cookie('id', null, this.id, -1, true));
       }
     } catch (Exception ex) {
-      log.error(ex);
+      log?.error(ex);
     } finally {
       Logger.persist();
     }
