@@ -264,6 +264,7 @@ global with sharing class Logger {
     try {
       if (!logs.isEmpty()) {
         SystemSettingRepository.upsertRecords(logs);
+        logs = new List<Diagnostic__c>();
       }
     } catch (Exception ex) {
       System.debug(ex.getMessage());
