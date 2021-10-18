@@ -3,6 +3,7 @@
     <fullName>Contact__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
+    <description>Lookup to contact</description>
     <label>Contact</label>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Applicants</relationshipLabel>

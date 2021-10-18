@@ -3,6 +3,7 @@
     <fullName>PrimaryAddress__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
+    <description>Primary address</description>
     <label>Primary Address</label>
     <referenceTo>ContactPointAddress</referenceTo>
     <relationshipLabel>Applicants</relationshipLabel>

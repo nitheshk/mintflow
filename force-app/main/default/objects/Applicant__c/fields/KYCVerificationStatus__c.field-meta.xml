@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>KYCVerificationStatus__c</fullName>
     <externalId>false</externalId>
+    <description>KYC verification status</description>
     <label>KYC Verification Status</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

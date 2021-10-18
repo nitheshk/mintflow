@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PayGrade__c</fullName>
+    <description
+  >Range of amounts that someone can be paid when they are at a particular level in an organization or job</description>
     <externalId>false</externalId>
     <label>Pay Grade</label>
     <required>false</required>

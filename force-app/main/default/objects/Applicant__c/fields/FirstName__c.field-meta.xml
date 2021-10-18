@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FirstName__c</fullName>
     <externalId>false</externalId>
+    <description>First Name</description>
     <label>First Name</label>
     <length>40</length>
     <required>false</required>

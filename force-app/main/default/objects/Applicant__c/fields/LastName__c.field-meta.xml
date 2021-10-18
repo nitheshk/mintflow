@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>LastName__c</fullName>
     <externalId>false</externalId>
+    <description>Customer last name</description>
     <label>Last Name</label>
     <length>40</length>
     <required>false</required>
