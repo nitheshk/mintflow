@@ -102,7 +102,18 @@
     <layoutAssignments>
         <layout
     >FinServ__UseStandardTrigger__mdt-FinServ__Use Standard Trigger Layout</layout>
-    </layoutAssignments>.
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Flow__c-Flow Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Flow__c-Flow Layout</layout>
+        <recordType>Flow__c.Flow</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Flow__c-Sub Flow Layout</layout>
+        <recordType>Flow__c.SubFlow</recordType>
+    </layoutAssignments>
     
     <!--<layoutAssignments>
         <layout>PersonAccount-Person Account Layout</layout>

@@ -37,6 +37,17 @@
      <layoutAssignments>
         <layout>Applicant__c-Applicant Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>Flow__c-Flow Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Flow__c-Flow Layout</layout>
+        <recordType>Flow__c.Flow</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Flow__c-Sub Flow Layout</layout>
+        <recordType>Flow__c.SubFlow</recordType>
+    </layoutAssignments>
 
     <!--tabVisibilities-->
     <tabVisibilities>
@@ -64,6 +75,15 @@
     </applicationVisibilities>
 
     <!--recordTypeVisibilities-->
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Flow__c.Flow</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Flow__c.SubFlow</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <!--<default>true</default>
         <personAccountDefault>true</personAccountDefault>-->

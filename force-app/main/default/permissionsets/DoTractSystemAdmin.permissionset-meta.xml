@@ -34,12 +34,12 @@
         <application>standard__InsuranceConsole</application>
         <visible>true</visible>
     </applicationVisibilities>
-     <pageAccesses>
-        <apexPage>OnlineAccount</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <classAccesses>
-        <apexClass>OnlineAccountController</apexClass>
+        <apexClass>AbstractChartData</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ApexResponse</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -51,22 +51,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>AbstractChartData</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SOQLDataService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>DisplayImageController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>LWCFinancialInstituteSiteController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-     <classAccesses>
         <apexClass>EmailController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -74,33 +62,37 @@
         <apexClass>EmailNotificationBuilder</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-     <classAccesses>
-        <apexClass>NavigationMenuItemsController</apexClass>
+    <classAccesses>
+        <apexClass>IdentityController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LWCFinancialInstituteSiteController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>NavigationLinkSetPickList</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-     <classAccesses>
-        <apexClass>ApexResponse</apexClass>
+    <classAccesses>
+        <apexClass>NavigationMenuItemsController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IdentityController</apexClass>
+        <apexClass>OnlineAccountController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SOQLDataService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>UserAccountManagementController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-     <customMetadataTypeAccesses>
-        <enabled>true</enabled>
-        <name>SecurityKey__mdt</name>
-    </customMetadataTypeAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
-        <name>ServiceClassSetting__mdt</name>
+        <name>EmailNotificationSetting__mdt</name>
     </customMetadataTypeAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
@@ -158,9 +150,13 @@
         <enabled>true</enabled>
         <name>SObjectTriggerSetting__mdt</name>
     </customMetadataTypeAccesses>
-     <customMetadataTypeAccesses>
+    <customMetadataTypeAccesses>
         <enabled>true</enabled>
-        <name>EmailNotificationSetting__mdt</name>
+        <name>SecurityKey__mdt</name>
+    </customMetadataTypeAccesses>
+    <customMetadataTypeAccesses>
+        <enabled>true</enabled>
+        <name>ServiceClassSetting__mdt</name>
     </customMetadataTypeAccesses>
     <customSettingAccesses>
         <enabled>true</enabled>
@@ -177,302 +173,6 @@
     <description>DoTract System Admin profile</description>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Lead.FamilyMemberOneAddress__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.FamilyMemberOneName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.FamilyMemberOneRelationship__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.FamilyMemberTwoAddress__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.FamilyMemberTwoName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.FamilyMemberTwoRelationship__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.IdentityType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.IsExistingCustomer__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.OTP__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.Password__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.UserName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.deleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.Birthdate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.SSN__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.Birthdate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.Contact__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.CustomerNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.Email__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.EmploymentVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.FirstName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.IncomeVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.IsExistingCustomer__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.KYCVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.LastName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.Phone__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.PrimaryAddress__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.SSN__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.UserContactType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.UserAccountType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>  
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>EmailNotificationSetting__mdt.BCCEmailAddress__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>EmailNotificationSetting__mdt.CCEmailAddress__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>EmailNotificationSetting__mdt.Disabled__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>EmailNotificationSetting__mdt.DisplayName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>EmailNotificationSetting__mdt.OrgWideName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>EmailNotificationSetting__mdt.ToAddress__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>EmailNotificationSetting__mdt.ReplyToAddress__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-       <fieldPermissions>
-        <editable>true</editable>
-        <field>EmailNotificationSetting__mdt.TraceEmailActivity__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-         <fieldPermissions>
-        <editable>true</editable>
-        <field>ContentVersion.deleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>ContentVersion.Guest_Record_fileupload__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>DocumentRequest__c.deleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>DocumentRequest__c.ContentDocumentId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>DocumentRequest__c.Lead__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>DocumentRequest__c.Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Survey__c.Options__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Survey__c.deleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Survey__c.CustomStyle__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Survey__c.isDisplayed__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Survey__c.Condition__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Survey__c.hasChild__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SurveyTemplate__c.deleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>SurveyTemplate__c.deleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-      <fieldPermissions>
-        <editable>true</editable>
-        <field>SurveyTemplateItem__c.deleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SurveyTemplateItem__c.Options__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SurveyTemplateItem__c.CustomStyle__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>SurveyTemplateItem__c.Condition__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>SurveyTemplateItem__c.hasChild__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.deleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.NaicsCode</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.YearStarted</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.AccountNumber</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -480,7 +180,7 @@
         <editable>true</editable>
         <field>Account.AccountSource</field>
         <readable>true</readable>
-    </fieldPermissions>    
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AnnualRevenue</field>
@@ -495,7 +195,7 @@
         <editable>false</editable>
         <field>Account.CleanStatus</field>
         <readable>true</readable>
-    </fieldPermissions>    
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.DandbCompanyId</field>
@@ -940,7 +640,7 @@
         <editable>true</editable>
         <field>Account.NumberOfEmployees</field>
         <readable>true</readable>
-    </fieldPermissions>     
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.OperatingHoursId</field>
@@ -965,7 +665,7 @@
         <editable>true</editable>
         <field>Account.Rating</field>
         <readable>true</readable>
-    </fieldPermissions>              
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.ShippingAddress</field>
@@ -1000,7 +700,12 @@
         <editable>true</editable>
         <field>Account.Type</field>
         <readable>true</readable>
-    </fieldPermissions>    
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.UserAccountType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Website</field>
@@ -1009,6 +714,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.YearStarted</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.deleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1056,9 +766,69 @@
         <field>AccountContactRelation.StartDate</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.deleteRecord__c</field>
+        <field>Applicant__c.Birthdate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.CustomerNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.EmploymentVerificationStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.FirstName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.IncomeVerificationStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.IsExistingCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.KYCVerificationStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.LastName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.Phone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.PrimaryAddress__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.SSN__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1400,12 +1170,12 @@
         <editable>true</editable>
         <field>Contact.Jigsaw</field>
         <readable>true</readable>
-    </fieldPermissions>    
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.LeadSource</field>
         <readable>true</readable>
-    </fieldPermissions>    
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.MailingAddress</field>
@@ -1441,9 +1211,14 @@
         <field>Contact.Title</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
-        <field>ContactPointAddress.deleteRecord__c</field>
+        <field>Contact.UserContactType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.deleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1509,6 +1284,56 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ContactPointAddress.UsageType</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ContactPointAddress.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic__c.ApplicationName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic__c.Class__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic__c.Entity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic__c.LogLevel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic__c.Message__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>DocumentRequest__c.ContentDocumentId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>DocumentRequest__c.Lead__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>DocumentRequest__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>DocumentRequest__c.deleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1816,11 +1641,6 @@
         <editable>true</editable>
         <field>FinServ__Education__c.FinServ__SourceSystemId__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FinServ__Employment__c.PayGrade__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2787,6 +2607,31 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Flow__c.Flow__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Flow__c.Note__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Flow__c.Request__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Flow__c.Response__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Flow__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>InsurancePolicy.AuditTerm</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3087,6 +2932,76 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Lead.Birthdate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.FamilyMemberOneAddress__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.FamilyMemberOneName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.FamilyMemberOneRelationship__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.FamilyMemberTwoAddress__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.FamilyMemberTwoName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.FamilyMemberTwoRelationship__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.IdentityType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.IsExistingCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.OTP__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.Password__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.SSN__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.UserName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Location.CloseDate</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3157,12 +3072,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SurveyTemplateItem__c.Condition__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SurveyTemplateItem__c.CustomStyle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SurveyTemplateItem__c.LongDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>SurveyTemplateItem__c.OptionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SurveyTemplateItem__c.Options__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3197,6 +3127,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SurveyTemplateItem__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SurveyTemplateItem__c.hasChild__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SurveyTemplate__c.Category__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3217,17 +3157,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SurveyTemplate__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Survey__c.Answer__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Survey__c.Lead__c</field>
+        <field>Survey__c.Condition__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
-        <field>Survey__c.TemplateName__c</field>
+        <field>Survey__c.CustomStyle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Survey__c.Lead__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3238,6 +3188,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Survey__c.OptionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Survey__c.Options__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3273,6 +3228,26 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Survey__c.SurveyTemplateItem__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Survey__c.TemplateName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Survey__c.deleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Survey__c.hasChild__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Survey__c.isDisplayed__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3330,42 +3305,8 @@
         <field>User.FinServ__ReferrerScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Diagnostic__c.ApplicationName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Diagnostic__c.Class__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Diagnostic__c.Entity__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Diagnostic__c.LogLevel__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Diagnostic__c.Message__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>DoTract System Admin</label>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>Diagnostic__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -3401,7 +3342,16 @@
         <modifyAllRecords>true</modifyAllRecords>
         <object>ContactPointAddress</object>
         <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>     
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Diagnostic__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -3570,6 +3520,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>Flow__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>InsurancePolicy</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -3608,11 +3567,15 @@
         <modifyAllRecords>true</modifyAllRecords>
         <object>Survey__c</object>
         <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>   
+    </objectPermissions>
+    <pageAccesses>
+        <apexPage>OnlineAccount</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Account.Application</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>    
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.FinServ__IndustriesBusiness</recordType>
         <visible>true</visible>
@@ -3744,11 +3707,15 @@
     <recordTypeVisibilities>
         <recordType>FinServ__ReciprocalRole__c.FinServ__ContactRole</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>   
-    <!--<recordTypeVisibilities>
-        <recordType>PersonAccount.PersonAccount</recordType>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Flow__c.Flow</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>-->
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Flow__c.SubFlow</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Task.FinServ__AdvisorTask</recordType>
         <visible>true</visible>

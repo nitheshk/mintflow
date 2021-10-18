@@ -3252,9 +3252,31 @@
         <field>User.FinServ__ReferrerScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <layoutAssignments>
-        <layout>Applicant__c-Applicant Layout</layout>
-    </layoutAssignments>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Flow__c.Flow__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Flow__c.Note__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Flow__c.Request__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Flow__c.Response__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Flow__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>     
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -3515,8 +3537,26 @@
         <modifyAllRecords>true</modifyAllRecords>
         <object>Survey__c</object>
         <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>   
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Flow__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
 
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Flow__c.Flow</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Flow__c.SubFlow</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
      <recordTypeVisibilities>
         <recordType>Account.Application</recordType>
         <visible>true</visible>
