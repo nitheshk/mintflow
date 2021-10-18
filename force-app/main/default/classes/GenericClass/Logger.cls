@@ -52,6 +52,22 @@ global with sharing class Logger {
   }
 
   /**
+   * @description Check logging is valid or need to skip
+   * @author Digital Align Team | 10-18-2021
+   * @param System.LoggingLevel currentLoggerLevel
+   * @return Boolean
+   **/
+  private Boolean skipLogging(System.LoggingLevel currentLoggerLevel) {
+    if (
+      ApplicationConfiguration__c.getInstance().DebugLogs__c &&
+      currentLoggerLevel.ordinal() >= Logger.level.ordinal()
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
    * @description Set method for Logger which is running
    * @author Digital Align Team | 10-14-2021
    * @param String methodName
@@ -88,8 +104,10 @@ global with sharing class Logger {
    */
   global virtual void error(Object obj) {
     System.debug(LoggingLevel.ERROR, obj);
+    if (skipLogging(LoggingLevel.ERROR)) {
+      return;
+    }
     Diagnostic__c diagnosticLog = new Diagnostic__c(
-      //Message__c = JSON.serializePretty(obj),
       LogLevel__c = LoggingLevel.ERROR.Name(),
       Class__c = this.className
     );
@@ -118,6 +136,12 @@ global with sharing class Logger {
     String msg
   ) {
     System.debug(logLevel, msg);
+    if (
+      !(ApplicationConfiguration__c.getInstance().DebugLogs__c &&
+      logLevel.ordinal() >= Logger.level.ordinal())
+    ) {
+      return;
+    }
     Diagnostic__c diagnosticLog = new Diagnostic__c(
       Message__c = msg,
       LogLevel__c = logLevel.Name(),
@@ -134,6 +158,9 @@ global with sharing class Logger {
    */
   global virtual void debug(Object obj) {
     System.debug(LoggingLevel.DEBUG, obj);
+    if (skipLogging(LoggingLevel.DEBUG)) {
+      return;
+    }
     Diagnostic__c diagnosticLog = new Diagnostic__c(
       //Message__c = JSON.serializePretty(obj),
       LogLevel__c = LoggingLevel.DEBUG.Name(),
@@ -158,8 +185,10 @@ global with sharing class Logger {
    */
   global virtual void info(Object obj) {
     System.debug(LoggingLevel.INFO, obj);
+    if (skipLogging(LoggingLevel.INFO)) {
+      return;
+    }
     Diagnostic__c diagnosticLog = new Diagnostic__c(
-      //Message__c = JSON.serializePretty(obj),
       LogLevel__c = LoggingLevel.INFO.Name(),
       Class__c = this.className
     );
@@ -181,8 +210,10 @@ global with sharing class Logger {
    */
   global virtual void fine(Object obj) {
     System.debug(LoggingLevel.FINE, obj);
+    if (skipLogging(LoggingLevel.FINE)) {
+      return;
+    }
     Diagnostic__c diagnosticLog = new Diagnostic__c(
-      //Message__c = msg,
       LogLevel__c = LoggingLevel.FINE.Name(),
       Class__c = this.className
     );
@@ -194,7 +225,6 @@ global with sharing class Logger {
     } else {
       diagnosticLog.Message__c = JSON.serializePretty(obj);
     }
-
     createDiagnosticObject(diagnosticLog);
   }
 
@@ -239,18 +269,10 @@ global with sharing class Logger {
    * @param Diagnostic__c diagnosticLog
    **/
   private static void createDiagnosticObject(Diagnostic__c diagnosticLog) {
-    if (!ApplicationConfiguration__c.getInstance().DebugLogs__c) {
-      return;
-    }
-    if (
-      Logger.level.ordinal() <=
-      LoggingLevel.valueOf(diagnosticLog.LogLevel__c).ordinal()
-    ) {
-      diagnosticLog.Message__c = diagnosticLog.Message__c?.left(MAXLENGTH);
-      diagnosticLog.Entity__c = entity;
-      diagnosticLog.ApplicationName__c = applicationName;
-      logs.add(diagnosticLog);
-    }
+    diagnosticLog.Message__c = diagnosticLog.Message__c?.left(MAXLENGTH);
+    diagnosticLog.Entity__c = entity;
+    diagnosticLog.ApplicationName__c = applicationName;
+    logs.add(diagnosticLog);
   }
 
   /**
