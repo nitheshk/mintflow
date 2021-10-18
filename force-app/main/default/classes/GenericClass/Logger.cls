@@ -81,38 +81,6 @@ global with sharing class Logger {
   }
 
   /**
-   * @description Writes the passed in Exception to the System Logger
-   * Logging Level is set to ERROR.
-   * @author Digital Align Team | 10-14-2021
-   * @param Exception ex The exception that will be logged
-   **/
-  global virtual void error(Exception ex) {
-    System.debug(LoggingLevel.ERROR, ex);
-    Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = stringifyException(ex),
-      LogLevel__c = LoggingLevel.ERROR.Name(),
-      Class__c = this.className
-    );
-    createDiagnosticObject(diagnosticLog);
-  }
-
-  /**
-   * @description Writes the passed in string to the System Logger
-   * Logging Level is set to ERROR.
-   * @author Digital Align Team | 10-14-2021
-   * @param msg String that will be logged
-   */
-  global virtual void error(String msg) {
-    System.debug(LoggingLevel.ERROR, msg);
-    Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = msg,
-      LogLevel__c = LoggingLevel.ERROR.Name(),
-      Class__c = this.className
-    );
-    createDiagnosticObject(diagnosticLog);
-  }
-
-  /**
    * @description Writes the passed in object to the System Logger
    * Logging Level is set to ERROR.
    * @author Digital Align Team | 10-14-2021
@@ -121,10 +89,18 @@ global with sharing class Logger {
   global virtual void error(Object obj) {
     System.debug(LoggingLevel.ERROR, obj);
     Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = JSON.serializePretty(obj),
+      //Message__c = JSON.serializePretty(obj),
       LogLevel__c = LoggingLevel.ERROR.Name(),
       Class__c = this.className
     );
+
+    if (Obj instanceof String) {
+      diagnosticLog.Message__c = String.valueOf(Obj);
+    } else if (Obj instanceof Exception) {
+      diagnosticLog.Message__c = stringifyException((Exception) Obj);
+    } else {
+      diagnosticLog.Message__c = JSON.serializePretty(obj);
+    }
     createDiagnosticObject(diagnosticLog);
   }
 
@@ -151,36 +127,6 @@ global with sharing class Logger {
   }
 
   /**
-   * @description Writes the passed in string to the System Logger
-   * @author Digital Align Team | 10-14-2021
-   * @param msg String that will be logged
-   */
-  global virtual void debug(String msg) {
-    System.debug(LoggingLevel.ERROR, msg);
-    Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = msg,
-      LogLevel__c = LoggingLevel.DEBUG.Name(),
-      Class__c = this.className
-    );
-    createDiagnosticObject(diagnosticLog);
-  }
-
-  /**
-   * @description Writes the passed in map of objects to the System Logger
-   * @author Digital Align Team | 10-14-2021
-   * @param objMap Map of objects to be logged
-   */
-  global virtual void debug(Map<String, Object> objMap) {
-    System.debug(LoggingLevel.DEBUG, objMap);
-    Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = stringifyObjectMap(objMap),
-      LogLevel__c = LoggingLevel.DEBUG.Name(),
-      Class__c = this.className
-    );
-    createDiagnosticObject(diagnosticLog);
-  }
-
-  /**
    * @description Writes the passed in object to the System Logger
    * Logging Level is set to DEBUG.
    * @author Digital Align Team | 10-14-2021
@@ -189,40 +135,18 @@ global with sharing class Logger {
   global virtual void debug(Object obj) {
     System.debug(LoggingLevel.DEBUG, obj);
     Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = JSON.serializePretty(obj),
+      //Message__c = JSON.serializePretty(obj),
       LogLevel__c = LoggingLevel.DEBUG.Name(),
       Class__c = this.className
     );
-    createDiagnosticObject(diagnosticLog);
-  }
 
-  /**
-   * @description Writes the passed in string to the System Logger
-   * @author Digital Align Team | 10-14-2021
-   * @param msg String that will be logged
-   */
-  global virtual void info(String msg) {
-    System.debug(LoggingLevel.INFO, msg);
-    Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = msg,
-      LogLevel__c = LoggingLevel.INFO.Name(),
-      Class__c = this.className
-    );
-    createDiagnosticObject(diagnosticLog);
-  }
-
-  /**
-   * @description Writes the passed in map of objects to the System Logger
-   * @author Digital Align Team | 10-14-2021
-   * @param objMap Map of objects to be logged
-   */
-  global virtual void info(Map<String, Object> objMap) {
-    System.debug(LoggingLevel.INFO, objMap);
-    Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = stringifyObjectMap(objMap),
-      LogLevel__c = LoggingLevel.INFO.Name(),
-      Class__c = this.className
-    );
+    if (Obj instanceof String) {
+      diagnosticLog.Message__c = String.valueOf(Obj);
+    } else if (Obj instanceof Map<String, Object>) {
+      diagnosticLog.Message__c = stringifyObjectMap((Map<String, Object>) Obj);
+    } else {
+      diagnosticLog.Message__c = JSON.serializePretty(obj);
+    }
     createDiagnosticObject(diagnosticLog);
   }
 
@@ -235,25 +159,42 @@ global with sharing class Logger {
   global virtual void info(Object obj) {
     System.debug(LoggingLevel.INFO, obj);
     Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = JSON.serializePretty(obj),
+      //Message__c = JSON.serializePretty(obj),
       LogLevel__c = LoggingLevel.INFO.Name(),
       Class__c = this.className
     );
+
+    if (Obj instanceof String) {
+      diagnosticLog.Message__c = String.valueOf(Obj);
+    } else if (Obj instanceof Map<String, Object>) {
+      diagnosticLog.Message__c = stringifyObjectMap((Map<String, Object>) Obj);
+    } else {
+      diagnosticLog.Message__c = JSON.serializePretty(obj);
+    }
     createDiagnosticObject(diagnosticLog);
   }
 
   /**
    * @description Writes the passed in string to the System Logger
    * @author Digital Align Team | 10-14-2021
-   * @param msg String that will be logged
+   * @param obj Object that will be logged
    */
-  global virtual void fine(String msg) {
-    System.debug(LoggingLevel.FINE, msg);
+  global virtual void fine(Object obj) {
+    System.debug(LoggingLevel.FINE, obj);
     Diagnostic__c diagnosticLog = new Diagnostic__c(
-      Message__c = msg,
+      //Message__c = msg,
       LogLevel__c = LoggingLevel.FINE.Name(),
       Class__c = this.className
     );
+
+    if (Obj instanceof String) {
+      diagnosticLog.Message__c = String.valueOf(Obj);
+    } else if (Obj instanceof Map<String, Object>) {
+      diagnosticLog.Message__c = stringifyObjectMap((Map<String, Object>) Obj);
+    } else {
+      diagnosticLog.Message__c = JSON.serializePretty(obj);
+    }
+
     createDiagnosticObject(diagnosticLog);
   }
 
@@ -283,7 +224,7 @@ global with sharing class Logger {
     List<String> mapStrings = new List<String>();
     for (String key : objMap.keySet()) {
       String message =
-        'Message: ' +
+        'Key: ' +
         key +
         ' Object: ' +
         String.valueOf(objMap.get(key));

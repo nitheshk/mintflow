@@ -99,20 +99,3 @@ List<User> users = [
 for (user u : users)
   u.isActive = false;
 update users;
-
-
-//
-ApplicationService app=null; //new ApplicationService();
-
-system.debug(app?.startApplication(null));
-
-
-
-system.debug(LoggingLevel.NONE.ordinal());
-system.debug(LoggingLevel.ERROR.ordinal());
-system.debug(LoggingLevel.WARN.ordinal());
-system.debug(LoggingLevel.INFO.ordinal());
-system.debug(LoggingLevel.DEBUG.ordinal());
-system.debug(LoggingLevel.FINE.ordinal());
-system.debug(LoggingLevel.FINER.ordinal());
-system.debug(LoggingLevel.FINEST.ordinal());
