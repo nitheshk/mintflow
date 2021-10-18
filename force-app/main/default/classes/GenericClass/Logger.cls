@@ -246,9 +246,7 @@ global with sharing class Logger {
       Logger.level.ordinal() <=
       LoggingLevel.valueOf(diagnosticLog.LogLevel__c).ordinal()
     ) {
-      if (diagnosticLog.Message__c?.length() > MAXLENGTH) {
-        diagnosticLog.Message__c = diagnosticLog.Message__c?.left(MAXLENGTH);
-      }
+      diagnosticLog.Message__c = diagnosticLog.Message__c?.left(MAXLENGTH);
       diagnosticLog.Entity__c = entity;
       diagnosticLog.ApplicationName__c = applicationName;
       logs.add(diagnosticLog);
