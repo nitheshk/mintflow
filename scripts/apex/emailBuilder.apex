@@ -6,6 +6,37 @@ system.debug(
 );
 //
 
+// #2 using email builder
+String inviteUrl =
+  ApplicationConfiguration__c.getOrgDefaults().SiteUrl__c +
+  '/s/DealerRegistration?id=' +
+  SecurityUtils.encryptUrl(leadRecord.id);
+EmailNotificationBuilder.newInstance('DealerInvitation', leadRecord.Id)
+  .setToAddresses(leadRecord.Email)
+  .setSubstitute(new Map<String, String>{ '{{url}}' => inviteUrl })
+  .setdocumentNames(
+    new List<String>{
+      'DaBackGround1',
+      'DAContent1',
+      'AltifiLogo',
+      'facebook',
+      'twitter',
+      'youtube',
+      'skype'
+    }
+  );
+List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
+if (result != null) {
+  if (result[0].success) {
+    System.debug('Email sent Successfully');
+  } else {
+    System.debug('Failed to send Email ');
+    throw new customException('email not sent');
+  }
+}
+
+// #3. Sakesfirce default messaging
+
 //a0d1y000000pBCeAAM  survey
 Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
 //message.setTargetObjectId(UserInfo.getUserId());
