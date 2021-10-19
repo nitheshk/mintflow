@@ -1,6 +1,8 @@
 /**
- * Copyright (c) 2020 Terafina Inc
- * @group   Controller
+ * Copyright (c) 2021 Digital Align
+ * @group Exception
+ * @author Digital Align Team
+ * @reference
  * @description
  **/
 public with sharing class SentiLinkReportController {
@@ -41,16 +43,17 @@ public with sharing class SentiLinkReportController {
       wrapper.GeneralInfo.applicationId = (string) response.get(
         'application_id'
       );
-      wrapper.GeneralInfo.timestamp = (string) response.get('timestamp') !=
-        null && String.isNotBlank(String.valueOf(response.get('timestamp')))
-        ? (Datetime.newInstance((Long) response.get('timestamp')))
-            .format('MM/dd/yyyy hh:mm:ss a', UserInfo.getTimeZone().getID())
-        : '';
-      wrapper.GeneralInfo.transactionId = (string) response.get(
-        'transaction_id'
-      );
+      wrapper.GeneralInfo.timestamp = (string) response.get('timestamp');
+      // !=
+      //   null && String.isNotBlank(String.valueOf(response.get('timestamp')))
+      //   ? (Datetime.newInstance((Long) response.get('timestamp')))
+      //       .format('MM/dd/yyyy hh:mm:ss a', UserInfo.getTimeZone().getID())
+      //   : '';
+      // wrapper.GeneralInfo.transactionId = (string) response.get(
+      //   'transaction_id'
+      // );
 
-      wrapper = prefillScores(wrapper, response);
+      // wrapper = prefillScores(wrapper, response);
       showResult = true;
     } catch (Exception ex) {
     } finally {

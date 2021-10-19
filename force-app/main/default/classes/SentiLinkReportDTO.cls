@@ -1,6 +1,8 @@
 /**
- * Copyright (c) 2020 Terafina Inc
- * @group   Wrapper
+ * Copyright (c) 2021 Digital Align
+ * @group Exception
+ * @author Digital Align Team
+ * @reference
  * @description
  **/
 @SuppressWarnings('PMD.ExcessivePublicCount')
