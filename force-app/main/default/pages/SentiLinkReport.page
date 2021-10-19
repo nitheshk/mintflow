@@ -54,86 +54,257 @@
               </div>
             </div>
 
-            <div class="slds-card__body slds-card__body_inner">
-              <div class="slds-grid slds-wrap">
-                <!-- Header-->
-                <div
-                  class="
-                    slds-col
-                    slds-text-heading_small
-                    slds-p-horizontal_medium
-                    slds-size_3-of-12
-                  "
-                >
-                  <span>Status</span>
+            <div class="slds-col slds-size_1-of-1">
+              <article class="slds-card">
+                <div class="slds-card__body slds-card__body_inner">
+                  <div class="slds-grid slds-wrap">
+                    <!-- Header-->
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-horizontal_medium
+                        slds-size_4-of-12
+                      "
+                    >
+                      <span>Application ID</span>
+                    </div>
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-horizontal_medium
+                        slds-size_4-of-12
+                      "
+                    >
+                      <span>Transaction ID</span>
+                    </div>
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-horizontal_medium
+                        slds-size_4-of-12
+                      "
+                    >
+                      <a
+                        class="slds-card__footer-action"
+                        href="javascript:void(0);"
+                        onclick="showRawResponse()"
+                        >Show Raw Response</a
+                      >
+                    </div>
+                    <!-- data -->
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-top_medium
+                        slds-p-horizontal_medium
+                        slds-size_4-of-12
+                      "
+                    >
+                      <b>{!wrapper.GeneralInfo.applicationId}</b>
+                    </div>
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-top_medium
+                        slds-p-horizontal_medium
+                        slds-size_4-of-12
+                      "
+                    >
+                      <b>{!wrapper.GeneralInfo.transactionId}</b>
+                    </div>
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-top_medium
+                        slds-p-horizontal_medium
+                        slds-size_4-of-12
+                      "
+                    ></div>
+                  </div>
                 </div>
-                <div
-                  class="
-                    slds-col
-                    slds-text-heading_small
-                    slds-p-horizontal_medium
-                    slds-size_2-of-12
-                  "
-                >
-                  <span>Score</span>
-                </div>
-                <div
-                  class="
-                    slds-col
-                    slds-text-heading_small
-                    slds-p-horizontal_medium
-                    slds-size_4-of-12
-                  "
-                >
-                  <span>Token</span>
-                </div>
-                <div
-                  class="
-                    slds-col
-                    slds-text-heading_small
-                    slds-p-horizontal_medium
-                    slds-size_3-of-12
-                  "
-                >
-                  <a
-                    class="slds-card__footer-action"
-                    href="javascript:void(0);"
-                    onclick="showRawResponse()"
-                    >Show Raw Response</a
-                  >
-                </div>
-                <!-- data -->
-                <div
-                  class="
-                    slds-col
-                    slds-text-heading_small
-                    slds-p-top_medium
-                    slds-p-horizontal_medium
-                    slds-size_3-of-12
-                  "
-                >
-                  <b> </b>
-                </div>
-
-                <div
-                  class="
-                    slds-col
-                    slds-text-heading_small
-                    slds-p-top_medium
-                    slds-p-horizontal_medium
-                    slds-size_3-of-12
-                  "
-                >
-                  <a
-                    class="slds-card__footer-action"
-                    href="javascript:void(0);"
-                    onclick="showQualifileReport()"
-                    >Show Qualifile Report</a
-                  >
-                </div>
-              </div>
+              </article>
             </div>
+            <div class="slds-col slds-p-around_small slds-size_1-of-1">
+              <!-- CUSTOMER SCORE-->
+              <div
+                class="
+                  slds-page-header
+                  slds-align_absolute-left
+                  slds-col
+                  slds-size_1-of-1
+                "
+              >
+                <h1>
+                  <b>
+                    <span
+                      class="slds-icon_container slds-icon-action-share_poll"
+                      title="share_poll"
+                    >
+                      <svg
+                        class="
+                          slds-icon slds-icon-text-default
+                          slds-icon_xx-small
+                        "
+                        aria-hidden="true"
+                      >
+                        <use
+                          xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
+                        ></use>
+                      </svg>
+                    </span>
+                    CUSTOMER SCORE</b
+                  >
+                </h1>
+              </div>
+              <!--Fraud Score-->
+              <apex:repeat var="scoreItem" value="{!wrapper.scores}">
+                <div
+                  class="
+                    slds-col
+                    slds-p-around_small
+                    slds-border_left slds-border_right slds-border_bottom
+                    slds-size_1-of-1
+                  "
+                >
+                  <div class="slds-grid slds-wrap slds-p-around_small">
+                    <div class="slds-col slds-size_1-of-1">
+                      <div class="slds-card__body slds-card__body_inner">
+                        <div class="slds-grid slds-wrap">
+                          <!-- Header-->
+                          <div
+                            class="
+                              slds-col
+                              slds-text-heading_small
+                              slds-p-horizontal_medium
+                              slds-size_4-of-12
+                            "
+                          >
+                            <span>Score Name</span>
+                          </div>
+                          <div
+                            class="
+                              slds-col
+                              slds-text-heading_small
+                              slds-p-horizontal_medium
+                              slds-size_4-of-12
+                            "
+                          >
+                            <span>Version</span>
+                          </div>
+                          <div
+                            class="
+                              slds-col
+                              slds-text-heading_small
+                              slds-p-horizontal_medium
+                              slds-size_4-of-12
+                            "
+                          >
+                            <span>Score</span>
+                          </div>
+                          <!-- data -->
+                          <div
+                            class="
+                              slds-col
+                              slds-text-heading_small
+                              slds-p-top_medium
+                              slds-p-horizontal_medium
+                              slds-size_4-of-12
+                            "
+                          >
+                            <b>{!scoreItem.name}</b>
+                          </div>
+                          <div
+                            class="
+                              slds-col
+                              slds-text-heading_small
+                              slds-p-top_medium
+                              slds-p-horizontal_medium
+                              slds-size_4-of-12
+                            "
+                          >
+                            <b>{!scoreItem.version}</b>
+                          </div>
+                          <div
+                            class="
+                              slds-col
+                              slds-text-heading_small
+                              slds-p-top_medium
+                              slds-p-horizontal_medium
+                              slds-size_4-of-12
+                            "
+                          >
+                            <b>{!scoreItem.score}</b>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
+                    <table
+                      class="
+                        slds-table
+                        slds-table_cell-buffer
+                        slds-table_bordered
+                        slds-table_col-bordered
+                      "
+                    >
+                      <thead>
+                        <tr class="slds-line-height_reset">
+                          <th class="" scope="col">
+                            <div class="slds-truncate" title="Source Name">
+                              <b>SOURCE NAME</b>
+                            </div>
+                          </th>
+                          <th class="" scope="col">
+                            <div class="slds-truncate" title="Attribute Name">
+                              <b>ATTRIBUTE NAME</b>
+                            </div>
+                          </th>
+                          <th class="" scope="col">
+                            <div class="slds-truncate" title="Raw Score">
+                              <b>RAW SCORE</b>
+                            </div>
+                          </th>
+                          <th class="" scope="col">
+                            <div class="slds-truncate" title="Normalized Score">
+                              <b>NORMALIZED SCORE</b>
+                            </div>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <apex:repeat var="scoreItem" value="{!wrapper.scores}">
+                          <tr class="slds-hint-parent">
+                            <td data-label="Account Name">
+                              <div class="slds-truncate" title="Source Name">
+                                {!scoreItem.name}
+                              </div>
+                            </td>
+                            <td data-label="Close Date">
+                              BBB
+                              <!-- <div class="slds-truncate" title="Attribute Name">{!fraudSource.sourceType}</div> -->
+                            </td>
+                            <td data-label="Account Name">
+                              CCC
+                              <!-- <div class="slds-truncate" title="Raw Score">{!fraudSource.sourceRawScore}</div> -->
+                            </td>
+                            <td data-label="Close Date">
+                              DDD
+                              <!-- <div class="slds-truncate" title="Normalized Score">{!fraudSource.sourceNormalizedScore}</div> -->
+                            </td>
+                          </tr>
+                        </apex:repeat>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </apex:repeat>
+            </div>
             <!-- model of rawResponse-->
             <div
               id="rawResponse"
@@ -213,7 +384,7 @@
           var x = document.getElementById("rawResponse");
           document.getElementById("rawTextArea").textContent = JSON.stringify({!wrapper.GeneralInfo.rawResponse}, null, '\t');
         x.style.display = "block";
-            }
+              }
 
         function hideRawResponse() {
           var x = document.getElementById("rawResponse");

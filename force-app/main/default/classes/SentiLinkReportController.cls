@@ -18,59 +18,67 @@ public with sharing class SentiLinkReportController {
   // Used in the report display
 
   private String contentDocumentId { get; set; }
-  public SentiLinkReportDTO wrapper { get; set; }
+  public SentiLinkReportWrapper wrapper { get; set; }
+  public SentiLinkDTO.Response response { get; set; }
+
   public Boolean showResult { get; set; }
 
   public SentiLinkReportController() {
-    wrapper = new SentiLinkReportDTO();
+    wrapper = new SentiLinkReportWrapper();
+    response = new SentiLinkDTO.Response();
     showResult = false;
   }
 
   /**
    * @description
-   * @return SentiLinkReportDTO
+   * @return SentiLinkReportWrapper
    **/
   public void prefillFraudCheckDetail() {
     try {
+      string entityId = '00Q1y000001j4f5EAA';
       list<ContentVersion> cv = FileService.getInstance()
-        .fetchContentVersionByEntityId('00Q1y000001j4f5EAA', false);
+        .fetchContentVersionByEntityId(entityId, false);
       String res = (cv[0].VersionData).toString();
-      Map<String, Object> response = (Map<String, Object>) JSON.deserializeUntyped(
-        res
+      response = (SentiLinkDTO.Response) JSON.deserialize(
+        res,
+        SentiLinkDTO.Response.class
       );
-      system.debug('response =' + response);
       wrapper.GeneralInfo.rawResponse = res;
-      wrapper.GeneralInfo.applicationId = (string) response.get(
-        'application_id'
-      );
-      wrapper.GeneralInfo.timestamp = (string) response.get('timestamp');
-      // !=
-      //   null && String.isNotBlank(String.valueOf(response.get('timestamp')))
-      //   ? (Datetime.newInstance((Long) response.get('timestamp')))
-      //       .format('MM/dd/yyyy hh:mm:ss a', UserInfo.getTimeZone().getID())
-      //   : '';
-      // wrapper.GeneralInfo.transactionId = (string) response.get(
-      //   'transaction_id'
-      // );
+      wrapper.GeneralInfo.applicationId = response.application_id;
+      wrapper.GeneralInfo.timestamp = response.timestamp;
+      wrapper.GeneralInfo.transactionId = response.transaction_id;
 
-      // wrapper = prefillScores(wrapper, response);
+      showScores(wrapper, response);
       showResult = true;
     } catch (Exception ex) {
     } finally {
     }
   }
   //-----------------------------------------------
-  private SentiLinkReportDTO prefillScores(
-    SentiLinkReportDTO wrapper,
-    Map<String, Object> response
+  private SentiLinkReportWrapper showScores(
+    SentiLinkReportWrapper wrapper,
+    SentiLinkDTO.Response response
   ) {
-    system.debug('response.get(scores) ===' + response.get('scores'));
-    if (response.get('scores') != null) {
-      Map<String, Object> scoresObj = (Map<String, Object>) response.get(
-        'scores'
-      );
-      system.debug('scoresObj ===' + scoresObj);
+    system.debug('Scores ===' + response.scores);
+    system.debug('Scores ===' + response.scores[0].name);
+    for (SentiLinkDTO.ResScores scoreInfoItem : response.scores) {
+      SentiLinkReportWrapper.ScoresInfo scoreInfo = new SentiLinkReportWrapper.ScoresInfo();
+      scoreInfo.name = scoreInfoItem.name;
+      scoreInfo.score = scoreInfoItem.score;
+      scoreInfo.version = scoreInfoItem.version;
+      for (
+        SentiLinkDTO.ReasonCodes reasonCodeItem : scoreInfoItem.reason_codes
+      ) {
+        SentiLinkReportWrapper.ReasonCodes reasonCode = new SentiLinkReportWrapper.ReasonCodes();
+        reasonCode.code = reasonCodeItem.code;
+        reasonCode.direction = reasonCodeItem.direction;
+        reasonCode.explanation = reasonCodeItem.explanation;
+        reasonCode.rank = reasonCodeItem.rank;
+        scoreInfo.reasonCodes.add(reasonCode);
+      }
+      wrapper.scores.add(scoreInfo);
     }
+    system.debug('wrapper.scores =' + wrapper.scores);
     return wrapper;
   }
 }
