@@ -42,4 +42,20 @@ global virtual with sharing class AbstractService {
       );
     }
   }
+
+  /**
+   * @description Provides a singleton instance of classType from which all other class methods can be accessed.
+   * New Instance Created without configuration
+   * @author Digital Align Team | 07-12-2021
+   * @param System.Type classType
+   * @return Object  singleton
+   **/
+  global static Object getNewInstance(System.Type classType) {
+    //resolve namespace issue get append into class name
+    String className = classType.getName();
+    if (className.contains('.')) {
+      className = className.split('\\.')[1];
+    }
+    return Type.forName(className).newInstance();
+  }
 }
