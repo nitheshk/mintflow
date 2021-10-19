@@ -2622,6 +2622,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Flow__c.ServiceName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Flow__c.Note__c</field>
         <readable>true</readable>
     </fieldPermissions>
