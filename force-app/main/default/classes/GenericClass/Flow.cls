@@ -20,6 +20,7 @@ global with sharing class Flow extends AbstractService {
   private static Flow__c currentSubFlow = new Flow__c();
   private static Map<String, Flow__c> subFlowMap = new Map<String, Flow__c>();
   private static Map<String, Map<String, Flow__c>> flows = new Map<String, Map<String, Flow__c>>();
+  private static logger log = logger.getInstance(Flow.class);
 
   public Flow() {
     super(Flow.class);
@@ -52,6 +53,27 @@ global with sharing class Flow extends AbstractService {
       }
       flows.put(flow.FlowName__c, subFlowMap);
     }
+  }
+
+  /**
+   * @description Persist the log into salesforce
+   * @author Digital Align Team | 10-19-2021
+   **/
+  global static void finalize() {
+    log.fine('Before Logger Finalize');
+    //upsert parent flows
+    CommonRespository.upsertRecords(flowMap.values());
+    List<Flow__c> toUpsertFlows = new List<Flow__c>();
+    for (Flow__c flow : flowMap.values()) {
+      for (Flow__c subFlow : flows.get(flow.FlowName__c).values()) {
+        if (String.isBlank(subFlow.Flow__c)) {
+          subFlow.Flow__c = flow.Id;
+        }
+        toUpsertFlows.add(subFlow);
+      }
+    }
+    CommonRespository.upsertRecords(toUpsertFlows);
+    log.fine('After Logger Finalize');
   }
 
   // Flow Functions
