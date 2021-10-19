@@ -3,13 +3,26 @@
  * @group Builder
  * @author Digital Align Team
  * @reference
- * @description
+ * @description Contain the business logic of the flow transition happening in behind the screen
+ * Passing unique name to flow, to create different flow
+ * Passing same flow name, it will pick up existing flow for process, this will useful for executing action multiple time for failed process
+ * Subflow name can be unique or same in two Different flow to create new subflow context
+ * Passing unique name to sub flow, to create different sub flow
+ * Passing same sub flow name, it will pick up existing sub flow for process, this will useful for executing action multiple time for failed process
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class Flow extends AbstractService {
   //Constant
-  private static final String STATUS_SUCCESS = 'Success';
+  private static final String STATUS_SUCCESS = 'Completed';
   private static final String STATUS_FAILED = 'Failed';
+  private static final String RECORDTYPE_FLOW = SObjectUtils.recordTypeIdByDevName(
+    Flow__c.SObjectType,
+    'Flow'
+  );
+  private static final String RECORDTYPE_SUBFLOW = SObjectUtils.recordTypeIdByDevName(
+    Flow__c.SObjectType,
+    'SubFlow'
+  );
 
   //Attribute
   @TestVisible
@@ -39,11 +52,13 @@ global with sharing class Flow extends AbstractService {
   }
 
   /**
-   * @description
+   * @description Start the flow initialize , if any existing flow already present will be fetch
+   * Pass Id of the object, its need to get linked
    * @author Digital Align Team | 10-19-2021
    * @param String entityId
    **/
   global static void initialize(String entityId) {
+    log.fine('Inside flow initialize');
     currentEntityId = entityId;
     for (Flow__c flow : CommonRespository.fetchFlowByEntityId(entityId)) {
       flowMap.put(flow.FlowName__c, flow);
@@ -78,6 +93,12 @@ global with sharing class Flow extends AbstractService {
 
   // Flow Functions
 
+  /**
+   * @description First step to create any parent flow , by passing the unique flow name
+   * if Same flow name already present with initilized entity, it will pickup from there.
+   * @author Digital Align Team | 10-19-2021
+   * @param String flowName
+   **/
   public static void setFlow(String flowName) {
     if (flowMap.containskey(flowName)) {
       currentFlow = flowMap.get(flowName);
@@ -85,45 +106,55 @@ global with sharing class Flow extends AbstractService {
     } else {
       currentFlow = new Flow__c(
         FlowName__c = flowName,
-        Entity__c = currentEntityId
+        Entity__c = currentEntityId,
+        RecordTypeId = RECORDTYPE_FLOW,
+        Status__c = 'In Progress'
       );
       subFlowMap = new Map<String, Flow__c>();
     }
+
     flowMap.put(flowName, currentFlow);
     flows.put(flowName, subFlowMap);
   }
 
   /**
-   * @description
+   * @description set flow status to completed
+   * @author Digital Align Team | 10-19-2021
+   **/
+  public static void setFlowPassed() {
+    currentFlow.Status__c = STATUS_SUCCESS;
+  }
+
+  /**
+   * @description set flow status to completed with note
    * @author Digital Align Team | 10-19-2021
    * @param String note
    **/
   public static void setFlowPassed(String note) {
-    setFlow(STATUS_SUCCESS, note);
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 10-19-2021
-   * @param String note
-   **/
-  public static void setFlowFailed(String note) {
-    setFlow(STATUS_FAILED, note);
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 10-19-2021
-   * @param String status
-   * @param String note
-   **/
-  private static void setFlow(String status, String note) {
-    currentFlow.Status__c = status;
+    currentFlow.Status__c = STATUS_SUCCESS;
     currentFlow.Note__c = note?.left(2000);
   }
 
   /**
-   * @description
+   * @description set flow status to Failed
+   * @author Digital Align Team | 10-19-2021
+   **/
+  public static void setFlowFailed() {
+    currentFlow.Status__c = STATUS_FAILED;
+  }
+
+  /**
+   * @description set flow status to failed with note
+   * @author Digital Align Team | 10-19-2021
+   * @param String note
+   **/
+  public static void setFlowFailed(String note) {
+    currentFlow.Status__c = STATUS_FAILED;
+    currentFlow.Note__c = note?.left(2000);
+  }
+
+  /**
+   * @description check flow is already completed
    * @author Digital Align Team | 10-19-2021
    * @param String flowName
    * @return Boolean
@@ -136,7 +167,7 @@ global with sharing class Flow extends AbstractService {
   }
 
   /**
-   * @description
+   * @description check flow is already not completed
    * @author Digital Align Team | 10-19-2021
    * @param String flowName
    * @return Boolean
@@ -151,7 +182,7 @@ global with sharing class Flow extends AbstractService {
   // Sub Flow Functions
 
   /**
-   * @description
+   * @description set sub flow context
    * @author Digital Align Team | 10-19-2021
    * @param Flow__c flow
    * @return String
@@ -160,6 +191,8 @@ global with sharing class Flow extends AbstractService {
     if (subFlowMap.containskey(flow.FlowName__c)) {
       currentSubFlow = subFlowMap.get(flow.FlowName__c);
     } else {
+      flow.RecordTypeId = RECORDTYPE_SUBFLOW;
+      flow.Status__c = 'In Progress';
       currentSubFlow = flow;
     }
     subFlowMap.put(flow.FlowName__c, currentSubFlow);
@@ -167,7 +200,8 @@ global with sharing class Flow extends AbstractService {
   }
 
   /**
-   * @description
+   * @description set sub flow context
+   * parameter will combined into single unique flow name
    * @author Digital Align Team | 10-19-2021
    * @param Object flowName
    * @return String
@@ -177,7 +211,8 @@ global with sharing class Flow extends AbstractService {
   }
 
   /**
-   * @description
+   * @description set sub flow context with entity and service name
+   * parameter will combined into single unique flow name
    * @author Digital Align Team | 10-19-2021
    * @param String entity
    * @param Object serviceName
@@ -188,13 +223,15 @@ global with sharing class Flow extends AbstractService {
     return setSubFlow(
       new Flow__c(
         Flowname__c = uniqueName,
+        Entity__c = entity,
         ServiceName__c = String.valueOf(serviceName)
       )
     );
   }
 
   /**
-   * @description
+   * @description set sub flow context with entity, child entity and service name
+   * parameter will combined into single unique flow name
    * @author Digital Align Team | 10-19-2021
    * @param String entity
    * @param String childEntity
@@ -215,6 +252,7 @@ global with sharing class Flow extends AbstractService {
     return setSubFlow(
       new Flow__c(
         Flowname__c = uniqueName,
+        Entity__c = entity,
         ServiceName__c = String.valueOf(serviceName)
       )
     );
@@ -229,7 +267,7 @@ global with sharing class Flow extends AbstractService {
   }
 
   /**
-   * @description set sub flow to completed
+   * @description set sub flow to completed with note
    * @author Digital Align Team | 10-19-2021
    * @param String note
    **/
@@ -247,7 +285,7 @@ global with sharing class Flow extends AbstractService {
   }
 
   /**
-   * @description set sub flow to Failed
+   * @description set sub flow to Failed with note
    * @author Digital Align Team | 10-19-2021
    * @param String note
    **/
