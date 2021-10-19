@@ -74,6 +74,21 @@ global virtual with sharing class SentiLinkService extends AbstractService {
     requestDTO.extra_data = extra_data;
     data.put('DTO', requestDTO);
     Map<String, Object> response = SentiLinkAdapter.invokeAPI(data);
+    if (response.get('Status') == 200) {
+      saveResponse(
+        'customerScore.txt',
+        blob.valueof((string) response.get('Data')),
+        leadObj.Id
+      );
+    }
     return response;
+  }
+  global virtual void saveResponse(
+    String title,
+    Blob versionData,
+    Id parentID
+  ) {
+    FileService.getInstance()
+      .createFile(new FileDTO(title, versionData, parentID));
   }
 }

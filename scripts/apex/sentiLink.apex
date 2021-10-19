@@ -22,6 +22,6 @@ lead leadObj = [
 params.put('leadObj', leadObj);
 params.put('APIName', 'SentiLink');
 system.debug(params);
-system.debug(
-  'Response =' + SentiLinkService.getInstance().customerScores(params)
-);
+Map<String, Object> response = SentiLinkService.getInstance()
+  .customerScores(params);
+system.debug('Response =' + response.get('Data'));

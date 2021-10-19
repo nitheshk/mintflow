@@ -1,0 +1,1294 @@
+<apex:page
+  showHeader="false"
+  sidebar="false"
+  applyHtmlTag="false"
+  applyBodyTag="false"
+  cache="false"
+  standardStylesheets="false"
+  lightningStylesheets="true"
+  controller="SentiLinkReportController"
+  action="{!prefillFraudCheckDetail}"
+>
+  <html
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+  >
+    <head>
+      <apex:slds />
+    </head>
+
+    <body>
+      <div class="slds-scope">
+        <div class="slds-grid slds-wrap">
+          <apex:outputPanel
+            layout="none"
+            rendered="{!if(showResult==true,'true','false')}"
+          >
+            <!-- Page header-->
+            <div class="slds-page-header slds-col slds-size_1-of-1">
+              <div class="slds-page-header__row">
+                <header
+                  class="slds-media slds-media_center slds-has-flexi-truncate"
+                >
+                  <div class="slds-media__figure">
+                    <span
+                      class="slds-icon_container slds-icon-action-user"
+                      title="user"
+                    >
+                      <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                        <use
+                          xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#user')}"
+                        ></use>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="slds-media__body">
+                    <h1 class="slds-card__header-title">
+                      <span
+                        >{!wrapper.formattedData['name_first']}
+                        {!wrapper.formattedData['name_last']}
+                      </span>
+                      <span style="float: right">
+                        Evaluated On :
+                        <b>{!wrapper.GeneralInfo.timestamp}</b>
+                      </span>
+                    </h1>
+                  </div>
+                </header>
+              </div>
+            </div>
+
+            <!-- Page result header-->
+            <div class="slds-col slds-size_1-of-1">
+              <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                  <header
+                    class="slds-media slds-media_center slds-has-flexi-truncate"
+                  >
+                    <div class="slds-media__figure">
+                      <span
+                        class="slds-icon_container slds-icon-standard-account"
+                        title="Evaluation"
+                      >
+                        <svg
+                          class="slds-icon slds-icon_small"
+                          aria-hidden="true"
+                        >
+                          <use
+                            xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#link')}"
+                          ></use>
+                        </svg>
+                      </span>
+                    </div>
+                    <div class="slds-media__body">
+                      <h2 class="slds-card__header-title">
+                        <span
+                          class="slds-card__header-link slds-truncate"
+                          title="Evaluation"
+                        >
+                          <span>Evaluation</span>
+                        </span>
+                      </h2>
+                    </div>
+                  </header>
+                </div>
+
+                <div class="slds-card__body slds-card__body_inner">
+                  <div class="slds-grid slds-wrap">
+                    <!-- Header-->
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-horizontal_medium
+                        slds-size_3-of-12
+                      "
+                    >
+                      <span>Status</span>
+                    </div>
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-horizontal_medium
+                        slds-size_2-of-12
+                      "
+                    >
+                      <span>Score</span>
+                    </div>
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-horizontal_medium
+                        slds-size_4-of-12
+                      "
+                    >
+                      <span>Transaction Id</span>
+                    </div>
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-horizontal_medium
+                        slds-size_3-of-12
+                      "
+                    >
+                      <a
+                        class="slds-card__footer-action"
+                        href="javascript:void(0);"
+                        onclick="showRawResponse()"
+                        >Show Raw Response</a
+                      >
+                    </div>
+                    <!-- data -->
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-top_medium
+                        slds-p-horizontal_medium
+                        slds-size_3-of-12
+                      "
+                    >
+                      <b>
+                        <span
+                          class="
+                            slds-icon_container
+                            {!if(wrapper.summary.outcome=='Approved','slds-icon-action-approval',if(wrapper.summary.outcome=='Denied','slds-icon-action-close','slds-icon-action-info'))}
+                          "
+                          title="approval"
+                        >
+                          <svg
+                            class="slds-icon slds-icon_xx-small"
+                            aria-hidden="false"
+                          >
+                            <use
+                              xlink:href="{!URLFOR($Asset.SLDS, if(wrapper.summary.outcome=='Approved','assets/icons/action-sprite/svg/symbols.svg#approval',if(wrapper.summary.outcome=='Denied','assets/icons/action-sprite/svg/symbols.svg#close','assets/icons/action-sprite/svg/symbols.svg#info')))}"
+                            ></use>
+                          </svg>
+                        </span>
+                        {!wrapper.summary.outcome}
+                      </b>
+                    </div>
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-top_medium
+                        slds-p-horizontal_medium
+                        slds-size_2-of-12
+                      "
+                    >
+                      <b>{!wrapper.summary.score}</b>
+                    </div>
+                    <div
+                      class="
+                        slds-col
+                        slds-text-heading_small
+                        slds-p-top_medium
+                        slds-p-horizontal_medium
+                        slds-size_4-of-12
+                      "
+                    >
+                      <b>{!wrapper.GeneralInfo.transactionId}</b>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Page detail Body-->
+
+            <div class="slds-col slds-size_1-of-1">
+              <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-p-around_small slds-size_1-of-1">
+                  <!-- TAGS -->
+                  <div
+                    class="
+                      slds-page-header
+                      slds-align_absolute-left
+                      slds-col
+                      slds-size_1-of-1
+                    "
+                  >
+                    <h1>
+                      <b>
+                        <span
+                          class="
+                            slds-icon_container
+                            slds-icon-action-share_poll
+                          "
+                          title="share_poll"
+                        >
+                          <svg
+                            class="
+                              slds-icon slds-icon-text-default
+                              slds-icon_xx-small
+                            "
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
+                            ></use>
+                          </svg>
+                        </span>
+                        TAGS - OVERALL SCORE : {!wrapper.summary.score}</b
+                      >
+                    </h1>
+                  </div>
+
+                  <div
+                    class="
+                      slds-col
+                      slds-p-around_small
+                      slds-border_left slds-border_right slds-border_bottom
+                      slds-size_1-of-1
+                    "
+                  >
+                    <div class="slds-grid slds-wrap">
+                      <apex:repeat var="tag" value="{!wrapper.summary.tags}">
+                        <div
+                          class="slds-col slds-p-around_small slds-size_4-of-12"
+                        >
+                          <span
+                            class="
+                              slds-icon_container
+                              slds-icon-standard-address
+                            "
+                            title="address"
+                          >
+                            <svg
+                              class="slds-icon slds-icon_small"
+                              aria-hidden="false"
+                            >
+                              <use
+                                xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#address')}"
+                              ></use>
+                            </svg>
+                          </span>
+                          {!tag}
+                        </div>
+                      </apex:repeat>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="body_left_panel" class="slds-col slds-size_2-of-2">
+                  <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-p-around_small slds-size_1-of-1">
+                      <!-- MATCHED DATA-->
+                      <div
+                        class="
+                          slds-page-header
+                          slds-align_absolute-left
+                          slds-col
+                          slds-size_1-of-1
+                        "
+                      >
+                        <h1>
+                          <b>
+                            <span
+                              class="
+                                slds-icon_container
+                                slds-icon-action-share_poll
+                              "
+                              title="share_poll"
+                            >
+                              <svg
+                                class="
+                                  slds-icon slds-icon-text-default
+                                  slds-icon_xx-small
+                                "
+                                aria-hidden="true"
+                              >
+                                <use
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
+                                ></use>
+                              </svg>
+                            </span>
+                            MATCHED DATA</b
+                          >
+                        </h1>
+                      </div>
+
+                      <div
+                        class="
+                          slds-col
+                          slds-p-around_small
+                          slds-border_left slds-border_right slds-border_bottom
+                          slds-size_1-of-1
+                        "
+                      >
+                        <div class="slds-grid slds-wrap">
+                          <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-grid slds-wrap">
+                              <div
+                                class="
+                                  slds-col
+                                  slds-p-around_small
+                                  slds-size_5-of-12
+                                "
+                              >
+                                <span>
+                                  <b>MATCHED NAME</b>
+                                </span>
+                              </div>
+                              <div
+                                class="
+                                  slds-col
+                                  slds-p-around_small
+                                  slds-size_3-of-12
+                                "
+                              >
+                                <span>
+                                  <b>SCORE</b>
+                                </span>
+                              </div>
+                              <div
+                                class="
+                                  slds-col
+                                  slds-p-around_small
+                                  slds-size_4-of-12
+                                "
+                              >
+                                <span>
+                                  <b>MATCHED SYSTEM</b>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="
+                          slds-col
+                          slds-p-around_small
+                          slds-border_left slds-border_right slds-border_bottom
+                          slds-size_1-of-1
+                        "
+                      >
+                        <div class="slds-grid slds-wrap">
+                          <apex:repeat
+                            var="data"
+                            value="{!wrapper.matchedData}"
+                          >
+                            <div
+                              class="
+                                slds-col
+                                slds-border_bottom
+                                slds-size_1-of-1
+                              "
+                            >
+                              <div class="slds-grid slds-wrap">
+                                <div
+                                  class="
+                                    slds-col
+                                    slds-p-around_small
+                                    slds-size_5-of-12
+                                  "
+                                >
+                                  <div class="slds-grid slds-wrap">
+                                    <div
+                                      class="
+                                        slds-col
+                                        slds-p-around_xx-small
+                                        slds-size_1-of-1
+                                      "
+                                    >
+                                      <h2 class="slds-card__header-title">
+                                        <span
+                                          class="
+                                            slds-card__header-link
+                                            slds-truncate
+                                          "
+                                          title="{!data.fieldName}"
+                                        >
+                                          <span>{!data.fieldName}</span>
+                                        </span>
+                                      </h2>
+                                    </div>
+                                    <div
+                                      class="
+                                        slds-col
+                                        slds-p-around_xx-small
+                                        slds-size_1-of-1
+                                      "
+                                    >
+                                      {!data.fieldValue}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="
+                                    slds-col
+                                    slds-p-around_small
+                                    slds-size_3-of-12
+                                  "
+                                >
+                                  <div class="slds-grid slds-wrap">
+                                    <div
+                                      class="
+                                        slds-col
+                                        slds-p-around_xx-small
+                                        slds-size_1-of-1
+                                      "
+                                    >
+                                      {!data.fieldScore}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="
+                                    slds-col
+                                    slds-p-around_small
+                                    slds-size_4-of-12
+                                  "
+                                >
+                                  <div class="slds-grid slds-wrap">
+                                    <div
+                                      class="
+                                        slds-col
+                                        slds-p-around_xx-small
+                                        slds-size_1-of-1
+                                      "
+                                    >
+                                      <ul class="slds-has-block-links_space">
+                                        <apex:repeat
+                                          var="matched"
+                                          value="{!data.matchedService}"
+                                        >
+                                          <li>
+                                            <span
+                                              class="
+                                                slds-icon_container
+                                                slds-icon-utility-check
+                                              "
+                                              title="check"
+                                            >
+                                              <svg
+                                                class="
+                                                  slds-icon
+                                                  slds-icon-text-default
+                                                  slds-icon_xx-small
+                                                "
+                                                aria-hidden="true"
+                                              >
+                                                <use
+                                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#check')}"
+                                                ></use>
+                                              </svg>
+                                            </span>
+                                            <b>{!matched}</b>
+                                          </li>
+                                        </apex:repeat>
+
+                                        <apex:repeat
+                                          var="unmatched"
+                                          value="{!data.unmatchedService}"
+                                        >
+                                          <li>
+                                            <span
+                                              class="
+                                                slds-icon_container
+                                                slds-icon-utility-close
+                                              "
+                                              title="close"
+                                            >
+                                              <svg
+                                                class="
+                                                  slds-icon
+                                                  slds-icon-text-default
+                                                  slds-icon_xx-small
+                                                "
+                                                aria-hidden="true"
+                                              >
+                                                <use
+                                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#close')}"
+                                                ></use>
+                                              </svg>
+                                            </span>
+                                            <b>{!unmatched}</b>
+                                          </li>
+                                        </apex:repeat>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </apex:repeat>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-col slds-p-around_small slds-size_1-of-1">
+                      <!-- RETURNED REASON CODES-->
+                    </div>
+                  </div>
+                </div>
+                <div id="body_ight_panel" class="slds-col slds-size_2-of-2">
+                  <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-p-around_small slds-size_1-of-1">
+                      <!-- DILIGENCE-->
+                      <div
+                        class="
+                          slds-page-header
+                          slds-align_absolute-left
+                          slds-col
+                          slds-size_1-of-1
+                        "
+                      >
+                        <h1>
+                          <b>
+                            <span
+                              class="
+                                slds-icon_container
+                                slds-icon-action-share_poll
+                              "
+                              title="share_poll"
+                            >
+                              <svg
+                                class="
+                                  slds-icon slds-icon-text-default
+                                  slds-icon_xx-small
+                                "
+                                aria-hidden="true"
+                              >
+                                <use
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
+                                ></use>
+                              </svg>
+                            </span>
+                            DILIGENCE</b
+                          >
+                        </h1>
+                      </div>
+
+                      <!--Watch Lists -->
+                      <div
+                        class="
+                          slds-col
+                          slds-p-around_small
+                          slds-border_left slds-border_right slds-border_bottom
+                          slds-size_1-of-1
+                        "
+                      >
+                        <div class="slds-grid slds-wrap slds-p-around_small">
+                          <div class="slds-col slds-size_1-of-1">
+                            <h2 class="slds-card__header-title">
+                              <span
+                                class="slds-card__header-link slds-truncate"
+                                title="Watch Lists"
+                              >
+                                <span>Watch Lists</span>
+                              </span>
+                            </h2>
+                          </div>
+
+                          <div
+                            class="
+                              slds-col
+                              slds-p-around_medium
+                              slds-size_1-of-1
+                            "
+                          >
+                            <div class="slds-grid slds-wrap">
+                              <apex:repeat
+                                var="watchName"
+                                value="{!wrapper.diligence.watchList}"
+                              >
+                                <div class="slds-col slds-size_4-of-12">
+                                  <b>{!watchName}</b>
+                                </div>
+                              </apex:repeat>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Fraud Score-->
+                      <div
+                        class="
+                          slds-col
+                          slds-p-around_small
+                          slds-border_left slds-border_right slds-border_bottom
+                          slds-size_1-of-1
+                        "
+                      >
+                        <div class="slds-grid slds-wrap slds-p-around_small">
+                          <div class="slds-col slds-size_1-of-1">
+                            <h2 class="slds-card__header-title">
+                              <span
+                                class="slds-card__header-link slds-truncate"
+                                title="Fraud Score"
+                              >
+                                <span
+                                  >Fraud | Score :
+                                  {!wrapper.diligence.fraudAverageScore}
+                                </span>
+                              </span>
+                            </h2>
+                          </div>
+
+                          <table
+                            class="
+                              slds-table
+                              slds-table_cell-buffer
+                              slds-table_bordered
+                              slds-table_col-bordered
+                            "
+                          >
+                            <thead>
+                              <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                  <div
+                                    class="slds-truncate"
+                                    title="Source Name"
+                                  >
+                                    <b>SOURCE NAME</b>
+                                  </div>
+                                </th>
+                                <th class="" scope="col">
+                                  <div
+                                    class="slds-truncate"
+                                    title="Attribute Name"
+                                  >
+                                    <b>ATTRIBUTE NAME</b>
+                                  </div>
+                                </th>
+                                <th class="" scope="col">
+                                  <div class="slds-truncate" title="Raw Score">
+                                    <b>RAW SCORE</b>
+                                  </div>
+                                </th>
+                                <th class="" scope="col">
+                                  <div
+                                    class="slds-truncate"
+                                    title="Normalized Score"
+                                  >
+                                    <b>NORMALIZED SCORE</b>
+                                  </div>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <apex:repeat
+                                var="fraudSource"
+                                value="{!wrapper.diligence.fraudSources}"
+                              >
+                                <tr class="slds-hint-parent">
+                                  <td data-label="Account Name">
+                                    <div
+                                      class="slds-truncate"
+                                      title="Source Name"
+                                    >
+                                      {!fraudSource.sourceName}
+                                    </div>
+                                  </td>
+                                  <td data-label="Close Date">
+                                    <div
+                                      class="slds-truncate"
+                                      title="Attribute Name"
+                                    >
+                                      {!fraudSource.sourceType}
+                                    </div>
+                                  </td>
+                                  <td data-label="Account Name">
+                                    <div
+                                      class="slds-truncate"
+                                      title="Raw Score"
+                                    >
+                                      {!fraudSource.sourceRawScore}
+                                    </div>
+                                  </td>
+                                  <td data-label="Close Date">
+                                    <div
+                                      class="slds-truncate"
+                                      title="Normalized Score"
+                                    >
+                                      {!fraudSource.sourceNormalizedScore}
+                                    </div>
+                                  </td>
+                                </tr>
+                              </apex:repeat>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <!--Financial Reports-->
+                      <div
+                        class="
+                          slds-col
+                          slds-p-around_small
+                          slds-border_left slds-border_right slds-border_bottom
+                          slds-size_1-of-1
+                        "
+                      >
+                        <div class="slds-grid slds-wrap slds-p-around_small">
+                          <div class="slds-col slds-size_1-of-1">
+                            <h2 class="slds-card__header-title">
+                              <span
+                                class="slds-card__header-link slds-truncate"
+                                title="Fraud Score"
+                              >
+                                <span>Financial Reports</span>
+                              </span>
+                            </h2>
+                          </div>
+
+                          <table
+                            class="
+                              slds-table
+                              slds-table_cell-buffer
+                              slds-table_bordered
+                              slds-table_col-bordered
+                            "
+                          >
+                            <thead>
+                              <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                  <div
+                                    class="slds-truncate"
+                                    title="Report Type"
+                                  >
+                                    <b>REPORT TYPE</b>
+                                  </div>
+                                </th>
+                                <th class="" scope="col">
+                                  <div
+                                    class="slds-truncate"
+                                    title="Source Name"
+                                  >
+                                    <b>SOURCE NAME</b>
+                                  </div>
+                                </th>
+                                <th class="" scope="col">
+                                  <div class="slds-truncate" title="Score">
+                                    <b>SCORE</b>
+                                  </div>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <apex:repeat
+                                var="financialSource"
+                                value="{!wrapper.diligence.financialSources}"
+                              >
+                                <tr class="slds-hint-parent">
+                                  <td data-label="Report Name">
+                                    <div
+                                      class="slds-truncate"
+                                      title="report type name"
+                                    >
+                                      <b>{!financialSource.sourceName}</b>
+                                    </div>
+                                  </td>
+                                  <td data-label="Source Name">
+                                    <div
+                                      class="slds-truncate"
+                                      title="source name"
+                                    >
+                                      {!financialSource.subSourceTypeName}
+                                    </div>
+                                  </td>
+                                  <td data-label="Score">
+                                    <div
+                                      class="slds-truncate"
+                                      title="subtype score"
+                                    >
+                                      {!financialSource.subSourceTypeScore}
+                                    </div>
+                                  </td>
+                                </tr>
+                              </apex:repeat>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-col slds-p-around_small slds-size_1-of-1">
+                      <!-- DATA SOURCES -->
+                      <div
+                        class="
+                          slds-page-header
+                          slds-align_absolute-left
+                          slds-col
+                          slds-size_1-of-1
+                        "
+                      >
+                        <h1>
+                          <b>
+                            <span
+                              class="
+                                slds-icon_container
+                                slds-icon-action-share_poll
+                              "
+                              title="share_poll"
+                            >
+                              <svg
+                                class="
+                                  slds-icon slds-icon-text-default
+                                  slds-icon_xx-small
+                                "
+                                aria-hidden="true"
+                              >
+                                <use
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
+                                ></use>
+                              </svg>
+                            </span>
+                            DATA SOURCES</b
+                          >
+                        </h1>
+                      </div>
+
+                      <div
+                        class="
+                          slds-col
+                          slds-p-around_small
+                          slds-border_left slds-border_right slds-border_bottom
+                          slds-size_1-of-1
+                        "
+                      >
+                        <div class="slds-grid slds-wrap">
+                          <apex:repeat
+                            var="service"
+                            value="{!wrapper.summary.services}"
+                          >
+                            <div
+                              class="
+                                slds-col
+                                slds-p-around_small
+                                slds-size_6-of-12
+                              "
+                            >
+                              <span
+                                class="
+                                  slds-icon_container
+                                  {!if(wrapper.summary.services[service]=='executed','slds-icon-action-approval','slds-icon-action-defer')}
+                                "
+                                title="approval"
+                              >
+                                <svg
+                                  class="slds-icon slds-icon_xx-small"
+                                  aria-hidden="true"
+                                >
+                                  <use
+                                    xlink:href="{!URLFOR($Asset.SLDS, if(wrapper.summary.services[service]=='executed','assets/icons/action-sprite/svg/symbols.svg#approval','assets/icons/action-sprite/svg/symbols.svg#defer'))}"
+                                  ></use>
+                                </svg>
+                              </span>
+                              {!service}
+                            </div>
+                          </apex:repeat>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="slds-col slds-p-around_small slds-size_1-of-1">
+                      <!-- Reason Codes -->
+                      <div
+                        class="
+                          slds-page-header
+                          slds-align_absolute-left
+                          slds-col
+                          slds-size_1-of-1
+                        "
+                      >
+                        <h1>
+                          <b>
+                            <span
+                              class="
+                                slds-icon_container
+                                slds-icon-action-share_poll
+                              "
+                              title="share_poll"
+                            >
+                              <svg
+                                class="
+                                  slds-icon slds-icon-text-default
+                                  slds-icon_xx-small
+                                "
+                                aria-hidden="true"
+                              >
+                                <use
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
+                                ></use>
+                              </svg>
+                            </span>
+                            RETURNED REASON CODES</b
+                          >
+                        </h1>
+                      </div>
+
+                      <apex:repeat var="service" value="{!wrapper.reasonCodes}">
+                        <div
+                          class="
+                            slds-col
+                            slds-p-around_small
+                            slds-border_left
+                            slds-border_right
+                            slds-border_bottom
+                            slds-size_1-of-1
+                          "
+                        >
+                          <h2 class="slds-card__header-title">
+                            <span
+                              class="slds-card__header-link slds-truncate"
+                              title="Iovation"
+                            >
+                              <span>{!service}</span>
+                            </span>
+                          </h2>
+                        </div>
+
+                        <div
+                          class="
+                            slds-col
+                            slds-p-around_small
+                            slds-scrollable_y
+                            slds-border_left
+                            slds-border_right
+                            slds-border_bottom
+                            slds-size_1-of-1
+                          "
+                        >
+                          <div class="slds-grid slds-wrap">
+                            <apex:repeat
+                              var="code"
+                              value="{!wrapper.reasonCodes[service]}"
+                            >
+                              <div class="slds-col slds-size_3-of-6">
+                                {!code} : {!wrapper.reasonCodes[service][code]}
+                              </div>
+                            </apex:repeat>
+                          </div>
+                        </div>
+                      </apex:repeat>
+                    </div>
+
+                    <div class="slds-col slds-p-around_small slds-size_1-of-1">
+                      <!-- DEVICE DETAILS -->
+                      <div
+                        class="
+                          slds-page-header
+                          slds-align_absolute-left
+                          slds-col
+                          slds-size_1-of-1
+                        "
+                      >
+                        <h1>
+                          <b>
+                            <span
+                              class="
+                                slds-icon_container
+                                slds-icon-action-share_poll
+                              "
+                              title="share_poll"
+                            >
+                              <svg
+                                class="
+                                  slds-icon slds-icon-text-default
+                                  slds-icon_xx-small
+                                "
+                                aria-hidden="true"
+                              >
+                                <use
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
+                                ></use>
+                              </svg>
+                            </span>
+                            DEVICE DETAILS</b
+                          >
+                        </h1>
+                      </div>
+
+                      <div
+                        class="
+                          slds-col
+                          slds-p-around_small
+                          slds-border_left slds-border_right slds-border_bottom
+                          slds-size_1-of-1
+                        "
+                      >
+                        <h2 class="slds-card__header-title">
+                          <span
+                            class="slds-card__header-link slds-truncate"
+                            title="Iovation"
+                          >
+                            <span>Iovation</span>
+                          </span>
+                        </h2>
+                      </div>
+
+                      <div
+                        class="
+                          slds-col
+                          slds-p-around_small
+                          slds-border_left slds-border_right slds-border_bottom
+                          slds-size_1-of-1
+                        "
+                      >
+                        <div class="slds-grid slds-wrap">
+                          <div
+                            class="
+                              slds-col
+                              slds-p-around_small
+                              slds-size_6-of-12
+                            "
+                          >
+                            <b>Browser Type </b>:
+                            {!wrapper.deviceData.browserType}
+                          </div>
+                          <div
+                            class="
+                              slds-col
+                              slds-p-around_small
+                              slds-size_6-of-12
+                            "
+                          >
+                            <b>Browser Version </b>:
+                            {!wrapper.deviceData.browserVersion}
+                          </div>
+                          <div
+                            class="
+                              slds-col
+                              slds-p-around_small
+                              slds-size_6-of-12
+                            "
+                          >
+                            <b>Device OS </b>: {!wrapper.deviceData.deviceOS}
+                          </div>
+                          <div
+                            class="
+                              slds-col
+                              slds-p-around_small
+                              slds-size_6-of-12
+                            "
+                          >
+                            <b>Device Type </b>:
+                            {!wrapper.deviceData.deviceType}
+                          </div>
+                          <div
+                            class="
+                              slds-col
+                              slds-p-around_small
+                              slds-size_6-of-12
+                            "
+                          >
+                            <b>Iovation First Seen </b>:
+                            {!wrapper.deviceData.iovationFirstSeen}
+                          </div>
+                          <div
+                            class="
+                              slds-col
+                              slds-p-around_small
+                              slds-size_6-of-12
+                            "
+                          >
+                            <b>IP Address </b>: {!wrapper.deviceData.ipAddress}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="slds-col slds-p-around_small slds-size_1-of-1">
+                      <!-- OTHER DATA -->
+                      <div
+                        class="
+                          slds-page-header
+                          slds-align_absolute-left
+                          slds-col
+                          slds-size_1-of-1
+                        "
+                      >
+                        <h1>
+                          <b>
+                            <span
+                              class="
+                                slds-icon_container
+                                slds-icon-action-share_poll
+                              "
+                              title="share_poll"
+                            >
+                              <svg
+                                class="
+                                  slds-icon slds-icon-text-default
+                                  slds-icon_xx-small
+                                "
+                                aria-hidden="true"
+                              >
+                                <use
+                                  xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
+                                ></use>
+                              </svg>
+                            </span>
+                            OTHER DATA</b
+                          >
+                        </h1>
+                      </div>
+
+                      <div
+                        class="
+                          slds-col
+                          slds-p-around_small
+                          slds-border_left slds-border_right slds-border_bottom
+                          slds-size_1-of-1
+                        "
+                      >
+                        <div class="slds-col slds-size_1-of-1">
+                          <h2 class="slds-card__header-title">
+                            <span
+                              class="slds-card__header-link slds-truncate"
+                              title="Meta"
+                            >
+                              <span>Meta</span>
+                            </span>
+                          </h2>
+                        </div>
+
+                        <div
+                          class="slds-col slds-p-around_medium slds-size_1-of-1"
+                        >
+                          <div class="slds-grid slds-wrap">
+                            <apex:repeat
+                              var="key"
+                              value="{!wrapper.otherData.values}"
+                            >
+                              <div class="slds-col slds-size_4-of-12">
+                                <b>{!key} : {!wrapper.otherData.values[key]}</b>
+                              </div>
+                            </apex:repeat>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page footer-->
+            <div
+              class="
+                slds-page-header
+                slds-align_absolute-center
+                slds-col
+                slds-size_1-of-1
+              "
+            >
+              <h1>
+                <b>System generated Report</b>
+              </h1>
+            </div>
+
+            <!-- model of rawResponse-->
+            <div
+              id="rawResponse"
+              style="display: none"
+              class="slds-align_absolute-center slds-col slds-size_1-of-1"
+            >
+              <section
+                role="dialog"
+                tabindex="-1"
+                aria-labelledby="modal-heading-01"
+                aria-modal="true"
+                aria-describedby="modal-content-id-1"
+                class="slds-modal slds-fade-in-open slds-modal_medium"
+              >
+                <div class="slds-modal__container">
+                  <header class="slds-modal__header">
+                    <div class="slds-grid slds-wrap">
+                      <div
+                        class="slds-col slds-p-around_small slds-size_11-of-12"
+                      >
+                        <h2
+                          id="modal-heading-01"
+                          class="slds-modal__title slds-hyphenate"
+                        >
+                          <b>Raw Response</b>
+                        </h2>
+                      </div>
+                      <div
+                        class="slds-col slds-p-around_small slds-size_1-of-12"
+                      >
+                        <a
+                          class="slds-card__footer-action"
+                          href="javascript:void(0);"
+                          onclick="hideRawResponse()"
+                        >
+                          <span
+                            class="slds-icon_container slds-icon-action-remove"
+                            title="remove"
+                          >
+                            <svg
+                              class="slds-icon slds-icon_xx-small"
+                              aria-hidden="false"
+                            >
+                              <use
+                                xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#remove')}"
+                              ></use>
+                            </svg>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </header>
+                  <div
+                    class="slds-modal__content slds-p-around_medium"
+                    id="modal-content-id-2"
+                  >
+                    <div id="rawTextArea"></div>
+                  </div>
+                  <footer class="slds-modal__footer">
+                    <button
+                      class="slds-button slds-button_neutral"
+                      onclick="hideRawResponse()"
+                    >
+                      Close
+                    </button>
+                  </footer>
+                </div>
+              </section>
+              <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+          </apex:outputPanel>
+          <apex:outputPanel
+            layout="none"
+            rendered="{!if(showResult==true,'false','true')}"
+          >
+            <div
+              class="
+                slds-page-header
+                slds-align_absolute-center
+                slds-col
+                slds-size_1-of-1
+              "
+            >
+              <h1>
+                <b>Unable to display Report</b>
+              </h1>
+            </div>
+          </apex:outputPanel>
+        </div>
+      </div>
+      <script>
+
+        function showRawResponse() {
+          var x = document.getElementById("rawResponse");
+          document.getElementById("rawTextArea").textContent = JSON.stringify({!wrapper.GeneralInfo.rawResponse}, null, '\t');
+        x.style.display = "block";
+          }
+
+        function hideRawResponse() {
+          var x = document.getElementById("rawResponse");
+          x.style.display = "none";
+        }
+      </script>
+    </body>
+  </html>
+</apex:page>
