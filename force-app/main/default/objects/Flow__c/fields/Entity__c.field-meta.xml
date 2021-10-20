@@ -4,7 +4,7 @@
     <description>Parent salesforce ID, which is linked</description>
     <externalId>false</externalId>
     <inlineHelpText>Parent salesforce ID, which is linked</inlineHelpText>
-    <label>Entity Name</label>
+    <label>Entity</label>
     <length>255</length>
     <required>false</required>
     <trackTrending>false</trackTrending>

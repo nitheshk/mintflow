@@ -58,7 +58,7 @@ global with sharing class Flow extends AbstractService {
    * @param String entityId
    **/
   global static void initialize(String entityId) {
-    log.fine('Inside flow initialize');
+    log?.fine('Inside flow initialize');
     currentEntityId = entityId;
     for (Flow__c flow : CommonRespository.fetchFlowByEntityId(entityId)) {
       flowMap.put(flow.FlowName__c, flow);
@@ -75,7 +75,7 @@ global with sharing class Flow extends AbstractService {
    * @author Digital Align Team | 10-19-2021
    **/
   global static void finalize() {
-    log.fine('Before Logger Finalize');
+    log?.fine('Before Logger Finalize');
     //upsert parent flows
     CommonRespository.upsertRecords(flowMap.values());
     List<Flow__c> toUpsertFlows = new List<Flow__c>();
@@ -88,7 +88,7 @@ global with sharing class Flow extends AbstractService {
       }
     }
     CommonRespository.upsertRecords(toUpsertFlows);
-    log.fine('After Logger Finalize');
+    log?.fine('After Logger Finalize');
   }
 
   // Flow Functions
@@ -347,7 +347,7 @@ global with sharing class Flow extends AbstractService {
    **/
   public static void setSubFlowResponse(Object response) {
     if (currentSubFlow != null) {
-      currentSubFlow.Request__c = String.valueOf(response)?.left(131072);
+      currentSubFlow.Response__c = String.valueOf(response)?.left(131072);
     }
   }
 }
