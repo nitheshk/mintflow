@@ -7,42 +7,13 @@
  **/
 @SuppressWarnings('PMD.ExcessivePublicCount')
 public with sharing class SentiLinkReportWrapper {
-  //used in LWC
-  public class KYCJsonDTO {
-    @AuraEnabled
-    public String contentDocumentId { get; set; }
-    @AuraEnabled
-    public String title { get; set; }
-    @AuraEnabled
-    public String documentType { get; set; }
-    @AuraEnabled
-    public String reportUrl { get; set; }
-    @AuraEnabled
-    public String createDate { get; set; }
-    public KYCJsonDTO(
-      String contentDocumentId,
-      String title,
-      String documentType,
-      DateTime createDate
-    ) {
-      this.contentDocumentId = contentDocumentId;
-      this.title = title;
-      this.documentType = documentType;
-      this.createDate = createDate.format(
-        'MM/dd/yyyy hh:mm:ss a',
-        UserInfo.getTimeZone().getID()
-      );
-    }
-  }
-
-  // used in report display
-
   public GeneralInfo generalInfo { get; set; }
   public List<ScoresInfo> scores { get; set; }
-
+  public Attributes attributes { get; set; }
   public SentiLinkReportWrapper() {
     generalInfo = new GeneralInfo();
     scores = new List<ScoresInfo>();
+    attributes = new Attributes();
   }
 
   public class GeneralInfo {
@@ -56,11 +27,25 @@ public with sharing class SentiLinkReportWrapper {
     }
   }
 
+  public class Attributes {
+    public Integer ssn_shared_count { get; set; }
+    public Integer name_dob_shared_count { get; set; }
+    public Boolean ssn_issuance_dob_mismatch { get; set; }
+    public Boolean ssn_issued_before_dob { get; set; }
+    public Boolean name_ssn_synthetic_address { get; set; }
+    public Boolean ssn_bogus { get; set; }
+    public Integer ssn_history_longer_months { get; set; }
+    public Attributes() {
+      ssn_shared_count = 0;
+      name_dob_shared_count = 0;
+    }
+  }
+
   public class ScoresInfo {
     public String name { get; set; }
     public String version { get; set; }
     public Integer score { get; set; }
-    public List<ReasonCodes> reasonCodes;
+    public List<ReasonCodes> reasonCodes { get; set; }
 
     public ScoresInfo() {
       this.name = this.version = '';
@@ -69,10 +54,10 @@ public with sharing class SentiLinkReportWrapper {
     }
   }
   public class ReasonCodes {
-    public String code;
-    public Integer rank;
-    public String direction;
-    public String explanation;
+    public String code { get; set; }
+    public Integer rank { get; set; }
+    public String direction { get; set; }
+    public String explanation { get; set; }
 
     public ReasonCodes() {
       this.code = this.direction = this.explanation = '';

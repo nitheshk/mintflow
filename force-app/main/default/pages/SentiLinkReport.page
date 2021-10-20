@@ -163,147 +163,191 @@
                 </h1>
               </div>
               <!--Fraud Score-->
-              <apex:repeat var="scoreItem" value="{!wrapper.scores}">
-                <div
-                  class="
-                    slds-col
-                    slds-p-around_small
-                    slds-border_left slds-border_right slds-border_bottom
-                    slds-size_1-of-1
-                  "
-                >
-                  <div class="slds-grid slds-wrap slds-p-around_small">
-                    <div class="slds-col slds-size_1-of-1">
-                      <div class="slds-card__body slds-card__body_inner">
-                        <div class="slds-grid slds-wrap">
-                          <!-- Header-->
-                          <div
-                            class="
-                              slds-col
-                              slds-text-heading_small
-                              slds-p-horizontal_medium
-                              slds-size_4-of-12
-                            "
-                          >
-                            <span>Score Name</span>
-                          </div>
-                          <div
-                            class="
-                              slds-col
-                              slds-text-heading_small
-                              slds-p-horizontal_medium
-                              slds-size_4-of-12
-                            "
-                          >
-                            <span>Version</span>
-                          </div>
-                          <div
-                            class="
-                              slds-col
-                              slds-text-heading_small
-                              slds-p-horizontal_medium
-                              slds-size_4-of-12
-                            "
-                          >
-                            <span>Score</span>
-                          </div>
-                          <!-- data -->
-                          <div
-                            class="
-                              slds-col
-                              slds-text-heading_small
-                              slds-p-top_medium
-                              slds-p-horizontal_medium
-                              slds-size_4-of-12
-                            "
-                          >
-                            <b>{!scoreItem.name}</b>
-                          </div>
-                          <div
-                            class="
-                              slds-col
-                              slds-text-heading_small
-                              slds-p-top_medium
-                              slds-p-horizontal_medium
-                              slds-size_4-of-12
-                            "
-                          >
-                            <b>{!scoreItem.version}</b>
-                          </div>
-                          <div
-                            class="
-                              slds-col
-                              slds-text-heading_small
-                              slds-p-top_medium
-                              slds-p-horizontal_medium
-                              slds-size_4-of-12
-                            "
-                          >
-                            <b>{!scoreItem.score}</b>
-                          </div>
+              <div
+                class="
+                  slds-col
+                  slds-p-around_small
+                  slds-border_left slds-border_right slds-border_bottom
+                  slds-size_1-of-1
+                "
+              >
+                <div class="slds-grid slds-wrap slds-p-around_small">
+                  <apex:repeat var="scoreItem" value="{!wrapper.scores}">
+                    <div
+                      class="slds-col slds-size_1-of-2 slds-var-p-around_small"
+                    >
+                      <div class="slds-grid slds-wrap slds-p-around_small">
+                        <div class="slds-col slds-size_1-of-2">
+                          <h2 class="slds-card__header-title">
+                            <span
+                              class="slds-card__header-link slds-truncate"
+                              title="Fraud Score"
+                            >
+                              <span>{!scoreItem.name}</span>
+                            </span>
+                          </h2>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                          <h2 class="slds-card__header-title">
+                            <span
+                              class="slds-card__header-link slds-truncate"
+                              title="Fraud Score"
+                            >
+                              <span>Score : {!scoreItem.score}</span>
+                            </span>
+                          </h2>
                         </div>
                       </div>
-                    </div>
-
-                    <table
-                      class="
-                        slds-table
-                        slds-table_cell-buffer
-                        slds-table_bordered
-                        slds-table_col-bordered
-                      "
-                    >
-                      <thead>
-                        <tr class="slds-line-height_reset">
-                          <th class="" scope="col">
-                            <div class="slds-truncate" title="Source Name">
-                              <b>SOURCE NAME</b>
-                            </div>
-                          </th>
-                          <th class="" scope="col">
-                            <div class="slds-truncate" title="Attribute Name">
-                              <b>ATTRIBUTE NAME</b>
-                            </div>
-                          </th>
-                          <th class="" scope="col">
-                            <div class="slds-truncate" title="Raw Score">
-                              <b>RAW SCORE</b>
-                            </div>
-                          </th>
-                          <th class="" scope="col">
-                            <div class="slds-truncate" title="Normalized Score">
-                              <b>NORMALIZED SCORE</b>
-                            </div>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <apex:repeat var="scoreItem" value="{!wrapper.scores}">
-                          <tr class="slds-hint-parent">
-                            <td data-label="Account Name">
-                              <div class="slds-truncate" title="Source Name">
-                                {!scoreItem.name}
+                      <table
+                        class="
+                          slds-table
+                          slds-table_cell-buffer
+                          slds-table_bordered
+                          slds-table_col-bordered
+                        "
+                      >
+                        <thead>
+                          <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                              <div class="slds-truncate" title="Direction">
+                                <b>Rank</b>
                               </div>
-                            </td>
-                            <td data-label="Close Date">
-                              BBB
-                              <!-- <div class="slds-truncate" title="Attribute Name">{!fraudSource.sourceType}</div> -->
-                            </td>
-                            <td data-label="Account Name">
-                              CCC
-                              <!-- <div class="slds-truncate" title="Raw Score">{!fraudSource.sourceRawScore}</div> -->
-                            </td>
-                            <td data-label="Close Date">
-                              DDD
-                              <!-- <div class="slds-truncate" title="Normalized Score">{!fraudSource.sourceNormalizedScore}</div> -->
-                            </td>
+                            </th>
+                            <th class="" scope="col">
+                              <div class="slds-truncate" title="Attribute Name">
+                                <b>Direction</b>
+                              </div>
+                            </th>
+                            <th class="" scope="col">
+                              <div class="slds-truncate" title="Raw Score">
+                                <b>Explanation</b>
+                              </div>
+                            </th>
                           </tr>
-                        </apex:repeat>
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          <apex:repeat
+                            var="reasonCodesItem"
+                            value="{!scoreItem.reasonCodes}"
+                          >
+                            <tr class="slds-hint-parent">
+                              <td data-label="Account Name">
+                                <div class="slds-truncate" title="Source Name">
+                                  {!reasonCodesItem.rank}
+                                </div>
+                              </td>
+                              <td data-label="Close Date">
+                                <div
+                                  class="slds-truncate"
+                                  title="Attribute Name"
+                                >
+                                  {!reasonCodesItem.direction}
+                                </div>
+                              </td>
+                              <td data-label="Account Name">
+                                <div class="slds-truncate" title="Raw Score">
+                                  {!reasonCodesItem.explanation}
+                                </div>
+                              </td>
+                            </tr>
+                          </apex:repeat>
+                        </tbody>
+                      </table>
+                    </div>
+                  </apex:repeat>
+                </div>
+              </div>
+            </div>
+
+            <div class="slds-col slds-p-around_small slds-size_1-of-1">
+              <!-- CUSTOMER HISTORY -->
+              <div
+                class="
+                  slds-page-header
+                  slds-align_absolute-left
+                  slds-col
+                  slds-size_1-of-1
+                "
+              >
+                <h1>
+                  <b>
+                    <span
+                      class="slds-icon_container slds-icon-action-share_poll"
+                      title="share_poll"
+                    >
+                      <svg
+                        class="
+                          slds-icon slds-icon-text-default
+                          slds-icon_xx-small
+                        "
+                        aria-hidden="true"
+                      >
+                        <use
+                          xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
+                        ></use>
+                      </svg>
+                    </span>
+                    CUSTOMER HISTORY</b
+                  >
+                </h1>
+              </div>
+
+              <div
+                class="
+                  slds-col
+                  slds-p-around_small
+                  slds-border_left slds-border_right slds-border_bottom
+                  slds-size_1-of-1
+                "
+              >
+                <h2 class="slds-card__header-title">
+                  <span
+                    class="slds-card__header-link slds-truncate"
+                    title="Iovation"
+                  >
+                    <span>Attributes</span>
+                  </span>
+                </h2>
+              </div>
+
+              <div
+                class="
+                  slds-col
+                  slds-p-around_small
+                  slds-border_left slds-border_right slds-border_bottom
+                  slds-size_1-of-1
+                "
+              >
+                <div class="slds-grid slds-wrap">
+                  <div class="slds-col slds-p-around_small slds-size_6-of-12">
+                    <b>SSN shared count</b>:
+                    {!wrapper.attributes.ssn_shared_count}
+                  </div>
+                  <div class="slds-col slds-p-around_small slds-size_6-of-12">
+                    <b>Name Dob shared count </b>:
+                    {!wrapper.attributes.name_dob_shared_count}
+                  </div>
+                  <div class="slds-col slds-p-around_small slds-size_6-of-12">
+                    <b>SSN issuance dob mismatch </b>:
+                    {!wrapper.attributes.ssn_issuance_dob_mismatch}
+                  </div>
+                  <div class="slds-col slds-p-around_small slds-size_6-of-12">
+                    <b>SSN issued before dob </b>:
+                    {!wrapper.attributes.ssn_issued_before_dob}
+                  </div>
+                  <div class="slds-col slds-p-around_small slds-size_6-of-12">
+                    <b>N ame SSN synthetic address </b>:
+                    {!wrapper.attributes.name_ssn_synthetic_address}
+                  </div>
+                  <div class="slds-col slds-p-around_small slds-size_6-of-12">
+                    <b>SSN bogus </b>: {!wrapper.attributes.ssn_bogus}
+                  </div>
+                  <div class="slds-col slds-p-around_small slds-size_6-of-12">
+                    <b>SSN history longer months </b>:
+                    {!wrapper.attributes.ssn_history_longer_months}
                   </div>
                 </div>
-              </apex:repeat>
+              </div>
             </div>
             <!-- model of rawResponse-->
             <div
@@ -384,7 +428,7 @@
           var x = document.getElementById("rawResponse");
           document.getElementById("rawTextArea").textContent = JSON.stringify({!wrapper.GeneralInfo.rawResponse}, null, '\t');
         x.style.display = "block";
-              }
+                }
 
         function hideRawResponse() {
           var x = document.getElementById("rawResponse");
