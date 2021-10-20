@@ -208,6 +208,7 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Answer__c</fields>
         <relatedList>Survey__c.Lead__c</relatedList>
     </relatedLists>
     <relatedLists>
