@@ -1,0 +1,15 @@
+<!-- sldsValidatorIgnore -->
+
+<template>
+  <lightning-card title="Flows">
+    <div class="slds-var-m-around_medium">
+      <lightning-tree-grid
+        columns={columnNames}
+        data={flowData}
+        key-field="Id"
+        show-row-number-column="true"
+        hide-checkbox-column="true"
+      ></lightning-tree-grid>
+    </div>
+  </lightning-card>
+</template>

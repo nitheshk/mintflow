@@ -23,6 +23,7 @@ global with sharing class LwcCustomController extends AbstractController {
   @RemoteAction
   global static ApexResponse readFlows(Map<String, String> params) {
     try {
+      log?.fine('Inside readFlows');
       return ApexResponse.ok(LwcCustomService.getInstance().readFlows(params));
     } catch (CustomException ex) {
       log?.error(ex);
@@ -31,6 +32,7 @@ global with sharing class LwcCustomController extends AbstractController {
       log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
+      log?.fine('Complete readFlows');
       Logger.persist();
     }
   }

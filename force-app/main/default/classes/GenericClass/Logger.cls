@@ -102,7 +102,7 @@ global with sharing class Logger {
    * @author Digital Align Team | 10-14-2021
    * @param obj String that will be logged
    */
-  global virtual void error(Object obj) {
+  global void error(Object obj) {
     System.debug(LoggingLevel.ERROR, obj);
     if (skipLogging(LoggingLevel.ERROR)) {
       return;
@@ -156,7 +156,7 @@ global with sharing class Logger {
    * @author Digital Align Team | 10-14-2021
    * @param obj String that will be logged
    */
-  global virtual void debug(Object obj) {
+  global void debug(Object obj) {
     System.debug(LoggingLevel.DEBUG, obj);
     if (skipLogging(LoggingLevel.DEBUG)) {
       return;
@@ -183,7 +183,7 @@ global with sharing class Logger {
    * @author Digital Align Team | 10-14-2021
    * @param obj String that will be logged
    */
-  global virtual void info(Object obj) {
+  global void info(Object obj) {
     System.debug(LoggingLevel.INFO, obj);
     if (skipLogging(LoggingLevel.INFO)) {
       return;
@@ -208,7 +208,7 @@ global with sharing class Logger {
    * @author Digital Align Team | 10-14-2021
    * @param obj Object that will be logged
    */
-  global virtual void fine(Object obj) {
+  global void fine(Object obj) {
     System.debug(LoggingLevel.FINE, obj);
     if (skipLogging(LoggingLevel.FINE)) {
       return;
@@ -297,7 +297,7 @@ global with sharing class Logger {
    * @return Boolean
    **/
   @AuraEnabled
-  public static ApexResponse deleteLogs() {
+  global static ApexResponse deleteLogs() {
     try {
       delete [SELECT id FROM diagnostic__c LIMIT 10000];
       return ApexResponse.ok();

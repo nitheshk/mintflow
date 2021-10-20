@@ -67,6 +67,9 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>FlowName__c</fields>
+        <fields>ServiceName__c</fields>
+        <fields>Status__c</fields>
         <relatedList>Flow__c.Flow__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

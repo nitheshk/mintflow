@@ -10,7 +10,7 @@ global with sharing class LwcCustomService extends AbstractService {
   @TestVisible
   private static LwcCustomService serviceInstance;
 
-  public LwcCustomService() {
+  global LwcCustomService() {
     super(LwcCustomService.class);
   }
 
@@ -19,7 +19,7 @@ global with sharing class LwcCustomService extends AbstractService {
    * @author Digital Align Team | 07-27-2021
    * @return Object  singleton
    **/
-  public static LwcCustomService getInstance() {
+  global static LwcCustomService getInstance() {
     if (serviceInstance == null) {
       serviceInstance = (LwcCustomService) getInstance(LwcCustomService.class);
     }
@@ -32,8 +32,9 @@ global with sharing class LwcCustomService extends AbstractService {
    * @param Map<String Object> params
    * @return List<Flow__c>
    **/
-  public List<Flow__c> readFlows(Map<String, Object> params) {
-    String entityId = String.valueOf(params.get('recordId'));
+  global List<Flow__c> readFlows(Map<String, Object> params) {
+    String entityId = String.valueOf(params?.get('recordId'));
+    log?.debug(' recordId : ' + entityId);
     return LwcCustomRepository.fetchFlowByEntityId(entityId);
   }
 }
