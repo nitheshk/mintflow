@@ -24,6 +24,10 @@ public with sharing class SentiLinkReportController {
   public Boolean showResult { get; set; }
 
   public SentiLinkReportController() {
+    contentDocumentId = ApexPages.CurrentPage()
+      .getParameters()
+      .get('id')
+      .escapeHtml4();
     wrapper = new SentiLinkReportWrapper();
     response = new SentiLinkDTO.Response();
     showResult = false;
@@ -31,14 +35,14 @@ public with sharing class SentiLinkReportController {
 
   /**
    * @description
-   * @return SentiLinkReportWrapper
+   * @author Digital Align | 10-20-2021
    **/
   public void prefillFraudCheckDetail() {
     try {
-      string entityId = '00Q1y000001j4f5EAA';
-      list<ContentVersion> cv = FileService.getInstance()
-        .fetchContentVersionByEntityId(entityId, false);
-      String res = (cv[0].VersionData).toString();
+      system.debug('contentDocumentId =' + contentDocumentId);
+      ContentVersion cv = FileService.getInstance()
+        .fetchContentVersionByCD(contentDocumentId, false);
+      String res = (cv.VersionData).toString();
       response = (SentiLinkDTO.Response) JSON.deserialize(
         res,
         SentiLinkDTO.Response.class
@@ -56,6 +60,13 @@ public with sharing class SentiLinkReportController {
     }
   }
 
+  /**
+   * @description
+   * @author Digital Align | 10-20-2021
+   * @param SentiLinkReportWrapper wrapper
+   * @param SentiLinkDTO.Response response
+   * @return SentiLinkReportWrapper
+   **/
   private SentiLinkReportWrapper showCustomerHistroy(
     SentiLinkReportWrapper wrapper,
     SentiLinkDTO.Response response
@@ -69,7 +80,13 @@ public with sharing class SentiLinkReportController {
     wrapper.attributes.ssn_issued_before_dob = response.extra_data.consumer_history.data.attributes.ssn_issued_before_dob;
     return wrapper;
   }
-  //-----------------------------------------------
+  /**
+   * @description
+   * @author Digital Align | 10-20-2021
+   * @param SentiLinkReportWrapper wrapper
+   * @param SentiLinkDTO.Response response
+   * @return SentiLinkReportWrapper
+   **/
   private SentiLinkReportWrapper showScores(
     SentiLinkReportWrapper wrapper,
     SentiLinkDTO.Response response
@@ -91,9 +108,42 @@ public with sharing class SentiLinkReportController {
       }
       wrapper.scores.add(scoreInfo);
     }
-    system.debug('wrapper.scores =' + wrapper.scores);
     return wrapper;
   }
+  /**
+   * @description
+   * @author Digital Align | 10-20-2021
+   * @param String partyId
+   * @return list<Object>
+   **/
+  @AuraEnabled(cacheable=true)
+  public static list<Object> fetchReportDetail(String partyId) {
+    system.debug('partyId = ' + partyId);
+    list<Object> lst = new List<object>();
+    for (
+      ContentVersion contentVersionObj : FileService.getInstance()
+        .fetchContentVersionByFileType(partyId, 'Identity', 'SentiLink', true)
+    ) {
+      lst.add(
+        new Map<String, string>{
+          'contentDocumentId' => contentVersionObj.ContentDocumentId,
+          'title' => contentVersionObj.Title,
+          'documentType' => contentVersionObj.ContentType__c,
+          'reportUrl' => '/apex/SentiLinkReport?id=' +
+          contentVersionObj.contentDocumentId,
+          'createDate' => string.valueOfGmt(contentVersionObj.CreatedDate)
+        }
+      );
+    }
+    return lst;
+  }
+
+  /**
+   * @description
+   * @author Digital Align | 10-20-2021
+   * @param String phrase
+   * @return String
+   **/
   public String toTitleCase(String phrase) {
     String titlePhrase = '';
     Set<String> forceLower = new Set<String>{

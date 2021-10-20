@@ -43,6 +43,11 @@
                 <label>Passport</label>
             </value>
             <value>
+                <fullName>SentiLink</fullName>
+                <default>false</default>
+                <label>SentiLink</label>
+            </value>
+            <value>
                 <fullName>Other</fullName>
                 <default>false</default>
                 <label>Other</label>

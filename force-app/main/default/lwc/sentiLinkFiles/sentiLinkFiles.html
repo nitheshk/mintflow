@@ -1,0 +1,16 @@
+<template>
+  <template if:true={visibility}>
+    <lightning-card title="SentiLink Reports" icon-name="custom:custom64">
+      <div style="height: 170px">
+        <lightning-datatable
+          key-field="id"
+          data={data}
+          show-row-number-column
+          hide-checkbox-column
+          columns={columns}
+        >
+        </lightning-datatable>
+      </div>
+    </lightning-card>
+  </template>
+</template>
