@@ -34,11 +34,11 @@ global with sharing class OnlineAccountController extends AbstractController {
       if (String.isNotBlank(pageParams.get('id'))) {
         //resume application with recordId
         this.application = (SObject) ApplicationService.getInstance()
-          .readLead(pageParams);
+          .readApplication(pageParams);
         this.id = this.application.Id;
       } else {
         this.application = (SObject) ApplicationService.getInstance()
-          .createLead(pageParams);
+          .createApplication(pageParams);
         this.id = this.application.Id;
         PageUtils.setCookie(new Cookie('id', null, this.id, -1, true));
       }
