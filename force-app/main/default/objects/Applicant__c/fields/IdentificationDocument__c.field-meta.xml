@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IdentificationDocument__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Object to store all identity details</description>
+    <externalId>false</externalId>
+    <label>Identification Document</label>
+    <referenceTo>FinServ__IdentificationDocument__c</referenceTo>
+    <relationshipLabel>Applicants</relationshipLabel>
+    <relationshipName>Applicants</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
