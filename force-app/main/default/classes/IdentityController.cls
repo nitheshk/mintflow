@@ -9,11 +9,22 @@
 global with sharing class IdentityController extends AbstractController {
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse verifyCounty(Map<String, String> params) {
+  global static ApexResponse verifyCounty(Map<String, object> params) {
     try {
       return ApexResponse.ok(
         IdentityService.getInstance().verifyCounty(params)
       );
+    } catch (CustomException ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    }
+  }
+  global static ApexResponse scanDL(Map<String, object> params) {
+    try {
+      return ApexResponse.ok(IdentityService.getInstance().scanDL(params));
     } catch (CustomException ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
