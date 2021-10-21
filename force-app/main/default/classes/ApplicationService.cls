@@ -64,28 +64,50 @@ global with sharing class ApplicationService extends AbstractService {
   }
 
   /**
-   * @description
-   * @author Digital Align Team | 10-11-2021
+   * @description create new house application
+   * @author Digital Align Team | 10-05-2021
    * @param Map<String Object> params
-   * @return Lead
+   * @return Account
    **/
-  global virtual Lead createLead(Map<String, Object> params) {
-    // start an Lead
-    Lead leadObj = new Lead();
-    leadObj.LastName = 'Guest';
-    leadObj.Company = 'Guest';
-    leadObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      Lead.SObjectType,
-      'Referral'
+  global virtual Account createApplication(Map<String, Object> params) {
+    // Create init Account Application
+    Account applicationObj = new Account();
+    applicationObj.Name = 'Init';
+    applicationObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+      Account.SObjectType,
+      ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
     );
-    //mandatory field for finServ has validation rule
-    leadObj.FinServ__ReferredByUser__c = UserInfo.getUserId();
-    leadObj.LeadSource = 'Web';
-    leadObj.Status = 'In Progress';
-    //Mapping
-    leadObj.Description = ApplicationServiceHelper.getInstance().getIpAddress();
-    ApplicationRepository.upsertRecord(leadObj);
-    return leadObj;
+    applicationObj.FinServ__Status__c = 'Active';
+    applicationObj.Description = ApplicationServiceHelper.getInstance()
+      .getIpAddress();
+    ApplicationRepository.upsertRecord(applicationObj);
+    return applicationObj;
+  }
+
+  /**
+   * @description Read application by parameter passed
+   * @author Digital Align Team | 10-21-2021
+   * @param Map<String Object> params
+   * @return Account
+   **/
+  global virtual Account readApplication(Map<String, Object> params) {
+    return null;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-21-2021
+   * @param Map<String Object> params
+   * @return Account save applciation based on the parameter
+   **/
+  global virtual Account saveApplication(Map<String, Object> params) {
+    Account applicationObj = (Account) Json.deserialize(
+      String.valueOf(params.get('application')),
+      Account.class
+    );
+    ApplicationRepository.upsertRecord(applicationObj);
+    //leadObj = ApplicationServiceHelper.getInstance().saveSurvey(leadObj);
+    return applicationObj;
   }
 
   /**
@@ -96,35 +118,5 @@ global with sharing class ApplicationService extends AbstractService {
    **/
   global Account resumeApplication(Map<String, Object> params) {
     return null;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 10-05-2021
-   * @param Map<String Object> params
-   * @return Object
-   **/
-  global Lead readLead(Map<String, Object> params) {
-    // Start an application
-    Id leadId = (Id) params.get('id');
-    Lead leadObj = ApplicationRepository.fetchLeadById(leadId);
-    return leadObj;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 10-05-2021
-   * @param Map<String Object> params
-   * @return Account
-   **/
-  global Lead saveLead(Map<String, Object> params) {
-    //update leadObj;
-    Lead leadObj = (Lead) Json.deserialize(
-      String.valueOf(params.get('lead')),
-      Lead.class
-    );
-    ApplicationRepository.upsertRecord(leadObj);
-    leadObj = ApplicationServiceHelper.getInstance().saveSurvey(leadObj);
-    return leadObj;
   }
 }

@@ -44,10 +44,10 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse createLead(Map<String, String> params) {
+  global static ApexResponse createApplication(Map<String, String> params) {
     try {
       return ApexResponse.success(
-        ApplicationService.getInstance().createLead(params)
+        ApplicationService.getInstance().createApplication(params)
       );
     } catch (CustomException ex) {
       log?.error(ex);
@@ -68,10 +68,10 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse readLead(Map<String, String> params) {
+  global static ApexResponse readApplication(Map<String, String> params) {
     try {
       return ApexResponse.success(
-        ApplicationService.getInstance().readLead(params)
+        ApplicationService.getInstance().readApplication(params)
       );
     } catch (CustomException ex) {
       log?.error(ex);
@@ -92,10 +92,11 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse saveLead(Map<String, String> params) {
+  global static ApexResponse saveApplication(Map<String, String> params) {
     try {
-      Lead leadObj = ApplicationService.getInstance().saveLead(params);
-      return ApexResponse.success(leadObj);
+      Account applicationObj = ApplicationService.getInstance()
+        .saveApplication(params);
+      return ApexResponse.success(applicationObj);
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
