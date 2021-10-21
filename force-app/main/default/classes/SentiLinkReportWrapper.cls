@@ -10,10 +10,12 @@ public with sharing class SentiLinkReportWrapper {
   public GeneralInfo generalInfo { get; set; }
   public List<ScoresInfo> scores { get; set; }
   public Attributes attributes { get; set; }
+  public Identity identity { get; set; }
   public SentiLinkReportWrapper() {
     generalInfo = new GeneralInfo();
     scores = new List<ScoresInfo>();
     attributes = new Attributes();
+    identity = new Identity();
   }
 
   public class GeneralInfo {
@@ -63,5 +65,28 @@ public with sharing class SentiLinkReportWrapper {
       this.code = this.direction = this.explanation = '';
       this.rank = 0;
     }
+  }
+  public class Identity {
+    public List<Addresses> addresses { get; set; }
+    public List<Phones> phones { get; set; }
+    public List<Emails> emails { get; set; }
+  }
+  public class Addresses {
+    public String completeAddress { get; set; }
+    public string firstReported { get; set; }
+  }
+  public class Phones {
+    public String phone { get; set; }
+    public String first_reported { get; set; }
+    public String last_reported { get; set; }
+    public Boolean isValidLength { get; set; }
+    public String phone_type { get; set; }
+  }
+  public class Emails {
+    public String email { get; set; }
+    public Boolean format_verified { get; set; }
+    public Boolean is_valid { get; set; }
+    public String first_reported { get; set; }
+    public String last_reported { get; set; }
   }
 }

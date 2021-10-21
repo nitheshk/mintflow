@@ -428,7 +428,7 @@
           var x = document.getElementById("rawResponse");
           document.getElementById("rawTextArea").textContent = JSON.stringify({!wrapper.GeneralInfo.rawResponse}, null, '\t');
         x.style.display = "block";
-                  }
+                    }
 
         function hideRawResponse() {
           var x = document.getElementById("rawResponse");

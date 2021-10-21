@@ -39,7 +39,6 @@ public with sharing class SentiLinkReportController {
    **/
   public void prefillFraudCheckDetail() {
     try {
-      system.debug('contentDocumentId =' + contentDocumentId);
       ContentVersion cv = FileService.getInstance()
         .fetchContentVersionByCD(contentDocumentId, false);
       String res = (cv.VersionData).toString();
@@ -96,15 +95,17 @@ public with sharing class SentiLinkReportController {
       scoreInfo.name = toTitleCase(scoreInfoItem.name);
       scoreInfo.score = scoreInfoItem.score;
       scoreInfo.version = scoreInfoItem.version;
-      for (
-        SentiLinkDTO.ReasonCodes reasonCodeItem : scoreInfoItem.reason_codes
-      ) {
-        SentiLinkReportWrapper.ReasonCodes reasonCode = new SentiLinkReportWrapper.ReasonCodes();
-        reasonCode.code = reasonCodeItem.code;
-        reasonCode.direction = toTitleCase(reasonCodeItem.direction);
-        reasonCode.explanation = reasonCodeItem.explanation;
-        reasonCode.rank = reasonCodeItem.rank;
-        scoreInfo.reasonCodes.add(reasonCode);
+      if (scoreInfoItem.reason_codes != null) {
+        for (
+          SentiLinkDTO.ReasonCodes reasonCodeItem : scoreInfoItem.reason_codes
+        ) {
+          SentiLinkReportWrapper.ReasonCodes reasonCode = new SentiLinkReportWrapper.ReasonCodes();
+          reasonCode.code = reasonCodeItem.code;
+          reasonCode.direction = toTitleCase(reasonCodeItem.direction);
+          reasonCode.explanation = reasonCodeItem.explanation;
+          reasonCode.rank = reasonCodeItem.rank;
+          scoreInfo.reasonCodes.add(reasonCode);
+        }
       }
       wrapper.scores.add(scoreInfo);
     }
