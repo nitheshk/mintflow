@@ -13,6 +13,10 @@
         <layout>Lead-FinServ__Lead %28Referral%29 Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Account-Application Layout</layout>
+        <recordType>Account.Application</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Lead-FinServ__Lead %28Referral%29 Layout</layout>
         <recordType>Lead.FinServ__Referral</recordType>
     </layoutAssignments>
