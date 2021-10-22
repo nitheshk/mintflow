@@ -52,23 +52,9 @@
   },
   "apexdox.engine.source": [
     {
-      "path": "${workspaceFolder}/force-app/main/default/classes/ApexXmlSerializer"
-    },
-    {
-      "path": "${workspaceFolder}/force-app/main/default/classes/EmailService"
-    },
-    {
-      "path": "${workspaceFolder}/force-app/main/default/classes/QueryGenerator"
-    },
-    {
-      "path": "${workspaceFolder}/force-app/main/default/classes/TriggerActionsFramework"
-    },
-    {
-      "path": "${workspaceFolder}/force-app/main/default/classes/utils"
-    },
-    {
       "path": "${workspaceFolder}/force-app/main/default/classes"
     },
+
     {
       "path": "${workspaceFolder}/force-app/main/default/classes/AbstractClass"
     },
@@ -76,13 +62,49 @@
       "path": "${workspaceFolder}/force-app/main/default/classes/AccountManagement"
     },
     {
+      "path": "${workspaceFolder}/force-app/main/default/classes/API"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/Charts"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/CommunityClass"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/DTO"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/DynamicLWCDataTable"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/EmailService"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/FileService"
+    },
+    {
       "path": "${workspaceFolder}/force-app/main/default/classes/GenericClass"
     },
     {
-      "path": "${workspaceFolder}/force-app/main/default/classes/Repository"
+      "path": "${workspaceFolder}/force-app/main/default/classes/NavigationMenu"
     },
     {
-      "path": "${workspaceFolder}/force-app/main/default/classes/Utilities"
+      "path": "${workspaceFolder}/force-app/main/default/classes/QueryGenerator"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/SentiLink"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/TriggerActionsFramework"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/Twillio"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/utils"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/Utils/ApexXmlSerializer"
     }
   ],
   "apexdox.engine.cleanDir": true,
