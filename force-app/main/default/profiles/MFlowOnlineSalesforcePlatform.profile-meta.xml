@@ -143,6 +143,26 @@
         <name>SiteSetting__c</name>
     </customSettingAccesses>
     <description>MFlow Online Salesforce Platform</description>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>ApplicantRelationship__c.FinancialAccount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ApplicantRelationship__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ApplicantRelationship__c.Roles__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ApplicantRelationship__c.isPrimary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Diagnostic__c.ApplicationName__c</field>
@@ -3376,7 +3396,16 @@
         <editable>true</editable>
         <field>Flow__c.Status__c</field>
         <readable>true</readable>
-    </fieldPermissions>     
+    </fieldPermissions>  
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>ApplicantRelationship__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>   
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
