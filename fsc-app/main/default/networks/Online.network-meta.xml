@@ -30,7 +30,7 @@
   >dau01__DoTract/dau01__CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
   <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
   <logoutUrl
-  >https://sandbox-energy-app-8472-dev-ed-17c36d86fa2.cs114.force.com/Online</logoutUrl>
+  >https://sandbox-power-enterprise-7712-dev-ed-17ca7321f66.cs75.force.com/Online</logoutUrl>
   <networkMemberGroups>
     <permissionSet>dau01__DoTractGuest</permissionSet>
     <permissionSet>dau01__DoTractCustomerCommunity</permissionSet>
