@@ -68,7 +68,7 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
     List<Survey__c> toBeDelete = new List<Survey__c>();
     List<Survey__c> toBeSave = new List<Survey__c>();
     for (Survey__c surveyObj : leadObj.Surveys__r) {
-      if (surveyObj.deleteRecord__c == true) {
+      if (surveyObj.DeleteRecord__c == true) {
         toBeDelete.add(surveyObj);
       } else {
         toBeSave.add(surveyObj);
