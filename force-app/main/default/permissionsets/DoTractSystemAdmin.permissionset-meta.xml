@@ -875,12 +875,12 @@
         <editable>true</editable>
         <field>Applicant__c.IsPhoneNumberVerified__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-        <fieldPermissions>
+    </fieldPermissions> 
+    <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.Nationality__c</field>
+        <field>Applicant__c.DeleteRecord__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>   
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.AccountId</field>
@@ -2549,6 +2549,26 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__IdentificationDocument__c.FinServ__VerifiedOn__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__IdentificationDocument__c.Nationality__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__IdentificationDocument__c.Nationality__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__IdentificationDocument__c.Applicant__c</field>
+        <readable>true</readable>
+    </fieldPermissions>  
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__IdentificationDocument__c.DeleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
