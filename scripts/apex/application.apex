@@ -2,7 +2,7 @@ String applicationId = '0010w00000ndNSUAA2';
 
 List<Id> ids = new List<Id>{ applicationId };
 
-Account result1 = DatabaseUtils.getRecord(
+Account result1 = (Account) DatabaseUtils.getRecord(
   new Query(Account.SObjectType)
     .addFields()
     .queryChild('dau01__Applicants__r')
@@ -10,23 +10,27 @@ Account result1 = DatabaseUtils.getRecord(
     .queryChild('FinServ__HouseholdFinancialAccounts__r')
     .run()
     .whereIn('Id', ids)
-    .toString(true)
+    .toString()
 );
 
-system.debug(Json.Serialize(result1));
-logger.persist();
+system.debug('Account : ' + Json.Serialize(result1));
 
-List<dau01__Applicant__c> result2 = DatabaseUtils.getRecord(
+List<dau01__Applicant__c> result2 = (List<dau01__Applicant__c>) DatabaseUtils.getRecords(
   new Query(dau01__Applicant__c.SObjectType)
     .addFields()
-    .queryChild('dau01__Applicants__r')
+    .queryChild('dau01__IdentificationDocuments__r')
     .addFields()
     .run()
-    .whereEq('Id', result1.dau01__Applicants__r)
-    .toString(true)
+    .whereIn('Id', result1.dau01__Applicants__r)
+    .toString()
 );
-system.debug(Json.Serialize(result));
+system.debug('Applicant : ' + Json.Serialize(result2));
 
-//
-FinServ__IdentificationDocument__c identity = new FinServ__IdentificationDocument__c();
-insert identity;
+dau01.SObjectConstructor construct = dau01.SObjectConstructor.getInstance(
+  result1
+);
+construct.setChildObjects('dau01__Applicants__r', result2);
+result1 = (Account) construct.build();
+system.debug('Full Json : ' + Json.Serialize(result1));
+
+logger.persist();
