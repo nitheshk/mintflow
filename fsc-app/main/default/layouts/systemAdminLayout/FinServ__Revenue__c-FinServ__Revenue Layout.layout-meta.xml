@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>FinServ__Account__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Applicant__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

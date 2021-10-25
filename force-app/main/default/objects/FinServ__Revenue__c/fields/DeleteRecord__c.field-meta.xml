@@ -5,7 +5,7 @@
     <description>Mark the record for deletion</description>
     <externalId>false</externalId>
     <inlineHelpText>Mark the record for deletion</inlineHelpText>
-    <label>Delete Record</label>
-    <trackHistory>false</trackHistory>
+    <label>Delete Record </label>
+    <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

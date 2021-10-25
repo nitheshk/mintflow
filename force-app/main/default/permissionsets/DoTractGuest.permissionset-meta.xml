@@ -1223,6 +1223,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ContactPointAddress.Applicant__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ContactPointAddress.ActiveFromDate</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1522,6 +1527,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>FinServ__AssetsAndLiabilities__c.Applicant__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__AssetsAndLiabilities__c.DeleteRecord__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>FinServ__AssetsAndLiabilities__c.FinServ__Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1642,6 +1657,16 @@
         <field>FinServ__Education__c.FinServ__SourceSystemId__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.Applicant__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.DeleteRecord__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Employment__c.FinServ__AnnualIncome__c</field>
@@ -2551,6 +2576,16 @@
         <field>FinServ__LifeEvent__c.FinServ__SourceSystemId__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Revenue__c.Applicant__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Revenue__c.DeleteRecord__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Revenue__c.FinServ__Account__c</field>
