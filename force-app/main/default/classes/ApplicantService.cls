@@ -25,4 +25,51 @@ global with sharing class ApplicantService extends AbstractService {
     }
     return serviceInstance;
   }
+
+  /**
+   * @description Save applicants
+   * @author Digital Align Team | 10-25-2021
+   * @param String applicationId
+   * @param List<dau01__Applicant__c> applicants
+   * @return virtual
+   **/
+  global virtual List<dau01__Applicant__c> saveApplicants(
+    String applicationId,
+    List<dau01__Applicant__c> applicants
+  ) {
+    log.fine('Inside save applicants');
+    List<dau01__Applicant__c> applicantToUpdate = new List<dau01__Applicant__c>();
+    List<dau01__Applicant__c> applicantToDelete = new List<dau01__Applicant__c>();
+
+    if (applicants?.size() > 0) {
+      for (Applicant__c applicant : applicants) {
+        if (applicant.dau01__DeleteRecord__c == true) {
+          applicantToDelete.add(applicant);
+        } else {
+          applicantToUpdate.add(applicant);
+        }
+      }
+    }
+
+    ApplicantRepository.upsertRecords(applicantToUpdate);
+
+    log.fine('Finish save applicants');
+    return applicantToUpdate;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-25-2021
+   * @param List<dau01__Applicant__c> applicants
+   * @return Boolean
+   **/
+  global virtual Boolean deleteApplicants(
+    List<dau01__Applicant__c> applicants
+  ) {
+    if (!applicants.isEmpty()) {
+      ApplicantRepository.deleteRecords(applicants);
+      // need to delete child records
+    }
+    return true;
+  }
 }

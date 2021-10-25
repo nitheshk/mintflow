@@ -71,17 +71,17 @@ global with sharing class ApplicationService extends AbstractService {
    **/
   global virtual Account createApplication(Map<String, Object> params) {
     // Create init Account Application
-    Account applicationObj = new Account();
-    applicationObj.Name = 'Init';
-    applicationObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+    Account application = new Account();
+    application.Name = 'Init';
+    application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       Account.SObjectType,
       ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
     );
-    applicationObj.FinServ__Status__c = 'Active';
-    applicationObj.Description = ApplicationServiceHelper.getInstance()
+    application.FinServ__Status__c = 'Active';
+    application.Description = ApplicationServiceHelper.getInstance()
       .getIpAddress();
-    ApplicationRepository.upsertRecord(applicationObj);
-    return applicationObj;
+    ApplicationRepository.upsertRecord(application);
+    return application;
   }
 
   /**
@@ -96,18 +96,28 @@ global with sharing class ApplicationService extends AbstractService {
 
   /**
    * @description
-   * @author Digital Align Team | 10-21-2021
-   * @param Map<String Object> params
-   * @return Account save applciation based on the parameter
+   * @author Digital Align Team | 10-25-2021
+   * @param Account application
+   * @return virtual
    **/
-  global virtual Account saveApplication(Map<String, Object> params) {
-    Account applicationObj = (Account) Json.deserialize(
-      String.valueOf(params.get('application')),
-      Account.class
-    );
-    ApplicationRepository.upsertRecord(applicationObj);
+  global virtual Account saveApplication(Account application) {
+    ApplicationRepository.upsertRecord(application);
     //leadObj = ApplicationServiceHelper.getInstance().saveSurvey(leadObj);
-    return applicationObj;
+    if (application.Applicants__r?.size() > 0) {
+      List<dau01__Applicant__c> applicants = ApplicantService.getInstance()
+        .saveApplicants(application.Id, application.Applicants__r);
+
+      application = (Account) dau01.SObjectConstructor.getInstance(application)
+        .setChildObjects('dau01__Applicants__r', applicants)
+        .build();
+    }
+
+    if (application.FinServ__HouseholdFinancialAccounts__r?.size() > 0) {
+      // same as applicant steps
+      log.info('update financial account here');
+    }
+
+    return application;
   }
 
   /**

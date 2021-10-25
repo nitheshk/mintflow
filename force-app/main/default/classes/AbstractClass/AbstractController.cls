@@ -19,4 +19,18 @@ global abstract with sharing class AbstractController {
     this.classType = classType;
     log = logger.getInstance(this.classType);
   }
+
+  /**
+   * @description validate apex request
+   * @author Digital Align Team | 10-25-2021
+   * @param ApexRequest request
+   **/
+  global static void validateRequest(ApexRequest request) {
+    if (request != null) {
+      request?.setRequest();
+      //validate token;
+    } else {
+      throw new CustomException('Invalid Request');
+    }
+  }
 }

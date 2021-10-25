@@ -92,10 +92,16 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse saveApplication(Map<String, String> params) {
+  global static ApexResponse saveApplication(ApexRequest request) {
     try {
-      Account applicationObj = ApplicationService.getInstance()
-        .saveApplication(params);
+      validateRequest(request);
+      Account applicationObj = (Account) Json.deserialize(
+        request.data,
+        Account.class
+      );
+      applicationObj = ApplicationService.getInstance()
+        .saveApplication(applicationObj);
+
       return ApexResponse.success(applicationObj);
     } catch (CustomException ex) {
       log?.error(ex);

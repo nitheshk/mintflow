@@ -7,6 +7,14 @@
         <enabled>true</enabled>
     </pageAccesses>
     <classAccesses>
+        <apexClass>ApplicantController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ApexRequest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>IdentityController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
