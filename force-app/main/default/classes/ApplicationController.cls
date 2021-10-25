@@ -95,6 +95,7 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse saveApplication(ApexRequest request) {
     try {
       validateRequest(request);
+      log?.debug('params : ' + ApexRequest.request.params);
       Account applicationObj = (Account) Json.deserialize(
         request.data,
         Account.class

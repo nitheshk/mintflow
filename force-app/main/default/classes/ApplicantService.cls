@@ -57,9 +57,6 @@ global with sharing class ApplicantService extends AbstractService {
       }
     }
 
-    log?.fine('applicantToUpdate size : ' + applicantToUpdate.size());
-    log?.fine('applicantToDelete size : ' + applicantToDelete.size());
-
     ApplicantRepository.upsertRecords(applicantToUpdate);
 
     log?.fine('Finish save applicants');

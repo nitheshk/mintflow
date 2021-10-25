@@ -81,4 +81,16 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
       .setChildObjects('dau01__Surveys__r', toBeSave)
       .build();
   }
+
+  /**
+   * @description resolve application field before saving
+   * @author Digital Align Team | 10-25-2021
+   * @param Account application
+   * @return virtual
+   **/
+  global virtual Account resolveApplicationFields(Account application) {
+    // update and add application related fields based on the values..
+
+    return application;
+  }
 }
