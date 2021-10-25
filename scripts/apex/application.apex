@@ -34,3 +34,10 @@ result1 = (Account) construct.build();
 system.debug('Full Json : ' + Json.Serialize(result1));
 
 logger.persist();
+
+FinServ__Revenue__c rv = new FinServ__Revenue__c(
+  FinServ__Date__c = Date.Today(),
+  FinServ__Amount__c = 10,
+  dau01__Applicant__c = result1.dau01__Applicants__r[0].Id
+);
+insert rv;
