@@ -32,7 +32,12 @@ global with sharing class ApexRequest {
     request.event = this.event;
     request.currentPage = this.currentPage;
     request.nextPage = this.nextPage;
-    request.params = (Map<String, Object>) Json.deserializeUntyped(this.header);
+    if (String.isNotBlank(this.header)) {
+      request.params = (Map<String, Object>) Json.deserializeUntyped(
+        this.header
+      );
+    }
+
     ApexRequest.request = request;
   }
 }

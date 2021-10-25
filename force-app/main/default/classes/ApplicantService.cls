@@ -37,23 +37,32 @@ global with sharing class ApplicantService extends AbstractService {
     String applicationId,
     List<dau01__Applicant__c> applicants
   ) {
-    log.fine('Inside save applicants');
+    log?.fine('Inside save applicants');
     List<dau01__Applicant__c> applicantToUpdate = new List<dau01__Applicant__c>();
     List<dau01__Applicant__c> applicantToDelete = new List<dau01__Applicant__c>();
 
     if (applicants?.size() > 0) {
       for (Applicant__c applicant : applicants) {
-        if (applicant.dau01__DeleteRecord__c == true) {
+        if (
+          applicant.dau01__DeleteRecord__c == true &&
+          String.isBlank(applicant.Id)
+        ) {
           applicantToDelete.add(applicant);
         } else {
+          if (String.isNotBlank(applicant.dau01__Application__c)) {
+            applicant.dau01__Application__c = applicationId;
+          }
           applicantToUpdate.add(applicant);
         }
       }
     }
 
+    log?.fine('applicantToUpdate size : ' + applicantToUpdate.size());
+    log?.fine('applicantToDelete size : ' + applicantToDelete.size());
+
     ApplicantRepository.upsertRecords(applicantToUpdate);
 
-    log.fine('Finish save applicants');
+    log?.fine('Finish save applicants');
     return applicantToUpdate;
   }
 

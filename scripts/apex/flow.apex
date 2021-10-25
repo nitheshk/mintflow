@@ -13,8 +13,8 @@ flow.setFlow('DL Scan');
 // create subflow under flow
 //sub flow 1
 String key = Flow.setSubFlow('Primary_Entity', 'Service.DLScan');
-log.debug('Key ' + key);
-log.debug('isPassed ' + Flow.isSubFlowPassed(key));
+log?.debug('Key ' + key);
+log?.debug('isPassed ' + Flow.isSubFlowPassed(key));
 // mark subflow has completed / failed to completed subflow process
 flow.setSubFlowPassed('DLScan primary passed');
 
@@ -27,7 +27,7 @@ flow.setSubFlowResponse(' Some Json response ');
 // mark as completed second subflow
 flow.setSubFlowPassed('DLScan Joint failed');
 
-log.debug('isPassed ' + Flow.isSubFlowPassed(key));
+log?.debug('isPassed ' + Flow.isSubFlowPassed(key));
 // mark as completed first flow
 flow.setFlowPassed('Not complete');
 

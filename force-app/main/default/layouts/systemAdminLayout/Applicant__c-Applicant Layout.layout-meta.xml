@@ -109,6 +109,29 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <fields>Parent</fields>
+        <fields>ActiveFromDate</fields>
+        <fields>ActiveToDate</fields>
+        <fields>IsPrimary</fields>
+        <fields>IsDefault</fields>
+        <fields>Name</fields>
+        <relatedList>ContactPointAddress.Applicant__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>FinServ__Description__c</fields>
+        <fields>FinServ__Amount__c</fields>
+        <relatedList>FinServ__AssetsAndLiabilities__c.Applicant__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>FinServ__Employment__c.Applicant__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>FinServ__Revenue__c.Applicant__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
         <relatedList
     >FinServ__IdentificationDocument__c.Applicant__c</relatedList>

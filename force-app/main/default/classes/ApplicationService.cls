@@ -114,7 +114,7 @@ global with sharing class ApplicationService extends AbstractService {
 
     if (application.FinServ__HouseholdFinancialAccounts__r?.size() > 0) {
       // same as applicant steps
-      log.info('update financial account here');
+      log?.info('update financial account here');
     }
 
     return application;
