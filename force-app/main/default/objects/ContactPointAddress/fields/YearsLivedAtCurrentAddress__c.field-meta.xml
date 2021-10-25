@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <label>Years Lived At Current Address</label>
     <precision>2</precision>
-    <required>true</required>
+    <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>
     <type>Number</type>

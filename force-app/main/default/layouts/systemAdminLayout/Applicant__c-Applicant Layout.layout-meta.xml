@@ -109,13 +109,15 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>Parent</fields>
+        <fields>Name</fields>
+        <fields>IsPrimary</fields>
         <fields>ActiveFromDate</fields>
         <fields>ActiveToDate</fields>
-        <fields>IsPrimary</fields>
         <fields>IsDefault</fields>
-        <fields>Name</fields>
+        <fields>ADDRESS.STREET</fields>
         <relatedList>ContactPointAddress.Applicant__c</relatedList>
+        <sortField>ActiveFromDate</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
