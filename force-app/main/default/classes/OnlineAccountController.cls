@@ -9,6 +9,7 @@
 global with sharing class OnlineAccountController extends AbstractController {
   public String id { get; set; }
   public SObject application { get; set; }
+  public String applicationJSON { get; set; }
   public Map<String, String> pageParams { get; set; }
 
   public OnlineAccountController() {
@@ -42,6 +43,7 @@ global with sharing class OnlineAccountController extends AbstractController {
         this.id = this.application.Id;
         PageUtils.setCookie(new Cookie('id', null, this.id, -1, true));
       }
+      this.applicationJSON = Json.serialize(this.application);
     } catch (Exception ex) {
       log?.error(ex);
     } finally {

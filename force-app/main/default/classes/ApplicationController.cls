@@ -44,30 +44,6 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse createApplication(Map<String, String> params) {
-    try {
-      return ApexResponse.success(
-        ApplicationService.getInstance().createApplication(params)
-      );
-    } catch (CustomException ex) {
-      log?.error(ex);
-      return ApexResponse.exception(ex);
-    } catch (Exception ex) {
-      log?.error(ex);
-      return ApexResponse.fail(ex);
-    } finally {
-      Logger.persist();
-    }
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 09-29-2021
-   * @param Map<String String> params
-   * @return ApexResponse
-   **/
-  @AuraEnabled
-  @RemoteAction
   global static ApexResponse readApplication(Map<String, String> params) {
     try {
       return ApexResponse.success(

@@ -13,6 +13,9 @@ global with sharing class ApexRequest {
   global String token { get; set; }
   @AuraEnabled
   global String event { get; set; }
+  //Primary Flow or Joint Flow
+  @AuraEnabled
+  global String flowType { get; set; }
   @AuraEnabled
   global String currentPage { get; set; }
   @AuraEnabled
@@ -31,6 +34,7 @@ global with sharing class ApexRequest {
     request.token = this.token;
     request.event = this.event;
     request.currentPage = this.currentPage;
+    request.flowType = this.flowType;
     request.nextPage = this.nextPage;
     if (String.isNotBlank(this.header)) {
       request.params = (Map<String, Object>) Json.deserializeUntyped(
