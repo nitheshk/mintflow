@@ -50,8 +50,10 @@ global with sharing class IdentityService extends AbstractService {
     ContentVersion cv = FileService.getInstance()
       .fetchContentVersionByCD(contentDocumentId, false);
     if (cv != null) {
-      Map<String, object> res = DocumentScanAdapter.invokeAPI(
-        new Map<String, Object>{ 'file' => cv.VersionData }
+      IdScanAnalyzerDTO.Request requestDTO = new IdScanAnalyzerDTO.Request();
+      requestDTO.apikey = 'rfdNfcbatBLzmdtTHqVaMLphOQQdLNw2';
+      Map<String, object> res = IdScanAnalyzerProvider.invokeAPI(
+        new Map<String, Object>{ 'DTO' => requestDTO }
       );
       system.debug('res ==== ' + res);
       if (res.get('Status') == 200) {

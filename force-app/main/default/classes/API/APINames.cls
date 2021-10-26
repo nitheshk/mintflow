@@ -11,5 +11,6 @@ global enum APINames {
   TwillioMessaging,
   SentiLink,
   SentiLinkIdCompletion,
-  Geocoding
+  Geocoding,
+  IdScanAnalyzer
 }

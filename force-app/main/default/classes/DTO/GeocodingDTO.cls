@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.VariableNamingConventions')
 public with sharing class GeocodingDTO extends AbstractDTO {
   // Formatted response
   public class ReturnResponse {
