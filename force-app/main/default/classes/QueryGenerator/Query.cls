@@ -367,9 +367,9 @@ global inherited sharing class Query {
    *    .removeFields(new List<String>{'LastName','FirstName'})
    *    .toString(true);
    **/
-  global Query removeFields(list<String> fieldNames) {  
-    List<String> resolvedFiledNames=new List<String>();
-    for(String name:fieldNames){
+  global Query removeFields(list<String> fieldNames) {
+    List<String> resolvedFiledNames = new List<String>();
+    for (String name : fieldNames) {
       resolvedFiledNames.add(this.resolveApiName(name));
     }
     this.fieldNames.removeAll(resolvedFiledNames);
@@ -721,11 +721,20 @@ global inherited sharing class Query {
    *   system.debug(system.JSON.Serialize(sl));
    **/
   global Query whereIn(String fieldName, List<Object> values) {
+    if (CollectionUtils.isListEmpty(values)) {
+      this.whereClause.add(
+        resolveApiName(fieldName) +
+        QueryConstants.CONDITION_IN +
+        QueryConstants.SYB_OPEN_BRACKET +
+        'null' +
+        QueryConstants.SYB_CLOSE_BRACKET
+      );
+      return this;
+    }
+
     List<String> criteriaList = new List<String>();
-    if (values != null) {
-      for (Object obj : values) {
-        criteriaList.add(this.formatCriteriaInput(obj));
-      }
+    for (Object obj : values) {
+      criteriaList.add(this.formatCriteriaInput(obj));
     }
 
     String concatValues = criteriaList.isEmpty()
@@ -842,11 +851,20 @@ global inherited sharing class Query {
    *   system.debug(system.JSON.Serialize(sl));
    **/
   global Query whereNotIn(String fieldName, List<Object> values) {
+    if (CollectionUtils.isListEmpty(values)) {
+      this.whereClause.add(
+        resolveApiName(fieldName) +
+        QueryConstants.CONDITION_NOT_IN +
+        QueryConstants.SYB_OPEN_BRACKET +
+        'null' +
+        QueryConstants.SYB_CLOSE_BRACKET
+      );
+      return this;
+    }
+
     List<String> criteriaList = new List<String>();
-    if (values != null) {
-      for (Object obj : values) {
-        criteriaList.add(this.formatCriteriaInput(obj));
-      }
+    for (Object obj : values) {
+      criteriaList.add(this.formatCriteriaInput(obj));
     }
 
     String concatValues = criteriaList.isEmpty()

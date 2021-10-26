@@ -44,10 +44,14 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse readApplication(Map<String, String> params) {
+  global static ApexResponse readApplicationWithChild(
+    Map<String, String> params
+  ) {
     try {
+      Id applicationId = (Id) params.get('applicationId');
+
       return ApexResponse.success(
-        ApplicationService.getInstance().readApplication(params)
+        ApplicationService.getInstance().readApplicationWithChild(applicationId)
       );
     } catch (CustomException ex) {
       log?.error(ex);

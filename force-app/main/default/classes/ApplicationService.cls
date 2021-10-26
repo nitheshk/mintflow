@@ -90,8 +90,28 @@ global with sharing class ApplicationService extends AbstractService {
    * @param Map<String Object> params
    * @return Account
    **/
-  global virtual Account readApplication(Map<String, Object> params) {
-    return null;
+  global virtual Account readApplicationWithChild(Id applicationId) {
+    Account application = ApplicationRepository.readApplicationWithChild(
+      applicationId
+    );
+
+    List<Applicant__c> applicants = ApplicantService.getInstance()
+      .readApplicantsWithChild(application.Applicants__r);
+    List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
+      .readFinancialAccountsWithChild(
+        application.FinServ__HouseholdFinancialAccounts__r
+      );
+
+    //Combine result into single application object
+    dau01.SObjectConstructor builder = dau01.SObjectConstructor.getInstance(
+      application
+    );
+    builder.setChildObjects('dau01__Applicants__r', applicants);
+    builder.setChildObjects(
+      'FinServ__HouseholdFinancialAccounts__r',
+      financialAccounts
+    );
+    return (Account) builder.build();
   }
 
   /**

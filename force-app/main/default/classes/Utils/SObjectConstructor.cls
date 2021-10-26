@@ -109,6 +109,9 @@ global with sharing class SObjectConstructor {
    * @return SObject
    **/
   global Sobject build() {
+    if (this.parentObj == null) {
+      return null;
+    }
     Map<String, Object> parentMap = (Map<String, Object>) JSON.deserializeUntyped(
       Json.Serialize(this.parentObj)
     );
@@ -120,7 +123,7 @@ global with sharing class SObjectConstructor {
       parentMap.put(
         relationshipName,
         new Map<String, Object>{
-          'totalSize' => childObjs.size(),
+          'totalSize' => childObjs?.size(),
           'done' => true,
           'records' => childObjs
         }

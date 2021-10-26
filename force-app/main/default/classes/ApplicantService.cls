@@ -25,4 +25,44 @@ global with sharing class ApplicantService extends AbstractService {
     }
     return serviceInstance;
   }
+
+  /**
+   * @description Read all applicant by applicant records
+   * @author Digital Align Team | 10-26-2021
+   * @param List<Applicant__c> applicants
+   **/
+  global virtual List<Applicant__c> readApplicantsWithChild(
+    List<Applicant__c> applicants
+  ) {
+    return readApplicantsWithChild(new Map<Id, SObject>(applicants).keyset());
+  }
+
+  /**
+   * @description Read all applicant by applicant Ids
+   * @author Digital Align Team | 10-26-2021
+   * @param Set<Id> applicantIds
+   **/
+  global virtual List<Applicant__c> readApplicantsWithChild(
+    Set<Id> applicantIds
+  ) {
+    return ApplicantRepository.readApplicantsWithChild(applicantIds);
+  }
+
+  /**
+   * @description Read  applicant by applicant record
+   * @author Digital Align Team | 10-26-2021
+   * @param Applicant__c applicants
+   **/
+  global virtual Applicant__c readApplicantWithChild(Applicant__c applicant) {
+    return readApplicantWithChild(applicant?.Id);
+  }
+
+  /**
+   * @description Read applicant by applicant Id
+   * @author Digital Align Team | 10-26-2021
+   * @param String applicantId
+   **/
+  global virtual Applicant__c readApplicantWithChild(Id applicantId) {
+    return ApplicantRepository.readApplicantWithChild(applicantId);
+  }
 }

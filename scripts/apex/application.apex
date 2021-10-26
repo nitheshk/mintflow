@@ -50,6 +50,11 @@ system.debug('Full Json : ' + Json.Serialize(result1));
 
 logger.persist();
 
+//Same above function using read function
+ApexResponse res= ApplicationController.readApplicationWithChild(new Map<String,String>{'applicationId'=>'0010w00000ndVjdAAE'});
+system.debug('Full Json : ' + res.data);
+logger.persist();
+
 /// manuall insert
 FinServ__Revenue__c rv = new FinServ__Revenue__c(
   FinServ__Date__c = Date.Today(),
@@ -72,3 +77,6 @@ ApexRequest request = new ApexRequest();
 request.header = '{}';
 Request.data = js;
 ApplicationController.saveApplication(request);
+
+Set<Id> str = new Set<Id>{ 'a0b0w00000EYaRJAA1' };
+Set<String> st1 = (Set<String>) str;
