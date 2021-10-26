@@ -24,13 +24,13 @@ public with sharing class ExternalAPICallOut {
         APIConfigurationService.getAPISettings().Method__c != 'DELETE')
       ) {
         req.setBody(requestBody);
-        System.debug('header::' + header);
         System.debug('requestBody::' + requestBody);
       }
       if (header != null) {
         for (String key : header.keySet()) {
           req.setHeader(key, header.get(key));
         }
+        System.debug('header::' + header);
       }
       Http http = new Http();
       response = http.send(req);
