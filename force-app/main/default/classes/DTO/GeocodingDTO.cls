@@ -1,4 +1,5 @@
 public with sharing class GeocodingDTO extends AbstractDTO {
+  // Formatted response
   public class ReturnResponse {
     public List<MatchingAddress> matchingAddress;
     public Boolean isCountyEligible;
@@ -11,6 +12,8 @@ public with sharing class GeocodingDTO extends AbstractDTO {
     public String neighborhood;
     public String zipcode;
   }
+
+  //Response from API
   public class Response {
     public List<Results> results;
     public String status;
