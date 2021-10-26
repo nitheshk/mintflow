@@ -96,41 +96,6 @@ global with sharing class ApplicationService extends AbstractService {
 
   /**
    * @description
-   * @author Digital Align Team | 10-25-2021
-   * @param Account application
-   * @return virtual
-   **/
-  global virtual Account saveApplication(Account application) {
-    ApplicationRepository.upsertRecord(application);
-
-    dau01.SObjectConstructor constructor = dau01.SObjectConstructor.getInstance(
-      application
-    );
-    //save applicants
-    if (application.Applicants__r?.size() > 0) {
-      List<dau01__Applicant__c> applicants = ApplicantService.getInstance()
-        .saveApplicants(application.Id, application.Applicants__r);
-      constructor.setChildObjects('dau01__Applicants__r', applicants);
-    }
-
-    //save financial accounts
-    if (application.FinServ__HouseholdFinancialAccounts__r?.size() > 0) {
-      List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
-        .saveFinancialAccount(
-          application.FinServ__HouseholdFinancialAccounts__r
-        );
-      constructor.setChildObjects(
-        'FinServ__HouseholdFinancialAccounts__r',
-        financialAccounts
-      );
-    }
-    application = (Account) constructor.build();
-
-    return application;
-  }
-
-  /**
-   * @description
    * @author Digital Align Team | 09-29-2021
    * @param Map<String Object> params
    * @return Object

@@ -76,7 +76,7 @@ global with sharing class ApplicationController extends AbstractController {
         request.data,
         Account.class
       );
-      applicationObj = ApplicationService.getInstance()
+      applicationObj = ApplicationPersistService.getInstance()
         .saveApplication(applicationObj);
 
       return ApexResponse.success(applicationObj);

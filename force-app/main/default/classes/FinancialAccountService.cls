@@ -27,19 +27,4 @@ global with sharing class FinancialAccountService extends AbstractService {
     }
     return serviceInstance;
   }
-
-  /**
-   * @description Save financial account and childs
-   * @author Digital Align Team | 10-25-2021
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
-   * @return List<FinServ__FinancialAccount__c>
-   **/
-  global virtual List<FinServ__FinancialAccount__c> saveFinancialAccount(
-    List<FinServ__FinancialAccount__c> financialAccounts
-  ) {
-    if (financialAccounts?.size() > 0) {
-      FinancialAccountRepository.upsertRecords(financialAccounts);
-    }
-    return financialAccounts;
-  }
 }

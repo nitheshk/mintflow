@@ -29,6 +29,9 @@ global inherited sharing class SObjectUtils {
   global static DescribeSObjectResult getDescribeSObjectResult(
     SObjectType sType
   ) {
+    if (sType == null) {
+      return null;
+    }
     if (!sObjectDescribeMap.containsKey(sType)) {
       sObjectDescribeMap.put(
         sType,
@@ -47,7 +50,7 @@ global inherited sharing class SObjectUtils {
   global static DescribeSObjectResult getDescribeSObjectResult(
     List<SObject> records
   ) {
-    return getDescribeSObjectResult(records.getSObjectType());
+    return getDescribeSObjectResult(records?.getSObjectType());
   }
 
   /**
@@ -57,7 +60,7 @@ global inherited sharing class SObjectUtils {
    * @return DescribeSObjectResult
    **/
   global static DescribeSObjectResult getDescribeSObjectResult(SObject record) {
-    return getDescribeSObjectResult(record.getSObjectType());
+    return getDescribeSObjectResult(record?.getSObjectType());
   }
 
   /**
@@ -67,7 +70,7 @@ global inherited sharing class SObjectUtils {
    * @return String
    **/
   global static String getObjectName(SObjectType sType) {
-    return getDescribeSObjectResult(sType).getName();
+    return getDescribeSObjectResult(sType)?.getName();
   }
 
   /**
@@ -77,7 +80,7 @@ global inherited sharing class SObjectUtils {
    * @return String
    **/
   global static String getObjectName(List<SObject> records) {
-    return getObjectName(records.getSObjectType());
+    return getObjectName(records?.getSObjectType());
   }
 
   /**
@@ -87,7 +90,7 @@ global inherited sharing class SObjectUtils {
    * @return String
    **/
   global static String getObjectName(SObject record) {
-    return getObjectName(record.getSObjectType());
+    return getObjectName(record?.getSObjectType());
   }
 
   /**
