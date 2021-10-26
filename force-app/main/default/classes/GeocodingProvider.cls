@@ -5,16 +5,36 @@
  * @reference
  * @description
  **/
-public with sharing class GeocodingProvider {
+@SuppressWarnings('PMD.AvoidGlobalModifier')
+global with sharing class GeocodingProvider extends AbstractService {
+  @TestVisible
+  private static GeocodingProvider serviceInstance;
+
+  public GeocodingProvider() {
+    super(GeocodingProvider.class);
+  }
+
+  /**
+   * @description Provides a singleton instance of GeocodingProvider from which all other class methods can be accessed.
+   * @author Digital Align Team | 07-27-2021
+   * @return Object  singleton
+   **/
+  public static GeocodingProvider getInstance() {
+    if (serviceInstance == null) {
+      serviceInstance = (GeocodingProvider) getInstance(
+        GeocodingProvider.class
+      );
+    }
+    return serviceInstance;
+  }
   /**
    * @description
    * @author Digital Align | 10-26-2021
    * @param Map<String object> params
    * @return GeocodingDTO.ReturnResponse
    **/
-  public static GeocodingDTO.ReturnResponse invokeAPI(
-    Map<String, object> params
-  ) {
+  global virtual object invokeAPI(Map<String, object> params) {
+    log?.fine('Inside invokeAPI -> params -> ' + Json.serialize(params));
     GeocodingDTO.Response response;
     GeocodingDTO.ReturnResponse returnResponse = new GeocodingDTO.ReturnResponse();
     try {
@@ -75,8 +95,13 @@ public with sharing class GeocodingProvider {
           }
           matchingAddresses.add(add);
           returnResponse.matchingAddress = matchingAddresses;
+          break;
         }
       }
+      log
+        ?.info(
+          'invokeAPI -> ReturnResponse -> ' + Json.serialize(returnResponse)
+        );
       return returnResponse;
     } catch (Exception ex) {
       throw new CustomException(ex.getMessage());

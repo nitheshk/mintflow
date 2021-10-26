@@ -36,7 +36,7 @@ global with sharing class IdentityService extends AbstractService {
     if (string.isBlank(zipcode) && params != null) {
       throw new CustomException('Zipcode value notset');
     }
-    return (GeocodingProvider.invokeAPI(params));
+    return (GeocodingProvider.getInstance().invokeAPI(params));
   }
   /**
    * @description

@@ -7,10 +7,12 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class IdentityController extends AbstractController {
+  private static logger log = logger.getInstance(IdentityController.class);
   @AuraEnabled
   @RemoteAction
   global static ApexResponse verifyCounty(Map<String, object> params) {
     try {
+      log?.fine('Inside verifyCounty');
       GeocodingDTO.ReturnResponse res = (GeocodingDTO.ReturnResponse) IdentityService.getInstance()
         .verifyCounty(params);
       if (res.matchingAddress != null) {
@@ -19,22 +21,29 @@ global with sharing class IdentityController extends AbstractController {
         return ApexResponse.fail(res);
       }
     } catch (CustomException ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex);
       return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete verifyCounty');
+      Logger.persist();
     }
   }
   global static ApexResponse scanDL(Map<String, object> params) {
     try {
+      log?.fine('Inside scanDL');
       return ApexResponse.ok(IdentityService.getInstance().scanDL(params));
     } catch (CustomException ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex);
       return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete scanDL');
+      Logger.persist();
     }
   }
 }
