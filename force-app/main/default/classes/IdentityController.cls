@@ -11,9 +11,12 @@ global with sharing class IdentityController extends AbstractController {
   @RemoteAction
   global static ApexResponse verifyCounty(Map<String, object> params) {
     try {
-      return ApexResponse.ok(
-        IdentityService.getInstance().verifyCounty(params)
-      );
+      object res = IdentityService.getInstance().verifyCounty(params);
+      if (res != null) {
+        return ApexResponse.ok(res);
+      } else {
+        return ApexResponse.fail(res);
+      }
     } catch (CustomException ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
