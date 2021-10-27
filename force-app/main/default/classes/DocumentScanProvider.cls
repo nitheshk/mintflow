@@ -6,29 +6,71 @@
  * @description
  **/
 public with sharing class DocumentScanProvider extends AbstractAPIProvider {
+  private DocumentScanDTO dto;
   public DocumentScanProvider() {
     super(DocumentScanProvider.class);
+    dto = new DocumentScanDTO();
   }
   /**
    * @description
-   * @author Digital Align | 08-12-2021
+   * @author Digital Align | 10-27-2021
+   * @param Map<String object> params
+   * @return Map<String, object>
+   **/
+  public static Map<String, object> invokeAPI(Map<String, object> params) {
+    try {
+      if (params != null) {
+        setApiConfiguration();
+        return (new DocumentScanProvider()).executeRequest(params);
+      } else {
+        throw new CustomException('Empty Parameter Passed');
+      }
+    } catch (Exception ex) {
+      return (new Map<String, object>{
+        'Status' => '400',
+        'StatusMessage' => ex.getMessage(),
+        'Data' => null
+      });
+    }
+  }
+  /**
+   * @description
+   * @author Digital Align | 10-27-2021
+   **/
+  private static void setApiConfiguration() {
+    if (
+      APIConfigurationService.getAPISettings(APINames.IdScanAnalyzer)
+        .isActive__c
+    ) {
+      APIConfigurationService.setAPISettings(APINames.IdScanAnalyzer);
+    } else {
+      throw new CustomException('API Name not found');
+    }
+  }
+  /**
+   * @description
+   * @author Digital Align | 10-27-2021
    * @param Map<String object> params
    * @return String
    **/
   protected override String buildRequest(Map<String, object> params) {
-    blob file = (blob) params.get('file');
-    String authKey = 'cc813132-58b3-445e-8a56-305e6b77a285';
-    String requestBody =
-      '{"authKey":"' +
-      authKey +
-      '", "data" : "' +
-      EncodingUtil.base64Encode(file) +
-      '"}';
-
-    return requestBody;
+    DocumentScanDTO.Request requestDTO = (DocumentScanDTO.Request) params.get(
+      'DTO'
+    );
+    return dto.generateRequest(requestDTO, true);
   }
-
+  /**
+   * @description
+   * @author Digital Align | 10-27-2021
+   * @param Map<String object> params
+   * @return Map<String, String>
+   **/
   protected override Map<String, String> getHeader(Map<String, object> params) {
-    return null;
+    {
+      Map<String, String> header = new Map<String, String>();
+      header.put('Content-Type', 'application/json');
+      header.put('Accept', 'application/json');
+      return header;
+    }
   }
 }
