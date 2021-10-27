@@ -45,14 +45,13 @@ global with sharing class IdentityService extends AbstractService {
    * @return virtual
    **/
   global virtual Object scanDL(Map<String, object> params) {
-    dau01__Applicant__c applicant = new dau01__Applicant__c();
+    //  dau01__Applicant__c applicant = new dau01__Applicant__c();
     IdScanAnalyzerDTO.Request requestDTO;
     Map<String, object> res;
     string contentDocumentId = (string) params.get('contentDocumentId');
-    if (
-      FileService.getInstance()
-        .fetchContentVersionByCD(contentDocumentId, false) != null
-    ) {
+    ContentVersion cv = FileService.getInstance()
+      .fetchContentVersionByCD(contentDocumentId, false);
+    if (cv != null) {
       requestDTO = new IdScanAnalyzerDTO.Request();
       requestDTO.file_base64 = EncodingUtil.base64Encode(cv.VersionData);
       requestDTO.apikey = 'rfdNfcbatBLzmdtTHqVaMLphOQQdLNw2';

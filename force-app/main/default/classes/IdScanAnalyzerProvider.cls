@@ -1,9 +1,22 @@
+/**
+ * Copyright (c) 2021 Digital Align
+ * @group Service
+ * @author Digital Align Team
+ * @reference
+ * @description
+ **/
 public with sharing class IdScanAnalyzerProvider extends AbstractAPIProvider {
   private IdScanAnalyzerDTO dto;
   public IdScanAnalyzerProvider() {
     super(IdScanAnalyzerProvider.class);
     dto = new IdScanAnalyzerDTO();
   }
+  /**
+   * @description
+   * @author Digital Align | 10-27-2021
+   * @param Map<String object> params
+   * @return Map<String, object>
+   **/
   public static Map<String, object> invokeAPI(Map<String, object> params) {
     try {
       if (params != null) {
@@ -20,6 +33,10 @@ public with sharing class IdScanAnalyzerProvider extends AbstractAPIProvider {
       });
     }
   }
+  /**
+   * @description
+   * @author Digital Align | 10-27-2021
+   **/
   private static void setApiConfiguration() {
     if (
       APIConfigurationService.getAPISettings(APINames.IdScanAnalyzer)
@@ -30,16 +47,24 @@ public with sharing class IdScanAnalyzerProvider extends AbstractAPIProvider {
       throw new CustomException('API Name not found');
     }
   }
+  /**
+   * @description
+   * @author Digital Align | 10-27-2021
+   * @param Map<String object> params
+   * @return String
+   **/
   protected override String buildRequest(Map<String, object> params) {
     IdScanAnalyzerDTO.Request requestDTO = (IdScanAnalyzerDTO.Request) params.get(
       'DTO'
     );
-    System.debug(
-      'dto.generateRequest(requestDTO, true) =' +
-      dto.generateRequest(requestDTO, true)
-    );
     return dto.generateRequest(requestDTO, true);
   }
+  /**
+   * @description
+   * @author Digital Align | 10-27-2021
+   * @param Map<String object> params
+   * @return Map<String, String>
+   **/
   protected override Map<String, String> getHeader(Map<String, object> params) {
     {
       Map<String, String> header = new Map<String, String>();
