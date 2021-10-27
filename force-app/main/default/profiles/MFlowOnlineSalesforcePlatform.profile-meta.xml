@@ -3872,6 +3872,31 @@
     </objectPermissions>
 
     <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Applicant__c.Beneficiary</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Applicant__c.ContactPerson</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Applicant__c.FamilyMember</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Applicant__c.Joint</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Applicant__c.Primary</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <default>true</default>
         <recordType>Flow__c.Flow</recordType>
         <visible>true</visible>
