@@ -940,7 +940,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.Applicant_Type__c</field>
+        <field>Applicant__c.ApplicantType__c</field>
         <readable>true</readable>
     </fieldPermissions>
       <fieldPermissions>
