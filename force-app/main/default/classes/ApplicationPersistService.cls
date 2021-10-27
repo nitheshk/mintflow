@@ -83,14 +83,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
 
     //update value for applicant here
     for (Applicant__c applicant : applicants) {
-      if (String.isNotBlank(applicant.Id)) {
-        // existing applicant
-        log?.fine('Existing applicant');
-      } else {
-        //new applicant
-        //set record type
-        applicant.dau01__Application__c = applicationId;
-      }
+      saveApplicant(applicationId, applicant);
     }
     ApplicantRepository.upsertRecords(applicants);
 
@@ -104,6 +97,42 @@ global with sharing class ApplicationPersistService extends AbstractService {
 
   /**
    * @description
+   * @author Digital Align Team | 10-27-2021
+   * @param String applicationId
+   * @param Applicant__c applicant
+   * @return Applicant__c
+   **/
+  global virtual Applicant__c saveApplicant(
+    String applicationId,
+    Applicant__c applicant
+  ) {
+    if (String.isBlank(applicant.Id)) {
+      /*  new applicant */
+      //set record type
+      applicant.dau01__Application__c = applicationId;
+    }
+
+    if (String.isBlank(applicant.ApplicantType__c)) {
+      applicant.recordTypeId = Sobjectutils.recordTypeIdByName(
+        Applicant__c.SObjectType,
+        'Primary'
+      );
+    } else {
+      applicant.recordTypeId = Sobjectutils.recordTypeIdByName(
+        Applicant__c.SObjectType,
+        applicant.ApplicantType__c
+      );
+    }
+
+    applicant.Name = String.isBlank(applicant.FirstName__c)
+      ? applicant.LastName__c
+      : applicant.FirstName__c + ' ' + applicant.LastName__c;
+
+    return applicant;
+  }
+
+  /**
+   * @description
    * @author Digital Align Team | 10-26-2021
    * @param Applicant__c applicant
    * @return Applicant__c
@@ -112,61 +141,137 @@ global with sharing class ApplicationPersistService extends AbstractService {
     //Do upsert in one short
     List<SObject> listToUpdate = new List<SObject>();
 
-    // upsert contact point address
-    if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
-      for (ContactPointAddress cpa : applicant.ContactPointAddresses__r) {
-        if (String.isBlank(cpa.id)) {
-          cpa.Applicant__c = applicant.Id;
-        }
-      }
-      ApplicantRepository.upsertRecords(applicant.ContactPointAddresses__r);
-    }
-
     // upsert Identitifcation document
     if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
-      for (
-        FinServ__IdentificationDocument__c identityDoc : applicant.IdentificationDocuments__r
-      ) {
-        if (String.isBlank(identityDoc.id)) {
-          identityDoc.Applicant__c = applicant.Id;
-        }
-      }
-      ApplicantRepository.upsertRecords(applicant.IdentificationDocuments__r);
+      saveIdentificationDocuments(
+        applicant,
+        applicant?.IdentificationDocuments__r
+      );
+    }
+
+    // upsert contact point address
+    if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
+      saveContactPointAddresses(applicant, applicant?.ContactPointAddresses__r);
     }
 
     // upsert employement
     if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
-      for (FinServ__Employment__c employment : applicant.Employments__r) {
-        if (String.isBlank(employment.id)) {
-          employment.Applicant__c = applicant.Id;
-        }
-      }
-      ApplicantRepository.upsertRecords(applicant.Employments__r);
+      saveEmployments(applicant, applicant?.Employments__r);
     }
 
     // upsert Asset And Liabilities
     if (!CollectionUtils.isListEmpty(applicant?.AssetsAndLiabilities__r)) {
-      for (
-        FinServ__AssetsAndLiabilities__c assetAndLiabilities : applicant.AssetsAndLiabilities__r
-      ) {
-        if (String.isBlank(assetAndLiabilities.id)) {
-          assetAndLiabilities.Applicant__c = applicant.Id;
-        }
-      }
-      ApplicantRepository.upsertRecords(applicant.AssetsAndLiabilities__r);
+      saveAssetsAndLiabilities(applicant, applicant?.AssetsAndLiabilities__r);
     }
 
     // upsert revenues
     if (!CollectionUtils.isListEmpty(applicant?.Revenues__r)) {
-      for (FinServ__Revenue__c revenue : applicant.Revenues__r) {
-        if (String.isBlank(revenue.id)) {
-          revenue.Applicant__c = applicant.Id;
-        }
-      }
-      ApplicantRepository.upsertRecords(applicant.Revenues__r);
+      saveRevenues(applicant, applicant?.Revenues__r);
     }
 
     return applicant;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-27-2021
+   * @param Applicant__c applicant
+   * @param List<FinServ__IdentificationDocument__c> identityDocuments
+   * @return  List<FinServ__IdentificationDocument__c>
+   **/
+  global virtual List<FinServ__IdentificationDocument__c> saveIdentificationDocuments(
+    Applicant__c applicant,
+    List<FinServ__IdentificationDocument__c> identityDocuments
+  ) {
+    for (FinServ__IdentificationDocument__c identityDoc : identityDocuments) {
+      if (String.isBlank(identityDoc.id)) {
+        identityDoc.Applicant__c = applicant.Id;
+      }
+    }
+    ApplicantRepository.upsertRecords(identityDocuments);
+    return identityDocuments;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-27-2021
+   * @param Applicant__c applicant
+   * @param List<ContactPointAddress> addresses
+   * @return List<ContactPointAddress>
+   **/
+  global virtual List<ContactPointAddress> saveContactPointAddresses(
+    Applicant__c applicant,
+    List<ContactPointAddress> addresses
+  ) {
+    for (ContactPointAddress cpa : addresses) {
+      if (String.isBlank(cpa.id)) {
+        cpa.Applicant__c = applicant.Id;
+      }
+    }
+    ApplicantRepository.upsertRecords(addresses);
+    return addresses;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-27-2021
+   * @param Applicant__c applicant
+   * @param List<FinServ__Employment__c> employments
+   * @return List<FinServ__Employment__c>
+   **/
+  global virtual List<FinServ__Employment__c> saveEmployments(
+    Applicant__c applicant,
+    List<FinServ__Employment__c> employments
+  ) {
+    for (FinServ__Employment__c employment : employments) {
+      if (String.isBlank(employment.id)) {
+        employment.Applicant__c = applicant.Id;
+      }
+    }
+    ApplicantRepository.upsertRecords(employments);
+    return employments;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-27-2021
+   * @param Applicant__c applicant
+   * @param List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities
+   * @return List<FinServ__AssetsAndLiabilities__c>
+   **/
+  global virtual List<FinServ__AssetsAndLiabilities__c> saveAssetsAndLiabilities(
+    Applicant__c applicant,
+    List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities
+  ) {
+    for (
+      FinServ__AssetsAndLiabilities__c assetAndLiability : assetsAndLiabilities
+    ) {
+      if (String.isBlank(assetAndLiability.id)) {
+        assetAndLiability.Applicant__c = applicant.Id;
+      }
+    }
+    ApplicantRepository.upsertRecords(assetsAndLiabilities);
+    return assetsAndLiabilities;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 10-27-2021
+   * @param Applicant__c applicant
+   * @param List<FinServ__Revenue__c> revenues
+   * @return List<FinServ__Revenue__c>
+   **/
+  global virtual List<FinServ__Revenue__c> saveRevenues(
+    Applicant__c applicant,
+    List<FinServ__Revenue__c> revenues
+  ) {
+    for (FinServ__Revenue__c revenue : revenues) {
+      if (String.isBlank(revenue.id)) {
+        revenue.Applicant__c = applicant.Id;
+      }
+    }
+    ApplicantRepository.upsertRecords(revenues);
+    return revenues;
   }
 
   /**
