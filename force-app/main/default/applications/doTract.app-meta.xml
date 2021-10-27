@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
-        <actionName>Tab</actionName>
-        <content>WealthHome</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>View</actionName>
         <comment>Client Custom Flexipage</comment>
         <content>ClientRecordPage</content>
@@ -19,6 +11,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
+        <comment>FinancialAccount</comment>
+        <content>FinancialAccount</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>FinServ__FinancialAccount__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
         <comment>Lead Referral Page</comment>
         <content>LeadReferralPage</content>
         <formFactor>Large</formFactor>
@@ -26,15 +27,23 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Lead</pageOrSobjectType>
     </actionOverrides>
-
     <actionOverrides>
-        <actionName>View</actionName>
-        <comment>FinancialAccount</comment>
-        <content>FinancialAccount</content>
+        <actionName>Tab</actionName>
+        <content>WealthHome</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>FinServ__FinancialAccount__c</pageOrSobjectType>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment
+    >Action override created by Lightning App Builder during activation.</comment>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
     </actionOverrides>
     <defaultLandingTab>standard-Account</defaultLandingTab>
     <description
@@ -44,25 +53,7 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>DoTract</label>
     <navType>Console</navType>
-    <tabs>standard-home</tabs>
-    <tabs>standard-Account</tabs>
-    <tabs>standard-Contact</tabs>
-    <tabs>FinancialInstituteAccount</tabs>
-    <tabs>FinServ__FinancialAccount__c</tabs>
-    <tabs>FinServ__AssetsAndLiabilities__c</tabs>
-    <tabs>FinServ__FinancialGoal__c</tabs>
-    <tabs>FinServ__FinancialHolding__c</tabs>
-    <tabs>FinServ__Securities__c</tabs>
-    <tabs>FinServ__ReciprocalRole__c</tabs>
-    <tabs>Diagnostic__c</tabs>
-    <tabs>Flow__c</tabs>
-    <tabs>standard-Lead</tabs>
-    <tabs>standard-Opportunity</tabs>
-    <tabs>standard-report</tabs>
-    <tabs>standard-Dashboard</tabs>
-    <uiType>Lightning</uiType>
-    <utilityBar>FinServ__BankingConsoleUtilityBar</utilityBar>
-     <profileActionOverrides>
+    <profileActionOverrides>
         <actionName>View</actionName>
         <content>LeadReferralPage</content>
         <formFactor>Large</formFactor>
@@ -97,15 +88,6 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
-    <!--<profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ClientRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>PersonAccount.PersonAccount</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>-->
     <profileActionOverrides>
         <actionName>View</actionName>
         <content>ClientRecordPage</content>
@@ -124,4 +106,125 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.Beneficiary</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.ContactPerson</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.FamilyMember</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.Joint</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.Primary</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <tabs>standard-home</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>FinancialInstituteAccount</tabs>
+    <tabs>FinServ__FinancialAccount__c</tabs>
+    <tabs>FinServ__AssetsAndLiabilities__c</tabs>
+    <tabs>FinServ__FinancialGoal__c</tabs>
+    <tabs>FinServ__FinancialHolding__c</tabs>
+    <tabs>FinServ__Securities__c</tabs>
+    <tabs>FinServ__ReciprocalRole__c</tabs>
+    <tabs>Diagnostic__c</tabs>
+    <tabs>Flow__c</tabs>
+    <tabs>standard-Lead</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>FinServ__BankingConsoleUtilityBar</utilityBar>
+    <workspaceConfig>
+        <mappings>
+            <tab>Diagnostic__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinServ__AssetsAndLiabilities__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinServ__FinancialAccount__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinServ__FinancialGoal__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinServ__FinancialHolding__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinServ__ReciprocalRole__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinServ__Securities__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinancialInstituteAccount</tab>
+        </mappings>
+        <mappings>
+            <tab>Flow__c</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Account</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Contact</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Dashboard</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Lead</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Opportunity</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-home</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-report</tab>
+        </mappings>
+    </workspaceConfig>
 </CustomApplication>
