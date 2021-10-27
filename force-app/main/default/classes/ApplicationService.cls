@@ -34,15 +34,20 @@ global with sharing class ApplicationService extends AbstractService {
    * @param Map<String String> params
    * @return Object
    **/
-  global Object startApplication(Map<String, String> params) {
+  global Object startApplication(Map<String, Object> params) {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
     log?.fine('Inside startApplication -> params -> ' + Json.serialize(params));
-    if (String.isNotBlank(params?.get('id'))) {
+
+    String recordId = (String) params?.get('recordId');
+
+    if (String.isNotBlank(recordId)) {
       // encryption
       // this for start application from existing application
-      Id recordId = (ID) params.get('id');
-      String sObjectType = recordId.getSObjectType().getDescribe().getName();
+      String sObjectType = ((ID) recordId)
+        .getSObjectType()
+        .getDescribe()
+        .getName();
       switch on sObjectType {
         when 'Account' {
           system.debug('Inside ' + sObjectType);

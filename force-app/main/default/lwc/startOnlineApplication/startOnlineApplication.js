@@ -11,9 +11,11 @@ export default class StartOnlineApplication extends LightningElement {
    */
   start(event) {
     startApplication({
-      params: {
-        recordId: this.recordId,
-        sObjectName: this.objectApiName
+      request: {
+        header: JSON.stringify({
+          recordId: this.recordId,
+          sObjectName: this.objectApiName
+        })
       }
     })
       .then((result) => {

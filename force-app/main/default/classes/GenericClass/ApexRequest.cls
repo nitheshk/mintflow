@@ -24,9 +24,18 @@ global with sharing class ApexRequest {
   global String header { get; set; }
   @AuraEnabled
   global String data { get; set; }
-
+  @AuraEnabled
   global Map<String, Object> params { get; set; }
-  global static ApexRequest request { get; set; }
+  @AuraEnabled
+  public static ApexRequest request { get; set; }
+
+  static {
+    request = new ApexRequest();
+  }
+
+  global ApexRequest() {
+    params = new Map<String, Object>();
+  }
 
   global void setRequest() {
     ApexRequest request = new ApexRequest();
@@ -41,7 +50,66 @@ global with sharing class ApexRequest {
         this.header
       );
     }
-
     ApexRequest.request = request;
+  }
+
+  /**
+   * @description Get Request
+   * @author Digital Align Team | 10-27-2021
+   * @return ApexRequest
+   **/
+  global static ApexRequest getRequest() {
+    return ApexRequest.request;
+  }
+
+  /**
+   * @description get Params
+   * @author Digital Align Team | 10-27-2021
+   * @return Map<String, Object>
+   **/
+  global static Map<String, Object> getParams() {
+    return ApexRequest.request?.params;
+  }
+
+  /**
+   * @description get application id
+   * @author Digital Align Team | 10-27-2021
+   * @return String
+   **/
+  global static String getApplicationId() {
+    return ApexRequest.request?.applicationId;
+  }
+
+  /**
+   * @description  set application id
+   * @author Digital Align Team | 10-27-2021
+   * @param String applicationId
+   * @return ApexRequest
+   **/
+  global ApexRequest setApplicationId(String applicationId) {
+    this.applicationId = applicationId;
+    return this;
+  }
+
+  /**
+   * @description set header
+   * @author Digital Align Team | 10-27-2021
+   * @param Map<String Object> header
+   * @return ApexRequest
+   **/
+  global ApexRequest setHeader(Map<String, Object> header) {
+    this.header = Json.serialize(header);
+    return this;
+  }
+
+  /**
+   * @description set header
+   * @author Digital Align Team | 10-27-2021
+   * @param String header
+   * @return ApexRequest
+   **/
+  global ApexRequest setHeader(String header) {
+    this.header = header;
+    return this;
   }
 }

@@ -20,10 +20,12 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse startApplication(Map<String, String> params) {
+  global static ApexResponse startApplication(ApexRequest request) {
     try {
+      validateRequest(request);
       return ApexResponse.ok(
-        ApplicationService.getInstance().startApplication(params)
+        ApplicationService.getInstance()
+          .startApplication(ApexRequest.getParams())
       );
     } catch (CustomException ex) {
       log?.error(ex);
@@ -44,12 +46,10 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse readApplicationWithChild(
-    Map<String, String> params
-  ) {
+  global static ApexResponse readApplicationWithChild(ApexRequest request) {
     try {
-      Id applicationId = (Id) params.get('applicationId');
-
+      validateRequest(request);
+      Id applicationId = (Id) ApexRequest.getParams().get('applicationId');
       return ApexResponse.success(
         ApplicationService.getInstance().readApplicationWithChild(applicationId)
       );
@@ -103,10 +103,12 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse resumeApplication(Map<String, String> params) {
+  global static ApexResponse resumeApplication(ApexRequest request) {
     try {
+      validateRequest(request);
       return ApexResponse.ok(
-        ApplicationService.getInstance().resumeApplication(params)
+        ApplicationService.getInstance()
+          .resumeApplication(ApexRequest.getParams())
       );
     } catch (CustomException ex) {
       System.debug(ex.getMessage());

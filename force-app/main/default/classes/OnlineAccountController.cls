@@ -23,7 +23,6 @@ global with sharing class OnlineAccountController extends AbstractController {
   global void initializeApplication() {
     try {
       pageParams = PageUtils.getCurrentPageParameters();
-
       Cookie currentCookie = PageUtils.getCookie('id');
       if (
         currentCookie != null && String.isNotBlank(currentCookie.getValue())
