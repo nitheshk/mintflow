@@ -135,6 +135,11 @@
     <description>DoTract Site Guest profile</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.IsFamilyConnected__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Applicant__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>

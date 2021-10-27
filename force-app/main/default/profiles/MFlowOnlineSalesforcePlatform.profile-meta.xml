@@ -157,6 +157,11 @@
     <description>MFlow Online Salesforce Platform</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.IsFamilyConnected__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Applicant__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
