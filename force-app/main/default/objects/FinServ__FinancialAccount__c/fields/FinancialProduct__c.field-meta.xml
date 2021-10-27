@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FinancialProduct__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>related product</description>
+    <externalId>false</externalId>
+    <label>FinancialProduct</label>
+    <referenceTo>FinancialProduct__c</referenceTo>
+    <relationshipLabel>Financial Accounts</relationshipLabel>
+    <relationshipName>Financial_Accounts</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

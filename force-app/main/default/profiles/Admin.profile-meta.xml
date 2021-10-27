@@ -10,6 +10,10 @@
         <recordType>PersonAccount.PersonAccount</recordType>
     </layoutAssignments>-->
     <layoutAssignments>
+        <layout>FinancialProduct__c-FinancialProduct Layout</layout>
+    </layoutAssignments>
+	
+    <layoutAssignments>
         <layout>Lead-FinServ__Lead %28Referral%29 Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
