@@ -46,36 +46,40 @@ global with sharing class IdentityService extends AbstractService {
    **/
   global virtual Object scanDL(Map<String, object> params) {
     dau01__Applicant__c applicant = new dau01__Applicant__c();
+    IdScanAnalyzerDTO.Request requestDTO;
+    Map<String, object> res;
     string contentDocumentId = (string) params.get('contentDocumentId');
-    ContentVersion cv = FileService.getInstance()
-      .fetchContentVersionByCD(contentDocumentId, false);
-    if (cv != null) {
-      IdScanAnalyzerDTO.Request requestDTO = new IdScanAnalyzerDTO.Request();
+    if (
+      FileService.getInstance()
+        .fetchContentVersionByCD(contentDocumentId, false) != null
+    ) {
+      requestDTO = new IdScanAnalyzerDTO.Request();
+      requestDTO.file_base64 = EncodingUtil.base64Encode(cv.VersionData);
       requestDTO.apikey = 'rfdNfcbatBLzmdtTHqVaMLphOQQdLNw2';
-      Map<String, object> res = IdScanAnalyzerProvider.invokeAPI(
+      res = IdScanAnalyzerProvider.invokeAPI(
         new Map<String, Object>{ 'DTO' => requestDTO }
       );
       system.debug('res ==== ' + res);
-      if (res.get('Status') == 200) {
-        IDScanDTO.Response reponse = (IDScanDTO.Response) JSON.deserialize(
-          (string) res.get('Data'),
-          IDScanDTO.Response.class
-        );
-        applicant.dau01__FirstName__c = reponse.result.firstName;
-        // applicant.dau01__MiddleName__c = reponse.result.middleName;
-        // applicant.dau01__LastName__c = reponse.result.lastName;
-        // applicant.dau01__Birthdate__c = reponse.result.dob;
-        // applicant.FinServ__IdentificationDocument__r.FinServ__ExpirationDate__c = reponse.result.expiry;
-        // applicant.FinServ__IdentificationDocument__r.FinServ__DocumentType__c = reponse.result.documentType;
-        // applicant.FinServ__IdentificationDocument__r.FinServ__DocumentNumber__c = reponse.result.documentNumber;
-        // applicant.FinServ__IdentificationDocument__r.FinServ__IssuingCountry__c = reponse.result.issuerOrg_iso3;
-        // applicant.FinServ__IdentificationDocument__r.FinServ__IssueDate__c = reponse.result.issued;
-        // applicant.FinServ__IdentificationDocument__r.dau01__Nationality__c = reponse.result.nationality_full;
-        // applicant.FinServ__IdentificationDocument__r.FinServ__SourceSystemId__c = reponse.responseID;
-        // applicant.ContactPointAddress.Street =
-        //   reponse.result.address1 + reponse.result.address2;
-        // applicant.ContactPointAddress.PostalCode = reponse.result.postcode;
-      }
+      // if (res.get('Status') == 200) {
+      //   IDScanDTO.Response reponse = (IDScanDTO.Response) JSON.deserialize(
+      //     (string) res.get('Data'),
+      //     IDScanDTO.Response.class
+      //   );
+      //   applicant.dau01__FirstName__c = reponse.result.firstName;
+      //   // applicant.dau01__MiddleName__c = reponse.result.middleName;
+      //   // applicant.dau01__LastName__c = reponse.result.lastName;
+      //   // applicant.dau01__Birthdate__c = reponse.result.dob;
+      //   // applicant.FinServ__IdentificationDocument__r.FinServ__ExpirationDate__c = reponse.result.expiry;
+      //   // applicant.FinServ__IdentificationDocument__r.FinServ__DocumentType__c = reponse.result.documentType;
+      //   // applicant.FinServ__IdentificationDocument__r.FinServ__DocumentNumber__c = reponse.result.documentNumber;
+      //   // applicant.FinServ__IdentificationDocument__r.FinServ__IssuingCountry__c = reponse.result.issuerOrg_iso3;
+      //   // applicant.FinServ__IdentificationDocument__r.FinServ__IssueDate__c = reponse.result.issued;
+      //   // applicant.FinServ__IdentificationDocument__r.dau01__Nationality__c = reponse.result.nationality_full;
+      //   // applicant.FinServ__IdentificationDocument__r.FinServ__SourceSystemId__c = reponse.responseID;
+      //   // applicant.ContactPointAddress.Street =
+      //   //   reponse.result.address1 + reponse.result.address2;
+      //   // applicant.ContactPointAddress.PostalCode = reponse.result.postcode;
+      // }
     }
     return 'success';
   }

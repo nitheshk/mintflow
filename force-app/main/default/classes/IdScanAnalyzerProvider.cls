@@ -1,7 +1,8 @@
 public with sharing class IdScanAnalyzerProvider extends AbstractAPIProvider {
-  private GeocodingDTO dto;
+  private IdScanAnalyzerDTO dto;
   public IdScanAnalyzerProvider() {
     super(IdScanAnalyzerProvider.class);
+    dto = new IdScanAnalyzerDTO();
   }
   public static Map<String, object> invokeAPI(Map<String, object> params) {
     try {
@@ -32,6 +33,10 @@ public with sharing class IdScanAnalyzerProvider extends AbstractAPIProvider {
   protected override String buildRequest(Map<String, object> params) {
     IdScanAnalyzerDTO.Request requestDTO = (IdScanAnalyzerDTO.Request) params.get(
       'DTO'
+    );
+    System.debug(
+      'dto.generateRequest(requestDTO, true) =' +
+      dto.generateRequest(requestDTO, true)
     );
     return dto.generateRequest(requestDTO, true);
   }

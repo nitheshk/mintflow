@@ -1,5 +1,5 @@
 @SuppressWarnings('PMD.VariableNamingConventions')
-public with sharing class IdScanAnalyzerDTO {
+public with sharing class IdScanAnalyzerDTO extends AbstractDTO {
   public class Request {
     public String file_base64;
     public String file_back_base64;
