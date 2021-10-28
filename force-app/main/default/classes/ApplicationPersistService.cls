@@ -281,7 +281,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
    * @return Boolean
    **/
   global virtual Boolean deleteEntity(Id recordId) {
-    log?.fine('Inside Delete Entity');
+    log?.fine('Inside Delete Record');
     switch on SObjectUtils.getObjectName(recordID) {
       when 'Account' {
         ApplicationRepository.deleteRecord(recordId, true);
@@ -290,7 +290,31 @@ global with sharing class ApplicationPersistService extends AbstractService {
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'dau01__Applicant__c' {
-        ApplicationRepository.deleteRecord(recordId, true);
+        dau01__Applicant__c applicant = ApplicantRepository.readApplicantWithChild(
+          recordId
+        );
+        if (applicant == null) {
+          log?.debug('No records found to delete');
+          return false;
+        }
+        List<SObject> recordsToDelete = new List<SObject>();
+        if (!applicant.IdentificationDocuments__r.isEmpty()) {
+          recordsToDelete.addAll(applicant.IdentificationDocuments__r);
+        }
+        if (!applicant.ContactPointAddresses__r.isEmpty()) {
+          recordsToDelete.addAll(applicant.ContactPointAddresses__r);
+        }
+        if (!applicant.Employments__r.isEmpty()) {
+          recordsToDelete.addAll(applicant.Employments__r);
+        }
+        if (!applicant.AssetsAndLiabilities__r.isEmpty()) {
+          recordsToDelete.addAll(applicant.AssetsAndLiabilities__r);
+        }
+        if (!applicant.Revenues__r.isEmpty()) {
+          recordsToDelete.addAll(applicant.Revenues__r);
+        }
+        recordsToDelete.add(applicant);
+        ApplicationRepository.deleteRecords(recordsToDelete);
       }
       when 'FinServ__IdentificationDocument__c' {
         ApplicationRepository.deleteRecord(recordId, true);
@@ -308,7 +332,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
         ApplicationRepository.deleteRecord(recordId, true);
       }
     }
-    log?.fine('Complete Delete Entity');
+    log?.fine('Complete Delete Record');
 
     return true;
   }
