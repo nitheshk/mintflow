@@ -95,7 +95,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
 
     //update value for applicant here
     for (Applicant__c applicant : applicants) {
-      saveApplicant(applicationId, applicant);
+      applicant = saveApplicant(applicationId, applicant);
     }
     ApplicantRepository.upsertRecords(applicants);
 
@@ -124,22 +124,44 @@ global with sharing class ApplicationPersistService extends AbstractService {
       applicant.dau01__Application__c = applicationId;
     }
 
+    String recordTypeName;
     if (String.isBlank(applicant.ApplicantType__c)) {
-      applicant.recordTypeId = Sobjectutils.recordTypeIdByName(
-        Applicant__c.SObjectType,
-        'Primary'
-      );
+      recordTypeName = 'Primary';
+      applicant.ApplicantType__c = 'Primary';
     } else {
-      applicant.recordTypeId = Sobjectutils.recordTypeIdByName(
-        Applicant__c.SObjectType,
-        applicant.ApplicantType__c
-      );
+      switch on applicant.ApplicantType__c {
+        when 'Primary',
+          'Joint',
+          'Beneficiary',
+          'Family Member',
+          'Contact Person' {
+          recordTypeName = applicant.ApplicantType__c;
+        }
+        when else {
+          Set<String> applicantTypes = new Set<String>(
+            applicant.ApplicantType__c.split(';')
+          );
+          recordTypeName = applicantTypes.contains('Joint')
+            ? 'Joint'
+            : (applicantTypes.contains('Beneficiary')
+                ? 'Beneficiary'
+                : (applicantTypes.contains('Contact Person')
+                    ? 'Contact Person'
+                    : recordTypeName));
+        }
+      }
     }
 
+    log.debug('recordTypeName : ' + recordTypeName);
+    log.debug('applicant.ApplicantType__c : ' + applicant.ApplicantType__c);
+
+    applicant.recordTypeId = Sobjectutils.recordTypeIdByName(
+      Applicant__c.SObjectType,
+      recordTypeName
+    );
     applicant.Name = String.isBlank(applicant.FirstName__c)
       ? applicant.LastName__c
       : applicant.FirstName__c + ' ' + applicant.LastName__c;
-
     return applicant;
   }
 
