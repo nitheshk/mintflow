@@ -74,15 +74,7 @@
                 <field>IsEmailVerified__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PrimaryAddress__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IdentificationDocument__c</field>
-            </layoutItems>
+        <layoutColumns>                     
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsPhoneNumberVerified__c</field>

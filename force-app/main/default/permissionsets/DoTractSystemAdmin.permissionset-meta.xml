@@ -977,12 +977,7 @@
         <editable>true</editable>
         <field>Applicant__c.Phone__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.PrimaryAddress__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>     
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.MiddleName__c</field>
