@@ -73,6 +73,7 @@ global with sharing class ApplicationController extends AbstractController {
   @AuraEnabled
   @RemoteAction
   global static ApexResponse saveApplication(ApexRequest request) {
+    Savepoint sp = Database.setSavepoint();
     try {
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.request.params);
@@ -82,13 +83,14 @@ global with sharing class ApplicationController extends AbstractController {
       );
       applicationObj = ApplicationPersistService.getInstance()
         .saveApplication(applicationObj);
-
       return ApexResponse.success(applicationObj);
     } catch (CustomException ex) {
       log?.error(ex);
+      Database.rollback(sp);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
+      Database.rollback(sp);
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();
@@ -105,6 +107,7 @@ global with sharing class ApplicationController extends AbstractController {
   @AuraEnabled
   @RemoteAction
   global static ApexResponse deleteEntity(ApexRequest request) {
+    Savepoint sp = Database.setSavepoint();
     try {
       validateRequest(request);
       Id recordId = (Id) ApexRequest.getParams('recordId');
@@ -112,10 +115,12 @@ global with sharing class ApplicationController extends AbstractController {
         ApplicationPersistService.getInstance().deleteEntity(recordId)
       );
     } catch (CustomException ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex);
+      Database.rollback(sp);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex);
+      Database.rollback(sp);
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();

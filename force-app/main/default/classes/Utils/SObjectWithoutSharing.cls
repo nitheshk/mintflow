@@ -92,12 +92,15 @@ global without sharing class SObjectWithoutSharing {
     }
     switch on crudType {
       when CREATABLE {
+        log?.fine('Total record to Insert : ' + records.size());
         insert records;
       }
       when UPDATABLE {
+        log?.fine('Total record to Update : ' + records.size());
         update records;
       }
       when UPSERTABLE {
+        log?.fine('Total record to Upsert : ' + records.size());
         if (externalFieldName == null) {
           upsert records;
         } else {
@@ -105,6 +108,7 @@ global without sharing class SObjectWithoutSharing {
         }
       }
       when DELETEABLE {
+        log?.fine('Total record to Delete : ' + records.size());
         delete records;
         return null;
       }

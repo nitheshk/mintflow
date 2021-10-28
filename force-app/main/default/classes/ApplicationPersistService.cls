@@ -35,7 +35,19 @@ global with sharing class ApplicationPersistService extends AbstractService {
    * @return virtual
    **/
   global virtual Account saveApplication(Account application) {
-    ApplicationRepository.upsertRecord(application);
+    //Process Application Mapping
+    {
+      if (String.isBlank(application.Id)) {
+        application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+          Account.SObjectType,
+          'Application'
+        );
+      }
+      ApplicationRepository.upsertRecord(application);
+      if (String.isBlank(ApexRequest.getApplicationId())) {
+        ApexRequest.getRequest().setApplicationId(application.Id);
+      }
+    }
 
     dau01.SObjectConstructor constructor = dau01.SObjectConstructor.getInstance(
       application
@@ -269,13 +281,16 @@ global with sharing class ApplicationPersistService extends AbstractService {
       if (String.isBlank(revenue.id)) {
         revenue.Applicant__c = applicant.Id;
       }
+      if (String.isBlank(revenue.FinServ__Account__c)) {
+        revenue.FinServ__Account__c = ApexRequest.getApplicationId();
+      }
     }
     ApplicantRepository.upsertRecords(revenues);
     return revenues;
   }
 
   /**
-   * @description
+   * @description delete object by Id
    * @author Digital Align Team | 10-25-2021
    * @param List<dau01__Applicant__c> applicants
    * @return Boolean
@@ -284,37 +299,28 @@ global with sharing class ApplicationPersistService extends AbstractService {
     log?.fine('Inside Delete Record');
     switch on SObjectUtils.getObjectName(recordID) {
       when 'Account' {
-        ApplicationRepository.deleteRecord(recordId, true);
+        List<SObject> recordsToDelete = new List<SObject>();
+        Account application = ApplicationRepository.readApplicationWithChild(
+          recordId
+        );
+        if (!application.Applicants__r.isEmpty()) {
+          this.deleteApplicants(
+            new Map<Id, SObject>(application.Applicants__r).keyset()
+          );
+        }
+        if (!application.FinServ__HouseholdFinancialAccounts__r.isEmpty()) {
+          recordsToDelete.addAll(
+            application.FinServ__HouseholdFinancialAccounts__r
+          );
+        }
+        recordsToDelete.add(application);
+        ApplicationRepository.deleteRecords(recordsToDelete);
       }
       when 'FinServ__FinancialAccount__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'dau01__Applicant__c' {
-        dau01__Applicant__c applicant = ApplicantRepository.readApplicantWithChild(
-          recordId
-        );
-        if (applicant == null) {
-          log?.debug('No records found to delete');
-          return false;
-        }
-        List<SObject> recordsToDelete = new List<SObject>();
-        if (!applicant.IdentificationDocuments__r.isEmpty()) {
-          recordsToDelete.addAll(applicant.IdentificationDocuments__r);
-        }
-        if (!applicant.ContactPointAddresses__r.isEmpty()) {
-          recordsToDelete.addAll(applicant.ContactPointAddresses__r);
-        }
-        if (!applicant.Employments__r.isEmpty()) {
-          recordsToDelete.addAll(applicant.Employments__r);
-        }
-        if (!applicant.AssetsAndLiabilities__r.isEmpty()) {
-          recordsToDelete.addAll(applicant.AssetsAndLiabilities__r);
-        }
-        if (!applicant.Revenues__r.isEmpty()) {
-          recordsToDelete.addAll(applicant.Revenues__r);
-        }
-        recordsToDelete.add(applicant);
-        ApplicationRepository.deleteRecords(recordsToDelete);
+        this.deleteApplicants(new Set<Id>{ recordId });
       }
       when 'FinServ__IdentificationDocument__c' {
         ApplicationRepository.deleteRecord(recordId, true);
@@ -334,6 +340,40 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
     log?.fine('Complete Delete Record');
 
+    return true;
+  }
+
+  /**
+   * @description list of applicantIds to delete
+   * @author Digital Align Team | 10-28-2021
+   * @param Set<Id> applicantIds
+   * @return Boolean
+   **/
+  global virtual Boolean deleteApplicants(Set<Id> applicantIds) {
+    List<SObject> recordsToDelete = new List<SObject>();
+    for (
+      dau01__Applicant__c applicant : ApplicantRepository.readApplicantsWithChild(
+        applicantIds
+      )
+    ) {
+      if (!applicant.IdentificationDocuments__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.IdentificationDocuments__r);
+      }
+      if (!applicant.ContactPointAddresses__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.ContactPointAddresses__r);
+      }
+      if (!applicant.Employments__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.Employments__r);
+      }
+      if (!applicant.AssetsAndLiabilities__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.AssetsAndLiabilities__r);
+      }
+      if (!applicant.Revenues__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.Revenues__r);
+      }
+      recordsToDelete.add(applicant);
+    }
+    ApplicationRepository.deleteRecords(recordsToDelete);
     return true;
   }
 

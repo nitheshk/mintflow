@@ -10,6 +10,8 @@ global with sharing class ApexRequest {
   @AuraEnabled
   global String applicationId { get; set; }
   @AuraEnabled
+  global String applicationName { get; set; }
+  @AuraEnabled
   global String token { get; set; }
   @AuraEnabled
   global String event { get; set; }
@@ -40,6 +42,7 @@ global with sharing class ApexRequest {
   global void setRequest() {
     ApexRequest request = new ApexRequest();
     request.applicationId = this.applicationId;
+    request.applicationName = this.applicationName;
     request.token = this.token;
     request.event = this.event;
     request.currentPage = this.currentPage;
@@ -49,6 +52,12 @@ global with sharing class ApexRequest {
       request.params = (Map<String, Object>) Json.deserializeUntyped(
         this.header
       );
+    }
+    if (String.isNotBlank(this.applicationId)) {
+      Logger.setEntity(this.applicationId);
+    }
+    if (String.isNotBlank(this.applicationName)) {
+      Logger.setApplicationName(this.applicationName);
     }
     ApexRequest.request = request;
   }
@@ -98,6 +107,7 @@ global with sharing class ApexRequest {
    **/
   global ApexRequest setApplicationId(String applicationId) {
     this.applicationId = applicationId;
+    Logger.setEntity(applicationId);
     return this;
   }
 
