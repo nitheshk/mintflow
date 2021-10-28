@@ -28,10 +28,13 @@ public with sharing class DocumentScanDTO extends AbstractDTO {
 
   public class Response {
     public Data data;
+    public String displayMessage;
+    public String errorMessage;
+    public Integer status;
   }
   public class Validation {
     public Boolean isExpired;
-    public Integer score;
+    public String score;
     public Boolean imageQualityPassed;
     public Boolean securityCheckPassed;
   }
@@ -54,8 +57,5 @@ public with sharing class DocumentScanDTO extends AbstractDTO {
     public String issuerCountry;
     public String nationality;
     public Validation validation;
-    public String displayMessage;
-    public String errorMessage;
-    public Integer status;
   }
 }
