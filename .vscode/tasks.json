@@ -148,7 +148,7 @@
       "label": "UI 2: Git Pull DoTracker-UI Sub-Module",
       "type": "shell",
       "command": "git",
-      "args": ["submodule", "foreach", "git", "pull", "origin", "dev"],
+      "args": ["submodule", "foreach", "git", "pull", "origin", "develop"],
       "group": "build",
       "presentation": {
         "reveal": "always",

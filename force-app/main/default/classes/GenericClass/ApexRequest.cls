@@ -72,6 +72,16 @@ global with sharing class ApexRequest {
   }
 
   /**
+   * @description get value from params
+   * @author Digital Align Team | 10-28-2021
+   * @param String key
+   * @return Object
+   **/
+  global static Object getParams(String key) {
+    return ApexRequest.request?.params.get(key);
+  }
+
+  /**
    * @description get application id
    * @author Digital Align Team | 10-27-2021
    * @return String

@@ -19,7 +19,7 @@ gulp.task("gitSetupSubmodule", function (finish) {
     scriptToRun = `git submodule update --recursive --remote`;
     console.log("Script To Run - " + scriptToRun);
     utils.runCommand(scriptToRun).then((result) => {
-      scriptToRun = `git submodule foreach git pull origin dev `;
+      scriptToRun = `git submodule foreach git pull origin develop `;
       console.log("Script To Run - " + scriptToRun);
       utils.runCommand(scriptToRun).then((result) => {
         console.log("Completed");

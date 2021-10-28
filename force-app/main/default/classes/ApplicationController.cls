@@ -96,6 +96,33 @@ global with sharing class ApplicationController extends AbstractController {
   }
 
   /**
+   * @description delete any record by id
+   * Header need to pass with recordId key need to delete
+   * @author Digital Align Team | 10-28-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse deleteEntity(ApexRequest request) {
+    try {
+      validateRequest(request);
+      Id recordId = (Id) ApexRequest.getParams('recordId');
+      return ApexResponse.ok(
+        ApplicationPersistService.getInstance().deleteEntity(recordId)
+      );
+    } catch (CustomException ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
    * @description
    * @author Digital Align Team | 09-29-2021
    * @param Map<String String> params

@@ -280,11 +280,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
    * @param List<dau01__Applicant__c> applicants
    * @return Boolean
    **/
-  global virtual Boolean deleteApplicants(List<Applicant__c> applicants) {
-    if (!applicants.isEmpty()) {
-      ApplicantRepository.deleteRecords(applicants);
-      // need to delete child records
-    }
+  global virtual Boolean deleteEntity(Id recordId) {
     return true;
   }
 
