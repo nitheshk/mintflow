@@ -122,4 +122,26 @@ global with sharing class ApexRequest {
     this.header = header;
     return this;
   }
+
+  /**
+   * @description set data of type string
+   * @author Digital Align Team | 10-28-2021
+   * @param String data
+   * @return ApexRequest
+   **/
+  global ApexRequest setData(String data) {
+    this.data = data;
+    return this;
+  }
+
+  /**
+   * @description set data if type object
+   * @author Digital Align Team | 10-28-2021
+   * @param Object data
+   * @return ApexRequest
+   **/
+  global ApexRequest setData(Object data) {
+    this.data = Json.serialize(data);
+    return this;
+  }
 }

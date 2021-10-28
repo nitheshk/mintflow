@@ -71,6 +71,10 @@ Step 5. Export Data (Refer detailed Readme File in **data\salesforceConfig\READM
 
 5.3 To Import Fresh config to salesforce run `gulp systemConfigImport`
 
+#### Post deployment Changes
+
+> Step 1: Open Scratch org and goto user (Setup->Users) , Search for the user "Online User, Reset the password for the user, Reset url sent to linked github account and Set Password as `Test@123`
+
 ### Step 3: pulling submodule
 
 Step 3.1 : `git clone --recursive git@github.com:DigitalAlignInc/p1fcu-olbui.git`

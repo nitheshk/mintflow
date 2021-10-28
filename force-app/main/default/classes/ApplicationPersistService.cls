@@ -281,6 +281,35 @@ global with sharing class ApplicationPersistService extends AbstractService {
    * @return Boolean
    **/
   global virtual Boolean deleteEntity(Id recordId) {
+    log?.fine('Inside Delete Entity');
+    switch on SObjectUtils.getObjectName(recordID) {
+      when 'Account' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'FinServ__FinancialAccount__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'dau01__Applicant__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'FinServ__IdentificationDocument__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'FinServ__Employment__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'ContactPointAddress' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'FinServ__AssetsAndLiabilities__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'FinServ__Revenue__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+    }
+    log?.fine('Complete Delete Entity');
+
     return true;
   }
 

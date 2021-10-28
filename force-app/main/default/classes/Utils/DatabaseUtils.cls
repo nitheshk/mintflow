@@ -12,7 +12,7 @@ global virtual inherited sharing class DatabaseUtils {
    * group by with sharing
    */
   /**
-   * @description
+   * @description get records by applying user sharing rule
    * @author Digital Align | 05-11-2021
    * @param String queryString
    * @return List<SObject>
@@ -23,7 +23,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description get record by applying user sharing rule
    * @author Digital Align Team | 07-13-2021
    * @param String queryString
    * @return SObject
@@ -35,7 +35,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description get records by applying user sharing rule, pass list object binding in soql
    * @author Digital Align | 05-11-2021
    * @param String queryString
    * @param List<Object> records
@@ -50,7 +50,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description get record by applying user sharing rule, pass list object binding in soql
    * @author Digital Align Team | 07-13-2021
    * @param String queryString
    * @param List<Object> records
@@ -68,7 +68,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description Process soql/dml operation
    * @author Digital Align | 05-15-2021
    * @param CrudType crudType
    * @param List<SObject> records
@@ -99,7 +99,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description Insert records by applying user sharing rule
    * @author Digital Align | 05-15-2021
    * @param List<SObject> records
    * @return List<SObject>
@@ -109,7 +109,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description Insert record by applying user sharing rule
    * @author Digital Align | 05-15-2021
    * @param SObject record
    * @return SObject
@@ -124,7 +124,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description update records by applying user sharing rule
    * @author Digital Align | 05-15-2021
    * @param List<SObject> records
    * @return List<SObject>
@@ -134,7 +134,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description update record by applying user sharing rule
    * @author Digital Align | 05-15-2021
    * @param SObject record
    * @return SObject
@@ -149,7 +149,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description upsert records by applying user sharing rule
    * @author Digital Align | 05-15-2021
    * @param List<SObject> records
    * @return List<SObject>
@@ -159,7 +159,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description upsert record by applying user sharing rule
    * @author Digital Align | 05-15-2021
    * @param SObject record
    * @return SObject
@@ -174,7 +174,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description upsert records by applying user sharing rule,pass external field name need to upsert on
    * @author Digital Align | 05-15-2021
    * @param List<SObject> records
    * @param SObjectField externalFieldName
@@ -192,7 +192,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description upsert record by applying user sharing rule,pass external field name need to upsert on
    * @author Digital Align | 05-15-2021
    * @param SObject record
    * @param SObjectField externalFieldName
@@ -212,7 +212,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
+   * @description delete records by applying user sharing rule
    * @author Digital Align | 05-15-2021
    * @param List<SObject> records
    **/
@@ -221,8 +221,7 @@ global virtual inherited sharing class DatabaseUtils {
   }
 
   /**
-   * @description
-   * @author Digital Align | 05-15-2021
+   * @description delete record by applying user sharing rule
    * @param SObject record
    **/
   global static void deleteRecordBySharing(SObject record) {
@@ -317,7 +316,7 @@ global virtual inherited sharing class DatabaseUtils {
     return SObjectWithoutSharing.processRecords(
       crudType,
       SecurityUtils.stripInaccessible(records, crudType),
-      null
+      externalFieldName
     );
   }
 
@@ -642,5 +641,45 @@ global virtual inherited sharing class DatabaseUtils {
       return;
     }
     deleteRecords(CollectionUtils.convertSobjectToListSobject(record));
+  }
+
+  /**
+   * @description The optional allOrNone parameter specifies whether the operation allows partial success.
+   * If you specify false for this parameter and a record fails, the remainder of the DML operation can still succeed.
+   * This method returns a result object that can be used to verify which records succeeded, which failed, and why.
+   * If the parameter is not set or is set true, an exception is thrown if the method is not successful.
+   * @author Digital Align Team | 10-28-2021
+   * @param Id recordId
+   * @param Boolean allOrNone
+   * @return List<Database.DeleteResult>
+   **/
+  global static List<Database.DeleteResult> deleteRecord(
+    Id recordId,
+    Boolean allOrNone
+  ) {
+    if (recordId == null) {
+      return null;
+    }
+    return deleteRecords(new List<Id>{ recordId }, allOrNone);
+  }
+
+  /**
+   * @description The optional allOrNone parameter specifies whether the operation allows partial success.
+   * If you specify false for this parameter and a record fails, the remainder of the DML operation can still succeed.
+   * This method returns a result object that can be used to verify which records succeeded, which failed, and why.
+   * If the parameter is not set or is set true, an exception is thrown if the method is not successful.
+   * @author Digital Align Team | 10-28-2021
+   * @param List<ID> recordIds
+   * @param Boolean allOrNone
+   * @return List<Database.DeleteResult>
+   **/
+  global static List<Database.DeleteResult> deleteRecords(
+    List<ID> recordIds,
+    Boolean allOrNone
+  ) {
+    if (CollectionUtils.isListEmpty(recordIds)) {
+      return null;
+    }
+    return SObjectWithoutSharing.deleteRecords(recordIds, allOrNone);
   }
 }

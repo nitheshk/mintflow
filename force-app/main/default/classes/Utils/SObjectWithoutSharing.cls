@@ -75,7 +75,7 @@ global without sharing class SObjectWithoutSharing {
   }
 
   /**
-   * @description Perform dml operation
+   * @description Perform dml operation on list of sobject with specified external filedname for upsert operation,
    * @author Digital Align | 05-12-2021
    * @param CrudType crudType
    * @param List<Sobject> records
@@ -111,6 +111,30 @@ global without sharing class SObjectWithoutSharing {
     }
     log?.fine(crudType.Name() + ' ' + SObjectUtils.getObjectName(records));
     return records;
+  }
+
+  /**
+   * @description The optional allOrNone parameter specifies whether the operation allows partial success.
+   * If you specify false for this parameter and a record fails, the remainder of the DML operation can still succeed.
+   * This method returns a result object that can be used to verify which records succeeded, which failed, and why.
+   * If the parameter is not set or is set true, an exception is thrown if the method is not successful.
+   * @author Digital Align Team | 10-28-2021
+   * @param List<ID> recordIds
+   * @param Boolean allOrNone
+   * @return List<Database.DeleteResult>
+   **/
+  public static List<Database.DeleteResult> deleteRecords(
+    List<ID> recordIds,
+    Boolean allOrNone
+  ) {
+    List<Database.DeleteResult> results = Database.delete(recordIds, allOrNone);
+    log
+      ?.fine(
+        CrudType.DELETEABLE +
+        ' ' +
+        SObjectUtils.getObjectName(recordIds[0])
+      );
+    return results;
   }
 
   /**

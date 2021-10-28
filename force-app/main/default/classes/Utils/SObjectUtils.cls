@@ -94,6 +94,16 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
+   * @description get sobject name by record id
+   * @author Digital Align Team | 10-28-2021
+   * @param Id entityId
+   * @return String
+   **/
+  global static String getObjectName(Id recordId) {
+    return getObjectName(recordId?.getSobjectType());
+  }
+
+  /**
    * @description Get all field name based on sObject type
    * @author Digital Align | 05-02-2021
    * @param SObjectType sType
