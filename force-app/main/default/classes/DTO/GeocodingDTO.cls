@@ -1,19 +1,5 @@
 @SuppressWarnings('PMD.VariableNamingConventions')
 public with sharing class GeocodingDTO extends AbstractDTO {
-  // Formatted response
-  public class ReturnResponse {
-    public List<MatchingAddress> matchingAddress;
-    public Boolean isCountyEligible;
-  }
-  public class MatchingAddress {
-    public string country;
-    public String state;
-    public String county;
-    public String locality;
-    public String neighborhood;
-    public String zipcode;
-  }
-
   //Response from API
   public class Response {
     public List<Results> results;

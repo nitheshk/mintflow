@@ -7,7 +7,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class HttpBuilder {
-  private static APISetting__mdt apiSetting { get; set; }
+  global static APISetting__mdt apiSetting { get; set; }
 
   global static APISetting__mdt getAPISetting(APINames apiName) {
     return APISetting__mdt.getInstance(apiName.Name());
@@ -18,7 +18,7 @@ global with sharing class HttpBuilder {
   }
 
   global static APISetting__mdt setAPISetting(APINames apiName) {
-    apiSetting = APISetting__mdt.getInstance(apiName.Name());
+    apiSetting = APISetting__mdt.getInstance(apiName.Name())?.clone();
     return apiSetting;
   }
 
@@ -34,7 +34,7 @@ global with sharing class HttpBuilder {
     String oldValue,
     String newValue
   ) {
-    apiSetting?.EndPoint__c?.replace(oldValue, newValue);
+    apiSetting.EndPoint__c = apiSetting.EndPoint__c.replace(oldValue, newValue);
     return apiSetting;
   }
 
@@ -55,7 +55,7 @@ global with sharing class HttpBuilder {
     global Integer statusCode { get; set; }
     global String status { get; set; }
     global Object data { get; set; }
-    global Response(Integer statusCode, String message, Object data) {
+    global Response(Integer statusCode, String status, Object data) {
       this.statusCode = statusCode;
       this.status = status;
       this.data = data;

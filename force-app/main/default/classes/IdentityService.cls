@@ -34,9 +34,26 @@ global with sharing class IdentityService extends AbstractService {
   global virtual Object verifyCounty(Map<String, Object> params) {
     string zipcode = (string) params.get('zipcode');
     if (string.isBlank(zipcode) && params != null) {
-      throw new CustomException('Zipcode value notset');
+      throw new CustomException('Zipcode value not set');
     }
-    return (GeocodingProvider.getInstance().invokeAPI(params));
+    if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
+      HttpBuilder.setAPISetting(APINames.Geocoding);
+      HttpBuilder.replaceEndpoint(
+        '{APIKey}',
+        HttpBuilder.getApiConstant('GeocodingAPIKey')
+      );
+      HttpBuilder.replaceEndpoint('{Pincode}', (string) params.get('zipcode'));
+      HttpBuilder.Response response = (HttpBuilder.Response) GeocodingProvider.getInstance()
+        .validateCountyUsingGoogleApi(params);
+
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw new CustomException(response.status);
+      }
+    } else {
+      throw new CustomException('Requested API is disabled');
+    }
   }
   /**
    * @description

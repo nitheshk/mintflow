@@ -13,13 +13,9 @@ global with sharing class IdentityController extends AbstractController {
   global static ApexResponse verifyCounty(Map<String, object> params) {
     try {
       log?.fine('Inside verifyCounty');
-      GeocodingDTO.ReturnResponse res = (GeocodingDTO.ReturnResponse) IdentityService.getInstance()
-        .verifyCounty(params);
-      if (res.matchingAddress != null) {
-        return ApexResponse.ok(res);
-      } else {
-        return ApexResponse.fail(res);
-      }
+      return ApexResponse.ok(
+        IdentityService.getInstance().verifyCounty(params)
+      );
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
