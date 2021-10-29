@@ -12,5 +12,6 @@ global enum APINames {
   SentiLink,
   SentiLinkIdCompletion,
   Geocoding,
-  IdScanAnalyzer
+  IdScanAnalyzer,
+  AWSAuth
 }
