@@ -79,30 +79,54 @@ global with sharing class IdentityService extends AbstractService {
       requestDTO.authenticate_module = '2';
       requestDTO.verify_expiry = 'true';
       requestDTO.dualsidecheck = 'true';
-      res = DocumentScanProvider.invokeAPI(
-        new Map<String, Object>{ 'DTO' => requestDTO }
-      );
-      system.debug('res ==== ' + res);
+      // res = DocumentScanProvider.invokeAPI(
+      //   new Map<String, Object>{ 'DTO' => requestDTO }
+      // );
+
+      string resJSON = '{"result":{"documentNumber":"P0000000","firstName":"VZOR","lastName":"SPECIMEN","fullName":"VZOR SPECIMEN","sex":"M","age":9,"dob":"2011/11/11","dob_day":11,"dob_month":11,"dob_year":2011,"expiry":"2015/01/04","expiry_day":4,"expiry_month":1,"expiry_year":2015,"daysToExpiry":-2488,"documentType":"P","documentSide":"BIODATA","issuerOrg_full":"Slovakia","issuerOrg_iso2":"SK","issuerOrg_iso3":"SVK","nationality_full":"Slovakia","nationality_iso2":"SK","nationality_iso3":"SVK","internalId":"MRZ"},"vaultid":"65BGYSOmyyANCXbOBA7ETmqNmJonX6WF","matchrate":1,"executionTime":2.3699569702148438,"responseID":"eed35bd0d504c69f5b5d4dca18a1544c","quota":5,"credit":28}';
+      res = new Map<String, object>{
+        'Status' => 200,
+        'StatusMessage' => 'success',
+        'Data' => resJSON
+      };
+
       if (res.get('Status') == 200) {
-        DocumentScanDTO.Response newobj = new DocumentScanDTO.Response();
         Map<String, Object> idOldMap = (Map<String, Object>) JSON.deserializeUntyped(
           (string) res.get('Data')
         );
         Map<String, Object> result = (Map<String, Object>) idOldMap.get(
           'result'
         );
-        Map<String, Object> verification = (Map<String, Object>) idOldMap.get(
-          'verification'
-        );
-        Map<String, Object> authentication = (Map<String, Object>) idOldMap.get(
-          'authentication'
-        );
+        Map<String, Object> authenticatioBreakdown = (Map<String, Object>) ((Map<String, Object>) idOldMap.get(
+            'authentication'
+          ))
+          .get('breakdown');
+
         Map<String, Object> validation = new Map<String, Object>();
-        validation.put('isExpired', verification.get('passed'));
-        validation.put('score', authentication.get('score'));
-        system.debug(validation);
-        // validation.put('imageQualityPassed', '');
-        // validation.put('securityCheckPassed', '');
+        validation.put(
+          'isExpired',
+          (Boolean) ((Map<String, Object>) idOldMap.get('verification'))
+            .get('passed')
+        );
+        validation.put(
+          'score',
+          ((Map<String, Object>) idOldMap.get('authentication')).get('score')
+        );
+        validation.put(
+          'imageQualityPassed',
+          (Boolean) ((Map<String, Object>) authenticatioBreakdown.get(
+              'image_quality'
+            ))
+            .get('passed')
+        );
+        validation.put(
+          'securityCheckPassed',
+          (Boolean) ((Map<String, Object>) authenticatioBreakdown.get(
+              'security_feature_check'
+            ))
+            .get('passed')
+        );
+
         Map<String, Object> newMap = new Map<String, Object>();
         newMap.put('documentNumber', result.get('documentNumber'));
         newMap.put('firstName', result.get('firstName'));
@@ -122,30 +146,34 @@ global with sharing class IdentityService extends AbstractService {
         newMap.put('issuerCountry', result.get('issuerOrg_full'));
         newMap.put('nationality', result.get('nationality_full'));
         newMap.put('validation', validation);
-        system.debug(newMap);
         DocumentScanDTO.Response returnDTO = (DocumentScanDTO.Response) JSON.deserialize(
-          JSON.serialize(new Map<String, Object>{ 'Data' => newMap }),
+          JSON.serialize(
+            new Map<String, Object>{
+              'Data' => newMap,
+              'status' => res.get('Status')
+            }
+          ),
           DocumentScanDTO.Response.class
         );
-        system.debug(returnDTO);
         applicant.dau01__FirstName__c = returnDTO.data.firstName;
         applicant.dau01__LastName__c = returnDTO.data.lastName;
         applicant.dau01__Birthdate__c = getDateFromString(returnDTO.data.dob);
-        identity.FinServ__ExpirationDate__c = getDateFromString(
-          returnDTO.data.expiry
-        );
         identity.FinServ__DocumentType__c = returnDTO.data.documentType;
         identity.FinServ__DocumentNumber__c = returnDTO.data.documentNumber;
         identity.FinServ__IssuingCountry__c = returnDTO.data.issuerCountry;
+        identity.dau01__Nationality__c = returnDTO.data.nationality;
+        identity.FinServ__ExpirationDate__c = getDateFromString(
+          returnDTO.data.expiry
+        );
         identity.FinServ__IssueDate__c = getDateFromString(
           returnDTO.data.issued
         );
-        identity.dau01__Nationality__c = returnDTO.data.nationality;
         idAddress.Street =
           returnDTO.data.address1 +
           ' ' +
           returnDTO.data.address2;
         idAddress.PostalCode = returnDTO.data.postalCode;
+        log?.debug(' returnDTO : ' + returnDTO);
         construct = dau01.SObjectConstructor.getInstance(applicant);
         construct.setChildObjects(
           'dau01__ContactPointAddresses__r',
@@ -156,13 +184,17 @@ global with sharing class IdentityService extends AbstractService {
           new List<finServ__IdentificationDocument__c>{ identity }
         );
         applicant = (dau01__Applicant__c) construct.build();
-        system.debug('Full Json : ' + Json.Serialize(applicant));
-
-        system.debug('applicant =' + applicant);
+        log?.debug(' Full Json : ' + Json.Serialize(applicant));
       }
     }
     return construct;
   }
+  /**
+   * @description
+   * @author Digital Align | 10-30-2021
+   * @param string datestring
+   * @return virtual
+   **/
   global virtual Date getDateFromString(string datestring) {
     if (!string.isblank(datestring)) {
       List<string> dateComp = datestring.split('/');
