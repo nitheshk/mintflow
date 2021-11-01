@@ -26,7 +26,8 @@ global with sharing class IdentityService extends AbstractService {
   }
 
   /**
-   * @description
+   * @description verify county eligibility
+   * Pass "zipcode" as parameter
    * @author Digital Align Team | 10-13-2021
    * @param Map<String String> params
    * @return Object
@@ -36,6 +37,9 @@ global with sharing class IdentityService extends AbstractService {
     if (string.isBlank(zipcode) && params != null) {
       throw new CustomException('Zipcode value not set');
     }
+    Flow.initialize(ApexRequest.getApplicationId());
+    Flow.setFlow('EligibilityFlow');
+    Flow.setSubFlow(APINames.Geocoding.name());
     if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
       HttpBuilder.setAPISetting(APINames.Geocoding);
       HttpBuilder.replaceEndpoint(
@@ -47,11 +51,17 @@ global with sharing class IdentityService extends AbstractService {
         .validateCountyUsingGoogleApi(params);
 
       if (response.statusCode == 200) {
+        flow.setSubFlowPassed(response.status);
+        flow.setFlowPassed('Completed');
         return response.data;
       } else {
+        flow.setSubFlowFailed(response.status);
+        flow.setFlowFailed('Failed');
         throw new CustomException(response.status);
       }
     } else {
+      flow.setSubFlowFailed('Requested API is disabled');
+      flow.setFlowFailed('Failed');
       throw new CustomException('Requested API is disabled');
     }
   }

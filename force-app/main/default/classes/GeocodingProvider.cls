@@ -40,7 +40,7 @@ global with sharing class GeocodingProvider extends AbstractService {
 
     try {
       HttpResponse response = HttpBuilder.httpCallOut(null, null);
-
+      flow.setSubFlowResponse(response?.getBody());
       system.debug('response : ' + response);
 
       if (response.getStatusCode() != 200) {
