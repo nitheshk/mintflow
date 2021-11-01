@@ -1003,6 +1003,16 @@
         <field>Applicant__c.MiddleName__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OTP__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OTPExpireTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
       <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsEmailVerified__c</field>
