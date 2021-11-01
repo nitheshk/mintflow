@@ -103,7 +103,6 @@ global with sharing class Logger {
    * @param obj String that will be logged
    */
   global void error(Object obj) {
-    System.debug(LoggingLevel.ERROR, obj);
     if (skipLogging(LoggingLevel.ERROR)) {
       return;
     }
@@ -135,7 +134,6 @@ global with sharing class Logger {
     String className,
     String msg
   ) {
-    System.debug(logLevel, msg);
     if (
       !(ApplicationConfiguration__c.getInstance().DebugLogs__c &&
       logLevel.ordinal() >= Logger.level.ordinal())
@@ -157,7 +155,6 @@ global with sharing class Logger {
    * @param obj String that will be logged
    */
   global void debug(Object obj) {
-    System.debug(LoggingLevel.DEBUG, obj);
     if (skipLogging(LoggingLevel.DEBUG)) {
       return;
     }
@@ -184,7 +181,6 @@ global with sharing class Logger {
    * @param obj String that will be logged
    */
   global void info(Object obj) {
-    System.debug(LoggingLevel.INFO, obj);
     if (skipLogging(LoggingLevel.INFO)) {
       return;
     }
@@ -209,7 +205,6 @@ global with sharing class Logger {
    * @param obj Object that will be logged
    */
   global void fine(Object obj) {
-    System.debug(LoggingLevel.FINE, obj);
     if (skipLogging(LoggingLevel.FINE)) {
       return;
     }

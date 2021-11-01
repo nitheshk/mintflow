@@ -48,7 +48,9 @@ global with sharing class ApexResponse {
    * @return ApexResponse
    **/
   global static ApexResponse ok() {
-    return ok(null);
+    ApexResponse response = new ApexResponse();
+    response.status = 200;
+    return response;
   }
 
   /**
@@ -65,12 +67,35 @@ global with sharing class ApexResponse {
   }
 
   /**
+   * @description return status with 400 and exception details
+   * @author Digital Align Team | 11-01-2021
+   * @param Exception ex
+   * @return ApexResponse
+   **/
+  global static ApexResponse fail(Exception ex) {
+    ApexResponse response = new ApexResponse();
+    response.status = 400;
+    response.data = ex.getMessage();
+    response.entity =
+      'Message: ' +
+      ex.getMessage() +
+      ' ; Line Number: ' +
+      ex.getLineNumber() +
+      ' ; Type: ' +
+      ex.getTypeName() +
+      ' ; Stack Trace: ' +
+      ex.getStackTraceString();
+    return response;
+  }
+  /**
    * @description return status with 400
    * @author Digital Align Team | 09-02-2021
    * @return ApexResponse
    **/
   global static ApexResponse fail() {
-    return fail(null);
+    ApexResponse response = new ApexResponse();
+    response.status = 400;
+    return response;
   }
 
   /**
@@ -83,6 +108,28 @@ global with sharing class ApexResponse {
     ApexResponse response = new ApexResponse();
     response.status = 500;
     response.data = error;
+    return response;
+  }
+
+  /**
+   * @description  return status with 500 and exception details
+   * @author Digital Align Team | 11-01-2021
+   * @param Exception ex
+   * @return ApexResponse
+   **/
+  global static ApexResponse exception(Exception ex) {
+    ApexResponse response = new ApexResponse();
+    response.status = 500;
+    response.data = ex.getMessage();
+    response.entity =
+      'Message: ' +
+      ex.getMessage() +
+      ' ; Line Number: ' +
+      ex.getLineNumber() +
+      ' ; Type: ' +
+      ex.getTypeName() +
+      ' ; Stack Trace: ' +
+      ex.getStackTraceString();
     return response;
   }
 

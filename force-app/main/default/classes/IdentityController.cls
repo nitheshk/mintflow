@@ -43,10 +43,14 @@ global with sharing class IdentityController extends AbstractController {
    * @param Map<String object> params
    * @return ApexResponse
    **/
-  global static ApexResponse scanDL(Map<String, object> params) {
+  global static ApexResponse scanIdentityDocument(ApexRequest request) {
     try {
-      log?.fine('Inside scanDL');
-      return ApexResponse.ok(IdentityService.getInstance().scanDL(params));
+      log?.fine('Inside scanIdentityDocument');
+      validateRequest(request);
+      return ApexResponse.ok(
+        IdentityService.getInstance()
+          .scanIdentityDocument(ApexRequest.getParams())
+      );
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -54,7 +58,7 @@ global with sharing class IdentityController extends AbstractController {
       log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
-      log?.fine('Complete scanDL');
+      log?.fine('Complete scanIdentityDocument');
       Logger.persist();
     }
   }
