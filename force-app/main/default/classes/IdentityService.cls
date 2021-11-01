@@ -33,43 +33,44 @@ global with sharing class IdentityService extends AbstractService {
    * @return Object
    **/
   global virtual Object verifyCounty(Map<String, Object> params) {
-    string zipcode = (string) params.get('zipcode');
-    if (string.isBlank(zipcode) && params != null) {
-      throw new CustomException('Zipcode value not set');
-    }
     Flow.initialize(ApexRequest.getApplicationId());
     Flow.setFlow('EligibilityFlow');
     Flow.setSubFlow(APINames.Geocoding.name());
-    if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
-      HttpBuilder.setAPISetting(APINames.Geocoding);
-      HttpBuilder.replaceEndpoint(
-        '{APIKey}',
-        HttpBuilder.getApiConstant('GeocodingAPIKey')
-      );
-      HttpBuilder.replaceEndpoint('{Pincode}', (string) params.get('zipcode'));
-      HttpBuilder.Response response = (HttpBuilder.Response) GeocodingProvider.getInstance()
-        .validateCountyUsingGoogleApi(params);
-
-      if (response.statusCode == 200) {
+    try {
+      string zipcode = (string) params.get('zipcode');
+      if (string.isBlank(zipcode) && params != null) {
+        throw new CustomException('Zipcode value not set');
+      }
+      if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
+        HttpBuilder.setAPISetting(APINames.Geocoding);
+        HttpBuilder.replaceEndpoint(
+          '{APIKey}',
+          HttpBuilder.getApiConstant('GeocodingAPIKey')
+        );
+        HttpBuilder.replaceEndpoint(
+          '{Pincode}',
+          (string) params.get('zipcode')
+        );
+        HttpBuilder.Response response = GeocodingProvider.getInstance()
+          .validateCountyUsingGoogleApi(params);
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
         return response.data;
       } else {
-        flow.setSubFlowFailed(response.status);
-        flow.setFlowFailed('Failed');
-        throw new CustomException(response.status);
+        throw new CustomException('Requested API is disabled');
       }
-    } else {
-      flow.setSubFlowFailed('Requested API is disabled');
+    } catch (Exception ex) {
+      log?.error(ex);
+      flow.setSubFlowFailed(ex.getMessage());
       flow.setFlowFailed('Failed');
-      throw new CustomException('Requested API is disabled');
+      throw ex;
     }
   }
   /**
-   * @description
+   * @description Document Scan functionality for identity verify
    * @author Digital Align | 10-26-2021
    * @param Map<String object> params
-   * @return virtual
+   * @return Object
    **/
   global virtual Object scanDL(Map<String, object> params) {
     dau01__Applicant__c applicant = new dau01__Applicant__c();

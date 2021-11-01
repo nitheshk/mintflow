@@ -36,6 +36,13 @@ global with sharing class IdentityController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description Document Scan functionality for identity verify
+   * @author Digital Align Team | 11-01-2021
+   * @param Map<String object> params
+   * @return ApexResponse
+   **/
   global static ApexResponse scanDL(Map<String, object> params) {
     try {
       log?.fine('Inside scanDL');

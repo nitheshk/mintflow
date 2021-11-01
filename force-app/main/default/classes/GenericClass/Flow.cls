@@ -263,6 +263,9 @@ global with sharing class Flow extends AbstractService {
    * @author Digital Align Team | 10-19-2021
    **/
   public static void setSubFlowPassed() {
+    if (currentSubFlow == null) {
+      return;
+    }
     currentSubFlow.Status__c = STATUS_SUCCESS;
   }
 
@@ -272,6 +275,9 @@ global with sharing class Flow extends AbstractService {
    * @param String note
    **/
   public static void setSubFlowPassed(String note) {
+    if (currentSubFlow == null) {
+      return;
+    }
     currentSubFlow.Status__c = STATUS_SUCCESS;
     currentSubFlow.Note__c = note?.left(2000);
   }
@@ -281,6 +287,9 @@ global with sharing class Flow extends AbstractService {
    * @author Digital Align Team | 10-19-2021
    **/
   public static void setSubFlowFailed() {
+    if (currentSubFlow == null) {
+      return;
+    }
     currentSubFlow.Status__c = STATUS_FAILED;
   }
 
@@ -290,6 +299,9 @@ global with sharing class Flow extends AbstractService {
    * @param String note
    **/
   public static void setSubFlowFailed(String note) {
+    if (currentSubFlow == null) {
+      return;
+    }
     currentSubFlow.Status__c = STATUS_FAILED;
     currentSubFlow.Note__c = note?.left(2000);
   }

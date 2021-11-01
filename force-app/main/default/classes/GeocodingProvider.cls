@@ -27,85 +27,81 @@ global with sharing class GeocodingProvider extends AbstractService {
     }
     return serviceInstance;
   }
+
   /**
    * @description
-   * @author Digital Align | 10-26-2021
+   * @author Digital Align Team | 11-01-2021
    * @param Map<String object> params
-   * @return GeocodingDTO.ReturnResponse
+   * @return HttpBuilder.Response
    **/
-  global virtual object validateCountyUsingGoogleApi(
+  global virtual HttpBuilder.Response validateCountyUsingGoogleApi(
     Map<String, object> params
   ) {
     log?.fine('Inside invokeAPI -> params -> ' + Json.serialize(params));
 
-    try {
-      HttpResponse response = HttpBuilder.httpCallOut(null, null);
-      flow.setSubFlowResponse(response?.getBody());
-      system.debug('response : ' + response);
+    HttpResponse response = HttpBuilder.httpCallOut(null, null);
+    flow.setSubFlowResponse(response?.getBody());
+    log?.debug('response : ' + response.getBody());
 
-      if (response.getStatusCode() != 200) {
-        return HttpBuilder.buildResponse(response);
-      }
-      GeocodingDTO.Response dto = (GeocodingDTO.Response) JSON.deserialize(
-        response.getBody(),
-        GeocodingDTO.Response.class
-      );
+    if (response.getStatusCode() != 200) {
+      throw new CustomException(response.getStatus());
+    }
+    GeocodingDTO.Response dto = (GeocodingDTO.Response) JSON.deserialize(
+      response.getBody(),
+      GeocodingDTO.Response.class
+    );
 
-      Map<String, Object> result = new Map<String, Object>();
-      Boolean isCountyEligible = false;
-      result.put('isCountyEligible', isCountyEligible);
+    Map<String, Object> result = new Map<String, Object>();
+    Boolean isCountyEligible = false;
+    result.put('isCountyEligible', isCountyEligible);
 
-      if (dto?.status != 'OK') {
-        return HttpBuilder.buildResponse(
-          response.getStatusCode(),
-          response.getStatus(),
-          result
-        );
-      }
-
-      Map<String, Object> mathcingResult = new Map<String, Object>();
-      for (
-        GeocodingDTO.AddressComponents addresses : dto.results[0]
-          .address_components
-      ) {
-        for (string type : addresses.types) {
-          switch on type {
-            when 'country', 'locality', 'neighborhood' {
-              mathcingResult.put(type, addresses.long_name);
-              break;
-            }
-            when 'postal_code' {
-              mathcingResult.put('zipcode', addresses.long_name);
-              break;
-            }
-            when 'administrative_area_level_2' {
-              mathcingResult.put('county', addresses.long_name);
-              break;
-            }
-            when 'administrative_area_level_1' {
-              mathcingResult.put('state', addresses.long_name);
-              if (
-                addresses.long_name == 'oregaon' ||
-                addresses.long_name == 'Idhaho' ||
-                addresses.long_name == 'Washington'
-              ) {
-                isCountyEligible = true;
-              }
-              break;
-            }
-          }
-        }
-      }
-      result.put('matchingAddress', new List<Object>{ mathcingResult });
-      result.put('isCountyEligible', isCountyEligible);
+    if (dto?.status != 'OK') {
       return HttpBuilder.buildResponse(
         response.getStatusCode(),
         response.getStatus(),
         result
       );
-    } catch (Exception ex) {
-      log?.error(ex);
-      return HttpBuilder.buildResponse(400, ex.getMessage(), null);
     }
+
+    Map<String, Object> mathcingResult = new Map<String, Object>();
+    for (
+      GeocodingDTO.AddressComponents addresses : dto.results[0]
+        .address_components
+    ) {
+      for (string type : addresses.types) {
+        switch on type {
+          when 'country', 'locality', 'neighborhood' {
+            mathcingResult.put(type, addresses.long_name);
+            break;
+          }
+          when 'postal_code' {
+            mathcingResult.put('zipcode', addresses.long_name);
+            break;
+          }
+          when 'administrative_area_level_2' {
+            mathcingResult.put('county', addresses.long_name);
+            break;
+          }
+          when 'administrative_area_level_1' {
+            mathcingResult.put('state', addresses.long_name);
+            if (
+              addresses.long_name == 'oregaon' ||
+              addresses.long_name == 'Idhaho' ||
+              addresses.long_name == 'Washington'
+            ) {
+              isCountyEligible = true;
+            }
+            break;
+          }
+        }
+      }
+    }
+    result.put('matchingAddress', new List<Object>{ mathcingResult });
+    result.put('isCountyEligible', isCountyEligible);
+    return HttpBuilder.buildResponse(
+      response.getStatusCode(),
+      response.getStatus(),
+      result
+    );
   }
 }
