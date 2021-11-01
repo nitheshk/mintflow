@@ -142,7 +142,7 @@ global with sharing class IdentityService extends AbstractService {
         .createFile(
           new FileDTO(
             'customerScore.txt',
-            blob.valueof(Json.serialize(params.get('responseBody'))),
+            blob.valueof(Json.serialize(response.data)),
             applicantId,
             'Identity',
             'SentiLink'
