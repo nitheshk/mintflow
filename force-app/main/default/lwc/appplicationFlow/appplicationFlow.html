@@ -1,17 +1,37 @@
 <template>
-  <lightning-card
-    title="Flows"
-    class="slds-m-around_small"
-    icon-name="standard:flow"
-  >
-    <div class="slds-m-around_medium">
-      <lightning-tree-grid
-        columns={columnNames}
-        data={flowData}
-        key-field="Id"
-        show-row-number-column="true"
-        hide-checkbox-column="true"
-      ></lightning-tree-grid>
+  <div class="slds-page-header slds-page-header_record-home">
+    <div class="slds-page-header__row">
+      <div class="slds-page-header__col-title">
+        <div class="slds-media">
+          <div class="slds-media__figure">
+            <lightning-icon
+              icon-name="utility:connected_apps"
+              size="small"
+              alternative-text="Approved"
+              title="Approved"
+            ></lightning-icon>
+          </div>
+          <div class="slds-media__body">
+            <h2>
+              <span class="slds-page-header__title slds-truncate" title="Flows"
+                >Flows</span
+              >
+            </h2>
+          </div>
+        </div>
+      </div>
     </div>
-  </lightning-card>
+    <div class="slds-page-header__row slds-page-header__row_gutters">
+      <div class="slds-page-header__col-details">
+        <!-- sldsValidatorIgnoreNextLine -->
+        <lightning-tree-grid
+          columns={columnNames}
+          data={flowData}
+          key-field="Id"
+          show-row-number-column="true"
+          hide-checkbox-column="true"
+        ></lightning-tree-grid>
+      </div>
+    </div>
+  </div>
 </template>
