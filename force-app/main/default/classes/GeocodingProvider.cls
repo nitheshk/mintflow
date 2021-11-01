@@ -46,26 +46,38 @@ global with sharing class GeocodingProvider extends AbstractService {
     if (response.getStatusCode() != 200) {
       throw new CustomException(response.getStatus());
     }
-    GeocodingDTO.Response dto = (GeocodingDTO.Response) JSON.deserialize(
+    GeocodingDTO.Response responseDTO = (GeocodingDTO.Response) JSON.deserialize(
       response.getBody(),
       GeocodingDTO.Response.class
     );
 
+    return HttpBuilder.buildResponse(
+      response.getStatusCode(),
+      response.getStatus(),
+      mapGeoLocation(responseDTO)
+    );
+  }
+
+  /**
+   * @description map geo location to required format
+   * @author Digital Align Team | 11-01-2021
+   * @param GeocodingDTO.Response responseDTO
+   * @return virtual
+   **/
+  global virtual Map<String, Object> mapGeoLocation(
+    GeocodingDTO.Response responseDTO
+  ) {
     Map<String, Object> result = new Map<String, Object>();
     Boolean isCountyEligible = false;
     result.put('isCountyEligible', isCountyEligible);
 
-    if (dto?.status != 'OK') {
-      return HttpBuilder.buildResponse(
-        response.getStatusCode(),
-        response.getStatus(),
-        result
-      );
+    if (responseDTO?.status != 'OK') {
+      return result;
     }
 
     Map<String, Object> mathcingResult = new Map<String, Object>();
     for (
-      GeocodingDTO.AddressComponents addresses : dto.results[0]
+      GeocodingDTO.AddressComponents addresses : responseDTO.results[0]
         .address_components
     ) {
       for (string type : addresses.types) {
@@ -98,10 +110,7 @@ global with sharing class GeocodingProvider extends AbstractService {
     }
     result.put('matchingAddress', new List<Object>{ mathcingResult });
     result.put('isCountyEligible', isCountyEligible);
-    return HttpBuilder.buildResponse(
-      response.getStatusCode(),
-      response.getStatus(),
-      result
-    );
+
+    return result;
   }
 }

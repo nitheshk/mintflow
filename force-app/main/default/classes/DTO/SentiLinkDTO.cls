@@ -1,226 +1,234 @@
-@SuppressWarnings('PMD.VariableNamingConventions')
-public with sharing class SentiLinkDTO extends AbstractDTO {
-  public class Request {
-    public Application application;
-    public List<ReqScores> scores;
-    public List<ReqExtraData> extra_data;
+/**
+ * Copyright (c) 2021 Digital Align
+ * @group Service
+ * @author Digital Align Team
+ * @reference
+ * @description Sent iLink SentiLinkDTODTO
+ **/
+
+@SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
+global with sharing class SentiLinkDTO extends AbstractDTO {
+  global class Request {
+    global Application application;
+    global List<ReqScores> scores;
+    global List<ReqExtraData> extra_data;
   }
-  public class Application {
-    public String application_id;
-    public String application_created;
-    public String user_id;
-    public String user_created;
-    public String first_name;
-    public String middle_name;
-    public String last_name;
-    public String dob;
-    public String ssn;
-    public String address_line_1;
-    public String address_line_2;
-    public String country_code;
-    public String city;
-    public String state_code;
-    public String zipcode;
-    public String phone;
-    public String email;
-    public String ip_address;
-    public String device_id;
-    public String business_name;
-    public String business_url;
-    public String lead_type;
-    public String loan_amount;
-    public String loan_currency;
-    public Metadata metadata;
-    public String alt_address_line_1;
-    public String alt_address_line_2;
-    public String alt_country_code;
-    public String alt_city;
-    public String alt_state_code;
-    public String alt_zipcode;
-    public String alt_phone;
-    public String alt_email;
-    public String sentilink_application_sid;
+  global class Application {
+    global String application_id;
+    global String application_created;
+    global String user_id;
+    global String user_created;
+    global String first_name;
+    global String middle_name;
+    global String last_name;
+    global String dob;
+    global String ssn;
+    global String address_line_1;
+    global String address_line_2;
+    global String country_code;
+    global String city;
+    global String state_code;
+    global String zipcode;
+    global String phone;
+    global String email;
+    global String ip_address;
+    global String device_id;
+    global String business_name;
+    global String business_url;
+    global String lead_type;
+    global String loan_amount;
+    global String loan_currency;
+    global Metadata metadata;
+    global String alt_address_line_1;
+    global String alt_address_line_2;
+    global String alt_country_code;
+    global String alt_city;
+    global String alt_state_code;
+    global String alt_zipcode;
+    global String alt_phone;
+    global String alt_email;
+    global String sentilink_application_sid;
   }
-  public class ReqExtraData {
-    public String type;
+  global class ReqExtraData {
+    global String type;
   }
 
-  public class ReqScores {
-    public String score_name;
+  global class ReqScores {
+    global String score_name;
   }
-  public class Metadata {
-    public String any_additional_data;
+  global class Metadata {
+    global String any_additional_data;
   }
-  public class Response {
-    public String application_id;
-    public String customer_id;
-    public String environment;
-    public Integer latency_ms;
-    public String notes;
-    public List<ResScores> scores;
-    public ResExtraData extra_data;
-    public String timestamp;
-    public String transaction_id;
+  global class Response {
+    global String application_id;
+    global String customer_id;
+    global String environment;
+    global Integer latency_ms;
+    global String notes;
+    global List<ResScores> scores;
+    global ResExtraData extra_data;
+    global String timestamp;
+    global String transaction_id;
   }
-  public class ResExtraData {
-    public ConsumerHistory consumer_history;
-    public Clusters clusters;
-  }
-
-  public class Attribute {
-    public String value;
-    public String attribute_type;
+  global class ResExtraData {
+    global ConsumerHistory consumer_history;
+    global Clusters clusters;
   }
 
-  public class IssuanceInfo {
-    public IssuanceLowerBound issuance_lower_bound;
-    public IssuanceLowerBound issuance_upper_bound;
-    public String location;
+  global class Attribute {
+    global String value;
+    global String attribute_type;
   }
 
-  public class ResScores {
-    public String name;
-    public String version;
-    public Integer score;
-    public List<ReasonCodes> reason_codes;
+  global class IssuanceInfo {
+    global IssuanceLowerBound issuance_lower_bound;
+    global IssuanceLowerBound issuance_upper_bound;
+    global String location;
   }
 
-  public class Attributes {
-    public Integer ssn_shared_count;
-    public Integer name_dob_shared_count;
-    public Boolean ssn_issuance_dob_mismatch;
-    public Boolean ssn_issued_before_dob;
-    public Boolean name_ssn_synthetic_address;
-    public Boolean ssn_bogus;
-    public Integer ssn_history_longer_months;
+  global class ResScores {
+    global String name;
+    global String version;
+    global Integer score;
+    global List<ReasonCodes> reason_codes;
   }
 
-  public class ReasonCodes {
-    public String code;
-    public Integer rank;
-    public String direction;
-    public String explanation;
+  global class Attributes {
+    global Integer ssn_shared_count;
+    global Integer name_dob_shared_count;
+    global Boolean ssn_issuance_dob_mismatch;
+    global Boolean ssn_issued_before_dob;
+    global Boolean name_ssn_synthetic_address;
+    global Boolean ssn_bogus;
+    global Integer ssn_history_longer_months;
   }
 
-  public class Edges {
-    public Integer from_index;
-    public Integer to_index;
+  global class ReasonCodes {
+    global String code;
+    global Integer rank;
+    global String direction;
+    global String explanation;
   }
 
-  public class Names {
-    public String first_name;
-    public String last_name;
+  global class Edges {
+    global Integer from_index;
+    global Integer to_index;
   }
 
-  public class Addresses {
-    public String street_address;
-    public String zip;
-    public String city;
-    public String state;
-    public FirstReported first_reported;
+  global class Names {
+    global String first_name;
+    global String last_name;
   }
 
-  public class FirstReported {
-    public Integer year;
-    public Integer month;
+  global class Addresses {
+    global String street_address;
+    global String zip;
+    global String city;
+    global String state;
+    global FirstReported first_reported;
   }
 
-  public class PiiCorrections {
-    public String corrected_ssn;
+  global class FirstReported {
+    global Integer year;
+    global Integer month;
   }
 
-  public class Phones {
-    public String phone;
-    public FirstReportedZ first_reported;
-    public FirstReportedZ last_reported;
-    public Boolean is_possible;
-    public String phone_type;
+  global class PiiCorrections {
+    global String corrected_ssn;
   }
 
-  public class MatchFields {
-    public String field;
-    public String match_type;
-    public Integer match_index;
+  global class Phones {
+    global String phone;
+    global FirstReportedZ first_reported;
+    global FirstReportedZ last_reported;
+    global Boolean is_possible;
+    global String phone_type;
   }
 
-  public class Clusters {
-    public DataZ data;
+  global class MatchFields {
+    global String field;
+    global String match_type;
+    global Integer match_index;
   }
 
-  public class Emails {
-    public String email;
-    public Boolean format_verified;
-    public Boolean is_valid;
-    public FirstReportedZ first_reported;
-    public FirstReportedZ last_reported;
+  global class Clusters {
+    global DataZ data;
   }
 
-  public class Identity {
-    public List<Names> names;
-    public List<Addresses> addresses;
-    public List<Ssns> ssns;
-    public List<FirstReportedZ> dobs;
-    public List<FirstReportedZ> origination_dates;
-    public List<FraudCodes> fraud_codes;
-    public List<Phones> phones;
-    public List<Emails> emails;
+  global class Emails {
+    global String email;
+    global Boolean format_verified;
+    global Boolean is_valid;
+    global FirstReportedZ first_reported;
+    global FirstReportedZ last_reported;
   }
 
-  public class Identities {
-    public MatchInfo match_info;
-    public Identity identity;
+  global class Identity {
+    global List<Names> names;
+    global List<Addresses> addresses;
+    global List<Ssns> ssns;
+    global List<FirstReportedZ> dobs;
+    global List<FirstReportedZ> origination_dates;
+    global List<FraudCodes> fraud_codes;
+    global List<Phones> phones;
+    global List<Emails> emails;
   }
 
-  public class ConsumerHistory {
-    public Data data;
+  global class Identities {
+    global MatchInfo match_info;
+    global Identity identity;
   }
 
-  public class Ssns {
-    public String ssn;
-    public IssuanceInfo issuance_info;
+  global class ConsumerHistory {
+    global Data data;
   }
 
-  public class Data {
-    public Attributes attributes;
-    public List<Identities> identities;
-    public PiiCorrections pii_corrections;
+  global class Ssns {
+    global String ssn;
+    global IssuanceInfo issuance_info;
   }
 
-  public class FraudCodes {
-    public String code;
-    public String value;
+  global class Data {
+    global Attributes attributes;
+    global List<Identities> identities;
+    global PiiCorrections pii_corrections;
   }
 
-  public class Nodes {
-    public String node_type;
-    public Integer index;
-    public Application application;
-    public Attribute attribute;
+  global class FraudCodes {
+    global String code;
+    global String value;
   }
 
-  public class MatchInfo {
-    public List<MatchFields> match_fields;
-    public List<MatchFields> match_details;
+  global class Nodes {
+    global String node_type;
+    global Integer index;
+    global Application application;
+    global Attribute attribute;
   }
 
-  public class DataZ {
-    public List<Nodes> nodes;
-    public List<Edges> edges;
+  global class MatchInfo {
+    global List<MatchFields> match_fields;
+    global List<MatchFields> match_details;
   }
 
-  public class FirstReportedZ {
-    public Integer year;
-    public Integer month;
-    public Integer day;
+  global class DataZ {
+    global List<Nodes> nodes;
+    global List<Edges> edges;
   }
 
-  public class IssuanceLowerBound {
-    public Integer year;
+  global class FirstReportedZ {
+    global Integer year;
+    global Integer month;
+    global Integer day;
   }
 
-  // public class Application {
-  //   public String application_id;
-  //   public String sentilink_application_sid;
-  //   public String application_created;
+  global class IssuanceLowerBound {
+    global Integer year;
+  }
+
+  // global class Application {
+  //   global String application_id;
+  //   global String sentilink_application_sid;
+  //   global String application_created;
   // }
 }

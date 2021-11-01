@@ -1,38 +1,46 @@
-@SuppressWarnings('PMD.VariableNamingConventions')
-public with sharing class GeocodingDTO extends AbstractDTO {
+/**
+ * Copyright (c) 2021 Digital Align
+ * @group DTO
+ * @author Digital Align Team
+ * @reference
+ * @description Geocoding DTO
+ **/
+
+@SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
+global with sharing class GeocodingDTO extends AbstractDTO {
   //Response from API
-  public class Response {
-    public List<Results> results;
-    public String status;
+  global class Response {
+    global List<Results> results;
+    global String status;
   }
 
-  public class AddressComponents {
-    public String long_name;
-    public String short_name;
-    public List<String> types;
+  global class AddressComponents {
+    global String long_name;
+    global String short_name;
+    global List<String> types;
   }
 
-  public class Geometry {
-    public Bounds bounds;
-    public Northeast location;
-    public String location_type;
-    public Bounds viewport;
+  global class Geometry {
+    global Bounds bounds;
+    global Northeast location;
+    global String location_type;
+    global Bounds viewport;
   }
-  public class Results {
-    public List<AddressComponents> address_components;
-    public String formatted_address;
-    public Geometry geometry;
-    public String place_id;
-    public List<String> types;
-  }
-
-  public class Bounds {
-    public Northeast northeast;
-    public Northeast southwest;
+  global class Results {
+    global List<AddressComponents> address_components;
+    global String formatted_address;
+    global Geometry geometry;
+    global String place_id;
+    global List<String> types;
   }
 
-  public class Northeast {
-    public Double lat;
-    public Double lng;
+  global class Bounds {
+    global Northeast northeast;
+    global Northeast southwest;
+  }
+
+  global class Northeast {
+    global Double lat;
+    global Double lng;
   }
 }

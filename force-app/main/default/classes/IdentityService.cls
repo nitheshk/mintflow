@@ -9,7 +9,6 @@
 global with sharing class IdentityService extends AbstractService {
   @TestVisible
   private static IdentityService serviceInstance;
-  private IdentityServiceHelper helper = IdentityServiceHelper.getInstance();
 
   public IdentityService() {
     super(IdentityService.class);
@@ -89,16 +88,9 @@ global with sharing class IdentityService extends AbstractService {
         HttpBuilder.setAPISetting(APINames.IdScanAnalyzer);
         HttpBuilder.Response response = DocumentScanProvider.getInstance()
           .idScanAnalyzer(params);
-        DocumentScanDTO.Response returnDTO = (DocumentScanDTO.Response) response.data;
-        dau01__Applicant__c applicant = helper.mapIdentityResponse(
-          new dau01__Applicant__c(),
-          returnDTO
-        );
-        log?.debug('ScanDL Response : ' + Json.Serialize(applicant));
-
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
-        return applicant;
+        return (dau01__Applicant__c) response.data;
       } else {
         throw new CustomException('Requested API is disabled');
       }
@@ -109,7 +101,57 @@ global with sharing class IdentityService extends AbstractService {
     }
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 11-01-2021
+   * @param Map<String object> params
+   * @return virtual
+   **/
   global virtual Object identityVerify(Map<String, object> params) {
-    return null;
+    try {
+      String applicantId = params.get('applicantId').toString();
+      if (String.isBlank('applicantId')) {
+        throw new customException('Invalid Applicant Id');
+      }
+      String apiName = params.get('apiName').toString();
+      Applicant__c applicant = IdentityRepository.readApplicantForIdentity(
+        (ID) applicantId
+      );
+      params.put('applicant', applicant);
+
+      HttpBuilder.Response response;
+      if (apiName == 'SentiLink') {
+        if (HttpBuilder.isActiveApiSetting(APINames.SentiLink)) {
+          HttpBuilder.setAPISetting(APINames.SentiLink);
+          response = SentiLinkProvider.getInstance().validateSentiLink(params);
+        } else {
+          return new Applicant__c();
+        }
+      } else if (apiName == 'SentiLinkIdCompletion') {
+        if (HttpBuilder.isActiveApiSetting(APINames.SentiLinkIdCompletion)) {
+          HttpBuilder.setAPISetting(APINames.SentiLinkIdCompletion);
+          response = SentiLinkProvider.getInstance().validateSentiLink(params);
+        } else {
+          return new Applicant__c();
+        }
+      } else {
+        throw new CustomException('Check API Configuration');
+      }
+      //Create Response File
+      FileService.getInstance()
+        .createFile(
+          new FileDTO(
+            'customerScore.txt',
+            blob.valueof(Json.serialize(params.get('responseBody'))),
+            applicantId,
+            'Identity',
+            'SentiLink'
+          )
+        );
+
+      return response.data;
+    } catch (Exception ex) {
+      throw ex;
+    }
   }
 }

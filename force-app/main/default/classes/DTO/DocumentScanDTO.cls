@@ -2,8 +2,8 @@
  * Copyright (c) 2021 Digital Align
  * @group DTO
  * @author Digital Align Team
- * @reference Identity Docuement parsing DTO
- * @description
+ * @reference
+ * @description Identity Docuement parsing DTO
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
 global with sharing class DocumentScanDTO extends AbstractDTO {
