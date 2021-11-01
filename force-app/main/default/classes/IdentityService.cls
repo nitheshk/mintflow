@@ -9,6 +9,7 @@
 global with sharing class IdentityService extends AbstractService {
   @TestVisible
   private static IdentityService serviceInstance;
+  private IdentityServiceHelper helper = IdentityServiceHelper.getInstance();
 
   public IdentityService() {
     super(IdentityService.class);
@@ -88,46 +89,11 @@ global with sharing class IdentityService extends AbstractService {
         HttpBuilder.setAPISetting(APINames.IdScanAnalyzer);
         HttpBuilder.Response response = DocumentScanProvider.getInstance()
           .idScanAnalyzer(params);
-
-        dau01__Applicant__c applicant = new dau01__Applicant__c();
-        FinServ__IdentificationDocument__c identity = new FinServ__IdentificationDocument__c();
-        ContactPointAddress idAddress = new ContactPointAddress();
         DocumentScanDTO.Response returnDTO = (DocumentScanDTO.Response) response.data;
-        applicant.dau01__FirstName__c = returnDTO.data.firstName;
-        applicant.dau01__LastName__c = returnDTO.data.lastName;
-        applicant.dau01__Birthdate__c = getDateFromString(returnDTO.data.dob);
-        identity.dau01__Height__c = returnDTO.data.height;
-        identity.dau01__IssuedRegion__c = returnDTO.data.issuerRegion;
-        identity.dau01__Weight__c = returnDTO.data.weight;
-        identity.dau01__Gender__c = returnDTO.data.gender;
-        identity.FinServ__DocumentType__c = returnDTO.data.documentType;
-        identity.FinServ__DocumentNumber__c = returnDTO.data.documentNumber;
-        identity.FinServ__IssuingCountry__c = returnDTO.data.issuerCountry;
-        identity.dau01__Nationality__c = returnDTO.data.nationality;
-        identity.FinServ__ExpirationDate__c = getDateFromString(
-          returnDTO.data.expiry
+        dau01__Applicant__c applicant = helper.mapIdentityResponse(
+          new dau01__Applicant__c(),
+          returnDTO
         );
-        identity.FinServ__IssueDate__c = getDateFromString(
-          returnDTO.data.issued
-        );
-        idAddress.Street =
-          returnDTO.data.address1 +
-          ' ' +
-          returnDTO.data.address2;
-        idAddress.PostalCode = returnDTO.data.postalCode;
-
-        dau01.SObjectConstructor construct = dau01.SObjectConstructor.getInstance(
-          applicant
-        );
-        construct.setChildObjects(
-          'dau01__ContactPointAddresses__r',
-          new List<ContactPointAddress>{ idAddress }
-        );
-        construct.setChildObjects(
-          'dau01__IdentificationDocuments__r',
-          new List<finServ__IdentificationDocument__c>{ identity }
-        );
-        applicant = (dau01__Applicant__c) construct.build();
         log?.debug('ScanDL Response : ' + Json.Serialize(applicant));
 
         flow.setSubFlowPassed(response.status);
@@ -142,24 +108,8 @@ global with sharing class IdentityService extends AbstractService {
       throw ex;
     }
   }
-  /**
-   * @description
-   * @author Digital Align | 10-30-2021
-   * @param string datestring
-   * @return virtual
-   **/
-  global virtual Date getDateFromString(string datestring) {
-    if (!string.isblank(datestring)) {
-      List<string> dateComp = datestring.split('/');
-      Date returnDate = date.parse(
-        datecomp[1] +
-        '/' +
-        dateComp[2] +
-        '/' +
-        dateComp[0]
-      );
-      return returnDate;
-    }
+
+  global virtual Object identityVerify(Map<String, object> params) {
     return null;
   }
 }

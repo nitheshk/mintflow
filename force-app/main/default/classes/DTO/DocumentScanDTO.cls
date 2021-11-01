@@ -1,61 +1,68 @@
-@SuppressWarnings('PMD.VariableNamingConventions')
-public with sharing class DocumentScanDTO extends AbstractDTO {
-  public class Request {
-    public String file_base64;
-    public String file_back_base64;
-    public String biometric_threshold;
-    public String authenticate;
-    public String authenticate_module;
-    public String checkblocklist;
-    public String verify_expiry;
-    public String dualsidecheck;
-    public String aml_check;
-    public String aml_database;
-    public String aml_strict_match;
-    public String contract_format;
-    public String vault_save;
-    public String vault_saveunrecognized;
-    public String vault_noduplicate;
-    public String vault_automerge;
-    public String outputimage;
-    public String outputface;
-    public String outputmode;
-    public String accuracy;
-    public String return_confidence;
-    public String ocr_scaledown;
-    public String apikey;
+/**
+ * Copyright (c) 2021 Digital Align
+ * @group DTO
+ * @author Digital Align Team
+ * @reference Identity Docuement parsing DTO
+ * @description
+ **/
+@SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
+global with sharing class DocumentScanDTO extends AbstractDTO {
+  global class Request {
+    global String file_base64;
+    global String file_back_base64;
+    global String biometric_threshold;
+    global String authenticate;
+    global String authenticate_module;
+    global String checkblocklist;
+    global String verify_expiry;
+    global String dualsidecheck;
+    global String aml_check;
+    global String aml_database;
+    global String aml_strict_match;
+    global String contract_format;
+    global String vault_save;
+    global String vault_saveunrecognized;
+    global String vault_noduplicate;
+    global String vault_automerge;
+    global String outputimage;
+    global String outputface;
+    global String outputmode;
+    global String accuracy;
+    global String return_confidence;
+    global String ocr_scaledown;
+    global String apikey;
   }
 
-  public class Response {
-    public Data data;
-    public String displayMessage;
-    public String errorMessage;
-    public Integer status;
+  global class Response {
+    global Data data;
+    global String displayMessage;
+    global String errorMessage;
+    global Integer status;
   }
-  public class Validation {
-    public Boolean isExpired;
-    public String score;
-    public Boolean imageQualityPassed;
-    public Boolean securityCheckPassed;
+  global class Validation {
+    global Boolean isExpired;
+    global String score;
+    global Boolean imageQualityPassed;
+    global Boolean securityCheckPassed;
   }
-  public class Data {
-    public String documentNumber;
-    public String firstName;
-    public String lastName;
-    public String fullName;
-    public String gender;
-    public String height;
-    public String weight;
-    public String dob;
-    public String expiry;
-    public String issued;
-    public String address1;
-    public String address2;
-    public String postalCode;
-    public String documentType;
-    public String issuerRegion;
-    public String issuerCountry;
-    public String nationality;
-    public Validation validation;
+  global class Data {
+    global String documentNumber;
+    global String firstName;
+    global String lastName;
+    global String fullName;
+    global String gender;
+    global String height;
+    global String weight;
+    global String dob;
+    global String expiry;
+    global String issued;
+    global String address1;
+    global String address2;
+    global String postalCode;
+    global String documentType;
+    global String issuerRegion;
+    global String issuerCountry;
+    global String nationality;
+    global Validation validation;
   }
 }

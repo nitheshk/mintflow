@@ -48,9 +48,10 @@ global with sharing class IdentityController extends AbstractController {
       log?.fine('Inside scanIdentityDocument');
       validateRequest(request);
       return ApexResponse.ok(
-        IdentityService.getInstance()
-          .scanIdentityDocument(ApexRequest.getParams())
-      );
+          IdentityService.getInstance()
+            .scanIdentityDocument(ApexRequest.getParams())
+        )
+        .serialize();
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -59,6 +60,31 @@ global with sharing class IdentityController extends AbstractController {
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete scanIdentityDocument');
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description SentiLink's synthetic fraud and identity theft solutions
+   * @author Digital Align Team | 11-01-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  global static ApexResponse identityVerify(ApexRequest request) {
+    try {
+      log?.fine('Inside identityVerify');
+      validateRequest(request);
+      return ApexResponse.ok(
+        IdentityService.getInstance().identityVerify(ApexRequest.getParams())
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete identityVerify');
       Logger.persist();
     }
   }

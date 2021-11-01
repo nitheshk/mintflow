@@ -69,4 +69,19 @@ global with sharing class DateUtils {
   global static String formatDateToDateTime(Date d) {
     return formatDateGMT(Datetime.newInstanceGmt(d.year(), d.month(), d.day()));
   }
+
+  /**
+   * @description Convert String to Date
+   * Format Style 1 : YYYY\MM\YY  - Ex : 1976/02/23
+   * @author Digital Align Team | 11-01-2021
+   * @param String stringDate
+   * @return Date
+   **/
+  global static Date formatStringToDate1(String stringDate) {
+    if (String.isNotBlank(stringDate)) {
+      stringDate = stringDate.replace('/', '-');
+      return date.valueOf(stringDate);
+    }
+    return null;
+  }
 }
