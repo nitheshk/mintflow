@@ -16,11 +16,6 @@ public with sharing class IdentityRepository extends DatabaseUtils {
     return (Applicant__c) DatabaseUtils.getRecord(
       new Query(Applicant__c.SObjectType)
         .addFields()
-        .queryChild('dau01__IdentificationDocuments__r')
-        .addFields()
-        //.whereEq('IsPrimary__c', true)
-        .orderBy('dau01__Order__c')
-        .run()
         .queryChild('dau01__ContactPointAddresses__r')
         .addFields()
         .removeFields('Address')

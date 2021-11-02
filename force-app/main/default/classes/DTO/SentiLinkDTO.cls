@@ -12,6 +12,11 @@ global with sharing class SentiLinkDTO extends AbstractDTO {
     global Application application;
     global List<ReqScores> scores;
     global List<ReqExtraData> extra_data;
+    global Request() {
+      application = new Application();
+      scores = new List<ReqScores>();
+      extra_data = new List<ReqExtraData>();
+    }
   }
   global class Application {
     global String application_id;
@@ -51,10 +56,16 @@ global with sharing class SentiLinkDTO extends AbstractDTO {
   }
   global class ReqExtraData {
     global String type;
+    public ReqExtraData(String type) {
+      this.type = type;
+    }
   }
 
   global class ReqScores {
     global String score_name;
+    global ReqScores(String score_name) {
+      this.score_name = score_name;
+    }
   }
   global class Metadata {
     global String any_additional_data;

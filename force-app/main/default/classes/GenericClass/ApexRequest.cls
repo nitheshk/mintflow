@@ -100,6 +100,15 @@ global with sharing class ApexRequest {
   }
 
   /**
+   * @description get Application Number
+   * @author Digital Align Team | 11-02-2021
+   * @return String
+   **/
+  global static String getApplicationName() {
+    return ApexRequest.request?.applicationName;
+  }
+
+  /**
    * @description  set application id
    * @author Digital Align Team | 10-27-2021
    * @param String applicationId

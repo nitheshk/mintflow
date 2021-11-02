@@ -75,8 +75,9 @@ global with sharing class IdentityController extends AbstractController {
       log?.fine('Inside identityVerify');
       validateRequest(request);
       return ApexResponse.ok(
-        IdentityService.getInstance().identityVerify(ApexRequest.getParams())
-      );
+          IdentityService.getInstance().identityVerify(ApexRequest.getParams())
+        )
+        .serialize();
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);

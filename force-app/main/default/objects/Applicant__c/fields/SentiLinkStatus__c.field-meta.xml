@@ -12,14 +12,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Passsed,</fullName>
+                <fullName>Passsed</fullName>
                 <default>false</default>
-                <label>Passsed,</label>
+                <label>Passsed</label>
             </value>
             <value>
-                <fullName>Under Review,</fullName>
+                <fullName>Under Review</fullName>
                 <default>false</default>
-                <label>Under Review,</label>
+                <label>Under Review</label>
             </value>
             <value>
                 <fullName>Under Process</fullName>

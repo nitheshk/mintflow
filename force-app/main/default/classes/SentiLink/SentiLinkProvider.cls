@@ -43,8 +43,10 @@ global with sharing class SentiLinkProvider extends AbstractService {
       new SentiLinkDTO.Request()
     );
 
+    log?.debug('Request : ' + json.serialize(requestDTO, true));
+
     HttpResponse response = HttpBuilder.httpCallOut(
-      json.serialize(requestDTO),
+      json.serialize(requestDTO, true),
       getHeader(params)
     );
 
@@ -60,12 +62,25 @@ global with sharing class SentiLinkProvider extends AbstractService {
       SentiLinkDTO.Response.class
     );
 
-    //params.put('responseBody', response.getBody());
+    //Create Response File
+    FileService.getInstance()
+      .createFile(
+        new FileDTO(
+          'customerScore.txt',
+          blob.valueof(response.getBody()),
+          applicant.Id,
+          'Identity',
+          'SentiLink'
+        )
+      );
+
+    applicant = mapSentiLinkDTO(applicant, responseDTO);
+    IdentityRepository.upsertRecord(Applicant);
 
     return HttpBuilder.buildResponse(
       response.getStatusCode(),
       response.getStatus(),
-      responseDTO
+      applicant
     );
   }
 
@@ -79,51 +94,54 @@ global with sharing class SentiLinkProvider extends AbstractService {
     Applicant__c applicant,
     SentiLinkDTO.Request requestDTO
   ) {
-    /*
-    List<SentiLinkDTO.ReqScores> scores = new List<SentiLinkDTO.ReqScores>();
-    SentiLinkDTO.Application application = new SentiLinkDTO.Application();
-    List<SentiLinkDTO.ReqExtraData> extra_data = new List<SentiLinkDTO.ReqExtraData>();
-    application.first_name = leadObj.FirstName;
-    application.last_name = leadObj.LastName;
-    application.user_id = leadObj.Id;
-    application.address_line_1 = leadObj.Street;
-    application.city = leadObj.City;
-    application.state_code = leadObj.State;
-    application.zipcode = leadObj.PostalCode;
-    application.country_code = leadObj.Country;
-    application.phone = leadObj.Phone;
-    application.email = leadObj.Email;
-    application.business_name = leadObj.Company;
-    application.lead_type = leadObj.LeadSource;
-    application.application_id = 'APP-10848'; // to be replaced with Application ID
-    application.dob = leadObj.Birthdate__c.format();
-    application.ssn = leadObj.SSN__c;
+    SentiLinkDTO.Application application = requestDTO.application;
+    application.first_name = applicant.FirstName__c;
+    application.last_name = applicant.LastName__c;
+    application.user_id = applicant.Id;
+    application.application_id = ApexRequest.getApplicationId();
+    application.phone = applicant.Phone__c;
+    application.email = applicant.Email__c;
+    application.dob = DateUtils.formatDateGMT(applicant.Birthdate__c);
+    application.ssn = applicant.SSN__c;
+    // application.lead_type = leadObj.LeadSource; // UserInfo.Channel__c
+
+    //address mapping
+    ContactPointAddress address = applicant.ContactPointAddresses__r.isEmpty()
+      ? new ContactPointAddress()
+      : applicant.ContactPointAddresses__r[0];
+    application.address_line_1 = address.Street;
+    application.city = address.City;
+    application.state_code = address.State;
+    application.zipcode = address.PostalCode;
+    application.country_code = address.Country;
 
     for (
-      string scoreName : APIConfigurationService.getAPIConstants(
-          'SentiLinkScoreNames'
-        )
+      String scoreName : HttpBuilder.getApiConstant('SentiLinkScoreNames')
         .split(',')
     ) {
-      SentiLinkDTO.ReqScores score = new SentiLinkDTO.ReqScores();
-      score.score_name = scoreName;
-      scores.add(score);
+      requestDTO.scores.add(new SentiLinkDTO.ReqScores(scoreName));
     }
     for (
-      string extraDataType : APIConfigurationService.getAPIConstants(
-          'SentiLinkExtraData'
-        )
+      String extraDataType : HttpBuilder.getApiConstant('SentiLinkExtraData')
         .split(',')
     ) {
-      SentiLinkDTO.ReqExtraData extraData = new SentiLinkDTO.ReqExtraData();
-      extraData.type = extraDataType;
-      extra_data.add(extraData);
+      requestDTO.extra_data.add(new SentiLinkDTO.ReqExtraData(extraDataType));
     }
-    requestDTO.application = application;
-    requestDTO.scores = scores;
-    requestDTO.extra_data = extra_data;
-    */
     return requestDTO;
+  }
+
+  /**
+   * @description map sentilink response to applicant
+   * @author Digital Align Team | 11-02-2021
+   * @param Applicant__c applicant
+   * @param SentiLinkDTO.Response responseDTO
+   * @return virtual
+   **/
+  global virtual Applicant__c mapSentiLinkDTO(
+    Applicant__c applicant,
+    SentiLinkDTO.Response responseDTO
+  ) {
+    return applicant;
   }
 
   /**

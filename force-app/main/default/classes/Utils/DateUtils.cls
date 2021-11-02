@@ -51,7 +51,8 @@ global with sharing class DateUtils {
   }
 
   /**
-   * @description
+   * @description Format Date string format
+   * Format Style 1 : yyyy-MM-dd - Ex : 1950-12-30
    * @author Digital Align Team | 07-13-2021
    * @param Datetime dt
    * @return String

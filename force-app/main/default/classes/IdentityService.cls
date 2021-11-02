@@ -107,7 +107,7 @@ global with sharing class IdentityService extends AbstractService {
    * @param Map<String object> params
    * @return virtual
    **/
-  global virtual Object identityVerify(Map<String, object> params) {
+  global virtual Applicant__c identityVerify(Map<String, object> params) {
     try {
       String applicantId = params.get('applicantId').toString();
       if (String.isBlank('applicantId')) {
@@ -125,31 +125,19 @@ global with sharing class IdentityService extends AbstractService {
           HttpBuilder.setAPISetting(APINames.SentiLink);
           response = SentiLinkProvider.getInstance().validateSentiLink(params);
         } else {
-          return new Applicant__c();
+          return applicant;
         }
       } else if (apiName == 'SentiLinkIdCompletion') {
         if (HttpBuilder.isActiveApiSetting(APINames.SentiLinkIdCompletion)) {
           HttpBuilder.setAPISetting(APINames.SentiLinkIdCompletion);
           response = SentiLinkProvider.getInstance().validateSentiLink(params);
         } else {
-          return new Applicant__c();
+          return applicant;
         }
       } else {
         throw new CustomException('Check API Configuration');
       }
-      //Create Response File
-      FileService.getInstance()
-        .createFile(
-          new FileDTO(
-            'customerScore.txt',
-            blob.valueof(Json.serialize(response.data)),
-            applicantId,
-            'Identity',
-            'SentiLink'
-          )
-        );
-
-      return response.data;
+      return (Applicant__c) response.data;
     } catch (Exception ex) {
       throw ex;
     }
