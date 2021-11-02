@@ -43,6 +43,7 @@ global with sharing class SentiLinkProvider extends AbstractService {
       new SentiLinkDTO.Request()
     );
 
+    flow.setSubFlowRequest(json.serialize(requestDTO, true));
     log?.debug('Request : ' + json.serialize(requestDTO, true));
 
     HttpResponse response = HttpBuilder.httpCallOut(
@@ -66,7 +67,7 @@ global with sharing class SentiLinkProvider extends AbstractService {
     FileService.getInstance()
       .createFile(
         new FileDTO(
-          'customerScore.txt',
+          'SentiLink.json',
           blob.valueof(response.getBody()),
           applicant.Id,
           'Identity',
@@ -75,7 +76,6 @@ global with sharing class SentiLinkProvider extends AbstractService {
       );
 
     applicant = mapSentiLinkDTO(applicant, responseDTO);
-    IdentityRepository.upsertRecord(Applicant);
 
     return HttpBuilder.buildResponse(
       response.getStatusCode(),
@@ -141,6 +141,14 @@ global with sharing class SentiLinkProvider extends AbstractService {
     Applicant__c applicant,
     SentiLinkDTO.Response responseDTO
   ) {
+    applicant.SentiLinkStatus__c = 'Passsed';
+    String remarks = '';
+    if (responseDTO?.scores != null) {
+      for (SentiLinkDTO.ResScores score : responseDTO.scores) {
+        remarks += 'name : ' + score.name + ' score: ' + score.score + ' \n';
+      }
+    }
+    applicant.SentiLinkRemarks__c = remarks;
     return applicant;
   }
 

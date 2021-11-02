@@ -72,4 +72,19 @@
             <default>false</default>
         </values>
     </picklistValues>
+    <picklistValues>
+        <picklist>SentiLinkStatus__c</picklist>
+        <values>
+            <fullName>Passsed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Under Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Under Review</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>

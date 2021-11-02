@@ -124,20 +124,24 @@ global with sharing class IdentityService extends AbstractService {
         if (HttpBuilder.isActiveApiSetting(APINames.SentiLink)) {
           HttpBuilder.setAPISetting(APINames.SentiLink);
           response = SentiLinkProvider.getInstance().validateSentiLink(params);
-        } else {
-          return applicant;
+          applicant = (Applicant__c) response.data;
         }
       } else if (apiName == 'SentiLinkIdCompletion') {
         if (HttpBuilder.isActiveApiSetting(APINames.SentiLinkIdCompletion)) {
           HttpBuilder.setAPISetting(APINames.SentiLinkIdCompletion);
           response = SentiLinkProvider.getInstance().validateSentiLink(params);
-        } else {
-          return applicant;
+          applicant = (Applicant__c) response.data;
         }
       } else {
         throw new CustomException('Check API Configuration');
       }
-      return (Applicant__c) response.data;
+
+      if (response?.statusCode != 200) {
+        applicant.SentiLinkStatus__c = 'Under Review';
+        applicant.SentiLinkRemarks__c = '';
+      }
+      IdentityRepository.upsertRecord(Applicant);
+      return applicant;
     } catch (Exception ex) {
       throw ex;
     }

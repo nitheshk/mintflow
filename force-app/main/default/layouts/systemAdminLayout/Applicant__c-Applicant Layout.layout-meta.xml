@@ -74,7 +74,7 @@
                 <field>IsEmailVerified__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns>                     
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsPhoneNumberVerified__c</field>
@@ -100,6 +100,14 @@
                 <behavior>Edit</behavior>
                 <field>IncomeVerificationStatus__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SentiLinkStatus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SentiLinkRemarks__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -109,6 +117,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>KYCVerificationStatus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OTP__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OTPExpireTime__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -230,7 +246,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0w000001Eu9Q</masterLabel>
+        <masterLabel>00h9D000000xzu1</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
