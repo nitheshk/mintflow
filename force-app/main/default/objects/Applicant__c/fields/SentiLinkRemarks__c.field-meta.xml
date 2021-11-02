@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>SentiLinkRemarks__c</fullName>
-    <externalId>false</externalId>
     <description>SentiLink Remarks</description>
+    <externalId>false</externalId>
     <label>SentiLink Remarks</label>
-    <length>40</length>
-    <required>false</required>
+    <length>500</length>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
 </CustomField>
