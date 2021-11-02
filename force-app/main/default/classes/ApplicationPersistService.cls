@@ -49,12 +49,12 @@ global with sharing class ApplicationPersistService extends AbstractService {
       }
     }
 
-    dau01.SObjectConstructor constructor = dau01.SObjectConstructor.getInstance(
+    SObjectConstructor constructor = SObjectConstructor.getInstance(
       application
     );
     //save applicants
     if (application.Applicants__r?.size() > 0) {
-      List<dau01__Applicant__c> applicants = saveApplicants(
+      List<Applicant__c> applicants = saveApplicants(
         application.Id,
         application.Applicants__r
       );
@@ -80,12 +80,12 @@ global with sharing class ApplicationPersistService extends AbstractService {
    * @description Save applicants
    * @author Digital Align Team | 10-25-2021
    * @param String applicationId
-   * @param List<dau01__Applicant__c> applicants
+   * @param List<Applicant__c> applicants
    * @return virtual
    **/
-  global virtual List<dau01__Applicant__c> saveApplicants(
+  global virtual List<Applicant__c> saveApplicants(
     String applicationId,
-    List<dau01__Applicant__c> applicants
+    List<Applicant__c> applicants
   ) {
     log?.fine('Inside save applicants');
 
@@ -121,7 +121,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     if (String.isBlank(applicant.Id)) {
       /*  new applicant */
       //set record type
-      applicant.dau01__Application__c = applicationId;
+      applicant.Application__c = applicationId;
     }
 
     String recordTypeName;
@@ -314,7 +314,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
   /**
    * @description delete object by Id
    * @author Digital Align Team | 10-25-2021
-   * @param List<dau01__Applicant__c> applicants
+   * @param List<Applicant__c> applicants
    * @return Boolean
    **/
   global virtual Boolean deleteEntity(Id recordId) {
@@ -374,7 +374,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
   global virtual Boolean deleteApplicants(Set<Id> applicantIds) {
     List<SObject> recordsToDelete = new List<SObject>();
     for (
-      dau01__Applicant__c applicant : ApplicantRepository.readApplicantsWithChild(
+      Applicant__c applicant : ApplicantRepository.readApplicantsWithChild(
         applicantIds
       )
     ) {

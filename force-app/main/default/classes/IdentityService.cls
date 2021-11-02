@@ -90,7 +90,7 @@ global with sharing class IdentityService extends AbstractService {
           .idScanAnalyzer(params);
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
-        return (dau01__Applicant__c) response.data;
+        return (Applicant__c) response.data;
       } else {
         throw new CustomException('Requested API is disabled');
       }

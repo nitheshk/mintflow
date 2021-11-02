@@ -35,13 +35,13 @@ global virtual with sharing class NotificationService extends AbstractService {
   global virtual String sendOTPMessage(Map<String, Object> params) {
     //call provider of twillio
     Map<String, Object> data = params.clone();
-    dau01__Applicant__c applicant = NotificationRepository.fetchApplicantById(
+    Applicant__c applicant = NotificationRepository.fetchApplicantById(
       (string) params.get('ApplicantId')
     );
     //getRecord
     String message;
     Integer otp = Math.round((Math.random() * (9000) + 1000));
-    data.put('Phone', applicant.dau01__Phone__c);
+    data.put('Phone', applicant.Phone__c);
     data.put('APIMapper', APINames.TwillioMessaging);
     data.put('Version', APIConfigurationService.getAPIConstants('Version'));
     data.put(
@@ -82,15 +82,15 @@ global virtual with sharing class NotificationService extends AbstractService {
    * @return virtual
    **/
   global virtual String verifyOTPMessage(Map<String, Object> params) {
-    dau01__Applicant__c applicant = NotificationRepository.fetchApplicantById(
+    Applicant__c applicant = NotificationRepository.fetchApplicantById(
       (string) params.get('ApplicantId')
     );
     String message;
     if (
-      applicant.dau01__OTP__c == (Integer) params.get('OTP') &&
+      applicant.OTP__c == (Integer) params.get('OTP') &&
       applicant.OTPExpireTime__c > Datetime.now()
     ) {
-      applicant.dau01__IsPhoneNumberVerified__c = true;
+      applicant.IsPhoneNumberVerified__c = true;
       NotificationRepository.updateRecord(applicant);
       message = 'Verified';
     } else {

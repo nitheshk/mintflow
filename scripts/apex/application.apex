@@ -41,9 +41,7 @@ List<dau01__Applicant__c> result2 = (List<dau01__Applicant__c>) DatabaseUtils.ge
 );
 //system.debug('Applicant : ' + Json.Serialize(result2));
 
-dau01.SObjectConstructor construct = dau01.SObjectConstructor.getInstance(
-  result1
-);
+SObjectConstructor construct = SObjectConstructor.getInstance(result1);
 construct.setChildObjects('dau01__Applicants__r', result2);
 result1 = (Account) construct.build();
 system.debug('Full Json : ' + Json.Serialize(result1));

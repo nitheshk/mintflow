@@ -108,9 +108,7 @@ global with sharing class ApplicationService extends AbstractService {
       );
 
     //Combine result into single application object
-    dau01.SObjectConstructor builder = dau01.SObjectConstructor.getInstance(
-      application
-    );
+    SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('dau01__Applicants__r', applicants);
     builder.setChildObjects(
       'FinServ__HouseholdFinancialAccounts__r',

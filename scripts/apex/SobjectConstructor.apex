@@ -58,7 +58,7 @@ List<AccountContactRelation> accRel = (List<AccountContactRelation>) JSON.deseri
   List<AccountContactRelation>.class
 );
 
-Account acc1 = (Account) dau01.SObjectConstructor.getInstance(acc)
+Account acc1 = (Account) SObjectConstructor.getInstance(acc)
   .addChildObjects('AccountContactRelations', accRel)
   .build();
 system.debug('acc : ' + JSON.Serialize(acc1));
@@ -93,13 +93,13 @@ q = new Query(Account.SObjectType)
 
 List<Account> sl2 = (List<Account>) DatabaseUtils.getRecords(q);
 
-FinServ__FinancialAccount__c fa = (FinServ__FinancialAccount__c) dau01.SObjectConstructor.getInstance(
+FinServ__FinancialAccount__c fa = (FinServ__FinancialAccount__c) SObjectConstructor.getInstance(
     sl1[0].FinServ__HouseholdFinancialAccounts__r[0]
   )
   .setLookupObject('FinServ__PrimaryOwner__r', sl2[0])
   .build();
 
-Account acc = (Account) dau01.SObjectConstructor.getInstance(sl1[0])
+Account acc = (Account) SObjectConstructor.getInstance(sl1[0])
   .setChildObject('FinServ__HouseholdFinancialAccounts__r', fa)
   .build();
 
