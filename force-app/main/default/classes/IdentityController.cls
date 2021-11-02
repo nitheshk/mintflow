@@ -87,4 +87,28 @@ global with sharing class IdentityController extends AbstractController {
       Logger.persist();
     }
   }
+  /**
+   * @description
+   * @author Digital Align | 11-02-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  global static ApexResponse verifyOTPMessage(ApexRequest request) {
+    try {
+      log?.fine('Inside verifyOTPMessage');
+      validateRequest(request);
+      return ApexResponse.ok(
+        IdentityService.getInstance().verifyOTPMessage(ApexRequest.getParams())
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete verifyOTPMessage');
+      Logger.persist();
+    }
+  }
 }

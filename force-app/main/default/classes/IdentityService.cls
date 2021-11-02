@@ -146,4 +146,52 @@ global with sharing class IdentityService extends AbstractService {
       throw ex;
     }
   }
+  /**
+   * @description
+   * @author Digital Align | 11-03-2021
+   * @param Map<String Object> params
+   * @return virtual
+   **/
+  global virtual String verifyOTPMessage(Map<String, Object> params) {
+    try {
+      String applicantId = params.get('applicantId').toString();
+      if (String.isBlank('applicantId')) {
+        throw new customException('Invalid Applicant Id');
+      }
+      String message;
+      Applicant__c applicant = NotificationRepository.fetchApplicantById(
+        applicantId
+      );
+      system.debug(applicant.OTPAttempts__c);
+      system.debug(
+        ApplicationConfiguration__c.getOrgDefaults().OTPMaxAllowedAttempts__c
+      );
+      if (
+        applicant.OTPAttempts__c <
+        ApplicationConfiguration__c.getOrgDefaults().OTPMaxAllowedAttempts__c
+      ) {
+        if (applicant.OTP__c == (Integer) params.get('OTP')) {
+          if (applicant.OTPExpireTime__c > Datetime.now()) {
+            applicant.IsPhoneNumberVerified__c = true;
+            applicant.OTP__c = null;
+            applicant.OTPAttempts__c = null;
+            applicant.OTPExpireTime__c = null;
+            NotificationRepository.updateRecord(applicant);
+            message = 'Verified';
+          } else {
+            message = 'OTP Expired';
+          }
+        } else {
+          message = 'Invalid OTP';
+          applicant.OTPAttempts__c++;
+          NotificationRepository.updateRecord(applicant);
+        }
+      } else {
+        message = 'Maximum attempts failed. Please retry';
+      }
+      return message;
+    } catch (Exception ex) {
+      throw ex;
+    }
+  }
 }

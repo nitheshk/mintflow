@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OTPMaxAllowedAttempts__c</fullName>
+    <description>Max attempts allowed for OTP verification</description>
+    <externalId>false</externalId>
+    <label>OTPMaxAllwedAttempts</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <scale>0</scale>
+    <precision>4</precision>
+    <unique>false</unique>
+</CustomField>

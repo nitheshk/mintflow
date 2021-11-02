@@ -475,6 +475,11 @@
         <field>Applicant__c.OTPExpireTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OTPAttempts__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.SentiLinkStatus__c</field>
