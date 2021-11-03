@@ -5,7 +5,7 @@
  * @reference
  * @description Provider for sending SMS using Twillio API
  **/
-
+@SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class TwillioProvider extends AbstractService {
   public static Integer OTPNumber { get; set; }
   @TestVisible
@@ -82,18 +82,15 @@ global with sharing class TwillioProvider extends AbstractService {
       header
     );
     system.debug('response =' + response.getStatusCode());
+    system.debug('response =' + response.getBody());
     if (response.getStatusCode() != 200) {
       throw new CustomException(response.getStatus());
     }
-    Map<String, Object> returnResponse = (Map<String, Object>) JSON.deserialize(
-      response.getBody(),
-      Map<String, Object>.class
-    );
 
     return HttpBuilder.buildResponse(
       response.getStatusCode(),
       response.getStatus(),
-      returnResponse
+      response.getBody()
     );
   }
 

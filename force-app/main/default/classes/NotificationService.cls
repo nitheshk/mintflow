@@ -85,7 +85,11 @@ global virtual with sharing class NotificationService extends AbstractService {
         ) {
           applicant.OTP__c = otp;
           applicant.OTPAttempts__c = 0;
-          applicant.OTPExpireTime__c = Datetime.now().addMinutes(2);
+          applicant.OTPExpireTime__c = Datetime.now()
+            .addMinutes(
+              (Integer) ApplicationConfiguration__c.getOrgDefaults()
+                .OTPExpirationTime__c
+            );
           message = 'Success';
           NotificationRepository.updateRecord(applicant);
         } else {

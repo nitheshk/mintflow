@@ -15,7 +15,8 @@ public with sharing class NotificationAdapter {
     Map<String, Object> data = params.clone();
     setAPIConfiguration(data);
     if (data != null) {
-      return (new TwillioProvider().executeRequest(data));
+      //return (new TwillioProvider().executeRequest(data));
+      return null;
     } else
       return null;
   }
