@@ -37,34 +37,14 @@ global virtual with sharing class NotificationService extends AbstractService {
     Flow.setFlow('EligibilityFlow');
     Flow.setSubFlow(APINames.TwillioMessaging.name());
     try {
-      //call provider of twillio
-      Map<String, Object> data = params.clone();
       Applicant__c applicant = NotificationRepository.fetchApplicantById(
         (string) params.get('ApplicantId')
       );
       String message;
       Integer otp = Math.round((Math.random() * (9000) + 1000));
-      data.put('Phone', applicant.Phone__c);
-      data.put('APIMapper', APINames.TwillioMessaging);
-      data.put('Version', APIConfigurationService.getAPIConstants('Version'));
-      data.put(
-        'Twillio_Account',
-        APIConfigurationService.getAPIConstants('Twillio_Account')
-      );
-      data.put(
-        'Twillio_Token',
-        APIConfigurationService.getAPIConstants('Twillio_Token')
-      );
-      data.put('OTP', otp);
-      data.put(
-        'CountryCode',
-        APIConfigurationService.getAPIConstants('Twillio_Country')
-      );
-      data.put(
-        'FromPhone',
-        APIConfigurationService.getAPIConstants('FromPhone')
-      );
-      System.debug(' New data::' + data);
+      params.put('toPhone', applicant.Phone__c);
+      params.put('otp', otp);
+
       if (HttpBuilder.isActiveApiSetting(APINames.TwillioMessaging)) {
         HttpBuilder.setAPISetting(APINames.TwillioMessaging);
         HttpBuilder.replaceEndpoint(
@@ -75,28 +55,21 @@ global virtual with sharing class NotificationService extends AbstractService {
           '{Version}',
           APIConfigurationService.getAPIConstants('Version')
         );
+        log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
         HttpBuilder.Response response = TwillioProvider.getInstance()
-          .sendMessageUsingTwillio(data);
+          .sendMessageUsingTwillio(params);
+
+        applicant.OTP__c = otp;
+        applicant.OTPAttempts__c = 0;
+        applicant.OTPExpireTime__c = Datetime.now()
+          .addMinutes(
+            (Integer) ApplicationConfiguration__c.getOrgDefaults()
+              .OTPExpirationTime__c
+          );
+        //  NotificationRepository.updateRecord(applicant);
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
-        if (
-          String.valueof(response.status).equalsIgnorecase('200') ||
-          String.valueof(response.status).equalsIgnorecase('201')
-        ) {
-          applicant.OTP__c = otp;
-          applicant.OTPAttempts__c = 0;
-          applicant.OTPExpireTime__c = Datetime.now()
-            .addMinutes(
-              (Integer) ApplicationConfiguration__c.getOrgDefaults()
-                .OTPExpirationTime__c
-            );
-          message = 'Success';
-          NotificationRepository.updateRecord(applicant);
-        } else {
-          message = 'Error';
-          throw new CustomException(' API exception occured');
-        }
-        return message;
+        return true;
       } else {
         throw new CustomException('Requested API is disabled');
       }

@@ -12,12 +12,6 @@
     "files": ["dau01__SiteSetting__c.json"]
   },
   {
-    "sobject": "FinServ__UsePersonAccount__c",
-    "saveRefs": false,
-    "resolveRefs": false,
-    "files": ["FinServ__UsePersonAccount__c.json"]
-  },
-  {
     "sobject": "dau01__SurveyTemplate__c",
     "saveRefs": true,
     "resolveRefs": true,

@@ -35,55 +35,38 @@ global with sharing class TwillioProvider extends AbstractService {
   global virtual HttpBuilder.Response sendMessageUsingTwillio(
     Map<String, object> params
   ) {
-    log
-      ?.fine(
-        'Inside sendMessageUsingTwillio -> params -> ' + Json.serialize(params)
-      );
-    system.debug('in provider params =' + params);
-    //header
-    Map<String, String> header = new Map<String, String>();
-    header.put('X-Twilio-Client', 'salesforce-' + params.get('Version'));
-    header.put('User-Agent', 'twilio-salesforce-' + params.get('Version'));
-    header.put('Accept', 'application/json');
-    header.put(
-      'Authorization',
-      'Basic ' +
-      EncodingUtil.base64Encode(
-        Blob.valueOf(
-          params.get('Twillio_Account') +
-          ':' +
-          params.get('Twillio_Token')
-        )
-      )
-    );
-    system.debug('in provider header =' + header);
-    //request
-    String OTPText = String.valueof(params.get('OTP'));
-    String messageText = System.Label.CustomerOTPMessage.replace(
-      '[OTP]',
-      OTPText
-    );
-    String toPhone = (String) params.get('Phone');
+    String otp = String.valueof(params.get('otp'));
+    String messageText =
+      otp +
+      ' is your WEBSITE authentication code \n  @Digitalalign.com #' +
+      otp; // System.Label.CustomerOTPMessage.replace('[OTP]', otp);
     String requestBody =
-      '' +
       'From=' +
-      EncodingUtil.urlEncode(String.valueof(params.get('FromPhone')), 'UTF-8') +
+      EncodingUtil.urlEncode(
+        APIConfigurationService.getAPIConstants('FromPhone'),
+        'UTF-8'
+      ) +
       '&To=' +
       EncodingUtil.urlEncode(
-        String.valueof(params.get('CountryCode')) + tophone,
+        APIConfigurationService.getAPIConstants('Twillio_Country') +
+        params.get('toPhone').toString(),
         'UTF-8'
       ) +
       '&Body=' +
       +EncodingUtil.urlEncode(messageText, 'UTF-8');
-    System.debug(' The request body is ' + requestBody);
+
+    log?.debug(' The request body is ' + requestBody);
+    flow.setSubFlowRequest(requestBody);
 
     HttpResponse response = HttpBuilder.httpCallOut(
-      json.serialize(requestBody),
-      header
+      requestBody,
+      getHeader(params)
     );
-    system.debug('response =' + response.getStatusCode());
-    system.debug('response =' + response.getBody());
-    if (response.getStatusCode() != 200) {
+
+    flow.setSubFlowResponse(response.getBody());
+    log?.debug(' The response body is ' + response.getBody());
+
+    if (response.getStatusCode() != 200 && response.getStatusCode() != 201) {
       throw new CustomException(response.getStatus());
     }
 
@@ -94,141 +77,34 @@ global with sharing class TwillioProvider extends AbstractService {
     );
   }
 
-  // protected override String buildRequest(Map<String, object> params) {
-  //   String OTPText = String.valueof(params.get('OTP'));
-  //   String messageText = System.Label.CustomerOTPMessage.replace(
-  //     '[OTP]',
-  //     OTPText
-  //   );
-  //   String toPhone = (String) params.get('Phone');
-  //   String requestBody =
-  //     '' +
-  //     'From=' +
-  //     EncodingUtil.urlEncode(String.valueof(params.get('FromPhone')), 'UTF-8') +
-  //     '&To=' +
-  //     EncodingUtil.urlEncode(
-  //       String.valueof(params.get('CountryCode')) + tophone,
-  //       'UTF-8'
-  //     ) +
-  //     '&Body=' +
-  //     +EncodingUtil.urlEncode(messageText, 'UTF-8');
-  //   System.debug(' The request body is ' + requestBody);
-  //   return requestBody;
-  // // }
-
-  // public override Map<String, Object> executeRequest(
-  //   Map<String, object> params
-  // ) {
-  //   switch on ((APINames) params.get('APIMapper')) {
-  //     when TwillioMessaging {
-  //       return super.executeRequest(params);
-  //     }
-  //     when else {
-  //       throw new CustomException('Undefined Mapper for the API call');
-  //     }
-  //   }
-  // }
-
-  // protected override Map<String, String> getHeader(Map<String, object> params) {
-  //   switch on ((APINames) params.get('APIMapper')) {
-  //     when TwillioMessaging {
-  //       Map<String, String> header = new Map<String, String>();
-  //       header.put('X-Twilio-Client', 'salesforce-' + params.get('Version'));
-  //       header.put('User-Agent', 'twilio-salesforce-' + params.get('Version'));
-  //       header.put('Accept', 'application/json');
-  //       header.put(
-  //         'Authorization',
-  //         'Basic ' +
-  //         EncodingUtil.base64Encode(
-  //           Blob.valueOf(
-  //             params.get('Twillio_Account') +
-  //             ':' +
-  //             params.get('Twillio_Token')
-  //           )
-  //         )
-  //       );
-  //       return header;
-  //     }
-  //     when else {
-  //       return null;
-  //     }
-  //   }
-  // }
+  /**
+   * @description get header for twillio api
+   * @author Digital Align Team | 11-03-2021
+   * @param Map<String object> params
+   * @return Map<String, String>
+   **/
+  private Map<String, String> getHeader(Map<String, object> params) {
+    Map<String, String> header = new Map<String, String>();
+    header.put(
+      'X-Twilio-Client',
+      'salesforce-' + APIConfigurationService.getAPIConstants('Version')
+    );
+    header.put(
+      'User-Agent',
+      'twilio-salesforce-' + APIConfigurationService.getAPIConstants('Version')
+    );
+    header.put('Accept', 'application/json');
+    header.put(
+      'Authorization',
+      'Basic ' +
+      EncodingUtil.base64Encode(
+        Blob.valueOf(
+          APIConfigurationService.getAPIConstants('Twillio_Account') +
+          ':' +
+          APIConfigurationService.getAPIConstants('Twillio_Token')
+        )
+      )
+    );
+    return header;
+  }
 }
-
-// /**
-//  * Copyright (c) 2021 Digital Align
-//  * @group Provider
-//  * @author Digital Align Team
-//  * @reference
-//  * @description Provider for sending SMS using Twillio API
-//  **/
-
-// global with sharing class TwillioProvider extends AbstractAPIProvider {
-//   public static Integer OTPNumber { get; set; }
-//   public TwillioProvider() {
-//     super(TwillioProvider.class);
-//   }
-
-//   protected override String buildRequest(Map<String, object> params) {
-//     String OTPText = String.valueof(params.get('OTP'));
-//     String messageText = System.Label.DealerOTPMessage.replace(
-//       '[OTP]',
-//       OTPText
-//     );
-//     String toPhone = (String) params.get('Phone');
-//     String requestBody =
-//       '' +
-//       'From=' +
-//       EncodingUtil.urlEncode(String.valueof(params.get('FromPhone')), 'UTF-8') +
-//       '&To=' +
-//       EncodingUtil.urlEncode(
-//         String.valueof(params.get('CountryCode')) + tophone,
-//         'UTF-8'
-//       ) +
-//       '&Body=' +
-//       +EncodingUtil.urlEncode(messageText, 'UTF-8');
-//     System.debug(' The request body is ' + requestBody);
-//     return requestBody;
-//   }
-
-//   public override Map<String, Object> executeRequest(
-//     Map<String, object> params
-//   ) {
-//     switch on ((APINames) params.get('APIMapper')) {
-//       when TwillioMessaging {
-//         return super.executeRequest(params);
-//       }
-//       when else {
-//         throw new CustomException('Undefined Mapper for the API call');
-//       }
-//     }
-//   }
-
-//   protected override Map<String, String> getHeader(Map<String, object> params) {
-//     switch on ((APINames) params.get('APIMapper')) {
-//       when TwillioMessaging {
-//         Map<String, String> header = new Map<String, String>();
-//         header.put('X-Twilio-Client', 'salesforce-' + params.get('Version'));
-//         header.put('User-Agent', 'twilio-salesforce-' + params.get('Version'));
-//         header.put('Accept', 'application/json');
-//         header.put(
-//           'Authorization',
-//           'Basic ' +
-//           EncodingUtil.base64Encode(
-//             Blob.valueOf(
-//               params.get('Twillio_Account') +
-//               ':' +
-//               params.get('Twillio_Token')
-//             )
-//           )
-//         );
-//         return header;
-//       }
-//       when else {
-//         return null;
-//       }
-//     }
-//   }
-// }
-
