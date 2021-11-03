@@ -7,7 +7,6 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class TwillioProvider extends AbstractService {
-  public static Integer OTPNumber { get; set; }
   @TestVisible
   private static TwillioProvider serviceInstance;
 
@@ -27,7 +26,7 @@ global with sharing class TwillioProvider extends AbstractService {
   }
 
   /**
-   * @description
+   * @description send message using twillio
    * @author Digital Align | 11-02-2021
    * @param Map<String object> params
    * @return virtual
@@ -38,7 +37,7 @@ global with sharing class TwillioProvider extends AbstractService {
     String otp = String.valueof(params.get('otp'));
     String messageText =
       otp +
-      ' is your WEBSITE authentication code \n  @Digitalalign.com #' +
+      ' is your WEBSITE authentication code @Digitalalign.com #' +
       otp; // System.Label.CustomerOTPMessage.replace('[OTP]', otp);
     String requestBody =
       'From=' +
