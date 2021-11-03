@@ -35,10 +35,7 @@ global with sharing class TwillioProvider extends AbstractService {
     Map<String, object> params
   ) {
     String otp = String.valueof(params.get('otp'));
-    String messageText =
-      otp +
-      ' is your WEBSITE authentication code @Digitalalign.com #' +
-      otp; // System.Label.CustomerOTPMessage.replace('[OTP]', otp);
+    String messageText = System.Label.TwillioOtpFormat.replace('{OTP}', otp);
     String requestBody =
       'From=' +
       EncodingUtil.urlEncode(

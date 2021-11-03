@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>DealerOTPMessage</fullName>
-        <categories>Dealer</categories>
+        <fullName>TwillioOtpFormat</fullName>
+        <categories>SMS</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>DealerOTPMessage</shortDescription>
-        <value>Welcome to DoTract!
-Please enter the OTP mentioned below:
+        <shortDescription>Twillio Otp Format</shortDescription>
+        <value
+    >{OTP} is OTP for your MINTFLOW, OTP valid for 2 minutes. Do not share this OTP with anyone.
 
-[OTP]</value>
+@Digitalalign.com #{OTP}</value>
     </labels>
 </CustomLabels>
