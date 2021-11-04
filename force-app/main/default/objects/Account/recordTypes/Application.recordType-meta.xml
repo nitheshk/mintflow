@@ -28,6 +28,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>CreatedChannel__c</picklist>
+        <values>
+            <fullName>Branch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Digital</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>FinServ__BorrowingHistory__c</picklist>
         <values>
             <fullName>Excellent</fullName>
@@ -244,31 +259,11 @@
     <picklistValues>
         <picklist>FinServ__KYCStatus__c</picklist>
         <values>
-            <fullName>Completed - Invalid</fullName>
+            <fullName>Passed</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Completed - Valid</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Expired</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>In Queue</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>In progress</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Overdue</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Required</fullName>
+            <fullName>Under Review</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -279,19 +274,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Call Center</fullName>
+            <fullName>Digital</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Mobile</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Other</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Web</fullName>
+            <fullName>Virtual</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -393,35 +380,31 @@
     <picklistValues>
         <picklist>FinServ__Status__c</picklist>
         <values>
-            <fullName>Active</fullName>
+            <fullName>Abandoned%2C</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Closed</fullName>
+            <fullName>Approved%2C</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Deceased</fullName>
+            <fullName>Cancelled%2C</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Deliquent</fullName>
+            <fullName>Completed%2C</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Dormant</fullName>
+            <fullName>In Progress</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Inactive</fullName>
+            <fullName>Pending Review%2C</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Onboarding</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Prospect</fullName>
+            <fullName>Submitted%2C</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -437,6 +420,77 @@
         </values>
         <values>
             <fullName>Short Term</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Flow__c</picklist>
+        <values>
+            <fullName>Address-Verification%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beneficiary%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disclosures%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Eligibility-Confirmation%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email-Confirmation%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency-Contact%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employment-Information%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Family-Connect%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Final-Confirmation%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Funding%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Get-Started%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joint%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otp-Verification%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Password%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Personal-Information%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Review-Information%2C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Welcome-Back</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -604,7 +658,7 @@
             <fullName>Warm</fullName>
             <default>false</default>
         </values>
-    </picklistValues>    
+    </picklistValues>
     <picklistValues>
         <picklist>Type</picklist>
         <values>
@@ -635,5 +689,28 @@
             <fullName>Technology Partner</fullName>
             <default>false</default>
         </values>
-    </picklistValues>     
+    </picklistValues>
+    <picklistValues>
+        <picklist>UserAccountType__c</picklist>
+        <values>
+            <fullName>CustomerApplication</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DealerAccount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DealerEmployee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FinancialInstituteAccount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FinancialInstituteEmployee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>
