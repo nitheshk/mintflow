@@ -1045,7 +1045,7 @@
     </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.OTP__c</field>
+        <field>Applicant__c.SmsOtp__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1055,7 +1055,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.OTPAttempts__c</field>
+        <field>Applicant__c.SmsOtpAttempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

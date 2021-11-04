@@ -61,8 +61,8 @@ global virtual with sharing class NotificationService extends AbstractService {
         HttpBuilder.Response response = TwillioProvider.getInstance()
           .sendMessageUsingTwillio(params);
 
-        applicant.OTP__c = otp;
-        applicant.OTPAttempts__c = 0;
+        applicant.SmsOtp__c = otp;
+        applicant.SmsOtpAttempts__c = 0;
         applicant.OTPExpireTime__c = Datetime.now()
           .addMinutes(
             (Integer) ApplicationConfiguration__c.getOrgDefaults()

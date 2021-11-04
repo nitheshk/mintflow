@@ -162,19 +162,19 @@ global with sharing class IdentityService extends AbstractService {
       Applicant__c applicant = NotificationRepository.fetchApplicantById(
         applicantId
       );
-      system.debug(applicant.OTPAttempts__c);
+      system.debug(applicant.SmsOtpAttempts__c);
       system.debug(
         ApplicationConfiguration__c.getOrgDefaults().OTPMaxAllowedAttempts__c
       );
       if (
-        applicant.OTPAttempts__c <
+        applicant.SmsOtpAttempts__c <
         ApplicationConfiguration__c.getOrgDefaults().OTPMaxAllowedAttempts__c
       ) {
-        if (applicant.OTP__c == (Integer) params.get('OTP')) {
+        if (applicant.SmsOtp__c == (Integer) params.get('OTP')) {
           if (applicant.OTPExpireTime__c > Datetime.now()) {
             applicant.IsPhoneNumberVerified__c = true;
-            applicant.OTP__c = null;
-            applicant.OTPAttempts__c = null;
+            applicant.SmsOtp__c = null;
+            applicant.SmsOtpAttempts__c = null;
             applicant.OTPExpireTime__c = null;
             NotificationRepository.updateRecord(applicant);
             message = 'Verified';
@@ -183,7 +183,7 @@ global with sharing class IdentityService extends AbstractService {
           }
         } else {
           message = 'Invalid OTP';
-          applicant.OTPAttempts__c++;
+          applicant.SmsOtpAttempts__c++;
           NotificationRepository.updateRecord(applicant);
         }
       } else {

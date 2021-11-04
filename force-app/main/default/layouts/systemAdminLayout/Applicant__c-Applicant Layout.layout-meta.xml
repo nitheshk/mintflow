@@ -110,11 +110,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OTP__c</field>
+                <field>SmsOtp__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OTPAttempts__c</field>
+                <field>SmsOtpAttempts__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
