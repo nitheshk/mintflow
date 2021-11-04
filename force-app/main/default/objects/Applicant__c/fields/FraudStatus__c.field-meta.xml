@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>KYCVerificationStatus__c</fullName>
+    <fullName>FraudStatus__c</fullName>
     <externalId>false</externalId>
-    <description>KYC verification status</description>
-    <label>KYC Verification Status</label>
+    <label>Fraud Status</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -12,19 +11,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>In Progress</fullName>
+                <fullName>More</fullName>
                 <default>false</default>
-                <label>In Progress</label>
+                <label>More</label>
             </value>
             <value>
-                <fullName>Approved</fullName>
+                <fullName>Less</fullName>
                 <default>false</default>
-                <label>Approved</label>
+                <label>Less</label>
             </value>
             <value>
-                <fullName>Declined</fullName>
+                <fullName>Medium</fullName>
                 <default>false</default>
-                <label>Declined</label>
+                <label>Medium</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -28,17 +28,54 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>EmploymentVerificationStatus__c</picklist>
+        <picklist>Applicant_Type__c</picklist>
         <values>
-            <fullName>Approved%2C</fullName>
+            <fullName>Beneficiary</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Declined</fullName>
+            <fullName>Joint</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Pending%2C</fullName>
+            <fullName>Organization</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Primary</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>EmploymentStatus__c</picklist>
+        <values>
+            <fullName>AutoVerified</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FraudStatus__c</picklist>
+        <values>
+            <fullName>Less</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>More</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>IdentityVerificationStatus__c</picklist>
+        <values>
+            <fullName>Not Verified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Verified</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -58,17 +95,17 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>KYCVerificationStatus__c</picklist>
+        <picklist>KYCStatus__c</picklist>
         <values>
-            <fullName>Approved</fullName>
+            <fullName>Failed</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Declined</fullName>
+            <fullName>Passed</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>In Progress</fullName>
+            <fullName>UnderReview</fullName>
             <default>false</default>
         </values>
     </picklistValues>

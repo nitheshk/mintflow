@@ -955,11 +955,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.EmploymentVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Applicant__c.FirstName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -972,12 +967,7 @@
         <editable>true</editable>
         <field>Applicant__c.IsExistingCustomer__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.KYCVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.LastName__c</field>
@@ -1042,6 +1032,51 @@
         <editable>true</editable>
         <field>Applicant__c.DeleteRecord__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.EmailOtpAttempts__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.EmailOtp__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	    <fieldPermissions>
+        <editable>false</editable>
+        <field>Applicant__c.EmploymentStatus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+	   <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.FraudStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.IdentityVerificationStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.KYCCreditScore__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	  <fieldPermissions>
+        <editable>false</editable>
+        <field>Applicant__c.KYCStatus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+	   <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.SentiLinkFraudScore__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
+        <editable>false</editable>
+        <field>Applicant__c.Applicant_Type__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
