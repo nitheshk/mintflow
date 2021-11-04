@@ -2124,6 +2124,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>User.Channel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>FinServ__Education__c.FinServ__Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
