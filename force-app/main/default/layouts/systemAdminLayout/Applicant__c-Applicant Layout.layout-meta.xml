@@ -87,11 +87,7 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Verification Information</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IsFamilyConnected__c</field>
-            </layoutItems>
+        <layoutColumns>             
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsExistingCustomer__c</field>
