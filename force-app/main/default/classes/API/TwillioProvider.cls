@@ -34,19 +34,13 @@ global with sharing class TwillioProvider extends AbstractService {
   global virtual HttpBuilder.Response sendMessageUsingTwillio(
     Map<String, object> params
   ) {
-    String otp = String.valueof(params.get('otp'));
-    String messageText = System.Label.TwillioOtpFormat.replace('{OTP}', otp);
     String requestBody =
       'From=' +
       EncodingUtil.urlEncode(HttpBuilder.getApiConstant('FromPhone'), 'UTF-8') +
       '&To=' +
-      EncodingUtil.urlEncode(
-        HttpBuilder.getApiConstant('Twillio_Country') +
-        params.get('toPhone').toString(),
-        'UTF-8'
-      ) +
+      EncodingUtil.urlEncode(params.get('toPhone').toString(), 'UTF-8') +
       '&Body=' +
-      +EncodingUtil.urlEncode(messageText, 'UTF-8');
+      +EncodingUtil.urlEncode(params.get('messageText').toString(), 'UTF-8');
 
     log?.debug(' The request body is ' + requestBody);
     flow.setSubFlowRequest(requestBody);
@@ -55,14 +49,12 @@ global with sharing class TwillioProvider extends AbstractService {
       requestBody,
       getHeader(params)
     );
-
     flow.setSubFlowResponse(response.getBody());
     log?.debug(' The response body is ' + response.getBody());
 
     if (response.getStatusCode() != 200 && response.getStatusCode() != 201) {
       throw new CustomException(response.getStatus());
     }
-
     return HttpBuilder.buildResponse(
       response.getStatusCode(),
       response.getStatus(),

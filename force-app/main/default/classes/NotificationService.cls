@@ -35,18 +35,10 @@ global virtual with sharing class NotificationService extends AbstractService {
    * @return virtual
    **/
   global virtual object sendOTPMessage(Map<String, Object> params) {
-    Flow.initialize(ApexRequest.getApplicationId());
     Flow.setFlow('EligibilityFlow');
-    Flow.setSubFlow(APINames.TwillioMessaging.name());
+    String applicantNumber = (String) params.get('applicantNumber');
+    Flow.setSubFlow(APINames.TwillioMessaging.name(), applicantNumber);
     try {
-      Applicant__c applicant = NotificationRepository.fetchApplicantById(
-        (string) params.get('ApplicantId')
-      );
-      String message;
-      Integer otp = Math.round((Math.random() * (9000) + 1000));
-      params.put('toPhone', applicant.Phone__c);
-      params.put('otp', otp);
-
       if (HttpBuilder.isActiveApiSetting(APINames.TwillioMessaging)) {
         HttpBuilder.setAPISetting(APINames.TwillioMessaging);
         HttpBuilder.replaceEndpoint(
@@ -60,15 +52,6 @@ global virtual with sharing class NotificationService extends AbstractService {
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
         HttpBuilder.Response response = TwillioProvider.getInstance()
           .sendMessageUsingTwillio(params);
-
-        applicant.SmsOtp__c = otp;
-        applicant.SmsOtpAttempts__c = 0;
-        applicant.OTPExpireTime__c = Datetime.now()
-          .addMinutes(
-            (Integer) ApplicationConfiguration__c.getOrgDefaults()
-              .OTPExpirationTime__c
-          );
-        NotificationRepository.updateRecord(applicant);
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
         return true;
