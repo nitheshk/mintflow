@@ -87,27 +87,56 @@ global with sharing class IdentityController extends AbstractController {
       Logger.persist();
     }
   }
+
   /**
-   * @description
-   * @author Digital Align | 11-02-2021
+   * @description generate otp
+   * params: Id applicantId
+   * @author Digital Align Team | 11-05-2021
    * @param ApexRequest request
    * @return ApexResponse
    **/
-  global static ApexResponse verifyOTPMessage(ApexRequest request) {
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse generateOTP(ApexRequest request) {
     try {
-      log?.fine('Inside verifyOTPMessage');
+      log?.fine('Inside generateOTP');
       validateRequest(request);
+      log?.debug('params : ' + ApexRequest.getParams());
+      ID applicantId = (Id) ApexRequest.getParams('applicantId');
       return ApexResponse.ok(
-        IdentityService.getInstance().verifyOTPMessage(ApexRequest.getParams())
+        IdentityService.getInstance().generateOTP(applicantId)
       );
-    } catch (CustomException ex) {
-      log?.error(ex);
-      return ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
-      log?.fine('Complete verifyOTPMessage');
+      Flow.finalize();
+      log?.fine('Completed generateOTP');
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description validate otp for applicant
+   * @author Digital Align Team | 11-05-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse validateOTP(ApexRequest request) {
+    try {
+      log?.fine('Inside validateOTP');
+      validateRequest(request);
+      log?.debug('params : ' + ApexRequest.getParams());
+      return ApexResponse.ok(
+        IdentityService.getInstance().validateOTP(ApexRequest.getParams())
+      );
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Completed validateOTP');
       Logger.persist();
     }
   }

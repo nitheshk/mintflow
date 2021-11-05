@@ -3,11 +3,10 @@
     <fullName>SmsOtp__c</fullName>
     <description>To store OTP</description>
     <externalId>false</externalId>
-    <label>OTP</label>    
-    <precision>4</precision>
+    <label>Sms OTP</label>
+    <length>10</length>
     <required>false</required>
-    <scale>0</scale>
     <trackTrending>false</trackTrending>
-    <type>Number</type>
+    <type>Text</type>
     <unique>false</unique>
 </CustomField>

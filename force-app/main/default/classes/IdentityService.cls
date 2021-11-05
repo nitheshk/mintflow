@@ -146,51 +146,110 @@ global with sharing class IdentityService extends AbstractService {
       throw ex;
     }
   }
+
   /**
-   * @description
-   * @author Digital Align | 11-03-2021
+   * @description generate otp via sms or email
+   * @author Digital Align Team | 11-05-2021
+   * @param Id applicantId
+   * @return Object
+   **/
+  global virtual Object generateOTP(Id applicantId) {
+    Flow.initialize(ApexRequest.getApplicationId());
+    Applicant__c applicant = IdentityRepository.fetchApplicantById(applicantId);
+
+    String otpMode = ApplicationConfiguration__c.getInstance()
+      .AllowedOtpMode__c;
+    List<String> otpModeList = String.isNotBlank(otpMode)
+      ? otpMode.split(';')
+      : new List<String>();
+
+    //SMS
+    if (otpModeList.contains('SMS')) {
+      applicant.SmsOtp__c = String.valueOf(
+        Math.round((Math.random() * (9000) + 1000))
+      );
+      applicant.SmsOtpAttempts__c = 0;
+      applicant.OTPExpireTime__c = Datetime.now()
+        .addMinutes(
+          (Integer) ApplicationConfiguration__c.getOrgDefaults()
+            .OTPExpirationTime__c
+        );
+
+      Map<String, Object> params = new Map<String, Object>();
+      params.put(
+        'messageText',
+        System.Label.TwillioOtpFormat.replace('{OTP}', applicant.SmsOtp__c)
+      );
+      params.put(
+        'toPhone',
+        HttpBuilder.getApiConstant('Twillio_Country') + applicant.Phone__c
+      );
+      params.put('applicantNumber', applicant.Id);
+      NotificationService.getInstance().sendOTPMessage(params);
+    }
+    //Email
+    if (otpModeList.contains('EMAIL')) {
+      applicant.EmailOtp__c = String.valueOf(
+        Math.round((Math.random() * (9000) + 1000))
+      );
+      applicant.EmailOtpAttempts__c = 0;
+    }
+
+    IdentityRepository.updateRecord(applicant);
+
+    return true;
+  }
+
+  /**
+   * @description validate Entered OTP
+   * @author Digital Align Team | 11-05-2021
    * @param Map<String Object> params
    * @return virtual
    **/
-  global virtual String verifyOTPMessage(Map<String, Object> params) {
+  global virtual Applicant__c validateOTP(Map<String, Object> params) {
+    Applicant__c applicant = IdentityRepository.fetchApplicantById(
+      (String) params.get('applicantId')
+    );
+    ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getInstance();
     try {
-      String applicantId = params.get('applicantId').toString();
-      if (String.isBlank('applicantId')) {
-        throw new customException('Invalid Applicant Id');
+      List<String> otpModeList = String.isNotBlank(appConfig.AllowedOtpMode__c)
+        ? appConfig.AllowedOtpMode__c.split(';')
+        : new List<String>();
+
+      if (applicant.OTPExpireTime__c < Datetime.now()) {
+        applicant.EmailOtpAttempts__c = applicant.SmsOtpAttempts__c += 1;
+        throw new customException('OTP has Expired,Generate new OTP');
       }
-      String message;
-      Applicant__c applicant = NotificationRepository.fetchApplicantById(
-        applicantId
-      );
-      system.debug(applicant.SmsOtpAttempts__c);
-      system.debug(
-        ApplicationConfiguration__c.getOrgDefaults().OTPMaxAllowedAttempts__c
-      );
+
       if (
-        applicant.SmsOtpAttempts__c <
-        ApplicationConfiguration__c.getOrgDefaults().OTPMaxAllowedAttempts__c
+        applicant.SmsOtpAttempts__c < appConfig.OTPMaxAllowedAttempts__c &&
+        applicant.EmailOtpAttempts__c < appConfig.OTPMaxAllowedAttempts__c
       ) {
-        if (applicant.SmsOtp__c == (Integer) params.get('OTP')) {
-          if (applicant.OTPExpireTime__c > Datetime.now()) {
-            applicant.IsPhoneNumberVerified__c = true;
-            applicant.SmsOtp__c = null;
-            applicant.SmsOtpAttempts__c = null;
-            applicant.OTPExpireTime__c = null;
-            NotificationRepository.updateRecord(applicant);
-            message = 'Verified';
-          } else {
-            message = 'OTP Expired';
-          }
-        } else {
-          message = 'Invalid OTP';
-          applicant.SmsOtpAttempts__c++;
-          NotificationRepository.updateRecord(applicant);
-        }
+        applicant.EmailOtpAttempts__c = applicant.SmsOtpAttempts__c += 1;
       } else {
-        message = 'Maximum attempts failed. Please retry';
+        applicant.EmailOtpAttempts__c = applicant.SmsOtpAttempts__c += 1;
+        throw new customException('Reached Maximum Number Attempt');
       }
-      return message;
-    } catch (Exception ex) {
+
+      //SMS
+      if (otpModeList.contains('SMS')) {
+        if (applicant.SmsOtp__c != params.get('sms')) {
+          throw new customException('Please verify the OTP entered');
+        }
+      }
+      //Email
+      if (otpModeList.contains('EMAIL')) {
+        if (applicant.EmailOtp__c != params.get('email')) {
+          throw new customException('Please verify the OTP entered');
+        }
+      }
+
+      applicant.SmsOtp__c = applicant.EmailOtp__c = '';
+      applicant.IsPhoneNumberVerified__c = true;
+      IdentityRepository.updateRecord(applicant);
+      return applicant;
+    } catch (customException ex) {
+      IdentityRepository.updateRecord(applicant);
       throw ex;
     }
   }
