@@ -34,3 +34,16 @@ List<ContentVersion> cvs = FileService.getInstance()
   .fetchContentVersionByEntityId('00Q1y000001aBC3EAM', false);
 
 System.debug(' cvs  : ' + JSON.serialize(cvs));
+//
+
+//random input
+ApexRequest request = new ApexRequest();
+request.setApplicationId('0019D00000IVnGrQAL'); //account ID
+request.setHeader(
+  new Map<String, Object>{
+    'entityId' => '0019D00000IVnGrWRF',
+    'ignoreVersionData' => true
+  }
+);
+ApexResponse res = FileController.fetchContentVersionByEntityId(request);
+system.debug('res=+' + JSON.serialize(res));
