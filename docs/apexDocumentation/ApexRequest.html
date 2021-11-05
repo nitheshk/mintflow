@@ -497,49 +497,590 @@
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="NavigationMenuItemsController">
-              <span>NavigationMenuItemsController</span>
+            <h2 class="class-title top-level-type" id="ApexRequest">
+              <span>ApexRequest</span>
             </h2>
             <div class="class-container">
 
               <div class="class-description">
-                Copyright (c) 2021 Digital Align A basic controller for fetching NavigationMenuItems.
+                Copyright (c) 2021 Digital Align
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
               <div class="class-annotations">@SuppressWarnings('PMD.AvoidGlobalModifier')</div>
               <div class="class-signature">
-                global with sharing class NavigationMenuItemsController
+                global with sharing class ApexRequest
               </div><br />Digital Align Team @reference
             </div>
+            <div class="subsection properties ApexRequest">
+              <h3 class="subsection-title properties">ApexRequest Properties</h2>
+                <table class="attributes-table properties">
+
+                  <tr>
+                    <th>Name</th>
+                    <th>Signature</th>
+                    <th>Annotations</th>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>applicationId</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global String applicationId
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>applicationName</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global String applicationName
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>currentPage</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global String currentPage
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>data</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global String data
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>event</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global String event
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>flowType</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global String flowType
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>header</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global String header
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>nextPage</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global String nextPage
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>params</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global Map&lt;String, Object&gt; params
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property public">
+                    <td class="attribute-name"><span>request</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        public static ApexRequest request
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                  <tr class="property global">
+                    <td class="attribute-name"><span>token</span></td>
+                    <td>
+                      <div class="attribute-signature">
+                        global String token
+                      </div>
+                    </td>
+                    <td>
+                      <div class="prop-annotations">@AuraEnabled</div>
+                    </td>
+
+                  </tr>
+                </table>
+            </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">NavigationMenuItemsController Methods</h3>
+              <h3 class="subsection-title methods">ApexRequest Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
-                  <li class="method public">
-                    <a class="methods-toc__entry " href="#NavigationMenuItemsController.getNavigationMenuItems">
-                      getNavigationMenuItems (menuName, publishedState)
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.ApexRequest">
+                      ApexRequest ()
+                    </a>
+
+                  </li>
+                </ul>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.ApexRequest">
+                    <span>ApexRequest()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global ApexRequest()
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">ApexRequest Methods</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.getApplicationId">
+                      getApplicationId ()
                     </a>
 
                     <div class="methods-toc__description">
-                      Perform two SOQL queries to determine all the children NavigationMenuItems belonging to the provided menuName and publishedState. This example uses the NavigationLinkSet.MasterLabel for the menuName. One could also use the NavigationLinkSet.Id to ensure referential integrity if the MasterLabel changes. NavigationLinkSet contains both Draft and Live versions of the NavigationMenuItems. Use the publishedState enumeration to filter between them. Cacheable = true allows this function to be wired.
+                      get application id
                     </div>
                   </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.getApplicationName">
+                      getApplicationName ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      get Application Number
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.getParams">
+                      getParams ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      get Params
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.getParams_1">
+                      getParams (key)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      get value from params
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.getRequest">
+                      getRequest ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Get Request
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.setApplicationId">
+                      setApplicationId (applicationId)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      set application id
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.setData">
+                      setData (data)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      set data of type string
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.setData_1">
+                      setData (data)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      set data if type object
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.setHeader">
+                      setHeader (header)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      set header
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.setHeader_1">
+                      setHeader (header)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      set header
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApexRequest.setRequest">
+                      setRequest ()
+                    </a>
+
+                  </li>
                 </ul>
-                <div class="method public">
-                  <h4 class="method-title " id="NavigationMenuItemsController.getNavigationMenuItems">
-                    <span>getNavigationMenuItems(menuName, publishedState)</span>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.getApplicationId">
+                    <span>getApplicationId()</span>
                   </h4>
                   <div class="method-description">
-                    Perform two SOQL queries to determine all the children NavigationMenuItems belonging to the provided menuName and publishedState. This example uses the NavigationLinkSet.MasterLabel for the menuName. One could also use the NavigationLinkSet.Id to ensure referential integrity if the MasterLabel changes. NavigationLinkSet contains both Draft and Live versions of the NavigationMenuItems. Use the publishedState enumeration to filter between them. Cacheable = true allows this function to be wired.
+                    get application id
                   </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public static List&lt;NavigationMenuItem&gt; getNavigationMenuItems( String menuName, String publishedState )
+                    global static String getApplicationId()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    String
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-27-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.getApplicationName">
+                    <span>getApplicationName()</span>
+                  </h4>
+                  <div class="method-description">
+                    get Application Number
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static String getApplicationName()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    String
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 11-02-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.getParams">
+                    <span>getParams()</span>
+                  </h4>
+                  <div class="method-description">
+                    get Params
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static Map&lt;String, Object&gt; getParams()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Map&lt;String, Object&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-27-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.getParams_1">
+                    <span>getParams(key)</span>
+                  </h4>
+                  <div class="method-description">
+                    get value from params
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static Object getParams(String key)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">key</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Object
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-28-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.getRequest">
+                    <span>getRequest()</span>
+                  </h4>
+                  <div class="method-description">
+                    Get Request
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static ApexRequest getRequest()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexRequest
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-27-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.setApplicationId">
+                    <span>setApplicationId(applicationId)</span>
+                  </h4>
+                  <div class="method-description">
+                    set application id
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global ApexRequest setApplicationId(String applicationId)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">applicationId</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexRequest
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-27-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.setData">
+                    <span>setData(data)</span>
+                  </h4>
+                  <div class="method-description">
+                    set data of type string
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global ApexRequest setData(String data)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">data</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexRequest
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-28-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.setData_1">
+                    <span>setData(data)</span>
+                  </h4>
+                  <div class="method-description">
+                    set data if type object
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global ApexRequest setData(Object data)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Object</div>
+                  <div class="param-description">data</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexRequest
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-28-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.setHeader">
+                    <span>setHeader(header)</span>
+                  </h4>
+                  <div class="method-description">
+                    set header
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global ApexRequest setHeader(Map&lt;String, Object&gt; header)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Map&lt;String</div>
+                  <div class="param-description">Object&gt; header</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexRequest
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-27-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.setHeader_1">
+                    <span>setHeader(header)</span>
+                  </h4>
+                  <div class="method-description">
+                    set header
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global ApexRequest setHeader(String header)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">header</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexRequest
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-27-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApexRequest.setRequest">
+                    <span>setRequest()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global void setRequest()
                   </div>
                 </div>
               </div>

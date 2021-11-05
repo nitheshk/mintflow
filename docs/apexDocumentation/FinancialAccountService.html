@@ -497,49 +497,164 @@
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="NavigationMenuItemsController">
-              <span>NavigationMenuItemsController</span>
+            <h2 class="class-title top-level-type" id="FinancialAccountService">
+              <span>FinancialAccountService</span>
             </h2>
             <div class="class-container">
 
               <div class="class-description">
-                Copyright (c) 2021 Digital Align A basic controller for fetching NavigationMenuItems.
+                Copyright (c) 2021 Digital Align Financial Account Service
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
               <div class="class-annotations">@SuppressWarnings('PMD.AvoidGlobalModifier')</div>
               <div class="class-signature">
-                global with sharing class NavigationMenuItemsController
+                global with sharing class FinancialAccountService extends AbstractService
               </div><br />Digital Align Team @reference
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">NavigationMenuItemsController Methods</h3>
+              <h3 class="subsection-title methods">FinancialAccountService Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#NavigationMenuItemsController.getNavigationMenuItems">
-                      getNavigationMenuItems (menuName, publishedState)
+                    <a class="methods-toc__entry " href="#FinancialAccountService.FinancialAccountService">
+                      FinancialAccountService ()
+                    </a>
+
+                  </li>
+                </ul>
+                <div class="method public">
+                  <h4 class="method-title " id="FinancialAccountService.FinancialAccountService">
+                    <span>FinancialAccountService()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public FinancialAccountService()
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">FinancialAccountService Methods</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#FinancialAccountService.getInstance">
+                      getInstance ()
                     </a>
 
                     <div class="methods-toc__description">
-                      Perform two SOQL queries to determine all the children NavigationMenuItems belonging to the provided menuName and publishedState. This example uses the NavigationLinkSet.MasterLabel for the menuName. One could also use the NavigationLinkSet.Id to ensure referential integrity if the MasterLabel changes. NavigationLinkSet contains both Draft and Live versions of the NavigationMenuItems. Use the publishedState enumeration to filter between them. Cacheable = true allows this function to be wired.
+                      Provides a singleton instance of FinancialAccountService from which all other class methods can be accessed.
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#FinancialAccountService.readFinancialAccountsWithChild">
+                      readFinancialAccountsWithChild (financialAccounts)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Read Financial Account with child record
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#FinancialAccountService.readFinancialAccountsWithChild_1">
+                      readFinancialAccountsWithChild (applicationIds)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Read Financial Account with child record by ids
                     </div>
                   </li>
                 </ul>
                 <div class="method public">
-                  <h4 class="method-title " id="NavigationMenuItemsController.getNavigationMenuItems">
-                    <span>getNavigationMenuItems(menuName, publishedState)</span>
+                  <h4 class="method-title " id="FinancialAccountService.getInstance">
+                    <span>getInstance()</span>
                   </h4>
                   <div class="method-description">
-                    Perform two SOQL queries to determine all the children NavigationMenuItems belonging to the provided menuName and publishedState. This example uses the NavigationLinkSet.MasterLabel for the menuName. One could also use the NavigationLinkSet.Id to ensure referential integrity if the MasterLabel changes. NavigationLinkSet contains both Draft and Live versions of the NavigationMenuItems. Use the publishedState enumeration to filter between them. Cacheable = true allows this function to be wired.
+                    Provides a singleton instance of FinancialAccountService from which all other class methods can be accessed.
                   </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public static List&lt;NavigationMenuItem&gt; getNavigationMenuItems( String menuName, String publishedState )
+                    public static FinancialAccountService getInstance()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Object singleton
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-27-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="FinancialAccountService.readFinancialAccountsWithChild">
+                    <span>readFinancialAccountsWithChild(financialAccounts)</span>
+                  </h4>
+                  <div class="method-description">
+                    Read Financial Account with child record
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual List&lt;FinServ__FinancialAccount__c&gt; readFinancialAccountsWithChild( List&lt;FinServ__FinancialAccount__c&gt; financialAccounts )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">List&lt;FinServ__FinancialAccount__c&gt;</div>
+                  <div class="param-description">financialAccounts</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    List&lt;FinServ__FinancialAccount__c&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-26-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="FinancialAccountService.readFinancialAccountsWithChild_1">
+                    <span>readFinancialAccountsWithChild(applicationIds)</span>
+                  </h4>
+                  <div class="method-description">
+                    Read Financial Account with child record by ids
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual List&lt;FinServ__FinancialAccount__c&gt; readFinancialAccountsWithChild( Set&lt;Id&gt; applicationIds )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Set&lt;Id&gt;</div>
+                  <div class="param-description">applicationIds</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    List&lt;FinServ__FinancialAccount__c&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-26-2021
                   </div>
                 </div>
               </div>

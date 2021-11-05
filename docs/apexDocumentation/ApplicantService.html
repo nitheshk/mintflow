@@ -497,49 +497,218 @@
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="NavigationMenuItemsController">
-              <span>NavigationMenuItemsController</span>
+            <h2 class="class-title top-level-type" id="ApplicantService">
+              <span>ApplicantService</span>
             </h2>
             <div class="class-container">
 
               <div class="class-description">
-                Copyright (c) 2021 Digital Align A basic controller for fetching NavigationMenuItems.
+                Copyright (c) 2021 Digital Align Application service
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
               <div class="class-annotations">@SuppressWarnings('PMD.AvoidGlobalModifier')</div>
               <div class="class-signature">
-                global with sharing class NavigationMenuItemsController
+                global with sharing class ApplicantService extends AbstractService
               </div><br />Digital Align Team @reference
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">NavigationMenuItemsController Methods</h3>
+              <h3 class="subsection-title methods">ApplicantService Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#NavigationMenuItemsController.getNavigationMenuItems">
-                      getNavigationMenuItems (menuName, publishedState)
+                    <a class="methods-toc__entry " href="#ApplicantService.ApplicantService">
+                      ApplicantService ()
+                    </a>
+
+                  </li>
+                </ul>
+                <div class="method public">
+                  <h4 class="method-title " id="ApplicantService.ApplicantService">
+                    <span>ApplicantService()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public ApplicantService()
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">ApplicantService Methods</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#ApplicantService.getInstance">
+                      getInstance ()
                     </a>
 
                     <div class="methods-toc__description">
-                      Perform two SOQL queries to determine all the children NavigationMenuItems belonging to the provided menuName and publishedState. This example uses the NavigationLinkSet.MasterLabel for the menuName. One could also use the NavigationLinkSet.Id to ensure referential integrity if the MasterLabel changes. NavigationLinkSet contains both Draft and Live versions of the NavigationMenuItems. Use the publishedState enumeration to filter between them. Cacheable = true allows this function to be wired.
+                      Provides a singleton instance of ApplicantService from which all other class methods can be accessed.
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApplicantService.readApplicantsWithChild">
+                      readApplicantsWithChild (applicants)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Read all applicant by applicant records
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApplicantService.readApplicantsWithChild_1">
+                      readApplicantsWithChild (applicantIds)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Read all applicant by applicant Ids
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApplicantService.readApplicantWithChild">
+                      readApplicantWithChild (applicant)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Read applicant by applicant record
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApplicantService.readApplicantWithChild_1">
+                      readApplicantWithChild (applicantId)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Read applicant by applicant Id
                     </div>
                   </li>
                 </ul>
                 <div class="method public">
-                  <h4 class="method-title " id="NavigationMenuItemsController.getNavigationMenuItems">
-                    <span>getNavigationMenuItems(menuName, publishedState)</span>
+                  <h4 class="method-title " id="ApplicantService.getInstance">
+                    <span>getInstance()</span>
                   </h4>
                   <div class="method-description">
-                    Perform two SOQL queries to determine all the children NavigationMenuItems belonging to the provided menuName and publishedState. This example uses the NavigationLinkSet.MasterLabel for the menuName. One could also use the NavigationLinkSet.Id to ensure referential integrity if the MasterLabel changes. NavigationLinkSet contains both Draft and Live versions of the NavigationMenuItems. Use the publishedState enumeration to filter between them. Cacheable = true allows this function to be wired.
+                    Provides a singleton instance of ApplicantService from which all other class methods can be accessed.
                   </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public static List&lt;NavigationMenuItem&gt; getNavigationMenuItems( String menuName, String publishedState )
+                    public static ApplicantService getInstance()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Object singleton
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-27-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApplicantService.readApplicantsWithChild">
+                    <span>readApplicantsWithChild(applicants)</span>
+                  </h4>
+                  <div class="method-description">
+                    Read all applicant by applicant records
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual List&lt;Applicant__c&gt; readApplicantsWithChild( List&lt;Applicant__c&gt; applicants )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">List&lt;Applicant__c&gt;</div>
+                  <div class="param-description">applicants</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-26-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApplicantService.readApplicantsWithChild_1">
+                    <span>readApplicantsWithChild(applicantIds)</span>
+                  </h4>
+                  <div class="method-description">
+                    Read all applicant by applicant Ids
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual List&lt;Applicant__c&gt; readApplicantsWithChild( Set&lt;Id&gt; applicantIds )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Set&lt;Id&gt;</div>
+                  <div class="param-description">applicantIds</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-26-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApplicantService.readApplicantWithChild">
+                    <span>readApplicantWithChild(applicant)</span>
+                  </h4>
+                  <div class="method-description">
+                    Read applicant by applicant record
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual Applicant__c readApplicantWithChild(Applicant__c applicant)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">Applicant__c</div>
+                  <div class="param-description">applicants</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-26-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApplicantService.readApplicantWithChild_1">
+                    <span>readApplicantWithChild(applicantId)</span>
+                  </h4>
+                  <div class="method-description">
+                    Read applicant by applicant Id
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual Applicant__c readApplicantWithChild(Id applicantId)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">applicantId</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 10-26-2021
                   </div>
                 </div>
               </div>
