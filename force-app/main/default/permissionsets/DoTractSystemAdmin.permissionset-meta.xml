@@ -1025,7 +1025,7 @@
     </fieldPermissions>
 	    <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.KYCCreditScore__c</field>
+        <field>Applicant__c.CreditScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	  <fieldPermissions>

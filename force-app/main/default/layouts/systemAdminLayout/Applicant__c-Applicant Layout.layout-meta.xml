@@ -144,7 +144,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>KYCCreditScore__c</field>
+                <field>CreditScore__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
