@@ -1048,11 +1048,6 @@
         <field>Applicant__c.IsExistingCustomer__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
-        <editable>false</editable>
-        <field>Applicant__c.Applicant_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.LastName__c</field>

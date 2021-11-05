@@ -28,25 +28,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Applicant_Type__c</picklist>
-        <values>
-            <fullName>Beneficiary</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Joint</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Organization</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Primary</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>EmploymentStatus__c</picklist>
         <values>
             <fullName>AutoVerified</fullName>
