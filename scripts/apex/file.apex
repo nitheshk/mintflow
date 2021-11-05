@@ -36,7 +36,7 @@ List<ContentVersion> cvs = FileService.getInstance()
 System.debug(' cvs  : ' + JSON.serialize(cvs));
 //
 
-//random input
+//FileController.fetchContentVersionByEntityId
 ApexRequest request = new ApexRequest();
 request.setApplicationId('0019D00000IVnGrQAL'); //account ID
 request.setHeader(
@@ -46,4 +46,31 @@ request.setHeader(
   }
 );
 ApexResponse res = FileController.fetchContentVersionByEntityId(request);
+system.debug('res=+' + JSON.serialize(res));
+
+//FileController.createFile
+ApexRequest request = new ApexRequest();
+request.setApplicationId('0019D00000IVnGrQAL'); //account ID
+request.setHeader(
+  new Map<String, Object>{
+    'title' => 'test.txt',
+    'fileType' => 'Address',
+    'fileSubType' => 'Other',
+    'parentID' => 'a0b9D000002h0JcQAI'
+  }
+);
+request.data = EncodingUtil.base64Encode(blob.valueof('test value'));
+ApexResponse res = FileController.createFile(request);
+system.debug('res=+' + JSON.serialize(res));
+
+//FileController.fetchContentVersionByCD
+ApexRequest request = new ApexRequest();
+request.setApplicationId('0019D00000IVnGrQAL'); //account ID
+request.setHeader(
+  new Map<String, Object>{
+    'contentDocumentId' => '0699D000000k5r7QAA',
+    'ignoreVersionData' => false
+  }
+);
+ApexResponse res = FileController.fetchContentVersionByCD(request);
 system.debug('res=+' + JSON.serialize(res));

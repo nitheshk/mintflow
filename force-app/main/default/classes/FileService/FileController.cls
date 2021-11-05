@@ -30,7 +30,7 @@ global with sharing class FileController extends AbstractController {
         null
         ? (Boolean) ApexRequest.getParams('ignoreVersionData')
         : true;
-      return ApexResponse.ok(
+      return ApexResponse.success(
         FileService.getInstance()
           .fetchContentVersionByEntityId(entityId, ignoreVersionData)
       );
@@ -75,12 +75,13 @@ global with sharing class FileController extends AbstractController {
    * @return ApexResponse
    **/
   @AuraEnabled
+  @RemoteAction
   global static ApexResponse generatePublicUrl(ApexRequest request) {
     try {
       log?.fine('Inside generatePublicUrl');
       validateRequest(request);
       ID contentVersionId = (ID) ApexRequest.getParams('contentVersionId');
-      return ApexResponse.ok(
+      return ApexResponse.success(
         FileService.getInstance().generatePublicUrl(contentVersionId)
       );
     } catch (Exception ex) {
@@ -88,6 +89,78 @@ global with sharing class FileController extends AbstractController {
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete generatePublicUrl');
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description create file
+   * params: String title,String parentID,String fileType,Stirng fileSubType
+   * data : base64 String
+   * @author Digital Align Team | 11-05-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse createFile(ApexRequest request) {
+    try {
+      log?.fine('Inside createFile');
+      validateRequest(request);
+      FileDTO dto = new FileDTO(
+        (String) ApexRequest.getParams('title'),
+        EncodingUtil.base64Decode(request.data),
+        (String) ApexRequest.getParams('parentID'),
+        (String) ApexRequest.getParams('fileType'),
+        (String) ApexRequest.getParams('fileSubType')
+      );
+      if (ApexRequest.getParams('shareType') != null) {
+        dto.shareType = FileDTO.FileShareType.valueof(
+          (String) ApexRequest.getParams('shareType')
+        );
+      }
+      if (ApexRequest.getParams('visibility') != null) {
+        dto.visibility = FileDTO.FileVisibility.valueof(
+          (String) ApexRequest.getParams('visibility')
+        );
+      }
+      return ApexResponse.success(FileService.getInstance().createFile(dto));
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete createFile');
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description fetch content version by content document Id
+   * Params : Id contentDocumentId, Boolean ignoreVersionData
+   * @author Digital Align Team | 11-05-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse fetchContentVersionByCD(ApexRequest request) {
+    try {
+      log?.fine('Inside fetchContentVersionByCD');
+      validateRequest(request);
+      ID contentDocumentId = (ID) ApexRequest.getParams('contentDocumentId');
+      Boolean ignoreVersionData = ApexRequest.getParams('ignoreVersionData') !=
+        null
+        ? (Boolean) ApexRequest.getParams('ignoreVersionData')
+        : true;
+      return ApexResponse.success(
+        FileService.getInstance()
+          .fetchContentVersionByCD(contentDocumentId, ignoreVersionData)
+      );
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete fetchContentVersionByCD');
       Logger.persist();
     }
   }

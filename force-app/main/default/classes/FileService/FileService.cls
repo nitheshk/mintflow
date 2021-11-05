@@ -65,13 +65,15 @@ global virtual with sharing class FileService extends AbstractService {
 
     cVersion = FileRepository.fetchContentVersionById(contentVersionId, true);
 
-    ContentDocumentLink cDocLink = new ContentDocumentLink();
-    cDocLink.ContentDocumentId = cVersion.ContentDocumentId;
-    cDocLink.LinkedEntityId = fileDto.parentID;
-    cDocLink.ShareType = fileDto.shareType.Name();
-    cDocLink.Visibility = fileDto.visibility.Name();
+    if (String.isNotBlank(fileDto.parentID)) {
+      ContentDocumentLink cDocLink = new ContentDocumentLink();
+      cDocLink.ContentDocumentId = cVersion.ContentDocumentId;
+      cDocLink.LinkedEntityId = fileDto.parentID;
+      cDocLink.ShareType = fileDto.shareType.Name();
+      cDocLink.Visibility = fileDto.visibility.Name();
+      FileRepository.upsertRecord(cDocLink);
+    }
 
-    FileRepository.upsertRecord(cDocLink);
     return cVersion;
   }
 
