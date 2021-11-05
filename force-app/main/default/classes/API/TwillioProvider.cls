@@ -38,13 +38,10 @@ global with sharing class TwillioProvider extends AbstractService {
     String messageText = System.Label.TwillioOtpFormat.replace('{OTP}', otp);
     String requestBody =
       'From=' +
-      EncodingUtil.urlEncode(
-        APIConfigurationService.getAPIConstants('FromPhone'),
-        'UTF-8'
-      ) +
+      EncodingUtil.urlEncode(HttpBuilder.getApiConstant('FromPhone'), 'UTF-8') +
       '&To=' +
       EncodingUtil.urlEncode(
-        APIConfigurationService.getAPIConstants('Twillio_Country') +
+        HttpBuilder.getApiConstant('Twillio_Country') +
         params.get('toPhone').toString(),
         'UTF-8'
       ) +
@@ -83,11 +80,11 @@ global with sharing class TwillioProvider extends AbstractService {
     Map<String, String> header = new Map<String, String>();
     header.put(
       'X-Twilio-Client',
-      'salesforce-' + APIConfigurationService.getAPIConstants('Version')
+      'salesforce-' + HttpBuilder.getApiConstant('Version')
     );
     header.put(
       'User-Agent',
-      'twilio-salesforce-' + APIConfigurationService.getAPIConstants('Version')
+      'twilio-salesforce-' + HttpBuilder.getApiConstant('Version')
     );
     header.put('Accept', 'application/json');
     header.put(
@@ -95,9 +92,9 @@ global with sharing class TwillioProvider extends AbstractService {
       'Basic ' +
       EncodingUtil.base64Encode(
         Blob.valueOf(
-          APIConfigurationService.getAPIConstants('Twillio_Account') +
+          HttpBuilder.getApiConstant('Twillio_Account') +
           ':' +
-          APIConfigurationService.getAPIConstants('Twillio_Token')
+          HttpBuilder.getApiConstant('Twillio_Token')
         )
       )
     );

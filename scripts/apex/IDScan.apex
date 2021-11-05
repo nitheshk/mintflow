@@ -21,8 +21,8 @@ requestDTO.dualsidecheck = 'true';
 Map<String, String> header = new Map<String, String>();
 header.put('Content-Type', 'application/json');
 header.put('Accept', 'application/json');
-APIConfigurationService.setAPISettings(APINames.IdScanAnalyzer);
-HttpResponse response = ExternalAPICallOut.execute(
+HttpBuilder.setAPISetting(APINames.IdScanAnalyzer);
+HttpResponse response = HttpBuilder.httpCallOut(
   Json.serialize(requestDTO),
   header
 );

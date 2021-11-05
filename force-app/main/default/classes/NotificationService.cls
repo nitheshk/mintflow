@@ -51,11 +51,11 @@ global virtual with sharing class NotificationService extends AbstractService {
         HttpBuilder.setAPISetting(APINames.TwillioMessaging);
         HttpBuilder.replaceEndpoint(
           '{Twillio_Account}',
-          APIConfigurationService.getAPIConstants('Twillio_Account')
+          HttpBuilder.getApiConstant('Twillio_Account')
         );
         HttpBuilder.replaceEndpoint(
           '{Version}',
-          APIConfigurationService.getAPIConstants('Version')
+          HttpBuilder.getApiConstant('Version')
         );
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
         HttpBuilder.Response response = TwillioProvider.getInstance()

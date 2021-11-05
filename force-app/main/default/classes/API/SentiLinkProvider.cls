@@ -167,9 +167,9 @@ global with sharing class SentiLinkProvider extends AbstractService {
       'Basic ' +
       EncodingUtil.base64Encode(
         Blob.valueOf(
-          APIConfigurationService.getAPIConstants('SentiLinkAccount') +
+          HttpBuilder.getApiConstant('SentiLinkAccount') +
           ':' +
-          (APIConfigurationService.getAPIConstants('SentiLinkToken'))
+          (HttpBuilder.getApiConstant('SentiLinkToken'))
         )
       )
     );

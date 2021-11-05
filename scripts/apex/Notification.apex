@@ -19,7 +19,7 @@ String requestBody =
   EncodingUtil.urlEncode('+14195185222', 'UTF-8') +
   '&To=' +
   EncodingUtil.urlEncode(
-    APIConfigurationService.getAPIConstants('Twillio_Country') + toPhone,
+    HttpBuilder.getApiConstant('Twillio_Country') + toPhone,
     'UTF-8'
   ) +
   '&Body=' +
@@ -29,11 +29,11 @@ System.debug(' The request body is ' + requestBody);
 Map<String, String> header = new Map<String, String>();
 header.put(
   'X-Twilio-Client',
-  'salesforce-' + APIConfigurationService.getAPIConstants('Version')
+  'salesforce-' + HttpBuilder.getApiConstant('Version')
 );
 header.put(
   'User-Agent',
-  'twilio-salesforce-' + APIConfigurationService.getAPIConstants('Version')
+  'twilio-salesforce-' + HttpBuilder.getApiConstant('Version')
 );
 header.put('Accept', 'application/json');
 header.put(
@@ -41,24 +41,20 @@ header.put(
   'Basic ' +
   EncodingUtil.base64Encode(
     Blob.valueOf(
-      APIConfigurationService.getAPIConstants('Twillio_Account') +
+      HttpBuilder.getApiConstant('Twillio_Account') +
       ':' +
-      APIConfigurationService.getAPIConstants('Twillio_Token')
+      HttpBuilder.getApiConstant('Twillio_Token')
     )
   )
 );
 
-APIConfigurationService.setAPISettings(APINames.TwillioMessaging);
-APIConfigurationService.apiSetting.EndPoint__c = APIConfigurationService.apiSetting.EndPoint__c.replace(
+HttpBuilder.setAPISetting(APINames.TwillioMessaging);
+HttpBuilder.replaceEndpoint(
   '{Twillio_Account}',
-  APIConfigurationService.getAPIConstants('Twillio_Account')
+  HttpBuilder.getApiConstant('Twillio_Account')
 );
-APIConfigurationService.apiSetting.EndPoint__c = APIConfigurationService.apiSetting.EndPoint__c.replace(
-  '{Version}',
-  APIConfigurationService.getAPIConstants('Version')
-);
-
-HttpResponse response = ExternalAPICallOut.execute(requestBody, header);
+HttpBuilder.replaceEndpoint('{Version}', HttpBuilder.getApiConstant('Version'));
+HttpResponse response = HttpBuilder.httpCallOut(requestBody, header);
 system.debug(response.getBody());
 
 //

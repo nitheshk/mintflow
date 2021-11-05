@@ -21,14 +21,14 @@ header.put(
   'Basic ' +
   EncodingUtil.base64Encode(
     Blob.valueOf(
-      APIConfigurationService.getAPIConstants('SentiLinkAccount') +
+      HttpBuilder.getApiConstant('SentiLinkAccount') +
       ':' +
-      (APIConfigurationService.getAPIConstants('SentiLinkToken'))
+      (HttpBuilder.getApiConstant('SentiLinkToken'))
     )
   )
 );
-APIConfigurationService.setAPISettings(APINames.SentiLink);
-HttpResponse response = ExternalAPICallOut.execute(str, header);
+HttpBuilder.setAPISetting(APINames.SentiLink);
+HttpResponse response = HttpBuilder.httpCallOut(str, header);
 system.debug(response.getBody());
 
 // REQUIRED FIELDS
