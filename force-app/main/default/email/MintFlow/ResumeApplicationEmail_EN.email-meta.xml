@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <available>true</available>
+    <description>Resume application email.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Resume application email - EN</name>
+    <packageVersions>
+        <majorNumber>230</majorNumber>
+        <minorNumber>3</minorNumber>
+        <namespace>FinServ</namespace>
+    </packageVersions>
+    <style>none</style>
+    <subject>Few steps to complete your application!</subject>
+    <type>visualforce</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <available>true</available>
+    <description>Notification to user about OTP.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>OTP to verify email - EN</name>
+    <packageVersions>
+        <majorNumber>230</majorNumber>
+        <minorNumber>3</minorNumber>
+        <namespace>FinServ</namespace>
+    </packageVersions>
+    <style>none</style>
+    <subject>Mintflow - OTP to verify email address</subject>
+    <type>visualforce</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
