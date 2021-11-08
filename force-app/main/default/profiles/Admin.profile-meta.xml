@@ -12,18 +12,11 @@
     <layoutAssignments>
         <layout>FinancialProduct__c-FinancialProduct Layout</layout>
     </layoutAssignments>
-	
-    <layoutAssignments>
-        <layout>Lead-FinServ__Lead %28Referral%29 Layout</layout>
-    </layoutAssignments>
+	     
     <layoutAssignments>
         <layout>Account-Application Layout</layout>
         <recordType>Account.Application</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Lead-FinServ__Lead %28Referral%29 Layout</layout>
-        <recordType>Lead.FinServ__Referral</recordType>
-    </layoutAssignments>
+    </layoutAssignments>     
     <layoutAssignments>
         <layout
     >SObjectTriggerSetting__mdt-SObject Trigger Setting Layout</layout>

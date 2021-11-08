@@ -55,34 +55,6 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
   }
 
   /**
-   * @description save survey record
-   * @author Digital Align Team | 10-11-2021
-   * @param Lead leadObj
-   * @return Lead
-   **/
-  global virtual Lead saveSurvey(Lead leadObj) {
-    //when survey is empty
-    if (CollectionUtils.isListEmpty(leadObj.Surveys__r)) {
-      return leadObj;
-    }
-    List<Survey__c> toBeDelete = new List<Survey__c>();
-    List<Survey__c> toBeSave = new List<Survey__c>();
-    for (Survey__c surveyObj : leadObj.Surveys__r) {
-      if (surveyObj.DeleteRecord__c == true) {
-        toBeDelete.add(surveyObj);
-      } else {
-        toBeSave.add(surveyObj);
-      }
-    }
-    ApplicationRepository.deleteRecords(toBeDelete);
-    ApplicationRepository.upsertRecords(toBeSave);
-
-    return (Lead) SObjectConstructor.getInstance(leadObj)
-      .setChildObjects('dau01__Surveys__r', toBeSave)
-      .build();
-  }
-
-  /**
    * @description resolve application field before saving
    * @author Digital Align Team | 10-25-2021
    * @param Account application

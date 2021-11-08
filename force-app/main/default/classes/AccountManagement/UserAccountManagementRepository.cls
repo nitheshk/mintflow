@@ -39,33 +39,6 @@ global with sharing class UserAccountManagementRepository extends DatabaseUtils 
   }
 
   /**
-   * @description
-   * @author Digital Align Team | 07-14-2021
-   * @param Id leadId
-   * @return Lead
-   **/
-  global static Lead fetchLeadById(Id leadId) {
-    return (Lead) getRecord(
-      Query.newInstance(Lead.SObjectType).addFields().queryById(leadId)
-    );
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 07-15-2021
-   * @return LeadStatus
-   **/
-  global static LeadStatus fetchLeadStatus() {
-    return (LeadStatus) getRecord(
-      Query.newInstance(LeadStatus.SObjectType)
-        .addFields('MasterLabel')
-        .whereEq('IsConverted', true)
-        .addLimit(1)
-        .toString()
-    );
-  }
-
-  /**
    * @description fetch contact and account by contact id
    * @author Digital Align Team | 07-15-2021
    * @param Id contactId
