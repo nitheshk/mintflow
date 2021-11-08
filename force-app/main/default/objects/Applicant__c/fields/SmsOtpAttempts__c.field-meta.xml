@@ -3,7 +3,7 @@
     <fullName>SmsOtpAttempts__c</fullName>
     <description>Number of OTP retry Attempts</description>
     <externalId>false</externalId>
-    <label>OTPAttempts</label>
+    <label>Sms OTP Attempts</label>
     <precision>4</precision>
     <required>false</required>
     <scale>0</scale>
