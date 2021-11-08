@@ -189,14 +189,14 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {{ FirstName }} {{ LastName }},</h5>
+                      <h5>Hi {firstName} {lastName},</h5>
                       <br />
                       Please register with Mintflow by loging in to portal by
                       clicking
-                      <a href="{{ url }}" target="_blank">Here</a>. Please keep
-                      your identity details handy. It takes hardly few
-                      seconds.<br /> You will reveive an email once your account
-                      is succesfully opened.
+                      <a href="{url}" target="_blank">Here</a>. Please keep your
+                      identity details handy. It takes hardly few seconds.<br />
+                      You will reveive an email once your account is succesfully
+                      opened.
                     </p>
                   </td>
                 </tr>

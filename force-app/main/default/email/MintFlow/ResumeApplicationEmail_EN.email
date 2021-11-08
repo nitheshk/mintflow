@@ -1,9 +1,10 @@
-<messaging:emailTemplate subject="Subject"
+<messaging:emailTemplate
+  subject="Subject"
   recipientType="User"
   relatedToType="Applicant__c"
   renderUsingSystemContextWithoutSharing="True"
 >
-  <messaging:htmlEmailBody >
+  <messaging:htmlEmailBody>
     <html>
       <head>
         <title></title>
@@ -188,13 +189,13 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {{ FirstName }} {{ LastName }},</h5>
+                      <h5>Hi {firstName} {lastName},</h5>
                       <br />
                       Please login to portal by clicking
-                      <a href="{{ url }}" target="_blank">Click Here</a> to
-                      complete your registration process. It takes hardly few
-                      seconds.<br /> You will reveive an email once your account
-                      is succesfully opened.
+                      <a href="{url}" target="_blank">Here</a> to complete your
+                      registration process. It takes hardly few seconds.<br />
+                      You will reveive an email once your account is succesfully
+                      opened.
                     </p>
                   </td>
                 </tr>
