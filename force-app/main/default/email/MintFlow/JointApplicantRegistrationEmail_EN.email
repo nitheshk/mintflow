@@ -1,7 +1,7 @@
 <messaging:emailTemplate
   subject="Subject"
   recipientType="User"
-  relatedToType="Network"
+  relatedToType="Applicant__c"
   renderUsingSystemContextWithoutSharing="True"
 >
   <messaging:htmlEmailBody>
