@@ -152,8 +152,8 @@ global with sharing class ApplicationPersistService extends AbstractService {
       }
     }
 
-    log.debug('recordTypeName : ' + recordTypeName);
-    log.debug('applicant.ApplicantType__c : ' + applicant.ApplicantType__c);
+    log?.debug('recordTypeName : ' + recordTypeName);
+    log?.debug('applicant.ApplicantType__c : ' + applicant.ApplicantType__c);
 
     applicant.recordTypeId = Sobjectutils.recordTypeIdByName(
       Applicant__c.SObjectType,

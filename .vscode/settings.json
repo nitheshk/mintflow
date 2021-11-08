@@ -51,6 +51,9 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[email]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "apexdox.engine.source": [
     {
       "path": "${workspaceFolder}/force-app/main/default/classes"

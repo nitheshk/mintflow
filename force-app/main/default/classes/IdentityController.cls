@@ -132,6 +132,9 @@ global with sharing class IdentityController extends AbstractController {
       return ApexResponse.ok(
         IdentityService.getInstance().validateOTP(ApexRequest.getParams())
       );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
       return ApexResponse.fail(ex);

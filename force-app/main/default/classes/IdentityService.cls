@@ -163,17 +163,17 @@ global with sharing class IdentityService extends AbstractService {
       ? otpMode.split(';')
       : new List<String>();
 
+    applicant.OTPExpireTime__c = Datetime.now()
+      .addMinutes(
+        (Integer) ApplicationConfiguration__c.getOrgDefaults()
+          .OTPExpirationTime__c
+      );
     //SMS
     if (otpModeList.contains('SMS')) {
       applicant.SmsOtp__c = String.valueOf(
         Math.round((Math.random() * (9000) + 1000))
       );
       applicant.SmsOtpAttempts__c = 0;
-      applicant.OTPExpireTime__c = Datetime.now()
-        .addMinutes(
-          (Integer) ApplicationConfiguration__c.getOrgDefaults()
-            .OTPExpirationTime__c
-        );
 
       Map<String, Object> params = new Map<String, Object>();
       params.put(
@@ -193,6 +193,7 @@ global with sharing class IdentityService extends AbstractService {
         Math.round((Math.random() * (9000) + 1000))
       );
       applicant.EmailOtpAttempts__c = 0;
+      CustomerEmailService.getInstance().sendEmailOTP(applicant);
     }
 
     IdentityRepository.updateRecord(applicant);

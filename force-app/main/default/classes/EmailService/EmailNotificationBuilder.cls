@@ -12,6 +12,7 @@ global virtual with sharing class EmailNotificationBuilder {
   private static Map<String, String> documentURL = new Map<String, String>();
   private static Map<String, Id> orgWideEmailAddress = new Map<String, Id>();
   private static List<EmailNotificationBuilder> notificationServices = new List<EmailNotificationBuilder>();
+  private static logger log = logger.getInstance(IdentityController.class);
 
   // scoped context
   private String notificationName;
@@ -84,7 +85,7 @@ global virtual with sharing class EmailNotificationBuilder {
   global static List<Messaging.SendEmailResult> sendEmail() {
     // build notification service
     List<Messaging.SingleEmailMessage> emailMessages = EmailNotificationBuilder.buildNotificationServices();
-    system.debug('emailMessages :' + emailMessages.size());
+    Log?.fine('EmailMessages Size :' + emailMessages.size());
     List<Messaging.SendEmailResult> emailResult;
     if (!emailMessages.isEmpty()) {
       emailResult = Messaging.sendEmail(emailMessages, false);
@@ -138,14 +139,12 @@ global virtual with sharing class EmailNotificationBuilder {
       emailMessage.setTemplateId(emailTemplate.Id);
       emailMessage.setUseSignature(false);
 
-      system.debug('before subsititue');
       //replace
       substituteEmailMessage(
         emailMessage,
         notificationService.substitute,
         notificationService.documentNames
       );
-      system.debug('after subsititue');
 
       if (orgWideEmailAddress.containsKey(setting.OrgWideName__c)) {
         emailMessage.setOrgWideEmailAddressId(
@@ -206,7 +205,7 @@ global virtual with sharing class EmailNotificationBuilder {
       //build attachements
       buildFileAttachments(emailMessage, notificationService.fileAttachments);
 
-      system.debug('emailMessage :' + JSON.serialize(emailMessage));
+      Log?.fine('emailMessage :' + JSON.serialize(emailMessage));
       emailMessages.add(emailMessage);
 
       // send email;

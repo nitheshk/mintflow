@@ -3,7 +3,7 @@
  * @group Service
  * @author Digital Align Team
  * @reference
- * @description
+ * @description Contains email notification related customer
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global virtual with sharing class CustomerEmailService extends AbstractService {
@@ -29,28 +29,28 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   }
 
   /**
-   * @description
+   * @description Dispatch email notification to OTP to Applicant
    * @author Digital Align | 11-05-2021
    * @param Applicant__c applicant
    * @return virtual
    **/
   global virtual void sendEmailOTP(Applicant__c applicant) {
-    string otp = string.valueOf(applicant.EmailOtp__c);
-    string expireTime = string.valueOf(
+    String expireTime = string.valueOf(
       ApplicationConfiguration__c.getOrgDefaults().OTPExpirationTime__c
     );
+    //applicant.OTPExpireTime__c.format('MM/dd/yyyy HH:mm:ss')
     EmailNotificationBuilder.newInstance('OTPVerificationEmail', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
-          '{{FirstName}}' => applicant.FirstName__c,
-          ' {{LastName}}' => applicant.LastName__c,
-          '{{otp}}' => otp,
-          '{{expireTime}}' => expireTime
+          '{FirstName}' => applicant.FirstName__c,
+          '{LastName}' => applicant.LastName__c,
+          '{OTP}' => applicant.EmailOtp__c,
+          '{ExpireTime}' => expireTime
         }
       );
     List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
-    if (result != null) {
+    if (!CollectionUtils.isListEmpty(result)) {
       if (result[0].success) {
         System.debug('Email sent Successfully');
       } else {

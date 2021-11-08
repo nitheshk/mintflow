@@ -189,11 +189,10 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {{ FirstName }} {{ LastName }},</h5>
+                      <h5>Hi {FirstName} {LastName},</h5>
                       <br />
                       Your Email One Time Password(OTP) to log in to your
-                      Mintflow account is {{ otp }} is valid for
-                      {{ expireTime }}
+                      Mintflow account is {OTP} is valid for {ExpireTime}
                       minutes.
                       <br /> This OTP will be used to verify the email you are
                       logging in from.
