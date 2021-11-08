@@ -8,7 +8,7 @@ system.debug(
 
 // #2 using email builder
 String inviteUrl =
-  ApplicationConfiguration__c.getOrgDefaults().SiteUrl__c +
+  SiteSetting__c.getOrgDefaults().OnlineSiteUrl__c +
   '/s/DealerRegistration?id=' +
   SecurityUtils.encryptUrl(leadRecord.id);
 EmailNotificationBuilder.newInstance('DealerInvitation', leadRecord.Id)

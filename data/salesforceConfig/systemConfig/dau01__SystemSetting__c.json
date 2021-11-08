@@ -1,0 +1,13 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "dau01__SystemSetting__c",
+        "referenceId": "SystemSettingRef_0"
+      },
+      "dau01__DebugLogs__c": true,
+      "dau01__Flow__c": true,
+      "dau01__LoggingLevel__c": "Fine"
+    }
+  ]
+}

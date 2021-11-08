@@ -126,6 +126,10 @@
     </customSettingAccesses>
     <customSettingAccesses>
         <enabled>true</enabled>
+        <name>SystemSetting__c</name>
+    </customSettingAccesses>
+    <customSettingAccesses>
+        <enabled>true</enabled>
         <name>FinServ__UsePersonAccount__c</name>
     </customSettingAccesses>
     <customSettingAccesses>

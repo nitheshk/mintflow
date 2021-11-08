@@ -5,11 +5,6 @@
         "type": "dau01__ApplicationConfiguration__c",
         "referenceId": "ApplicationConfigurationRef_0"
       },
-      "dau01__CustomerLogs__c": true,
-      "dau01__DebugLogs__c": true,
-      "dau01__IntegrationsLogs__c": true,
-      "dau01__SiteUrl__c": "https://sandbox-java-page-2382-dev-ed-17c2cdfdb74.cs114.force.com/",
-      "dau01__LoggingLevel__c": "Fine",
       "dau01__OTPMaxAllowedAttempts__c": 5.0,
       "dau01__OTPExpirationTime__c": 2.0,
       "dau01__AllowedOtpMode__c": "SMS;EMAIL"

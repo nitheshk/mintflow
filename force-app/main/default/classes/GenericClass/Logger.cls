@@ -25,7 +25,7 @@ global with sharing class Logger {
   static {
     try {
       level = LoggingLevel.valueOf(
-        ApplicationConfiguration__c.getInstance().LoggingLevel__c
+        SystemSetting__c.getInstance().LoggingLevel__c
       );
     } catch (Exception e) {
       System.debug(e.getMessage());
@@ -44,7 +44,7 @@ global with sharing class Logger {
    * @return Logger
    **/
   global static Logger getInstance(Type classType) {
-    if (ApplicationConfiguration__c.getInstance().DebugLogs__c) {
+    if (SystemSetting__c.getInstance().DebugLogs__c) {
       return new Logger(classType);
     } else {
       return null;
@@ -59,7 +59,7 @@ global with sharing class Logger {
    **/
   private Boolean skipLogging(System.LoggingLevel currentLoggerLevel) {
     if (
-      ApplicationConfiguration__c.getInstance().DebugLogs__c &&
+      SystemSetting__c.getInstance().DebugLogs__c &&
       currentLoggerLevel.ordinal() >= Logger.level.ordinal()
     ) {
       return false;
@@ -135,7 +135,7 @@ global with sharing class Logger {
     String msg
   ) {
     if (
-      !(ApplicationConfiguration__c.getInstance().DebugLogs__c &&
+      !(SystemSetting__c.getInstance().DebugLogs__c &&
       logLevel.ordinal() >= Logger.level.ordinal())
     ) {
       return;
