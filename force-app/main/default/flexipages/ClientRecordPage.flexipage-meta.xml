@@ -263,7 +263,7 @@
         <name>feedTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <masterLabel>DoTract Client Record Page</masterLabel>
+    <masterLabel>MintFlow Client Record Page</masterLabel>
     <parentFlexiPage>sfa__Account_rec_L</parentFlexiPage>
     <sobjectType>Account</sobjectType>
     <template>

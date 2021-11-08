@@ -500,7 +500,7 @@
         <name>facet-14fd4adf-67a4-4b06-b20e-b8e3d3766349</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <masterLabel>DoTract Banking Individual Page - Two Column</masterLabel>
+    <masterLabel>MintFlow Banking Individual Page - Two Column</masterLabel>
     <parentFlexiPage>sfa__Account_rec_L</parentFlexiPage>
     <sobjectType>Account</sobjectType>
     <template>

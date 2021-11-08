@@ -6,17 +6,15 @@ public static void updateGuestPermissionSet() {
   List<PermissionSet> permissionSetList = [
     SELECT Id
     FROM PermissionSet
-    WHERE Name = 'DoTractGuest'
+    WHERE Name = 'MintFlowGuest'
   ];
 
   List<User> siteUser = [
     SELECT id, Name
     FROM User
     WHERE
-      Profile.Name = 'Dealer Profile'
-      OR Profile.Name = 'Online Profile'
+      Profile.Name = 'Online Profile'
       OR Profile.Name = 'FinancialInstitute Profile'
-      OR Profile.Name = 'DoTract Profile'
   ];
 
   delete [
@@ -42,7 +40,7 @@ public static void updateAdminPermissionSet() {
     SELECT Id
     FROM PermissionSet
     WHERE
-      Name = 'DoTractSystemAdmin'
+      Name = 'MintFlowSystemAdmin'
       OR Name = 'FinancialServicesCloudExtension'
       OR Name = 'FinancialServicesCloudBasic'
       OR Name = 'FinancialServicesCloudStandard'

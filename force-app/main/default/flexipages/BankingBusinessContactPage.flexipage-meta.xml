@@ -226,7 +226,7 @@
         <name>facet-2a8f6c2e-1b43-4c14-a601-d92a81ac6870</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <masterLabel>DoTract Banking Business Contact Page</masterLabel>
+    <masterLabel>MintFlow Banking Business Contact Page</masterLabel>
     <sobjectType>Contact</sobjectType>
     <template>
         <name>flexipage:recordHomeThreeColTemplateDesktop</name>

@@ -17,8 +17,8 @@ global with sharing class FinancialInstituteConstants {
   public static final String FIN_INST_EMPLOYEE_CONTACT_TYPE = 'FinancialInstituteEmployee';
   //default FinancialInstitueCommunity Profile
   public static final String FIN_INST_EMPLOYEE_USER_PROFILE = 'FinancialInstitueCommunity Profile';
-  //deafult DoTractCustomerCommunity
-  public static final String FIN_INST_COMMUNITY_PEMRISSION_SET = 'DoTractCustomerCommunity';
+  //deafult MintFlowCustomerCommunity
+  public static final String FIN_INST_COMMUNITY_PEMRISSION_SET = 'MintFlowCustomerCommunity';
 
   //default Rejected
   public static final String LEAD_REJECTED_STATUS = 'Rejected';

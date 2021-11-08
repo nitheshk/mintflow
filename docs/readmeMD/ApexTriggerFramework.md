@@ -72,7 +72,7 @@ public override void beforeInsert() {
 
 > Simply navigate to the sObject Trigger Setting in Custome Metadata Types record and create new record similar to below items.
 
-[Configuration Image](https://github.com/DigitalAlignInc/DoTract/blob/features/utilities/docs/docImages/SobjectTriggerConfig.JPG)
+[Configuration Image](https://github.com/DigitalAlignInc/MintFlow/blob/features/utilities/docs/docImages/SobjectTriggerConfig.JPG)
 
 > In order to use this trigger framework, we need need to pass the Sobject Type to the TriggerDispatcher to Run. Here is an example of the Account trigger.
 

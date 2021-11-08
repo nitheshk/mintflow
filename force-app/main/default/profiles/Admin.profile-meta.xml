@@ -98,7 +98,7 @@
 
     <!--applicationVisibilities-->
     <applicationVisibilities>
-        <application>doTract</application>
+        <application>MintFlow</application>
         <visible>true</visible>
         <default>true</default>
     </applicationVisibilities>

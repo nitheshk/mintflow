@@ -42,7 +42,7 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>DoTract</label>
+    <label>MintFlow</label>
     <navType>Console</navType>     
     <profileActionOverrides>
         <actionName>View</actionName>

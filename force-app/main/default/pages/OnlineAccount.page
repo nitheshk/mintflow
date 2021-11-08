@@ -11,7 +11,7 @@
 >
   <html lang="">
     <head>
-      <base href="{!URLFOR($Resource.DoTract)}" />
+      <base href="{!URLFOR($Resource.MintFlow)}" />
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -27,11 +27,11 @@
       />
 
       <link
-        href="{!URLFOR($Resource.DoTract, 'css/chunk-vendors.css')}"
+        href="{!URLFOR($Resource.MintFlow, 'css/chunk-vendors.css')}"
         rel="stylesheet"
       />
       <link
-        href="{!URLFOR($Resource.DoTract, 'css/app.css')}"
+        href="{!URLFOR($Resource.MintFlow, 'css/app.css')}"
         rel="stylesheet"
       />
     </head>
@@ -52,11 +52,11 @@
         };
       </script>
       <script
-        src="{!URLFOR($Resource.DoTract, 'js/chunk-vendors.js')}"
+        src="{!URLFOR($Resource.MintFlow, 'js/chunk-vendors.js')}"
       ></script>
-      <script src="{!URLFOR($Resource.DoTract, 'js/app.js')}"></script>
+      <script src="{!URLFOR($Resource.MintFlow, 'js/app.js')}"></script>
       <script type="text/javascript">
-        var Resourceurl = "{!URLFOR($Resource.DoTract)}";
+        var Resourceurl = "{!URLFOR($Resource.MintFlow)}";
       </script>
     </body>
   </html>

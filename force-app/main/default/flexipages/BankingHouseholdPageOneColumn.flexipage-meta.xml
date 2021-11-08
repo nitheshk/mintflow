@@ -470,7 +470,7 @@
         <name>facet-8bbc6033-0ce7-48e8-8e3a-28adb1122bde</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <masterLabel>DoTract Banking Household Page - One Column</masterLabel>
+    <masterLabel>MintFlow Banking Household Page - One Column</masterLabel>
     <sobjectType>Account</sobjectType>
     <template>
         <name>flexipage:recordHomeSingleColTemplateDesktop</name>

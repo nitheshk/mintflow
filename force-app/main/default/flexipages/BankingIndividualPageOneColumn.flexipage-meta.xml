@@ -497,7 +497,7 @@
         <name>facet-22fc752e-1532-4acf-96ae-202df76d83b6</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <masterLabel>DoTract Banking Individual Page - One Column</masterLabel>
+    <masterLabel>MintFlow Banking Individual Page - One Column</masterLabel>
     <sobjectType>Account</sobjectType>
     <template>
         <name>flexipage:recordHomeSingleColTemplateDesktop</name>

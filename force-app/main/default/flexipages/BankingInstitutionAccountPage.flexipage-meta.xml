@@ -442,7 +442,7 @@
         <name>facet-309c4a65-fdf0-440d-a1c6-9e1284ab8c86</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <masterLabel>DoTract Banking Institution Account Page</masterLabel>
+    <masterLabel>MintFlow Banking Institution Account Page</masterLabel>
     <sobjectType>Account</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>

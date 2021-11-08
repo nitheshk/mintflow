@@ -10,4 +10,4 @@ Copy apexdoc.jar file to your local machine, somewhere on your path. Each releas
 
 Include global method and link git hub
 
-> `java -jar './docs/apexdoc.jar' -s './da-src/classes' -t './docs' -p 'global' -g 'https://github.com/DigitalAlignInc/DoTract/tree/features/utility/utilities/main/default/classes/query-generator/'`
+> `java -jar './docs/apexdoc.jar' -s './da-src/classes' -t './docs' -p 'global' -g 'https://github.com/DigitalAlignInc/MintFlow/tree/features/utility/utilities/main/default/classes/query-generator/'`

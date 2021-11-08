@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
-        <apexClass>FinancialAccountController</apexClass>
+        <apexClass>AbstractChartData</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -13,7 +13,27 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ApplicantController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ApexRequest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FinancialAccountController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ChartBuilderController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>DisplayImageController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>DynamicLWCDataTableController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -25,7 +45,19 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FileController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GenericUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>IdentityController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LWCFinancialInstituteSiteController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -41,17 +73,25 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>OnlineAccountLoginController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SOQLDataService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>UserAccountManagementController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>ApplicantController</apexClass>
+    <customMetadataTypeAccesses>
         <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ApexRequest</apexClass>
+        <name>DynamicDataTableItem__mdt</name>
+    </customMetadataTypeAccesses>
+    <customMetadataTypeAccesses>
         <enabled>true</enabled>
-    </classAccesses>
+        <name>DynamicDataTable__mdt</name>
+    </customMetadataTypeAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>EmailNotificationSetting__mdt</name>
@@ -136,7 +176,7 @@
         <enabled>true</enabled>
         <name>SiteSetting__c</name>
     </customSettingAccesses>
-    <description>DoTract Site Guest profile</description>     
+    <description>MintFlow Customer Community profile</description>    
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.Order__c</field>
@@ -974,6 +1014,81 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.IncomeVerificationStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.IsExistingCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.LastName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.Phone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>     
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.SSN__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.ApplicantType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.MiddleName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.SmsOtp__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OTPExpireTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.SmsOtpAttempts__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.SentiLinkStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.SentiLinkRemarks__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.IsEmailVerified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>         
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.IsPhoneNumberVerified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.DeleteRecord__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Applicant__c.EmailOtpAttempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1012,81 +1127,6 @@
         <field>Applicant__c.SentiLinkFraudScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.IncomeVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.IsExistingCustomer__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.LastName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.Phone__c</field>
-        <readable>true</readable>
-    </fieldPermissions>    
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.MiddleName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.SmsOtp__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.OTPExpireTime__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.SmsOtpAttempts__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.SentiLinkStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.SentiLinkRemarks__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.SSN__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.ApplicantType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-      <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.IsEmailVerified__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.IsPhoneNumberVerified__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.DeleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>     
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.AccountId</field>
@@ -1489,11 +1529,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ContactPointAddress.Applicant__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>ContactPointAddress.ActiveFromDate</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1790,12 +1825,12 @@
         <editable>true</editable>
         <field>FinServ__AssetsAndLiabilities__c.Applicant__c</field>
         <readable>true</readable>
-	</fieldPermissions>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__AssetsAndLiabilities__c.DeleteRecord__c</field>
         <readable>true</readable>
-	</fieldPermissions>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__AssetsAndLiabilities__c.FinServ__Amount__c</field>
@@ -1922,12 +1957,12 @@
         <editable>true</editable>
         <field>FinServ__Employment__c.Applicant__c</field>
         <readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Employment__c.DeleteRecord__c</field>
         <readable>true</readable>
-	</fieldPermissions>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Employment__c.FinServ__AnnualIncome__c</field>
@@ -2864,12 +2899,12 @@
         <editable>true</editable>
         <field>FinServ__Revenue__c.Applicant__c</field>
         <readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Revenue__c.DeleteRecord__c</field>
         <readable>true</readable>
-	</fieldPermissions>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Revenue__c.FinServ__Account__c</field>
@@ -2953,7 +2988,7 @@
         <editable>true</editable>
         <field>Flow__c.ServiceName__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>    
     <fieldPermissions>
         <editable>true</editable>
         <field>Flow__c.Note__c</field>
@@ -3530,7 +3565,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>DoTractGuest</label>     
+    <label>MintFlow Customer Community</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -3574,10 +3609,10 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Diagnostic__c</object>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
+        <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
@@ -3731,12 +3766,12 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Flow__c</object>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -3774,6 +3809,10 @@
         <object>Survey__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>OnlineAutoLogin</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Applicant__c.Beneficiary</recordType>
         <visible>true</visible>

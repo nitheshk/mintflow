@@ -133,7 +133,7 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>DoTract Banking Home Page</masterLabel>
+    <masterLabel>MintFlow Banking Home Page</masterLabel>
     <template>
         <name>home:desktopTemplate</name>
     </template>

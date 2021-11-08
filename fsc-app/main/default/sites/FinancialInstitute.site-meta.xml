@@ -27,7 +27,7 @@
     <siteGuestRecordDefaultOwner
   >test-eyvnkrulex8n@example.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
-    <subdomain>dotract-developer-edition</subdomain>
+    <subdomain>mintflow-developer-edition</subdomain>
     <urlPathPrefix>HomePageFI</urlPathPrefix>
     <guestProfile>FinancialInstitute Profile</guestProfile>
 </CustomSite>

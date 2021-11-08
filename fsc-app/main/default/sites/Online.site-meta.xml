@@ -28,6 +28,6 @@
     <siteGuestRecordDefaultOwner
   >test-7z6kt5vhvwij@example.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
-    <subdomain>dotract-developer-edition</subdomain>
+    <subdomain>mintflow-developer-edition</subdomain>
     <urlPathPrefix>Online</urlPathPrefix>
 </CustomSite>

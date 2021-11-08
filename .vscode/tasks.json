@@ -124,7 +124,7 @@
       "label": "UI 3: Build Static Resource for DoTrct",
       "type": "shell",
       "command": "gulp",
-      "args": ["buildUI_DoTract"],
+      "args": ["buildUI_MintFlow"],
       "group": "build",
       "presentation": {
         "reveal": "always",
@@ -174,7 +174,7 @@
       "id": "scratchAliasName",
       "description": "Enter The Alias Name",
       "type": "promptString",
-      "default": "doTract"
+      "default": "MintFlow"
     },
     {
       "id": "numberDays",

@@ -480,7 +480,7 @@
         <name>facet-3596fd1f-508e-4424-b26f-1be4a7cf91f6</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <masterLabel>DoTract Banking Business Account Page</masterLabel>
+    <masterLabel>MintFlow Banking Business Account Page</masterLabel>
     <sobjectType>Account</sobjectType>
     <template>
         <name>flexipage:recordHomeThreeColTemplateDesktop</name>

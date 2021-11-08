@@ -3,7 +3,7 @@
     <allowInternalUserLogin>true</allowInternalUserLogin>
     <allowMembersToFlag>false</allowMembersToFlag>
     <changePasswordTemplate
-  >dau01__DoTract/dau01__CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+  >dau01__MintFlow/dau01__CommunityChangePasswordEmailTemplate</changePasswordTemplate>
     <communityRoles />
     <disableReputationRecordConversations
   >true</disableReputationRecordConversations>
@@ -27,11 +27,11 @@
     <enableTopicSuggestions>false</enableTopicSuggestions>
     <enableUpDownVote>false</enableUpDownVote>
     <forgotPasswordTemplate
-  >dau01__DoTract/dau01__CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+  >dau01__MintFlow/dau01__CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
     <networkMemberGroups>
-        <permissionSet>dau01__DoTractGuest</permissionSet>
-        <permissionSet>dau01__DoTractCustomerCommunity</permissionSet>
+        <permissionSet>dau01__MintFlowGuest</permissionSet>
+        <permissionSet>dau01__MintFlowCustomerCommunity</permissionSet>
         <profile>admin</profile>
         <profile>FinancialInstitueCommunity Profile</profile>
     </networkMemberGroups>
@@ -56,5 +56,5 @@
     </tabs>
     <urlPathPrefix>HomePageFI</urlPathPrefix>
     <welcomeTemplate
-  >dau01__DoTract/dau01__FinancialInstituteWelcomeEmail_EN</welcomeTemplate>
+  >dau01__MintFlow/dau01__FinancialInstituteWelcomeEmail_EN</welcomeTemplate>
 </Network>

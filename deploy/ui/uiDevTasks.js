@@ -5,8 +5,8 @@ var zipFolder = require("zip-folder");
 let config = require("../root.json");
 const { debug } = require("console");
 
-//readUiConfig_DoTract
-gulp.task("readUiConfig_DoTract", function (finish) {
+//readUiConfig_MintFlow
+gulp.task("readUiConfig_MintFlow", function (finish) {
   console.log("Reading Configuration : " + JSON.stringify(config));
   finish();
 });
@@ -29,9 +29,9 @@ gulp.task("gitSetupSubmodule", function (finish) {
   });
 });
 
-//npmRunBuild_DoTract
-gulp.task("npmRunBuild_DoTract", function (finish) {
-  let scriptToRun = `npm run  --prefix ${config.ui.doTract.UIFolder} build`;
+//npmRunBuild_MintFlow
+gulp.task("npmRunBuild_MintFlow", function (finish) {
+  let scriptToRun = `npm run  --prefix ${config.ui.MintFlow.UIFolder} build`;
   console.log("Script To Run - " + scriptToRun);
   utils.runCommand(scriptToRun).then((result) => {
     console.log(result);
@@ -39,13 +39,13 @@ gulp.task("npmRunBuild_DoTract", function (finish) {
   });
 });
 
-//buildStaticResource_DoTract
-gulp.task("buildStaticResource_DoTract", (finish) => {
-  if (fs.existsSync(config.ui.doTract.uiDistFolder)) {
-    let dist = config.ui.doTract.uiDistFolder;
+//buildStaticResource_MintFlow
+gulp.task("buildStaticResource_MintFlow", (finish) => {
+  if (fs.existsSync(config.ui.MintFlow.uiDistFolder)) {
+    let dist = config.ui.MintFlow.uiDistFolder;
     let staticResourcePath =
-      config.ui.doTract.staticResourceFolder +
-      config.ui.doTract.staticResourceName;
+      config.ui.MintFlow.staticResourceFolder +
+      config.ui.MintFlow.staticResourceName;
 
     zipFolder(dist, staticResourcePath, function (err) {
       if (err) {
@@ -61,10 +61,10 @@ gulp.task("buildStaticResource_DoTract", (finish) => {
 });
 
 gulp.task(
-  "buildUI_DoTract",
+  "buildUI_MintFlow",
   gulp.series(
-    "readUiConfig_DoTract",
-    "npmRunBuild_DoTract",
-    "buildStaticResource_DoTract"
+    "readUiConfig_MintFlow",
+    "npmRunBuild_MintFlow",
+    "buildStaticResource_MintFlow"
   )
 );
