@@ -8,10 +8,7 @@
       <layoutAssignments>
         <layout>Contact-dau01__Financial Institute Site Layout</layout>
         <recordType>Contact.FinServ__IndustriesBusiness</recordType> 
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Lead-FinServ__Lead %28Referral%29 Layout</layout>
-    </layoutAssignments>
+    </layoutAssignments>     
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
     </layoutAssignments>

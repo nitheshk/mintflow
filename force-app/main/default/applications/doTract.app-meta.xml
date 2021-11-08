@@ -17,16 +17,7 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
         <pageOrSobjectType>FinServ__FinancialAccount__c</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Lead Referral Page</comment>
-        <content>LeadReferralPage</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-    </actionOverrides>
+    </actionOverrides>     
     <actionOverrides>
         <actionName>Tab</actionName>
         <content>WealthHome</content>
@@ -52,16 +43,7 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>DoTract</label>
-    <navType>Console</navType>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>LeadReferralPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Lead</pageOrSobjectType>
-        <recordType>Lead.FinServ__Referral</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
+    <navType>Console</navType>     
     <profileActionOverrides>
         <actionName>View</actionName>
         <content>ClientRecordPage</content>
