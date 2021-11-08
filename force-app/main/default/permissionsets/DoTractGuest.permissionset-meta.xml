@@ -1591,12 +1591,7 @@
         <editable>true</editable>
         <field>DocumentRequest__c.ContentDocumentId__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>DocumentRequest__c.Lead__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>     
     <fieldPermissions>
         <editable>true</editable>
         <field>DocumentRequest__c.Status__c</field>
@@ -3423,12 +3418,7 @@
         <editable>true</editable>
         <field>Survey__c.Answer__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Survey__c.Lead__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>     
     <fieldPermissions>
         <editable>true</editable>
         <field>Survey__c.LongDescription__c</field>
