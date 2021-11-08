@@ -32,6 +32,10 @@
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
+        <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ApplicantNumber__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
@@ -87,7 +91,7 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Verification Information</label>
-        <layoutColumns>             
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsExistingCustomer__c</field>
