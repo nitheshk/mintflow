@@ -37,9 +37,6 @@
     </head>
 
     <body>
-      Click here
-      <button onclick="testApplication()">Click Here read Application</button>
-
       <noscript>
         <strong
           >We're sorry but ui doesn't work properly without JavaScript enabled.
@@ -60,70 +57,6 @@
       <script src="{!URLFOR($Resource.DoTract, 'js/app.js')}"></script>
       <script type="text/javascript">
         var Resourceurl = "{!URLFOR($Resource.DoTract)}";
-      </script>
-
-      <script type="text/javascript">
-        function testApplication() {
-          let store = {
-            applicationId: pageContext.id,
-            applicationName: "App-232",
-            token: "token1",
-            event: "event",
-            flowType: "flowType",
-            currentPage: "currentPage1",
-            nextPage: "nextPage2"
-          };
-
-          class Request {
-            static init() {
-              let req = new Request();
-              req.applicationId = store.applicationId;
-              req.applicationName = store.applicationName;
-              req.token = store.token;
-              req.event = store.event;
-              req.flowType = store.flowType;
-              req.currentPage = store.currentPage;
-              req.nextPage = store.nextPage;
-              return req;
-            }
-            setHeader(value) {
-              this.header = JSON.stringify(value);
-              return this;
-            }
-            setData(value) {
-              this.data = JSON.stringify(value);
-              return this;
-            }
-          }
-
-          var methodName = "readApplicationWithChild";
-          var actionMethod = "dau01.ApplicationController." + methodName;
-
-          console.log(JSON.stringify(actionMethod));
-          const req = Request.init()
-            .setHeader({ applicationId: store.applicationId })
-            .setData({ data: "data2" });
-          Visualforce.remoting.Manager.invokeAction(
-            actionMethod,
-            req,
-            function (result, event) {
-              if (event.status) {
-                console.log("result :" + JSON.stringify(result));
-                console.log("event :" + JSON.stringify(event));
-
-                var data = JSON.parse(result.data);
-                console.log("data: Name " + data.Name);
-              } else if (event.type === "exception") {
-                console.log(JSON.stringify(result));
-                console.log(JSON.stringify(event));
-              } else {
-                console.log(JSON.stringify(result));
-                console.log(JSON.stringify(event));
-              }
-            },
-            { escape: false }
-          );
-        }
       </script>
     </body>
   </html>
