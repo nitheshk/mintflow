@@ -196,8 +196,9 @@
                       We are happy to inform you that you have been added as a
                       family member by {{ ApplicantFirstName }}
                       {{ ApplicantLastName }} in our {{ productName }}}
-                      application with application ID {{ ApplicationId }}. If
-                      you are not a family member please email us at
+                      application with application ID {{ ApplicationId }}.
+                      <br /><br />If you are not a family member please email us
+                      at
                       <a
                         href="mailto:support@digitalalign.com"
                         style="color: #ffa73b"
