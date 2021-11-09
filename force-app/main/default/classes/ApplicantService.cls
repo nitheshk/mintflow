@@ -79,6 +79,21 @@ global with sharing class ApplicantService extends AbstractService {
   }
 
   /**
+   * @description Save applicants with child record
+   * @author Digital Align Team | 10-25-2021
+   * @param String applicationId
+   * @param List<Applicant__c> applicants
+   * @return virtual
+   **/
+  global virtual List<Applicant__c> saveApplicants(
+    List<Applicant__c> applicants,
+    String applicationId
+  ) {
+    return ApplicationPersistService.getInstance()
+      .saveApplicants(applicants, ApexRequest.getApplicationId());
+  }
+
+  /**
    * @description after saving applicants
    * @author Digital Align Team | 11-09-2021
    * @param List<Applicant__c> applicants
@@ -87,6 +102,13 @@ global with sharing class ApplicantService extends AbstractService {
   global virtual List<Applicant__c> afterSaveApplicants(
     List<Applicant__c> applicants
   ) {
+    String currentPage = ApexRequest.getRequest().currentPage;
+    switch on currentPage {
+      when 'personal-information' {
+        ApplicantServiceHelper.getInstance()
+          .notifyFamilyConnectReference(applicants);
+      }
+    }
     return applicants;
   }
 
@@ -100,6 +122,26 @@ global with sharing class ApplicantService extends AbstractService {
     return applicant;
   }
 
+  /**
+   * @description save applicant with child record
+   * @author Digital Align Team | 10-27-2021
+   * @param Applicant__c applicant
+   * @param String applicationId
+   * @return Applicant__c
+   **/
+  global virtual Applicant__c saveApplicant(
+    Applicant__c applicant,
+    String applicationId
+  ) {
+    applicant = beforeSaveApplicant(applicant);
+    applicant = ApplicationPersistService.getInstance()
+      .saveApplicant(applicant, applicationId);
+    ApplicantRepository.upsertRecord(applicant);
+    applicant = ApplicationPersistService.getInstance()
+      .saveApplicantChild(applicant);
+    applicant = afterSaveApplicant(applicant);
+    return applicant;
+  }
   /**
    * @description  after saving applicant
    * @author Digital Align Team | 11-09-2021

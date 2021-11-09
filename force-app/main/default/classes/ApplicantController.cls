@@ -13,6 +13,38 @@ global with sharing class ApplicantController extends AbstractController {
   }
 
   /**
+   * @description calling read method for applicants by passging list of ids in header
+   * params: applicantIds -> ['id1','id2']
+   * @author Digital Align Team | 09-29-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse readApplicantsWithChild(ApexRequest request) {
+    try {
+      validateRequest(request);
+      Set<Id> applicantIds = new Set<Id>();
+      for (
+        Object obj : (List<Object>) ApexRequest.getParams().get('applicantIds')
+      ) {
+        applicantIds.add(String.valueOf(Obj));
+      }
+      return ApexResponse.success(
+        ApplicantService.getInstance().readApplicantsWithChild(applicantIds)
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
    * @description Save Application record
    * @author Digital Align Team | 10-05-2021
    * @param Map<String String> params
@@ -29,13 +61,10 @@ global with sharing class ApplicantController extends AbstractController {
         request.data,
         List<Applicant__c>.class
       );
-      applicants = ApplicantService.getInstance()
-        .beforeSaveApplicants(applicants);
-      applicants = ApplicationPersistService.getInstance()
-        .saveApplicants(ApexRequest.getApplicationId(), applicants);
-      applicants = ApplicantService.getInstance()
-        .afterSaveApplicants(applicants);
-      return ApexResponse.success(applicants);
+      return ApexResponse.success(
+        ApplicantService.getInstance()
+          .saveApplicants(applicants, ApexRequest.getApplicationId())
+      );
     } catch (CustomException ex) {
       log?.error(ex);
       Database.rollback(sp);
@@ -61,18 +90,14 @@ global with sharing class ApplicantController extends AbstractController {
     Savepoint sp = Database.setSavepoint();
     try {
       validateRequest(request);
-      log?.debug('params : ' + ApexRequest.request.params);
       Applicant__c applicant = (Applicant__c) Json.deserialize(
         request.data,
         Applicant__c.class
       );
-      applicant = ApplicantService.getInstance().beforeSaveApplicant(applicant);
-      applicant = ApplicationPersistService.getInstance()
-        .saveApplicant(ApexRequest.getApplicationId(), applicant);
-      applicant = ApplicationPersistService.getInstance()
-        .saveApplicantChild(applicant);
-      applicant = ApplicantService.getInstance().afterSaveApplicant(applicant);
-      return ApexResponse.success(applicant);
+      return ApexResponse.success(
+        ApplicantService.getInstance()
+          .saveApplicant(applicant, ApexRequest.getApplicationId())
+      );
     } catch (CustomException ex) {
       log?.error(ex);
       Database.rollback(sp);

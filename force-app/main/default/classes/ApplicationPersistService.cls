@@ -55,8 +55,8 @@ global with sharing class ApplicationPersistService extends AbstractService {
     //save applicants
     if (application.Applicants__r?.size() > 0) {
       List<Applicant__c> applicants = saveApplicants(
-        application.Id,
-        application.Applicants__r
+        application.Applicants__r,
+        application.Id
       );
       constructor.setChildObjects('dau01__Applicants__r', applicants);
     }
@@ -84,8 +84,8 @@ global with sharing class ApplicationPersistService extends AbstractService {
    * @return virtual
    **/
   global virtual List<Applicant__c> saveApplicants(
-    String applicationId,
-    List<Applicant__c> applicants
+    List<Applicant__c> applicants,
+    String applicationId
   ) {
     log?.fine('Inside save applicants');
 
@@ -99,7 +99,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
 
     //update value for applicant here
     for (Applicant__c applicant : applicants) {
-      applicant = saveApplicant(applicationId, applicant);
+      applicant = saveApplicant(applicant, applicationId);
     }
     ApplicantRepository.upsertRecords(applicants);
 
@@ -117,13 +117,13 @@ global with sharing class ApplicationPersistService extends AbstractService {
   /**
    * @description
    * @author Digital Align Team | 10-27-2021
-   * @param String applicationId
    * @param Applicant__c applicant
+   * @param String applicationId
    * @return Applicant__c
    **/
   global virtual Applicant__c saveApplicant(
-    String applicationId,
-    Applicant__c applicant
+    Applicant__c applicant,
+    String applicationId
   ) {
     if (String.isNotBlank(applicationId)) {
       /*  new applicant */
@@ -185,48 +185,54 @@ global with sharing class ApplicationPersistService extends AbstractService {
     // upsert Identitifcation document
     if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
       saveIdentificationDocuments(
-        applicant,
-        applicant?.IdentificationDocuments__r
+        applicant?.IdentificationDocuments__r,
+        applicant.Id
       );
     }
 
     // upsert contact point address
     if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
-      saveContactPointAddresses(applicant, applicant?.ContactPointAddresses__r);
+      saveContactPointAddresses(
+        applicant?.ContactPointAddresses__r,
+        applicant.Id
+      );
     }
 
     // upsert employement
     if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
-      saveEmployments(applicant, applicant?.Employments__r);
+      saveEmployments(applicant?.Employments__r, applicant.Id);
     }
 
     // upsert Asset And Liabilities
     if (!CollectionUtils.isListEmpty(applicant?.AssetsAndLiabilities__r)) {
-      saveAssetsAndLiabilities(applicant, applicant?.AssetsAndLiabilities__r);
+      saveAssetsAndLiabilities(
+        applicant?.AssetsAndLiabilities__r,
+        applicant.Id
+      );
     }
 
     // upsert revenues
     if (!CollectionUtils.isListEmpty(applicant?.Revenues__r)) {
-      saveRevenues(applicant, applicant?.Revenues__r);
+      saveRevenues(applicant?.Revenues__r, applicant.Id);
     }
 
     return applicant;
   }
 
   /**
-   * @description
-   * @author Digital Align Team | 10-27-2021
-   * @param Applicant__c applicant
+   * @description Save Identification Documents
+   * @author Digital Align Team | 11-09-2021
    * @param List<FinServ__IdentificationDocument__c> identityDocuments
-   * @return  List<FinServ__IdentificationDocument__c>
+   * @param Id applicantId
+   * @return List<FinServ__IdentificationDocument__c>
    **/
   global virtual List<FinServ__IdentificationDocument__c> saveIdentificationDocuments(
-    Applicant__c applicant,
-    List<FinServ__IdentificationDocument__c> identityDocuments
+    List<FinServ__IdentificationDocument__c> identityDocuments,
+    Id applicantId
   ) {
     for (FinServ__IdentificationDocument__c identityDoc : identityDocuments) {
       if (String.isBlank(identityDoc.id)) {
-        identityDoc.Applicant__c = applicant.Id;
+        identityDoc.Applicant__c = applicantId;
       }
     }
     ApplicantRepository.upsertRecords(identityDocuments);
@@ -234,19 +240,19 @@ global with sharing class ApplicationPersistService extends AbstractService {
   }
 
   /**
-   * @description
-   * @author Digital Align Team | 10-27-2021
-   * @param Applicant__c applicant
+   * @description save Contact Point Addresses
+   * @author Digital Align Team | 11-09-2021
    * @param List<ContactPointAddress> addresses
+   * @param Id applicantId
    * @return List<ContactPointAddress>
    **/
   global virtual List<ContactPointAddress> saveContactPointAddresses(
-    Applicant__c applicant,
-    List<ContactPointAddress> addresses
+    List<ContactPointAddress> addresses,
+    Id applicantId
   ) {
     for (ContactPointAddress cpa : addresses) {
       if (String.isBlank(cpa.id)) {
-        cpa.Applicant__c = applicant.Id;
+        cpa.Applicant__c = applicantId;
       }
     }
     ApplicantRepository.upsertRecords(addresses);
@@ -255,18 +261,18 @@ global with sharing class ApplicationPersistService extends AbstractService {
 
   /**
    * @description
-   * @author Digital Align Team | 10-27-2021
-   * @param Applicant__c applicant
+   * @author Digital Align Team | 11-09-2021
    * @param List<FinServ__Employment__c> employments
+   * @param Id applicantId
    * @return List<FinServ__Employment__c>
    **/
   global virtual List<FinServ__Employment__c> saveEmployments(
-    Applicant__c applicant,
-    List<FinServ__Employment__c> employments
+    List<FinServ__Employment__c> employments,
+    Id applicantId
   ) {
     for (FinServ__Employment__c employment : employments) {
       if (String.isBlank(employment.id)) {
-        employment.Applicant__c = applicant.Id;
+        employment.Applicant__c = applicantId;
       }
     }
     ApplicantRepository.upsertRecords(employments);
@@ -274,21 +280,21 @@ global with sharing class ApplicationPersistService extends AbstractService {
   }
 
   /**
-   * @description
-   * @author Digital Align Team | 10-27-2021
-   * @param Applicant__c applicant
+   * @description  Save Assets And Liabilities
+   * @author Digital Align Team | 11-09-2021
    * @param List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities
+   * @param Id applicantId
    * @return List<FinServ__AssetsAndLiabilities__c>
    **/
   global virtual List<FinServ__AssetsAndLiabilities__c> saveAssetsAndLiabilities(
-    Applicant__c applicant,
-    List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities
+    List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities,
+    Id applicantId
   ) {
     for (
       FinServ__AssetsAndLiabilities__c assetAndLiability : assetsAndLiabilities
     ) {
       if (String.isBlank(assetAndLiability.id)) {
-        assetAndLiability.Applicant__c = applicant.Id;
+        assetAndLiability.Applicant__c = applicantId;
       }
     }
     ApplicantRepository.upsertRecords(assetsAndLiabilities);
@@ -296,19 +302,19 @@ global with sharing class ApplicationPersistService extends AbstractService {
   }
 
   /**
-   * @description
-   * @author Digital Align Team | 10-27-2021
-   * @param Applicant__c applicant
+   * @description Save Revenues
+   * @author Digital Align Team | 11-09-2021
    * @param List<FinServ__Revenue__c> revenues
+   * @param Id applicantId
    * @return List<FinServ__Revenue__c>
    **/
   global virtual List<FinServ__Revenue__c> saveRevenues(
-    Applicant__c applicant,
-    List<FinServ__Revenue__c> revenues
+    List<FinServ__Revenue__c> revenues,
+    Id applicantId
   ) {
     for (FinServ__Revenue__c revenue : revenues) {
       if (String.isBlank(revenue.id)) {
-        revenue.Applicant__c = applicant.Id;
+        revenue.Applicant__c = applicantId;
       }
       if (String.isBlank(revenue.FinServ__Account__c)) {
         revenue.FinServ__Account__c = ApexRequest.getApplicationId();
