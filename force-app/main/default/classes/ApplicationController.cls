@@ -49,7 +49,14 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse readApplicationWithChild(ApexRequest request) {
     try {
       validateRequest(request);
-      Id applicationId = (Id) ApexRequest.getParams().get('applicationId');
+      Id applicationId;
+      if (String.isNotBlank(ApexRequest.getApplicationId())) {
+        applicationId = (Id) ApexRequest.getApplicationId();
+      } else {
+        applicationId = (Id) ApexRequest.getParams().get('applicationId');
+      }
+
+      system.debug('applicationId : ' + applicationId);
       return ApexResponse.success(
         ApplicationService.getInstance().readApplicationWithChild(applicationId)
       );
@@ -65,7 +72,7 @@ global with sharing class ApplicationController extends AbstractController {
   }
 
   /**
-   * @description
+   * @description Save Application record
    * @author Digital Align Team | 10-05-2021
    * @param Map<String String> params
    * @return ApexResponse

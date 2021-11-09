@@ -93,6 +93,10 @@ global with sharing class ApplicationPersistService extends AbstractService {
       return applicants;
     }
 
+    //before saving applicants
+    applicants = ApplicantService.getInstance()
+      .beforeSaveApplicants(applicants);
+
     //update value for applicant here
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicant(applicationId, applicant);
@@ -102,6 +106,9 @@ global with sharing class ApplicationPersistService extends AbstractService {
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicantChild(applicant);
     }
+
+    //after saving appliants and child records
+    applicants = ApplicantService.getInstance().afterSaveApplicants(applicants);
 
     log?.fine('Finish save applicants');
     return applicants;
@@ -118,7 +125,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     String applicationId,
     Applicant__c applicant
   ) {
-    if (String.isBlank(applicant.Id)) {
+    if (String.isNotBlank(applicationId)) {
       /*  new applicant */
       //set record type
       applicant.Application__c = applicationId;

@@ -65,4 +65,48 @@ global with sharing class ApplicantService extends AbstractService {
   global virtual Applicant__c readApplicantWithChild(Id applicantId) {
     return ApplicantRepository.readApplicantWithChild(applicantId);
   }
+
+  /**
+   * @description before saving Applicants
+   * @author Digital Align Team | 11-09-2021
+   * @param List<Applicant__c> applicants
+   * @return List<Applicant__c>
+   **/
+  global virtual List<Applicant__c> beforeSaveApplicants(
+    List<Applicant__c> applicants
+  ) {
+    return applicants;
+  }
+
+  /**
+   * @description after saving applicants
+   * @author Digital Align Team | 11-09-2021
+   * @param List<Applicant__c> applicants
+   * @return virtual
+   **/
+  global virtual List<Applicant__c> afterSaveApplicants(
+    List<Applicant__c> applicants
+  ) {
+    return applicants;
+  }
+
+  /**
+   * @description before saving Applicant
+   * @author Digital Align Team | 11-09-2021
+   * @param Applicant__c applicant
+   * @return virtual
+   **/
+  global virtual Applicant__c beforeSaveApplicant(Applicant__c applicant) {
+    return applicant;
+  }
+
+  /**
+   * @description  after saving applicant
+   * @author Digital Align Team | 11-09-2021
+   * @param Applicant__c applicant
+   * @return virtual
+   **/
+  global virtual Applicant__c afterSaveApplicant(Applicant__c applicant) {
+    return applicant;
+  }
 }
