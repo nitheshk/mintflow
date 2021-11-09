@@ -22,5 +22,11 @@
     "saveRefs": true,
     "resolveRefs": true,
     "files": ["dau01__SurveyTemplate__c.json"]
+  },
+  {
+    "sobject": "dau01__FinancialProduct__c",
+    "saveRefs": false,
+    "resolveRefs": false,
+    "files": ["dau01__FinancialProduct__c.json"]
   }
 ]
