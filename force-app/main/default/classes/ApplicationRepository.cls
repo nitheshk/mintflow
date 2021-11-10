@@ -26,4 +26,19 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         .toString()
     );
   }
+
+  /**
+   * @description Read Application
+   * @author Digital Align Team | 11-10-2021
+   * @param Id applicationId
+   * @return Account
+   **/
+  global static Account readApplication(Id applicationId) {
+    return (Account) DatabaseUtils.getRecord(
+      new Query(Account.SObjectType)
+        .addFields()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
 }

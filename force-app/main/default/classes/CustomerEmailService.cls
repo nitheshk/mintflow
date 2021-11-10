@@ -93,7 +93,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
               '{primaryFirstName}' => primaryApplicant.FirstName__c,
               '{primaryLastName}' => primaryApplicant.LastName__c,
               '{productName}' => 'Membership Account',
-              '{applicationNumber}' => 'APP-001'
+              '{applicationNumber}' => ApexRequest.getApplicationName()
             }
           );
       }

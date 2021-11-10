@@ -86,6 +86,9 @@ global with sharing class ApplicationService extends AbstractService {
     application.Description = ApplicationServiceHelper.getInstance()
       .getIpAddress();
     ApplicationRepository.upsertRecord(application);
+    application = ApplicationRepository.readApplication(application.Id);
+    application.Name = application.ApplicationNumber__c;
+    ApplicationRepository.upsertRecord(application);
     return application;
   }
 
