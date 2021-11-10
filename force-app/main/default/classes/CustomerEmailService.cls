@@ -32,11 +32,11 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @description Dispatch email notification to OTP to Applicant
    * @author Digital Align | 11-05-2021
    * @param Applicant__c applicant
-   * @return virtual
    **/
   global virtual void sendEmailOTP(Applicant__c applicant) {
     String expireTime = string.valueOf(
-      ApplicationConfiguration__c.getOrgDefaults().OTPExpirationTime__c
+      (Integer) ApplicationConfiguration__c.getOrgDefaults()
+        .OTPExpirationTime__c
     );
     //applicant.OTPExpireTime__c.format('MM/dd/yyyy HH:mm:ss')
     EmailNotificationBuilder.newInstance('OTPVerificationEmail', applicant.Id)
@@ -52,9 +52,59 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
     if (!CollectionUtils.isListEmpty(result)) {
       if (result[0].success) {
-        System.debug('Email sent Successfully');
+        log?.debug('Email sent Successfully');
       } else {
-        System.debug('Failed to send Email ');
+        log?.debug('Failed to send Email ');
+        throw new customException('email not sent');
+      }
+    }
+  }
+
+  /**
+   * @description Notification to family member on reference
+   * @author Digital Align Team | 11-10-2021
+   * @param List<Applicant__c> applicants
+   **/
+  global virtual void notifyFamilyMember(List<Applicant__c> applicants) {
+    Applicant__c primaryApplicant;
+
+    for (Applicant__c applicant : applicants) {
+      Set<String> applicantTypes = new Set<String>(
+        applicant.ApplicantType__c.split(';')
+      );
+      if (applicantTypes.contains('Primary')) {
+        primaryApplicant = applicant;
+      }
+    }
+
+    for (Applicant__c applicant : applicants) {
+      Set<String> applicantTypes = new Set<String>(
+        applicant.ApplicantType__c.split(';')
+      );
+      if (applicantTypes.contains('Family Member')) {
+        EmailNotificationBuilder.newInstance(
+            'NotificationToFamilyMember',
+            applicant.Id
+          )
+          .setToAddresses(applicant.Email__c)
+          .setCcAddresses(primaryApplicant.Email__c)
+          .setSubstitute(
+            new Map<String, String>{
+              '{primaryFirstName}' => primaryApplicant.FirstName__c,
+              '{primaryLastName}' => primaryApplicant.LastName__c,
+              '{productName}' => 'Membership Account',
+              '{applicationNumber}' => 'APP-001'
+            }
+          );
+      }
+    }
+
+    List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
+    if (!CollectionUtils.isListEmpty(result)) {
+      if (result[0].success) {
+        log?.debug('Email sent Successfully');
+      } else {
+        log?.debug('Failed to send Email ');
         throw new customException('email not sent');
       }
     }

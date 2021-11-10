@@ -189,12 +189,12 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {familyMembFirstName} {familyMembLastName},</h5>
+                      <h5>Hi  {!relatedTo.FirstName__c} {!relatedTo.LastName__c},</h5>
                       <br />
                       We are happy to inform you that you have been added as a
-                      family member by {applicantFirstName} {applicantLastName}
-                      in our {productName} application with application ID
-                      {applicationId}.
+                      family member by {primaryFirstName} {primaryLastName}
+                      in our {productName} with application Number
+                      {applicationNumber}.
                       <br /><br />If you are not a family member please email us
                       at
                       <a

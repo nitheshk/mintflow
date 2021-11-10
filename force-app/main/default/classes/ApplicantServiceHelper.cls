@@ -38,6 +38,11 @@ global with sharing class ApplicantServiceHelper extends AbstractService {
     List<Applicant__c> applicants
   ) {
     log.debug('inside notifyFamilyConnectReference');
+    try {
+      CustomerEmailService.getInstance().notifyFamilyMember(applicants);
+    } catch (exception ex) {
+      log?.error(ex);
+    }
     return applicants;
   }
 }
