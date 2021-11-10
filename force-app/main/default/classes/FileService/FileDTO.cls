@@ -11,7 +11,8 @@ global with sharing class FileDTO {
   global String pathOnClient { get; private set; }
   global Blob versionData { get; set; }
   global Id ownerID { get; set; }
-  global ID parentID { get; private set; }
+  global Id parentID { get; private set; }
+  global Id contentDocumentId { get; private set; }
   global String fileType { get; private set; }
   global String fileSubType { get; set; }
   global FileShareType shareType { get; set; }
@@ -43,6 +44,19 @@ global with sharing class FileDTO {
     AllUsers,
     InternalUsers,
     SharedUsers
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 11-10-2021
+   * @param Id contentDocumentId
+   * @param Id parentID
+   **/
+  global FileDTO(Id contentDocumentId, Id parentID) {
+    this.contentDocumentId = contentDocumentId;
+    this.parentID = parentID;
+    this.shareType = FileShareType.V;
+    this.visibility = FileVisibility.AllUsers;
   }
 
   /**

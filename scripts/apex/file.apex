@@ -48,18 +48,17 @@ request.setHeader(
 ApexResponse res = FileController.fetchContentVersionByEntityId(request);
 system.debug('res=+' + JSON.serialize(res));
 
-//FileController.createFile
+//FileController.createFile create content version only
 ApexRequest request = new ApexRequest();
 request.setApplicationId('0019D00000IVnGrQAL'); //account ID
 request.setHeader(
   new Map<String, Object>{
     'title' => 'test.txt',
     'fileType' => 'Address',
-    'fileSubType' => 'Other',
-    'parentID' => 'a0b9D000002h0JcQAI'
+    'fileSubType' => 'Other'
   }
 );
-request.data = EncodingUtil.base64Encode(blob.valueof('test value'));
+request.data = EncodingUtil.base64Encode(blob.valueof('test value 2'));
 ApexResponse res = FileController.createFile(request);
 system.debug('res=+' + JSON.serialize(res));
 

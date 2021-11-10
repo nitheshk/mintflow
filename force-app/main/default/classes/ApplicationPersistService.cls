@@ -358,10 +358,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
         this.deleteApplicants(new Set<Id>{ recordId });
       }
       when 'FinServ__IdentificationDocument__c' {
-        FinServ__IdentificationDocument__c identity = ApplicantRepository.readIdentificationDocument(
-          recordId
-        );
-        FileService.getInstance().deleteContentVersionByEntityId(identity.Id);
+        FileService.getInstance().deleteContentVersionByEntityId(recordId);
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'FinServ__Employment__c' {

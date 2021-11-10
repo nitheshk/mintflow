@@ -170,6 +170,28 @@ global virtual with sharing class FileService extends AbstractService {
   }
 
   /**
+   * @description link content document id with parent record id
+   * @author Digital Align Team | 11-10-2021
+   * @param List<FileDTO> fileDtos
+   * @return virtual
+   **/
+  global virtual List<ContentDocumentLink> linkContentDocumentWithEntity(
+    List<FileDTO> fileDtos
+  ) {
+    List<ContentDocumentLink> cDocLinks = new List<ContentDocumentLink>();
+    for (FileDTO dto : fileDtos) {
+      ContentDocumentLink cDocLink = new ContentDocumentLink();
+      cDocLink.ContentDocumentId = dto.contentDocumentId;
+      cDocLink.LinkedEntityId = dto.parentID;
+      cDocLink.ShareType = dto.shareType.name();
+      cDocLink.Visibility = dto.visibility.name();
+      cDocLinks.add(cDocLink);
+    }
+    FileRepository.upsertRecords(cDocLinks);
+    return cDocLinks;
+  }
+
+  /**
    * @description fetch content version by content version id
    * @author Digital Align Team | 07-30-2021
    * @param Id contentVersionId
@@ -328,7 +350,6 @@ global virtual with sharing class FileService extends AbstractService {
     ) {
       contentDocumentIds.add(cdl.ContentDocumentId);
     }
-
     deleteContentVersions(contentDocumentIds);
   }
 

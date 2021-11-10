@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomMetadata
+  xmlns="http://soap.sforce.com/2006/04/metadata"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+    <label>IdentificationDocumentTriggerHandler</label>
+    <protected>false</protected>
+    <values>
+        <field>Description__c</field>
+        <value
+      xsi:type="xsd:string"
+    >IdentificationDocumentTriggerHandler</value>
+    </values>
+    <values>
+        <field>Disabled__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>ObjectAPIName__c</field>
+        <value xsi:type="xsd:string">FinServ__IdentificationDocument__c</value>
+    </values>
+    <values>
+        <field>ObjectNamespace__c</field>
+        <value xsi:type="xsd:string" />
+    </values>
+    <values>
+        <field>Order__c</field>
+        <value xsi:type="xsd:double">1.0</value>
+    </values>
+    <values>
+        <field>RecursionCount__c</field>
+        <value xsi:type="xsd:double">5.0</value>
+    </values>
+    <values>
+        <field>TriggerHandlerName__c</field>
+        <value
+      xsi:type="xsd:string"
+    >IdentificationDocumentTriggerHandler</value>
+    </values>
+</CustomMetadata>
