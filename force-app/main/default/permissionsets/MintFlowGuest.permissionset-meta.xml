@@ -292,6 +292,11 @@
         <field>ApplicantRelationship__c.isPrimary__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.ApplicationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
         <fieldPermissions>
         <editable>true</editable>
         <field>Account.CreatedChannel__c</field>
