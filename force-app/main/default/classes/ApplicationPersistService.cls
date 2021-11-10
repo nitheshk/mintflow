@@ -231,7 +231,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     Id applicantId
   ) {
     for (FinServ__IdentificationDocument__c identityDoc : identityDocuments) {
-      if (String.isBlank(identityDoc.id)) {
+      if (String.isNotBlank(applicantId)) {
         identityDoc.Applicant__c = applicantId;
       }
     }
@@ -251,7 +251,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     Id applicantId
   ) {
     for (ContactPointAddress cpa : addresses) {
-      if (String.isBlank(cpa.id)) {
+      if (String.isNotBlank(applicantId)) {
         cpa.Applicant__c = applicantId;
       }
     }
@@ -271,7 +271,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     Id applicantId
   ) {
     for (FinServ__Employment__c employment : employments) {
-      if (String.isBlank(employment.id)) {
+      if (String.isNotBlank(applicantId)) {
         employment.Applicant__c = applicantId;
       }
     }
@@ -293,7 +293,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     for (
       FinServ__AssetsAndLiabilities__c assetAndLiability : assetsAndLiabilities
     ) {
-      if (String.isBlank(assetAndLiability.id)) {
+      if (String.isNotBlank(applicantId)) {
         assetAndLiability.Applicant__c = applicantId;
       }
     }
@@ -313,7 +313,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     Id applicantId
   ) {
     for (FinServ__Revenue__c revenue : revenues) {
-      if (String.isBlank(revenue.id)) {
+      if (String.isNotBlank(applicantId)) {
         revenue.Applicant__c = applicantId;
       }
       if (String.isBlank(revenue.FinServ__Account__c)) {
@@ -325,9 +325,9 @@ global with sharing class ApplicationPersistService extends AbstractService {
   }
 
   /**
-   * @description delete object by Id
-   * @author Digital Align Team | 10-25-2021
-   * @param List<Applicant__c> applicants
+   * @description  delete object by Id
+   * @author Digital Align Team | 11-10-2021
+   * @param Id recordId
    * @return Boolean
    **/
   global virtual Boolean deleteEntity(Id recordId) {
@@ -358,6 +358,10 @@ global with sharing class ApplicationPersistService extends AbstractService {
         this.deleteApplicants(new Set<Id>{ recordId });
       }
       when 'FinServ__IdentificationDocument__c' {
+        FinServ__IdentificationDocument__c identity = ApplicantRepository.readIdentificationDocument(
+          recordId
+        );
+        FileService.getInstance().deleteContentVersionByEntityId(identity.Id);
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'FinServ__Employment__c' {
