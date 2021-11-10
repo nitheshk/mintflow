@@ -7,29 +7,46 @@
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
 global with sharing class ApplicationResponseMapper extends AbstractDTO {
-  global String Description;
-  global Double TotalFinancialAccounts;
-  global Applicants Applicants;
-  global String CleanStatus;
-  global String IndividualType;
-  global Boolean IsPartner;
+  global List<Applicant> Applicants;
+  global ApplicationResponseMapper() {
+    Applicants = new List<Applicant>();
+  }
+  //global List<FinancialAccount> FinancialAccounts;
 
-  global class ApplicantRecords {
+  global class Applicant {
     global String Application;
     global Boolean IsEmailVerified;
     global String LastName;
     global Boolean IsExistingCustomer;
     global String Name;
-    global Employments Employments;
+
     global Boolean IsPhoneNumberVerified;
     global Boolean DeleteRecord;
     global String FirstName;
-    global IdentificationDocuments IdentificationDocuments;
-    global ContactPointAddresses ContactPointAddresses;
-    global Revenues Revenues;
+    global List<IdentificationDocument> IdentificationDocuments;
+    global List<ContactPointAddress> ContactPointAddresses;
+    global List<Revenue> Revenues;
+    global List<Employment> Employments;
+    global List<AssetsAndLiabilities> AssetsAndLiabilities;
+    global Applicant() {
+      Employments = new List<Employment>();
+      Revenues = new List<Revenue>();
+      ContactPointAddresses = new List<ContactPointAddress>();
+      IdentificationDocuments = new List<IdentificationDocument>();
+      AssetsAndLiabilities = new List<AssetsAndLiabilities>();
+    }
   }
 
-  global class RevenueRecords {
+  global class AssetsAndLiabilities {
+    global String AssetsAndLiabilitiesType;
+    global String Description;
+    global String Applicant;
+    global String Name;
+    global Double Amount;
+    global String Source;
+  }
+
+  global class Revenue {
     global Boolean IsDeleted;
     global String SubType;
     global String Type;
@@ -39,13 +56,7 @@ global with sharing class ApplicationResponseMapper extends AbstractDTO {
     global String RevenueDate;
   }
 
-  global class Employments {
-    global Integer totalSize;
-    global Boolean done;
-    global List<Records> records;
-  }
-
-  global class ContactPointAddressesRecords {
+  global class ContactPointAddress {
     global String PostalCode;
     global Double Latitude;
     global String UsageType;
@@ -64,7 +75,7 @@ global with sharing class ApplicationResponseMapper extends AbstractDTO {
     global String AddressType;
   }
 
-  global class IdentificationDocumentsRecords {
+  global class IdentificationDocument {
     global String DocumentType;
     global String ExpirationDate;
     global String IssueDate;
@@ -75,35 +86,12 @@ global with sharing class ApplicationResponseMapper extends AbstractDTO {
     global String IssuingCountry;
   }
 
-  global class Applicants {
-    global Boolean done;
-    global List<ApplicantRecords> records;
-  }
-
-  global class Records {
+  global class Employment {
     global String Occupation;
     global Double AnnualIncome;
     global String Applicant;
     global String Name;
     global String EmploymentStatus;
     global String Position;
-  }
-
-  global class Revenues {
-    global Integer totalSize;
-    global Boolean done;
-    global List<RevenueRecords> records;
-  }
-
-  global class IdentificationDocuments {
-    global Integer totalSize;
-    global Boolean done;
-    global List<IdentificationDocumentsRecords> records;
-  }
-
-  global class ContactPointAddresses {
-    global Integer totalSize;
-    global Boolean done;
-    global List<ContactPointAddressesRecords> records;
   }
 }
