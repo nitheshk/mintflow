@@ -30,9 +30,13 @@
                 <behavior>Edit</behavior>
                 <field>CustomerNumber__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Relationship__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
-        <layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ApplicantNumber__c</field>
             </layoutItems>

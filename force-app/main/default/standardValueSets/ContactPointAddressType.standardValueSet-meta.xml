@@ -17,18 +17,8 @@
         <label>Primary</label>
     </standardValue>
     <standardValue>
-        <fullName>Secondary</fullName>
-        <default>false</default>
-        <label>Secondary</label>
-    </standardValue>
-    <standardValue>
         <fullName>Previous</fullName>
         <default>false</default>
         <label>Previous</label>
-    </standardValue>
-    <standardValue>
-        <fullName>Mailing</fullName>
-        <default>false</default>
-        <label>Mailing</label>
     </standardValue>
 </StandardValueSet>
