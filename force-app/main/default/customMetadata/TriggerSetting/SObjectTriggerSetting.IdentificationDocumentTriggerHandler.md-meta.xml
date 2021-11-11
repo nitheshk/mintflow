@@ -10,7 +10,7 @@
         <field>Description__c</field>
         <value
       xsi:type="xsd:string"
-    >IdentificationDocumentTriggerHandler</value>
+    >IdentificationDocument Trigger Handler</value>
     </values>
     <values>
         <field>Disabled__c</field>
@@ -19,10 +19,6 @@
     <values>
         <field>ObjectAPIName__c</field>
         <value xsi:type="xsd:string">FinServ__IdentificationDocument__c</value>
-    </values>
-    <values>
-        <field>ObjectNamespace__c</field>
-        <value xsi:type="xsd:string" />
     </values>
     <values>
         <field>Order__c</field>

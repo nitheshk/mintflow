@@ -6,6 +6,9 @@
  * @description
  **/
 public with sharing class IdentificationDocumentTriggerHandler extends AbstractTriggerHandler {
+  public IdentificationDocumentTriggerHandler() {
+    super(IdentificationDocumentTriggerHandler.class);
+  }
   /**
    * @description override method for the implementing class to override
    * after insert trigger has Trigger.New,Trigger.Old
@@ -35,7 +38,7 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
    * @description override method for the implementing class to override
    * after updtae trigger has Trigger.New,Trigger.Old,Trigger.newMap and Trigger.oldMap
    */
-  @SuppressWarnings('PMD.EmptyStatementBlock')
+  @SuppressWarnings('PMD.EmptyStatementBlock,PMD.CognitiveComplexity')
   public override void afterUpdate() {
     List<FinServ__IdentificationDocument__c> newIdentityDocuments = (List<FinServ__IdentificationDocument__c>) Trigger.new;
     Map<Id, FinServ__IdentificationDocument__c> oldIdentityDocumentMap = (Map<Id, FinServ__IdentificationDocument__c>) Trigger.oldMap;
@@ -97,6 +100,38 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
     // insert new updated content version
     if (!fileDtos.isEmpty()) {
       FileService.getInstance().linkContentDocumentWithEntity(fileDtos);
+    }
+  }
+
+  /**
+   * @description override method for the implementing class to override
+   */
+  @SuppressWarnings('PMD.EmptyStatementBlock')
+  public override void beforeDelete() {
+    List<Id> contentDocumentIds = new List<Id>();
+    for (
+      FinServ__IdentificationDocument__c iDoc : (List<FinServ__IdentificationDocument__c>) Trigger.old
+    ) {
+      if (String.isNotBlank(iDoc.PrimaryContentDocumentID__c)) {
+        contentDocumentIds.add(iDoc.PrimaryContentDocumentID__c);
+      }
+
+      if (String.isNotBlank(iDoc.SecondaryContentDocumentId__c)) {
+        contentDocumentIds.add(iDoc.SecondaryContentDocumentId__c);
+      }
+
+      if (String.isNotBlank(iDoc.AddressContentDocumentId__c)) {
+        contentDocumentIds.add(iDoc.AddressContentDocumentId__c);
+      }
+    }
+    //delete old content version
+    try {
+      if (!contentDocumentIds.isEmpty()) {
+        log?.debug('contentDocumentIds to delete :' + contentDocumentIds);
+        FileService.getInstance().deleteContentVersions(contentDocumentIds);
+      }
+    } catch (Exception ex) {
+      log?.error(ex);
     }
   }
 }

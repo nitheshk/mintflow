@@ -8,7 +8,8 @@
  **/
 trigger IdentificationDocumentTrigger on FinServ__IdentificationDocument__c(
   after insert,
-  after update
+  after update,
+  before delete
 ) {
   TriggerDispatcher.run(FinServ__IdentificationDocument__c.SObjectType);
 }
