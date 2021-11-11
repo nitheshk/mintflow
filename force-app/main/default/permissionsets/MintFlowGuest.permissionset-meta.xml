@@ -1935,6 +1935,21 @@
 	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>FinServ__Employment__c.EmploymentDuration__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.EmploymentType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	   <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.GrossMonthlySalary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>FinServ__Employment__c.PrimaryContentDocumentID__c</field>
         <readable>true</readable>
     </fieldPermissions>
