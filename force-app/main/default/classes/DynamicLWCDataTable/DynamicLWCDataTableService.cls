@@ -234,7 +234,7 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
     String profileName = 'System Administrator';
     acnt = UserUtils.fetchUserAccountByUserId(usr.Id);
     if (acnt == null) {
-      Profile profile = UserRepository.fetchProfileByName(profileName);
+      Profile profile = UtilsRepository.fetchProfileByName(profileName);
       if (userInfo.getProfileId().equals(profile.Id)) {
         ApexResponse response = UserAccountManagementController.fetchFinancialInstituteAccount();
         acnt = (Account) response.data;

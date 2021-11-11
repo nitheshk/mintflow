@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2021 Digital Align
- * @group Utils Repository
+ * @group Repository
  * @author Digital Align Team
  * @reference
- * @description Repository to pickup some basic user related data
+ * @description Repository to pickup some basic utils
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global inherited sharing class UserRepository extends DatabaseUtils {
+global inherited sharing class UtilsRepository extends DatabaseUtils {
   /**
    * @description  Get user record based on user id passed
    * @author Digital Align | 05-11-2021

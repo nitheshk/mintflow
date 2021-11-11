@@ -22,7 +22,7 @@ global inherited sharing class UserUtils {
     if (currentUser != null) {
       return currentUser;
     }
-    currentUser = UserRepository.getUserById(UserInfo.getUserId());
+    currentUser = UtilsRepository.getUserById(UserInfo.getUserId());
     return currentUser;
   }
 
@@ -42,7 +42,7 @@ global inherited sharing class UserUtils {
    * @return Account
    **/
   global static Account fetchUserAccountByUserId(Id userId) {
-    return UserRepository.fetchUserAccountByUserId(userId);
+    return UtilsRepository.fetchUserAccountByUserId(userId);
   }
 
   /**
@@ -82,11 +82,11 @@ global inherited sharing class UserUtils {
     userObj.TimeZoneSidKey = 'America/Los_Angeles';
     UserUtils.assignProfileIdToUser(
       userObj,
-      UserRepository.fetchProfileByName('Standard User')?.id
+      UtilsRepository.fetchProfileByName('Standard User')?.id
     );
     Savepoint sp = Database.setSavepoint();
     try {
-      UserRepository.insertRecord(userObj);
+      UtilsRepository.insertRecord(userObj);
     } catch (DmlException ex) {
       if (ex.getDmlStatusCode(0) == StatusCode.DUPLICATE_USERNAME.name()) {
         result = true;

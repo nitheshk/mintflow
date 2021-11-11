@@ -15,9 +15,9 @@ public static void createUser() {
   userObj.TimeZoneSidKey = 'America/Los_Angeles';
   UserUtils.assignProfileIdToUser(
     userObj,
-    UserRepository.fetchProfileByName('MFlowOnlineSalesforcePlatform')?.id
+    UtilsRepository.fetchProfileByName('MFlowOnlineSalesforcePlatform')?.id
   );
-  UserRepository.insertRecord(userObj);
+  UtilsRepository.insertRecord(userObj);
 
   system.setPassword(userObj.Id, 'Test@1234');
 
