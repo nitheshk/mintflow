@@ -17,3 +17,12 @@ request.setHeader(
 );
 ApexResponse res = IdentityController.validateOTP(request);
 system.debug('Full Json : ' + res.data);
+
+// IdentityController.scanIdentityDocument
+ApexRequest request = new ApexRequest();
+request.setApplicationId('0019D00000IVnGrQAL'); //account ID
+request.setHeader(
+  new Map<String, Object>{ 'contentDocumentId' => '0019D00000IVnGrWRF' }
+);
+ApexResponse res = IdentityController.scanIdentityDocument(request);
+system.debug('res=+' + JSON.serialize(res));
