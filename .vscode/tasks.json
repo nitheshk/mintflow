@@ -85,6 +85,22 @@
       "problemMatcher": []
     },
     {
+      "label": "sfdx : Create New Service",
+      "type": "shell",
+      "command": "gulp",
+      "args": [
+        "CreateServiceClass",
+        "--serviceClassName",
+        "${input:serviceClassName}"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "sfdx : Set Default devhub",
       "type": "shell",
       "command": "gulp",
@@ -193,6 +209,12 @@
       "description": "Trigger Handler Name",
       "type": "promptString",
       "default": "AccountTriggerHandler"
+    },
+    {
+      "id": "serviceClassName",
+      "description": "Service Class Name",
+      "type": "promptString",
+      "default": "AccountService"
     }
   ]
 }

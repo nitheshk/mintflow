@@ -11,4 +11,4 @@ node_modules
 docs
 deploy/sfdx/classTemplates
 DoTracker-UI
-deploy/utility/classTemplates/TriggerHandlerName.cls
+deploy/utility/classTemplates/

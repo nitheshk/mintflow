@@ -4,5 +4,11 @@
     "classPath": "./force-app/main/default/classes/",
     "templateCls": "./deploy/utility/classTemplates/TriggerHandlerName.cls",
     "templateMetaXml": "./deploy/utility/classTemplates/TriggerHandlerName.cls-meta.xml"
+  },
+  "ServiceClass": {
+    "namespace": "",
+    "classPath": "./force-app/main/default/classes/",
+    "templateCls": "./deploy/utility/classTemplates/ServiceClass.cls",
+    "templateMetaXml": "./deploy/utility/classTemplates/ServiceClass.cls-meta.xml"
   }
 }
