@@ -9,6 +9,17 @@
 global abstract with sharing class AbstractTriggerHandler {
   //shared attribute
   global static Map<String, Object> sharedMap = new Map<String, Object>();
+  protected Type classType = AbstractService.class;
+  protected logger log;
+  public AbstractTriggerHandler() {
+    classType = AbstractService.class;
+    log = logger.getInstance(classType);
+  }
+
+  public AbstractTriggerHandler(Type classType) {
+    this.classType = classType;
+    log = logger.getInstance(this.classType);
+  }
 
   /**
    * These methods are all intended to be overridden by

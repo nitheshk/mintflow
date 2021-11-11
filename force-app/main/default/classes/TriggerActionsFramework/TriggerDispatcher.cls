@@ -27,13 +27,6 @@ global virtual with sharing class TriggerDispatcher {
    **/
   global static void run(Schema.SObjectType sType) {
     String sObjectName = sType.getDescribe().getName();
-    //String namespace = sObjectName.contains('__')
-    //  ? sObjectName.split('__')[0]
-    //  : null;
-    //sObjectName = sObjectName.contains('__')
-    //  ? sObjectName.split('__')[1]
-    //  : sObjectName;
-
     for (
       SObjectTriggerSetting__mdt triggerSetting : TriggerRepository.fetchTriggerSettingBySobject(
         sObjectName

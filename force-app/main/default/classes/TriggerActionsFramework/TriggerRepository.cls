@@ -8,10 +8,9 @@
 
 public with sharing class TriggerRepository extends DatabaseUtils {
   /**
-   * @description
+   * @description  Get Trigger setting
    * @author Digital Align | 06-05-2021
    * @param Stirng sObjectName
-   * @param String namespace
    * @return list<SObjectTriggerSetting__mdt>
    **/
   public static list<SObjectTriggerSetting__mdt> fetchTriggerSettingBySObject(

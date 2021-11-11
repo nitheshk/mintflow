@@ -19,10 +19,6 @@
                 <field>ObjectAPIName__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ObjectNamespace__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>TriggerHandlerName__c</field>
             </layoutItems>
