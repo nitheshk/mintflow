@@ -39,6 +39,10 @@
                 <behavior>Edit</behavior>
                 <field>Applicant__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PrimaryContentDocumentID__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
