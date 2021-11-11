@@ -641,6 +641,11 @@
         <field>Applicant__c.ApplicantNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
+       <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.MembershipAccountNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.ApplicantType__c</field>
