@@ -5,6 +5,7 @@
  * @reference
  * @description
  **/
+@RestResource(urlMapping='/ApplicationDataAPI/*')
 global with sharing class ApplicationDataAPI {
   private static logger log = logger.getInstance(ApplicationDataAPI.class);
   /**
@@ -13,7 +14,10 @@ global with sharing class ApplicationDataAPI {
    * @param string applicationId
    * @return ApplicationResponseMapper
    **/
-  global ApplicationResponseMapper getApplicationData(string applicationId) {
+  @HttpPost
+  global static ApplicationResponseMapper getApplicationData(
+    string applicationId
+  ) {
     {
       log
         ?.fine(
@@ -50,7 +54,7 @@ global with sharing class ApplicationDataAPI {
    * @param applicant__c applicant
    * @return virtual
    **/
-  global virtual ApplicationResponseMapper.Applicant mapApplicant(
+  global static ApplicationResponseMapper.Applicant mapApplicant(
     ApplicationResponseMapper.Applicant mapperApplicant,
     applicant__c applicant
   ) {
@@ -128,7 +132,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<FinServ__Employment__c> employmentList
    * @return virtual
    **/
-  global virtual list<ApplicationResponseMapper.Employment> mapEmployment(
+  global static list<ApplicationResponseMapper.Employment> mapEmployment(
     List<FinServ__Employment__c> employmentList
   ) {
     list<ApplicationResponseMapper.Employment> mapperEmploymentList = new List<ApplicationResponseMapper.Employment>();
@@ -158,7 +162,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<FinServ__IdentificationDocument__c> identityList
    * @return virtual
    **/
-  global virtual list<ApplicationResponseMapper.IdentificationDocument> mapIdentity(
+  global static list<ApplicationResponseMapper.IdentificationDocument> mapIdentity(
     List<FinServ__IdentificationDocument__c> identityList
   ) {
     list<ApplicationResponseMapper.IdentificationDocument> mapperIdentityList = new List<ApplicationResponseMapper.IdentificationDocument>();
@@ -192,7 +196,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<FinServ__Revenue__c> revenueList
    * @return virtual
    **/
-  global virtual list<ApplicationResponseMapper.Revenue> mapRevenue(
+  global static list<ApplicationResponseMapper.Revenue> mapRevenue(
     List<FinServ__Revenue__c> revenueList
   ) {
     list<ApplicationResponseMapper.Revenue> mapperRevenueList = new List<ApplicationResponseMapper.Revenue>();
@@ -216,7 +220,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<ContactPointAddress> contactAddressList
    * @return virtual
    **/
-  global virtual list<ApplicationResponseMapper.ContactPointAddress> mapContactAddress(
+  global static list<ApplicationResponseMapper.ContactPointAddress> mapContactAddress(
     List<ContactPointAddress> contactAddressList
   ) {
     list<ApplicationResponseMapper.ContactPointAddress> mapperContactAddressList = new List<ApplicationResponseMapper.ContactPointAddress>();
@@ -247,7 +251,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilitiesList
    * @return virtual
    **/
-  global virtual list<ApplicationResponseMapper.AssetsAndLiabilities> mapContactAddress(
+  global static list<ApplicationResponseMapper.AssetsAndLiabilities> mapContactAddress(
     List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilitiesList
   ) {
     list<ApplicationResponseMapper.AssetsAndLiabilities> mapperAssetsAndLiabilitiesList = new List<ApplicationResponseMapper.AssetsAndLiabilities>();
