@@ -7,7 +7,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global virtual with sharing class AbstractService {
-  private Type classType = AbstractService.class;
+  protected Type classType = AbstractService.class;
   protected logger log;
   public AbstractService() {
     classType = AbstractService.class;
