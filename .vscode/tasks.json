@@ -85,7 +85,7 @@
       "problemMatcher": []
     },
     {
-      "label": "sfdx : Create New Service",
+      "label": "sfdx : Create New Service Class",
       "type": "shell",
       "command": "gulp",
       "args": [

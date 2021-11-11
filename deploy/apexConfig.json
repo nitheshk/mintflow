@@ -9,6 +9,8 @@
     "namespace": "",
     "classPath": "./force-app/main/default/classes/",
     "templateCls": "./deploy/utility/classTemplates/ServiceClass.cls",
-    "templateMetaXml": "./deploy/utility/classTemplates/ServiceClass.cls-meta.xml"
+    "templateMetaXml": "./deploy/utility/classTemplates/ServiceClass.cls-meta.xml",
+    "customMetdaDataPath": "./force-app/main/default/customMetadata/ServiceClassSetting/",
+    "customMetdaData": "./deploy/utility/classTemplates/ServiceClassSetting.ServiceClass.md-meta.xml"
   }
 }

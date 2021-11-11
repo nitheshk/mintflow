@@ -107,5 +107,23 @@ gulp.task("CreateServiceClass", function (finish) {
     mode: 0o666
   });
 
+  // Custom metadata
+  rawData = fs.readFileSync(config.ServiceClass.customMetdaData, {
+    encoding: "utf8",
+    flag: "r"
+  });
+  rawData = rawData.replace(/{{ServiceClass}}/g, serviceClassName);
+  filePath =
+    config.ServiceClass.customMetdaDataPath +
+    "ServiceClassSetting." +
+    serviceClassName +
+    ".md-meta.xml";
+
+  fs.writeFileSync(filePath, rawData, {
+    encoding: "utf8",
+    flag: "w",
+    mode: 0o666
+  });
+
   finish();
 });
