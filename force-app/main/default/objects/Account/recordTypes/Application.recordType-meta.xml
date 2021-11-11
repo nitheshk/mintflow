@@ -426,67 +426,67 @@
     <picklistValues>
         <picklist>Flow__c</picklist>
         <values>
-            <fullName>Address-Verification%2C</fullName>
+            <fullName>Address-Verification</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Beneficiary%2C</fullName>
+            <fullName>Beneficiary</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Disclosures%2C</fullName>
+            <fullName>Disclosures</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Eligibility-Confirmation%2C</fullName>
+            <fullName>Eligibility-Confirmation</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Email-Confirmation%2C</fullName>
+            <fullName>Email-Confirmation</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Emergency-Contact%2C</fullName>
+            <fullName>Emergency-Contact</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Employment-Information%2C</fullName>
+            <fullName>Employment-Information</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Family-Connect%2C</fullName>
+            <fullName>Family-Connect</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Final-Confirmation%2C</fullName>
+            <fullName>Final-Confirmation</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Funding%2C</fullName>
+            <fullName>Funding</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Get-Started%2C</fullName>
+            <fullName>Get-Started</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Joint%2C</fullName>
+            <fullName>Joint</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Otp-Verification%2C</fullName>
+            <fullName>Otp-Verification</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Password%2C</fullName>
+            <fullName>Password</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Personal-Information%2C</fullName>
+            <fullName>Personal-Information</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Review-Information%2C</fullName>
+            <fullName>Review-Information</fullName>
             <default>false</default>
         </values>
         <values>

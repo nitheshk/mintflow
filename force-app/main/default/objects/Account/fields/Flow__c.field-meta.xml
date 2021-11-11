@@ -13,84 +13,84 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Get-Started,</fullName>
+                <fullName>Get-Started</fullName>
                 <default>false</default>
-                <label>Get-Started,</label>
+                <label>Get-Started</label>
             </value>
             <value>
-                <fullName>Eligibility-Confirmation,</fullName>
+                <fullName>Eligibility-Confirmation</fullName>
                 <default>false</default>
-                <label>Eligibility-Confirmation,</label>
+                <label>Eligibility-Confirmation</label>
             </value>
             <value>
-                <fullName>Family-Connect,</fullName>
+                <fullName>Family-Connect</fullName>
                 <default>false</default>
-                <label>Family-Connect,</label>
+                <label>Family-Connect</label>
             </value>
             <value>
-                <fullName>Personal-Information,</fullName>
+                <fullName>Personal-Information</fullName>
                 <default>false</default>
-                <label>Personal-Information,</label>
+                <label>Personal-Information</label>
             </value>
             <value>
-                <fullName>Otp-Verification,</fullName>
+                <fullName>Otp-Verification</fullName>
                 <default>false</default>
-                <label>Otp-Verification,</label>
+                <label>Otp-Verification</label>
             </value>
             <value>
-                <fullName>Address-Verification,</fullName>
+                <fullName>Address-Verification</fullName>
                 <default>false</default>
-                <label>Address-Verification,</label>
+                <label>Address-Verification</label>
             </value>
             <value>
-                <fullName>Joint,</fullName>
+                <fullName>Joint</fullName>
                 <default>false</default>
-                <label>Joint,</label>
+                <label>Joint</label>
             </value>
             <value>
-                <fullName>Beneficiary,</fullName>
+                <fullName>Beneficiary</fullName>
                 <default>false</default>
-                <label>Beneficiary,</label>
+                <label>Beneficiary</label>
             </value>
             <value>
-                <fullName>Emergency-Contact,</fullName>
+                <fullName>Emergency-Contact</fullName>
                 <default>false</default>
-                <label>Emergency-Contact,</label>
+                <label>Emergency-Contact</label>
             </value>
             <value>
-                <fullName>Employment-Information,</fullName>
+                <fullName>Employment-Information</fullName>
                 <default>false</default>
-                <label>Employment-Information,</label>
+                <label>Employment-Information</label>
             </value>
             <value>
-                <fullName>Review-Information,</fullName>
+                <fullName>Review-Information</fullName>
                 <default>false</default>
-                <label>Review-Information,</label>
+                <label>Review-Information</label>
             </value>
             <value>
-                <fullName>Password,</fullName>
+                <fullName>Password</fullName>
                 <default>false</default>
-                <label>Password,</label>
+                <label>Password</label>
             </value>
             <value>
-                <fullName>Email-Confirmation,</fullName>
+                <fullName>Email-Confirmation</fullName>
                 <default>false</default>
-                <label>Email-Confirmation,</label>
+                <label>Email-Confirmation</label>
             </value>
             <value>
-                <fullName>Funding,</fullName>
+                <fullName>Funding</fullName>
                 <default>false</default>
-                <label>Funding,</label>
+                <label>Funding</label>
             </value>
             <value>
-                <fullName>Disclosures,</fullName>
+                <fullName>Disclosures</fullName>
                 <default>false</default>
-                <label>Disclosures,</label>
+                <label>Disclosures</label>
             </value>
             <value>
-                <fullName>Final-Confirmation,</fullName>
+                <fullName>Final-Confirmation</fullName>
                 <default>false</default>
-                <label>Final-Confirmation,</label>
+                <label>Final-Confirmation</label>
             </value>
             <value>
                 <fullName>Welcome-Back</fullName>
