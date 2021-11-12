@@ -4,7 +4,7 @@
     <available>true</available>
     <description>Joint Applicant App Submission Waiting.</description>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>Joint Applicant App Submission Waiting - EN</name>
+    <name>Primary Review Information Submission Waiting - EN</name>
     <packageVersions>
         <majorNumber>230</majorNumber>
         <minorNumber>3</minorNumber>
@@ -12,7 +12,7 @@
     </packageVersions>
     <style>none</style>
     <subject
-  >Your application has been submitted. Waiting for joint applicant to register</subject>
+  >Your application has been submitted. Waiting for joint applicant to completed the application</subject>
     <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
