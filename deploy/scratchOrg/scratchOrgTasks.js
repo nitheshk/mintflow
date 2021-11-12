@@ -357,12 +357,12 @@ gulp.task("systemConfigImport", function (finish) {
           finish();
         })
         .catch((err2) => {
-          console.log("Error :" + err2.stdout);
+          console.log("Error :" + err2);
           process.exit(1);
         });
     })
     .catch((err) => {
-      console.log("Error :" + err.stdout);
+      console.log("Error :" + err);
       process.exit(1);
     });
 });
