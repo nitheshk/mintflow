@@ -195,8 +195,8 @@
                       Mintflow customer. Your {productName} account is now ready
                       to use.
                       <br />Here are the details of your account <br /> Account
-                      Number - {accountNumber} <br /> Account Name -
-                      {accountName} <br /> Customer Number - {customerNumber}
+                      Number - {accountNumber} <br /> Customer Number -
+                      {customerNumber}
                     </p>
                   </td>
                 </tr>
