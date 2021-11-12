@@ -10,10 +10,10 @@
   },
 
   "ui": {
-    "doTract": {
+    "MintFlow": {
       "uiDistFolder": "p1fcu-olbui/dist/",
       "staticResourceFolder": "./force-app/main/default/staticresources/",
-      "staticResourceName": "DoTract.zip",
+      "staticResourceName": "MintFlow.zip",
       "UIFolder": "p1fcu-olbui"
     }
   },
