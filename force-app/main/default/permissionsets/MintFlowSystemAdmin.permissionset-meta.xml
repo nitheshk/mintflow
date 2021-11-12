@@ -349,7 +349,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.Flow__c</field>
+        <field>Account.FlowState__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

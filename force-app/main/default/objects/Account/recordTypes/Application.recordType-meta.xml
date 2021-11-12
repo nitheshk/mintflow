@@ -424,7 +424,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Flow__c</picklist>
+        <picklist>FlowState__c</picklist>
         <values>
             <fullName>Address-Verification</fullName>
             <default>false</default>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Flow__c</fullName>
+    <fullName>FlowState__c</fullName>
     <description>Page name where the flow is stopped.</description>
     <externalId>false</externalId>
     <inlineHelpText>Page name where the flow is stopped.</inlineHelpText>
-    <label>Flow</label>
+    <label>Flow State</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>
