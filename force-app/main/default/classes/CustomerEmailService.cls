@@ -67,6 +67,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void notifyFamilyMember(List<Applicant__c> applicants) {
     Applicant__c primaryApplicant;
+    List<Applicant__c> familyMembers = new List<Applicant__c>();
 
     for (Applicant__c applicant : applicants) {
       Set<String> applicantTypes = new Set<String>(
@@ -74,29 +75,26 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       );
       if (applicantTypes.contains('Primary')) {
         primaryApplicant = applicant;
+      } else if (applicantTypes.contains('Family Member')) {
+        familyMembers.add(applicant);
       }
     }
 
-    for (Applicant__c applicant : applicants) {
-      Set<String> applicantTypes = new Set<String>(
-        applicant.ApplicantType__c.split(';')
-      );
-      if (applicantTypes.contains('Family Member')) {
-        EmailNotificationBuilder.newInstance(
-            'NotificationToFamilyMember',
-            applicant.Id
-          )
-          .setToAddresses(applicant.Email__c)
-          .setCcAddresses(primaryApplicant.Email__c)
-          .setSubstitute(
-            new Map<String, String>{
-              '{primaryFirstName}' => primaryApplicant.FirstName__c,
-              '{primaryLastName}' => primaryApplicant.LastName__c,
-              '{productName}' => 'Membership Account',
-              '{applicationNumber}' => ApexRequest.getApplicationName()
-            }
-          );
-      }
+    for (Applicant__c applicant : familyMembers) {
+      EmailNotificationBuilder.newInstance(
+          'NotificationToFamilyMember',
+          applicant.Id
+        )
+        .setToAddresses(applicant.Email__c)
+        .setCcAddresses(primaryApplicant.Email__c)
+        .setSubstitute(
+          new Map<String, String>{
+            '{primaryFirstName}' => primaryApplicant.FirstName__c,
+            '{primaryLastName}' => primaryApplicant.LastName__c,
+            '{productName}' => 'Membership Account',
+            '{applicationNumber}' => ApexRequest.getApplicationName()
+          }
+        );
     }
 
     List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
