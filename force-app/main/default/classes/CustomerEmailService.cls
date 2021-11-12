@@ -107,4 +107,33 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       }
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align | 11-12-2021
+   * @param Applicant__c applicant
+   * @return virtual
+   **/
+  global virtual void resumeAppAfterKycPassed(Applicant__c applicant) {
+    String resumeUrl = 'resumeUrl';
+
+    EmailNotificationBuilder.newInstance('KycPassedResumeApp', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(
+        new Map<String, String>{
+          '{firstName}' => applicant.FirstName__c,
+          '{lastName}' => applicant.LastName__c,
+          '{url}' => resumeUrl
+        }
+      );
+    List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
+    if (!CollectionUtils.isListEmpty(result)) {
+      if (result[0].success) {
+        log?.debug('Email sent Successfully');
+      } else {
+        log?.debug('Failed to send Email ');
+        throw new customException('email not sent');
+      }
+    }
+  }
 }
