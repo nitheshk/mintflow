@@ -189,10 +189,10 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {firstName} {lastName},</h5>
+                      <h5>Hi {FirstName} {LastName},</h5>
                       <br />
                       We'd like to confirm that your application
-                      [{applicationId}] was submitted successfully. Currently
+                      [{ApplicationNumber}] was submitted successfully. Currently
                       your application is under review. We will notify about the
                       progress of your application.
                       <br />

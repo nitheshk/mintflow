@@ -189,10 +189,10 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {firstName} {lastName},</h5>
+                      <h5>Hi {FirstName} {LastName},</h5>
                       <br />
                       We'd like to confirm that your application
-                      [{applicationId}] was submitted successfully. we will
+                      [{ApplicationNumber}] was submitted successfully. we will
                       proceed once joint applicant(s) completes the submission
                       process.
                       <br />An email will be served to you as a confirmation,

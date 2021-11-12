@@ -165,4 +165,39 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       }
     }
   }
+
+  /* @description send review submit email to applicants
+   * @author Digital Align Team | 11-12-2021
+   * @param List<Applicant__c> applicants
+   * @param String eventName
+   **/
+  global virtual void reviewInformationSubmitted(
+    List<Applicant__c> applicants,
+    String notificationName
+  ) {
+    for (Applicant__c applicant : applicants) {
+      String link = '';
+
+      EmailNotificationBuilder.newInstance(notificationName, applicant.Id)
+        .setToAddresses(applicant.Email__c)
+        .setSubstitute(
+          new Map<String, String>{
+            '{FirstName}' => applicant.FirstName__c,
+            '{LastName}' => applicant.LastName__c,
+            '{ApplicationNumber}' => ApexRequest.getApplicationName(),
+            '{url}' => ''
+          }
+        );
+    }
+
+    List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
+    if (!CollectionUtils.isListEmpty(result)) {
+      if (result[0].success) {
+        log?.debug('Email sent Successfully');
+      } else {
+        log?.debug('Failed to send Email ');
+        throw new customException('email not sent');
+      }
+    }
+  }
 }
