@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DocumentType__c</fullName>
+    <description>Employment proof document type</description>
+    <externalId>false</externalId>
+    <label>Document Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Form I-9</fullName>
+                <default>false</default>
+                <label>Form I-9</label>
+            </value>
+            <value>
+                <fullName>Employment Authorization Document Card</fullName>
+                <default>false</default>
+                <label>Employment Authorization Document Card</label>
+            </value>
+            <value>
+                <fullName>Payslip</fullName>
+                <default>false</default>
+                <label>Payslip</label>
+            </value>
+            <value>
+                <fullName>W2</fullName>
+                <default>false</default>
+                <label>W2</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
