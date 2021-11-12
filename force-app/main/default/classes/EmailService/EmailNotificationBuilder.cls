@@ -290,6 +290,9 @@ global virtual with sharing class EmailNotificationBuilder {
     );
 
     for (String key : substitute.keySet()) {
+      if (String.isEmpty(substitute.get(key))) {
+        continue;
+      }
       emailMessageTemp.setSubject(
         emailMessageTemp.getSubject().replace(key, substitute.get(key))
       );

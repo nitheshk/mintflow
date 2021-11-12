@@ -24,3 +24,16 @@ request.setHeader(
 ApexResponse res = ApplicationController.deleteEntity(request);
 system.debug('Full Json : ' + res.data);
 logger.persist();
+
+//
+//REview information
+// calling read method
+ApexRequest request = new ApexRequest();
+request.applicationId = '0010p000010fl06AAA';
+request.applicationName = 'APP-2222';
+request.flowType = 'Primary';
+request.setHeader(
+  new Map<String, String>{ 'applicationId' => '0010p000010fl06AAA' }
+);
+request.setRequest();
+ReviewInformationService.getInstance().reviewSubmit('0010p000010fl06AAA');

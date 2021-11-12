@@ -176,7 +176,24 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     String notificationName
   ) {
     for (Applicant__c applicant : applicants) {
-      String link = '';
+      String link = SiteSetting__c.getInstance().OnlineSiteUrl__c;
+      String flowType = '';
+      if (
+        notificationName == 'PrimaryReviewInformationSubmitted' ||
+        notificationName == 'PrimaryReviewInformationWaiting'
+      ) {
+        flowType = 'Primary';
+      }
+      if (notificationName == 'JointStartApplication') {
+        flowType = 'Joint';
+      }
+
+      Map<String, String> urlMap = new Map<String, String>{
+        'applicantId' => applicant.Id,
+        'flowType' => flowType
+      };
+
+      link = link + '/mf=' + SecurityUtils.encryptUrl(JSON.serialize(urlMap));
 
       EmailNotificationBuilder.newInstance(notificationName, applicant.Id)
         .setToAddresses(applicant.Email__c)
@@ -185,7 +202,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
             '{FirstName}' => applicant.FirstName__c,
             '{LastName}' => applicant.LastName__c,
             '{ApplicationNumber}' => ApexRequest.getApplicationName(),
-            '{url}' => ''
+            '{url}' => link
           }
         );
     }

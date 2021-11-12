@@ -20,7 +20,7 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
       new Query(FinServ__FinancialAccount__c.SObjectType)
         .addFields()
         .whereIn('Id', financialAccountIds)
-        .toString(true)
+        .toString()
     );
   }
 }

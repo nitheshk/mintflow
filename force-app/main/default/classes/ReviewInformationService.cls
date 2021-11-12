@@ -43,11 +43,21 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     switch on application.FinServ__CustomerType__c {
       when 'Consumer' {
-        if (flowType == 'PrimaryFlow') {
+        if (flowType == 'Primary') {
           // send email to primary and joint
           primaryConsumerFlow(application);
-        } else if (flowType == 'JointFlow') {
+        } else if (flowType == 'Joint') {
           // send email to primary  on completion
+          primaryConsumerFlow(application);
+        }
+      }
+      when else {
+        if (flowType == 'Primary') {
+          // send email to primary and joint
+          primaryConsumerFlow(application);
+        } else if (flowType == 'Joint') {
+          // send email to primary  on completion
+          primaryConsumerFlow(application);
         }
       }
     }
@@ -62,6 +72,7 @@ global with sharing class ReviewInformationService extends AbstractService {
    * @return account
    **/
   global virtual account primaryConsumerFlow(account application) {
+    log?.info('Inside primaryConsumerFlow');
     Applicant__c primaryApplicant;
     List<dau01__Applicant__c> jointApplicants = new List<dau01__Applicant__c>();
 
@@ -78,11 +89,25 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     if (jointApplicants.isEmpty()) {
       //1. Send notification Primary applicant with resume link
+      CustomerEmailService.getInstance()
+        .reviewInformationSubmitted(
+          new List<dau01__Applicant__c>{ primaryApplicant },
+          'PrimaryReviewInformationSubmitted'
+        );
       //2. Push Primary applicant to RPA Queue
+      //#pending
     } else {
       //1. send Email to Primary applicant with resume link
+      CustomerEmailService.getInstance()
+        .reviewInformationSubmitted(
+          new List<dau01__Applicant__c>{ primaryApplicant },
+          'PrimaryReviewInformationWaiting'
+        );
       //2. Send Email to Joint with resume link
+      CustomerEmailService.getInstance()
+        .reviewInformationSubmitted(jointApplicants, 'JointStartApplication');
     }
+    log?.info('Completed primaryConsumerFlow');
     return application;
   }
 }
