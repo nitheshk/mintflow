@@ -380,19 +380,19 @@
     <picklistValues>
         <picklist>FinServ__Status__c</picklist>
         <values>
-            <fullName>Abandoned%2C</fullName>
+            <fullName>Abandoned</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Approved%2C</fullName>
+            <fullName>Approved</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Cancelled%2C</fullName>
+            <fullName>Cancelled</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Completed%2C</fullName>
+            <fullName>Completed</fullName>
             <default>false</default>
         </values>
         <values>
@@ -400,11 +400,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Pending Review%2C</fullName>
+            <fullName>Pending Review</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Submitted%2C</fullName>
+            <fullName>Submitted</fullName>
             <default>false</default>
         </values>
     </picklistValues>
