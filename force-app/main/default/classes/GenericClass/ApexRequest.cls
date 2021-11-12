@@ -12,6 +12,8 @@ global with sharing class ApexRequest {
   @AuraEnabled
   global String applicationName { get; set; }
   @AuraEnabled
+  global String applicantId { get; set; }
+  @AuraEnabled
   global String token { get; set; }
   @AuraEnabled
   global String event { get; set; }
@@ -48,6 +50,7 @@ global with sharing class ApexRequest {
     request.currentPage = this.currentPage;
     request.flowType = this.flowType;
     request.nextPage = this.nextPage;
+    request.applicantId = this.applicantId;
     if (String.isNotBlank(this.header)) {
       request.params = (Map<String, Object>) Json.deserializeUntyped(
         this.header
