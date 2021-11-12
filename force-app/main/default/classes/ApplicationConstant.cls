@@ -6,6 +6,5 @@
  * @description
  **/
 public with sharing class ApplicationConstant {
-    public Static Final String ACCOUNT_APPLICATION_RECORDTYPE='Application';
-
+  public static final String ACCOUNT_APPLICATION_RECORDTYPE = 'Application';
 }
