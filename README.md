@@ -9,10 +9,15 @@
 # Salesforce DX Project Setup
 
 Install the dependencies by run the below commands for first time for one system
+
 `npm install`
+
 `sfdx update`
+
 `npm install --global gulp-cli` ( Error : gulp : The term 'gulp' is not recognized )
+
 `npm install --global sfdx-cli`
+
 `npm install sfdx-cli`
 
 ## Shortcut
@@ -100,3 +105,6 @@ As an Administrator, you can set the execution policy by typing this into your P
     "restDeploy": "false"
   }
 ```
+
+4. Issue Java stepup
+   `https://developer.salesforce.com/tools/vscode/en/getting-started/java-setup`
