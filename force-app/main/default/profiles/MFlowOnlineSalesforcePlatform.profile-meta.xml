@@ -316,6 +316,11 @@
     </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.MembershipAccountNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
         <field>Applicant__c.Relationship__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -494,9 +499,9 @@
         <field>Account.FinServ__Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.Flow__c</field>
+        <field>Account.FlowState__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2084,6 +2089,36 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Education__c.FinServ__SourceSystemId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    	 <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.DocumentType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	 <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.EmploymentDuration__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.EmploymentType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	   <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.GrossMonthlySalary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.PrimaryContentDocumentID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
