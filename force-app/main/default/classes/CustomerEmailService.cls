@@ -226,9 +226,16 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @return virtual
    **/
   global virtual void sendEmail() {
-    List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
-    if (!CollectionUtils.isListEmpty(result)) {
-      if (result[0].success) {
+    List<Messaging.SendEmailResult> results = EmailNotificationBuilder.sendEmail();
+    Boolean isSuccess = true;
+    if (!CollectionUtils.isListEmpty(results)) {
+      for (Messaging.SendEmailResult result : results) {
+        if (!result.isSuccess()) {
+          log?.error(result.getErrors());
+          isSuccess = false;
+        }
+      }
+      if (isSuccess) {
         log?.debug('Email sent Successfully');
       } else {
         log?.debug('Failed to send Email ');
