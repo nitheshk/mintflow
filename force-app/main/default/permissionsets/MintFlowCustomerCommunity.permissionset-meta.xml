@@ -342,6 +342,11 @@
         <field>Account.ApplicationNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.SessionToken__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
        <fieldPermissions>
         <editable>true</editable>
         <field>Account.isMemberFlow__c</field>
@@ -1001,6 +1006,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.FlowState__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.SessionToken__c</field>
         <readable>true</readable>
     </fieldPermissions>
        <fieldPermissions>
