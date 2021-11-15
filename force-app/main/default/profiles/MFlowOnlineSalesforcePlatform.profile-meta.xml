@@ -274,6 +274,11 @@
         <field>Account.DeleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.isMemberFlow__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
             <fieldPermissions>
         <editable>true</editable>
         <field>Contact.DeleteRecord__c</field>
@@ -502,11 +507,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.FinServ__Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FlowState__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -342,6 +342,11 @@
         <field>Account.ApplicationNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
+       <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.isMemberFlow__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
         <fieldPermissions>
         <editable>true</editable>
         <field>Account.CreatedChannel__c</field>
@@ -362,11 +367,7 @@
         <field>Account.FinServ__Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FlowState__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.IPAddress__c</field>
@@ -3863,6 +3864,15 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>Survey__c</object>
         <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Applicant__c</object>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
         <apexPage>OnlineAutoLogin</apexPage>
