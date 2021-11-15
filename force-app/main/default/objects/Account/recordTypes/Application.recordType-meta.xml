@@ -164,19 +164,19 @@
     <picklistValues>
         <picklist>FinServ__CustomerType__c</picklist>
         <values>
-            <fullName>Borrower</fullName>
+            <fullName>Consumer</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Investor</fullName>
+            <fullName>Lending</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Relational</fullName>
+            <fullName>Mortgage</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Transaction</fullName>
+            <fullName>SMB</fullName>
             <default>false</default>
         </values>
     </picklistValues>

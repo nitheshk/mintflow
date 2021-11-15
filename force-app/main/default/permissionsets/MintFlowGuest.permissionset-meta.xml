@@ -474,6 +474,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.BillingCounty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.FinServ__FinancialInterests__c</field>
         <readable>true</readable>
     </fieldPermissions>
