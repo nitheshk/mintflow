@@ -8,7 +8,7 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class PageUtils {
   /**
-   * @description
+   * @description get apex page current parameter
    * @author Digital Align Team | 09-29-2021
    * @return Map<String, String>
    **/
@@ -21,13 +21,25 @@ global with sharing class PageUtils {
   }
 
   /**
-   * @description
+   * @description get apex page current parameter by passing key
    * @author Digital Align Team | 09-29-2021
    * @param String key
    * @return String
    **/
   global static String getCurrentPageParameters(String key) {
     return PageUtils.getCurrentPageParameters().get(key);
+  }
+
+  /**
+   * @description set apex page parameter
+   * @author Digital Align Team | 11-15-2021
+   * @param String key
+   * @param String vlaue
+   **/
+  global static void setCurrentPageParameter(String key, String value) {
+    if (ApexPages.currentPage() != null) {
+      ApexPages.currentPage().getParameters().put(key, value);
+    }
   }
 
   /**

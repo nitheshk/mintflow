@@ -9,6 +9,8 @@
 global virtual inherited sharing class ApplicationRepository extends DatabaseUtils {
   /**
    * @description Read Application with child record
+   * Applicants contains only ids
+   * Financial Account contains only Ids
    * @author Digital Align Team | 10-26-2021
    * @param Id applicationId
    * @return Account
@@ -37,6 +39,25 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
     return (Account) DatabaseUtils.getRecord(
       new Query(Account.SObjectType)
         .addFields()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
+
+  /**
+   * @description Read application with Applicants
+   * @author Digital Align Team | 11-15-2021
+   * @param Id applicationId
+   * @return Account
+   **/
+  global static Account readApplicationWithApplicants(Id applicationId) {
+    return (Account) DatabaseUtils.getRecord(
+      new Query(Account.SObjectType)
+        .addFields()
+        .queryChild('dau01__Applicants__r')
+        .addFields()
+        .orderBy('dau01__Order__c')
+        .run()
         .whereEq('Id', applicationId)
         .toString()
     );

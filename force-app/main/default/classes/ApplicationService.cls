@@ -77,7 +77,7 @@ global with sharing class ApplicationService extends AbstractService {
   global virtual Account createApplication(Map<String, Object> params) {
     // Create init Account Application
     Account application = new Account();
-    application.Name = 'Init';
+    application.Name = 'Mint';
     application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       Account.SObjectType,
       ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE

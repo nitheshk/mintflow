@@ -34,9 +34,10 @@ global with sharing class ReviewInformationService extends AbstractService {
    * @param Id applicationId
    * @return Account
    **/
-  global virtual Account reviewSubmit(Id applicationId) {
-    Account application = ApplicationService.getInstance()
-      .readApplicationWithChild(applicationId);
+  global virtual Account reviewInformationSubmit(Id applicationId) {
+    Account application = ApplicationRepository.readApplicationWithApplicants(
+      applicationId
+    );
 
     String flowType = ApexRequest.getRequest().flowType;
     String applicantId = ApexRequest.getRequest().applicantId;

@@ -47,7 +47,6 @@
       <script>
         pageContext = {
           id: "{!JSENCODE(id)}",
-          applicationName: "{!JSENCODE(applicationName)}",
           onlineSiteUrl: "{!JSENCODE(id)}",
           application: "{!JSENCODE(applicationJSON)}"
         };
