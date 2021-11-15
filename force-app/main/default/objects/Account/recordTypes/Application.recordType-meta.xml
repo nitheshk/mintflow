@@ -34,10 +34,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Digital</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Virtual</fullName>
             <default>false</default>
         </values>
@@ -271,10 +267,6 @@
         <picklist>FinServ__LastUsedChannel__c</picklist>
         <values>
             <fullName>Branch</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Digital</fullName>
             <default>false</default>
         </values>
         <values>

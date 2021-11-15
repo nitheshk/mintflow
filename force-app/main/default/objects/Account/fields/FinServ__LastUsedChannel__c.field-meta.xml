@@ -17,11 +17,6 @@
                 <label>Branch</label>
             </value>
             <value>
-                <fullName>Digital</fullName>
-                <default>true</default>
-                <label>Digital</label>
-            </value>
-            <value>
                 <fullName>Virtual</fullName>
                 <default>false</default>
                 <label>Virtual</label>
