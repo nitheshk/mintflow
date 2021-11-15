@@ -7,12 +7,33 @@
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
 global with sharing class ApplicationResponseMapper extends AbstractDTO {
-  global List<Applicant> Applicants;
+  global Account Appliction;
+
   global ApplicationResponseMapper() {
-    Applicants = new List<Applicant>();
+    Appliction = new Account();
   }
   //global List<FinancialAccount> FinancialAccounts;
-
+  global class Account {
+    global List<Applicant> Applicants;
+    global string ApplicationNumber;
+    global string County;
+    global String BranchCode;
+    global String BranchName;
+    global String CreatedChannel;
+    global String LastUsedChannel;
+    global String CustomerType;
+    global String FlowState;
+    global string IpAddress;
+    global Boolean IsMemberFlow;
+    global String Status;
+    global String SubStatus;
+    global String SubmittedBy;
+    global String SubmittedDate;
+    global String UserAccountType;
+    global Account() {
+      Applicants = new List<Applicant>();
+    }
+  }
   global class Applicant {
     global String ApplicantName;
     global String ApplicantNumber;
