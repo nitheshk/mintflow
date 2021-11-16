@@ -35,10 +35,3 @@ request.flowType = 'Primary';
 request.setRequest();
 ApexResponse res = ApplicationController.reviewInformationSubmit(request);
 system.debug('Full Json : ' + res.data);
-
-//
-String str = 'lTlmvHxNiXZSBgCGqoLKvMHkecjkbYYLBX%2BxVLxPDjxVwCnzz5grZCHrzQZ7RsVL2Gs5doVArxr2slAWardlak%2BqSlA4Meqpsucbj2%2BzPScUrbYFkTi33WxQI9MnotL8BT%2F1QeNcEDwKNc6lNjN4%2Fg%3D%3D';
-Map<String, Object> mp = (Map<String, Object>) JSON.deserializeUntyped(
-  SecurityUtils.decryptUrl(str)
-);
-system.debug(mp);
