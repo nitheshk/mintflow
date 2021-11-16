@@ -8,10 +8,10 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class OnlineAccountController extends AbstractController {
   public String id { get; set; }
-  public String applicationJSON { get; set; }
+  public String application { get; set; }
   public String params { get; set; }
 
-  public OnlineAccountController() {
+  global OnlineAccountController() {
     super(OnlineAccountController.class);
   }
 
@@ -21,49 +21,48 @@ global with sharing class OnlineAccountController extends AbstractController {
    **/
   global void initializeApplication() {
     try {
-      Map<String, Object> params;
-
+      Map<String, Object> params = PageUtils.getCurrentPageParameters();
       //virtual MintFlow
       String vmf = PageUtils.getCurrentPageParameters('vmf');
       log?.debug('vmf:' + vmf);
 
       if (String.isNotBlank(vmf)) {
         //decrypt the url
+        Map<String, Object> decryptedParams;
         try {
-          params = (Map<String, Object>) JSON.deserializeUntyped(
+          decryptedParams = (Map<String, Object>) JSON.deserializeUntyped(
             SecurityUtils.decryptUrl(vmf)
           );
         } catch (Exception ex) {
           throw new CustomException('The specified URL was corrupted');
         }
-
         //check link validity
-        Datetime dt = (Datetime) params.get('edt');
+        Datetime dt = (Datetime) decryptedParams.get('edt');
         if (dt < Datetime.now()) {
           throw new CustomException('The specified URL was Expired');
         }
 
-        String applicationId = (String) params.get('appId');
-        String applicantId = (String) params.get('aplId');
-        String applicantType = (String) params.get('aplType');
-
+        String applicationId = (String) decryptedParams.get('appId');
+        String applicantId = (String) decryptedParams.get('aplId');
+        String applicantType = (String) decryptedParams.get('aplType');
+        params.put('applicationId', applicationId);
+        params.put('applicantId', applicantId);
+        params.put('applicationId', applicantType);
         if (applicantType == 'py') {
-          applicantType = 'Primary';
-          //this.application = ApplicationService.getInstance()
-          //  .readApplicationWithChild(applicationId);
+          params.put('applicantType', 'Primary');
         } else if (applicantType == 'jt') {
-          applicantType = 'Joint';
+          params.put('applicantType', 'Joint');
         }
-
-        //this.id = this.application.Id;
-        //this.applicationName = this.application.ApplicationNumber__c;
+        this.id = applicationId;
+        this.params = Json.serialize(params);
       } else {
         Account application = ApplicationService.getInstance()
-          .createApplication(PageUtils.getCurrentPageParameters());
+          .createApplication(params);
         this.id = application.Id;
-        this.applicationJSON = Json.serialize(application);
-        //this.applicationName = this.application.ApplicationNumber__c;
-        //PageUtils.setCookie(new Cookie('id', null, this.id, -1, true));
+        params.put('applicationId', application.Id);
+        params.put('applicationId', 'Primary');
+        this.application = Json.serialize(application);
+        this.params = Json.serialize(params);
       }
     } catch (Exception ex) {
       log?.error(ex);

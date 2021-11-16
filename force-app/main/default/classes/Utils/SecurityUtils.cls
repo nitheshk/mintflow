@@ -98,17 +98,13 @@ global inherited sharing class SecurityUtils {
    * @return String
    **/
   global static String encryptUrl(String planData) {
-    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance(
-      'UrlEncryption'
-    );
-
+    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance('MintFlow');
     Blob encryptedData = Crypto.encrypt(
       keyMetaData.EncryptionType__c,
       Blob.valueOf(keyMetaData.PrimarySecretKey__c),
       Blob.valueOf(keyMetaData.PrimaryInitializationVector__c),
       Blob.valueOf(planData)
     );
-
     return EncodingUtil.urlEncode(
       EncodingUtil.base64Encode(encryptedData),
       'UTF-8'
@@ -122,38 +118,47 @@ global inherited sharing class SecurityUtils {
    * @return String
    **/
   global static String decryptUrl(String encryptedData) {
-    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance(
-      'UrlEncryption'
-    );
-
+    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance('MintFlow');
     Blob decryptedData = Crypto.decrypt(
       keyMetaData.EncryptionType__c,
       Blob.valueOf(keyMetaData.PrimarySecretKey__c),
       Blob.valueOf(keyMetaData.PrimaryInitializationVector__c),
       EncodingUtil.base64Decode(EncodingUtil.urlDecode(encryptedData, 'UTF-8'))
     );
-
     return decryptedData.toString();
   }
 
   /**
-   * @description method used to decrypt the url parameter
+   * @description Method used to encrypt the url parameter
    * @author Digital Align Team | 07-28-2021
-   * @param String encryptedData
+   * @param String planData
    * @return String
    **/
-  global static String decryptBase64Url(String encryptedData) {
-    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance(
-      'UrlEncryption'
+  global static String encryptBase64(String planData) {
+    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance('MintFlow');
+    Blob encryptedData = Crypto.encrypt(
+      keyMetaData.EncryptionType__c,
+      Blob.valueOf(keyMetaData.PrimarySecretKey__c),
+      Blob.valueOf(keyMetaData.PrimaryInitializationVector__c),
+      Blob.valueOf(planData)
     );
+    return EncodingUtil.base64Encode(encryptedData);
+  }
 
+  /**
+   * @description method used to decrypt base64 ecrypted data
+   * @author Digital Align Team | 07-28-2021
+   * @param String encryptedData, base64 encrypted data
+   * @return String
+   **/
+  global static String decryptBase64(String encryptedData) {
+    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance('MintFlow');
     Blob decryptedData = Crypto.decrypt(
       keyMetaData.EncryptionType__c,
       Blob.valueOf(keyMetaData.PrimarySecretKey__c),
       Blob.valueOf(keyMetaData.PrimaryInitializationVector__c),
       EncodingUtil.base64Decode(encryptedData)
     );
-
     return decryptedData.toString();
   }
 

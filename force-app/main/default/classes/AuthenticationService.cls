@@ -45,4 +45,34 @@ global with sharing class AuthenticationService extends AbstractService {
     }
     return null;
   }
+
+  /**
+   * @description create session token for application
+   * @author Digital Align Team | 11-15-2021
+   * @param Account application
+   * @return Account
+   **/
+  global static Account createSessionForApplication(Account application) {
+    Map<String, Object> mf = new Map<String, Object>{
+      'appId' => application.Id,
+      'edt' => Datetime.now().addMinutes(10)
+    };
+    application.SessionToken__c = SecurityUtils.encryptBase64(
+      Json.serialize(mf)
+    );
+    ApexRequest.getRequest().token = application.SessionToken__c;
+    return application;
+  }
+
+  /**
+   * @description extract data from token
+   * @author Digital Align Team | 11-15-2021
+   * @param String encryptedToken
+   * @return Map<String, Object>
+   **/
+  global static Map<String, Object> extractToken(String encryptedToken) {
+    return (Map<String, Object>) JSON.deserializeUntyped(
+      SecurityUtils.decryptBase64(encryptedToken)
+    );
+  }
 }

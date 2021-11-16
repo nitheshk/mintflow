@@ -73,6 +73,10 @@
                 <behavior>Edit</behavior>
                 <field>DeleteRecord__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SessionToken__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
