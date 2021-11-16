@@ -16,6 +16,7 @@ global with sharing class ApplicationResponseMapper {
   global class Account {
     global List<Applicant> Applicants;
     global string ApplicationId;
+    global Boolean IsCountyEligible;
     global string ApplicationNumber;
     global string County;
     global String BranchCode;
@@ -79,13 +80,10 @@ global with sharing class ApplicationResponseMapper {
   global class AssetsAndLiabilities {
     global String AssetsAndLiabilitieId;
     global Double Amount;
-    global String Applicant;
     global String AssetsAndLiabilitiesType;
-    global String Description;
     global Decimal Order;
     global String OwnerType;
     global String Ownership;
-    global string Source;
     global String Name;
   }
 
@@ -93,7 +91,6 @@ global with sharing class ApplicationResponseMapper {
     global String RevenueId;
     global String SubType;
     global String Type;
-    global String Applicant;
     global String Name;
     global Double Amount;
     global Date RevenueDate;

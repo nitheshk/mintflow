@@ -37,6 +37,7 @@ global with sharing class ApplicationDataAPI {
         mapperApplication.BranchCode = application.FinServ__BranchCode__c;
         mapperApplication.BranchName = application.FinServ__BranchName__c;
         mapperApplication.County = application.dau01__BillingCounty__c;
+        mapperApplication.IsCountyEligible = application.dau01__IsCountyEligible__c;
         mapperApplication.CreatedChannel = application.dau01__CreatedChannel__c;
         mapperApplication.CustomerType = application.FinServ__CustomerType__c;
         mapperApplication.FlowState = application.dau01__FlowState__c;
@@ -279,12 +280,10 @@ global with sharing class ApplicationDataAPI {
       mapperAssetsAndLiabilities.AssetsAndLiabilitieId = assetsAndLiabilities.Id;
       mapperAssetsAndLiabilities.Amount = assetsAndLiabilities.FinServ__Amount__c;
       mapperAssetsAndLiabilities.AssetsAndLiabilitiesType = assetsAndLiabilities.FinServ__AssetsAndLiabilitiesType__c;
-      mapperAssetsAndLiabilities.Description = assetsAndLiabilities.FinServ__Description__c;
       mapperAssetsAndLiabilities.Name = assetsAndLiabilities.Name;
       mapperAssetsAndLiabilities.Order = assetsAndLiabilities.dau01__Order__c;
       mapperAssetsAndLiabilities.Ownership = assetsAndLiabilities.FinServ__Ownership__c;
       mapperAssetsAndLiabilities.OwnerType = assetsAndLiabilities.FinServ__OwnerType__c;
-      mapperAssetsAndLiabilities.Source = assetsAndLiabilities.FinServ__AssetsAndLiabilitiesSource__c;
       mapperAssetsAndLiabilitiesList.add(mapperAssetsAndLiabilities);
     }
     return mapperAssetsAndLiabilitiesList;
