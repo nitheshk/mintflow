@@ -21,7 +21,7 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AddressType</field>
-            </layoutItems>             
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>MonthsLivedAtCurrentAddress__c</field>
@@ -37,6 +37,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsDefault</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Order__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -89,7 +93,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0w000001Ettp</masterLabel>
+        <masterLabel>00h6D000001m4sy</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
