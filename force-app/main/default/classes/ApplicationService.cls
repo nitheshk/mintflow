@@ -83,6 +83,15 @@ global with sharing class ApplicationService extends AbstractService {
       ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
     );
     application.FinServ__Status__c = 'Active';
+
+    if (params.get('channel') != null) {
+      application.CreatedChannel__c = (String) params.get('channel');
+      application.FinServ__LastUsedChannel__c = (String) params.get('channel');
+    } else {
+      application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
+      application.FinServ__LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
+    }
+
     application.Description = ApplicationServiceHelper.getInstance()
       .getIpAddress();
     ApplicationRepository.upsertRecord(application);
