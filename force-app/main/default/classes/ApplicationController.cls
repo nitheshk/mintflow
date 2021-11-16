@@ -135,32 +135,6 @@ global with sharing class ApplicationController extends AbstractController {
   }
 
   /**
-   * @description
-   * @author Digital Align Team | 09-29-2021
-   * @param Map<String String> params
-   * @return ApexResponse
-   **/
-  @AuraEnabled
-  @RemoteAction
-  global static ApexResponse resumeApplication(ApexRequest request) {
-    try {
-      validateRequest(request);
-      return ApexResponse.ok(
-        ApplicationService.getInstance()
-          .resumeApplication(ApexRequest.getParams())
-      );
-    } catch (CustomException ex) {
-      System.debug(ex.getMessage());
-      return ApexResponse.exception(ex);
-    } catch (Exception ex) {
-      System.debug(ex.getMessage());
-      return ApexResponse.fail(ex);
-    } finally {
-      Logger.persist();
-    }
-  }
-
-  /**
    * @description review information submit
    * Send email to primary and joint applicant for start application
    * @author Digital Align Team | 11-15-2021

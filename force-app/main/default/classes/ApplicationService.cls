@@ -140,7 +140,40 @@ global with sharing class ApplicationService extends AbstractService {
    * @param Map<String Object> params
    * @return Object
    **/
-  global Account resumeApplication(Map<String, Object> params) {
-    return null;
+  global virtual Map<String, Object> resumeApplication(
+    Map<String, Object> params
+  ) {
+    String vmf = PageUtils.getCurrentPageParameters('vmf');
+    Map<String, Object> decryptedParams = (Map<String, Object>) JSON.deserializeUntyped(
+      SecurityUtils.decryptBase64(vmf)
+    );
+    String applicationId = (String) decryptedParams.get('appId');
+    String applicantId = (String) decryptedParams.get('aplId');
+    String applicantType = (String) decryptedParams.get('aplType');
+    if (decryptedParams.get('ch') == 'vrl') {
+      params.put('channel', ApplicationConstant.CHANNEL_VIRTUAL);
+    }
+    if (decryptedParams.get('ch') == 'brh') {
+      params.put('channel', ApplicationConstant.CHANNEL_BRANCH);
+    }
+    params.put('applicationId', applicationId);
+    params.put('applicantId', applicantId);
+    if (applicantType == 'py') {
+      params.put('applicantType', 'Primary');
+    } else if (applicantType == 'jt') {
+      params.put('applicantType', 'Joint');
+    }
+    Applicant__c applicant = ApplicantRepository.readApplicantbyId(applicantId);
+    if (applicant == null) {
+      throw new CustomException('Applicant not found');
+    }
+    params.put(
+      'maskedEmail',
+      applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
+    );
+    params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
+
+    AuthenticationService.getInstance().generateOTP(applicantId);
+    return params;
   }
 }

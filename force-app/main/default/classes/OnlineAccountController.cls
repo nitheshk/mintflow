@@ -22,7 +22,7 @@ global with sharing class OnlineAccountController extends AbstractController {
   global void initializeApplication() {
     try {
       Map<String, Object> params = PageUtils.getCurrentPageParameters();
-      //virtual MintFlow
+      //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
       log?.debug('vmf:' + vmf);
 
@@ -31,50 +31,29 @@ global with sharing class OnlineAccountController extends AbstractController {
         Map<String, Object> decryptedParams;
         try {
           decryptedParams = (Map<String, Object>) JSON.deserializeUntyped(
-            SecurityUtils.decryptUrl(vmf)
+            SecurityUtils.decryptBase64(vmf)
           );
         } catch (Exception ex) {
           throw new CustomException('The specified URL was corrupted');
         }
         //check link validity
-        Datetime dt = (Datetime) decryptedParams.get('edt');
-        if (dt < Datetime.now()) {
+        Datetime edt = DateUtils.convertJsonStringToDateTime(
+          decryptedParams.get('edt')
+        );
+
+        if (edt == Datetime.now()) {
           throw new CustomException('The specified URL was Expired');
         }
-        //field mapping for UI
-        String applicationId = (String) decryptedParams.get('appId');
-        String applicantId = (String) decryptedParams.get('aplId');
-        String applicantType = (String) decryptedParams.get('aplType');
-        params.put('applicationId', applicationId);
-        params.put('applicantId', applicantId);
-        if (applicantType == 'py') {
-          params.put('applicantType', 'Primary');
-        } else if (applicantType == 'jt') {
-          params.put('applicantType', 'Joint');
-        }
-        this.id = applicationId;
+        //resume application mapping
+        this.id = (String) decryptedParams.get('appId');
+        ApplicationService.getInstance().resumeApplication(params);
         this.params = Json.serialize(params);
-
-        Applicant__c applicant = ApplicantRepository.readApplicantbyId(
-          applicantId
-        );
-        if (applicant == null) {
-          throw new CustomException('Applicant not found');
-        }
-        params.put(
-          'maskedEmail',
-          applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
-        );
-        params.put(
-          'maskedPhone',
-          applicant.Phone__c.replaceAll('.(?=.{4})', '*')
-        );
       } else {
         Account application = ApplicationService.getInstance()
           .createApplication(params);
         this.id = application.Id;
         params.put('applicationId', application.Id);
-        params.put('applicationId', 'Primary');
+        params.put('applicantType', 'Primary');
         this.application = Json.serialize(application);
         this.params = Json.serialize(params);
       }

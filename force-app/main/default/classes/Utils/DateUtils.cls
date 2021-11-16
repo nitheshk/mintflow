@@ -41,7 +41,7 @@ global with sharing class DateUtils {
   }
 
   /**
-   * @description
+   * @description convert datetime to Json String format
    * @author Digital Align Team | 07-13-2021
    * @param Datetime dt
    * @return String
@@ -78,10 +78,29 @@ global with sharing class DateUtils {
    * @param String stringDate
    * @return Date
    **/
-  global static Date formatStringToDate1(String stringDate) {
+  global static Date convertStringToDate1(String stringDate) {
     if (String.isNotBlank(stringDate)) {
       stringDate = stringDate.replace('/', '-');
       return date.valueOf(stringDate);
+    }
+    return null;
+  }
+
+  /**
+   * @description Convert Json String to Date time format
+   * Format Style 2:  2021-11-16T15:07:38.497Z
+   * @author Digital Align Team | 11-16-2021
+   * @param Object dateObject
+   * @return Datetime
+   **/
+  global static Datetime convertJsonStringToDateTime(Object dateObject) {
+    if (dateObject != null) {
+      return (Datetime) JSON.deserialize(
+        '"' +
+        dateObject +
+        '"',
+        Datetime.class
+      );
     }
     return null;
   }

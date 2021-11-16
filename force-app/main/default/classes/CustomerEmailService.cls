@@ -143,28 +143,25 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     String notificationName
   ) {
     for (Applicant__c applicant : applicants) {
-      String link = SiteSetting__c.getInstance().OnlineSiteUrl__c;
-      String applicantType = '';
+      Map<String, Object> urlMap = new Map<String, Object>();
       if (
         notificationName == 'PrimaryReviewInformationSubmitted' ||
         notificationName == 'PrimaryReviewInformationWaiting'
       ) {
-        applicantType = 'py';
+        urlMap.put('aplType', 'py');
       }
       if (notificationName == 'JointStartApplication') {
-        applicantType = 'jt';
+        urlMap.put('aplType', 'jt');
       }
 
-      Map<String, Object> urlMap = new Map<String, Object>{
-        'appId' => ApexRequest.getApplicationId(),
-        'aplId' => applicant.Id,
-        'aplType' => applicantType,
-        'edt' => Datetime.now()
-      };
+      urlMap.put('appId', ApexRequest.getApplicationId());
+      urlMap.put('aplId', applicant.Id);
+      urlMap.put('edt', Datetime.now().addMinutes(10));
+      urlMap.put('ch', 'vrl');
 
-      link =
-        link +
-        '/OnlineAccount?mf=' +
+      String link =
+        SiteSetting__c.getInstance().OnlineSiteUrl__c +
+        '/OnlineAccount?vmf=' +
         SecurityUtils.encryptUrl(JSON.serialize(urlMap));
 
       EmailNotificationBuilder.newInstance(notificationName, applicant.Id)

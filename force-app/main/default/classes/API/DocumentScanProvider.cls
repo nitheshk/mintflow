@@ -165,7 +165,7 @@ global with sharing class DocumentScanProvider extends AbstractService {
 
     applicant.FirstName__c = returnDTO.data.firstName;
     applicant.LastName__c = returnDTO.data.lastName;
-    applicant.Birthdate__c = DateUtils.formatStringToDate1(returnDTO.data.dob);
+    applicant.Birthdate__c = DateUtils.convertStringToDate1(returnDTO.data.dob);
     identity.Height__c = returnDTO.data.height;
     identity.IssuedRegion__c = returnDTO.data.issuerRegion;
     identity.Weight__c = returnDTO.data.weight;
@@ -174,10 +174,10 @@ global with sharing class DocumentScanProvider extends AbstractService {
     identity.FinServ__DocumentNumber__c = returnDTO.data.documentNumber;
     identity.FinServ__IssuingCountry__c = returnDTO.data.issuerCountry;
     identity.Nationality__c = returnDTO.data.nationality;
-    identity.FinServ__ExpirationDate__c = DateUtils.formatStringToDate1(
+    identity.FinServ__ExpirationDate__c = DateUtils.convertStringToDate1(
       returnDTO.data.expiry
     );
-    identity.FinServ__IssueDate__c = DateUtils.formatStringToDate1(
+    identity.FinServ__IssueDate__c = DateUtils.convertStringToDate1(
       returnDTO.data.issued
     );
     idAddress.Street = returnDTO.data.address1 + ' ' + returnDTO.data.address2;
