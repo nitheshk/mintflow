@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>SubmittedBy__c</fullName>
-    <description>Customer name who initiated the application</description>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Submitted by user name</description>
     <externalId>false</externalId>
     <label>Submitted By</label>
-    <length>40</length>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Accounts</relationshipName>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>Lookup</type>
 </CustomField>
