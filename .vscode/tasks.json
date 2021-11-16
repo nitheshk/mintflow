@@ -137,7 +137,7 @@
       "problemMatcher": []
     },
     {
-      "label": "UI 3: Build Static Resource for DoTrct",
+      "label": "UI 3: Build Static Resource for MintFlow",
       "type": "shell",
       "command": "gulp",
       "args": ["buildUI_MintFlow"],
@@ -161,7 +161,7 @@
       "problemMatcher": []
     },
     {
-      "label": "UI 2: Git Pull DoTracker-UI Sub-Module",
+      "label": "UI 2: Git Pull MintGlow-UI Sub-Module",
       "type": "shell",
       "command": "git",
       "args": ["submodule", "foreach", "git", "pull", "origin", "develop"],

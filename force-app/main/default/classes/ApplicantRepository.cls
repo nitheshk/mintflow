@@ -88,6 +88,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
     return (Applicant__c) DatabaseUtils.getRecord(
       new Query(Applicant__c.SObjectType)
         .addFields()
+        .addFields('RecordType.Name')
         .whereEq('Id', applicantId)
         .toString()
     );

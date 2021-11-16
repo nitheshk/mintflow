@@ -26,3 +26,24 @@ Request.data = js;
 request.applicationId = '0010p000010fXFhAAM';
 ApexResponse res = ApplicantController.saveApplicant(request);
 system.debug('Full Json : ' + res.data);
+
+
+// generateOTP
+ApexRequest request = new ApexRequest();
+request.setHeader(
+  new Map<String, String>{ 'applicantId' => 'a0b9D000002h0JcQAI' }
+);
+ApexResponse res = ApplicantController.generateOTP(request);
+system.debug('Full Json : ' + res.data);
+
+// validateOTP
+ApexRequest request = new ApexRequest();
+request.setHeader(
+  new Map<String, String>{
+    'applicantId' => 'a0b0p0000026aUsAAI',
+    'sms' => '8566',
+    'email' => '8031'
+  }
+);
+ApexResponse res = ApplicantController.validateOTP(request);
+system.debug('Full Json : ' + res.data);

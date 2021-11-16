@@ -152,7 +152,6 @@ global with sharing class ApplicantController extends AbstractController {
       log?.fine('Inside validateOTP');
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.getParams());
-
       return ApexResponse.ok(
         AuthenticationService.getInstance().validateOTP(ApexRequest.getParams())
       );

@@ -156,7 +156,14 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
       urlMap.put('appId', ApexRequest.getApplicationId());
       urlMap.put('aplId', applicant.Id);
-      urlMap.put('edt', Datetime.now().addMinutes(10));
+      urlMap.put(
+        'edt',
+        Datetime.now()
+          .addHours(
+            (Integer) ApplicationConfiguration__c.getInstance()
+              .EmailLinkExpirationTime__c
+          )
+      );
       urlMap.put('ch', 'vrl');
 
       String link =

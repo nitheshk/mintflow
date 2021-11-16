@@ -8,7 +8,8 @@
       "dau01__OTPMaxAllowedAttempts__c": 5.0,
       "dau01__OTPExpirationTime__c": 2.0,
       "dau01__AllowedOtpMode__c": "SMS;EMAIL",
-      "dau01__SentiLink__c": true
+      "dau01__SentiLink__c": true,
+      "dau01__EmailLinkExpirationTime__c": 4
     }
   ]
 }

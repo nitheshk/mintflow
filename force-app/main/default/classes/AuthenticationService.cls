@@ -65,6 +65,22 @@ global with sharing class AuthenticationService extends AbstractService {
   }
 
   /**
+   * @description create a session for applicant
+   * @author Digital Align Team | 11-16-2021
+   * @param Applicant__c applicant
+   * @return Applicant__c
+   **/
+  global static Applicant__c createSessionForApplicant(Applicant__c applicant) {
+    Map<String, Object> mf = new Map<String, Object>{
+      'aplId' => applicant.Id,
+      'edt' => Datetime.now().addMinutes(10)
+    };
+    applicant.SessionToken__c = SecurityUtils.encryptBase64(Json.serialize(mf));
+    ApexRequest.getRequest().token = applicant.SessionToken__c;
+    return applicant;
+  }
+
+  /**
    * @description extract data from token
    * @author Digital Align Team | 11-15-2021
    * @param String encryptedToken
@@ -175,6 +191,14 @@ global with sharing class AuthenticationService extends AbstractService {
 
       applicant.SmsOtp__c = applicant.EmailOtp__c = '';
       applicant.IsPhoneNumberVerified__c = true;
+
+      //create a session for joint applicant
+      if (
+        applicant.RecordType.Name !=
+        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      ) {
+        createSessionForApplicant(applicant);
+      }
       ApplicantRepository.updateRecord(applicant);
       return applicant;
     } catch (customException ex) {
