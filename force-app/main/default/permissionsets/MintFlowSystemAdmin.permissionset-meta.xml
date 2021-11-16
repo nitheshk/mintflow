@@ -337,6 +337,11 @@
         <field>Account.CreatedChannel__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.FlowState__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.SessionToken__c</field>
@@ -1142,6 +1147,11 @@
         <field>Applicant__c.IsEmailVerified__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.IsCountyEligible__c</field>
+        <readable>true</readable>
+    </fieldPermissions> 
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsPhoneNumberVerified__c</field>

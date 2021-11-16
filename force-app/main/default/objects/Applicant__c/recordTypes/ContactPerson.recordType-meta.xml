@@ -33,6 +33,10 @@
             <fullName>AutoVerified</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Manual</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>FraudStatus__c</picklist>
