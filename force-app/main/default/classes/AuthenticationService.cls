@@ -55,7 +55,11 @@ global with sharing class AuthenticationService extends AbstractService {
   global static Account createSessionForApplication(Account application) {
     Map<String, Object> mf = new Map<String, Object>{
       'appId' => application.Id,
-      'edt' => Datetime.now().addMinutes(10)
+      'edt' => Datetime.now()
+        .addMinutes(
+          (Integer) ApplicationConfiguration__c.getOrgDefaults()
+            .SesssionExpirationTime__c
+        )
     };
     application.SessionToken__c = SecurityUtils.encryptBase64(
       Json.serialize(mf)
@@ -73,7 +77,11 @@ global with sharing class AuthenticationService extends AbstractService {
   global static Applicant__c createSessionForApplicant(Applicant__c applicant) {
     Map<String, Object> mf = new Map<String, Object>{
       'aplId' => applicant.Id,
-      'edt' => Datetime.now().addMinutes(10)
+      'edt' => Datetime.now()
+        .addMinutes(
+          (Integer) ApplicationConfiguration__c.getOrgDefaults()
+            .SesssionExpirationTime__c
+        )
     };
     applicant.SessionToken__c = SecurityUtils.encryptBase64(Json.serialize(mf));
     ApexRequest.getRequest().token = applicant.SessionToken__c;
