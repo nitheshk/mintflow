@@ -31,15 +31,31 @@ global with sharing class ApplicationDataAPI {
         .readApplicationWithChild(applicationId);
       log?.debug('Full Application Json : ' + json.serialize(application));
       if (application != null) {
+        ApplicationResponseMapper.Account mapperApplication = new ApplicationResponseMapper.Account();
+        mapperApplication.ApplicationNumber = application.dau01__ApplicationNumber__c;
+        mapperApplication.BranchCode = application.FinServ__BranchCode__c;
+        mapperApplication.BranchName = application.FinServ__BranchName__c;
+        mapperApplication.County = application.dau01__BillingCounty__c;
+        mapperApplication.CreatedChannel = application.dau01__CreatedChannel__c;
+        mapperApplication.CustomerType = application.FinServ__CustomerType__c;
+        mapperApplication.FlowState = application.dau01__FlowState__c;
+        mapperApplication.IpAddress = application.dau01__IPAddress__c;
+        mapperApplication.IsMemberFlow = application.dau01__isMemberFlow__c;
+        mapperApplication.LastUsedChannel = application.FinServ__LastUsedChannel__c;
+        mapperApplication.Status = application.FinServ__Status__c;
+        mapperApplication.SubmittedBy = application.dau01__SubmittedBy__c;
+        mapperApplication.SubmittedDate = application.dau01__SubmittedDate__c;
+        mapperApplication.SubStatus = application.dau01__SubStatus__c;
+        mapperApplication.UserAccountType = application.dau01__UserAccountType__c;
+
         if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
-          for (applicant__c applicant : application.Applicants__r) {
-            ApplicationResponseMapper.Applicant mapperApplicant = new ApplicationResponseMapper.Applicant();
-            mapperApplicant = mapApplicant(mapperApplicant, applicant);
-            mapper.Applicants.add(mapperApplicant);
-          }
+          mapperApplication.Applicants.addAll(
+            mapApplicant(application.Applicants__r)
+          );
         } else {
           throw new CustomException('Application has no applicants');
         }
+        mapper.Appliction = mapperApplication;
       } else {
         throw new CustomException('Application not found');
       }
@@ -49,83 +65,91 @@ global with sharing class ApplicationDataAPI {
   }
   /**
    * @description
-   * @author Digital Align | 11-10-2021
-   * @param ApplicationResponseMapper.Applicant mapperApplicant
-   * @param applicant__c applicant
-   * @return virtual
+   * @author Digital Align | 11-16-2021
+   * @param List<applicant__c> applicantList
+   * @return list<ApplicationResponseMapper.Applicant>
    **/
-  global static ApplicationResponseMapper.Applicant mapApplicant(
-    ApplicationResponseMapper.Applicant mapperApplicant,
-    applicant__c applicant
+  global static list<ApplicationResponseMapper.Applicant> mapApplicant(
+    List<applicant__c> applicantList
   ) {
-    //Map Application Data
-    mapperApplicant.Application = applicant.dau01__Application__c;
-    mapperApplicant.FirstName = applicant.dau01__FirstName__c;
-    mapperApplicant.MiddleName = applicant.dau01__MiddleName__c;
-    mapperApplicant.LastName = applicant.dau01__LastName__c;
-    mapperApplicant.IsEmailVerified = applicant.dau01__IsEmailVerified__c;
-    mapperApplicant.IsExistingCustomer = applicant.dau01__IsExistingCustomer__c;
-    mapperApplicant.IsPhoneNumberVerified = applicant.dau01__IsPhoneNumberVerified__c;
-    mapperApplicant.ApplicantName = applicant.Name;
-    mapperApplicant.DeleteRecord = applicant.dau01__DeleteRecord__c;
-    mapperApplicant.ApplicantNumber = applicant.dau01__ApplicantNumber__c;
-    mapperApplicant.ApplicantType = applicant.dau01__ApplicantType__c;
-    mapperApplicant.Birthdate = applicant.dau01__Birthdate__c;
-    mapperApplicant.CreditScore = applicant.dau01__CreditScore__c;
-    mapperApplicant.CustomerNumber = applicant.dau01__CustomerNumber__c;
-    mapperApplicant.Email = applicant.dau01__Email__c;
-    mapperApplicant.EmploymentStatus = applicant.dau01__EmploymentStatus__c;
-    mapperApplicant.FraudStatus = applicant.dau01__FraudStatus__c;
-    mapperApplicant.IdentityVerificationStatus = applicant.dau01__IdentityVerificationStatus__c;
-    mapperApplicant.IncomeVerificationStatus = applicant.dau01__IncomeVerificationStatus__c;
-    mapperApplicant.KYCStatus = applicant.dau01__KYCStatus__c;
-    mapperApplicant.Order = applicant.dau01__Order__c;
-    mapperApplicant.Phone = applicant.dau01__Phone__c;
-    mapperApplicant.SentiLinkFraudScore = applicant.dau01__SentiLinkFraudScore__c;
-    mapperApplicant.SentiLinkRemarks = applicant.dau01__SentiLinkRemarks__c;
-    mapperApplicant.SentiLinkStatus = applicant.dau01__SentiLinkStatus__c;
-    mapperApplicant.SSN = applicant.dau01__SSN__c;
+    list<ApplicationResponseMapper.Applicant> mapperApplicantList = new List<ApplicationResponseMapper.Applicant>();
+    for (applicant__c applicant : applicantList) {
+      ApplicationResponseMapper.Applicant mapperApplicant = new ApplicationResponseMapper.Applicant();
+      mapperApplicant.Application = applicant.dau01__Application__c;
+      mapperApplicant.FirstName = applicant.dau01__FirstName__c;
+      mapperApplicant.MiddleName = applicant.dau01__MiddleName__c;
+      mapperApplicant.LastName = applicant.dau01__LastName__c;
+      mapperApplicant.IsEmailVerified = applicant.dau01__IsEmailVerified__c;
+      mapperApplicant.IsExistingCustomer = applicant.dau01__IsExistingCustomer__c;
+      mapperApplicant.IsPhoneNumberVerified = applicant.dau01__IsPhoneNumberVerified__c;
+      mapperApplicant.ApplicantName = applicant.Name;
+      mapperApplicant.DeleteRecord = applicant.dau01__DeleteRecord__c;
+      mapperApplicant.ApplicantNumber = applicant.dau01__ApplicantNumber__c;
+      mapperApplicant.ApplicantType = applicant.dau01__ApplicantType__c;
+      mapperApplicant.Birthdate = applicant.dau01__Birthdate__c;
+      mapperApplicant.CreditScore = applicant.dau01__CreditScore__c;
+      mapperApplicant.CustomerNumber = applicant.dau01__CustomerNumber__c;
+      mapperApplicant.Email = applicant.dau01__Email__c;
+      mapperApplicant.EmploymentStatus = applicant.dau01__EmploymentStatus__c;
+      mapperApplicant.FraudStatus = applicant.dau01__FraudStatus__c;
+      mapperApplicant.IdentityVerificationStatus = applicant.dau01__IdentityVerificationStatus__c;
+      mapperApplicant.IncomeVerificationStatus = applicant.dau01__IncomeVerificationStatus__c;
+      mapperApplicant.KYCStatus = applicant.dau01__KYCStatus__c;
+      mapperApplicant.Order = applicant.dau01__Order__c;
+      mapperApplicant.Phone = applicant.dau01__Phone__c;
+      mapperApplicant.SentiLinkFraudScore = applicant.dau01__SentiLinkFraudScore__c;
+      mapperApplicant.SentiLinkRemarks = applicant.dau01__SentiLinkRemarks__c;
+      mapperApplicant.SentiLinkStatus = applicant.dau01__SentiLinkStatus__c;
+      mapperApplicant.SSN = applicant.dau01__SSN__c;
 
-    //Map employment data
-    if (!CollectionUtils.isListEmpty(applicant.dau01__Employments__r)) {
-      mapperApplicant.Employments.addAll(
-        mapEmployment(applicant.dau01__Employments__r)
-      );
-    }
+      //Map employment data
+      if (!CollectionUtils.isListEmpty(applicant.dau01__Employments__r)) {
+        mapperApplicant.Employments.addAll(
+          mapEmployment(applicant.dau01__Employments__r)
+        );
+      }
 
-    //Map Identity Data
-    if (
-      !CollectionUtils.isListEmpty(applicant.dau01__IdentificationDocuments__r)
-    ) {
-      mapperApplicant.IdentificationDocuments.addAll(
-        mapIdentity(applicant.dau01__IdentificationDocuments__r)
-      );
-    }
+      //Map Identity Data
+      if (
+        !CollectionUtils.isListEmpty(
+          applicant.dau01__IdentificationDocuments__r
+        )
+      ) {
+        mapperApplicant.IdentificationDocuments.addAll(
+          mapIdentity(applicant.dau01__IdentificationDocuments__r)
+        );
+      }
 
-    //Map Revenue Data
-    if (!CollectionUtils.isListEmpty(applicant.dau01__Revenues__r)) {
-      mapperApplicant.Revenues.addAll(mapRevenue(applicant.dau01__Revenues__r));
-    }
+      //Map Revenue Data
+      if (!CollectionUtils.isListEmpty(applicant.dau01__Revenues__r)) {
+        mapperApplicant.Revenues.addAll(
+          mapRevenue(applicant.dau01__Revenues__r)
+        );
+      }
 
-    //Map ContatcPointAddress Data
-    if (
-      !CollectionUtils.isListEmpty(applicant.dau01__ContactPointAddresses__r)
-    ) {
-      mapperApplicant.ContactPointAddresses.addAll(
-        mapContactAddress(applicant.dau01__ContactPointAddresses__r)
-      );
-    }
+      //Map ContatcPointAddress Data
+      if (
+        !CollectionUtils.isListEmpty(applicant.dau01__ContactPointAddresses__r)
+      ) {
+        mapperApplicant.ContactPointAddresses.addAll(
+          mapContactAddress(applicant.dau01__ContactPointAddresses__r)
+        );
+      }
 
-    //Map Assest and Liabilities Data
-    if (
-      !CollectionUtils.isListEmpty(applicant.dau01__AssetsAndLiabilities__r)
-    ) {
-      mapperApplicant.AssetsAndLiabilities.addAll(
-        mapContactAddress(applicant.dau01__AssetsAndLiabilities__r)
-      );
+      //Map Assest and Liabilities Data
+      if (
+        !CollectionUtils.isListEmpty(applicant.dau01__AssetsAndLiabilities__r)
+      ) {
+        mapperApplicant.AssetsAndLiabilities.addAll(
+          mapContactAddress(applicant.dau01__AssetsAndLiabilities__r)
+        );
+      }
+
+      mapperApplicantList.add(mapperApplicant);
     }
-    return mapperApplicant;
+    return mapperApplicantList;
   }
+
   /**
    * @description
    * @author Digital Align | 11-10-2021

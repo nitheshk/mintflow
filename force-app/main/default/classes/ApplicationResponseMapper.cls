@@ -6,7 +6,7 @@
  * @description Application Response Mapper class to sum up application data
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
-global with sharing class ApplicationResponseMapper extends AbstractDTO {
+global with sharing class ApplicationResponseMapper {
   global Account Appliction;
 
   global ApplicationResponseMapper() {
@@ -28,7 +28,7 @@ global with sharing class ApplicationResponseMapper extends AbstractDTO {
     global String Status;
     global String SubStatus;
     global String SubmittedBy;
-    global String SubmittedDate;
+    global Date SubmittedDate;
     global String UserAccountType;
     global Account() {
       Applicants = new List<Applicant>();
