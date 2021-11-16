@@ -26,19 +26,4 @@ public with sharing class IdentityRepository extends DatabaseUtils {
         .toString()
     );
   }
-
-  /**
-   * @description read all applicant fields by ID without child objects
-   * @author Digital Align | 11-01-2021
-   * @param Id applicantId
-   * @return Applicant__c
-   **/
-  public static Applicant__c fetchApplicantById(Id applicantId) {
-    return (Applicant__c) getRecord(
-      Query.newInstance(Applicant__c.SObjectType)
-        .addFields()
-        .whereEq('Id', applicantId)
-        .toString(true)
-    );
-  }
 }

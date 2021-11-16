@@ -84,7 +84,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
    * @param Id applicantId
    * @return Applicant__c
    **/
-  public static Applicant__c readApplicantbyId(Id applicantId) {
+  public static Applicant__c readApplicantById(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
       new Query(Applicant__c.SObjectType)
         .addFields()
