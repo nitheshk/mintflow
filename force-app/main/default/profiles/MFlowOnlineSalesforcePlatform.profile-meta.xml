@@ -2118,7 +2118,7 @@
     </fieldPermissions>
     	 <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__Employment__c.Type__c</field>
+        <field>FinServ__Employment__c.EmploymentVerificationType__c</field>
         <readable>true</readable>
     </fieldPermissions>
      <fieldPermissions>

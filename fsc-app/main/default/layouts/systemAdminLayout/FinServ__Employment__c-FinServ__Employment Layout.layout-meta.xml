@@ -35,7 +35,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Type__c</field>
+                <field>EmploymentVerificationType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
