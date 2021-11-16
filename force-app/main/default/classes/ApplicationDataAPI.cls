@@ -32,6 +32,7 @@ global with sharing class ApplicationDataAPI {
       log?.debug('Full Application Json : ' + json.serialize(application));
       if (application != null) {
         ApplicationResponseMapper.Account mapperApplication = new ApplicationResponseMapper.Account();
+        mapperApplication.ApplicationId = application.Id;
         mapperApplication.ApplicationNumber = application.dau01__ApplicationNumber__c;
         mapperApplication.BranchCode = application.FinServ__BranchCode__c;
         mapperApplication.BranchName = application.FinServ__BranchName__c;
@@ -55,7 +56,7 @@ global with sharing class ApplicationDataAPI {
         } else {
           throw new CustomException('Application has no applicants');
         }
-        mapper.Appliction = mapperApplication;
+        mapper.Application = mapperApplication;
       } else {
         throw new CustomException('Application not found');
       }
@@ -75,6 +76,7 @@ global with sharing class ApplicationDataAPI {
     list<ApplicationResponseMapper.Applicant> mapperApplicantList = new List<ApplicationResponseMapper.Applicant>();
     for (applicant__c applicant : applicantList) {
       ApplicationResponseMapper.Applicant mapperApplicant = new ApplicationResponseMapper.Applicant();
+      mapperApplicant.ApplicantId = applicant.Id;
       mapperApplicant.Application = applicant.dau01__Application__c;
       mapperApplicant.FirstName = applicant.dau01__FirstName__c;
       mapperApplicant.MiddleName = applicant.dau01__MiddleName__c;
@@ -83,7 +85,6 @@ global with sharing class ApplicationDataAPI {
       mapperApplicant.IsExistingCustomer = applicant.dau01__IsExistingCustomer__c;
       mapperApplicant.IsPhoneNumberVerified = applicant.dau01__IsPhoneNumberVerified__c;
       mapperApplicant.ApplicantName = applicant.Name;
-      mapperApplicant.DeleteRecord = applicant.dau01__DeleteRecord__c;
       mapperApplicant.ApplicantNumber = applicant.dau01__ApplicantNumber__c;
       mapperApplicant.ApplicantType = applicant.dau01__ApplicantType__c;
       mapperApplicant.Birthdate = applicant.dau01__Birthdate__c;
@@ -162,20 +163,19 @@ global with sharing class ApplicationDataAPI {
     list<ApplicationResponseMapper.Employment> mapperEmploymentList = new List<ApplicationResponseMapper.Employment>();
     for (FinServ__Employment__c employment : employmentList) {
       ApplicationResponseMapper.Employment mapperEmployment = new ApplicationResponseMapper.Employment();
+      mapperEmployment.EmploymentId = employment.Id;
+      mapperEmployment.EmploymentType = employment.dau01__EmploymentType__c;
+      mapperEmployment.EmployerName = employment.Name;
       mapperEmployment.EmploymentStatus = employment.FinServ__EmploymentStatus__c;
-      mapperEmployment.AnnualIncome = employment.FinServ__AnnualIncome__c;
-      mapperEmployment.Applicant = employment.dau01__Applicant__c;
-      mapperEmployment.DeleteRecord = employment.dau01__DeleteRecord__c;
-      mapperEmployment.EmployerPhoneNumber = employment.FinServ__EmployerPhoneNumber__c;
+      mapperEmployment.GrossMonthlySalary = employment.dau01__GrossMonthlySalary__c;
       mapperEmployment.EmploymentStatus = employment.FinServ__EmploymentStatus__c;
-      mapperEmployment.EndDate = employment.FinServ__EndDate__c;
-      mapperEmployment.LengthOfEmployment = employment.FinServ__LengthOfEmployment__c;
       mapperEmployment.Name = employment.Name;
-      mapperEmployment.Occupation = employment.FinServ__Occupation__c;
       mapperEmployment.Order = employment.dau01__Order__c;
       mapperEmployment.PayGrade = employment.dau01__PayGrade__c;
       mapperEmployment.Position = employment.FinServ__Position__c;
-      mapperEmployment.StartDate = employment.FinServ__StartDate__c;
+      mapperEmployment.EmploymentDuration = employment.dau01__EmploymentDuration__c;
+      mapperEmployment.DocumentType = employment.dau01__DocumentType__c;
+      mapperEmployment.EmploymentVerificationType = employment.dau01__EmploymentVerificationType__c;
       mapperEmploymentList.add(mapperEmployment);
     }
     return mapperEmploymentList;
@@ -192,10 +192,9 @@ global with sharing class ApplicationDataAPI {
     list<ApplicationResponseMapper.IdentificationDocument> mapperIdentityList = new List<ApplicationResponseMapper.IdentificationDocument>();
     for (FinServ__IdentificationDocument__c identity : identityList) {
       ApplicationResponseMapper.IdentificationDocument mapperIdentity = new ApplicationResponseMapper.IdentificationDocument();
+      mapperIdentity.AddressContentDocumentId = identity.Id;
       mapperIdentity.IssuingCountry = identity.FinServ__IssuingCountry__c;
       mapperIdentity.AddressContentDocumentId = identity.dau01__AddressContentDocumentId__c;
-      mapperIdentity.Applicant = identity.dau01__Applicant__c;
-      mapperIdentity.DeleteRecord = identity.dau01__DeleteRecord__c;
       mapperIdentity.DocumentNumber = identity.FinServ__DocumentNumber__c;
       mapperIdentity.DocumentType = identity.FinServ__DocumentType__c;
       mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
@@ -226,9 +225,8 @@ global with sharing class ApplicationDataAPI {
     list<ApplicationResponseMapper.Revenue> mapperRevenueList = new List<ApplicationResponseMapper.Revenue>();
     for (FinServ__Revenue__c revenue : revenueList) {
       ApplicationResponseMapper.Revenue mapperRevenue = new ApplicationResponseMapper.Revenue();
+      mapperRevenue.RevenueId = revenue.Id;
       mapperRevenue.Amount = revenue.FinServ__Amount__c;
-      mapperRevenue.Applicant = revenue.dau01__Applicant__c;
-      mapperRevenue.DeleteRecord = revenue.dau01__DeleteRecord__c;
       mapperRevenue.Name = revenue.Name;
       mapperRevenue.Order = revenue.dau01__Order__c;
       mapperRevenue.RevenueDate = revenue.FinServ__Date__c;
@@ -250,20 +248,15 @@ global with sharing class ApplicationDataAPI {
     list<ApplicationResponseMapper.ContactPointAddress> mapperContactAddressList = new List<ApplicationResponseMapper.ContactPointAddress>();
     for (ContactPointAddress contactAddress : contactAddressList) {
       ApplicationResponseMapper.ContactPointAddress mapperContactAddress = new ApplicationResponseMapper.ContactPointAddress();
+      mapperContactAddress.ContactPointAddressId = contactAddress.Id;
       mapperContactAddress.IsPrimary = contactAddress.IsPrimary;
       mapperContactAddress.AddressType = contactAddress.AddressType;
-      mapperContactAddress.Applicant = contactAddress.dau01__Applicant__c;
       mapperContactAddress.City = contactAddress.City;
       mapperContactAddress.Country = contactAddress.Country;
-      mapperContactAddress.DeleteRecord = contactAddress.dau01__DeleteRecord__c;
-      mapperContactAddress.IsDefault = contactAddress.IsDefault;
       mapperContactAddress.IsPrimary = contactAddress.IsPrimary;
-      mapperContactAddress.MonthsLivedAtCurrentAddress = contactAddress.dau01__MonthsLivedAtCurrentAddress__c;
-      mapperContactAddress.Name = contactAddress.Name;
       mapperContactAddress.PostalCode = contactAddress.PostalCode;
       mapperContactAddress.State = contactAddress.State;
       mapperContactAddress.Street = contactAddress.Street;
-      mapperContactAddress.YearsLivedAtCurrentAddress = contactAddress.dau01__YearsLivedAtCurrentAddress__c;
       mapperContactAddress.Order = contactAddress.dau01__Order__c;
       mapperContactAddressList.add(mapperContactAddress);
     }
@@ -283,10 +276,9 @@ global with sharing class ApplicationDataAPI {
       FinServ__AssetsAndLiabilities__c assetsAndLiabilities : assetsAndLiabilitiesList
     ) {
       ApplicationResponseMapper.AssetsAndLiabilities mapperAssetsAndLiabilities = new ApplicationResponseMapper.AssetsAndLiabilities();
+      mapperAssetsAndLiabilities.AssetsAndLiabilitieId = assetsAndLiabilities.Id;
       mapperAssetsAndLiabilities.Amount = assetsAndLiabilities.FinServ__Amount__c;
-      mapperAssetsAndLiabilities.Applicant = assetsAndLiabilities.dau01__Applicant__c;
       mapperAssetsAndLiabilities.AssetsAndLiabilitiesType = assetsAndLiabilities.FinServ__AssetsAndLiabilitiesType__c;
-      mapperAssetsAndLiabilities.DeleteRecord = assetsAndLiabilities.dau01__DeleteRecord__c;
       mapperAssetsAndLiabilities.Description = assetsAndLiabilities.FinServ__Description__c;
       mapperAssetsAndLiabilities.Name = assetsAndLiabilities.Name;
       mapperAssetsAndLiabilities.Order = assetsAndLiabilities.dau01__Order__c;

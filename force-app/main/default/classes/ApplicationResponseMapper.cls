@@ -7,14 +7,15 @@
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
 global with sharing class ApplicationResponseMapper {
-  global Account Appliction;
+  global Account Application;
 
   global ApplicationResponseMapper() {
-    Appliction = new Account();
+    Application = new Account();
   }
   //global List<FinancialAccount> FinancialAccounts;
   global class Account {
     global List<Applicant> Applicants;
+    global string ApplicationId;
     global string ApplicationNumber;
     global string County;
     global String BranchCode;
@@ -35,6 +36,7 @@ global with sharing class ApplicationResponseMapper {
     }
   }
   global class Applicant {
+    global String ApplicantId;
     global String ApplicantName;
     global String ApplicantNumber;
     global String ApplicantType;
@@ -42,7 +44,6 @@ global with sharing class ApplicationResponseMapper {
     global Date Birthdate;
     global Decimal CreditScore;
     global String CustomerNumber;
-    global Boolean DeleteRecord;
     global String Email;
     global String EmploymentStatus;
     global String FirstName;
@@ -76,11 +77,11 @@ global with sharing class ApplicationResponseMapper {
   }
 
   global class AssetsAndLiabilities {
+    global String AssetsAndLiabilitieId;
     global Double Amount;
     global String Applicant;
     global String AssetsAndLiabilitiesType;
     global String Description;
-    global Boolean DeleteRecord;
     global Decimal Order;
     global String OwnerType;
     global String Ownership;
@@ -89,7 +90,7 @@ global with sharing class ApplicationResponseMapper {
   }
 
   global class Revenue {
-    global Boolean DeleteRecord;
+    global String RevenueId;
     global String SubType;
     global String Type;
     global String Applicant;
@@ -100,14 +101,9 @@ global with sharing class ApplicationResponseMapper {
   }
 
   global class ContactPointAddress {
-    global Boolean DeleteRecord;
+    global String ContactPointAddressId;
     global String PostalCode;
-    global String Applicant;
-    global String Name;
-    global Double MonthsLivedAtCurrentAddress;
-    global Double YearsLivedAtCurrentAddress;
     global String Street;
-    global Boolean IsDefault;
     global String City;
     global String State;
     global Boolean IsPrimary;
@@ -118,6 +114,7 @@ global with sharing class ApplicationResponseMapper {
 
   global class IdentificationDocument {
     global String AddressContentDocumentId;
+    global String IdentificationDocumentId;
     global String Gender;
     global String Height;
     global String IssuedRegion;
@@ -130,25 +127,22 @@ global with sharing class ApplicationResponseMapper {
     global Date ExpirationDate;
     global Date IssueDate;
     global String DocumentNumber;
-    global String Applicant;
     global String Name;
-    global Boolean DeleteRecord;
     global String IssuingCountry;
   }
 
   global class Employment {
-    global String Occupation;
-    global Double AnnualIncome;
-    global String Applicant;
-    global Boolean DeleteRecord;
-    global string EmployerPhoneNumber;
-    global Date EndDate;
-    global Decimal LengthOfEmployment;
+    global String EmploymentId;
+    global string EmploymentType;
+    global String DocumentType;
+    global String EmployerName;
+    global Double GrossMonthlySalary;
     global decimal Order;
     global String PayGrade;
     global string Position;
-    global Date StartDate;
     global String Name;
     global String EmploymentStatus;
+    global Decimal EmploymentDuration;
+    global String EmploymentVerificationType;
   }
 }
