@@ -36,4 +36,50 @@ global with sharing class LwcCustomController extends AbstractController {
       Logger.persist();
     }
   }
+  /**
+   * @description
+   * @author Digital Align | 11-17-2021
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse fetchConfigValues() {
+    try {
+      log?.fine('Inside fetchConfigValues ');
+      return ApexResponse.ok(
+        LwcCustomService.getInstance().fetchConfigValues()
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete fetchConfigValues'); // Logger.persist();
+    }
+  }
+  /**
+   * @description
+   * @author Digital Align | 11-17-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  global static ApexResponse updateConfigValues(Map<String, String> params) {
+    try {
+      log?.fine('Inside updateConfigValues');
+      return ApexResponse.ok(
+        LwcCustomService.getInstance().updateConfigValues(params)
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete updateConfigValues');
+      //Logger.persist();
+    }
+  }
 }
