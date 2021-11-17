@@ -132,6 +132,8 @@ global with sharing class ApplicationResponseMapper {
     global String EmploymentId;
     global string EmploymentType;
     global String DocumentType;
+    global String IncomeType;
+    global String PayCycle;
     global String EmployerName;
     global Double GrossMonthlySalary;
     global decimal Order;

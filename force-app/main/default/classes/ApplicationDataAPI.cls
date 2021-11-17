@@ -171,6 +171,8 @@ global with sharing class ApplicationDataAPI {
       mapperEmployment.GrossMonthlySalary = employment.dau01__GrossMonthlySalary__c;
       mapperEmployment.EmploymentStatus = employment.FinServ__EmploymentStatus__c;
       mapperEmployment.Name = employment.Name;
+      mapperEmployment.IncomeType = employment.dau01__IncomeType__c;
+      mapperEmployment.PayCycle = employment.dau01__PayCycle__c;
       mapperEmployment.Order = employment.dau01__Order__c;
       mapperEmployment.PayGrade = employment.dau01__PayGrade__c;
       mapperEmployment.Position = employment.FinServ__Position__c;
