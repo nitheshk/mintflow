@@ -112,15 +112,31 @@ global with sharing class ApexRequest {
   }
 
   /**
-   * @description  set application id
+   * @description  set session application id
    * @author Digital Align Team | 10-27-2021
    * @param String applicationId
    * @return ApexRequest
    **/
-  global ApexRequest setApplicationId(String applicationId) {
-    this.applicationId = applicationId;
-    Logger.setEntity(applicationId);
-    return this;
+  global static ApexRequest setApplicationId(String applicationId) {
+    if (ApexRequest.request != null) {
+      ApexRequest.request.applicationId = applicationId;
+      Logger.setEntity(applicationId);
+    }
+    return ApexRequest.request;
+  }
+
+  /**
+   * @description set session application name
+   * @author Digital Align Team | 11-17-2021
+   * @param String applicationName
+   * @return ApexRequest
+   **/
+  global static ApexRequest setApplicationName(String applicationName) {
+    if (ApexRequest.request != null) {
+      ApexRequest.request.applicationName = applicationName;
+      Logger.setApplicationName(applicationName);
+    }
+    return ApexRequest.request;
   }
 
   /**

@@ -31,7 +31,7 @@ system.debug('Full Json : ' + res.data);
 // generateOTP
 ApexRequest request = new ApexRequest();
 request.setHeader(
-  new Map<String, String>{ 'applicantId' => 'a0b9D000002h0JcQAI' }
+  new Map<String, String>{ 'applicantId' => 'a0b0p0000026aUsAAI' }
 );
 ApexResponse res = ApplicantController.generateOTP(request);
 system.debug('Full Json : ' + res.data);
@@ -41,8 +41,8 @@ ApexRequest request = new ApexRequest();
 request.setHeader(
   new Map<String, String>{
     'applicantId' => 'a0b0p0000026aUsAAI',
-    'sms' => '8566',
-    'email' => '8031'
+    'sms' => '1358',
+    'email' => '1921'
   }
 );
 ApexResponse res = ApplicantController.validateOTP(request);

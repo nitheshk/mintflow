@@ -97,10 +97,8 @@ global with sharing class ApplicationService extends AbstractService {
     ApplicationRepository.upsertRecord(application);
 
     application = ApplicationRepository.readApplication(application.Id);
-    ApexRequest.getRequest().setApplicationId(application.Id);
-    application = AuthenticationService.createSessionForApplication(
-      application
-    );
+    ApexRequest.setApplicationId(application.Id);
+    application = SecurityUtils.createSessionForApplication(application);
     application.Name = application.ApplicationNumber__c;
     ApplicationRepository.upsertRecord(application);
     return application;

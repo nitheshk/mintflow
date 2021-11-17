@@ -17,3 +17,12 @@ Map<String, Object> mp = (Map<String, Object>) JSON.deserializeUntyped(
   SecurityUtils.decryptUrl(str)
 );
 system.debug(Json.serialize(mp));
+
+
+// 
+String str='lTlmvHxNiXZSBgCGqoLKvODsJ1v5pSMQbIImIhIi8dVTpQm3OWqbN1j/ZJB4s99btOCcl0+lGLgFQzWB6Num5g==';
+AuthenticationService.ApplicationContextDTO dto= (AuthenticationService.ApplicationContextDTO) JSON.deserialize(
+  SecurityUtils.decryptBase64(str) , AuthenticationService.ApplicationContextDTO.class
+);
+system.debug(dto.edt.day());
+

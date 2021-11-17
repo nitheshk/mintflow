@@ -38,7 +38,7 @@ System.debug(' cvs  : ' + JSON.serialize(cvs));
 
 //FileController.fetchContentVersionByEntityId
 ApexRequest request = new ApexRequest();
-request.setApplicationId('0019D00000IVnGrQAL'); //account ID
+request.applicationId = '0019D00000IVnGrQAL'; //account ID
 request.setHeader(
   new Map<String, Object>{
     'entityId' => '0019D00000IVnGrWRF',
@@ -50,7 +50,7 @@ system.debug('res=+' + JSON.serialize(res));
 
 //FileController.createFile create content version only
 ApexRequest request = new ApexRequest();
-request.setApplicationId('0019D00000IVnGrQAL'); //account ID
+request.applicationId = '0019D00000IVnGrQAL'; //account ID
 request.setHeader(
   new Map<String, Object>{
     'title' => 'test.txt',
@@ -64,7 +64,7 @@ system.debug('res=+' + JSON.serialize(res));
 
 //FileController.fetchContentVersionByCD
 ApexRequest request = new ApexRequest();
-request.setApplicationId('0019D00000IVnGrQAL'); //account ID
+request.applicationId = '0019D00000IVnGrQAL'; //account ID
 request.setHeader(
   new Map<String, Object>{
     'contentDocumentId' => '0699D000000k5r7QAA',

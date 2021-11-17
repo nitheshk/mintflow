@@ -47,60 +47,6 @@ global with sharing class AuthenticationService extends AbstractService {
   }
 
   /**
-   * @description create session token for application
-   * @author Digital Align Team | 11-15-2021
-   * @param Account application
-   * @return Account
-   **/
-  global static Account createSessionForApplication(Account application) {
-    Map<String, Object> mf = new Map<String, Object>{
-      'appId' => application.Id,
-      'edt' => Datetime.now()
-        .addMinutes(
-          (Integer) ApplicationConfiguration__c.getOrgDefaults()
-            .SesssionExpirationTime__c
-        )
-    };
-    application.SessionToken__c = SecurityUtils.encryptBase64(
-      Json.serialize(mf)
-    );
-    ApexRequest.getRequest().token = application.SessionToken__c;
-    return application;
-  }
-
-  /**
-   * @description create a session for applicant
-   * @author Digital Align Team | 11-16-2021
-   * @param Applicant__c applicant
-   * @return Applicant__c
-   **/
-  global static Applicant__c createSessionForApplicant(Applicant__c applicant) {
-    Map<String, Object> mf = new Map<String, Object>{
-      'aplId' => applicant.Id,
-      'edt' => Datetime.now()
-        .addMinutes(
-          (Integer) ApplicationConfiguration__c.getOrgDefaults()
-            .SesssionExpirationTime__c
-        )
-    };
-    applicant.SessionToken__c = SecurityUtils.encryptBase64(Json.serialize(mf));
-    ApexRequest.getRequest().token = applicant.SessionToken__c;
-    return applicant;
-  }
-
-  /**
-   * @description extract data from token
-   * @author Digital Align Team | 11-15-2021
-   * @param String encryptedToken
-   * @return Map<String, Object>
-   **/
-  global static Map<String, Object> extractToken(String encryptedToken) {
-    return (Map<String, Object>) JSON.deserializeUntyped(
-      SecurityUtils.decryptBase64(encryptedToken)
-    );
-  }
-
-  /**
    * @description generate otp via sms or email
    * @author Digital Align Team | 11-05-2021
    * @param Id applicantId
@@ -138,7 +84,7 @@ global with sharing class AuthenticationService extends AbstractService {
         HttpBuilder.getApiConstant('Twillio_Country') + applicant.Phone__c
       );
       params.put('applicantNumber', applicant.Id);
-      NotificationService.getInstance().sendOTPMessage(params);
+      //NotificationService.getInstance().sendOTPMessage(params);
     }
     //Email
     if (otpModeList.contains('EMAIL')) {
@@ -146,7 +92,7 @@ global with sharing class AuthenticationService extends AbstractService {
         Math.round((Math.random() * (9000) + 1000))
       );
       applicant.EmailOtpAttempts__c = 0;
-      CustomerEmailService.getInstance().sendEmailOTP(applicant);
+      //CustomerEmailService.getInstance().sendEmailOTP(applicant);
     }
 
     ApplicantRepository.updateRecord(applicant);
@@ -169,7 +115,14 @@ global with sharing class AuthenticationService extends AbstractService {
         ? appConfig.AllowedOtpMode__c.split(';')
         : new List<String>();
 
-      if (applicant.OTPExpireTime__c < Datetime.now()) {
+      log
+        ?.debug(
+          'Expire : ' +
+          applicant.OTPExpireTime__c.getTime() +
+          ' currentTime : ' +
+          Datetime.now().getTime()
+        );
+      if (applicant.OTPExpireTime__c.getTime() <= Datetime.now().getTime()) {
         applicant.EmailOtpAttempts__c = applicant.SmsOtpAttempts__c += 1;
         throw new customException('OTP has Expired,Generate new OTP');
       }
@@ -184,14 +137,23 @@ global with sharing class AuthenticationService extends AbstractService {
         throw new customException('Reached Maximum Number Attempt');
       }
 
+      String smsOTP = (String) params.get('sms');
+      String emailOTP = (String) params.get('email');
+
       //SMS
       if (otpModeList.contains('SMS')) {
+        if (String.isBlank(String.valueOf(params.get('sms')))) {
+          throw new customException('Please enter the OTP');
+        }
         if (applicant.SmsOtp__c != params.get('sms')) {
           throw new customException('Please verify the OTP entered');
         }
       }
       //Email
       if (otpModeList.contains('EMAIL')) {
+        if (String.isBlank(String.valueOf(params.get('email')))) {
+          throw new customException('Please enter the OTP');
+        }
         if (applicant.EmailOtp__c != params.get('email')) {
           throw new customException('Please verify the OTP entered');
         }
@@ -205,7 +167,7 @@ global with sharing class AuthenticationService extends AbstractService {
         applicant.RecordType.Name !=
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
       ) {
-        createSessionForApplicant(applicant);
+        SecurityUtils.createSessionForApplicant(applicant);
       }
       ApplicantRepository.updateRecord(applicant);
       return applicant;

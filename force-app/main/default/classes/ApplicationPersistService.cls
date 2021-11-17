@@ -45,7 +45,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
       }
       ApplicationRepository.upsertRecord(application);
       if (String.isBlank(ApexRequest.getApplicationId())) {
-        ApexRequest.getRequest().setApplicationId(application.Id);
+        ApexRequest.setApplicationId(application.Id);
       }
     }
 

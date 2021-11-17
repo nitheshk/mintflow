@@ -1,6 +1,6 @@
 //Working
 ApexRequest request = new ApexRequest();
-request.setApplicationId('0019D00000IVnGrQAL'); //account ID
+request.applicationId = '0019D00000IVnGrQAL'; //account ID
 request.setHeader(
   new Map<String, String>{
     'applicantId' => 'a0b9D000002h0JcQAI',

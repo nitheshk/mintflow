@@ -220,4 +220,88 @@ global inherited sharing class SecurityUtils {
       '-' +
       h.substring(20);
   }
+
+  //Session Management
+  public class CipherDTO {
+    public String appId { get; set; }
+    public String aplId { get; set; }
+    public String aplType { get; set; }
+    public String ch { get; set; }
+    public Datetime edt { get; set; }
+  }
+
+  /**
+   * @description create session token for application
+   * @author Digital Align Team | 11-15-2021
+   * @param Account application
+   * @return Account
+   **/
+  global static Account createSessionForApplication(Account application) {
+    SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+    cipher.appId = application.Id;
+    cipher.edt = Datetime.now()
+      .addMinutes(
+        (Integer) ApplicationConfiguration__c.getOrgDefaults()
+          .SesssionExpirationTime__c
+      );
+    application.SessionToken__c = SecurityUtils.encryptBase64(
+      Json.serialize(cipher)
+    );
+    ApexRequest.getRequest().token = application.SessionToken__c;
+    return application;
+  }
+
+  global static void validateSession() {
+    ApexRequest request = ApexRequest.getRequest();
+    if (request.flowType == 'Primary') {
+      validateSessionForApplication(request);
+    } else if (request.flowType == 'Joint') {
+      validateSessionForApplicant(request);
+    } else {
+      throw new CustomException('Flow Type Is Not Mentioned');
+    }
+  }
+
+  global static void validateSessionForApplication(ApexRequest request) {
+    try {
+    } catch (Exception ex) {
+      throw new CustomException('Invalid Token');
+    }
+  }
+
+  global static void validateSessionForApplicant(ApexRequest request) {
+  }
+
+  /**
+   * @description create a session for applicant
+   * @author Digital Align Team | 11-16-2021
+   * @param Applicant__c applicant
+   * @return Applicant__c
+   **/
+  global static Applicant__c createSessionForApplicant(Applicant__c applicant) {
+    SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+    cipher.aplId = applicant.Id;
+    cipher.edt = Datetime.now()
+      .addMinutes(
+        (Integer) ApplicationConfiguration__c.getOrgDefaults()
+          .SesssionExpirationTime__c
+      );
+    applicant.SessionToken__c = SecurityUtils.encryptBase64(
+      Json.serialize(cipher)
+    );
+    ApexRequest.getRequest().token = applicant.SessionToken__c;
+    return applicant;
+  }
+
+  /**
+   * @description extract data from token
+   * @author Digital Align Team | 11-15-2021
+   * @param String encryptedToken
+   * @return Map<String, Object>
+   **/
+  global static Map<String, Object> extractToken(String encryptedToken) {
+    return (Map<String, Object>) JSON.deserializeUntyped(
+      SecurityUtils.decryptBase64(encryptedToken)
+    );
+  }
 }

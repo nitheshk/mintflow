@@ -40,7 +40,7 @@ global with sharing class OnlineAccountController extends AbstractController {
         Datetime edt = DateUtils.convertJsonStringToDateTime(
           decryptedParams.get('edt')
         );
-
+        //#pending (condition <)
         if (edt == Datetime.now()) {
           throw new CustomException('The specified URL was Expired');
         }
