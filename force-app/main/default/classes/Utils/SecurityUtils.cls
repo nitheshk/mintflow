@@ -248,6 +248,8 @@ global inherited sharing class SecurityUtils {
       Json.serialize(cipher)
     );
     ApexRequest.getRequest().token = application.SessionToken__c;
+    ApexRequest.setApplicationId(application.Id);
+    ApexRequest.setApplicationName(application.ApplicationNumber__c);
     return application;
   }
 
@@ -269,6 +271,7 @@ global inherited sharing class SecurityUtils {
       Json.serialize(cipher)
     );
     ApexRequest.getRequest().token = applicant.SessionToken__c;
+
     return applicant;
   }
 
@@ -296,6 +299,9 @@ global inherited sharing class SecurityUtils {
    **/
   global static Boolean validateSessionForApplication(ApexRequest request) {
     SecurityUtils.CipherDTO cipher = extractToken(request.token);
+    if (cipher.edt < Datetime.now()) {
+      throw new CustomException('Session token has expired');
+    }
     Account application = ApplicationRepository.readApplicationForToken(
       (Id) cipher.appId
     );
@@ -318,6 +324,9 @@ global inherited sharing class SecurityUtils {
    **/
   private static Boolean validateSessionForApplicant(ApexRequest request) {
     SecurityUtils.CipherDTO cipher = extractToken(request.token);
+    if (cipher.edt < Datetime.now()) {
+      throw new CustomException('Session token has expired');
+    }
     Applicant__c applicant = ApplicantRepository.readApplicantForToken(
       (Id) cipher.aplId
     );
@@ -342,7 +351,7 @@ global inherited sharing class SecurityUtils {
    * @param String token
    * @return SecurityUtils.CipherDTO
    **/
-  private static SecurityUtils.CipherDTO extractToken(String token) {
+  global static SecurityUtils.CipherDTO extractToken(String token) {
     SecurityUtils.CipherDTO cipher;
     try {
       cipher = (SecurityUtils.CipherDTO) JSON.deserialize(
@@ -351,9 +360,6 @@ global inherited sharing class SecurityUtils {
       );
     } catch (Exception ex) {
       throw new CustomException('Invalid session token');
-    }
-    if (cipher.edt < Datetime.now()) {
-      throw new CustomException('Session token has expired');
     }
     return cipher;
   }

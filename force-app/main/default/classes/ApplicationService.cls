@@ -83,7 +83,6 @@ global with sharing class ApplicationService extends AbstractService {
       ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
     );
     application.FinServ__Status__c = 'Active';
-
     if (params.get('channel') != null) {
       application.CreatedChannel__c = (String) params.get('channel');
       application.FinServ__LastUsedChannel__c = (String) params.get('channel');
@@ -91,7 +90,6 @@ global with sharing class ApplicationService extends AbstractService {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
       application.FinServ__LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
     }
-
     application.Description = ApplicationServiceHelper.getInstance()
       .getIpAddress();
     ApplicationRepository.upsertRecord(application);
@@ -101,6 +99,8 @@ global with sharing class ApplicationService extends AbstractService {
     application = SecurityUtils.createSessionForApplication(application);
     application.Name = application.ApplicationNumber__c;
     ApplicationRepository.upsertRecord(application);
+    params.put('applicationId', application.Id);
+    params.put('applicantType', 'Primary');
     return application;
   }
 
@@ -141,27 +141,31 @@ global with sharing class ApplicationService extends AbstractService {
   global virtual Map<String, Object> resumeApplication(
     Map<String, Object> params
   ) {
-    String vmf = PageUtils.getCurrentPageParameters('vmf');
-    Map<String, Object> decryptedParams = (Map<String, Object>) JSON.deserializeUntyped(
-      SecurityUtils.decryptBase64(vmf)
+    String vmf = (String) params.get('vmf');
+    params.remove('vmf');
+    SecurityUtils.CipherDTO cipher = SecurityUtils.extractToken(vmf);
+    switch on cipher.aplType {
+      when 'py' {
+        params.put('applicantType', 'Primary');
+      }
+      when 'jt' {
+        params.put('applicantType', 'Joint');
+      }
+    }
+    switch on cipher.ch {
+      when 'vrl' {
+        params.put('channel', ApplicationConstant.CHANNEL_VIRTUAL);
+      }
+      when 'brh' {
+        params.put('channel', ApplicationConstant.CHANNEL_BRANCH);
+      }
+    }
+    params.put('applicationId', cipher.appId);
+    params.put('applicantId', cipher.aplId);
+
+    Applicant__c applicant = ApplicantRepository.readApplicantbyId(
+      cipher.aplId
     );
-    String applicationId = (String) decryptedParams.get('appId');
-    String applicantId = (String) decryptedParams.get('aplId');
-    String applicantType = (String) decryptedParams.get('aplType');
-    if (decryptedParams.get('ch') == 'vrl') {
-      params.put('channel', ApplicationConstant.CHANNEL_VIRTUAL);
-    }
-    if (decryptedParams.get('ch') == 'brh') {
-      params.put('channel', ApplicationConstant.CHANNEL_BRANCH);
-    }
-    params.put('applicationId', applicationId);
-    params.put('applicantId', applicantId);
-    if (applicantType == 'py') {
-      params.put('applicantType', 'Primary');
-    } else if (applicantType == 'jt') {
-      params.put('applicantType', 'Joint');
-    }
-    Applicant__c applicant = ApplicantRepository.readApplicantbyId(applicantId);
     if (applicant == null) {
       throw new CustomException('Applicant not found');
     }
@@ -171,7 +175,7 @@ global with sharing class ApplicationService extends AbstractService {
     );
     params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
 
-    AuthenticationService.getInstance().generateOTP(applicantId);
+    AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
   }
 }

@@ -143,33 +143,31 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     String notificationName
   ) {
     for (Applicant__c applicant : applicants) {
+      SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+
       Map<String, Object> urlMap = new Map<String, Object>();
       if (
         notificationName == 'PrimaryReviewInformationSubmitted' ||
         notificationName == 'PrimaryReviewInformationWaiting'
       ) {
-        urlMap.put('aplType', 'py');
+        cipher.aplType = 'py';
       }
       if (notificationName == 'JointStartApplication') {
-        urlMap.put('aplType', 'jt');
+        cipher.aplType = 'jt';
       }
-
-      urlMap.put('appId', ApexRequest.getApplicationId());
-      urlMap.put('aplId', applicant.Id);
-      urlMap.put(
-        'edt',
-        Datetime.now()
-          .addHours(
-            (Integer) ApplicationConfiguration__c.getInstance()
-              .EmailLinkExpirationTime__c
-          )
-      );
-      urlMap.put('ch', 'vrl');
+      cipher.appId = ApexRequest.getApplicationId();
+      cipher.aplId = applicant.Id;
+      cipher.edt = Datetime.now()
+        .addHours(
+          (Integer) ApplicationConfiguration__c.getInstance()
+            .EmailLinkExpirationTime__c
+        );
+      cipher.ch = 'vrl';
 
       String link =
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
         '/OnlineAccount?vmf=' +
-        SecurityUtils.encryptUrl(JSON.serialize(urlMap));
+        SecurityUtils.encryptUrl(JSON.serialize(cipher));
 
       EmailNotificationBuilder.newInstance(notificationName, applicant.Id)
         .setToAddresses(applicant.Email__c)

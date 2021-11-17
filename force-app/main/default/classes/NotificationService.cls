@@ -36,8 +36,8 @@ global virtual with sharing class NotificationService extends AbstractService {
    **/
   global virtual object sendOTPMessage(Map<String, Object> params) {
     Flow.setFlow('EligibilityFlow');
-    String applicantNumber = (String) params.get('applicantNumber');
-    Flow.setSubFlow(APINames.TwillioMessaging.name(), applicantNumber);
+    String applicantId = (String) params.get('applicantId');
+    Flow.setSubFlow(APINames.TwillioMessaging.name(), applicantId);
     try {
       if (HttpBuilder.isActiveApiSetting(APINames.TwillioMessaging)) {
         HttpBuilder.setAPISetting(APINames.TwillioMessaging);

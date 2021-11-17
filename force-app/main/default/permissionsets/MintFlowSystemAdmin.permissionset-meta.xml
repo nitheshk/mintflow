@@ -186,7 +186,7 @@
         <enabled>true</enabled>
         <name>SiteSetting__c</name>
     </customSettingAccesses>
-    <description>MintFlow System Admin profile</description>     
+    <description>MintFlow System Admin profile</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinancialProduct__c.Category__c</field>
@@ -1044,7 +1044,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.EmailOtpAttempts__c</field>
+        <field>Applicant__c.OtpAttempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	    <fieldPermissions>
@@ -1101,7 +1101,7 @@
         <editable>true</editable>
         <field>Applicant__c.Phone__c</field>
         <readable>true</readable>
-    </fieldPermissions>     
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.MiddleName__c</field>
@@ -1115,11 +1115,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.OTPExpireTime__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.SmsOtpAttempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1151,17 +1146,17 @@
         <editable>true</editable>
         <field>Account.IsCountyEligible__c</field>
         <readable>true</readable>
-    </fieldPermissions> 
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsPhoneNumberVerified__c</field>
         <readable>true</readable>
-    </fieldPermissions> 
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.DeleteRecord__c</field>
         <readable>true</readable>
-    </fieldPermissions>   
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.AccountId</field>
@@ -1666,7 +1661,7 @@
         <editable>true</editable>
         <field>DocumentRequest__c.ContentDocumentId__c</field>
         <readable>true</readable>
-    </fieldPermissions>     
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>DocumentRequest__c.Status__c</field>
@@ -2944,7 +2939,7 @@
         <editable>true</editable>
         <field>FinServ__IdentificationDocument__c.Applicant__c</field>
         <readable>true</readable>
-    </fieldPermissions>  
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__IdentificationDocument__c.DeleteRecord__c</field>
@@ -3593,7 +3588,7 @@
         <editable>true</editable>
         <field>Survey__c.CustomStyle__c</field>
         <readable>true</readable>
-    </fieldPermissions>     
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Survey__c.LongDescription__c</field>

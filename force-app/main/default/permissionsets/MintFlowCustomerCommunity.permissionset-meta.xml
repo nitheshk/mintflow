@@ -176,7 +176,7 @@
         <enabled>true</enabled>
         <name>SiteSetting__c</name>
     </customSettingAccesses>
-    <description>MintFlow Customer Community profile</description>    
+    <description>MintFlow Customer Community profile</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.Order__c</field>
@@ -377,7 +377,7 @@
         <field>Account.FinServ__Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    
+
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.IPAddress__c</field>
@@ -1077,7 +1077,7 @@
         <editable>true</editable>
         <field>Applicant__c.Phone__c</field>
         <readable>true</readable>
-    </fieldPermissions>     
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.SSN__c</field>
@@ -1105,11 +1105,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.SmsOtpAttempts__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Applicant__c.SentiLinkStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1122,12 +1117,12 @@
         <editable>true</editable>
         <field>Applicant__c.IsEmailVerified__c</field>
         <readable>true</readable>
-    </fieldPermissions>  
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.IsCountyEligible__c</field>
         <readable>true</readable>
-    </fieldPermissions>        
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsPhoneNumberVerified__c</field>
@@ -1140,7 +1135,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.EmailOtpAttempts__c</field>
+        <field>Applicant__c.OtpAttempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	    <fieldPermissions>
@@ -1677,7 +1672,7 @@
         <editable>true</editable>
         <field>DocumentRequest__c.ContentDocumentId__c</field>
         <readable>true</readable>
-    </fieldPermissions>     
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>DocumentRequest__c.Status__c</field>
@@ -3084,7 +3079,7 @@
         <editable>true</editable>
         <field>Flow__c.ServiceName__c</field>
         <readable>true</readable>
-    </fieldPermissions>    
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Flow__c.Note__c</field>
@@ -3549,7 +3544,7 @@
         <editable>true</editable>
         <field>Survey__c.Answer__c</field>
         <readable>true</readable>
-    </fieldPermissions>     
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Survey__c.LongDescription__c</field>

@@ -67,12 +67,12 @@ global with sharing class AuthenticationService extends AbstractService {
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
           .OTPExpirationTime__c
       );
+    applicant.OtpAttempts__c = 0;
     //SMS
     if (otpModeList.contains('SMS')) {
       applicant.SmsOtp__c = String.valueOf(
         Math.round((Math.random() * (9000) + 1000))
       );
-      applicant.SmsOtpAttempts__c = 0;
 
       Map<String, Object> params = new Map<String, Object>();
       params.put(
@@ -83,7 +83,7 @@ global with sharing class AuthenticationService extends AbstractService {
         'toPhone',
         HttpBuilder.getApiConstant('Twillio_Country') + applicant.Phone__c
       );
-      params.put('applicantNumber', applicant.Id);
+      params.put('applicantId', applicant.Id);
       //NotificationService.getInstance().sendOTPMessage(params);
     }
     //Email
@@ -91,7 +91,6 @@ global with sharing class AuthenticationService extends AbstractService {
       applicant.EmailOtp__c = String.valueOf(
         Math.round((Math.random() * (9000) + 1000))
       );
-      applicant.EmailOtpAttempts__c = 0;
       //CustomerEmailService.getInstance().sendEmailOTP(applicant);
     }
 
@@ -106,7 +105,7 @@ global with sharing class AuthenticationService extends AbstractService {
    * @return virtual
    **/
   global virtual Applicant__c validateOTP(Map<String, Object> params) {
-    Applicant__c applicant = ApplicantRepository.readApplicantById(
+    Applicant__c applicant = ApplicantRepository.readApplicantWithApplication(
       (Id) params.get('applicantId')
     );
     ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getInstance();
@@ -115,25 +114,15 @@ global with sharing class AuthenticationService extends AbstractService {
         ? appConfig.AllowedOtpMode__c.split(';')
         : new List<String>();
 
-      log
-        ?.debug(
-          'Expire : ' +
-          applicant.OTPExpireTime__c.getTime() +
-          ' currentTime : ' +
-          Datetime.now().getTime()
-        );
       if (applicant.OTPExpireTime__c.getTime() < Datetime.now().getTime()) {
-        applicant.EmailOtpAttempts__c = applicant.SmsOtpAttempts__c += 1;
+        applicant.OtpAttempts__c += 1;
         throw new customException('OTP has Expired,Generate new OTP');
       }
 
-      if (
-        applicant.SmsOtpAttempts__c < appConfig.OTPMaxAllowedAttempts__c &&
-        applicant.EmailOtpAttempts__c < appConfig.OTPMaxAllowedAttempts__c
-      ) {
-        applicant.EmailOtpAttempts__c = applicant.SmsOtpAttempts__c += 1;
+      if (applicant.OtpAttempts__c < appConfig.OTPMaxAllowedAttempts__c) {
+        applicant.OtpAttempts__c += 1;
       } else {
-        applicant.EmailOtpAttempts__c = applicant.SmsOtpAttempts__c += 1;
+        applicant.OtpAttempts__c += 1;
         throw new customException('Reached Maximum Number Attempt');
       }
 
@@ -142,19 +131,19 @@ global with sharing class AuthenticationService extends AbstractService {
 
       //SMS
       if (otpModeList.contains('SMS')) {
-        if (String.isBlank(String.valueOf(params.get('sms')))) {
+        if (String.isBlank(smsOTP)) {
           throw new customException('Please enter the OTP');
         }
-        if (applicant.SmsOtp__c != params.get('sms')) {
+        if (applicant.SmsOtp__c != smsOTP) {
           throw new customException('Please verify the OTP entered');
         }
       }
       //Email
       if (otpModeList.contains('EMAIL')) {
-        if (String.isBlank(String.valueOf(params.get('email')))) {
+        if (String.isBlank(emailOTP)) {
           throw new customException('Please enter the OTP');
         }
-        if (applicant.EmailOtp__c != params.get('email')) {
+        if (applicant.EmailOtp__c != emailOTP) {
           throw new customException('Please verify the OTP entered');
         }
       }
@@ -162,18 +151,37 @@ global with sharing class AuthenticationService extends AbstractService {
       applicant.SmsOtp__c = applicant.EmailOtp__c = '';
       applicant.IsPhoneNumberVerified__c = true;
 
-      //create a session for joint applicant
-      if (
-        applicant.RecordType.Name !=
-        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
-        SecurityUtils.createSessionForApplicant(applicant);
+      //create a session for primary/joint applicant when token is not present
+      if (String.isBlank(ApexRequest.getRequest().token)) {
+        applicant = createNewSession(applicant);
       }
+
       ApplicantRepository.updateRecord(applicant);
       return applicant;
     } catch (customException ex) {
       ApplicantRepository.updateRecord(applicant);
       throw ex;
     }
+  }
+
+  /**
+   * @description  create New session for applicant on authenticate
+   * @author Digital Align Team | 11-17-2021
+   * @param Applicant__c applicant
+   * @return Applicant__c
+   **/
+  private Applicant__c createNewSession(Applicant__c applicant) {
+    if (
+      applicant.RecordType.Name ==
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    ) {
+      SecurityUtils.createSessionForApplicant(applicant);
+    } else if (
+      applicant.RecordType.Name ==
+      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+    ) {
+      SecurityUtils.createSessionForApplicant(applicant);
+    }
+    return applicant;
   }
 }

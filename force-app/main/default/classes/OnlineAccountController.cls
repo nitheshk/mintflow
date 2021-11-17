@@ -7,9 +7,9 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class OnlineAccountController extends AbstractController {
-  public String id { get; set; }
-  public String application { get; set; }
-  public String params { get; set; }
+  global String id { get; set; }
+  global String application { get; set; }
+  global String params { get; set; }
 
   global OnlineAccountController() {
     super(OnlineAccountController.class);
@@ -28,32 +28,24 @@ global with sharing class OnlineAccountController extends AbstractController {
 
       if (String.isNotBlank(vmf)) {
         //decrypt the url
-        Map<String, Object> decryptedParams;
+        SecurityUtils.CipherDTO cipher;
         try {
-          decryptedParams = (Map<String, Object>) JSON.deserializeUntyped(
-            SecurityUtils.decryptBase64(vmf)
-          );
+          cipher = SecurityUtils.extractToken(vmf);
         } catch (Exception ex) {
           throw new CustomException('The specified URL was corrupted');
         }
-        //check link validity
-        Datetime edt = DateUtils.convertJsonStringToDateTime(
-          decryptedParams.get('edt')
-        );
         //#pending (condition <)
-        if (edt < Datetime.now()) {
+        if (cipher.edt < Datetime.now()) {
           throw new CustomException('The specified URL was Expired');
         }
         //resume application mapping
-        this.id = (String) decryptedParams.get('appId');
+        this.id = cipher.appId;
         ApplicationService.getInstance().resumeApplication(params);
-        this.params = Json.serialize(params);
+        this.params = Json.serialize(params, true);
       } else {
         Account application = ApplicationService.getInstance()
           .createApplication(params);
         this.id = application.Id;
-        params.put('applicationId', application.Id);
-        params.put('applicantType', 'Primary');
         this.application = Json.serialize(application);
         this.params = Json.serialize(params);
       }

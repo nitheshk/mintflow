@@ -95,6 +95,25 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
   }
 
   /**
+   * @description read applicant with application details
+   * @author Digital Align Team | 11-18-2021
+   * @param Id applicantId
+   * @return Applicant__c
+   **/
+  public static Applicant__c readApplicantWithApplication(Id applicantId) {
+    return (Applicant__c) DatabaseUtils.getRecord(
+      new Query(Applicant__c.SObjectType)
+        .addFields()
+        .addFields('RecordType.Name')
+        .queryLookup('dau01__Application__r')
+        .addFields()
+        .run()
+        .whereEq('Id', applicantId)
+        .toString()
+    );
+  }
+
+  /**
    * @description Read Applicant For session Token
    * @author Digital Align Team | 11-17-2021
    * @param Id applicantId

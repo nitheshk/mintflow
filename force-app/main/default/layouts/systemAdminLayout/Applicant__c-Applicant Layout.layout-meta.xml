@@ -126,10 +126,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SmsOtpAttempts__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>OTPExpireTime__c</field>
             </layoutItems>
         </layoutColumns>
@@ -164,7 +160,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmailOtpAttempts__c</field>
+                <field>OtpAttempts__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
