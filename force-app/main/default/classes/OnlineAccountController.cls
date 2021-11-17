@@ -41,7 +41,7 @@ global with sharing class OnlineAccountController extends AbstractController {
           decryptedParams.get('edt')
         );
         //#pending (condition <)
-        if (edt == Datetime.now()) {
+        if (edt < Datetime.now()) {
           throw new CustomException('The specified URL was Expired');
         }
         //resume application mapping

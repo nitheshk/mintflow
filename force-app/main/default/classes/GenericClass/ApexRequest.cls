@@ -112,6 +112,15 @@ global with sharing class ApexRequest {
   }
 
   /**
+   * @description get Applicant Id
+   * @author Digital Align Team | 11-17-2021
+   * @return String
+   **/
+  global static String getApplicantId() {
+    return ApexRequest.request?.applicantId;
+  }
+
+  /**
    * @description  set session application id
    * @author Digital Align Team | 10-27-2021
    * @param String applicationId
@@ -135,6 +144,19 @@ global with sharing class ApexRequest {
     if (ApexRequest.request != null) {
       ApexRequest.request.applicationName = applicationName;
       Logger.setApplicationName(applicationName);
+    }
+    return ApexRequest.request;
+  }
+
+  /**
+   * @description set session application name
+   * @author Digital Align Team | 11-17-2021
+   * @param String applicantId
+   * @return ApexRequest
+   **/
+  global static ApexRequest setApplicantId(String applicantId) {
+    if (ApexRequest.request != null && String.isNotBlank(applicantId)) {
+      ApexRequest.request.applicantId = applicantId;
     }
     return ApexRequest.request;
   }

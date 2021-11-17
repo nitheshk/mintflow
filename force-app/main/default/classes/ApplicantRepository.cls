@@ -93,4 +93,21 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description Read Applicant For session Token
+   * @author Digital Align Team | 11-17-2021
+   * @param Id applicantId
+   * @return Applicant__c
+   **/
+  public static Applicant__c readApplicantForToken(Id applicantId) {
+    return (Applicant__c) DatabaseUtils.getRecord(
+      new Query(Applicant__c.SObjectType)
+        .addFields(
+          'SessionToken__c,Application__r.ApplicationNumber__c,Application__c'
+        )
+        .whereEq('Id', applicantId)
+        .toString()
+    );
+  }
 }

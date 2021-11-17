@@ -122,7 +122,7 @@ global with sharing class AuthenticationService extends AbstractService {
           ' currentTime : ' +
           Datetime.now().getTime()
         );
-      if (applicant.OTPExpireTime__c.getTime() <= Datetime.now().getTime()) {
+      if (applicant.OTPExpireTime__c.getTime() < Datetime.now().getTime()) {
         applicant.EmailOtpAttempts__c = applicant.SmsOtpAttempts__c += 1;
         throw new customException('OTP has Expired,Generate new OTP');
       }

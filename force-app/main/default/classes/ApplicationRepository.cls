@@ -35,10 +35,25 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
    * @param Id applicationId
    * @return Account
    **/
-  global static Account readApplication(Id applicationId) {
+  global static Account readApplicationById(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
       new Query(Account.SObjectType)
         .addFields()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
+
+  /**
+   * @description Read Application for session token verification
+   * @author Digital Align Team | 11-17-2021
+   * @param Id applicationId
+   * @return Account
+   **/
+  global static Account readApplicationForToken(Id applicationId) {
+    return (Account) DatabaseUtils.getRecord(
+      new Query(Account.SObjectType)
+        .addFields('SessionToken__c,ApplicationNumber__c')
         .whereEq('Id', applicationId)
         .toString()
     );

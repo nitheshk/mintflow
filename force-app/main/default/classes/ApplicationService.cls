@@ -96,7 +96,7 @@ global with sharing class ApplicationService extends AbstractService {
       .getIpAddress();
     ApplicationRepository.upsertRecord(application);
 
-    application = ApplicationRepository.readApplication(application.Id);
+    application = ApplicationRepository.readApplicationById(application.Id);
     ApexRequest.setApplicationId(application.Id);
     application = SecurityUtils.createSessionForApplication(application);
     application.Name = application.ApplicationNumber__c;

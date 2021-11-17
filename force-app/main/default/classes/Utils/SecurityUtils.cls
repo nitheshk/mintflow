@@ -222,12 +222,12 @@ global inherited sharing class SecurityUtils {
   }
 
   //Session Management
-  public class CipherDTO {
-    public String appId { get; set; }
-    public String aplId { get; set; }
-    public String aplType { get; set; }
-    public String ch { get; set; }
-    public Datetime edt { get; set; }
+  global class CipherDTO {
+    public String appId { get; set; } //application Id
+    public String aplId { get; set; } //Applicant Id
+    public String aplType { get; set; } //Applicant Type
+    public String ch { get; set; } //Channel
+    public Datetime edt { get; set; } //Exipre DateTime
   }
 
   /**
@@ -249,27 +249,6 @@ global inherited sharing class SecurityUtils {
     );
     ApexRequest.getRequest().token = application.SessionToken__c;
     return application;
-  }
-
-  global static void validateSession() {
-    ApexRequest request = ApexRequest.getRequest();
-    if (request.flowType == 'Primary') {
-      validateSessionForApplication(request);
-    } else if (request.flowType == 'Joint') {
-      validateSessionForApplicant(request);
-    } else {
-      throw new CustomException('Flow Type Is Not Mentioned');
-    }
-  }
-
-  global static void validateSessionForApplication(ApexRequest request) {
-    try {
-    } catch (Exception ex) {
-      throw new CustomException('Invalid Token');
-    }
-  }
-
-  global static void validateSessionForApplicant(ApexRequest request) {
   }
 
   /**
@@ -294,14 +273,88 @@ global inherited sharing class SecurityUtils {
   }
 
   /**
-   * @description extract data from token
-   * @author Digital Align Team | 11-15-2021
-   * @param String encryptedToken
-   * @return Map<String, Object>
+   * @description validate session
+   * @author Digital Align Team | 11-17-2021
+   * @return Boolean
    **/
-  global static Map<String, Object> extractToken(String encryptedToken) {
-    return (Map<String, Object>) JSON.deserializeUntyped(
-      SecurityUtils.decryptBase64(encryptedToken)
+  global static Boolean validateSession() {
+    ApexRequest request = ApexRequest.getRequest();
+    if (request.flowType == 'Primary') {
+      return validateSessionForApplication(request);
+    } else if (request.flowType == 'Joint') {
+      return validateSessionForApplicant(request);
+    } else {
+      throw new CustomException('Flow Type Is Not Mentioned');
+    }
+  }
+
+  /**
+   * @description validate session for application
+   * @author Digital Align Team | 11-17-2021
+   * @param ApexRequest request
+   * @return Boolean
+   **/
+  global static Boolean validateSessionForApplication(ApexRequest request) {
+    SecurityUtils.CipherDTO cipher = extractToken(request.token);
+    Account application = ApplicationRepository.readApplicationForToken(
+      (Id) cipher.appId
     );
+    if (application.SessionToken__c != request.token) {
+      throw new CustomException(
+        'Invalid session token, Token Does Match with system'
+      );
+    }
+    ApexRequest.setApplicationId(application.Id);
+    ApexRequest.setApplicationName(application.ApplicationNumber__c);
+    ApexRequest.setApplicantId(cipher.aplId);
+    return true;
+  }
+
+  /**
+   * @description Validate Session For Applicant
+   * @author Digital Align Team | 11-17-2021
+   * @param ApexRequest request
+   * @return Boolean
+   **/
+  private static Boolean validateSessionForApplicant(ApexRequest request) {
+    SecurityUtils.CipherDTO cipher = extractToken(request.token);
+    Applicant__c applicant = ApplicantRepository.readApplicantForToken(
+      (Id) cipher.aplId
+    );
+
+    if (applicant.SessionToken__c != request.token) {
+      throw new CustomException(
+        'Invalid session token, Token Does Match with system'
+      );
+    }
+
+    ApexRequest.setApplicationId(applicant.Id);
+    ApexRequest.setApplicationName(
+      applicant.Application__r.ApplicationNumber__c
+    );
+    ApexRequest.setApplicantId(cipher.aplId);
+    return true;
+  }
+
+  /**
+   * @description decrypt token
+   * @author Digital Align Team | 11-17-2021
+   * @param String token
+   * @return SecurityUtils.CipherDTO
+   **/
+  private static SecurityUtils.CipherDTO extractToken(String token) {
+    SecurityUtils.CipherDTO cipher;
+    try {
+      cipher = (SecurityUtils.CipherDTO) JSON.deserialize(
+        SecurityUtils.decryptBase64(token),
+        SecurityUtils.CipherDTO.class
+      );
+    } catch (Exception ex) {
+      throw new CustomException('Invalid session token');
+    }
+    if (cipher.edt < Datetime.now()) {
+      throw new CustomException('Session token has expired');
+    }
+    return cipher;
   }
 }
