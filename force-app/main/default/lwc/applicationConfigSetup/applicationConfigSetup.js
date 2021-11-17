@@ -1,9 +1,11 @@
-import { LightningElement, wire, track } from "lwc";
+import { LightningElement, wire, track, api } from "lwc";
 import fetchConfigValues from "@salesforce/apex/LwcCustomController.fetchConfigValues";
 import updateConfigValues from "@salesforce/apex/LwcCustomController.updateConfigValues";
+import deleteLogs from "@salesforce/apex/Logger.deleteLogs";
 import utils from "c/generalUtils";
-
-export default class ApplicationCongifSetup extends LightningElement {
+// import deleteLog from "c/deleteDebugLogs";
+export default class applicationCongifgSetup extends LightningElement() {
+  // deleteLog
   @track configData = {};
   @track showSpinner = true;
 
@@ -54,5 +56,17 @@ export default class ApplicationCongifSetup extends LightningElement {
           this.showSpinner = false;
         });
     }
+  }
+  @api invoke() {
+    deleteLogs()
+      .then((result) => {
+        if (result.status === 200) {
+          utils.successMessage(this, "Log Deleted", "Success");
+        }
+      })
+      .catch((error) => {
+        console.log("Error : " + JSON.stringify(error));
+        utils.errorMessage(this, error.body.message, "Error");
+      });
   }
 }

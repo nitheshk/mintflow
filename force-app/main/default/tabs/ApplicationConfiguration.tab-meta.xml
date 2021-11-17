@@ -2,6 +2,6 @@
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Application configuration setup</description>
     <label>Application Configuration</label>
-    <lwcComponent>applicationCongifSetup</lwcComponent>
+    <lwcComponent>applicationConfigSetup</lwcComponent>
     <motif>Custom67: Gears</motif>
 </CustomTab>
