@@ -22,17 +22,4 @@ public with sharing class LwcCustomRepository extends DatabaseUtils {
       .toString();
     return (List<Flow__c>) getRecords(q);
   }
-  /**
-   * @description
-   * @author Digital Align | 11-17-2021
-   * @return List<ApplicationConfiguration__c>
-   **/
-  public static List<ApplicationConfiguration__c> fetchApplicationConfigValues() {
-    String q = Query.newInstance(ApplicationConfiguration__c.SObjectType)
-      .addFields()
-      .run()
-      .addLimit(1)
-      .toString();
-    return (List<ApplicationConfiguration__c>) getRecords(q);
-  }
 }

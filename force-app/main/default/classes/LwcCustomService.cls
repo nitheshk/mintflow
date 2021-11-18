@@ -37,16 +37,6 @@ global with sharing class LwcCustomService extends AbstractService {
     log?.debug(' recordId : ' + entityId);
     return LwcCustomRepository.fetchFlowByEntityId(entityId);
   }
-
-  /**
-   * @description
-   * @author Digital Align | 11-17-2021
-   * @return ApplicationConfiguration__c
-   **/
-  global ApplicationConfiguration__c fetchConfigValues() {
-    list<ApplicationConfiguration__c> configDataList = LwcCustomRepository.fetchApplicationConfigValues();
-    return configDataList[0];
-  }
   /**
    * @description
    * @author Digital Align | 11-17-2021

@@ -45,9 +45,7 @@ global with sharing class LwcCustomController extends AbstractController {
   global static ApexResponse fetchConfigValues() {
     try {
       log?.fine('Inside fetchConfigValues ');
-      return ApexResponse.ok(
-        LwcCustomService.getInstance().fetchConfigValues()
-      );
+      return ApexResponse.ok(ApplicationConfiguration__c.getOrgDefaults());
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
