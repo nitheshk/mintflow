@@ -231,6 +231,29 @@ global inherited sharing class SecurityUtils {
   }
 
   /**
+   * @description Genrate Token for Internal Testing
+   * @author Digital Align Team | 11-18-2021
+   * @param String applicationId
+   * @param String applicantId
+   * @param String applicantType
+   * @return token
+   **/
+  global static String generateTokenForTesting(
+    String applicationId,
+    String applicantId,
+    String applicantType
+  ) {
+    SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+    cipher.appId = applicationId;
+    cipher.aplId = applicantId;
+    cipher.aplType = applicantType;
+    ApexRequest.getRequest().token = SecurityUtils.encryptBase64(
+      Json.serialize(cipher, true)
+    );
+    return (String) refreshToken();
+  }
+
+  /**
    * @description create session token for application
    * @author Digital Align Team | 11-15-2021
    * @param Account application
@@ -403,13 +426,13 @@ global inherited sharing class SecurityUtils {
       );
     String token = SecurityUtils.encryptBase64(Json.serialize(cipher, true));
     ApexRequest.getRequest().token = token;
-    if (ApexRequest.getRequest().flowType == 'Primary') {
+    if (cipher.aplType == 'py') {
       Account application = new Account(
         Id = cipher.appId,
         SessionToken__c = token
       );
       ApplicationRepository.upsertRecord(application);
-    } else if (ApexRequest.getRequest().flowType == 'Joint') {
+    } else if (cipher.aplType == 'jt') {
       Applicant__c applicant = new Applicant__c(
         Id = cipher.aplId,
         SessionToken__c = token

@@ -43,3 +43,22 @@ request.setRequest();
 SecurityUtils.validateSession();
 system.debug(ApexRequest.getApplicationId());
 system.debug(ApexRequest.getRequest().flowType);
+
+//RefreshToken
+ApexRequest request = new ApexRequest();
+request.token = 'lTlmvHxNiXZSBgCGqoLKvAtpw0OHojTDjjbFY92PLay9GqQmAXdl7Dm8ecPuiZRPp+t2bJSz8+houOOob7bH2vtm3QMjUBN35JVNXWbu5OgrjJmpYVasJqbhWomNs/3r0gbwjopSEXf1cLzrNmmyFw==';
+ApexResponse res = ApplicationController.refreshToken(request);
+system.debug('Full Json : ' + res.data);
+
+//Create Token
+ApexRequest request = new ApexRequest();
+// primary -py, Joint -jt
+request.token = SecurityUtils.generateTokenForTesting(
+  '0010p000010fl06AAA',
+  'a0b0p0000026aUnAAI',
+  'py'
+);
+request.setRequest();
+SecurityUtils.validateSession();
+system.debug('ApplicationId :' + ApexRequest.getApplicationId());
+system.debug('flowType : ' + ApexRequest.getRequest().flowType);

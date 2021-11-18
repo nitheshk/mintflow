@@ -28,7 +28,11 @@ global abstract with sharing class AbstractController {
   global static void validateRequest(ApexRequest request) {
     if (request != null) {
       request?.setRequest();
-      //validate token;
+      if (!Test.isRunningTest()) {
+        //validate token;
+        //throw custom exception on any error
+        SecurityUtils.validateSession();
+      }
     } else {
       throw new CustomException('Invalid Request');
     }
