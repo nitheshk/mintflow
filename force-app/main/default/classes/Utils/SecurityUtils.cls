@@ -8,6 +8,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global inherited sharing class SecurityUtils {
+  private static logger log = logger.getInstance(SecurityUtils.class);
   /**
    * @description Check crud permission for list<Sobject>
    * @param List<SObject> the SObject type to check
@@ -275,6 +276,8 @@ global inherited sharing class SecurityUtils {
     ApexRequest.getRequest().flowType = 'Primary';
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
+
+    log?.fine('Session Token :' + ApexRequest.getRequest().token);
     return application;
   }
 
@@ -293,7 +296,6 @@ global inherited sharing class SecurityUtils {
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
           .SesssionExpirationTime__c
       );
-
     if (
       applicant.RecordType.Name ==
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -307,11 +309,16 @@ global inherited sharing class SecurityUtils {
       cipher.aplType = 'jt';
       ApexRequest.getRequest().flowType = 'Joint';
     }
-
     applicant.SessionToken__c = SecurityUtils.encryptBase64(
       Json.serialize(cipher, true)
     );
     ApexRequest.getRequest().token = applicant.SessionToken__c;
+    ApexRequest.setApplicationId(cipher.appId);
+    ApexRequest.setApplicantId(cipher.aplId);
+    ApexRequest.setApplicationName(
+      applicant.Application__r.ApplicationNumber__c
+    );
+    log?.fine('Session Token :' + ApexRequest.getRequest().token);
     return applicant;
   }
 
@@ -323,8 +330,7 @@ global inherited sharing class SecurityUtils {
   global static void validateSession() {
     ApexRequest request = ApexRequest.getRequest();
     SecurityUtils.CipherDTO cipher = extractToken(request.token);
-    //#pending <
-    if (cipher.edt == Datetime.now()) {
+    if (cipher.edt < Datetime.now()) {
       throw new CustomException('Session token has expired');
     }
     switch on cipher.aplType {
@@ -338,6 +344,7 @@ global inherited sharing class SecurityUtils {
         throw new CustomException('Flow Type Is Not Mentioned');
       }
     }
+    log?.fine('Session Validated');
   }
 
   /**

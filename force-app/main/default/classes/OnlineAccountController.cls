@@ -34,7 +34,7 @@ global with sharing class OnlineAccountController extends AbstractController {
         } catch (Exception ex) {
           throw new CustomException('The specified URL was corrupted');
         }
-        //#pending (condition <)
+
         if (cipher.edt < Datetime.now()) {
           throw new CustomException('The specified URL was Expired');
         }
