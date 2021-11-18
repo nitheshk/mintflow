@@ -25,6 +25,14 @@ export default class applicationCongifgSetup extends LightningElement() {
   handleChange(event) {
     var targetElement = event.target;
     this.configData[targetElement.dataset.fieldname] = targetElement.value;
+    console.log(targetElement.value);
+    console.log(event);
+  }
+  handleCheckboxChange(event) {
+    var targetElement = event.target;
+    if (this.configData[targetElement.dataset.fieldname] === true)
+      this.configData[targetElement.dataset.fieldname] = false;
+    else this.configData[targetElement.dataset.fieldname] = true;
   }
 
   handleSave() {
@@ -32,6 +40,7 @@ export default class applicationCongifgSetup extends LightningElement() {
       utils.checkAllValidations(this.template.querySelectorAll(".validation"))
     ) {
       this.showSpinner = true;
+      console.log(JSON.stringify(this.configData));
       updateConfigValues({
         params: {
           configData: JSON.stringify(this.configData)
