@@ -55,8 +55,6 @@ global with sharing class ApplicationController extends AbstractController {
       } else {
         applicationId = (Id) ApexRequest.getParams().get('applicationId');
       }
-
-      system.debug('applicationId : ' + applicationId);
       return ApexResponse.success(
         ApplicationService.getInstance().readApplicationWithChild(applicationId)
       );

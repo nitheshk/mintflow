@@ -1,33 +1,44 @@
-// calling read method
+// #1 calling read method
 ApexRequest request = new ApexRequest();
-request.applicationId = '0010p000010fl06AAA';
-request.setHeader(
-  new Map<String, String>{ 'applicationId' => '0010w00000ndVjdAAE' }
+request.token = SecurityUtils.generateTokenForTesting(
+  '0010p000010fl06AAA',
+  'a0b0p0000026aUnAAI',
+  'py'
 );
+//request.applicationId = '0010p000010fl06AAA';
 ApexResponse res = ApplicationController.readApplicationWithChild(request);
 system.debug('Full Json : ' + res.data);
 
-// Save application
-String js = '{"Name":"App-003","LastModifiedDate":"2021-11-10T07:59:52.000+0000","FinServ__TotalAUMPrimaryOwner__c":0.0,"Description":"103.157.239.36","FinServ__HouseholdFinancialAccounts__r":{"totalSize":0,"done":true,"records":[]},"FinServ__TotalLiabilitiesJointOwner__c":0.0,"LastReferencedDate":"2021-11-10T08:27:41.000+0000","FinServ__TotalNonfinancialAssetsPrimaryOwner__c":0.0,"FinServ__TotalOutstandingCredit__c":0.0,"FinServ__TotalInsuranceJointOwner__c":0.0,"FinServ__TotalFinancialAccounts__c":0.0,"FinServ__TotalInvestmentsPrimaryOwner__c":0.0,"FinServ__TotalBankDepositsPrimaryOwner__c":0.0,"BillingAddress":null,"FinServ__TotalInsurancePrimaryOwner__c":0.0,"FinServ__TotalNumberOfFinAccounts__c":0.0,"FinServ__TotalInvestments__c":0.0,"FinServ__AUM__c":0.0,"FinServ__Status__c":"Active","FinServ__TotalNonfinancialAssets__c":0.0,"FinServ__TotalLiabilitiesPrimaryOwner__c":0.0,"FinServ__TotalInsurance__c":0.0,"dau01__Applicants__r":{"totalSize":3,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","IsDeleted":false,"dau01__IsEmailVerified__c":false,"dau01__LastName__c":"Last Name","dau01__IsExistingCustomer__c":false,"Name":"First Name Last Name","dau01__Employments__r":{"totalSize":2,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","IsDeleted":false,"FinServ__Occupation__c":"Sales","FinServ__AnnualIncome__c":23232.0,"Name":"Employed","dau01__DeleteRecord__c":false,"FinServ__EmploymentStatus__c":"Employed","CreatedDate":"2021-11-10T07:59:52.000+0000","FinServ__Position__c":"1"}]},"dau01__DeleteRecord__c":false,"dau01__IsPhoneNumberVerified__c":false,"dau01__FirstName__c":"First Name","CreatedDate":"2021-11-10T07:59:52.000+0000","dau01__ApplicantNumber__c":"A-0009","dau01__IdentificationDocuments__r":{"totalSize":2,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","FinServ__DocumentType__c":"License","IsDeleted":false,"FinServ__ExpirationDate__c":"2021-10-07","FinServ__IssueDate__c":"2021-10-04","FinServ__DocumentNumber__c":"23432","Name":"DOC-000000018","SystemModstamp":"2021-11-10T07:59:52.000+0000","dau01__DeleteRecord__c":false,"FinServ__IssuingCountry__c":"United States"}]},"dau01__ContactPointAddresses__r":{"totalSize":2,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","PostalCode":"575017","Latitude":34.34,"UsageType":"Home","Name":"Nithesh K","dau01__MonthsLivedAtCurrentAddress__c":2.0,"dau01__YearsLivedAtCurrentAddress__c":3.0,"Street":"Amrutha nilaya, Kerebail Gudde Thokkottu","IsDefault":true,"IsDeleted":false,"City":"Mangalore","Longitude":34.34,"SystemModstamp":"2021-11-10T07:59:52.000+0000","dau01__DeleteRecord__c":false,"State":"Karnataka","CreatedDate":"2021-11-10T07:59:52.000+0000","IsPrimary":false,"Country":"India","AddressType":"Billing"}]},"dau01__Email__c":"nitheshk.hero@gmail.com","dau01__ApplicantType__c":"Primary","dau01__Revenues__r":{"totalSize":2,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","IsDeleted":false,"FinServ__SubType__c":"Transaction","FinServ__Type__c":"Commission","Name":"REV-000000014","SystemModstamp":"2021-11-10T07:59:52.000+0000","FinServ__Amount__c":10.0,"FinServ__Date__c":"2021-10-26","dau01__DeleteRecord__c":false}]}},{"LastModifiedDate":"2021-11-10T08:18:05.000+0000","IsDeleted":false,"dau01__IsEmailVerified__c":false,"dau01__LastName__c":"Member1","dau01__IsExistingCustomer__c":false,"Name":"Fmaily Member 1","SystemModstamp":"2021-11-10T08:18:05.000+0000","dau01__DeleteRecord__c":false,"dau01__IsPhoneNumberVerified__c":false,"dau01__Email__c":"nithesh.k@digitalalign.com","dau01__FirstName__c":"Fmaily","CreatedDate":"2021-11-10T08:18:05.000+0000","dau01__ApplicantNumber__c":"A-0010","dau01__ApplicantType__c":"Family Member"}]},"FinServ__TotalInvestmentsJointOwner__c":0.0,"FinServ__TotalBankDepositsJointOwner__c":0.0,"IsDeleted":false,"FinServ__WalletShare__c":0.0,"IsCustomerPortal":false,"LastViewedDate":"2021-11-10T08:27:41.000+0000","FinServ__TotalNonfinancialAssetsJointOwner__c":0.0,"FinServ__TotalBankDeposits__c":0.0,"SystemModstamp":"2021-11-10T07:59:52.000+0000","dau01__DeleteRecord__c":false,"CleanStatus":"Pending","FinServ__TotalAUMJointOwner__c":0.0,"ShippingAddress":null,"FinServ__TotalLiabilities__c":0.0,"CreatedDate":"2021-11-10T07:59:52.000+0000","FinServ__IndividualType__c":"Group","IsPartner":false}';
+// #2 Save application
+
+String js = '{"Name":"App-0037","LastModifiedDate":"2021-11-10T07:59:52.000+0000","FinServ__TotalAUMPrimaryOwner__c":0.0,"Description":"103.157.239.36","FinServ__HouseholdFinancialAccounts__r":{"totalSize":0,"done":true,"records":[]},"FinServ__TotalLiabilitiesJointOwner__c":0.0,"LastReferencedDate":"2021-11-10T08:27:41.000+0000","FinServ__TotalNonfinancialAssetsPrimaryOwner__c":0.0,"FinServ__TotalOutstandingCredit__c":0.0,"FinServ__TotalInsuranceJointOwner__c":0.0,"FinServ__TotalFinancialAccounts__c":0.0,"FinServ__TotalInvestmentsPrimaryOwner__c":0.0,"FinServ__TotalBankDepositsPrimaryOwner__c":0.0,"BillingAddress":null,"FinServ__TotalInsurancePrimaryOwner__c":0.0,"FinServ__TotalNumberOfFinAccounts__c":0.0,"FinServ__TotalInvestments__c":0.0,"FinServ__AUM__c":0.0,"FinServ__Status__c":"Active","FinServ__TotalNonfinancialAssets__c":0.0,"FinServ__TotalLiabilitiesPrimaryOwner__c":0.0,"FinServ__TotalInsurance__c":0.0,"dau01__Applicants__r":{"totalSize":3,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","IsDeleted":false,"dau01__IsEmailVerified__c":false,"dau01__LastName__c":"Last Name","dau01__IsExistingCustomer__c":false,"Name":"First Name Last Name","dau01__Employments__r":{"totalSize":2,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","IsDeleted":false,"FinServ__Occupation__c":"Sales","FinServ__AnnualIncome__c":23232.0,"Name":"Employed","dau01__DeleteRecord__c":false,"FinServ__EmploymentStatus__c":"Employed","CreatedDate":"2021-11-10T07:59:52.000+0000","FinServ__Position__c":"1"}]},"dau01__DeleteRecord__c":false,"dau01__IsPhoneNumberVerified__c":false,"dau01__FirstName__c":"First Name","CreatedDate":"2021-11-10T07:59:52.000+0000","dau01__ApplicantNumber__c":"A-0009","dau01__IdentificationDocuments__r":{"totalSize":2,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","FinServ__DocumentType__c":"License","IsDeleted":false,"FinServ__ExpirationDate__c":"2021-10-07","FinServ__IssueDate__c":"2021-10-04","FinServ__DocumentNumber__c":"23432","Name":"DOC-000000018","SystemModstamp":"2021-11-10T07:59:52.000+0000","dau01__DeleteRecord__c":false,"FinServ__IssuingCountry__c":"United States"}]},"dau01__ContactPointAddresses__r":{"totalSize":2,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","PostalCode":"575017","Latitude":34.34,"UsageType":"Home","Name":"Nithesh K","dau01__MonthsLivedAtCurrentAddress__c":2.0,"dau01__YearsLivedAtCurrentAddress__c":3.0,"Street":"Amrutha nilaya, Kerebail Gudde Thokkottu","IsDefault":true,"IsDeleted":false,"City":"Mangalore","Longitude":34.34,"SystemModstamp":"2021-11-10T07:59:52.000+0000","dau01__DeleteRecord__c":false,"State":"Karnataka","CreatedDate":"2021-11-10T07:59:52.000+0000","IsPrimary":false,"Country":"India","AddressType":"Billing"}]},"dau01__Email__c":"nitheshk.hero@gmail.com","dau01__ApplicantType__c":"Primary","dau01__Revenues__r":{"totalSize":2,"done":true,"records":[{"LastModifiedDate":"2021-11-10T07:59:52.000+0000","IsDeleted":false,"FinServ__SubType__c":"Transaction","FinServ__Type__c":"Commission","Name":"REV-000000014","SystemModstamp":"2021-11-10T07:59:52.000+0000","FinServ__Amount__c":10.0,"FinServ__Date__c":"2021-10-26","dau01__DeleteRecord__c":false}]}},{"LastModifiedDate":"2021-11-10T08:18:05.000+0000","IsDeleted":false,"dau01__IsEmailVerified__c":false,"dau01__LastName__c":"Member1","dau01__IsExistingCustomer__c":false,"Name":"Fmaily Member 1","SystemModstamp":"2021-11-10T08:18:05.000+0000","dau01__DeleteRecord__c":false,"dau01__IsPhoneNumberVerified__c":false,"dau01__Email__c":"nithesh.k@digitalalign.com","dau01__FirstName__c":"Fmaily","CreatedDate":"2021-11-10T08:18:05.000+0000","dau01__ApplicantNumber__c":"A-0010","dau01__ApplicantType__c":"Family Member"}]},"FinServ__TotalInvestmentsJointOwner__c":0.0,"FinServ__TotalBankDepositsJointOwner__c":0.0,"IsDeleted":false,"FinServ__WalletShare__c":0.0,"IsCustomerPortal":false,"LastViewedDate":"2021-11-10T08:27:41.000+0000","FinServ__TotalNonfinancialAssetsJointOwner__c":0.0,"FinServ__TotalBankDeposits__c":0.0,"SystemModstamp":"2021-11-10T07:59:52.000+0000","dau01__DeleteRecord__c":false,"CleanStatus":"Pending","FinServ__TotalAUMJointOwner__c":0.0,"ShippingAddress":null,"FinServ__TotalLiabilities__c":0.0,"CreatedDate":"2021-11-10T07:59:52.000+0000","FinServ__IndividualType__c":"Group","IsPartner":false}';
 ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  '0010p000010fl06AAA',
+  'a0b0p0000026aUnAAI',
+  'py'
+);
 Request.data = js;
 //request.currentPage = 'personal-information';
 ApexResponse res = ApplicationController.saveApplication(request);
 system.debug('Full Json : ' + res.data);
 
-// Delete Entity
+// #3 Delete Entity
 
 ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  '0010p000010fl06AAA',
+  '',
+  'py'
+);
 request.setHeader(
-  new Map<String, String>{ 'recordId' => '0019D00000IVmzvQAD' }
+  new Map<String, String>{ 'recordId' => 'a0b0p0000026jFjAAI' }
 );
 ApexResponse res = ApplicationController.deleteEntity(request);
 system.debug('Full Json : ' + res.data);
-logger.persist();
 
 //
-//REview information
-// calling read method
+// #4 Review information
 ApexRequest request = new ApexRequest();
 request.applicationId = '0010p000010fl06AAA';
 request.applicationName = 'APP-4444';
