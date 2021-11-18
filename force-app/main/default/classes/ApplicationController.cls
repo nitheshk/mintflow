@@ -146,13 +146,57 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse reviewInformationSubmit(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
+      return ApexResponse.success(
         ReviewInformationService.getInstance()
           .reviewInformationSubmit(ApexRequest.getApplicationId())
       );
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description get new refreshed token
+   * New token need to patch application/applicant respectvely
+   * @author Digital Align Team | 11-18-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse refreshToken(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.success(SecurityUtils.refreshToken());
+    } catch (CustomException ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description expire token
+   * @author Digital Align Team | 11-18-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse expireToken(ApexRequest request) {
+    try {
+      SecurityUtils.expireToken();
+      return ApexResponse.ok();
     } catch (Exception ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.fail(ex);

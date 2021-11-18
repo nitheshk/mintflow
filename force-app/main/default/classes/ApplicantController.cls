@@ -126,7 +126,7 @@ global with sharing class ApplicantController extends AbstractController {
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.getParams());
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
-      return ApexResponse.ok(
+      return ApexResponse.Success(
         AuthenticationService.getInstance().generateOTP(applicantId)
       );
     } catch (Exception ex) {
@@ -152,7 +152,7 @@ global with sharing class ApplicantController extends AbstractController {
       log?.fine('Inside validateOTP');
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.getParams());
-      return ApexResponse.ok(
+      return ApexResponse.Success(
         AuthenticationService.getInstance().validateOTP(ApexRequest.getParams())
       );
     } catch (CustomException ex) {

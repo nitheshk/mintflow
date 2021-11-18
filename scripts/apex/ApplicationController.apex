@@ -35,3 +35,11 @@ request.flowType = 'Primary';
 request.setRequest();
 ApexResponse res = ApplicationController.reviewInformationSubmit(request);
 system.debug('Full Json : ' + res.data);
+
+//validateToken
+ApexRequest request = new ApexRequest();
+request.token = 'lTlmvHxNiXZSBgCGqoLKvBxNpFK9Yo7/G+g09Za6e21D3F+cw5cWYQ0gpLuTzE0q19Nnv4xRJR+DsAPI/xLjfKsM+Db051nTKSffUAcrb6ThJxmEPQYtjxTcqvH8ZJif5i09CnXCx/ER3skZ2ARWAw==';
+request.setRequest();
+SecurityUtils.validateSession();
+system.debug(ApexRequest.getApplicationId());
+system.debug(ApexRequest.getRequest().flowType);

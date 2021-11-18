@@ -297,28 +297,36 @@ global inherited sharing class SecurityUtils {
    * @author Digital Align Team | 11-17-2021
    * @return Boolean
    **/
-  global static Boolean validateSession() {
+  global static void validateSession() {
     ApexRequest request = ApexRequest.getRequest();
-    if (request.flowType == 'Primary') {
-      return validateSessionForApplication(request);
-    } else if (request.flowType == 'Joint') {
-      return validateSessionForApplicant(request);
-    } else {
-      throw new CustomException('Flow Type Is Not Mentioned');
+    SecurityUtils.CipherDTO cipher = extractToken(request.token);
+    //#pending <
+    if (cipher.edt == Datetime.now()) {
+      throw new CustomException('Session token has expired');
+    }
+    switch on cipher.aplType {
+      when 'py' {
+        validateSessionForApplication(cipher, request);
+      }
+      when 'jt' {
+        validateSessionForApplicant(cipher, request);
+      }
+      when else {
+        throw new CustomException('Flow Type Is Not Mentioned');
+      }
     }
   }
 
   /**
    * @description validate session for application
-   * @author Digital Align Team | 11-17-2021
+   * @author Digital Align Team | 11-18-2021
+   * @param SecurityUtils.CipherDTO cipher
    * @param ApexRequest request
-   * @return Boolean
    **/
-  global static Boolean validateSessionForApplication(ApexRequest request) {
-    SecurityUtils.CipherDTO cipher = extractToken(request.token);
-    if (cipher.edt < Datetime.now()) {
-      throw new CustomException('Session token has expired');
-    }
+  global static void validateSessionForApplication(
+    SecurityUtils.CipherDTO cipher,
+    ApexRequest request
+  ) {
     Account application = ApplicationRepository.readApplicationForToken(
       (Id) cipher.appId
     );
@@ -330,20 +338,19 @@ global inherited sharing class SecurityUtils {
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
     ApexRequest.setApplicantId(cipher.aplId);
-    return true;
+    ApexRequest.getRequest().flowType = 'Primary';
   }
 
   /**
    * @description Validate Session For Applicant
-   * @author Digital Align Team | 11-17-2021
+   * @author Digital Align Team | 11-18-2021
+   * @param SecurityUtils.CipherDTO cipher
    * @param ApexRequest request
-   * @return Boolean
    **/
-  private static Boolean validateSessionForApplicant(ApexRequest request) {
-    SecurityUtils.CipherDTO cipher = extractToken(request.token);
-    if (cipher.edt < Datetime.now()) {
-      throw new CustomException('Session token has expired');
-    }
+  private static void validateSessionForApplicant(
+    SecurityUtils.CipherDTO cipher,
+    ApexRequest request
+  ) {
     Applicant__c applicant = ApplicantRepository.readApplicantForToken(
       (Id) cipher.aplId
     );
@@ -353,13 +360,12 @@ global inherited sharing class SecurityUtils {
         'Invalid session token, Token Does Match with system'
       );
     }
-
-    ApexRequest.setApplicationId(applicant.Id);
+    ApexRequest.setApplicationId(applicant.Application__c);
     ApexRequest.setApplicationName(
       applicant.Application__r.ApplicationNumber__c
     );
     ApexRequest.setApplicantId(cipher.aplId);
-    return true;
+    ApexRequest.getRequest().flowType = 'Joint';
   }
 
   /**
@@ -379,5 +385,61 @@ global inherited sharing class SecurityUtils {
       throw new CustomException('Invalid session token');
     }
     return cipher;
+  }
+
+  /**
+   * @description get new token
+   * @author Digital Align Team | 11-18-2021
+   * @return Object
+   **/
+  global static Object refreshToken() {
+    SecurityUtils.CipherDTO cipher = extractToken(
+      ApexRequest.getRequest().token
+    );
+    cipher.edt = Datetime.now()
+      .addMinutes(
+        (Integer) ApplicationConfiguration__c.getOrgDefaults()
+          .SesssionExpirationTime__c
+      );
+    String token = SecurityUtils.encryptBase64(Json.serialize(cipher, true));
+    ApexRequest.getRequest().token = token;
+    if (ApexRequest.getRequest().flowType == 'Primary') {
+      Account application = new Account(
+        Id = cipher.appId,
+        SessionToken__c = token
+      );
+      ApplicationRepository.upsertRecord(application);
+    } else if (ApexRequest.getRequest().flowType == 'Joint') {
+      Applicant__c applicant = new Applicant__c(
+        Id = cipher.aplId,
+        SessionToken__c = token
+      );
+      ApplicantRepository.upsertRecord(applicant);
+    }
+    return token;
+  }
+
+  /**
+   * @description expire token
+   * @author Digital Align Team | 11-18-2021
+   **/
+  global static void expireToken() {
+    SecurityUtils.CipherDTO cipher = extractToken(
+      ApexRequest.getRequest().token
+    );
+    ApexRequest.getRequest().token = 'expired';
+    if (cipher.aplType == 'py') {
+      Account application = new Account(
+        Id = cipher.appId,
+        SessionToken__c = 'expired'
+      );
+      ApplicationRepository.upsertRecord(application);
+    } else if (cipher.aplType == 'jt') {
+      Applicant__c applicant = new Applicant__c(
+        Id = cipher.aplId,
+        SessionToken__c = 'expired'
+      );
+      ApplicantRepository.upsertRecord(applicant);
+    }
   }
 }
