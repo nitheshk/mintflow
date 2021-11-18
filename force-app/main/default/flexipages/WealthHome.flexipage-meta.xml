@@ -54,11 +54,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>clearDebugLogs</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>contactFirst</name>
                     <value>false</value>
