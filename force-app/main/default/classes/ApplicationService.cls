@@ -99,8 +99,8 @@ global with sharing class ApplicationService extends AbstractService {
     application = SecurityUtils.createSessionForApplication(application);
     application.Name = application.ApplicationNumber__c;
     ApplicationRepository.upsertRecord(application);
-    params.put('applicationId', application.Id);
-    params.put('applicantType', 'Primary');
+    params.put('applicationId', ApexRequest.getApplicationId());
+    params.put('applicantType', ApexRequest.getRequest().flowType);
     return application;
   }
 

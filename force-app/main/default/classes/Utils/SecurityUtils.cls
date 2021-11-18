@@ -244,10 +244,12 @@ global inherited sharing class SecurityUtils {
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
           .SesssionExpirationTime__c
       );
+    cipher.aplType = 'py';
     application.SessionToken__c = SecurityUtils.encryptBase64(
-      Json.serialize(cipher)
+      Json.serialize(cipher, true)
     );
     ApexRequest.getRequest().token = application.SessionToken__c;
+    ApexRequest.getRequest().flowType = 'Primary';
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
     return application;
@@ -261,17 +263,32 @@ global inherited sharing class SecurityUtils {
    **/
   global static Applicant__c createSessionForApplicant(Applicant__c applicant) {
     SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+    cipher.appId = applicant.Application__c;
     cipher.aplId = applicant.Id;
     cipher.edt = Datetime.now()
       .addMinutes(
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
           .SesssionExpirationTime__c
       );
+
+    if (
+      applicant.RecordType.Name ==
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    ) {
+      cipher.aplType = 'py';
+      ApexRequest.getRequest().flowType = 'Primary';
+    } else if (
+      applicant.RecordType.Name ==
+      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+    ) {
+      cipher.aplType = 'jt';
+      ApexRequest.getRequest().flowType = 'Joint';
+    }
+
     applicant.SessionToken__c = SecurityUtils.encryptBase64(
-      Json.serialize(cipher)
+      Json.serialize(cipher, true)
     );
     ApexRequest.getRequest().token = applicant.SessionToken__c;
-
     return applicant;
   }
 

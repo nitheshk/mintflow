@@ -145,15 +145,14 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     for (Applicant__c applicant : applicants) {
       SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
 
-      Map<String, Object> urlMap = new Map<String, Object>();
-      if (
-        notificationName == 'PrimaryReviewInformationSubmitted' ||
-        notificationName == 'PrimaryReviewInformationWaiting'
-      ) {
-        cipher.aplType = 'py';
-      }
-      if (notificationName == 'JointStartApplication') {
-        cipher.aplType = 'jt';
+      switch on notificationName {
+        when 'PrimaryReviewInformationSubmitted',
+          'PrimaryReviewInformationWaiting' {
+          cipher.aplType = 'py';
+        }
+        when 'JointStartApplication' {
+          cipher.aplType = 'jt';
+        }
       }
       cipher.appId = ApexRequest.getApplicationId();
       cipher.aplId = applicant.Id;
@@ -167,7 +166,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       String link =
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
         '/OnlineAccount?vmf=' +
-        SecurityUtils.encryptUrl(JSON.serialize(cipher));
+        SecurityUtils.encryptUrl(JSON.serialize(cipher, true));
 
       EmailNotificationBuilder.newInstance(notificationName, applicant.Id)
         .setToAddresses(applicant.Email__c)

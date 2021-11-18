@@ -153,35 +153,17 @@ global with sharing class AuthenticationService extends AbstractService {
 
       //create a session for primary/joint applicant when token is not present
       if (String.isBlank(ApexRequest.getRequest().token)) {
-        applicant = createNewSession(applicant);
+        SecurityUtils.createSessionForApplicant(applicant);
+        if (ApexRequest.getRequest().flowType == 'Primary') {
+          applicant.Application__r.SessionToken__c = applicant.SessionToken__c;
+          ApplicantRepository.updateRecord(applicant.Application__r);
+        }
       }
-
       ApplicantRepository.updateRecord(applicant);
       return applicant;
     } catch (customException ex) {
       ApplicantRepository.updateRecord(applicant);
       throw ex;
     }
-  }
-
-  /**
-   * @description  create New session for applicant on authenticate
-   * @author Digital Align Team | 11-17-2021
-   * @param Applicant__c applicant
-   * @return Applicant__c
-   **/
-  private Applicant__c createNewSession(Applicant__c applicant) {
-    if (
-      applicant.RecordType.Name ==
-      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-    ) {
-      SecurityUtils.createSessionForApplicant(applicant);
-    } else if (
-      applicant.RecordType.Name ==
-      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-    ) {
-      SecurityUtils.createSessionForApplicant(applicant);
-    }
-    return applicant;
   }
 }
