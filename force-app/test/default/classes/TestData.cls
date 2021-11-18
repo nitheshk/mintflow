@@ -44,4 +44,27 @@ public with sharing class TestData {
     ocr.Role = 'Decision Maker';
     return ocr;
   }
+
+  public static Applicant__c createApplicant(id accId) {
+    Applicant__c applicant = new Applicant__c();
+    applicant.Application__c = accId;
+    applicant.FirstName__c = 'John';
+    applicant.LastName__c = 'Doe';
+    applicant.EmailOtp__c = '4567';
+    applicant.ApplicantType__c = 'Primary';
+    applicant.MembershipAccountNumber__c = '569856';
+    applicant.CustomerNumber__c = '578784';
+    return applicant;
+  }
+
+  public static ApplicationConfiguration__c createApplicationConfiguration() {
+    ApplicationConfiguration__c appConfig = new ApplicationConfiguration__c();
+    appConfig.AllowedOtpMode__c = 'SMS';
+    appConfig.EmailLinkExpirationTime__c = 2;
+    appConfig.OTPExpirationTime__c = 3;
+    appConfig.OTPMaxAllowedAttempts__c = 5;
+    appConfig.SentiLink__c = true;
+    appConfig.SesssionExpirationTime__c = 2;
+    return appConfig;
+  }
 }
