@@ -37,4 +37,29 @@ global abstract with sharing class AbstractController {
       throw new CustomException('Invalid Request');
     }
   }
+
+  /**
+   * @description validate request, Can skip the validation  on flag true
+   * @author Digital Align Team | 11-19-2021
+   * @param ApexRequest request
+   * @param Boolean skipValidation
+   **/
+  global static void validateRequest(
+    ApexRequest request,
+    Boolean skipValidation
+  ) {
+    if (request != null) {
+      request?.setRequest();
+      if (String.isBlank(ApexRequest.getRequest().token) && skipValidation) {
+        return;
+      }
+      if (!Test.isRunningTest()) {
+        //validate token;
+        //throw custom exception on any error
+        SecurityUtils.validateSession();
+      }
+    } else {
+      throw new CustomException('Invalid Request');
+    }
+  }
 }

@@ -39,24 +39,24 @@ global with sharing class ReviewInformationService extends AbstractService {
       applicationId
     );
 
-    String flowType = ApexRequest.getFlowType();
+    String applicantType = ApexRequest.getApplicantType();
     String applicantId = ApexRequest.getRequest().applicantId;
 
     switch on application.FinServ__CustomerType__c {
       when 'Consumer' {
-        if (flowType == 'Primary') {
+        if (applicantType == 'Primary') {
           // send email to primary and joint
           primaryConsumerFlow(application);
-        } else if (flowType == 'Joint') {
+        } else if (applicantType == 'Joint') {
           // send email to primary  on completion
           primaryConsumerFlow(application);
         }
       }
       when else {
-        if (flowType == 'Primary') {
+        if (applicantType == 'Primary') {
           // send email to primary and joint
           primaryConsumerFlow(application);
-        } else if (flowType == 'Joint') {
+        } else if (applicantType == 'Joint') {
           // send email to primary  on completion
           primaryConsumerFlow(application);
         }

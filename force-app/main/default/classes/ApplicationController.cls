@@ -55,12 +55,12 @@ global with sharing class ApplicationController extends AbstractController {
       } else {
         applicationId = (Id) ApexRequest.getParams().get('applicationId');
       }
-      if (ApexRequest.getFlowType() == 'Primary') {
+      if (ApexRequest.getApplicantType() == 'Primary') {
         return ApexResponse.success(
           ApplicationService.getInstance()
             .readApplicationWithChild(applicationId)
         );
-      } else if (ApexRequest.getFlowType() == 'Joint') {
+      } else if (ApexRequest.getApplicantType() == 'Joint') {
         return ApexResponse.success(
           ApplicationService.getInstance()
             .readApplicationWithChild(

@@ -154,7 +154,7 @@ global with sharing class AuthenticationService extends AbstractService {
       //create a session for primary/joint applicant when token is not present
       if (String.isBlank(ApexRequest.getRequest().token)) {
         SecurityUtils.createSessionForApplicant(applicant);
-        if (ApexRequest.getFlowType() == 'Primary') {
+        if (ApexRequest.getApplicantType() == 'Primary') {
           applicant.Application__r.SessionToken__c = applicant.SessionToken__c;
           ApplicantRepository.updateRecord(applicant.Application__r);
         }

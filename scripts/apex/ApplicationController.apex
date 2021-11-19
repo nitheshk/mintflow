@@ -42,7 +42,7 @@ system.debug('Full Json : ' + res.data);
 ApexRequest request = new ApexRequest();
 request.applicationId = '0010p000010fl06AAA';
 request.applicationName = 'APP-4444';
-request.flowType = 'Primary';
+request.applicantType = 'Primary';
 request.setRequest();
 ApexResponse res = ApplicationController.reviewInformationSubmit(request);
 system.debug('Full Json : ' + res.data);
@@ -53,7 +53,7 @@ request.token = 'lTlmvHxNiXZSBgCGqoLKvBxNpFK9Yo7/G+g09Za6e21D3F+cw5cWYQ0gpLuTzE0
 request.setRequest();
 SecurityUtils.validateSession();
 system.debug(ApexRequest.getApplicationId());
-system.debug(ApexRequest.getRequest().flowType);
+system.debug(ApexRequest.getApplicantType());
 
 //RefreshToken
 ApexRequest request = new ApexRequest();
@@ -72,4 +72,4 @@ request.token = SecurityUtils.generateTokenForTesting(
 request.setRequest();
 SecurityUtils.validateSession();
 system.debug('ApplicationId :' + ApexRequest.getApplicationId());
-system.debug('flowType : ' + ApexRequest.getRequest().flowType);
+system.debug('applicantType : ' + ApexRequest.getApplicantType());

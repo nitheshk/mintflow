@@ -273,7 +273,7 @@ global inherited sharing class SecurityUtils {
       Json.serialize(cipher, true)
     );
     ApexRequest.getRequest().token = application.SessionToken__c;
-    ApexRequest.setFlowType('Primary');
+    ApexRequest.setApplicantType('Primary');
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
 
@@ -301,13 +301,13 @@ global inherited sharing class SecurityUtils {
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
     ) {
       cipher.aplType = 'py';
-      ApexRequest.setFlowType('Primary');
+      ApexRequest.setApplicantType('Primary');
     } else if (
       applicant.RecordType.Name ==
       ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
     ) {
       cipher.aplType = 'jt';
-      ApexRequest.setFlowType('Joint');
+      ApexRequest.setApplicantType('Joint');
     }
     applicant.SessionToken__c = SecurityUtils.encryptBase64(
       Json.serialize(cipher, true)
@@ -368,7 +368,7 @@ global inherited sharing class SecurityUtils {
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
     ApexRequest.setApplicantId(cipher.aplId);
-    ApexRequest.setFlowType('Primary');
+    ApexRequest.setApplicantType('Primary');
   }
 
   /**
@@ -395,7 +395,7 @@ global inherited sharing class SecurityUtils {
       applicant.Application__r.ApplicationNumber__c
     );
     ApexRequest.setApplicantId(cipher.aplId);
-    ApexRequest.setFlowType('Joint');
+    ApexRequest.setApplicantType('Joint');
   }
 
   /**

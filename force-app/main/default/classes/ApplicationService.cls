@@ -100,7 +100,7 @@ global with sharing class ApplicationService extends AbstractService {
     application.Name = application.ApplicationNumber__c;
     ApplicationRepository.upsertRecord(application);
     params.put('applicationId', ApexRequest.getApplicationId());
-    params.put('applicantType', ApexRequest.getFlowType());
+    params.put('applicantType', ApexRequest.getApplicantType());
     return application;
   }
 

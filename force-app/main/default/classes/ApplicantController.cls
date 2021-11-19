@@ -123,7 +123,7 @@ global with sharing class ApplicantController extends AbstractController {
   global static ApexResponse generateOTP(ApexRequest request) {
     try {
       log?.fine('Inside generateOTP');
-      validateRequest(request);
+      validateRequest(request, true);
       log?.debug('params : ' + ApexRequest.getParams());
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       return ApexResponse.Success(
@@ -150,7 +150,7 @@ global with sharing class ApplicantController extends AbstractController {
   global static ApexResponse validateOTP(ApexRequest request) {
     try {
       log?.fine('Inside validateOTP');
-      validateRequest(request);
+      validateRequest(request, true);
       log?.debug('params : ' + ApexRequest.getParams());
       return ApexResponse.Success(
         AuthenticationService.getInstance().validateOTP(ApexRequest.getParams())
