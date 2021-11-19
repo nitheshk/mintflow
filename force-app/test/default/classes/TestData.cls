@@ -56,6 +56,17 @@ public with sharing class TestData {
     applicant.CustomerNumber__c = '578784';
     return applicant;
   }
+  public static ContactPointAddress createContactPointAddress() {
+    ContactPointAddress address = new ContactPointAddress();
+    address.Name = 'Add-001';
+    address.IsPrimary = true;
+    address.Street = 'street one';
+    address.City = 'CA';
+    address.State = 'CA';
+    address.Country = 'USA';
+    address.PostalCode = '10001';
+    return address;
+  }
 
   public static ApplicationConfiguration__c createApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = new ApplicationConfiguration__c();
