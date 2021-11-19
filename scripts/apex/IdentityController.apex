@@ -1,22 +1,30 @@
 /** Geocoding */
-
-//random input
+//Generate Token first and use in the next method, for api call
+System.debug(
+  SecurityUtils.generateTokenForTesting(
+    '0010p000011AFiIAAW',
+    '',
+    'Primary',
+    'ApplicationFlow'
+  )
+);
+//random input // ERROR OUTPUT
 ApexRequest request = new ApexRequest();
-request.applicationId = '0019D00000IVnGrQAL'; //account ID
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM=';
 request.setHeader(new Map<String, String>{ 'zipcode' => '*^' });
 ApexResponse res = IdentityController.verifyCounty(request);
 system.debug('res=+' + JSON.serialize(res));
 
 // not eligible zipcode
 ApexRequest request = new ApexRequest();
-request.applicationId = '0019D00000IVnGrQAL'; //account ID
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM='; //account ID
 request.setHeader(new Map<String, String>{ 'zipcode' => '10001' });
 ApexResponse res = IdentityController.verifyCounty(request);
 system.debug('res=+' + JSON.serialize(res));
 
 //eligible zipcode
 ApexRequest request = new ApexRequest();
-request.applicationId = '0019D00000IVnGrQAL'; //account ID
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM='; //account ID
 request.setHeader(new Map<String, String>{ 'zipcode' => '98013' });
 ApexResponse res = IdentityController.verifyCounty(request);
 system.debug('res=+' + JSON.serialize(res));

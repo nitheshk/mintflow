@@ -196,7 +196,45 @@ global with sharing class ApplicationService extends AbstractService {
       applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
     );
     params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
-    AuthenticationService.getInstance().generateOTP(cipher.aplId);
+    //AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
+  }
+
+  /**
+   * @description Save Application
+   * @author Digital Align Team | 11-20-2021
+   * @param Account application
+   * @return Account
+   **/
+  global virtual Account saveApplication(Account application) {
+    //before save
+    //save point count against DML operation
+    Savepoint sp = Database.setSavepoint();
+    try {
+      return ApplicationPersistService.getInstance()
+        .saveApplication(application);
+    } catch (Exception ex) {
+      log?.error(ex);
+      Database.rollback(sp);
+      throw ex;
+    }
+    //after save
+  }
+
+  /**
+   * @description  delete object by Id
+   * @author Digital Align Team | 11-10-2021
+   * @param Id recordId
+   * @return Boolean
+   **/
+  global virtual Boolean deleteEntity(Id recordId) {
+    Savepoint sp = Database.setSavepoint();
+    try {
+      return ApplicationPersistService.getInstance().deleteEntity(recordId);
+    } catch (Exception ex) {
+      log?.error(ex);
+      Database.rollback(sp);
+      throw ex;
+    }
   }
 }

@@ -53,7 +53,6 @@ global with sharing class ApplicantController extends AbstractController {
   @AuraEnabled
   @RemoteAction
   global static ApexResponse saveApplicants(ApexRequest request) {
-    Savepoint sp = Database.setSavepoint();
     try {
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.request.params);
@@ -67,11 +66,11 @@ global with sharing class ApplicantController extends AbstractController {
       );
     } catch (CustomException ex) {
       log?.error(ex);
-      Database.rollback(sp);
+
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
-      Database.rollback(sp);
+
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();
@@ -87,7 +86,6 @@ global with sharing class ApplicantController extends AbstractController {
   @AuraEnabled
   @RemoteAction
   global static ApexResponse saveApplicant(ApexRequest request) {
-    Savepoint sp = Database.setSavepoint();
     try {
       validateRequest(request);
       Applicant__c applicant = (Applicant__c) Json.deserialize(
@@ -100,11 +98,9 @@ global with sharing class ApplicantController extends AbstractController {
       );
     } catch (CustomException ex) {
       log?.error(ex);
-      Database.rollback(sp);
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
-      Database.rollback(sp);
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();

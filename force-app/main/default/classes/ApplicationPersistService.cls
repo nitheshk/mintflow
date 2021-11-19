@@ -54,10 +54,8 @@ global with sharing class ApplicationPersistService extends AbstractService {
     );
     //save applicants
     if (application.Applicants__r?.size() > 0) {
-      List<Applicant__c> applicants = saveApplicants(
-        application.Applicants__r,
-        application.Id
-      );
+      List<Applicant__c> applicants = ApplicantService.getInstance()
+        .saveApplicants(application.Applicants__r, application.Id);
       constructor.setChildObjects('dau01__Applicants__r', applicants);
     }
 
@@ -88,28 +86,18 @@ global with sharing class ApplicationPersistService extends AbstractService {
     String applicationId
   ) {
     log?.fine('Inside save applicants');
-
     if (CollectionUtils.isListEmpty(applicants)) {
       return applicants;
     }
-
-    //before saving applicants
-    applicants = ApplicantService.getInstance()
-      .beforeSaveApplicants(applicants);
-
     //update value for applicant here
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicant(applicant, applicationId);
     }
     ApplicantRepository.upsertRecords(applicants);
-
+    //save child of applicants
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicantChild(applicant);
     }
-
-    //after saving appliants and child records
-    applicants = ApplicantService.getInstance().afterSaveApplicants(applicants);
-
     log?.fine('Finish save applicants');
     return applicants;
   }
@@ -375,7 +363,6 @@ global with sharing class ApplicationPersistService extends AbstractService {
       }
     }
     log?.fine('Complete Delete Record');
-
     return true;
   }
 

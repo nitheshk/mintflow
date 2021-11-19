@@ -89,10 +89,22 @@ global with sharing class ApplicantService extends AbstractService {
     List<Applicant__c> applicants,
     String applicationId
   ) {
-    return ApplicationPersistService.getInstance()
-      .saveApplicants(applicants, ApexRequest.getApplicationId());
+    //before saving applicants
+    applicants = ApplicantService.getInstance()
+      .beforeSaveApplicants(applicants);
+    //save point count against DML operation
+    Savepoint sp = Database.setSavepoint();
+    try {
+      applicants = ApplicationPersistService.getInstance()
+        .saveApplicants(applicants, ApexRequest.getApplicationId());
+    } catch (Exception ex) {
+      log?.error(ex);
+      Database.rollback(sp);
+      throw ex;
+    }
+    //after saving appliants and child records
+    return ApplicantService.getInstance().afterSaveApplicants(applicants);
   }
-
   /**
    * @description after saving applicants
    * @author Digital Align Team | 11-09-2021
@@ -134,13 +146,19 @@ global with sharing class ApplicantService extends AbstractService {
     String applicationId
   ) {
     applicant = beforeSaveApplicant(applicant);
-    applicant = ApplicationPersistService.getInstance()
-      .saveApplicant(applicant, applicationId);
-    ApplicantRepository.upsertRecord(applicant);
-    applicant = ApplicationPersistService.getInstance()
-      .saveApplicantChild(applicant);
-    applicant = afterSaveApplicant(applicant);
-    return applicant;
+    Savepoint sp = Database.setSavepoint();
+    try {
+      applicant = ApplicationPersistService.getInstance()
+        .saveApplicant(applicant, applicationId);
+      ApplicantRepository.upsertRecord(applicant);
+      applicant = ApplicationPersistService.getInstance()
+        .saveApplicantChild(applicant);
+    } catch (Exception ex) {
+      log?.error(ex);
+      Database.rollback(sp);
+      throw ex;
+    }
+    return afterSaveApplicant(applicant);
   }
   /**
    * @description  after saving applicant
