@@ -15,6 +15,8 @@ global with sharing class ApexRequest {
   global String applicantId { get; set; }
   @AuraEnabled
   global String token { get; set; }
+  @AuraEnabled
+  global String flowType { get; set; }
   //Primary Flow or Joint Flow
   @AuraEnabled
   global String applicantType { get; set; }
@@ -127,6 +129,15 @@ global with sharing class ApexRequest {
   }
 
   /**
+   * @description get current token
+   * @author Digital Align Team | 11-19-2021
+   * @return String
+   **/
+  global static String getToken() {
+    return ApexRequest.request?.token;
+  }
+
+  /**
    * @description  set session application id
    * @author Digital Align Team | 10-27-2021
    * @param String applicationId
@@ -180,6 +191,18 @@ global with sharing class ApexRequest {
     return ApexRequest.request;
   }
 
+  /**
+   * @description Set Request Token
+   * @author Digital Align Team | 11-19-2021
+   * @param String token
+   * @return ApexRequest
+   **/
+  global static ApexRequest setToken(String token) {
+    if (ApexRequest.request != null) {
+      ApexRequest.request.token = token;
+    }
+    return ApexRequest.request;
+  }
   /**
    * @description set header
    * @author Digital Align Team | 10-27-2021

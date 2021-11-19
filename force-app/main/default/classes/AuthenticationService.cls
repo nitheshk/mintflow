@@ -152,7 +152,7 @@ global with sharing class AuthenticationService extends AbstractService {
       applicant.IsPhoneNumberVerified__c = true;
 
       //create a session for primary/joint applicant when token is not present
-      if (String.isBlank(ApexRequest.getRequest().token)) {
+      if (String.isBlank(ApexRequest.getToken())) {
         SecurityUtils.createSessionForApplicant(applicant);
         if (ApexRequest.getApplicantType() == 'Primary') {
           applicant.Application__r.SessionToken__c = applicant.SessionToken__c;

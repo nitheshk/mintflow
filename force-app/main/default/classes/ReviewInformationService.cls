@@ -40,7 +40,7 @@ global with sharing class ReviewInformationService extends AbstractService {
     );
 
     String applicantType = ApexRequest.getApplicantType();
-    String applicantId = ApexRequest.getRequest().applicantId;
+    String applicantId = ApexRequest.getApplicantId();
 
     switch on application.FinServ__CustomerType__c {
       when 'Consumer' {

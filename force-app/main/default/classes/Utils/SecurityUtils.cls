@@ -248,8 +248,8 @@ global inherited sharing class SecurityUtils {
     cipher.appId = applicationId;
     cipher.aplId = applicantId;
     cipher.aplType = applicantType;
-    ApexRequest.getRequest().token = SecurityUtils.encryptBase64(
-      Json.serialize(cipher, true)
+    ApexRequest.setToken(
+      SecurityUtils.encryptBase64(Json.serialize(cipher, true))
     );
     return (String) refreshToken();
   }
@@ -272,12 +272,12 @@ global inherited sharing class SecurityUtils {
     application.SessionToken__c = SecurityUtils.encryptBase64(
       Json.serialize(cipher, true)
     );
-    ApexRequest.getRequest().token = application.SessionToken__c;
+    ApexRequest.setToken(application.SessionToken__c);
     ApexRequest.setApplicantType('Primary');
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
 
-    log?.fine('Session Token :' + ApexRequest.getRequest().token);
+    log?.fine('Session Token :' + ApexRequest.getToken());
     return application;
   }
 
@@ -312,13 +312,13 @@ global inherited sharing class SecurityUtils {
     applicant.SessionToken__c = SecurityUtils.encryptBase64(
       Json.serialize(cipher, true)
     );
-    ApexRequest.getRequest().token = applicant.SessionToken__c;
+    ApexRequest.setToken(applicant.SessionToken__c);
     ApexRequest.setApplicationId(cipher.appId);
     ApexRequest.setApplicantId(cipher.aplId);
     ApexRequest.setApplicationName(
       applicant.Application__r.ApplicationNumber__c
     );
-    log?.fine('Session Token :' + ApexRequest.getRequest().token);
+    log?.fine('Session Token :' + ApexRequest.getToken());
     return applicant;
   }
 
@@ -423,16 +423,14 @@ global inherited sharing class SecurityUtils {
    * @return Object
    **/
   global static Object refreshToken() {
-    SecurityUtils.CipherDTO cipher = extractToken(
-      ApexRequest.getRequest().token
-    );
+    SecurityUtils.CipherDTO cipher = extractToken(ApexRequest.getToken());
     cipher.edt = Datetime.now()
       .addMinutes(
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
           .SesssionExpirationTime__c
       );
     String token = SecurityUtils.encryptBase64(Json.serialize(cipher, true));
-    ApexRequest.getRequest().token = token;
+    ApexRequest.setToken(token);
     if (cipher.aplType == 'py') {
       Account application = new Account(
         Id = cipher.appId,
@@ -454,10 +452,8 @@ global inherited sharing class SecurityUtils {
    * @author Digital Align Team | 11-18-2021
    **/
   global static void expireToken() {
-    SecurityUtils.CipherDTO cipher = extractToken(
-      ApexRequest.getRequest().token
-    );
-    ApexRequest.getRequest().token = 'expired';
+    SecurityUtils.CipherDTO cipher = extractToken(ApexRequest.getToken());
+    ApexRequest.setToken('expired');
     if (cipher.aplType == 'py') {
       Account application = new Account(
         Id = cipher.appId,

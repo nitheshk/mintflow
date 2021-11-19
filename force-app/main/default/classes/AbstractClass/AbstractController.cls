@@ -50,7 +50,7 @@ global abstract with sharing class AbstractController {
   ) {
     if (request != null) {
       request?.setRequest();
-      if (String.isBlank(ApexRequest.getRequest().token) && skipValidation) {
+      if (String.isBlank(ApexRequest.getToken()) && skipValidation) {
         return;
       }
       if (!Test.isRunningTest()) {
