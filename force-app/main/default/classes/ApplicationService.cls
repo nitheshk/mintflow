@@ -90,17 +90,20 @@ global with sharing class ApplicationService extends AbstractService {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
       application.FinServ__LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
     }
+
     application.Description = ApplicationServiceHelper.getInstance()
       .getIpAddress();
     ApplicationRepository.upsertRecord(application);
 
     application = ApplicationRepository.readApplicationById(application.Id);
     ApexRequest.setApplicationId(application.Id);
+    ApexRequest.setFlowType('ApplicationFlow');
     application = SecurityUtils.createSessionForApplication(application);
     application.Name = application.ApplicationNumber__c;
     ApplicationRepository.upsertRecord(application);
     params.put('applicationId', ApexRequest.getApplicationId());
     params.put('applicantType', ApexRequest.getApplicantType());
+    params.put('flowType', ApexRequest.getFlowType());
     return application;
   }
 
@@ -177,22 +180,8 @@ global with sharing class ApplicationService extends AbstractService {
     String vmf = (String) params.get('vmf');
     params.remove('vmf');
     SecurityUtils.CipherDTO cipher = SecurityUtils.extractToken(vmf);
-    switch on cipher.aplType {
-      when 'py' {
-        params.put('applicantType', 'Primary');
-      }
-      when 'jt' {
-        params.put('applicantType', 'Joint');
-      }
-    }
-    switch on cipher.ch {
-      when 'vrl' {
-        params.put('channel', ApplicationConstant.CHANNEL_VIRTUAL);
-      }
-      when 'brh' {
-        params.put('channel', ApplicationConstant.CHANNEL_BRANCH);
-      }
-    }
+    params.put('applicantType', cipher.aplType);
+    params.put('channel', cipher.ch);
     params.put('applicationId', cipher.appId);
     params.put('applicantId', cipher.aplId);
 
@@ -207,7 +196,6 @@ global with sharing class ApplicationService extends AbstractService {
       applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
     );
     params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
-
     AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
   }

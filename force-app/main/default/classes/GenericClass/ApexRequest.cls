@@ -48,6 +48,7 @@ global with sharing class ApexRequest {
     request.token = this.token;
     request.currentPage = this.currentPage;
     request.applicantType = this.applicantType;
+    request.flowType = this.flowType;
     request.nextPage = this.nextPage;
     request.applicantId = this.applicantId;
     if (String.isNotBlank(this.header)) {
@@ -138,6 +139,15 @@ global with sharing class ApexRequest {
   }
 
   /**
+   * @description get flowType
+   * @author Digital Align Team | 11-19-2021
+   * @return String
+   **/
+  global static String getFlowType() {
+    return ApexRequest.request?.flowType;
+  }
+
+  /**
    * @description  set session application id
    * @author Digital Align Team | 10-27-2021
    * @param String applicationId
@@ -191,6 +201,18 @@ global with sharing class ApexRequest {
     return ApexRequest.request;
   }
 
+  /**
+   * @description Set Flow Type
+   * @author Digital Align Team | 11-19-2021
+   * @param String flowType
+   * @return ApexRequest
+   **/
+  global static ApexRequest setFlowType(String flowType) {
+    if (ApexRequest.request != null) {
+      ApexRequest.request.flowType = flowType;
+    }
+    return ApexRequest.request;
+  }
   /**
    * @description Set Request Token
    * @author Digital Align Team | 11-19-2021

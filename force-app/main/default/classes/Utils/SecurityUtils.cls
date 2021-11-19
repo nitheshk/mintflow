@@ -227,14 +227,14 @@ global inherited sharing class SecurityUtils {
     global String appId { get; set; } //application Id
     global String aplId { get; set; } //Applicant Id
     // Applicant Type
-    // Possible Values : Primary -> py, Joint->jt
+    // Possible Values : Primary ,Joint
     global String aplType { get; set; }
     // Channel
-    // Possible Values : Virtual -> vrl, Branch->brh
+    // Possible Values : Virtual , Branch
     global String ch { get; set; }
     global Datetime edt { get; set; } //Exipre DateTime
     // flow type
-    // Possible Values : ApplicationFlow -> appf, JointFlow-> jtf , FundingFlow ->fdf
+    // Possible Values : ApplicationFlow , JointFlow , FundingFlow
     global string flw { get; set; } //flow type
   }
 
@@ -278,12 +278,14 @@ global inherited sharing class SecurityUtils {
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
           .SesssionExpirationTime__c
       );
-    cipher.aplType = 'py';
+    cipher.aplType = 'Primary';
+    cipher.flw = ApexRequest.getFlowType();
+
     application.SessionToken__c = SecurityUtils.encryptBase64(
       Json.serialize(cipher, true)
     );
     ApexRequest.setToken(application.SessionToken__c);
-    ApexRequest.setApplicantType('Primary');
+    ApexRequest.setApplicantType(cipher.aplType);
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
 
@@ -306,19 +308,10 @@ global inherited sharing class SecurityUtils {
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
           .SesssionExpirationTime__c
       );
-    if (
-      applicant.RecordType.Name ==
-      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-    ) {
-      cipher.aplType = 'py';
-      ApexRequest.setApplicantType('Primary');
-    } else if (
-      applicant.RecordType.Name ==
-      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-    ) {
-      cipher.aplType = 'jt';
-      ApexRequest.setApplicantType('Joint');
-    }
+    cipher.aplType = applicant.RecordType.Name;
+    ApexRequest.setApplicantType(cipher.aplType);
+    cipher.flw = ApexRequest.getFlowType();
+
     applicant.SessionToken__c = SecurityUtils.encryptBase64(
       Json.serialize(cipher, true)
     );
@@ -344,10 +337,10 @@ global inherited sharing class SecurityUtils {
       throw new CustomException('Session token has expired');
     }
     switch on cipher.aplType {
-      when 'py' {
+      when 'Primary' {
         validateSessionForApplication(cipher, request);
       }
-      when 'jt' {
+      when 'Joint' {
         validateSessionForApplicant(cipher, request);
       }
       when else {
@@ -378,7 +371,7 @@ global inherited sharing class SecurityUtils {
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
     ApexRequest.setApplicantId(cipher.aplId);
-    ApexRequest.setApplicantType('Primary');
+    ApexRequest.setFlowType(cipher.flw);
   }
 
   /**
@@ -405,7 +398,7 @@ global inherited sharing class SecurityUtils {
       applicant.Application__r.ApplicationNumber__c
     );
     ApexRequest.setApplicantId(cipher.aplId);
-    ApexRequest.setApplicantType('Joint');
+    ApexRequest.setFlowType(cipher.flw);
   }
 
   /**
@@ -434,6 +427,7 @@ global inherited sharing class SecurityUtils {
    **/
   global static Object refreshToken() {
     SecurityUtils.CipherDTO cipher = extractToken(ApexRequest.getToken());
+
     cipher.edt = Datetime.now()
       .addMinutes(
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
@@ -441,19 +435,24 @@ global inherited sharing class SecurityUtils {
       );
     String token = SecurityUtils.encryptBase64(Json.serialize(cipher, true));
     ApexRequest.setToken(token);
-    if (cipher.aplType == 'py') {
-      Account application = new Account(
-        Id = cipher.appId,
-        SessionToken__c = token
-      );
-      ApplicationRepository.upsertRecord(application);
-    } else if (cipher.aplType == 'jt') {
-      Applicant__c applicant = new Applicant__c(
-        Id = cipher.aplId,
-        SessionToken__c = token
-      );
-      ApplicantRepository.upsertRecord(applicant);
+
+    switch on cipher.aplType {
+      when 'Primary' {
+        Account application = new Account(
+          Id = cipher.appId,
+          SessionToken__c = token
+        );
+        ApplicationRepository.upsertRecord(application);
+      }
+      when 'Joint' {
+        Applicant__c applicant = new Applicant__c(
+          Id = cipher.aplId,
+          SessionToken__c = token
+        );
+        ApplicantRepository.upsertRecord(applicant);
+      }
     }
+
     return token;
   }
 
@@ -464,13 +463,13 @@ global inherited sharing class SecurityUtils {
   global static void expireToken() {
     SecurityUtils.CipherDTO cipher = extractToken(ApexRequest.getToken());
     ApexRequest.setToken('expired');
-    if (cipher.aplType == 'py') {
+    if (cipher.aplType == 'Primary') {
       Account application = new Account(
         Id = cipher.appId,
         SessionToken__c = 'expired'
       );
       ApplicationRepository.upsertRecord(application);
-    } else if (cipher.aplType == 'jt') {
+    } else if (cipher.aplType == 'Joint') {
       Applicant__c applicant = new Applicant__c(
         Id = cipher.aplId,
         SessionToken__c = 'expired'

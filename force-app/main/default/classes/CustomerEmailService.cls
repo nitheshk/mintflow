@@ -148,12 +148,12 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       switch on notificationName {
         when 'PrimaryReviewInformationSubmitted',
           'PrimaryReviewInformationWaiting' {
-          cipher.aplType = 'py'; //Primary
-          cipher.flw = 'appf'; //ApplicationFlow
+          cipher.aplType = 'Primary';
+          cipher.flw = 'ApplicationFlow';
         }
         when 'JointStartApplication' {
-          cipher.aplType = 'jt'; //Joint
-          cipher.flw = 'jtf'; //JointFlow
+          cipher.aplType = 'Joint';
+          cipher.flw = 'JointFlow';
         }
       }
       cipher.appId = ApexRequest.getApplicationId();
@@ -163,7 +163,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           (Integer) ApplicationConfiguration__c.getInstance()
             .EmailLinkExpirationTime__c
         );
-      cipher.ch = 'vrl';
+      cipher.ch = 'Virtual';
 
       String link =
         SiteSetting__c.getInstance().OnlineSiteUrl__c +

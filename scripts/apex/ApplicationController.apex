@@ -3,7 +3,8 @@ ApexRequest request = new ApexRequest();
 request.token = SecurityUtils.generateTokenForTesting(
   '0010p000010fl06AAA',
   'a0b0p0000026aUnAAI',
-  'py'
+  'Primary',
+  'ApplicationFlow'
 );
 //request.applicationId = '0010p000010fl06AAA';
 ApexResponse res = ApplicationController.readApplicationWithChild(request);
@@ -16,7 +17,8 @@ ApexRequest request = new ApexRequest();
 request.token = SecurityUtils.generateTokenForTesting(
   '0010p000010fl06AAA',
   'a0b0p0000026aUnAAI',
-  'py'
+  'Primary',
+  'ApplicationFlow'
 );
 Request.data = js;
 //request.currentPage = 'personal-information';
@@ -29,7 +31,8 @@ ApexRequest request = new ApexRequest();
 request.token = SecurityUtils.generateTokenForTesting(
   '0010p000010fl06AAA',
   '',
-  'py'
+  'Primary',
+  'ApplicationFlow'
 );
 request.setHeader(
   new Map<String, String>{ 'recordId' => 'a0b0p0000026jFjAAI' }
@@ -37,17 +40,19 @@ request.setHeader(
 ApexResponse res = ApplicationController.deleteEntity(request);
 system.debug('Full Json : ' + res.data);
 
-//
 // #4 Review information
 ApexRequest request = new ApexRequest();
-request.applicationId = '0010p000010fl06AAA';
-request.applicationName = 'APP-4444';
-request.applicantType = 'Primary';
-request.setRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  '0010p000010fl06AAA',
+  'a0b0p0000026aUsAAI',
+  'Primary',
+  'ApplicationFlow'
+);
+system.debug(request.token);
 ApexResponse res = ApplicationController.reviewInformationSubmit(request);
 system.debug('Full Json : ' + res.data);
 
-//validateToken
+// #8 validateToken
 ApexRequest request = new ApexRequest();
 request.token = 'lTlmvHxNiXZSBgCGqoLKvBxNpFK9Yo7/G+g09Za6e21D3F+cw5cWYQ0gpLuTzE0q19Nnv4xRJR+DsAPI/xLjfKsM+Db051nTKSffUAcrb6ThJxmEPQYtjxTcqvH8ZJif5i09CnXCx/ER3skZ2ARWAw==';
 request.setRequest();
@@ -61,13 +66,14 @@ request.token = 'lTlmvHxNiXZSBgCGqoLKvAtpw0OHojTDjjbFY92PLay9GqQmAXdl7Dm8ecPuiZR
 ApexResponse res = ApplicationController.refreshToken(request);
 system.debug('Full Json : ' + res.data);
 
-//Create Token
+// #7 Create Token
 ApexRequest request = new ApexRequest();
-// primary -py, Joint -jt
+// primary  , Joint
 request.token = SecurityUtils.generateTokenForTesting(
   '0010p000010fl06AAA',
   'a0b0p0000026aUnAAI',
-  'py'
+  'Primary',
+  'ApplicationFlow'
 );
 request.setRequest();
 SecurityUtils.validateSession();
