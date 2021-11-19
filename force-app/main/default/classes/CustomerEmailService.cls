@@ -148,10 +148,12 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       switch on notificationName {
         when 'PrimaryReviewInformationSubmitted',
           'PrimaryReviewInformationWaiting' {
-          cipher.aplType = 'py';
+          cipher.aplType = 'py'; //Primary
+          cipher.flw = 'appf'; //ApplicationFlow
         }
         when 'JointStartApplication' {
-          cipher.aplType = 'jt';
+          cipher.aplType = 'jt'; //Joint
+          cipher.flw = 'jtf'; //JointFlow
         }
       }
       cipher.appId = ApexRequest.getApplicationId();

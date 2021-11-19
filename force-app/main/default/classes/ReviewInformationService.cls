@@ -43,6 +43,7 @@ global with sharing class ReviewInformationService extends AbstractService {
     String applicantId = ApexRequest.getApplicantId();
 
     switch on application.FinServ__CustomerType__c {
+      //#pending
       when 'Consumer' {
         if (applicantType == 'Primary') {
           // send email to primary and joint

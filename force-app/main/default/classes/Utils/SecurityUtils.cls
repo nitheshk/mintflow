@@ -224,11 +224,18 @@ global inherited sharing class SecurityUtils {
 
   //Session Management
   global class CipherDTO {
-    public String appId { get; set; } //application Id
-    public String aplId { get; set; } //Applicant Id
-    public String aplType { get; set; } //Applicant Type
-    public String ch { get; set; } //Channel
-    public Datetime edt { get; set; } //Exipre DateTime
+    global String appId { get; set; } //application Id
+    global String aplId { get; set; } //Applicant Id
+    // Applicant Type
+    // Possible Values : Primary -> py, Joint->jt
+    global String aplType { get; set; }
+    // Channel
+    // Possible Values : Virtual -> vrl, Branch->brh
+    global String ch { get; set; }
+    global Datetime edt { get; set; } //Exipre DateTime
+    // flow type
+    // Possible Values : ApplicationFlow -> appf, JointFlow-> jtf , FundingFlow ->fdf
+    global string flw { get; set; } //flow type
   }
 
   /**
@@ -237,17 +244,20 @@ global inherited sharing class SecurityUtils {
    * @param String applicationId
    * @param String applicantId
    * @param String applicantType
+   * @param String flowType
    * @return token
    **/
   global static String generateTokenForTesting(
     String applicationId,
     String applicantId,
-    String applicantType
+    String applicantType,
+    String flowType
   ) {
     SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
     cipher.appId = applicationId;
     cipher.aplId = applicantId;
     cipher.aplType = applicantType;
+    cipher.flw = flowType;
     ApexRequest.setToken(
       SecurityUtils.encryptBase64(Json.serialize(cipher, true))
     );
