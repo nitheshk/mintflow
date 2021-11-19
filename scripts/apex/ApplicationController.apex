@@ -3,7 +3,7 @@ ApexRequest request = new ApexRequest();
 request.token = SecurityUtils.generateTokenForTesting(
   '0010p000010fl06AAA',
   'a0b0p0000026aUnAAI',
-  'Primary',
+  'Joint',
   'ApplicationFlow'
 );
 //request.applicationId = '0010p000010fl06AAA';
@@ -35,7 +35,7 @@ request.token = SecurityUtils.generateTokenForTesting(
   'ApplicationFlow'
 );
 request.setHeader(
-  new Map<String, String>{ 'recordId' => 'a0b0p0000026jFjAAI' }
+  new Map<String, String>{ 'recordId' => 'a0b0p0000026jWHAAY' }
 );
 ApexResponse res = ApplicationController.deleteEntity(request);
 system.debug('Full Json : ' + res.data);
@@ -54,13 +54,13 @@ system.debug('Full Json : ' + res.data);
 
 // #8 validateToken
 ApexRequest request = new ApexRequest();
-request.token = 'lTlmvHxNiXZSBgCGqoLKvBxNpFK9Yo7/G+g09Za6e21D3F+cw5cWYQ0gpLuTzE0q19Nnv4xRJR+DsAPI/xLjfKsM+Db051nTKSffUAcrb6ThJxmEPQYtjxTcqvH8ZJif5i09CnXCx/ER3skZ2ARWAw==';
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrRU9BKBo6SZPCYhyNXv2HRPss325sZoznoK5yUsbQ/zZGQ3T0A+q+L0aEFmO3y7x/8VomqRl1Sk0SHCtmXbu0pkOw26VNRQ//qVHT2s8ZA0JNI+pO9W0rEa1EA0Z3lc8KuB+aBq3+w02+PmJXb996u6';
 request.setRequest();
 SecurityUtils.validateSession();
 system.debug(ApexRequest.getApplicationId());
 system.debug(ApexRequest.getApplicantType());
 
-//RefreshToken
+// #9 RefreshToken
 ApexRequest request = new ApexRequest();
 request.token = 'lTlmvHxNiXZSBgCGqoLKvAtpw0OHojTDjjbFY92PLay9GqQmAXdl7Dm8ecPuiZRPp+t2bJSz8+houOOob7bH2vtm3QMjUBN35JVNXWbu5OgrjJmpYVasJqbhWomNs/3r0gbwjopSEXf1cLzrNmmyFw==';
 ApexResponse res = ApplicationController.refreshToken(request);
@@ -68,7 +68,6 @@ system.debug('Full Json : ' + res.data);
 
 // #7 Create Token
 ApexRequest request = new ApexRequest();
-// primary  , Joint
 request.token = SecurityUtils.generateTokenForTesting(
   '0010p000010fl06AAA',
   'a0b0p0000026aUnAAI',
@@ -76,6 +75,7 @@ request.token = SecurityUtils.generateTokenForTesting(
   'ApplicationFlow'
 );
 request.setRequest();
+system.debug('ApplicationId :' + Json.serialize(request));
 SecurityUtils.validateSession();
 system.debug('ApplicationId :' + ApexRequest.getApplicationId());
 system.debug('applicantType : ' + ApexRequest.getApplicantType());

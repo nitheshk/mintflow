@@ -17,6 +17,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
     return (List<Applicant__c>) DatabaseUtils.getRecords(
       new Query(Applicant__c.SObjectType)
         .addFields()
+        .removeFields('dau01__SessionToken__c')
         .queryChild('dau01__IdentificationDocuments__r')
         .addFields()
         .orderBy('dau01__Order__c')
@@ -52,6 +53,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
     return (Applicant__c) DatabaseUtils.getRecord(
       new Query(Applicant__c.SObjectType)
         .addFields()
+        .removeFields('dau01__SessionToken__c')
         .queryChild('dau01__IdentificationDocuments__r')
         .addFields()
         .orderBy('dau01__Order__c')

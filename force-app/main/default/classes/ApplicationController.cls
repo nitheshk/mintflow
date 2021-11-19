@@ -22,7 +22,7 @@ global with sharing class ApplicationController extends AbstractController {
   @RemoteAction
   global static ApexResponse startApplication(ApexRequest request) {
     try {
-      validateRequest(request);
+      validateRequest(request, true);
       return ApexResponse.ok(
         ApplicationService.getInstance()
           .startApplication(ApexRequest.getParams())
@@ -55,6 +55,8 @@ global with sharing class ApplicationController extends AbstractController {
       } else {
         applicationId = (Id) ApexRequest.getParams().get('applicationId');
       }
+
+      log?.debug('request' + request);
       if (ApexRequest.getApplicantType() == 'Primary') {
         return ApexResponse.success(
           ApplicationService.getInstance()
@@ -68,8 +70,9 @@ global with sharing class ApplicationController extends AbstractController {
               ApexRequest.getApplicantId()
             )
         );
+      } else {
+        throw new customException('Applicant Type Not Found');
       }
-      throw new customException('Flow not Found');
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);

@@ -371,6 +371,7 @@ global inherited sharing class SecurityUtils {
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
     ApexRequest.setApplicantId(cipher.aplId);
+    ApexRequest.setApplicantType(cipher.aplType);
     ApexRequest.setFlowType(cipher.flw);
   }
 
@@ -398,6 +399,7 @@ global inherited sharing class SecurityUtils {
       applicant.Application__r.ApplicationNumber__c
     );
     ApexRequest.setApplicantId(cipher.aplId);
+    ApexRequest.setApplicantType(cipher.aplType);
     ApexRequest.setFlowType(cipher.flw);
   }
 
@@ -427,7 +429,6 @@ global inherited sharing class SecurityUtils {
    **/
   global static Object refreshToken() {
     SecurityUtils.CipherDTO cipher = extractToken(ApexRequest.getToken());
-
     cipher.edt = Datetime.now()
       .addMinutes(
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
@@ -452,7 +453,6 @@ global inherited sharing class SecurityUtils {
         ApplicantRepository.upsertRecord(applicant);
       }
     }
-
     return token;
   }
 

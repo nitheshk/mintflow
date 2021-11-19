@@ -144,7 +144,6 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   ) {
     for (Applicant__c applicant : applicants) {
       SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
-
       switch on notificationName {
         when 'PrimaryReviewInformationSubmitted',
           'PrimaryReviewInformationWaiting' {
