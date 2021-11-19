@@ -11,6 +11,12 @@ public with sharing class IdentityServiceTest {
     address = (ContactPointAddress) DatabaseUtils.insertRecord(address);
     return address;
   }
+
+  public static ContentVersion makeContentVersion() {
+    ContentVersion cv = TestData.createContentVersion();
+    cv = (ContentVersion) DatabaseUtils.insertRecord(cv);
+    return cv;
+  }
   private static Applicant__c makeApplicantData() {
     Account acc = TestData.createAccount();
     acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
@@ -29,6 +35,8 @@ public with sharing class IdentityServiceTest {
     );
     return appConfig;
   }
+
+  //------------------------------TEST METHOD--------------------------------------------
   @isTest
   static void verifyCountyTestOne() {
     Account acc = makeAccountData();
@@ -57,6 +65,8 @@ public with sharing class IdentityServiceTest {
     }
     Test.stopTest();
   }
+
+  //-----------------------------------------------------------------------------
   @isTest
   static void IdentityVerifyTestOne() {
     makeApplicationConfiguration();
@@ -97,6 +107,64 @@ public with sharing class IdentityServiceTest {
     );
     Test.startTest();
     ApexResponse response = IdentityController.identityVerify(request);
+    Test.stopTest();
+  }
+  @isTest
+  static void IdentityVerifyTestThree() {
+    makeApplicationConfiguration();
+    Applicant__c applicant = makeApplicantData();
+    makeContactPointAddress(applicant.Id);
+    ApexRequest request = new ApexRequest();
+    request.applicationId = applicant.Application__c; //account ID
+    request.setHeader(
+      new Map<String, String>{
+        'applicantId' => applicant.Id,
+        'apiName' => 'SentiLinkkk'
+      }
+    );
+    Test.setMock(
+      HttpCalloutMock.class,
+      new IdentityServiceMock('SentiLinkProvider', '400')
+    );
+    Test.startTest();
+    ApexResponse response = IdentityController.identityVerify(request);
+    Test.stopTest();
+  }
+
+  //-----------------------------------------------------------------------
+  @isTest
+  static void scanIdentityDocumentTestOne() {
+    ContentVersion cv = makeContentVersion();
+    cv = fileService.getInstance().fetchContentVersionById(cv.id, true);
+    Applicant__c applicant = makeApplicantData();
+    ApexRequest request = new ApexRequest();
+    request.applicationId = applicant.Application__c; //account ID
+    request.setHeader(
+      new Map<String, Object>{ 'contentDocumentId' => cv.ContentDocumentId }
+    );
+    Test.setMock(
+      HttpCalloutMock.class,
+      new IdentityServiceMock('idScanAnalyzer', '200')
+    );
+    Test.startTest();
+    ApexResponse response = IdentityController.scanIdentityDocument(request);
+    Test.stopTest();
+  }
+  @isTest
+  static void scanIdentityDocumentTestTwo() {
+    ContentVersion cv = makeContentVersion();
+    Applicant__c applicant = makeApplicantData();
+    ApexRequest request = new ApexRequest();
+    request.applicationId = applicant.Application__c; //account ID
+    request.setHeader(
+      new Map<String, Object>{ 'contentDocumentId' => cv.ContentDocumentId }
+    );
+    Test.setMock(
+      HttpCalloutMock.class,
+      new IdentityServiceMock('idScanAnalyzer', '200')
+    );
+    Test.startTest();
+    ApexResponse response = IdentityController.scanIdentityDocument(request);
     Test.stopTest();
   }
 }

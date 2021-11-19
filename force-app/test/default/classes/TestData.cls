@@ -78,4 +78,15 @@ public with sharing class TestData {
     appConfig.SesssionExpirationTime__c = 2;
     return appConfig;
   }
+
+  public static ContentVersion createContentVersion() {
+    Blob bodyBlob = Blob.valueOf('Some Data');
+    ContentVersion cv = new ContentVersion(
+      Title = 'SampleTitle',
+      PathOnClient = 'SampleTitle.jpg',
+      VersionData = bodyBlob,
+      origin = 'H'
+    );
+    return cv;
+  }
 }
