@@ -15,8 +15,6 @@ global with sharing class ApexRequest {
   global String applicantId { get; set; }
   @AuraEnabled
   global String token { get; set; }
-  @AuraEnabled
-  global String event { get; set; }
   //Primary Flow or Joint Flow
   @AuraEnabled
   global String flowType { get; set; }
@@ -46,7 +44,6 @@ global with sharing class ApexRequest {
     request.applicationId = this.applicationId;
     request.applicationName = this.applicationName;
     request.token = this.token;
-    request.event = this.event;
     request.currentPage = this.currentPage;
     request.flowType = this.flowType;
     request.nextPage = this.nextPage;
@@ -121,6 +118,15 @@ global with sharing class ApexRequest {
   }
 
   /**
+   * @description get application flow type
+   * @author Digital Align Team | 11-19-2021
+   * @return String
+   **/
+  global static String getFlowType() {
+    return ApexRequest.request?.flowType;
+  }
+
+  /**
    * @description  set session application id
    * @author Digital Align Team | 10-27-2021
    * @param String applicationId
@@ -157,6 +163,19 @@ global with sharing class ApexRequest {
   global static ApexRequest setApplicantId(String applicantId) {
     if (ApexRequest.request != null && String.isNotBlank(applicantId)) {
       ApexRequest.request.applicantId = applicantId;
+    }
+    return ApexRequest.request;
+  }
+
+  /**
+   * @description set apex request flow type
+   * @author Digital Align Team | 11-19-2021
+   * @param String flowType
+   * @return ApexRequest
+   **/
+  global static ApexRequest setFlowType(String flowType) {
+    if (ApexRequest.request != null) {
+      ApexRequest.request.flowType = flowType;
     }
     return ApexRequest.request;
   }

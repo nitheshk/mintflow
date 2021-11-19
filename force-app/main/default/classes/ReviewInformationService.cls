@@ -39,7 +39,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       applicationId
     );
 
-    String flowType = ApexRequest.getRequest().flowType;
+    String flowType = ApexRequest.getFlowType();
     String applicantId = ApexRequest.getRequest().applicantId;
 
     switch on application.FinServ__CustomerType__c {

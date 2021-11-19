@@ -30,6 +30,31 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   }
 
   /**
+   * @description Read Application child with specified applicatid
+   * @author Digital Align Team | 11-19-2021
+   * @param Id applicationId
+   * @param Id applicantId
+   * @return Account
+   **/
+  global static Account readApplicationWithChild(
+    Id applicationId,
+    Id applicantId
+  ) {
+    return (Account) DatabaseUtils.getRecord(
+      new Query(Account.SObjectType)
+        .addFields()
+        .queryChild('dau01__Applicants__r')
+        .whereEq('Id', applicantId)
+        .orderBy('dau01__Order__c')
+        .run()
+        .queryChild('FinServ__HouseholdFinancialAccounts__r')
+        .run()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
+
+  /**
    * @description Read Application
    * @author Digital Align Team | 11-10-2021
    * @param Id applicationId

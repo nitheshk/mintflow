@@ -100,7 +100,7 @@ global with sharing class ApplicationService extends AbstractService {
     application.Name = application.ApplicationNumber__c;
     ApplicationRepository.upsertRecord(application);
     params.put('applicationId', ApexRequest.getApplicationId());
-    params.put('applicantType', ApexRequest.getRequest().flowType);
+    params.put('applicantType', ApexRequest.getFlowType());
     return application;
   }
 
@@ -113,6 +113,39 @@ global with sharing class ApplicationService extends AbstractService {
   global virtual Account readApplicationWithChild(Id applicationId) {
     Account application = ApplicationRepository.readApplicationWithChild(
       applicationId
+    );
+
+    List<Applicant__c> applicants = ApplicantService.getInstance()
+      .readApplicantsWithChild(application.Applicants__r);
+    List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
+      .readFinancialAccountsWithChild(
+        application.FinServ__HouseholdFinancialAccounts__r
+      );
+
+    //Combine result into single application object
+    SObjectConstructor builder = SObjectConstructor.getInstance(application);
+    builder.setChildObjects('dau01__Applicants__r', applicants);
+    builder.setChildObjects(
+      'FinServ__HouseholdFinancialAccounts__r',
+      financialAccounts
+    );
+    return (Account) builder.build();
+  }
+
+  /**
+   * @description Read application with specific applicant
+   * @author Digital Align Team | 11-19-2021
+   * @param Id applicationId
+   * @param Id applicantId
+   * @return Account
+   **/
+  global virtual Account readApplicationWithChild(
+    Id applicationId,
+    Id applicantId
+  ) {
+    Account application = ApplicationRepository.readApplicationWithChild(
+      applicationId,
+      applicantId
     );
 
     List<Applicant__c> applicants = ApplicantService.getInstance()

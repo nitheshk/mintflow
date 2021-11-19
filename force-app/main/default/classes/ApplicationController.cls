@@ -55,9 +55,21 @@ global with sharing class ApplicationController extends AbstractController {
       } else {
         applicationId = (Id) ApexRequest.getParams().get('applicationId');
       }
-      return ApexResponse.success(
-        ApplicationService.getInstance().readApplicationWithChild(applicationId)
-      );
+      if (ApexRequest.getFlowType() == 'Primary') {
+        return ApexResponse.success(
+          ApplicationService.getInstance()
+            .readApplicationWithChild(applicationId)
+        );
+      } else if (ApexRequest.getFlowType() == 'Joint') {
+        return ApexResponse.success(
+          ApplicationService.getInstance()
+            .readApplicationWithChild(
+              applicationId,
+              ApexRequest.getApplicantId()
+            )
+        );
+      }
+      throw new customException('Flow not Found');
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
