@@ -89,4 +89,11 @@ public with sharing class TestData {
     );
     return cv;
   }
+  public static SystemSetting__c createSystemSetting() {
+    SystemSetting__c systemSetting = new SystemSetting__c();
+    systemSetting.DebugLogs__c = true;
+    systemSetting.Flow__c = true;
+    systemSetting.LoggingLevel__c = 'Fine';
+    return systemSetting;
+  }
 }
