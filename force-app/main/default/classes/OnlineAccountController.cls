@@ -24,15 +24,14 @@ global with sharing class OnlineAccountController extends AbstractController {
    * @description
    * @author Digital Align Team | 09-29-2021
    **/
-  global void initializeApplication() {
+  global Pagereference initializeApplication() {
     try {
       Map<String, Object> params = PageUtils.getCurrentPageParameters();
       //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
       log?.debug('vmf:' + vmf);
       Cookie pageToken = PageUtils.getCookie('token');
-      log?.debug(pageToken?.getValue());
-
+      log?.debug('Cookei: ' + pageToken?.getValue());
       if (pageToken != null && String.isNotBlank(pageToken.getValue())) {
         Account application = ApplicationService.getInstance()
           .refreshPage(params);
@@ -66,8 +65,19 @@ global with sharing class OnlineAccountController extends AbstractController {
         'siteConfig' => ApplicationRepository.readSiteSetting()
       };
       this.vueContext = JSON.serialize(pageContext);
+      return null;
+    } catch (CustomException ex) {
+      log?.error(ex);
+      //PageUtils.addPageErrorMessage(ex.getMessage());
+      Pagereference error = Page.Error;
+      error.setRedirect(true);
+      return error;
     } catch (Exception ex) {
       log?.error(ex);
+      //PageUtils.addPageErrorMessage('Unkown Exception');
+      Pagereference error = Page.Error;
+      error.setRedirect(true);
+      return error;
     } finally {
       Logger.persist();
     }

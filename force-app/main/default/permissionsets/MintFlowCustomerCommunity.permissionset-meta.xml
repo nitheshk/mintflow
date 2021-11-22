@@ -3923,6 +3923,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Error</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>OpenAccount</apexPage>
         <enabled>true</enabled>
     </pageAccesses>

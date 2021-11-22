@@ -3996,6 +3996,10 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
+        <apexPage>Error</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>OnlineAccount</apexPage>
         <enabled>true</enabled>
     </pageAccesses>

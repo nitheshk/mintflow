@@ -169,7 +169,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
       String link =
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
-        '/OnlineAccount?vmf=' +
+        '/OpenAccount?vmf=' +
         SecurityUtils.encryptUrl(JSON.serialize(cipher, true));
 
       EmailNotificationBuilder.newInstance(notificationName, applicant.Id)

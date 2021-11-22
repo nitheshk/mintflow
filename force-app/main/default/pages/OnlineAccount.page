@@ -37,6 +37,10 @@
     </head>
 
     <body>
+      <apex:outputPanel>
+        <apex:pageMessages />
+      </apex:outputPanel>
+
       <noscript>
         <strong
           >We're sorry but ui doesn't work properly without JavaScript enabled.

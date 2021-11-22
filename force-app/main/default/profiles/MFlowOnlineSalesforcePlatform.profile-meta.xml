@@ -10,6 +10,10 @@
         <apexPage>OpenAccount</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <pageAccesses>
+        <apexPage>Error</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <classAccesses>
         <apexClass>ApplicantController</apexClass>
         <enabled>true</enabled>

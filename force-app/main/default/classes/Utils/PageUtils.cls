@@ -87,4 +87,15 @@ global with sharing class PageUtils {
   global static String getHeader(String key) {
     return PageUtils.getHeaders().get(key);
   }
+
+  /**
+   * @description Display apex page error  messgae
+   * @author Digital Align Team | 11-22-2021
+   * @param String message
+   **/
+  global static void addPageErrorMessage(String message) {
+    ApexPages.addmessage(
+      new ApexPages.message(ApexPages.severity.ERROR, message)
+    );
+  }
 }
