@@ -29,11 +29,23 @@ request.setHeader(new Map<String, String>{ 'zipcode' => '98013' });
 ApexResponse res = IdentityController.verifyCounty(request);
 system.debug('res=+' + JSON.serialize(res));
 
+// #6 Senti LInk
+ApexRequest request = new ApexRequest();
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM='; //account ID
+request.setHeader(
+  new Map<String, String>{
+    'applicantId' => 'a0b9D000002h0JcQAI',
+    'apiName' => 'SentiLink'
+  }
+);
+ApexResponse res = IdentityController.identityVerify(request);
+system.debug('res = ' + Json.serialize(res));
+
 /** ID Analyser */
 
 // #1 IdentityController.scanIdentityDocument
 ApexRequest request = new ApexRequest();
-request.applicationId = '0019D00000IVnGrQAL'; //account ID
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM='; //account ID
 request.setHeader(
   new Map<String, Object>{ 'contentDocumentId' => '0019D00000IVnGrWRF' }
 );
@@ -44,7 +56,7 @@ system.debug('res=+' + JSON.serialize(res));
 
 //Working
 ApexRequest request = new ApexRequest();
-request.applicationId = '0019D00000IVnGrQAL'; //account ID
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM='; //account ID
 request.setHeader(
   new Map<String, String>{ 'contentDocumentId' => '0699D000000k1TBQAY' }
 );

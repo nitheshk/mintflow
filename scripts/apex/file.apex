@@ -4,11 +4,11 @@ list<FileDTO> lst = new List<FileDTO>{
   new FileDTO(
     'testFile4.txt',
     blob.valueof('test'),
-    '0061y000003yIldAAE',
+    'a0b0p0000026aUnAAI',
     'Address',
     'Other'
   ),
-  new FileDTO('testFile4.txt', blob.valueof('test'), '0061y000003yIldAAE')
+  new FileDTO('testFile4.txt', blob.valueof('test'), 'a0b0p0000026aUnAAI')
 };
 
 FileService.getInstance().createFiles(lst);
@@ -20,7 +20,7 @@ FileService.getInstance()
     new FileDTO(
       'testFile4.txt',
       blob.valueof('test'),
-      '0061y000003yIldAAE',
+      '0010p000011AG7oAAG',
       'Address',
       'Other'
     )
@@ -28,12 +28,12 @@ FileService.getInstance()
 
 // #3
 
-FileService.getInstance().deleteContentVersionByEntityId('0061y000003yIldAAE');
+FileService.getInstance().deleteContentVersionByEntityId('a0b0p0000026aUnAAI');
 
 // #4
 
 List<ContentVersion> cvs = FileService.getInstance()
-  .fetchContentVersionByEntityId('00Q1y000001aBC3EAM', false);
+  .fetchContentVersionByEntityId('0010p000011AG7oAAG', false);
 
 System.debug(' cvs  : ' + JSON.serialize(cvs));
 
@@ -41,10 +41,15 @@ System.debug(' cvs  : ' + JSON.serialize(cvs));
 
 //FileController.fetchContentVersionByEntityId
 ApexRequest request = new ApexRequest();
-request.applicationId = '0019D00000IVnGrQAL'; //account ID
+request.token = SecurityUtils.generateTokenForTesting(
+  '0010p000011AG7oAAG',
+  '',
+  'Primary',
+  'ApplicationFlow'
+);
 request.setHeader(
   new Map<String, Object>{
-    'entityId' => '0019D00000IVnGrWRF',
+    'entityId' => '0010p000011AG7oAAG',
     'ignoreVersionData' => true
   }
 );
@@ -54,7 +59,12 @@ system.debug('res=+' + JSON.serialize(res));
 //#6
 //FileController.createFile create content version only
 ApexRequest request = new ApexRequest();
-request.applicationId = '0019D00000IVnGrQAL'; //account ID
+request.token = SecurityUtils.generateTokenForTesting(
+  '0010p000011AG7oAAG',
+  '',
+  'Primary',
+  'ApplicationFlow'
+);
 request.setHeader(
   new Map<String, Object>{
     'title' => 'test.txt',
@@ -69,7 +79,12 @@ system.debug('res=+' + JSON.serialize(res));
 // #7
 //FileController.fetchContentVersionByCD
 ApexRequest request = new ApexRequest();
-request.applicationId = '0019D00000IVnGrQAL'; //account ID
+request.token = SecurityUtils.generateTokenForTesting(
+  '0010p000011AG7oAAG',
+  '',
+  'Primary',
+  'ApplicationFlow'
+);
 request.setHeader(
   new Map<String, Object>{
     'contentDocumentId' => '0699D000000k5r7QAA',
