@@ -104,4 +104,20 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         .toString()
     );
   }
+
+  /**
+   * @description Read Site setting
+   * @author Digital Align Team | 11-22-2021
+   * @return SiteSetting__c
+   **/
+  global static SiteSetting__c readSiteSetting() {
+    return (SiteSetting__c) DatabaseUtils.getRecord(
+      new Query(SiteSetting__c.SObjectType)
+        .addFields()
+        .removeFields(
+          'dau01__OnlineSiteUserName__c,dau01__OnlineSitePassword__c'
+        )
+        .toString()
+    );
+  }
 }

@@ -17,6 +17,8 @@ global with sharing class OpenAccountController {
     Pagereference openAccountPage = Page.OnlineAccount;
     //set cookie to 0, to delete
     PageUtils.setCookie(new Cookie('token', null, null, 0, true));
+    openAccountPage.getParameters()
+      .putAll(PageUtils.getCurrentPageParameters());
     return openAccountPage;
   }
 }

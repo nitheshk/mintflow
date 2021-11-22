@@ -10,6 +10,11 @@ global with sharing class OnlineAccountController extends AbstractController {
   global String id { get; set; }
   global String application { get; set; }
   global String params { get; set; }
+  global String applicationConfig { get; set; }
+  global String siteConfig { get; set; }
+  //new added
+  private Account app { get; set; }
+  global String vueContext { get; set; }
 
   global OnlineAccountController() {
     super(OnlineAccountController.class);
@@ -33,6 +38,7 @@ global with sharing class OnlineAccountController extends AbstractController {
           .refreshPage(params);
         this.id = application.Id;
         this.application = Json.serialize(application);
+        this.app = application;
         this.params = Json.serialize(params, true);
       } else if (String.isNotBlank(vmf)) {
         //resume application mapping
@@ -44,8 +50,22 @@ global with sharing class OnlineAccountController extends AbstractController {
           .createApplication(params);
         this.id = application.Id;
         this.application = Json.serialize(application);
+        this.app = application;
         this.params = Json.serialize(params);
       }
+      this.applicationConfig = Json.serialize(
+        ApplicationConfiguration__c.getInstance()
+      );
+      this.siteConfig = Json.serialize(ApplicationRepository.readSiteSetting());
+
+      Map<String, Object> pageContext = new Map<String, Object>{
+        'id' => this.id,
+        'application' => this.app,
+        'params' => params,
+        'applicationConfig' => ApplicationConfiguration__c.getInstance(),
+        'siteConfig' => ApplicationRepository.readSiteSetting()
+      };
+      this.vueContext = JSON.serialize(pageContext);
     } catch (Exception ex) {
       log?.error(ex);
     } finally {

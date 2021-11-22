@@ -144,15 +144,18 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   ) {
     for (Applicant__c applicant : applicants) {
       SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+      String urlSufix = '';
       switch on notificationName {
         when 'PrimaryReviewInformationSubmitted',
           'PrimaryReviewInformationWaiting' {
           cipher.aplType = 'Primary';
           cipher.flw = 'ApplicationFlow';
+          urlSufix = '#/membership/application/get-started';
         }
         when 'JointStartApplication' {
           cipher.aplType = 'Joint';
           cipher.flw = 'JointFlow';
+          urlSufix = '#/membership/joints/welcome';
         }
       }
       cipher.appId = ApexRequest.getApplicationId();

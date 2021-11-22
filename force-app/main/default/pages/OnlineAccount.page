@@ -51,10 +51,12 @@
       <script>
         pageContext = {
           id: "{!JSENCODE(id)}",
-          onlineSiteUrl: "{!JSENCODE(id)}",
           application: "{!JSENCODE(application)}",
-          params: "{!JSENCODE(params)}"
+          params: "{!JSENCODE(params)}",
+          applicationConfig: "{!JSENCODE(applicationConfig)}",
+          siteConfig: "{!JSENCODE(siteConfig)}"
         };
+        vueContext = "{!JSENCODE(vueContext)}";
       </script>
       <script
         src="{!URLFOR($Resource.MintFlow, 'js/chunk-vendors.js')}"
