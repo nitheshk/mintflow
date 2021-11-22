@@ -25,22 +25,19 @@ global with sharing class OnlineAccountController extends AbstractController {
       //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
       log?.debug('vmf:' + vmf);
+      Cookie pageToken = PageUtils.getCookie('token');
+      log?.debug(pageToken?.getValue());
 
-      if (String.isNotBlank(vmf)) {
-        //decrypt the url
-        SecurityUtils.CipherDTO cipher;
-        try {
-          cipher = SecurityUtils.extractToken(vmf);
-        } catch (Exception ex) {
-          throw new CustomException('The specified URL was corrupted');
-        }
-
-        if (cipher.edt < Datetime.now()) {
-          throw new CustomException('The specified URL was Expired');
-        }
+      if (pageToken != null && String.isNotBlank(pageToken.getValue())) {
+        Account application = ApplicationService.getInstance()
+          .refreshPage(params);
+        this.id = application.Id;
+        this.application = Json.serialize(application);
+        this.params = Json.serialize(params, true);
+      } else if (String.isNotBlank(vmf)) {
         //resume application mapping
-        this.id = cipher.appId;
         ApplicationService.getInstance().resumeApplication(params);
+        this.id = (String) params.get('applicationId');
         this.params = Json.serialize(params, true);
       } else {
         Account application = ApplicationService.getInstance()

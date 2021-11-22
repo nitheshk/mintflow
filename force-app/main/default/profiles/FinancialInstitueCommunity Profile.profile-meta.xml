@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Profile xmlns="http://soap.sforce.com/2006/04/metadata">        
-    <custom>true</custom>     
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <custom>true</custom>
    <layoutAssignments>
         <layout>Account-dau01__Financial Institute Site Layout</layout>
-        <recordType>Account.FinServ__IndustriesBusiness</recordType> 
+        <recordType>Account.FinServ__IndustriesBusiness</recordType>
     </layoutAssignments>
       <layoutAssignments>
         <layout>Contact-dau01__Financial Institute Site Layout</layout>
-        <recordType>Contact.FinServ__IndustriesBusiness</recordType> 
-    </layoutAssignments>     
+        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
     </layoutAssignments>
@@ -111,7 +111,7 @@
         <layout>Flow__c-Sub Flow Layout</layout>
         <recordType>Flow__c.SubFlow</recordType>
     </layoutAssignments>
-    
+
     <!--<layoutAssignments>
         <layout>PersonAccount-Person Account Layout</layout>
         <recordType>PersonAccount.PersonAccount</recordType>
@@ -134,7 +134,7 @@
     <layoutAssignments>
         <layout>dau01__Survey__c-dau01__Survey Layout</layout>
     </layoutAssignments>
-    
+
     <userLicense>Customer Community</userLicense>
     <userPermissions>
         <enabled>true</enabled>

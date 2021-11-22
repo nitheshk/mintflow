@@ -7,6 +7,13 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class OnlineAccountLoginController {
+  /**
+   * @description redirect to online account page when user is not logged into portal
+   * Issue: Start Url Paramteter are get decode while passing to next page reference,
+   * Encode twice so that it will keep the paramter on same state for next page
+   * @author Digital Align Team | 11-22-2021
+   * @return PageReference
+   **/
   global PageReference forwardToAccountOpeningPage() {
     logger log = logger.getInstance(OnlineAccountLoginController.class);
     try {
@@ -44,6 +51,7 @@ global with sharing class OnlineAccountLoginController {
       );
     } catch (Exception ex) {
       log?.error(ex);
+      // Redirect to error Page
       return null;
     } finally {
       Logger.persist();

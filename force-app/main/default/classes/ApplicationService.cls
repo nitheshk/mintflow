@@ -75,6 +75,7 @@ global with sharing class ApplicationService extends AbstractService {
    * @return Account
    **/
   global virtual Account createApplication(Map<String, Object> params) {
+    log?.fine('Inside createApplication');
     // Create init Account Application
     Account application = new Account();
     application.Name = 'Mint';
@@ -177,9 +178,20 @@ global with sharing class ApplicationService extends AbstractService {
   global virtual Map<String, Object> resumeApplication(
     Map<String, Object> params
   ) {
+    log?.fine('Inside resumeApplication');
     String vmf = (String) params.get('vmf');
-    params.remove('vmf');
-    SecurityUtils.CipherDTO cipher = SecurityUtils.extractToken(vmf);
+    //params.remove('vmf');
+    //decrypt the url
+    SecurityUtils.CipherDTO cipher;
+    try {
+      cipher = SecurityUtils.extractToken(vmf);
+    } catch (Exception ex) {
+      throw new CustomException('The specified URL was corrupted');
+    }
+    if (cipher.edt < Datetime.now()) {
+      throw new CustomException('The specified URL was Expired');
+    }
+
     params.put('applicantType', cipher.aplType);
     params.put('channel', cipher.ch);
     params.put('applicationId', cipher.appId);
@@ -198,6 +210,44 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
     //AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
+  }
+
+  /**
+   * @description Handle Page Refresh
+   * @author Digital Align Team | 11-22-2021
+   * @param Map<String Object> params
+   * @return Account
+   **/
+  global virtual Account refreshPage(Map<String, Object> params) {
+    log?.fine('Inside refreshPage');
+    //get existing token from cookie
+    Cookie pageToken = PageUtils.getCookie('token');
+    SecurityUtils.CipherDTO cipher;
+    try {
+      cipher = SecurityUtils.extractToken(pageToken.getValue());
+    } catch (Exception ex) {
+      throw new CustomException('Invalid session token');
+    }
+    if (cipher.edt < Datetime.now()) {
+      throw new CustomException('Session has Expired');
+    }
+
+    Account application;
+    if (cipher.aplType == 'Primary') {
+      application = ApplicationService.getInstance()
+        .readApplicationWithChild(cipher.appId);
+    } else if (cipher.aplType == 'Joint') {
+      application = ApplicationService.getInstance()
+        .readApplicationWithChild(cipher.appId, cipher.aplId);
+    } else {
+      throw new customException('Applicant Type Not Found');
+    }
+
+    params.put('applicantType', cipher.aplType);
+    params.put('channel', cipher.ch);
+    params.put('applicationId', cipher.appId);
+    params.put('applicantId', cipher.aplId);
+    return application;
   }
 
   /**

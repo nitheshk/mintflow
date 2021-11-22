@@ -8,7 +8,10 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class IdentityController extends AbstractController {
   private static logger log = logger.getInstance(IdentityController.class);
-
+  //Allow to expose the controller in Visualforce remoting
+  public IdentityController(AbstractController controller) {
+    super(IdentityController.class);
+  }
   /**
    * @description verify county eligibility
    * @author Digital Align Team | 11-01-2021
@@ -21,7 +24,7 @@ global with sharing class IdentityController extends AbstractController {
     try {
       log?.fine('Inside verifyCounty');
       validateRequest(request);
-      return ApexResponse.ok(
+      return ApexResponse.Success(
         IdentityService.getInstance().verifyCounty(ApexRequest.getParams())
       );
     } catch (CustomException ex) {

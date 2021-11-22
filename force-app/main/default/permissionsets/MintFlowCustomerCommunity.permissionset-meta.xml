@@ -5,6 +5,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>OpenAccountController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ApexResponse</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -3916,6 +3920,10 @@
     </objectPermissions>
     <pageAccesses>
         <apexPage>OnlineAutoLogin</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>OpenAccount</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>

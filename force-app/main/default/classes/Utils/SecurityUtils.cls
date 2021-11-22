@@ -288,7 +288,9 @@ global inherited sharing class SecurityUtils {
     ApexRequest.setApplicantType(cipher.aplType);
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
-
+    PageUtils.setCookie(
+      new Cookie('token', application.SessionToken__c, null, -1, true)
+    );
     log?.fine('Session Token :' + ApexRequest.getToken());
     return application;
   }
@@ -320,6 +322,9 @@ global inherited sharing class SecurityUtils {
     ApexRequest.setApplicantId(cipher.aplId);
     ApexRequest.setApplicationName(
       applicant.Application__r.ApplicationNumber__c
+    );
+    PageUtils.setCookie(
+      new Cookie('token', applicant.SessionToken__c, null, -1, true)
     );
     log?.fine('Session Token :' + ApexRequest.getToken());
     return applicant;

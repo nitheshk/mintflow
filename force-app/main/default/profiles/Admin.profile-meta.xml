@@ -12,11 +12,11 @@
     <layoutAssignments>
         <layout>FinancialProduct__c-FinancialProduct Layout</layout>
     </layoutAssignments>
-	     
+
     <layoutAssignments>
         <layout>Account-Application Layout</layout>
         <recordType>Account.Application</recordType>
-    </layoutAssignments>     
+    </layoutAssignments>
     <layoutAssignments>
         <layout
     >SObjectTriggerSetting__mdt-SObject Trigger Setting Layout</layout>
@@ -26,19 +26,19 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Address-Address Layout</layout>
-    </layoutAssignments>    
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
-    </layoutAssignments>    
+    </layoutAssignments>
     <layoutAssignments>
         <layout>ContentVersion-Content Version Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>DocumentRequest__c-DocumentRequest Layout</layout>
-    </layoutAssignments>        
+    </layoutAssignments>
     <layoutAssignments>
         <layout>User-User Layout</layout>
-    </layoutAssignments>     
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Flow__c-Flow Layout</layout>
     </layoutAssignments>
@@ -191,7 +191,7 @@
         <recordType>Opportunity.FinServ__WalletShareOpportunity</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    
+
     <!--<recordTypeVisibilities>
         <default>true</default>
         <personAccountDefault>true</personAccountDefault>
