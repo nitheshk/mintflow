@@ -18,7 +18,8 @@ global with sharing class ApplicationResponseMapper {
     global string ApplicationId;
     global Boolean IsCountyEligible;
     global string ApplicationNumber;
-    global string County;
+    global string CountyCode;
+    global string CountyName;
     global String BranchCode;
     global String BranchName;
     global String CreatedChannel;
