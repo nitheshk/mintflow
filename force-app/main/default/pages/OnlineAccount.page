@@ -6,7 +6,7 @@
   standardStylesheets="false"
   showheader="false"
   Controller="OnlineAccountController"
-  extensions="ApplicationController"
+  extensions="ApplicationController,IdentityController,ApplicantController,FinancialAccountController,FileController"
   action="{!initializeApplication}"
 >
   <html lang="">
@@ -43,6 +43,10 @@
           Please enable it to continue.</strong
         >
       </noscript>
+      <h1>Remove This Later</h1>
+      <h3>application: {!application}</h3>
+      <br />
+      <h3>Params: {!params}</h3>
       <div id="app"></div>
       <script>
         pageContext = {

@@ -8,6 +8,10 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class FileController extends AbstractController {
   private static logger log = logger.getInstance(IdentityController.class);
+
+  public FileController(AbstractController controller) {
+    super(FileController.class);
+  }
   /**
    * @description fetch Content Version By Entity Id
    * Params : Id entityId, Boolean ignoreVersionData

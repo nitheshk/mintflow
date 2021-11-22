@@ -180,7 +180,7 @@ global with sharing class ApplicationService extends AbstractService {
   ) {
     log?.fine('Inside resumeApplication');
     String vmf = (String) params.get('vmf');
-    //params.remove('vmf');
+    params.remove('vmf');
     //decrypt the url
     SecurityUtils.CipherDTO cipher;
     try {
