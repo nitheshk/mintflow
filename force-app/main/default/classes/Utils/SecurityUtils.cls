@@ -337,6 +337,7 @@ global inherited sharing class SecurityUtils {
    **/
   global static void validateSession() {
     ApexRequest request = ApexRequest.getRequest();
+    log?.debug('Token to Validate : ' + request.token);
     SecurityUtils.CipherDTO cipher = extractToken(request.token);
     if (cipher.edt < Datetime.now()) {
       throw new CustomException('Session token has expired');
