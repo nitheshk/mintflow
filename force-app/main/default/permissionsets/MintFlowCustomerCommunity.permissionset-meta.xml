@@ -520,7 +520,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.BillingCounty__c</field>
+        <field>Account.CountyName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.CountyZipCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
