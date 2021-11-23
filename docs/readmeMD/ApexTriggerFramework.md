@@ -12,7 +12,7 @@
 
 > This project is meant to demonstrate an Apex Trigger Framework which is built with the following goals in mind:
 
-- Single Trigger per sObject
+- Single Trigger per SObject
 
 - Logic-less Triggers
 
@@ -70,11 +70,11 @@ public override void beforeInsert() {
 
 ## Metadata Driven Trigger Actions
 
-> Simply navigate to the sObject Trigger Setting in Custome Metadata Types record and create new record similar to below items.
+> Simply navigate to the SObject Trigger Setting in Custome Metadata Types record and create new record similar to below items.
 
 [Configuration Image](https://github.com/DigitalAlignInc/MintFlow/blob/features/utilities/docs/docImages/SobjectTriggerConfig.JPG)
 
-> In order to use this trigger framework, we need need to pass the Sobject Type to the TriggerDispatcher to Run. Here is an example of the Account trigger.
+> In order to use this trigger framework, we need need to pass the SObject Type to the TriggerDispatcher to Run. Here is an example of the Account trigger.
 
 ```
 Trigger AccountTrigger on Account(before insert) {
@@ -82,7 +82,7 @@ Trigger AccountTrigger on Account(before insert) {
 }
 ```
 
-> TriggerDispatcher will pickup Multiple Trigger Handler in the order of execution mentioned in metadata based on the Sobject Type passed. This Framework will be suitable for ISV Develpoment structure.
+> TriggerDispatcher will pickup Multiple Trigger Handler in the order of execution mentioned in metadata based on the SObject Type passed. This Framework will be suitable for ISV Develpoment structure.
 
 ## Cool Stuff
 

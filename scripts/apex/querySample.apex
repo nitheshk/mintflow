@@ -77,7 +77,7 @@ Example 20- using In Conditions
   List<Contact> sl = (List<Contact> )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString());
   String q = Query.newInstance(Contact.SObjectType)
     .addFields('Name')
-    .whereIn('Id', new Map<id,sObject>(sl).keyset())
+    .whereIn('Id', new Map<id,SObject>(sl).keyset())
     .toString(true);
     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
   system.debug(system.JSON.Serialize(sl));
@@ -86,7 +86,7 @@ Example 20- using In Conditions
 List<Contact> sl = (List<Contact> )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString());
   String q = Query.newInstance(Contact.SObjectType)
     .addFields('Name')
-    .whereIn('Id', new List<id>(new Map<id,sObject>(sl).keyset()))
+    .whereIn('Id', new List<id>(new Map<id,SObject>(sl).keyset()))
     .toString(true);
     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
   system.debug(system.JSON.Serialize(sl));

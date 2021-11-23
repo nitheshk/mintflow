@@ -2,10 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>sObject__c</fullName>
     <description
-  >sObject name on which the datatable is going to be fetched,</description>
+  >SObject name on which the datatable is going to be fetched,</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <label>sObject</label>
+    <label>SObject</label>
     <length>100</length>
     <required>false</required>
     <type>Text</type>

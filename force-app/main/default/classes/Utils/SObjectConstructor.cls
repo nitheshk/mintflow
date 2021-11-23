@@ -108,7 +108,7 @@ global with sharing class SObjectConstructor {
    * @author Digital Align Team | 10-07-2021
    * @return SObject
    **/
-  global Sobject build() {
+  global SObject build() {
     if (this.parentObj == null) {
       return null;
     }
@@ -134,20 +134,20 @@ global with sharing class SObjectConstructor {
       parentMap.put(relationshipName, this.lookupObjects.get(relationshipName));
     }
 
-    return (Sobject) JSON.deserialize(
+    return (SObject) JSON.deserialize(
       Json.Serialize(parentMap),
       Type.forName(SObjectUtils.getObjectName(this.parentObj.getSObjectType()))
     );
   }
 
   /**
-   * @description Convert json into Sobject format, json has single record
+   * @description Convert json into SObject format, json has single record
    * @author Digital Align Team | 11-23-2021
    * @param String jsonBody
    * @param SobjectType sType
-   * @return Sobject
+   * @return SObject
    **/
-  global static Sobject deserializeRecord(String jsonBody, SobjectType sType) {
+  global static SObject deserializeRecord(String jsonBody, SobjectType sType) {
     JSONGenerator gen = JSON.createGenerator(false);
     JSONParser parser = JSON.createParser(jsonBody);
     if (parser.nextToken() == JSONToken.START_OBJECT) {
@@ -163,13 +163,13 @@ global with sharing class SObjectConstructor {
   }
 
   /**
-   * @description Convert json into Sobject format, json has list of records
+   * @description Convert json into SObject format, json has list of records
    * @author Digital Align Team | 11-23-2021
    * @param String jsonBody
    * @param SobjectType sType
-   * @return List<Sobject>
+   * @return List<SObject>
    **/
-  global static List<Sobject> deserializeRecords(
+  global static List<SObject> deserializeRecords(
     String jsonBody,
     SobjectType sType
   ) {
@@ -185,7 +185,7 @@ global with sharing class SObjectConstructor {
       throw new customException('Invalid JSON');
     }
 
-    return (List<Sobject>) JSON.deserialize(
+    return (List<SObject>) JSON.deserialize(
       gen.getAsString(),
       SObjectUtils.getListSobjectClassType(sType)
     );

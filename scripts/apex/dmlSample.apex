@@ -33,7 +33,7 @@ abc.AccountNumber = 'AccountNumber';
 
 SObjectAccessDecision securityDecision = Security.stripInaccessible(
   AccessType.UPDATABLE,
-  new List<Sobject>{ abc },
+  new List<SObject>{ abc },
   true
 );
 

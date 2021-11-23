@@ -164,17 +164,17 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
   global virtual string getTableData(Integer offset, Integer limitSize) {
     String queryString = generateQuery(offset, limitSize);
     queryString = replaceQueryValues(queryString);
-    List<sObject> dataList = DatabaseUtils.getRecords(queryString);
+    List<SObject> dataList = DatabaseUtils.getRecords(queryString);
     System.debug('dataList:' + dataList);
     String returnData = '';
     JSONGenerator gen = JSON.createGenerator(false);
     gen.writeStartArray();
-    for (sObject data : dataList) {
+    for (SObject data : dataList) {
       gen.writeStartObject();
       for (
         DynamicDataTableItem__mdt column : dynamicDataObj.DynamicDataTableItems__r
       ) {
-        sObject target = data;
+        SObject target = data;
         if (!String.isBlank(column.ParentObjectAPI__c)) {
           List<String> parents = column.ParentObjectAPI__c.split('\\.');
           for (String parent : parents) {

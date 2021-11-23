@@ -146,7 +146,7 @@ global virtual with sharing class FileService extends AbstractService {
   }
 
   /**
-   * @description link content document id with parent sobject ids
+   * @description link content document id with parent SObject ids
    * @author Digital Align Team | 08-23-2021
    * @param Id contentDocumentId
    * @param List<Id> entityIds

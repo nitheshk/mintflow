@@ -75,16 +75,16 @@ global without sharing class SObjectWithoutSharing {
   }
 
   /**
-   * @description Perform dml operation on list of sobject with specified external filedname for upsert operation,
+   * @description Perform dml operation on list of SObject with specified external filedname for upsert operation,
    * @author Digital Align | 05-12-2021
    * @param CrudType crudType
-   * @param List<Sobject> records
+   * @param List<SObject> records
    * @param SObjectField externalFieldName
-   * @return List<Sobject>
+   * @return List<SObject>
    **/
-  public static List<Sobject> processRecords(
+  public static List<SObject> processRecords(
     CrudType crudType,
-    List<Sobject> records,
+    List<SObject> records,
     SObjectField externalFieldName
   ) {
     if (CollectionUtils.isListEmpty(records)) {

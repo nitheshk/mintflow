@@ -298,7 +298,7 @@ global inherited sharing class Query {
   }
 
   /**
-   * @description Add field based on the fieldset name from Sobject Type
+   * @description Add field based on the fieldset name from SObject Type
    * @author Digital Align | 05-04-2021
    * @param String fieldSetName
    * @return Query
@@ -679,7 +679,7 @@ global inherited sharing class Query {
    * @example List<Contact> sl = (List<Contact> )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString());
    *   String q = Query.newInstance(Contact.SObjectType)
    *     .addFields('Name')
-   *     .whereIn('Id', new Map<id,sObject>(sl).keyset())
+   *     .whereIn('Id', new Map<id,SObject>(sl).keyset())
    *     .toString(true);
    *     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    *   system.debug(system.JSON.Serialize(sl));
@@ -697,7 +697,7 @@ global inherited sharing class Query {
    * @Example List<Contact> sl = (List<Contact> )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString());
    *   String q = Query.newInstance(Contact.SObjectType)
    *     .addFields('Name')
-   *     .whereIn('Id', new Map<id,sObject>(sl).keyset())
+   *     .whereIn('Id', new Map<id,SObject>(sl).keyset())
    *     .toString(true);
    *     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    *   system.debug(system.JSON.Serialize(sl));
@@ -715,7 +715,7 @@ global inherited sharing class Query {
    * @Example List<Contact> sl = (List<Contact> )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString());
    *   String q = Query.newInstance(Contact.SObjectType)
    *     .addFields('Name')
-   *     .whereIn('Id', new List<id>(new Map<id,sObject>(sl).keyset()))
+   *     .whereIn('Id', new List<id>(new Map<id,SObject>(sl).keyset()))
    *     .toString(true);
    *     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    *   system.debug(system.JSON.Serialize(sl));
@@ -809,7 +809,7 @@ global inherited sharing class Query {
    * @example List<Contact> sl = (List<Contact> )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString());
    *   String q = Query.newInstance(Contact.SObjectType)
    *     .addFields('Name')
-   *     .whereNotIn('Id', new Map<id,sObject>(sl).keyset())
+   *     .whereNotIn('Id', new Map<id,SObject>(sl).keyset())
    *     .toString(true);
    *     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    *   system.debug(system.JSON.Serialize(sl));
@@ -827,7 +827,7 @@ global inherited sharing class Query {
    * @Example List<Contact> sl = (List<Contact> )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString());
    *   String q = Query.newInstance(Contact.SObjectType)
    *     .addFields('Name')
-   *     .whereNotIn('Id', new Map<id,sObject>(sl).keyset())
+   *     .whereNotIn('Id', new Map<id,SObject>(sl).keyset())
    *     .toString(true);
    *     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    *   system.debug(system.JSON.Serialize(sl));
@@ -845,7 +845,7 @@ global inherited sharing class Query {
    * @Example List<Contact> sl = (List<Contact> )DatabaseUtils.getRecords(Query.newInstance(Contact.SObjectType).addLimit(2).toString());
    *   String q = Query.newInstance(Contact.SObjectType)
    *     .addFields('Name')
-   *     .whereNotIn('Id', new List<id>(new Map<id,sObject>(sl).keyset()))
+   *     .whereNotIn('Id', new List<id>(new Map<id,SObject>(sl).keyset()))
    *     .toString(true);
    *     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    *   system.debug(system.JSON.Serialize(sl));

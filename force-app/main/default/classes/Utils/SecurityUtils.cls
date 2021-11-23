@@ -10,7 +10,7 @@
 global inherited sharing class SecurityUtils {
   private static logger log = logger.getInstance(SecurityUtils.class);
   /**
-   * @description Check crud permission for list<Sobject>
+   * @description Check crud permission for list<SObject>
    * @param List<SObject> the SObject type to check
    * @param permission create, read, update or delete
    * @return Boolean
@@ -43,7 +43,7 @@ global inherited sharing class SecurityUtils {
   }
 
   /**
-   * @description Check crud permission for Sobject
+   * @description Check crud permission for SObject
    * @author Digital Align | 05-15-2021
    * @param SObject record
    * @param CrudType permission

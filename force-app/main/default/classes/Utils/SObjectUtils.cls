@@ -21,7 +21,7 @@ global inherited sharing class SObjectUtils {
     sObjectChildReference = new Map<SObjectType, Map<String, ChildRelationship>>();
   }
   /**
-   * @description get sObject DescribeSObjectResult by Sobject type
+   * @description get SObject DescribeSObjectResult by SObject type
    * @author Digital Align | 05-14-2021
    * @param SObjectType sType
    * @return DescribeSObjectResult
@@ -42,7 +42,7 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
-   * @description  get sObject DescribeSObjectResult by Sobject type
+   * @description  get SObject DescribeSObjectResult by SObject type
    * @author Digital Align | 05-15-2021
    * @param List<SObject> records
    * @return DescribeSObjectResult
@@ -54,7 +54,7 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
-   * @description get sObject DescribeSObjectResult by Sobject type
+   * @description get SObject DescribeSObjectResult by SObject type
    * @author Digital Align | 05-15-2021
    * @param SObject record
    * @return DescribeSObjectResult
@@ -74,7 +74,7 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
-   * @description Get SObject name by passing Sobject list
+   * @description Get SObject name by passing SObject list
    * @author Digital Align | 05-15-2021
    * @param List<SObject> records
    * @return String
@@ -84,7 +84,7 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
-   * @description Get SObject name by passing Sobject
+   * @description Get SObject name by passing SObject
    * @author Digital Align | 05-15-2021
    * @param SObject record
    * @return String
@@ -94,7 +94,7 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
-   * @description get sobject name by record id
+   * @description get SObject name by record id
    * @author Digital Align Team | 10-28-2021
    * @param Id entityId
    * @return String
@@ -104,7 +104,7 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
-   * @description Get all field name based on sObject type
+   * @description Get all field name based on SObject type
    * @author Digital Align | 05-02-2021
    * @param SObjectType sType
    * @return Map<String, Schema.SObjectField> Return all field of sType
@@ -120,7 +120,7 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
-   * @description Get fieldset base on the sObject and field set name
+   * @description Get fieldset base on the SObject and field set name
    * @author Digital Align | 05-04-2021
    * @param SObjectType sType
    * @param String fieldSetName
@@ -234,7 +234,7 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
-   * @description get sobject class  type from SobjectType
+   * @description get SObject class  type from SobjectType
    * @author Digital Align Team | 11-23-2021
    * @param SobjectType sType
    * @return Type
@@ -244,7 +244,7 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
-   * @description get list of sobject class  type from SobjectType
+   * @description get list of SObject class  type from SobjectType
    * @author Digital Align Team | 11-23-2021
    * @param SObjectType sType
    * @return Type

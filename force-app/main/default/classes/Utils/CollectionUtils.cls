@@ -37,7 +37,7 @@ global inherited sharing class CollectionUtils {
   }
 
   /**
-   * @description  Convert record to List<Sobject> by holding sobject context
+   * @description  Convert record to List<SObject> by holding SObject context
    * @author Digital Align | 05-15-2021
    * @param SObject record
    * @return List<SObject>
