@@ -351,7 +351,7 @@ global virtual inherited sharing class DatabaseUtils {
    * @param List<Object> records
    * @return List<SObject>
    **/
-  global static List<SObject> updateRecordsByStrip(List<sObject> records) {
+  global static List<SObject> updateRecordsByStrip(List<SObject> records) {
     return processRecordsByStrip(CrudType.UPDATABLE, records, null);
   }
 
@@ -376,7 +376,7 @@ global virtual inherited sharing class DatabaseUtils {
    * @param List<Object> records
    * @return List<SObject>
    **/
-  global static List<SObject> upsertRecordsByStrip(List<sObject> records) {
+  global static List<SObject> upsertRecordsByStrip(List<SObject> records) {
     return processRecordsByStrip(CrudType.UPSERTABLE, records, null);
   }
 
@@ -398,12 +398,12 @@ global virtual inherited sharing class DatabaseUtils {
   /**
    * @description
    * @author Digital Align | 05-12-2021
-   * @param List<sObject> records
+   * @param List<SObject> records
    * @param SObjectField externalFieldName
    * @return List<SObject>
    **/
   global static List<SObject> upsertRecordsByStrip(
-    List<sObject> records,
+    List<SObject> records,
     SObjectField externalFieldName
   ) {
     return processRecordsByStrip(
@@ -512,8 +512,8 @@ global virtual inherited sharing class DatabaseUtils {
   /**
    * @description
    * @author Digital Align | 05-15-2021
-   * @param List<sObject> records
-   * @return List<sObject>
+   * @param List<SObject> records
+   * @return List<SObject>
    **/
   global static List<SObject> insertRecords(List<SObject> records) {
     return processRecordsWithoutSharing(CrudType.CREATABLE, records, null);
@@ -537,10 +537,10 @@ global virtual inherited sharing class DatabaseUtils {
   /**
    * @description
    * @author Digital Align | 05-15-2021
-   * @param List<sObject> records
+   * @param List<SObject> records
    * @return List<SObject>
    **/
-  global static List<SObject> updateRecords(List<sObject> records) {
+  global static List<SObject> updateRecords(List<SObject> records) {
     return processRecordsWithoutSharing(CrudType.UPDATABLE, records, null);
   }
 
@@ -562,10 +562,10 @@ global virtual inherited sharing class DatabaseUtils {
   /**
    * @description
    * @author Digital Align | 05-15-2021
-   * @param List<sObject> records
+   * @param List<SObject> records
    * @return List<SObject>
    **/
-  global static List<SObject> upsertRecords(List<sObject> records) {
+  global static List<SObject> upsertRecords(List<SObject> records) {
     return processRecordsWithoutSharing(CrudType.UPSERTABLE, records, null);
   }
 
@@ -587,12 +587,12 @@ global virtual inherited sharing class DatabaseUtils {
   /**
    * @description
    * @author Digital Align | 05-15-2021
-   * @param List<sObject> records
+   * @param List<SObject> records
    * @param SObjectField externalFieldName
    * @return List<SObject>
    **/
   global static List<SObject> upsertRecords(
-    List<sObject> records,
+    List<SObject> records,
     SObjectField externalFieldName
   ) {
     return processRecordsWithoutSharing(
@@ -625,9 +625,9 @@ global virtual inherited sharing class DatabaseUtils {
   /**
    * @description
    * @author Digital Align | 05-15-2021
-   * @param List<sObject> records
+   * @param List<SObject> records
    **/
-  global static void deleteRecords(List<sObject> records) {
+  global static void deleteRecords(List<SObject> records) {
     processRecordsWithoutSharing(CrudType.DELETEABLE, records, null);
   }
 

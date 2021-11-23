@@ -233,7 +233,7 @@ global with sharing class SObjectConstructor {
         if (jt == JSONToken.VALUE_NULL) {
           gen.writeNullField(fieldName);
         } else {
-          gen.writeObjectField(fieldName, val);
+          // gen.writeObjectField(fieldName, val);
           switch on fieldType {
             when VALUE_FALSE, VALUE_TRUE {
               gen.writeBooleanField(fieldName, parser.getBooleanValue());
@@ -246,5 +246,65 @@ global with sharing class SObjectConstructor {
       }
     }
     gen.writeEndObject();
+  }
+
+  /**
+   * @description serialize record into UI readable form
+   * @author Digital Align Team | 11-23-2021
+   * @param SObject record
+   * @return String
+   **/
+  global static String serializeRecord(SObject record) {
+    if (record == null) {
+      return null;
+    }
+    Map<String, Object> sMap = writeFieldAsMap(record);
+    return JSON.serialize(sMap);
+  }
+
+  /**
+   * @description  serialize records into UI readable form
+   * @author Digital Align Team | 11-23-2021
+   * @param List<SObject> records
+   * @return String
+   **/
+  global static String serializeRecords(List<SObject> records) {
+    if (records == null) {
+      return null;
+    }
+    List<Object> sList = new List<Object>();
+    for (SObject record : records) {
+      sList.add(writeFieldAsMap(record));
+    }
+    return JSON.serialize(sList);
+  }
+
+  /**
+   * @description Returns a map of populated field names and their corresponding values.
+   * @author Digital Align Team | 11-23-2021
+   * @param SObject record
+   * @return Map<String, Object>
+   **/
+  global static Map<String, Object> writeFieldAsMap(SObject record) {
+    Map<String, Object> sMap = record.getPopulatedFieldsAsMap();
+    Map<String, Object> populatedFieldsAsMap = new Map<String, Object>();
+    for (string fieldName : sMap.keySet()) {
+      Object fieldValue = sMap.get(fieldName);
+      if (fieldValue instanceof List<SObject>) {
+        List<Object> childRecords = new List<Object>();
+        for (SObject childRecord : (List<SObject>) fieldValue) {
+          childRecords.add(writeFieldAsMap(childRecord));
+        }
+        populatedFieldsAsMap.put(fieldName, childRecords);
+      } else if (fieldValue instanceof SObject) {
+        populatedFieldsAsMap.put(
+          fieldName,
+          writeFieldAsMap((SObject) fieldValue)
+        );
+      } else {
+        populatedFieldsAsMap.put(fieldName, fieldValue);
+      }
+    }
+    return populatedFieldsAsMap;
   }
 }
