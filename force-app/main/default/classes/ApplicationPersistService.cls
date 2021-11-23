@@ -242,6 +242,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
       if (String.isNotBlank(applicantId)) {
         cpa.Applicant__c = applicantId;
       }
+      cpa.Name = String.isNotBlank(cpa.Street) ? cpa.Street?.left(255) : 'N/A';
     }
     ApplicantRepository.upsertRecords(addresses);
     return addresses;
