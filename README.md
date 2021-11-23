@@ -92,8 +92,9 @@ Step 5. Export Data (Refer detailed Readme File in **data\salesforceConfig\READM
 ### Step 3: pulling submodule
 
 Step 3.1 : `git clone --recursive git@github.com:DigitalAlignInc/p1fcu-olbui.git`
-
-Step 3.2 : Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks for Process`
+Step 3.2 : Select develop branch in p1fcu-olbui
+Step 3:3 : run npn install in p1fcu-olbui git folder
+Step 3.4 : Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks for Process`
 
 ### ERROR AND ISSUE
 
