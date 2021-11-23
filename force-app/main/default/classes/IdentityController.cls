@@ -24,7 +24,7 @@ global with sharing class IdentityController extends AbstractController {
     try {
       log?.fine('Inside verifyCounty');
       validateRequest(request);
-      return ApexResponse.Success(
+      return ApexResponse.ok(
         IdentityService.getInstance().verifyCounty(ApexRequest.getParams())
       );
     } catch (CustomException ex) {
@@ -50,7 +50,7 @@ global with sharing class IdentityController extends AbstractController {
     try {
       log?.fine('Inside scanIdentityDocument');
       validateRequest(request);
-      return ApexResponse.success(
+      return ApexResponse.ok(
         IdentityService.getInstance()
           .scanIdentityDocument(ApexRequest.getParams())
       );
@@ -76,7 +76,7 @@ global with sharing class IdentityController extends AbstractController {
     try {
       log?.fine('Inside identityVerify');
       validateRequest(request);
-      return ApexResponse.success(
+      return ApexResponse.ok(
         IdentityService.getInstance().identityVerify(ApexRequest.getParams())
       );
     } catch (CustomException ex) {

@@ -34,7 +34,7 @@ global with sharing class FileController extends AbstractController {
         null
         ? (Boolean) ApexRequest.getParams('ignoreVersionData')
         : true;
-      return ApexResponse.success(
+      return ApexResponse.ok(
         FileService.getInstance()
           .fetchContentVersionByEntityId(entityId, ignoreVersionData)
       );
@@ -85,7 +85,7 @@ global with sharing class FileController extends AbstractController {
       log?.fine('Inside generatePublicUrl');
       validateRequest(request);
       ID contentVersionId = (ID) ApexRequest.getParams('contentVersionId');
-      return ApexResponse.success(
+      return ApexResponse.ok(
         FileService.getInstance().generatePublicUrl(contentVersionId)
       );
     } catch (Exception ex) {
@@ -128,7 +128,7 @@ global with sharing class FileController extends AbstractController {
           (String) ApexRequest.getParams('visibility')
         );
       }
-      return ApexResponse.success(FileService.getInstance().createFile(dto));
+      return ApexResponse.ok(FileService.getInstance().createFile(dto));
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.fail(ex);
@@ -156,7 +156,7 @@ global with sharing class FileController extends AbstractController {
         null
         ? (Boolean) ApexRequest.getParams('ignoreVersionData')
         : true;
-      return ApexResponse.success(
+      return ApexResponse.ok(
         FileService.getInstance()
           .fetchContentVersionByCD(contentDocumentId, ignoreVersionData)
       );

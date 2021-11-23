@@ -58,12 +58,12 @@ global with sharing class ApplicationController extends AbstractController {
 
       log?.debug('request' + request);
       if (ApexRequest.getApplicantType() == 'Primary') {
-        return ApexResponse.success(
+        return ApexResponse.ok(
           ApplicationService.getInstance()
             .readApplicationWithChild(applicationId)
         );
       } else if (ApexRequest.getApplicantType() == 'Joint') {
-        return ApexResponse.success(
+        return ApexResponse.ok(
           ApplicationService.getInstance()
             .readApplicationWithChild(
               applicationId,
@@ -96,11 +96,11 @@ global with sharing class ApplicationController extends AbstractController {
     try {
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.request.params);
-      Account application = (Account) Json.deserialize(
+      Account application = (Account) SObjectConstructor.deserializeRecord(
         request.data,
         Account.class
       );
-      return ApexResponse.success(
+      return ApexResponse.ok(
         ApplicationService.getInstance().saveApplication(application)
       );
     } catch (CustomException ex) {
@@ -153,7 +153,7 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse reviewInformationSubmit(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.success(
+      return ApexResponse.ok(
         ReviewInformationService.getInstance()
           .reviewInformationSubmit(ApexRequest.getApplicationId())
       );
@@ -180,7 +180,7 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse refreshToken(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.success(SecurityUtils.refreshToken());
+      return ApexResponse.ok(SecurityUtils.refreshToken());
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);

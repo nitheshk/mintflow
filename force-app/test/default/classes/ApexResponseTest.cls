@@ -9,7 +9,7 @@ public with sharing class ApexResponseTest {
   static void apexResponseTestOne() {
     Account acc = makeAccountData();
     ApexResponse res = new ApexResponse();
-    ApexResponse.success(acc);
+    ApexResponse.ok(acc);
     ApexResponse.ok(acc);
     ApexResponse.ok();
     ApexResponse.fail(acc);
@@ -25,7 +25,6 @@ public with sharing class ApexResponseTest {
     ApexResponse res = new ApexResponse();
     res.setEntity(acc);
     res.setData(acc);
-    res.serialize();
     res = ApexResponse.unauthorized(acc);
     system.assertEquals(503, res.status, 'success');
   }

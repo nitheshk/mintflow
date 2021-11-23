@@ -25,7 +25,7 @@ global with sharing class ApexResponse {
   global static ApexResponse ok(object data) {
     ApexResponse response = new ApexResponse();
     response.status = 200;
-    response.data = data;
+    response.data = SObjectConstructor.serialize(data);
     return response;
   }
 
@@ -177,17 +177,6 @@ global with sharing class ApexResponse {
    **/
   public ApexResponse setData(Object data) {
     this.data = data;
-    return this;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 10-07-2021
-   * @return ApexResponse
-   **/
-  public ApexResponse serialize() {
-    ApexResponse response = this;
-    response.data = JSON.serialize(response.data);
     return this;
   }
 }

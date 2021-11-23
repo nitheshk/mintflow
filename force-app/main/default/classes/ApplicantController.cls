@@ -30,7 +30,7 @@ global with sharing class ApplicantController extends AbstractController {
       ) {
         applicantIds.add(String.valueOf(Obj));
       }
-      return ApexResponse.success(
+      return ApexResponse.ok(
         ApplicantService.getInstance().readApplicantsWithChild(applicantIds)
       );
     } catch (CustomException ex) {
@@ -60,13 +60,17 @@ global with sharing class ApplicantController extends AbstractController {
         request.data,
         List<Applicant__c>.class
       );
-      return ApexResponse.success(
+
+      applicants = ApplicantService.getInstance()
+        .saveApplicants(applicants, ApexRequest.getApplicationId());
+      return ApexResponse.ok(
         ApplicantService.getInstance()
-          .saveApplicants(applicants, ApexRequest.getApplicationId())
+          .readApplicantsWithChild(
+            (new Map<id, Applicant__c>(applicants)).keyset()
+          )
       );
     } catch (CustomException ex) {
       log?.error(ex);
-
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
@@ -92,7 +96,7 @@ global with sharing class ApplicantController extends AbstractController {
         request.data,
         Applicant__c.class
       );
-      return ApexResponse.success(
+      return ApexResponse.ok(
         ApplicantService.getInstance()
           .saveApplicant(applicant, ApexRequest.getApplicationId())
       );
@@ -122,7 +126,7 @@ global with sharing class ApplicantController extends AbstractController {
       validateRequest(request, true);
       log?.debug('params : ' + ApexRequest.getParams());
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
-      return ApexResponse.Success(
+      return ApexResponse.ok(
         AuthenticationService.getInstance().generateOTP(applicantId)
       );
     } catch (Exception ex) {
@@ -148,7 +152,7 @@ global with sharing class ApplicantController extends AbstractController {
       log?.fine('Inside validateOTP');
       validateRequest(request, true);
       log?.debug('params : ' + ApexRequest.getParams());
-      return ApexResponse.Success(
+      return ApexResponse.ok(
         AuthenticationService.getInstance().validateOTP(ApexRequest.getParams())
       );
     } catch (CustomException ex) {

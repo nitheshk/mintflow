@@ -144,10 +144,10 @@ global with sharing class SObjectConstructor {
    * @description Convert json into SObject format, json has single record
    * @author Digital Align Team | 11-23-2021
    * @param String jsonBody
-   * @param SobjectType sType
+   * @param Type cType
    * @return SObject
    **/
-  global static SObject deserializeRecord(String jsonBody, SobjectType sType) {
+  global static SObject deserializeRecord(String jsonBody, Type cType) {
     JSONGenerator gen = JSON.createGenerator(false);
     JSONParser parser = JSON.createParser(jsonBody);
     if (parser.nextToken() == JSONToken.START_OBJECT) {
@@ -155,24 +155,17 @@ global with sharing class SObjectConstructor {
     } else {
       throw new customException('Invalid JSON');
     }
-
-    return (SObject) JSON.deserialize(
-      gen.getAsString(),
-      SObjectUtils.getSobjectClassType(sType)
-    );
+    return (SObject) JSON.deserialize(gen.getAsString(), cType);
   }
 
   /**
    * @description Convert json into SObject format, json has list of records
    * @author Digital Align Team | 11-23-2021
    * @param String jsonBody
-   * @param SobjectType sType
+   * @param Type cType
    * @return List<SObject>
    **/
-  global static List<SObject> deserializeRecords(
-    String jsonBody,
-    SobjectType sType
-  ) {
+  global static List<SObject> deserializeRecords(String jsonBody, Type cType) {
     JSONGenerator gen = JSON.createGenerator(false);
     JSONParser parser = JSON.createParser(jsonBody);
     if (parser.nextToken() == JSONToken.START_ARRAY) {
@@ -184,11 +177,7 @@ global with sharing class SObjectConstructor {
     } else {
       throw new customException('Invalid JSON');
     }
-
-    return (List<SObject>) JSON.deserialize(
-      gen.getAsString(),
-      SObjectUtils.getListSobjectClassType(sType)
-    );
+    return (List<SObject>) JSON.deserialize(gen.getAsString(), cType);
   }
 
   /**
@@ -197,7 +186,7 @@ global with sharing class SObjectConstructor {
    * @param JSONGenerator gen
    * @param JSONParser parser
    **/
-  global static void writeObject(JSONGenerator gen, JSONParser parser) {
+  private static void writeObject(JSONGenerator gen, JSONParser parser) {
     gen.writeStartObject();
     //system.debug('parser.getCurrentToken() :' + parser.getCurrentToken());
     //system.debug('parser.getCurrentName() :' + parser.getCurrentName());
@@ -233,19 +222,34 @@ global with sharing class SObjectConstructor {
         if (jt == JSONToken.VALUE_NULL) {
           gen.writeNullField(fieldName);
         } else {
-          // gen.writeObjectField(fieldName, val);
-          switch on fieldType {
-            when VALUE_FALSE, VALUE_TRUE {
-              gen.writeBooleanField(fieldName, parser.getBooleanValue());
-            }
-            when else {
-              gen.writeStringField(fieldName, val);
-            }
+          if (
+            fieldType == System.JSONToken.VALUE_FALSE ||
+            fieldType == System.JSONToken.VALUE_TRUE
+          ) {
+            gen.writeBooleanField(fieldName, parser.getBooleanValue());
+          } else {
+            gen.writeStringField(fieldName, val);
           }
         }
       }
     }
     gen.writeEndObject();
+  }
+
+  /**
+   * @description serilaize the object
+   * @author Digital Align Team | 11-23-2021
+   * @param Object data
+   * @return String
+   **/
+  global static String serialize(Object data) {
+    if (data instanceof List<SObject>) {
+      return serializeRecords((List<SObject>) data);
+    } else if (data instanceof SObject) {
+      return serializeRecord((SObject) data);
+    } else {
+      return Json.serialize(data);
+    }
   }
 
   /**
