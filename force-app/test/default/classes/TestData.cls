@@ -96,4 +96,13 @@ public with sharing class TestData {
     systemSetting.LoggingLevel__c = 'Fine';
     return systemSetting;
   }
+
+  public static FileDTO createFileDto(string fileName, string parentID) {
+    FileDTO fileDto = new FileDTO(
+      fileName,
+      EncodingUtil.base64Decode('versionData'),
+      parentID
+    );
+    return fileDto;
+  }
 }
