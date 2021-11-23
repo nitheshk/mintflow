@@ -1,3 +1,12 @@
+# Prerequisite Software
+
+1. https://developer.salesforce.com/tools/sfdxcli install SFDX Cli
+2. Java 8 and 11 JDK
+3. Salesforce extension pack and salesforce CLI integration Extensions
+4. Git Clone the pcu-olb project
+5. Signup for developer org -> https://developer.salesforce.com/signup
+6. Follow step 1.2 to setup devhub ( https://alignmoney.atlassian.net/wiki/spaces/DOT/pages/1204060213/Setup+Devhub ) and certification to uplaod , you find git folder under jwt folder.
+
 # Project Documentation
 
 > Utils Functionality - docs\ApexDocumentation
@@ -22,7 +31,7 @@ Install the dependencies by run the below commands for first time for one system
 
 ## Shortcut
 
-Step 1. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format
+Step 1. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format with create connected app on previous step
 
 ```
 {
