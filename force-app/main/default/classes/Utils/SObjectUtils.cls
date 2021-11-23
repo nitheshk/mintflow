@@ -232,4 +232,24 @@ global inherited sharing class SObjectUtils {
       .get(recordTypeDevName)
       ?.getRecordTypeId();
   }
+
+  /**
+   * @description get sobject class  type from SobjectType
+   * @author Digital Align Team | 11-23-2021
+   * @param SobjectType sType
+   * @return Type
+   **/
+  public static Type getSobjectClassType(SObjectType sType) {
+    return Type.forName(getObjectName(sType));
+  }
+
+  /**
+   * @description get list of sobject class  type from SobjectType
+   * @author Digital Align Team | 11-23-2021
+   * @param SObjectType sType
+   * @return Type
+   **/
+  public static Type getListSobjectClassType(SObjectType sType) {
+    return Type.forName('List<' + getSobjectClassType(sType) + '>');
+  }
 }
