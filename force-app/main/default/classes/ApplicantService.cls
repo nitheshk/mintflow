@@ -151,8 +151,11 @@ global with sharing class ApplicantService extends AbstractService {
       applicant = ApplicationPersistService.getInstance()
         .saveApplicant(applicant, applicationId);
       ApplicantRepository.upsertRecord(applicant);
-      applicant = ApplicationPersistService.getInstance()
-        .saveApplicantChild(applicant);
+
+      if (!ApexRequest.getParams().containsKey('ApexSkipApplicantChild')) {
+        applicant = ApplicationPersistService.getInstance()
+          .saveApplicantChild(applicant);
+      }
     } catch (Exception ex) {
       log?.error(ex);
       Database.rollback(sp);

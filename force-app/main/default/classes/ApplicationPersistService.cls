@@ -87,11 +87,19 @@ global with sharing class ApplicationPersistService extends AbstractService {
     if (CollectionUtils.isListEmpty(applicants)) {
       return applicants;
     }
+
+    if (ApexRequest.getParams().containsKey('ApexSkipApplicants')) {
+      return applicants;
+    }
     //update value for applicant here
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicant(applicant, applicationId);
     }
     ApplicantRepository.upsertRecords(applicants);
+
+    if (ApexRequest.getParams().containsKey('ApexSkipApplicantsChild')) {
+      return applicants;
+    }
     //save child of applicants
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicantChild(applicant);
