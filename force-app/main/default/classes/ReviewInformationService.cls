@@ -40,7 +40,6 @@ global with sharing class ReviewInformationService extends AbstractService {
     );
 
     String applicantType = ApexRequest.getApplicantType();
-    String applicantId = ApexRequest.getApplicantId();
 
     switch on application.FinServ__CustomerType__c {
       //#pending
@@ -110,6 +109,31 @@ global with sharing class ReviewInformationService extends AbstractService {
         .reviewInformationSubmitted(jointApplicants, 'JointStartApplication');
     }
     log?.info('Completed primaryConsumerFlow');
+    return application;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 11-24-2021
+   * @param account application
+   * @return virtual
+   **/
+  global virtual account jointConsumerFlow(account application) {
+    log?.info('Inside primaryConsumerFlow');
+    Applicant__c primaryApplicant;
+    List<dau01__Applicant__c> jointApplicants = new List<dau01__Applicant__c>();
+
+    for (Applicant__c applicant : application.Applicants__r) {
+      Set<String> applicantTypes = new Set<String>(
+        applicant.ApplicantType__c.split(';')
+      );
+      if (applicantTypes.contains('Primary')) {
+        primaryApplicant = applicant;
+      } else if (applicantTypes.contains('Joint')) {
+        jointApplicants.add(applicant);
+      }
+    }
+
     return application;
   }
 }
