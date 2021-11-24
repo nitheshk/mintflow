@@ -76,6 +76,10 @@ global with sharing class ReviewInformationService extends AbstractService {
       }
     }
 
+    //Mark currrent primary applicant has submitted the application
+    primaryApplicant.Status__c = ApplicationConstant.SUBMITTED;
+    ApplicantRepository.upsertRecord(primaryApplicant);
+
     if (jointApplicants.isEmpty()) {
       //1. Send notification Primary applicant with resume link
       CustomerEmailService.getInstance()
@@ -110,11 +114,21 @@ global with sharing class ReviewInformationService extends AbstractService {
   global virtual account jointConsumerFlow(account application) {
     log?.info('Inside jointConsumerFlow');
     Applicant__c primaryApplicant;
+    Applicant__c currentJointApplicant;
     List<Applicant__c> jointApplicants = new List<Applicant__c>();
 
     if (application.Applicants__r.isEmpty()) {
       throw new customException('Applicant Not Found');
     }
+
+    //Mark currrent Joint applicant has submitted the application
+    currentJointApplicant = (new Map<Id, Applicant__c>(
+        application.Applicants__r
+      ))
+      .get(ApexRequest.getApplicantId());
+    currentJointApplicant.Status__c = ApplicationConstant.SUBMITTED;
+    ApplicantRepository.upsertRecord(currentJointApplicant);
+
     Boolean isFlowCompleted = true;
     for (Applicant__c applicant : application.Applicants__r) {
       Set<String> applicantTypes = new Set<String>(
@@ -135,7 +149,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       // Send All Joint Completed Email to Primary and Application under process
       CustomerEmailService.getInstance()
         .primaryReviewInformationCompleted(primaryApplicant);
-      //#RPA
+      //#RPA #pending
       //Add Application to Review Queue of rpa
     }
 
