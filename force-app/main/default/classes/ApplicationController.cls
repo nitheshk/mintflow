@@ -13,7 +13,7 @@ global with sharing class ApplicationController extends AbstractController {
     super(ApplicationController.class);
   }
   /**
-   * @description
+   * @description Generate start application url
    * @author Digital Align Team | 09-29-2021
    * @param Map<String String> params
    * @return ApexResponse

@@ -2,8 +2,8 @@
 ApexRequest request = new ApexRequest();
 request.token = SecurityUtils.generateTokenForTesting(
   '0010p000010fl06AAA',
-  'a0b0p0000026aUnAAI',
-  'Joint',
+  '',
+  'Primary',
   'ApplicationFlow'
 );
 //request.applicationId = '0010p000010fl06AAA';
@@ -79,3 +79,7 @@ system.debug('ApplicationId :' + Json.serialize(request));
 SecurityUtils.validateSession();
 system.debug('ApplicationId :' + ApexRequest.getApplicationId());
 system.debug('applicantType : ' + ApexRequest.getApplicantType());
+
+// #8
+system.debug(AuthenticationService.getInstance().getAuthToken());
+Logger.persist();
