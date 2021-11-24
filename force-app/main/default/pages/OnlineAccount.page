@@ -47,13 +47,9 @@
           Please enable it to continue.</strong
         >
       </noscript>
-      <!--<h1>Remove This Later</h1>
-      <h3>application: {!application}</h3>
-      <br />
-      <h3>Params: {!params}</h3>-->
       <div id="app"></div>
       <script>
-        initialData = "{!JSENCODE(vueContext)}";
+        initialData = "{!JSENCODE(initialData)}";
       </script>
       <script
         src="{!URLFOR($Resource.MintFlow, 'js/chunk-vendors.js')}"

@@ -196,27 +196,6 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Applicant__c applicant
    * @return virtual
    **/
-  global virtual void accountOpened(Applicant__c applicant) {
-    EmailNotificationBuilder.newInstance('AccountOpened', applicant.Id)
-      .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{
-          '{firstName}' => applicant.FirstName__c,
-          '{lastName}' => applicant.LastName__c,
-          '{productName}' => 'Member Account',
-          '{accountNumber}' => applicant.MembershipAccountNumber__c,
-          '{customerNumber}' => applicant.dau01__CustomerNumber__c
-        }
-      );
-    sendEmail();
-  }
-
-  /**
-   * @description
-   * @author Digital Align | 11-12-2021
-   * @param Applicant__c applicant
-   * @return virtual
-   **/
   global virtual void primaryReviewInformationCompleted(
     Applicant__c applicant
   ) {
@@ -230,6 +209,27 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           '{firstName}' => applicant.FirstName__c,
           '{lastName}' => applicant.LastName__c,
           '{ApplicationNumber}' => ApexRequest.getApplicationName()
+        }
+      );
+    sendEmail();
+  }
+
+  /**
+   * @description
+   * @author Digital Align | 11-12-2021
+   * @param Applicant__c applicant
+   * @return virtual
+   **/
+  global virtual void accountOpened(Applicant__c applicant) {
+    EmailNotificationBuilder.newInstance('AccountOpened', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(
+        new Map<String, String>{
+          '{firstName}' => applicant.FirstName__c,
+          '{lastName}' => applicant.LastName__c,
+          '{productName}' => 'Member Account',
+          '{accountNumber}' => applicant.MembershipAccountNumber__c,
+          '{customerNumber}' => applicant.dau01__CustomerNumber__c
         }
       );
     sendEmail();

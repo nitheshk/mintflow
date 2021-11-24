@@ -7,14 +7,9 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class OnlineAccountController extends AbstractController {
-  global String id { get; set; }
-  global String application { get; set; }
-  global String params { get; set; }
-  global String applicationConfig { get; set; }
-  global String siteConfig { get; set; }
-  //new added
-  private Account app { get; set; }
-  global String vueContext { get; set; }
+  private String id { get; set; }
+  private Account application { get; set; }
+  global String initialData { get; set; }
 
   global OnlineAccountController() {
     super(OnlineAccountController.class);
@@ -33,40 +28,28 @@ global with sharing class OnlineAccountController extends AbstractController {
       Cookie pageToken = PageUtils.getCookie('token');
       log?.debug('Cookei: ' + pageToken?.getValue());
       if (pageToken != null && String.isNotBlank(pageToken.getValue())) {
-        Account application = ApplicationService.getInstance()
-          .refreshPage(params);
+        this.application = ApplicationService.getInstance().refreshPage(params);
         this.id = application.Id;
-        this.application = Json.serialize(application);
-        this.app = application;
-        this.params = Json.serialize(params, true);
       } else if (String.isNotBlank(vmf)) {
         //resume application mapping
         ApplicationService.getInstance().resumeApplication(params);
         this.id = (String) params.get('applicationId');
-        this.params = Json.serialize(params, true);
       } else {
-        Account application = ApplicationService.getInstance()
+        this.application = ApplicationService.getInstance()
           .createApplication(params);
         this.id = application.Id;
-        this.application = Json.serialize(application);
-        this.app = application;
-        this.params = Json.serialize(params);
       }
-      this.applicationConfig = Json.serialize(
-        ApplicationConfiguration__c.getInstance()
-      );
-      this.siteConfig = Json.serialize(ApplicationRepository.readSiteSetting());
 
-      Map<String, Object> pageContext = new Map<String, Object>{
+      Map<String, Object> initialData = new Map<String, Object>{
         'id' => this.id,
         'application' => SObjectConstructor.writeFieldsAsMap(
-          (SObject) this.app
+          (SObject) this.application
         ),
         'params' => params,
         'applicationConfig' => ApplicationConfiguration__c.getInstance(),
         'siteConfig' => ApplicationRepository.readSiteSetting()
       };
-      this.vueContext = JSON.serialize(pageContext);
+      this.initialData = JSON.serialize(initialData);
       return null;
     } catch (CustomException ex) {
       log?.error(ex);
