@@ -18,7 +18,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   global static Account readApplicationWithChild(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
       new Query(Account.SObjectType)
-        .addFields()
+        .addFieldSet('dau01__Application')
         //.removeFields('dau01__SessionToken__c')
         .queryChild('dau01__Applicants__r')
         .orderBy('dau01__Order__c')
@@ -43,7 +43,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   ) {
     return (Account) DatabaseUtils.getRecord(
       new Query(Account.SObjectType)
-        .addFields()
+        .addFieldSet('dau01__Application')
         .removeFields('dau01__SessionToken__c')
         .queryChild('dau01__Applicants__r')
         .whereEq('Id', applicantId)
@@ -95,7 +95,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   global static Account readApplicationWithApplicants(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
       new Query(Account.SObjectType)
-        .addFields()
+        .addFieldSet('dau01__Application')
         .queryChild('dau01__Applicants__r')
         .addFields()
         .orderBy('dau01__Order__c')
