@@ -206,8 +206,8 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
-          '{firstName}' => applicant.FirstName__c,
-          '{lastName}' => applicant.LastName__c,
+          '{FirstName}' => applicant.FirstName__c,
+          '{LastName}' => applicant.LastName__c,
           '{ApplicationNumber}' => ApexRequest.getApplicationName()
         }
       );

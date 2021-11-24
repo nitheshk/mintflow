@@ -45,7 +45,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       // send email to primary and joint
       primaryConsumerFlow(application);
     } else if (
-      applicantType == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      applicantType == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
     ) {
       // send email to primary on completion
       jointConsumerFlow(application);
@@ -69,9 +69,15 @@ global with sharing class ReviewInformationService extends AbstractService {
       Set<String> applicantTypes = new Set<String>(
         applicant.ApplicantType__c.split(';')
       );
-      if (applicantTypes.contains('Primary')) {
+      if (
+        applicantTypes.contains(
+          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+        )
+      ) {
         primaryApplicant = applicant;
-      } else if (applicantTypes.contains('Joint')) {
+      } else if (
+        applicantTypes.contains(ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)
+      ) {
         jointApplicants.add(applicant);
       }
     }
@@ -145,7 +151,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       }
     }
 
-    if (isFlowCompleted) {
+    if (!isFlowCompleted) {
       // Send All Joint Completed Email to Primary and Application under process
       CustomerEmailService.getInstance()
         .primaryReviewInformationCompleted(primaryApplicant);
