@@ -105,4 +105,16 @@ public with sharing class TestData {
     );
     return fileDto;
   }
+  public static Document createDocument() {
+    List<Folder> folderList = [SELECT Id, Name FROM Folder LIMIT 1];
+    String docFolderId = folderList[0].Id; //Get Folder Id
+    Document doc = new Document();
+    doc.Name = 'DaBackGround1';
+    doc.Body = Blob.valueOf('fileContent');
+    doc.ContentType = 'text/plain';
+    doc.FolderId = docFolderId;
+    doc.Type = 'txt';
+    doc.IsPublic = true;
+    return doc;
+  }
 }
