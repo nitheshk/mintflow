@@ -21,7 +21,8 @@ export default class StartOnlineApplication extends LightningElement {
       .then((result) => {
         console.log("result:", JSON.stringify(result));
         if (result.status === 200) {
-          window.open(result.data.url, "_blank");
+          let data = JSON.parse(result.data);
+          window.open(data.url, "_blank");
         }
       })
       .catch((error) => {

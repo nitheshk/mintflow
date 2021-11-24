@@ -35,12 +35,12 @@ global with sharing class ApexResponse {
    * @param object data
    * @return ApexResponse
    **/
-  global static ApexResponse success(object data) {
+  /*global static ApexResponse success(object data) {
     ApexResponse response = new ApexResponse();
     response.status = 200;
     response.data = JSON.serialize(data);
     return response;
-  }
+  }*/
 
   /**
    * @description  return status with 200

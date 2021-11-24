@@ -141,43 +141,28 @@ global with sharing class SObjectConstructor {
   }
 
   /**
-   * @description Convert json into SObject format, json has single record
-   * @author Digital Align Team | 11-23-2021
+   * @description deserialize json into apex type
+   * @author Digital Align Team | 11-24-2021
    * @param String jsonBody
    * @param Type cType
-   * @return SObject
+   * @return Object
    **/
-  global static SObject deserializeRecord(String jsonBody, Type cType) {
-    JSONGenerator gen = JSON.createGenerator(false);
-    JSONParser parser = JSON.createParser(jsonBody);
-    if (parser.nextToken() == JSONToken.START_OBJECT) {
+  global static Object deserialize(String jsonBody, Type cType) {
+    JSONGenerator gen = System.JSON.createGenerator(false);
+    JSONParser parser = System.JSON.createParser(jsonBody);
+    JSONToken nextToken = parser.nextToken();
+    if (nextToken == System.JSONToken.START_OBJECT) {
       writeObject(gen, parser);
-    } else {
-      throw new customException('Invalid JSON');
-    }
-    return (SObject) JSON.deserialize(gen.getAsString(), cType);
-  }
-
-  /**
-   * @description Convert json into SObject format, json has list of records
-   * @author Digital Align Team | 11-23-2021
-   * @param String jsonBody
-   * @param Type cType
-   * @return List<SObject>
-   **/
-  global static List<SObject> deserializeRecords(String jsonBody, Type cType) {
-    JSONGenerator gen = JSON.createGenerator(false);
-    JSONParser parser = JSON.createParser(jsonBody);
-    if (parser.nextToken() == JSONToken.START_ARRAY) {
+    } else if (nextToken == System.JSONToken.START_ARRAY) {
       gen.writeStartArray();
-      while (parser.nextToken() != JSONToken.END_ARRAY) {
+      while (parser.nextToken() != System.JSONToken.END_ARRAY) {
         writeObject(gen, parser);
       }
       gen.writeEndArray();
     } else {
-      throw new customException('Invalid JSON');
+      throw new customException('Invalid JSON Format');
     }
-    return (List<SObject>) JSON.deserialize(gen.getAsString(), cType);
+    return System.JSON.deserialize(gen.getAsString(), cType);
   }
 
   /**
@@ -188,19 +173,12 @@ global with sharing class SObjectConstructor {
    **/
   private static void writeObject(JSONGenerator gen, JSONParser parser) {
     gen.writeStartObject();
-    //system.debug('parser.getCurrentToken() :' + parser.getCurrentToken());
-    //system.debug('parser.getCurrentName() :' + parser.getCurrentName());
-    //system.debug('parser.getText() :' + parser.getText());
-    while (parser.nextToken() != JSONToken.END_OBJECT) {
+    while (parser.nextToken() != System.JSONToken.END_OBJECT) {
       String fieldName = parser.getCurrentName();
       JSONToken jt = parser.nextToken();
       String val = parser.getText();
       JSONToken fieldType = parser.getCurrentToken();
-      //system.debug('Val :' + val);
-      //system.debug('jt :' + jt);
-      //system.debug('fieldType :' + fieldType);
-      //system.debug('fieldName :' + fieldName);
-      if (jt == JSONToken.START_ARRAY) {
+      if (jt == System.JSONToken.START_ARRAY) {
         // arrary parsing
         gen.writeFieldName(fieldName);
         gen.writeStartObject();
@@ -208,18 +186,18 @@ global with sharing class SObjectConstructor {
         gen.writeFieldName('records');
         gen.writeStartArray();
         Integer totalSize = 0;
-        while (parser.nextToken() != JSONToken.END_ARRAY) {
+        while (parser.nextToken() != System.JSONToken.END_ARRAY) {
           writeObject(gen, parser);
           totalSize++;
         }
         gen.writeEndArray();
         gen.writeNumberField('size', totalSize);
         gen.writeEndObject();
-      } else if (jt == JSONToken.START_OBJECT) {
+      } else if (jt == System.JSONToken.START_OBJECT) {
         gen.writeFieldName(fieldName);
         writeObject(gen, parser);
       } else {
-        if (jt == JSONToken.VALUE_NULL) {
+        if (jt == System.JSONToken.VALUE_NULL) {
           gen.writeNullField(fieldName);
         } else {
           if (
@@ -244,43 +222,16 @@ global with sharing class SObjectConstructor {
    **/
   global static String serialize(Object data) {
     if (data instanceof List<SObject>) {
-      return serializeRecords((List<SObject>) data);
+      List<Object> sList = new List<Object>();
+      for (SObject record : (List<SObject>) data) {
+        sList.add(writeFieldAsMap(record));
+      }
+      return JSON.serialize(sList);
     } else if (data instanceof SObject) {
-      return serializeRecord((SObject) data);
+      return JSON.serialize(writeFieldAsMap((SObject) data));
     } else {
       return Json.serialize(data);
     }
-  }
-
-  /**
-   * @description serialize record into UI readable form
-   * @author Digital Align Team | 11-23-2021
-   * @param SObject record
-   * @return String
-   **/
-  global static String serializeRecord(SObject record) {
-    if (record == null) {
-      return null;
-    }
-    Map<String, Object> sMap = writeFieldAsMap(record);
-    return JSON.serialize(sMap);
-  }
-
-  /**
-   * @description  serialize records into UI readable form
-   * @author Digital Align Team | 11-23-2021
-   * @param List<SObject> records
-   * @return String
-   **/
-  global static String serializeRecords(List<SObject> records) {
-    if (records == null) {
-      return null;
-    }
-    List<Object> sList = new List<Object>();
-    for (SObject record : records) {
-      sList.add(writeFieldAsMap(record));
-    }
-    return JSON.serialize(sList);
   }
 
   /**

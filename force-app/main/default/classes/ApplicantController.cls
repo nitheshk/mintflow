@@ -56,7 +56,7 @@ global with sharing class ApplicantController extends AbstractController {
     try {
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.request.params);
-      List<Applicant__c> applicants = (List<Applicant__c>) Json.deserialize(
+      List<Applicant__c> applicants = (List<Applicant__c>) SObjectConstructor.deserialize(
         request.data,
         List<Applicant__c>.class
       );
@@ -92,7 +92,7 @@ global with sharing class ApplicantController extends AbstractController {
   global static ApexResponse saveApplicant(ApexRequest request) {
     try {
       validateRequest(request);
-      Applicant__c applicant = (Applicant__c) Json.deserialize(
+      Applicant__c applicant = (Applicant__c) SObjectConstructor.deserialize(
         request.data,
         Applicant__c.class
       );

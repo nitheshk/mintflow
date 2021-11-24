@@ -39,8 +39,8 @@ export default class AppplicationFlow extends NavigationMixin(
     readFlows({ params: { recordId: this.recordId } })
       .then((result) => {
         if (result.status === 200) {
-          console.log("result : " + JSON.stringify(result));
-          this.flowData = result.data;
+          console.log("result : " + result);
+          this.flowData = JSON.parse(result.data);
           this.flowData.forEach((element) => {
             if (element?.dau01__SubFlows__r) {
               element._children = element.dau01__SubFlows__r;

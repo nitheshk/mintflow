@@ -96,7 +96,7 @@ global with sharing class ApplicationController extends AbstractController {
     try {
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.request.params);
-      Account application = (Account) SObjectConstructor.deserializeRecord(
+      Account application = (Account) SObjectConstructor.deserialize(
         request.data,
         Account.class
       );
