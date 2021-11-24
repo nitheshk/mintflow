@@ -91,7 +91,8 @@ global with sharing class ApplicationService extends AbstractService {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
       application.FinServ__LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
     }
-
+    // #pending  value need to decide based on the parameter
+    application.FinServ__CustomerType__c = 'Consumer';
     application.Description = ApplicationServiceHelper.getInstance()
       .getIpAddress();
     ApplicationRepository.upsertRecord(application);

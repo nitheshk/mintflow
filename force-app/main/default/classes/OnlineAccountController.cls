@@ -59,7 +59,9 @@ global with sharing class OnlineAccountController extends AbstractController {
 
       Map<String, Object> pageContext = new Map<String, Object>{
         'id' => this.id,
-        'application' => this.app,
+        'application' => SObjectConstructor.writeFieldsAsMap(
+          (SObject) this.app
+        ),
         'params' => params,
         'applicationConfig' => ApplicationConfiguration__c.getInstance(),
         'siteConfig' => ApplicationRepository.readSiteSetting()

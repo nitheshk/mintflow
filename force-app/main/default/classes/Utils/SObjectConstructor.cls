@@ -222,16 +222,26 @@ global with sharing class SObjectConstructor {
    **/
   global static String serialize(Object data) {
     if (data instanceof List<SObject>) {
-      List<Object> sList = new List<Object>();
-      for (SObject record : (List<SObject>) data) {
-        sList.add(writeFieldAsMap(record));
-      }
-      return JSON.serialize(sList);
+      return System.JSON.serialize(writeFieldsAsList((List<SObject>) data));
     } else if (data instanceof SObject) {
-      return JSON.serialize(writeFieldAsMap((SObject) data));
+      return System.JSON.serialize(writeFieldsAsMap((SObject) data));
     } else {
-      return Json.serialize(data);
+      return System.JSON.serialize(data);
     }
+  }
+
+  /**
+   * @description Write Sobject fields as List
+   * @author Digital Align Team | 11-24-2021
+   * @param List<SObject> records
+   * @return List<Object>
+   **/
+  global static List<Object> writeFieldsAsList(List<SObject> records) {
+    List<Object> sList = new List<Object>();
+    for (SObject record : records) {
+      sList.add(writeFieldsAsMap(record));
+    }
+    return sList;
   }
 
   /**
@@ -240,21 +250,20 @@ global with sharing class SObjectConstructor {
    * @param SObject record
    * @return Map<String, Object>
    **/
-  global static Map<String, Object> writeFieldAsMap(SObject record) {
+  global static Map<String, Object> writeFieldsAsMap(SObject record) {
     Map<String, Object> sMap = record.getPopulatedFieldsAsMap();
     Map<String, Object> populatedFieldsAsMap = new Map<String, Object>();
     for (string fieldName : sMap.keySet()) {
       Object fieldValue = sMap.get(fieldName);
       if (fieldValue instanceof List<SObject>) {
-        List<Object> childRecords = new List<Object>();
-        for (SObject childRecord : (List<SObject>) fieldValue) {
-          childRecords.add(writeFieldAsMap(childRecord));
-        }
-        populatedFieldsAsMap.put(fieldName, childRecords);
+        populatedFieldsAsMap.put(
+          fieldName,
+          writeFieldsAsList((List<SObject>) fieldValue)
+        );
       } else if (fieldValue instanceof SObject) {
         populatedFieldsAsMap.put(
           fieldName,
-          writeFieldAsMap((SObject) fieldValue)
+          writeFieldsAsMap((SObject) fieldValue)
         );
       } else {
         populatedFieldsAsMap.put(fieldName, fieldValue);

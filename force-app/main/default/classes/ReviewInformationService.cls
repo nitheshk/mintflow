@@ -41,33 +41,21 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     String applicantType = ApexRequest.getApplicantType();
 
-    switch on application.FinServ__CustomerType__c {
-      //#pending
-      when 'Consumer' {
-        if (applicantType == 'Primary') {
-          // send email to primary and joint
-          primaryConsumerFlow(application);
-        } else if (applicantType == 'Joint') {
-          // send email to primary  on completion
-          primaryConsumerFlow(application);
-        }
-      }
-      when else {
-        if (applicantType == 'Primary') {
-          // send email to primary and joint
-          primaryConsumerFlow(application);
-        } else if (applicantType == 'Joint') {
-          // send email to primary  on completion
-          primaryConsumerFlow(application);
-        }
-      }
+    if (applicantType == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+      // send email to primary and joint
+      primaryConsumerFlow(application);
+    } else if (
+      applicantType == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    ) {
+      // send email to primary on completion
+      jointConsumerFlow(application);
     }
 
     return application;
   }
 
   /**
-   * @description
+   * @description Primary Review Submit action
    * @author Digital Align Team | 11-12-2021
    * @param account application
    * @return account
@@ -97,6 +85,7 @@ global with sharing class ReviewInformationService extends AbstractService {
         );
       //2. Push Primary applicant to RPA Queue
       //#pending
+      //#RPA
     } else {
       //1. send Email to Primary applicant with resume link
       CustomerEmailService.getInstance()
@@ -113,16 +102,20 @@ global with sharing class ReviewInformationService extends AbstractService {
   }
 
   /**
-   * @description
+   * @description joint Review Submit action , submit for kyv
    * @author Digital Align Team | 11-24-2021
    * @param account application
    * @return virtual
    **/
   global virtual account jointConsumerFlow(account application) {
-    log?.info('Inside primaryConsumerFlow');
+    log?.info('Inside jointConsumerFlow');
     Applicant__c primaryApplicant;
-    List<dau01__Applicant__c> jointApplicants = new List<dau01__Applicant__c>();
+    List<Applicant__c> jointApplicants = new List<Applicant__c>();
 
+    if (application.Applicants__r.isEmpty()) {
+      throw new customException('Applicant Not Found');
+    }
+    Boolean isFlowCompleted = true;
     for (Applicant__c applicant : application.Applicants__r) {
       Set<String> applicantTypes = new Set<String>(
         applicant.ApplicantType__c.split(';')
@@ -132,6 +125,18 @@ global with sharing class ReviewInformationService extends AbstractService {
       } else if (applicantTypes.contains('Joint')) {
         jointApplicants.add(applicant);
       }
+
+      if (applicant.Status__c != ApplicationConstant.SUBMITTED) {
+        isFlowCompleted = false;
+      }
+    }
+
+    if (isFlowCompleted) {
+      // Send All Joint Completed Email to Primary and Application under process
+      CustomerEmailService.getInstance()
+        .primaryReviewInformationCompleted(primaryApplicant);
+      //#RPA
+      //Add Application to Review Queue of rpa
     }
 
     return application;

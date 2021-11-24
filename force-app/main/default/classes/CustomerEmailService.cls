@@ -134,6 +134,10 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   }
 
   /* @description send review submit email to applicants
+   * PrimaryReviewInformationSubmitted -> Application submitted email to primary applicant.
+   * PrimaryReviewInformationWaiting -> Application submitted email to primary applicant and
+   * notify waiting for joint applicant  application submission
+   * JointStartApplication -> To complete application for joint applicants
    * @author Digital Align Team | 11-12-2021
    * @param List<Applicant__c> applicants
    * @param String eventName

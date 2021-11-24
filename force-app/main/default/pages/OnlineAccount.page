@@ -53,14 +53,7 @@
       <h3>Params: {!params}</h3>-->
       <div id="app"></div>
       <script>
-        pageContext = {
-          id: "{!JSENCODE(id)}",
-          application: "{!JSENCODE(application)}",
-          params: "{!JSENCODE(params)}",
-          applicationConfig: "{!JSENCODE(applicationConfig)}",
-          siteConfig: "{!JSENCODE(siteConfig)}"
-        };
-        vueContext = "{!JSENCODE(vueContext)}";
+        initialData = "{!JSENCODE(vueContext)}";
       </script>
       <script
         src="{!URLFOR($Resource.MintFlow, 'js/chunk-vendors.js')}"
