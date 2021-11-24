@@ -1022,6 +1022,11 @@
         <field>Applicant__c.FlowState__c</field>
         <readable>true</readable>
     </fieldPermissions>
+       <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.SessionToken__c</field>
