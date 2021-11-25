@@ -62,10 +62,6 @@
         <apexClass>LWCFinancialInstituteSiteController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-     <classAccesses>
-        <apexClass>EmailController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <classAccesses>
         <apexClass>EmailNotificationBuilder</apexClass>
         <enabled>true</enabled>
