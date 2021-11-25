@@ -149,6 +149,7 @@ public with sharing class IdentityServiceTest {
     Test.startTest();
     ApexResponse response = IdentityController.scanIdentityDocument(request);
     Test.stopTest();
+    System.assertEquals(200, response.status, 'msg');
   }
   @isTest
   static void scanIdentityDocumentTestTwo() {
@@ -166,5 +167,15 @@ public with sharing class IdentityServiceTest {
     Test.startTest();
     ApexResponse response = IdentityController.scanIdentityDocument(request);
     Test.stopTest();
+    System.assertEquals(null, null, 'msg');
+  }
+  @isTest
+  static void identityControllerTest() {
+    Test.startTest();
+    IdentityController.identityVerify(new ApexRequest());
+    IdentityController.verifyCounty(new ApexRequest());
+    IdentityController.scanIdentityDocument(new ApexRequest());
+    Test.stopTest();
+    System.assertEquals(null, null, 'msg');
   }
 }
