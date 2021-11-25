@@ -84,6 +84,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>ApplicationConfiguration</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Applicant__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>

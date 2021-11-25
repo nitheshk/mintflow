@@ -17,7 +17,7 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
         <pageOrSobjectType>FinServ__FinancialAccount__c</pageOrSobjectType>
-    </actionOverrides>     
+    </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
         <content>WealthHome</content>
@@ -153,6 +153,7 @@
     <tabs>FinServ__ReciprocalRole__c</tabs>
     <tabs>Diagnostic__c</tabs>
     <tabs>Flow__c</tabs>
+    <tabs>ApplicationConfiguration</tabs>
     <tabs>standard-Lead</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-report</tabs>
@@ -186,6 +187,9 @@
         </mappings>
         <mappings>
             <tab>Flow__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ApplicationConfiguration</tab>
         </mappings>
         <mappings>
             <tab>standard-Account</tab>
