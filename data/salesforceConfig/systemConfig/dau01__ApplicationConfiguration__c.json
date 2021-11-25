@@ -10,7 +10,8 @@
       "dau01__AllowedOtpMode__c": "SMS;EMAIL",
       "dau01__SentiLink__c": true,
       "dau01__EmailLinkExpirationTime__c": 4,
-      "dau01__SesssionExpirationTime__c": 20
+      "dau01__SesssionExpirationTime__c": 20,
+      "dau01__CountyNames__c": "Oregaon;Idhaho;Washington"
     }
   ]
 }

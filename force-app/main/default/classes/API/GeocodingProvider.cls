@@ -54,7 +54,10 @@ global with sharing class GeocodingProvider extends AbstractService {
     return HttpBuilder.buildResponse(
       response.getStatusCode(),
       response.getStatus(),
-      mapGeoLocation(responseDTO)
+      mapGeoLocation(
+        responseDTO,
+        (List<string>) params.get('eligibleCountyNameList')
+      )
     );
   }
 
@@ -65,7 +68,8 @@ global with sharing class GeocodingProvider extends AbstractService {
    * @return virtual
    **/
   global virtual Map<String, Object> mapGeoLocation(
-    GeocodingDTO.Response responseDTO
+    GeocodingDTO.Response responseDTO,
+    List<string> eligibleCountyNameList
   ) {
     Map<String, Object> result = new Map<String, Object>();
     Boolean isCountyEligible = false;
@@ -96,11 +100,7 @@ global with sharing class GeocodingProvider extends AbstractService {
           }
           when 'administrative_area_level_1' {
             mathcingResult.put('state', addresses.long_name);
-            if (
-              addresses.long_name == 'oregaon' ||
-              addresses.long_name == 'Idhaho' ||
-              addresses.long_name == 'Washington'
-            ) {
+            if (eligibleCountyNameList.contains(addresses.long_name)) {
               isCountyEligible = true;
             }
             break;

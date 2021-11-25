@@ -37,6 +37,14 @@ global with sharing class IdentityService extends AbstractService {
     Flow.setFlow('EligibilityFlow');
     Flow.setSubFlow(APINames.Geocoding.name());
     try {
+      String eligibleCountyNames = ApplicationConfiguration__c.getInstance()
+        .CountyNames__c;
+      List<String> eligibleCountyNameList = String.isNotBlank(
+          eligibleCountyNames
+        )
+        ? eligibleCountyNames.split(';')
+        : new List<String>();
+      params.put('eligibleCountyNameList', eligibleCountyNameList);
       string zipcode = (string) params.get('zipcode');
       if (string.isBlank(zipcode) && params != null) {
         throw new CustomException('Zipcode value not set');
