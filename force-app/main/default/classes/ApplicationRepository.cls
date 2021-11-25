@@ -98,6 +98,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         .addFieldSet('dau01__Application')
         .queryChild('dau01__Applicants__r')
         .addFields()
+        .addFields('RecordType.Name')
         .orderBy('dau01__Order__c')
         .run()
         .whereEq('Id', applicationId)

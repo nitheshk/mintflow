@@ -5,7 +5,6 @@
  * @reference
  * @description
  **/
-@RestResource(urlMapping='/ApplicationDataAPI/*')
 global with sharing class ApplicationDataAPI {
   private static logger log = logger.getInstance(ApplicationDataAPI.class);
   /**
@@ -14,14 +13,13 @@ global with sharing class ApplicationDataAPI {
    * @param string applicationId
    * @return ApplicationResponseMapper
    **/
-  @HttpPost
-  global static ApplicationResponseMapper getApplicationData(
+  global static ApplicationResponseMapper obtainApplicationData(
     string applicationId
   ) {
     {
       log
         ?.fine(
-          'Inside getApplicationData -> applicationId -> ' + applicationId
+          'Inside obtainApplicationData -> applicationId -> ' + applicationId
         );
       ApplicationResponseMapper mapper = new ApplicationResponseMapper();
       if (String.isBlank(applicationId)) {
@@ -62,7 +60,7 @@ global with sharing class ApplicationDataAPI {
       } else {
         throw new CustomException('Application not found');
       }
-      log?.info('getApplicationData -> ReturnMapper -> ' + mapper);
+      log?.info('obtainApplicationData -> ReturnMapper -> ' + mapper);
       return mapper;
     }
   }

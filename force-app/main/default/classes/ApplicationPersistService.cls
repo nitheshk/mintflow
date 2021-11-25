@@ -120,11 +120,11 @@ global with sharing class ApplicationPersistService extends AbstractService {
     String applicationId
   ) {
     if (String.isNotBlank(applicationId)) {
-      /*  new applicant */
-      //set record type
+      //Set Application ID
       applicant.Application__c = applicationId;
     }
 
+    //Set Applicant Record Type
     String recordTypeName;
     if (String.isBlank(applicant.ApplicantType__c)) {
       recordTypeName = 'Primary';
@@ -154,15 +154,25 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
 
     log?.debug('recordTypeName : ' + recordTypeName);
-    log?.debug('applicant.ApplicantType__c : ' + applicant.ApplicantType__c);
 
     applicant.recordTypeId = Sobjectutils.recordTypeIdByName(
       Applicant__c.SObjectType,
       recordTypeName
     );
+    // Full Name
     applicant.Name = String.isBlank(applicant.FirstName__c)
       ? applicant.LastName__c
       : applicant.FirstName__c + ' ' + applicant.LastName__c;
+
+    //Initially set joint flow state
+    if (
+      recordTypeName == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE &&
+      String.isBlank(applicant.Id)
+    ) {
+      // #pending page name need to decide
+      applicant.FlowState__c = 'joint-welcome';
+    }
+
     return applicant;
   }
 

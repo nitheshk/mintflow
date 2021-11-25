@@ -84,14 +84,14 @@ global with sharing class AuthenticationService extends AbstractService {
         HttpBuilder.getApiConstant('Twillio_Country') + applicant.Phone__c
       );
       params.put('applicantId', applicant.Id);
-      //NotificationService.getInstance().sendOTPMessage(params);
+      NotificationService.getInstance().sendOTPMessage(params);
     }
     //Email
     if (otpModeList.contains('EMAIL')) {
       applicant.EmailOtp__c = String.valueOf(
         Math.round((Math.random() * (9000) + 1000))
       );
-      //CustomerEmailService.getInstance().sendEmailOTP(applicant);
+      CustomerEmailService.getInstance().sendEmailOTP(applicant);
     }
 
     ApplicantRepository.updateRecord(applicant);

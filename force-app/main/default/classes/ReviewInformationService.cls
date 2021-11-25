@@ -66,17 +66,14 @@ global with sharing class ReviewInformationService extends AbstractService {
     List<dau01__Applicant__c> jointApplicants = new List<dau01__Applicant__c>();
 
     for (Applicant__c applicant : application.Applicants__r) {
-      Set<String> applicantTypes = new Set<String>(
-        applicant.ApplicantType__c.split(';')
-      );
       if (
-        applicantTypes.contains(
-          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-        )
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
       ) {
         primaryApplicant = applicant;
       } else if (
-        applicantTypes.contains(ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
       ) {
         jointApplicants.add(applicant);
       }
@@ -86,7 +83,14 @@ global with sharing class ReviewInformationService extends AbstractService {
     primaryApplicant.Status__c = ApplicationConstant.SUBMITTED;
     ApplicantRepository.upsertRecord(primaryApplicant);
 
-    if (jointApplicants.isEmpty()) {
+    Boolean isFlowCompleted = true;
+    for (Applicant__c applicant : application.Applicants__r) {
+      if (applicant.Status__c != ApplicationConstant.SUBMITTED) {
+        isFlowCompleted = false;
+      }
+    }
+
+    if (isFlowCompleted) {
       //1. Send notification Primary applicant with resume link
       CustomerEmailService.getInstance()
         .reviewInformationSubmitted(
@@ -94,8 +98,9 @@ global with sharing class ReviewInformationService extends AbstractService {
           'PrimaryReviewInformationSubmitted'
         );
       //2. Push Primary applicant to RPA Queue
-      //#pending
-      //#RPA
+      //#RPA #pending
+      // Need to move future thr is dml operation before this
+      // RpaProcessService.getInstance().scheduleIdentityVerification(application);
     } else {
       //1. send Email to Primary applicant with resume link
       CustomerEmailService.getInstance()
@@ -137,12 +142,15 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     Boolean isFlowCompleted = true;
     for (Applicant__c applicant : application.Applicants__r) {
-      Set<String> applicantTypes = new Set<String>(
-        applicant.ApplicantType__c.split(';')
-      );
-      if (applicantTypes.contains('Primary')) {
+      if (
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      ) {
         primaryApplicant = applicant;
-      } else if (applicantTypes.contains('Joint')) {
+      } else if (
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+      ) {
         jointApplicants.add(applicant);
       }
 
@@ -151,12 +159,13 @@ global with sharing class ReviewInformationService extends AbstractService {
       }
     }
 
-    if (!isFlowCompleted) {
+    if (isFlowCompleted) {
       // Send All Joint Completed Email to Primary and Application under process
       CustomerEmailService.getInstance()
         .primaryReviewInformationCompleted(primaryApplicant);
       //#RPA #pending
-      //Add Application to Review Queue of rpa
+      // Need to move future thr is dml operation before this
+      // RpaProcessService.getInstance().scheduleIdentityVerification(application);
     }
 
     return application;
