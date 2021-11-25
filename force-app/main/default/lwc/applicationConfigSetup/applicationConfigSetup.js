@@ -3,7 +3,6 @@ import fetchConfigValues from "@salesforce/apex/LwcCustomController.fetchConfigV
 import updateConfigValues from "@salesforce/apex/LwcCustomController.updateConfigValues";
 import deleteLogs from "@salesforce/apex/Logger.deleteLogs";
 import utils from "c/generalUtils";
-// import deleteLog from "c/deleteDebugLogs";
 export default class applicationCongifgSetup extends LightningElement() {
   // deleteLog
   @track configData = {};
@@ -14,7 +13,7 @@ export default class applicationCongifgSetup extends LightningElement() {
     if (data) {
       console.log("data:", JSON.stringify(data));
       if (data.status === 200) {
-        this.configData = JSON.parse(JSON.stringify(data.data));
+        this.configData = JSON.parse(data.data);
       }
       this.showSpinner = false;
     } else if (error) {
