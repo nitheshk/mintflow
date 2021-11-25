@@ -93,6 +93,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
   /**
    * @description
+   * KycPassedResumeApp -> KYC passed notification with resume application link for primary applicant
    * @author Digital Align | 11-12-2021
    * @param Applicant__c applicant
    * @return virtual
@@ -114,6 +115,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
   /**
    * @description
+   * ResumeApplicationEmail -> resume application email to primary applicant
    * @author Digital Align | 11-12-2021
    * @param Applicant__c applicant
    * @return virtual
@@ -192,6 +194,8 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
   /**
    * @description
+   * PrimaryReviewInformationCompleted -> Application Completed email to primary applicant.
+   * Notify Primary applicant that joint applicant completed application.
    * @author Digital Align | 11-12-2021
    * @param Applicant__c applicant
    * @return virtual
@@ -216,6 +220,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
   /**
    * @description
+   * AccountOpened -> Notify Primary applicant that account is opened
    * @author Digital Align | 11-12-2021
    * @param Applicant__c applicant
    * @return virtual
@@ -237,6 +242,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
   /**
    * @description
+   * Method to send email
    * @author Digital Align | 11-12-2021
    * @return virtual
    **/
