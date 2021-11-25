@@ -14,7 +14,7 @@ export default class applicationCongifgSetup extends LightningElement() {
     if (data) {
       console.log("data:", JSON.stringify(data));
       if (data.status === 200) {
-        this.configData = JSON.parse(JSON.stringify(data.data));
+        this.configData = JSON.parse(data.data);
       }
       this.showSpinner = false;
     } else if (error) {
