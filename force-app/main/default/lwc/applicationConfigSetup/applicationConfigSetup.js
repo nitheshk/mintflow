@@ -3,7 +3,6 @@ import fetchConfigValues from "@salesforce/apex/LwcCustomController.fetchConfigV
 import updateConfigValues from "@salesforce/apex/LwcCustomController.updateConfigValues";
 import deleteLogs from "@salesforce/apex/Logger.deleteLogs";
 import utils from "c/generalUtils";
-// import deleteLog from "c/deleteDebugLogs";
 export default class applicationCongifgSetup extends LightningElement() {
   // deleteLog
   @track configData = {};
