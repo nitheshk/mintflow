@@ -81,7 +81,7 @@ Step 5. Export Data (Refer detailed Readme File in **data\salesforceConfig\READM
 
 5.1. To Export all System config data run `node data\salesforceConfig\systemScript\exportConfig.js`
 
-5.2. To Export specific Config File run `node data\salesforceConfig\systemScript\dau01__ApplicationConfiguration__c.js`
+5.2. To Export specific Config File run `node data\salesforceConfig\systemScript\mflow__ApplicationConfiguration__c.js`
 
 5.3 To Import Fresh config to salesforce run `gulp systemConfigImport`
 

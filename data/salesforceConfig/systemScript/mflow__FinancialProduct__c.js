@@ -1,7 +1,7 @@
 const utils = require("../utils.js");
 let configPath = "data/salesforceConfig/systemConfig/";
 let scriptPath = "data/salesforceConfig/systemScript/";
-let objectName = "dau01__SurveyTemplate__c";
+let objectName = "mflow__FinancialProduct__c";
 
 let scriptToRun = `sfdx force:apex:execute  -f ${scriptPath}${objectName}.apex  --json `;
 utils
@@ -12,19 +12,7 @@ utils
     // <== Script to update change for each config
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
-      item.attributes.referenceId = "SurveyTemplateRef_" + index;
-
-      if (item.dau01__SurveyTemplateItems__r) {
-        item.dau01__SurveyTemplateItems__r.records.forEach(function (
-          item_c1,
-          index_c1
-        ) {
-          utils.replaceUnwantedFields(item_c1);
-          delete item_c1.dau01__SurveyTemplate__c;
-          item_c1.attributes.referenceId =
-            "SurveyTemplateItemRef_" + index + "_" + index_c1;
-        });
-      }
+      item.attributes.referenceId = "FinancialProducRef_" + index;
     });
     //   Script to update change for each config ==>
     utils

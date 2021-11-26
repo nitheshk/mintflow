@@ -1,7 +1,7 @@
 const utils = require("../utils.js");
 let configPath = "data/salesforceConfig/systemConfig/";
 let scriptPath = "data/salesforceConfig/systemScript/";
-let objectName = "dau01__ApplicationConfiguration__c";
+let objectName = "mflow__ApplicationConfiguration__c";
 
 let scriptToRun = `sfdx force:apex:execute  -f ${scriptPath}${objectName}.apex  --json `;
 utils

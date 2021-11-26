@@ -8,7 +8,7 @@
     <allowStandardPortalPages>true</allowStandardPortalPages>
     <allowStandardSearch>false</allowStandardSearch>
     <authorizationRequiredPage
-  >dau01__OnlineAutoLogin</authorizationRequiredPage>
+  >mflow__OnlineAutoLogin</authorizationRequiredPage>
     <bandwidthExceededPage>BandwidthExceeded</bandwidthExceededPage>
     <browserXssProtection>true</browserXssProtection>
     <clickjackProtectionLevel>SameOriginOnly</clickjackProtectionLevel>

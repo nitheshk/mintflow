@@ -16,17 +16,17 @@ export default class AppplicationFlow extends NavigationMixin(
     },
     {
       type: "text",
-      fieldName: "dau01__FlowName__c",
+      fieldName: "mflow__FlowName__c",
       label: "Flow Name"
     },
     {
       type: "text",
-      fieldName: "dau01__Status__c",
+      fieldName: "mflow__Status__c",
       label: "Status"
     },
     {
       type: "text",
-      fieldName: "dau01__ServiceName__c",
+      fieldName: "mflow__ServiceName__c",
       label: "Sercice Name"
     }
   ];
@@ -42,9 +42,9 @@ export default class AppplicationFlow extends NavigationMixin(
           console.log("result : " + result);
           this.flowData = JSON.parse(result.data);
           this.flowData.forEach((element) => {
-            if (element?.dau01__SubFlows__r) {
-              element._children = element.dau01__SubFlows__r;
-              delete element.dau01__SubFlows__r;
+            if (element?.mflow__SubFlows__r) {
+              element._children = element.mflow__SubFlows__r;
+              delete element.mflow__SubFlows__r;
               element._children.forEach((childElement) => {
                 childElement.navUrl =
                   window.location.origin + "\\" + childElement.Id;

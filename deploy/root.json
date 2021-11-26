@@ -4,7 +4,7 @@
 
   "scratchOrg": {
     "devhubCredential": "./deploy/devhub.json",
-    "scratchOrgName": "olb",
+    "scratchOrgName": "mflow",
     "durationDays": "20",
     "scratchOrgjson": "./deploy/scratchOrg/scratchOrgDetail.json"
   },
@@ -49,7 +49,7 @@
     "genericErrorPage": "Exception",
     "inMaintenancePage": "InMaintenance",
     "inactiveIndexPage": "InMaintenance",
-    "indexPage": "dau01__OnlineAccount",
+    "indexPage": "mflow__OnlineAccount",
     "siteName": "OnlineBanking",
     "siteAdmin": "",
     "siteGuestRecordDefaultOwner": "",

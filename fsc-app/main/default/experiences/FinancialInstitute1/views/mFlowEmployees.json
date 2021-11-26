@@ -1,6 +1,6 @@
 {
   "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
-  "componentName": "dau01:FIThemeLayoutWithMenuBar",
+  "componentName": "mflow:FIThemeLayoutWithMenuBar",
   "id": "3db4c26d-30e4-4b99-9d0d-2b895c94dae1",
   "label": "MFlowEmployees",
   "regions": [
@@ -22,7 +22,7 @@
             "metadataName": "FIEmployees",
             "sortString": "Name"
           },
-          "componentName": "dau01:dynamicDataTable",
+          "componentName": "mflow:dynamicDataTable",
           "id": "2df14eae-a2d7-4ad9-bc5f-04436fdc8e2e",
           "renderPriority": "NEUTRAL",
           "renditionMap": {},
@@ -41,7 +41,7 @@
             "menuName": "FinancialInstituteMenu",
             "sectionLabel": "Menu"
           },
-          "componentName": "dau01:financialInsituteNavigationMenu",
+          "componentName": "mflow:financialInsituteNavigationMenu",
           "id": "871ce834-0d17-4700-b8ab-3c9dbd17bafa",
           "renderPriority": "NEUTRAL",
           "renditionMap": {},

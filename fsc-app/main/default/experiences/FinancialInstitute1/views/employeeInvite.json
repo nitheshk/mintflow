@@ -50,7 +50,7 @@
                     "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"
                   },
-                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "componentName": "mflow:financialInsituteNavigationMenu",
                   "id": "d66eeff0-8e93-41fc-b0c0-551db2f39f1d",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
@@ -67,7 +67,7 @@
               "components": [
                 {
                   "componentAttributes": {},
-                  "componentName": "dau01:finInstEmployeeRegister",
+                  "componentName": "mflow:finInstEmployeeRegister",
                   "id": "48c2edcc-6c80-489e-a72b-93d2bb875564",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},

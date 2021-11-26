@@ -43,7 +43,7 @@
                     "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"
                   },
-                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "componentName": "mflow:financialInsituteNavigationMenu",
                   "id": "caca4370-fc54-4c49-a22f-07516b573ecb",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
@@ -93,7 +93,7 @@
                           "componentAttributes": {
                             "employeeContactType": "FinancialInstituteEmployee"
                           },
-                          "componentName": "dau01:employeeSearch",
+                          "componentName": "mflow:employeeSearch",
                           "id": "c15045c4-8156-4c94-9583-b9a61f9d1c3a",
                           "renditionMap": {},
                           "type": "component"

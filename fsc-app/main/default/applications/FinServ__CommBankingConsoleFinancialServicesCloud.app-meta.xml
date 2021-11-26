@@ -3,7 +3,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Client Custom Flexipage</comment>
-        <content>dau01__ClientRecordPage</content>
+        <content>mflow__ClientRecordPage</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -19,7 +19,7 @@
     <navType>Console</navType>
     <profileActionOverrides>
         <actionName>Tab</actionName>
-        <content>dau01__WealthHome</content>
+        <content>mflow__WealthHome</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
         <type>Flexipage</type>

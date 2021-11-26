@@ -1,0 +1,13 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "mflow__SystemSetting__c",
+        "referenceId": "SystemSettingRef_0"
+      },
+      "mflow__DebugLogs__c": true,
+      "mflow__Flow__c": true,
+      "mflow__LoggingLevel__c": "Fine"
+    }
+  ]
+}

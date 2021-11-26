@@ -1,32 +1,32 @@
 [
   {
-    "sobject": "dau01__SystemSetting__c",
+    "sobject": "mflow__SystemSetting__c",
     "saveRefs": false,
     "resolveRefs": false,
-    "files": ["dau01__SystemSetting__c.json"]
+    "files": ["mflow__SystemSetting__c.json"]
   },
   {
-    "sobject": "dau01__ApplicationConfiguration__c",
+    "sobject": "mflow__ApplicationConfiguration__c",
     "saveRefs": false,
     "resolveRefs": false,
-    "files": ["dau01__ApplicationConfiguration__c.json"]
+    "files": ["mflow__ApplicationConfiguration__c.json"]
   },
   {
-    "sobject": "dau01__SiteSetting__c",
+    "sobject": "mflow__SiteSetting__c",
     "saveRefs": false,
     "resolveRefs": false,
-    "files": ["dau01__SiteSetting__c.json"]
+    "files": ["mflow__SiteSetting__c.json"]
   },
   {
-    "sobject": "dau01__SurveyTemplate__c",
+    "sobject": "mflow__SurveyTemplate__c",
     "saveRefs": true,
     "resolveRefs": true,
-    "files": ["dau01__SurveyTemplate__c.json"]
+    "files": ["mflow__SurveyTemplate__c.json"]
   },
   {
-    "sobject": "dau01__FinancialProduct__c",
+    "sobject": "mflow__FinancialProduct__c",
     "saveRefs": false,
     "resolveRefs": false,
-    "files": ["dau01__FinancialProduct__c.json"]
+    "files": ["mflow__FinancialProduct__c.json"]
   }
 ]

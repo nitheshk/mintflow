@@ -8,14 +8,14 @@
             <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
               <lightning-input
                 required
-                data-fieldname="dau01__EmployeeId__c"
+                data-fieldname="mflow__EmployeeId__c"
                 label="Employee Id"
                 placeholder="Employee Id"
                 pattern={alphanumValidation}
                 message-when-pattern-mismatch={alphanumValidationMessage}
                 field-level-help="Enter employee ID of the person"
                 maxlength="20"
-                value={contactData.dau01__EmployeeId__c}
+                value={contactData.mflow__EmployeeId__c}
                 onchange={handleChange}
                 class="validation"
               ></lightning-input>

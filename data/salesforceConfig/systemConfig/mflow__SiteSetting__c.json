@@ -1,0 +1,15 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "mflow__SiteSetting__c",
+        "referenceId": "SiteRef_0"
+      },
+      "mflow__OnlineSiteUrl__c": "https://sandbox-innovation-energy-5556-dev-e-17d5b233cb9.cs114.force.com/Online",
+      "mflow__FinInstSiteUrl__c": "https://sandbox-innovation-energy-5556-dev-e-17d5b233cb9.cs114.force.com/HomePageFI",
+      "mflow__OnlineSiteUserName__c": "Online@User.Mflow.1637912497934.com",
+      "mflow__OnlineSitePassword__c": "Test@123",
+      "mflow__OnlineAccountOpeningUrl__c": "/OpenAccount#/home"
+    }
+  ]
+}

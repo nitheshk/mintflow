@@ -18,10 +18,10 @@ public with sharing class TriggerRepository extends DatabaseUtils {
   ) {
     String q = new Query(SObjectTriggerSetting__mdt.SObjectType)
       .addFields()
-      .whereEq('dau01__ObjectAPIName__c', sObjectName)
+      .whereEq('mflow__ObjectAPIName__c', sObjectName)
       .andCon()
-      .whereEq('dau01__Disabled__c', false)
-      .orderby('dau01__Order__c')
+      .whereEq('mflow__Disabled__c', false)
+      .orderby('mflow__Order__c')
       .toString(true);
     return (List<SObjectTriggerSetting__mdt>) DatabaseUtils.getRecords(q);
   }

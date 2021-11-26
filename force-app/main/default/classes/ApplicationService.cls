@@ -130,7 +130,7 @@ global with sharing class ApplicationService extends AbstractService {
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
-    builder.setChildObjects('dau01__Applicants__r', applicants);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects(
       'FinServ__HouseholdFinancialAccounts__r',
       financialAccounts
@@ -163,7 +163,7 @@ global with sharing class ApplicationService extends AbstractService {
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
-    builder.setChildObjects('dau01__Applicants__r', applicants);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects(
       'FinServ__HouseholdFinancialAccounts__r',
       financialAccounts

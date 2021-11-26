@@ -1,0 +1,130 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "mflow__FinancialProduct__c",
+        "referenceId": "FinancialProducRef_0"
+      },
+      "Name": "Special Savings",
+      "mflow__Category__c": "Savings",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "002",
+      "mflow__InternalCode__c": "002",
+      "mflow__LongDescription__c": "Looking for a place to keep your mad mon",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Name__c": "Special Savings",
+      "mflow__ShortDescription__c": "Looking for a place to keep your mad mon",
+      "mflow__StartDate__c": "2021-11-05",
+      "mflow__SubCategory__c": "Special Savings",
+      "mflow__Type__c": "Consumer",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__FinancialProduct__c",
+        "referenceId": "FinancialProducRef_1"
+      },
+      "Name": "Regular Savings",
+      "mflow__Category__c": "Savings",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "001",
+      "mflow__InternalCode__c": "001",
+      "mflow__LongDescription__c": "The Regular Savings product is required",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Name__c": "Regular Savings",
+      "mflow__ShortDescription__c": "The Regular Savings product is required",
+      "mflow__StartDate__c": "2021-11-05",
+      "mflow__SubCategory__c": "Regular Savings",
+      "mflow__Type__c": "Consumer",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__FinancialProduct__c",
+        "referenceId": "FinancialProducRef_2"
+      },
+      "Name": "Working Capital Loans",
+      "mflow__Category__c": "Loans",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "004",
+      "mflow__InternalCode__c": "004",
+      "mflow__LongDescription__c": "Infuse your business with working capita",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Name__c": "Working Capital Loans",
+      "mflow__ShortDescription__c": "Infuse your business with working capita",
+      "mflow__StartDate__c": "2021-11-05",
+      "mflow__SubCategory__c": "Working Capital Loans",
+      "mflow__Type__c": "Business",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__FinancialProduct__c",
+        "referenceId": "FinancialProducRef_3"
+      },
+      "Name": "Equipment & Vehicle Loans",
+      "mflow__Category__c": "Loans",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "005",
+      "mflow__InternalCode__c": "005",
+      "mflow__LongDescription__c": "Expand your fleet or purchase new equipm",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Name__c": "Equipment & Vehicle Loans",
+      "mflow__ShortDescription__c": "Expand your fleet or purchase new equipm",
+      "mflow__StartDate__c": "2021-11-05",
+      "mflow__SubCategory__c": "Equipment & Vehicle Loans",
+      "mflow__Type__c": "Business",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__FinancialProduct__c",
+        "referenceId": "FinancialProducRef_4"
+      },
+      "Name": "Idaho Medical Savings Accounts",
+      "mflow__Category__c": "Savings",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "003",
+      "mflow__InternalCode__c": "003",
+      "mflow__LongDescription__c": "An Idaho Medical Savings Account (MSA) a",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Name__c": "Idaho Medical Savings Accounts",
+      "mflow__ShortDescription__c": "An Idaho Medical Savings Account (MSA) a",
+      "mflow__StartDate__c": "2021-11-05",
+      "mflow__SubCategory__c": "Idaho Medical Savings Accounts",
+      "mflow__Type__c": "Consumer",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__FinancialProduct__c",
+        "referenceId": "FinancialProducRef_5"
+      },
+      "Name": "Business Non Profit",
+      "mflow__Category__c": "Checking",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "006",
+      "mflow__InternalCode__c": "006",
+      "mflow__LongDescription__c": "$0 Minimum Balance, $0 Check Writing Fee",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Name__c": "Business Non Profit",
+      "mflow__ShortDescription__c": "$0 Minimum Balance, $0 Check Writing Fee",
+      "mflow__StartDate__c": "2021-11-05",
+      "mflow__SubCategory__c": "Business Non Profit",
+      "mflow__Type__c": "Business",
+      "mflow__isActive__c": true
+    }
+  ]
+}

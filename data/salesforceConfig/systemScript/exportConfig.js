@@ -1,4 +1,4 @@
-require("./dau01__ApplicationConfiguration__c");
-require("./dau01__SystemSetting__c");
-require("./dau01__SiteSetting__c");
-require("./dau01__SurveyTemplate__c");
+require("./mflow__ApplicationConfiguration__c");
+require("./mflow__SystemSetting__c");
+require("./mflow__SiteSetting__c");
+require("./mflow__SurveyTemplate__c");

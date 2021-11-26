@@ -198,21 +198,21 @@ gulp.task("publishCommunities", function (finish) {
           JSON.stringify(communityLinks, null, 2)
         )
         .then(() => {
-          let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/dau01__SiteSetting__c.json");
+          let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json");
           communityLinks.forEach((link) => {
             if (link.name === "Online") {
-              applicationConfiguration.records[0].dau01__OnlineSiteUrl__c =
+              applicationConfiguration.records[0].mflow__OnlineSiteUrl__c =
                 link.url;
             }
             if (link.name === "FinancialInstitute") {
-              applicationConfiguration.records[0].dau01__FinInstSiteUrl__c =
+              applicationConfiguration.records[0].mflow__FinInstSiteUrl__c =
                 link.url;
             }
           });
           // update site urls
           utils
             .createFile(
-              "./data/salesforceConfig/systemConfig/dau01__SiteSetting__c.json",
+              "./data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json",
               JSON.stringify(applicationConfiguration)
             )
             .catch((err) => {
@@ -229,7 +229,7 @@ gulp.task("publishCommunities", function (finish) {
               xml2js.parseString(data, function (err, result) {
                 if (err) console.log(err);
                 result.Network.logoutUrl =
-                  applicationConfiguration.records[0].dau01__OnlineSiteUrl__c;
+                  applicationConfiguration.records[0].mflow__OnlineSiteUrl__c;
                 var builder = new xml2js.Builder();
                 var xml = builder.buildObject(result);
                 utils
@@ -299,13 +299,13 @@ gulp.task("createUser", function (finish) {
       const data = JSON.parse(jsonString);
       console.log("Username :" + data.Username);
 
-      let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/dau01__SiteSetting__c.json");
-      applicationConfiguration.records[0].dau01__OnlineSiteUserName__c =
+      let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json");
+      applicationConfiguration.records[0].mflow__OnlineSiteUserName__c =
         data.Username;
       // update site urls
       utils
         .createFile(
-          "./data/salesforceConfig/systemConfig/dau01__SiteSetting__c.json",
+          "./data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json",
           JSON.stringify(applicationConfiguration, null, 2)
         )
         .catch((err) => {

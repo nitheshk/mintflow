@@ -63,7 +63,7 @@ global with sharing class ReviewInformationService extends AbstractService {
   global virtual account primaryConsumerFlow(account application) {
     log?.info('Inside primaryConsumerFlow');
     Applicant__c primaryApplicant;
-    List<dau01__Applicant__c> jointApplicants = new List<dau01__Applicant__c>();
+    List<mflow__Applicant__c> jointApplicants = new List<mflow__Applicant__c>();
 
     for (Applicant__c applicant : application.Applicants__r) {
       if (
@@ -94,7 +94,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       //1. Send notification Primary applicant with resume link
       CustomerEmailService.getInstance()
         .reviewInformationSubmitted(
-          new List<dau01__Applicant__c>{ primaryApplicant },
+          new List<mflow__Applicant__c>{ primaryApplicant },
           'PrimaryReviewInformationSubmitted'
         );
       //2. Push Primary applicant to RPA Queue
@@ -105,7 +105,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       //1. send Email to Primary applicant with resume link
       CustomerEmailService.getInstance()
         .reviewInformationSubmitted(
-          new List<dau01__Applicant__c>{ primaryApplicant },
+          new List<mflow__Applicant__c>{ primaryApplicant },
           'PrimaryReviewInformationWaiting'
         );
       //2. Send Email to Joint with resume link

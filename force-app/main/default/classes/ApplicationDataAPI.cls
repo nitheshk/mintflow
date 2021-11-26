@@ -31,23 +31,23 @@ global with sharing class ApplicationDataAPI {
       if (application != null) {
         ApplicationResponseMapper.Account mapperApplication = new ApplicationResponseMapper.Account();
         mapperApplication.ApplicationId = application.Id;
-        mapperApplication.ApplicationNumber = application.dau01__ApplicationNumber__c;
+        mapperApplication.ApplicationNumber = application.mflow__ApplicationNumber__c;
         mapperApplication.BranchCode = application.FinServ__BranchCode__c;
         mapperApplication.BranchName = application.FinServ__BranchName__c;
-        mapperApplication.CountyName = application.dau01__CountyName__c;
-        mapperApplication.CountyCode = application.dau01__CountyZipCode__c;
-        mapperApplication.IsCountyEligible = application.dau01__IsCountyEligible__c;
-        mapperApplication.CreatedChannel = application.dau01__CreatedChannel__c;
+        mapperApplication.CountyName = application.mflow__CountyName__c;
+        mapperApplication.CountyCode = application.mflow__CountyZipCode__c;
+        mapperApplication.IsCountyEligible = application.mflow__IsCountyEligible__c;
+        mapperApplication.CreatedChannel = application.mflow__CreatedChannel__c;
         mapperApplication.CustomerType = application.FinServ__CustomerType__c;
-        mapperApplication.FlowState = application.dau01__FlowState__c;
-        mapperApplication.IpAddress = application.dau01__IPAddress__c;
-        mapperApplication.IsMemberFlow = application.dau01__isMemberFlow__c;
+        mapperApplication.FlowState = application.mflow__FlowState__c;
+        mapperApplication.IpAddress = application.mflow__IPAddress__c;
+        mapperApplication.IsMemberFlow = application.mflow__isMemberFlow__c;
         mapperApplication.LastUsedChannel = application.FinServ__LastUsedChannel__c;
         mapperApplication.Status = application.FinServ__Status__c;
-        mapperApplication.SubmittedBy = application.dau01__SubmittedBy__c;
-        mapperApplication.SubmittedDate = application.dau01__SubmittedDate__c;
-        mapperApplication.SubStatus = application.dau01__SubStatus__c;
-        mapperApplication.UserAccountType = application.dau01__UserAccountType__c;
+        mapperApplication.SubmittedBy = application.mflow__SubmittedBy__c;
+        mapperApplication.SubmittedDate = application.mflow__SubmittedDate__c;
+        mapperApplication.SubStatus = application.mflow__SubStatus__c;
+        mapperApplication.UserAccountType = application.mflow__UserAccountType__c;
 
         if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
           mapperApplication.Applicants.addAll(
@@ -77,72 +77,72 @@ global with sharing class ApplicationDataAPI {
     for (applicant__c applicant : applicantList) {
       ApplicationResponseMapper.Applicant mapperApplicant = new ApplicationResponseMapper.Applicant();
       mapperApplicant.ApplicantId = applicant.Id;
-      mapperApplicant.Application = applicant.dau01__Application__c;
-      mapperApplicant.FirstName = applicant.dau01__FirstName__c;
-      mapperApplicant.MiddleName = applicant.dau01__MiddleName__c;
-      mapperApplicant.LastName = applicant.dau01__LastName__c;
-      mapperApplicant.IsEmailVerified = applicant.dau01__IsEmailVerified__c;
-      mapperApplicant.IsExistingCustomer = applicant.dau01__IsExistingCustomer__c;
-      mapperApplicant.IsPhoneNumberVerified = applicant.dau01__IsPhoneNumberVerified__c;
+      mapperApplicant.Application = applicant.mflow__Application__c;
+      mapperApplicant.FirstName = applicant.mflow__FirstName__c;
+      mapperApplicant.MiddleName = applicant.mflow__MiddleName__c;
+      mapperApplicant.LastName = applicant.mflow__LastName__c;
+      mapperApplicant.IsEmailVerified = applicant.mflow__IsEmailVerified__c;
+      mapperApplicant.IsExistingCustomer = applicant.mflow__IsExistingCustomer__c;
+      mapperApplicant.IsPhoneNumberVerified = applicant.mflow__IsPhoneNumberVerified__c;
       mapperApplicant.ApplicantName = applicant.Name;
-      mapperApplicant.ApplicantNumber = applicant.dau01__ApplicantNumber__c;
-      mapperApplicant.ApplicantType = applicant.dau01__ApplicantType__c;
-      mapperApplicant.Birthdate = applicant.dau01__Birthdate__c;
-      mapperApplicant.CreditScore = applicant.dau01__CreditScore__c;
-      mapperApplicant.CustomerNumber = applicant.dau01__CustomerNumber__c;
-      mapperApplicant.Email = applicant.dau01__Email__c;
-      mapperApplicant.EmploymentStatus = applicant.dau01__EmploymentStatus__c;
-      mapperApplicant.FraudStatus = applicant.dau01__FraudStatus__c;
-      mapperApplicant.IdentityVerificationStatus = applicant.dau01__IdentityVerificationStatus__c;
-      mapperApplicant.IncomeVerificationStatus = applicant.dau01__IncomeVerificationStatus__c;
-      mapperApplicant.KYCStatus = applicant.dau01__KYCStatus__c;
-      mapperApplicant.Order = applicant.dau01__Order__c;
-      mapperApplicant.Phone = applicant.dau01__Phone__c;
-      mapperApplicant.SentiLinkFraudScore = applicant.dau01__SentiLinkFraudScore__c;
-      mapperApplicant.SentiLinkRemarks = applicant.dau01__SentiLinkRemarks__c;
-      mapperApplicant.SentiLinkStatus = applicant.dau01__SentiLinkStatus__c;
-      mapperApplicant.SSN = applicant.dau01__SSN__c;
+      mapperApplicant.ApplicantNumber = applicant.mflow__ApplicantNumber__c;
+      mapperApplicant.ApplicantType = applicant.mflow__ApplicantType__c;
+      mapperApplicant.Birthdate = applicant.mflow__Birthdate__c;
+      mapperApplicant.CreditScore = applicant.mflow__CreditScore__c;
+      mapperApplicant.CustomerNumber = applicant.mflow__CustomerNumber__c;
+      mapperApplicant.Email = applicant.mflow__Email__c;
+      mapperApplicant.EmploymentStatus = applicant.mflow__EmploymentStatus__c;
+      mapperApplicant.FraudStatus = applicant.mflow__FraudStatus__c;
+      mapperApplicant.IdentityVerificationStatus = applicant.mflow__IdentityVerificationStatus__c;
+      mapperApplicant.IncomeVerificationStatus = applicant.mflow__IncomeVerificationStatus__c;
+      mapperApplicant.KYCStatus = applicant.mflow__KYCStatus__c;
+      mapperApplicant.Order = applicant.mflow__Order__c;
+      mapperApplicant.Phone = applicant.mflow__Phone__c;
+      mapperApplicant.SentiLinkFraudScore = applicant.mflow__SentiLinkFraudScore__c;
+      mapperApplicant.SentiLinkRemarks = applicant.mflow__SentiLinkRemarks__c;
+      mapperApplicant.SentiLinkStatus = applicant.mflow__SentiLinkStatus__c;
+      mapperApplicant.SSN = applicant.mflow__SSN__c;
 
       //Map employment data
-      if (!CollectionUtils.isListEmpty(applicant.dau01__Employments__r)) {
+      if (!CollectionUtils.isListEmpty(applicant.mflow__Employments__r)) {
         mapperApplicant.Employments.addAll(
-          mapEmployment(applicant.dau01__Employments__r)
+          mapEmployment(applicant.mflow__Employments__r)
         );
       }
 
       //Map Identity Data
       if (
         !CollectionUtils.isListEmpty(
-          applicant.dau01__IdentificationDocuments__r
+          applicant.mflow__IdentificationDocuments__r
         )
       ) {
         mapperApplicant.IdentificationDocuments.addAll(
-          mapIdentity(applicant.dau01__IdentificationDocuments__r)
+          mapIdentity(applicant.mflow__IdentificationDocuments__r)
         );
       }
 
       //Map Revenue Data
-      if (!CollectionUtils.isListEmpty(applicant.dau01__Revenues__r)) {
+      if (!CollectionUtils.isListEmpty(applicant.mflow__Revenues__r)) {
         mapperApplicant.Revenues.addAll(
-          mapRevenue(applicant.dau01__Revenues__r)
+          mapRevenue(applicant.mflow__Revenues__r)
         );
       }
 
       //Map ContatcPointAddress Data
       if (
-        !CollectionUtils.isListEmpty(applicant.dau01__ContactPointAddresses__r)
+        !CollectionUtils.isListEmpty(applicant.mflow__ContactPointAddresses__r)
       ) {
         mapperApplicant.ContactPointAddresses.addAll(
-          mapContactAddress(applicant.dau01__ContactPointAddresses__r)
+          mapContactAddress(applicant.mflow__ContactPointAddresses__r)
         );
       }
 
       //Map Assest and Liabilities Data
       if (
-        !CollectionUtils.isListEmpty(applicant.dau01__AssetsAndLiabilities__r)
+        !CollectionUtils.isListEmpty(applicant.mflow__AssetsAndLiabilities__r)
       ) {
         mapperApplicant.AssetsAndLiabilities.addAll(
-          mapContactAddress(applicant.dau01__AssetsAndLiabilities__r)
+          mapContactAddress(applicant.mflow__AssetsAndLiabilities__r)
         );
       }
 
@@ -164,20 +164,20 @@ global with sharing class ApplicationDataAPI {
     for (FinServ__Employment__c employment : employmentList) {
       ApplicationResponseMapper.Employment mapperEmployment = new ApplicationResponseMapper.Employment();
       mapperEmployment.EmploymentId = employment.Id;
-      mapperEmployment.EmploymentType = employment.dau01__EmploymentType__c;
+      mapperEmployment.EmploymentType = employment.mflow__EmploymentType__c;
       mapperEmployment.EmployerName = employment.Name;
       mapperEmployment.EmploymentStatus = employment.FinServ__EmploymentStatus__c;
-      mapperEmployment.GrossMonthlySalary = employment.dau01__GrossMonthlySalary__c;
+      mapperEmployment.GrossMonthlySalary = employment.mflow__GrossMonthlySalary__c;
       mapperEmployment.EmploymentStatus = employment.FinServ__EmploymentStatus__c;
       mapperEmployment.Name = employment.Name;
-      mapperEmployment.IncomeType = employment.dau01__IncomeType__c;
-      mapperEmployment.PayCycle = employment.dau01__PayCycle__c;
-      mapperEmployment.Order = employment.dau01__Order__c;
-      mapperEmployment.PayGrade = employment.dau01__PayGrade__c;
+      mapperEmployment.IncomeType = employment.mflow__IncomeType__c;
+      mapperEmployment.PayCycle = employment.mflow__PayCycle__c;
+      mapperEmployment.Order = employment.mflow__Order__c;
+      mapperEmployment.PayGrade = employment.mflow__PayGrade__c;
       mapperEmployment.Position = employment.FinServ__Position__c;
-      mapperEmployment.EmploymentDuration = employment.dau01__EmploymentDuration__c;
-      mapperEmployment.DocumentType = employment.dau01__DocumentType__c;
-      mapperEmployment.EmploymentVerificationType = employment.dau01__EmploymentVerificationType__c;
+      mapperEmployment.EmploymentDuration = employment.mflow__EmploymentDuration__c;
+      mapperEmployment.DocumentType = employment.mflow__DocumentType__c;
+      mapperEmployment.EmploymentVerificationType = employment.mflow__EmploymentVerificationType__c;
       mapperEmploymentList.add(mapperEmployment);
     }
     return mapperEmploymentList;
@@ -196,20 +196,20 @@ global with sharing class ApplicationDataAPI {
       ApplicationResponseMapper.IdentificationDocument mapperIdentity = new ApplicationResponseMapper.IdentificationDocument();
       mapperIdentity.AddressContentDocumentId = identity.Id;
       mapperIdentity.IssuingCountry = identity.FinServ__IssuingCountry__c;
-      mapperIdentity.AddressContentDocumentId = identity.dau01__AddressContentDocumentId__c;
+      mapperIdentity.AddressContentDocumentId = identity.mflow__AddressContentDocumentId__c;
       mapperIdentity.DocumentNumber = identity.FinServ__DocumentNumber__c;
       mapperIdentity.DocumentType = identity.FinServ__DocumentType__c;
       mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
-      mapperIdentity.Gender = identity.dau01__Gender__c;
-      mapperIdentity.Height = identity.dau01__Height__c;
+      mapperIdentity.Gender = identity.mflow__Gender__c;
+      mapperIdentity.Height = identity.mflow__Height__c;
       mapperIdentity.IssueDate = identity.FinServ__IssueDate__c;
-      mapperIdentity.IssuedRegion = identity.dau01__IssuedRegion__c;
+      mapperIdentity.IssuedRegion = identity.mflow__IssuedRegion__c;
       mapperIdentity.Name = identity.Name;
-      mapperIdentity.Nationality = identity.dau01__Nationality__c;
-      mapperIdentity.Order = identity.dau01__Order__c;
-      mapperIdentity.PrimaryContentDocumentID = identity.dau01__PrimaryContentDocumentID__c;
-      mapperIdentity.SecondaryContentDocumentId = identity.dau01__SecondaryContentDocumentId__c;
-      mapperIdentity.Weight = identity.dau01__Weight__c;
+      mapperIdentity.Nationality = identity.mflow__Nationality__c;
+      mapperIdentity.Order = identity.mflow__Order__c;
+      mapperIdentity.PrimaryContentDocumentID = identity.mflow__PrimaryContentDocumentID__c;
+      mapperIdentity.SecondaryContentDocumentId = identity.mflow__SecondaryContentDocumentId__c;
+      mapperIdentity.Weight = identity.mflow__Weight__c;
 
       mapperIdentityList.add(mapperIdentity);
     }
@@ -230,7 +230,7 @@ global with sharing class ApplicationDataAPI {
       mapperRevenue.RevenueId = revenue.Id;
       mapperRevenue.Amount = revenue.FinServ__Amount__c;
       mapperRevenue.Name = revenue.Name;
-      mapperRevenue.Order = revenue.dau01__Order__c;
+      mapperRevenue.Order = revenue.mflow__Order__c;
       mapperRevenue.RevenueDate = revenue.FinServ__Date__c;
       mapperRevenue.SubType = revenue.FinServ__SubType__c;
       mapperRevenue.Type = revenue.FinServ__Type__c;
@@ -259,7 +259,7 @@ global with sharing class ApplicationDataAPI {
       mapperContactAddress.PostalCode = contactAddress.PostalCode;
       mapperContactAddress.State = contactAddress.State;
       mapperContactAddress.Street = contactAddress.Street;
-      mapperContactAddress.Order = contactAddress.dau01__Order__c;
+      mapperContactAddress.Order = contactAddress.mflow__Order__c;
       mapperContactAddressList.add(mapperContactAddress);
     }
     return mapperContactAddressList;
@@ -282,7 +282,7 @@ global with sharing class ApplicationDataAPI {
       mapperAssetsAndLiabilities.Amount = assetsAndLiabilities.FinServ__Amount__c;
       mapperAssetsAndLiabilities.AssetsAndLiabilitiesType = assetsAndLiabilities.FinServ__AssetsAndLiabilitiesType__c;
       mapperAssetsAndLiabilities.Name = assetsAndLiabilities.Name;
-      mapperAssetsAndLiabilities.Order = assetsAndLiabilities.dau01__Order__c;
+      mapperAssetsAndLiabilities.Order = assetsAndLiabilities.mflow__Order__c;
       mapperAssetsAndLiabilities.Ownership = assetsAndLiabilities.FinServ__Ownership__c;
       mapperAssetsAndLiabilities.OwnerType = assetsAndLiabilities.FinServ__OwnerType__c;
       mapperAssetsAndLiabilitiesList.add(mapperAssetsAndLiabilities);

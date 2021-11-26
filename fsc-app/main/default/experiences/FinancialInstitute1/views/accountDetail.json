@@ -50,7 +50,7 @@
                     "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"
                   },
-                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "componentName": "mflow:financialInsituteNavigationMenu",
                   "id": "37afdbb9-6147-46ce-b24d-1bdbc3f7f9a1",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},

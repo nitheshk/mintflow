@@ -21,7 +21,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
   ) {
     query q = Query.newInstance(Contact.SObjectType)
       .addFields()
-      .whereEq('dau01__UserContactType__c', userContactType);
+      .whereEq('mflow__UserContactType__c', userContactType);
     if (!searchFilter.isEmpty()) {
       if (String.isNotBlank(searchFilter.get('FirstName'))) {
         q.andCon().whereLike('FirstName', searchFilter.get('FirstName'));
@@ -35,11 +35,11 @@ public with sharing class SearchRepository extends DatabaseUtils {
       if (String.isNotBlank(searchFilter.get('MobilePhone'))) {
         q.andCon().whereLike('MobilePhone', searchFilter.get('MobilePhone'));
       }
-      if (String.isNotBlank(searchFilter.get('dau01__EmployeeId__c'))) {
+      if (String.isNotBlank(searchFilter.get('mflow__EmployeeId__c'))) {
         q.andCon()
           .whereLike(
-            'dau01__EmployeeId__c',
-            searchFilter.get('dau01__EmployeeId__c')
+            'mflow__EmployeeId__c',
+            searchFilter.get('mflow__EmployeeId__c')
           );
       }
     } else {
@@ -53,7 +53,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
         .orCon()
         .whereLike('MobilePhone', searchString)
         .orCon()
-        .whereLike('dau01__EmployeeId__c', searchString)
+        .whereLike('mflow__EmployeeId__c', searchString)
         .grpClose();
     }
     List<Contact> employeeList = (List<Contact>) DatabaseUtils.getRecords(

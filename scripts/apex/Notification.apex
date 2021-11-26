@@ -1,5 +1,5 @@
 Map<String, Object> data = new Map<String, Object>();
-dau01__Applicant__c applicant = new dau01__Applicant__c();
+mflow__Applicant__c applicant = new mflow__Applicant__c();
 data.put('ApplicantId', 'a0b9D000002h0JcQAI');
 object apiconst = new NotificationService().sendOTPMessage(data);
 system.debug(apiconst);

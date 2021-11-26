@@ -18,10 +18,10 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   global static Account readApplicationWithChild(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
       new Query(Account.SObjectType)
-        .addFieldSet('dau01__Application')
-        //.removeFields('dau01__SessionToken__c')
-        .queryChild('dau01__Applicants__r')
-        .orderBy('dau01__Order__c')
+        .addFieldSet('mflow__Application')
+        //.removeFields('mflow__SessionToken__c')
+        .queryChild('mflow__Applicants__r')
+        .orderBy('mflow__Order__c')
         .run()
         .queryChild('FinServ__HouseholdFinancialAccounts__r')
         .run()
@@ -43,11 +43,11 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   ) {
     return (Account) DatabaseUtils.getRecord(
       new Query(Account.SObjectType)
-        .addFieldSet('dau01__Application')
-        .removeFields('dau01__SessionToken__c')
-        .queryChild('dau01__Applicants__r')
+        .addFieldSet('mflow__Application')
+        .removeFields('mflow__SessionToken__c')
+        .queryChild('mflow__Applicants__r')
         .whereEq('Id', applicantId)
-        .orderBy('dau01__Order__c')
+        .orderBy('mflow__Order__c')
         .run()
         .queryChild('FinServ__HouseholdFinancialAccounts__r')
         .run()
@@ -95,11 +95,11 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   global static Account readApplicationWithApplicants(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
       new Query(Account.SObjectType)
-        .addFieldSet('dau01__Application')
-        .queryChild('dau01__Applicants__r')
+        .addFieldSet('mflow__Application')
+        .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
-        .orderBy('dau01__Order__c')
+        .orderBy('mflow__Order__c')
         .run()
         .whereEq('Id', applicationId)
         .toString()
@@ -116,7 +116,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
       new Query(SiteSetting__c.SObjectType)
         .addFields()
         .removeFields(
-          'dau01__OnlineSiteUserName__c,dau01__OnlineSitePassword__c'
+          'mflow__OnlineSiteUserName__c,mflow__OnlineSitePassword__c'
         )
         .toString()
     );

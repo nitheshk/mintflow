@@ -185,11 +185,11 @@ global with sharing class DocumentScanProvider extends AbstractService {
 
     SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
     construct.setChildObjects(
-      'dau01__ContactPointAddresses__r',
+      'mflow__ContactPointAddresses__r',
       new List<ContactPointAddress>{ idAddress }
     );
     construct.setChildObjects(
-      'dau01__IdentificationDocuments__r',
+      'mflow__IdentificationDocuments__r',
       new List<finServ__IdentificationDocument__c>{ identity }
     );
     applicant = (Applicant__c) construct.build();

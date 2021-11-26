@@ -2,11 +2,11 @@
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>true</custom>
    <layoutAssignments>
-        <layout>Account-dau01__Financial Institute Site Layout</layout>
+        <layout>Account-mflow__Financial Institute Site Layout</layout>
         <recordType>Account.FinServ__IndustriesBusiness</recordType>
     </layoutAssignments>
       <layoutAssignments>
-        <layout>Contact-dau01__Financial Institute Site Layout</layout>
+        <layout>Contact-mflow__Financial Institute Site Layout</layout>
         <recordType>Contact.FinServ__IndustriesBusiness</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -118,21 +118,21 @@
     </layoutAssignments>-->
     <layoutAssignments>
         <layout
-    >dau01__SObjectTriggerSetting__mdt-dau01__SObject Trigger Setting Layout</layout>
+    >mflow__SObjectTriggerSetting__mdt-mflow__SObject Trigger Setting Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout
-    >dau01__ServiceClassSetting__mdt-dau01__Service Class Setting Layout</layout>
+    >mflow__ServiceClassSetting__mdt-mflow__Service Class Setting Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout
-    >dau01__SurveyTemplateItem__c-dau01__SurveyTemplate Item Layout</layout>
+    >mflow__SurveyTemplateItem__c-mflow__SurveyTemplate Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>dau01__SurveyTemplate__c-dau01__SurveyTemplate Layout</layout>
+        <layout>mflow__SurveyTemplate__c-mflow__SurveyTemplate Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>dau01__Survey__c-dau01__Survey Layout</layout>
+        <layout>mflow__Survey__c-mflow__Survey Layout</layout>
     </layoutAssignments>
 
     <userLicense>Customer Community</userLicense>

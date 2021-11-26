@@ -3,7 +3,7 @@ import constants from "c/validationFormatUtils";
 import serachEmployees from "@salesforce/apex/LWCFinancialInstituteSiteController.retriveEmployees";
 import utils from "c/generalUtils";
 const columns = [
-  { label: "Employee Id", fieldName: "dau01__EmployeeId__c" },
+  { label: "Employee Id", fieldName: "mflow__EmployeeId__c" },
   { label: "FirstName", fieldName: "FirstName" },
   { label: "LastName", fieldName: "LastName" },
   { label: "Mobile Number", fieldName: "MobilePhone" },

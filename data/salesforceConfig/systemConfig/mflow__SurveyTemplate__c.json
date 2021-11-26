@@ -1,0 +1,495 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "mflow__SurveyTemplate__c",
+        "referenceId": "SurveyTemplateRef_0"
+      },
+      "Name": "DealerSurvey",
+      "mflow__Category__c": "Dealer",
+      "mflow__Channel__c": "Community",
+      "mflow__Order__c": 1,
+      "mflow__SubCategory__c": "Register",
+      "mflow__SurveyTemplateItems__r": {
+        "totalSize": 18,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_0"
+            },
+            "Name": "What is the complete legal name of the dealership?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "What is the complete legal name of the dealership?",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 1,
+            "mflow__QuestionCode__c": "Q1",
+            "mflow__QuestionNumber__c": 1,
+            "mflow__ShortDescription__c": "What is the complete legal name of the dealership?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_1"
+            },
+            "Name": "What year was the dealership founded?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "What year was the dealership founded?",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 2,
+            "mflow__QuestionCode__c": "Q2",
+            "mflow__QuestionNumber__c": 2,
+            "mflow__ShortDescription__c": "What year was the dealership founded?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_2"
+            },
+            "Name": "Who are the primary owners of the dealership and what year did they assume owner",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Who are the primary owners of the dealership and what year did they assume ownership?",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 3,
+            "mflow__QuestionCode__c": "Q3",
+            "mflow__QuestionNumber__c": 3,
+            "mflow__ShortDescription__c": "Who are the primary owners of the dealership and what year did they assume ownership?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_3"
+            },
+            "Name": "Who is the finance manager with whom we will have daily contact?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Who is the finance manager with whom we will have daily contact?",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 4,
+            "mflow__QuestionCode__c": "Q4",
+            "mflow__QuestionNumber__c": 4,
+            "mflow__ShortDescription__c": "Who is the finance manager with whom we will have daily contact?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_4"
+            },
+            "Name": "Does the dealership sell secondary products such as GAP/Warranty/Credit life",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Does the dealership sell secondary products such as GAP/Warranty/Credit life and disability?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 5,
+            "mflow__QuestionCode__c": "Q5",
+            "mflow__QuestionNumber__c": 5,
+            "mflow__ShortDescription__c": "Does the dealership sell secondary products such as GAP/Warranty/Credit life and disability?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": true
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_5"
+            },
+            "Name": "What are the target sales requirements for F & I staff on these products?",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_large",
+            "mflow__LongDescription__c": "What are the target sales requirements for F & I staff on these products?",
+            "mflow__OptionType__c": "Label",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 6,
+            "mflow__ParentQuestionCode__c": "Q5",
+            "mflow__QuestionCode__c": "Q6",
+            "mflow__ShortDescription__c": "What are the target sales requirements for F & I staff on these products?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": true
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_6"
+            },
+            "Name": "GAP",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_xx-large",
+            "mflow__LongDescription__c": "GAP",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 7,
+            "mflow__ParentQuestionCode__c": "Q5",
+            "mflow__QuestionCode__c": "Q7",
+            "mflow__ShortDescription__c": "GAP",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_7"
+            },
+            "Name": "Warranty",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_xx-large",
+            "mflow__LongDescription__c": "Warranty",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 8,
+            "mflow__ParentQuestionCode__c": "Q5",
+            "mflow__QuestionCode__c": "Q8",
+            "mflow__ShortDescription__c": "Warranty",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_8"
+            },
+            "Name": "Credit Life",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_xx-large",
+            "mflow__LongDescription__c": "Credit Life",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 9,
+            "mflow__ParentQuestionCode__c": "Q5",
+            "mflow__QuestionCode__c": "Q9",
+            "mflow__ShortDescription__c": "Credit Life",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_9"
+            },
+            "Name": "Credit Disability",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_xx-large",
+            "mflow__LongDescription__c": "Credit Disability",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 10,
+            "mflow__ParentQuestionCode__c": "Q5",
+            "mflow__QuestionCode__c": "Q10",
+            "mflow__ShortDescription__c": "Credit Disability",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_10"
+            },
+            "Name": "Is the dealership a named party in any existing or pending law suits?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Is the dealership a named party in any existing or pending law suits?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 11,
+            "mflow__QuestionCode__c": "Q11",
+            "mflow__QuestionNumber__c": 6,
+            "mflow__ShortDescription__c": "Is the dealership a named party in any existing or pending law suits?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": true
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_11"
+            },
+            "Name": "If yes, explain:",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_large",
+            "mflow__LongDescription__c": "If yes, explain:",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 12,
+            "mflow__ParentQuestionCode__c": "Q11",
+            "mflow__QuestionCode__c": "Q12",
+            "mflow__ShortDescription__c": "If yes, explain:",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_12"
+            },
+            "Name": "Which dealership integration products does the dealership utilize",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Which dealership integration products does the dealership utilize and what is the average amount of volume usage?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 13,
+            "mflow__QuestionCode__c": "Q13",
+            "mflow__QuestionNumber__c": 6,
+            "mflow__ShortDescription__c": "Which dealership integration products does the dealership utilize and what is the average amount of volume usage?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": true
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_13"
+            },
+            "Name": "DealerTrack",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_large",
+            "mflow__LongDescription__c": "DealerTrack",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 14,
+            "mflow__ParentQuestionCode__c": "Q13",
+            "mflow__QuestionCode__c": "Q14",
+            "mflow__QuestionNumber__c": 1,
+            "mflow__ShortDescription__c": "DealerTrack",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_14"
+            },
+            "Name": "RouteOne",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_large",
+            "mflow__LongDescription__c": "RouteOne",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 15,
+            "mflow__ParentQuestionCode__c": "Q13",
+            "mflow__QuestionCode__c": "Q15",
+            "mflow__QuestionNumber__c": 2,
+            "mflow__ShortDescription__c": "RouteOne",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_15"
+            },
+            "Name": "Open Dealer Exchange",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_large",
+            "mflow__LongDescription__c": "Open Dealer Exchange",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 16,
+            "mflow__ParentQuestionCode__c": "Q13",
+            "mflow__QuestionCode__c": "Q16",
+            "mflow__QuestionNumber__c": 3,
+            "mflow__ShortDescription__c": "Open Dealer Exchange",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_16"
+            },
+            "Name": "Other:",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_large",
+            "mflow__LongDescription__c": "Other:",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 17,
+            "mflow__ParentQuestionCode__c": "Q13",
+            "mflow__QuestionCode__c": "Q17",
+            "mflow__QuestionNumber__c": 4,
+            "mflow__ShortDescription__c": "Other:",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": true
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_17"
+            },
+            "Name": "Specify:",
+            "mflow__Condition__c": "true",
+            "mflow__CustomStyle__c": "slds-var-p-around_small slds-var-m-left_xx-large",
+            "mflow__LongDescription__c": "Specify:",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 18,
+            "mflow__ParentQuestionCode__c": "Q17",
+            "mflow__QuestionCode__c": "Q18",
+            "mflow__QuestionNumber__c": 5,
+            "mflow__ShortDescription__c": "Specify:",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          }
+        ]
+      }
+    },
+    {
+      "attributes": {
+        "type": "mflow__SurveyTemplate__c",
+        "referenceId": "SurveyTemplateRef_1"
+      },
+      "Name": "DealerApprovalSurvey",
+      "mflow__Category__c": "Dealer",
+      "mflow__Channel__c": "Community",
+      "mflow__Order__c": 2,
+      "mflow__SubCategory__c": "Approval",
+      "mflow__SurveyTemplateItems__r": {
+        "totalSize": 8,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_2_0"
+            },
+            "Name": "The dealership URL is:",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "The dealership URL is:",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 1,
+            "mflow__QuestionCode__c": "Q1",
+            "mflow__ShortDescription__c": "The dealership URL is:",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_2_1"
+            },
+            "Name": "Is the dealer’s physical location listed on the website?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Is the dealer’s physical location listed on the website?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 2,
+            "mflow__QuestionCode__c": "Q2",
+            "mflow__QuestionNumber__c": 1,
+            "mflow__ShortDescription__c": "Is the dealer’s physical location listed on the website?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_2_2"
+            },
+            "Name": "Is contact information listed on the website?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Is contact information listed on the website?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 3,
+            "mflow__QuestionCode__c": "Q3",
+            "mflow__QuestionNumber__c": 2,
+            "mflow__ShortDescription__c": "Is contact information listed on the website?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_2_3"
+            },
+            "Name": "Does the dealer have inventory listed on the website?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Does the dealer have inventory listed on the website?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 4,
+            "mflow__QuestionCode__c": "Q4",
+            "mflow__QuestionNumber__c": 3,
+            "mflow__ShortDescription__c": "Does the dealer have inventory listed on the website?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_2_4"
+            },
+            "Name": "Does the web inventory match the list provided from the dealer?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Does the web inventory match the list provided from the dealer?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 5,
+            "mflow__QuestionCode__c": "Q5",
+            "mflow__QuestionNumber__c": 4,
+            "mflow__ShortDescription__c": "Does the web inventory match the list provided from the dealer?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_2_5"
+            },
+            "Name": "Does the website have a physical picture of the facility?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Does the website have a physical picture of the facility?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 6,
+            "mflow__QuestionCode__c": "Q6",
+            "mflow__QuestionNumber__c": 5,
+            "mflow__ShortDescription__c": "Does the website have a physical picture of the facility?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_2_6"
+            },
+            "Name": "Is the facility in good repair and shows pride of ownership?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Is the facility in good repair and shows pride of ownership?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 7,
+            "mflow__QuestionCode__c": "Q7",
+            "mflow__QuestionNumber__c": 7,
+            "mflow__ShortDescription__c": "Is the facility in good repair and shows pride of ownership?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__SurveyTemplateItem__c",
+              "referenceId": "SurveyTemplateItemRef_2_7"
+            },
+            "Name": "Do you recommend this dealer be contracted as a Credit Union authorized dealer?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Do you recommend this dealer be contracted as a Credit Union authorized dealer?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 8,
+            "mflow__QuestionCode__c": "Q8",
+            "mflow__QuestionNumber__c": 7,
+            "mflow__ShortDescription__c": "Do you recommend this dealer be contracted as a Credit Union authorized dealer?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          }
+        ]
+      }
+    }
+  ]
+}

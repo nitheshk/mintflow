@@ -18,12 +18,12 @@ public with sharing class SurveyRepository extends DatabaseUtils {
     return (List<SurveyTemplate__c>) getRecords(
       Query.newInstance(SurveyTemplate__c.SObjectType)
         .addFields()
-        .queryChild('dau01__SurveyTemplateItems__r')
+        .queryChild('mflow__SurveyTemplateItems__r')
         .addFields()
-        .orderBy('dau01__Order__c')
+        .orderBy('mflow__Order__c')
         .run()
         .whereEq('Name', templateName)
-        .orderBy('dau01__Order__c')
+        .orderBy('mflow__Order__c')
         .toString(true)
     );
   }
@@ -40,12 +40,12 @@ public with sharing class SurveyRepository extends DatabaseUtils {
     return (List<SurveyTemplate__c>) getRecords(
       Query.newInstance(SurveyTemplate__c.SObjectType)
         .addFields()
-        .queryChild('dau01__SurveyTemplateItems__r')
+        .queryChild('mflow__SurveyTemplateItems__r')
         .addFields()
-        .orderBy('dau01__Order__c')
+        .orderBy('mflow__Order__c')
         .run()
         .whereCon(customCondition)
-        .orderBy('dau01__Order__c')
+        .orderBy('mflow__Order__c')
         .toString(true)
     );
   }

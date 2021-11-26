@@ -108,9 +108,9 @@ public with sharing class FileRepository extends DatabaseUtils {
     return (List<ContentVersion>) getRecords(
       q.whereIn('ContentDocumentId', contentDocumentIds)
         .andCon()
-        .whereEq('dau01__ContentType__c', contentType)
+        .whereEq('mflow__ContentType__c', contentType)
         .andCon()
-        .whereEq('dau01__ContentSubType__c', contentSubType)
+        .whereEq('mflow__ContentSubType__c', contentSubType)
         .toString()
     );
   }

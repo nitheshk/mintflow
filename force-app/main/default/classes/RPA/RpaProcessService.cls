@@ -4,7 +4,7 @@
  * @author Digital Align Team
  * @reference
  * @description RPA Process service
- * RestContext.request.requestURI :/dau01/rpa/v1/*
+ * RestContext.request.requestURI :/mflow/rpa/v1/*
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 @RestResource(urlMapping='/rpa/v1/*')
@@ -33,7 +33,7 @@ global with sharing class RpaProcessService extends AbstractService {
 
   /**
    * @description Rest Post Call
-   * https://{SiteUrl}/Online/services/apexrest/dau01/rpa/v1/reviewapplication/
+   * https://{SiteUrl}/Online/services/apexrest/mflow/rpa/v1/reviewapplication/
    * @author Digital Align Team | 11-25-2021
    **/
   @HttpPost
@@ -44,7 +44,7 @@ global with sharing class RpaProcessService extends AbstractService {
 
   /**
    * @description Rest Get Call
-   * https://{SiteUrl}/Online/services/apexrest/dau01/rpa/v1/reviewapplication/
+   * https://{SiteUrl}/Online/services/apexrest/mflow/rpa/v1/reviewapplication/
    * @author Digital Align Team | 11-25-2021
    **/
   @HttpGet
@@ -62,7 +62,7 @@ global with sharing class RpaProcessService extends AbstractService {
     String suffixRestUrl = ApexUtils.obtainUrlSuffix(classUrlMapping);
     String precedingUri = suffixRestUrl.substringBefore('/');
     switch on precedingUri {
-      //RestContext.request.requestURI :/dau01/rpa/v1/reviewapplication/
+      //RestContext.request.requestURI :/mflow/rpa/v1/reviewapplication/
       when 'reviewapplication' {
         this.buildReviewApplication();
       }
@@ -78,11 +78,11 @@ global with sharing class RpaProcessService extends AbstractService {
     String suffixRestUrl = ApexUtils.obtainUrlSuffix(classUrlMapping);
     String precedingUri = suffixRestUrl.substringBefore('/');
     switch on precedingUri {
-      //RestContext.request.requestURI :/dau01/rpa/v1/reviewapplication/
+      //RestContext.request.requestURI :/mflow/rpa/v1/reviewapplication/
       when 'reviewapplication' {
         this.buildReviewApplication();
       }
-      //RestContext.request.requestURI :/dau01/rpa/v1/submitapplication/
+      //RestContext.request.requestURI :/mflow/rpa/v1/submitapplication/
       when 'submitapplication' {
         this.buildSubmitApplication();
       }

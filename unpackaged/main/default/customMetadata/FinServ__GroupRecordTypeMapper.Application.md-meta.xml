@@ -8,7 +8,7 @@
     <protected>false</protected>
     <values>
         <field>FinServ__AccountRecordTypeNamespace__c</field>
-        <value xsi:type="xsd:string">dau01</value>
+        <value xsi:type="xsd:string">mflow</value>
     </values>
     <values>
         <field>FinServ__AccountRecordType__c</field>

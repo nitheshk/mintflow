@@ -54,7 +54,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     if (application.Applicants__r?.size() > 0) {
       List<Applicant__c> applicants = ApplicantService.getInstance()
         .saveApplicants(application.Applicants__r, application.Id);
-      constructor.setChildObjects('dau01__Applicants__r', applicants);
+      constructor.setChildObjects('mflow__Applicants__r', applicants);
     }
 
     //save financial accounts
@@ -359,7 +359,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
       when 'FinServ__FinancialAccount__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
-      when 'dau01__Applicant__c' {
+      when 'mflow__Applicant__c' {
         this.deleteApplicants(new Set<Id>{ recordId });
       }
       when 'FinServ__IdentificationDocument__c' {

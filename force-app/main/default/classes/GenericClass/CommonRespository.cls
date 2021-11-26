@@ -16,10 +16,10 @@ global with sharing class CommonRespository extends DatabaseUtils {
   public static List<Flow__c> fetchFlowByEntityId(String entityId) {
     String q = Query.newInstance(Flow__c.SObjectType)
       .addFields()
-      .queryChild('dau01__SubFlows__r')
+      .queryChild('mflow__SubFlows__r')
       .addFields()
       .run()
-      .whereEq('dau01__Entity__c', entityId)
+      .whereEq('mflow__Entity__c', entityId)
       .toString();
     return (List<Flow__c>) getRecords(q);
   }

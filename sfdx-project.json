@@ -32,7 +32,7 @@
       "default": false
     }
   ],
-  "namespace": "dau01",
+  "namespace": "mflow",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "51.0",
   "packageAliases": {

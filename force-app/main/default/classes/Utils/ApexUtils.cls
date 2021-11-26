@@ -9,7 +9,7 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global inherited sharing class ApexUtils {
   /** Apex Rest Related */
-  private final static string NAMESPACE = 'dau01';
+  private final static string NAMESPACE = 'mflow';
 
   /**
    * @description

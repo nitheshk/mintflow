@@ -3,7 +3,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Client Custom Flexipage</comment>
-        <content>dau01__ClientRecordPage</content>
+        <content>mflow__ClientRecordPage</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -11,7 +11,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
-        <content>dau01__WealthHome</content>
+        <content>mflow__WealthHome</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -38,7 +38,7 @@
     <uiType>Lightning</uiType>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>dau01__BankingBusinessAccountPage</content>
+        <content>mflow__BankingBusinessAccountPage</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.FinServ__IndustriesBusiness</recordType>
@@ -47,7 +47,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>dau01__BankingHouseholdPageTwoColumn</content>
+        <content>mflow__BankingHouseholdPageTwoColumn</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.FinServ__IndustriesHousehold</recordType>
@@ -56,16 +56,16 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>dau01__BankingHouseholdPageTwoColumn</content>
+        <content>mflow__BankingHouseholdPageTwoColumn</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.dau01__Application</recordType>
+        <recordType>Account.mflow__Application</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>dau01__BankingIndividualPageTwoColumn</content>
+        <content>mflow__BankingIndividualPageTwoColumn</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.FinServ__IndustriesIndividual</recordType>
@@ -74,7 +74,7 @@
     </profileActionOverrides>
     <!--<profileActionOverrides>
         <actionName>View</actionName>
-        <content>dau01__BankingIndividualPageTwoColumn</content>
+        <content>mflow__BankingIndividualPageTwoColumn</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>PersonAccount.PersonAccount</recordType>
@@ -83,7 +83,7 @@
     </profileActionOverrides>-->
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>dau01__BankingBusinessContactPage</content>
+        <content>mflow__BankingBusinessContactPage</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Contact</pageOrSobjectType>
         <recordType>Contact.FinServ__IndustriesBusiness</recordType>
@@ -92,7 +92,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>Tab</actionName>
-        <content>dau01__WealthHome</content>
+        <content>mflow__WealthHome</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
         <type>Flexipage</type>

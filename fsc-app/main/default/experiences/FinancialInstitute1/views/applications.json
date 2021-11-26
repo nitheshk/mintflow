@@ -43,7 +43,7 @@
                     "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"
                   },
-                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "componentName": "mflow:financialInsituteNavigationMenu",
                   "id": "3d43220b-34d5-4d40-8483-3153a7f83434",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
@@ -60,7 +60,7 @@
               "components": [
                 {
                   "componentAttributes": {},
-                  "componentName": "dau01:startOnlineApplication",
+                  "componentName": "mflow:startOnlineApplication",
                   "id": "76613772-4203-4529-8460-1400d2314a3b",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
@@ -81,7 +81,7 @@
                     "metadataName": "FIApplications",
                     "sortString": "Name"
                   },
-                  "componentName": "dau01:dynamicDataTable",
+                  "componentName": "mflow:dynamicDataTable",
                   "id": "aa870e0f-33f0-4d97-9e57-ea6ea06f2708",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},

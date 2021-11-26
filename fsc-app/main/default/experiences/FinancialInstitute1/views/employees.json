@@ -43,7 +43,7 @@
                     "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"
                   },
-                  "componentName": "dau01:financialInsituteNavigationMenu",
+                  "componentName": "mflow:financialInsituteNavigationMenu",
                   "id": "a8f6c021-4d74-4314-9772-f141a30e8503",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
@@ -74,7 +74,7 @@
                     "metadataName": "FIEmployees",
                     "sortString": "Name"
                   },
-                  "componentName": "dau01:dynamicDataTable",
+                  "componentName": "mflow:dynamicDataTable",
                   "id": "d2fe5ff3-e20d-4151-8230-00d85885109d",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},

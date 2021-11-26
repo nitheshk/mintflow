@@ -1,7 +1,7 @@
 const utils = require("../utils.js");
 let configPath = "data/salesforceConfig/systemConfig/";
 let scriptPath = "data/salesforceConfig/systemScript/";
-let objectName = "dau01__SiteSetting__c";
+let objectName = "mflow__SystemSetting__c";
 
 let scriptToRun = `sfdx force:apex:execute  -f ${scriptPath}${objectName}.apex  --json `;
 utils
@@ -13,7 +13,7 @@ utils
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
       delete item.Name;
-      item.attributes.referenceId = "SiteRef_" + index;
+      item.attributes.referenceId = "ApplicationConfigurationRef_" + index;
     });
     //   update change ==>
     utils

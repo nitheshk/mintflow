@@ -9,9 +9,9 @@
         <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
           <lightning-input
             required
-            data-fieldname="dau01__AllowedOtpMode__c"
+            data-fieldname="mflow__AllowedOtpMode__c"
             label="Allowed Otp Mode"
-            value={configData.dau01__AllowedOtpMode__c}
+            value={configData.mflow__AllowedOtpMode__c}
             placeholder="OTPMaxAllowedAttempts"
             onchange={handleChange}
           ></lightning-input>
@@ -19,9 +19,9 @@
         <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
           <lightning-input
             required
-            data-fieldname="dau01__SesssionExpirationTime__c"
+            data-fieldname="mflow__SesssionExpirationTime__c"
             label="Sesssion Expiration Time"
-            value={configData.dau01__SesssionExpirationTime__c}
+            value={configData.mflow__SesssionExpirationTime__c}
             placeholder="SesssionExpirationTime"
             onchange={handleChange}
             class="validation"
@@ -29,9 +29,9 @@
         </div>
         <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
           <lightning-input
-            data-fieldname="dau01__OTPExpirationTime__c"
+            data-fieldname="mflow__OTPExpirationTime__c"
             label="OTPExpiration Time"
-            value={configData.dau01__OTPExpirationTime__c}
+            value={configData.mflow__OTPExpirationTime__c}
             placeholder="OTPExpirationTime"
             onchange={handleChange}
             class="validation"
@@ -39,9 +39,9 @@
         </div>
         <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
           <lightning-input
-            data-fieldname="dau01__OTPMaxAllowedAttempts__c"
+            data-fieldname="mflow__OTPMaxAllowedAttempts__c"
             label="OTP Max Allowed Attempts"
-            value={configData.dau01__OTPMaxAllowedAttempts__c}
+            value={configData.mflow__OTPMaxAllowedAttempts__c}
             placeholder="OTPMaxAllowedAttempts"
             onchange={handleChange}
             class="validation"
@@ -50,9 +50,9 @@
         <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
           <lightning-input
             type="checkbox"
-            data-fieldname="dau01__SentiLink__c"
+            data-fieldname="mflow__SentiLink__c"
             label="SentiLink"
-            checked={configData.dau01__SentiLink__c}
+            checked={configData.mflow__SentiLink__c}
             placeholder="SentiLink"
             onchange={handleCheckboxChange}
             class="validation"
@@ -60,9 +60,9 @@
         </div>
         <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
           <lightning-input
-            data-fieldname="dau01__EmailLinkExpirationTime__c"
+            data-fieldname="mflow__EmailLinkExpirationTime__c"
             label="Email Link Expiration Time"
-            value={configData.dau01__EmailLinkExpirationTime__c}
+            value={configData.mflow__EmailLinkExpirationTime__c}
             placeholder="EmailLinkExpirationTime"
             onchange={handleChange}
             class="validation"
@@ -70,9 +70,9 @@
         </div>
         <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
           <lightning-input
-            data-fieldname="dau01__CountyNames__c"
+            data-fieldname="mflow__CountyNames__c"
             label="Eligible County Names"
-            value={configData.dau01__CountyNames__c}
+            value={configData.mflow__CountyNames__c}
             placeholder="County Names"
             onchange={handleChange}
             class="validation"

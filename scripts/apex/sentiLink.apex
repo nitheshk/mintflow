@@ -44,6 +44,6 @@ system.debug(response.getBody());
 //     Phone,
 //     Email,
 //     LeadSource,
-//     dau01__SSN__c, 458968987 or 123-36-3698
-//     dau01__Birthdate__c
+//     mflow__SSN__c, 458968987 or 123-36-3698
+//     mflow__Birthdate__c
 

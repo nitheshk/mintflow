@@ -16,11 +16,11 @@ public with sharing class IdentityRepository extends DatabaseUtils {
     return (Applicant__c) DatabaseUtils.getRecord(
       new Query(Applicant__c.SObjectType)
         .addFields()
-        .queryChild('dau01__ContactPointAddresses__r')
+        .queryChild('mflow__ContactPointAddresses__r')
         .addFields()
         .removeFields('Address')
         .whereEq('IsPrimary', true)
-        .orderBy('dau01__Order__c')
+        .orderBy('mflow__Order__c')
         .run()
         .whereEq('Id', applicantId)
         .toString()
