@@ -35,8 +35,17 @@ request.token = SecurityUtils.generateTokenForTesting(
   'ApplicationFlow'
 );
 request.setHeader(
-  new Map<String, String>{ 'recordId' => 'a0b0p0000026jWVAAY' }
+  new Map<String, String>{ 'recordId' => '0010p000011AG7oAAG' }
 );
+// request.setHeader(
+//   new Map<String, Object>{
+//     'recordIds' => new List<String>{
+//       'a0b0p0000026jWaAAI',
+//       'a0b0p0000026jWbAAI'
+//     }
+//   }
+// );
+
 ApexResponse res = ApplicationController.deleteEntity(request);
 system.debug('Full Json : ' + res.data);
 

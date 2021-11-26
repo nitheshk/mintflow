@@ -126,9 +126,19 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse deleteEntity(ApexRequest request) {
     try {
       validateRequest(request);
-      Id recordId = (Id) ApexRequest.getParams('recordId');
+      List<Id> recordIds = new List<Id>();
+      if (ApexRequest.getParams('recordId') != null) {
+        recordIds.add((Id) ApexRequest.getParams('recordId'));
+      } else if (ApexRequest.getParams('recordIds') != null) {
+        for (
+          Object recordId : (List<Object>) ApexRequest.getParams()
+            .get('recordIds')
+        ) {
+          recordIds.add(String.valueOf(recordId));
+        }
+      }
       return ApexResponse.ok(
-        ApplicationService.getInstance().deleteEntity(recordId)
+        ApplicationService.getInstance().deleteEntities(recordIds)
       );
     } catch (CustomException ex) {
       log?.error(ex);

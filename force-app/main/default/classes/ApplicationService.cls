@@ -279,10 +279,13 @@ global with sharing class ApplicationService extends AbstractService {
    * @param Id recordId
    * @return Boolean
    **/
-  global virtual Boolean deleteEntity(Id recordId) {
+  global virtual Boolean deleteEntities(List<Id> recordIds) {
     Savepoint sp = Database.setSavepoint();
     try {
-      return ApplicationPersistService.getInstance().deleteEntity(recordId);
+      for (Id recordId : recordIds) {
+        ApplicationPersistService.getInstance().deleteEntity(recordId);
+      }
+      return true;
     } catch (Exception ex) {
       log?.error(ex);
       Database.rollback(sp);
