@@ -42,6 +42,7 @@ public with sharing class FileServiceTest {
     test.startTest();
     FileController.createFile(request);
     FileController.fetchContentVersionByCD(request);
+    FileController.fetchContentVersionByEntityId(request);
     header.put(
       'contentVersionId',
       FileService.getInstance()
