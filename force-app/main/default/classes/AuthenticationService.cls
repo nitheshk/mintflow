@@ -201,6 +201,9 @@ global with sharing class AuthenticationService extends AbstractService {
           ApplicantRepository.updateRecord(applicant.Application__r);
         }
       }
+      applicant = (Applicant__c) SObjectConstructor.getInstance(applicant)
+        .removeFields('mflow__Application__r')
+        .build();
       ApplicantRepository.updateRecord(applicant);
       applicant.SmsOtp__c = applicant.EmailOtp__c = '';
       return applicant;

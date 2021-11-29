@@ -10,6 +10,7 @@ global with sharing class SObjectConstructor {
   private SObject parentObj;
   private Map<String, List<SObject>> childObjects = new Map<String, List<SObject>>();
   private Map<String, SObject> lookupObjects = new Map<String, SObject>();
+  private Set<String> removeFields = new Set<String>();
 
   global static SObjectConstructor getInstance(SObject parentObj) {
     SObjectConstructor newConstructor = new SObjectConstructor();
@@ -31,6 +32,18 @@ global with sharing class SObjectConstructor {
     lookupObjects.put(relationShipName, lookupObj);
     return this;
   }
+
+  /**
+   * @description remove lookup from parent
+   * @author Digital Align Team | 11-29-2021
+   * @param String relationShipName
+   * @return SObjectConstructor
+   **/
+  global SObjectConstructor removeFields(String relationShipName) {
+    removeFields.add(relationShipName);
+    return this;
+  }
+
   /**
    * @description
    * @author Digital Align Team | 10-07-2021
@@ -115,6 +128,10 @@ global with sharing class SObjectConstructor {
     Map<String, Object> parentMap = (Map<String, Object>) JSON.deserializeUntyped(
       Json.Serialize(this.parentObj)
     );
+
+    for (String fieldName : removeFields) {
+      parentMap.remove(fieldName);
+    }
 
     for (String relationshipName : this.childObjects.keySet()) {
       List<SObject> childObjs = (List<SObject>) this.childObjects.get(
