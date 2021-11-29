@@ -56,8 +56,10 @@ global with sharing class AuthenticationService extends AbstractService {
     Flow.initialize(ApexRequest.getApplicationId());
     Applicant__c applicant = ApplicantRepository.readApplicantById(applicantId);
 
-    String otpMode = ApplicationConfiguration__c.getInstance()
-      .AllowedOtpMode__c;
+    String otpMode = ApexRequest.getParams('otpMode') != null
+      ? (String) ApexRequest.getParams('otpMode')
+      : ApplicationConfiguration__c.getInstance().AllowedOtpMode__c;
+
     List<String> otpModeList = String.isNotBlank(otpMode)
       ? otpMode.split(';')
       : new List<String>();
@@ -68,8 +70,10 @@ global with sharing class AuthenticationService extends AbstractService {
           .OTPExpirationTime__c
       );
     applicant.OtpAttempts__c = 0;
+
     //SMS
     if (otpModeList.contains('SMS')) {
+      applicant.IsPhoneNumberVerified__c = false;
       applicant.SmsOtp__c = String.valueOf(
         Math.round((Math.random() * (9000) + 1000))
       );
@@ -79,19 +83,21 @@ global with sharing class AuthenticationService extends AbstractService {
         'messageText',
         System.Label.TwillioOtpFormat.replace('{OTP}', applicant.SmsOtp__c)
       );
+      // #pending remove hardcode mobile number [applicant.Phone__c]
       params.put(
         'toPhone',
-        HttpBuilder.getApiConstant('Twillio_Country') + applicant.Phone__c
+        HttpBuilder.getApiConstant('Twillio_Country') + '7892981668'
       );
       params.put('applicantId', applicant.Id);
-      NotificationService.getInstance().sendOTPMessage(params);
+      //NotificationService.getInstance().sendOTPMessage(params);
     }
     //Email
     if (otpModeList.contains('EMAIL')) {
+      applicant.IsEmailVerified__c = false;
       applicant.EmailOtp__c = String.valueOf(
         Math.round((Math.random() * (9000) + 1000))
       );
-      CustomerEmailService.getInstance().sendEmailOTP(applicant);
+      //CustomerEmailService.getInstance().sendEmailOTP(applicant);
     }
 
     ApplicantRepository.updateRecord(applicant);
@@ -110,9 +116,17 @@ global with sharing class AuthenticationService extends AbstractService {
     );
     ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getInstance();
     try {
-      List<String> otpModeList = String.isNotBlank(appConfig.AllowedOtpMode__c)
-        ? appConfig.AllowedOtpMode__c.split(';')
+      String otpMode = ApexRequest.getParams('otpMode') != null
+        ? (String) ApexRequest.getParams('otpMode')
+        : appConfig.AllowedOtpMode__c;
+
+      List<String> otpModeList = String.isNotBlank(otpMode)
+        ? otpMode.split(';')
         : new List<String>();
+
+      if (otpModeList.isEmpty()) {
+        throw new customException('Please verify the otp configuration');
+      }
 
       if (applicant.OTPExpireTime__c.getTime() < Datetime.now().getTime()) {
         applicant.OtpAttempts__c += 1;
@@ -132,27 +146,55 @@ global with sharing class AuthenticationService extends AbstractService {
       //SMS
       if (otpModeList.contains('SMS')) {
         if (String.isBlank(smsOTP)) {
-          throw new customException('Please enter the OTP');
+          throw new customException('Please enter the SMS OTP');
         }
         if (applicant.SmsOtp__c != smsOTP) {
-          throw new customException('Please verify the OTP entered');
+          throw new customException('Please verify the SMS OTP entered');
         }
+        applicant.IsPhoneNumberVerified__c = true;
       }
       //Email
       if (otpModeList.contains('EMAIL')) {
         if (String.isBlank(emailOTP)) {
-          throw new customException('Please enter the OTP');
+          throw new customException('Please enter the Email OTP');
         }
         if (applicant.EmailOtp__c != emailOTP) {
-          throw new customException('Please verify the OTP entered');
+          throw new customException('Please verify the Email OTP entered');
+        }
+        applicant.IsEmailVerified__c = true;
+      }
+
+      // Generate Token base on the OTP verified from configuration
+      List<String> otpConfiguredModeList = String.isNotBlank(
+          appConfig.AllowedOtpMode__c
+        )
+        ? appConfig.AllowedOtpMode__c.split(';')
+        : new List<String>();
+
+      Boolean otpValidated = false;
+      if (
+        otpConfiguredModeList.contains('SMS') &&
+        otpConfiguredModeList.contains('EMAIL')
+      ) {
+        otpValidated =
+          applicant.IsPhoneNumberVerified__c && applicant.IsEmailVerified__c;
+        if (otpValidated) {
+          applicant.SmsOtp__c = applicant.EmailOtp__c = '';
+        }
+      } else if (otpConfiguredModeList.contains('SMS')) {
+        otpValidated = applicant.IsPhoneNumberVerified__c;
+        if (otpValidated) {
+          applicant.SmsOtp__c = '';
+        }
+      } else if (otpConfiguredModeList.contains('EMAIL')) {
+        otpValidated = applicant.IsEmailVerified__c;
+        if (otpValidated) {
+          applicant.EmailOtp__c = '';
         }
       }
 
-      applicant.SmsOtp__c = applicant.EmailOtp__c = '';
-      applicant.IsPhoneNumberVerified__c = true;
-
       //create a session for primary/joint applicant when token is not present
-      if (String.isBlank(ApexRequest.getToken())) {
+      if (String.isBlank(ApexRequest.getToken()) && otpValidated) {
         SecurityUtils.createSessionForApplicant(applicant);
         if (ApexRequest.getApplicantType() == 'Primary') {
           applicant.Application__r.SessionToken__c = applicant.SessionToken__c;
@@ -160,6 +202,7 @@ global with sharing class AuthenticationService extends AbstractService {
         }
       }
       ApplicantRepository.updateRecord(applicant);
+      applicant.SmsOtp__c = applicant.EmailOtp__c = '';
       return applicant;
     } catch (customException ex) {
       ApplicantRepository.updateRecord(applicant);
