@@ -1,6 +1,6 @@
 updateAdminPermissionSet();
 updateGuestPermissionSet();
-//updateRoleToCurrentUser();
+updateRoleToCurrentUser();
 
 public static void updateGuestPermissionSet() {
   List<PermissionSet> permissionSetList = [
@@ -71,8 +71,14 @@ public static void updateAdminPermissionSet() {
 }
 
 public static void updateRoleToCurrentUser() {
+  UserRole r;
+  try {
+    r = [SELECT id FROM UserRole WHERE DeveloperName = 'MyCustomRole' LIMIT 1];
+  } catch (Exception ex) {
+    r = new UserRole(DeveloperName = 'MyCustomRole', Name = 'MyCustomRole');
+    insert r;
+  }
   User u = [SELECT id FROM User WHERE id = :Userinfo.getUserId() LIMIT 1];
-  UserRole r = [SELECT id FROM UserRole WHERE DeveloperName = 'CEO' LIMIT 1];
   u.UserRoleId = r.id;
   update u;
 }

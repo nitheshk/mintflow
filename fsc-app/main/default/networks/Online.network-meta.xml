@@ -30,12 +30,13 @@
   >mflow__MintFlow/mflow__CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
   <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
   <logoutUrl
-  >https://sandbox-innovation-energy-5556-dev-e-17d5b233cb9.cs114.force.com/Online</logoutUrl>
+  >https://sandbox-computing-saas-6350-dev-ed-17d5cca1777.cs75.force.com/Online</logoutUrl>
   <networkMemberGroups>
     <permissionSet>mflow__MintFlowGuest</permissionSet>
     <permissionSet>mflow__MintFlowCustomerCommunity</permissionSet>
     <profile>admin</profile>
     <profile>MFlowOnlineSalesforcePlatform</profile>
+    <profile>MFlowCustomerCommunityPlusLogin</profile>
   </networkMemberGroups>
   <networkPageOverrides>
     <changePasswordPageOverrideSetting
