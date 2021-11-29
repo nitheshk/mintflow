@@ -97,20 +97,24 @@ global with sharing class RpaProcessService extends AbstractService {
    * @param Account application
    * @return Account
    **/
-  global virtual Account scheduleIdentityVerification(Account application) {
+  global virtual Account scheduleReviewApplication(Account application) {
     //Flow tracing purpose,, Can be ignore if don't required
     Flow.initialize(ApexRequest.getApplicationId());
     Flow.setFlow('Rpa-Process');
     //create new api name and setting
     Flow.setSubFlow(APINames.TwillioMessaging.name(), application.Id);
     try {
-      HttpBuilder.setAPISetting(APINames.TwillioMessaging);
-      log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
-      HttpBuilder.Response response = RpaProcessProvider.getInstance()
-        .addKycReviewQueue();
-      flow.setSubFlowPassed('Flow Completed');
-      flow.setFlowPassed('Completed');
-      return application;
+      if (HttpBuilder.isActiveApiSetting(APINames.UiPathAddQueue)) {
+        HttpBuilder.setAPISetting(APINames.UiPathAddQueue);
+        log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
+        // HttpBuilder.Response response = RpaProcessProvider.getInstance()
+        //   .addKycReviewQueue();
+        flow.setSubFlowPassed('Flow Completed');
+        flow.setFlowPassed('Completed');
+        return application;
+      } else {
+        throw new CustomException('Requested API is disabled');
+      }
     } catch (Exception ex) {
       flow.setSubFlowFailed(ex.getMessage());
       flow.setFlowFailed('Failed');
@@ -137,8 +141,12 @@ global with sharing class RpaProcessService extends AbstractService {
     try {
       HttpBuilder.setAPISetting(APINames.TwillioMessaging);
       log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
+      map<string, object> params = new Map<string, object>();
+      params.put('NameOfTheQueue', 'NameOfTheQueue'); // Replace with Name Of The  queue in to which application needs to be added
+      params.put('Priority', 'Normal'); // Replace with priority of the application
+      params.put('applicationId', application.Id);
       HttpBuilder.Response response = RpaProcessProvider.getInstance()
-        .addKycReviewQueue();
+        .addKycReviewQueue(params);
       flow.setSubFlowPassed('Flow Completed');
       flow.setFlowPassed('Completed');
       return application;

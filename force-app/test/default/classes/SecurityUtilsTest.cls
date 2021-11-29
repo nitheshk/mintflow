@@ -23,7 +23,7 @@ public with sharing class SecurityUtilsTest {
     SecurityUtils.crud(acc, CrudType.UPDATABLE);
     SecurityUtils.crud(acc, CrudType.UPSERTABLE);
     SecurityUtils.crud(acc, CrudType.DELETEABLE);
-    SecurityUtils.decryptUrl('decryptUrl');
+    SecurityUtils.decryptUrl(SecurityUtils.encryptUrl('encrypt'));
     SecurityUtils.encryptBase64('encryptBase64');
     SecurityUtils.decryptBase64('decryptBase64');
     SecurityUtils.generateUUID();

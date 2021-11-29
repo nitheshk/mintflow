@@ -13,5 +13,6 @@ global enum APINames {
   SentiLinkIdCompletion,
   Geocoding,
   IdScanAnalyzer,
-  AWSAuth
+  AWSAuth,
+  UiPathAddQueue
 }

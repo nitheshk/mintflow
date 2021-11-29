@@ -100,7 +100,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       //2. Push Primary applicant to RPA Queue
       //#RPA #pending
       // Need to move future thr is dml operation before this
-      // RpaProcessService.getInstance().scheduleIdentityVerification(application);
+      // RpaProcessService.getInstance().scheduleReviewApplication(application);
     } else {
       //1. send Email to Primary applicant with resume link
       CustomerEmailService.getInstance()
@@ -165,7 +165,7 @@ global with sharing class ReviewInformationService extends AbstractService {
         .primaryReviewInformationCompleted(primaryApplicant);
       //#RPA #pending
       // Need to move future thr is dml operation before this
-      // RpaProcessService.getInstance().scheduleIdentityVerification(application);
+      // RpaProcessService.getInstance().scheduleReviewApplication(application);
     }
 
     return application;
