@@ -45,7 +45,7 @@ global with sharing class DocumentScanProvider extends AbstractService {
     //request
     DocumentScanDTO.Request requestDTO = new DocumentScanDTO.Request();
     requestDTO.file_base64 = EncodingUtil.base64Encode(cv.VersionData);
-    requestDTO.apikey = 'rfdNfcbatBLzmdtTHqVaMLphOQQdLNw2';
+    requestDTO.apikey = HttpBuilder.getApiConstant('IdScanAnalyzerAPIKey');
     requestDTO.authenticate = 'true';
     requestDTO.authenticate_module = '2';
     requestDTO.verify_expiry = 'true';
