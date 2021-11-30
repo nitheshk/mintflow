@@ -46,6 +46,11 @@
                 <default>false</default>
                 <label>Military Id</label>
             </value>
+            <value>
+                <fullName>Address Proof</fullName>
+                <default>false</default>
+                <label>Address Proof</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
