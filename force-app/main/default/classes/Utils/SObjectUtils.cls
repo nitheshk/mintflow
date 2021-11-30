@@ -74,6 +74,16 @@ global inherited sharing class SObjectUtils {
   }
 
   /**
+   * @description Get Sobject Type from Sobject Name
+   * @author Digital Align Team | 11-30-2021
+   * @param String sObjectName
+   * @return Schema.SObjectType
+   **/
+  global static Schema.SObjectType getSobjectType(String sObjectName) {
+    return Schema.getGlobalDescribe().get(sObjectName);
+  }
+
+  /**
    * @description Get SObject name by passing SObject list
    * @author Digital Align | 05-15-2021
    * @param List<SObject> records

@@ -39,7 +39,7 @@ global with sharing class ApplicationController extends AbstractController {
   }
 
   /**
-   * @description
+   * @description Read Full Application with with child record
    * @author Digital Align Team | 09-29-2021
    * @param Map<String String> params
    * @return ApexResponse

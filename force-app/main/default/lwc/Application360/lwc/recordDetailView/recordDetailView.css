@@ -1,0 +1,10 @@
+@media print {
+  div {
+    page-break-inside: avoid;
+  }
+}
+
+.preserveWrodWrap {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

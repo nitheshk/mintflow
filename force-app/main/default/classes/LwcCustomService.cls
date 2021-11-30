@@ -32,7 +32,7 @@ global with sharing class LwcCustomService extends AbstractService {
    * @param Map<String Object> params
    * @return List<Flow__c>
    **/
-  global List<Flow__c> readFlows(Map<String, Object> params) {
+  global virtual List<Flow__c> readFlows(Map<String, Object> params) {
     String entityId = String.valueOf(params?.get('recordId'));
     log?.debug(' recordId : ' + entityId);
     return LwcCustomRepository.fetchFlowByEntityId(entityId);
@@ -43,7 +43,7 @@ global with sharing class LwcCustomService extends AbstractService {
    * @param Map<String Object> params
    * @return ApplicationConfiguration__c
    **/
-  global ApplicationConfiguration__c updateConfigValues(
+  global virtual ApplicationConfiguration__c updateConfigValues(
     Map<String, Object> params
   ) {
     ApplicationConfiguration__c configData = (ApplicationConfiguration__c) JSON.deserialize(
@@ -54,5 +54,63 @@ global with sharing class LwcCustomService extends AbstractService {
     return (ApplicationConfiguration__c) LwcCustomRepository.updateRecord(
       configData
     );
+  }
+
+  /**
+   * @description  fetch sobject field detail based on sobject name.
+   * @author Digital Align Team | 11-30-2021
+   * @param String sObjectName
+   * @return List<Map<String, String>>  return all field in sobject
+   **/
+  public virtual List<Map<String, String>> fetchFieldDetails(
+    String sObjectName
+  ) {
+    List<Map<String, String>> fieldNames = new List<Map<String, String>>();
+
+    Map<String, Schema.SObjectField> fieldMap = SObjectUtils.getFields(
+      SObjectUtils.getSobjectType(sObjectName)
+    );
+    for (Schema.SObjectField sfield : fieldMap.Values()) {
+      //dField -> describe field
+      schema.describefieldresult dField = sfield.getDescribe();
+      fieldNames.add(
+        new Map<String, String>{
+          'key' => dField.getName(),
+          'value' => dField.getLabel(),
+          'type' => String.valueof(dField.getType())
+        }
+      );
+    }
+    return fieldNames;
+  }
+
+  /**
+   * @description fetch sobject field detail based on sobject name and field set name
+   * @author Digital Align Team | 11-30-2021
+   * @param String sObjectName
+   * @param String fieldSetName
+   * @return List<Map<String, String>>
+   **/
+  public virtual List<Map<String, String>> fetchFieldDetails(
+    String sObjectName,
+    String fieldSetName
+  ) {
+    List<Map<String, String>> fieldNames = new List<Map<String, String>>();
+    //fs -> FiledSet
+    Schema.FieldSet fs = SObjectUtils.getFieldSet(
+      SObjectUtils.getSobjectType(sObjectName),
+      fieldSetName
+    );
+    //fsm -> FieldSetMember
+    for (Schema.FieldSetMember fsm : fs.getFields()) {
+      fieldNames.add(
+        new Map<String, String>{
+          'key' => fsm.getFieldPath(),
+          'value' => fsm.getLabel(),
+          'type' => String.valueof(fsm.getType())
+        }
+      );
+    }
+    return fieldNames;
   }
 }

@@ -80,4 +80,52 @@ global with sharing class LwcCustomController extends AbstractController {
       //Logger.persist();
     }
   }
+
+  /**
+   * @description Read Full Application with with child record
+   * @author Digital Align Team | 11-30-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse readApplicationWithChild(String applicationId) {
+    try {
+      return ApexResponse.ok(
+        ApplicationService.getInstance().readApplicationWithChild(applicationId)
+      );
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
+    }
+  }
+
+  /**
+   * @description get salesforce fieldDescription
+   * @author Digital Align Team | 11-30-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  global static ApexResponse fetchFieldDetails(Map<String, String> params) {
+    try {
+      log?.fine('Inside fetchFieldDetails');
+      String sObjectName = params.get('sObjectName');
+      String filedSetName = params.get('filedSetName');
+      if (String.isNotBlank(sObjectName) && String.isNotBlank(filedSetName)) {
+        return ApexResponse.ok(
+          LwcCustomService.getInstance()
+            .fetchFieldDetails(sObjectName, filedSetName)
+        );
+      } else {
+        return ApexResponse.ok(
+          LwcCustomService.getInstance().fetchFieldDetails(sObjectName)
+        );
+      }
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete updateConfigValues');
+      Logger.persist();
+    }
+  }
 }
