@@ -53,6 +53,15 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>application360View</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-94291bac-1cd9-4774-8910-c0b1b22cfbab</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>fieldSet</name>
                     <value>WM_Client_Profile_Fin_Acct_Summary</value>
@@ -172,6 +181,19 @@
                 <componentInstanceProperties>
                     <name>title</name>
                     <value>Standard.Tab.detail</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-94291bac-1cd9-4774-8910-c0b1b22cfbab</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Application 360</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
