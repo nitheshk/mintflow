@@ -37,6 +37,7 @@
     <profile>admin</profile>
     <profile>MFlowOnlineSalesforcePlatform</profile>
     <profile>MFlowCustomerCommunityPlusLogin</profile>
+    <profile>MFlowCustomerCommunityLogin</profile>
   </networkMemberGroups>
   <networkPageOverrides>
     <changePasswordPageOverrideSetting
