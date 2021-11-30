@@ -78,19 +78,18 @@ global with sharing class RpaProcessService extends AbstractService {
     String suffixRestUrl = ApexUtils.obtainUrlSuffix(classUrlMapping);
     String precedingUri = suffixRestUrl.substringBefore('/');
     switch on precedingUri {
-      //RestContext.request.requestURI :/mflow/rpa/v1/reviewapplication/
-      when 'reviewapplication' {
-        this.buildReviewApplication();
-      }
-      //RestContext.request.requestURI :/mflow/rpa/v1/submitapplication/
-      when 'submitapplication' {
-        this.buildSubmitApplication();
+      //RestContext.request.requestURI :/mflow/rpa/v1/obtainreviewapplicationdata/
+      //STEP 2:
+      when 'obtainreviewapplicationdata' {
+        this.buildObtainReviewApplicationData();
       }
     }
   }
 
   /**
-   * @description review the application for KYC
+   * @description
+   * Step1:
+   * Review the application for KYC
    * doesn't throw any exception on failure,
    * failure will marked and will pick by scheduler job to resubmit later
    * @author Digital Align Team | 11-25-2021
@@ -160,13 +159,15 @@ global with sharing class RpaProcessService extends AbstractService {
   }
 
   /**
-   * @description
+   * @description example method for post
    * @author Digital Align Team | 11-25-2021
    * @return virtual
    **/
   global virtual void buildReviewApplication() {
-    String str = 'buildReviewApplication'; //generatedJsonFromProvider
-    // Your Logic
+    String str = 'buildReviewApplication';
+    log.debug('string value =' + str);
+    string request = RestContext.request.requestBody.toString();
+    str = RestContext.request.requestBody.toString();
     RestResponse response = RestContext.response;
     response.responseBody = blob.valueOf(str);
     response.statusCode = 200;
@@ -174,15 +175,19 @@ global with sharing class RpaProcessService extends AbstractService {
   }
 
   /**
-   * @description
-   * @author Digital Align Team | 11-25-2021
+   * @description Step2: Fetch complete application data from review submit using applicationID
+   * @author Digital Align | 11-30-2021
    * @return virtual
    **/
-  global virtual void buildSubmitApplication() {
-    String str = 'buildSubmitApplication'; //generatedJsonFromProvider
-    // Your Logic
+  global virtual void buildObtainReviewApplicationData() {
+    RestRequest restReq = RestContext.request;
+    id applicationId = restReq.params.get('applicationId');
+    ApplicationResponseMapper applicationResponse = ApplicationDataAPI.obtainApplicationData(
+      applicationId
+    );
     RestResponse response = RestContext.response;
-    response.responseBody = blob.valueOf(str);
+    response.responseBody = blob.valueOf(Json.serialize(applicationResponse));
     response.statusCode = 200;
+    response.addHeader('Content-Type', 'application/json');
   }
 }
