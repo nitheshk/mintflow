@@ -101,16 +101,16 @@ global with sharing class RpaProcessService extends AbstractService {
     //Flow tracing purpose,, Can be ignore if don't required
     Flow.initialize(ApexRequest.getApplicationId());
     Flow.setFlow('Rpa-Process: review application');
-    //create new api name and setting
+    //#pending
     Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
     try {
       if (HttpBuilder.isActiveApiSetting(APINames.UiPathAddQueue)) {
         HttpBuilder.setAPISetting(APINames.UiPathAddQueue);
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
         map<string, object> params = new Map<string, object>();
-        params.put('NameOfTheQueue', 'NameOfTheQueue'); // Replace with Name Of The  queue in to which application needs to be added
+        params.put('Name', 'NameOfTheQueue'); // Replace with Name Of The  queue in to which application needs to be added
         params.put('Priority', 'Normal'); // Replace with priority of the application
-        params.put('applicationId', application.Id);
+        params.put('SpecificContent', application.Id);
         HttpBuilder.Response response = RpaProcessProvider.getInstance()
           .addKycReviewQueue(params);
         flow.setSubFlowPassed('Flow Completed');

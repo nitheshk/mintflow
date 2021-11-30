@@ -31,14 +31,10 @@ global with sharing class RpaProcessProvider extends AbstractService {
   global virtual HttpBuilder.Response addKycReviewQueue(
     Map<String, object> params
   ) {
-    map<string, object> request = new Map<string, object>();
-    request.put('Name', params.get('NameOfTheQueue'));
-    request.put('Priority', params.get('Normal'));
-    request.put('SpecificContent', params.get('applicationId'));
-    flow.setSubFlowRequest(json.serialize(request, true));
-    log?.debug('Request : ' + json.serialize(request, true));
+    flow.setSubFlowRequest(json.serialize(params, true));
+    log?.debug('Request : ' + json.serialize(params, true));
     HttpResponse response = HttpBuilder.httpCallOut(
-      json.serialize(request, true),
+      json.serialize(params, true),
       getHeader(params)
     );
     if (response.getStatusCode() != 200) {
@@ -56,7 +52,7 @@ global with sharing class RpaProcessProvider extends AbstractService {
     header.put('Accept', 'application/json');
     header.put(
       'Authorization',
-      'Bearer ' + EncodingUtil.base64Encode(Blob.valueOf('Token'))
+      'Bearer ' + EncodingUtil.base64Encode(Blob.valueOf('Token')) //#pending
     );
     header.put(
       'X-UIPATH-OrganizationUnitId',
