@@ -590,7 +590,7 @@ gulp.task(
     "installPackageFSCExt",
     "pushToscratch",
     "updatePermissionSet",
-    "createUser",
+    "createCommunityUser",
     "publishCommunities",
     "systemConfigImport"
   )

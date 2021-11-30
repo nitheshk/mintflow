@@ -28,7 +28,11 @@ global abstract with sharing class AbstractController {
   global static void validateRequest(ApexRequest request) {
     if (request != null) {
       request?.setRequest();
-      if (!Test.isRunningTest()) {
+      if (
+        !Test.isRunningTest() &&
+        UserInfo.getUserName() ==
+        SiteSetting__c.getInstance().mflow__OnlineSiteUserName__c
+      ) {
         //validate token;
         //throw custom exception on any error
         SecurityUtils.validateSession();
