@@ -109,7 +109,7 @@ global with sharing class RpaProcessService extends AbstractService {
         map<string, object> params = new Map<string, object>();
         params.put('Name', 'NameOfTheQueue'); // Replace with Name Of The  queue in to which application needs to be added
         params.put('Priority', 'Normal'); // Replace with priority of the application
-        params.put('SpecificContent', application.Id);
+        params.put('SpecificContent', application.ApplicationNumber__c);
         HttpBuilder.Response response = RpaProcessProvider.getInstance()
           .addKycReviewQueue(params);
         flow.setSubFlowPassed('Flow Completed');
@@ -181,9 +181,9 @@ global with sharing class RpaProcessService extends AbstractService {
    **/
   global virtual void buildObtainReviewApplicationData() {
     RestRequest restReq = RestContext.request;
-    id applicationId = restReq.params.get('applicationId');
+    string applicationName = restReq.params.get('applicationName');
     ApplicationResponseMapper applicationResponse = ApplicationDataAPI.obtainApplicationData(
-      applicationId
+      applicationName
     );
     RestResponse response = RestContext.response;
     response.responseBody = blob.valueOf(Json.serialize(applicationResponse));

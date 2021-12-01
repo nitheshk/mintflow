@@ -14,19 +14,20 @@ global with sharing class ApplicationDataAPI {
    * @return ApplicationResponseMapper
    **/
   global static ApplicationResponseMapper obtainApplicationData(
-    string applicationId
+    string applicationNumber
   ) {
     {
       log
         ?.fine(
-          'Inside obtainApplicationData -> applicationId -> ' + applicationId
+          'Inside obtainApplicationData -> applicationNumber -> ' +
+          applicationNumber
         );
       ApplicationResponseMapper mapper = new ApplicationResponseMapper();
-      if (String.isBlank(applicationId)) {
+      if (String.isBlank(applicationNumber)) {
         throw new CustomException('Application ID cannot be blank');
       }
       Account application = ApplicationService.getInstance()
-        .readApplicationWithChild(applicationId);
+        .readApplicationWithChildByapplicationNumber(applicationNumber);
       log?.debug('Full Application Json : ' + json.serialize(application));
       if (application != null) {
         ApplicationResponseMapper.Account mapperApplication = new ApplicationResponseMapper.Account();

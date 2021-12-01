@@ -111,6 +111,20 @@ global with sharing class ApplicationService extends AbstractService {
   }
 
   /**
+   * @description Read application by appliation name passed
+   * @author Digital Align | 12-01-2021
+   * @param string applicationNumber
+   * @return virtual
+   **/
+  global virtual Account readApplicationWithChildByapplicationNumber(
+    string applicationNumber
+  ) {
+    Account application = ApplicationRepository.readApplicationByapplicationNumber(
+      applicationNumber
+    );
+    return readApplicationWithChild(application.Id);
+  }
+  /**
    * @description Read application by parameter passed
    * @author Digital Align Team | 10-21-2021
    * @param Map<String Object> params

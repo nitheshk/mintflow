@@ -31,6 +31,26 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   }
 
   /**
+   * @description Read Application with child record using application Name
+   * Applicants contains only ids
+   * Financial Account contains only Ids
+   * @author Digital Align | 12-01-2021
+   * @param string applicationNumber
+   * @return Account
+   **/
+  global static Account readApplicationByapplicationNumber(
+    string applicationNumber
+  ) {
+    return (Account) DatabaseUtils.getRecord(
+      new Query(Account.SObjectType)
+        .addFieldSet('mflow__Application')
+        //.removeFields('mflow__SessionToken__c')
+        .whereEq('mflow__ApplicationNumber__c', applicationNumber)
+        .toString()
+    );
+  }
+
+  /**
    * @description Read Application child with specified applicatid
    * @author Digital Align Team | 11-19-2021
    * @param Id applicationId
