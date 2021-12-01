@@ -3,7 +3,6 @@ const gulp = require("gulp");
 const utils = require("../utils");
 var zipFolder = require("zip-folder");
 let config = require("../root.json");
-const { debug } = require("console");
 
 //readUiConfig_MintFlow
 gulp.task("readUiConfig_MintFlow", function (finish) {
@@ -60,11 +59,21 @@ gulp.task("buildStaticResource_MintFlow", (finish) => {
   }
 });
 
+gulp.task("pushStaticResource_MintFlow", function (finish) {
+  let scriptToRun = `sfdx force:source:deploy -p ${config.ui.MintFlow.staticResourceFolder}${config.ui.MintFlow.staticResourceName}`;
+  console.log("Script To Run - " + scriptToRun);
+  utils.runCommand(scriptToRun).then((result) => {
+    console.log(result);
+    finish();
+  });
+});
+
 gulp.task(
   "buildUI_MintFlow",
   gulp.series(
     "readUiConfig_MintFlow",
     "npmRunBuild_MintFlow",
-    "buildStaticResource_MintFlow"
+    "buildStaticResource_MintFlow",
+    "pushStaticResource_MintFlow"
   )
 );
