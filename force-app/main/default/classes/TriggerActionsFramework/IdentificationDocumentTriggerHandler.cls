@@ -25,9 +25,6 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
       if (String.isNotBlank(iDoc.SecondaryContentDocumentId__c)) {
         fileDtos.add(new FileDTO(iDoc.SecondaryContentDocumentId__c, iDoc.Id));
       }
-      if (String.isNotBlank(iDoc.AddressContentDocumentId__c)) {
-        fileDtos.add(new FileDTO(iDoc.AddressContentDocumentId__c, iDoc.Id));
-      }
     }
     if (!fileDtos.isEmpty()) {
       FileService.getInstance().linkContentDocumentWithEntity(fileDtos);
@@ -77,20 +74,6 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
           contentDocumentIds.add(oldIDoc.SecondaryContentDocumentId__c);
         }
       }
-
-      if (
-        oldIDoc.AddressContentDocumentId__c !=
-        newIDoc.AddressContentDocumentId__c
-      ) {
-        if (String.isNotBlank(newIDoc.AddressContentDocumentId__c)) {
-          fileDtos.add(
-            new FileDTO(newIDoc.AddressContentDocumentId__c, newIDoc.Id)
-          );
-        }
-        if (String.isNotBlank(oldIDoc.AddressContentDocumentId__c)) {
-          contentDocumentIds.add(oldIDoc.AddressContentDocumentId__c);
-        }
-      }
     }
 
     //delete old content version
@@ -115,13 +98,8 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
       if (String.isNotBlank(iDoc.PrimaryContentDocumentID__c)) {
         contentDocumentIds.add(iDoc.PrimaryContentDocumentID__c);
       }
-
       if (String.isNotBlank(iDoc.SecondaryContentDocumentId__c)) {
         contentDocumentIds.add(iDoc.SecondaryContentDocumentId__c);
-      }
-
-      if (String.isNotBlank(iDoc.AddressContentDocumentId__c)) {
-        contentDocumentIds.add(iDoc.AddressContentDocumentId__c);
       }
     }
     //delete old content version

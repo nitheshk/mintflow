@@ -36,6 +36,12 @@ global abstract with sharing class AbstractController {
         //validate token;
         //throw custom exception on any error
         SecurityUtils.validateSession();
+      } else if (
+        UserInfo.getUserName() !=
+        SiteSetting__c.getInstance().mflow__OnlineSiteUserName__c &&
+        String.isNotBlank(ApexRequest.getToken())
+      ) {
+        SecurityUtils.validateSession();
       }
     } else {
       throw new CustomException('Invalid Request');

@@ -111,7 +111,6 @@ global with sharing class ApplicationResponseMapper {
   }
 
   global class IdentificationDocument {
-    global String AddressContentDocumentId;
     global String IdentificationDocumentId;
     global String Gender;
     global String Height;

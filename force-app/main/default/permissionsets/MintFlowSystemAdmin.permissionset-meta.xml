@@ -2867,13 +2867,7 @@
         <field>User.Channel__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field
-    >FinServ__IdentificationDocument__c.AddressContentDocumentId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	   <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field
     >FinServ__IdentificationDocument__c.PrimaryContentDocumentID__c</field>

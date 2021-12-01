@@ -54,11 +54,12 @@ request.setHeader(
 ApexResponse res = ApplicationController.deleteEntity(request);
 system.debug('Full Json : ' + res.data);
 
+//------------------------------------------------------------------------------
 // #4 Review information
 ApexRequest request = new ApexRequest();
 request.token = SecurityUtils.generateTokenForTesting(
-  '0010p000010fl06AAA',
-  'a0b0p0000026aUsAAI',
+  '0016D00000ZAr5lQAD',
+  '',
   'Primary',
   'ApplicationFlow'
 );
@@ -66,6 +67,7 @@ system.debug(request.token);
 ApexResponse res = ApplicationController.reviewInformationSubmit(request);
 system.debug('Full Json : ' + res.data);
 
+//--------------------------------------------------------------------------------
 // #8 validateToken
 ApexRequest request = new ApexRequest();
 request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrRU9BKBo6SZPCYhyNXv2HRPss325sZoznoK5yUsbQ/zZGQ3T0A+q+L0aEFmO3y7x/8VomqRl1Sk0SHCtmXbu0pkOw26VNRQ//qVHT2s8ZA0JNI+pO9W0rEa1EA0Z3lc8KuB+aBq3+w02+PmJXb996u6';

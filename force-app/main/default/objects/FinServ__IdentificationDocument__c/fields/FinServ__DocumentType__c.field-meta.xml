@@ -51,6 +51,11 @@
                 <default>false</default>
                 <label>Address Proof</label>
             </value>
+            <value>
+                <fullName>Driver License</fullName>
+                <default>false</default>
+                <label>Driver License</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

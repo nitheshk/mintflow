@@ -23,17 +23,17 @@
                 <label>W9 Forms</label>
             </value>
             <value>
-                <fullName>DriverLicense</fullName>
+                <fullName>Driver License</fullName>
                 <default>false</default>
                 <label>Driver License</label>
             </value>
             <value>
-                <fullName>MilitaryId</fullName>
+                <fullName>Military Id</fullName>
                 <default>false</default>
                 <label>Military Id</label>
             </value>
             <value>
-                <fullName>StateId</fullName>
+                <fullName>State Id</fullName>
                 <default>false</default>
                 <label>State Id</label>
             </value>
@@ -51,6 +51,16 @@
                 <fullName>Other</fullName>
                 <default>false</default>
                 <label>Other</label>
+            </value>
+            <value>
+                <fullName>Green Card</fullName>
+                <default>false</default>
+                <label>Green Card</label>
+            </value>
+            <value>
+                <fullName>Address Proof</fullName>
+                <default>false</default>
+                <label>Address Proof</label>
             </value>
         </valueSetDefinition>
     </valueSet>

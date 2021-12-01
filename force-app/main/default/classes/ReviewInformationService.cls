@@ -81,7 +81,6 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     //Mark currrent primary applicant has submitted the application
     primaryApplicant.Status__c = ApplicationConstant.SUBMITTED;
-    ApplicantRepository.upsertRecord(primaryApplicant);
 
     Boolean isFlowCompleted = true;
     for (Applicant__c applicant : application.Applicants__r) {
@@ -112,6 +111,8 @@ global with sharing class ReviewInformationService extends AbstractService {
       CustomerEmailService.getInstance()
         .reviewInformationSubmitted(jointApplicants, 'JointStartApplication');
     }
+
+    ApplicantRepository.upsertRecords(application.Applicants__r);
     log?.info('Completed primaryConsumerFlow');
     return application;
   }
@@ -138,7 +139,6 @@ global with sharing class ReviewInformationService extends AbstractService {
       ))
       .get(ApexRequest.getApplicantId());
     currentJointApplicant.Status__c = ApplicationConstant.SUBMITTED;
-    ApplicantRepository.upsertRecord(currentJointApplicant);
 
     Boolean isFlowCompleted = true;
     for (Applicant__c applicant : application.Applicants__r) {
@@ -168,6 +168,8 @@ global with sharing class ReviewInformationService extends AbstractService {
       // RpaProcessService.getInstance().scheduleReviewApplication(application);
     }
 
+    ApplicantRepository.upsertRecords(application.Applicants__r);
+    log?.info('Completed jointConsumerFlow');
     return application;
   }
 }

@@ -195,9 +195,8 @@ global with sharing class ApplicationDataAPI {
     list<ApplicationResponseMapper.IdentificationDocument> mapperIdentityList = new List<ApplicationResponseMapper.IdentificationDocument>();
     for (FinServ__IdentificationDocument__c identity : identityList) {
       ApplicationResponseMapper.IdentificationDocument mapperIdentity = new ApplicationResponseMapper.IdentificationDocument();
-      mapperIdentity.AddressContentDocumentId = identity.Id;
+      mapperIdentity.IdentificationDocumentId = identity.Id;
       mapperIdentity.IssuingCountry = identity.FinServ__IssuingCountry__c;
-      mapperIdentity.AddressContentDocumentId = identity.mflow__AddressContentDocumentId__c;
       mapperIdentity.DocumentNumber = identity.FinServ__DocumentNumber__c;
       mapperIdentity.DocumentType = identity.FinServ__DocumentType__c;
       mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
