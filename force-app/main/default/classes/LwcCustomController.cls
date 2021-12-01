@@ -82,7 +82,7 @@ global with sharing class LwcCustomController extends AbstractController {
   }
 
   /**
-   * @description Read Full Application with with child record
+   * @description Read Full Application with with child records
    * @author Digital Align Team | 11-30-2021
    * @param Map<String String> params
    * @return ApexResponse
@@ -91,7 +91,7 @@ global with sharing class LwcCustomController extends AbstractController {
   global static ApexResponse readApplicationWithChild(String applicationId) {
     try {
       return ApexResponse.ok(
-        ApplicationService.getInstance().readApplicationWithChild(applicationId)
+        LwcCustomService.getInstance().readApplicationWithChild(applicationId)
       );
     } catch (Exception ex) {
       return ApexResponse.fail(ex);

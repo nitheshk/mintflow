@@ -85,6 +85,35 @@ global with sharing class LwcCustomService extends AbstractService {
   }
 
   /**
+   * @description
+   * @author Digital Align Team | 12-01-2021
+   * @param Id applicationId
+   * @return virtual
+   **/
+  global virtual Account readApplicationWithChild(Id applicationId) {
+    Account application = LwcCustomRepository.readApplicationWithChild(
+      applicationId
+    );
+
+    List<Applicant__c> applicants = LwcCustomRepository.readApplicantsWithChild(
+      new Map<id, SObject>(application.Applicants__r).keyset()
+    );
+    List<FinServ__FinancialAccount__c> financialAccounts = LwcCustomRepository.readFinancialAccountsWithChild(
+      new Map<id, SObject>(application.FinServ__HouseholdFinancialAccounts__r)
+        .keyset()
+    );
+
+    //Combine result into single application object
+    SObjectConstructor builder = SObjectConstructor.getInstance(application);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
+    builder.setChildObjects(
+      'FinServ__HouseholdFinancialAccounts__r',
+      financialAccounts
+    );
+    return (Account) builder.build();
+  }
+
+  /**
    * @description fetch sobject field detail based on sobject name and field set name
    * @author Digital Align Team | 11-30-2021
    * @param String sObjectName

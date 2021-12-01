@@ -17,7 +17,6 @@
         ><c-record-detail-view
           record={record}
           s-object-name="Account"
-          filed-set-name="mflow__Application"
           title-name="Application Details"
           hide-null-values="true"
         ></c-record-detail-view>
@@ -50,7 +49,7 @@
                     </lightning-tab>
                   </template>
                   <template if:true={data.mflow__IdentificationDocuments__r}>
-                    <lightning-tab label="Contact Point Addresses">
+                    <lightning-tab label="Identification Document">
                       <c-record-detail-view
                         key={data.Id}
                         record={data.mflow__IdentificationDocuments__r}

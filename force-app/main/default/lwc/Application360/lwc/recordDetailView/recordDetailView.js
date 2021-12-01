@@ -37,8 +37,10 @@ export default class RecordDetailView extends LightningElement {
                   !this.hideNullValues ||
                   this.record[d][result[keyValue].key]
                 ) {
-                  // eslint-disable-next-line eqeqeq
-                  if (result[keyValue].type == "DATETIME") {
+                  if (result[keyValue].type === "REFERENCE") {
+                    continue;
+                  }
+                  if (result[keyValue].type === "DATETIME") {
                     let dt = new Date(this.record[d][result[keyValue].key]);
                     tempData.push({
                       key: result[keyValue].value,
@@ -67,7 +69,10 @@ export default class RecordDetailView extends LightningElement {
             let tempData = [];
             for (let keyValue in result) {
               if (!this.hideNullValues || this.record[result[keyValue].key]) {
-                if (result[keyValue].type == "DATETIME") {
+                if (result[keyValue].type === "REFERENCE") {
+                  continue;
+                }
+                if (result[keyValue].type === "DATETIME") {
                   let dt = new Date(this.record[result[keyValue].key]);
                   tempData.push({
                     key: result[keyValue].value,
