@@ -284,6 +284,25 @@ global virtual with sharing class FileService extends AbstractService {
     );
   }
 
+  global virtual List<ContentVersion> fetchContentVersionByEntityIds(
+    list<Id> entityIds,
+    Boolean ignoreVersionData
+  ) {
+    list<Id> contentDocumentIds = new List<Id>();
+    for (
+      ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(
+        entityIds
+      )
+    ) {
+      contentDocumentIds.add(cdl.ContentDocumentId);
+    }
+    system.debug('contentDocumentIds =' + contentDocumentIds);
+    return FileRepository.fetchContentVersionsByCD(
+      contentDocumentIds,
+      ignoreVersionData
+    );
+  }
+
   /**
    * @description fetch content version by entiry id and content types
    * @author Digital Align Team | 08-02-2021

@@ -132,6 +132,17 @@ public with sharing class FileRepository extends DatabaseUtils {
     );
   }
 
+  public static List<ContentDocumentLink> fetchContentDocumentLinks(
+    list<Id> entityIds
+  ) {
+    return (List<ContentDocumentLink>) getRecords(
+      Query.newInstance(ContentDocumentLink.SObjectType)
+        .addFields('ContentDocumentId')
+        .whereIn('LinkedEntityId', entityIds)
+        .toString(true)
+    );
+  }
+
   /**
    * @description Used to delete Content version
    * @author Digital Align Team | 08-02-2021
