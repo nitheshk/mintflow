@@ -12,7 +12,7 @@
   </button>-->
 
   <template if:true={record}>
-    <lightning-tabset variant="scoped" active-tab-value="Application">
+    <!--  <lightning-tabset variant="scoped" active-tab-value="Applicant">
       <lightning-tab label="Application Details" value="Application"
         ><c-record-detail-view
           record={record}
@@ -20,62 +20,62 @@
           title-name="Application Details"
           hide-null-values="true"
         ></c-record-detail-view>
-      </lightning-tab>
+      </lightning-tab> -->
 
-      <template if:true={record.mflow__Applicants__r}>
-        <lightning-tab label="Applicant Details" value="Applicant">
-          <lightning-tabset variant="scoped">
-            <template for:each={record.mflow__Applicants__r} for:item="data">
-              <lightning-tab key={data.Id} label={data.Name}>
-                <lightning-tabset variant="scoped">
-                  <lightning-tab label="Detail">
-                    <c-record-detail-view
-                      key={data.Id}
-                      record={data}
-                      s-object-name="mflow__Applicant__c"
-                      title-name="Applicant Details"
-                      hide-null-values="true"
-                    ></c-record-detail-view>
-                  </lightning-tab>
-                  <template if:true={data.mflow__ContactPointAddresses__r}>
-                    <lightning-tab label="Contact Point Addresses">
-                      <c-record-detail-view
-                        key={data.Id}
-                        record={data.mflow__ContactPointAddresses__r}
-                        s-object-name="ContactPointAddress"
-                        title-name="Contact Point Addressess"
-                        hide-null-values="true"
-                      ></c-record-detail-view>
-                    </lightning-tab>
-                  </template>
-                  <template if:true={data.mflow__IdentificationDocuments__r}>
-                    <lightning-tab label="Identification Document">
-                      <c-record-detail-view
-                        key={data.Id}
-                        record={data.mflow__IdentificationDocuments__r}
-                        s-object-name="FinServ__IdentificationDocument__c"
-                        title-name="Identification Document"
-                        hide-null-values="true"
-                      ></c-record-detail-view>
-                    </lightning-tab>
-                  </template>
-                  <template if:true={data.mflow__Employments__r}>
-                    <lightning-tab label="Employment Deails">
-                      <c-record-detail-view
-                        key={data.Id}
-                        record={data.mflow__Employments__r}
-                        s-object-name="FinServ__Employment__c"
-                        title-name="Employee Deails"
-                        hide-null-values="true"
-                      ></c-record-detail-view>
-                    </lightning-tab>
-                  </template>
-                </lightning-tabset>
+    <template if:true={record.mflow__Applicants__r}>
+      <!-- <lightning-tab label="Applicant Details" value="Applicant"> -->
+      <lightning-tabset variant="scoped">
+        <template for:each={record.mflow__Applicants__r} for:item="data">
+          <lightning-tab key={data.Id} label={data.Name}>
+            <lightning-tabset variant="scoped">
+              <lightning-tab label="Detail">
+                <c-record-detail-view
+                  key={data.Id}
+                  record={data}
+                  s-object-name="mflow__Applicant__c"
+                  title-name="Applicant Details"
+                  hide-null-values="true"
+                ></c-record-detail-view>
               </lightning-tab>
-            </template>
-          </lightning-tabset>
-        </lightning-tab>
-      </template>
-    </lightning-tabset>
+              <template if:true={data.mflow__ContactPointAddresses__r}>
+                <lightning-tab label="Contact Point Addresses">
+                  <c-record-detail-view
+                    key={data.Id}
+                    record={data.mflow__ContactPointAddresses__r}
+                    s-object-name="ContactPointAddress"
+                    title-name="Contact Point Addressess"
+                    hide-null-values="true"
+                  ></c-record-detail-view>
+                </lightning-tab>
+              </template>
+              <template if:true={data.mflow__IdentificationDocuments__r}>
+                <lightning-tab label="Identification Document">
+                  <c-record-detail-view
+                    key={data.Id}
+                    record={data.mflow__IdentificationDocuments__r}
+                    s-object-name="FinServ__IdentificationDocument__c"
+                    title-name="Identification Document"
+                    hide-null-values="true"
+                  ></c-record-detail-view>
+                </lightning-tab>
+              </template>
+              <template if:true={data.mflow__Employments__r}>
+                <lightning-tab label="Employment Deails">
+                  <c-record-detail-view
+                    key={data.Id}
+                    record={data.mflow__Employments__r}
+                    s-object-name="FinServ__Employment__c"
+                    title-name="Employee Deails"
+                    hide-null-values="true"
+                  ></c-record-detail-view>
+                </lightning-tab>
+              </template>
+            </lightning-tabset>
+          </lightning-tab>
+        </template>
+      </lightning-tabset>
+      <!-- </lightning-tab> -->
+    </template>
+    <!--  </lightning-tabset> -->
   </template>
 </template>
