@@ -31,6 +31,16 @@
                 <default>false</default>
                 <label>W2</label>
             </value>
+            <value>
+                <fullName>Utility Bill</fullName>
+                <default>false</default>
+                <label>Utility Bill</label>
+            </value>
+            <value>
+                <fullName>Bank Statement</fullName>
+                <default>false</default>
+                <label>Bank Statement</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
