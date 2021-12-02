@@ -34,9 +34,9 @@
       "permissionSet1": "./deploy/scratchOrg/apex/AssignPermissionSet.apex"
     },
     "createUser": {
-      "createUser1": "./deploy/scratchOrg/apex/CreateUser.apex",
-      "createCommunityUserPre1": "./deploy/scratchOrg/apex/CreateAccountForUser.apex",
-      "createCommunityUser1": "./deploy/scratchOrg/apex/CreateCommunityUser.apex"
+      "createPlatformUser": "./deploy/scratchOrg/apex/CreateUser.apex",
+      "createCommunityUserAccount": "./deploy/scratchOrg/apex/CreateAccountForUser.apex",
+      "createCommunityUser": "./deploy/scratchOrg/apex/CreateCommunityUser.apex"
     }
   },
 

@@ -166,8 +166,8 @@ gulp.task("pushToscratch", function (finish) {
     });
 });
 
-//createUser
-gulp.task("createUser", function (finish) {
+//createPlatformUser
+gulp.task("createPlatformUser", function (finish) {
   let scriptToRun = `git config user.email`;
   utils
     .runCommand(scriptToRun)
@@ -175,14 +175,14 @@ gulp.task("createUser", function (finish) {
       console.log("Result :" + result);
 
       const contents = fs.readFileSync(
-        `${config.permission.createUser.createUser1}`,
+        `${config.permission.createUser.createPlatformUser}`,
         "utf8"
       );
 
       let replaced_contents = contents.replace("{{Email}}", result.trim());
 
       fs.writeFileSync(
-        `${config.permission.createUser.createUser1}`,
+        `${config.permission.createUser.createPlatformUser}`,
         replaced_contents,
         "utf8"
       );
@@ -192,7 +192,7 @@ gulp.task("createUser", function (finish) {
       process.exit(1);
     });
 
-  scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createUser1}`;
+  scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createPlatformUser}`;
   console.log("Script To Run - " + scriptToRun);
 
   utils
@@ -228,76 +228,73 @@ gulp.task("createUser", function (finish) {
     });
 });
 
-//createUser
+//createCommunityUser
 gulp.task("createCommunityUser", function (finish) {
   //create account and contact
-  let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createCommunityUserPre1}`;
+  let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createCommunityUserAccount}`;
   console.log("Script To Run - " + scriptToRun);
   utils
     .runCommand(scriptToRun)
     .then((result) => {
       console.log("Result :" + result);
-    })
-    .catch((err) => {
-      console.log("Error :" + err.stdout);
-      process.exit(1);
-    });
 
-  // update script with git email address
-  scriptToRun = `git config user.email`;
-  utils
-    .runCommand(scriptToRun)
-    .then((result) => {
-      console.log("Result :" + result);
-
-      const contents = fs.readFileSync(
-        `${config.permission.createUser.createCommunityUser1}`,
-        "utf8"
-      );
-
-      let replaced_contents = contents.replace("{{Email}}", result.trim());
-
-      fs.writeFileSync(
-        `${config.permission.createUser.createCommunityUser1}`,
-        replaced_contents,
-        "utf8"
-      );
-    })
-    .catch((err) => {
-      console.log("Error :" + err.stdout);
-      process.exit(1);
-    });
-
-  //create user
-  scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createCommunityUser1}`;
-  console.log("Script To Run - " + scriptToRun);
-
-  utils
-    .runCommand(scriptToRun)
-    .then((result) => {
-      console.log("Result :" + result);
-      let jsonString = result.substring(
-        result.lastIndexOf("{QueryStart}") + 12,
-        result.lastIndexOf("{QueryEnd}")
-      );
-      const data = JSON.parse(jsonString);
-      console.log("Username :" + data.Username);
-
-      let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json");
-      applicationConfiguration.records[0].mflow__OnlineSiteUserName__c =
-        data.Username;
-      // update site urls
+      // update script with git email address
+      scriptToRun = `git config user.email`;
       utils
-        .createFile(
-          "./data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json",
-          JSON.stringify(applicationConfiguration, null, 2)
-        )
+        .runCommand(scriptToRun)
+        .then((result) => {
+          console.log("Result :" + result);
+          const contents = fs.readFileSync(
+            `${config.permission.createUser.createCommunityUser}`,
+            "utf8"
+          );
+          let replaced_contents = contents.replace("{{Email}}", result.trim());
+          fs.writeFileSync(
+            `${config.permission.createUser.createCommunityUser}`,
+            replaced_contents,
+            "utf8"
+          );
+
+          //create community user
+          let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createCommunityUser}`;
+          console.log("Script To Run - " + scriptToRun);
+
+          utils
+            .runCommand(scriptToRun)
+            .then((result) => {
+              console.log("Result :" + result);
+              let jsonString = result.substring(
+                result.lastIndexOf("{QueryStart}") + 12,
+                result.lastIndexOf("{QueryEnd}")
+              );
+              const data = JSON.parse(jsonString);
+              console.log("Username :" + data.Username);
+
+              let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json");
+              applicationConfiguration.records[0].mflow__OnlineSiteUserName__c =
+                data.Username;
+              // update site urls
+              utils
+                .createFile(
+                  "./data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json",
+                  JSON.stringify(applicationConfiguration, null, 2)
+                )
+                .catch((err) => {
+                  console.log("err :" + JSON.stringify(err));
+                  process.exit(1);
+                });
+
+              finish();
+            })
+            .catch((err) => {
+              console.log("Error :" + err.stdout);
+              process.exit(1);
+            });
+        })
         .catch((err) => {
-          console.log("err :" + JSON.stringify(err));
+          console.log("Error :" + err.stdout);
           process.exit(1);
         });
-
-      finish();
     })
     .catch((err) => {
       console.log("Error :" + err.stdout);
@@ -610,7 +607,7 @@ gulp.task(
     "installPackageFSCExt",
     "pushToscratch",
     "updatePermissionSet",
-    "createUser",
+    "createPlatformUser",
     "publishCommunities",
     "systemConfigImport"
   )
