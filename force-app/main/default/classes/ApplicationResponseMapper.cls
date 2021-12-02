@@ -68,25 +68,25 @@ global with sharing class ApplicationResponseMapper {
     global List<ContactPointAddress> ContactPointAddresses;
     global List<Revenue> Revenues;
     global List<Employment> Employments;
-    global List<AssetsAndLiabilities> AssetsAndLiabilities;
+    // global List<AssetsAndLiabilities> AssetsAndLiabilities;
     global Applicant() {
       Employments = new List<Employment>();
       Revenues = new List<Revenue>();
       ContactPointAddresses = new List<ContactPointAddress>();
       IdentificationDocuments = new List<IdentificationDocument>();
-      AssetsAndLiabilities = new List<AssetsAndLiabilities>();
+      // AssetsAndLiabilities = new List<AssetsAndLiabilities>();
     }
   }
 
-  global class AssetsAndLiabilities {
-    global String AssetsAndLiabilitieId;
-    global Double Amount;
-    global String AssetsAndLiabilitiesType;
-    global Decimal Order;
-    global String OwnerType;
-    global String Ownership;
-    global String Name;
-  }
+  // global class AssetsAndLiabilities {
+  //   global String AssetsAndLiabilitieId;
+  //   global Double Amount;
+  //   global String AssetsAndLiabilitiesType;
+  //   global Decimal Order;
+  //   global String OwnerType;
+  //   global String Ownership;
+  //   global String Name;
+  // }
 
   global class Revenue {
     global String RevenueId;

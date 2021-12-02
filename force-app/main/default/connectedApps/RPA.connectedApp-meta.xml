@@ -3,9 +3,7 @@
     <contactEmail>kshama.v@digitalalign.com</contactEmail>
     <label>RPA</label>
     <oauthConfig>
-        <callbackUrl>https://www.salesforce.com</callbackUrl>
-        <consumerKey
-    >3MVG9aWdXtdHRrI1Yp8UtMmMbn0vP7NJP61tzGHKRk7mPoKD13YKx.OTXxPdx3M1BGXSJra_Xja0w4l.il.AG</consumerKey>
+        <callbackUrl>https://www.getpostman.com/oauth2/callback</callbackUrl>
         <isAdminApproved>false</isAdminApproved>
         <isConsumerSecretOptional>false</isConsumerSecretOptional>
         <isIntrospectAllTokens>false</isIntrospectAllTokens>
