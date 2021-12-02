@@ -2,8 +2,8 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ContactPerson</fullName>
     <active>true</active>
-    <description>Contact Person</description>
-    <label>Contact Person</label>
+    <description>Emergency Contact</description>
+    <label>Emergency Contact</label>
     <picklistValues>
         <picklist>ApplicantType__c</picklist>
         <values>
@@ -11,7 +11,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Contact Person</fullName>
+            <fullName>Emergency Contact</fullName>
             <default>false</default>
         </values>
         <values>

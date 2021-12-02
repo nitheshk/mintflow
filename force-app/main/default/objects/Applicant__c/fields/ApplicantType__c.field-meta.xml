@@ -31,9 +31,9 @@
                 <label>Family Member</label>
             </value>
             <value>
-                <fullName>Contact Person</fullName>
+                <fullName>Emergency Contact</fullName>
                 <default>false</default>
-                <label>Contact Person</label>
+                <label>Emergency Contact</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -135,7 +135,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
           'Joint',
           'Beneficiary',
           'Family Member',
-          'Contact Person' {
+          'Emergency Contact' {
           recordTypeName = applicant.ApplicantType__c;
         }
         when else {
@@ -146,8 +146,8 @@ global with sharing class ApplicationPersistService extends AbstractService {
             ? 'Joint'
             : (applicantTypes.contains('Beneficiary')
                 ? 'Beneficiary'
-                : (applicantTypes.contains('Contact Person')
-                    ? 'Contact Person'
+                : (applicantTypes.contains('Emergency Contact')
+                    ? 'Emergency Contact'
                     : recordTypeName));
         }
       }
