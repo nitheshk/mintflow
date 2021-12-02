@@ -4052,7 +4052,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Applicant__c.ContactPerson</recordType>
+        <recordType>Applicant__c.EmergencyContact</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

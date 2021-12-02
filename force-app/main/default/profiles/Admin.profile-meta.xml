@@ -59,7 +59,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Applicant__c-Applicant Layout</layout>
-        <recordType>Applicant__c.ContactPerson</recordType>
+        <recordType>Applicant__c.EmergencyContact</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Applicant__c-Applicant Layout</layout>
@@ -123,7 +123,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Applicant__c.ContactPerson</recordType>
+        <recordType>Applicant__c.EmergencyContact</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

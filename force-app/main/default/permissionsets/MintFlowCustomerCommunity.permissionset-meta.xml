@@ -3930,7 +3930,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Applicant__c.ContactPerson</recordType>
+        <recordType>Applicant__c.EmergencyContact</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
