@@ -1,5 +1,5 @@
 // #1
-String q = new Query(Profile.SObjectType)
+String q = Query.newInstance(Profile.SObjectType)
   .addFields()
   .whereCon('UserType=\'Standard\'')
   .toString();
@@ -17,7 +17,7 @@ acc = (Account) DatabaseUtils.insertRecordsBySharing(
 
 // #3
 
-String q = new Query(Account.SObjectType)
+String q = Query.newInstance(Account.SObjectType)
   .addFields()
   .whereCon('id=\'0011y00000HpUSMAA3\'')
   .toString();

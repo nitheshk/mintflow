@@ -41,7 +41,7 @@ Account acc1 = (Account) SObjectConstructor.getInstance(acc)
 system.debug('acc : ' + JSON.Serialize(acc1));
 
 // #4
-String q = new Query(Account.SObjectType)
+String q = Query.newInstance(Account.SObjectType)
   .addFields('Name')
   .queryChild('FinServ__HouseholdFinancialAccounts__r')
   .addFields('FinServ__PrimaryOwner__r.PersonContactId')
@@ -55,7 +55,7 @@ String pa = sl1[0]
   .FinServ__HouseholdFinancialAccounts__r[0]
   .FinServ__PrimaryOwner__c;
 
-q = new Query(Account.SObjectType)
+q = Query.newInstance(Account.SObjectType)
   .addFields()
   .queryChild('FinServ__Employment__pr')
   .addFields()

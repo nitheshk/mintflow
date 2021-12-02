@@ -17,8 +17,9 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
    **/
   global static Account readApplicationWithChild(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
-      new Query(Account.SObjectType)
-        .addFieldSet('mflow__Application')
+      Query.newInstance(Account.SObjectType)
+        //.addFieldSet('mflow__Application')
+        .addFields()
         //.removeFields('mflow__SessionToken__c')
         .queryChild('mflow__Applicants__r')
         .orderBy('mflow__Order__c')
@@ -38,13 +39,14 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
    * @param string applicationNumber
    * @return Account
    **/
-  global static Account readApplicationByapplicationNumber(
+  global static Account readApplicationByApplicationNumber(
     string applicationNumber
   ) {
     return (Account) DatabaseUtils.getRecord(
-      new Query(Account.SObjectType)
-        .addFieldSet('mflow__Application')
-        //.removeFields('mflow__SessionToken__c')
+      Query.newInstance(Account.SObjectType)
+        //.addFieldSet('mflow__Application')
+        .addFields()
+        .removeFields('mflow__SessionToken__c')
         .whereEq('mflow__ApplicationNumber__c', applicationNumber)
         .toString()
     );
@@ -62,8 +64,9 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
     Id applicantId
   ) {
     return (Account) DatabaseUtils.getRecord(
-      new Query(Account.SObjectType)
-        .addFieldSet('mflow__Application')
+      Query.newInstance(Account.SObjectType)
+        //.addFieldSet('mflow__Application')
+        .addFields()
         .removeFields('mflow__SessionToken__c')
         .queryChild('mflow__Applicants__r')
         .whereEq('Id', applicantId)
@@ -84,7 +87,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
    **/
   global static Account readApplicationById(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
-      new Query(Account.SObjectType)
+      Query.newInstance(Account.SObjectType)
         .addFields()
         .whereEq('Id', applicationId)
         .toString()
@@ -99,7 +102,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
    **/
   global static Account readApplicationForToken(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
-      new Query(Account.SObjectType)
+      Query.newInstance(Account.SObjectType)
         .addFields('SessionToken__c,ApplicationNumber__c')
         .whereEq('Id', applicationId)
         .toString()
@@ -114,8 +117,9 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
    **/
   global static Account readApplicationWithApplicants(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
-      new Query(Account.SObjectType)
-        .addFieldSet('mflow__Application')
+      Query.newInstance(Account.SObjectType)
+        //.addFieldSet('mflow__Application')
+        .addFields()
         .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
@@ -133,7 +137,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
    **/
   global static SiteSetting__c readSiteSetting() {
     return (SiteSetting__c) DatabaseUtils.getRecord(
-      new Query(SiteSetting__c.SObjectType)
+      Query.newInstance(SiteSetting__c.SObjectType)
         .addFields()
         .removeFields(
           'mflow__OnlineSiteUserName__c,mflow__OnlineSitePassword__c'

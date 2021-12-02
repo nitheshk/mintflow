@@ -165,7 +165,7 @@ private class DatabaseUtilsTest {
     DatabaseUtils.deleteRecord(acc);
 
     List<SObject> objs = DatabaseUtils.getRecords(
-      new Query(Account.SObjectType).toString()
+      Query.newInstance(Account.SObjectType).toString()
     );
     System.assertEquals(1, objs.size(), 'Failed to build query');
   }
@@ -208,7 +208,7 @@ private class DatabaseUtilsTest {
     DatabaseUtils.deleteRecords(new List<Account>{});
 
     List<SObject> objs = DatabaseUtils.getRecords(
-      new Query(Account.SObjectType).toString()
+      Query.newInstance(Account.SObjectType).toString()
     );
     System.assertEquals(0, objs.size(), 'Failed to build query');
   }

@@ -1,4 +1,4 @@
-String q = new Query(Account.SObjectType)
+String q = Query.newInstance(Account.SObjectType)
   .addFields()
   .queryChild('Contacts')
   .addFields()

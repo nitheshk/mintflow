@@ -55,4 +55,14 @@ global with sharing class FinancialAccountService extends AbstractService {
       applicationIds
     );
   }
+
+  /**
+   * @description Create Financial MemberShip account and Primary Account
+   * @author Digital Align Team | 12-02-2021
+   * @param Map<String Object> params
+   * @return virtual
+   **/
+  global virtual Object createMemberAccount(Map<String, Object> params) {
+    return null;
+  }
 }

@@ -6,7 +6,7 @@ public with sharing class DynamicLWCDataTableRepository {
   ) {
     List<DynamicDataTable__mdt> returnObjectList = new List<DynamicDataTable__mdt>();
     try {
-      String queryString = new Query(DynamicDataTable__mdt.SObjectType)
+      String queryString = Query.newInstance(DynamicDataTable__mdt.SObjectType)
         .addFields()
         .queryChild('mflow__DynamicDataTableItems__r')
         .addFields()

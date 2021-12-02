@@ -165,7 +165,7 @@ global with sharing class RpaProcessService extends AbstractService {
    **/
   global virtual void buildReviewApplication() {
     String str = 'buildReviewApplication';
-    log.debug('string value =' + str);
+    log?.debug('string value =' + str);
     string request = RestContext.request.requestBody.toString();
     str = RestContext.request.requestBody.toString();
     RestResponse response = RestContext.response;

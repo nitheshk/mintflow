@@ -83,7 +83,7 @@ global with sharing class ApplicationService extends AbstractService {
       Account.SObjectType,
       ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
     );
-    application.FinServ__Status__c = 'Active';
+    application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
     if (params.get('channel') != null) {
       application.CreatedChannel__c = (String) params.get('channel');
       application.FinServ__LastUsedChannel__c = (String) params.get('channel');

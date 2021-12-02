@@ -1,4 +1,4 @@
-String q = new Query(mflow__FinancialProduct__c.SObjectType)
+String q = Query.newInstance(mflow__FinancialProduct__c.SObjectType)
   .addFields()
   .addFields()
   .run()

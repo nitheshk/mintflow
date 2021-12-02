@@ -27,7 +27,7 @@ private class QueryTest {
   private static void soqlSample1() {
     makeData();
     //Simple soql
-    String q = new Query(Account.SObjectType)
+    String q = Query.newInstance(Account.SObjectType)
       .addFields('Name')
       .debug()
       .addLimit(5)
@@ -52,7 +52,7 @@ private class QueryTest {
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
     //with child Object
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields()
       .queryLookup('Account')
       .addFields()
@@ -64,7 +64,7 @@ private class QueryTest {
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields()
       .buildLookUp('Account')
       .addLimit(5)
@@ -74,7 +74,7 @@ private class QueryTest {
     objs = DatabaseUtils.getRecordsBySharing(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields(new List<String>{ 'Name', 'LastName', 'FirstName' })
       .queryLookup('Account')
       .addFields(new List<String>{ 'Name', 'BillingStreet', 'BillingCity' })
@@ -88,7 +88,7 @@ private class QueryTest {
     objs = DatabaseUtils.getRecordsBySharing(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields(new List<String>{ 'Name', 'LastName', 'FirstName' })
       .queryLookup('AccountID', true)
       .addFields('Name,BillingStreet,BillingCity')
@@ -99,7 +99,7 @@ private class QueryTest {
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
     //Security  Enforce
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields(new List<String>{ 'Name', 'LastName', 'FirstName' })
       .queryLookup('AccountID', true)
       .addFields('Name,BillingStreet,BillingCity')
@@ -111,7 +111,7 @@ private class QueryTest {
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
     // Child Relationship Testing
-    q = new Query(Account.SObjectType)
+    q = Query.newInstance(Account.SObjectType)
       .addFields()
       .queryChild('Contacts')
       .addFields()
@@ -126,7 +126,7 @@ private class QueryTest {
 
     // FieldSet Implementation
 
-    q = new Query(Account.SObjectType)
+    q = Query.newInstance(Account.SObjectType)
       //.addFieldset('CustomField')
       .queryChild('Contacts')
       //.addFieldset('CustomField')
@@ -136,7 +136,7 @@ private class QueryTest {
     objs = DatabaseUtils.getRecordsByStrip(q, null);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Account.SObjectType)
+    q = Query.newInstance(Account.SObjectType)
       //.addFieldset('CustomField')
       .toString(true);
 
@@ -144,7 +144,7 @@ private class QueryTest {
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
     //using run time binding values
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .queryLookup('Account')
       .addFields('Name')
@@ -175,7 +175,7 @@ private class QueryTest {
     System.assertEquals(1, objs.size(), 'Failed to build query');
     //using order by
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .orderBy('Name')
       .orderBy('LastName', true)
@@ -183,7 +183,7 @@ private class QueryTest {
     objs = DatabaseUtils.getRecordsByStrip(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .orderBy('Name')
       .orderBy('LastName', true, true)
@@ -192,14 +192,14 @@ private class QueryTest {
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
     //remove fields
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields(new List<String>{ 'Name', 'LastName', 'FirstName' })
       .removeFields(new List<String>{ 'LastName', 'FirstName' })
       .toString(true);
     objs = DatabaseUtils.getRecordsByStrip(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name,LastName,FirstName')
       .removeFields('LastName,FirstName')
       .toString(true);
@@ -208,7 +208,7 @@ private class QueryTest {
 
     //Group by and having
 
-    q = new Query(Opportunity.SObjectType)
+    q = Query.newInstance(Opportunity.SObjectType)
       .addFields('CampaignId, AVG(Amount)')
       .groupBy('CampaignId')
       .havingCon(' AVG(Amount) > 100 And  AVG(Amount) <20000000')
@@ -219,7 +219,7 @@ private class QueryTest {
     System.assertEquals(0, agr.size(), 'Failed to build query');
 
     //Multiple object example
-    q = new Query(Opportunity.SObjectType)
+    q = Query.newInstance(Opportunity.SObjectType)
       .addFields('Name')
       .queryLookup('Account')
       .addFields('Name')
@@ -237,7 +237,7 @@ private class QueryTest {
 
     //Using includes on soql
     try {
-      q = new Query(Opportunity.SObjectType)
+      q = Query.newInstance(Opportunity.SObjectType)
         .addFields('Name')
         .whereIncludes('testfield__c', new List<String>{ 'one', 'two' })
         .toString(true);
@@ -247,7 +247,7 @@ private class QueryTest {
     }
 
     try {
-      q = new Query(Opportunity.SObjectType)
+      q = Query.newInstance(Opportunity.SObjectType)
         .addFields('Name')
         .whereIncludes('testfield__c', 'one;two,three')
         .toString(true);
@@ -257,7 +257,7 @@ private class QueryTest {
     }
 
     //Using Distance on soql
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields()
       .whereDistance(
         'MailingAddress',
@@ -275,21 +275,21 @@ private class QueryTest {
     System.assertEquals(0, objs.size(), 'Failed to build query');
 
     // Using Like in soql
-    q = new Query(Account.SObjectType)
+    q = Query.newInstance(Account.SObjectType)
       .addFields('Name')
       .whereLeftLike('Name', 'Name')
       .toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Account.SObjectType)
+    q = Query.newInstance(Account.SObjectType)
       .addFields('Name')
       .whereRightLike('Name', 'Account')
       .toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Account.SObjectType)
+    q = Query.newInstance(Account.SObjectType)
       .addFields('Name')
       .whereLike('Name', 'account')
       .toString(true);
@@ -297,14 +297,14 @@ private class QueryTest {
     System.assertEquals(1, objs.size(), 'Failed to build query');
     // SQOL One short build
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields()
       .buildLookUp('Account')
       .toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Account.SObjectType)
+    q = Query.newInstance(Account.SObjectType)
       .addFields()
       .buildChild('Contacts')
       .toString(true);
@@ -313,7 +313,7 @@ private class QueryTest {
 
     //where conditions
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .whereCon('LastName=\'Rogers\'')
       .andCon()
@@ -322,28 +322,28 @@ private class QueryTest {
     objs = DatabaseUtils.getRecords(q, new List<Object>{ 'FirstName' });
     System.assertEquals(0, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .whereCon('LastName=\'LastName\'')
       .toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .whereCon('LastName', '=\'Rogers\'', false)
       .toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(0, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .whereCon('LastName', '=\'Rogers\'', false)
       .toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(0, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .whereAnd('LastName', '={0}')
       .whereAnd('LastName', '=\'Lastname\'', false)
@@ -355,7 +355,7 @@ private class QueryTest {
     );
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .whereAnd('LastName', '=\'LastName\'', false)
       .whereCon('FirstName', '={0}')
@@ -363,7 +363,7 @@ private class QueryTest {
     objs = DatabaseUtils.getRecords(q, new List<Object>{ 'FirstName' });
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .grpOpen()
       .whereCon('LastName', '={0}')
@@ -382,7 +382,7 @@ private class QueryTest {
     makeData();
 
     //validate maximum parameter
-    String q = new Query(Contact.SObjectType)
+    String q = Query.newInstance(Contact.SObjectType)
       .addFields('Name')
       .WhereOr('LastName', '={0}')
       .WhereOr('LastName', '={1}')
@@ -407,11 +407,13 @@ private class QueryTest {
 
     //SOQL by ID
 
-    q = new Query(Contact.SObjectType).addFields().queryById(objs[0].get('Id'));
+    q = Query.newInstance(Contact.SObjectType)
+      .addFields()
+      .queryById(objs[0].get('Id'));
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = new Query(Contact.SObjectType)
+    q = Query.newInstance(Contact.SObjectType)
       .addFields()
       .orderBy('Name', true)
       .toString(true);
@@ -427,7 +429,7 @@ private class QueryTest {
 
     //soql on invalid relationship filed name
     try {
-      String q = new Query(Account.SObjectType)
+      String q = Query.newInstance(Account.SObjectType)
         .queryLookup('InvalidFieldName', true)
         .run()
         .toString();
@@ -441,7 +443,7 @@ private class QueryTest {
 
     // soql on invalid relationship name
     try {
-      String q = new Query(Account.SObjectType)
+      String q = Query.newInstance(Account.SObjectType)
         .queryLookup('InvalidFieldName')
         .run()
         .toString();
@@ -455,7 +457,7 @@ private class QueryTest {
 
     // soql on invalid child relationship name
     try {
-      String q = new Query(Account.SObjectType)
+      String q = Query.newInstance(Account.SObjectType)
         .queryChild('InvalidFieldName')
         .run()
         .toString();
@@ -469,7 +471,7 @@ private class QueryTest {
 
     // Nested Child query not allowed
     try {
-      String q = new Query(Contact.SObjectType)
+      String q = Query.newInstance(Contact.SObjectType)
         .queryLookup('Account')
         .QueryChild('Contacts')
         .run()

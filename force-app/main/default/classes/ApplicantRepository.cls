@@ -15,7 +15,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
     Set<Id> applicantIds
   ) {
     return (List<Applicant__c>) DatabaseUtils.getRecords(
-      new Query(Applicant__c.SObjectType)
+      Query.newInstance(Applicant__c.SObjectType)
         .addFields()
         .removeFields('mflow__SessionToken__c')
         .queryChild('mflow__IdentificationDocuments__r')
@@ -51,7 +51,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
    **/
   public static Applicant__c readApplicantWithChild(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
-      new Query(Applicant__c.SObjectType)
+      Query.newInstance(Applicant__c.SObjectType)
         .addFields()
         .removeFields('mflow__SessionToken__c')
         .queryChild('mflow__IdentificationDocuments__r')
@@ -88,7 +88,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
    **/
   public static Applicant__c readApplicantById(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
-      new Query(Applicant__c.SObjectType)
+      Query.newInstance(Applicant__c.SObjectType)
         .addFields()
         .addFields('RecordType.Name')
         .whereEq('Id', applicantId)
@@ -104,7 +104,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
    **/
   public static Applicant__c readApplicantWithApplication(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
-      new Query(Applicant__c.SObjectType)
+      Query.newInstance(Applicant__c.SObjectType)
         .addFields()
         .addFields('RecordType.Name')
         .queryLookup('mflow__Application__r')
@@ -123,7 +123,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
    **/
   public static Applicant__c readApplicantForToken(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
-      new Query(Applicant__c.SObjectType)
+      Query.newInstance(Applicant__c.SObjectType)
         .addFields(
           'SessionToken__c,Application__r.ApplicationNumber__c,Application__c'
         )

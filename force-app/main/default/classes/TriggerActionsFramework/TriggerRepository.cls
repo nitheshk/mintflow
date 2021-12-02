@@ -16,7 +16,7 @@ public with sharing class TriggerRepository extends DatabaseUtils {
   public static list<SObjectTriggerSetting__mdt> fetchTriggerSettingBySObject(
     String sObjectName
   ) {
-    String q = new Query(SObjectTriggerSetting__mdt.SObjectType)
+    String q = Query.newInstance(SObjectTriggerSetting__mdt.SObjectType)
       .addFields()
       .whereEq('mflow__ObjectAPIName__c', sObjectName)
       .andCon()

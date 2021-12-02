@@ -17,9 +17,31 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
     Set<Id> financialAccountIds
   ) {
     return (List<FinServ__FinancialAccount__c>) DatabaseUtils.getRecords(
-      new Query(FinServ__FinancialAccount__c.SObjectType)
+      Query.newInstance(FinServ__FinancialAccount__c.SObjectType)
         .addFields()
         .whereIn('Id', financialAccountIds)
+        .toString()
+    );
+  }
+
+  /**
+   * @description Read Application with FinancialAccount and Applicants
+   * @author Digital Align Team | 12-02-2021
+   * @param Id applicationId
+   * @return Account
+   **/
+  global static Account readApplicationWithChild(Id applicationId) {
+    return (Account) DatabaseUtils.getRecord(
+      Query.newInstance(Account.SObjectType)
+        .addFields()
+        .queryChild('mflow__Applicants__r')
+        .addFields()
+        .orderBy('mflow__Order__c')
+        .run()
+        .queryChild('FinServ__HouseholdFinancialAccounts__r')
+        .addFields()
+        .run()
+        .whereEq('Id', applicationId)
         .toString()
     );
   }

@@ -14,7 +14,7 @@ public with sharing class IdentityRepository extends DatabaseUtils {
    **/
   public static Applicant__c readApplicantForIdentity(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
-      new Query(Applicant__c.SObjectType)
+      Query.newInstance(Applicant__c.SObjectType)
         .addFields()
         .queryChild('mflow__ContactPointAddresses__r')
         .addFields()

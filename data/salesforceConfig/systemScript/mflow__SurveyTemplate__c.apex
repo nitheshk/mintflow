@@ -1,4 +1,4 @@
-String q = new Query(mflow__SurveyTemplate__c.SObjectType)
+String q = Query.newInstance(mflow__SurveyTemplate__c.SObjectType)
   .addFields()
   .queryChild('mflow__SurveyTemplateItems__r')
   .addFields()

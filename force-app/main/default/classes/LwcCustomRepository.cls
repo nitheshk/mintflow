@@ -45,7 +45,7 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
    **/
   global static Account readApplicationWithChild(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
-      new Query(Account.SObjectType)
+      Query.newInstance(Account.SObjectType)
         //.addFieldSet('mflow__Application')
         .addFields()
         .addFields('CreatedBy.Name,LastModifiedBy.Name')
@@ -71,7 +71,7 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
     Set<Id> applicantIds
   ) {
     return (List<Applicant__c>) DatabaseUtils.getRecords(
-      new Query(Applicant__c.SObjectType)
+      Query.newInstance(Applicant__c.SObjectType)
         .addFields()
         .addFields('CreatedBy.Name,LastModifiedBy.Name')
         .removeFields('mflow__SessionToken__c')
@@ -122,7 +122,7 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
     Set<Id> financialAccountIds
   ) {
     return (List<FinServ__FinancialAccount__c>) DatabaseUtils.getRecords(
-      new Query(FinServ__FinancialAccount__c.SObjectType)
+      Query.newInstance(FinServ__FinancialAccount__c.SObjectType)
         .addFields()
         .addFields('CreatedBy.Name,LastModifiedBy.Name')
         .removeFields(removeFields)
