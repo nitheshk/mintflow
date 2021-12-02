@@ -139,13 +139,14 @@ global with sharing class ApplicationDataAPI {
       }
 
       //Map Assest and Liabilities Data
+      /* Not required for phase 1
       if (
         !CollectionUtils.isListEmpty(applicant.mflow__AssetsAndLiabilities__r)
       ) {
         mapperApplicant.AssetsAndLiabilities.addAll(
           mapContactAddress(applicant.mflow__AssetsAndLiabilities__r)
         );
-      }
+      }*/
 
       mapperApplicantList.add(mapperApplicant);
     }
@@ -264,12 +265,8 @@ global with sharing class ApplicationDataAPI {
     }
     return mapperContactAddressList;
   }
-  /**
-   * @description
-   * @author Digital Align | 11-10-2021
-   * @param List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilitiesList
-   * @return virtual
-   **/
+
+  /* Not required for phase 1
   global static list<ApplicationResponseMapper.AssetsAndLiabilities> mapContactAddress(
     List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilitiesList
   ) {
@@ -289,4 +286,5 @@ global with sharing class ApplicationDataAPI {
     }
     return mapperAssetsAndLiabilitiesList;
   }
+  */
 }

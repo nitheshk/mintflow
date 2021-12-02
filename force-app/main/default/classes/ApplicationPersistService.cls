@@ -170,7 +170,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
       String.isBlank(applicant.Id)
     ) {
       // #pending page name need to decide
-      applicant.FlowState__c = 'joint-welcome';
+      applicant.FlowState__c = 'Joint-Welcome';
     }
 
     return applicant;
@@ -208,12 +208,14 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
 
     // upsert Asset And Liabilities
+    // Not in this phase
+    /*
     if (!CollectionUtils.isListEmpty(applicant?.AssetsAndLiabilities__r)) {
       saveAssetsAndLiabilities(
         applicant?.AssetsAndLiabilities__r,
         applicant.Id
       );
-    }
+    }*/
 
     // upsert revenues
     if (!CollectionUtils.isListEmpty(applicant?.Revenues__r)) {
@@ -291,6 +293,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
    * @param Id applicantId
    * @return List<FinServ__AssetsAndLiabilities__c>
    **/
+  /*
   global virtual List<FinServ__AssetsAndLiabilities__c> saveAssetsAndLiabilities(
     List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities,
     Id applicantId
@@ -304,7 +307,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
     ApplicantRepository.upsertRecords(assetsAndLiabilities);
     return assetsAndLiabilities;
-  }
+  } */
 
   /**
    * @description Save Revenues
