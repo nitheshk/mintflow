@@ -284,6 +284,13 @@ global virtual with sharing class FileService extends AbstractService {
     );
   }
 
+  /**
+   * @description fetch content version by Linked list of Entity Ids
+   * @author Digital Align | 12-02-2021
+   * @param list<Id> entityIds
+   * @param Boolean ignoreVersionData
+   * @return virtual
+   **/
   global virtual List<ContentVersion> fetchContentVersionByEntityIds(
     list<Id> entityIds,
     Boolean ignoreVersionData

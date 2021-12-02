@@ -132,6 +132,12 @@ public with sharing class FileRepository extends DatabaseUtils {
     );
   }
 
+  /**
+   * @description fetch content Document links by linked list of entity ids
+   * @author Digital Align | 12-02-2021
+   * @param list<Id> entityIds
+   * @return List<ContentDocumentLink>
+   **/
   public static List<ContentDocumentLink> fetchContentDocumentLinks(
     list<Id> entityIds
   ) {

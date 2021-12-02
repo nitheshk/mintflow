@@ -1,6 +1,19 @@
+/**
+ * Copyright (c) 2021 Digital Align
+ * @group Utils
+ * @author Digital Align Team
+ * @reference
+ * @description
+ **/
 public with sharing class ApplicationFileApi {
-  private static logger log = logger.getInstance(ApplicationDataAPI.class);
-  public static ApexResponse obtainApplicationData(string applicationId) {
+  private static logger log = logger.getInstance(ApplicationFileApi.class);
+  /**
+   * @description fetch all files saved under requested application and its child objects using application Id
+   * @author Digital Align | 12-02-2021
+   * @param string applicationId
+   * @return ApexResponse
+   **/
+  public static ApexResponse obtainApplicationFiles(string applicationId) {
     if (string.isBlank(applicationId)) {
       throw new CustomException('Application value is not set');
     }
