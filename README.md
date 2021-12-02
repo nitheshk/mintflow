@@ -17,21 +17,22 @@
 
 # Salesforce DX Project Setup
 
-Install the dependencies by run the below commands for first time for one system
+## Prerequisite Steps
+
+Step 1. set git user.email `git config --global user.email "youremailaddress@digitalalign.com"`
+Step 2. Install the dependencies by run the below commands for first time for one system
 
 `npm install`
 
 `sfdx update`
 
-`npm install --global gulp-cli` ( Error : gulp : The term 'gulp' is not recognized )
+`npm install --global gulp-cli` ( ERROR AND ISSUE : gulp : The term 'gulp' is not recognized, follow last section )
 
 `npm install --global sfdx-cli`
 
 `npm install sfdx-cli`
 
-## Shortcut
-
-Step 1. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format with create connected app on previous step
+Step 3. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format with create connected app on previous step
 
 ```
 {
@@ -42,6 +43,8 @@ Step 1. Update your Devhub configuration detail under `deploy\devhub.json`, upda
   "jwtkeyfile": "jwt/server.key"
 }
 ```
+
+## Create Scratch Org
 
 Step 2. Use **Cntr + Shift + B** and Select `SFDX: create new scratch org`
 
@@ -65,7 +68,7 @@ Following command are executed in squence
 
 > Step 2.8 `gulp updatePermissionSet`
 
-> Step 2.9 `gulp createUser`
+> Step 2.9 `gulp createCommunityUser`
 
 > Step 2.10 `gulp publishCommunities`
 
