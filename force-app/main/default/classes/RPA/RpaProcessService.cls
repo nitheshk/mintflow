@@ -83,6 +83,9 @@ global with sharing class RpaProcessService extends AbstractService {
       when 'obtainreviewapplicationdata' {
         this.buildObtainReviewApplicationData();
       }
+      when 'obtainapplicationfiles' {
+        this.buildObtainApplicationFiles();
+      }
     }
   }
 
@@ -187,6 +190,25 @@ global with sharing class RpaProcessService extends AbstractService {
     );
     RestResponse response = RestContext.response;
     response.responseBody = blob.valueOf(Json.serialize(applicationResponse));
+    response.statusCode = 200;
+    response.addHeader('Content-Type', 'application/json');
+  }
+
+  /**
+   * @description Fetch all contentversion Ids of documents related to an application
+   * @author Digital Align | 12-02-2021
+   * @return virtual
+   **/
+  global virtual void buildObtainApplicationFiles() {
+    RestRequest restReq = RestContext.request;
+    string applicationName = restReq.params.get('applicationName');
+    log?.debug('applicationName =' + applicationName);
+    ApexResponse fileResponse = ApplicationDataAPI.obtainApplicationFiles(
+      applicationName
+    );
+    log?.debug('fileResponse =' + fileResponse);
+    RestResponse response = RestContext.response;
+    response.responseBody = blob.valueOf(Json.serialize(fileResponse));
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');
   }

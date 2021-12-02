@@ -287,4 +287,70 @@ global with sharing class ApplicationDataAPI {
     return mapperAssetsAndLiabilitiesList;
   }
   */
+  /**
+   * @description fetch all files saved under requested application and its child objects using application Id
+   * @author Digital Align | 12-02-2021
+   * @param string applicationId
+   * @return ApexResponse
+   **/
+  public static ApexResponse obtainApplicationFiles(string applicationName) {
+    if (string.isBlank(applicationName)) {
+      throw new CustomException('Application value is not set');
+    }
+    List<id> reletedEntityIdList = new List<id>();
+    List<id> contentVersionIds = new List<id>();
+    List<ContentVersion> fileList = new List<ContentVersion>();
+    try {
+      Account application = ApplicationService.getInstance()
+        .readApplicationWithChildByapplicationNumber(applicationName);
+
+      for (Applicant__c applicant : application.mflow__Applicants__r) {
+        // documents related to applicant
+        reletedEntityIdList.add(applicant.Id);
+        if (!CollectionUtils.isListEmpty(applicant.mflow__Employments__r)) {
+          //Employment documents
+          for (
+            FinServ__Employment__c employment : applicant.mflow__Employments__r
+          ) {
+            reletedEntityIdList.add(employment.Id);
+          }
+        }
+        if (
+          !CollectionUtils.isListEmpty(
+            applicant.mflow__IdentificationDocuments__r
+          )
+        ) {
+          //Identity documents
+          for (
+            FinServ__IdentificationDocument__c identity : applicant.mflow__IdentificationDocuments__r
+          ) {
+            reletedEntityIdList.add(identity.Id);
+          }
+        }
+      }
+      fileList.addAll(
+        FileService.getInstance()
+          .fetchContentVersionByEntityIds(reletedEntityIdList, false)
+      );
+      if (!CollectionUtils.isListEmpty(fileList)) {
+        for (ContentVersion file : fileList) {
+          contentVersionIds.add(file.Id);
+        }
+        system.debug('contentVersionIds =' + contentVersionIds);
+        log?.debug(ApexResponse.OK(contentVersionIds));
+        return ApexResponse.OK(contentVersionIds);
+      } else {
+        return ApexResponse.fail(contentVersionIds);
+      }
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
 }
+//system.debug(ApplicationDataAPI.obtainApplicationFiles('App-0003'));
