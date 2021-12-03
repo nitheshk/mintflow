@@ -177,6 +177,21 @@
         <name>SiteSetting__c</name>
     </customSettingAccesses>
     <description>MintFlow Customer Community profile</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.QualifileDecision__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.RunwithoutKIQ__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OFAC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
         <field>Account.MeridianApplicationNumber__c</field>

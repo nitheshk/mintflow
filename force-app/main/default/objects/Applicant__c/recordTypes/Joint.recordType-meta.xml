@@ -95,6 +95,51 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>OFAC__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>QualifileDecision__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>RunwithoutKIQ__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>SentiLinkStatus__c</picklist>
         <values>
             <fullName>Passed</fullName>

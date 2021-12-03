@@ -189,6 +189,21 @@
     <description>MintFlow System Admin profile</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.QualifileDecision__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.RunwithoutKIQ__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OFAC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>FinancialProduct__c.Category__c</field>
         <readable>true</readable>
     </fieldPermissions>
