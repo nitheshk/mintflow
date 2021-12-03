@@ -64,3 +64,12 @@ request.setHeader(
 );
 ApexResponse res = ApplicantController.validateOTP(request);
 system.debug('Full Json : ' + res.data);
+
+// Method to authenticate AtomicFI token
+ApexRequest request = new ApexRequest();
+request.setHeader(
+  new Map<String, String>{ 'applicantId' => 'a0b0w00000F1mMDAAZ' }
+);
+ApexResponse res = ApplicantController.atomicAuthenticate(request);
+
+system.debug('Full Json : ' + res.data);

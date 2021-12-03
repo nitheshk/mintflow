@@ -12,6 +12,9 @@ global abstract with sharing class AbstractDTO {
     this.classType = classType;
   }
 
+  public AbstractDTO(Type classType) {
+    this.classType = classType;
+  }
   /**
    * @description convert request object into json format
    * @author Digital Align | 10-07-2021

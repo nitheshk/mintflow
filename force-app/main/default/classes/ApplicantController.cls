@@ -166,4 +166,30 @@ global with sharing class ApplicantController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description authenticate AtomicFI API for applicant
+   * @author Digital Align Team | 11-05-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  public static ApexResponse atomicAuthenticate(ApexRequest request) {
+    try {
+      log?.fine('Inside atomicAuthenticate');
+      validateRequest(request);
+      System.debug(' after validated');
+      ID applicantId = (Id) ApexRequest.getParams('applicantId');
+      return ApexResponse.ok(
+        EmploymentService.getInstance().atomicAuthenticate(applicantId)
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
 }

@@ -14,5 +14,6 @@ global enum APINames {
   Geocoding,
   IdScanAnalyzer,
   AWSAuth,
-  UiPathAddQueue
+  UiPathAddQueue,
+  AtomicFIToken
 }

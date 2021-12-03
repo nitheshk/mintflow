@@ -3,7 +3,7 @@
  * @group Service
  * @author Digital Align Team
  * @reference
- * @description Application service
+ * @description Employment service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class EmploymentService extends AbstractService {
@@ -26,5 +26,16 @@ global with sharing class EmploymentService extends AbstractService {
       );
     }
     return serviceInstance;
+  }
+
+  /**
+   * @description to perform AtomicFI Authentication for employment verification of an applicant
+   * @author Digital Align Team | 10-26-2021
+   * @param applicantId applicantId
+   **/
+  global virtual String atomicAuthenticate(String applicantId) {
+    System.debug('inside employement service');
+    String body = AtomicFIProvider.getInstance().authenticate(applicantId);
+    return body;
   }
 }
