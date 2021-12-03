@@ -63,8 +63,8 @@ global with sharing class RpaProcessService extends AbstractService {
     String precedingUri = suffixRestUrl.substringBefore('/');
     switch on precedingUri {
       //RestContext.request.requestURI :/mflow/rpa/v1/reviewapplication/
-      when 'reviewapplication' {
-        this.buildReviewApplication();
+      when 'updatememberdetails' {
+        this.buildUpdateMemberDetails();
       }
     }
   }
@@ -131,46 +131,16 @@ global with sharing class RpaProcessService extends AbstractService {
   }
 
   /**
-   * @description submit the application for Queue
-   * doesn't throw any exception on failure,
-   * failure will mark and will pick by scheduler job to resubmit later
-   * @author Digital Align Team | 11-25-2021
-   * @param Account application
-   * @return Account
-   **/
-  global virtual Account scheduleSubmitApplication(Account application) {
-    //Flow tracing purpose,, Can be ignore if don't required
-    Flow.initialize(ApexRequest.getApplicationId());
-    Flow.setFlow('Rpa-Process');
-    //create new api name and setting
-    Flow.setSubFlow(APINames.TwillioMessaging.name(), application.Id);
-    try {
-      HttpBuilder.setAPISetting(APINames.TwillioMessaging);
-      log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
-      // HttpBuilder.Response response = RpaProcessProvider.getInstance()
-      //   .addKycReviewQueue();
-      flow.setSubFlowPassed('Flow Completed');
-      flow.setFlowPassed('Completed');
-      return application;
-    } catch (Exception ex) {
-      flow.setSubFlowFailed(ex.getMessage());
-      flow.setFlowFailed('Failed');
-    } finally {
-      Flow.finalize();
-    }
-    return application;
-  }
-
-  /**
-   * @description example method for post
+   * @description To update the application with member details from external system
    * @author Digital Align Team | 11-25-2021
    * @return virtual
    **/
-  global virtual void buildReviewApplication() {
-    String str = 'buildReviewApplication';
-    log?.debug('string value =' + str);
-    string request = RestContext.request.requestBody.toString();
-    str = RestContext.request.requestBody.toString();
+  global virtual void buildUpdateMemberDetails() {
+    map<string, object> request = (Map<String, Object>) JSON.deserializeUntyped(
+      RestContext.request.requestBody.toString()
+    );
+    log?.debug('request =' + request);
+    String str = 'Request Sent';
     RestResponse response = RestContext.response;
     response.responseBody = blob.valueOf(str);
     response.statusCode = 200;
