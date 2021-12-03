@@ -17,6 +17,9 @@ public with sharing class FileRepository extends DatabaseUtils {
     Id contentVersionId,
     Boolean ignoreVersionData
   ) {
+    if (contentVersionId == null) {
+      return null;
+    }
     Query q = Query.newInstance(ContentVersion.SObjectType).addFields();
     if (ignoreVersionData) {
       q.removeFields('VersionData');
@@ -37,6 +40,9 @@ public with sharing class FileRepository extends DatabaseUtils {
     List<Id> contentVersionIds,
     Boolean ignoreVersionData
   ) {
+    if (CollectionUtils.isListEmpty(contentVersionIds)) {
+      return new List<ContentVersion>();
+    }
     Query q = Query.newInstance(ContentVersion.SObjectType).addFields();
     if (ignoreVersionData) {
       q.removeFields('VersionData');
@@ -57,6 +63,9 @@ public with sharing class FileRepository extends DatabaseUtils {
     Id contentDocumentId,
     Boolean ignoreVersionData
   ) {
+    if (contentDocumentId == null) {
+      return null;
+    }
     Query q = Query.newInstance(ContentVersion.SObjectType).addFields();
     if (ignoreVersionData) {
       q.removeFields('VersionData');
@@ -77,6 +86,9 @@ public with sharing class FileRepository extends DatabaseUtils {
     List<Id> contentDocumentIds,
     Boolean ignoreVersionData
   ) {
+    if (CollectionUtils.isListEmpty(contentDocumentIds)) {
+      return new List<ContentVersion>();
+    }
     Query q = Query.newInstance(ContentVersion.SObjectType).addFields();
     if (ignoreVersionData) {
       q.removeFields('VersionData');
@@ -95,12 +107,16 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param Boolean ignoreVersionData
    * @return List<ContentVersion>
    **/
+  @SuppressWarnings('PMD.ExcessiveParameterList')
   public static List<ContentVersion> fetchContentVersions(
     List<Id> contentDocumentIds,
     String contentType,
     String contentSubType,
     Boolean ignoreVersionData
   ) {
+    if (CollectionUtils.isListEmpty(contentDocumentIds)) {
+      return new List<ContentVersion>();
+    }
     Query q = Query.newInstance(ContentVersion.SObjectType).addFields();
     if (ignoreVersionData) {
       q.removeFields('VersionData');
@@ -124,6 +140,9 @@ public with sharing class FileRepository extends DatabaseUtils {
   public static List<ContentDocumentLink> fetchContentDocumentLinks(
     Id entityId
   ) {
+    if (entityId == null) {
+      return null;
+    }
     return (List<ContentDocumentLink>) getRecords(
       Query.newInstance(ContentDocumentLink.SObjectType)
         .addFields('ContentDocumentId')
@@ -141,6 +160,9 @@ public with sharing class FileRepository extends DatabaseUtils {
   public static List<ContentDocumentLink> fetchContentDocumentLinks(
     list<Id> entityIds
   ) {
+    if (CollectionUtils.isListEmpty(entityIds)) {
+      return new List<ContentDocumentLink>();
+    }
     return (List<ContentDocumentLink>) getRecords(
       Query.newInstance(ContentDocumentLink.SObjectType)
         .addFields('ContentDocumentId')
@@ -158,6 +180,9 @@ public with sharing class FileRepository extends DatabaseUtils {
   public static List<ContentDocument> fetchContentDocument(
     List<Id> contentDocumentIds
   ) {
+    if (CollectionUtils.isListEmpty(contentDocumentIds)) {
+      return new List<ContentDocument>();
+    }
     return (List<ContentDocument>) getRecords(
       Query.newInstance(ContentDocument.SObjectType)
         .whereIn('Id', contentDocumentIds)
@@ -189,6 +214,9 @@ public with sharing class FileRepository extends DatabaseUtils {
   public static ContentDistribution fetchContentDistributionById(
     Id contentDistributionId
   ) {
+    if (contentDistributionId == null) {
+      return null;
+    }
     return (ContentDistribution) getRecord(
       Query.newInstance(ContentDistribution.SObjectType)
         .addFields()
@@ -207,6 +235,9 @@ public with sharing class FileRepository extends DatabaseUtils {
   public static List<ContentDistribution> fetchContentDistributionsById(
     Id contentVersionId
   ) {
+    if (contentVersionId == null) {
+      return null;
+    }
     return (List<ContentDistribution>) getRecords(
       Query.newInstance(ContentDistribution.SObjectType)
         .whereEq('ContentVersionId', contentVersionId)

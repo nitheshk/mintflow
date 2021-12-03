@@ -15,8 +15,6 @@ public with sharing class ApexResponseTest {
     ApexResponse.fail(acc);
     ApexResponse.fail();
     ApexResponse.exception(acc);
-    ApexResponse.setStatus(acc);
-    res = ApexResponse.unauthorized(acc);
     system.assertEquals(503, res.status, 'success');
   }
   @istest
@@ -25,7 +23,6 @@ public with sharing class ApexResponseTest {
     ApexResponse res = new ApexResponse();
     res.setEntity(acc);
     res.setData(acc);
-    res = ApexResponse.unauthorized(acc);
     system.assertEquals(503, res.status, 'success');
   }
   @istest
@@ -34,7 +31,6 @@ public with sharing class ApexResponseTest {
     ApexResponse res = new ApexResponse();
     ApexResponse.fail(new customException('Test exception'));
     ApexResponse.exception(new customException('Test exception'));
-    res = ApexResponse.unauthorized(acc);
     system.assertEquals(503, res.status, 'success');
   }
 }

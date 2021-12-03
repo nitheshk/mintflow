@@ -12,6 +12,7 @@ global with sharing class RpaProcessService extends AbstractService {
   @TestVisible
   private static RpaProcessService serviceInstance;
   private static String classUrlMapping = '/rpa/v1/';
+  private static logger log = logger.getInstance(RpaProcessService.class);
 
   public RpaProcessService() {
     super(RpaProcessService.class);
@@ -38,8 +39,17 @@ global with sharing class RpaProcessService extends AbstractService {
    **/
   @HttpPost
   global static void doPost() {
-    RpaProcessService.getInstance().resolveDoPost();
-    Logger.persist();
+    try {
+      RpaProcessService.getInstance().resolveDoPost();
+    } catch (CustomException ex) {
+      log?.error(ex);
+      ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
   }
 
   /**
@@ -49,8 +59,17 @@ global with sharing class RpaProcessService extends AbstractService {
    **/
   @HttpGet
   global static void doGet() {
-    RpaProcessService.getInstance().resolveDoGet();
-    Logger.persist();
+    try {
+      RpaProcessService.getInstance().resolveDoGet();
+    } catch (CustomException ex) {
+      log?.error(ex);
+      ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
   }
 
   /**
@@ -173,13 +192,6 @@ global with sharing class RpaProcessService extends AbstractService {
     RestRequest restReq = RestContext.request;
     string applicationNumber = restReq.params.get('applicationNumber');
     log?.debug('applicationNumber =' + applicationNumber);
-    ApexResponse fileResponse = ApplicationDataAPI.obtainApplicationFiles(
-      applicationNumber
-    );
-    log?.debug('fileResponse =' + fileResponse);
-    RestResponse response = RestContext.response;
-    response.responseBody = blob.valueOf(Json.serialize(fileResponse));
-    response.statusCode = 200;
-    response.addHeader('Content-Type', 'application/json');
+    ApplicationDataAPI.obtainApplicationFiles(applicationNumber);
   }
 }

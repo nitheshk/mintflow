@@ -113,7 +113,9 @@ global with sharing class FileController extends AbstractController {
       validateRequest(request);
       FileDTO dto = new FileDTO(
         (String) ApexRequest.getParams('title'),
-        EncodingUtil.base64Decode(request.data),
+        EncodingUtil.base64Decode(
+          (String) Json.deserialize(request.data, String.class)
+        ),
         (String) ApexRequest.getParams('parentID'),
         (String) ApexRequest.getParams('fileType'),
         (String) ApexRequest.getParams('fileSubType')

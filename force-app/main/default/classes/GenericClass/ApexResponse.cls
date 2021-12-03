@@ -23,24 +23,8 @@ global with sharing class ApexResponse {
    * @return ApexResponse
    **/
   global static ApexResponse ok(object data) {
-    ApexResponse response = new ApexResponse();
-    response.status = 200;
-    response.data = SObjectConstructor.serialize(data);
-    return response;
+    return new ApexResponse().setStatus(200).setDataAsStringfy(data);
   }
-
-  /**
-   * @description  return status with 200 and data with serialized json
-   * @author Digital Align Team | 07-15-2021
-   * @param object data
-   * @return ApexResponse
-   **/
-  /*global static ApexResponse success(object data) {
-    ApexResponse response = new ApexResponse();
-    response.status = 200;
-    response.data = JSON.serialize(data);
-    return response;
-  }*/
 
   /**
    * @description  return status with 200
@@ -48,9 +32,7 @@ global with sharing class ApexResponse {
    * @return ApexResponse
    **/
   global static ApexResponse ok() {
-    ApexResponse response = new ApexResponse();
-    response.status = 200;
-    return response;
+    return new ApexResponse().setStatus(200);
   }
 
   /**
@@ -60,10 +42,7 @@ global with sharing class ApexResponse {
    * @return ApexResponse
    **/
   global static ApexResponse fail(object data) {
-    ApexResponse response = new ApexResponse();
-    response.status = 400;
-    response.data = data;
-    return response;
+    return new ApexResponse().setStatus(400).setData(data);
   }
 
   /**
@@ -73,29 +52,16 @@ global with sharing class ApexResponse {
    * @return ApexResponse
    **/
   global static ApexResponse fail(Exception ex) {
-    ApexResponse response = new ApexResponse();
-    response.status = 400;
-    response.data = ex.getMessage();
-    response.entity =
-      'Message: ' +
-      ex.getMessage() +
-      ' ; Line Number: ' +
-      ex.getLineNumber() +
-      ' ; Type: ' +
-      ex.getTypeName() +
-      ' ; Stack Trace: ' +
-      ex.getStackTraceString();
-    return response;
+    return new ApexResponse().setStatus(400).setData(ex);
   }
+
   /**
    * @description return status with 400
    * @author Digital Align Team | 09-02-2021
    * @return ApexResponse
    **/
   global static ApexResponse fail() {
-    ApexResponse response = new ApexResponse();
-    response.status = 400;
-    return response;
+    return new ApexResponse().setStatus(400);
   }
 
   /**
@@ -105,10 +71,7 @@ global with sharing class ApexResponse {
    * @return ApexResponse
    **/
   global static ApexResponse exception(object error) {
-    ApexResponse response = new ApexResponse();
-    response.status = 500;
-    response.data = error;
-    return response;
+    return new ApexResponse().setStatus(500).setData(error);
   }
 
   /**
@@ -118,10 +81,61 @@ global with sharing class ApexResponse {
    * @return ApexResponse
    **/
   global static ApexResponse exception(Exception ex) {
-    ApexResponse response = new ApexResponse();
-    response.status = 500;
-    response.data = ex.getMessage();
-    response.entity =
+    return new ApexResponse().setStatus(500).setData(ex);
+  }
+
+  /**
+   * @description set status code
+   * @author Digital Align Team | 07-15-2021
+   * @param object status
+   * @return ApexResponse
+   **/
+  global ApexResponse setStatus(object status) {
+    if (RestContext.request != null) {
+      RestContext.response.statusCode = (Integer) status;
+    } else {
+      this.status = status;
+    }
+    return this;
+  }
+
+  /**
+   * @description set entity for addtional message
+   * @author Digital Align Team | 07-15-2021
+   * @param Object entity
+   * @return ApexResponse
+   **/
+  public ApexResponse setEntity(Object entity) {
+    if (RestContext.request != null) {
+      RestContext.response.responseBody = blob.valueOf((String) entity);
+    } else {
+      this.entity = entity;
+    }
+    return this;
+  }
+
+  /**
+   * @description Add Http Response Header
+   * @author Digital Align Team | 12-04-2021
+   * @param String key
+   * @param String value
+   * @return ApexResponse
+   **/
+  public ApexResponse addHeader(String key, String value) {
+    if (RestContext.request != null) {
+      RestContext.response.addHeader(key, value);
+    }
+    return this;
+  }
+
+  /**
+   * @description set data on exception
+   * @author Digital Align Team | 12-03-2021
+   * @param Exception ex
+   * @return ApexResponse
+   **/
+  public ApexResponse setData(Exception ex) {
+    String exceptionTrace =
       'Message: ' +
       ex.getMessage() +
       ' ; Line Number: ' +
@@ -130,53 +144,47 @@ global with sharing class ApexResponse {
       ex.getTypeName() +
       ' ; Stack Trace: ' +
       ex.getStackTraceString();
-    return response;
-  }
 
-  /**
-   * @description
-   * @author Digital Align Team | 07-15-2021
-   * @param object data
-   * @return ApexResponse
-   **/
-  global static ApexResponse unauthorized(object data) {
-    ApexResponse response = new ApexResponse();
-    response.status = 503;
-    response.data = data;
-    return response;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 07-15-2021
-   * @param object status
-   * @return ApexResponse
-   **/
-  global static ApexResponse setStatus(object status) {
-    ApexResponse response = new ApexResponse();
-    response.status = status;
-    return response;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 07-15-2021
-   * @param Object entity
-   * @return ApexResponse
-   **/
-  public ApexResponse setEntity(Object entity) {
-    this.entity = entity;
+    if (RestContext.request != null) {
+      RestContext.response.responseBody = blob.valueOf(exceptionTrace);
+    } else {
+      this.data = ex.getMessage();
+      this.entity = exceptionTrace;
+    }
     return this;
   }
 
   /**
-   * @description
+   * @description Set data value as Object
    * @author Digital Align Team | 07-15-2021
    * @param Object data
    * @return ApexResponse
    **/
   public ApexResponse setData(Object data) {
-    this.data = data;
+    if (RestContext.request != null) {
+      RestContext.response.responseBody = blob.valueOf(
+        SObjectConstructor.serialize(data)
+      );
+    } else {
+      this.data = data;
+    }
+    return this;
+  }
+
+  /**
+   * @description Set data value as Stringfy
+   * @author Digital Align Team | 12-03-2021
+   * @param Object data
+   * @return ApexResponse
+   **/
+  public ApexResponse setDataAsStringfy(Object data) {
+    if (RestContext.request != null) {
+      RestContext.response.responseBody = blob.valueOf(
+        SObjectConstructor.serialize(data)
+      );
+    } else {
+      this.data = SObjectConstructor.serialize(data);
+    }
     return this;
   }
 }

@@ -80,14 +80,14 @@ system.debug('res=+' + JSON.serialize(res));
 //FileController.fetchContentVersionByCD
 ApexRequest request = new ApexRequest();
 request.token = SecurityUtils.generateTokenForTesting(
-  '0010p000011AG7oAAG',
+  '0016D00000ZBBd7QAH',
   '',
   'Primary',
   'ApplicationFlow'
 );
 request.setHeader(
   new Map<String, Object>{
-    'contentDocumentId' => '0699D000000k5r7QAA',
+    'contentDocumentId' => '0696D0000018Lo2QAE',
     'ignoreVersionData' => false
   }
 );

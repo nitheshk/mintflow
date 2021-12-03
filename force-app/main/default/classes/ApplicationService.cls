@@ -94,8 +94,11 @@ global with sharing class ApplicationService extends AbstractService {
     // #pending  value need to decide based on the parameter
     application.FinServ__CustomerType__c = 'Consumer';
     application.FlowState__c = 'Get-Started';
-    application.Description = ApplicationServiceHelper.getInstance()
+    application.IPAddress__c = ApplicationServiceHelper.getInstance()
       .getIpAddress();
+    // #pending update version from custom setting
+    application.Version__c = 'V1.0.1';
+    ApplicationServiceHelper.getInstance().resolveBranchLocation(application);
     ApplicationRepository.upsertRecord(application);
 
     application = ApplicationRepository.readApplicationById(application.Id);
@@ -110,20 +113,6 @@ global with sharing class ApplicationService extends AbstractService {
     return application;
   }
 
-  /**
-   * @description Read application by appliation name passed
-   * @author Digital Align | 12-01-2021
-   * @param string applicationNumber
-   * @return virtual
-   **/
-  global virtual Account readApplicationWithChildByapplicationNumber(
-    string applicationNumber
-  ) {
-    Account application = ApplicationRepository.readApplicationByapplicationNumber(
-      applicationNumber
-    );
-    return readApplicationWithChild(application.Id);
-  }
   /**
    * @description Read application by parameter passed
    * @author Digital Align Team | 10-21-2021

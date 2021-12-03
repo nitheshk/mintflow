@@ -5,6 +5,7 @@
  * @reference
  * @description
  **/
+@SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class ApplicationDataAPI {
   private static logger log = logger.getInstance(ApplicationDataAPI.class);
   /**
@@ -23,11 +24,19 @@ global with sharing class ApplicationDataAPI {
           applicationNumber
         );
       ApplicationResponseMapper mapper = new ApplicationResponseMapper();
+
       if (String.isBlank(applicationNumber)) {
         throw new CustomException('Application ID cannot be blank');
       }
-      Account application = ApplicationService.getInstance()
-        .readApplicationWithChildByapplicationNumber(applicationNumber);
+      Account application = ApplicationRepository.readApplicationByApplicationNumber(
+        applicationNumber
+      );
+      if (application == null) {
+        throw new customException('Application Not Found');
+      }
+      application = ApplicationService.getInstance()
+        .readApplicationWithChild(application.Id);
+
       log?.debug('Full Application Json : ' + json.serialize(application));
       if (application != null) {
         ApplicationResponseMapper.Account mapperApplication = new ApplicationResponseMapper.Account();
@@ -293,7 +302,7 @@ global with sharing class ApplicationDataAPI {
    * @param string applicationId
    * @return ApexResponse
    **/
-  public static ApexResponse obtainApplicationFiles(string applicationNumber) {
+  public static Object obtainApplicationFiles(string applicationNumber) {
     log
       ?.fine(
         'Inside obtainApplicationFiles -> applicationNumber -> ' +
@@ -302,84 +311,35 @@ global with sharing class ApplicationDataAPI {
     if (string.isBlank(applicationNumber)) {
       throw new CustomException('Application value is not set');
     }
-    List<id> reletedEntityIdList = new List<id>();
-    List<id> contentVersionIds = new List<id>();
-    // List<ContentVersion> fileList = new List<ContentVersion>();
-    try {
-      Account application = ApplicationService.getInstance()
-        .readApplicationWithChildByApplicationNumber(applicationNumber);
-      log?.debug('application =' + JSON.serialize(application));
-      for (Applicant__c applicant : application.mflow__Applicants__r) {
-        // documents related to applicant
-        reletedEntityIdList.add(applicant.Id);
-        if (!CollectionUtils.isListEmpty(applicant.mflow__Employments__r)) {
-          //Employment documents
-          for (
-            FinServ__Employment__c employment : applicant.mflow__Employments__r
-          ) {
-            reletedEntityIdList.add(employment.Id);
-          }
-        }
-        if (
-          !CollectionUtils.isListEmpty(
-            applicant.mflow__IdentificationDocuments__r
-          )
-        ) {
-          //Identity documents
-          for (
-            FinServ__IdentificationDocument__c identity : applicant.mflow__IdentificationDocuments__r
-          ) {
-            reletedEntityIdList.add(identity.Id);
-          }
-        }
-      }
-      log?.info('reletedEntityIdList =' + reletedEntityIdList);
 
-      reletedEntityIdList = new List<id>();
-      reletedEntityIdList.add('a0b0p0000026r66AAA');
-      reletedEntityIdList.add('a0A0p0000069u4AEAQ');
-      reletedEntityIdList.add('a0I0p000001pPBUEA2');
-      List<ContentVersion> fileList = FileService.getInstance()
-        .fetchContentVersionByEntityIds(reletedEntityIdList, true);
-      log?.info('fileList =' + fileList);
-      if (!CollectionUtils.isListEmpty(fileList)) {
-        for (ContentVersion file : fileList) {
-          contentVersionIds.add(file.Id);
-        }
-        log?.info('contentVersionIds =' + contentVersionIds);
-        log
-          ?.info(
-            'obtainApplicationFiles in true-> ReturnData -> ' +
-            ApexResponse.OK(contentVersionIds)
-          );
-        return ApexResponse.OK(contentVersionIds);
-      } else {
-        log
-          ?.info(
-            'obtainApplicationFiles in else-> ReturnData -> ' +
-            ApexResponse.OK(contentVersionIds)
-          );
-        return ApexResponse.fail(contentVersionIds);
-      }
-    } catch (CustomException ex) {
-      log?.error(ex);
-      return ApexResponse.exception(ex);
-    } catch (Exception ex) {
-      log?.error(ex);
-      return ApexResponse.fail(ex);
-    } finally {
-      Logger.persist();
+    List<id> reletedEntityIdList = new List<id>();
+
+    Account application = ApplicationRepository.readApplicationByApplicationNumber(
+      applicationNumber
+    );
+
+    if (application == null) {
+      throw new customException('Application Not Found');
     }
+
+    application = ApplicationService.getInstance()
+      .readApplicationWithChild(application.Id);
+
+    for (Applicant__c applicant : application.mflow__Applicants__r) {
+      // documents related to applicant
+      reletedEntityIdList.add(applicant.Id);
+      reletedEntityIdList.addAll(
+        new Map<id, SObject>(applicant.mflow__Employments__r).keySet()
+      );
+      reletedEntityIdList.addAll(
+        new Map<id, SObject>(applicant.mflow__IdentificationDocuments__r)
+          .keySet()
+      );
+    }
+
+    List<ContentVersion> fileList = FileService.getInstance()
+      .fetchContentVersionByEntityIds(reletedEntityIdList, true);
+    return ApexResponse.OK(new Map<Id, SObject>(fileList).keySet())
+      .addHeader('Content-Type', 'application/json');
   }
 }
-// // system.debug(ApplicationDataAPI.obtainApplicationFiles('App-0003'));
-// List<id> reletedEntityIdList = new List<id>();
-// reletedEntityIdList.add('a0b0p0000026r66AAA');
-// reletedEntityIdList.add('a0A0p0000069u4AEAQ');
-// reletedEntityIdList.add('a0I0p000001pPBUEA2');
-// List<ContentVersion> fileList = FileService.getInstance()
-//         .fetchContentVersionByEntityIds(reletedEntityIdList, false);
-//         system.debug('fileList ='+fileList);
-// system.debug(FileService.getInstance().fetchContentVersionByEntityIds(reletedEntityIdList, false));
-
-// ApplicationDataAPI.obtainApplicationFiles('App-0008');

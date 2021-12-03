@@ -303,7 +303,7 @@ global virtual with sharing class FileService extends AbstractService {
     ) {
       contentDocumentIds.add(cdl.ContentDocumentId);
     }
-    system.debug('contentDocumentIds =' + contentDocumentIds);
+
     return FileRepository.fetchContentVersionsByCD(
       contentDocumentIds,
       ignoreVersionData
@@ -319,6 +319,7 @@ global virtual with sharing class FileService extends AbstractService {
    * @param Boolean ignoreVersionData
    * @return List<ContentVersion>
    **/
+  @SuppressWarnings('PMD.ExcessiveParameterList')
   global virtual List<ContentVersion> fetchContentVersionByFileType(
     Id entityId,
     String contentType,
