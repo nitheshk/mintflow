@@ -207,7 +207,7 @@
     <picklistValues>
         <picklist>SentiLinkStatus__c</picklist>
         <values>
-            <fullName>Passsed</fullName>
+            <fullName>Passed</fullName>
             <default>false</default>
         </values>
         <values>
