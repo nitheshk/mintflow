@@ -201,10 +201,10 @@ global with sharing class RpaProcessService extends AbstractService {
    **/
   global virtual void buildObtainApplicationFiles() {
     RestRequest restReq = RestContext.request;
-    string applicationName = restReq.params.get('applicationName');
-    log?.debug('applicationName =' + applicationName);
+    string applicationNumber = restReq.params.get('applicationNumber');
+    log?.debug('applicationNumber =' + applicationNumber);
     ApexResponse fileResponse = ApplicationDataAPI.obtainApplicationFiles(
-      applicationName
+      applicationNumber
     );
     log?.debug('fileResponse =' + fileResponse);
     RestResponse response = RestContext.response;

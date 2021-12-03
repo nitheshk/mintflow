@@ -293,17 +293,22 @@ global with sharing class ApplicationDataAPI {
    * @param string applicationId
    * @return ApexResponse
    **/
-  public static ApexResponse obtainApplicationFiles(string applicationName) {
-    if (string.isBlank(applicationName)) {
+  public static ApexResponse obtainApplicationFiles(string applicationNumber) {
+    log
+      ?.fine(
+        'Inside obtainApplicationFiles -> applicationNumber -> ' +
+        applicationNumber
+      );
+    if (string.isBlank(applicationNumber)) {
       throw new CustomException('Application value is not set');
     }
     List<id> reletedEntityIdList = new List<id>();
     List<id> contentVersionIds = new List<id>();
-    List<ContentVersion> fileList = new List<ContentVersion>();
+    // List<ContentVersion> fileList = new List<ContentVersion>();
     try {
       Account application = ApplicationService.getInstance()
-        .readApplicationWithChildByapplicationNumber(applicationName);
-
+        .readApplicationWithChildByApplicationNumber(applicationNumber);
+      log?.debug('application =' + JSON.serialize(application));
       for (Applicant__c applicant : application.mflow__Applicants__r) {
         // documents related to applicant
         reletedEntityIdList.add(applicant.Id);
@@ -328,18 +333,32 @@ global with sharing class ApplicationDataAPI {
           }
         }
       }
-      fileList.addAll(
-        FileService.getInstance()
-          .fetchContentVersionByEntityIds(reletedEntityIdList, false)
-      );
+      log?.info('reletedEntityIdList =' + reletedEntityIdList);
+
+      reletedEntityIdList = new List<id>();
+      reletedEntityIdList.add('a0b0p0000026r66AAA');
+      reletedEntityIdList.add('a0A0p0000069u4AEAQ');
+      reletedEntityIdList.add('a0I0p000001pPBUEA2');
+      List<ContentVersion> fileList = FileService.getInstance()
+        .fetchContentVersionByEntityIds(reletedEntityIdList, true);
+      log?.info('fileList =' + fileList);
       if (!CollectionUtils.isListEmpty(fileList)) {
         for (ContentVersion file : fileList) {
           contentVersionIds.add(file.Id);
         }
-        system.debug('contentVersionIds =' + contentVersionIds);
-        log?.debug(ApexResponse.OK(contentVersionIds));
+        log?.info('contentVersionIds =' + contentVersionIds);
+        log
+          ?.info(
+            'obtainApplicationFiles in true-> ReturnData -> ' +
+            ApexResponse.OK(contentVersionIds)
+          );
         return ApexResponse.OK(contentVersionIds);
       } else {
+        log
+          ?.info(
+            'obtainApplicationFiles in else-> ReturnData -> ' +
+            ApexResponse.OK(contentVersionIds)
+          );
         return ApexResponse.fail(contentVersionIds);
       }
     } catch (CustomException ex) {
@@ -353,4 +372,14 @@ global with sharing class ApplicationDataAPI {
     }
   }
 }
-//system.debug(ApplicationDataAPI.obtainApplicationFiles('App-0003'));
+// // system.debug(ApplicationDataAPI.obtainApplicationFiles('App-0003'));
+// List<id> reletedEntityIdList = new List<id>();
+// reletedEntityIdList.add('a0b0p0000026r66AAA');
+// reletedEntityIdList.add('a0A0p0000069u4AEAQ');
+// reletedEntityIdList.add('a0I0p000001pPBUEA2');
+// List<ContentVersion> fileList = FileService.getInstance()
+//         .fetchContentVersionByEntityIds(reletedEntityIdList, false);
+//         system.debug('fileList ='+fileList);
+// system.debug(FileService.getInstance().fetchContentVersionByEntityIds(reletedEntityIdList, false));
+
+// ApplicationDataAPI.obtainApplicationFiles('App-0008');
