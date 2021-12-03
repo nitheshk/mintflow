@@ -55,10 +55,22 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
   }
 
   /**
+   * @description resolve branch location
+   * @author Digital Align Team | 12-03-2021
+   * @param Account application
+   * @return Account
+   **/
+  global virtual Account resolveBranchLocation(Account application) {
+    application.FinServ__BranchCode__c = '0001';
+    application.FinServ__BranchName__c = 'Main Branch';
+    return application;
+  }
+
+  /**
    * @description resolve application field before saving
    * @author Digital Align Team | 10-25-2021
    * @param Account application
-   * @return virtual
+   * @return Account
    **/
   global virtual Account resolveApplicationFields(Account application) {
     // update and add application related fields based on the values..

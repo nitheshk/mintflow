@@ -60,9 +60,53 @@ global with sharing class FinancialAccountService extends AbstractService {
    * @description Create Financial MemberShip account and Primary Account
    * @author Digital Align Team | 12-02-2021
    * @param Map<String Object> params
-   * @return virtual
+   * @return Object
    **/
   global virtual Object createMemberAccount(Map<String, Object> params) {
+    String applicantId = (string) params.get('applicationId');
+
+    Account application = FinancialAccountRepository.readApplicationWithChild(
+      applicantId
+    );
+
+    // Primary Kyc is Approved and Joint KYC is Approved
+    // Primary is Not Existing Customer
+    // update Applicant detail accordingly
+    application = updateApplicationKycDetails(application, params);
+
+    // if Application kyc status is approved, then procced with creating Account & Contact for primary
+    // And Open Membership Financial Account and relation with applicant
+    createMembershipAccount();
+
+    return null;
+  }
+
+  /**
+   * @description
+   * Primary Kyc is Approved and Joint KYC is Approved
+   * Primary is Not Existing Customer
+   * update Applicant detail accordingly
+   * @author Digital Align Team | 12-02-2021
+   * @param Account application
+   * @param Map<String String> params
+   * @return virtual
+   **/
+  global virtual Account updateApplicationKycDetails(
+    Account application,
+    Map<String, Object> params
+  ) {
+    for (Applicant__c applicant : application.Applicants__r) {
+    }
+
+    return application;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 12-02-2021
+   * @return virtual
+   **/
+  global virtual object createMembershipAccount() {
     return null;
   }
 }
