@@ -79,7 +79,7 @@ global with sharing class GeocodingProvider extends AbstractService {
       return result;
     }
 
-    Map<String, Object> mathcingResult = new Map<String, Object>();
+    Map<String, Object> matchingResult = new Map<String, Object>();
     for (
       GeocodingDTO.AddressComponents addresses : responseDTO.results[0]
         .address_components
@@ -87,19 +87,19 @@ global with sharing class GeocodingProvider extends AbstractService {
       for (string type : addresses.types) {
         switch on type {
           when 'country', 'locality', 'neighborhood' {
-            mathcingResult.put(type, addresses.long_name);
+            matchingResult.put(type, addresses.long_name);
             break;
           }
           when 'postal_code' {
-            mathcingResult.put('zipcode', addresses.long_name);
+            matchingResult.put('zipcode', addresses.long_name);
             break;
           }
           when 'administrative_area_level_2' {
-            mathcingResult.put('county', addresses.long_name);
+            matchingResult.put('county', addresses.long_name);
             break;
           }
           when 'administrative_area_level_1' {
-            mathcingResult.put('state', addresses.long_name);
+            matchingResult.put('state', addresses.long_name);
             if (eligibleCountyNameList.contains(addresses.long_name)) {
               isCountyEligible = true;
             }
@@ -108,7 +108,7 @@ global with sharing class GeocodingProvider extends AbstractService {
         }
       }
     }
-    result.put('matchingAddress', new List<Object>{ mathcingResult });
+    result.put('matchingAddress', new List<Object>{ matchingResult });
     result.put('isCountyEligible', isCountyEligible);
 
     return result;
