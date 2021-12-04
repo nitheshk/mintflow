@@ -85,6 +85,11 @@
         <default>false</default>
         <label>Welcome-Back</label>
     </customValue>
+    <customValue>
+        <fullName>Joint-Welcome</fullName>
+        <default>false</default>
+        <label>Joint-Welcome</label>
+    </customValue>
     <description>UI Flow State Indicator</description>
     <masterLabel>FlowState</masterLabel>
     <sorted>false</sorted>

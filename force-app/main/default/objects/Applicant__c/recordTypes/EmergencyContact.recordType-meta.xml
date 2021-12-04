@@ -82,10 +82,14 @@
         </values>
         <values>
             <fullName>Get-Started</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Joint</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joint-Welcome</fullName>
             <default>false</default>
         </values>
         <values>
@@ -166,6 +170,36 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>OFAC__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>QualifileDecision__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Relationship__c</picklist>
         <values>
             <fullName>Brother</fullName>
@@ -201,6 +235,21 @@
         </values>
         <values>
             <fullName>daughter</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>RunWithoutKIQ__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
             <default>false</default>
         </values>
     </picklistValues>

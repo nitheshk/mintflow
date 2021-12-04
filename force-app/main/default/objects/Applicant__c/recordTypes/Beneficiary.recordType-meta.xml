@@ -39,6 +39,81 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>FlowState__c</picklist>
+        <values>
+            <fullName>Address-Verification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beneficiary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disclosures</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Eligibility-Confirmation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email-Confirmation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency-Contact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employment-Information</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Family-Connect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Final-Confirmation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Funding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Get-Started</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Joint</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joint-Welcome</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otp-Verification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Password</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Personal-Information</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Review-Information</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Welcome-Back</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>FraudStatus__c</picklist>
         <values>
             <fullName>Less</fullName>
@@ -95,6 +170,36 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>OFAC__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>QualifileDecision__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Relationship__c</picklist>
         <values>
             <fullName>Brother</fullName>
@@ -134,6 +239,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>RunWithoutKIQ__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>SentiLinkStatus__c</picklist>
         <values>
             <fullName>Passed</fullName>
@@ -145,6 +265,37 @@
         </values>
         <values>
             <fullName>Under Review</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Abandoned</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submitted</fullName>
             <default>false</default>
         </values>
     </picklistValues>
