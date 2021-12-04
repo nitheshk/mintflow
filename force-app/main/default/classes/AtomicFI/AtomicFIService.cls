@@ -67,9 +67,7 @@ global with sharing class AtomicFIService extends AbstractService {
     atomObj.names = names;
     atomObj.applicantId = applicant.Id;
 
-    atomObj.addresses = mapApplicantAddress(
-      applicant.mflow__ContactPointAddresses__r
-    );
+    atomObj.addresses = mapApplicantAddress(applicant.ContactPointAddresses__r);
 
     return atomObj;
   }

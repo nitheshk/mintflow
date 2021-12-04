@@ -41,23 +41,23 @@ global with sharing class ApplicationDataAPI {
       if (application != null) {
         ApplicationResponseMapper.Account mapperApplication = new ApplicationResponseMapper.Account();
         mapperApplication.ApplicationId = application.Id;
-        mapperApplication.ApplicationNumber = application.mflow__ApplicationNumber__c;
+        mapperApplication.ApplicationNumber = application.ApplicationNumber__c;
         mapperApplication.BranchCode = application.FinServ__BranchCode__c;
         mapperApplication.BranchName = application.FinServ__BranchName__c;
-        mapperApplication.CountyName = application.mflow__CountyName__c;
-        mapperApplication.CountyCode = application.mflow__CountyZipCode__c;
-        mapperApplication.IsCountyEligible = application.mflow__IsCountyEligible__c;
-        mapperApplication.CreatedChannel = application.mflow__CreatedChannel__c;
+        mapperApplication.CountyName = application.CountyName__c;
+        mapperApplication.CountyCode = application.CountyZipCode__c;
+        mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
+        mapperApplication.CreatedChannel = application.CreatedChannel__c;
         mapperApplication.CustomerType = application.FinServ__CustomerType__c;
-        mapperApplication.FlowState = application.mflow__FlowState__c;
-        mapperApplication.IpAddress = application.mflow__IPAddress__c;
-        mapperApplication.IsMemberFlow = application.mflow__isMemberFlow__c;
+        mapperApplication.FlowState = application.FlowState__c;
+        mapperApplication.IpAddress = application.IPAddress__c;
+        mapperApplication.IsMemberFlow = application.isMemberFlow__c;
         mapperApplication.LastUsedChannel = application.FinServ__LastUsedChannel__c;
         mapperApplication.Status = application.FinServ__Status__c;
-        mapperApplication.SubmittedBy = application.mflow__SubmittedBy__c;
-        mapperApplication.SubmittedDate = application.mflow__SubmittedDate__c;
-        mapperApplication.SubStatus = application.mflow__SubStatus__c;
-        mapperApplication.UserAccountType = application.mflow__UserAccountType__c;
+        mapperApplication.SubmittedBy = application.SubmittedBy__c;
+        mapperApplication.SubmittedDate = application.SubmittedDate__c;
+        mapperApplication.SubStatus = application.SubStatus__c;
+        mapperApplication.UserAccountType = application.UserAccountType__c;
 
         if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
           mapperApplication.Applicants.addAll(
@@ -87,73 +87,65 @@ global with sharing class ApplicationDataAPI {
     for (applicant__c applicant : applicantList) {
       ApplicationResponseMapper.Applicant mapperApplicant = new ApplicationResponseMapper.Applicant();
       mapperApplicant.ApplicantId = applicant.Id;
-      mapperApplicant.Application = applicant.mflow__Application__c;
-      mapperApplicant.FirstName = applicant.mflow__FirstName__c;
-      mapperApplicant.MiddleName = applicant.mflow__MiddleName__c;
-      mapperApplicant.LastName = applicant.mflow__LastName__c;
-      mapperApplicant.IsEmailVerified = applicant.mflow__IsEmailVerified__c;
-      mapperApplicant.IsExistingCustomer = applicant.mflow__IsExistingCustomer__c;
-      mapperApplicant.IsPhoneNumberVerified = applicant.mflow__IsPhoneNumberVerified__c;
+      mapperApplicant.Application = applicant.Application__c;
+      mapperApplicant.FirstName = applicant.FirstName__c;
+      mapperApplicant.MiddleName = applicant.MiddleName__c;
+      mapperApplicant.LastName = applicant.LastName__c;
+      mapperApplicant.IsEmailVerified = applicant.IsEmailVerified__c;
+      mapperApplicant.IsExistingCustomer = applicant.IsExistingCustomer__c;
+      mapperApplicant.IsPhoneNumberVerified = applicant.IsPhoneNumberVerified__c;
       mapperApplicant.ApplicantName = applicant.Name;
-      mapperApplicant.ApplicantNumber = applicant.mflow__ApplicantNumber__c;
-      mapperApplicant.ApplicantType = applicant.mflow__ApplicantType__c;
-      mapperApplicant.Birthdate = applicant.mflow__Birthdate__c;
-      mapperApplicant.CreditScore = applicant.mflow__CreditScore__c;
-      mapperApplicant.CustomerNumber = applicant.mflow__CustomerNumber__c;
-      mapperApplicant.Email = applicant.mflow__Email__c;
-      mapperApplicant.EmploymentStatus = applicant.mflow__EmploymentStatus__c;
-      mapperApplicant.FraudStatus = applicant.mflow__FraudStatus__c;
-      mapperApplicant.IdentityVerificationStatus = applicant.mflow__IdentityVerificationStatus__c;
-      mapperApplicant.IncomeVerificationStatus = applicant.mflow__IncomeVerificationStatus__c;
-      mapperApplicant.KYCStatus = applicant.mflow__KYCStatus__c;
-      mapperApplicant.Order = applicant.mflow__Order__c;
-      mapperApplicant.Phone = applicant.mflow__Phone__c;
-      mapperApplicant.SentiLinkFraudScore = applicant.mflow__SentiLinkFraudScore__c;
-      mapperApplicant.SentiLinkRemarks = applicant.mflow__SentiLinkRemarks__c;
-      mapperApplicant.SentiLinkStatus = applicant.mflow__SentiLinkStatus__c;
-      mapperApplicant.SSN = applicant.mflow__SSN__c;
+      mapperApplicant.ApplicantNumber = applicant.ApplicantNumber__c;
+      mapperApplicant.ApplicantType = applicant.ApplicantType__c;
+      mapperApplicant.Birthdate = applicant.Birthdate__c;
+      mapperApplicant.CreditScore = applicant.CreditScore__c;
+      mapperApplicant.CustomerNumber = applicant.CustomerNumber__c;
+      mapperApplicant.Email = applicant.Email__c;
+      mapperApplicant.EmploymentStatus = applicant.EmploymentStatus__c;
+      mapperApplicant.FraudStatus = applicant.FraudStatus__c;
+      mapperApplicant.IdentityVerificationStatus = applicant.IdentityVerificationStatus__c;
+      mapperApplicant.IncomeVerificationStatus = applicant.IncomeVerificationStatus__c;
+      mapperApplicant.KYCStatus = applicant.KYCStatus__c;
+      mapperApplicant.Order = applicant.Order__c;
+      mapperApplicant.Phone = applicant.Phone__c;
+      mapperApplicant.SentiLinkFraudScore = applicant.SentiLinkFraudScore__c;
+      mapperApplicant.SentiLinkRemarks = applicant.SentiLinkRemarks__c;
+      mapperApplicant.SentiLinkStatus = applicant.SentiLinkStatus__c;
+      mapperApplicant.SSN = applicant.SSN__c;
 
       //Map employment data
-      if (!CollectionUtils.isListEmpty(applicant.mflow__Employments__r)) {
+      if (!CollectionUtils.isListEmpty(applicant.Employments__r)) {
         mapperApplicant.Employments.addAll(
-          mapEmployment(applicant.mflow__Employments__r)
+          mapEmployment(applicant.Employments__r)
         );
       }
 
       //Map Identity Data
-      if (
-        !CollectionUtils.isListEmpty(
-          applicant.mflow__IdentificationDocuments__r
-        )
-      ) {
+      if (!CollectionUtils.isListEmpty(applicant.IdentificationDocuments__r)) {
         mapperApplicant.IdentificationDocuments.addAll(
-          mapIdentity(applicant.mflow__IdentificationDocuments__r)
+          mapIdentity(applicant.IdentificationDocuments__r)
         );
       }
 
       //Map Revenue Data
-      if (!CollectionUtils.isListEmpty(applicant.mflow__Revenues__r)) {
-        mapperApplicant.Revenues.addAll(
-          mapRevenue(applicant.mflow__Revenues__r)
-        );
+      if (!CollectionUtils.isListEmpty(applicant.Revenues__r)) {
+        mapperApplicant.Revenues.addAll(mapRevenue(applicant.Revenues__r));
       }
 
       //Map ContatcPointAddress Data
-      if (
-        !CollectionUtils.isListEmpty(applicant.mflow__ContactPointAddresses__r)
-      ) {
+      if (!CollectionUtils.isListEmpty(applicant.ContactPointAddresses__r)) {
         mapperApplicant.ContactPointAddresses.addAll(
-          mapContactAddress(applicant.mflow__ContactPointAddresses__r)
+          mapContactAddress(applicant.ContactPointAddresses__r)
         );
       }
 
       //Map Assest and Liabilities Data
       /* Not required for phase 1
       if (
-        !CollectionUtils.isListEmpty(applicant.mflow__AssetsAndLiabilities__r)
+        !CollectionUtils.isListEmpty(applicant.AssetsAndLiabilities__r)
       ) {
         mapperApplicant.AssetsAndLiabilities.addAll(
-          mapContactAddress(applicant.mflow__AssetsAndLiabilities__r)
+          mapContactAddress(applicant.AssetsAndLiabilities__r)
         );
       }*/
 
@@ -175,20 +167,20 @@ global with sharing class ApplicationDataAPI {
     for (FinServ__Employment__c employment : employmentList) {
       ApplicationResponseMapper.Employment mapperEmployment = new ApplicationResponseMapper.Employment();
       mapperEmployment.EmploymentId = employment.Id;
-      mapperEmployment.EmploymentType = employment.mflow__EmploymentType__c;
+      mapperEmployment.EmploymentType = employment.EmploymentType__c;
       mapperEmployment.EmployerName = employment.Name;
       mapperEmployment.EmploymentStatus = employment.FinServ__EmploymentStatus__c;
-      mapperEmployment.GrossMonthlySalary = employment.mflow__GrossMonthlySalary__c;
+      mapperEmployment.GrossMonthlySalary = employment.GrossMonthlySalary__c;
       mapperEmployment.EmploymentStatus = employment.FinServ__EmploymentStatus__c;
       mapperEmployment.Name = employment.Name;
-      mapperEmployment.IncomeType = employment.mflow__IncomeType__c;
-      mapperEmployment.PayCycle = employment.mflow__PayCycle__c;
-      mapperEmployment.Order = employment.mflow__Order__c;
-      mapperEmployment.PayGrade = employment.mflow__PayGrade__c;
+      mapperEmployment.IncomeType = employment.IncomeType__c;
+      mapperEmployment.PayCycle = employment.PayCycle__c;
+      mapperEmployment.Order = employment.Order__c;
+      mapperEmployment.PayGrade = employment.PayGrade__c;
       mapperEmployment.Position = employment.FinServ__Position__c;
-      mapperEmployment.EmploymentDuration = employment.mflow__EmploymentDuration__c;
-      mapperEmployment.DocumentType = employment.mflow__DocumentType__c;
-      mapperEmployment.EmploymentVerificationType = employment.mflow__EmploymentVerificationType__c;
+      mapperEmployment.EmploymentDuration = employment.EmploymentDuration__c;
+      mapperEmployment.DocumentType = employment.DocumentType__c;
+      mapperEmployment.EmploymentVerificationType = employment.EmploymentVerificationType__c;
       mapperEmploymentList.add(mapperEmployment);
     }
     return mapperEmploymentList;
@@ -210,16 +202,16 @@ global with sharing class ApplicationDataAPI {
       mapperIdentity.DocumentNumber = identity.FinServ__DocumentNumber__c;
       mapperIdentity.DocumentType = identity.FinServ__DocumentType__c;
       mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
-      mapperIdentity.Gender = identity.mflow__Gender__c;
-      mapperIdentity.Height = identity.mflow__Height__c;
+      mapperIdentity.Gender = identity.Gender__c;
+      mapperIdentity.Height = identity.Height__c;
       mapperIdentity.IssueDate = identity.FinServ__IssueDate__c;
-      mapperIdentity.IssuedRegion = identity.mflow__IssuedRegion__c;
+      mapperIdentity.IssuedRegion = identity.IssuedRegion__c;
       mapperIdentity.Name = identity.Name;
-      mapperIdentity.Nationality = identity.mflow__Nationality__c;
-      mapperIdentity.Order = identity.mflow__Order__c;
-      mapperIdentity.PrimaryContentDocumentID = identity.mflow__PrimaryContentDocumentID__c;
-      mapperIdentity.SecondaryContentDocumentId = identity.mflow__SecondaryContentDocumentId__c;
-      mapperIdentity.Weight = identity.mflow__Weight__c;
+      mapperIdentity.Nationality = identity.Nationality__c;
+      mapperIdentity.Order = identity.Order__c;
+      mapperIdentity.PrimaryContentDocumentID = identity.PrimaryContentDocumentID__c;
+      mapperIdentity.SecondaryContentDocumentId = identity.SecondaryContentDocumentId__c;
+      mapperIdentity.Weight = identity.Weight__c;
 
       mapperIdentityList.add(mapperIdentity);
     }
@@ -240,7 +232,7 @@ global with sharing class ApplicationDataAPI {
       mapperRevenue.RevenueId = revenue.Id;
       mapperRevenue.Amount = revenue.FinServ__Amount__c;
       mapperRevenue.Name = revenue.Name;
-      mapperRevenue.Order = revenue.mflow__Order__c;
+      mapperRevenue.Order = revenue.Order__c;
       mapperRevenue.RevenueDate = revenue.FinServ__Date__c;
       mapperRevenue.SubType = revenue.FinServ__SubType__c;
       mapperRevenue.Type = revenue.FinServ__Type__c;
@@ -269,7 +261,7 @@ global with sharing class ApplicationDataAPI {
       mapperContactAddress.PostalCode = contactAddress.PostalCode;
       mapperContactAddress.State = contactAddress.State;
       mapperContactAddress.Street = contactAddress.Street;
-      mapperContactAddress.Order = contactAddress.mflow__Order__c;
+      mapperContactAddress.Order = contactAddress.Order__c;
       mapperContactAddressList.add(mapperContactAddress);
     }
     return mapperContactAddressList;
@@ -288,7 +280,7 @@ global with sharing class ApplicationDataAPI {
       mapperAssetsAndLiabilities.Amount = assetsAndLiabilities.FinServ__Amount__c;
       mapperAssetsAndLiabilities.AssetsAndLiabilitiesType = assetsAndLiabilities.FinServ__AssetsAndLiabilitiesType__c;
       mapperAssetsAndLiabilities.Name = assetsAndLiabilities.Name;
-      mapperAssetsAndLiabilities.Order = assetsAndLiabilities.mflow__Order__c;
+      mapperAssetsAndLiabilities.Order = assetsAndLiabilities.Order__c;
       mapperAssetsAndLiabilities.Ownership = assetsAndLiabilities.FinServ__Ownership__c;
       mapperAssetsAndLiabilities.OwnerType = assetsAndLiabilities.FinServ__OwnerType__c;
       mapperAssetsAndLiabilitiesList.add(mapperAssetsAndLiabilities);
@@ -325,15 +317,14 @@ global with sharing class ApplicationDataAPI {
     application = ApplicationService.getInstance()
       .readApplicationWithChild(application.Id);
 
-    for (Applicant__c applicant : application.mflow__Applicants__r) {
+    for (Applicant__c applicant : application.Applicants__r) {
       // documents related to applicant
       reletedEntityIdList.add(applicant.Id);
       reletedEntityIdList.addAll(
-        new Map<id, SObject>(applicant.mflow__Employments__r).keySet()
+        new Map<id, SObject>(applicant.Employments__r).keySet()
       );
       reletedEntityIdList.addAll(
-        new Map<id, SObject>(applicant.mflow__IdentificationDocuments__r)
-          .keySet()
+        new Map<id, SObject>(applicant.IdentificationDocuments__r).keySet()
       );
     }
 

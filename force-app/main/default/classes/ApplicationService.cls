@@ -93,6 +93,7 @@ global with sharing class ApplicationService extends AbstractService {
     }
     // #pending  value need to decide based on the parameter
     application.FinServ__CustomerType__c = 'Consumer';
+    application.UserAccountType__c = 'CustomerApplication';
     application.FlowState__c = 'Get-Started';
     application.IPAddress__c = ApplicationServiceHelper.getInstance()
       .getIpAddress();

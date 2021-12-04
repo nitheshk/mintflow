@@ -31,14 +31,14 @@ global abstract with sharing class AbstractController {
       if (
         !Test.isRunningTest() &&
         UserInfo.getUserName() ==
-        SiteSetting__c.getInstance().mflow__OnlineSiteUserName__c
+        SiteSetting__c.getInstance().OnlineSiteUserName__c
       ) {
         //validate token;
         //throw custom exception on any error
         SecurityUtils.validateSession();
       } else if (
         UserInfo.getUserName() !=
-        SiteSetting__c.getInstance().mflow__OnlineSiteUserName__c &&
+        SiteSetting__c.getInstance().OnlineSiteUserName__c &&
         String.isNotBlank(ApexRequest.getToken())
       ) {
         SecurityUtils.validateSession();

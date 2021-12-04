@@ -234,7 +234,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           '{lastName}' => applicant.LastName__c,
           '{productName}' => 'Member Account',
           '{accountNumber}' => applicant.MembershipAccountNumber__c,
-          '{customerNumber}' => applicant.mflow__CustomerNumber__c
+          '{customerNumber}' => applicant.CustomerNumber__c
         }
       );
     sendEmail();

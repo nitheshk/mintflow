@@ -131,7 +131,7 @@ String jsonBody = '{"LastModifiedDate":"2021-11-23T04:28:08.000+0000","FinServ__
 Account acc = (Account) SObjectConstructor.deserialize(jsonBody, Account.class);
 system.debug('name : ' + acc.name);
 system.debug('name : ' + acc.LastModifiedDate);
-system.debug('name : ' + acc.mflow__Applicants__r.size());
+system.debug('name : ' + acc.Applicants__r.size());
 
 //Map<String,Object> sMap=acc.getPopulatedFieldsAsMap();
 jsonBody = SObjectConstructor.serialize(new List<Account>{ acc });
