@@ -187,6 +187,11 @@
         <name>SiteSetting__c</name>
     </customSettingAccesses>
     <description>MintFlow System Admin profile</description>
+       <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.QualifileScore__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.CustomScore__c</field>

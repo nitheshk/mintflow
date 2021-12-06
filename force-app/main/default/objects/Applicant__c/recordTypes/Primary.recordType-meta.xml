@@ -146,11 +146,15 @@
     <picklistValues>
         <picklist>IdentityVerificationStatus__c</picklist>
         <values>
-            <fullName>Not Verified</fullName>
+            <fullName>Accept</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Verified</fullName>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
             <default>false</default>
         </values>
     </picklistValues>

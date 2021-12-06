@@ -11,14 +11,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Verified</fullName>
+                <fullName>Passed</fullName>
                 <default>false</default>
-                <label>Verified</label>
+                <label>Passed</label>
             </value>
             <value>
-                <fullName>Not Verified</fullName>
+                <fullName>Failed</fullName>
                 <default>false</default>
-                <label>Not Verified</label>
+                <label>Failed</label>
+            </value>
+            <value>
+                <fullName>Accept</fullName>
+                <default>false</default>
+                <label>Accept</label>
             </value>
         </valueSetDefinition>
     </valueSet>
