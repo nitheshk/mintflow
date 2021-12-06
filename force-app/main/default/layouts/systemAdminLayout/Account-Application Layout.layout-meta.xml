@@ -95,7 +95,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SubStatus__c</field>
+                <field>Stage__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -23,7 +23,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>SubStatus__c</field>
+        <field>Stage__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

@@ -403,7 +403,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.SubStatus__c</field>
+        <field>Account.Stage__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
