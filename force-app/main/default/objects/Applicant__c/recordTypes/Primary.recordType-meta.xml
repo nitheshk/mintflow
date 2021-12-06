@@ -28,17 +28,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>EmploymentStatus__c</picklist>
-        <values>
-            <fullName>AutoVerified</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Manual</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>FlowState__c</picklist>
         <values>
             <fullName>Address-Verification</fullName>
