@@ -168,10 +168,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmploymentStatus__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FraudStatus__c</field>
             </layoutItems>
             <layoutItems>
