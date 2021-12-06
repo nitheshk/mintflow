@@ -47,7 +47,6 @@ global with sharing class ApplicationResponseMapper {
     global Decimal CreditScore;
     global String CustomerNumber;
     global String Email;
-    global String EmploymentStatus;
     global String FirstName;
     global String FraudStatus;
     global String IdentityVerificationStatus;

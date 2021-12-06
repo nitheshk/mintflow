@@ -101,7 +101,6 @@ global with sharing class ApplicationDataAPI {
       mapperApplicant.CreditScore = applicant.CreditScore__c;
       mapperApplicant.CustomerNumber = applicant.CustomerNumber__c;
       mapperApplicant.Email = applicant.Email__c;
-      mapperApplicant.EmploymentStatus = applicant.EmploymentStatus__c;
       mapperApplicant.FraudStatus = applicant.FraudStatus__c;
       mapperApplicant.IdentityVerificationStatus = applicant.IdentityVerificationStatus__c;
       mapperApplicant.IncomeVerificationStatus = applicant.IncomeVerificationStatus__c;
