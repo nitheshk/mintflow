@@ -27,6 +27,8 @@ global with sharing class AtomicFIProvider extends AbstractService {
    **/
   global virtual String authenticate(String applicantId) {
     String jsonRequest;
+    String tokenKey;
+    Map<String, Object> objectData;
     try {
       Applicant__c applicant = ApplicantRepository.readApplicantWithChild(
         applicantId
@@ -47,12 +49,21 @@ global with sharing class AtomicFIProvider extends AbstractService {
         header.put('x-api-key', HttpBuilder.getApiConstant('x_api_key'));
         header.put('x-api-secret', HttpBuilder.getApiConstant('x_api_secret'));
         HttpResponse response = HttpBuilder.httpCallOut(jsonRequest, header);
+        map<string, Object> mapResponse = (Map<String, Object>) JSON.deserializeUntyped(
+          response.getBody()
+        );
+        if (mapResponse.containsKey('data')) {
+          objectData = (Map<String, Object>) mapResponse.get('data');
+          tokenKey = (String) objectData.get('token');
+        } else {
+          tokenKey = 'Api does not contain token';
+        }
       } else {
         throw new CustomException('AtomicFI API is disabled');
       }
     } catch (Exception ex) {
       throw ex;
     }
-    return jsonRequest;
+    return tokenKey;
   }
 }
