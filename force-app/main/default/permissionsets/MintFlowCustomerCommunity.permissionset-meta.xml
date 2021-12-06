@@ -245,12 +245,12 @@
     </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
-        <field>Account.MeridianApplicationNumber__c</field>
+        <field>Account.ExternalApplicationNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.MeridianApplicationStatus__c</field>
+        <field>Account.ExternalApplicationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
    <fieldPermissions>
