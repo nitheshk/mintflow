@@ -169,6 +169,32 @@
     <description>MFlow Online Salesforce Platform</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.CustomScore__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+ <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.HighRiskConsumer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OverallDebitBureauResult__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.RunWithKIQ__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.SSNValidation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Contact.IdentityVerificationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>

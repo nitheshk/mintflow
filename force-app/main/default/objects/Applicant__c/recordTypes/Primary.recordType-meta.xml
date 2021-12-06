@@ -129,6 +129,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>HighRiskConsumer__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>IdentityVerificationStatus__c</picklist>
         <values>
             <fullName>Not Verified</fullName>
@@ -171,6 +186,21 @@
     </picklistValues>
     <picklistValues>
         <picklist>OFAC__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>OverallDebitBureauResult__c</picklist>
         <values>
             <fullName>Accept</fullName>
             <default>false</default>
@@ -235,6 +265,21 @@
         </values>
         <values>
             <fullName>daughter</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>RunWithKIQ__c</picklist>
+        <values>
+            <fullName>Accept</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passed</fullName>
             <default>false</default>
         </values>
     </picklistValues>
