@@ -28,17 +28,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>EmploymentStatus__c</picklist>
-        <values>
-            <fullName>AutoVerified</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Manual</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>FlowState__c</picklist>
         <values>
             <fullName>Address-Verification</fullName>
@@ -114,92 +103,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FraudStatus__c</picklist>
-        <values>
-            <fullName>Less</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Medium</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>More</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>IdentityVerificationStatus__c</picklist>
-        <values>
-            <fullName>Not Verified</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Verified</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>IncomeVerificationStatus__c</picklist>
-        <values>
-            <fullName>Approved</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Declined</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>In Progress</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>KYCStatus__c</picklist>
-        <values>
-            <fullName>Failed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Passed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>UnderReview</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>OFAC__c</picklist>
-        <values>
-            <fullName>Accept</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Failed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Passed</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>QualifileDecision__c</picklist>
-        <values>
-            <fullName>Accept</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Failed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Passed</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>Relationship__c</picklist>
         <values>
             <fullName>Brother</fullName>
@@ -235,36 +138,6 @@
         </values>
         <values>
             <fullName>daughter</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>RunWithoutKIQ__c</picklist>
-        <values>
-            <fullName>Accept</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Failed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Passed</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>SentiLinkStatus__c</picklist>
-        <values>
-            <fullName>Passed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Under Process</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Under Review</fullName>
             <default>false</default>
         </values>
     </picklistValues>
