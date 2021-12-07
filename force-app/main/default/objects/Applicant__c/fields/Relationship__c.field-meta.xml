@@ -11,49 +11,44 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Father</fullName>
+                <fullName>Significant Other</fullName>
                 <default>false</default>
-                <label>Father</label>
+                <label>Significant Other</label>
             </value>
             <value>
-                <fullName>Mother</fullName>
+                <fullName>Relative</fullName>
                 <default>false</default>
-                <label>Mother</label>
+                <label>Relative</label>
             </value>
             <value>
-                <fullName>Brother</fullName>
+                <fullName>Sibling</fullName>
                 <default>false</default>
-                <label>Brother</label>
+                <label>Sibling</label>
             </value>
             <value>
-                <fullName>Sister</fullName>
+                <fullName>Spouse</fullName>
                 <default>false</default>
-                <label>Sister</label>
+                <label>Spouse</label>
             </value>
             <value>
-                <fullName>Husband</fullName>
+                <fullName>Parent</fullName>
                 <default>false</default>
-                <label>Husband</label>
+                <label>Parent</label>
             </value>
             <value>
-                <fullName>Wife</fullName>
+                <fullName>Child</fullName>
                 <default>false</default>
-                <label>Wife</label>
+                <label>Child</label>
             </value>
             <value>
-                <fullName>Son</fullName>
+                <fullName>Grandparent</fullName>
                 <default>false</default>
-                <label>Son</label>
+                <label>Grandparent</label>
             </value>
             <value>
-                <fullName>daughter</fullName>
+                <fullName>Grandchild</fullName>
                 <default>false</default>
-                <label>daughter</label>
-            </value>
-            <value>
-                <fullName>Other</fullName>
-                <default>false</default>
-                <label>Other</label>
+                <label>Grandchild</label>
             </value>
         </valueSetDefinition>
     </valueSet>

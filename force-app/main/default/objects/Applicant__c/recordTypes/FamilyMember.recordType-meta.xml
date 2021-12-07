@@ -210,39 +210,35 @@
     <picklistValues>
         <picklist>Relationship__c</picklist>
         <values>
-            <fullName>Brother</fullName>
+            <fullName>Child</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Father</fullName>
+            <fullName>Grandchild</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Husband</fullName>
+            <fullName>Grandparent</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Mother</fullName>
+            <fullName>Parent</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Other</fullName>
+            <fullName>Relative</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Sister</fullName>
+            <fullName>Sibling</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Son</fullName>
+            <fullName>Significant Other</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Wife</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>daughter</fullName>
+            <fullName>Spouse</fullName>
             <default>false</default>
         </values>
     </picklistValues>

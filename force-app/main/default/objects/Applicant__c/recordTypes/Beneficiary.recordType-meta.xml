@@ -208,45 +208,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Relationship__c</picklist>
-        <values>
-            <fullName>Brother</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Father</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Husband</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Mother</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Other</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Sister</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Son</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Wife</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>daughter</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>RunWithKIQ__c</picklist>
         <values>
             <fullName>Accept</fullName>
