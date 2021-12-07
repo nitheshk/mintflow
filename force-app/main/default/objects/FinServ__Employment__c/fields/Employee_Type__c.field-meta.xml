@@ -13,14 +13,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Part Time</fullName>
+                <fullName>PartTime</fullName>
                 <default>false</default>
-                <label>Part Time</label>
+                <label>PartTime</label>
             </value>
             <value>
-                <fullName>Full Time</fullName>
+                <fullName>FullTime</fullName>
                 <default>false</default>
-                <label>Full Time</label>
+                <label>FullTime</label>
             </value>
         </valueSetDefinition>
     </valueSet>
