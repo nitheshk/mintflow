@@ -118,25 +118,30 @@ global with sharing class RpaProcessService extends AbstractService {
    * @param Account application
    * @return Account
    **/
-  global virtual Account scheduleReviewApplication(Account application) {
-    //Flow tracing purpose,, Can be ignore if don't required
+  global virtual object scheduleReviewApplication(Account application) {
     Flow.initialize(ApexRequest.getApplicationId());
     Flow.setFlow('Rpa-Process: review application');
-    //#pending
     Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
     try {
       if (HttpBuilder.isActiveApiSetting(APINames.UiPathAddQueue)) {
         HttpBuilder.setAPISetting(APINames.UiPathAddQueue);
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
         map<string, object> params = new Map<string, object>();
-        params.put('Name', 'NameOfTheQueue'); // Replace with Name Of The  queue in to which application needs to be added
-        params.put('Priority', 'Normal'); // Replace with priority of the application
-        params.put('SpecificContent', application.ApplicationNumber__c);
+        params.put('Name', 'MintFlow_LoanInfo');
+        params.put('Priority', 'High');
+        params.put(
+          'SpecificContent',
+          new Map<string, string>{
+            'LoanID' => application.ApplicationNumber__c
+          }
+        );
+        params.put('Reference', application.Id);
+        params.put('Progress', 'New');
         HttpBuilder.Response response = RpaProcessProvider.getInstance()
-          .addKycReviewQueue(params);
+          .addKycReviewQueue(new Map<string, object>{ 'itemData' => params });
         flow.setSubFlowPassed('Flow Completed');
         flow.setFlowPassed('Completed');
-        return application;
+        return response;
       } else {
         throw new CustomException('Requested API is disabled');
       }
@@ -146,7 +151,7 @@ global with sharing class RpaProcessService extends AbstractService {
     } finally {
       Flow.finalize();
     }
-    return application;
+    return null;
   }
 
   /**
