@@ -143,4 +143,32 @@ global with sharing class ApplicationResponseMapper {
     global Decimal EmploymentDuration;
     global String EmploymentVerificationType;
   }
+
+  /**
+   *  ----------------------- KYC Result --------------------
+   */
+
+  global class KYCResult {
+    global String ApplicationId;
+    global String ApplicationNumber;
+    global String ExternalApplicationNumber;
+    global String ExternalApplicationStatus;
+    global boolean ExistingCustomer;
+    global list<KYCApplicantResult> applicants;
+  }
+
+  global class KYCApplicantResult {
+    global String ApplicantId;
+    global String OverallDebitBureauResult;
+    global Integer CreditScore;
+    global integer QualifileScore;
+    global integer CustomScore;
+    global String HighRiskConsumer;
+    global String QualifileDecision;
+    global String IdentityVerificationStatus;
+    global String OFAC;
+    global String SSNValidation;
+    global String RunWithoutKIQ;
+    global String RunWithKIQ;
+  }
 }

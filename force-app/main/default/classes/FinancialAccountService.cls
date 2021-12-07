@@ -62,17 +62,24 @@ global with sharing class FinancialAccountService extends AbstractService {
    * @param Map<String Object> params
    * @return Object
    **/
-  global virtual Object createMemberAccount(Map<String, Object> params) {
-    String applicantId = (string) params.get('applicationId');
-
-    Account application = FinancialAccountRepository.readApplicationWithChild(
-      applicantId
+  global virtual Object createMemberAccount(String resultJson) {
+    ApplicationResponseMapper.KYCResult kycResult = (ApplicationResponseMapper.KYCResult) JSON.deserialize(
+      resultJson,
+      ApplicationResponseMapper.KYCResult.class
     );
 
+    Account application = FinancialAccountRepository.readApplicationWithChild(
+      kycResult.ApplicationId
+    );
+
+    // Primary is Existing Customer
+    if (kycResult.ExistingCustomer == true) {
+      return processExistingMember(application, kycResult);
+    }
+
     // Primary Kyc is Approved and Joint KYC is Approved
-    // Primary is Not Existing Customer
     // update Applicant detail accordingly
-    application = updateApplicationKycDetails(application, params);
+    // application = updateApplicationKycDetails(application, kycResult);
 
     // if Application kyc status is approved, then procced with creating Account & Contact for primary
     // And Open Membership Financial Account and relation with applicant
@@ -82,22 +89,32 @@ global with sharing class FinancialAccountService extends AbstractService {
   }
 
   /**
-   * @description
-   * Primary Kyc is Approved and Joint KYC is Approved
-   * Primary is Not Existing Customer
-   * update Applicant detail accordingly
-   * @author Digital Align Team | 12-02-2021
+   * @description  Primary is Existing Customer
+   * @author Digital Align Team | 12-07-2021
    * @param Account application
-   * @param Map<String String> params
-   * @return virtual
+   * @param ApplicationResponseMapper.KYCResult kycResult
+   * @return Account
    **/
-  global virtual Account updateApplicationKycDetails(
+  global virtual Account processExistingMember(
     Account application,
-    Map<String, Object> params
+    ApplicationResponseMapper.KYCResult kycResult
   ) {
+    application.isMemberFlow__c = false;
+    application.FinServ__Status__c = ApplicationConstant.CANCELLED;
+    application.mflow__Stage__c = ApplicationConstant.STAGE_EXISTING_CUSTOMER;
+    application.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
     for (Applicant__c applicant : application.Applicants__r) {
+      if (
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      ) {
+        applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
+        applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
+        applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
+      }
     }
-
+    FinancialAccountRepository.upsertRecord(application);
+    FinancialAccountRepository.upsertRecords(application.Applicants__r);
     return application;
   }
 

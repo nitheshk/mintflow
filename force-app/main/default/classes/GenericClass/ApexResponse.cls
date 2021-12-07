@@ -162,9 +162,13 @@ global with sharing class ApexResponse {
    **/
   public ApexResponse setData(Object data) {
     if (RestContext.request != null) {
-      RestContext.response.responseBody = blob.valueOf(
-        SObjectConstructor.serialize(data)
-      );
+      if (data instanceof String) {
+        RestContext.response.responseBody = blob.valueOf((String) data);
+      } else {
+        RestContext.response.responseBody = blob.valueOf(
+          SObjectConstructor.serialize(data)
+        );
+      }
     } else {
       this.data = data;
     }
@@ -179,9 +183,13 @@ global with sharing class ApexResponse {
    **/
   public ApexResponse setDataAsStringfy(Object data) {
     if (RestContext.request != null) {
-      RestContext.response.responseBody = blob.valueOf(
-        SObjectConstructor.serialize(data)
-      );
+      if (data instanceof String) {
+        RestContext.response.responseBody = blob.valueOf((String) data);
+      } else {
+        RestContext.response.responseBody = blob.valueOf(
+          SObjectConstructor.serialize(data)
+        );
+      }
     } else {
       this.data = SObjectConstructor.serialize(data);
     }

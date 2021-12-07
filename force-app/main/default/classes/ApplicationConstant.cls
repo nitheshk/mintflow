@@ -25,4 +25,10 @@ public with sharing class ApplicationConstant {
   public static final String IN_PROGRESS = 'In Progress';
   public static final String PENDING_REVIEW = 'Pending Review';
   public static final String SUBMITTED = 'Submitted';
+
+  // Application Stage
+  public static final String STAGE_EXISTING_CUSTOMER = 'ExistingCustomer';
+
+  //Flow State
+  public static final String FINAL_CONFIRMATION = 'Final-Confirmation';
 }
