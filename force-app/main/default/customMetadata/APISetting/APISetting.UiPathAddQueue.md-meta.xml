@@ -10,7 +10,7 @@
         <field>EndPoint__c</field>
         <value
       xsi:type="xsd:string"
-    >callout:UiPath/digtalalign/SkyoneDev/orchestrator_/odata/Queues/UiPathODataSvc.AddQueueItem</value>
+    >callout:UiPath/digtalalign/P1FCUdev/orchestrator_/odata/Queues/UiPathODataSvc.AddQueueItem</value>
     </values>
     <values>
         <field>Method__c</field>
