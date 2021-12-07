@@ -46,6 +46,41 @@
                 <default>false</default>
                 <label>In Progress</label>
             </value>
+            <value>
+                <fullName>Draft</fullName>
+                <default>false</default>
+                <label>Draft</label>
+            </value>
+            <value>
+                <fullName>Review In Progress</fullName>
+                <default>false</default>
+                <label>Review In Progress</label>
+            </value>
+            <value>
+                <fullName>Submit for Review</fullName>
+                <default>false</default>
+                <label>Submit for Review</label>
+            </value>
+            <value>
+                <fullName>Revision in Progress</fullName>
+                <default>false</default>
+                <label>Revision in Progress</label>
+            </value>
+            <value>
+                <fullName>Saved</fullName>
+                <default>false</default>
+                <label>Saved</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Funding in Progress</fullName>
+                <default>false</default>
+                <label>Funding in Progress</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
