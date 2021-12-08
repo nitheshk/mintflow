@@ -46,6 +46,8 @@ global with sharing class IdentityController extends AbstractController {
    * @param Map<String object> params
    * @return ApexResponse
    **/
+  @AuraEnabled
+  @RemoteAction
   global static ApexResponse scanIdentityDocument(ApexRequest request) {
     try {
       log?.fine('Inside scanIdentityDocument');
