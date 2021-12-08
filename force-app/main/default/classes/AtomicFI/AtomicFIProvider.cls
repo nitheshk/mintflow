@@ -19,6 +19,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
     }
     return serviceInstance;
   }
+
   /**
    * @description authenticate the atomicFI
    * @author Digital Align Team | 11-01-2021
@@ -44,8 +45,6 @@ global with sharing class AtomicFIProvider extends AbstractService {
 
         header.put('accept', 'application/json');
         header.put('Content-Type', 'application/json');
-        String test = HttpBuilder.getApiConstant('x_api_secret');
-
         header.put('x-api-key', HttpBuilder.getApiConstant('x_api_key'));
         header.put('x-api-secret', HttpBuilder.getApiConstant('x_api_secret'));
         HttpResponse response = HttpBuilder.httpCallOut(jsonRequest, header);
@@ -56,7 +55,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
           objectData = (Map<String, Object>) mapResponse.get('data');
           tokenKey = (String) objectData.get('token');
         } else {
-          tokenKey = 'Api does not contain token';
+          tokenKey = 'API does not contain token';
         }
       } else {
         throw new CustomException('AtomicFI API is disabled');

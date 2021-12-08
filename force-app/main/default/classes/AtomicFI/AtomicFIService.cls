@@ -111,11 +111,16 @@ global with sharing class AtomicFIService extends AbstractService {
   global virtual void resolveDoPost() {
     String suffixRestUrl = ApexUtils.obtainUrlSuffix(classUrlMapping);
     String precedingUri = suffixRestUrl.substringBefore('/');
+    String parentId;
 
     switch on precedingUri {
       //RestContext.request.requestURI :/mflow/atomic/v1/employmentverify/
       when 'employmentverify' {
         String str = 'employmentverify';
+
+        List<FileDTO> files = new List<FileDTO>();
+        List<ContentVersion> cvList = new List<ContentVersion>();
+
         String request = RestContext.request.requestBody.toString();
         str = RestContext.request.requestBody.toString();
         RestResponse response = RestContext.response;
@@ -132,7 +137,17 @@ global with sharing class AtomicFIService extends AbstractService {
         );
         if (atomicObj.data.status.equalsIgnoreCase('Completed')) {
           //send data to be saved to backend
-          mapApplicantEmployment(atomicObj);
+          parentId = mapApplicantEmployment(atomicObj);
+          files.add(
+            new FileDTO(
+              'AtomicFI Response.txt',
+              blob.valueof(str),
+              parentId,
+              'Employment',
+              'AtomicFI'
+            )
+          );
+          FileService.getInstance().createFiles(files);
         }
       }
     }
@@ -142,7 +157,7 @@ global with sharing class AtomicFIService extends AbstractService {
    * @author Digital Align Team | 11/11/2021
    * @return  List<AtomicFIDTO.Address>
    **/
-  global virtual void mapApplicantEmployment(AtomicFIDTO atomicObj) {
+  global virtual String mapApplicantEmployment(AtomicFIDTO atomicObj) {
     FinServ__Employment__c employmentObj = new FinServ__Employment__c();
 
     employmentObj.Applicant__c = atomicObj.user.identifier;
@@ -158,7 +173,11 @@ global with sharing class AtomicFIService extends AbstractService {
     employmentObj.EmploymentVerificationType__c = 'Auto';
     employmentObj.FinServ__Position__c = atomicObj.data.outputs.jobTitle;
     employmentObj.FinServ__AnnualIncome__c = 0;
+    employmentObj.Employee_Type__c = 'fulltime';
+    //atomicObj.data.outputs.employeeType;
     // this.calculateIncome(atomicObj.data.outputs.income,atomicObj.data.outputs.incomeType);
     EmploymentRepository.UpsertRecord(employmentObj);
+    System.debug('employmentObj:' + employmentObj.id);
+    return employmentObj.Id;
   }
 }
