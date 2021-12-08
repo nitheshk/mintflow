@@ -37,21 +37,30 @@ global with sharing class DocumentScanProvider extends AbstractService {
   global virtual HttpBuilder.Response idScanAnalyzer(
     Map<String, object> params
   ) {
-    ContentVersion cv = (ContentVersion) params.get('frontContentVersion');
+    ContentVersion frontCv = (ContentVersion) params.get('frontContentVersion');
+    ContentVersion backCv = params.containsKey('backContentVersion')
+      ? (ContentVersion) params.get('backContentVersion')
+      : null;
     //header
     Map<String, String> header = new Map<String, String>();
     header.put('accept', 'application/json');
     header.put('Content-Type', 'application/json');
     //request
     DocumentScanDTO.Request requestDTO = new DocumentScanDTO.Request();
-    requestDTO.file_base64 = EncodingUtil.base64Encode(cv.VersionData);
+    requestDTO.file_base64 = EncodingUtil.base64Encode(frontCv.VersionData);
+    if (backCv != null) {
+      requestDTO.file_back_base64 = EncodingUtil.base64Encode(
+        backCv?.VersionData
+      );
+      backCv = null; //remove binary data for heap issue
+    }
     requestDTO.apikey = HttpBuilder.getApiConstant('IdScanAnalyzerAPIKey');
     requestDTO.authenticate = 'true';
     requestDTO.authenticate_module = '2';
     requestDTO.verify_expiry = 'true';
     requestDTO.dualsidecheck = 'true';
     //remove binary data for heap issue
-    cv = null;
+    frontCv = null;
     params.remove('FrontContentVersion');
 
     HttpResponse response = HttpBuilder.httpCallOut(
@@ -180,7 +189,8 @@ global with sharing class DocumentScanProvider extends AbstractService {
     identity.FinServ__IssueDate__c = DateUtils.convertStringToDate1(
       returnDTO.data.issued
     );
-    idAddress.Street = returnDTO.data.address1 + ' ' + returnDTO.data.address2;
+    idAddress.Street = returnDTO.data.address1;
+    idAddress.City = returnDTO.data.address2;
     idAddress.PostalCode = returnDTO.data.postalCode;
 
     SObjectConstructor construct = SObjectConstructor.getInstance(applicant);

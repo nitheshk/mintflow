@@ -84,13 +84,22 @@ global with sharing class IdentityService extends AbstractService {
     Flow.setFlow('IdentityFlow');
     Flow.setSubFlow(APINames.IdScanAnalyzer);
     try {
-      string contentDocumentId = (string) params.get('contentDocumentId');
-      ContentVersion cv = FileService.getInstance()
-        .fetchContentVersionByCD(contentDocumentId, false);
-      if (cv == null) {
+      ContentVersion backCv;
+      string frontImage = (string) params.get('frontImageDocumentId');
+      string backImage = (string) params.get('backImageDocumentId');
+      ContentVersion frontCv = FileService.getInstance()
+        .fetchContentVersionByCD(frontImage, false);
+      if (String.isNotBlank(backImage)) {
+        backCv = FileService.getInstance()
+          .fetchContentVersionByCD(backImage, false);
+      }
+      if (frontCv == null) {
         throw new CustomException(System.Label.Document_DocumentNotFound);
       }
-      params.put('frontContentVersion', cv);
+      if (backCv != null) {
+        params.put('backContentVersion', backCv);
+      }
+      params.put('frontContentVersion', frontCv);
 
       if (HttpBuilder.isActiveApiSetting(APINames.IdScanAnalyzer)) {
         HttpBuilder.setAPISetting(APINames.IdScanAnalyzer);
