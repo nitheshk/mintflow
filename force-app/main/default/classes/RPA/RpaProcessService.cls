@@ -133,8 +133,8 @@ global with sharing class RpaProcessService extends AbstractService {
         HttpBuilder.setAPISetting(APINames.UiPathAddQueue);
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
         map<string, object> params = new Map<string, object>();
-        params.put('Name', 'MintFlow_LoanInfo');
-        params.put('Priority', 'High');
+        params.put('Name', HttpBuilder.getApiConstant('UipathQueueName'));
+        params.put('Priority', HttpBuilder.getApiConstant('UipathPriority'));
         params.put(
           'SpecificContent',
           new Map<string, string>{
@@ -142,7 +142,10 @@ global with sharing class RpaProcessService extends AbstractService {
           }
         );
         params.put('Reference', SecurityUtils.generateUUID());
-        params.put('Progress', 'New');
+        params.put(
+          'Progress',
+          HttpBuilder.getApiConstant('UipathQueueProgress')
+        );
         HttpBuilder.Response response = RpaProcessProvider.getInstance()
           .addKycReviewQueue(
             new Map<string, object>{ 'itemData' => params, 'token' => token }
@@ -151,7 +154,7 @@ global with sharing class RpaProcessService extends AbstractService {
         flow.setFlowPassed('Completed');
         return response;
       } else {
-        throw new CustomException('Requested API is disabled');
+        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
     } catch (Exception ex) {
       flow.setSubFlowFailed(ex.getMessage());
