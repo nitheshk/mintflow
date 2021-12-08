@@ -55,9 +55,12 @@ system.debug(
 );
 
 ApexRequest request = new ApexRequest();
-request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQkkssUH4wpxFsrOla8mVgJetB2j4CgZcTfLysgs//nZD6UwT+HFH5v2J+q7LCdUyQ3x7Nk5K2mxAz8d0GiOE2BqFJsD/JvmUzVykI0AWH5rDbPBeUvUB1o0rLp0H/rH8Q='; //account ID
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrR1nXcH8qwKdFkdKwFlfD+cnoAUbF1h0HCatmkzQMQAbz608qnwz7prUNEUNYXXEEL+hTq+4tLonoOQ7nUK5fgWsi+PM/6kFWf+sntxUJQVdS3DoXpEsTS/uejZfR8+6eg='; //account ID
 request.setHeader(
-  new Map<String, Object>{ 'contentDocumentId' => '0690p000000khpxAAA' }
+  new Map<String, Object>{
+    'frontImageDocumentId' => '0690p000000khg7AAA',
+    'backImageDocumentId' => '0690p000000ki2rAAA'
+  }
 );
 ApexResponse res = IdentityController.scanIdentityDocument(request);
 system.debug('res=' + JSON.serialize(res));
