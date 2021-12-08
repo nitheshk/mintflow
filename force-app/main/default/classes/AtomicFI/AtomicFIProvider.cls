@@ -58,7 +58,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
           tokenKey = 'API does not contain token';
         }
       } else {
-        throw new CustomException('AtomicFI API is disabled');
+        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
     } catch (Exception ex) {
       throw ex;

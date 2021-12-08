@@ -88,7 +88,7 @@ global with sharing class DocumentScanProvider extends AbstractService {
     );
 
     if (idOldMap.ContainsKey('error')) {
-      throw new CustomException('Unable to parse the DL');
+      throw new CustomException(System.Label.Document_UnableToParseTheDl);
     }
 
     Map<String, Object> result = (Map<String, Object>) idOldMap.get('result');

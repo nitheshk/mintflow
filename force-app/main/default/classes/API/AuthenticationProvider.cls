@@ -52,7 +52,7 @@ global with sharing class AuthenticationProvider extends AbstractService {
       log?.error(ex);
       return HttpBuilder.buildResponse(
         400,
-        'There is some issue on the API call',
+        System.Label.Util_ThereIsSomeIssueOnTheApiCall,
         null
       );
     }

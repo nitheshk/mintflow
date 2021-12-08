@@ -240,7 +240,7 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
         acnt = (Account) response.data;
       } else {
         throw new CustomException(
-          ' There is no financial account created in your org. Please create a record for the same and try again!! '
+          System.Label.FinInst_BusinessAccountHasNotSetup
         );
       }
     }

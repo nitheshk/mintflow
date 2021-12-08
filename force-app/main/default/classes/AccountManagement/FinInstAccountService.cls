@@ -59,7 +59,9 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
     );
 
     if (accountRecord == null) {
-      throw new CustomException('accountRecord Record Not Found');
+      throw new CustomException(
+        System.Label.FinInst_AccountRecordRecordNotFound
+      );
     }
 
     accountRecord.UserAccountType__c = FinancialInstituteConstants.FIN_INST_ACOUNT_TYPE;
@@ -88,7 +90,7 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
     system.debug('employeeContactObj : ' + JSON.serialize(employeeContactObj));
 
     if (employeeContactObj == null) {
-      throw new CustomException('Contact Record Not Found');
+      throw new CustomException(System.Label.FinInst_ContactRecordNotFound);
     }
 
     Savepoint sp = Database.setSavepoint();
@@ -97,7 +99,7 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
 
       if (businessAccountObj == null) {
         throw new CustomException(
-          'Financial Business Account has not setup, Please contact your admin'
+          System.Label.FinInst_BusinessAccountHasNotSetup
         );
       }
       //Process Contact

@@ -340,7 +340,7 @@ global inherited sharing class SecurityUtils {
     log?.debug('Token to Validate : ' + request.token);
     SecurityUtils.CipherDTO cipher = extractToken(request.token);
     if (cipher.edt < Datetime.now()) {
-      throw new CustomException('Session token has expired');
+      throw new CustomException(System.Label.Session_SessionHasExpired);
     }
     switch on cipher.aplType {
       when 'Primary' {
@@ -350,7 +350,7 @@ global inherited sharing class SecurityUtils {
         validateSessionForApplicant(cipher, request);
       }
       when else {
-        throw new CustomException('Flow Type Is Not Mentioned');
+        throw new CustomException(System.Label.Flow_FlowTypeIsNotMentioned);
       }
     }
     log?.fine('Session Validated');
@@ -370,9 +370,7 @@ global inherited sharing class SecurityUtils {
       (Id) cipher.appId
     );
     if (application.SessionToken__c != request.token) {
-      throw new CustomException(
-        'Invalid session token, Token Does Match with system'
-      );
+      throw new CustomException(System.Label.Session_TokenDoesNotMatch);
     }
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
@@ -396,9 +394,7 @@ global inherited sharing class SecurityUtils {
     );
 
     if (applicant.SessionToken__c != request.token) {
-      throw new CustomException(
-        'Invalid session token, Token Does Match with system'
-      );
+      throw new CustomException(System.Label.Session_TokenDoesNotMatch);
     }
     ApexRequest.setApplicationId(applicant.Application__c);
     ApexRequest.setApplicationName(
@@ -423,7 +419,7 @@ global inherited sharing class SecurityUtils {
         SecurityUtils.CipherDTO.class
       );
     } catch (Exception ex) {
-      throw new CustomException('Invalid session token');
+      throw new CustomException(System.Label.Session_InvalidSessionToken);
     }
     return cipher;
   }
