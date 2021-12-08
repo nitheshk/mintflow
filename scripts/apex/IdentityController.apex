@@ -2,7 +2,7 @@
 //Generate Token first and use in the next method, for api call
 System.debug(
   SecurityUtils.generateTokenForTesting(
-    '0010p000011AFiIAAW',
+    '0010p000011QD8gAAG',
     '',
     'Primary',
     'ApplicationFlow'
@@ -10,7 +10,7 @@ System.debug(
 );
 //random input // ERROR OUTPUT
 ApexRequest request = new ApexRequest();
-request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM=';
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrScR/dDv6vV/U+HjLxYevBFbpCs3ToDb5moQBSTdlrmktUu4u0YeGEGTdACKbKBa5lpUH3YSa/TpoTFcqpsJUCSOTK4vaIChw50J9JXAAgKSo4XNcF9h39b8y2ZPnADJyU=';
 request.setHeader(new Map<String, String>{ 'zipcode' => '*^' });
 ApexResponse res = IdentityController.verifyCounty(request);
 system.debug('res=+' + JSON.serialize(res));
@@ -44,13 +44,23 @@ system.debug('res = ' + Json.serialize(res));
 /** ID Analyser */
 
 // #1 IdentityController.scanIdentityDocument
+// fetch contentdocumentID using linkedentityId
+system.debug(
+  'contentDocumentId =' +
+  [
+    SELECT Id, LinkedEntityId, ContentDocumentId
+    FROM ContentDocumentLink
+    WHERE LinkedEntityId = 'a0b0p000001z1FxAAI'
+  ]
+);
+
 ApexRequest request = new ApexRequest();
-request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM='; //account ID
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQkkssUH4wpxFsrOla8mVgJetB2j4CgZcTfLysgs//nZD6UwT+HFH5v2J+q7LCdUyQ3x7Nk5K2mxAz8d0GiOE2BqFJsD/JvmUzVykI0AWH5rDbPBeUvUB1o0rLp0H/rH8Q='; //account ID
 request.setHeader(
-  new Map<String, Object>{ 'contentDocumentId' => '0019D00000IVnGrWRF' }
+  new Map<String, Object>{ 'contentDocumentId' => '0690p000000khpxAAA' }
 );
 ApexResponse res = IdentityController.scanIdentityDocument(request);
-system.debug('res=+' + JSON.serialize(res));
+system.debug('res=' + JSON.serialize(res));
 
 // #2
 
