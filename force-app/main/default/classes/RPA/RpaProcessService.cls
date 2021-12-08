@@ -119,11 +119,17 @@ global with sharing class RpaProcessService extends AbstractService {
    * @return Account
    **/
   global virtual object scheduleReviewApplication(Account application) {
-    Flow.initialize(ApexRequest.getApplicationId());
+    Flow.initialize(application.Id);
     Flow.setFlow('Rpa-Process: review application');
     Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
     try {
       if (HttpBuilder.isActiveApiSetting(APINames.UiPathAddQueue)) {
+        String token;
+        if (ApplicationRepository.readAuthProviderByDevName('UiPath') == null) {
+          HttpBuilder.setAPISetting(APINames.UiPath);
+          token = AuthenticationProvider.getInstance().generateUiPathToken();
+        }
+
         HttpBuilder.setAPISetting(APINames.UiPathAddQueue);
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
         map<string, object> params = new Map<string, object>();
@@ -135,10 +141,12 @@ global with sharing class RpaProcessService extends AbstractService {
             'LoanID' => application.ApplicationNumber__c
           }
         );
-        params.put('Reference', application.Id);
+        params.put('Reference', SecurityUtils.generateUUID());
         params.put('Progress', 'New');
         HttpBuilder.Response response = RpaProcessProvider.getInstance()
-          .addKycReviewQueue(new Map<string, object>{ 'itemData' => params });
+          .addKycReviewQueue(
+            new Map<string, object>{ 'itemData' => params, 'token' => token }
+          );
         flow.setSubFlowPassed('Flow Completed');
         flow.setFlowPassed('Completed');
         return response;

@@ -9,21 +9,21 @@
 global with sharing class HttpBuilder {
   global static APISetting__mdt apiSetting { get; set; }
 
-  global static APISetting__mdt getAPISetting(APINames apiName) {
-    return APISetting__mdt.getInstance(apiName.Name());
+  global static APISetting__mdt getAPISetting(Object apiName) {
+    return APISetting__mdt.getInstance(String.valueOf(apiName));
   }
 
   global static APISetting__mdt getAPISetting() {
     return apiSetting;
   }
 
-  global static APISetting__mdt setAPISetting(APINames apiName) {
-    apiSetting = APISetting__mdt.getInstance(apiName.Name())?.clone();
+  global static APISetting__mdt setAPISetting(Object apiName) {
+    apiSetting = APISetting__mdt.getInstance(String.valueOf(apiName))?.clone();
     return apiSetting;
   }
 
-  global static Boolean isActiveApiSetting(APINames apiName) {
-    return APISetting__mdt.getInstance(apiName.Name())?.isActive__c;
+  global static Boolean isActiveApiSetting(Object apiName) {
+    return APISetting__mdt.getInstance(String.valueOf(apiName))?.isActive__c;
   }
 
   global static Boolean isActiveApiSetting() {

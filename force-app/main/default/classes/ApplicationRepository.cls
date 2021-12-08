@@ -145,4 +145,18 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         .toString()
     );
   }
+
+  /**
+   * @description get authprovider is existing or not
+   * @author Digital Align Team | 12-08-2021
+   * @param String developerName
+   * @return AuthProvider
+   **/
+  global static AuthProvider readAuthProviderByDevName(String developerName) {
+    return (AuthProvider) DatabaseUtils.getRecord(
+      Query.newInstance(AuthProvider.SObjectType)
+        .whereEq('DeveloperName', developerName)
+        .toString()
+    );
+  }
 }

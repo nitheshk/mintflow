@@ -36,3 +36,6 @@ force-app/main/default/reports
 force-app/main/default/navigationMenus/Default_Navigation.navigationMenu-meta.xml
 force-app/main/default/navigationMenus/Default_Navigation1.navigationMenu-meta.xml
 force-app/main/default/layouts/systemAdminLayout/PersonAccount-Person Account Layout.layout-meta.xml
+
+# Oauth Provider, Issue with executionUser name 
+force-app/main/default/classes/OAuthProvider.cls-meta.xml

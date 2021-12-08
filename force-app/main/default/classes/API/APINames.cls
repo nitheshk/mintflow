@@ -15,5 +15,6 @@ global enum APINames {
   IdScanAnalyzer,
   AWSAuth,
   UiPathAddQueue,
-  AtomicFIToken
+  AtomicFIToken,
+  UiPath
 }

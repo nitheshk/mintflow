@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomMetadata
+  xmlns="http://soap.sforce.com/2006/04/metadata"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+    <label>UiPathDev</label>
+    <protected>false</protected>
+    <values>
+        <field>AuthProviderName__c</field>
+        <value xsi:type="xsd:string">UiPath</value>
+    </values>
+    <values>
+        <field>CallbackURL__c</field>
+        <value xsi:nil="true" />
+    </values>
+    <values>
+        <field>ClientId__c</field>
+        <value
+      xsi:type="xsd:string"
+    >767530e2-fdd5-440d-bfa3-e027a226236c</value>
+    </values>
+    <values>
+        <field>ClientSecret__c</field>
+        <value xsi:type="xsd:string">NsWk_!oQwpsW4)s2</value>
+    </values>
+    <values>
+        <field>EndPoint__c</field>
+        <value
+      xsi:type="xsd:string"
+    >callout:UiPathToken/identity_/connect/token</value>
+    </values>
+    <values>
+        <field>Method__c</field>
+        <value xsi:type="xsd:string">POST</value>
+    </values>
+    <values>
+        <field>Scope__c</field>
+        <value xsi:type="xsd:string">OR.Queues.Write</value>
+    </values>
+    <values>
+        <field>Timeout__c</field>
+        <value xsi:type="xsd:double">30000.0</value>
+    </values>
+    <values>
+        <field>UseJSONEncoding__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>isActive__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+</CustomMetadata>
