@@ -47,7 +47,7 @@ global with sharing class IdentityService extends AbstractService {
       params.put('eligibleCountyNameList', eligibleCountyNameList);
       string zipcode = (string) params.get('zipcode');
       if (string.isBlank(zipcode) && params != null) {
-        throw new CustomException('Zipcode value not set');
+        throw new CustomException(System.Label.Identity_ZipcodeValueNotSet);
       }
       if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
         HttpBuilder.setAPISetting(APINames.Geocoding);
@@ -65,7 +65,7 @@ global with sharing class IdentityService extends AbstractService {
         flow.setFlowPassed('Completed');
         return response.data;
       } else {
-        throw new CustomException('Requested API is disabled');
+        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
     } catch (Exception ex) {
       flow.setSubFlowFailed(ex.getMessage());
@@ -88,7 +88,7 @@ global with sharing class IdentityService extends AbstractService {
       ContentVersion cv = FileService.getInstance()
         .fetchContentVersionByCD(contentDocumentId, false);
       if (cv == null) {
-        throw new CustomException('Document Not Found');
+        throw new CustomException(System.Label.Document_DocumentNotFound);
       }
       params.put('frontContentVersion', cv);
 
@@ -100,7 +100,7 @@ global with sharing class IdentityService extends AbstractService {
         flow.setFlowPassed('Completed');
         return (Applicant__c) response.data;
       } else {
-        throw new CustomException('Requested API is disabled');
+        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
     } catch (Exception ex) {
       flow.setSubFlowFailed(ex.getMessage());
@@ -119,7 +119,7 @@ global with sharing class IdentityService extends AbstractService {
     try {
       String applicantId = params.get('applicantId').toString();
       if (String.isBlank('applicantId')) {
-        throw new customException('Invalid Applicant Id');
+        throw new customException(System.Label.Applicant_InvalidApplicantId);
       }
       String apiName = params.get('apiName').toString();
       Applicant__c applicant = IdentityRepository.readApplicantForIdentity(
@@ -146,7 +146,7 @@ global with sharing class IdentityService extends AbstractService {
           applicant = (Applicant__c) response.data;
         }
       } else {
-        throw new CustomException('Check API Configuration');
+        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
 
       if (response?.statusCode != 200) {

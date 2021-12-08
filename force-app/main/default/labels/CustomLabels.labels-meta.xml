@@ -1,6 +1,224 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>Api_RequestedApiIsDisabled</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Requested API is disabled</shortDescription>
+        <value>Requested API is disabled, Check API Configuration</value>
+    </labels>
+    <labels>
+        <fullName>Applicant_ApplicantNotFound</fullName>
+        <categories>Validation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Applicant not found</shortDescription>
+        <value>Applicant not found</value>
+    </labels>
+    <labels>
+        <fullName>Applicant_ApplicantTypeNotFound</fullName>
+        <categories>Validation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Applicant Type Not Found</shortDescription>
+        <value>Applicant Type Not Found</value>
+    </labels>
+    <labels>
+        <fullName>Applicant_InvalidApplicantId</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Invalid Applicant Id</shortDescription>
+        <value>Invalid Applicant Id</value>
+    </labels>
+    <labels>
+        <fullName>Application_ApplicationHasNoApplicants</fullName>
+        <categories>Validation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Application has no applicants</shortDescription>
+        <value>Application has no applicants</value>
+    </labels>
+    <labels>
+        <fullName>Application_ApplicationIdCannotBeBlank</fullName>
+        <categories>Validation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Application ID cannot be blank</shortDescription>
+        <value>Application ID cannot be blank</value>
+    </labels>
+    <labels>
+        <fullName>Application_ApplicationNameCannotBeBlank</fullName>
+        <categories>Validation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Application name cannot be blank</shortDescription>
+        <value>Application name can not be blank</value>
+    </labels>
+    <labels>
+        <fullName>Application_ApplicationNotFound</fullName>
+        <categories>Validation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Application Not Found</shortDescription>
+        <value>Application Not Found</value>
+    </labels>
+    <labels>
+        <fullName>Document_DocumentNotFound</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Document Not Found</shortDescription>
+        <value>Document Not Found</value>
+    </labels>
+    <labels>
+        <fullName>Document_UnableToParseTheDl</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unable to parse the DL</shortDescription>
+        <value>Unable to parse the DL</value>
+    </labels>
+    <labels>
+        <fullName>Email_EmailNotSent</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email not sent</shortDescription>
+        <value>Email not sent</value>
+    </labels>
+    <labels>
+        <fullName>FinInst_BusinessAccountHasNotSetup</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription
+    >Financial Business Account has not setup</shortDescription>
+        <value
+    >Financial Business Account has not setup, Please contact your admin</value>
+    </labels>
+    <labels>
+        <fullName>FinInst_ContactRecordNotFound</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Contact Record Not Found</shortDescription>
+        <value>Contact Record Not Found</value>
+    </labels>
+    <labels>
+        <fullName>Flow_FlowTypeIsNotMentioned</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Flow Type Is Not Mentioned</shortDescription>
+        <value>Flow Type Is Not Mentioned</value>
+    </labels>
+    <labels>
+        <fullName>Identity_ZipcodeValueNotSet</fullName>
+        <categories>Validation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Zipcode value not set</shortDescription>
+        <value>Zipcode value not set</value>
+    </labels>
+    <labels>
+        <fullName>Otp_OtpHasExpired</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>OTP has Expired,Generate new OTP</shortDescription>
+        <value>OTP has Expired,Generate new OTP</value>
+    </labels>
+    <labels>
+        <fullName>Otp_PleaseEnterTheEmailOtp</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Please enter the Email OTP</shortDescription>
+        <value>Please enter the Email OTP</value>
+    </labels>
+    <labels>
+        <fullName>Otp_PleaseEnterTheSmsOtp</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Please enter the SMS OTP</shortDescription>
+        <value>Please enter the SMS OTP</value>
+    </labels>
+    <labels>
+        <fullName>Otp_PleaseVerifyTheEmailOtpEntered</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Please verify the Email OTP entered</shortDescription>
+        <value>Please verify the Email OTP entered</value>
+    </labels>
+    <labels>
+        <fullName>Otp_PleaseVerifyTheOtpConfiguration</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Please verify the otp configuration</shortDescription>
+        <value>Please verify the otp configuration</value>
+    </labels>
+    <labels>
+        <fullName>Otp_PleaseVerifyTheSmsOtpEntered</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Please verify the SMS OTP entered</shortDescription>
+        <value>Please verify the SMS OTP entered</value>
+    </labels>
+    <labels>
+        <fullName>Otp_ReachedMaximumNumberAttempt</fullName>
+        <categories>Validation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Reached Maximum Number Attempt</shortDescription>
+        <value>Reached Maximum Number Attempt</value>
+    </labels>
+    <labels>
+        <fullName>Resume_TheSpecifiedUrlWasCorrupted</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The specified URL was corrupted</shortDescription>
+        <value>The specified URL was corrupted</value>
+    </labels>
+    <labels>
+        <fullName>Resume_TheSpecifiedUrlWasExpired</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The specified URL was expired</shortDescription>
+        <value>The specified URL was expired</value>
+    </labels>
+    <labels>
+        <fullName>Session_InvalidSessionToken</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Invalid session token</shortDescription>
+        <value>Invalid session token</value>
+    </labels>
+    <labels>
+        <fullName>Session_SessionHasExpired</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Session has Expired</shortDescription>
+        <value>Session has Expired</value>
+    </labels>
+    <labels>
+        <fullName>Session_TokenDoesNotMatch</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Token does not match</shortDescription>
+        <value>Invalid session token, Token Does Match with system</value>
+    </labels>
+    <labels>
         <fullName>TwillioOtpFormat</fullName>
         <categories>SMS</categories>
         <language>en_US</language>
@@ -10,5 +228,13 @@
     >{OTP} is OTP for your MINTFLOW, OTP valid for 2 minutes. Do not share this OTP with anyone.
 
 @Digitalalign.com #{OTP}</value>
+    </labels>
+    <labels>
+        <fullName>Util_ThereIsSomeIssueOnTheApiCall</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Issue on the API call</shortDescription>
+        <value>There is some issue on the API call</value>
     </labels>
 </CustomLabels>

@@ -130,7 +130,7 @@ global with sharing class ReviewInformationService extends AbstractService {
     List<Applicant__c> jointApplicants = new List<Applicant__c>();
 
     if (application.Applicants__r.isEmpty()) {
-      throw new customException('Applicant Not Found');
+      throw new customException(System.Label.Applicant_ApplicantNotFound);
     }
 
     //Mark currrent Joint applicant has submitted the application

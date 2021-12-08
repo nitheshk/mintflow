@@ -26,13 +26,15 @@ global with sharing class ApplicationDataAPI {
       ApplicationResponseMapper mapper = new ApplicationResponseMapper();
 
       if (String.isBlank(applicationNumber)) {
-        throw new CustomException('Application ID cannot be blank');
+        throw new CustomException(
+          System.Label.Application_ApplicationNameCannotBeBlank
+        );
       }
       Account application = ApplicationRepository.readApplicationByApplicationNumber(
         applicationNumber
       );
       if (application == null) {
-        throw new customException('Application Not Found');
+        throw new customException(System.Label.Application_ApplicationNotFound);
       }
       application = ApplicationService.getInstance()
         .readApplicationWithChild(application.Id);
@@ -64,11 +66,13 @@ global with sharing class ApplicationDataAPI {
             mapApplicant(application.Applicants__r)
           );
         } else {
-          throw new CustomException('Application has no applicants');
+          throw new CustomException(
+            System.Label.Application_ApplicationHasNoApplicants
+          );
         }
         mapper.Application = mapperApplication;
       } else {
-        throw new CustomException('Application not found');
+        throw new CustomException(System.Label.Application_ApplicationNotFound);
       }
       log?.info('obtainApplicationData -> ReturnMapper -> ' + mapper);
       return mapper;
@@ -300,7 +304,9 @@ global with sharing class ApplicationDataAPI {
         applicationNumber
       );
     if (string.isBlank(applicationNumber)) {
-      throw new CustomException('Application value is not set');
+      throw new CustomException(
+        System.Label.Application_ApplicationNameCannotBeBlank
+      );
     }
 
     List<id> reletedEntityIdList = new List<id>();
@@ -310,7 +316,7 @@ global with sharing class ApplicationDataAPI {
     );
 
     if (application == null) {
-      throw new customException('Application Not Found');
+      throw new customException(System.Label.Application_ApplicationNotFound);
     }
 
     application = ApplicationService.getInstance()

@@ -192,10 +192,12 @@ global with sharing class ApplicationService extends AbstractService {
     try {
       cipher = SecurityUtils.extractToken(vmf);
     } catch (Exception ex) {
-      throw new CustomException('The specified URL was corrupted');
+      throw new CustomException(
+        System.Label.Resume_TheSpecifiedUrlWasCorrupted
+      );
     }
     if (cipher.edt < Datetime.now()) {
-      throw new CustomException('The specified URL was Expired');
+      throw new CustomException(System.Label.Resume_TheSpecifiedUrlWasExpired);
     }
 
     params.put('applicantType', cipher.aplType);
@@ -207,7 +209,7 @@ global with sharing class ApplicationService extends AbstractService {
       cipher.aplId
     );
     if (applicant == null) {
-      throw new CustomException('Applicant not found');
+      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
     params.put(
       'maskedEmail',
@@ -232,10 +234,10 @@ global with sharing class ApplicationService extends AbstractService {
     try {
       cipher = SecurityUtils.extractToken(pageToken.getValue());
     } catch (Exception ex) {
-      throw new CustomException('Invalid session token');
+      throw new CustomException(System.Label.Session_InvalidSessionToken);
     }
     if (cipher.edt < Datetime.now()) {
-      throw new CustomException('Session has Expired');
+      throw new CustomException(System.Label.Session_SessionHasExpired);
     }
 
     Account application;
@@ -246,7 +248,7 @@ global with sharing class ApplicationService extends AbstractService {
       application = ApplicationService.getInstance()
         .readApplicationWithChild(cipher.appId, cipher.aplId);
     } else {
-      throw new customException('Applicant Type Not Found');
+      throw new customException(System.Label.Applicant_ApplicantTypeNotFound);
     }
 
     params.put('applicantType', cipher.aplType);

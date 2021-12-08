@@ -71,7 +71,7 @@ global with sharing class ApplicationController extends AbstractController {
             )
         );
       } else {
-        throw new customException('Applicant Type Not Found');
+        throw new customException(System.Label.Applicant_ApplicantTypeNotFound);
       }
     } catch (CustomException ex) {
       log?.error(ex);

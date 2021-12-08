@@ -56,7 +56,7 @@ global virtual with sharing class NotificationService extends AbstractService {
         flow.setFlowPassed('Completed');
         return true;
       } else {
-        throw new CustomException('Requested API is disabled');
+        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
     } catch (Exception ex) {
       flow.setSubFlowFailed(ex.getMessage());
