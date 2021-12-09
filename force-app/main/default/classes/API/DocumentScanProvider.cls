@@ -236,19 +236,22 @@ global with sharing class DocumentScanProvider extends AbstractService {
           return 'Driver License';
         }
         when 'I' {
-          return 'Identity Card';
+          // If Identity card save as state ID
+          return 'State Id';
         }
         when 'V' {
           return 'Visa';
         }
         when 'R' {
-          return 'Residence Card';
-        }
-        when 'O' {
+          // Residence card
           return 'Other';
         }
+        when 'O' {
+          //If document Type is Other save it as MilitaryId as MilitaryId is not listed under Idanalyzer
+          return 'Military Id';
+        }
         when else {
-          return value;
+          return 'Other';
         }
       }
     }
