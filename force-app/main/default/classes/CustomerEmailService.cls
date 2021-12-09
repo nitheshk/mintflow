@@ -228,7 +228,10 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Applicant__c applicant
    * @return virtual
    **/
-  global virtual void accountOpened(Applicant__c applicant) {
+  global virtual void accountOpened(
+    Applicant__c applicant,
+    FinServ__FinancialAccount__c finAcc
+  ) {
     EmailNotificationBuilder.newInstance('AccountOpened', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
@@ -236,7 +239,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           '{firstName}' => applicant.FirstName__c,
           '{lastName}' => applicant.LastName__c,
           '{productName}' => 'Member Account',
-          '{accountNumber}' => applicant.MembershipAccountNumber__c,
+          '{accountNumber}' => finAcc.FinServ__FinancialAccountNumber__c,
           '{customerNumber}' => applicant.CustomerNumber__c
         }
       );

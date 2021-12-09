@@ -40,7 +40,8 @@ public with sharing class CustomerEmailServiceTest {
     CustomerEmailService.getInstance().sendEmailOTP(applicant);
     CustomerEmailService.getInstance().resumeAppAfterKycPassed(applicant);
     CustomerEmailService.getInstance().resumeApplication(applicant);
-    CustomerEmailService.getInstance().accountOpened(applicant);
+    CustomerEmailService.getInstance()
+      .accountOpened(applicant, new FinServ__FinancialAccount__c());
     CustomerEmailService.getInstance()
       .primaryReviewInformationCompleted(applicant);
     Test.stopTest();

@@ -1153,11 +1153,6 @@
         <field>Applicant__c.SessionToken__c</field>
         <readable>true</readable>
     </fieldPermissions>
-       <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.MembershipAccountNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.Relationship__c</field>

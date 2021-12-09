@@ -52,7 +52,6 @@ public with sharing class TestData {
     applicant.LastName__c = 'Doe';
     applicant.EmailOtp__c = '4567';
     applicant.ApplicantType__c = 'Primary';
-    applicant.MembershipAccountNumber__c = '569856';
     applicant.CustomerNumber__c = '578784';
     return applicant;
   }
