@@ -144,12 +144,12 @@ global with sharing class FinancialAccountService extends AbstractService {
         applicant.CustomerNumber__c = applicantKyc.CustomerNumber;
         applicant.OverallDebitBureauResult__c = applicantKyc.OverallDebitBureauResult;
         applicant.CreditScore__c = applicantKyc.CreditScore;
-        applicant.QualifileScore__c = String.valueOf(
+        applicant.QualifiedScore__c = String.valueOf(
           applicantKyc.QualifiedScore
         );
         applicant.CustomScore__c = String.valueOf(applicantKyc.CustomScore);
         applicant.HighRiskConsumer__c = applicantKyc.HighRiskConsumer;
-        applicant.QualifileDecision__c = applicantKyc.QualifiedDecision;
+        applicant.QualifiedDecision__c = applicantKyc.QualifiedDecision;
         applicant.IdentityVerificationStatus__c = applicantKyc.IdentityVerificationStatus;
         applicant.OFAC__c = applicantKyc.OFAC;
         applicant.SSNValidation__c = applicantKyc.SSNValidation;
