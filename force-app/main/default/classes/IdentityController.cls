@@ -64,6 +64,7 @@ global with sharing class IdentityController extends AbstractController {
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete scanIdentityDocument');
+      Flow.finalize();
       Logger.persist();
     }
   }

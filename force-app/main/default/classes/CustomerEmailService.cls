@@ -39,13 +39,16 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         .OTPExpirationTime__c
     );
     //applicant.OTPExpireTime__c.format('MM/dd/yyyy HH:mm:ss')
+    // #pending remove SMS OTP From Email
     EmailNotificationBuilder.newInstance('OTPVerificationEmail', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
           '{FirstName}' => applicant.FirstName__c,
           '{LastName}' => applicant.LastName__c,
-          '{OTP}' => applicant.EmailOtp__c,
+          '{OTP}' => applicant.SmsOtp__c +
+          ' ' +
+          applicant.EmailOtp__c,
           '{ExpireTime}' => expireTime
         }
       );
