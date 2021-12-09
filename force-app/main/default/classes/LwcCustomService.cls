@@ -127,9 +127,9 @@ global with sharing class LwcCustomService extends AbstractService {
       applicationId
     );
     if (application != null) {
-      for (Applicant__c app : application.Applicant__r) {
-        applicants.put(app.Name, app.Id);
-      }
+      // for (Applicant__c app : application.Applicant__r) {
+      //   applicants.put(app.Name, app.Id);
+      // }
     }
     return applicants;
   }
