@@ -163,7 +163,7 @@ global with sharing class ApplicationResponseMapper {
     global String OverallDebitBureauResult;
     global Integer CreditScore;
     global Integer QualifiedScore;
-    global Integer CustomScore;
+    global Integer CustomerScore;
     global String HighRiskConsumer;
     global String QualifiedDecision;
     global String IdentityVerificationStatus;

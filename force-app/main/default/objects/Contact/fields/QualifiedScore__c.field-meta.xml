@@ -3,7 +3,7 @@
      <fullName>QualifiedScore__c</fullName>
     <description>To store Qualified score result</description>
     <externalId>false</externalId>
-    <label>Qualifile Score</label>
+    <label>Qualified Score</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
