@@ -208,7 +208,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>QualifileDecision__c</picklist>
+        <picklist>QualifiedDecision__c</picklist>
         <values>
             <fullName>Accept</fullName>
             <default>false</default>

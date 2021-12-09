@@ -184,12 +184,12 @@
     </fieldPermissions>
        <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.QualifileScore__c</field>
+        <field>Applicant__c.QualifiedScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.CustomScore__c</field>
+        <field>Applicant__c.CustomerScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
  <fieldPermissions>
@@ -214,7 +214,7 @@
     </fieldPermissions>
 <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.CustomScore__c</field>
+        <field>Contact.CustomerScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
  <fieldPermissions>
@@ -239,7 +239,7 @@
     </fieldPermissions>
 <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.QualifileScore__c</field>
+        <field>Contact.QualifiedScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
 <fieldPermissions>
@@ -259,7 +259,7 @@
     </fieldPermissions>
 <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.QualifileDecision__c</field>
+        <field>Contact.QualifiedDecision__c</field>
         <readable>true</readable>
     </fieldPermissions>
 <fieldPermissions>
@@ -269,7 +269,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.QualifileDecision__c</field>
+        <field>Applicant__c.QualifiedDecision__c</field>
         <readable>true</readable>
     </fieldPermissions>
 <fieldPermissions>

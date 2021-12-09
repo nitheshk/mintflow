@@ -60,7 +60,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CustomScore__c</field>
+                <field>CustomerScore__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -76,7 +76,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>QualifileScore__c</field>
+                <field>QualifiedScore__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
