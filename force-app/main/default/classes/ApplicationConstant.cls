@@ -25,10 +25,21 @@ public with sharing class ApplicationConstant {
   public static final String IN_PROGRESS = 'In Progress';
   public static final String PENDING_REVIEW = 'Pending Review';
   public static final String SUBMITTED = 'Submitted';
+  public static final String REVISION_IN_PROGRESS = 'Revision in Progress';
+  public static final String REJECTED = 'Rejected';
 
   // Application Stage
   public static final String STAGE_EXISTING_CUSTOMER = 'ExistingCustomer';
 
   //Flow State
   public static final String FINAL_CONFIRMATION = 'Final-Confirmation';
+
+  // RPA to Salesforce Field Mapping
+  /*  public Static final Map<String,String> STATUS_CONVERSION= new Map<String,String>{
+       'Passed' =>  'Passed' , 'PASSED' => 'Passed' ,
+       'Failed' => 'Failed' , 'FAILED' => 'Failed' ,
+       'Accept' => 'Accept' , 'ACCEPT' => 'Accept' ,
+       'Review' => 'Review' , 'REVIEW' => 'Review' ,
+       'Expired' =>'Expired' , 'EXPIRED'=> 'Expired'
+  };*/
 }

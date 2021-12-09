@@ -33,7 +33,7 @@
         <permissionSet>mflow__MintFlowGuest</permissionSet>
         <permissionSet>mflow__MintFlowCustomerCommunity</permissionSet>
         <profile>admin</profile>
-        <profile>FinancialInstitueCommunity Profile</profile>
+        <profile>FinancialInstituteCommunity Profile</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting

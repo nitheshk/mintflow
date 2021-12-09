@@ -15,18 +15,18 @@ global with sharing class ApplicationResponseMapper {
   //global List<FinancialAccount> FinancialAccounts;
   global class Account {
     global List<Applicant> Applicants;
-    global string ApplicationId;
+    global String ApplicationId;
     global Boolean IsCountyEligible;
-    global string ApplicationNumber;
-    global string CountyCode;
-    global string CountyName;
+    global String ApplicationNumber;
+    global String CountyCode;
+    global String CountyName;
     global String BranchCode;
     global String BranchName;
     global String CreatedChannel;
     global String LastUsedChannel;
     global String CustomerType;
     global String FlowState;
-    global string IpAddress;
+    global String IpAddress;
     global Boolean IsMemberFlow;
     global String Status;
     global String SubStatus;
@@ -118,7 +118,7 @@ global with sharing class ApplicationResponseMapper {
     global Decimal Order;
     global String PrimaryContentDocumentID;
     global String SecondaryContentDocumentId;
-    global string Weight;
+    global String Weight;
     global String DocumentType;
     global Date ExpirationDate;
     global Date IssueDate;
@@ -129,15 +129,15 @@ global with sharing class ApplicationResponseMapper {
 
   global class Employment {
     global String EmploymentId;
-    global string EmploymentType;
+    global String EmploymentType;
     global String DocumentType;
     global String IncomeType;
     global String PayCycle;
     global String EmployerName;
     global Double GrossMonthlySalary;
-    global decimal Order;
+    global Decimal Order;
     global String PayGrade;
-    global string Position;
+    global String Position;
     global String Name;
     global String EmploymentStatus;
     global Decimal EmploymentDuration;
@@ -153,18 +153,19 @@ global with sharing class ApplicationResponseMapper {
     global String ApplicationNumber;
     global String ExternalApplicationNumber;
     global String ExternalApplicationStatus;
-    global boolean ExistingCustomer;
+    global Boolean ExistingCustomer;
     global list<KYCApplicantResult> applicants;
   }
 
   global class KYCApplicantResult {
     global String ApplicantId;
+    global String CustomerNumber;
     global String OverallDebitBureauResult;
     global Integer CreditScore;
-    global integer QualifileScore;
-    global integer CustomScore;
+    global Integer QualifiedScore;
+    global Integer CustomScore;
     global String HighRiskConsumer;
-    global String QualifileDecision;
+    global String QualifiedDecision;
     global String IdentityVerificationStatus;
     global String OFAC;
     global String SSNValidation;

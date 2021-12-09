@@ -77,11 +77,11 @@ global with sharing class FinancialAccountService extends AbstractService {
       return processExistingMember(application, kycResult);
     }
 
-    // Primary Kyc is Approved and Joint KYC is Approved
+    // Primary Kyc is Approved/Failed and Joint KYC is Approved/Failed
     // update Applicant detail accordingly
-    // application = updateApplicationKycDetails(application, kycResult);
+    application = updateApplicationKycDetails(application, kycResult);
 
-    // if Application kyc status is approved, then procced with creating Account & Contact for primary
+    // if Application kyc status is approved, then proceed with creating Account & Contact for primary
     // And Open Membership Financial Account and relation with applicant
     createMembershipAccount();
 
@@ -109,6 +109,9 @@ global with sharing class FinancialAccountService extends AbstractService {
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
       ) {
         applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
+        applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
+      } else {
+        // #pending Joint also need to mark has cancelled
         applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
         applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
       }
@@ -116,6 +119,83 @@ global with sharing class FinancialAccountService extends AbstractService {
     FinancialAccountRepository.upsertRecord(application);
     FinancialAccountRepository.upsertRecords(application.Applicants__r);
     return application;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 12-08-2021
+   * @param Account application
+   * @param ApplicationResponseMapper.KYCResult kycResult
+   * @return virtual
+   **/
+  global virtual Account updateApplicationKycDetails(
+    Account application,
+    ApplicationResponseMapper.KYCResult kycResult
+  ) {
+    Map<id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(
+      application.Applicants__r
+    );
+
+    if (kycResult?.applicants != null) {
+      for (
+        ApplicationResponseMapper.KYCApplicantResult applicantKyc : kycResult.applicants
+      ) {
+        Applicant__c applicant = applicantMap.get(applicantKyc.ApplicantId);
+        applicant.CustomerNumber__c = applicantKyc.CustomerNumber;
+        applicant.OverallDebitBureauResult__c = applicantKyc.OverallDebitBureauResult;
+        applicant.CreditScore__c = applicantKyc.CreditScore;
+        applicant.QualifileScore__c = String.valueOf(
+          applicantKyc.QualifiedScore
+        );
+        applicant.CustomScore__c = String.valueOf(applicantKyc.CustomScore);
+        applicant.HighRiskConsumer__c = applicantKyc.HighRiskConsumer;
+        applicant.QualifileDecision__c = applicantKyc.QualifiedDecision;
+        applicant.IdentityVerificationStatus__c = applicantKyc.IdentityVerificationStatus;
+        applicant.OFAC__c = applicantKyc.OFAC;
+        applicant.SSNValidation__c = applicantKyc.SSNValidation;
+        applicant.RunWithoutKIQ__c = applicantKyc.RunWithoutKIQ;
+        applicant.RunWithKIQ__c = applicantKyc.RunWithKIQ;
+
+        //Update Applicant Status based on RunWithKIQ__c Field
+        switch on applicant.RunWithKIQ__c {
+          when 'Accept', 'Passed' {
+            applicant.Status__c = ApplicationConstant.APPROVED;
+            if (
+              applicant.RecordType.Name ==
+              ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+            ) {
+              applicant.FlowState__c = 'funding-welcome';
+            } else if (
+              applicant.RecordType.Name ==
+              ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+            ) {
+            }
+          }
+          when 'Failed' {
+            applicant.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+          }
+          when else {
+            applicant.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+          }
+        }
+      }
+    }
+
+    application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
+    switch on kycResult.ExternalApplicationStatus {
+      when 'Accept', 'Passed' {
+        application.FinServ__Status__c = ApplicationConstant.APPROVED;
+        application.FlowState__c = 'Funding-Welcome';
+      }
+      when 'Fraud' {
+        application.FinServ__Status__c = ApplicationConstant.REJECTED;
+      }
+      when else {
+        application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+      }
+    }
+
+    return null;
   }
 
   /**

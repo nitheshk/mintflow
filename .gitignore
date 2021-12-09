@@ -69,3 +69,5 @@ Trial Customer Portal User.profile
 fsc-app/main/default/sites/OnlineBanking.site-meta.xml
 communityLinks.json
 p1fcu-olbui/package-lock.json
+.idea/*
+IlluminatedCloud/*

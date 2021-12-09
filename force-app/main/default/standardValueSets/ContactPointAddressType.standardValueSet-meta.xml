@@ -22,8 +22,8 @@
         <label>Previous</label>
     </standardValue>
     <standardValue>
-        <fullName>Document</fullName>
+        <fullName>Current</fullName>
         <default>false</default>
-        <label>Document</label>
+        <label>Current</label>
     </standardValue>
 </StandardValueSet>

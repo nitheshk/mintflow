@@ -15,8 +15,8 @@ global with sharing class FinancialInstituteConstants {
   public static final String FIN_INST_EMPLOYEE_CONTACT_RECORDTYPE = 'IndustriesBusiness';
   //default DealerAdmin
   public static final String FIN_INST_EMPLOYEE_CONTACT_TYPE = 'FinancialInstituteEmployee';
-  //default FinancialInstitueCommunity Profile
-  public static final String FIN_INST_EMPLOYEE_USER_PROFILE = 'FinancialInstitueCommunity Profile';
+  //default FinancialInstituteCommunity Profile
+  public static final String FIN_INST_EMPLOYEE_USER_PROFILE = 'FinancialInstituteCommunity Profile';
   //deafult MintFlowCustomerCommunity
   public static final String FIN_INST_COMMUNITY_PEMRISSION_SET = 'MintFlowCustomerCommunity';
 
