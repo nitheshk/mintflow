@@ -62,11 +62,16 @@ global with sharing class FinancialAccountService extends AbstractService {
    * @param Map<String Object> params
    * @return Object
    **/
-  global virtual Object createMemberAccount(String resultJson) {
+  global virtual Account createMemberAccount(String resultJson) {
     ApplicationResponseMapper.KYCResult kycResult = (ApplicationResponseMapper.KYCResult) JSON.deserialize(
       resultJson,
       ApplicationResponseMapper.KYCResult.class
     );
+
+    // When result is null
+    if (kycResult == null) {
+      throw new CustomException('Unable to process the empty request');
+    }
 
     Account application = FinancialAccountRepository.readApplicationWithChild(
       kycResult.ApplicationId
@@ -85,7 +90,7 @@ global with sharing class FinancialAccountService extends AbstractService {
     // And Open Membership Financial Account and relation with applicant
     createMembershipAccount();
 
-    return null;
+    return application;
   }
 
   /**
@@ -100,6 +105,7 @@ global with sharing class FinancialAccountService extends AbstractService {
     ApplicationResponseMapper.KYCResult kycResult
   ) {
     application.isMemberFlow__c = false;
+    application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
     application.FinServ__Status__c = ApplicationConstant.CANCELLED;
     application.mflow__Stage__c = ApplicationConstant.STAGE_EXISTING_CUSTOMER;
     application.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
@@ -116,8 +122,8 @@ global with sharing class FinancialAccountService extends AbstractService {
         applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
       }
     }
-    FinancialAccountRepository.upsertRecord(application);
     FinancialAccountRepository.upsertRecords(application.Applicants__r);
+    FinancialAccountRepository.upsertRecord(application);
     return application;
   }
 
@@ -132,7 +138,7 @@ global with sharing class FinancialAccountService extends AbstractService {
     Account application,
     ApplicationResponseMapper.KYCResult kycResult
   ) {
-    Map<id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(
+    Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(
       application.Applicants__r
     );
 
@@ -140,6 +146,7 @@ global with sharing class FinancialAccountService extends AbstractService {
       for (
         ApplicationResponseMapper.KYCApplicantResult applicantKyc : kycResult.applicants
       ) {
+        log?.debug('Applicant Kyc : ' + applicantKyc);
         Applicant__c applicant = applicantMap.get(applicantKyc.ApplicantId);
         applicant.CustomerNumber__c = applicantKyc.CustomerNumber;
         applicant.OverallDebitBureauResult__c = applicantKyc.OverallDebitBureauResult;
@@ -162,15 +169,8 @@ global with sharing class FinancialAccountService extends AbstractService {
               applicant.RecordType.Name ==
               ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
             ) {
-              applicant.FlowState__c = 'funding-welcome';
-            } else if (
-              applicant.RecordType.Name ==
-              ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-            ) {
+              applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
             }
-          }
-          when 'Failed' {
-            applicant.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
           }
           when else {
             applicant.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
@@ -183,7 +183,7 @@ global with sharing class FinancialAccountService extends AbstractService {
     switch on kycResult.ExternalApplicationStatus {
       when 'Accept', 'Passed' {
         application.FinServ__Status__c = ApplicationConstant.APPROVED;
-        application.FlowState__c = 'Funding-Welcome';
+        application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
       }
       when 'Fraud' {
         application.FinServ__Status__c = ApplicationConstant.REJECTED;
@@ -193,7 +193,9 @@ global with sharing class FinancialAccountService extends AbstractService {
       }
     }
 
-    return null;
+    FinancialAccountRepository.upsertRecords(application.Applicants__r);
+    FinancialAccountRepository.upsertRecord(application);
+    return application;
   }
 
   /**
@@ -201,7 +203,7 @@ global with sharing class FinancialAccountService extends AbstractService {
    * @author Digital Align Team | 12-02-2021
    * @return virtual
    **/
-  global virtual object createMembershipAccount() {
+  global virtual Object createMembershipAccount() {
     return null;
   }
 }

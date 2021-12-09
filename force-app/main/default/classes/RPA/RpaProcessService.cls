@@ -7,12 +7,12 @@
  * RestContext.request.requestURI :/mflow/rpa/v1/*
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-@RestResource(urlMapping='/rpa/v1/*')
+@RestResource(UrlMapping='/rpa/v1/*')
 global with sharing class RpaProcessService extends AbstractService {
   @TestVisible
   private static RpaProcessService serviceInstance;
   private static String classUrlMapping = '/rpa/v1/';
-  private static logger log = logger.getInstance(RpaProcessService.class);
+  private static Logger log = Logger.getInstance(RpaProcessService.class);
 
   public RpaProcessService() {
     super(RpaProcessService.class);
@@ -81,7 +81,7 @@ global with sharing class RpaProcessService extends AbstractService {
     String suffixRestUrl = ApexUtils.obtainUrlSuffix(classUrlMapping);
     String precedingUri = suffixRestUrl.substringBefore('/');
     switch on precedingUri {
-      //RestContext.request.requestURI :/mflow/rpa/v1/reviewapplication/
+      //RestContext.request.requestURI :/mflow/rpa/v1/updatememberdetails/
       when 'updatememberdetails' {
         this.buildUpdateMemberDetails();
       }
@@ -118,7 +118,7 @@ global with sharing class RpaProcessService extends AbstractService {
    * @param Account application
    * @return Account
    **/
-  global virtual object scheduleReviewApplication(Account application) {
+  global virtual Object scheduleReviewApplication(Account application) {
     Flow.initialize(application.Id);
     Flow.setFlow('Rpa-Process: review application');
     Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
@@ -132,12 +132,12 @@ global with sharing class RpaProcessService extends AbstractService {
 
         HttpBuilder.setAPISetting(APINames.UiPathAddQueue);
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
-        map<string, object> params = new Map<string, object>();
+        Map<String, Object> params = new Map<String, Object>();
         params.put('Name', HttpBuilder.getApiConstant('UipathQueueName'));
         params.put('Priority', HttpBuilder.getApiConstant('UipathPriority'));
         params.put(
           'SpecificContent',
-          new Map<string, string>{
+          new Map<String, String>{
             'LoanID' => application.ApplicationNumber__c
           }
         );
@@ -148,17 +148,17 @@ global with sharing class RpaProcessService extends AbstractService {
         );
         HttpBuilder.Response response = RpaProcessProvider.getInstance()
           .addKycReviewQueue(
-            new Map<string, object>{ 'itemData' => params, 'token' => token }
+            new Map<String, Object>{ 'itemData' => params, 'token' => token }
           );
-        flow.setSubFlowPassed('Flow Completed');
-        flow.setFlowPassed('Completed');
+        Flow.setSubFlowPassed('Flow Completed');
+        Flow.setFlowPassed('Completed');
         return response;
       } else {
         throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
     } catch (Exception ex) {
-      flow.setSubFlowFailed(ex.getMessage());
-      flow.setFlowFailed('Failed');
+      Flow.setSubFlowFailed(ex.getMessage());
+      Flow.setFlowFailed('Failed');
     } finally {
       Flow.finalize();
     }
@@ -168,16 +168,17 @@ global with sharing class RpaProcessService extends AbstractService {
   /**
    * @description To update the application with member details from external system
    * @author Digital Align Team | 11-25-2021
-   * @return virtual
    **/
   global virtual void buildUpdateMemberDetails() {
-    map<string, object> request = (Map<String, Object>) JSON.deserializeUntyped(
-      RestContext.request.requestBody.toString()
-    );
-    log?.debug('request =' + request);
-    String str = 'Request Sent';
+    log
+      ?.debug(
+        'buildUpdateMemberDetails Request =' +
+        RestContext.request.requestBody.toString()
+      );
+    Account Application = (Account) FinancialAccountService.getInstance()
+      .createMemberAccount(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
-    response.responseBody = blob.valueOf(str);
+    response.responseBody = Blob.valueOf(Application.FinServ__Status__c);
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');
   }
@@ -185,16 +186,43 @@ global with sharing class RpaProcessService extends AbstractService {
   /**
    * @description Step2: Fetch complete application data from review submit using applicationID
    * @author Digital Align | 11-30-2021
-   * @return virtual
+   * @example Request Json Looking Like below
+   * Post Request
+   * Connected App : https://connect-customization-1792-dev-ed.cs73.my.salesforce.com/services/apexrest/mflow/rpa/v1/updatememberdetails
+   * Site Url : https://sandbox-connect-customization-1792-d-17d7097ab15.cs73.force.com/Online/services/apexrest/mflow/rpa/v1/updatememberdetails
+   * Request JSON: {
+    "ApplicationId": "0016D00000ZBuZTQA1",
+    "ApplicationNumber": "APP-001",
+    "ExternalApplicationNumber": 95455,
+    "ExternalApplicationStatus": "Fraud",
+    "ExistingCustomer": true,
+    "Applicants": [
+        {
+            "ApplicantId": "a0b6D0000022j1cQAA",
+            "CustomerNumber": "34343",
+            "OverallDebitBureauResult": "Passed",
+            "CreditScore": 562,
+            "QualifiedScore": 762,
+            "CustomerScore": 563,
+            "HighRiskConsumer": "Passed",
+            "QualifiedDecision": "Passed",
+            "IdentityVerificationStatus": "Accept1",
+            "OFAC": "Failed",
+            "SSNValidation": "Available for Issuance",
+            "RunWithoutKIQ": "Accept",
+            "RunWithKIQ": "Accept"
+        }
+    ]
+    }
    **/
   global virtual void buildObtainReviewApplicationData() {
     RestRequest restReq = RestContext.request;
-    string applicationName = restReq.params.get('applicationName');
+    String applicationName = restReq.params.get('applicationName');
     ApplicationResponseMapper applicationResponse = ApplicationDataAPI.obtainApplicationData(
       applicationName
     );
     RestResponse response = RestContext.response;
-    response.responseBody = blob.valueOf(Json.serialize(applicationResponse));
+    response.responseBody = Blob.valueOf(JSON.serialize(applicationResponse));
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');
   }
@@ -206,7 +234,7 @@ global with sharing class RpaProcessService extends AbstractService {
    **/
   global virtual void buildObtainApplicationFiles() {
     RestRequest restReq = RestContext.request;
-    string applicationNumber = restReq.params.get('applicationNumber');
+    String applicationNumber = restReq.params.get('applicationNumber');
     log?.debug('applicationNumber =' + applicationNumber);
     ApplicationDataAPI.obtainApplicationFiles(applicationNumber);
   }

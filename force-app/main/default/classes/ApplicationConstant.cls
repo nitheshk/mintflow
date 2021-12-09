@@ -33,6 +33,7 @@ public with sharing class ApplicationConstant {
 
   //Flow State
   public static final String FINAL_CONFIRMATION = 'Final-Confirmation';
+  public static final String FUNDING_WELCOME = 'Welcome-Back';
 
   // RPA to Salesforce Field Mapping
   /*  public Static final Map<String,String> STATUS_CONVERSION= new Map<String,String>{
