@@ -113,6 +113,27 @@ global with sharing class LwcCustomService extends AbstractService {
     return (Account) builder.build();
   }
 
+  global virtual map<string, id> readApplicationWithApplicants(
+    string applicationId
+  ) {
+    map<string, id> applicants = new Map<string, id>();
+    if (string.isBlank(applicationId)) {
+      log?.debug('applicationIdwithin if =' + applicationId);
+      throw new CustomException(
+        System.Label.Application_ApplicationIdCannotBeBlank
+      );
+    }
+    Account application = ApplicationRepository.readApplicationWithApplicants(
+      applicationId
+    );
+    if (application != null) {
+      for (Applicant__c app : application.Applicant__r) {
+        applicants.put(app.Name, app.Id);
+      }
+    }
+    return applicants;
+  }
+
   /**
    * @description fetch sobject field detail based on sobject name and field set name
    * @author Digital Align Team | 11-30-2021

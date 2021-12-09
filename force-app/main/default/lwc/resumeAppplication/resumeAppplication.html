@@ -1,0 +1,29 @@
+<template>
+  <lightning-card title="Resume Application" icon-name="standard:lead">
+    <div class="slds-var-m-around_medium">
+      <lightning-combobox
+        data-fieldname="Applicants"
+        name="Applicants"
+        label="Applicants"
+        value={value}
+        placeholder="Select applicants"
+        options={options}
+        onchange={handleChange}
+        class="validation"
+      ></lightning-combobox>
+    </div>
+    <div class="slds-var-m-around_medium">
+      <lightning-button-group>
+        <lightning-button
+          variant="brand"
+          label="Submit"
+          title="Submit"
+          onclick={handleSubmit}
+          class="slds-var-m-left_x-small"
+          icon-name="utility:forward"
+          icon-position="right"
+        ></lightning-button>
+      </lightning-button-group>
+    </div>
+  </lightning-card>
+</template>

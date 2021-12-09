@@ -97,6 +97,25 @@ global with sharing class LwcCustomController extends AbstractController {
       return ApexResponse.fail(ex);
     }
   }
+  /**
+   * @description Read Application with only applicant records
+   * @author Digital Align Team | 11-30-2021
+   * @param Map<String String> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse readApplicationWithApplicants(
+    String applicationId
+  ) {
+    try {
+      return ApexResponse.ok(
+        LwcCustomService.getInstance()
+          .readApplicationWithApplicants(applicationId)
+      );
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
+    }
+  }
 
   /**
    * @description get salesforce fieldDescription
