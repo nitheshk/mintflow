@@ -173,14 +173,44 @@ global with sharing class ApplicantController extends AbstractController {
    * @param ApexRequest request
    * @return ApexResponse
    **/
+  @AuraEnabled
+  @RemoteAction
   public static ApexResponse atomicAuthenticate(ApexRequest request) {
     try {
       log?.fine('Inside atomicAuthenticate');
       validateRequest(request);
-      System.debug(' after validated');
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       return ApexResponse.ok(
         EmploymentService.getInstance().atomicAuthenticate(applicantId)
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+  /**
+   * @description Get  AtomicFI response of employment verification
+   * @author Digital Align Team | 11-05-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  public static ApexResponse getAtomicResponse(ApexRequest request) {
+    try {
+      // Method to return the first employment content version json of applicant ::TODO
+      log?.fine('Inside getAtomicResponse');
+      validateRequest(request);
+      ID applicantId = (Id) ApexRequest.getParams('applicantId');
+      ID employerId = (Id) ApexRequest.getParams('employerId');
+      return ApexResponse.ok(
+        EmploymentService.getInstance()
+          .getAtomicResponse(applicantId, employerId)
       );
     } catch (CustomException ex) {
       log?.error(ex);

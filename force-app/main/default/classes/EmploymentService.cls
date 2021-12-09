@@ -38,4 +38,18 @@ global with sharing class EmploymentService extends AbstractService {
     String body = AtomicFIProvider.getInstance().authenticate(applicantId);
     return body;
   }
+  /**
+   * @description Get  AtomicFI response of employment verification
+   * @author Digital Align Team | 10-26-2021
+   * @param applicantId applicantId
+   * @param employerId employerId
+   **/
+  global virtual String getAtomicResponse(
+    String applicantId,
+    String employerId
+  ) {
+    String responseJson = AtomicFIProvider.getInstance()
+      .getAtomicResponse(applicantId, employerId);
+    return responseJson;
+  }
 }

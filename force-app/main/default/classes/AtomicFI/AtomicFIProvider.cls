@@ -34,7 +34,6 @@ global with sharing class AtomicFIProvider extends AbstractService {
       Applicant__c applicant = ApplicantRepository.readApplicantWithChild(
         applicantId
       );
-
       AtomicFIDTO atomicObj = AtomicFIService.getInstance()
         .createApplicantRequestJson(applicant);
       jsonRequest = JSON.serialize(atomicObj, true);
@@ -42,7 +41,6 @@ global with sharing class AtomicFIProvider extends AbstractService {
 
       if (HttpBuilder.isActiveApiSetting(APINames.AtomicFIToken)) {
         Map<String, String> header = new Map<String, String>();
-
         header.put('accept', 'application/json');
         header.put('Content-Type', 'application/json');
         header.put('x-api-key', HttpBuilder.getApiConstant('x_api_key'));
@@ -64,5 +62,31 @@ global with sharing class AtomicFIProvider extends AbstractService {
       throw ex;
     }
     return tokenKey;
+  }
+
+  /**
+   * @description @description Get  AtomicFI response of employment verification
+   * @author Digital Align Team | 11-01-2021
+   * @param ApplicantId
+   * @param EmployerId
+   * @return String
+   **/
+  global virtual String getAtomicResponse(
+    String applicantId,
+    String employerId
+  ) {
+    String textValue;
+    List<ContentVersion> files = Fileservice.getinstance()
+      .fetchContentVersionByFileType(
+        employerId,
+        'Employment',
+        'AtomicFI',
+        false
+      );
+    if (files != null && files.size() > 0) {
+      textValue = files[0].VersionData.toString();
+      return textValue;
+    } else
+      return ' No data found for this employer Information';
   }
 }

@@ -73,3 +73,14 @@ request.setHeader(
 ApexResponse res = ApplicantController.atomicAuthenticate(request);
 
 system.debug('Full Json : ' + res.data);
+
+// Method to get json  of an employer
+ApexRequest request = new ApexRequest();
+request.setHeader(
+  new Map<String, String>{
+    'applicantId' => 'a0b0w00000F1mMDAAZ',
+    'employerId' => 'a0A0w000003hRagEAE'
+  }
+);
+ApexResponse res = ApplicantController.getAtomicResponse(request);
+system.debug('Full Json : ' + res.data);
