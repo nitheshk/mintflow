@@ -63,18 +63,18 @@ global with sharing class DocumentScanProvider extends AbstractService {
     frontCv = null;
     params.remove('FrontContentVersion');
 
-    // HttpResponse response = HttpBuilder.httpCallOut(
-    //   json.serialize(requestDTO),
-    //   header
-    // );
+    HttpResponse response = HttpBuilder.httpCallOut(
+      json.serialize(requestDTO),
+      header
+    );
     //#TODO
     /* temp response*/
-    HttpResponse response = new HttpResponse();
-    response.setStatus('ok');
-    response.setStatusCode(200);
-    response.setBody(
-      '{"result":{"documentNumber":"D2874176","firstName":"RAJESH","middleName":"NINGAPPA","lastName":"PATIL","fullName":"RAJESH NINGAPPA PATIL","sex":"M","height":"065 IN","weight":"150","age":45,"dob":"1976/02/23","dob_day":23,"dob_month":2,"dob_year":1976,"expiry":"2020/02/23","expiry_day":23,"expiry_month":2,"expiry_year":2020,"daysToExpiry":-610,"issued":"2015/02/20","issued_day":20,"issued_month":2,"issued_year":2015,"daysFromIssue":2440,"address1":"44533 JAPALA PL","address2":"FREMONT","postcode":"945390000","optionalData":"02/20/2015644C2/BBFD/20","vehicleClass":"C","restrictions":"NONE","endorsement":"NONE","documentType":"D","documentSide":"DUAL","issuerOrg_region_full":"California","issuerOrg_region_abbr":"CA","issuerOrg_full":"United States","issuerOrg_iso2":"US","issuerOrg_iso3":"USA","nationality_full":"United States","nationality_iso2":"US","nationality_iso3":"USA","internalId":"AAMVA","eyeColor":"BRN","hairColor":"BLK"},"confidence":{"documentNumber":1,"firstName":1,"middleName":1,"lastName":1,"fullName":1,"sex":1,"height":1,"weight":0.906,"age":1,"dob":1,"dob_day":1,"dob_month":1,"dob_year":1,"expiry":1,"expiry_day":1,"expiry_month":1,"expiry_year":1,"daysToExpiry":1,"issued":1,"issued_day":1,"issued_month":1,"issued_year":1,"daysFromIssue":1,"address1":1,"address2":1,"postcode":1,"optionalData":1,"vehicleClass":1,"restrictions":1,"endorsement":1,"documentType":1,"documentSide":1,"issuerOrg_region_full":1,"issuerOrg_region_abbr":1,"issuerOrg_full":1,"issuerOrg_iso2":1,"issuerOrg_iso3":1,"nationality_full":1,"nationality_iso2":1,"nationality_iso3":1,"internalId":1,"eyeColor":1,"hairColor":1},"verification":{"passed":false,"result":{"notexpired":false}},"authentication":{"score":0.6,"breakdown":{"data_visibility":{"passed":true},"image_quality":{"passed":true},"feature_referencing":{"passed":true},"exif_check":{"passed":true},"publicity_check":{"passed":true},"text_analysis":{"passed":true},"biometric_analysis":{"passed":true},"security_feature_check":{"passed":true},"recapture_check":{"passed":false,"code":180,"reason":"Recaptured document","severity":"medium"}},"warning":["Recaptured document"]},"matchrate":1,"executionTime":6.810007095336914,"responseID":"5fbf07dbea65f0dbdc5348163666672d","quota":5,"credit":45,"vaultid":"IAGwy0RmDGY6DrK57d4hIzTLNDw9tz2c"}'
-    );
+    // HttpResponse response = new HttpResponse();
+    // response.setStatus('ok');
+    // response.setStatusCode(200);
+    // response.setBody(
+    //   '{"result":{"documentNumber":"D2874176","firstName":"RAJESH","middleName":"NINGAPPA","lastName":"PATIL","fullName":"RAJESH NINGAPPA PATIL","sex":"M","height":"065 IN","weight":"150","age":45,"dob":"1976/02/23","dob_day":23,"dob_month":2,"dob_year":1976,"expiry":"2020/02/23","expiry_day":23,"expiry_month":2,"expiry_year":2020,"daysToExpiry":-610,"issued":"2015/02/20","issued_day":20,"issued_month":2,"issued_year":2015,"daysFromIssue":2440,"address1":"44533 JAPALA PL","address2":"FREMONT","postcode":"945390000","optionalData":"02/20/2015644C2/BBFD/20","vehicleClass":"C","restrictions":"NONE","endorsement":"NONE","documentType":"D","documentSide":"DUAL","issuerOrg_region_full":"California","issuerOrg_region_abbr":"CA","issuerOrg_full":"United States","issuerOrg_iso2":"US","issuerOrg_iso3":"USA","nationality_full":"United States","nationality_iso2":"US","nationality_iso3":"USA","internalId":"AAMVA","eyeColor":"BRN","hairColor":"BLK"},"confidence":{"documentNumber":1,"firstName":1,"middleName":1,"lastName":1,"fullName":1,"sex":1,"height":1,"weight":0.906,"age":1,"dob":1,"dob_day":1,"dob_month":1,"dob_year":1,"expiry":1,"expiry_day":1,"expiry_month":1,"expiry_year":1,"daysToExpiry":1,"issued":1,"issued_day":1,"issued_month":1,"issued_year":1,"daysFromIssue":1,"address1":1,"address2":1,"postcode":1,"optionalData":1,"vehicleClass":1,"restrictions":1,"endorsement":1,"documentType":1,"documentSide":1,"issuerOrg_region_full":1,"issuerOrg_region_abbr":1,"issuerOrg_full":1,"issuerOrg_iso2":1,"issuerOrg_iso3":1,"nationality_full":1,"nationality_iso2":1,"nationality_iso3":1,"internalId":1,"eyeColor":1,"hairColor":1},"verification":{"passed":false,"result":{"notexpired":false}},"authentication":{"score":0.6,"breakdown":{"data_visibility":{"passed":true},"image_quality":{"passed":true},"feature_referencing":{"passed":true},"exif_check":{"passed":true},"publicity_check":{"passed":true},"text_analysis":{"passed":true},"biometric_analysis":{"passed":true},"security_feature_check":{"passed":true},"recapture_check":{"passed":false,"code":180,"reason":"Recaptured document","severity":"medium"}},"warning":["Recaptured document"]},"matchrate":1,"executionTime":6.810007095336914,"responseID":"5fbf07dbea65f0dbdc5348163666672d","quota":5,"credit":45,"vaultid":"IAGwy0RmDGY6DrK57d4hIzTLNDw9tz2c"}'
+    // );
 
     flow.setSubFlowResponse(response?.getBody());
     log?.debug('response : ' + response.getBody());
