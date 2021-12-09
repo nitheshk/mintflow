@@ -263,7 +263,8 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         log?.debug('Email sent Successfully');
       } else {
         log?.debug('Failed to send Email ');
-        throw new customException(System.Label.Email_EmailNotSent);
+        // #pending exception on sending email
+        //throw new customException(System.Label.Email_EmailNotSent);
       }
     }
   }
