@@ -219,6 +219,14 @@
         <value>Invalid session token, Token Does Match with system</value>
     </labels>
     <labels>
+        <fullName>FinInst_AccountRecordRecordNotFound</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Account record not found</shortDescription>
+        <value>Account record not found</value>
+    </labels>
+    <labels>
         <fullName>TwillioOtpFormat</fullName>
         <categories>SMS</categories>
         <language>en_US</language>
