@@ -2,12 +2,12 @@
   <lightning-card title="Resume Application" icon-name="standard:lead">
     <div class="slds-var-m-around_medium">
       <lightning-combobox
-        data-fieldname="Applicants"
+        data-fieldname="applicants"
         name="Applicants"
         label="Applicants"
         value={value}
         placeholder="Select applicants"
-        options={options}
+        options={applicants}
         onchange={handleChange}
         class="validation"
       ></lightning-combobox>
@@ -18,9 +18,9 @@
           variant="brand"
           label="Submit"
           title="Submit"
-          onclick={handleSubmit}
+          onclick={sendResumeEmail}
           class="slds-var-m-left_x-small"
-          icon-name="utility:forward"
+          icon-name="utility:save"
           icon-position="right"
         ></lightning-button>
       </lightning-button-group>

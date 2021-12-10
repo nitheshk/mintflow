@@ -95,6 +95,20 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
         .toString()
     );
   }
+  /**
+   * @description Read list of applicant record
+   * @author Digital Align | 12-10-2021
+   * @param List<Id> applicantIds
+   * @return List<Applicant__c>
+   **/
+  public static List<Applicant__c> readApplicantsById(List<Id> applicantIds) {
+    return (List<Applicant__c>) DatabaseUtils.getRecords(
+      Query.newInstance(Applicant__c.SObjectType)
+        .addFields()
+        .whereIn('Id', applicantIds)
+        .toString()
+    );
+  }
 
   /**
    * @description read applicant with application details

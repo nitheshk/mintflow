@@ -116,7 +116,26 @@ global with sharing class LwcCustomController extends AbstractController {
       return ApexResponse.fail(ex);
     }
   }
-
+  /**
+   * @description send resume application email
+   * @author Digital Align | 12-10-2021
+   * @param string applicantIds
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse sendResumeApplicationEmail(string applicantIds) {
+    try {
+      log
+        ?.fine(
+          'Inside sendResumeApplicationEmail applicantIds =' + applicantIds
+        );
+      list<id> ids = (List<Id>) JSON.deserialize(applicantIds, List<Id>.class);
+      LwcCustomService.getInstance().sendResumeApplicationEmail(ids);
+      return ApexResponse.ok();
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
+    }
+  }
   /**
    * @description get salesforce fieldDescription
    * @author Digital Align Team | 11-30-2021

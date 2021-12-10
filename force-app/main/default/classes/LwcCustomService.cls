@@ -113,25 +113,51 @@ global with sharing class LwcCustomService extends AbstractService {
     return (Account) builder.build();
   }
 
-  global virtual map<string, id> readApplicationWithApplicants(
+  global virtual list<map<string, object>> readApplicationWithApplicants(
     string applicationId
   ) {
-    map<string, id> applicants = new Map<string, id>();
+    list<map<string, object>> applicants = new List<map<string, object>>();
+
     if (string.isBlank(applicationId)) {
-      log?.debug('applicationIdwithin if =' + applicationId);
       throw new CustomException(
         System.Label.Application_ApplicationIdCannotBeBlank
       );
     }
+    list<id> ids = new List<id>();
     Account application = ApplicationRepository.readApplicationWithApplicants(
       applicationId
     );
     if (application != null) {
-      // for (Applicant__c app : application.Applicant__r) {
-      //   applicants.put(app.Name, app.Id);
-      // }
+      for (Applicant__c app : application.Applicants__r) {
+        log?.debug('applicant =' + app);
+        map<string, object> applicant = new Map<string, object>();
+        ids.add(app.Id);
+        applicant.put('label', app.Name);
+        applicant.put('value', app.Id);
+        applicants.add(applicant);
+      }
+      applicants.add(
+        new Map<string, object>{ 'label' => 'All', 'value' => ids }
+      );
     }
     return applicants;
+  }
+  /**
+   * @description send resume application email to list of applicants
+   * @author Digital Align | 12-10-2021
+   * @param list<id> applicantIds
+   * @return virtual
+   **/
+  global virtual void sendResumeApplicationEmail(list<id> applicantIds) {
+    List<Applicant__c> applicants = ApplicantRepository.readApplicantsById(
+      applicantIds
+    );
+    if (CollectionUtils.isListEmpty(applicants)) {
+      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
+    }
+    for (Applicant__c app : applicants) {
+      CustomerEmailService.getInstance().resumeApplication(app);
+    }
   }
 
   /**
