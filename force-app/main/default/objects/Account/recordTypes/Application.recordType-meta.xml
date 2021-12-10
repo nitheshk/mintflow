@@ -446,71 +446,75 @@
     <picklistValues>
         <picklist>FlowState__c</picklist>
         <values>
-            <fullName>Address-Verification</fullName>
+            <fullName>address-verification</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Beneficiary</fullName>
+            <fullName>beneficiary</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Disclosures</fullName>
+            <fullName>disclosures</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Eligibility-Confirmation</fullName>
+            <fullName>eligibility-confirmation</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Email-Confirmation</fullName>
+            <fullName>email-confirmation</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Emergency-Contact</fullName>
+            <fullName>identity-verification</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Employment-Information</fullName>
+            <fullName>emergency-contact</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Family-Connect</fullName>
+            <fullName>employment-information</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Final-Confirmation</fullName>
+            <fullName>family-connect</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Funding</fullName>
+            <fullName>final-confirmation</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Get-Started</fullName>
+            <fullName>funding</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Joint</fullName>
+            <fullName>get-started</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Otp-Verification</fullName>
+            <fullName>joint</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Password</fullName>
+            <fullName>otp-verification</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Personal-Information</fullName>
+            <fullName>password</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Review-Information</fullName>
+            <fullName>personal-information</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Welcome-Back</fullName>
+            <fullName>review-information</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>welcome-back</fullName>
             <default>false</default>
         </values>
     </picklistValues>
