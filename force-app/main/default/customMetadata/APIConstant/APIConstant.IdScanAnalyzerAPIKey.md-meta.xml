@@ -15,8 +15,10 @@
         <value xsi:type="xsd:string">API Key for IdAnalyzer</value>
     </values>
     <values>
-        <field>Value__c</field>
-        <value xsi:type="xsd:string">v1QBMxxIacbom2U4gc4zeBHXwhN87Dzr</value>
+        <field>Value__c</field>        
+        <value xsi:type="xsd:string">TR5IFE29ZHZoRRr1Cf4nqSaUdfwJuJsc</value>
+        <!-- Use below API key when current key is exhausted -->
+        <!-- <value xsi:type="xsd:string">v1QBMxxIacbom2U4gc4zeBHXwhN87Dzr</value> -->
     </values>
     <values>
         <field>isActive__c</field>
