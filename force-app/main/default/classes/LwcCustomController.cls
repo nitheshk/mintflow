@@ -166,4 +166,21 @@ global with sharing class LwcCustomController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align | 12-13-2021
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse fetchPickListValues(Map<String, Object> params) {
+    try {
+      return ApexResponse.ok(
+        LwcCustomService.getInstance().fetchPickListValues(params)
+      );
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
 }

@@ -45,12 +45,21 @@ export default class ResumeAppplication extends LightningElement {
       this.showSpinner = true;
       sendEmail({
         applicantIds: JSON.stringify(this.selectedId)
-      }).then((result) => {
-        if (result.status === 200) {
-          this.message = "Email sent to " + this.selectedApplicant;
-          utils.successMessage(this, "Email sent");
-        }
-      });
+      })
+        .then((result) => {
+          if (result.status === 200) {
+            this.message = "Email sent to " + this.selectedApplicant;
+            utils.successMessage(this, "Email sent");
+          }
+        })
+        .catch((error) => {
+          console.log("error : " + JSON.stringify(error));
+          utils.errorMessage(
+            this,
+            error.body.message,
+            "Error on sending email"
+          );
+        });
     }
   }
 }

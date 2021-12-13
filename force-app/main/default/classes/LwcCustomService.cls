@@ -204,4 +204,44 @@ global with sharing class LwcCustomService extends AbstractService {
     }
     return fieldNames;
   }
+  /**
+   * @description
+   * @author Digital Align | 12-13-2021
+   * @param Map<String Object> params
+   * @return virtual
+   **/
+  global virtual Map<String, Map<String, Object>> fetchPickListValues(
+    Map<String, Object> params
+  ) {
+    Map<String, Map<String, Object>> result = new Map<String, Map<String, Object>>();
+
+    for (String sType : params.keySet()) {
+      List<String> fieldNames = (List<String>) JSON.deserialize(
+        JSON.serialize(params.get(sType)),
+        List<String>.class
+      );
+      Schema.DescribeSObjectResult sObjectResult = Schema.getGlobalDescribe()
+        .get(sType)
+        .getDescribe();
+      result.put(sType, new Map<String, Object>());
+      for (String fieldName : fieldNames) {
+        List<Object> picklistValues = new List<Object>();
+        for (
+          Schema.PicklistEntry picklistEntry : sObjectResult.fields.getMap()
+            .get(fieldName)
+            .getDescribe()
+            .getPicklistValues()
+        ) {
+          picklistValues.add(
+            new Map<String, String>{
+              'label' => picklistEntry.getLabel(),
+              'value' => picklistEntry.getValue()
+            }
+          );
+        }
+        result.get(sType).put(fieldName, picklistValues);
+      }
+    }
+    return result;
+  }
 }

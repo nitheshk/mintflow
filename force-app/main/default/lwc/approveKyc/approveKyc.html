@@ -1,0 +1,72 @@
+<template>
+  <template if:true={showApplicationTab}>
+    <lightning-card title="KYC Decision" icon-name="action:update_status">
+      <div if class="slds-var-m-around_medium">
+        <lightning-combobox
+          data-fieldname="KYCStatus"
+          name="KYC Status"
+          label="KYC Status"
+          value={value}
+          placeholder="Select status"
+          options={kycStatus}
+          onchange={handleChange}
+          class="validation"
+        ></lightning-combobox>
+      </div>
+      <div class="slds-var-m-around_medium">
+        <lightning-combobox
+          data-fieldname="ApprovalType"
+          name="Approval Type"
+          label="Approval Type"
+          value={value}
+          placeholder="Select Approval Type"
+          options={approvalTypes}
+          onchange={handleChange}
+          class="validation"
+        ></lightning-combobox>
+      </div>
+      <div class="slds-var-m-around_medium">
+        <lightning-button-group>
+          <lightning-button
+            variant="brand"
+            label="Submit"
+            title="Submit"
+            onclick={sendResumeEmail}
+            class="slds-var-m-left_x-small"
+            icon-name="standard:work_order_item"
+            icon-position="right"
+          ></lightning-button>
+        </lightning-button-group>
+      </div>
+    </lightning-card>
+  </template>
+  <template if:true={showApplicantTab}>
+    <lightning-card title="KYC Decision" icon-name="action:update_status">
+      <div if class="slds-var-m-around_medium">
+        <lightning-combobox
+          data-fieldname="KYCStatus"
+          name="KYC Status"
+          label="KYC Status"
+          value={value}
+          placeholder="Select status"
+          options={kycStatus}
+          onchange={handleChange}
+          class="validation"
+        ></lightning-combobox>
+      </div>
+      <div class="slds-var-m-around_medium">
+        <lightning-button-group>
+          <lightning-button
+            variant="brand"
+            label="Submit"
+            title="Submit"
+            onclick={sendResumeEmail}
+            class="slds-var-m-left_x-small"
+            icon-name="standard:work_order_item"
+            icon-position="right"
+          ></lightning-button>
+        </lightning-button-group>
+      </div>
+    </lightning-card>
+  </template>
+</template>
