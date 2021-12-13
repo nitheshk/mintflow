@@ -19,14 +19,14 @@ global with sharing class OnlineAccountController extends AbstractController {
    * @description
    * @author Digital Align Team | 09-29-2021
    **/
-  global Pagereference initializeApplication() {
+  global PageReference initializeApplication() {
     try {
       Map<String, Object> params = PageUtils.getCurrentPageParameters();
       //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
       log?.debug('vmf:' + vmf);
       Cookie pageToken = PageUtils.getCookie('token');
-      log?.debug('Cookei: ' + pageToken?.getValue());
+      log?.debug('Cookie: ' + pageToken?.getValue());
       if (pageToken != null && String.isNotBlank(pageToken.getValue())) {
         this.application = ApplicationService.getInstance().refreshPage(params);
         this.id = application.Id;
@@ -54,13 +54,13 @@ global with sharing class OnlineAccountController extends AbstractController {
     } catch (CustomException ex) {
       log?.error(ex);
       //PageUtils.addPageErrorMessage(ex.getMessage());
-      Pagereference error = Page.Error;
+      PageReference error = Page.Error;
       error.setRedirect(true);
       return error;
     } catch (Exception ex) {
       log?.error(ex);
       //PageUtils.addPageErrorMessage('Unkown Exception');
-      Pagereference error = Page.Error;
+      PageReference error = Page.Error;
       error.setRedirect(true);
       return error;
     } finally {

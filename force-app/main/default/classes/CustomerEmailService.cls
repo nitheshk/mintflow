@@ -153,18 +153,18 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   ) {
     for (Applicant__c applicant : applicants) {
       SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
-      String urlSufix = '';
+      String urlSuffix = '';
       switch on notificationName {
         when 'PrimaryReviewInformationSubmitted',
           'PrimaryReviewInformationWaiting' {
           cipher.aplType = 'Primary';
           cipher.flw = 'ApplicationFlow';
-          urlSufix = '#/membership/application/get-started';
+          urlSuffix = '#/membership/application/get-started';
         }
         when 'JointStartApplication' {
           cipher.aplType = 'Joint';
           cipher.flw = 'JointFlow';
-          urlSufix = '#/membership/joints/welcome';
+          urlSuffix = '#/membership/joints/welcome';
         }
       }
       cipher.appId = ApexRequest.getApplicationId();
@@ -178,7 +178,9 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
       String link =
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
-        '/OpenAccount?vmf=' +
+        '/OpenAccount' +
+        urlSuffix +
+        '?vmf=' +
         SecurityUtils.encryptUrl(JSON.serialize(cipher, true));
 
       EmailNotificationBuilder.newInstance(notificationName, applicant.Id)

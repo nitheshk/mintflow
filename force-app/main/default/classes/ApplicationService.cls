@@ -204,6 +204,7 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('channel', cipher.ch);
     params.put('applicationId', cipher.appId);
     params.put('applicantId', cipher.aplId);
+    params.put('flowType', cipher.flw);
 
     Applicant__c applicant = ApplicantRepository.readApplicantById(
       cipher.aplId
@@ -216,7 +217,7 @@ global with sharing class ApplicationService extends AbstractService {
       applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
     );
     params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
-    //AuthenticationService.getInstance().generateOTP(cipher.aplId);
+    AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
   }
 
@@ -255,6 +256,7 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('channel', cipher.ch);
     params.put('applicationId', cipher.appId);
     params.put('applicantId', cipher.aplId);
+    params.put('flowType', cipher.flw);
     return application;
   }
 

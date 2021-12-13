@@ -76,8 +76,29 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
   global static Contact fetchContactByAccountId(Id accountId) {
     return (Contact) DatabaseUtils.getRecord(
       Query.newInstance(Contact.SObjectType)
-        //.addFields()
+        .addFields('AccountId')
         .whereEq('AccountId', accountId)
+        .addLimit(1)
+        .toString()
+    );
+  }
+
+  /**
+   * @description fetch Account Contact Relation by account and contact id
+   * @author Digital Align Team | 12-13-2021
+   * @param Id accountId
+   * @param Id contactId
+   * @return AccountContactRelation
+   **/
+  global static AccountContactRelation fetchAccountContactRelation(
+    Id accountId,
+    Id contactId
+  ) {
+    return (AccountContactRelation) DatabaseUtils.getRecord(
+      Query.newInstance(AccountContactRelation.SObjectType)
+        .whereEq('AccountId', accountId)
+        .andCon()
+        .whereEq('ContactId', contactId)
         .addLimit(1)
         .toString()
     );
