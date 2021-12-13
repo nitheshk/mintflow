@@ -14,9 +14,7 @@ export default class ResumeAppplication extends LightningElement {
   fetchAllApplicants({ data, error }) {
     if (data) {
       if (data.status === 200) {
-        console.log("data =" + JSON.stringify(JSON.parse(data.data)));
         this.applicants = JSON.parse(data.data);
-        console.log("this.applicants =" + this.applicants);
       } else {
         console.log("error " + JSON.stringify(data));
       }
@@ -29,14 +27,13 @@ export default class ResumeAppplication extends LightningElement {
     let targetElement = event.target;
     console.log(targetElement.options);
     this.selectedId = [];
-    this.selectedId.push(targetElement.value);
+    this.selectedId = targetElement.value.split(",");
   }
   sendResumeEmail() {
     if (
       utils.checkAllValidations(this.template.querySelectorAll(".validation"))
     ) {
       this.showSpinner = true;
-      console.log(JSON.stringify(this.selectedId));
       sendEmail({
         applicantIds: JSON.stringify(this.selectedId)
       }).then((result) => {

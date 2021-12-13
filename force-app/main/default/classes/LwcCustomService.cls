@@ -129,12 +129,18 @@ global with sharing class LwcCustomService extends AbstractService {
     );
     if (application != null) {
       for (Applicant__c app : application.Applicants__r) {
-        log?.debug('applicant =' + app);
         map<string, object> applicant = new Map<string, object>();
-        ids.add(app.Id);
-        applicant.put('label', app.Name);
-        applicant.put('value', app.Id);
-        applicants.add(applicant);
+
+        if (
+          app.ApplicantType__c ==
+          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE ||
+          app.ApplicantType__c == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+        ) {
+          ids.add(app.Id);
+          applicant.put('label', app.Name);
+          applicant.put('value', app.Id);
+          applicants.add(applicant);
+        }
       }
       applicants.add(
         new Map<string, object>{ 'label' => 'All', 'value' => ids }
