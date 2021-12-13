@@ -455,6 +455,8 @@ global inherited sharing class SecurityUtils {
         ApplicantRepository.upsertRecord(applicant);
       }
     }
+
+    //#pending update in cookies
     return token;
   }
 
@@ -478,5 +480,6 @@ global inherited sharing class SecurityUtils {
       );
       ApplicantRepository.upsertRecord(applicant);
     }
+    //#pending remove from cookies
   }
 }

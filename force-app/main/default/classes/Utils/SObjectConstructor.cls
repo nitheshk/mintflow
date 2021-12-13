@@ -188,6 +188,7 @@ global with sharing class SObjectConstructor {
    * @param JSONGenerator gen
    * @param JSONParser parser
    **/
+  @SuppressWarnings('PMD.CognitiveComplexity')
   private static void writeObject(JSONGenerator gen, JSONParser parser) {
     gen.writeStartObject();
     while (parser.nextToken() != System.JSONToken.END_OBJECT) {
@@ -254,6 +255,9 @@ global with sharing class SObjectConstructor {
    * @return List<Object>
    **/
   global static List<Object> writeFieldsAsList(List<SObject> records) {
+    if (CollectionUtils.isListEmpty(records)) {
+      return null;
+    }
     List<Object> sList = new List<Object>();
     for (SObject record : records) {
       sList.add(writeFieldsAsMap(record));
@@ -268,6 +272,9 @@ global with sharing class SObjectConstructor {
    * @return Map<String, Object>
    **/
   global static Map<String, Object> writeFieldsAsMap(SObject record) {
+    if (record == null) {
+      return null;
+    }
     Map<String, Object> sMap = record.getPopulatedFieldsAsMap();
     Map<String, Object> populatedFieldsAsMap = new Map<String, Object>();
     for (string fieldName : sMap.keySet()) {

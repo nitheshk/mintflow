@@ -17,6 +17,22 @@ global with sharing class OnlineAccountLoginController {
   global PageReference forwardToAccountOpeningPage() {
     logger log = logger.getInstance(OnlineAccountLoginController.class);
     try {
+      /**
+       * For Community user salesforce doesn't decode start url(parameter) while passing to next url
+       * we are using community plus user for login purpose here
+       */
+      SiteSetting__c siteSetting = SiteSetting__c.getInstance();
+      return Site.login(
+        siteSetting.OnlineSiteUserName__c, //Community user
+        siteSetting.OnlineSitePassword__c,
+        PageUtils.getCurrentPageParameters('startURL')
+      );
+
+      /**
+       * For Standard user salesforce does decode start url(parameter) while passing to next url
+       * So we are doublr encodeing paramter, So it will sent parameter in required format
+       */
+      /*
       SiteSetting__c siteSetting = SiteSetting__c.getInstance();
       String url = PageUtils.getCurrentPageParameters('startURL');
       if (String.isNotBlank(url)) {
@@ -45,10 +61,10 @@ global with sharing class OnlineAccountLoginController {
       }
       log?.debug('start url :' + url);
       return Site.login(
-        siteSetting.OnlineSiteUserName__c,
+        siteSetting.OnlineSiteUserName__c, //standard user
         siteSetting.OnlineSitePassword__c,
         url
-      );
+      ); */
     } catch (Exception ex) {
       log?.error(ex);
       // Redirect to error Page
