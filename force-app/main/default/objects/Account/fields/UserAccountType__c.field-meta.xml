@@ -38,6 +38,11 @@
                 <default>false</default>
                 <label>Dealer Employee</label>
             </value>
+            <value>
+                <fullName>IndividualCustomer</fullName>
+                <default>false</default>
+                <label>Individual Customer</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

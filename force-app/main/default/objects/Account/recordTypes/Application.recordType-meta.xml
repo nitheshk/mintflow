@@ -736,5 +736,9 @@
             <fullName>FinancialInstituteEmployee</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>IndividualCustomer</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
 </RecordType>
