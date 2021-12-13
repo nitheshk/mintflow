@@ -47,4 +47,39 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description fetch existing contact based on the ssn and last name
+   * @author Digital Align Team | 12-10-2021
+   * @param String filter
+   * @return List<Contact>
+   **/
+  global static List<Contact> fetchExistingContacts(String filter) {
+    if (String.isBlank(filter)) {
+      return new List<Contact>();
+    }
+    return (List<Contact>) DatabaseUtils.getRecords(
+      Query.newInstance(Contact.SObjectType)
+        .addFields()
+        .whereCon(filter)
+        .addLimit(50)
+        .toString()
+    );
+  }
+
+  /**
+   * @description fetch Contact with ID By AccountId
+   * @author Digital Align Team | 12-10-2021
+   * @param Id accountId
+   * @return Contact
+   **/
+  global static Contact fetchContactByAccountId(Id accountId) {
+    return (Contact) DatabaseUtils.getRecord(
+      Query.newInstance(Contact.SObjectType)
+        //.addFields()
+        .whereEq('AccountId', accountId)
+        .addLimit(1)
+        .toString()
+    );
+  }
 }

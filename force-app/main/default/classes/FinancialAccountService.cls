@@ -78,7 +78,7 @@ global with sharing class FinancialAccountService extends AbstractService {
     );
 
     // Primary is Existing Customer
-    if (kycResult.ExistingCustomer == true) {
+    if (kycResult.IsExistingCustomer == true) {
       return processExistingMember(application, kycResult);
     }
 
@@ -88,7 +88,9 @@ global with sharing class FinancialAccountService extends AbstractService {
 
     // if Application kyc status is approved, then proceed with creating Account & Contact for primary
     // And Open Membership Financial Account and relation with applicant
-    createMembershipAccount();
+    if (application.FinServ__Status__c == ApplicationConstant.APPROVED) {
+      createMembershipAccount(application);
+    }
 
     return application;
   }
@@ -200,10 +202,129 @@ global with sharing class FinancialAccountService extends AbstractService {
 
   /**
    * @description
-   * @author Digital Align Team | 12-02-2021
+   * @author Digital Align Team | 12-10-2021
+   * @param Account application
+   * @return Account
+   **/
+  global virtual Account createMembershipAccount(Account application) {
+    String filter = '';
+    Map<Id, Applicant__c> applicantToProcess = new Map<Id, Applicant__c>();
+
+    for (Applicant__c applicant : application.Applicants__r) {
+      if (
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      ) {
+        applicantToProcess.put(applicant.Id, applicant);
+        if (String.isNotBlank(filter)) {
+          filter += ' OR ';
+        }
+        filter += 'FinServ__TaxId__c=\'' + applicant.SSN__c + '\' AND ';
+        filter += 'LastName=\'' + applicant.LastName__c + '\'';
+        break;
+      }
+    }
+    log?.debug('filter : ' + filter);
+    // #Attribute
+    List<Contact> existingContacts = FinancialAccountRepository.fetchExistingContacts(
+      filter
+    );
+    log?.debug('Existing Contacts : ' + existingContacts);
+    // #Attribute
+    Map<String, Contact> ssnVsContact = new Map<String, Contact>();
+    for (Contact con : existingContacts) {
+      ssnVsContact.put(con.FinServ__TaxId__c, con);
+    }
+
+    List<Contact> contactToUpsert = new List<Contact>();
+    for (Applicant__c applicant : applicantToProcess.values()) {
+      if (ssnVsContact.containsKey(applicant.SSN__c)) {
+        Contact memberContact = mapApplicantWithContact(
+          applicant,
+          ssnVsContact.get(applicant.SSN__c),
+          true
+        );
+        applicant.Contact__c = memberContact.Id;
+        contactToUpsert.add(memberContact);
+      } else {
+        Contact memberContact = createAccount(applicant);
+        applicant.Contact__c = memberContact.Id;
+        memberContact = mapApplicantWithContact(
+          applicant,
+          memberContact,
+          false
+        );
+        contactToUpsert.add(memberContact);
+      }
+    }
+
+    FinancialAccountRepository.upsertRecords(contactToUpsert);
+    FinancialAccountRepository.upsertRecords(application.Applicants__r);
+    return application;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 12-10-2021
+   * @param Applicant__c applicant
    * @return virtual
    **/
-  global virtual Object createMembershipAccount() {
-    return null;
+  global virtual Contact createAccount(Applicant__c applicant) {
+    Account individualAccount = new Account();
+    individualAccount.Name = applicant.Name;
+    individualAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+      Account.SObjectType,
+      'IndustriesIndividual'
+    );
+    FinancialAccountRepository.upsertRecord(individualAccount);
+    // Return Individual Contact created by Salesforce , when account is created
+    return FinancialAccountRepository.fetchContactByAccountId(
+      individualAccount.Id
+    );
+  }
+
+  /**
+   * @description map applicant data with contact data
+   * @author Digital Align Team | 12-10-2021
+   * @param Applicant__c applicant
+   * @param Contact memberContact
+   * @param Boolean isExistingContact
+   * @return Contact
+   **/
+  global virtual Contact mapApplicantWithContact(
+    Applicant__c applicant,
+    Contact memberContact,
+    Boolean isExistingContact
+  ) {
+    if (!isExistingContact) {
+      memberContact.FirstName = applicant.FirstName__c;
+      memberContact.LastName = applicant.LastName__c;
+      memberContact.FinServ__TaxId__c = applicant.SSN__c;
+    }
+    memberContact.Email = applicant.Email__c;
+    memberContact.Phone = applicant.Phone__c;
+    memberContact.FinServ__EmailVerified__c = applicant.IsEmailVerified__c;
+    memberContact.FinServ__HomePhoneVerified__c = applicant.IsPhoneNumberVerified__c;
+    memberContact.FinServ__LastFourDigitSSN__c = applicant.SSN__c.right(4);
+    memberContact.RunWithKIQ__c = applicant.RunWithKIQ__c;
+    memberContact.RunwithoutKIQ__c = applicant.RunWithoutKIQ__c;
+    memberContact.IdentityVerificationStatus__c = applicant.IdentityVerificationStatus__c;
+    memberContact.Birthdate = applicant.Birthdate__c;
+    memberContact.SSNValidation__c = applicant.SSNValidation__c;
+    memberContact.CreditScore__c = applicant.CreditScore__c;
+    memberContact.CustomerScore__c = applicant.CustomerScore__c;
+    memberContact.HighRiskConsumer__c = applicant.HighRiskConsumer__c;
+    memberContact.OFAC__c = applicant.OFAC__c;
+    memberContact.OverallDebitBureauResult__c = applicant.OverallDebitBureauResult__c;
+    memberContact.QualifiedDecision__c = applicant.QualifiedDecision__c;
+    memberContact.QualifiedScore__c = applicant.QualifiedScore__c;
+    // #Pending Missing Fields in Contact
+    //applicant.FraudStatus__c
+    //applicant.IncomeVerificationStatus__c
+    //applicant.KYCStatus__c
+    //applicant.MiddleName__c
+    //applicant.SentiLinkFraudScore__c
+    //applicant.SentiLinkStatus__c
+    return memberContact;
   }
 }

@@ -153,7 +153,7 @@ global with sharing class ApplicationResponseMapper {
     global String ApplicationNumber;
     global String ExternalApplicationNumber;
     global String ExternalApplicationStatus;
-    global Boolean ExistingCustomer;
+    global Boolean IsExistingCustomer;
     global list<KYCApplicantResult> applicants;
   }
 

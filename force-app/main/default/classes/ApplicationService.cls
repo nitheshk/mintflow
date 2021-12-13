@@ -37,23 +37,23 @@ global with sharing class ApplicationService extends AbstractService {
   global Object startApplication(Map<String, Object> params) {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
-    log?.fine('Inside startApplication -> params -> ' + Json.serialize(params));
+    log?.fine('Inside startApplication -> params -> ' + JSON.serialize(params));
 
     String recordId = (String) params?.get('recordId');
 
     if (String.isNotBlank(recordId)) {
       // encryption
       // this for start application from existing application
-      String sObjectType = ((ID) recordId)
-        .getSObjectType()
+      String sObjectType = ((Id) recordId)
+        .getSobjectType()
         .getDescribe()
         .getName();
       switch on sObjectType {
         when 'Account' {
-          system.debug('Inside ' + sObjectType);
+          System.debug('Inside ' + sObjectType);
         }
-        when 'FinanacialAccount' {
-          system.debug('Inside ' + sObjectType);
+        when 'FinancialAccount' {
+          System.debug('Inside ' + sObjectType);
         }
       }
     } else {
@@ -205,7 +205,7 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('applicationId', cipher.appId);
     params.put('applicantId', cipher.aplId);
 
-    Applicant__c applicant = ApplicantRepository.readApplicantbyId(
+    Applicant__c applicant = ApplicantRepository.readApplicantById(
       cipher.aplId
     );
     if (applicant == null) {
@@ -248,7 +248,7 @@ global with sharing class ApplicationService extends AbstractService {
       application = ApplicationService.getInstance()
         .readApplicationWithChild(cipher.appId, cipher.aplId);
     } else {
-      throw new customException(System.Label.Applicant_ApplicantTypeNotFound);
+      throw new CustomException(System.Label.Applicant_ApplicantTypeNotFound);
     }
 
     params.put('applicantType', cipher.aplType);
