@@ -113,10 +113,16 @@ global with sharing class LwcCustomService extends AbstractService {
     return (Account) builder.build();
   }
 
-  global virtual list<map<string, object>> readApplicationWithApplicants(
+  /**
+   * @description read applicants using applicationId
+   * @author Digital Align | 12-13-2021
+   * @param string applicationId
+   * @return virtual
+   **/
+  global virtual list<map<string, string>> readApplicationWithApplicants(
     string applicationId
   ) {
-    list<map<string, object>> applicants = new List<map<string, object>>();
+    list<map<string, string>> applicants = new List<map<string, string>>();
 
     if (string.isBlank(applicationId)) {
       throw new CustomException(
@@ -129,7 +135,7 @@ global with sharing class LwcCustomService extends AbstractService {
     );
     if (application != null) {
       for (Applicant__c app : application.Applicants__r) {
-        map<string, object> applicant = new Map<string, object>();
+        map<string, string> applicant = new Map<string, string>();
 
         if (
           app.ApplicantType__c ==
@@ -137,13 +143,16 @@ global with sharing class LwcCustomService extends AbstractService {
           app.ApplicantType__c == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
         ) {
           ids.add(app.Id);
-          applicant.put('label', app.Name);
+          applicant.put('label', app.Name + ' (' + app.ApplicantType__c + ')');
           applicant.put('value', app.Id);
           applicants.add(applicant);
         }
       }
       applicants.add(
-        new Map<string, object>{ 'label' => 'All', 'value' => ids }
+        new Map<string, string>{
+          'label' => 'All',
+          'value' => JSON.serialize(ids)
+        }
       );
     }
     return applicants;

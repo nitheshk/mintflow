@@ -6,8 +6,10 @@ import sendEmail from "@salesforce/apex/LwcCustomController.sendResumeApplicatio
 export default class ResumeAppplication extends LightningElement {
   @api recordId;
   @track selectedId = [];
+  @track selectedApplicant;
   @track showSpinner = false;
   @track applicants = [];
+  @track message;
   @wire(fetchApplicants, {
     applicationId: "$recordId"
   })
@@ -16,7 +18,7 @@ export default class ResumeAppplication extends LightningElement {
       if (data.status === 200) {
         this.applicants = JSON.parse(data.data);
       } else {
-        console.log("error " + JSON.stringify(data));
+        console.log("error" + JSON.stringify(error));
       }
     } else if (error) {
       console.log("error : " + JSON.stringify(error));
@@ -25,9 +27,16 @@ export default class ResumeAppplication extends LightningElement {
   }
   handleChange(event) {
     let targetElement = event.target;
-    console.log(targetElement.options);
+    this.selectedApplicant = targetElement.options.find(
+      (opt) => opt.value === event.detail.value
+    ).label;
     this.selectedId = [];
-    this.selectedId = targetElement.value.split(",");
+    if (this.selectedApplicant === "All") {
+      this.selectedId = JSON.parse(targetElement.value);
+    } else {
+      this.selectedId.push(targetElement.value);
+    }
+    this.message = "Selected " + this.selectedApplicant;
   }
   sendResumeEmail() {
     if (
@@ -38,6 +47,7 @@ export default class ResumeAppplication extends LightningElement {
         applicantIds: JSON.stringify(this.selectedId)
       }).then((result) => {
         if (result.status === 200) {
+          this.message = "Email sent to " + this.selectedApplicant;
           utils.successMessage(this, "Email sent");
         }
       });
