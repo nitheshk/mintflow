@@ -167,25 +167,6 @@ global with sharing class RpaProcessService extends AbstractService {
 
   /**
    * @description To update the application with member details from external system
-   * @author Digital Align Team | 11-25-2021
-   **/
-  global virtual void buildUpdateMemberDetails() {
-    log
-      ?.debug(
-        'buildUpdateMemberDetails Request =' +
-        RestContext.request.requestBody.toString()
-      );
-    Account Application = (Account) FinancialAccountService.getInstance()
-      .createMemberAccount(RestContext.request.requestBody.toString());
-    RestResponse response = RestContext.response;
-    response.responseBody = Blob.valueOf(Application.FinServ__Status__c);
-    response.statusCode = 200;
-    response.addHeader('Content-Type', 'application/json');
-  }
-
-  /**
-   * @description Step2: Fetch complete application data from review submit using applicationID
-   * @author Digital Align | 11-30-2021
    * @example Request Json Looking Like below
    * Post Request
    * Connected App : https://connect-customization-1792-dev-ed.cs73.my.salesforce.com/services/apexrest/mflow/rpa/v1/updatememberdetails
@@ -195,7 +176,7 @@ global with sharing class RpaProcessService extends AbstractService {
     "ApplicationNumber": "APP-001",
     "ExternalApplicationNumber": 95455,
     "ExternalApplicationStatus": "Fraud",
-    "ExistingCustomer": true,
+    "IsExistingCustomer": true,
     "Applicants": [
         {
             "ApplicantId": "a0b6D0000022j1cQAA",
@@ -214,6 +195,27 @@ global with sharing class RpaProcessService extends AbstractService {
         }
     ]
     }
+   * @author Digital Align Team | 11-25-2021
+   **/
+  global virtual void buildUpdateMemberDetails() {
+    log
+      ?.debug(
+        'buildUpdateMemberDetails Request =' +
+        RestContext.request.requestBody.toString()
+      );
+    Account application = (Account) FinancialAccountService.getInstance()
+      .createMemberAccount(RestContext.request.requestBody.toString());
+    RestResponse response = RestContext.response;
+    String responseString =
+      'Application Status :' + application.FinServ__Status__c;
+    response.responseBody = Blob.valueOf(responseString);
+    response.statusCode = 200;
+    response.addHeader('Content-Type', 'application/json');
+  }
+
+  /**
+   * @description Step2: Fetch complete application data from review submit using applicationID
+   * @author Digital Align | 11-30-2021
    **/
   global virtual void buildObtainReviewApplicationData() {
     RestRequest restReq = RestContext.request;
