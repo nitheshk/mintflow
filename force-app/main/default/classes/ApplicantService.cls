@@ -34,7 +34,7 @@ global with sharing class ApplicantService extends AbstractService {
   global virtual List<Applicant__c> readApplicantsWithChild(
     List<Applicant__c> applicants
   ) {
-    return readApplicantsWithChild(new Map<Id, SObject>(applicants).keyset());
+    return readApplicantsWithChild(new Map<Id, SObject>(applicants).keySet());
   }
 
   /**
@@ -46,15 +46,6 @@ global with sharing class ApplicantService extends AbstractService {
     Set<Id> applicantIds
   ) {
     return ApplicantRepository.readApplicantsWithChild(applicantIds);
-  }
-
-  /**
-   * @description Read  applicant by applicant record
-   * @author Digital Align Team | 10-26-2021
-   * @param Applicant__c applicants
-   **/
-  global virtual Applicant__c readApplicantWithChild(Applicant__c applicant) {
-    return readApplicantWithChild(applicant?.Id);
   }
 
   /**
@@ -89,6 +80,7 @@ global with sharing class ApplicantService extends AbstractService {
     List<Applicant__c> applicants,
     String applicationId
   ) {
+    //#pending applicationId never used
     //before saving applicants
     applicants = ApplicantService.getInstance()
       .beforeSaveApplicants(applicants);

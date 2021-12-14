@@ -159,12 +159,12 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           'PrimaryReviewInformationWaiting' {
           cipher.aplType = 'Primary';
           cipher.flw = 'ApplicationFlow';
-          urlSuffix = '#/membership/application/get-started';
+          urlSuffix = '/membership/application/get-started';
         }
         when 'JointStartApplication' {
           cipher.aplType = 'Joint';
           cipher.flw = 'JointFlow';
-          urlSuffix = '#/membership/joints/welcome';
+          urlSuffix = '/membership/joints/welcome';
         }
       }
       cipher.appId = ApexRequest.getApplicationId();
@@ -179,9 +179,10 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       String link =
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
         '/OpenAccount' +
-        urlSuffix +
         '?vmf=' +
-        SecurityUtils.encryptUrl(JSON.serialize(cipher, true));
+        SecurityUtils.encryptUrl(JSON.serialize(cipher, true)) +
+        '&vue=' +
+        EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
 
       EmailNotificationBuilder.newInstance(notificationName, applicant.Id)
         .setToAddresses(applicant.Email__c)

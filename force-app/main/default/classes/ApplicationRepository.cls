@@ -53,7 +53,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   }
 
   /**
-   * @description Read Application child with specified applicatid
+   * @description Read Application child with specified application Id And applicant Id
    * @author Digital Align Team | 11-19-2021
    * @param Id applicationId
    * @param Id applicantId
@@ -68,6 +68,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         //.addFieldSet('mflow__Application')
         .addFields()
         .removeFields('mflow__SessionToken__c')
+        //#minor Check Applicants is required
         .queryChild('mflow__Applicants__r')
         .whereEq('Id', applicantId)
         .orderBy('mflow__Order__c')

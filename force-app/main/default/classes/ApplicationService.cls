@@ -158,8 +158,8 @@ global with sharing class ApplicationService extends AbstractService {
       applicantId
     );
 
-    List<Applicant__c> applicants = ApplicantService.getInstance()
-      .readApplicantsWithChild(application.Applicants__r);
+    Applicant__c applicant = ApplicantService.getInstance()
+      .readApplicantWithChild(applicantId);
     List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(
         application.FinServ__HouseholdFinancialAccounts__r
@@ -167,7 +167,7 @@ global with sharing class ApplicationService extends AbstractService {
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
-    builder.setChildObjects('mflow__Applicants__r', applicants);
+    builder.setChildObject('mflow__Applicants__r', applicant);
     builder.setChildObjects(
       'FinServ__HouseholdFinancialAccounts__r',
       financialAccounts

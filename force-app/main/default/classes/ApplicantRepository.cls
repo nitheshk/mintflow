@@ -53,7 +53,8 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
     return (Applicant__c) DatabaseUtils.getRecord(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
-        .removeFields('mflow__SessionToken__c')
+        // Session Token Required As joint is using it
+        //.removeFields('mflow__SessionToken__c')
         .queryChild('mflow__IdentificationDocuments__r')
         .addFields()
         .orderBy('mflow__Order__c')

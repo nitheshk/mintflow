@@ -15,7 +15,7 @@ global with sharing class OnlineAccountLoginController {
    * @return PageReference
    **/
   global PageReference forwardToAccountOpeningPage() {
-    logger log = logger.getInstance(OnlineAccountLoginController.class);
+    Logger log = Logger.getInstance(OnlineAccountLoginController.class);
     try {
       /**
        * For Community user salesforce doesn't decode start url(parameter) while passing to next url
@@ -23,14 +23,61 @@ global with sharing class OnlineAccountLoginController {
        */
       SiteSetting__c siteSetting = SiteSetting__c.getInstance();
       return Site.login(
-        siteSetting.OnlineSiteUserName__c, //Community user
+        siteSetting.OnlineSiteUserName__c,
         siteSetting.OnlineSitePassword__c,
         PageUtils.getCurrentPageParameters('startURL')
       );
 
       /**
+       * salesforce issue with url parsing
+       * https://{Domain}/Online/mflow__onlineaccount#/membership/joints/welcome
+       * Above url after #get ignore on page redirection
+       * Below code to avoid that issue of redirecting
+       */
+      /*
+      SiteSetting__c siteSetting = SiteSetting__c.getInstance();
+      String url = PageUtils.getCurrentPageParameters('startURL');
+      if (String.isNotBlank(url)) {
+        List<String> urlStr = url.split('\\?');
+        if (urlStr.size() > 1) {
+          List<String> urlParams = urlStr[1].split('&');
+
+          List<String> encodedParams = new List<String>();
+          String vuePath;
+          for (String param : urlParams) {
+            List<String> keyValue = param.split('=');
+            if (keyValue.size() == 2) {
+              encodedParams.add(keyValue[0] + '=' + keyValue[1]);
+              if (keyValue[0] == 'vue') {
+                vuePath = keyValue[1];
+              }
+            } else if (keyValue.size() == 1) {
+              encodedParams.add(keyValue[0]);
+              if (keyValue[0] == 'vue') {
+                vuePath = keyValue[1];
+              }
+            }
+          }
+          if (!encodedParams.isEmpty()) {
+            url = String.join(encodedParams, '&');
+            if (String.isNotBlank(vuePath)) {
+              url = urlStr[0] + '#' + vuePath + '?' + url;
+            } else {
+              url = urlStr[0] + '?' + url;
+            }
+          }
+        }
+      }
+      log?.debug('start url :' + url);
+      return Site.login(
+        siteSetting.OnlineSiteUserName__c, //standard user
+        siteSetting.OnlineSitePassword__c,
+        url
+      );
+      */
+      /**
        * For Standard user salesforce does decode start url(parameter) while passing to next url
-       * So we are doublr encodeing paramter, So it will sent parameter in required format
+       * So we are double encoding parameter, So it will sent parameter in required format
        */
       /*
       SiteSetting__c siteSetting = SiteSetting__c.getInstance();

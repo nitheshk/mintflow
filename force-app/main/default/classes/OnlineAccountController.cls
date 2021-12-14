@@ -40,6 +40,10 @@ global with sharing class OnlineAccountController extends AbstractController {
         this.id = application.Id;
       }
 
+      if (this.application == null) {
+        this.application = new Account();
+      }
+
       Map<String, Object> initialData = new Map<String, Object>{
         'id' => this.id,
         'application' => SObjectConstructor.writeFieldsAsMap(
