@@ -205,10 +205,17 @@ global with sharing class LwcCustomService extends AbstractService {
     return fieldNames;
   }
   /**
-   * @description
+   * @description fetch picklsit value of salesforce field
    * @author Digital Align | 12-13-2021
    * @param Map<String Object> params
    * @return virtual
+   * * @example format of parameter
+   *  {
+        Lead : [
+            "LeadSource",
+            "Staus" 
+        ]
+      }
    **/
   global virtual Map<String, Map<String, Object>> fetchPickListValues(
     Map<String, Object> params
@@ -243,5 +250,41 @@ global with sharing class LwcCustomService extends AbstractService {
       }
     }
     return result;
+  }
+  global virtual void updateKycDecision(Map<String, Object> params) {
+    id recordID = (Id) params.get('recordId');
+    String sobjectType = (String) params.get('objectApiName');
+    switch on sobjectType {
+      when 'mflow__Applicant__c' {
+        string status = (string) params.get('mflow__KYCStatus__c');
+        Applicant__c applicant = ApplicantRepository.readApplicantById(
+          recordID
+        );
+        if (applicant.mflow__ApplicantType__c == 'Primary') {
+          applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+        }
+        applicant.mflow__KYCStatus__c = status;
+        ApplicantRepository.upsertRecord(applicant);
+      }
+      when 'Account' {
+        string approvalType = (string) params.get('approvalType');
+        updateApplicationStatus(recordID, approvalType);
+      }
+      when else {
+        return;
+      }
+    }
+  }
+
+  global virtual void updateApplicationStatus(
+    Id recordID,
+    String approvalType
+  ) {
+    switch on approvalType {
+      when 'UpdateApplication' {
+      }
+      when else {
+      }
+    }
   }
 }

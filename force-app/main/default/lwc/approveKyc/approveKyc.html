@@ -3,12 +3,12 @@
     <lightning-card title="KYC Decision" icon-name="action:update_status">
       <div if class="slds-var-m-around_medium">
         <lightning-combobox
-          data-fieldname="KYCStatus"
-          name="KYC Status"
-          label="KYC Status"
+          data-fieldname="FinServ__Status__c"
+          name="Status"
+          label="Status"
           value={value}
           placeholder="Select status"
-          options={kycStatus}
+          options={applicationKycStatus}
           onchange={handleChange}
           class="validation"
         ></lightning-combobox>
@@ -31,7 +31,7 @@
             variant="brand"
             label="Submit"
             title="Submit"
-            onclick={sendResumeEmail}
+            onclick={updateApplication}
             class="slds-var-m-left_x-small"
             icon-name="standard:work_order_item"
             icon-position="right"
@@ -44,12 +44,12 @@
     <lightning-card title="KYC Decision" icon-name="action:update_status">
       <div if class="slds-var-m-around_medium">
         <lightning-combobox
-          data-fieldname="KYCStatus"
-          name="KYC Status"
-          label="KYC Status"
+          data-fieldname="mflow__Status__c"
+          name="Status"
+          label="Status"
           value={value}
           placeholder="Select status"
-          options={kycStatus}
+          options={applicantKycStatus}
           onchange={handleChange}
           class="validation"
         ></lightning-combobox>
@@ -60,7 +60,7 @@
             variant="brand"
             label="Submit"
             title="Submit"
-            onclick={sendResumeEmail}
+            onclick={updateApplicant}
             class="slds-var-m-left_x-small"
             icon-name="standard:work_order_item"
             icon-position="right"

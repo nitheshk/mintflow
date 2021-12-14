@@ -183,4 +183,20 @@ global with sharing class LwcCustomController extends AbstractController {
       throw new AuraHandledException(e.getMessage());
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align | 12-14-2021
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  global static ApexResponse updateKycDecision(Map<String, Object> params) {
+    try {
+      log?.fine('Inside updateKycDecision params =' + params);
+      LwcCustomService.getInstance().updateKycDecision(params);
+      return ApexResponse.ok();
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
+    }
+  }
 }

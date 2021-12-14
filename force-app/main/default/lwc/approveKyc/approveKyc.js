@@ -1,12 +1,13 @@
 import { LightningElement, api, wire, track } from "lwc";
 import utils from "c/generalUtils";
 import getPickListValues from "@salesforce/apex/LwcCustomController.fetchPickListValues";
-
 export default class ApproveKyc extends LightningElement {
   @api objectApiName;
   @api recordId;
-  @track kycStatus = [];
-  @track value = "initial";
+  @track applicationFields = {};
+  @track applicantFields = {};
+  @track applicationKycStatus = [];
+  @track applicantKycStatus = [];
   @track showApplicationTab = false;
   @track showApplicantTab = false;
 
@@ -25,16 +26,20 @@ export default class ApproveKyc extends LightningElement {
   }
 
   @wire(getPickListValues, {
-    params: { Account: ["FinServ__KYCStatus__c"] }
+    params: {
+      Account: ["FinServ__Status__c"],
+      mflow__Applicant__c: ["mflow__Status__c"]
+    }
   })
   PickListValues({ data, error }) {
     if (data) {
       if (data.status === 200) {
-        console.log(JSON.parse(data.data));
-        console.log(JSON.parse(data.data).Account);
-        console.log(JSON.parse(data.data).Account.FinServ__KYCStatus__c);
-        console.log("objectname =" + this.objectApiName);
-        this.kycStatus = JSON.parse(data.data).Account.FinServ__KYCStatus__c;
+        this.applicationKycStatus = JSON.parse(
+          data.data
+        ).Account.FinServ__Status__c;
+        this.applicantKycStatus = JSON.parse(
+          data.data
+        ).mflow__Applicant__c.mflow__Status__c;
         if (this.objectApiName === "Account") {
           this.showApplicationTab = true;
         } else if (this.objectApiName === "mflow__Applicant__c") {
@@ -46,6 +51,18 @@ export default class ApproveKyc extends LightningElement {
     } else if (error) {
       console.log("error : " + JSON.stringify(error));
       utils.errorMessage(this, error.body.message, "Error fetching record");
+    }
+  }
+  handleChange(event) {
+    let targetElement = event.target;
+    if (this.objectApiName === "Account") {
+      this.applicationFields[targetElement.dataset.fieldname] =
+        targetElement.value;
+      console.log(JSON.stringify(this.applicationFields));
+    } else if (this.objectApiName === "mflow__Applicant__c") {
+      this.applicantFields[targetElement.dataset.fieldname] =
+        targetElement.value;
+      console.log(JSON.stringify(this.applicantFields));
     }
   }
 }
