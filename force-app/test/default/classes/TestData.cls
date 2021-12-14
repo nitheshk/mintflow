@@ -74,7 +74,7 @@ public with sharing class TestData {
     appConfig.OTPExpirationTime__c = 3;
     appConfig.OTPMaxAllowedAttempts__c = 5;
     appConfig.SentiLink__c = true;
-    appConfig.SesssionExpirationTime__c = 2;
+    appConfig.SessionExpirationTime__c = 2;
     appConfig.CountyNames__c = 'Oregaon;Idhaho;Washington';
     return appConfig;
   }

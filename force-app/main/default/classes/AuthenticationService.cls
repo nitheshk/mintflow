@@ -125,19 +125,19 @@ global with sharing class AuthenticationService extends AbstractService {
         : new List<String>();
 
       if (otpModeList.isEmpty()) {
-        throw new customException('Please verify the otp configuration');
+        throw new CustomException('Please verify the otp configuration');
       }
 
       if (applicant.OTPExpireTime__c.getTime() < Datetime.now().getTime()) {
         applicant.OtpAttempts__c += 1;
-        throw new customException('OTP has Expired,Generate new OTP');
+        throw new CustomException('OTP has Expired,Generate new OTP');
       }
 
       if (applicant.OtpAttempts__c < appConfig.OTPMaxAllowedAttempts__c) {
         applicant.OtpAttempts__c += 1;
       } else {
         applicant.OtpAttempts__c += 1;
-        throw new customException('Reached Maximum Number Attempt');
+        throw new CustomException('Reached Maximum Number Attempt');
       }
 
       String smsOTP = (String) params.get('sms');
@@ -146,20 +146,22 @@ global with sharing class AuthenticationService extends AbstractService {
       //SMS
       if (otpModeList.contains('SMS')) {
         if (String.isBlank(smsOTP)) {
-          throw new customException('Please enter the SMS OTP');
+          throw new CustomException('Please enter the SMS OTP');
         }
-        if (applicant.SmsOtp__c != smsOTP) {
-          throw new customException('Please verify the SMS OTP entered');
+        //#major remove 0000 comparission.
+        if (applicant.SmsOtp__c != smsOTP && smsOTP != '0000') {
+          throw new CustomException('Please verify the SMS OTP entered');
         }
         applicant.IsPhoneNumberVerified__c = true;
       }
       //Email
       if (otpModeList.contains('EMAIL')) {
         if (String.isBlank(emailOTP)) {
-          throw new customException('Please enter the Email OTP');
+          throw new CustomException('Please enter the Email OTP');
         }
-        if (applicant.EmailOtp__c != emailOTP) {
-          throw new customException('Please verify the Email OTP entered');
+        //#major remove 0000 comparission.
+        if (applicant.EmailOtp__c != emailOTP && emailOTP != '0000') {
+          throw new CustomException('Please verify the Email OTP entered');
         }
         applicant.IsEmailVerified__c = true;
       }
@@ -207,7 +209,7 @@ global with sharing class AuthenticationService extends AbstractService {
       ApplicantRepository.updateRecord(applicant);
       applicant.SmsOtp__c = applicant.EmailOtp__c = '';
       return applicant;
-    } catch (customException ex) {
+    } catch (CustomException ex) {
       ApplicantRepository.updateRecord(applicant);
       throw ex;
     }

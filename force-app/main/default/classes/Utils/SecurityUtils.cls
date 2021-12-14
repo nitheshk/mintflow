@@ -8,7 +8,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global inherited sharing class SecurityUtils {
-  private static logger log = logger.getInstance(SecurityUtils.class);
+  private static Logger log = Logger.getInstance(SecurityUtils.class);
   /**
    * @description Check crud permission for list<SObject>
    * @param List<SObject> the SObject type to check
@@ -210,14 +210,14 @@ global inherited sharing class SecurityUtils {
    * @return String
    **/
   global static String generateUUID() {
-    String h = EncodingUtil.ConvertTohex(Crypto.GenerateAESKey(128));
-    return h.SubString(0, 8) +
+    String h = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
+    return h.substring(0, 8) +
       '-' +
-      h.SubString(8, 12) +
+      h.substring(8, 12) +
       '-' +
-      h.SubString(12, 16) +
+      h.substring(12, 16) +
       '-' +
-      h.SubString(16, 20) +
+      h.substring(16, 20) +
       '-' +
       h.substring(20);
   }
@@ -235,7 +235,7 @@ global inherited sharing class SecurityUtils {
     global Datetime edt { get; set; } //Exipre DateTime
     // flow type
     // Possible Values : ApplicationFlow , JointFlow , FundingFlow
-    global string flw { get; set; } //flow type
+    global String flw { get; set; } //flow type
   }
 
   /**
@@ -259,7 +259,7 @@ global inherited sharing class SecurityUtils {
     cipher.aplType = applicantType;
     cipher.flw = flowType;
     ApexRequest.setToken(
-      SecurityUtils.encryptBase64(Json.serialize(cipher, true))
+      SecurityUtils.encryptBase64(JSON.serialize(cipher, true))
     );
     return (String) refreshToken();
   }
@@ -276,13 +276,13 @@ global inherited sharing class SecurityUtils {
     cipher.edt = Datetime.now()
       .addMinutes(
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
-          .SesssionExpirationTime__c
+          .SessionExpirationTime__c
       );
     cipher.aplType = 'Primary';
     cipher.flw = ApexRequest.getFlowType();
 
     application.SessionToken__c = SecurityUtils.encryptBase64(
-      Json.serialize(cipher, true)
+      JSON.serialize(cipher, true)
     );
     ApexRequest.setToken(application.SessionToken__c);
     ApexRequest.setApplicantType(cipher.aplType);
@@ -308,14 +308,14 @@ global inherited sharing class SecurityUtils {
     cipher.edt = Datetime.now()
       .addMinutes(
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
-          .SesssionExpirationTime__c
+          .SessionExpirationTime__c
       );
     cipher.aplType = applicant.RecordType.Name;
     ApexRequest.setApplicantType(cipher.aplType);
     cipher.flw = ApexRequest.getFlowType();
 
     applicant.SessionToken__c = SecurityUtils.encryptBase64(
-      Json.serialize(cipher, true)
+      JSON.serialize(cipher, true)
     );
     ApexRequest.setToken(applicant.SessionToken__c);
     ApexRequest.setApplicationId(cipher.appId);
@@ -434,9 +434,9 @@ global inherited sharing class SecurityUtils {
     cipher.edt = Datetime.now()
       .addMinutes(
         (Integer) ApplicationConfiguration__c.getOrgDefaults()
-          .SesssionExpirationTime__c
+          .SessionExpirationTime__c
       );
-    String token = SecurityUtils.encryptBase64(Json.serialize(cipher, true));
+    String token = SecurityUtils.encryptBase64(JSON.serialize(cipher, true));
     ApexRequest.setToken(token);
 
     switch on cipher.aplType {
