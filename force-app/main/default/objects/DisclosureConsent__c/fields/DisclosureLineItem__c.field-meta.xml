@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DisclosureLineItem__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>related template</description>
+    <externalId>false</externalId>
+    <label>Disclosure Line Item</label>
+    <referenceTo>DisclosureLineItem__c</referenceTo>
+    <relationshipLabel>Disclosure Consents</relationshipLabel>
+    <relationshipName>DisclosureConsents</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

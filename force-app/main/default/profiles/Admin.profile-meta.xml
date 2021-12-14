@@ -73,6 +73,15 @@
         <layout>Applicant__c-Applicant Layout</layout>
         <recordType>Applicant__c.Primary</recordType>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>DisclosureConsent__c-Disclosure Consent Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DisclosureLineItem__c-Disclosure Line Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DisclosureTemplate__c-Disclosure Template Layout</layout>
+    </layoutAssignments>
 
     <!--tabVisibilities-->
     <tabVisibilities>
