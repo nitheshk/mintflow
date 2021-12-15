@@ -3,22 +3,22 @@
     <lightning-card title="KYC Decision" icon-name="action:update_status">
       <div if class="slds-var-m-around_medium">
         <lightning-combobox
-          data-fieldname="FinServ__Status__c"
+          data-fieldname="status"
           name="Status"
           label="Status"
-          value={value}
+          value={collectedInfo.status}
           placeholder="Select status"
-          options={applicationKycStatus}
+          options={applicationStatus}
           onchange={handleChange}
           class="validation"
         ></lightning-combobox>
       </div>
       <div class="slds-var-m-around_medium">
         <lightning-combobox
-          data-fieldname="ApprovalType"
+          data-fieldname="approvalType"
           name="Approval Type"
           label="Approval Type"
-          value={value}
+          value={collectedInfo.approvalType}
           placeholder="Select Approval Type"
           options={approvalTypes}
           onchange={handleChange}
@@ -31,7 +31,7 @@
             variant="brand"
             label="Submit"
             title="Submit"
-            onclick={updateApplication}
+            onclick={updateStatus}
             class="slds-var-m-left_x-small"
             icon-name="standard:work_order_item"
             icon-position="right"
@@ -44,12 +44,12 @@
     <lightning-card title="KYC Decision" icon-name="action:update_status">
       <div if class="slds-var-m-around_medium">
         <lightning-combobox
-          data-fieldname="mflow__Status__c"
+          data-fieldname="status"
           name="Status"
           label="Status"
-          value={value}
+          value={collectedInfo.status}
           placeholder="Select status"
-          options={applicantKycStatus}
+          options={applicantStatus}
           onchange={handleChange}
           class="validation"
         ></lightning-combobox>
@@ -60,7 +60,7 @@
             variant="brand"
             label="Submit"
             title="Submit"
-            onclick={updateApplicant}
+            onclick={updateStatus}
             class="slds-var-m-left_x-small"
             icon-name="standard:work_order_item"
             icon-position="right"

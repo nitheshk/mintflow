@@ -1,13 +1,14 @@
 import { LightningElement, api, wire, track } from "lwc";
 import utils from "c/generalUtils";
 import getPickListValues from "@salesforce/apex/LwcCustomController.fetchPickListValues";
+import updateKycDecision from "@salesforce/apex/LwcCustomController.updateKycDecision";
+// import { refreshApex } from "@salesforce/apex";-
 export default class ApproveKyc extends LightningElement {
   @api objectApiName;
   @api recordId;
-  @track applicationFields = {};
-  @track applicantFields = {};
-  @track applicationKycStatus = [];
-  @track applicantKycStatus = [];
+  @track collectedInfo = {};
+  @track applicationStatus = [];
+  @track applicantStatus = [];
   @track showApplicationTab = false;
   @track showApplicantTab = false;
 
@@ -34,10 +35,10 @@ export default class ApproveKyc extends LightningElement {
   PickListValues({ data, error }) {
     if (data) {
       if (data.status === 200) {
-        this.applicationKycStatus = JSON.parse(
+        this.applicationStatus = JSON.parse(
           data.data
         ).Account.FinServ__Status__c;
-        this.applicantKycStatus = JSON.parse(
+        this.applicantStatus = JSON.parse(
           data.data
         ).mflow__Applicant__c.mflow__Status__c;
         if (this.objectApiName === "Account") {
@@ -56,13 +57,38 @@ export default class ApproveKyc extends LightningElement {
   handleChange(event) {
     let targetElement = event.target;
     if (this.objectApiName === "Account") {
-      this.applicationFields[targetElement.dataset.fieldname] =
-        targetElement.value;
-      console.log(JSON.stringify(this.applicationFields));
+      this.collectedInfo[targetElement.dataset.fieldname] = targetElement.value;
+      console.log(JSON.stringify(this.collectedInfo));
     } else if (this.objectApiName === "mflow__Applicant__c") {
-      this.applicantFields[targetElement.dataset.fieldname] =
-        targetElement.value;
-      console.log(JSON.stringify(this.applicantFields));
+      this.collectedInfo[targetElement.dataset.fieldname] = targetElement.value;
+      console.log(JSON.stringify(this.collectedInfo));
+    }
+  }
+
+  updateStatus() {
+    if (
+      utils.checkAllValidations(this.template.querySelectorAll(".validation"))
+    ) {
+      this.showSpinner = true;
+      console.log("recordId =" + this.recordId);
+      console.log("this.objectApiName =" + this.objectApiName);
+      console.log("status =" + this.collectedInfo.status);
+      console.log("approvalType =" + this.collectedInfo.approvalType);
+      updateKycDecision({
+        params: {
+          recordId: this.recordId,
+          objectApiName: this.objectApiName,
+          status: this.collectedInfo.status,
+          approvalType: this.collectedInfo.approvalType
+        }
+      })
+        .then((result) => {
+          console.log("result" + JSON.stringify(result));
+        })
+        .catch((error) => {
+          console.log("error : " + JSON.stringify(error));
+          utils.errorMessage(this, error.body.message, "Error");
+        });
     }
   }
 }

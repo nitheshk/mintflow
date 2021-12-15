@@ -251,24 +251,46 @@ global with sharing class LwcCustomService extends AbstractService {
     }
     return result;
   }
+  /**
+   * @description
+   * @author Digital Align | 12-15-2021
+   * @param Map<String Object> params
+   * @return virtual
+   **/
   global virtual void updateKycDecision(Map<String, Object> params) {
     id recordID = (Id) params.get('recordId');
     String sobjectType = (String) params.get('objectApiName');
+    string status = (string) params.get('status');
+    string approvalType = (string) params.get('approvalType');
+
+    log?.debug('recordID =' + recordID + '-----sobjectType =' + sobjectType);
     switch on sobjectType {
       when 'mflow__Applicant__c' {
-        string status = (string) params.get('mflow__KYCStatus__c');
         Applicant__c applicant = ApplicantRepository.readApplicantById(
           recordID
         );
-        if (applicant.mflow__ApplicantType__c == 'Primary') {
+        if (
+          applicant.mflow__ApplicantType__c == 'Primary' &&
+          status == ApplicationConstant.APPROVED
+        ) {
           applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
         }
-        applicant.mflow__KYCStatus__c = status;
+        applicant.mflow__Status__c = status;
         ApplicantRepository.upsertRecord(applicant);
       }
       when 'Account' {
-        string approvalType = (string) params.get('approvalType');
-        updateApplicationStatus(recordID, approvalType);
+        Account application = ApplicationRepository.readApplicationWithApplicants(
+          recordID
+        );
+        if (approvalType == 'UpdateApplication') {
+          if (status == ApplicationConstant.APPROVED) {
+            application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+          }
+          application.FinServ__Status__c = status;
+          ApplicationRepository.upsertRecord(application);
+        } else {
+          updateApplicationStatus(recordID, sobjectType, status, approvalType);
+        }
       }
       when else {
         return;
@@ -278,10 +300,46 @@ global with sharing class LwcCustomService extends AbstractService {
 
   global virtual void updateApplicationStatus(
     Id recordID,
+    string sobjectType,
+    string status,
     String approvalType
   ) {
+    Account application = ApplicationRepository.readApplicationWithApplicants(
+      recordID
+    );
     switch on approvalType {
-      when 'UpdateApplication' {
+      when 'updateApplicationAndApplicant' {
+        for (Applicant__c app : application.Applicants__r) {
+          if (
+            status == ApplicationConstant.APPROVED &&
+            app.mflow__ApplicantType__c == 'Primary'
+          ) {
+            app.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+          }
+          app.mflow__Status__c = status;
+        }
+        application.FinServ__Status__c = status;
+        application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+        Log
+          ?.debug(
+            'application in updateApplicationAndApplicant==' + application
+          );
+        ApplicationRepository.upsertRecord(application);
+      }
+      when 'updateApplicationAndPrimary' {
+        for (Applicant__c app : application.Applicants__r) {
+          if (app.mflow__ApplicantType__c == 'Primary') {
+            if (status == ApplicationConstant.APPROVED) {
+              app.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+            }
+            app.mflow__Status__c = status;
+          }
+        }
+        application.FinServ__Status__c = status;
+        application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+        Log
+          ?.debug('application in updateApplicationAndPrimary==' + application);
+        ApplicationRepository.upsertRecord(application);
       }
       when else {
       }

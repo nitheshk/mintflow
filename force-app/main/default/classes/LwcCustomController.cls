@@ -176,6 +176,7 @@ global with sharing class LwcCustomController extends AbstractController {
   @AuraEnabled(cacheable=true)
   global static ApexResponse fetchPickListValues(Map<String, Object> params) {
     try {
+      log?.fine('Inside fetchPickListValues');
       return ApexResponse.ok(
         LwcCustomService.getInstance().fetchPickListValues(params)
       );
@@ -190,6 +191,7 @@ global with sharing class LwcCustomController extends AbstractController {
    * @param Map<String Object> params
    * @return ApexResponse
    **/
+  @AuraEnabled
   global static ApexResponse updateKycDecision(Map<String, Object> params) {
     try {
       log?.fine('Inside updateKycDecision params =' + params);
@@ -197,6 +199,9 @@ global with sharing class LwcCustomController extends AbstractController {
       return ApexResponse.ok();
     } catch (Exception ex) {
       return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete updateKycDecision');
+      Logger.persist();
     }
   }
 }
