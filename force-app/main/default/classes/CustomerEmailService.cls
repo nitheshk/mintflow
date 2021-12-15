@@ -280,6 +280,34 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       );
     sendEmail();
   }
+  /**
+   * @description Notify support team about incorrect employment information of an applicant
+   * @author Digital Align | 12-15-2021
+   * @param Applicant__c applicant
+   * @param string information
+   * @return virtual
+   **/
+  global virtual void notifyAboutEmploymentReport(
+    Applicant__c applicant,
+    string information
+  ) {
+    EmailNotificationBuilder.newInstance(
+        'employmentReportInformation',
+        applicant.Id
+      )
+      .setToAddresses(
+        (String) ApplicationConfiguration__c.getOrgDefaults()
+          .SupportTeamEmail__c
+      )
+      .setSubstitute(
+        new Map<String, String>{
+          '{ApplicationNumber}' => ApexRequest.getApplicationName(),
+          '{ApplicantName}' => applicant.Name,
+          '{Information}' => information
+        }
+      );
+    sendEmail();
+  }
 
   /**
    * @description
