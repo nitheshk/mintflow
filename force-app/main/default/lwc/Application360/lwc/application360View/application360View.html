@@ -43,7 +43,7 @@
                     key={data.Id}
                     record={data.mflow__ContactPointAddresses__r}
                     s-object-name="ContactPointAddress"
-                    title-name="Contact Point Addressess"
+                    title-name="Contact Point Addresses"
                     hide-null-values="true"
                   ></c-record-detail-view>
                 </lightning-tab>
@@ -60,12 +60,12 @@
                 </lightning-tab>
               </template>
               <template if:true={data.mflow__Employments__r}>
-                <lightning-tab label="Employment Deails">
+                <lightning-tab label="Employment Details">
                   <c-record-detail-view
                     key={data.Id}
                     record={data.mflow__Employments__r}
                     s-object-name="FinServ__Employment__c"
-                    title-name="Employee Deails"
+                    title-name="Employee Details"
                     hide-null-values="true"
                   ></c-record-detail-view>
                 </lightning-tab>

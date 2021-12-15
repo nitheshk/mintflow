@@ -245,7 +245,7 @@ global with sharing class FinancialAccountServiceHelper extends AbstractService 
     memberContact.FinServ__HomePhoneVerified__c = applicant.IsPhoneNumberVerified__c;
     memberContact.FinServ__LastFourDigitSSN__c = applicant.SSN__c.right(4);
     memberContact.RunWithKIQ__c = applicant.RunWithKIQ__c;
-    memberContact.RunwithoutKIQ__c = applicant.RunWithoutKIQ__c;
+    memberContact.RunWithoutKIQ__c = applicant.RunWithoutKIQ__c;
     memberContact.IdentityVerificationStatus__c = applicant.IdentityVerificationStatus__c;
     memberContact.Birthdate = applicant.Birthdate__c;
     memberContact.SSNValidation__c = applicant.SSNValidation__c;
@@ -256,13 +256,12 @@ global with sharing class FinancialAccountServiceHelper extends AbstractService 
     memberContact.OverallDebitBureauResult__c = applicant.OverallDebitBureauResult__c;
     memberContact.QualifiedDecision__c = applicant.QualifiedDecision__c;
     memberContact.QualifiedScore__c = applicant.QualifiedScore__c;
-    // #Pending Missing Fields in Contact
-    //applicant.FraudStatus__c
-    //applicant.IncomeVerificationStatus__c
-    //applicant.KYCStatus__c
-    //applicant.MiddleName__c
-    //applicant.SentiLinkFraudScore__c
-    //applicant.SentiLinkStatus__c
+    memberContact.FraudStatus__c = applicant.FraudStatus__c;
+    memberContact.IncomeVerificationStatus__c = applicant.IncomeVerificationStatus__c;
+    memberContact.KYCStatus__c = applicant.KYCStatus__c;
+    memberContact.SentiLinkFraudScore__c = applicant.SentiLinkFraudScore__c;
+    memberContact.SentiLinkStatus__c = applicant.SentiLinkStatus__c;
+    memberContact.MiddleName__c = applicant.MiddleName__c;
     return memberContact;
   }
 
@@ -310,13 +309,14 @@ global with sharing class FinancialAccountServiceHelper extends AbstractService 
     //fetch membership product
     //#pending Get membership product code from custom metadata constant
     FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
-      'IC-001'
+      HttpBuilder.getApiConstant('MembershipAccountInternalCode')
     );
 
     // create membership financial account
     FinServ__FinancialAccount__c financialAccount = new FinServ__FinancialAccount__c();
     financialAccount.FinancialProduct__c = membershipProduct.Id;
     financialAccount.Name = membershipProduct.Name;
+    financialAccount.ExternalApplicationNumber__c = application.ExternalApplicationNumber__c;
     financialAccount.FinServ__FinancialAccountType__c = membershipProduct.Category__c;
     financialAccount.FinServ__PrimaryOwner__c = primaryApplicant.Contact__r.AccountId;
     financialAccount.FinServ__Ownership__c = 'Individual';
