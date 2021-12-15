@@ -125,14 +125,31 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void resumeApplication(Applicant__c applicant) {
     String portalUrl = 'portalUrl';
-
+    map<string, string> params = new Map<string, string>();
+    if (
+      applicant.ApplicantType__c ==
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    ) {
+      params.put('flw', 'ApplicationFlow');
+      params.put(
+        'urlSuffix',
+        '/membership/application/' + applicant.FlowState__c
+      );
+    } else {
+      params.put('flw', 'JointFlow');
+      params.put('urlSuffix', '/membership/joints/' + applicant.FlowState__c);
+    }
+    params.put('aplType', applicant.ApplicantType__c);
+    params.put('aplId', applicant.Id);
+    params.put('ch', 'Virtual');
+    string link = generateUrl(params);
     EmailNotificationBuilder.newInstance('ResumeApplicationEmail', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
           '{firstName}' => applicant.FirstName__c,
           '{lastName}' => applicant.LastName__c,
-          '{url}' => portalUrl
+          '{url}' => link
         }
       );
     sendEmail();
@@ -152,37 +169,32 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     String notificationName
   ) {
     for (Applicant__c applicant : applicants) {
-      SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
-      String urlSuffix = '';
+      String link;
       switch on notificationName {
         when 'PrimaryReviewInformationSubmitted',
           'PrimaryReviewInformationWaiting' {
-          cipher.aplType = 'Primary';
-          cipher.flw = 'ApplicationFlow';
-          urlSuffix = '/membership/application/get-started';
+          link = generateUrl(
+            new Map<string, string>{
+              'aplType' => 'Primary',
+              'flw' => 'ApplicationFlow',
+              'urlSuffix' => '/membership/application/get-started',
+              'aplId' => applicant.Id,
+              'ch' => 'Virtual'
+            }
+          );
         }
         when 'JointStartApplication' {
-          cipher.aplType = 'Joint';
-          cipher.flw = 'JointFlow';
-          urlSuffix = '/membership/joints/welcome';
+          link = generateUrl(
+            new Map<string, string>{
+              'aplType' => 'Joint',
+              'flw' => 'JointFlow',
+              'urlSuffix' => '/membership/joints/welcome',
+              'aplId' => applicant.Id,
+              'ch' => 'Virtual'
+            }
+          );
         }
       }
-      cipher.appId = ApexRequest.getApplicationId();
-      cipher.aplId = applicant.Id;
-      cipher.edt = Datetime.now()
-        .addHours(
-          (Integer) ApplicationConfiguration__c.getInstance()
-            .EmailLinkExpirationTime__c
-        );
-      cipher.ch = 'Virtual';
-
-      String link =
-        SiteSetting__c.getInstance().OnlineSiteUrl__c +
-        '/OpenAccount' +
-        '?vmf=' +
-        SecurityUtils.encryptUrl(JSON.serialize(cipher, true)) +
-        '&vue=' +
-        EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
 
       EmailNotificationBuilder.newInstance(notificationName, applicant.Id)
         .setToAddresses(applicant.Email__c)
@@ -293,5 +305,34 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         //throw new customException(System.Label.Email_EmailNotSent);
       }
     }
+  }
+  /**
+   * @description generate URL that can be used in email templates
+   * @author Digital Align | 12-15-2021
+   * @param Map<String string> params
+   * @return virtual
+   **/
+  global virtual string generateUrl(Map<String, string> params) {
+    SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+    cipher.aplType = params.get('aplType');
+    cipher.flw = params.get('flw');
+    string urlSuffix = params.get('urlSuffix');
+    cipher.appId = ApexRequest.getApplicationId();
+    cipher.aplId = params.get('aplId');
+    cipher.edt = Datetime.now()
+      .addHours(
+        (Integer) ApplicationConfiguration__c.getInstance()
+          .EmailLinkExpirationTime__c
+      );
+    cipher.ch = params.get('ch');
+
+    String link =
+      SiteSetting__c.getInstance().OnlineSiteUrl__c +
+      '/OpenAccount' +
+      '?vmf=' +
+      SecurityUtils.encryptUrl(JSON.serialize(cipher, true)) +
+      '&vue=' +
+      EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
+    return link;
   }
 }
