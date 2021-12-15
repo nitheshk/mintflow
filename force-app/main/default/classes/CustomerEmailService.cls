@@ -248,6 +248,26 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       );
     sendEmail();
   }
+  /**
+   * @description Notify Primary applicant that account is approved
+   * @author Digital Align | 12-15-2021
+   * @param Applicant__c applicant
+   * @return virtual
+   **/
+  global virtual void accountApproved(Applicant__c applicant) {
+    string link = 'startfundingprocess';
+    EmailNotificationBuilder.newInstance('accountApproved', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(
+        new Map<String, String>{
+          '{firstName}' => applicant.FirstName__c,
+          '{lastName}' => applicant.LastName__c,
+          '{ApplicationNumber}' => ApexRequest.getApplicationName(),
+          '{url}' => link
+        }
+      );
+    sendEmail();
+  }
 
   /**
    * @description
