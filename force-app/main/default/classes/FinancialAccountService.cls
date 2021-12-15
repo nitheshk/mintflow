@@ -64,22 +64,22 @@ global with sharing class FinancialAccountService extends AbstractService {
    * @return Object
    **/
   global virtual Account createMemberAccount(String resultJson) {
+    ApplicationResponseMapper.KYCResult kycResult = (ApplicationResponseMapper.KYCResult) JSON.deserialize(
+      resultJson,
+      ApplicationResponseMapper.KYCResult.class
+    );
+
+    // When result is null
+    if (kycResult == null) {
+      throw new CustomException('Unable to process the empty request');
+    }
+
+    Account application = FinancialAccountRepository.readApplicationWithChild(
+      kycResult.ApplicationId
+    );
+
     Savepoint sp = Database.setSavepoint();
     try {
-      ApplicationResponseMapper.KYCResult kycResult = (ApplicationResponseMapper.KYCResult) JSON.deserialize(
-        resultJson,
-        ApplicationResponseMapper.KYCResult.class
-      );
-
-      // When result is null
-      if (kycResult == null) {
-        throw new CustomException('Unable to process the empty request');
-      }
-
-      Account application = FinancialAccountRepository.readApplicationWithChild(
-        kycResult.ApplicationId
-      );
-
       // Primary is Existing Customer
       if (kycResult.IsExistingCustomer == true) {
         return helper.processExistingMember(application, kycResult);
@@ -100,7 +100,12 @@ global with sharing class FinancialAccountService extends AbstractService {
       application = helper.createMembershipFinancialAccount(application);
       return application;
     } catch (Exception ex) {
+      //#pending
+      //#major Chatter We need post the resultKYC in case of exception
+      //#minor Add into Revision Queue for process
+      //Stage value = Exception
       log?.error(ex);
+
       Database.rollback(sp);
       throw ex;
     }

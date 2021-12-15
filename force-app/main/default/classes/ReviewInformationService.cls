@@ -79,7 +79,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       }
     }
 
-    //Mark currrent primary applicant has submitted the application
+    //Mark current primary applicant has submitted the application
     primaryApplicant.Status__c = ApplicationConstant.SUBMITTED;
 
     Boolean isFlowCompleted = true;

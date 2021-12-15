@@ -297,13 +297,15 @@ global with sharing class FinancialAccountServiceHelper extends AbstractService 
         IsActive = true,
         FinServ__Primary__c = true,
         FinServ__PrimaryGroup__c = true,
+        StartDate = Date.today(),
+        EndDate = Date.today().addYears(100),
         Roles = 'Business User',
         FinServ__Rollups__c = 'All'
       );
       FinancialAccountRepository.upsertRecord(accountContactRel);
     }
 
-    log?.fine('accountContactRel Created');
+    log?.fine('accountContactRel Created' + accountContactRel);
 
     //fetch membership product
     //#pending Get membership product code from custom metadata constant
@@ -320,10 +322,9 @@ global with sharing class FinancialAccountServiceHelper extends AbstractService 
     financialAccount.FinServ__Ownership__c = 'Individual';
     financialAccount.FinServ__Status__c = 'Open';
     financialAccount.FinServ__Stage__c = 'Active';
-
-    //financialAccount.ExternalApplicationStatus__c
+    financialAccount.FinServ__Household__c = application.Id;
     financialAccount.RecordTypeId = Schema.SObjectType.FinServ__FinancialAccount__c.getRecordTypeInfosByName()
-      .get('Savings Account')
+      .get('Bank Account')
       .getRecordTypeId();
     FinancialAccountRepository.upsertRecord(financialAccount);
     log?.fine('financialAccount Created');
