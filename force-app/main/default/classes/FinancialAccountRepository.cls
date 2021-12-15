@@ -103,4 +103,22 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description read financial product by Internal Code
+   * @author Digital Align Team | 12-13-2021
+   * @param String internalProductCode
+   * @return FinancialProduct__c
+   **/
+  global static FinancialProduct__c readFinancialProductByInternalCode(
+    String internalProductCode
+  ) {
+    return (FinancialProduct__c) DatabaseUtils.getRecord(
+      Query.newInstance(FinancialProduct__c.SObjectType)
+        .addFields()
+        .whereEq('InternalCode__c', internalProductCode)
+        .addLimit(1)
+        .toString()
+    );
+  }
 }

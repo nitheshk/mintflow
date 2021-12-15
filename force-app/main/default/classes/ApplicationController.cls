@@ -7,7 +7,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class ApplicationController extends AbstractController {
-  private static logger log = logger.getInstance(ApplicationController.class);
+  private static Logger log = Logger.getInstance(ApplicationController.class);
 
   public ApplicationController(AbstractController controller) {
     super(ApplicationController.class);
@@ -71,7 +71,7 @@ global with sharing class ApplicationController extends AbstractController {
             )
         );
       } else {
-        throw new customException(System.Label.Applicant_ApplicantTypeNotFound);
+        throw new CustomException(System.Label.Applicant_ApplicantTypeNotFound);
       }
     } catch (CustomException ex) {
       log?.error(ex);

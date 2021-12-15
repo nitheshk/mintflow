@@ -7,7 +7,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class FileController extends AbstractController {
-  private static logger log = logger.getInstance(IdentityController.class);
+  private static Logger log = Logger.getInstance(IdentityController.class);
 
   public FileController(AbstractController controller) {
     super(FileController.class);
@@ -29,7 +29,7 @@ global with sharing class FileController extends AbstractController {
       // Upsert dealer record
       log?.fine('Inside fetchContentVersionByEntityId');
       validateRequest(request);
-      ID entityId = (ID) ApexRequest.getParams('entityId');
+      Id entityId = (Id) ApexRequest.getParams('entityId');
       Boolean ignoreVersionData = ApexRequest.getParams('ignoreVersionData') !=
         null
         ? (Boolean) ApexRequest.getParams('ignoreVersionData')
@@ -60,7 +60,7 @@ global with sharing class FileController extends AbstractController {
     try {
       log?.fine('Inside deleteContentVersion');
       validateRequest(request);
-      ID contentDocumentId = (ID) ApexRequest.getParams('contentDocumentId');
+      Id contentDocumentId = (Id) ApexRequest.getParams('contentDocumentId');
       FileService.getInstance().deleteContentVersion(contentDocumentId);
       return ApexResponse.ok(null);
     } catch (Exception ex) {
@@ -84,7 +84,7 @@ global with sharing class FileController extends AbstractController {
     try {
       log?.fine('Inside generatePublicUrl');
       validateRequest(request);
-      ID contentVersionId = (ID) ApexRequest.getParams('contentVersionId');
+      Id contentVersionId = (Id) ApexRequest.getParams('contentVersionId');
       return ApexResponse.ok(
         FileService.getInstance().generatePublicUrl(contentVersionId)
       );
@@ -114,19 +114,19 @@ global with sharing class FileController extends AbstractController {
       FileDTO dto = new FileDTO(
         (String) ApexRequest.getParams('title'),
         EncodingUtil.base64Decode(
-          (String) Json.deserialize(request.data, String.class)
+          (String) JSON.deserialize(request.data, String.class)
         ),
         (String) ApexRequest.getParams('parentID'),
         (String) ApexRequest.getParams('fileType'),
         (String) ApexRequest.getParams('fileSubType')
       );
       if (ApexRequest.getParams('shareType') != null) {
-        dto.shareType = FileDTO.FileShareType.valueof(
+        dto.shareType = FileDTO.FileShareType.valueOf(
           (String) ApexRequest.getParams('shareType')
         );
       }
       if (ApexRequest.getParams('visibility') != null) {
-        dto.visibility = FileDTO.FileVisibility.valueof(
+        dto.visibility = FileDTO.FileVisibility.valueOf(
           (String) ApexRequest.getParams('visibility')
         );
       }
@@ -153,7 +153,7 @@ global with sharing class FileController extends AbstractController {
     try {
       log?.fine('Inside fetchContentVersionByCD');
       validateRequest(request);
-      ID contentDocumentId = (ID) ApexRequest.getParams('contentDocumentId');
+      Id contentDocumentId = (Id) ApexRequest.getParams('contentDocumentId');
       Boolean ignoreVersionData = ApexRequest.getParams('ignoreVersionData') !=
         null
         ? (Boolean) ApexRequest.getParams('ignoreVersionData')

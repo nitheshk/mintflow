@@ -179,7 +179,7 @@ global with sharing class FinancialAccountServiceHelper extends AbstractService 
           true
         );
         applicant.Contact__c = memberContact.Id;
-        //applicant.Contact__r = memberContact;
+        applicant.Contact__r = memberContact;
         contactToUpsert.add(memberContact);
       } else {
         Contact memberContact = createAccount(applicant);
@@ -189,7 +189,7 @@ global with sharing class FinancialAccountServiceHelper extends AbstractService 
           false
         );
         applicant.Contact__c = memberContact.Id;
-        //applicant.Contact__r = memberContact;
+        applicant.Contact__r = memberContact;
         contactToUpsert.add(memberContact);
       }
     }
@@ -290,8 +290,43 @@ global with sharing class FinancialAccountServiceHelper extends AbstractService 
       primaryApplicant.Contact__c
     );
     if (accountContactRel == null) {
+      // purpose to link application and primary contact to view in household view
+      accountContactRel = new AccountContactRelation(
+        AccountId = application.Id,
+        ContactId = primaryApplicant.Contact__c,
+        IsActive = true,
+        FinServ__Primary__c = true,
+        FinServ__PrimaryGroup__c = true,
+        Roles = 'Business User',
+        FinServ__Rollups__c = 'All'
+      );
+      FinancialAccountRepository.upsertRecord(accountContactRel);
     }
 
+    log?.fine('accountContactRel Created');
+
+    //fetch membership product
+    //#pending Get membership product code from custom metadata constant
+    FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
+      'IC-001'
+    );
+
+    // create membership financial account
+    FinServ__FinancialAccount__c financialAccount = new FinServ__FinancialAccount__c();
+    financialAccount.FinancialProduct__c = membershipProduct.Id;
+    financialAccount.Name = membershipProduct.Name;
+    financialAccount.FinServ__FinancialAccountType__c = membershipProduct.Category__c;
+    financialAccount.FinServ__PrimaryOwner__c = primaryApplicant.Contact__r.AccountId;
+    financialAccount.FinServ__Ownership__c = 'Individual';
+    financialAccount.FinServ__Status__c = 'Open';
+    financialAccount.FinServ__Stage__c = 'Active';
+
+    //financialAccount.ExternalApplicationStatus__c
+    financialAccount.RecordTypeId = Schema.SObjectType.FinServ__FinancialAccount__c.getRecordTypeInfosByName()
+      .get('Savings Account')
+      .getRecordTypeId();
+    FinancialAccountRepository.upsertRecord(financialAccount);
+    log?.fine('financialAccount Created');
     return application;
   }
 }

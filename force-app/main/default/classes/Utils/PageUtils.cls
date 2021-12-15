@@ -43,7 +43,7 @@ global with sharing class PageUtils {
   }
 
   /**
-   * @description
+   * @description get cookie by Key
    * @author Digital Align Team | 09-29-2021
    * @param String key
    * @return Cookie
@@ -53,7 +53,7 @@ global with sharing class PageUtils {
   }
 
   /**
-   * @description
+   * @description Set Cookie for the Page
    * @author Digital Align Team | 09-29-2021
    * @param Cookie cookie
    **/
@@ -67,7 +67,7 @@ global with sharing class PageUtils {
   }
 
   /**
-   * @description
+   * @description Set page Header
    * @author Digital Align Team | 09-29-2021
    * @return Map<String, String>
    **/
@@ -79,7 +79,7 @@ global with sharing class PageUtils {
   }
 
   /**
-   * @description
+   * @description Get Header value by key
    * @author Digital Align Team | 09-29-2021
    * @param String key
    * @return String

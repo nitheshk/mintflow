@@ -63,7 +63,7 @@ global with sharing class OnlineAccountController extends AbstractController {
       return error;
     } catch (Exception ex) {
       log?.error(ex);
-      //PageUtils.addPageErrorMessage('Unkown Exception');
+      //PageUtils.addPageErrorMessage('Unknown Exception');
       PageReference error = Page.Error;
       error.setRedirect(true);
       return error;

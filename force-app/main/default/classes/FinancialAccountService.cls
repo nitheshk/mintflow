@@ -64,39 +64,45 @@ global with sharing class FinancialAccountService extends AbstractService {
    * @return Object
    **/
   global virtual Account createMemberAccount(String resultJson) {
-    ApplicationResponseMapper.KYCResult kycResult = (ApplicationResponseMapper.KYCResult) JSON.deserialize(
-      resultJson,
-      ApplicationResponseMapper.KYCResult.class
-    );
+    Savepoint sp = Database.setSavepoint();
+    try {
+      ApplicationResponseMapper.KYCResult kycResult = (ApplicationResponseMapper.KYCResult) JSON.deserialize(
+        resultJson,
+        ApplicationResponseMapper.KYCResult.class
+      );
 
-    // When result is null
-    if (kycResult == null) {
-      throw new CustomException('Unable to process the empty request');
-    }
+      // When result is null
+      if (kycResult == null) {
+        throw new CustomException('Unable to process the empty request');
+      }
 
-    Account application = FinancialAccountRepository.readApplicationWithChild(
-      kycResult.ApplicationId
-    );
+      Account application = FinancialAccountRepository.readApplicationWithChild(
+        kycResult.ApplicationId
+      );
 
-    // Primary is Existing Customer
-    if (kycResult.IsExistingCustomer == true) {
-      return helper.processExistingMember(application, kycResult);
-    }
+      // Primary is Existing Customer
+      if (kycResult.IsExistingCustomer == true) {
+        return helper.processExistingMember(application, kycResult);
+      }
 
-    // Primary Kyc is Approved/Failed and Joint KYC is Approved/Failed
-    // update Applicant detail accordingly
-    application = helper.updateApplicationKycDetails(application, kycResult);
+      // Primary Kyc is Approved/Failed and Joint KYC is Approved/Failed
+      // update Applicant detail accordingly
+      application = helper.updateApplicationKycDetails(application, kycResult);
 
-    // if Application kyc status is approved, then proceed with creating Account & Contact for primary
-    // And Open Membership Financial Account and relation with applicant
-    if (application.FinServ__Status__c == ApplicationConstant.APPROVED) {
-      helper.createMembershipAccount(application);
-    } else {
+      // if Application kyc status is approved, then proceed with creating Account & Contact for primary
+      // And Open Membership Financial Account and relation with applicant
+      if (application.FinServ__Status__c == ApplicationConstant.APPROVED) {
+        helper.createMembershipAccount(application);
+      } else {
+        return application;
+      }
+
+      application = helper.createMembershipFinancialAccount(application);
       return application;
+    } catch (Exception ex) {
+      log?.error(ex);
+      Database.rollback(sp);
+      throw ex;
     }
-
-    //application = helper.createMembershipFinancialAccount(application);
-
-    return application;
   }
 }
