@@ -12,7 +12,9 @@ global virtual with sharing class EmailNotificationBuilder {
   private static Map<String, String> documentURL = new Map<String, String>();
   private static Map<String, Id> orgWideEmailAddress = new Map<String, Id>();
   private static List<EmailNotificationBuilder> notificationServices = new List<EmailNotificationBuilder>();
-  private static logger log = logger.getInstance(IdentityController.class);
+  private static Logger log = Logger.getInstance(
+    EmailNotificationBuilder.class
+  );
 
   // scoped context
   private String notificationName;
@@ -85,7 +87,7 @@ global virtual with sharing class EmailNotificationBuilder {
   global static List<Messaging.SendEmailResult> sendEmail() {
     // build notification service
     List<Messaging.SingleEmailMessage> emailMessages = EmailNotificationBuilder.buildNotificationServices();
-    Log?.fine('EmailMessages Size :' + emailMessages.size());
+    log?.fine('EmailMessages Size :' + emailMessages.size());
     List<Messaging.SendEmailResult> emailResult;
     if (!emailMessages.isEmpty()) {
       emailResult = Messaging.sendEmail(emailMessages, false);
@@ -125,7 +127,7 @@ global virtual with sharing class EmailNotificationBuilder {
       EmailNotificationSetting__mdt setting = EmailNotificationSetting__mdt.getInstance(
         notificationService.notificationName
       );
-      if (!(setting != null && !setting.disabled__c)) {
+      if (!(setting != null && !setting.mflow__Disabled__c)) {
         continue;
       }
       EmailTemplate emailTemplate = emailTemplates.get(
@@ -156,7 +158,7 @@ global virtual with sharing class EmailNotificationBuilder {
       emailMessage.setSaveAsActivity(setting.TraceEmailActivity__c);
 
       //toAddress
-      if (String.IsNotBlank(setting.ToAddress__c)) {
+      if (String.isNotBlank(setting.ToAddress__c)) {
         notificationService.toAddresses.addAll(setting.ToAddress__c.split(';'));
       }
       if (!notificationService.toAddresses.isEmpty()) {
@@ -164,7 +166,7 @@ global virtual with sharing class EmailNotificationBuilder {
       }
 
       //ccAddress
-      if (String.IsNotBlank(setting.CCEmailAddress__c)) {
+      if (String.isNotBlank(setting.CCEmailAddress__c)) {
         notificationService.ccAddresses.addAll(
           setting.CCEmailAddress__c.split(';')
         );
@@ -174,7 +176,7 @@ global virtual with sharing class EmailNotificationBuilder {
       }
 
       //bccAddress
-      if (String.IsNotBlank(setting.BCCEmailAddress__c)) {
+      if (String.isNotBlank(setting.BCCEmailAddress__c)) {
         notificationService.bccAddresses.addAll(
           setting.BCCEmailAddress__c.split(';')
         );
@@ -184,7 +186,7 @@ global virtual with sharing class EmailNotificationBuilder {
       }
 
       //ReplyToAddress__c
-      if (String.IsNotBlank(setting.ReplyToAddress__c)) {
+      if (String.isNotBlank(setting.ReplyToAddress__c)) {
         emailMessage.setReplyTo(setting.ReplyToAddress__c);
       }
 
@@ -205,7 +207,7 @@ global virtual with sharing class EmailNotificationBuilder {
       //build attachements
       buildFileAttachments(emailMessage, notificationService.fileAttachments);
 
-      Log?.fine('emailMessage :' + JSON.serialize(emailMessage));
+      log?.fine('emailMessage :' + JSON.serialize(emailMessage));
       emailMessages.add(emailMessage);
 
       // send email;
@@ -234,7 +236,7 @@ global virtual with sharing class EmailNotificationBuilder {
     }
     for (
       EmailTemplate template : EmailNotificationRepository.fetchEmailTemplateByDevName(
-        emailTemplates.keyset()
+        emailTemplates.keySet()
       )
     ) {
       emailTemplates.put(template.DeveloperName, template);
@@ -255,12 +257,12 @@ global virtual with sharing class EmailNotificationBuilder {
       }
     }
     String baseUrl =
-      URL.getSalesforceBaseUrl().getProtocol() +
+      Url.getSalesforceBaseUrl().getProtocol() +
       '://' +
-      System.URL.getSalesforceBaseUrl().getHost().remove('-api') +
+      System.Url.getSalesforceBaseUrl().getHost().remove('-api') +
       '/servlet/servlet.ImageServer?id={{docID}}' +
       '&oid=' +
-      userinfo.getorganizationid();
+      UserInfo.getOrganizationId();
     for (
       Document doc : EmailNotificationRepository.fetchDocumentByDevName(
         docuementNameList

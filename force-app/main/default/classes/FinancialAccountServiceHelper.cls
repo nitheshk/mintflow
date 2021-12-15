@@ -306,8 +306,7 @@ global with sharing class FinancialAccountServiceHelper extends AbstractService 
 
     log?.fine('accountContactRel Created' + accountContactRel);
 
-    //fetch membership product
-    //#pending Get membership product code from custom metadata constant
+    //fetching membership product
     FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
       HttpBuilder.getApiConstant('MembershipAccountInternalCode')
     );

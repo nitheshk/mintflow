@@ -60,10 +60,14 @@ global with sharing class ReviewInformationService extends AbstractService {
    * @param account application
    * @return account
    **/
-  global virtual account primaryConsumerFlow(account application) {
+  global virtual Account primaryConsumerFlow(Account application) {
     log?.info('Inside primaryConsumerFlow');
     Applicant__c primaryApplicant;
     List<mflow__Applicant__c> jointApplicants = new List<mflow__Applicant__c>();
+
+    if (application.Applicants__r.isEmpty()) {
+      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
+    }
 
     for (Applicant__c applicant : application.Applicants__r) {
       if (
@@ -79,17 +83,20 @@ global with sharing class ReviewInformationService extends AbstractService {
       }
     }
 
-    //Mark current primary applicant has submitted the application
-    primaryApplicant.Status__c = ApplicationConstant.SUBMITTED;
-
+    //Mark current primary applicant has SUBMITTED_FOR_REVIEW the application
+    primaryApplicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
     Boolean isFlowCompleted = true;
-    for (Applicant__c applicant : application.Applicants__r) {
-      if (applicant.Status__c != ApplicationConstant.SUBMITTED) {
+    //check all joint application has completed or If no joint present isFlowCompleted will always true
+    for (Applicant__c applicant : jointApplicants) {
+      if (applicant.Status__c != ApplicationConstant.SUBMITTED_FOR_REVIEW) {
         isFlowCompleted = false;
       }
     }
 
     if (isFlowCompleted) {
+      //Mark Application to submitted for review
+      application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+
       //1. Send notification Primary applicant with resume link
       CustomerEmailService.getInstance()
         .reviewInformationSubmitted(
@@ -97,9 +104,14 @@ global with sharing class ReviewInformationService extends AbstractService {
           'PrimaryReviewInformationSubmitted'
         );
       //2. Push Primary applicant to RPA Queue
-      //#RPA #pending
       // Need to move future thr is dml operation before this
-      // RpaProcessService.getInstance().scheduleReviewApplication(application);
+      Object response = RpaProcessService.getInstance()
+        .scheduleReviewApplication(application);
+      if (response == null) {
+        application.Stage__c = 'FailedSubmitReview';
+      } else {
+        application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      }
     } else {
       //1. send Email to Primary applicant with resume link
       CustomerEmailService.getInstance()
@@ -112,7 +124,8 @@ global with sharing class ReviewInformationService extends AbstractService {
         .reviewInformationSubmitted(jointApplicants, 'JointStartApplication');
     }
 
-    ApplicantRepository.upsertRecords(application.Applicants__r);
+    ApplicationRepository.upsertRecords(application.Applicants__r);
+    ApplicationRepository.upsertRecord(application);
     log?.info('Completed primaryConsumerFlow');
     return application;
   }
@@ -123,24 +136,16 @@ global with sharing class ReviewInformationService extends AbstractService {
    * @param account application
    * @return virtual
    **/
-  global virtual account jointConsumerFlow(account application) {
+  global virtual Account jointConsumerFlow(Account application) {
     log?.info('Inside jointConsumerFlow');
     Applicant__c primaryApplicant;
-    Applicant__c currentJointApplicant;
+    //Applicant__c currentJointApplicant;
     List<Applicant__c> jointApplicants = new List<Applicant__c>();
 
     if (application.Applicants__r.isEmpty()) {
-      throw new customException(System.Label.Applicant_ApplicantNotFound);
+      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
 
-    //Mark currrent Joint applicant has submitted the application
-    currentJointApplicant = (new Map<Id, Applicant__c>(
-        application.Applicants__r
-      ))
-      .get(ApexRequest.getApplicantId());
-    currentJointApplicant.Status__c = ApplicationConstant.SUBMITTED;
-
-    Boolean isFlowCompleted = true;
     for (Applicant__c applicant : application.Applicants__r) {
       if (
         applicant.RecordType.Name ==
@@ -152,24 +157,48 @@ global with sharing class ReviewInformationService extends AbstractService {
         ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
       ) {
         jointApplicants.add(applicant);
+        // mark current joint applicant as submitted for review
+        if (applicant.Id == ApexRequest.getApplicantId()) {
+          applicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+        }
       }
+    }
 
-      if (applicant.Status__c != ApplicationConstant.SUBMITTED) {
+    Boolean isFlowCompleted = true;
+    if (
+      primaryApplicant.Status__c != ApplicationConstant.SUBMITTED_FOR_REVIEW
+    ) {
+      isFlowCompleted = false;
+    }
+    //check all joint application has completed or If no joint present isFlowCompleted will always true
+    for (Applicant__c applicant : jointApplicants) {
+      if (applicant.Status__c != ApplicationConstant.SUBMITTED_FOR_REVIEW) {
         isFlowCompleted = false;
       }
     }
 
     if (isFlowCompleted) {
+      //Mark Application to submitted for review
+      application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       // Send All Joint Completed Email to Primary and Application under process
       CustomerEmailService.getInstance()
         .primaryReviewInformationCompleted(primaryApplicant);
-      //#RPA #pending
+
       // Need to move future thr is dml operation before this
-      // RpaProcessService.getInstance().scheduleReviewApplication(application);
+      Object response = RpaProcessService.getInstance()
+        .scheduleReviewApplication(application);
+
+      if (response == null) {
+        application.Stage__c = 'FailedSubmitReview';
+      } else {
+        application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      }
     }
 
-    ApplicantRepository.upsertRecords(application.Applicants__r);
+    ApplicationRepository.upsertRecords(application.Applicants__r);
+    ApplicationRepository.upsertRecord(application);
     log?.info('Completed jointConsumerFlow');
-    return application;
+    return ApplicationService.getInstance()
+      .readApplicationWithChild(application.Id, ApexRequest.getApplicantId());
   }
 }
