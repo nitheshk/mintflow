@@ -5,7 +5,7 @@
  * @reference
  * @description Application service
  **/
-@SuppressWarnings('PMD.AvoidGlobalModifier')
+@SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity')
 global with sharing class ApplicationPersistService extends AbstractService {
   @TestVisible
   private static ApplicationPersistService serviceInstance;
@@ -155,7 +155,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
 
     log?.debug('recordTypeName : ' + recordTypeName);
 
-    applicant.recordTypeId = Sobjectutils.recordTypeIdByName(
+    applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
       Applicant__c.SObjectType,
       recordTypeName
     );
@@ -340,7 +340,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
    **/
   global virtual Boolean deleteEntity(Id recordId) {
     log?.fine('Inside Delete Record');
-    switch on SObjectUtils.getObjectName(recordID) {
+    switch on SObjectUtils.getObjectName(recordId) {
       when 'Account' {
         List<SObject> recordsToDelete = new List<SObject>();
         Account application = ApplicationRepository.readApplicationWithChild(
@@ -348,7 +348,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
         );
         if (!application.Applicants__r.isEmpty()) {
           this.deleteApplicants(
-            new Map<Id, SObject>(application.Applicants__r).keyset()
+            new Map<Id, SObject>(application.Applicants__r).keySet()
           );
         }
         if (!application.FinServ__HouseholdFinancialAccounts__r.isEmpty()) {

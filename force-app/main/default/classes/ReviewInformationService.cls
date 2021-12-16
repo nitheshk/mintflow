@@ -5,7 +5,7 @@
  * @reference
  * @description Application service
  **/
-@SuppressWarnings('PMD.AvoidGlobalModifier')
+@SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity')
 global with sharing class ReviewInformationService extends AbstractService {
   @TestVisible
   private static ReviewInformationService serviceInstance;
@@ -35,6 +35,7 @@ global with sharing class ReviewInformationService extends AbstractService {
    * @return Account
    **/
   global virtual Account reviewInformationSubmit(Id applicationId) {
+    log?.fine('Inside reviewInformationSubmit');
     Account application = ApplicationRepository.readApplicationWithApplicants(
       applicationId
     );
@@ -43,14 +44,14 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     if (applicantType == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
       // send email to primary and joint
-      primaryConsumerFlow(application);
+      this.primaryConsumerFlow(application);
     } else if (
       applicantType == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
     ) {
       // send email to primary on completion
       jointConsumerFlow(application);
     }
-
+    log?.fine('Completed reviewInformationSubmit');
     return application;
   }
 
@@ -96,22 +97,21 @@ global with sharing class ReviewInformationService extends AbstractService {
     if (isFlowCompleted) {
       //Mark Application to submitted for review
       application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-
-      //1. Send notification Primary applicant with resume link
+      //1. Push Primary applicant to RPA Queue
+      // Need to move future thr is dml operation before this
+      Object response = RpaProcessService.getInstance()
+        .scheduleReviewApplication(application);
+      if (response == null) {
+        application.Stage__c = 'FailedSubmitReview';
+      } else {
+        application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      }
+      //2. Send notification Primary applicant with resume link
       CustomerEmailService.getInstance()
         .reviewInformationSubmitted(
           new List<mflow__Applicant__c>{ primaryApplicant },
           'PrimaryReviewInformationSubmitted'
         );
-      //2. Push Primary applicant to RPA Queue
-      // Need to move future thr is dml operation before this
-      // Object response = RpaProcessService.getInstance()
-      //   .scheduleReviewApplication(application);
-      // if (response == null) {
-      //   application.Stage__c = 'FailedSubmitReview';
-      // } else {
-      //   application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-      // }
     } else {
       //1. send Email to Primary applicant with resume link
       CustomerEmailService.getInstance()
@@ -180,19 +180,17 @@ global with sharing class ReviewInformationService extends AbstractService {
     if (isFlowCompleted) {
       //Mark Application to submitted for review
       application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      // Need to move future thr is dml operation before this
+      Object response = RpaProcessService.getInstance()
+        .scheduleReviewApplication(application);
+      if (response == null) {
+        application.Stage__c = 'FailedSubmitReview';
+      } else {
+        application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      }
       // Send All Joint Completed Email to Primary and Application under process
       CustomerEmailService.getInstance()
         .primaryReviewInformationCompleted(primaryApplicant);
-
-      // Need to move future thr is dml operation before this
-      // Object response = RpaProcessService.getInstance()
-      //   .scheduleReviewApplication(application);
-
-      // if (response == null) {
-      //   application.Stage__c = 'FailedSubmitReview';
-      // } else {
-      //   application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-      // }
     }
 
     ApplicationRepository.upsertRecords(application.Applicants__r);

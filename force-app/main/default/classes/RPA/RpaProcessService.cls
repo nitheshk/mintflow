@@ -150,6 +150,10 @@ global with sharing class RpaProcessService extends AbstractService {
           .addKycReviewQueue(
             new Map<String, Object>{ 'itemData' => params, 'token' => token }
           );
+
+        if (response.statusCode != 201) {
+          throw new CustomException(response.status);
+        }
         Flow.setSubFlowPassed('Flow Completed');
         Flow.setFlowPassed('Completed');
         return response;

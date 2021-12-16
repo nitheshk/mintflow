@@ -60,7 +60,7 @@ global with sharing class Flow extends AbstractService {
   global static void initialize(String entityId) {
     log?.fine('Inside flow initialize');
     currentEntityId = entityId;
-    for (Flow__c flow : CommonRespository.fetchFlowByEntityId(entityId)) {
+    for (Flow__c flow : CommonRepository.fetchFlowByEntityId(entityId)) {
       flowMap.put(flow.FlowName__c, flow);
       subFlowMap = new Map<String, Flow__c>();
       for (Flow__c subFlow : flow.SubFlows__r) {
@@ -77,7 +77,7 @@ global with sharing class Flow extends AbstractService {
   global static void finalize() {
     log?.fine('Before Logger Finalize');
     //upsert parent flows
-    CommonRespository.upsertRecords(flowMap.values());
+    CommonRepository.upsertRecords(flowMap.values());
     List<Flow__c> toUpsertFlows = new List<Flow__c>();
     for (Flow__c flow : flowMap.values()) {
       for (Flow__c subFlow : flows.get(flow.FlowName__c).values()) {
@@ -87,7 +87,7 @@ global with sharing class Flow extends AbstractService {
         toUpsertFlows.add(subFlow);
       }
     }
-    CommonRespository.upsertRecords(toUpsertFlows);
+    CommonRepository.upsertRecords(toUpsertFlows);
     log?.fine('After Logger Finalize');
   }
 

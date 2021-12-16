@@ -35,9 +35,9 @@ global with sharing class RpaProcessProvider extends AbstractService {
    * @return HttpBuilder.Response
    **/
   global virtual HttpBuilder.Response addKycReviewQueue(
-    Map<String, object> params
+    Map<String, Object> params
   ) {
-    String token = (string) params.get('token');
+    String token = (String) params.get('token');
     params.remove('token');
 
     Map<String, String> header = new Map<String, String>();
@@ -51,15 +51,12 @@ global with sharing class RpaProcessProvider extends AbstractService {
       HttpBuilder.getApiConstant('UipathOrgUnitId')
     );
 
-    String requestBody = json.serialize(params, true);
-    flow.setSubFlowRequest(requestBody);
+    String requestBody = JSON.serialize(params, true);
+    Flow.setSubFlowRequest(requestBody);
 
     HttpResponse response = HttpBuilder.httpCallOut(requestBody, header);
+    Flow.setSubFlowResponse(response.getBody());
 
-    flow.setSubFlowResponse(response.getBody());
-    if (response.getStatusCode() != 201) {
-      throw new CustomException(response.getStatus());
-    }
     return HttpBuilder.buildResponse(
       response.getStatusCode(),
       response.getStatus(),

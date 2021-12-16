@@ -6,7 +6,7 @@
  * @description Repository used for generic class deisgn
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class CommonRespository extends DatabaseUtils {
+global with sharing class CommonRepository extends DatabaseUtils {
   /**
    * @description fetch existing flow from entity
    * @author Digital Align Team | 10-19-2021
