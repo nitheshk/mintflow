@@ -138,9 +138,9 @@ global with sharing class LwcCustomService extends AbstractService {
         map<string, string> applicant = new Map<string, string>();
 
         if (
-          app.ApplicantType__c ==
+          app.RecordType.Name ==
           ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE ||
-          app.ApplicantType__c == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+          app.RecordType.Name == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
         ) {
           ids.add(app.Id);
           applicant.put('label', app.Name + ' (' + app.ApplicantType__c + ')');
@@ -252,25 +252,24 @@ global with sharing class LwcCustomService extends AbstractService {
     return result;
   }
   /**
-   * @description
+   * @description update status field of application or applicant on kyc decision
    * @author Digital Align | 12-15-2021
    * @param Map<String Object> params
    * @return virtual
    **/
   global virtual void updateKycDecision(Map<String, Object> params) {
+    log?.fine('inside updateKycDecision');
     id recordID = (Id) params.get('recordId');
     String sobjectType = (String) params.get('objectApiName');
     string status = (string) params.get('status');
     string approvalType = (string) params.get('approvalType');
-
-    log?.debug('recordID =' + recordID + '-----sobjectType =' + sobjectType);
     switch on sobjectType {
       when 'mflow__Applicant__c' {
         Applicant__c applicant = ApplicantRepository.readApplicantById(
           recordID
         );
         if (
-          applicant.mflow__ApplicantType__c == 'Primary' &&
+          applicant.RecordType.Name == 'Primary' &&
           status == ApplicationConstant.APPROVED
         ) {
           applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
@@ -293,17 +292,28 @@ global with sharing class LwcCustomService extends AbstractService {
         }
       }
       when else {
-        return;
+        throw new CustomException('Incorrect object type');
       }
     }
+    log?.fine('Completed updateKycDecision');
   }
 
+  /**
+   * @description update application status or applicant status based on selected condition
+   * @author Digital Align | 12-16-2021
+   * @param Id recordID
+   * @param string sobjectType
+   * @param string status
+   * @param String approvalType
+   * @return virtual
+   **/
   global virtual void updateApplicationStatus(
     Id recordID,
     string sobjectType,
     string status,
     String approvalType
   ) {
+    log?.fine('inside updateApplicationStatus');
     Account application = ApplicationRepository.readApplicationWithApplicants(
       recordID
     );
@@ -312,7 +322,7 @@ global with sharing class LwcCustomService extends AbstractService {
         for (Applicant__c app : application.Applicants__r) {
           if (
             status == ApplicationConstant.APPROVED &&
-            app.mflow__ApplicantType__c == 'Primary'
+            app.RecordType.Name == 'Primary'
           ) {
             app.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
           }
@@ -320,15 +330,12 @@ global with sharing class LwcCustomService extends AbstractService {
         }
         application.FinServ__Status__c = status;
         application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-        Log
-          ?.debug(
-            'application in updateApplicationAndApplicant==' + application
-          );
+        ApplicationRepository.upsertRecords(application.Applicants__r);
         ApplicationRepository.upsertRecord(application);
       }
       when 'updateApplicationAndPrimary' {
         for (Applicant__c app : application.Applicants__r) {
-          if (app.mflow__ApplicantType__c == 'Primary') {
+          if (app.RecordType.Name == 'Primary') {
             if (status == ApplicationConstant.APPROVED) {
               app.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
             }
@@ -337,12 +344,13 @@ global with sharing class LwcCustomService extends AbstractService {
         }
         application.FinServ__Status__c = status;
         application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-        Log
-          ?.debug('application in updateApplicationAndPrimary==' + application);
+        ApplicationRepository.upsertRecords(application.Applicants__r);
         ApplicationRepository.upsertRecord(application);
       }
       when else {
+        throw new CustomException('Incorrect kyc approval type');
       }
     }
+    log?.fine('Completed updateApplicationStatus');
   }
 }

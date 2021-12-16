@@ -2,7 +2,6 @@ import { LightningElement, api, wire, track } from "lwc";
 import utils from "c/generalUtils";
 import getPickListValues from "@salesforce/apex/LwcCustomController.fetchPickListValues";
 import updateKycDecision from "@salesforce/apex/LwcCustomController.updateKycDecision";
-// import { refreshApex } from "@salesforce/apex";-
 export default class ApproveKyc extends LightningElement {
   @api objectApiName;
   @api recordId;
@@ -16,8 +15,8 @@ export default class ApproveKyc extends LightningElement {
     return [
       { label: "Update application", value: "UpdateApplication" },
       {
-        label: "Update application and applicant ",
-        value: "updateApplicationAndApplicant "
+        label: "Update application and applicant",
+        value: "updateApplicationAndApplicant"
       },
       {
         label: "Update application and primary",
@@ -37,10 +36,15 @@ export default class ApproveKyc extends LightningElement {
       if (data.status === 200) {
         this.applicationStatus = JSON.parse(
           data.data
-        ).Account.FinServ__Status__c;
+        ).Account.FinServ__Status__c.filter(
+          (item) => item.value === "Approved" || item.value === "Rejected"
+        );
+
         this.applicantStatus = JSON.parse(
           data.data
-        ).mflow__Applicant__c.mflow__Status__c;
+        ).mflow__Applicant__c.mflow__Status__c.filter(
+          (item) => item.value === "Approved" || item.value === "Rejected"
+        );
         if (this.objectApiName === "Account") {
           this.showApplicationTab = true;
         } else if (this.objectApiName === "mflow__Applicant__c") {
@@ -70,10 +74,6 @@ export default class ApproveKyc extends LightningElement {
       utils.checkAllValidations(this.template.querySelectorAll(".validation"))
     ) {
       this.showSpinner = true;
-      console.log("recordId =" + this.recordId);
-      console.log("this.objectApiName =" + this.objectApiName);
-      console.log("status =" + this.collectedInfo.status);
-      console.log("approvalType =" + this.collectedInfo.approvalType);
       updateKycDecision({
         params: {
           recordId: this.recordId,
