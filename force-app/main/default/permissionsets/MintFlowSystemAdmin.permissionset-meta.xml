@@ -315,12 +315,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialProduct__c.Name__c</field>
+        <field>FinancialProduct__c.ShortDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialProduct__c.ShortDescription__c</field>
+        <field>FinancialProduct__c.StartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
