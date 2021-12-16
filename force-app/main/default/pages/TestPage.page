@@ -12,7 +12,7 @@
     </apex:pageBlockSection>
   </apex:pageBlock>
   <script>
-    var cometdCustom = cometdCustom();
+    var cometd = cometd();
     $(document).ready(function () {
       cometdCustom.cometdConnect(
         cometdCustom.cometdURL("40.0"),

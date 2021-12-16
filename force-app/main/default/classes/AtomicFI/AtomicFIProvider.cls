@@ -51,7 +51,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
         );
         if (mapResponse.containsKey('data')) {
           objectData = (Map<String, Object>) mapResponse.get('data');
-          tokenKey = (String) objectData.get('token');
+          tokenKey = (String) objectData.get('publicToken');
         } else {
           tokenKey = 'API does not contain token';
         }
