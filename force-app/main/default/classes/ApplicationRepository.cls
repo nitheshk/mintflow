@@ -160,4 +160,37 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         .toString()
     );
   }
+
+  /**
+   * @description Read Application with FinancialAccount and Applicants
+   * @author Digital Align Team | 12-02-2021
+   * @param Id applicationId
+   * @return Account
+   **/
+  global static Account readApplicationForKYC(Id applicationId) {
+    return (Account) DatabaseUtils.getRecord(
+      Query.newInstance(Account.SObjectType)
+        .addFields()
+        .queryChild('mflow__Applicants__r')
+        .addFields()
+        .addFields('RecordType.Name')
+        .whereEq(
+          'RecordType.Name',
+          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+        )
+        .orCon()
+        .whereEq(
+          'RecordType.Name',
+          ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+        )
+        .orderBy('mflow__Order__c')
+        .run()
+        //.queryChild('FinServ__HouseholdFinancialAccounts__r')
+        //.addFields()
+        //.addFields('RecordType.Name')
+        //.run()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
 }

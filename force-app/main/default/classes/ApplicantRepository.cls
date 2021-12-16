@@ -5,13 +5,14 @@
  * @reference
  * @description
  **/
-public with sharing class ApplicantRepository extends DatabaseUtils {
+@SuppressWarnings('PMD.AvoidGlobalModifier')
+global with sharing class ApplicantRepository extends DatabaseUtils {
   /**
    * @description read allapplicant with child record
    * @author Digital Align Team | 10-26-2021
    * @param Set<Id> applicantIds
    **/
-  public static List<Applicant__c> readApplicantsWithChild(
+  global static List<Applicant__c> readApplicantsWithChild(
     Set<Id> applicantIds
   ) {
     return (List<Applicant__c>) DatabaseUtils.getRecords(
@@ -49,7 +50,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
    * @author Digital Align Team | 10-26-2021
    * @param Applicant__c applicantId
    **/
-  public static Applicant__c readApplicantWithChild(Id applicantId) {
+  global static Applicant__c readApplicantWithChild(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
@@ -87,7 +88,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
    * @param Id applicantId
    * @return Applicant__c
    **/
-  public static Applicant__c readApplicantById(Id applicantId) {
+  global static Applicant__c readApplicantById(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
@@ -102,7 +103,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
    * @param List<Id> applicantIds
    * @return List<Applicant__c>
    **/
-  public static List<Applicant__c> readApplicantsById(List<Id> applicantIds) {
+  global static List<Applicant__c> readApplicantsById(List<Id> applicantIds) {
     return (List<Applicant__c>) DatabaseUtils.getRecords(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
@@ -117,7 +118,7 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
    * @param Id applicantId
    * @return Applicant__c
    **/
-  public static Applicant__c readApplicantWithApplication(Id applicantId) {
+  global static Applicant__c readApplicantWithApplication(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
@@ -143,6 +144,41 @@ public with sharing class ApplicantRepository extends DatabaseUtils {
           'SessionToken__c,Application__r.ApplicationNumber__c,Application__c'
         )
         .whereEq('Id', applicantId)
+        .toString()
+    );
+  }
+
+  /**
+   * @description fetch existing contact based on the ssn and last name
+   * @author Digital Align Team | 12-10-2021
+   * @param String filter
+   * @return List<Contact>
+   **/
+  global static List<Contact> fetchExistingContacts(String filter) {
+    if (String.isBlank(filter)) {
+      return new List<Contact>();
+    }
+    return (List<Contact>) DatabaseUtils.getRecords(
+      Query.newInstance(Contact.SObjectType)
+        .addFields()
+        .whereCon(filter)
+        .addLimit(50)
+        .toString()
+    );
+  }
+
+  /**
+   * @description fetch Contact with ID By AccountId
+   * @author Digital Align Team | 12-10-2021
+   * @param Id accountId
+   * @return Contact
+   **/
+  global static Contact fetchContactByAccountId(Id accountId) {
+    return (Contact) DatabaseUtils.getRecord(
+      Query.newInstance(Contact.SObjectType)
+        .addFields('AccountId')
+        .whereEq('AccountId', accountId)
+        .addLimit(1)
         .toString()
     );
   }

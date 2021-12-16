@@ -9,7 +9,7 @@
 global with sharing class ApplicationService extends AbstractService {
   @TestVisible
   private static ApplicationService serviceInstance;
-
+  private ApplicationServiceHelper helper = ApplicationServiceHelper.getInstance();
   public ApplicationService() {
     super(ApplicationService.class);
   }
@@ -296,6 +296,59 @@ global with sharing class ApplicationService extends AbstractService {
       return true;
     } catch (Exception ex) {
       log?.error(ex);
+      Database.rollback(sp);
+      throw ex;
+    }
+  }
+
+  /**
+   * @description Create Financial MemberShip account and Primary Account
+   * @author Digital Align Team | 12-02-2021
+   * @param String resultJson
+   * @return Account
+   **/
+  global virtual Account processMembershipKYC(String resultJson) {
+    ApplicationResponseMapper.KYCResult kycResult = (ApplicationResponseMapper.KYCResult) JSON.deserialize(
+      resultJson,
+      ApplicationResponseMapper.KYCResult.class
+    );
+    // When result is null
+    if (kycResult == null) {
+      throw new CustomException('Unable to process the empty request');
+    }
+    Account application = ApplicationRepository.readApplicationForKYC(
+      kycResult.ApplicationId
+    );
+    // roll back whole transaction on failure
+    Savepoint sp = Database.setSavepoint();
+    try {
+      // Primary is Existing Customer
+      if (kycResult.IsExistingCustomer == true) {
+        return helper.processExistingMember(application, kycResult);
+      }
+
+      // Primary Kyc is Approved/Failed and Joint KYC is Approved/Failed
+      // update Applicant detail accordingly
+      application = helper.updateApplicationKycDetails(application, kycResult);
+
+      // if Application kyc status is approved, then proceed with creating Account & Contact for primary
+      // And Open Membership Financial Account and relation with applicant
+      if (application.FinServ__Status__c == ApplicationConstant.APPROVED) {
+        ApplicantService.getInstance().createMemberAccount(application);
+      } else {
+        return application;
+      }
+
+      application = FinancialAccountService.getInstance()
+        .createMembershipFinancialAccount(application);
+      return application;
+    } catch (Exception ex) {
+      //#pending
+      //#major Chatter We need post the resultKYC in case of exception
+      //#minor Add into Revision Queue for process
+      //Stage value = Exception
+      log?.error(ex);
+
       Database.rollback(sp);
       throw ex;
     }

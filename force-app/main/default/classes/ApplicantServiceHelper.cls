@@ -45,4 +45,68 @@ global with sharing class ApplicantServiceHelper extends AbstractService {
     }
     return applicants;
   }
+
+  /**
+   * @description Create Individual Account and Contact in salesforce
+   * @author Digital Align Team | 12-10-2021
+   * @param Applicant__c applicant
+   * @return Contact
+   **/
+  global virtual Contact createAccount(Applicant__c applicant) {
+    Account individualAccount = new Account();
+    individualAccount.Name = applicant.Name;
+    individualAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+      Account.SObjectType,
+      'IndustriesIndividual'
+    );
+    individualAccount.UserAccountType__c = 'IndividualCustomer';
+    ApplicantRepository.upsertRecord(individualAccount);
+    // Return Individual Contact created by Salesforce , when account is created
+    return ApplicantRepository.fetchContactByAccountId(individualAccount.Id);
+  }
+
+  /**
+   * @description map applicant data with contact data
+   * @author Digital Align Team | 12-10-2021
+   * @param Applicant__c applicant
+   * @param Contact memberContact
+   * @param Boolean isExistingContact
+   * @return Contact
+   **/
+  global virtual Contact mapApplicantWithContact(
+    Applicant__c applicant,
+    Contact memberContact,
+    Boolean isExistingContact
+  ) {
+    if (!isExistingContact) {
+      memberContact.FirstName = applicant.FirstName__c;
+      memberContact.LastName = applicant.LastName__c;
+      memberContact.FinServ__TaxId__c = applicant.SSN__c;
+    }
+    memberContact.UserContactType__c = 'IndividualCustomer';
+    memberContact.Email = applicant.Email__c;
+    memberContact.Phone = applicant.Phone__c;
+    memberContact.FinServ__EmailVerified__c = applicant.IsEmailVerified__c;
+    memberContact.FinServ__HomePhoneVerified__c = applicant.IsPhoneNumberVerified__c;
+    memberContact.FinServ__LastFourDigitSSN__c = applicant.SSN__c.right(4);
+    memberContact.RunWithKIQ__c = applicant.RunWithKIQ__c;
+    memberContact.RunWithoutKIQ__c = applicant.RunWithoutKIQ__c;
+    memberContact.IdentityVerificationStatus__c = applicant.IdentityVerificationStatus__c;
+    memberContact.Birthdate = applicant.Birthdate__c;
+    memberContact.SSNValidation__c = applicant.SSNValidation__c;
+    memberContact.CreditScore__c = applicant.CreditScore__c;
+    memberContact.CustomerScore__c = applicant.CustomerScore__c;
+    memberContact.HighRiskConsumer__c = applicant.HighRiskConsumer__c;
+    memberContact.OFAC__c = applicant.OFAC__c;
+    memberContact.OverallDebitBureauResult__c = applicant.OverallDebitBureauResult__c;
+    memberContact.QualifiedDecision__c = applicant.QualifiedDecision__c;
+    memberContact.QualifiedScore__c = applicant.QualifiedScore__c;
+    memberContact.FraudStatus__c = applicant.FraudStatus__c;
+    memberContact.IncomeVerificationStatus__c = applicant.IncomeVerificationStatus__c;
+    memberContact.KYCStatus__c = applicant.KYCStatus__c;
+    memberContact.SentiLinkFraudScore__c = applicant.SentiLinkFraudScore__c;
+    memberContact.SentiLinkStatus__c = applicant.SentiLinkStatus__c;
+    memberContact.MiddleName__c = applicant.MiddleName__c;
+    return memberContact;
+  }
 }

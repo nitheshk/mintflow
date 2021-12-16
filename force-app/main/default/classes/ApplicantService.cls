@@ -9,6 +9,7 @@
 global with sharing class ApplicantService extends AbstractService {
   @TestVisible
   private static ApplicantService serviceInstance;
+  private ApplicantServiceHelper helper = ApplicantServiceHelper.getInstance();
 
   public ApplicantService() {
     super(ApplicantService.class);
@@ -109,8 +110,7 @@ global with sharing class ApplicantService extends AbstractService {
     String currentPage = ApexRequest.getRequest().currentPage;
     switch on currentPage {
       when 'personal-information' {
-        ApplicantServiceHelper.getInstance()
-          .notifyFamilyConnectReference(applicants);
+        helper.notifyFamilyConnectReference(applicants);
       }
     }
     return applicants;
@@ -163,5 +163,71 @@ global with sharing class ApplicantService extends AbstractService {
    **/
   global virtual Applicant__c afterSaveApplicant(Applicant__c applicant) {
     return applicant;
+  }
+
+  /**
+   * @description create Membership Account
+   * Create Contact and Account in system if contact is not already present
+   * @author Digital Align Team | 12-10-2021
+   * @param Account application
+   * @return Account
+   **/
+  global virtual Account createMemberAccount(Account application) {
+    String filter = '';
+    Map<Id, Applicant__c> applicantToProcess = new Map<Id, Applicant__c>();
+
+    for (Applicant__c applicant : application.Applicants__r) {
+      if (
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      ) {
+        applicantToProcess.put(applicant.Id, applicant);
+        if (String.isNotBlank(filter)) {
+          filter += ' OR ';
+        }
+        filter += 'FinServ__TaxId__c=\'' + applicant.SSN__c + '\' AND ';
+        filter += 'LastName=\'' + applicant.LastName__c + '\'';
+        break;
+      }
+    }
+
+    // #Attribute
+    List<Contact> existingContacts = ApplicantRepository.fetchExistingContacts(
+      filter
+    );
+
+    // #Attribute
+    Map<String, Contact> ssnVsContact = new Map<String, Contact>();
+    for (Contact con : existingContacts) {
+      ssnVsContact.put(con.FinServ__TaxId__c, con);
+    }
+
+    List<Contact> contactToUpsert = new List<Contact>();
+    for (Applicant__c applicant : applicantToProcess.values()) {
+      if (ssnVsContact.containsKey(applicant.SSN__c)) {
+        Contact memberContact = helper.mapApplicantWithContact(
+          applicant,
+          ssnVsContact.get(applicant.SSN__c),
+          true
+        );
+        applicant.Contact__c = memberContact.Id;
+        applicant.Contact__r = memberContact;
+        contactToUpsert.add(memberContact);
+      } else {
+        Contact memberContact = helper.createAccount(applicant);
+        memberContact = helper.mapApplicantWithContact(
+          applicant,
+          memberContact,
+          false
+        );
+        applicant.Contact__c = memberContact.Id;
+        applicant.Contact__r = memberContact;
+        contactToUpsert.add(memberContact);
+      }
+    }
+
+    ApplicantRepository.upsertRecords(contactToUpsert);
+    ApplicantRepository.upsertRecords(application.Applicants__r);
+    return application;
   }
 }

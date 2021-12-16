@@ -61,12 +61,15 @@ system.debug('Full Json : ' + res.data);
 // #4 Review information
 ApexRequest request = new ApexRequest();
 request.token = SecurityUtils.generateTokenForTesting(
-  '0016D00000ZAr5lQAD',
+  '0016D00000aYc5zQAC',
   '',
   'Primary',
   'ApplicationFlow'
 );
 system.debug(request.token);
+
+ApexRequest request = new ApexRequest();
+request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQBBkFiDQRnQyncAUvMSIbZSD1KpZwol7A3fNoenBXVEYhcj1YYUMKROUN+c3BosUFJogovgDRyZ3FEOtrBbiCU04Jq/Zmbb8Cr13lmLijbEX4SIR99i9NSUJHme2hDL38=';
 ApexResponse res = ApplicationController.reviewInformationSubmit(request);
 system.debug('Full Json : ' + res.data);
 

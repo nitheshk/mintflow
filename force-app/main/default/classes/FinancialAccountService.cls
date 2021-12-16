@@ -58,56 +58,67 @@ global with sharing class FinancialAccountService extends AbstractService {
   }
 
   /**
-   * @description Create Financial MemberShip account and Primary Account
-   * @author Digital Align Team | 12-02-2021
-   * @param Map<String Object> params
-   * @return Object
-   **/
-  global virtual Account createMemberAccount(String resultJson) {
-    ApplicationResponseMapper.KYCResult kycResult = (ApplicationResponseMapper.KYCResult) JSON.deserialize(
-      resultJson,
-      ApplicationResponseMapper.KYCResult.class
-    );
+   * @description Create financial membership account record
+   * @author Digital Align Team | 12-13-2021
+   * @param Account application
+   * @return Account
+   */
+  global Account createMembershipFinancialAccount(Account application) {
+    Applicant__c primaryApplicant;
 
-    // When result is null
-    if (kycResult == null) {
-      throw new CustomException('Unable to process the empty request');
+    for (Applicant__c applicant : application.Applicants__r) {
+      if (
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      ) {
+        primaryApplicant = applicant;
+      }
     }
 
-    Account application = FinancialAccountRepository.readApplicationWithChild(
-      kycResult.ApplicationId
+    //check already Application has Account Contact relation with primary
+    AccountContactRelation accountContactRel = FinancialAccountRepository.fetchAccountContactRelation(
+      application.Id,
+      primaryApplicant.Contact__c
+    );
+    if (accountContactRel == null) {
+      // purpose to link application and primary contact to view in household view
+      accountContactRel = new AccountContactRelation(
+        AccountId = application.Id,
+        ContactId = primaryApplicant.Contact__c,
+        IsActive = true,
+        FinServ__Primary__c = true,
+        FinServ__PrimaryGroup__c = true,
+        StartDate = Date.today(),
+        EndDate = Date.today().addYears(100),
+        Roles = 'Business User',
+        FinServ__Rollups__c = 'All'
+      );
+      FinancialAccountRepository.upsertRecord(accountContactRel);
+    }
+
+    log?.fine('accountContactRel Created' + accountContactRel);
+
+    //fetching membership product
+    FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
+      HttpBuilder.getApiConstant('MembershipAccountInternalCode')
     );
 
-    Savepoint sp = Database.setSavepoint();
-    try {
-      // Primary is Existing Customer
-      if (kycResult.IsExistingCustomer == true) {
-        return helper.processExistingMember(application, kycResult);
-      }
-
-      // Primary Kyc is Approved/Failed and Joint KYC is Approved/Failed
-      // update Applicant detail accordingly
-      application = helper.updateApplicationKycDetails(application, kycResult);
-
-      // if Application kyc status is approved, then proceed with creating Account & Contact for primary
-      // And Open Membership Financial Account and relation with applicant
-      if (application.FinServ__Status__c == ApplicationConstant.APPROVED) {
-        helper.createMembershipAccount(application);
-      } else {
-        return application;
-      }
-
-      application = helper.createMembershipFinancialAccount(application);
-      return application;
-    } catch (Exception ex) {
-      //#pending
-      //#major Chatter We need post the resultKYC in case of exception
-      //#minor Add into Revision Queue for process
-      //Stage value = Exception
-      log?.error(ex);
-
-      Database.rollback(sp);
-      throw ex;
-    }
+    // create membership financial account
+    FinServ__FinancialAccount__c financialAccount = new FinServ__FinancialAccount__c();
+    financialAccount.FinancialProduct__c = membershipProduct.Id;
+    financialAccount.Name = membershipProduct.Name;
+    financialAccount.ExternalApplicationNumber__c = application.ExternalApplicationNumber__c;
+    financialAccount.FinServ__FinancialAccountType__c = membershipProduct.Category__c;
+    financialAccount.FinServ__PrimaryOwner__c = primaryApplicant.Contact__r.AccountId;
+    financialAccount.FinServ__Ownership__c = 'Individual';
+    financialAccount.FinServ__Status__c = 'Open';
+    financialAccount.FinServ__Stage__c = 'Active';
+    financialAccount.FinServ__Household__c = application.Id;
+    financialAccount.RecordTypeId = Schema.SObjectType.FinServ__FinancialAccount__c.getRecordTypeInfosByName()
+      .get('Bank Account')
+      .getRecordTypeId();
+    FinancialAccountRepository.upsertRecord(financialAccount);
+    log?.fine('financialAccount Created');
+    return application;
   }
 }

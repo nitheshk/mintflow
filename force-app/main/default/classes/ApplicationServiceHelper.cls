@@ -77,4 +77,109 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
 
     return application;
   }
+
+  /**
+   * @description  Primary is Existing Customer
+   * Used when kyc result is return from Server
+   * @author Digital Align Team | 12-07-2021
+   * @param Account application
+   * @param ApplicationResponseMapper.KYCResult kycResult
+   * @return Account
+   **/
+  global virtual Account processExistingMember(
+    Account application,
+    ApplicationResponseMapper.KYCResult kycResult
+  ) {
+    application.isMemberFlow__c = false;
+    application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
+    application.FinServ__Status__c = ApplicationConstant.CANCELLED;
+    application.mflow__Stage__c = ApplicationConstant.STAGE_EXISTING_CUSTOMER;
+    application.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
+    for (Applicant__c applicant : application.Applicants__r) {
+      if (
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      ) {
+        applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
+        applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
+      } else {
+        // #pending Joint also need to mark has cancelled
+        applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
+        applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
+      }
+    }
+    FinancialAccountRepository.upsertRecords(application.Applicants__r);
+    FinancialAccountRepository.upsertRecord(application);
+    return application;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 12-08-2021
+   * @param Account application
+   * @param ApplicationResponseMapper.KYCResult kycResult
+   * @return virtual
+   **/
+  global virtual Account updateApplicationKycDetails(
+    Account application,
+    ApplicationResponseMapper.KYCResult kycResult
+  ) {
+    Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(
+      application.Applicants__r
+    );
+
+    if (kycResult?.applicants != null) {
+      for (
+        ApplicationResponseMapper.KYCApplicantResult applicantKyc : kycResult.applicants
+      ) {
+        log?.debug('Applicant Kyc : ' + applicantKyc);
+        Applicant__c applicant = applicantMap.get(applicantKyc.ApplicantId);
+        applicant.CustomerNumber__c = applicantKyc.CustomerNumber;
+        applicant.OverallDebitBureauResult__c = applicantKyc.OverallDebitBureauResult;
+        applicant.CreditScore__c = applicantKyc.CreditScore;
+        applicant.QualifiedScore__c = applicantKyc.QualifiedScore;
+        applicant.CustomerScore__c = applicantKyc.CustomerScore;
+        applicant.HighRiskConsumer__c = applicantKyc.HighRiskConsumer;
+        applicant.QualifiedDecision__c = applicantKyc.QualifiedDecision;
+        applicant.IdentityVerificationStatus__c = applicantKyc.IdentityVerificationStatus;
+        applicant.OFAC__c = applicantKyc.OFAC;
+        applicant.SSNValidation__c = applicantKyc.SSNValidation;
+        applicant.RunWithoutKIQ__c = applicantKyc.RunWithoutKIQ;
+        applicant.RunWithKIQ__c = applicantKyc.RunWithKIQ;
+
+        //Update Applicant Status based on RunWithKIQ__c Field
+        switch on applicant.RunWithKIQ__c {
+          when 'Accept', 'Passed' {
+            applicant.Status__c = ApplicationConstant.APPROVED;
+            if (
+              applicant.RecordType.Name ==
+              ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+            ) {
+              applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+            }
+          }
+          when else {
+            applicant.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+          }
+        }
+      }
+    }
+
+    application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
+    switch on kycResult.ExternalApplicationStatus {
+      when 'Accept', 'Passed' {
+        application.FinServ__Status__c = ApplicationConstant.APPROVED;
+        application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+      }
+      when 'Fraud' {
+        application.FinServ__Status__c = ApplicationConstant.REJECTED;
+      }
+      when else {
+        application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+      }
+    }
+    FinancialAccountRepository.upsertRecords(application.Applicants__r);
+    FinancialAccountRepository.upsertRecord(application);
+    return application;
+  }
 }

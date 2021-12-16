@@ -207,8 +207,8 @@ global with sharing class RpaProcessService extends AbstractService {
         'buildUpdateMemberDetails Request =' +
         RestContext.request.requestBody.toString()
       );
-    Account application = (Account) FinancialAccountService.getInstance()
-      .createMemberAccount(RestContext.request.requestBody.toString());
+    Account application = (Account) ApplicationService.getInstance()
+      .processMembershipKYC(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
     String responseString =
       'Application Status :' + application.FinServ__Status__c;
