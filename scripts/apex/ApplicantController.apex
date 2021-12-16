@@ -84,3 +84,27 @@ request.setHeader(
 );
 ApexResponse res = ApplicantController.getAtomicResponse(request);
 system.debug('Full Json : ' + res.data);
+
+List<AtomicFI_Employer__e> events = new List<AtomicFI_Employer__e>();
+AtomicFI_Employer__e atomicFI = new AtomicFI_Employer__e();
+atomicFI.ApplicantId__c = 'a0b0w00000F1mMDAAZ';
+atomicFI.EmployerId__c = 'a0A0w000003hjNDEAY';
+events.add(atomicFI);
+List<Database.SaveResult> results = EventBus.publish(events);
+
+// Inspect publishing result for each event
+for (Database.SaveResult sr : results) {
+  if (sr.isSuccess()) {
+    System.debug('Successfully published event.');
+  } else {
+    for (Database.Error err : sr.getErrors()) {
+      System.debug(
+        'Error returned: ' +
+        err.getStatusCode() +
+        ' - ' +
+        err.getMessage()
+      );
+    }
+  }
+}
+}
