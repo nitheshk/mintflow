@@ -353,4 +353,23 @@ global with sharing class LwcCustomService extends AbstractService {
     }
     log?.fine('Completed updateApplicationStatus');
   }
+
+  global list<Object> fetchRelatedFiles(String relatedEntityId) {
+    system.debug('relatedEntityId = ' + relatedEntityId);
+    list<Object> fileList = new List<object>();
+    for (
+      ContentVersion contentVersionObj : FileService.getInstance()
+        .fetchContentVersionByEntityId(relatedEntityId, true)
+    ) {
+      fileList.add(
+        new Map<String, string>{
+          'contentDocumentId' => contentVersionObj.ContentDocumentId,
+          'title' => contentVersionObj.Title,
+          'documentType' => contentVersionObj.ContentType__c,
+          'createDate' => string.valueOfGmt(contentVersionObj.CreatedDate)
+        }
+      );
+    }
+    return fileList;
+  }
 }

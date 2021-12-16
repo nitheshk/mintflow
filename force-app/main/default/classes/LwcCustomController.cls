@@ -204,4 +204,24 @@ global with sharing class LwcCustomController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align | 12-16-2021
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse fetchRelatedFiles(Map<String, Object> params) {
+    try {
+      log?.fine('Inside fetchRelatedFiles params ---->' + params);
+      String relatedEntityId = (string) params.get('relatedEntityId');
+      log?.fine('Inside fetchRelatedFiles');
+      return ApexResponse.ok(
+        LwcCustomService.getInstance().fetchRelatedFiles(relatedEntityId)
+      );
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
 }
