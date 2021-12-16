@@ -105,13 +105,13 @@ global with sharing class ReviewInformationService extends AbstractService {
         );
       //2. Push Primary applicant to RPA Queue
       // Need to move future thr is dml operation before this
-      Object response = RpaProcessService.getInstance()
-        .scheduleReviewApplication(application);
-      if (response == null) {
-        application.Stage__c = 'FailedSubmitReview';
-      } else {
-        application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-      }
+      // Object response = RpaProcessService.getInstance()
+      //   .scheduleReviewApplication(application);
+      // if (response == null) {
+      //   application.Stage__c = 'FailedSubmitReview';
+      // } else {
+      //   application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      // }
     } else {
       //1. send Email to Primary applicant with resume link
       CustomerEmailService.getInstance()
@@ -185,14 +185,14 @@ global with sharing class ReviewInformationService extends AbstractService {
         .primaryReviewInformationCompleted(primaryApplicant);
 
       // Need to move future thr is dml operation before this
-      Object response = RpaProcessService.getInstance()
-        .scheduleReviewApplication(application);
+      // Object response = RpaProcessService.getInstance()
+      //   .scheduleReviewApplication(application);
 
-      if (response == null) {
-        application.Stage__c = 'FailedSubmitReview';
-      } else {
-        application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-      }
+      // if (response == null) {
+      //   application.Stage__c = 'FailedSubmitReview';
+      // } else {
+      //   application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      // }
     }
 
     ApplicationRepository.upsertRecords(application.Applicants__r);
