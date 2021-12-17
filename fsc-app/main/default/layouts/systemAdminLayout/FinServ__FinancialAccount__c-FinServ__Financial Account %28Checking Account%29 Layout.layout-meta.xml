@@ -35,6 +35,10 @@
                 <behavior>Readonly</behavior>
                 <field>FinServ__RecordTypeName__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Application__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
