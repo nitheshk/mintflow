@@ -80,14 +80,22 @@ global with sharing class FinancialAccountService extends AbstractService {
       application.Id,
       primaryApplicant.Contact__c
     );
+
     if (accountContactRel == null) {
+      //check has primary group account contact relation is already created ? if not mark as primary group
+      AccountContactRelation hasPrimaryGroupRelation = FinancialAccountRepository.fetchPrimaryAccountContactRelation(
+        primaryApplicant.Contact__c
+      );
+
       // purpose to link application and primary contact to view in household view
       accountContactRel = new AccountContactRelation(
         AccountId = application.Id,
         ContactId = primaryApplicant.Contact__c,
         IsActive = true,
         FinServ__Primary__c = true,
-        FinServ__PrimaryGroup__c = true,
+        FinServ__PrimaryGroup__c = hasPrimaryGroupRelation == null
+          ? true
+          : false,
         StartDate = Date.today(),
         EndDate = Date.today().addYears(100),
         Roles = 'Business User',
@@ -95,9 +103,6 @@ global with sharing class FinancialAccountService extends AbstractService {
       );
       FinancialAccountRepository.upsertRecord(accountContactRel);
     }
-
-    log?.fine('accountContactRel Created' + accountContactRel);
-
     //fetching membership product
     FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
       HttpBuilder.getApiConstant('MembershipAccountInternalCode')

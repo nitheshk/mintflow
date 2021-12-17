@@ -90,6 +90,7 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
     Account application,
     ApplicationResponseMapper.KYCResult kycResult
   ) {
+    log?.debug('Inside processExistingMember');
     application.isMemberFlow__c = false;
     application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
     application.FinServ__Status__c = ApplicationConstant.CANCELLED;

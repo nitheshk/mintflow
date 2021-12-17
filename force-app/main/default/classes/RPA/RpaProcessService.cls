@@ -161,6 +161,7 @@ global with sharing class RpaProcessService extends AbstractService {
         throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
     } catch (Exception ex) {
+      log?.error(ex.getMessage());
       Flow.setSubFlowFailed(ex.getMessage());
       Flow.setFlowFailed('Failed');
     } finally {
@@ -202,11 +203,8 @@ global with sharing class RpaProcessService extends AbstractService {
    * @author Digital Align Team | 11-25-2021
    **/
   global virtual void buildUpdateMemberDetails() {
-    log
-      ?.debug(
-        'buildUpdateMemberDetails Request =' +
-        RestContext.request.requestBody.toString()
-      );
+    log?.debug('Inside buildUpdateMemberDetails');
+    log?.debug('requestBody =' + RestContext.request.requestBody.toString());
     Account application = (Account) ApplicationService.getInstance()
       .processMembershipKYC(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;

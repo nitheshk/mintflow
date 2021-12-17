@@ -42,10 +42,16 @@ system.debug('Full Json : ' + res.data);
 
 // generateOTP
 ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  '0016D00000aYc5zQAC',
+  '',
+  'Primary',
+  'ApplicationFlow'
+);
 request.setHeader(
   new Map<String, String>{
-    'applicantId' => 'a0b0w00000Ea0WzAAJ',
-    'otpMode' => 'EMAIL'
+    'applicantId' => 'a0b6D0000022poMQAQ',
+    'otpMode' => 'EMAIL;SMS'
   }
 );
 ApexResponse res = ApplicantController.generateOTP(request);
@@ -53,13 +59,18 @@ system.debug('Full Json : ' + res.data);
 
 // validateOTP
 ApexRequest request = new ApexRequest();
-request.applicantType = 'Primary';
+request.token = SecurityUtils.generateTokenForTesting(
+  '0016D00000aYc5zQAC',
+  '',
+  'Primary',
+  'ApplicationFlow'
+);
 request.setHeader(
   new Map<String, String>{
-    'applicantId' => 'a0b0w00000Ea0WzAAJ',
-    'otpMode' => 'EMAIL',
-    'sms' => '2721',
-    'email' => '6007'
+    'applicantId' => 'a0b6D0000022poMQAQ',
+    'otpMode' => 'EMAIL;SMS',
+    'sms' => '5468',
+    'email' => '9269'
   }
 );
 ApexResponse res = ApplicantController.validateOTP(request);

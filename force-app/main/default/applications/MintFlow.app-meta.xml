@@ -145,17 +145,12 @@
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>FinancialInstituteAccount</tabs>
+    <tabs>Diagnostic__c</tabs>
+    <tabs>ApplicationConfiguration</tabs>
+    <tabs>Flow__c</tabs>
     <tabs>FinServ__FinancialAccount__c</tabs>
     <tabs>FinServ__AssetsAndLiabilities__c</tabs>
     <tabs>FinServ__FinancialGoal__c</tabs>
-    <tabs>FinServ__FinancialHolding__c</tabs>
-    <tabs>FinServ__Securities__c</tabs>
-    <tabs>FinServ__ReciprocalRole__c</tabs>
-    <tabs>Diagnostic__c</tabs>
-    <tabs>Flow__c</tabs>
-    <tabs>ApplicationConfiguration</tabs>
-    <tabs>standard-Lead</tabs>
-    <tabs>standard-Opportunity</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
@@ -174,15 +169,6 @@
             <tab>FinServ__FinancialGoal__c</tab>
         </mappings>
         <mappings>
-            <tab>FinServ__FinancialHolding__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinServ__ReciprocalRole__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinServ__Securities__c</tab>
-        </mappings>
-        <mappings>
             <tab>FinancialInstituteAccount</tab>
         </mappings>
         <mappings>
@@ -199,12 +185,6 @@
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>
-        </mappings>
-        <mappings>
-            <tab>standard-Lead</tab>
-        </mappings>
-        <mappings>
-            <tab>standard-Opportunity</tab>
         </mappings>
         <mappings>
             <tab>standard-home</tab>

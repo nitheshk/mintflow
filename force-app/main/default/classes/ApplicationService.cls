@@ -348,7 +348,6 @@ global with sharing class ApplicationService extends AbstractService {
       //#minor Add into Revision Queue for process
       //Stage value = Exception
       log?.error(ex);
-
       Database.rollback(sp);
       throw ex;
     }
