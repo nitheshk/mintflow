@@ -1,8 +1,9 @@
 import { LightningElement, wire, track, api } from "lwc";
 import utils from "c/generalUtils";
 import fetchRelatedFiles from "@salesforce/apex/LwcCustomController.fetchRelatedFiles";
+import { NavigationMixin } from "lightning/navigation";
 
-export default class RelatedFiles extends LightningElement {
+export default class RelatedFiles extends NavigationMixin(LightningElement) {
   @api objectApiName;
   @api recId;
   @track error;
@@ -11,15 +12,22 @@ export default class RelatedFiles extends LightningElement {
   @track columns = [
     {
       label: "File Name",
-      type: "url",
-      typeAttributes: {
-        label: { fieldName: "title", type: "text" },
-        target: "_self",
-        tooltip: { fieldName: "title", type: "text" }
-      },
+      fieldName: "title",
+      type: "text",
       sortable: false,
       hideDefaultActions: true,
-      wrapText: true
+      wrapText: true,
+      fixedWidth: 150
+      // type: "url",
+
+      // typeAttributes: {
+      //   label: { fieldName: "title", type: "text" },
+      //   target: "_self",
+      //   tooltip: { fieldName: "title", type: "text" }
+      // },
+      // sortable: false,
+      // hideDefaultActions: true,
+      // wrapText: true
     },
     {
       label: "Document type",
@@ -37,6 +45,19 @@ export default class RelatedFiles extends LightningElement {
       sortable: false,
       hideDefaultActions: true,
       wrapText: true
+    },
+    {
+      label: "Preview",
+      type: "button",
+      typeAttributes: {
+        label: "Preview",
+        name: "Preview",
+        variant: "brand-outline",
+        iconName: "utility:preview",
+        iconPosition: "right",
+        fieldName: "contentDocumentId",
+        onclick: this.previewFile(fieldName)
+      }
     }
   ];
 
@@ -45,15 +66,13 @@ export default class RelatedFiles extends LightningElement {
       relatedEntityId: "a0b0p000001yqYeAAI"
     }
   })
-  relatedFiles(data, error) {
-    this.record = data;
-    console.log("JSON.stringify(result) ::: " + JSON.stringify(data));
-    // console.log("JSON.stringify(result.data) ::: " + JSON.parse(data.data));
-    // console.log(
-    //   "JSON.stringify(result.data.data) ::: " + JSON.stringify(result.data.data)
-    // );
-    if (data) {
-      this.data = JSON.parse(data.data);
+  relatedFiles(result, error) {
+    if (result && result.data && result.data.status === 200) {
+      const { data: fileData = "" } = result.data;
+      console.log("fileData aft parse", JSON.parse(fileData));
+      // console.log("data.data stgif", data && data.data ? JSON.parse(data.data));
+      // console.log(data.data ? JSON.parse(data.data) : JSON.parse(data));
+      this.data = JSON.parse(fileData);
       if (this.data != null && this.data.length > 0) {
         this.visibility = true;
       } else {
@@ -63,5 +82,29 @@ export default class RelatedFiles extends LightningElement {
       console.log("error : " + JSON.stringify(error));
       utils.errorMessage(this, error.body.message, "Error fetching record");
     }
+  }
+  handleRowAction(event) {
+    const actionName = event.detail.action.name;
+    const row = event.detail.row;
+    console.log(actionName);
+    console.log(row);
+    switch (actionName) {
+      case "Preview":
+        this.previewFile(row);
+        break;
+      default:
+    }
+  }
+  previewFile(file) {
+    // console.log(file);
+    this[NavigationMixin.Navigate]({
+      type: "standard__namedPage",
+      attributes: {
+        pageName: "filePreview"
+      },
+      state: {
+        selectedRecordId: file.ContentDocumentId
+      }
+    });
   }
 }
