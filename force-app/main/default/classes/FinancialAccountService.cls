@@ -119,6 +119,7 @@ global with sharing class FinancialAccountService extends AbstractService {
     financialAccount.FinServ__Status__c = 'Open';
     financialAccount.FinServ__Stage__c = 'Active';
     financialAccount.FinServ__Household__c = application.Id;
+    financialAccount.Application__c = application.Id;
     financialAccount.RecordTypeId = Schema.SObjectType.FinServ__FinancialAccount__c.getRecordTypeInfosByName()
       .get('Bank Account')
       .getRecordTypeId();
