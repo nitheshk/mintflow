@@ -4,7 +4,7 @@
     <available>true</available>
     <description>Notification to user about account approved.</description>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>account approved email - EN</name>
+    <name>Funding Link On Kyc Approval_EN</name>
     <packageVersions>
         <majorNumber>230</majorNumber>
         <minorNumber>3</minorNumber>
