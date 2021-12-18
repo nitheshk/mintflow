@@ -120,9 +120,10 @@ global with sharing class FinancialAccountService extends AbstractService {
     financialAccount.FinServ__Stage__c = 'Active';
     financialAccount.FinServ__Household__c = application.Id;
     financialAccount.Application__c = application.Id;
-    financialAccount.RecordTypeId = Schema.SObjectType.FinServ__FinancialAccount__c.getRecordTypeInfosByName()
-      .get('Bank Account')
-      .getRecordTypeId();
+    financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+      FinServ__FinancialAccount__c.SObjectType,
+      'SavingsAccount'
+    );
     FinancialAccountRepository.upsertRecord(financialAccount);
     log?.fine('financialAccount Created');
     return application;

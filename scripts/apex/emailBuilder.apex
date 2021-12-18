@@ -72,3 +72,10 @@ if (results[0].success) {
 } else {
   System.debug('The email failed to send: ' + results[0].errors[0].message);
 }
+
+//#4
+ApexRequest request = new ApexRequest();
+Account application = ApplicationService.getInstance()
+  .readApplicationWithChild('0016D00000aYc5zQAC');
+CustomerEmailService.getInstance().fundingLinkOnAccountApproved(application);
+Logger.persist();

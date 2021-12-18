@@ -319,6 +319,8 @@ global with sharing class ApplicationService extends AbstractService {
     Account application = ApplicationRepository.readApplicationForKYC(
       kycResult.ApplicationId
     );
+    ApexRequest.setApplicationId(application.Id);
+    ApexRequest.setApplicationName(application.ApplicationNumber__c);
     // roll back whole transaction on failure
     Savepoint sp = Database.setSavepoint();
     try {
@@ -341,6 +343,10 @@ global with sharing class ApplicationService extends AbstractService {
 
       application = FinancialAccountService.getInstance()
         .createMembershipFinancialAccount(application);
+
+      //Send Funding Email Link to primary
+      CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);
+
       return application;
     } catch (Exception ex) {
       //#pending

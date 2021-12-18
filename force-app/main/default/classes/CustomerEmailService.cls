@@ -34,7 +34,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Applicant__c applicant
    **/
   global virtual void sendEmailOTP(Applicant__c applicant) {
-    String expireTime = string.valueOf(
+    String expireTime = String.valueOf(
       (Integer) ApplicationConfiguration__c.getOrgDefaults()
         .OTPExpirationTime__c
     );
@@ -125,7 +125,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void resumeApplication(Applicant__c applicant) {
     String portalUrl = 'portalUrl';
-    map<string, string> params = new Map<string, string>();
+    Map<String, String> params = new Map<String, String>();
     if (
       applicant.ApplicantType__c ==
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -142,7 +142,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     params.put('aplType', applicant.ApplicantType__c);
     params.put('aplId', applicant.Id);
     params.put('ch', 'Virtual');
-    string link = generateUrl(params);
+    String link = generateUrl(params);
     EmailNotificationBuilder.newInstance('ResumeApplicationEmail', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
@@ -174,7 +174,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         when 'PrimaryReviewInformationSubmitted',
           'PrimaryReviewInformationWaiting' {
           link = generateUrl(
-            new Map<string, string>{
+            new Map<String, String>{
               'aplType' => 'Primary',
               'flw' => 'ApplicationFlow',
               'urlSuffix' => '/membership/application/get-started',
@@ -185,7 +185,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         }
         when 'JointStartApplication' {
           link = generateUrl(
-            new Map<string, string>{
+            new Map<String, String>{
               'aplType' => 'Joint',
               'flw' => 'JointFlow',
               'urlSuffix' => '/membership/joints/welcome',
@@ -251,8 +251,8 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
-          '{firstName}' => applicant.FirstName__c,
-          '{lastName}' => applicant.LastName__c,
+          '{FirstName}' => applicant.FirstName__c,
+          '{LastName}' => applicant.LastName__c,
           '{productName}' => 'Member Account',
           '{accountNumber}' => finAcc.FinServ__FinancialAccountNumber__c,
           '{customerNumber}' => applicant.CustomerNumber__c
@@ -266,18 +266,37 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Applicant__c applicant
    * @return virtual
    **/
-  global virtual void accountApproved(Applicant__c applicant) {
-    string link = 'startfundingprocess';
-    EmailNotificationBuilder.newInstance('accountApproved', applicant.Id)
-      .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{
-          '{firstName}' => applicant.FirstName__c,
-          '{lastName}' => applicant.LastName__c,
-          '{ApplicationNumber}' => ApexRequest.getApplicationName(),
-          '{url}' => link
-        }
-      );
+  global virtual void fundingLinkOnKycApproval(Account application) {
+    for (Applicant__c applicant : application.Applicants__r) {
+      if (
+        applicant.RecordType.Name ==
+        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      ) {
+        String link = generateUrl(
+          new Map<String, String>{
+            'aplType' => 'Primary',
+            'flw' => 'FundingFlow',
+            'urlSuffix' => '/membership/funding/funding',
+            'aplId' => applicant.Id,
+            'ch' => 'Virtual'
+          }
+        );
+        EmailNotificationBuilder.newInstance(
+            'FundingLinkOnKycApproval',
+            applicant.Id
+          )
+          .setToAddresses(applicant.Email__c)
+          .setSubstitute(
+            new Map<String, String>{
+              '{FirstName}' => applicant.FirstName__c,
+              '{LastName}' => applicant.LastName__c,
+              '{ApplicationNumber}' => ApexRequest.getApplicationName(),
+              '{url}' => link
+            }
+          );
+        break;
+      }
+    }
     sendEmail();
   }
   /**
@@ -289,7 +308,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void notifyAboutEmploymentReport(
     Applicant__c applicant,
-    string information
+    String information
   ) {
     EmailNotificationBuilder.newInstance(
         'employmentReportInformation',
@@ -340,11 +359,11 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Map<String string> params
    * @return virtual
    **/
-  global virtual string generateUrl(Map<String, string> params) {
+  global virtual String generateUrl(Map<String, String> params) {
     SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
     cipher.aplType = params.get('aplType');
     cipher.flw = params.get('flw');
-    string urlSuffix = params.get('urlSuffix');
+    String urlSuffix = params.get('urlSuffix');
     cipher.appId = ApexRequest.getApplicationId();
     cipher.aplId = params.get('aplId');
     cipher.edt = Datetime.now()
