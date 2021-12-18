@@ -35,7 +35,6 @@
     <permissionSet>mflow__MintFlowGuest</permissionSet>
     <permissionSet>mflow__MintFlowCustomerCommunity</permissionSet>
     <profile>admin</profile>
-    <profile>MFlowOnlineSalesforcePlatform</profile>
     <profile>MFlowCustomerCommunityPlusLogin</profile>
     <profile>MFlowCustomerCommunityLogin</profile>
   </networkMemberGroups>

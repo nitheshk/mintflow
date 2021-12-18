@@ -166,68 +166,6 @@ gulp.task("pushToscratch", function (finish) {
     });
 });
 
-//createPlatformUser
-gulp.task("createPlatformUser", function (finish) {
-  let scriptToRun = `git config user.email`;
-  utils
-    .runCommand(scriptToRun)
-    .then((result) => {
-      console.log("Result :" + result);
-
-      const contents = fs.readFileSync(
-        `${config.permission.createUser.createPlatformUser}`,
-        "utf8"
-      );
-
-      let replaced_contents = contents.replace("{{Email}}", result.trim());
-
-      fs.writeFileSync(
-        `${config.permission.createUser.createPlatformUser}`,
-        replaced_contents,
-        "utf8"
-      );
-    })
-    .catch((err) => {
-      console.log("Error :" + err.stdout);
-      process.exit(1);
-    });
-
-  scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createPlatformUser}`;
-  console.log("Script To Run - " + scriptToRun);
-
-  utils
-    .runCommand(scriptToRun)
-    .then((result) => {
-      console.log("Result :" + result);
-      let jsonString = result.substring(
-        result.lastIndexOf("{QueryStart}") + 12,
-        result.lastIndexOf("{QueryEnd}")
-      );
-      const data = JSON.parse(jsonString);
-      console.log("Username :" + data.Username);
-
-      let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json");
-      applicationConfiguration.records[0].mflow__OnlineSiteUserName__c =
-        data.Username;
-      // update site urls
-      utils
-        .createFile(
-          "./data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json",
-          JSON.stringify(applicationConfiguration, null, 2)
-        )
-        .catch((err) => {
-          console.log("err :" + JSON.stringify(err));
-          process.exit(1);
-        });
-
-      finish();
-    })
-    .catch((err) => {
-      console.log("Error :" + err.stdout);
-      process.exit(1);
-    });
-});
-
 //createCommunityUser
 gulp.task("createCommunityUser", function (finish) {
   //create account and contact
@@ -607,7 +545,7 @@ gulp.task(
     "installPackageFSCExt",
     "pushToscratch",
     "updatePermissionSet",
-    "createPlatformUser",
+    "createCommunityUser",
     "publishCommunities",
     "systemConfigImport"
   )
