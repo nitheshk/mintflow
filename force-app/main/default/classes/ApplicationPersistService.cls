@@ -171,6 +171,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     ) {
       // #pending page name need to decide
       applicant.FlowState__c = 'joint-welcome';
+      applicant.Status__c = 'Draft';
     }
 
     return applicant;

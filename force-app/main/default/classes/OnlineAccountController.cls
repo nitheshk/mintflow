@@ -27,6 +27,7 @@ global with sharing class OnlineAccountController extends AbstractController {
       log?.debug('vmf:' + vmf);
       Cookie pageToken = PageUtils.getCookie('token');
       log?.debug('Cookie: ' + pageToken?.getValue());
+      // When Cookies is present on refresh of page
       if (pageToken != null && String.isNotBlank(pageToken.getValue())) {
         this.application = ApplicationService.getInstance().refreshPage(params);
         this.id = application.Id;
@@ -44,6 +45,7 @@ global with sharing class OnlineAccountController extends AbstractController {
         this.application = new Account();
       }
 
+      params.put('token', ApexRequest.getToken());
       Map<String, Object> initialData = new Map<String, Object>{
         'id' => this.id,
         'application' => SObjectConstructor.writeFieldsAsMap(

@@ -50,7 +50,10 @@ global with sharing class OpenAccountController {
     //System.debug('openAccountPage :' + openAccountPage.getUrl());
 
     //set cookie to 0, to delete
-    PageUtils.setCookie(new Cookie('token', null, null, 0, true));
+    Cookie existingToken = PageUtils.getCookie('token');
+    if (existingToken != null) {
+      PageUtils.setCookie(new Cookie('token', null, null, -1, false));
+    }
     openAccountPage.getParameters()
       .putAll(PageUtils.getCurrentPageParameters());
     return openAccountPage;

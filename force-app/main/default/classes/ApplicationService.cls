@@ -230,33 +230,32 @@ global with sharing class ApplicationService extends AbstractService {
   global virtual Account refreshPage(Map<String, Object> params) {
     log?.fine('Inside refreshPage');
     //get existing token from cookie
-    Cookie pageToken = PageUtils.getCookie('token');
-    SecurityUtils.CipherDTO cipher;
+    String sessionToken = PageUtils.getCookie('token').getValue();
     try {
-      cipher = SecurityUtils.extractToken(pageToken.getValue());
+      sessionToken = sessionToken.replace(' ', '+');
+      ApexRequest.setToken(sessionToken);
+      SecurityUtils.validateSession();
     } catch (Exception ex) {
       throw new CustomException(System.Label.Session_InvalidSessionToken);
     }
-    if (cipher.edt < Datetime.now()) {
-      throw new CustomException(System.Label.Session_SessionHasExpired);
-    }
 
     Account application;
-    if (cipher.aplType == 'Primary') {
+    if (ApexRequest.getApplicantType() == 'Primary') {
       application = ApplicationService.getInstance()
-        .readApplicationWithChild(cipher.appId);
-    } else if (cipher.aplType == 'Joint') {
+        .readApplicationWithChild(ApexRequest.getApplicationId());
+    } else if (ApexRequest.getApplicantType() == 'Joint') {
       application = ApplicationService.getInstance()
-        .readApplicationWithChild(cipher.appId, cipher.aplId);
-    } else {
-      throw new CustomException(System.Label.Applicant_ApplicantTypeNotFound);
+        .readApplicationWithChild(
+          ApexRequest.getApplicationId(),
+          ApexRequest.getApplicantId()
+        );
     }
 
-    params.put('applicantType', cipher.aplType);
-    params.put('channel', cipher.ch);
-    params.put('applicationId', cipher.appId);
-    params.put('applicantId', cipher.aplId);
-    params.put('flowType', cipher.flw);
+    params.put('applicantType', ApexRequest.getApplicantType());
+    //params.put('channel', cipher.ch);
+    params.put('applicationId', ApexRequest.getApplicationId());
+    params.put('applicantId', ApexRequest.getApplicantId());
+    params.put('flowType', ApexRequest.getFlowType());
     return application;
   }
 
