@@ -20,6 +20,7 @@ global with sharing class ApplicationResponseMapper {
     global String ApplicationNumber;
     global String CountyCode;
     global String CountyName;
+    global String StateName;
     global String BranchCode;
     global String BranchName;
     global String CreatedChannel;

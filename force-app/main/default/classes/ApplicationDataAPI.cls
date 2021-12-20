@@ -47,6 +47,7 @@ global with sharing class ApplicationDataAPI {
         mapperApplication.BranchCode = application.FinServ__BranchCode__c;
         mapperApplication.BranchName = application.FinServ__BranchName__c;
         mapperApplication.CountyName = application.CountyName__c;
+        mapperApplication.StateName = application.StateName__c;
         mapperApplication.CountyCode = application.CountyZipCode__c;
         mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
         mapperApplication.CreatedChannel = application.CreatedChannel__c;
