@@ -1,5 +1,7 @@
-import { LightningElement, track, api } from "lwc";
+import { LightningElement, track, api, wire } from "lwc";
 import timezone from "@salesforce/i18n/timeZone";
+import { publish, MessageContext } from "lightning/messageService";
+import application360Details from "@salesforce/messageChannel/Application360RelatedFiles__c";
 
 //controller
 import fetchFieldDetails from "@salesforce/apex/LwcCustomController.fetchFieldDetails";
@@ -13,7 +15,9 @@ export default class RecordDetailView extends LightningElement {
   @api hideNullValues = false;
   results = [];
   @track dataLoaded = false;
-
+  // @track idList = [];
+  @wire(MessageContext)
+  messageContext;
   renderedCallback() {
     //console.log("Child renderedCallback::: " + JSON.stringify(this.record.Id));
     if (this.record && !this.dataLoaded) {
@@ -52,6 +56,9 @@ export default class RecordDetailView extends LightningElement {
                       type: result[keyValue].type
                     });
                   } else {
+                    if (result[keyValue].key === "id") {
+                      this.idList.push(this.record[d][result[keyValue].key]);
+                    }
                     tempData.push({
                       key: result[keyValue].value,
                       value: this.record[d][result[keyValue].key],
@@ -84,6 +91,9 @@ export default class RecordDetailView extends LightningElement {
                     type: result[keyValue].type
                   });
                 } else {
+                  if (result[keyValue].key === "id") {
+                    this.idList.push(this.record[result[keyValue].key]);
+                  }
                   tempData.push({
                     key: result[keyValue].value,
                     value: this.record[result[keyValue].key],
@@ -103,5 +113,24 @@ export default class RecordDetailView extends LightningElement {
           console.log(error);
         });
     }
+  }
+  handleClick() {
+    var idList = [];
+    if (Array.isArray(this.record)) {
+      this.record.forEach((element) => {
+        console.log("element =", element);
+        idList.push(element);
+      });
+      console.log("record array =", idList);
+    } else {
+      idList.push(this.record.Id);
+      console.log("record Id =", idList);
+    }
+    const data = {
+      recordIds: idList,
+      sObjectName: this.sObjectName
+    };
+
+    publish(this.messageContext, application360Details, data);
   }
 }

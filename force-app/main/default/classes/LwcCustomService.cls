@@ -354,22 +354,17 @@ global with sharing class LwcCustomService extends AbstractService {
     log?.fine('Completed updateApplicationStatus');
   }
 
-  global list<Object> fetchRelatedFiles(String relatedEntityId) {
-    system.debug('relatedEntityId = ' + relatedEntityId);
-    list<Object> fileList = new List<object>();
-    for (
-      ContentVersion contentVersionObj : FileService.getInstance()
-        .fetchContentVersionByEntityId(relatedEntityId, true)
-    ) {
-      fileList.add(
-        new Map<String, string>{
-          'contentDocumentId' => contentVersionObj.ContentDocumentId,
-          'title' => contentVersionObj.Title,
-          'documentType' => contentVersionObj.ContentType__c,
-          'createDate' => string.valueOfGmt(contentVersionObj.CreatedDate)
-        }
-      );
-    }
+  /**
+   * @description fetch related files for given related ids
+   * @author Digital Align | 12-21-2021
+   * @param List<String> relatedEntityIds
+   * @return list<Object>
+   **/
+  global list<Object> fetchRelatedFiles(List<String> relatedEntityIds) {
+    system.debug('relatedEntityIds = ' + relatedEntityIds);
+    List<ContentVersion> fileList = FileService.getInstance()
+      .fetchContentVersionByEntityIds(relatedEntityIds, true);
+    system.debug('fileList =' + fileList);
     return fileList;
   }
 }
