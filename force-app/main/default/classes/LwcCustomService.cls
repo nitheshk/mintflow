@@ -361,10 +361,8 @@ global with sharing class LwcCustomService extends AbstractService {
    * @return list<Object>
    **/
   global list<Object> fetchRelatedFiles(List<String> relatedEntityIds) {
-    system.debug('relatedEntityIds = ' + relatedEntityIds);
     List<ContentVersion> fileList = FileService.getInstance()
       .fetchContentVersionByEntityIds(relatedEntityIds, true);
-    system.debug('fileList =' + fileList);
     return fileList;
   }
 }

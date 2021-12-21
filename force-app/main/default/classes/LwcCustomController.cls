@@ -214,7 +214,6 @@ global with sharing class LwcCustomController extends AbstractController {
   @AuraEnabled(cacheable=true)
   global static ApexResponse fetchRelatedFiles(string relatedIds) {
     try {
-      system.debug('Inside fetchRelatedFiles relatedIds ---->' + relatedIds);
       List<String> relatedEntityIds = (List<String>) JSON.deserialize(
         relatedIds,
         List<String>.class
