@@ -5,6 +5,10 @@
         <members>*</members>
         <name>ExperienceBundle</name>
     </types>
+    <types>
+		<members>*</members>
+		<name>LightningMessageChannel</name>
+	</types>
     <!--<types>
         <members>*</members>
         <name>NavigationMenu</name>

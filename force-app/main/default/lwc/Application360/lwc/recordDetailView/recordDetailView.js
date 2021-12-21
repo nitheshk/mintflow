@@ -15,7 +15,6 @@ export default class RecordDetailView extends LightningElement {
   @api hideNullValues = false;
   results = [];
   @track dataLoaded = false;
-  // @track idList = [];
   @wire(MessageContext)
   messageContext;
   renderedCallback() {
@@ -118,13 +117,10 @@ export default class RecordDetailView extends LightningElement {
     var idList = [];
     if (Array.isArray(this.record)) {
       this.record.forEach((element) => {
-        console.log("element =", element);
-        idList.push(element);
+        idList.push(element.Id);
       });
-      console.log("record array =", idList);
     } else {
       idList.push(this.record.Id);
-      console.log("record Id =", idList);
     }
     const data = {
       recordIds: idList,
