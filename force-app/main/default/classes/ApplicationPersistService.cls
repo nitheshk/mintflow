@@ -58,12 +58,12 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
 
     //save financial accounts
-    if (application.FinServ__HouseholdFinancialAccounts__r?.size() > 0) {
+    if (application.mflow__FinancialAccounts__r?.size() > 0) {
       List<FinServ__FinancialAccount__c> financialAccounts = saveFinancialAccount(
-        application.FinServ__HouseholdFinancialAccounts__r
+        application.mflow__FinancialAccounts__r
       );
       constructor.setChildObjects(
-        'FinServ__HouseholdFinancialAccounts__r',
+        'mflow__FinancialAccounts__r',
         financialAccounts
       );
     }
@@ -352,10 +352,8 @@ global with sharing class ApplicationPersistService extends AbstractService {
             new Map<Id, SObject>(application.Applicants__r).keySet()
           );
         }
-        if (!application.FinServ__HouseholdFinancialAccounts__r.isEmpty()) {
-          recordsToDelete.addAll(
-            application.FinServ__HouseholdFinancialAccounts__r
-          );
+        if (!application.mflow__FinancialAccounts__r.isEmpty()) {
+          recordsToDelete.addAll(application.mflow__FinancialAccounts__r);
         }
         recordsToDelete.add(application);
         ApplicationRepository.deleteRecords(recordsToDelete);

@@ -128,17 +128,12 @@ global with sharing class ApplicationService extends AbstractService {
     List<Applicant__c> applicants = ApplicantService.getInstance()
       .readApplicantsWithChild(application.Applicants__r);
     List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
-      .readFinancialAccountsWithChild(
-        application.FinServ__HouseholdFinancialAccounts__r
-      );
+      .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
-    builder.setChildObjects(
-      'FinServ__HouseholdFinancialAccounts__r',
-      financialAccounts
-    );
+    builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
     return (Account) builder.build();
   }
 
@@ -161,17 +156,12 @@ global with sharing class ApplicationService extends AbstractService {
     Applicant__c applicant = ApplicantService.getInstance()
       .readApplicantWithChild(applicantId);
     List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
-      .readFinancialAccountsWithChild(
-        application.FinServ__HouseholdFinancialAccounts__r
-      );
+      .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObject('mflow__Applicants__r', applicant);
-    builder.setChildObjects(
-      'FinServ__HouseholdFinancialAccounts__r',
-      financialAccounts
-    );
+    builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
     return (Account) builder.build();
   }
 

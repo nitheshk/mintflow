@@ -43,7 +43,7 @@ system.debug('acc : ' + JSON.Serialize(acc1));
 // #4
 String q = Query.newInstance(Account.SObjectType)
   .addFields('Name')
-  .queryChild('FinServ__HouseholdFinancialAccounts__r')
+  .queryChild('mflow__FinancialAccounts__r')
   .addFields('FinServ__PrimaryOwner__r.PersonContactId')
   .run()
   .whereEq('Name', 'Init')
@@ -51,9 +51,7 @@ String q = Query.newInstance(Account.SObjectType)
 
 List<Account> sl1 = (List<Account>) DatabaseUtils.getRecords(q);
 
-String pa = sl1[0]
-  .FinServ__HouseholdFinancialAccounts__r[0]
-  .FinServ__PrimaryOwner__c;
+String pa = sl1[0].mflow__FinancialAccounts__r[0].FinServ__PrimaryOwner__c;
 
 q = Query.newInstance(Account.SObjectType)
   .addFields()
@@ -68,13 +66,13 @@ q = Query.newInstance(Account.SObjectType)
 List<Account> sl2 = (List<Account>) DatabaseUtils.getRecords(q);
 
 FinServ__FinancialAccount__c fa = (FinServ__FinancialAccount__c) SObjectConstructor.getInstance(
-    sl1[0].FinServ__HouseholdFinancialAccounts__r[0]
+    sl1[0].mflow__FinancialAccounts__r[0]
   )
   .setLookupObject('FinServ__PrimaryOwner__r', sl2[0])
   .build();
 
 Account acc = (Account) SObjectConstructor.getInstance(sl1[0])
-  .setChildObject('FinServ__HouseholdFinancialAccounts__r', fa)
+  .setChildObject('mflow__FinancialAccounts__r', fa)
   .build();
 
 system.debug('acc : ' + JSON.Serialize(acc));

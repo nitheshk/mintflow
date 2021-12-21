@@ -99,17 +99,13 @@ global with sharing class LwcCustomService extends AbstractService {
       new Map<id, SObject>(application.Applicants__r).keyset()
     );
     List<FinServ__FinancialAccount__c> financialAccounts = LwcCustomRepository.readFinancialAccountsWithChild(
-      new Map<id, SObject>(application.FinServ__HouseholdFinancialAccounts__r)
-        .keyset()
+      new Map<id, SObject>(application.mflow__FinancialAccounts__r).keyset()
     );
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
-    builder.setChildObjects(
-      'FinServ__HouseholdFinancialAccounts__r',
-      financialAccounts
-    );
+    builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
     return (Account) builder.build();
   }
 

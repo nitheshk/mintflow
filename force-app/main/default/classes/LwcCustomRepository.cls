@@ -54,7 +54,7 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
         .queryChild('mflow__Applicants__r')
         .orderBy('mflow__Order__c')
         .run()
-        .queryChild('FinServ__HouseholdFinancialAccounts__r')
+        .queryChild('mflow__FinancialAccounts__r')
         .run()
         .whereEq('Id', applicationId)
         .toString(true)
