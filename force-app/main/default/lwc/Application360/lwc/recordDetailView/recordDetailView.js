@@ -113,7 +113,7 @@ export default class RecordDetailView extends LightningElement {
         });
     }
   }
-  handleClick() {
+  showRelatedFiles() {
     var idList = [];
     if (Array.isArray(this.record)) {
       this.record.forEach((element) => {
@@ -124,7 +124,7 @@ export default class RecordDetailView extends LightningElement {
     }
     const data = {
       recordIds: idList,
-      sObjectName: this.sObjectName
+      titleName: this.titleName
     };
 
     publish(this.messageContext, application360Details, data);

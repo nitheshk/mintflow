@@ -38,7 +38,7 @@
                 ></c-record-detail-view>
               </lightning-tab>
               <template if:true={data.mflow__ContactPointAddresses__r}>
-                <lightning-tab label="Contact Point Addresses">
+                <lightning-tab label="Addresses">
                   <c-record-detail-view
                     key={data.Id}
                     record={data.mflow__ContactPointAddresses__r}
@@ -49,18 +49,18 @@
                 </lightning-tab>
               </template>
               <template if:true={data.mflow__IdentificationDocuments__r}>
-                <lightning-tab label="Identification Document">
+                <lightning-tab label="Identification">
                   <c-record-detail-view
                     key={data.Id}
                     record={data.mflow__IdentificationDocuments__r}
                     s-object-name="FinServ__IdentificationDocument__c"
-                    title-name="Identification Document"
+                    title-name="Identification Details"
                     hide-null-values="true"
                   ></c-record-detail-view>
                 </lightning-tab>
               </template>
               <template if:true={data.mflow__Employments__r}>
-                <lightning-tab label="Employment Details">
+                <lightning-tab label="Employment">
                   <c-record-detail-view
                     key={data.Id}
                     record={data.mflow__Employments__r}

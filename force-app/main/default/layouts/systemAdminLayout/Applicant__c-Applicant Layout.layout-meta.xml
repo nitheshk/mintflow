@@ -42,23 +42,15 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>SessionToken__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ApplicantType__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Birthdate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SSN__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Relationship__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -70,7 +62,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SessionToken__c</field>
+                <field>Relationship__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Birthdate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SSN__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -87,29 +87,29 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Phone__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IsPhoneNumberVerified__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsEmailVerified__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>EmailOtp__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SmsOtp__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmailOtp__c</field>
+                <field>Phone__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsPhoneNumberVerified__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -327,7 +327,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h6D000001mM0p</masterLabel>
+        <masterLabel>00h0p000001OcLT</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

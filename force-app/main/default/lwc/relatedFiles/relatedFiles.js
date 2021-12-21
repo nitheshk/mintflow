@@ -9,10 +9,12 @@ import {
 } from "lightning/messageService";
 import application360Details from "@salesforce/messageChannel/Application360RelatedFiles__c";
 export default class FilePrivewInLWC extends NavigationMixin(LightningElement) {
-  @track sObjectName;
+  @track titleName;
   @track recordIds = [];
   @track error;
   @track showFile;
+  @track showSpinner = false;
+  @track message = "No files to display";
   subscription = null;
   @track files;
 
@@ -24,18 +26,14 @@ export default class FilePrivewInLWC extends NavigationMixin(LightningElement) {
       this.messageContext,
       application360Details,
       (data) => {
-        console.log(data);
-        this.sObjectName = data.sObjectName;
+        this.showFile = true;
+        this.showSpinner = true;
+        this.titleName = data.titleName + " Files";
         this.recordIds = data.recordIds;
-        console.log(
-          "recordid =",
-          this.recordIds,
-          "object name = ",
-          this.sObjectName
-        );
         if (this.recordIds != null) {
           this.relatedFiles();
         }
+        this.showSpinner = false;
       },
       { scope: APPLICATION_SCOPE }
     );
@@ -48,13 +46,9 @@ export default class FilePrivewInLWC extends NavigationMixin(LightningElement) {
       .then((result) => {
         if (result && result.status === 200) {
           this.files = JSON.parse(result.data);
-          if (this.files != null && this.files.length > 0) {
-            this.showFile = true;
-          } else {
-            this.showFile = false;
-          }
         } else {
-          console.log("in else", result);
+          console.log("error : ", result);
+          utils.errorMessage(this, result.body, "Error fetching record");
         }
       })
       .catch((error) => {

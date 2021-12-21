@@ -15,17 +15,17 @@
             <b> {titleName} </b>
           </h3>
         </div>
-        <div class="slds-grid slds-wrap">
-          <div>
-            <div>
-              <lightning-button
-                variant="brand"
-                label="View Files"
-                title="View related files"
-                onclick={handleClick}
-              >
-              </lightning-button>
-            </div>
+
+        <div class="slds-float_right">
+          <div class="slds-float_right">
+            <lightning-button
+              class="slds-float_right"
+              variant="brand"
+              label="View Files"
+              title="View related files"
+              onclick={showRelatedFiles}
+            >
+            </lightning-button>
           </div>
         </div>
       </template>
