@@ -125,10 +125,42 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
 
     //Set Applicant Record Type
+    String recordTypeName = this.obtainApplicantRecordTypeName(applicant);
+    applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
+      Applicant__c.SObjectType,
+      recordTypeName
+    );
+    // Full Name
+    applicant.Name = String.isBlank(applicant.FirstName__c)
+      ? applicant.LastName__c
+      : applicant.FirstName__c + ' ' + applicant.LastName__c;
+
+    //Initially set joint flow state
+    if (String.isBlank(applicant.Id)) {
+      if (recordTypeName == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE) {
+        applicant.FlowState__c = ApplicationConstant.JOINT_WELCOME;
+        applicant.Status__c = ApplicationConstant.DRAFT;
+      } else if (
+        recordTypeName == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+      ) {
+        applicant.Status__c = ApplicationConstant.IN_PROGRESS;
+      }
+    }
+
+    return applicant;
+  }
+
+  /**
+   * @description Obtain applicant record Type Name
+   * @author Digital Align Team | 12-21-2021
+   * @param Applicant__c applicant
+   * @return String
+   **/
+  private String obtainApplicantRecordTypeName(Applicant__c applicant) {
     String recordTypeName;
     if (String.isBlank(applicant.ApplicantType__c)) {
-      recordTypeName = 'Primary';
-      applicant.ApplicantType__c = 'Primary';
+      recordTypeName = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+      applicant.ApplicantType__c = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
     } else {
       switch on applicant.ApplicantType__c {
         when 'Primary',
@@ -152,29 +184,8 @@ global with sharing class ApplicationPersistService extends AbstractService {
         }
       }
     }
-
     log?.debug('recordTypeName : ' + recordTypeName);
-
-    applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
-      Applicant__c.SObjectType,
-      recordTypeName
-    );
-    // Full Name
-    applicant.Name = String.isBlank(applicant.FirstName__c)
-      ? applicant.LastName__c
-      : applicant.FirstName__c + ' ' + applicant.LastName__c;
-
-    //Initially set joint flow state
-    if (
-      recordTypeName == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE &&
-      String.isBlank(applicant.Id)
-    ) {
-      // #pending page name need to decide
-      applicant.FlowState__c = 'joint-welcome';
-      applicant.Status__c = 'Draft';
-    }
-
-    return applicant;
+    return recordTypeName;
   }
 
   /**

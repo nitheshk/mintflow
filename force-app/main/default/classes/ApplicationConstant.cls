@@ -28,6 +28,7 @@ public with sharing class ApplicationConstant {
   public static final String SUBMITTED_FOR_REVIEW = 'Submit for Review';
   public static final String REVISION_IN_PROGRESS = 'Revision in Progress';
   public static final String REJECTED = 'Rejected';
+  public static final String DRAFT = 'DRAFT';
 
   // Application Stage
   public static final String STAGE_EXISTING_CUSTOMER = 'ExistingCustomer';
@@ -35,6 +36,7 @@ public with sharing class ApplicationConstant {
   //Flow State
   public static final String FINAL_CONFIRMATION = 'final-confirmation';
   public static final String FUNDING_WELCOME = 'welcome-back';
+  public static final String JOINT_WELCOME = 'joint-welcome';
 
   // RPA to Salesforce Field Mapping
   /*  public Static final Map<String,String> STATUS_CONVERSION= new Map<String,String>{
