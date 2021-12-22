@@ -14,7 +14,7 @@
                 <behavior>Edit</behavior>
                 <field>Answer__c</field>
             </layoutItems>
-             <layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>isDisplayed__c</field>
             </layoutItems>
@@ -26,7 +26,7 @@
                 <behavior>Edit</behavior>
                 <field>CustomStyle__c</field>
             </layoutItems>
-             <layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Options__c</field>
             </layoutItems>
@@ -65,10 +65,18 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ShowQuestionNumber__c</field>
-            </layoutItems>            
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SurveyTemplateItem__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Applicant__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Application__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
