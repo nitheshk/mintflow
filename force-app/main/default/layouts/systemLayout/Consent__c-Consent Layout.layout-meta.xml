@@ -34,7 +34,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ConsentLineItem__c</field>
+                <field>ConsentTemplate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

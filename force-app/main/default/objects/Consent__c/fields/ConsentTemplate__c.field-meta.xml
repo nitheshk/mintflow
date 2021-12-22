@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ConsentTemplate__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Related Consent Templates</description>
+    <externalId>false</externalId>
+    <label>Consent Template</label>
+    <referenceTo>ConsentTemplate__c</referenceTo>
+    <relationshipLabel>Consent Templates</relationshipLabel>
+    <relationshipName>ConsentTemplates</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

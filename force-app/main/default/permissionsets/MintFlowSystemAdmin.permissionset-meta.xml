@@ -1805,7 +1805,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Consent__c.ConsentLineItem__c</field>
+        <field>Consent__c.ConsentTemplate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
