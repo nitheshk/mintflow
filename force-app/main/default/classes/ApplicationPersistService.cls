@@ -40,7 +40,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
       if (String.isBlank(application.Id)) {
         application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
           Account.SObjectType,
-          'Application'
+          ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
         );
       }
       ApplicationRepository.upsertRecord(application);
@@ -67,6 +67,13 @@ global with sharing class ApplicationPersistService extends AbstractService {
         financialAccounts
       );
     }
+
+    //Save survey
+    if (application.Surveys__r?.size() > 0) {
+      List<Survey__c> surveys = saveSurveys(application.Surveys__r, null);
+      constructor.setChildObjects('mflow__Surveys__r', surveys);
+    }
+
     application = (Account) constructor.build();
 
     return application;
@@ -196,9 +203,9 @@ global with sharing class ApplicationPersistService extends AbstractService {
    **/
   global virtual Applicant__c saveApplicantChild(Applicant__c applicant) {
     //Do upsert in one short
-    List<SObject> listToUpdate = new List<SObject>();
+    //List<SObject> listToUpdate = new List<SObject>();
 
-    // upsert Identitifcation document
+    // upsert Identification document
     if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
       saveIdentificationDocuments(
         applicant?.IdentificationDocuments__r,
@@ -214,9 +221,13 @@ global with sharing class ApplicationPersistService extends AbstractService {
       );
     }
 
-    // upsert employement
+    // upsert employment
     if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
-      saveEmployments(applicant?.Employments__r, applicant.Id);
+      this.saveEmployments(applicant?.Employments__r, applicant.Id);
+    }
+
+    if (!CollectionUtils.isListEmpty(applicant?.Surveys__r)) {
+      this.saveSurveys(applicant?.Surveys__r, applicant.Id);
     }
 
     // upsert Asset And Liabilities
@@ -230,10 +241,11 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }*/
 
     // upsert revenues
+    // Not in this phase
+    /*
     if (!CollectionUtils.isListEmpty(applicant?.Revenues__r)) {
       saveRevenues(applicant?.Revenues__r, applicant.Id);
-    }
-
+    }*/
     return applicant;
   }
 
@@ -279,7 +291,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
   }
 
   /**
-   * @description
+   * @description Save employment detail of applicant
    * @author Digital Align Team | 11-09-2021
    * @param List<FinServ__Employment__c> employments
    * @param Id applicantId
@@ -296,6 +308,27 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
     ApplicantRepository.upsertRecords(employments);
     return employments;
+  }
+
+  /**
+   * @description Save Survey detail of applicant
+   * @author Digital Align Team | 11-09-2021
+   * @param List<FinServ__Employment__c> employments
+   * @param Id applicantId
+   * @return List<FinServ__Employment__c>
+   **/
+  global virtual List<Survey__c> saveSurveys(
+    List<Survey__c> surveys,
+    Id applicantId
+  ) {
+    for (Survey__c survey : surveys) {
+      if (String.isNotBlank(applicantId)) {
+        survey.Applicant__c = applicantId;
+      }
+      survey.Application__c = ApexRequest.getApplicationId();
+    }
+    ApplicantRepository.upsertRecords(surveys);
+    return surveys;
   }
 
   /**
@@ -328,6 +361,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
    * @param Id applicantId
    * @return List<FinServ__Revenue__c>
    **/
+  /*
   global virtual List<FinServ__Revenue__c> saveRevenues(
     List<FinServ__Revenue__c> revenues,
     Id applicantId
@@ -343,6 +377,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     ApplicantRepository.upsertRecords(revenues);
     return revenues;
   }
+  */
 
   /**
    * @description  delete object by Id
@@ -431,7 +466,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
   }
 
   /**
-   * @description Save financial account and childs
+   * @description Save financial account and children
    * @author Digital Align Team | 10-25-2021
    * @param List<FinServ__FinancialAccount__c> financialAccounts
    * @return List<FinServ__FinancialAccount__c>
