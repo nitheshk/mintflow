@@ -143,8 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description
-  >Junction object for disclosure template and disclosure consent</description>
+    <description>Consent for applicant and product</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -155,12 +154,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Disclosure Line Item</label>
+    <label>Consent</label>
     <nameField>
-        <label>Disclosure Line Item Name</label>
+        <label>Consent Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Disclosure Line Items</pluralLabel>
+    <pluralLabel>Consents</pluralLabel>
     <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

@@ -20,7 +20,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DisclosureLineItem__c</field>
+                <field>ConsentLineItem__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

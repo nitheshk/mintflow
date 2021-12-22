@@ -143,7 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Object to store all disclosure templates</description>
+    <description>Junction object for Consent template and consent</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -154,12 +154,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Disclosure Template</label>
+    <label>Consent Line Item</label>
     <nameField>
-        <label>Disclosure Template Name</label>
+        <label>Consent Line Item Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Disclosure Templates</pluralLabel>
+    <pluralLabel>Consent Line Items</pluralLabel>
     <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

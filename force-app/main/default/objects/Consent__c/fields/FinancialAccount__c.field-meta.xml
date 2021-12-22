@@ -2,12 +2,12 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FinancialAccount__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>Disclosure related to financial account</description>
+    <description>Consent related to financial account</description>
     <externalId>false</externalId>
     <label>Financial Account</label>
     <referenceTo>FinServ__FinancialAccount__c</referenceTo>
-    <relationshipLabel>Disclosure Consents</relationshipLabel>
-    <relationshipName>DisclosureConsents</relationshipName>
+    <relationshipLabel>Consent Consents</relationshipLabel>
+    <relationshipName>ConsentConsents</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

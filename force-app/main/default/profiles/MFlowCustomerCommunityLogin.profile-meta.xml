@@ -320,97 +320,97 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureConsent__c.Applicant__c</field>
+        <field>Consent__c.Applicant__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureConsent__c.ConsentDateTime__c</field>
+        <field>Consent__c.ConsentDateTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureConsent__c.DisclosureLineItem__c</field>
+        <field>Consent__c.ConsentLineItem__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureConsent__c.FinancialAccount__c</field>
+        <field>Consent__c.FinancialAccount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureConsent__c.Remarks__c</field>
+        <field>Consent__c.Remarks__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureConsent__c.Status__c</field>
+        <field>Consent__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureLineItem__c.DisclosureTemplate__c</field>
+        <field>ConsentLineItem__c.ConsentTemplate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureLineItem__c.EventIdentifier__c</field>
+        <field>ConsentLineItem__c.EventIdentifier__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureLineItem__c.IsSignatureRequired__c</field>
+        <field>ConsentLineItem__c.IsSignatureRequired__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureLineItem__c.Product__c</field>
+        <field>ConsentLineItem__c.Product__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureLineItem__c.isActive__c</field>
+        <field>ConsentLineItem__c.isActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureTemplate__c.Code__c</field>
+        <field>ConsentTemplate__c.Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureTemplate__c.DocumentName__c</field>
+        <field>ConsentTemplate__c.DocumentName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureTemplate__c.DocumentType__c</field>
+        <field>ConsentTemplate__c.DocumentType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureTemplate__c.Label__c</field>
+        <field>ConsentTemplate__c.Label__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureTemplate__c.Language__c</field>
+        <field>ConsentTemplate__c.Language__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureTemplate__c.LongDescipription__c</field>
+        <field>ConsentTemplate__c.LongDescipription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureTemplate__c.ShortDescription__c</field>
+        <field>ConsentTemplate__c.ShortDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DisclosureTemplate__c.URL__c</field>
+        <field>ConsentTemplate__c.URL__c</field>
         <readable>true</readable>
     </fieldPermissions>
 
@@ -4309,7 +4309,7 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>DisclosureConsent__c</object>
+        <object>Consent__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -4318,7 +4318,7 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>DisclosureLineItem__c</object>
+        <object>ConsentLineItem__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -4327,7 +4327,7 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>DisclosureTemplate__c</object>
+        <object>ConsentTemplate__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>

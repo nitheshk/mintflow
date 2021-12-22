@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>DisclosureTemplate__c</fullName>
+    <fullName>ConsentTemplate__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Lookup to templates</description>
     <externalId>false</externalId>
-    <label>Disclosure Template</label>
-    <referenceTo>DisclosureTemplate__c</referenceTo>
-    <relationshipLabel>Disclosure Line Items</relationshipLabel>
-    <relationshipName>DisclosureLineItems</relationshipName>
+    <label>Consent Template</label>
+    <referenceTo>ConsentTemplate__c</referenceTo>
+    <relationshipLabel>Consent Line Items</relationshipLabel>
+    <relationshipName>ConsentLineItems</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

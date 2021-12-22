@@ -11,24 +11,36 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>EventIdentifier__c</field>
+                <behavior>Readonly</behavior>
+                <field>Code__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DisclosureTemplate__c</field>
+                <field>Label__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Product__c</field>
+                <field>Language__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IsSignatureRequired__c</field>
+                <field>ShortDescription__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>isActive__c</field>
+                <field>LongDescipription__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DocumentType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DocumentName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>URL__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -69,7 +81,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>DisclosureConsent__c.DisclosureLineItem__c</relatedList>
+        <relatedList>ConsentLineItem__c.ConsentTemplate__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
