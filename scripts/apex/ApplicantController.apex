@@ -98,8 +98,8 @@ system.debug('Full Json : ' + res.data);
 
 List<AtomicFI_Employer__e> events = new List<AtomicFI_Employer__e>();
 AtomicFI_Employer__e atomicFI = new AtomicFI_Employer__e();
-atomicFI.ApplicantId__c = 'a0b0w00000F1mMDAAZ';
-atomicFI.EmployerId__c = 'a0A0w000003hjNDEAY';
+atomicFI.ApplicantId__c = 'a0b1y000001NMpiAAG';
+atomicFI.EmployerId__c = 'a0A1y0000029HgVEAU';
 events.add(atomicFI);
 List<Database.SaveResult> results = EventBus.publish(events);
 
@@ -118,4 +118,14 @@ for (Database.SaveResult sr : results) {
     }
   }
 }
+
+// To generate Payslips and W2
+ApexRequest request = new ApexRequest();
+request.setHeader(
+  new Map<String, String>{ 'applicantId' => 'a0b1y000001NMpiAAG','employerId' => 'a0A1y0000029HgVEAU' }
+);
+ApexResponse res = ApplicantController.generatePaySlipsW2(request);
+
+system.debug('Payslips and W2 : ' + res);
+
 }

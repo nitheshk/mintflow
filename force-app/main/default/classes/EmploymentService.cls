@@ -52,4 +52,19 @@ global with sharing class EmploymentService extends AbstractService {
       .getAtomicResponse(applicantId, employerId);
     return responseJson;
   }
+
+  /**
+   * @description Get  AtomicFI response of employment verification
+   * @author Digital Align Team | 10-26-2021
+   * @param applicantId applicantId
+   * @param employerId employerId
+   **/
+  global virtual String generatePaySlipsW2(
+    String applicantId,
+    String employerId
+  ) {
+    String responseJson = AtomicFIProvider.getInstance()
+      .generatePaySlipsW2(applicantId, employerId);
+    return responseJson;
+  }
 }

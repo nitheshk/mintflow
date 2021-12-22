@@ -209,4 +209,24 @@ global with sharing class AtomicFIService extends AbstractService {
       }
     }
   }
+
+   /**
+ * @description Get AtomicFI Response
+ * @author Digital Align Team | 11/11/2021
+ * @return  String
+ **/
+global virtual String getAtomicResponse(String applicantId, String employerId) {
+    String responseJson = AtomicFIProvider.getInstance()
+            .getAtomicResponse(applicantId, employerId);
+    return responseJson;
+  }
+
+  /**
+ * @description Get AtomicFI Response
+ * @author Digital Align Team | 11/11/2021
+ **/
+  global virtual void generatePaySlipsW2(String applicantId, String employerId) {
+    String responseJson =this.getAtomicResponse(applicantId, employerId);
+    AtomicFIProvider.getInstance().generatePaySlipsW2(responseJson,employerId);
+  }
 }

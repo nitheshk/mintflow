@@ -34,25 +34,24 @@ global with sharing class AtomicFIDTO {
 
   global class outputs {
     global Decimal income;
-    global string incomeType;
-    global string employeeType;
-    global string employmentStatus;
-    global string jobTitle;
+    global String incomeType;
+    global String employeeType;
+    global String employmentStatus;
+    global String jobTitle;
     global DateTime startDate;
     global Integer weeklyHours;
-    global string firstName;
-    global string lastName;
+    global String firstName;
+    global String lastName;
     global DateTime dateOfBirth;
-    global string email;
-    global string phone;
-    global string ssn;
-    global string address;
-    global string city;
-    global string state;
-    global string postalCode;
+    global String email;
+    global String phone;
+    global String ssn;
+    global String address;
+    global String city;
+    global String state;
+    global String postalCode;
     global String payCycle;
     //global String IdentificationNumber;
-
     global list<statements> statements;
     global list<w2s> w2s;
     global list<account> accounts;
@@ -68,8 +67,8 @@ global with sharing class AtomicFIDTO {
   }
 
   global class deductions {
-    global string category { get; set; }
-    global string label { get; set; }
+    global String category { get; set; }
+    global String label { get; set; }
     global Decimal amount { get; set; }
   }
   global class Account {
@@ -95,7 +94,7 @@ global with sharing class AtomicFIDTO {
     global String city;
     global String state;
     global String zipcode;
-    global string country;
+    global String country;
   }
   global class Paystub {
     global String id { get; set; }
@@ -104,8 +103,14 @@ global with sharing class AtomicFIDTO {
   global class w2s {
     global String id { get; set; }
     global DateTime year { get; set; }
-    global decimal totalWages { get; set; }
+    global Decimal totalWages { get; set; }
+    global form form { get; set; }
   }
+  global class form {
+    global String id { get; set; }
+    global String url { get; set; }
+  }
+
   global class Company {
     global String name { get; set; }
     global Branding branding { get; set; }
@@ -117,7 +122,7 @@ global with sharing class AtomicFIDTO {
     global Outputs outputs { get; set; }
   }
   global class Identity {
-    global string identificationNumber { get; set; }
+    global String identificationNumber { get; set; }
     global String dateOfBirth { get; set; }
     global String issueDate { get; set; }
     global String expiryDate { get; set; }

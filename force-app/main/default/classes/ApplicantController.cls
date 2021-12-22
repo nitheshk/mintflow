@@ -222,4 +222,33 @@ global with sharing class ApplicantController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description Generate payslips and W2 for applicant on employment verification
+   * @author Digital Align Team | 11-05-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  public static ApexResponse generatePaySlipsW2(ApexRequest request) {
+    try {
+      log?.fine('Inside generatePaySlipsW2');
+      validateRequest(request);
+      ID applicantId = (Id) ApexRequest.getParams('applicantId');
+      ID employerId = (Id) ApexRequest.getParams('employerId');
+      return ApexResponse.ok(
+        EmploymentService.getInstance()
+          .generatePaySlipsW2(applicantId, employerId)
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
 }
