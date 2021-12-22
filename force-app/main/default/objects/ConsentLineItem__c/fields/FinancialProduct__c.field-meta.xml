@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FinancialProduct__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Financial Product Linked</description>
+    <externalId>false</externalId>
+    <label>FinancialProduct</label>
+    <referenceTo>FinancialProduct__c</referenceTo>
+    <relationshipLabel>Consent Line Items</relationshipLabel>
+    <relationshipName>ConsentLineItems</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -20,7 +20,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Product__c</field>
+                <field>FinancialProduct__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -29,6 +29,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>isActive__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ExternalId__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
