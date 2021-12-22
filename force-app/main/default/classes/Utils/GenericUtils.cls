@@ -15,7 +15,7 @@ global with sharing class GenericUtils {
    * @param List<String> values
    **/
   global static void customException(String mesage, list<String> values) {
-    throw new SObjectException(String.format(mesage, values));
+    throw new CustomException(String.format(mesage, values));
   }
 
   /**

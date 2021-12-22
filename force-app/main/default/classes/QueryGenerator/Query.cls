@@ -3,7 +3,7 @@
  * @reference https://github.com/4an70m/apex-query-builder
  * @reference https://github.com/jpmonette/q
  * @reference https://github.com/apex-enterprise-patterns/fflib-apex-common
- * @description Soql/Sosl buidler for salesforce SObjects
+ * @description Soql/Sosl builder for salesforce SObjects
  * @group Utils
  */
 @SuppressWarnings(
@@ -298,7 +298,7 @@ global inherited sharing class Query {
   }
 
   /**
-   * @description Add field based on the fieldset name from SObject Type
+   * @description Add field based on the field-set name from SObject Type
    * @author Digital Align | 05-04-2021
    * @param String fieldSetName
    * @return Query
@@ -332,7 +332,7 @@ global inherited sharing class Query {
    *   .addFields(new list<String>{'Name','LastName'})
    *   .toString(true);
    **/
-  global Query addFields(list<String> fieldNames) {
+  global Query addFields(List<String> fieldNames) {
     for (String f : fieldNames) {
       if (!ignoreFields.contains(f)) {
         this.fieldNames.add(resolveApiName(f));
@@ -342,7 +342,7 @@ global inherited sharing class Query {
   }
 
   /**
-   * @description Pass list of field names as string by comma seperated
+   * @description Pass list of field names as string by comma separated
    * @author Digital Align | 05-03-2021
    * @param String fieldNames
    * @return Query
@@ -367,7 +367,7 @@ global inherited sharing class Query {
    *    .removeFields(new List<String>{'LastName','FirstName'})
    *    .toString(true);
    **/
-  global Query removeFields(list<String> fieldNames) {
+  global Query removeFields(List<String> fieldNames) {
     List<String> resolvedFiledNames = new List<String>();
     for (String name : fieldNames) {
       resolvedFiledNames.add(this.resolveApiName(name));
@@ -403,7 +403,7 @@ global inherited sharing class Query {
    *  .whereCon('LastName=\'Rogers\'')
    *  .toString(true);
    **/
-  global query whereCon(String condition) {
+  global Query whereCon(String condition) {
     this.whereClause.add(condition);
     return this;
   }
@@ -450,12 +450,38 @@ global inherited sharing class Query {
   }
 
   /**
+   * @description SOQL to create custom where condition by passing field-name,operation and value
+   * @author Digital Align Team | 12-21-2021
+   * @param String fieldName
+   * @param String operation
+   * @param Object value
+   * @return Query
+   * @example String FirstName='Tim';
+   * String q = Query.newInstance(Contact.SObjectType)
+   *  .addFields('Name')
+   *  .whereCon('LastName','=','Barr')
+   *  .AndCon()
+   *  .whereEq('FirstName','=',FirstName)
+   *  .toString(true);
+   *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
+   **/
+  global Query whereCon(String fieldName, String operation, Object value) {
+    this.whereClause.add(
+      resolveApiName(fieldName) +
+      operation +
+      formatCriteriaInput(value)
+    );
+
+    return this;
+  }
+
+  /**
    * @description Soql adding where condition which resolve field reference and pass true to escape single quotes for value
    * @author Digital Align Team | 07-13-2021
    * @param String fieldName
    * @param Object value
    * @return Query
-   * String FirstName='Tim';
+   * @example String FirstName='Tim';
    * String q = Query.newInstance(Contact.SObjectType)
    *  .addFields('Name')
    *  .whereEq('LastName','Barr')
@@ -482,13 +508,13 @@ global inherited sharing class Query {
    * String FirstName='Tim';
    * String q = Query.newInstance(Contact.SObjectType)
    *  .addFields('Name')
-   *  .whereNotEq('LastName','Barr')
+   *  .whereNeq('LastName','Barr')
    *  .AndCon()
-   *  .whereNotEq('FirstName',FirstName)
+   *  .whereNeq('FirstName',FirstName)
    *  .toString(true);
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
-  global Query whereNotEq(String fieldName, Object value) {
+  global Query whereNeq(String fieldName, Object value) {
     this.whereClause.add(
       resolveApiName(fieldName) +
       QueryConstants.SYB_NEQ +
@@ -702,7 +728,7 @@ global inherited sharing class Query {
    *     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    *   system.debug(system.JSON.Serialize(sl));
    **/
-  global Query whereIn(String fieldName, set<Object> values) {
+  global Query whereIn(String fieldName, Set<Object> values) {
     return this.whereIn(fieldName, new List<Object>(values));
   }
 
@@ -832,7 +858,7 @@ global inherited sharing class Query {
    *     sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    *   system.debug(system.JSON.Serialize(sl));
    **/
-  global Query whereNotIn(String fieldName, set<Object> values) {
+  global Query whereNotIn(String fieldName, Set<Object> values) {
     return this.whereNotIn(fieldName, new List<Object>(values));
   }
 
@@ -974,7 +1000,7 @@ global inherited sharing class Query {
   }
 
   /**
-   * @description SOQL for for mulitple picklist comparision by passing list as list of values
+   * @description SOQL for for multiple picklist comparison by passing list as list of values
    * @author Digital Align | 05-07-2021
    * @param String fieldName
    * @param List<String> values
@@ -996,7 +1022,7 @@ global inherited sharing class Query {
   }
 
   /**
-   * @description SOQL for for mulitple picklist comparision by passing string as list of value
+   * @description SOQL for for multiple picklist comparison by passing string as list of value
    * @author Digital Align | 05-07-2021
    * @param String fieldName
    * @param String values
@@ -1024,7 +1050,7 @@ global inherited sharing class Query {
    *       .whereLike('Name','Burlington')
    *       .toString(true);
    **/
-  global query whereLike(String fieldName, String value) {
+  global Query whereLike(String fieldName, String value) {
     String condition =
       resolveApiName(fieldName) +
       QueryConstants.CONDITION_LIKE +
@@ -1045,7 +1071,7 @@ global inherited sharing class Query {
    *       .whereLeftLike('Name','Burlington')
    *       .toString(true);
    **/
-  global query whereLeftLike(String fieldName, String value) {
+  global Query whereLeftLike(String fieldName, String value) {
     String condition =
       resolveApiName(fieldName) +
       QueryConstants.CONDITION_LIKE +
@@ -1066,7 +1092,7 @@ global inherited sharing class Query {
    *       .whereRightLike('Name','Burlington')
    *       .toString(true);
    **/
-  global query whereRightLike(String fieldName, String value) {
+  global Query whereRightLike(String fieldName, String value) {
     String condition =
       resolveApiName(fieldName) +
       QueryConstants.CONDITION_LIKE +
@@ -1087,7 +1113,7 @@ global inherited sharing class Query {
    **/
   global String queryById(Object recordId) {
     if (this.parent != null) {
-      GenericUtils.customException('ById not allowd for inner Query', null);
+      GenericUtils.customException('ById not allowed for inner Query', null);
     }
     this.whereEq('Id', recordId);
     return this.toString();
@@ -1097,7 +1123,7 @@ global inherited sharing class Query {
    * @description soql for find distance between a location
    * @author Digital Align | 05-07-2021
    * @param String fieldName
-   * @param System.Location distinationLocation
+   * @param System.Location destinationLocation
    * @param String unit
    * @param String value
    * @return Query
@@ -1108,7 +1134,7 @@ global inherited sharing class Query {
    **/
   global Query whereDistance(
     String fieldName,
-    System.Location distinationLocation,
+    System.Location destinationLocation,
     String unit,
     String value
   ) {
@@ -1116,9 +1142,9 @@ global inherited sharing class Query {
       'DISTANCE(' +
       resolveApiName(fieldName) +
       ', GEOLOCATION(' +
-      distinationLocation.getLatitude() +
+      destinationLocation.getLatitude() +
       ',' +
-      distinationLocation.getLongitude() +
+      destinationLocation.getLongitude() +
       '),\'' +
       String.escapeSingleQuotes(unit) +
       '\')';
@@ -1264,10 +1290,10 @@ global inherited sharing class Query {
   }
 
   /**
-   * @description soql orderby distance between a location by default asscending
+   * @description soql order by distance between a location by default ascending
    * @author Digital Align | 05-07-2021
    * @param String fieldName
-   * @param System.Location distinationLocation
+   * @param System.Location destinationLocation
    * @param String unit
    * @return QueryBuilder
    * @example String q = Query.newInstance(Contact.SObjectType)
@@ -1277,17 +1303,17 @@ global inherited sharing class Query {
    **/
   global Query orderByDistance(
     String fieldName,
-    System.Location distinationLocation,
+    System.Location destinationLocation,
     String unit
   ) {
-    return this.orderByDistance(fieldName, distinationLocation, unit, false);
+    return this.orderByDistance(fieldName, destinationLocation, unit, false);
   }
 
   /**
-   * @description soql orderby distance between a location, pass direction true for descensing
+   * @description soql order by distance between a location, pass direction true for descending
    * @author Digital Align | 05-07-2021
    * @param String fieldName
-   * @param System.Location distinationLocation
+   * @param System.Location destinationLocation
    * @param String unit
    * @param Boolean direction
    * @return Query
@@ -1298,7 +1324,7 @@ global inherited sharing class Query {
    **/
   global Query orderByDistance(
     String fieldName,
-    System.Location distinationLocation,
+    System.Location destinationLocation,
     String unit,
     Boolean direction
   ) {
@@ -1306,9 +1332,9 @@ global inherited sharing class Query {
       'DISTANCE(' +
       resolveApiName(fieldName) +
       ',GEOLOCATION(' +
-      distinationLocation.getLatitude() +
+      destinationLocation.getLatitude() +
       ',' +
-      distinationLocation.getLongitude() +
+      destinationLocation.getLongitude() +
       '),\'' +
       String.escapeSingleQuotes(unit) +
       '\')';
@@ -1375,6 +1401,128 @@ global inherited sharing class Query {
   global Query addOffset(Integer limitClause) {
     this.offsetClause = limitClause;
     return this;
+  }
+
+  /**
+   * @description  soql based on the custom filter
+   * Pass filter tag in ApexRequest header
+   * By default all the field are compare with equal sign
+   * To override logical operator, Prefix $ same fildname and pass logic operator
+   * Supported logically operatory are =, != , < ,> ,<= ,>= , LIKE , INCLUDES
+   * INCLUDES Work for MultiPicklist Fields only
+   * @author Digital Align Team | 12-21-2021
+   * @param String filters
+   * @return Query
+   * @example String jsonString = '[{"Name":"Test12","$Name":"!=", "mflow__test2__c":["test3","test4"],"$mflow__test2__c":"INCLUDES", "mflow__EventIdentifier__c":"","mflow__isActive__c":true,"mflow__test1__c":43, "mflow__Product__c":""},
+   *  {"Name":"Test1","mflow__EventIdentifier__c":"","mflow__isActive__c":true}]';
+   * List<Object> filters = (List<Object>) JSON.deserializeUntyped(jsonString);
+   * List<DisclosureLineItem__c> items = (List<DisclosureLineItem__c>) EmailNotificationRepository.getRecords(
+   *   Query.newInstance(DisclosureLineItem__c.SObjectType)
+   *     .addFields()
+   *     .filter(filters,'mflow__Filter')
+   *     .toString(true)
+   *  );
+   *  system.debug('items :' + items);
+   **/
+  global Query filter(List<Object> filters, String fieldSetName) {
+    // fs-> FieldSet
+    FieldSet fs = SObjectUtils.getFieldSet(this.sType, fieldSetName);
+    if (fs == null) {
+      GenericUtils.customException(
+        '{0} Field Set not found ',
+        new List<String>{ fieldSetName }
+      );
+    }
+
+    Boolean hasMoreFilter = false;
+    for (Object filterObj : filters) {
+      if (hasMoreFilter) {
+        this.orCon();
+      }
+      this.grpOpen();
+      Map<String, Object> filter = (Map<String, Object>) filterObj;
+      Boolean hasMoreField = false;
+      for (FieldSetMember fsm : fs.getFields()) {
+        if (hasMoreField) {
+          this.andCon();
+        }
+        if (filter.containsKey(fsm.getFieldPath())) {
+          resolveField(
+            fsm,
+            filter.get(fsm.getFieldPath()),
+            String.valueOf(filter.get('$' + fsm.getFieldPath()))
+          );
+        } else {
+          resolveField(fsm, null, null);
+        }
+        hasMoreField = true;
+      }
+      this.grpClose();
+      hasMoreFilter = true;
+    }
+    return this;
+  }
+
+  /**
+   * @description resolve dynamic filter for fields
+   * @author Digital Align Team | 12-21-2021
+   * @param FieldSetMember fsm
+   * @param Object fieldValue
+   **/
+  private void resolveField(
+    FieldSetMember fsm,
+    Object fieldValue,
+    String logic
+  ) {
+    switch on fsm.getType() {
+      when BOOLEAN {
+        this.whereEq(
+          fsm.getFieldPath(),
+          fieldValue != null ? Boolean.valueOf(fieldValue) : false
+        );
+      }
+      when else {
+        switch on logic {
+          when '=', '!=', '<', '>', '<=', '>=' {
+            this.whereCon(
+              fsm.getFieldPath(),
+              logic,
+              fieldValue != null ? fieldValue : null
+            );
+          }
+          when 'LIKE' {
+            this.whereLike(
+              fsm.getFieldPath(),
+              fieldValue != null ? String.valueOf(fieldValue) : null
+            );
+          }
+          when 'INCLUDES' {
+            if (fieldValue == null) {
+              this.whereIncludes(fsm.getFieldPath(), '');
+            } else if (fieldValue instanceof String) {
+              this.whereIncludes(
+                fsm.getFieldPath(),
+                String.valueOf(fieldValue)
+              );
+            } else if (fieldValue instanceof List<Object>) {
+              this.whereIncludes(
+                fsm.getFieldPath(),
+                (List<String>) JSON.deserialize(
+                  JSON.serialize(fieldValue),
+                  List<String>.class
+                )
+              );
+            }
+          }
+          when else {
+            this.whereEq(
+              fsm.getFieldPath(),
+              fieldValue != null ? fieldValue : null
+            );
+          }
+        }
+      }
+    }
   }
 
   /**
@@ -1447,7 +1595,7 @@ global inherited sharing class Query {
 
   /**
    * @description Display soql on run time
-   * @author NitheshK | 05-01-2021
+   * @author Digital Align | 05-01-2021
    * @return Query
    * @example String q = Query.newInstance(Account.SObjectType)
    *   .addFields()
@@ -1551,7 +1699,7 @@ global inherited sharing class Query {
     }
 
     if (this.relationType == Relationship.PARENT && this.displayQuery) {
-      system.debug(LoggingLevel.DEBUG, 'Query : ' + queryString);
+      System.debug(LoggingLevel.DEBUG, 'Query : ' + queryString);
     }
 
     return queryString;
