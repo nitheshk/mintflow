@@ -26,6 +26,10 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         .run()
         .queryChild('mflow__FinancialAccounts__r')
         .run()
+        .queryChild('mflow__Surveys__r')
+        .addFields()
+        .orderBy('Order__c')
+        .run()
         .whereEq('Id', applicationId)
         .toString()
     );
@@ -40,7 +44,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
    * @return Account
    **/
   global static Account readApplicationByApplicationNumber(
-    string applicationNumber
+    String applicationNumber
   ) {
     return (Account) DatabaseUtils.getRecord(
       Query.newInstance(Account.SObjectType)
@@ -74,6 +78,10 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         .orderBy('mflow__Order__c')
         .run()
         .queryChild('mflow__FinancialAccounts__r')
+        .run()
+        .queryChild('mflow__Surveys__r')
+        .addFields()
+        .orderBy('Order__c')
         .run()
         .whereEq('Id', applicationId)
         .toString()
@@ -148,7 +156,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   }
 
   /**
-   * @description get authprovider is existing or not
+   * @description get auth provider is existing or not
    * @author Digital Align Team | 12-08-2021
    * @param String developerName
    * @return AuthProvider

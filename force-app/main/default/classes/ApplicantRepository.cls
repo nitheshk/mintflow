@@ -35,10 +35,14 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
         /*.queryChild('mflow__AssetsAndLiabilities__r')
         .addFields()
         .orderBy('mflow__Order__c')
-        .run()*/
+        .run()
         .queryChild('mflow__Revenues__r')
         .addFields()
         .orderBy('mflow__Order__c')
+        .run()*/
+        .queryChild('mflow__Surveys__r')
+        .addFields()
+        .orderBy('Order__c')
         .run()
         .whereIn('Id', applicantIds)
         .toString()
@@ -72,10 +76,14 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
         /*.queryChild('mflow__AssetsAndLiabilities__r')
         .addFields()
         .orderBy('mflow__Order__c')
-        .run()*/
+        .run()
         .queryChild('mflow__Revenues__r')
         .addFields()
         .orderBy('mflow__Order__c')
+        .run()*/
+        .queryChild('mflow__Surveys__r')
+        .addFields()
+        .orderBy('Order__c')
         .run()
         .whereEq('Id', applicantId)
         .toString()
