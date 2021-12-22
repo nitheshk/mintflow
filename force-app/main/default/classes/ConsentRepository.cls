@@ -15,7 +15,8 @@ public with sharing class ConsentRepository extends DatabaseUtils {
    **/
   public static List<ConsentLineItem__c> fetchConsentByFilter(
     List<Object> filters,
-    String fieldSetName
+    String fieldSetName,
+    String eventIdentifier
   ) {
     return (List<ConsentLineItem__c>) getRecords(
       Query.newInstance(mflow__ConsentLineItem__c.SObjectType)
@@ -26,6 +27,8 @@ public with sharing class ConsentRepository extends DatabaseUtils {
         .whereEq('mflow__isActive__c', true)
         .andCon()
         .whereNotNull('mflow__ConsentTemplate__c')
+        .andCon()
+        .whereEq('mflow__EventIdentifier__c', eventIdentifier)
         .andCon()
         .filter(filters, fieldSetName)
         .orderBy('mflow__Order__c')

@@ -1425,6 +1425,9 @@ global inherited sharing class Query {
    *  system.debug('items :' + items);
    **/
   global Query filter(List<Object> filters, String fieldSetName) {
+    if (CollectionUtils.isListEmpty(filters)) {
+      return this;
+    }
     // fs-> FieldSet
     FieldSet fs = SObjectUtils.getFieldSet(this.sType, fieldSetName);
     if (fs == null) {

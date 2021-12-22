@@ -144,13 +144,14 @@
     <tabs>standard-home</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
-    <tabs>FinancialInstituteAccount</tabs>
     <tabs>Diagnostic__c</tabs>
     <tabs>ApplicationConfiguration</tabs>
     <tabs>Flow__c</tabs>
     <tabs>FinServ__FinancialAccount__c</tabs>
+    <tabs>ConsentLineItem__c</tabs>
     <tabs>FinServ__AssetsAndLiabilities__c</tabs>
     <tabs>FinServ__FinancialGoal__c</tabs>
+    <tabs>FinancialInstituteAccount</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
@@ -167,6 +168,9 @@
         </mappings>
         <mappings>
             <tab>FinServ__FinancialGoal__c</tab>
+        </mappings>
+         <mappings>
+            <tab>ConsentLineItem__c</tab>
         </mappings>
         <mappings>
             <tab>FinancialInstituteAccount</tab>

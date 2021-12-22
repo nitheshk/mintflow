@@ -34,7 +34,10 @@ global with sharing class ConsentResolver extends AbstractService {
    **/
   global virtual List<Consent__c> fetchConsents(String data) {
     List<Object> filters = (List<Object>) ApexRequest.getParams('filter');
-    if (filters == null) {
+    String eventIdentifier = String.valueOf(
+      ApexRequest.getParams('eventIdentifier')
+    );
+    if (eventIdentifier == null) {
       throw new CustomException(
         'Filter is not mentioned, Need to pass at least EventIdentifier as filter option'
       );
@@ -42,7 +45,8 @@ global with sharing class ConsentResolver extends AbstractService {
     // fetch consent item by  custom filter
     List<ConsentLineItem__c> consentLineItems = ConsentRepository.fetchConsentByFilter(
       filters,
-      'mflow__Filter'
+      'mflow__Filter',
+      eventIdentifier
     );
     // map consent items into consent
     List<Consent__c> consents = mapConsentItemToConsent(consentLineItems);
@@ -58,6 +62,11 @@ global with sharing class ConsentResolver extends AbstractService {
   global virtual List<Consent__c> mapConsentItemToConsent(
     List<ConsentLineItem__c> consentLineItems
   ) {
+    Map<String, Consent__c> consentMap = new Map<String, Consent__c>();
+    for (ConsentLineItem__c consentLineItem : consentLineItems) {
+      Consent__c consent = new Consent__c();
+    }
+
     return null;
   }
 }

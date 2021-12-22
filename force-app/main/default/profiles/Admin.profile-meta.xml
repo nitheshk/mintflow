@@ -116,6 +116,10 @@
         <tab>Flow__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>ConsentLineItem__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
 
     <!--applicationVisibilities-->
     <applicationVisibilities>
