@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>ConsentTemplate__c</columns>
+    <columns>EventIdentifier__c</columns>
+    <columns>FinancialProduct__c</columns>
+    <columns>isActive__c</columns>
+    <columns>Order__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>
