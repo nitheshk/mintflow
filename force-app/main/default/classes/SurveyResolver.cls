@@ -27,16 +27,14 @@ global with sharing class SurveyResolver extends AbstractService {
   }
 
   /**
-   * @description fetch survey by template Name
-   * @author Digital Align Team | 08-25-2021
-   * @param String templateName
-   * @return  List<Survey__c>
+   * @description fetch survey by filters
+   * @author Digital Align | 12-22-2021
+   * @param List<Object> filters
+   * @return virtual
    **/
-  global virtual List<Survey__c> fetchSurveyByTemplateName(
-    String templateName
-  ) {
-    List<SurveyTemplate__c> surveyTemlates = SurveyRepository.fetchSurveyTemplatesByName(
-      templateName
+  global virtual List<Survey__c> fetchSurvey(List<Object> filters) {
+    List<SurveyTemplate__c> surveyTemlates = SurveyRepository.fetchSurveyTemplateByFilters(
+      filters
     );
     return buildSurvey(surveyTemlates);
   }

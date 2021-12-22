@@ -71,6 +71,9 @@ global with sharing class ApplicationDataAPI {
             System.Label.Application_ApplicationHasNoApplicants
           );
         }
+        if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
+          mapperApplication.Surveys.addAll(mapSurvey(application.Surveys__r));
+        }
         mapper.Application = mapperApplication;
       } else {
         throw new CustomException(System.Label.Application_ApplicationNotFound);
@@ -134,6 +137,10 @@ global with sharing class ApplicationDataAPI {
       //Map Revenue Data
       if (!CollectionUtils.isListEmpty(applicant.Revenues__r)) {
         mapperApplicant.Revenues.addAll(mapRevenue(applicant.Revenues__r));
+      }
+      //Map Survey Data
+      if (!CollectionUtils.isListEmpty(applicant.Surveys__r)) {
+        mapperApplicant.Surveys.addAll(mapSurvey(applicant.Surveys__r));
       }
 
       //Map ContatcPointAddress Data
@@ -243,6 +250,33 @@ global with sharing class ApplicationDataAPI {
       mapperRevenueList.add(mapperRevenue);
     }
     return mapperRevenueList;
+  }
+
+  /**
+   * @description
+   * @author Digital Align | 12-22-2021
+   * @param List<mflow__Survey__c> surveyList
+   * @return list<ApplicationResponseMapper.Survey>
+   **/
+  global static list<ApplicationResponseMapper.Survey> mapSurvey(
+    List<mflow__Survey__c> surveyList
+  ) {
+    list<ApplicationResponseMapper.Survey> mapperSurveyList = new List<ApplicationResponseMapper.Survey>();
+    for (mflow__Survey__c survey : surveyList) {
+      ApplicationResponseMapper.Survey mapperSurvey = new ApplicationResponseMapper.Survey();
+      mapperSurvey.SurveyId = survey.Id;
+      mapperSurvey.Answer = survey.mflow__Answer__c;
+      mapperSurvey.LongDescription = survey.mflow__LongDescription__c;
+      mapperSurvey.Name = survey.Name;
+      mapperSurvey.OptionType = survey.mflow__OptionType__c;
+      mapperSurvey.Order = survey.mflow__Order__c;
+      mapperSurvey.ParentQuestionCode = survey.mflow__ParentQuestionCode__c;
+      mapperSurvey.QuestionCode = survey.mflow__QuestionCode__c;
+      mapperSurvey.QuestionNumber = survey.mflow__QuestionNumber__c;
+      mapperSurvey.ShortDescription = survey.mflow__ShortDescription__c;
+      mapperSurveyList.add(mapperSurvey);
+    }
+    return mapperSurveyList;
   }
   /**
    * @description

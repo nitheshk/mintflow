@@ -15,6 +15,7 @@ global with sharing class ApplicationResponseMapper {
   //global List<FinancialAccount> FinancialAccounts;
   global class Account {
     global List<Applicant> Applicants;
+    global List<Survey> Surveys;
     global String ApplicationId;
     global Boolean IsCountyEligible;
     global String ApplicationNumber;
@@ -36,6 +37,7 @@ global with sharing class ApplicationResponseMapper {
     global String UserAccountType;
     global Account() {
       Applicants = new List<Applicant>();
+      Surveys = new List<Survey>();
     }
   }
   global class Applicant {
@@ -68,12 +70,14 @@ global with sharing class ApplicationResponseMapper {
     global List<ContactPointAddress> ContactPointAddresses;
     global List<Revenue> Revenues;
     global List<Employment> Employments;
+    global List<Survey> Surveys;
     // global List<AssetsAndLiabilities> AssetsAndLiabilities;
     global Applicant() {
       Employments = new List<Employment>();
       Revenues = new List<Revenue>();
       ContactPointAddresses = new List<ContactPointAddress>();
       IdentificationDocuments = new List<IdentificationDocument>();
+      Surveys = new List<Survey>();
       // AssetsAndLiabilities = new List<AssetsAndLiabilities>();
     }
   }
@@ -87,6 +91,19 @@ global with sharing class ApplicationResponseMapper {
   //   global String Ownership;
   //   global String Name;
   // }
+
+  global class Survey {
+    global String SurveyId;
+    global String Name;
+    global String Answer;
+    global String LongDescription;
+    global String OptionType;
+    global String QuestionCode;
+    global Decimal Order;
+    global String ShortDescription;
+    global String ParentQuestionCode;
+    global Decimal QuestionNumber;
+  }
 
   global class Revenue {
     global String RevenueId;

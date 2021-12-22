@@ -301,6 +301,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <relatedList>Survey__c.Applicant__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>FinancialAccount__c</fields>
         <fields>isPrimary__c</fields>
         <fields>Roles__c</fields>

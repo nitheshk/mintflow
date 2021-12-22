@@ -1,4 +1,4 @@
-string applicationId = '0016D00000YF0YjQAL'; // account ID
+string applicationId = 'App-0002'; // account ID
 system.debug(
   (JSON.serialize(ApplicationDataAPI.obtainApplicationData(applicationId)))
 );

@@ -49,4 +49,25 @@ public with sharing class SurveyRepository extends DatabaseUtils {
         .toString(true)
     );
   }
+  /**
+   * @description fetch templates based on filters
+   * @author Digital Align | 12-22-2021
+   * @param List<Object> filters
+   * @return List<SurveyTemplate__c>
+   **/
+  public static List<SurveyTemplate__c> fetchSurveyTemplateByFilters(
+    List<Object> filters
+  ) {
+    return (List<SurveyTemplate__c>) getRecords(
+      Query.newInstance(SurveyTemplate__c.SObjectType)
+        .addFields()
+        .queryChild('mflow__SurveyTemplateItems__r')
+        .addFields()
+        .orderBy('mflow__Order__c')
+        .run()
+        .filter(filters, 'mflow__Filter')
+        .orderBy('mflow__Order__c')
+        .toString(true)
+    );
+  }
 }
