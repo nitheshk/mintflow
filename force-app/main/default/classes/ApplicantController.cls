@@ -180,8 +180,10 @@ global with sharing class ApplicantController extends AbstractController {
       log?.fine('Inside atomicAuthenticate');
       validateRequest(request);
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
+      ID employerId = (Id) ApexRequest.getParams('employerId');
       return ApexResponse.ok(
-        EmploymentService.getInstance().atomicAuthenticate(applicantId)
+        EmploymentService.getInstance()
+          .atomicAuthenticate(applicantId, employerId)
       );
     } catch (CustomException ex) {
       log?.error(ex);

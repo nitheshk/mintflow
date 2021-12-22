@@ -33,9 +33,13 @@ global with sharing class EmploymentService extends AbstractService {
    * @author Digital Align Team | 10-26-2021
    * @param applicantId applicantId
    **/
-  global virtual String atomicAuthenticate(String applicantId) {
+  global virtual String atomicAuthenticate(
+    String applicantId,
+    String employerId
+  ) {
     System.debug('inside employement service');
-    String body = AtomicFIProvider.getInstance().authenticate(applicantId);
+    String body = AtomicFIProvider.getInstance()
+      .authenticate(applicantId, employerId);
     return body;
   }
   /**

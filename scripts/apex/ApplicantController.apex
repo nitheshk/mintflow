@@ -79,7 +79,7 @@ system.debug('Full Json : ' + res.data);
 // Method to authenticate AtomicFI token
 ApexRequest request = new ApexRequest();
 request.setHeader(
-  new Map<String, String>{ 'applicantId' => 'a0b0w00000F1mMDAAZ' }
+ new Map<String, String>{ 'applicantId' => 'a0b1y000001NMpiAAG','employerId' => 'a0A1y0000029HgVEAU' }
 );
 ApexResponse res = ApplicantController.atomicAuthenticate(request);
 

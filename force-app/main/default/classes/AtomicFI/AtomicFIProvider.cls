@@ -26,7 +26,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
    * @param ApplicantId
    * @return String
    **/
-  global virtual String authenticate(String applicantId) {
+  global virtual String authenticate(String applicantId, String employerId) {
     String jsonRequest;
     String tokenKey;
     Map<String, Object> objectData;
@@ -35,7 +35,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
         applicantId
       );
       AtomicFIDTO atomicObj = AtomicFIService.getInstance()
-        .createApplicantRequestJson(applicant);
+        .createApplicantRequestJson(applicant, employerId);
       jsonRequest = JSON.serialize(atomicObj, true);
       HttpBuilder.setAPISetting(APINames.AtomicFIToken);
 
@@ -122,7 +122,6 @@ global with sharing class AtomicFIProvider extends AbstractService {
         apiDynamicSetting.Method__c = 'GET';
         HttpBuilder.setAPISetting(apiDynamicSetting);
         HttpResponse response = HttpBuilder.httpCallOut(null, null);
-        System.debug('response of payslip::' + response);
         pdfContentList.add(response.getBodyAsBlob());
       }
       for (AtomicFIDTO.w2s w2sObj : w2sList) {
