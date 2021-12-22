@@ -1832,6 +1832,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Consent__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Consent__c.URL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ConsentLineItem__c.ConsentTemplate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1868,6 +1878,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ConsentLineItem__c.FinancialProductName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ConsentLineItem__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
