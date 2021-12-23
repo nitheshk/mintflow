@@ -154,12 +154,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>FinancialProduct</label>
+    <label>Financial Product</label>
     <nameField>
         <label>FinancialProduct Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>FinancialProducts</pluralLabel>
+    <pluralLabel>Financial Products</pluralLabel>
     <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

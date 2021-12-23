@@ -6,8 +6,8 @@
     <externalId>false</externalId>
     <label>Consent Template</label>
     <referenceTo>ConsentTemplate__c</referenceTo>
-    <relationshipLabel>Consent Templates</relationshipLabel>
-    <relationshipName>ConsentTemplates</relationshipName>
+    <relationshipLabel>Consents</relationshipLabel>
+    <relationshipName>Consents</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

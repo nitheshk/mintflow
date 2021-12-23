@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Category__c</columns>
+    <columns>SubCategory__c</columns>
+    <columns>Type__c</columns>
+    <columns>InternalCode__c</columns>
+    <columns>ExternalCode__c</columns>
+    <columns>isActive__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>All</label>
+</ListView>

@@ -1870,6 +1870,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ConsentLineItem__c.FinancilProductCategory__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ConsentLineItem__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
