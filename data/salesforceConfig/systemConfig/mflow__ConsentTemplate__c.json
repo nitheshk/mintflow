@@ -1,0 +1,203 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "mflow__ConsentTemplate__c",
+        "referenceId": "ConsentTemplateRef0"
+      },
+      "Name": "E Sign Consent",
+      "mflow__Code__c": "C0001",
+      "mflow__DocumentName__c": "ESignConsent_v1",
+      "mflow__DocumentType__c": "Static",
+      "mflow__Language__c": "English",
+      "mflow__LongDescipription__c": "E Sign Consent",
+      "mflow__ShortDescription__c": "E Sign Consent",
+      "mflow__ExternalId__c": "E0001",
+      "mflow__VersionNumber__c": "v1",
+      "mflow__ConsentLineItems__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__ConsentLineItem__c",
+              "referenceId": "ConsentLineItemRef0_0"
+            },
+            "Name": "E Sign Consent",
+            "mflow__EventIdentifier__c": "ElibilityPage",
+            "mflow__IsSignatureRequired__c": false,
+            "mflow__isActive__c": true,
+            "mflow__ExternalId__c": "CLI0001",
+            "mflow__Order__c": 1
+          }
+        ]
+      }
+    },
+    {
+      "attributes": {
+        "type": "mflow__ConsentTemplate__c",
+        "referenceId": "ConsentTemplateRef1"
+      },
+      "Name": "Privacy Policy",
+      "mflow__Code__c": "C0002",
+      "mflow__DocumentName__c": "PrivacyPolicy_v1",
+      "mflow__DocumentType__c": "Static",
+      "mflow__Language__c": "English",
+      "mflow__LongDescipription__c": "Privacy Policy",
+      "mflow__ShortDescription__c": "Privacy Policy",
+      "mflow__ExternalId__c": "E0002",
+      "mflow__VersionNumber__c": "v1",
+      "mflow__ConsentLineItems__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__ConsentLineItem__c",
+              "referenceId": "ConsentLineItemRef1_0"
+            },
+            "Name": "Privacy Policy",
+            "mflow__EventIdentifier__c": "ReviewSubmit",
+            "mflow__IsSignatureRequired__c": false,
+            "mflow__isActive__c": true,
+            "mflow__ExternalId__c": "CLI0002",
+            "mflow__Order__c": 2
+          }
+        ]
+      }
+    },
+    {
+      "attributes": {
+        "type": "mflow__ConsentTemplate__c",
+        "referenceId": "ConsentTemplateRef2"
+      },
+      "Name": "Truth in Saving",
+      "mflow__Code__c": "C0007",
+      "mflow__DocumentName__c": "TruthinSaving_v1",
+      "mflow__DocumentType__c": "Static",
+      "mflow__Language__c": "English",
+      "mflow__LongDescipription__c": "Truth in Saving",
+      "mflow__ShortDescription__c": "Truth in Saving",
+      "mflow__ExternalId__c": "E0007",
+      "mflow__VersionNumber__c": "v1",
+      "mflow__ConsentLineItems__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__ConsentLineItem__c",
+              "referenceId": "ConsentLineItemRef2_0"
+            },
+            "Name": "Truth in Saving",
+            "mflow__EventIdentifier__c": "ReviewSubmit",
+            "mflow__IsSignatureRequired__c": false,
+            "mflow__isActive__c": true,
+            "mflow__ExternalId__c": "CLI0003",
+            "mflow__Order__c": 3
+          }
+        ]
+      }
+    },
+    {
+      "attributes": {
+        "type": "mflow__ConsentTemplate__c",
+        "referenceId": "ConsentTemplateRef3"
+      },
+      "Name": "Checking Account Agreement",
+      "mflow__Code__c": "C0006",
+      "mflow__DocumentName__c": "CheckingAccountAgreement_v1",
+      "mflow__DocumentType__c": "Static",
+      "mflow__Language__c": "English",
+      "mflow__LongDescipription__c": "Checking Account Agreement",
+      "mflow__ShortDescription__c": "Checking Account Agreement",
+      "mflow__ExternalId__c": "E0006",
+      "mflow__VersionNumber__c": "v1",
+      "mflow__ConsentLineItems__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__ConsentLineItem__c",
+              "referenceId": "ConsentLineItemRef3_0"
+            },
+            "Name": "Checking Account Agreement",
+            "mflow__EventIdentifier__c": "ReviewSubmit",
+            "mflow__IsSignatureRequired__c": false,
+            "mflow__isActive__c": true,
+            "mflow__ExternalId__c": "CLI0004",
+            "mflow__Order__c": 4,
+            "mflow__FinancilProductCategory__c": "Checking"
+          }
+        ]
+      }
+    },
+    {
+      "attributes": {
+        "type": "mflow__ConsentTemplate__c",
+        "referenceId": "ConsentTemplateRef4"
+      },
+      "Name": "Membership Agreement",
+      "mflow__Code__c": "C0004",
+      "mflow__DocumentName__c": "MembershipAgreement_v1",
+      "mflow__DocumentType__c": "Static",
+      "mflow__Language__c": "English",
+      "mflow__LongDescipription__c": "Membership Agreement",
+      "mflow__ShortDescription__c": "Membership Agreement",
+      "mflow__ExternalId__c": "E0004",
+      "mflow__VersionNumber__c": "v1",
+      "mflow__ConsentLineItems__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__ConsentLineItem__c",
+              "referenceId": "ConsentLineItemRef4_0"
+            },
+            "Name": "Membership Agreement",
+            "mflow__EventIdentifier__c": "ReviewSubmit",
+            "mflow__IsSignatureRequired__c": false,
+            "mflow__isActive__c": true,
+            "mflow__ExternalId__c": "CLI0005",
+            "mflow__Order__c": 5
+          }
+        ]
+      }
+    },
+    {
+      "attributes": {
+        "type": "mflow__ConsentTemplate__c",
+        "referenceId": "ConsentTemplateRef5"
+      },
+      "Name": "Addtional Joint",
+      "mflow__Code__c": "C0008",
+      "mflow__DocumentType__c": "HTML",
+      "mflow__Language__c": "English",
+      "mflow__LongDescipription__c": "Addtional Joint",
+      "mflow__ShortDescription__c": "Addtional Joint",
+      "mflow__ExternalId__c": "E0008",
+      "mflow__VersionNumber__c": "v1",
+      "mflow__HtmlContent__c": "<p>&lt;h1&gt; Html Content&lt;/h1&gt;</p>",
+      "mflow__ConsentLineItems__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__ConsentLineItem__c",
+              "referenceId": "ConsentLineItemRef5_0"
+            },
+            "Name": "Addtional Joint",
+            "mflow__EventIdentifier__c": "AddtionalJoint",
+            "mflow__IsSignatureRequired__c": false,
+            "mflow__isActive__c": true,
+            "mflow__ExternalId__c": "CLI0006",
+            "mflow__Order__c": 6
+          }
+        ]
+      }
+    }
+  ]
+}

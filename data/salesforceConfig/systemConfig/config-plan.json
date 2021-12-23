@@ -19,14 +19,20 @@
   },
   {
     "sobject": "mflow__SurveyTemplate__c",
-    "saveRefs": true,
-    "resolveRefs": true,
+    "saveRefs": false,
+    "resolveRefs": false,
     "files": ["mflow__SurveyTemplate__c.json"]
   },
   {
     "sobject": "mflow__FinancialProduct__c",
-    "saveRefs": false,
+    "saveRefs": true,
     "resolveRefs": false,
     "files": ["mflow__FinancialProduct__c.json"]
+  },
+  {
+    "sobject": "mflow__ConsentTemplate__c",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["mflow__ConsentTemplate__c.json"]
   }
 ]

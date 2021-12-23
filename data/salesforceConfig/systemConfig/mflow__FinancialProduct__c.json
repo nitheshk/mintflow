@@ -3,15 +3,15 @@
     {
       "attributes": {
         "type": "mflow__FinancialProduct__c",
-        "referenceId": "FinancialProducRef_0"
+        "referenceId": "IC004"
       },
       "Name": "Special Savings",
       "mflow__Category__c": "Savings",
       "mflow__DeleteRecord__c": false,
       "mflow__DisplayLabel__c": "Special Savings",
       "mflow__EndDate__c": "2026-11-05",
-      "mflow__ExternalCode__c": "EC-004",
-      "mflow__InternalCode__c": "IC-004",
+      "mflow__ExternalCode__c": "EC004",
+      "mflow__InternalCode__c": "IC004",
       "mflow__LongDescription__c": "Looking for a place to keep your mad mon",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
@@ -24,15 +24,15 @@
     {
       "attributes": {
         "type": "mflow__FinancialProduct__c",
-        "referenceId": "FinancialProducRef_1"
+        "referenceId": "IC003"
       },
       "Name": "Regular Savings",
       "mflow__Category__c": "Savings",
       "mflow__DeleteRecord__c": false,
       "mflow__DisplayLabel__c": "Regular Savings",
       "mflow__EndDate__c": "2026-11-05",
-      "mflow__ExternalCode__c": "EC-003",
-      "mflow__InternalCode__c": "IC-003",
+      "mflow__ExternalCode__c": "EC003",
+      "mflow__InternalCode__c": "IC003",
       "mflow__LongDescription__c": "The Regular Savings product is required",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
@@ -45,7 +45,7 @@
     {
       "attributes": {
         "type": "mflow__FinancialProduct__c",
-        "referenceId": "FinancialProducRef_2"
+        "referenceId": "IB-004"
       },
       "Name": "Working Capital Loans",
       "mflow__Category__c": "Loans",
@@ -66,7 +66,7 @@
     {
       "attributes": {
         "type": "mflow__FinancialProduct__c",
-        "referenceId": "FinancialProducRef_3"
+        "referenceId": "IB-002"
       },
       "Name": "Equipment & Vehicle Loans",
       "mflow__Category__c": "Loans",
@@ -87,15 +87,15 @@
     {
       "attributes": {
         "type": "mflow__FinancialProduct__c",
-        "referenceId": "FinancialProducRef_4"
+        "referenceId": "IC002"
       },
       "Name": "Idaho Medical Savings Accounts",
       "mflow__Category__c": "Savings",
       "mflow__DeleteRecord__c": false,
       "mflow__DisplayLabel__c": "Idaho Medical Savings Accounts",
       "mflow__EndDate__c": "2026-11-05",
-      "mflow__ExternalCode__c": "EC-002",
-      "mflow__InternalCode__c": "IC-002",
+      "mflow__ExternalCode__c": "EC002",
+      "mflow__InternalCode__c": "IC002",
       "mflow__LongDescription__c": "An Idaho Medical Savings Account (MSA) a",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
@@ -108,15 +108,15 @@
     {
       "attributes": {
         "type": "mflow__FinancialProduct__c",
-        "referenceId": "FinancialProducRef_5"
+        "referenceId": "IB-005"
       },
       "Name": "Business Non Profit",
       "mflow__Category__c": "Checking",
       "mflow__DeleteRecord__c": false,
       "mflow__DisplayLabel__c": "Business Non Profit",
       "mflow__EndDate__c": "2026-11-05",
-      "mflow__ExternalCode__c": "EB-004",
-      "mflow__InternalCode__c": "IB-004",
+      "mflow__ExternalCode__c": "EB-005",
+      "mflow__InternalCode__c": "IB-005",
       "mflow__LongDescription__c": "$0 Minimum Balance, $0 Check Writing Fee",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
@@ -129,15 +129,15 @@
     {
       "attributes": {
         "type": "mflow__FinancialProduct__c",
-        "referenceId": "FinancialProducRef_6"
+        "referenceId": "IC001"
       },
       "Name": "Membership",
       "mflow__Category__c": "Savings",
       "mflow__DeleteRecord__c": false,
       "mflow__DisplayLabel__c": "Membership",
       "mflow__EndDate__c": "2026-11-05",
-      "mflow__ExternalCode__c": "EC-001",
-      "mflow__InternalCode__c": "IC-001",
+      "mflow__ExternalCode__c": "EC001",
+      "mflow__InternalCode__c": "IC001",
       "mflow__LongDescription__c": "Looking for a place to keep your mad mon",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",

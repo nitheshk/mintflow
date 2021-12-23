@@ -12,7 +12,7 @@ utils
     // <== Script to update change for each config
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
-      item.attributes.referenceId = "FinancialProducRef_" + index;
+      item.attributes.referenceId = item.mflow__InternalCode__c;
     });
     //   Script to update change for each config ==>
     utils
