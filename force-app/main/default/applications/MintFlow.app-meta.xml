@@ -149,6 +149,7 @@
     <tabs>Flow__c</tabs>
     <tabs>FinServ__FinancialAccount__c</tabs>
     <tabs>ConsentLineItem__c</tabs>
+    <tabs>ConsentTemplate__c</tabs>
     <tabs>FinServ__AssetsAndLiabilities__c</tabs>
     <tabs>FinServ__FinancialGoal__c</tabs>
     <tabs>FinancialInstituteAccount</tabs>
@@ -169,8 +170,11 @@
         <mappings>
             <tab>FinServ__FinancialGoal__c</tab>
         </mappings>
-         <mappings>
+        <mappings>
             <tab>ConsentLineItem__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ConsentTemplate__c</tab>
         </mappings>
         <mappings>
             <tab>FinancialInstituteAccount</tab>
