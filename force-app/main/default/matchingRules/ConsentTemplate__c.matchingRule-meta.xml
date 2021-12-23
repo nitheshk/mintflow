@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<MatchingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <matchingRules>
+        <fullName>DuplicateConsentTemplateRule</fullName>
+        <description>Duplicate Consent Template</description>
+        <label>Duplicate Consent Template Rule</label>
+        <matchingRuleItems>
+            <blankValueBehavior>MatchBlanks</blankValueBehavior>
+            <fieldName>mflow__Code__c</fieldName>
+            <matchingMethod>Exact</matchingMethod>
+        </matchingRuleItems>
+        <matchingRuleItems>
+            <blankValueBehavior>MatchBlanks</blankValueBehavior>
+            <fieldName>mflow__VersionNumber__c</fieldName>
+            <matchingMethod>Exact</matchingMethod>
+        </matchingRuleItems>
+        <ruleStatus>Inactive</ruleStatus>
+    </matchingRules>
+</MatchingRules>
