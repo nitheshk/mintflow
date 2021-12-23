@@ -3,7 +3,6 @@
     <fullName>All</fullName>
     <columns>NAME</columns>
     <columns>Code__c</columns>
-    <columns>Label__c</columns>
     <columns>DocumentType__c</columns>
     <columns>VersionNumber__c</columns>
     <filterScope>Everything</filterScope>
