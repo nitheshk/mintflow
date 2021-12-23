@@ -115,6 +115,7 @@ global with sharing class ApplicationDataAPI {
       mapperApplicant.KYCStatus = applicant.KYCStatus__c;
       mapperApplicant.Order = applicant.Order__c;
       mapperApplicant.Phone = applicant.Phone__c;
+      mapperApplicant.Relationship = applicant.Relationship__c;
       mapperApplicant.SentiLinkFraudScore = applicant.SentiLinkFraudScore__c;
       mapperApplicant.SentiLinkRemarks = applicant.SentiLinkRemarks__c;
       mapperApplicant.SentiLinkStatus = applicant.SentiLinkStatus__c;
