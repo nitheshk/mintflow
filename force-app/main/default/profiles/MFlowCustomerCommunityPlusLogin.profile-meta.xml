@@ -2284,12 +2284,6 @@
         <field>FinServ__FinancialAccount__c.FinServ__ProductName__c</field>
         <readable>true</readable>
     </fieldPermissions>
-
-	 <fieldPermissions>
-        <editable>true</editable>
-        <field>FinancialProduct__c.Category__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinancialProduct__c.DeleteRecord__c</field>
