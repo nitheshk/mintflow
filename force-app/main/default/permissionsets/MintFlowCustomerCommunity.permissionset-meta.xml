@@ -1907,6 +1907,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ConsentTemplate__c.HtmlContent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ConsentTemplate__c.DocumentName__c</field>
         <readable>true</readable>
     </fieldPermissions>

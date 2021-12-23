@@ -31,6 +31,11 @@
                 <default>false</default>
                 <label>Signed</label>
             </value>
+            <value>
+                <fullName>HTML</fullName>
+                <default>false</default>
+                <label>HTML</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

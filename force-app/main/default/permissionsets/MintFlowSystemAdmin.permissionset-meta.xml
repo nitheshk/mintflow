@@ -1879,6 +1879,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>ConsentTemplate__c.HtmlContent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>ConsentLineItem__c.FinancialProductCode__c</field>
         <readable>true</readable>
