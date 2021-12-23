@@ -62,6 +62,7 @@ global with sharing class ApplicationResponseMapper {
     global String MiddleName;
     global Decimal Order;
     global String Phone;
+    global String Relationship;
     global Decimal SentiLinkFraudScore;
     global String SentiLinkRemarks;
     global String SentiLinkStatus;
