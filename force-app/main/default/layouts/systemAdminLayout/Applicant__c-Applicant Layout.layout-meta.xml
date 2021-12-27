@@ -291,6 +291,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Application__c</fields>
+        <fields>ConsentDateTime__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Status__c</fields>
         <relatedList>Consent__c.Applicant__c</relatedList>
     </relatedLists>
     <relatedLists>

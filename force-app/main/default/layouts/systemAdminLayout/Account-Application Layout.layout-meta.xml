@@ -192,6 +192,23 @@
         </relatedContentItems>
     </relatedContent>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>ApplicantNumber__c</fields>
+        <fields>ApplicantType__c</fields>
+        <fields>Birthdate__c</fields>
+        <relatedList>Applicant__c.Application__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Applicant__c</fields>
+        <fields>ConsentDateTime__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Status__c</fields>
+        <relatedList>Consent__c.Application__c</relatedList>
+        <sortField>CREATED_DATE</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
         <fields>CONTACT.FULL_NAME</fields>
         <fields>CONTACT.ACCOUNT_NAME</fields>
         <fields>CONTACT.TITLE</fields>
@@ -199,13 +216,6 @@
         <fields>CONTACT.PHONE1</fields>
         <fields>ACCCONRELATION.ROLES</fields>
         <relatedList>RelatedAccountContactRelationList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>ApplicantNumber__c</fields>
-        <fields>ApplicantType__c</fields>
-        <fields>Birthdate__c</fields>
-        <relatedList>Applicant__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>FULL_NAME</fields>
@@ -252,7 +262,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0p000001OcLh</masterLabel>
+        <masterLabel>00hN0000002bb6b</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
