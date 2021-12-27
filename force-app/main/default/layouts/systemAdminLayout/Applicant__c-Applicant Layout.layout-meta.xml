@@ -291,13 +291,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>FinServ__Type__c</fields>
-        <fields>FinServ__SubType__c</fields>
-        <fields>FinServ__Amount__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>FinServ__Revenue__c.Applicant__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
+        <relatedList>Consent__c.Applicant__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -314,15 +308,6 @@
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__AssetsAndLiabilitiesType__c</fields>
-        <fields>FinServ__Amount__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>FinServ__AssetsAndLiabilities__c.Applicant__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
         <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -331,7 +316,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0p000001OcLT</masterLabel>
+        <masterLabel>00hN0000002bb6K</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
