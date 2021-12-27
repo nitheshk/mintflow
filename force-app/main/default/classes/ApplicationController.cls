@@ -246,4 +246,29 @@ global with sharing class ApplicationController extends AbstractController {
       Logger.persist();
     }
   }
+  /**
+   * @description
+   * @author Digital Align | 12-27-2021
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse fetchSurvey(ApexRequest request) {
+    try {
+      validateRequest(request);
+      List<Object> filters = (List<Object>) JSON.deserializeUntyped(
+        (string) ApexRequest.getParams('filter')
+      );
+      return ApexResponse.ok(SurveyResolver.getInstance().fetchSurvey(filters));
+    } catch (CustomException ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
 }

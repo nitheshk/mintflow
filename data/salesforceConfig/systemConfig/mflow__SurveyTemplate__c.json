@@ -550,7 +550,7 @@
             "mflow__QuestionNumber__c": 1,
             "mflow__ShortDescription__c": "Will there be ACH Activity on the account to exceed $2,000 per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__hasChild__c": true
           },
           {
             "attributes": {
@@ -608,7 +608,7 @@
             "mflow__QuestionNumber__c": 2,
             "mflow__ShortDescription__c": "Will there be wire activity on the account in excess of $2,000 per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__hasChild__c": true
           },
           {
             "attributes": {
@@ -666,7 +666,7 @@
             "mflow__QuestionNumber__c": 3,
             "mflow__ShortDescription__c": "Do you plan to have cash transactions to your account in excess of $2,000 per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__hasChild__c": true
           },
           {
             "attributes": {
