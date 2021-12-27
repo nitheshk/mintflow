@@ -29,7 +29,6 @@ utils
           }
           //read only field
           delete item_c1.mflow__FinancialProductCode__c;
-          delete item_c1.mflow__FinancialProductName__c;
         });
       }
     });

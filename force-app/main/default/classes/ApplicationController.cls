@@ -223,7 +223,7 @@ global with sharing class ApplicationController extends AbstractController {
   }
 
   /**
-   * @description
+   * @description  fetch consent based on the custom fitler
    * @author Digital Align Team | 12-22-2021
    * @param ApexRequest request
    * @return ApexResponse

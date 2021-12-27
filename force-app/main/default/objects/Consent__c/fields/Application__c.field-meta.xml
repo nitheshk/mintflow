@@ -7,8 +7,8 @@
     <inlineHelpText>Consent related to application</inlineHelpText>
     <label>Application</label>
     <referenceTo>Account</referenceTo>
-    <relationshipLabel>Consents</relationshipLabel>
-    <relationshipName>Consents</relationshipName>
+    <relationshipLabel>Application Consents</relationshipLabel>
+    <relationshipName>ApplicationConsents</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

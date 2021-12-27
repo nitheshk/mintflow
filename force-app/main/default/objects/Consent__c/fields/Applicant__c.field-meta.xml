@@ -6,8 +6,8 @@
     <externalId>false</externalId>
     <label>Applicant</label>
     <referenceTo>Applicant__c</referenceTo>
-    <relationshipLabel>Consent Consents</relationshipLabel>
-    <relationshipName>ConsentConsents</relationshipName>
+    <relationshipLabel>Applicant Consents</relationshipLabel>
+    <relationshipName>ApplicantConsents</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

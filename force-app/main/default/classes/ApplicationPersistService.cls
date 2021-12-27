@@ -74,6 +74,15 @@ global with sharing class ApplicationPersistService extends AbstractService {
       constructor.setChildObjects('mflow__Surveys__r', surveys);
     }
 
+    //Save Disclosure
+    if (application.ApplicationConsents__r?.size() > 0) {
+      List<Consent__c> consents = saveConsents(
+        application.ApplicationConsents__r,
+        null
+      );
+      constructor.setChildObjects('mflow__ApplicationConsents__r', consents);
+    }
+
     application = (Account) constructor.build();
 
     return application;
@@ -230,6 +239,11 @@ global with sharing class ApplicationPersistService extends AbstractService {
       this.saveSurveys(applicant?.Surveys__r, applicant.Id);
     }
 
+    //Save Disclosure
+    if (!CollectionUtils.isListEmpty(applicant?.ApplicantConsents__r)) {
+      this.saveConsents(applicant.ApplicantConsents__r, applicant.Id);
+    }
+
     // upsert Asset And Liabilities
     // Not in this phase
     /*
@@ -329,6 +343,27 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
     ApplicantRepository.upsertRecords(surveys);
     return surveys;
+  }
+
+  /**
+   * @description Save consent details
+   * @author Digital Align Team | 12-27-2021
+   * @param List<Consent__c> consents
+   * @param Id applicantId
+   * @return List<Consent__c>
+   **/
+  global virtual List<Consent__c> saveConsents(
+    List<Consent__c> consents,
+    Id applicantId
+  ) {
+    for (Consent__c consent : consents) {
+      if (String.isNotBlank(applicantId)) {
+        consent.Applicant__c = applicantId;
+      }
+      consent.Application__c = ApexRequest.getApplicationId();
+    }
+    ConsentRepository.upsertRecords(consents);
+    return consents;
   }
 
   /**

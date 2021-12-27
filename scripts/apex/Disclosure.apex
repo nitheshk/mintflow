@@ -23,6 +23,7 @@ request.token = SecurityUtils.generateTokenForTesting(
   'Primary',
   'ApplicationFlow'
 );
-request.header = '{"eventIdentifier":"Temp2", "filter":[{"Name":"Tempalate2"}]}';
+//request.header = '{"eventIdentifier":"ReviewSubmit","filter":[{"Name":"Checking Account Agreement","mflow__FinancilProductCategory__c":["Checking"],"$mflow__FinancilProductCategory__c":"INCLUDES"}]}';
+request.header = '{"eventIdentifier":"ReviewSubmit"}';
 ApexResponse res = ApplicationController.fetchConsents(request);
 system.debug('Full Json : ' + res.data);

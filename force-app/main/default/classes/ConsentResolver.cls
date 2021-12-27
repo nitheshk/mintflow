@@ -111,11 +111,13 @@ global with sharing class ConsentResolver extends AbstractService {
       consent.Order__c = consentLineItem.Order__c;
       // map document types
       if (consentLineItem.ConsentTemplate__r.DocumentType__c == 'Static') {
-        consent.URL__c = baseUrl.replace(
-          '{{docID}}',
-          documentMap.get(consentLineItem.ConsentTemplate__r.DocumentName__c)
-            ?.Id
-        );
+        String documentName = consentLineItem.ConsentTemplate__r.DocumentName__c;
+        if (documentMap.containsKey(documentName)) {
+          consent.URL__c = baseUrl.replace(
+            '{{docID}}',
+            documentMap.get(documentName)?.Id
+          );
+        }
       } else if (consentLineItem.ConsentTemplate__r.DocumentType__c == 'URL') {
         consent.URL__c = consentLineItem.ConsentTemplate__r.URL__c;
       } else if (

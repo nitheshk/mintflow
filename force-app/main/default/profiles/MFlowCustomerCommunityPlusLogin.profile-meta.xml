@@ -429,8 +429,8 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>ConsentLineItem__c.FinancialProductName__c</field>
+        <editable>true</editable>
+        <field>ConsentLineItem__c.Channel__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

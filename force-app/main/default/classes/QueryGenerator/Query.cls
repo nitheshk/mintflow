@@ -1410,6 +1410,7 @@ global inherited sharing class Query {
    * To override logical operator, Prefix $ same fildname and pass logic operator
    * Supported logically operatory are =, != , < ,> ,<= ,>= , LIKE , INCLUDES
    * INCLUDES Work for MultiPicklist Fields only
+   * Filter Objects are consider as OR Operator and Inside Object all Filds are consider as AND operator
    * @author Digital Align Team | 12-21-2021
    * @param String filters
    * @return Query
