@@ -8,10 +8,11 @@
       "Name": "E Sign Consent",
       "mflow__Code__c": "C0001",
       "mflow__DocumentName__c": "ESignConsent_v1",
-      "mflow__DocumentType__c": "Static",
+      "mflow__DocumentType__c": "URL",
       "mflow__Language__c": "English",
       "mflow__LongDescipription__c": "E Sign Consent",
       "mflow__ShortDescription__c": "E Sign Consent",
+      "mflow__URL__c": "http://www.africau.edu/images/default/sample.pdf",
       "mflow__ExternalId__c": "E0001",
       "mflow__VersionNumber__c": "v1",
       "mflow__ConsentLineItems__r": {
@@ -28,7 +29,9 @@
             "mflow__IsSignatureRequired__c": false,
             "mflow__isActive__c": true,
             "mflow__ExternalId__c": "CLI0001",
-            "mflow__Order__c": 1
+            "mflow__Order__c": 1,
+            "mflow__Channel__c": "Virtual;Branch",
+            "mflow__ApplicantType__c": "Primary;Joint"
           }
         ]
       }
@@ -45,6 +48,7 @@
       "mflow__Language__c": "English",
       "mflow__LongDescipription__c": "Privacy Policy",
       "mflow__ShortDescription__c": "Privacy Policy",
+      "mflow__URL__c": "https://ability-inspiration-3075-dev-ed--c.documentforce.com/servlet/servlet.FileDownload?file=015N0000002k8wm",
       "mflow__ExternalId__c": "E0002",
       "mflow__VersionNumber__c": "v1",
       "mflow__ConsentLineItems__r": {
@@ -61,7 +65,9 @@
             "mflow__IsSignatureRequired__c": false,
             "mflow__isActive__c": true,
             "mflow__ExternalId__c": "CLI0002",
-            "mflow__Order__c": 2
+            "mflow__Order__c": 2,
+            "mflow__Channel__c": "Virtual;Branch",
+            "mflow__ApplicantType__c": "Primary;Joint"
           }
         ]
       }
@@ -73,11 +79,12 @@
       },
       "Name": "Truth in Saving",
       "mflow__Code__c": "C0007",
-      "mflow__DocumentName__c": "TruthinSaving_v1",
+      "mflow__DocumentName__c": "TruthInSaving_v1",
       "mflow__DocumentType__c": "Static",
       "mflow__Language__c": "English",
       "mflow__LongDescipription__c": "Truth in Saving",
       "mflow__ShortDescription__c": "Truth in Saving",
+      "mflow__URL__c": "http://www.africau.edu/images/default/sample.pdf",
       "mflow__ExternalId__c": "E0007",
       "mflow__VersionNumber__c": "v1",
       "mflow__ConsentLineItems__r": {
@@ -94,7 +101,9 @@
             "mflow__IsSignatureRequired__c": false,
             "mflow__isActive__c": true,
             "mflow__ExternalId__c": "CLI0003",
-            "mflow__Order__c": 3
+            "mflow__Order__c": 3,
+            "mflow__Channel__c": "Virtual;Branch",
+            "mflow__ApplicantType__c": "Primary;Joint"
           }
         ]
       }
@@ -107,10 +116,11 @@
       "Name": "Checking Account Agreement",
       "mflow__Code__c": "C0006",
       "mflow__DocumentName__c": "CheckingAccountAgreement_v1",
-      "mflow__DocumentType__c": "Static",
+      "mflow__DocumentType__c": "URL",
       "mflow__Language__c": "English",
       "mflow__LongDescipription__c": "Checking Account Agreement",
       "mflow__ShortDescription__c": "Checking Account Agreement",
+      "mflow__URL__c": "http://www.africau.edu/images/default/sample.pdf",
       "mflow__ExternalId__c": "E0006",
       "mflow__VersionNumber__c": "v1",
       "mflow__ConsentLineItems__r": {
@@ -128,7 +138,9 @@
             "mflow__isActive__c": true,
             "mflow__ExternalId__c": "CLI0004",
             "mflow__Order__c": 4,
-            "mflow__FinancilProductCategory__c": "Checking"
+            "mflow__Channel__c": "Virtual;Branch",
+            "mflow__FinancilProductCategory__c": "Checking",
+            "mflow__ApplicantType__c": "Primary;Joint"
           }
         ]
       }
@@ -145,6 +157,7 @@
       "mflow__Language__c": "English",
       "mflow__LongDescipription__c": "Membership Agreement",
       "mflow__ShortDescription__c": "Membership Agreement",
+      "mflow__URL__c": "http://www.africau.edu/images/default/sample.pdf",
       "mflow__ExternalId__c": "E0004",
       "mflow__VersionNumber__c": "v1",
       "mflow__ConsentLineItems__r": {
@@ -161,7 +174,9 @@
             "mflow__IsSignatureRequired__c": false,
             "mflow__isActive__c": true,
             "mflow__ExternalId__c": "CLI0005",
-            "mflow__Order__c": 5
+            "mflow__Order__c": 5,
+            "mflow__Channel__c": "Virtual;Branch",
+            "mflow__ApplicantType__c": "Primary;Joint"
           }
         ]
       }
@@ -173,10 +188,11 @@
       },
       "Name": "Addtional Joint",
       "mflow__Code__c": "C0008",
-      "mflow__DocumentType__c": "HTML",
+      "mflow__DocumentType__c": "URL",
       "mflow__Language__c": "English",
       "mflow__LongDescipription__c": "Addtional Joint",
       "mflow__ShortDescription__c": "Addtional Joint",
+      "mflow__URL__c": "http://www.africau.edu/images/default/sample.pdf",
       "mflow__ExternalId__c": "E0008",
       "mflow__VersionNumber__c": "v1",
       "mflow__HtmlContent__c": "<p>&lt;h1&gt; Html Content&lt;/h1&gt;</p>",
@@ -194,7 +210,9 @@
             "mflow__IsSignatureRequired__c": false,
             "mflow__isActive__c": true,
             "mflow__ExternalId__c": "CLI0006",
-            "mflow__Order__c": 6
+            "mflow__Order__c": 6,
+            "mflow__Channel__c": "Virtual;Branch",
+            "mflow__ApplicantType__c": "Primary;Joint"
           }
         ]
       }
