@@ -43,6 +43,9 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       qry
         .queryChild('mflow__ApplicantConsents__r')
         .addFields()
+        .queryLookup('mflow__ConsentTemplate__r')
+        .addFields()
+        .run()
         .whereEq('mflow__EventIdentifier__c', eventIdentifier)
         .orderBy('mflow__Order__c')
         .run();
@@ -50,6 +53,9 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       qry
         .queryChild('mflow__ApplicantConsents__r')
         .addFields()
+        .queryLookup('mflow__ConsentTemplate__r')
+        .addFields()
+        .run()
         .orderBy('mflow__Order__c')
         .run();
     }
@@ -93,6 +99,9 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       qry
         .queryChild('mflow__ApplicantConsents__r')
         .addFields()
+        .queryLookup('mflow__ConsentTemplate__r')
+        .addFields()
+        .run()
         .whereEq('mflow__EventIdentifier__c', eventIdentifier)
         .orderBy('mflow__Order__c')
         .run();
@@ -100,6 +109,9 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       qry
         .queryChild('mflow__ApplicantConsents__r')
         .addFields()
+        .queryLookup('mflow__ConsentTemplate__r')
+        .addFields()
+        .run()
         .orderBy('mflow__Order__c')
         .run();
     }

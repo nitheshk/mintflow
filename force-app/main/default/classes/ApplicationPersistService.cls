@@ -51,14 +51,14 @@ global with sharing class ApplicationPersistService extends AbstractService {
       application
     );
     //save applicants
-    if (application.Applicants__r?.size() > 0) {
+    if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
       List<Applicant__c> applicants = ApplicantService.getInstance()
         .saveApplicants(application.Applicants__r, application.Id);
       constructor.setChildObjects('mflow__Applicants__r', applicants);
     }
 
     //save financial accounts
-    if (application.mflow__FinancialAccounts__r?.size() > 0) {
+    if (!CollectionUtils.isListEmpty(application.mflow__FinancialAccounts__r)) {
       List<FinServ__FinancialAccount__c> financialAccounts = saveFinancialAccount(
         application.mflow__FinancialAccounts__r
       );
@@ -69,13 +69,13 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
 
     //Save survey
-    if (application.Surveys__r?.size() > 0) {
+    if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
       List<Survey__c> surveys = saveSurveys(application.Surveys__r, null);
       constructor.setChildObjects('mflow__Surveys__r', surveys);
     }
 
     //Save Disclosure
-    if (application.ApplicationConsents__r?.size() > 0) {
+    if (!CollectionUtils.isListEmpty(application.ApplicationConsents__r)) {
       List<Consent__c> consents = saveConsents(
         application.ApplicationConsents__r,
         null

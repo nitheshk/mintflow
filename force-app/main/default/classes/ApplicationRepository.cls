@@ -34,6 +34,9 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
       qry
         .queryChild('mflow__ApplicationConsents__r')
         .addFields()
+        .queryLookup('mflow__ConsentTemplate__r')
+        .addFields()
+        .run()
         .whereEq('mflow__EventIdentifier__c', eventIdentifier)
         .andCon()
         .whereNull('mflow__Applicant__c')
@@ -43,6 +46,9 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
       qry
         .queryChild('mflow__ApplicationConsents__r')
         .addFields()
+        .queryLookup('mflow__ConsentTemplate__r')
+        .addFields()
+        .run()
         .whereNull('mflow__Applicant__c')
         .orderBy('mflow__Order__c')
         .run();
@@ -109,6 +115,9 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
       qry
         .queryChild('mflow__ApplicationConsents__r')
         .addFields()
+        .queryLookup('mflow__ConsentTemplate__r')
+        .addFields()
+        .run()
         .whereEq('mflow__EventIdentifier__c', eventIdentifier)
         .andCon()
         .whereNull('mflow__Applicant__c')
@@ -118,6 +127,9 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
       qry
         .queryChild('mflow__ApplicationConsents__r')
         .addFields()
+        .queryLookup('mflow__ConsentTemplate__r')
+        .addFields()
+        .run()
         .whereNull('mflow__Applicant__c')
         .orderBy('mflow__Order__c')
         .run();

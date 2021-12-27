@@ -24,6 +24,36 @@ request.token = SecurityUtils.generateTokenForTesting(
   'ApplicationFlow'
 );
 //request.header = '{"eventIdentifier":"ReviewSubmit","filter":[{"Name":"Checking Account Agreement","mflow__FinancilProductCategory__c":["Checking"],"$mflow__FinancilProductCategory__c":"INCLUDES"}]}';
-request.header = '{"eventIdentifier":"ReviewSubmit"}';
+request.header = '{"eventIdentifier":"ElibilityPage"}';
 ApexResponse res = ApplicationController.fetchConsents(request);
-system.debug('Full Json : ' + res.data);
+//system.debug('Full Json : ' + res.data);
+
+account app = ApplicationService.getInstance()
+  .readApplicationWithChild('001N0000024dNvnIAE');
+List<Consent__c> cons = (List<Consent__c>) JSON.deserialize(
+  (String) res.data,
+  List<Consent__c>.class
+);
+
+// for (Consent__c c : cons) {
+//   c.Application__c = ApexRequest.getApplicationId();
+// }
+
+// insert cons;
+
+// SObjectConstructor builder = SObjectConstructor.getInstance(app);
+// builder.setChildObjects('mflow__ApplicationConsents__r', cons);
+// app = (Account) builder.build();
+ApexResponse rq = ApexResponse.ok(app);
+system.debug('Full Json : ' + rq.data);
+
+ApexRequest request1 = new ApexRequest();
+request1.token = SecurityUtils.generateTokenForTesting(
+  '001N0000024dNvnIAE',
+  '',
+  'Primary',
+  'ApplicationFlow'
+);
+Request1.data = (String) rq.data;
+Request1.token = request.token;
+res = ApplicationController.saveApplication(request1);
