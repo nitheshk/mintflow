@@ -15,38 +15,47 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
   global static List<Applicant__c> readApplicantsWithChild(
     Set<Id> applicantIds
   ) {
-    return (List<Applicant__c>) DatabaseUtils.getRecords(
-      Query.newInstance(Applicant__c.SObjectType)
-        .addFields()
-        .removeFields('mflow__SessionToken__c')
-        .queryChild('mflow__IdentificationDocuments__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()
-        .queryChild('mflow__ContactPointAddresses__r')
-        .addFields()
-        .removeFields('Address')
-        .orderBy('mflow__Order__c')
-        .run()
-        .queryChild('mflow__Employments__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()
-        /*.queryChild('mflow__AssetsAndLiabilities__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()
-        .queryChild('mflow__Revenues__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()*/
-        .queryChild('mflow__Surveys__r')
-        .addFields()
-        .orderBy('Order__c')
-        .run()
-        .whereIn('Id', applicantIds)
-        .toString()
+    String eventIdentifier = String.valueOf(
+      ApexRequest.getParams('eventIdentifier')
     );
+
+    Query qry = Query.newInstance(Applicant__c.SObjectType)
+      .addFields()
+      .removeFields('mflow__SessionToken__c')
+      .queryChild('mflow__IdentificationDocuments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__ContactPointAddresses__r')
+      .addFields()
+      .removeFields('Address')
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__Employments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__Surveys__r')
+      .addFields()
+      .orderBy('Order__c')
+      .run();
+    if (String.isNotBlank(eventIdentifier)) {
+      qry
+        .queryChild('mflow__ApplicantConsents__r')
+        .addFields()
+        .whereEq('mflow__EventIdentifier__c', eventIdentifier)
+        .orderBy('mflow__Order__c')
+        .run();
+    } else {
+      qry
+        .queryChild('mflow__ApplicantConsents__r')
+        .addFields()
+        .orderBy('mflow__Order__c')
+        .run();
+    }
+    qry.whereIn('Id', applicantIds);
+
+    return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
   }
 
   /**
@@ -55,39 +64,48 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
    * @param Applicant__c applicantId
    **/
   global static Applicant__c readApplicantWithChild(Id applicantId) {
-    return (Applicant__c) DatabaseUtils.getRecord(
-      Query.newInstance(Applicant__c.SObjectType)
-        .addFields()
-        // Session Token Required As joint is using it
-        //.removeFields('mflow__SessionToken__c')
-        .queryChild('mflow__IdentificationDocuments__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()
-        .queryChild('mflow__ContactPointAddresses__r')
-        .addFields()
-        .removeFields('Address')
-        .orderBy('mflow__Order__c')
-        .run()
-        .queryChild('mflow__Employments__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()
-        /*.queryChild('mflow__AssetsAndLiabilities__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()
-        .queryChild('mflow__Revenues__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()*/
-        .queryChild('mflow__Surveys__r')
-        .addFields()
-        .orderBy('Order__c')
-        .run()
-        .whereEq('Id', applicantId)
-        .toString()
+    String eventIdentifier = String.valueOf(
+      ApexRequest.getParams('eventIdentifier')
     );
+
+    Query qry = Query.newInstance(Applicant__c.SObjectType)
+      .addFields()
+      // Session Token Required As joint is using it
+      //.removeFields('mflow__SessionToken__c')
+      .queryChild('mflow__IdentificationDocuments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__ContactPointAddresses__r')
+      .addFields()
+      .removeFields('Address')
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__Employments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__Surveys__r')
+      .addFields()
+      .orderBy('Order__c')
+      .run();
+    if (String.isNotBlank(eventIdentifier)) {
+      qry
+        .queryChild('mflow__ApplicantConsents__r')
+        .addFields()
+        .whereEq('mflow__EventIdentifier__c', eventIdentifier)
+        .orderBy('mflow__Order__c')
+        .run();
+    } else {
+      qry
+        .queryChild('mflow__ApplicantConsents__r')
+        .addFields()
+        .orderBy('mflow__Order__c')
+        .run();
+    }
+    qry.whereEq('Id', applicantId);
+
+    return (Applicant__c) DatabaseUtils.getRecord(qry.toString());
   }
 
   /**
