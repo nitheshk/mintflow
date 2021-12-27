@@ -1857,6 +1857,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ConsentLineItem__c.ApplicantType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ConsentLineItem__c.IsSignatureRequired__c</field>
         <readable>true</readable>
     </fieldPermissions>

@@ -57,3 +57,17 @@ request1.token = SecurityUtils.generateTokenForTesting(
 Request1.data = (String) rq.data;
 Request1.token = request.token;
 res = ApplicationController.saveApplication(request1);
+
+//#3
+
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  '001N0000024dNvnIAE',
+  '',
+  'Primary',
+  'ApplicationFlow'
+);
+request.header = '{"eventIdentifier":"ReviewSubmit","filter":[{"mflow__FinancilProductCategory__c":["Checking"],"$mflow__FinancilProductCategory__c":"INCLUDES"}]}';
+//request.header = '{"eventIdentifier":"ElibilityPage"}';
+ApexResponse res = ApplicationController.fetchConsents(request);
+system.debug('Full Json : ' + res.data);

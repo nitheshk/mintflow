@@ -42,26 +42,104 @@ global with sharing class ConsentResolver extends AbstractService {
    **/
   global virtual List<Consent__c> fetchConsents(String data) {
     List<Object> filters = (List<Object>) ApexRequest.getParams('filter');
+    List<Consent__c> consents = new List<Consent__c>();
+
+    Account application = ConsentRepository.readApplicationWithFA(
+      ApexRequest.getApplicationId()
+    );
+
+    //resolve consent using custom filter
+    consents.addAll(resolveConsents(application, filters));
+    //resolve consent using financial account
+    consents.addAll(resolveConsents(application));
+    // remove duplicate consent
+    return removeDuplicateConsent(consents);
+  }
+
+  /**
+   * @description resolve consent using custom filter
+   * @author Digital Align Team | 12-27-2021
+   * @param Account application
+   * @param List<Object> filters
+   * @return List<Consent__c>
+   **/
+  global virtual List<Consent__c> resolveConsents(
+    Account application,
+    List<Object> filters
+  ) {
+    if (!CollectionUtils.isListEmpty(filters)) {
+      for (Object filter : filters) {
+        Map<String, Object> filterMap = (Map<String, Object>) filter;
+        filterMap.put(
+          'mflow__ApplicantType__c',
+          ApexRequest.getApplicantType()
+        );
+        filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
+        filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
+        filterMap.put('$mflow__Channel__c', 'INCLUDES');
+      }
+    }
+
     String eventIdentifier = String.valueOf(
       ApexRequest.getParams('eventIdentifier')
     );
-    if (eventIdentifier == null) {
-      throw new CustomException(
-        'Filter is not mentioned, Need to pass at least EventIdentifier as filter option'
-      );
-    }
+
     // fetch consent item by  custom filter
     List<ConsentLineItem__c> consentLineItems = ConsentRepository.fetchConsentByFilter(
       filters,
       'mflow__Filter',
       eventIdentifier
     );
-
     //prepare document mapping
     this.setDocumentMap(consentLineItems);
-
     // map consent items into consent
-    List<Consent__c> consents = mapConsentItemToConsent(consentLineItems);
+    return this.mapConsentItemToConsent(consentLineItems, null);
+  }
+
+  /**
+   * @description Resolve consent using Financial Account selection
+   * @author Digital Align Team | 12-27-2021
+   * @param Account application
+   * @param List<Object> filters
+   * @return List<Consent__c>
+   **/
+  global virtual List<Consent__c> resolveConsents(Account application) {
+    List<Consent__c> consents = new List<Consent__c>();
+
+    if (CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
+      return consents;
+    }
+
+    String eventIdentifier = String.valueOf(
+      ApexRequest.getParams('eventIdentifier')
+    );
+
+    for (
+      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+    ) {
+      Map<String, Object> filterMap = new Map<String, Object>();
+      filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
+      filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
+      filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
+      filterMap.put('$mflow__Channel__c', 'INCLUDES');
+      filterMap.put(
+        'mflow__FinancialProductCode__c',
+        financialAccount.FinancialProduct__r.InternalCode__c
+      );
+
+      // fetch consent item by  custom filter
+      List<ConsentLineItem__c> consentLineItems = ConsentRepository.fetchConsentByFilter(
+        filterMap,
+        'mflow__Filter',
+        eventIdentifier
+      );
+      //prepare document mapping
+      this.setDocumentMap(consentLineItems);
+      // map consent items into consent
+      consents.addAll(
+        this.mapConsentItemToConsent(consentLineItems, financialAccount.Id)
+      );
+    }
     return consents;
   }
 
@@ -91,18 +169,20 @@ global with sharing class ConsentResolver extends AbstractService {
    * @return  List<Consent__c>
    **/
   global virtual List<Consent__c> mapConsentItemToConsent(
-    List<ConsentLineItem__c> consentLineItems
+    List<ConsentLineItem__c> consentLineItems,
+    Id financialAccountId
   ) {
     //result consent
     List<Consent__c> consentList = new List<Consent__c>();
-    // used to eliminate duplicate templates
-    Set<String> consentCode = new Set<String>();
 
     for (ConsentLineItem__c consentLineItem : consentLineItems) {
       Consent__c consent = new Consent__c();
       consent.Application__c = ApexRequest.getApplicationId();
       if (ApexRequest.getParams('applicantId') != null) {
         consent.Applicant__c = (Id) ApexRequest.getParams('applicantId');
+      }
+      if (String.isNotBlank(financialAccountId)) {
+        consent.FinancialAccount__c = financialAccountId;
       }
       consent.Name = consentLineItem.ConsentTemplate__r.Name;
       consent.ConsentTemplate__c = consentLineItem.ConsentTemplate__c;
@@ -127,12 +207,24 @@ global with sharing class ConsentResolver extends AbstractService {
         //#pending Logic is pending to add
         consent.URL__c = consentLineItem.ConsentTemplate__r.URL__c;
       }
-
-      if (!consentCode.contains(consentLineItem.ConsentTemplate__r.Code__c)) {
-        consentList.add(consent);
-      }
-      consentCode.add(consentLineItem.ConsentTemplate__r.Code__c);
+      consentList.add(consent);
     }
     return consentList;
+  }
+
+  /**
+   * @description remove duplicate consent
+   * @author Digital Align Team | 12-27-2021
+   * @param List<Consent__c> consents
+   * @return List<Consent__c>
+   **/
+  global virtual List<Consent__c> removeDuplicateConsent(
+    List<Consent__c> consents
+  ) {
+    Map<String, Consent__c> consentMap = new Map<String, Consent__c>();
+    for (Consent__c consent : consents) {
+      consentMap.put(consent.ConsentTemplate__r.Code__c, consent);
+    }
+    return consentMap.values();
   }
 }

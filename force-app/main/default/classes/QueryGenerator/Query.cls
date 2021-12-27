@@ -1407,10 +1407,10 @@ global inherited sharing class Query {
    * @description  soql based on the custom filter
    * Pass filter tag in ApexRequest header
    * By default all the field are compare with equal sign
-   * To override logical operator, Prefix $ same fildname and pass logic operator
-   * Supported logically operatory are =, != , < ,> ,<= ,>= , LIKE , INCLUDES
+   * To override logical operator, Prefix $ same filename and pass logic operator
+   * Supported logically operator are =, != , < ,> ,<= ,>= , LIKE , INCLUDES
    * INCLUDES Work for MultiPicklist Fields only
-   * Filter Objects are consider as OR Operator and Inside Object all Filds are consider as AND operator
+   * Filter Array of objects are consider as OR Operator and Inside Object all Fields are consider as AND operator
    * @author Digital Align Team | 12-21-2021
    * @param String filters
    * @return Query
@@ -1425,8 +1425,13 @@ global inherited sharing class Query {
    *  );
    *  system.debug('items :' + items);
    **/
-  global Query filter(List<Object> filters, String fieldSetName) {
-    if (CollectionUtils.isListEmpty(filters)) {
+  global Query filter(Object filtersObj, String fieldSetName) {
+    List<Object> filters;
+    if (filtersObj instanceof List<Object>) {
+      filters = (List<Object>) filtersObj;
+    } else if (filtersObj instanceof Map<String, Object>) {
+      filters = new List<Object>{ filtersObj };
+    } else {
       return this;
     }
     // fs-> FieldSet
@@ -1443,27 +1448,39 @@ global inherited sharing class Query {
       if (hasMoreFilter) {
         this.orCon();
       }
-      this.grpOpen();
       Map<String, Object> filter = (Map<String, Object>) filterObj;
-      Boolean hasMoreField = false;
-      for (FieldSetMember fsm : fs.getFields()) {
-        if (hasMoreField) {
-          this.andCon();
-        }
-        if (filter.containsKey(fsm.getFieldPath())) {
-          resolveField(
-            fsm,
-            filter.get(fsm.getFieldPath()),
-            String.valueOf(filter.get('$' + fsm.getFieldPath()))
-          );
-        } else {
-          resolveField(fsm, null, null);
-        }
-        hasMoreField = true;
-      }
-      this.grpClose();
+      this.filter(filter, fs);
       hasMoreFilter = true;
     }
+    return this;
+  }
+
+  /**
+   * @description resolve filter criteria
+   * @author Digital Align Team | 12-27-2021
+   * @param Map<String Object> filter
+   * @param FieldSet fs
+   * @return Query
+   **/
+  private Query filter(Map<String, Object> filter, FieldSet fs) {
+    this.grpOpen();
+    Boolean hasMoreField = false;
+    for (FieldSetMember fsm : fs.getFields()) {
+      if (hasMoreField) {
+        this.andCon();
+      }
+      if (filter.containsKey(fsm.getFieldPath())) {
+        resolveFilterField(
+          fsm,
+          filter.get(fsm.getFieldPath()),
+          String.valueOf(filter.get('$' + fsm.getFieldPath()))
+        );
+      } else {
+        resolveFilterField(fsm, null, null);
+      }
+      hasMoreField = true;
+    }
+    this.grpClose();
     return this;
   }
 
@@ -1473,7 +1490,7 @@ global inherited sharing class Query {
    * @param FieldSetMember fsm
    * @param Object fieldValue
    **/
-  private void resolveField(
+  private void resolveFilterField(
     FieldSetMember fsm,
     Object fieldValue,
     String logic
