@@ -139,7 +139,11 @@ global with sharing class AtomicFIService extends AbstractService {
           str,
           AtomicFIDTO.class
         );
-        if (atomicObj.data.status.equalsIgnoreCase('Completed')) {
+        System.debug('atomicFIObj:' + atomicObj);
+        if (
+          atomicObj.data.status != null &&
+          atomicObj.data.status.equalsIgnoreCase('Completed')
+        ) {
           //send data to be saved to backend
 
           parentId = mapApplicantEmployment(atomicObj);
@@ -166,7 +170,7 @@ global with sharing class AtomicFIService extends AbstractService {
   global virtual String mapApplicantEmployment(AtomicFIDTO atomicObj) {
     FinServ__Employment__c employmentObj = new FinServ__Employment__c();
     //check if there is an existing employment for the applicant if yes then map the id :TODO:
-    employmentObj.Applicant__c = atomicObj.user.identifier;
+    employmentObj.Id = atomicObj.user.identifier;
     employmentObj.Name = atomicObj.company.name;
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active'))
       employmentObj.FinServ__EmploymentStatus__c = 'Employed';
@@ -180,6 +184,7 @@ global with sharing class AtomicFIService extends AbstractService {
     employmentObj.FinServ__Position__c = atomicObj.data.outputs.jobTitle;
     employmentObj.FinServ__AnnualIncome__c = 0;
     employmentObj.Employee_Type__c = atomicObj.data.outputs.employeeType;
+    employmentObj.Verification_Status__c = 'Verified';
     // this.calculateIncome(atomicObj.data.outputs.income,atomicObj.data.outputs.incomeType);
     EmploymentRepository.UpsertRecord(employmentObj);
     System.debug('employmentObj:' + employmentObj.id);

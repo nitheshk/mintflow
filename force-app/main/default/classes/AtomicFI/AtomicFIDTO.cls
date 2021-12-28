@@ -115,7 +115,7 @@ global with sharing class AtomicFIDTO {
     global String name { get; set; }
     global Branding branding { get; set; }
   }
-  global class Data {
+  global class data {
     global String previousStatus { get; set; }
     global String status { get; set; }
     global Boolean authenticated { get; set; }
