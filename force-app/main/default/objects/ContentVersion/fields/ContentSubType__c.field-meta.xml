@@ -23,9 +23,9 @@
                 <label>W9 Forms</label>
             </value>
             <value>
-                <fullName>Driver License</fullName>
+                <fullName>Drivers License</fullName>
                 <default>false</default>
-                <label>Driver License</label>
+                <label>Drivers License</label>
             </value>
             <value>
                 <fullName>Military Id</fullName>
@@ -33,14 +33,14 @@
                 <label>Military Id</label>
             </value>
             <value>
-                <fullName>State Id</fullName>
+                <fullName>State Id Card</fullName>
                 <default>false</default>
-                <label>State Id</label>
+                <label>State Id Card</label>
             </value>
             <value>
-                <fullName>Passport</fullName>
+                <fullName>US Passport</fullName>
                 <default>false</default>
-                <label>Passport</label>
+                <label>US Passport</label>
             </value>
             <value>
                 <fullName>SentiLink</fullName>
@@ -53,11 +53,6 @@
                 <label>Other</label>
             </value>
             <value>
-                <fullName>Green Card</fullName>
-                <default>false</default>
-                <label>Green Card</label>
-            </value>
-            <value>
                 <fullName>Address Proof</fullName>
                 <default>false</default>
                 <label>Address Proof</label>
@@ -66,6 +61,26 @@
                 <fullName>AtomicFI</fullName>
                 <default>false</default>
                 <label>AtomicFI</label>
+            </value>
+            <value>
+                <fullName>Foreign Passport</fullName>
+                <default>false</default>
+                <label>Foreign Passport</label>
+            </value>
+            <value>
+                <fullName>School Id</fullName>
+                <default>false</default>
+                <label>School Id</label>
+            </value>
+            <value>
+                <fullName>Social Security Card</fullName>
+                <default>false</default>
+                <label>Social Security Card</label>
+            </value>
+            <value>
+                <fullName>Tribal Id</fullName>
+                <default>false</default>
+                <label>Tribal Id</label>
             </value>
         </valueSetDefinition>
     </valueSet>

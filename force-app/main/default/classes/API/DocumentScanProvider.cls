@@ -234,14 +234,14 @@ global with sharing class DocumentScanProvider extends AbstractService {
     if (value != null) {
       switch on value {
         when 'P' {
-          return 'Passport';
+          return 'US Passport';
         }
         when 'D' {
-          return 'Driver License';
+          return 'Drivers License';
         }
         when 'I' {
           // If Identity card save as state ID
-          return 'State Id';
+          return 'State Id Card';
         }
         when 'V' {
           return 'Visa';
@@ -251,8 +251,7 @@ global with sharing class DocumentScanProvider extends AbstractService {
           return 'Other';
         }
         when 'O' {
-          //If document Type is Other save it as MilitaryId as MilitaryId is not listed under Idanalyzer
-          return 'Military Id';
+          return 'Other';
         }
         when else {
           return 'Other';
