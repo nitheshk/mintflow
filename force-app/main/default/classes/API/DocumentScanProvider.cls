@@ -134,6 +134,8 @@ global with sharing class DocumentScanProvider extends AbstractService {
     newMap.put('issued', result.get('issued'));
     newMap.put('address1', result.get('address1'));
     newMap.put('address2', result.get('address2'));
+    newMap.put('issuerOrgRegionAbbr', result.get('issuerOrg_region_abbr'));
+    newMap.put('issuerOrgIso2', result.get('issuerOrg_iso2'));
     newMap.put('postalCode', result.get('postcode'));
     newMap.put('documentType', result.get('documentType'));
     newMap.put('issuerRegion', result.get('issuerOrg_region_abbr'));
@@ -194,6 +196,8 @@ global with sharing class DocumentScanProvider extends AbstractService {
     idAddress.Street = returnDTO.data.address1;
     idAddress.City = returnDTO.data.address2;
     idAddress.PostalCode = returnDTO.data.postalCode;
+    idAddress.State = returnDTO.data.issuerOrgRegionAbbr;
+    idAddress.Country = returnDTO.data.issuerOrgIso2;
 
     SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
     construct.setChildObjects(

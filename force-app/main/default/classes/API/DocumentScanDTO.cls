@@ -58,6 +58,8 @@ global with sharing class DocumentScanDTO extends AbstractDTO {
     global String issued;
     global String address1;
     global String address2;
+    global String issuerOrgRegionAbbr;
+    global String issuerOrgIso2;
     global String postalCode;
     global String documentType;
     global String issuerRegion;
