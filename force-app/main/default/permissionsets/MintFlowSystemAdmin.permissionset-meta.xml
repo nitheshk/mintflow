@@ -1715,6 +1715,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ContactPointAddress.StateCode__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ContactPointAddress.MonthsLivedAtCurrentAddress__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3178,6 +3183,11 @@
         <editable>true</editable>
         <field
     >FinServ__IdentificationDocument__c.PrimaryContentDocumentID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__IdentificationDocument__c.StateCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	    <fieldPermissions>
