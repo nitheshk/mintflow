@@ -46,6 +46,7 @@ global with sharing class OnlineAccountController extends AbstractController {
       }
 
       params.put('token', ApexRequest.getToken());
+      params.put('timezone', UserInfo.getTimeZone().getID());
       Map<String, Object> initialData = new Map<String, Object>{
         'id' => this.id,
         'application' => SObjectConstructor.writeFieldsAsMap(
