@@ -56,6 +56,9 @@
         src="{!URLFOR($Resource.MintFlow, 'js/chunk-vendors.js')}"
       ></script>
       <script src="{!URLFOR($Resource.MintFlow, 'js/app.js')}"></script>
+      <script
+        src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"
+      ></script>
       <script type="text/javascript">
         var Resourceurl = "{!URLFOR($Resource.MintFlow)}";
       </script>

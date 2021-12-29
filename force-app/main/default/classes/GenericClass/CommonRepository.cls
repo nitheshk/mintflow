@@ -16,6 +16,7 @@ global with sharing class CommonRepository extends DatabaseUtils {
   public static List<Flow__c> fetchFlowByEntityId(String entityId) {
     String q = Query.newInstance(Flow__c.SObjectType)
       .addFields()
+      .removeFields('mflow__Note__c,mflow__Request__c,mflow__Response__c')
       .queryChild('mflow__SubFlows__r')
       .addFields()
       .run()

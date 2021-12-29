@@ -16,5 +16,8 @@ global enum APINames {
   AWSAuth,
   UiPathAddQueue,
   AtomicFIToken,
-  UiPath
+  UiPath,
+  PlaidTokenExchange,
+  PlaidRetrieveAuth,
+  PlaidLinkToken
 }

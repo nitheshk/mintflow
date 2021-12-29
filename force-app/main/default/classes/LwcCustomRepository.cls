@@ -33,6 +33,8 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
       .addFields()
       .run()
       .whereEq('mflow__Entity__c', entityId)
+      .andCon()
+      .whereEq('RecordType.Name', 'Flow')
       .toString();
     return (List<Flow__c>) getRecords(q);
   }

@@ -33,7 +33,7 @@ global with sharing class Flow extends AbstractService {
   private static Flow__c currentSubFlow = new Flow__c();
   private static Map<String, Flow__c> subFlowMap = new Map<String, Flow__c>();
   private static Map<String, Map<String, Flow__c>> flows = new Map<String, Map<String, Flow__c>>();
-  private static logger log = logger.getInstance(Flow.class);
+  private static Logger log = Logger.getInstance(Flow.class);
 
   public Flow() {
     super(Flow.class);
@@ -95,12 +95,12 @@ global with sharing class Flow extends AbstractService {
 
   /**
    * @description First step to create any parent flow , by passing the unique flow name
-   * if Same flow name already present with initilized entity, it will pickup from there.
+   * if Same flow name already present with initialized entity, it will pickup from there.
    * @author Digital Align Team | 10-19-2021
    * @param String flowName
    **/
   public static void setFlow(String flowName) {
-    if (flowMap.containskey(flowName)) {
+    if (flowMap.containsKey(flowName)) {
       currentFlow = flowMap.get(flowName);
       subFlowMap = flows.get(flowName);
     } else {
@@ -188,7 +188,7 @@ global with sharing class Flow extends AbstractService {
    * @return String
    **/
   private static String setSubFlow(Flow__c flow) {
-    if (subFlowMap.containskey(flow.FlowName__c)) {
+    if (subFlowMap.containsKey(flow.FlowName__c)) {
       currentSubFlow = subFlowMap.get(flow.FlowName__c);
     } else {
       flow.RecordTypeId = RECORDTYPE_SUBFLOW;
@@ -207,22 +207,27 @@ global with sharing class Flow extends AbstractService {
    * @return String
    **/
   public static String setSubFlow(Object flowName) {
-    return setSubFlow(new Flow__c(FlowName__c = String.valueOf(flowName)));
+    return setSubFlow(
+      new Flow__c(
+        FlowName__c = String.valueOf(flowName),
+        ServiceName__c = String.valueOf(flowName)
+      )
+    );
   }
 
   /**
    * @description set sub flow context with entity and service name
    * parameter will combined into single unique flow name
    * @author Digital Align Team | 10-19-2021
-   * @param String entity
    * @param Object serviceName
+   * @param String entity
    * @return String
    **/
-  public static String setSubFlow(String entity, Object serviceName) {
-    String uniqueName = entity + '_' + String.valueOf(serviceName);
+  public static String setSubFlow(Object serviceName, String entity) {
+    String uniqueName = String.valueOf(serviceName) + '_' + entity;
     return setSubFlow(
       new Flow__c(
-        Flowname__c = uniqueName,
+        mflow__FlowName__c = uniqueName,
         Entity__c = entity,
         ServiceName__c = String.valueOf(serviceName)
       )
@@ -233,26 +238,26 @@ global with sharing class Flow extends AbstractService {
    * @description set sub flow context with entity, child entity and service name
    * parameter will combined into single unique flow name
    * @author Digital Align Team | 10-19-2021
+   * @param Object serviceName
    * @param String entity
    * @param String childEntity
-   * @param Object serviceName
    * @return String
    **/
   public static String setSubFlow(
+    Object serviceName,
     String entity,
-    String childEntity,
-    Object serviceName
+    String childEntity
   ) {
     String uniqueName =
+      String.valueOf(serviceName) +
+      '_' +
       entity +
       '_' +
-      childEntity +
-      '_' +
-      String.valueOf(serviceName);
+      childEntity;
     return setSubFlow(
       new Flow__c(
-        Flowname__c = uniqueName,
-        Entity__c = entity,
+        mflow__FlowName__c = uniqueName,
+        Entity__c = entity + '_' + childEntity,
         ServiceName__c = String.valueOf(serviceName)
       )
     );
@@ -307,7 +312,7 @@ global with sharing class Flow extends AbstractService {
   }
 
   /**
-   * @description check sub flow is sucessful
+   * @description check sub flow is successful
    * @author Digital Align Team | 10-19-2021
    * @param String flowName
    * @return Boolean
@@ -320,7 +325,7 @@ global with sharing class Flow extends AbstractService {
   }
 
   /**
-   * @description  check sub flow is not sucessful
+   * @description  check sub flow is not successful
    * @author Digital Align Team | 10-19-2021
    * @param String flowName
    * @return Boolean

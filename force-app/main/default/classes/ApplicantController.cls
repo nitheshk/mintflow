@@ -16,7 +16,7 @@ global with sharing class ApplicantController extends AbstractController {
    * @description calling read method for applicants by passging list of ids in header
    * params: applicantIds -> ['id1','id2']
    * @author Digital Align Team | 09-29-2021
-   * @param Map<String String> params
+   * @param ApexRequest request
    * @return ApexResponse
    **/
   @AuraEnabled
@@ -47,7 +47,7 @@ global with sharing class ApplicantController extends AbstractController {
   /**
    * @description Save Application record
    * @author Digital Align Team | 10-05-2021
-   * @param Map<String String> params
+   * @param ApexRequest request
    * @return ApexResponse
    **/
   @AuraEnabled
@@ -84,7 +84,7 @@ global with sharing class ApplicantController extends AbstractController {
   /**
    * @description Save Application record
    * @author Digital Align Team | 10-05-2021
-   * @param Map<String String> params
+   * @param ApexRequest request
    * @return ApexResponse
    **/
   @AuraEnabled
