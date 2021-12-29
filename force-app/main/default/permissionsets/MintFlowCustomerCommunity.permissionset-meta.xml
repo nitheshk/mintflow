@@ -339,11 +339,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.StateCode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FinServ__Revenue__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
