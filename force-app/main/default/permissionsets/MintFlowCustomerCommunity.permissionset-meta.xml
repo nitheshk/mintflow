@@ -3787,6 +3787,11 @@
         <field>SurveyTemplateItem__c.LongDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>SurveyTemplateItem__c.Required__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>SurveyTemplateItem__c.OptionType__c</field>
