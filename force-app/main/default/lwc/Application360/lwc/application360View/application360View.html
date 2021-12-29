@@ -29,13 +29,14 @@
           <lightning-tab key={data.Id} label={data.Name}>
             <lightning-tabset variant="scoped">
               <lightning-tab label="Detail">
-                <c-record-detail-view
+                <c-applicant-record-detail-view
                   key={data.Id}
                   record={data}
                   s-object-name="mflow__Applicant__c"
                   title-name="Applicant Details"
+                  field-set-name={applicationSections}
                   hide-null-values="true"
-                ></c-record-detail-view>
+                ></c-applicant-record-detail-view>
               </lightning-tab>
               <template if:true={data.mflow__ContactPointAddresses__r}>
                 <lightning-tab label="Addresses">

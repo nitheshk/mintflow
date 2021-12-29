@@ -9,7 +9,7 @@ import fetchFieldDetails from "@salesforce/apex/LwcCustomController.fetchFieldDe
 export default class RecordDetailView extends LightningElement {
   @api record;
   @api sObjectName;
-  @api filedSetName;
+  @api fieldSetName;
   @api titleName;
   @api hideHeader = false;
   @api hideNullValues = false;
@@ -24,7 +24,7 @@ export default class RecordDetailView extends LightningElement {
       fetchFieldDetails({
         params: {
           sObjectName: this.sObjectName,
-          filedSetName: this.filedSetName
+          fieldSetName: this.fieldSetName
         }
       })
         .then((data) => {

@@ -147,11 +147,11 @@ global with sharing class LwcCustomController extends AbstractController {
     try {
       log?.fine('Inside fetchFieldDetails');
       String sObjectName = params.get('sObjectName');
-      String filedSetName = params.get('filedSetName');
-      if (String.isNotBlank(sObjectName) && String.isNotBlank(filedSetName)) {
+      String fieldSetName = params.get('fieldSetName');
+      if (String.isNotBlank(sObjectName) && String.isNotBlank(fieldSetName)) {
         return ApexResponse.ok(
           LwcCustomService.getInstance()
-            .fetchFieldDetails(sObjectName, filedSetName)
+            .fetchFieldDetails(sObjectName, fieldSetName)
         );
       } else {
         return ApexResponse.ok(
