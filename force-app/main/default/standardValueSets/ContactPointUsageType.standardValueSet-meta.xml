@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Buying / Own With Mortgage</fullName>
+        <default>false</default>
+        <label>Buying / Own With Mortgage</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Government Quarters</fullName>
+        <default>false</default>
+        <label>Government Quarters</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Live With Parents</fullName>
+        <default>false</default>
+        <label>Live With Parents</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Own-Free and Clear</fullName>
+        <default>false</default>
+        <label>Own-Free and Clear</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Rent</fullName>
+        <default>false</default>
+        <label>Rent</label>
+    </standardValue>
+</StandardValueSet>
