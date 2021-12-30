@@ -65,6 +65,7 @@ global with sharing class SurveyResolver extends AbstractService {
         surveyObj.CustomStyle__c = item.CustomStyle__c;
         surveyObj.Order__c = item.Order__c;
         surveyObj.Options__c = item.Options__c;
+        surveyObj.Required__c = item.Required__c;
         surveyObj.Name = item.Name;
         surveyObj.TemplateName__c = surveyTemplate.Name;
         if (String.isBlank(item.ParentQuestionCode__c)) {
