@@ -22,9 +22,9 @@
                 <behavior>Edit</behavior>
                 <field>StateCode__c</field>
             </layoutItems>
-            <layoutItems>
+             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OccupancyDuration__c</field>
+                <field>UsageType</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -39,6 +39,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsPrimary</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OccupancyDuration__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

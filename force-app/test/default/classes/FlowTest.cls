@@ -65,8 +65,8 @@ public with sharing class FlowTest {
     test.startTest();
     flow.initialize(acc.Id);
     flow.setFlow('TestFlow');
-    Flow.setSubFlow('Account', acc);
-    flow.setsubflow('Account', 'contact', acc);
+    // Flow.setSubFlow('Account', acc);
+    // flow.setsubflow('Account', 'contact', acc);
     flow.finalize();
     flow.setFlow('TestFlow');
     flow.setSubFlowNote('Completed');

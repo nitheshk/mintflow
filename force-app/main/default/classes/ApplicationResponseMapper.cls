@@ -125,6 +125,8 @@ global with sharing class ApplicationResponseMapper {
     global Boolean IsPrimary;
     global String Country;
     global String AddressType;
+    global String OccupancyStatus;
+    global Decimal OccupancyDuration;
     global Decimal Order;
   }
 

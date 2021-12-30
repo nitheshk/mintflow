@@ -301,6 +301,8 @@ global with sharing class ApplicationDataAPI {
       mapperContactAddress.State = contactAddress.State;
       mapperContactAddress.Street = contactAddress.Street;
       mapperContactAddress.Order = contactAddress.Order__c;
+      mapperContactAddress.OccupancyStatus = contactAddress.UsageType;
+      mapperContactAddress.OccupancyDuration = contactAddress.OccupancyDuration__c;
       mapperContactAddressList.add(mapperContactAddress);
     }
     return mapperContactAddressList;
