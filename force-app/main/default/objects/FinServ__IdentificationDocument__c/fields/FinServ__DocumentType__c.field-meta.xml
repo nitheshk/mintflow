@@ -17,11 +17,6 @@
                 <label>US Passport</label>
             </value>
             <value>
-                <fullName>Visa</fullName>
-                <default>false</default>
-                <label>Visa</label>
-            </value>
-            <value>
                 <fullName>Other</fullName>
                 <default>false</default>
                 <label>Other</label>
