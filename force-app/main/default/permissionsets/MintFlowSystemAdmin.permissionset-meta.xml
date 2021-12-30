@@ -192,6 +192,11 @@
         <field>FinServ__Employment__c.Employee_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.FinServ__EmploymentStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Employment__c.Verification_Status__c</field>
