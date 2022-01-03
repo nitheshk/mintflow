@@ -297,7 +297,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     for (ContactPointAddress cpa : addresses) {
       if (String.isNotBlank(applicantId)) {
         cpa.Applicant__c = applicantId;
-      }
+      } // updating state = state full name in trigger(before insert before update)
       cpa.Name = String.isNotBlank(cpa.Street) ? cpa.Street?.left(255) : 'N/A';
     }
     ApplicantRepository.upsertRecords(addresses);
