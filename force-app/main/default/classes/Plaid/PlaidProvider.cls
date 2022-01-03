@@ -75,11 +75,11 @@ global with sharing class PlaidProvider extends AbstractService {
     //api setting
     HttpBuilder.setAPISetting(APINames.PlaidTokenExchange);
     //body
-    Map<String, Object> body = new Map<String, Object>();
-    body.put('client_id', '{!$Credential.UserName}');
-    body.put('secret', '{!$Credential.Password}');
-    body.put('public_token', params.get('publicToken'));
-    String requestBody = JSON.serialize(body);
+    PlaidTokenDTO.ExchangeTokenRequest requestDTO = new PlaidTokenDTO.ExchangeTokenRequest();
+    requestDTO.client_id = '{!$Credential.UserName}';
+    requestDTO.secret = '{!$Credential.Password}';
+    requestDTO.public_token = (string) params.get('publicToken');
+    String requestBody = JSON.serialize(requestDTO);
     Flow.setSubFlowRequest(requestBody);
     //header
     Map<String, String> header = new Map<String, String>();
@@ -101,11 +101,11 @@ global with sharing class PlaidProvider extends AbstractService {
     //api setting
     HttpBuilder.setAPISetting(APINames.PlaidRetrieveAuth);
     //body
-    Map<String, Object> body = new Map<String, Object>();
-    body.put('client_id', '{!$Credential.UserName}');
-    body.put('secret', '{!$Credential.Password}');
-    body.put('access_token', params.get('accessToken'));
-    String requestBody = JSON.serialize(body);
+    PlaidTokenDTO.RetrieveAuthRequest requestDTO = new PlaidTokenDTO.RetrieveAuthRequest();
+    requestDTO.client_id = '{!$Credential.UserName}';
+    requestDTO.secret = '{!$Credential.Password}';
+    requestDTO.access_token = (string) params.get('accessToken');
+    String requestBody = JSON.serialize(requestDTO);
     Flow.setSubFlowRequest(requestBody);
     //header
     Map<String, String> header = new Map<String, String>();

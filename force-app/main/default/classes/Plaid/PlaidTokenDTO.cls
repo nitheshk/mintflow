@@ -31,5 +31,17 @@ global with sharing class PlaidTokenDTO extends AbstractDTO {
     global String link_token { get; set; }
     global String request_id { get; set; }
   }
-  //** LinkTokenResponse **/
+  //** ExchangeTokenRequest **/
+  global class ExchangeTokenRequest {
+    global String client_id { get; set; }
+    global String secret { get; set; }
+    global String public_token { get; set; }
+  }
+
+  //** RetrieveAuthRequest **/
+  global class RetrieveAuthRequest {
+    global String client_id { get; set; }
+    global String secret { get; set; }
+    global String access_token { get; set; }
+  }
 }
