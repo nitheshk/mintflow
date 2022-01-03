@@ -79,7 +79,10 @@ system.debug('Full Json : ' + res.data);
 // Method to authenticate AtomicFI token
 ApexRequest request = new ApexRequest();
 request.setHeader(
- new Map<String, String>{ 'applicantId' => 'a0b1y000001NMpiAAG','employerId' => 'a0A1y0000029HgVEAU' }
+  new Map<String, String>{
+    'applicantId' => 'a0b1y000001NMpiAAG',
+    'employerId' => 'a0A1y0000029HgVEAU'
+  }
 );
 ApexResponse res = ApplicantController.atomicAuthenticate(request);
 
@@ -122,10 +125,11 @@ for (Database.SaveResult sr : results) {
 // To generate Payslips and W2
 ApexRequest request = new ApexRequest();
 request.setHeader(
-  new Map<String, String>{ 'applicantId' => 'a0b1y000001NMpiAAG','employerId' => 'a0A1y0000029HgVEAU' }
+  new Map<String, String>{
+    'applicantId' => 'a0b1y000001NMpiAAG',
+    'employerId' => 'a0A1y0000029HgVEAU'
+  }
 );
 ApexResponse res = ApplicantController.generatePaySlipsW2(request);
 
 system.debug('Payslips and W2 : ' + res);
-
-}

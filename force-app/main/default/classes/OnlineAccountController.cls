@@ -44,7 +44,7 @@ global with sharing class OnlineAccountController extends AbstractController {
       if (this.application == null) {
         this.application = new Account();
       }
-
+      params.put('sftoken', UserInfo.getSessionId());
       params.put('token', ApexRequest.getToken());
       params.put('timezone', UserInfo.getTimeZone().getID());
       Map<String, Object> initialData = new Map<String, Object>{

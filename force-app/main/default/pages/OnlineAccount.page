@@ -35,7 +35,6 @@
         href="{!URLFOR($Resource.MintFlow, 'css/app.css')}"
         rel="stylesheet"
       />
-      <apex:includeScript value="{!URLFOR($Resource.cometd,'/cometd.js')}" />
     </head>
 
     <body>
@@ -62,38 +61,6 @@
       ></script>
       <script type="text/javascript">
         var Resourceurl = "{!URLFOR($Resource.MintFlow)}";
-      </script>
-      <script>
-        // self executing function here
-        (function () {
-          var cometdlib = new window.org.cometd.CometD();
-          cometdlib.configure({
-            url:
-              window.location.protocol +
-              "//" +
-              window.location.hostname +
-              "/cometd/51.0/",
-            requestHeaders: { Authorization: "OAuth {!$Api.Session_ID}" },
-            appendMessageTypeToURL: false,
-            logLevel: "debug"
-          });
-          cometdlib.websocketEnabled = true;
-
-          cometdlib.handshake(function (status) {
-            console.log("Channel Name  AtomicFI_Employer__e");
-            if (status.successful) {
-              console.log("after handshake");
-              cometdlib.subscribe(
-                "/event/AtomicFI_Employer__e",
-                function (message) {
-                  console.log(" message : " + JSON.stringify(message));
-                }
-              );
-            } else {
-              console.error("Error in handshaking: " + JSON.stringify(status));
-            }
-          });
-        })();
       </script>
     </body>
   </html>
