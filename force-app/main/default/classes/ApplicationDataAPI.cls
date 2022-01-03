@@ -299,6 +299,7 @@ global with sharing class ApplicationDataAPI {
       mapperContactAddress.IsPrimary = contactAddress.IsPrimary;
       mapperContactAddress.PostalCode = contactAddress.PostalCode;
       mapperContactAddress.State = contactAddress.State;
+      mapperContactAddress.StateCode = contactAddress.StateCode__c;
       mapperContactAddress.Street = contactAddress.Street;
       mapperContactAddress.Order = contactAddress.Order__c;
       mapperContactAddress.OccupancyStatus = contactAddress.UsageType;

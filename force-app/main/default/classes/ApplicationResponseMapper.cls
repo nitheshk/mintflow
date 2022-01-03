@@ -122,6 +122,7 @@ global with sharing class ApplicationResponseMapper {
     global String Street;
     global String City;
     global String State;
+    global String StateCode;
     global Boolean IsPrimary;
     global String Country;
     global String AddressType;

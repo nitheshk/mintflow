@@ -196,7 +196,7 @@ global with sharing class DocumentScanProvider extends AbstractService {
     idAddress.Street = returnDTO.data.address1;
     idAddress.City = returnDTO.data.address2;
     idAddress.PostalCode = returnDTO.data.postalCode;
-    idAddress.State = returnDTO.data.issuerOrgRegionAbbr;
+    idAddress.StateCode__c = returnDTO.data.issuerOrgRegionAbbr;
     idAddress.Country = returnDTO.data.issuerOrgIso2;
 
     SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
