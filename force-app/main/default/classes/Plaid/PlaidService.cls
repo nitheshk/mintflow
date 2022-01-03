@@ -148,7 +148,7 @@ global with sharing class PlaidService extends AbstractService {
       map<string, object> balances = new Map<string, object>();
       for (PlaidAccountDTO.Ach item : response.numbers.ach) {
         PlaidAccountDTO.Account account = accountMap.get(item.account_id);
-        balances.put(item.account_id, account.balances.available);
+        balances.put(item.account, account.balances.available);
       }
       return balances;
     }
