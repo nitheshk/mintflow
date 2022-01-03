@@ -77,7 +77,8 @@
             appendMessageTypeToURL: false,
             logLevel: "debug"
           });
-          cometdlib.websocketEnabled = false;
+          cometdlib.websocketEnabled = true;
+
           cometdlib.handshake(function (status) {
             console.log("Channel Name  AtomicFI_Employer__e");
             if (status.successful) {
