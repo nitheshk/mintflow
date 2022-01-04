@@ -181,6 +181,11 @@ global with sharing class ApplicantController extends AbstractController {
       validateRequest(request);
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       ID employerId = (Id) ApexRequest.getParams('employerId');
+      if (String.isEmpty(applicantId) || String.isempty(employerId)) {
+        return ApexResponse.ok(
+          'Applicant Id or Employer Id is missing in the request'
+        );
+      }
       return ApexResponse.ok(
         EmploymentService.getInstance()
           .atomicAuthenticate(applicantId, employerId)
