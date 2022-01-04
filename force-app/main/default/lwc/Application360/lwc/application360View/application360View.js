@@ -6,8 +6,7 @@ export default class Application360View extends LightningElement {
   @api recordId;
   @api applicationId;
   @track record;
-  @track applicationSections =
-    "mflow__PersonalInformation,mflow__StatusInformation";
+  // @api statusInformation = "mflow__StatusInformation";
 
   @wire(readApplicationWithChild, {
     applicationId: "$recordId"

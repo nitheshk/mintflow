@@ -2,20 +2,6 @@
   <template if:true={dataLoaded}>
     <div class="slds-grid slds-wrap">
       <template if:false={hideHeader}>
-        <div
-          class="
-            slds-page-header
-            slds-var-p-around_xx-small
-            slds-align_absolute-left
-            slds-col
-            slds-size_1-of-1
-          "
-        >
-          <h3>
-            <b> {titleName} </b>
-          </h3>
-        </div>
-
         <div class="slds-align_absolute-right">
           <div class="slds-align_absolute-right">
             <lightning-button
@@ -27,6 +13,19 @@
             >
             </lightning-button>
           </div>
+        </div>
+        <div
+          class="
+            slds-page-header
+            slds-var-p-around_xx-small
+            slds-align_absolute-left
+            slds-col
+            slds-size_1-of-1
+          "
+        >
+          <h3>
+            <b> Personal Information </b>
+          </h3>
         </div>
       </template>
       <template for:each={completeLayout} for:item="results">

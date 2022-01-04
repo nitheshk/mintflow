@@ -5,30 +5,30 @@ import application360Details from "@salesforce/messageChannel/Application360Rela
 
 //controller
 import fetchFieldDetails from "@salesforce/apex/LwcCustomController.fetchFieldDetails";
-
+const fieldsets = [
+  { Name: "Contact Information", apiName: "mflow__ContactInformation" },
+  { Name: "Personal Information", apiName: "mflow__PersonalInformation" },
+  { Name: "Status Information", apiName: "mflow__StatusInformation" }
+];
 export default class ApplicantRecordDetailView extends LightningElement {
   @api record;
   @api sObjectName;
-  @api fieldSetName;
   @api titleName;
   @api hideHeader = false;
   @api hideNullValues = false;
 
   @track completeLayout = [];
   @track dataLoaded = false;
+
   @wire(MessageContext)
   messageContext;
   renderedCallback() {
-    var fieldSets;
+    var fieldSets = ["1"];
 
-    console.log("fieldset =", this.fieldSetName);
     //console.log("Child renderedCallback::: " + JSON.stringify(this.record.Id));
     if (this.record && !this.dataLoaded) {
-      console.log("fieldset within if=", this.fieldSetName);
       //console.log("Child this.record ::: " + JSON.stringify(this.record));
-      fieldSets = this.fieldSetName.split(",");
 
-      console.log("after split fieldSets.length=" + fieldSets.length);
       for (let index = 0; index < fieldSets.length; index++) {
         const results = [];
         const fieldset = fieldSets[index];
@@ -36,7 +36,7 @@ export default class ApplicantRecordDetailView extends LightningElement {
         fetchFieldDetails({
           params: {
             sObjectName: this.sObjectName,
-            fieldSetName: fieldset
+            fieldSetName: "mflow__PersonalInformation"
           }
         })
           .then((data) => {
