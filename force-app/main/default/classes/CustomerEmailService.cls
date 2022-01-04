@@ -276,7 +276,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           new Map<String, String>{
             'aplType' => 'Primary',
             'flw' => 'FundingFlow',
-            'urlSuffix' => '/membership/funding/funding',
+            'urlSuffix' => '/membership/funding/welcome',
             'aplId' => applicant.Id,
             'ch' => 'Virtual'
           }

@@ -5,6 +5,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <classAccesses>
+        <apexClass>FinancingController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FinancialAccountController</apexClass>
         <enabled>true</enabled>
     </classAccesses>

@@ -6,7 +6,7 @@
   standardStylesheets="false"
   showheader="false"
   Controller="OnlineAccountController"
-  extensions="ApplicationController,IdentityController,ApplicantController,FinancialAccountController,FileController"
+  extensions="ApplicationController,IdentityController,ApplicantController,FinancialAccountController,FileController,FinancingController"
   action="{!initializeApplication}"
 >
   <html lang="">
