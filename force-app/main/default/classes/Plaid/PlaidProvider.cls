@@ -116,4 +116,27 @@ global with sharing class PlaidProvider extends AbstractService {
     Flow.setSubFlowResponse(response.getBody());
     return HttpBuilder.buildResponse(response);
   }
+
+  global virtual HttpBuilder.Response retriveInstitue(
+    Map<String, Object> params
+  ) {
+    //api setting
+    HttpBuilder.setAPISetting(APINames.PlaidRetriveInstitue);
+    //body
+    PlaidTokenDTO.RetriveInstitueRequest requestDTO = new PlaidTokenDTO.RetriveInstitueRequest();
+    requestDTO.client_id = '{!$Credential.UserName}';
+    requestDTO.secret = '{!$Credential.Password}';
+    requestDTO.institution_id = (string) params.get('institution_id');
+    requestDTO.country_codes = new List<String>{ 'US' };
+    String requestBody = JSON.serialize(requestDTO);
+    Flow.setSubFlowRequest(requestBody);
+    //header
+    Map<String, String> header = new Map<String, String>();
+    header.put('accept', 'application/json');
+    header.put('Content-Type', 'application/json');
+    //APi Call
+    HttpResponse response = HttpBuilder.httpCallOut(requestBody, header);
+    Flow.setSubFlowResponse(response.getBody());
+    return HttpBuilder.buildResponse(response);
+  }
 }

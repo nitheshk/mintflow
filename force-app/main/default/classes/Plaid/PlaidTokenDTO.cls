@@ -44,4 +44,12 @@ global with sharing class PlaidTokenDTO extends AbstractDTO {
     global String secret { get; set; }
     global String access_token { get; set; }
   }
+
+  //** RetriveInstitueRequest **/
+  global class RetriveInstitueRequest {
+    global String client_id { get; set; }
+    global String secret { get; set; }
+    global String institution_id { get; set; }
+    global List<String> country_codes { get; set; }
+  }
 }

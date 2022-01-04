@@ -70,7 +70,7 @@ global with sharing class PlaidService extends AbstractService {
    * @param String data
    * @return Object
    **/
-  global virtual List<object> fetchAccountsForTransaction(
+  global virtual Map<string, object> fetchAccountsForTransaction(
     Map<String, Object> params
   ) {
     try {
@@ -102,12 +102,6 @@ global with sharing class PlaidService extends AbstractService {
       ApexRequest.getParams().put('accessToken', accessToken);
       HttpBuilder.Response authResponse = PlaidProvider.getInstance()
         .retrieveAuth(ApexRequest.getParams());
-      // object data = '{"accounts":[{"account_id":"wp5rJy31NMfyEJNDvoqXhbwLlRaEGyCrwWWdy","balances":{"available":100,"current":110,"iso_currency_code":"USD","limit":null,"unofficial_currency_code":null},"mask":"0000","name":"Plaid Checking","official_name":"Plaid Gold Standard 0% Interest Checking","subtype":"checking","type":"depository"},{"account_id":"l418dp7olxiDAaok8E1pi5Q7n9NGkzfZQbbAp","balances":{"available":200,"current":210,"iso_currency_code":"USD","limit":null,"unofficial_currency_code":null},"mask":"1111","name":"Plaid Saving","official_name":"Plaid Silver Standard 0.1% Interest Saving","subtype":"savings","type":"depository"},{"account_id":"5NVq637arPcAbDxWd7GZUd3g5pjXPWFZlNNLz","balances":{"available":null,"current":1000,"iso_currency_code":"USD","limit":null,"unofficial_currency_code":null},"mask":"2222","name":"Plaid CD","official_name":"Plaid Bronze Standard 0.2% Interest CD","subtype":"cd","type":"depository"},{"account_id":"kamgkLwoG3iMQPzlvEaZSGnMVR36rLiWnZZRW","balances":{"available":null,"current":410,"iso_currency_code":"USD","limit":2000,"unofficial_currency_code":null},"mask":"3333","name":"Plaid Credit Card","official_name":"Plaid Diamond 12.5% APR Interest Credit Card","subtype":"credit card","type":"credit"},{"account_id":"Jzbo9AkW8vcleKXgyPJ4cjva1KQw7qid3RRNb","balances":{"available":43200,"current":43200,"iso_currency_code":"USD","limit":null,"unofficial_currency_code":null},"mask":"4444","name":"Plaid Money Market","official_name":"Plaid Platinum Standard 1.85% Interest Money Market","subtype":"money market","type":"depository"}],"item":{"available_products":["assets","balance","credit_details"],"billed_products":["auth","identity","income","transactions"],"error":null,"institution_id":"ins_3","item_id":"QNWnmvzAKwcx9RwPXqVMSoRBjkroVnhpge7bq","webhook":"https://www.genericwebhookurl.com/webhook"},"numbers":{"ach":[{"account":"1111222233330000","account_id":"wp5rJy31NMfyEJNDvoqXhbwLlRaEGyCrwWWdy","routing":"011401533","wire_routing":"021000021"},{"account":"1111222233331111","account_id":"l418dp7olxiDAaok8E1pi5Q7n9NGkzfZQbbAp","routing":"011401533","wire_routing":"021000021"}],"eft":[]},"request_id":"snosJ"}';
-      // HttpBuilder.Response authResponse = HttpBuilder.buildResponse(
-      //   200,
-      //   'ok',
-      //   data
-      // );
       if (authResponse.statusCode == 200) {
         Flow.setSubFlowPassed(authResponse.status);
       } else {
@@ -115,12 +109,37 @@ global with sharing class PlaidService extends AbstractService {
         throw new CustomException('Unable to retrieve Auth');
       }
 
-      // parse the result of auth
-      PlaidAccountDTO.Response PlaidAccountResponse = (PlaidAccountDTO.Response) JSON.deserialize(
+      PlaidAccountDTO.AuthResponse plaidAccountResponse = (PlaidAccountDTO.AuthResponse) JSON.deserialize(
         PlaidAccountDTO.removeReserveFields((string) authResponse.data),
-        PlaidAccountDTO.Response.class
+        PlaidAccountDTO.AuthResponse.class
       );
-      List<object> balances = fetchAccountBalances(PlaidAccountResponse);
+
+      // get institute details
+      Flow.setSubFlow(
+        APINames.PlaidRetriveInstitue.name(),
+        ApexRequest.getApplicationId()
+      );
+      ApexRequest.getParams()
+        .put('institution_id', plaidAccountResponse.item.institution_id);
+      HttpBuilder.Response instituteResponse = PlaidProvider.getInstance()
+        .retriveInstitue(ApexRequest.getParams());
+      if (instituteResponse.statusCode == 200) {
+        Flow.setSubFlowPassed(instituteResponse.status);
+      } else {
+        Flow.setSubFlowFailed(instituteResponse.status);
+        throw new CustomException('Unable to retrieve Institute');
+      }
+
+      PlaidAccountDTO.InstituteResponse plaidInstituteResponse = (PlaidAccountDTO.InstituteResponse) JSON.deserialize(
+        (string) instituteResponse.data,
+        PlaidAccountDTO.InstituteResponse.class
+      );
+
+      // parse the result of auth and institute
+      Map<string, object> balances = fetchAccountBalances(
+        plaidAccountResponse,
+        plaidInstituteResponse
+      );
 
       Flow.setFlowPassed();
       return balances;
@@ -137,16 +156,17 @@ global with sharing class PlaidService extends AbstractService {
    * @param PlaidAccountDTO.Response response
    * @return virtual
    **/
-  public virtual List<object> fetchAccountBalances(
-    PlaidAccountDTO.Response response
+  public virtual Map<string, object> fetchAccountBalances(
+    PlaidAccountDTO.AuthResponse accountResponse,
+    PlaidAccountDTO.InstituteResponse instituteResponse
   ) {
     map<string, PlaidAccountDTO.Account> accountMap = new Map<string, PlaidAccountDTO.Account>();
-    if (response.accounts != null) {
-      for (PlaidAccountDTO.Account account : response.accounts) {
+    if (accountResponse.accounts != null) {
+      for (PlaidAccountDTO.Account account : accountResponse.accounts) {
         accountMap.put(account.account_id, account);
       }
       List<object> balancesList = new List<object>();
-      for (PlaidAccountDTO.Ach item : response.numbers.ach) {
+      for (PlaidAccountDTO.Ach item : accountResponse.numbers.ach) {
         map<string, object> balances = new Map<string, object>();
         PlaidAccountDTO.Account account = accountMap.get(item.account_id);
         balances.put('AccountNumber', item.account);
@@ -164,7 +184,11 @@ global with sharing class PlaidService extends AbstractService {
         );
         balancesList.add(balances);
       }
-      return balancesList;
+
+      return new Map<string, object>{
+        'Institute' => instituteResponse.institution.name,
+        'Accounts' => balancesList
+      };
     }
     return null;
   }

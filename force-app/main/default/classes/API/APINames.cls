@@ -19,5 +19,6 @@ global enum APINames {
   UiPath,
   PlaidTokenExchange,
   PlaidRetrieveAuth,
-  PlaidLinkToken
+  PlaidLinkToken,
+  PlaidRetriveInstitue
 }

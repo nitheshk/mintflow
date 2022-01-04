@@ -12,7 +12,7 @@ public with sharing class PlaidAccountDTO extends AbstractDTO {
     return responseBody;
   }
 
-  public class Response {
+  public class AuthResponse {
     public List<Account> accounts { get; set; }
     public Item item { get; set; }
     public Numbers numbers { get; set; }
@@ -54,5 +54,24 @@ public with sharing class PlaidAccountDTO extends AbstractDTO {
     public String account_id { get; set; }
     public String routing { get; set; }
     public String wire_routing { get; set; }
+  }
+  public class InstituteResponse {
+    public Institution institution { get; set; }
+    public String request_id { get; set; }
+  }
+  public class Institution {
+    public List<Credentials> credentials { get; set; }
+    public Boolean has_mfa { get; set; }
+    public String institution_id { get; set; }
+    public List<String> mfa { get; set; }
+    public String mfa_code_type { get; set; }
+    public String name { get; set; }
+    public List<String> products { get; set; }
+  }
+
+  public class Credentials {
+    public String label { get; set; }
+    public String name { get; set; }
+    public String type { get; set; }
   }
 }
