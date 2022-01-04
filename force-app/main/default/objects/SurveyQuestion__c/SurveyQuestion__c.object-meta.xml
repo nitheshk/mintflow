@@ -153,12 +153,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>Survey Template Item</label>
+    <label>Survey Question</label>
     <nameField>
-        <label>Survey TemplateItem Name</label>
+        <label>Survey Question Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Survey Template Items</pluralLabel>
+    <pluralLabel>Survey Questions</pluralLabel>
     <searchLayouts />
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
