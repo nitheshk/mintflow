@@ -70,7 +70,7 @@ global with sharing class PlaidService extends AbstractService {
    * @param String data
    * @return Object
    **/
-  global virtual map<string, object> fetchAccountsForTransaction(
+  global virtual List<object> fetchAccountsForTransaction(
     Map<String, Object> params
   ) {
     try {
@@ -120,7 +120,7 @@ global with sharing class PlaidService extends AbstractService {
         PlaidAccountDTO.removeReserveFields((string) authResponse.data),
         PlaidAccountDTO.Response.class
       );
-      map<string, object> balances = fetchAccountBalances(PlaidAccountResponse);
+      List<object> balances = fetchAccountBalances(PlaidAccountResponse);
 
       Flow.setFlowPassed();
       return balances;
@@ -137,7 +137,7 @@ global with sharing class PlaidService extends AbstractService {
    * @param PlaidAccountDTO.Response response
    * @return virtual
    **/
-  public virtual map<string, object> fetchAccountBalances(
+  public virtual List<object> fetchAccountBalances(
     PlaidAccountDTO.Response response
   ) {
     map<string, PlaidAccountDTO.Account> accountMap = new Map<string, PlaidAccountDTO.Account>();
@@ -145,12 +145,26 @@ global with sharing class PlaidService extends AbstractService {
       for (PlaidAccountDTO.Account account : response.accounts) {
         accountMap.put(account.account_id, account);
       }
-      map<string, object> balances = new Map<string, object>();
+      List<object> balancesList = new List<object>();
       for (PlaidAccountDTO.Ach item : response.numbers.ach) {
+        map<string, object> balances = new Map<string, object>();
         PlaidAccountDTO.Account account = accountMap.get(item.account_id);
-        balances.put(item.account, account.balances.available);
+        balances.put('AccountNumber', item.account);
+        balances.put('AvailableBalance', account.balances.available);
+        balances.put('Routing', item.routing);
+        balances.put('WireRouting', item.wire_routing);
+        balances.put(
+          'Label',
+          account.name +
+          ' (' +
+          item.account +
+          ')' +
+          ' - ' +
+          account.balances.available
+        );
+        balancesList.add(balances);
       }
-      return balances;
+      return balancesList;
     }
     return null;
   }
