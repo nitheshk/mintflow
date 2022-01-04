@@ -50,7 +50,7 @@ global with sharing class SurveyResolver extends AbstractService {
   ) {
     List<Survey__c> surveyList = new List<Survey__c>();
     for (SurveyTemplate__c surveyTemplate : surveyTemlates) {
-      for (SurveyTemplateItem__c item : surveyTemplate.SurveyTemplateItems__r) {
+      for (SurveyQuestion__c item : surveyTemplate.SurveyQuestions__r) {
         Survey__c surveyObj = new Survey__c();
         surveyObj.Answer__c = null;
         surveyObj.OptionType__c = item.OptionType__c;

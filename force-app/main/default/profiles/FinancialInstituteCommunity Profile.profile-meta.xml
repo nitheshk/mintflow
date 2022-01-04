@@ -125,8 +125,7 @@
     >mflow__ServiceClassSetting__mdt-mflow__Service Class Setting Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout
-    >mflow__SurveyTemplateItem__c-mflow__SurveyTemplate Item Layout</layout>
+        <layout>mflow__SurveyQuestion__c-mflow__SurveyQuestion Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>mflow__SurveyTemplate__c-mflow__SurveyTemplate Layout</layout>

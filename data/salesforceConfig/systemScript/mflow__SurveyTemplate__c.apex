@@ -1,6 +1,6 @@
 String q = Query.newInstance(mflow__SurveyTemplate__c.SObjectType)
   .addFields()
-  .queryChild('mflow__SurveyTemplateItems__r')
+  .queryChild('mflow__SurveyQuestions__r')
   .addFields()
   .orderBy('mflow__Order__c')
   .run()

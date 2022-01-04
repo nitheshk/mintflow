@@ -18,7 +18,7 @@ public with sharing class SurveyRepository extends DatabaseUtils {
     return (List<SurveyTemplate__c>) getRecords(
       Query.newInstance(SurveyTemplate__c.SObjectType)
         .addFields()
-        .queryChild('mflow__SurveyTemplateItems__r')
+        .queryChild('mflow__SurveyQuestions__r')
         .addFields()
         .orderBy('mflow__Order__c')
         .run()
@@ -40,7 +40,7 @@ public with sharing class SurveyRepository extends DatabaseUtils {
     return (List<SurveyTemplate__c>) getRecords(
       Query.newInstance(SurveyTemplate__c.SObjectType)
         .addFields()
-        .queryChild('mflow__SurveyTemplateItems__r')
+        .queryChild('mflow__SurveyQuestions__r')
         .addFields()
         .orderBy('mflow__Order__c')
         .run()
@@ -61,7 +61,7 @@ public with sharing class SurveyRepository extends DatabaseUtils {
     return (List<SurveyTemplate__c>) getRecords(
       Query.newInstance(SurveyTemplate__c.SObjectType)
         .addFields()
-        .queryChild('mflow__SurveyTemplateItems__r')
+        .queryChild('mflow__SurveyQuestions__r')
         .addFields()
         .orderBy('mflow__Order__c')
         .run()

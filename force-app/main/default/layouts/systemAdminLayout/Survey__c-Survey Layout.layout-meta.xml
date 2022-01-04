@@ -50,7 +50,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SurveyTemplateItem__c</field>
+                <field>SurveyQuestion__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -71,7 +71,7 @@
         <fields>ParentQuestionCode__c</fields>
         <fields>hasChild__c</fields>
         <fields>Condition__c</fields>
-        <relatedList>SurveyTemplateItem__c.SurveyTemplate__c</relatedList>
+        <relatedList>SurveyQuestion__c.SurveyTemplate__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

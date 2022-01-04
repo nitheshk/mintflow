@@ -11,13 +11,13 @@
       "mflow__DeleteRecord__c": false,
       "mflow__Order__c": 1,
       "mflow__SubCategory__c": "Register",
-      "mflow__SurveyTemplateItems__r": {
+      "mflow__SurveyQuestions__r": {
         "totalSize": 18,
         "done": true,
         "records": [
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_0"
             },
             "Name": "What is the complete legal name of the dealership?",
@@ -35,7 +35,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_1"
             },
             "Name": "What year was the dealership founded?",
@@ -53,7 +53,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_2"
             },
             "Name": "Who are the primary owners of the dealership and what year did they assume owner",
@@ -71,7 +71,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_3"
             },
             "Name": "Who is the finance manager with whom we will have daily contact?",
@@ -89,7 +89,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_4"
             },
             "Name": "Does the dealership sell secondary products such as GAP/Warranty/Credit life",
@@ -107,7 +107,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_5"
             },
             "Name": "What are the target sales requirements for F & I staff on these products?",
@@ -126,7 +126,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_6"
             },
             "Name": "GAP",
@@ -145,7 +145,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_7"
             },
             "Name": "Warranty",
@@ -164,7 +164,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_8"
             },
             "Name": "Credit Life",
@@ -183,7 +183,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_9"
             },
             "Name": "Credit Disability",
@@ -202,7 +202,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_10"
             },
             "Name": "Is the dealership a named party in any existing or pending law suits?",
@@ -220,7 +220,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_11"
             },
             "Name": "If yes, explain:",
@@ -239,7 +239,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_12"
             },
             "Name": "Which dealership integration products does the dealership utilize",
@@ -257,7 +257,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_13"
             },
             "Name": "DealerTrack",
@@ -277,7 +277,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_14"
             },
             "Name": "RouteOne",
@@ -297,7 +297,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_15"
             },
             "Name": "Open Dealer Exchange",
@@ -317,7 +317,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_16"
             },
             "Name": "Other:",
@@ -337,7 +337,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_0_17"
             },
             "Name": "Specify:",
@@ -369,13 +369,13 @@
       "mflow__DeleteRecord__c": false,
       "mflow__Order__c": 2,
       "mflow__SubCategory__c": "Approval",
-      "mflow__SurveyTemplateItems__r": {
+      "mflow__SurveyQuestions__r": {
         "totalSize": 8,
         "done": true,
         "records": [
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_1_0"
             },
             "Name": "The dealership URL is:",
@@ -392,7 +392,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_1_1"
             },
             "Name": "Is the dealer’s physical location listed on the website?",
@@ -410,7 +410,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_1_2"
             },
             "Name": "Is contact information listed on the website?",
@@ -428,7 +428,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_1_3"
             },
             "Name": "Does the dealer have inventory listed on the website?",
@@ -446,7 +446,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_1_4"
             },
             "Name": "Does the web inventory match the list provided from the dealer?",
@@ -464,7 +464,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_1_5"
             },
             "Name": "Does the website have a physical picture of the facility?",
@@ -482,7 +482,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_1_6"
             },
             "Name": "Is the facility in good repair and shows pride of ownership?",
@@ -500,7 +500,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_1_7"
             },
             "Name": "Do you recommend this dealer be contracted as a Credit Union authorized dealer?",
@@ -530,13 +530,13 @@
       "mflow__DeleteRecord__c": false,
       "mflow__Order__c": 1,
       "mflow__SubCategory__c": "Approval",
-      "mflow__SurveyTemplateItems__r": {
+      "mflow__SurveyQuestions__r": {
         "totalSize": 12,
         "done": true,
         "records": [
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_0"
             },
             "Name": "Will there be ACH Activity on the account to exceed $2,000 per month",
@@ -554,7 +554,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_1"
             },
             "Name": "Approximately how many ACH Transactions per month",
@@ -574,7 +574,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_2"
             },
             "Name": "Approximately how much in ACH transactions per month",
@@ -594,7 +594,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_3"
             },
             "Name": "Will there be wire activity on the account in excess of $2,000 per month",
@@ -612,7 +612,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_4"
             },
             "Name": "Approximately how many Wire transactions per month",
@@ -632,7 +632,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_5"
             },
             "Name": "Approximately how much in wire activity per month",
@@ -652,7 +652,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_6"
             },
             "Name": "Do you plan to have cash transactions to your account in excess of $2,000 per mo",
@@ -670,7 +670,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_7"
             },
             "Name": "Approximately how many Cash transactions per month",
@@ -690,7 +690,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_8"
             },
             "Name": "Approximately how much in Cash do you anticipate per month",
@@ -710,7 +710,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_9"
             },
             "Name": "BSA Risk score(If yes to all 3 choose(3)medium; otherwise choose(1)Low)",
@@ -728,7 +728,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_10"
             },
             "Name": "The Tax payer Identification number shown above(TIN) is my correct taxpayer iden",
@@ -746,7 +746,7 @@
           },
           {
             "attributes": {
-              "type": "mflow__SurveyTemplateItem__c",
+              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyTemplateItemRef_2_11"
             },
             "Name": "Has the IRS notified that you are subject to backup withholding because you have",

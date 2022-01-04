@@ -14,8 +14,8 @@ utils
       utils.replaceUnwantedFields(item);
       item.attributes.referenceId = "SurveyTemplateRef_" + index;
 
-      if (item.mflow__SurveyTemplateItems__r) {
-        item.mflow__SurveyTemplateItems__r.records.forEach(function (
+      if (item.mflow__SurveyQuestions__r) {
+        item.mflow__SurveyQuestions__r.records.forEach(function (
           item_c1,
           index_c1
         ) {

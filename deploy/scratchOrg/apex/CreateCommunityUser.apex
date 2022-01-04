@@ -17,7 +17,7 @@ public static void createUser() {
   userObj.Alias = 'any';
   userObj.ContactId = contactObjs[0].Id;
   //userObj.Email = 'Online@User.Mflow.' + System.currentTimeMillis() + '.com';
-  userObj.Email = 'lakshmi@digitalalign.com';
+  userObj.Email = '{{Email}}';
   userObj.Username = 'OnlineUser@Mflow.' + System.currentTimeMillis() + '.com';
   userObj.CommunityNickname = 'Mflow.' + System.currentTimeMillis();
   userObj.LocaleSidKey = 'en_US';

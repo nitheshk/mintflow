@@ -575,7 +575,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.DeleteRecord__c</field>
+        <field>SurveyQuestion__c.DeleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -905,22 +905,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.Options__c</field>
+        <field>SurveyQuestion__c.Options__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.CustomStyle__c</field>
+        <field>SurveyQuestion__c.CustomStyle__c</field>
         <readable>true</readable>
     </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.Condition__c</field>
+        <field>SurveyQuestion__c.Condition__c</field>
         <readable>true</readable>
     </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.hasChild__c</field>
+        <field>SurveyQuestion__c.hasChild__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3903,47 +3903,47 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.LongDescription__c</field>
+        <field>SurveyQuestion__c.LongDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.Required__c</field>
+        <field>SurveyQuestion__c.Required__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.OptionType__c</field>
+        <field>SurveyQuestion__c.OptionType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.Order__c</field>
+        <field>SurveyQuestion__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.ParentQuestionCode__c</field>
+        <field>SurveyQuestion__c.ParentQuestionCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.QuestionCode__c</field>
+        <field>SurveyQuestion__c.QuestionCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.QuestionNumber__c</field>
+        <field>SurveyQuestion__c.QuestionNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.ShortDescription__c</field>
+        <field>SurveyQuestion__c.ShortDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplateItem__c.ShowQuestionNumber__c</field>
+        <field>SurveyQuestion__c.ShowQuestionNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4023,7 +4023,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Survey__c.SurveyTemplateItem__c</field>
+        <field>Survey__c.SurveyQuestion__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4365,7 +4365,7 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>SurveyTemplateItem__c</object>
+        <object>SurveyQuestion__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
