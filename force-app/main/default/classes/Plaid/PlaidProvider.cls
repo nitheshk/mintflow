@@ -117,6 +117,12 @@ global with sharing class PlaidProvider extends AbstractService {
     return HttpBuilder.buildResponse(response);
   }
 
+  /**
+   * @description
+   * @author Digital Align | 01-04-2022
+   * @param Map<String Object> params
+   * @return virtual
+   **/
   global virtual HttpBuilder.Response retriveInstitue(
     Map<String, Object> params
   ) {
