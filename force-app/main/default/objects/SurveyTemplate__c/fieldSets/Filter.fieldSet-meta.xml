@@ -4,12 +4,12 @@
     <description
   >Filter to fetch templates to display in application flow</description>
     <displayedFields>
-        <field>Name</field>
+        <field>ApplicantType__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>Channel__c</field>
+        <field>FinancialProductCode__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
