@@ -109,8 +109,8 @@ global with sharing class ApplicantService extends AbstractService {
   ) {
     String currentPage = ApexRequest.getRequest().currentPage;
     switch on currentPage {
-      when 'personal-information' {
-        helper.notifyFamilyConnectReference(applicants);
+      when 'personal-info' {
+        helper.notifyFamilyConnectReference();
       }
     }
     return applicants;
@@ -162,6 +162,12 @@ global with sharing class ApplicantService extends AbstractService {
    * @return virtual
    **/
   global virtual Applicant__c afterSaveApplicant(Applicant__c applicant) {
+    String currentPage = ApexRequest.getRequest().currentPage;
+    switch on currentPage {
+      when 'personal-info' {
+        helper.notifyFamilyConnectReference();
+      }
+    }
     return applicant;
   }
 

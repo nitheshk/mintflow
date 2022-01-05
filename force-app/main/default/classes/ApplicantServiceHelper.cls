@@ -31,19 +31,17 @@ global with sharing class ApplicantServiceHelper extends AbstractService {
   /**
    * @description  Send Email to reference person on family connect
    * @author Digital Align Team | 11-09-2021
-   * @param List<Applicant__c> applicants
-   * @return List<Applicant__c>
    **/
-  global virtual List<Applicant__c> notifyFamilyConnectReference(
-    List<Applicant__c> applicants
-  ) {
+  global virtual void notifyFamilyConnectReference() {
     log?.debug('inside notifyFamilyConnectReference');
     try {
+      List<Applicant__c> applicants = ApplicantRepository.readApplicantsByApplicationId(
+        ApexRequest.getApplicationId()
+      );
       CustomerEmailService.getInstance().notifyFamilyMember(applicants);
     } catch (exception ex) {
       log?.error(ex);
     }
-    return applicants;
   }
 
   /**

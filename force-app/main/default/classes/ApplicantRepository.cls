@@ -220,4 +220,23 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description read applicant by application Id
+   * Used in sending family member email notification
+   * @author Digital Align Team | 01-05-2022
+   * @param Id applicationId
+   * @return List<Applicant__c>
+   **/
+  global static List<Applicant__c> readApplicantsByApplicationId(
+    Id applicationId
+  ) {
+    return (List<Applicant__c>) getRecords(
+      Query.newInstance(Applicant__c.SObjectType)
+        .addFields()
+        .whereEq('mflow__Application__c', applicationId)
+        .addLimit(50)
+        .toString()
+    );
+  }
 }
