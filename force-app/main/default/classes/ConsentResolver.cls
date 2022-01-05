@@ -48,10 +48,10 @@ global with sharing class ConsentResolver extends AbstractService {
       ApexRequest.getApplicationId()
     );
 
-    //resolve consent using custom filter
-    consents.addAll(resolveConsents(application, filters));
     //resolve consent using financial account
     consents.addAll(resolveConsents(application));
+    //resolve consent using custom filter
+    consents.addAll(resolveConsents(application, filters));
     // remove duplicate consent
     return removeDuplicateConsent(consents);
   }
@@ -221,10 +221,13 @@ global with sharing class ConsentResolver extends AbstractService {
   global virtual List<Consent__c> removeDuplicateConsent(
     List<Consent__c> consents
   ) {
-    Map<String, Consent__c> consentMap = new Map<String, Consent__c>();
+    Set<String> templateCode = new Set<String>();
+    List<Consent__c> newconsentsList = new List<Consent__c>();
     for (Consent__c consent : consents) {
-      consentMap.put(consent.ConsentTemplate__r.Code__c, consent);
+      if (templateCode.add(consent.ConsentTemplate__r.Code__c)) {
+        newconsentsList.add(consent);
+      }
     }
-    return consentMap.values();
+    return newconsentsList;
   }
 }

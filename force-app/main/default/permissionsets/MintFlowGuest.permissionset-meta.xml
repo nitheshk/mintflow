@@ -1915,6 +1915,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ConsentTemplate__c.ConsentType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ConsentTemplate__c.Language__c</field>
         <readable>true</readable>
     </fieldPermissions>
