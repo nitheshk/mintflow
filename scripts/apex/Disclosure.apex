@@ -71,3 +71,17 @@ request.header = '{"eventIdentifier":"ReviewSubmit","filter":[{"mflow__FinancilP
 //request.header = '{"eventIdentifier":"ElibilityPage"}';
 ApexResponse res = ApplicationController.fetchConsents(request);
 system.debug('Full Json : ' + res.data);
+
+//#4
+
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  '0010p000011XRMTAA4',
+  '',
+  'Primary',
+  'ApplicationFlow'
+);
+request.header = '{"eventIdentifier":"ReviewSubmit"}';
+//request.header = '{"eventIdentifier":"ElibilityPage"}';
+ApexResponse res = ApplicationController.fetchConsents(request);
+system.debug('Full Json : ' + res.data);

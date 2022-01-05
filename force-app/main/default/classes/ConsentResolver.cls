@@ -78,6 +78,14 @@ global with sharing class ConsentResolver extends AbstractService {
         filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
         filterMap.put('$mflow__Channel__c', 'INCLUDES');
       }
+    } else {
+      filters = new List<Object>();
+      Map<String, Object> filterMap = new Map<String, Object>();
+      filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
+      filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
+      filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
+      filterMap.put('$mflow__Channel__c', 'INCLUDES');
+      filters.add(filterMap);
     }
 
     String eventIdentifier = String.valueOf(
