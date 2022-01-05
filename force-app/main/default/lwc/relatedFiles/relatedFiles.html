@@ -1,6 +1,10 @@
 <template>
   <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
-  <lightning-card if:true={showFile} title={titleName}>
+  <lightning-card
+    if:true={showFile}
+    title={titleName}
+    icon-name="standard:file"
+  >
     <template if:false={files}
       ><div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
         {message}

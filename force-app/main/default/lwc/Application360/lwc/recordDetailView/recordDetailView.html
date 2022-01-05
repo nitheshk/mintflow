@@ -1,7 +1,19 @@
 <template>
+  <!-- <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils> -->
   <template if:true={dataLoaded}>
     <div class="slds-grid slds-wrap">
       <template if:false={hideHeader}>
+        <div class="slds-float_right file-btn-right file-btn-right">
+          <lightning-button
+            class="slds-float_right"
+            variant="brand"
+            label="View Files"
+            title="View related files"
+            onclick={showRelatedFiles}
+          >
+          </lightning-button>
+        </div>
+
         <div
           class="
             slds-page-header
@@ -14,19 +26,6 @@
           <h3>
             <b> {titleName} </b>
           </h3>
-        </div>
-
-        <div class="slds-float_right">
-          <div class="slds-float_right">
-            <lightning-button
-              class="slds-float_right"
-              variant="brand"
-              label="View Files"
-              title="View related files"
-              onclick={showRelatedFiles}
-            >
-            </lightning-button>
-          </div>
         </div>
       </template>
       <template for:each={results} for:item="rKey">

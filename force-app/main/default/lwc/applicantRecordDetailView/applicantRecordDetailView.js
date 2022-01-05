@@ -14,29 +14,30 @@ export default class ApplicantRecordDetailView extends LightningElement {
   @api record;
   @api sObjectName;
   @api titleName;
+  @track showSpinner = false;
   @api hideHeader = false;
   @api hideNullValues = false;
-
-  @track completeLayout = [];
+  @track contactResult = [];
+  @track personalResult = [];
+  @track statusResult = [];
+  @track fieldsets = [
+    "mflow__ContactInformation",
+    "mflow__PersonalInformation",
+    "mflow__StatusInformation"
+  ];
   @track dataLoaded = false;
 
   @wire(MessageContext)
   messageContext;
   renderedCallback() {
-    var fieldSets = ["1"];
-
     //console.log("Child renderedCallback::: " + JSON.stringify(this.record.Id));
     if (this.record && !this.dataLoaded) {
       //console.log("Child this.record ::: " + JSON.stringify(this.record));
-
-      for (let index = 0; index < fieldSets.length; index++) {
-        const results = [];
-        const fieldset = fieldSets[index];
-        console.log("fieldset in for =" + fieldset);
+      this.fieldsets.forEach((element) => {
         fetchFieldDetails({
           params: {
             sObjectName: this.sObjectName,
-            fieldSetName: "mflow__PersonalInformation"
+            fieldSetName: element
           }
         })
           .then((data) => {
@@ -117,18 +118,21 @@ export default class ApplicantRecordDetailView extends LightningElement {
                 }
               }
               if (tempData.length > 0) {
-                results.push(tempData);
-                this.completeLayout.push(results);
+                if (element === "mflow__ContactInformation") {
+                  this.contactResult.push(tempData);
+                } else if (element === "mflow__PersonalInformation") {
+                  this.personalResult.push(tempData);
+                } else if (element === "mflow__StatusInformation") {
+                  this.statusResult.push(tempData);
+                }
               }
             }
             this.dataLoaded = true;
-            console.log("results =", results);
-            console.log("this.completeLayout =", this.completeLayout);
           })
           .catch((error) => {
             console.log(error);
           });
-      }
+      });
     }
   }
   showRelatedFiles() {

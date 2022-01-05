@@ -11,6 +11,7 @@ export default class RecordDetailView extends LightningElement {
   @api sObjectName;
   @api fieldSetName;
   @api titleName;
+  @track showSpinner = false;
   @api hideHeader = false;
   @api hideNullValues = false;
   results = [];
@@ -21,6 +22,7 @@ export default class RecordDetailView extends LightningElement {
     //console.log("Child renderedCallback::: " + JSON.stringify(this.record.Id));
     if (this.record && !this.dataLoaded) {
       //console.log("Child this.record ::: " + JSON.stringify(this.record));
+      this.showSpinner = true;
       fetchFieldDetails({
         params: {
           sObjectName: this.sObjectName,
@@ -111,6 +113,7 @@ export default class RecordDetailView extends LightningElement {
         .catch((error) => {
           console.log(error);
         });
+      this.showSpinner = false;
     }
   }
   showRelatedFiles() {

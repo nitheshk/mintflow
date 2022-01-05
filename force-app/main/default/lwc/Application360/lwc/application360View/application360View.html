@@ -44,6 +44,7 @@
                     record={data.mflow__ContactPointAddresses__r}
                     s-object-name="ContactPointAddress"
                     title-name="Contact Point Addresses"
+                    field-set-name="mflow__AddresslInformation"
                     hide-null-values="true"
                   ></c-record-detail-view>
                 </lightning-tab>
@@ -54,6 +55,7 @@
                     key={data.Id}
                     record={data.mflow__IdentificationDocuments__r}
                     s-object-name="FinServ__IdentificationDocument__c"
+                    field-set-name="mflow__IdentityInformation"
                     title-name="Identification Details"
                     hide-null-values="true"
                   ></c-record-detail-view>
@@ -65,6 +67,7 @@
                     key={data.Id}
                     record={data.mflow__Employments__r}
                     s-object-name="FinServ__Employment__c"
+                    field-set-name="mflow__EmploymentInformation"
                     title-name="Employee Details"
                     hide-null-values="true"
                   ></c-record-detail-view>

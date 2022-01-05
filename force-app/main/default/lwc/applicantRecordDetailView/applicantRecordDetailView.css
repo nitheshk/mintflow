@@ -8,3 +8,8 @@
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.file-btn-right {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+}
