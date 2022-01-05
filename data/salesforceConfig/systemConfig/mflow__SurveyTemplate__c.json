@@ -6,11 +6,10 @@
         "referenceId": "SurveyTemplateRef_0"
       },
       "Name": "DealerSurvey",
-      "mflow__Category__c": "Dealer",
       "mflow__Channel__c": "Community",
+      "mflow__EventIdentifier__c": "DealerSurvey",
       "mflow__DeleteRecord__c": false,
       "mflow__Order__c": 1,
-      "mflow__SubCategory__c": "Register",
       "mflow__SurveyQuestions__r": {
         "totalSize": 18,
         "done": true,
@@ -364,11 +363,10 @@
         "referenceId": "SurveyTemplateRef_1"
       },
       "Name": "DealerApprovalSurvey",
-      "mflow__Category__c": "Dealer",
+      "mflow__EventIdentifier__c": "DealerApprovalSurvey",
       "mflow__Channel__c": "Community",
       "mflow__DeleteRecord__c": false,
       "mflow__Order__c": 2,
-      "mflow__SubCategory__c": "Approval",
       "mflow__SurveyQuestions__r": {
         "totalSize": 8,
         "done": true,
@@ -525,11 +523,10 @@
         "referenceId": "SurveyTemplateRef_2"
       },
       "Name": "CustomerFlowQuestionaire",
-      "mflow__Category__c": "Mintflow",
+      "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
       "mflow__Channel__c": "Virtual",
       "mflow__DeleteRecord__c": false,
       "mflow__Order__c": 1,
-      "mflow__SubCategory__c": "Approval",
       "mflow__SurveyQuestions__r": {
         "totalSize": 12,
         "done": true,

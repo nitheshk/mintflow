@@ -7,67 +7,53 @@
  **/
 public with sharing class SurveyRepository extends DatabaseUtils {
   /**
-   * @description Fetch survey template by template unique name
-   * @author Digital Align Team | 08-25-2021
-   * @param String templateName
-   * @return List<SurveyTemplate__c>
-   **/
-  public static List<SurveyTemplate__c> fetchSurveyTemplatesByName(
-    String templateName
-  ) {
-    return (List<SurveyTemplate__c>) getRecords(
-      Query.newInstance(SurveyTemplate__c.SObjectType)
-        .addFields()
-        .queryChild('mflow__SurveyQuestions__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()
-        .whereEq('Name', templateName)
-        .orderBy('mflow__Order__c')
-        .toString(true)
-    );
-  }
-
-  /**
-   * @description getch survey template by passing custom conditions to where clause
-   * @author Digital Align Team | 08-25-2021
-   * @param String customCondition
-   * @return List<SurveyTemplate__c>
-   **/
-  public static List<SurveyTemplate__c> fetchSurveyTemplateByCondition(
-    String customCondition
-  ) {
-    return (List<SurveyTemplate__c>) getRecords(
-      Query.newInstance(SurveyTemplate__c.SObjectType)
-        .addFields()
-        .queryChild('mflow__SurveyQuestions__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()
-        .whereCon(customCondition)
-        .orderBy('mflow__Order__c')
-        .toString(true)
-    );
-  }
-  /**
    * @description fetch templates based on filters
-   * @author Digital Align | 12-22-2021
-   * @param List<Object> filters
+   * @author Digital Align Team | 01-04-2022
+   * @param Object filter
+   * @param String fieldSetName
+   * @param String eventIdentifier
    * @return List<SurveyTemplate__c>
    **/
   public static List<SurveyTemplate__c> fetchSurveyTemplateByFilters(
-    List<Object> filters
+    Object filter,
+    String fieldSetName,
+    String eventIdentifier
   ) {
-    return (List<SurveyTemplate__c>) getRecords(
-      Query.newInstance(SurveyTemplate__c.SObjectType)
-        .addFields()
-        .queryChild('mflow__SurveyQuestions__r')
-        .addFields()
-        .orderBy('mflow__Order__c')
-        .run()
-        .filter(filters, 'mflow__Filter')
-        .orderBy('mflow__Order__c')
-        .toString(true)
-    );
+    Query query = Query.newInstance(SurveyTemplate__c.SObjectType)
+      .addFields()
+      .queryChild('mflow__SurveyQuestions__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .whereEq('mflow__isActive__c', true)
+      .andCon()
+      .whereEq('mflow__EventIdentifier__c', eventIdentifier);
+    if (filter != null) {
+      query.andCon().filter(filter, fieldSetName);
+    }
+    query.orderBy('mflow__Order__c');
+    return (List<SurveyTemplate__c>) getRecords(query.toString(true));
+  }
+
+  /**
+   * @description Read Application with child record
+   * Applicants contains only ids
+   * Financial Account contains only Ids
+   * @author Digital Align Team | 10-26-2021
+   * @param Id applicationId
+   * @return Account
+   **/
+  public static Account readApplicationWithFA(Id applicationId) {
+    Query qry = Query.newInstance(Account.SObjectType)
+      .addFields()
+      .queryChild('mflow__FinancialAccounts__r')
+      .addFields()
+      .queryLookup('mflow__FinancialProduct__r')
+      .addFields('mflow__InternalCode__c')
+      .run()
+      .run()
+      .addLimit(1)
+      .whereEq('Id', applicationId);
+    return (Account) getRecord(qry.toString());
   }
 }

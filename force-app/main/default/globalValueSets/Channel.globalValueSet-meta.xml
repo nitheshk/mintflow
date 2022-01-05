@@ -10,6 +10,11 @@
         <default>false</default>
         <label>Branch</label>
     </customValue>
+    <customValue>
+        <fullName>Community</fullName>
+        <default>false</default>
+        <label>Community</label>
+    </customValue>
     <description>MIntflow Channel</description>
     <masterLabel>Channel</masterLabel>
     <sorted>false</sorted>

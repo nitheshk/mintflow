@@ -105,19 +105,3 @@ system.debug('applicantType : ' + ApexRequest.getApplicantType());
 // #8
 system.debug(AuthenticationService.getInstance().getAuthToken());
 Logger.persist();
-
-// ----------------------------------------------------------------------------------------------------------------
-// FetchSurveyTemplates
-ApexRequest request = new ApexRequest();
-request.setHeader(
-  new Map<String, String>{
-    'filter' => '[{"mflow__Category__c":"Mintflow","mflow__SubCategory__c":"Approval","mflow__Channel__c":"Virtual","Name":"CustomerFlowQuestionaire"}]'
-  }
-);
-request.token = SecurityUtils.generateTokenForTesting(
-  '0010p000011Wgc1AAC',
-  '',
-  'Primary',
-  'ApplicationFlow'
-);
-system.debug(ApplicationController.fetchSurvey(request));

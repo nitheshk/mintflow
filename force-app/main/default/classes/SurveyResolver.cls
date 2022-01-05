@@ -27,31 +27,132 @@ global with sharing class SurveyResolver extends AbstractService {
   }
 
   /**
-   * @description fetch survey by filters
-   * @author Digital Align | 12-22-2021
-   * @param List<Object> filters
-   * @return virtual
+   * @description
+   * @author Digital Align Team | 01-05-2022
+   * @param String data
+   * @return List<Survey__c>
    **/
-  global virtual List<Survey__c> fetchSurvey(List<Object> filters) {
-    List<SurveyTemplate__c> surveyTemlates = SurveyRepository.fetchSurveyTemplateByFilters(
-      filters
+  global virtual List<Survey__c> fetchSurvey(String data) {
+    List<Object> filters = (List<Object>) ApexRequest.getParams('filter');
+    List<Survey__c> surveys = new List<Survey__c>();
+
+    Account application = SurveyRepository.readApplicationWithFA(
+      ApexRequest.getApplicationId()
     );
-    return buildSurvey(surveyTemlates);
+
+    //resolve survey using financial account
+    surveys.addAll(resolveSurveys(application));
+    //resolve survey using custom filter
+    surveys.addAll(resolveSurveys(application, filters));
+    // remove duplicate survey
+    return removeDuplicateSurveys(surveys);
   }
 
   /**
-   * @description build survey object based on the template list
-   * @author Digital Align Team | 08-25-2021
-   * @param List<SurveyTemplate__c> surveyTemlates
+   * @description resolve survey using custom filter
+   * @author Digital Align Team | 12-27-2021
+   * @param Account application
+   * @param List<Object> filters
    * @return List<Survey__c>
    **/
+  global virtual List<Survey__c> resolveSurveys(
+    Account application,
+    List<Object> filters
+  ) {
+    if (!CollectionUtils.isListEmpty(filters)) {
+      for (Object filter : filters) {
+        Map<String, Object> filterMap = (Map<String, Object>) filter;
+        filterMap.put(
+          'mflow__ApplicantType__c',
+          ApexRequest.getApplicantType()
+        );
+        filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
+        filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
+        filterMap.put('$mflow__Channel__c', 'INCLUDES');
+      }
+    }
+
+    String eventIdentifier = String.valueOf(
+      ApexRequest.getParams('eventIdentifier')
+    );
+
+    // fetch survey item by  custom filter
+    List<SurveyTemplate__c> templates = SurveyRepository.fetchSurveyTemplateByFilters(
+      filters,
+      'mflow__Filter',
+      eventIdentifier
+    );
+
+    // map survey items into survey
+    return this.buildSurvey(templates, null);
+  }
+
+  /**
+   * @description Resolve survey using Financial Account selection
+   * @author Digital Align Team | 12-27-2021
+   * @param Account application
+   * @param List<Object> filters
+   * @return List<Survey__c>
+   **/
+  global virtual List<Survey__c> resolveSurveys(Account application) {
+    List<Survey__c> surveys = new List<Survey__c>();
+
+    if (CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
+      return surveys;
+    }
+
+    String eventIdentifier = String.valueOf(
+      ApexRequest.getParams('eventIdentifier')
+    );
+
+    for (
+      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+    ) {
+      Map<String, Object> filterMap = new Map<String, Object>();
+      filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
+      filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
+      filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
+      filterMap.put('$mflow__Channel__c', 'INCLUDES');
+      filterMap.put(
+        'mflow__FinancialProductCode__c',
+        financialAccount.FinancialProduct__r.InternalCode__c
+      );
+
+      // fetch survey item by  custom filter
+      List<SurveyTemplate__c> templates = SurveyRepository.fetchSurveyTemplateByFilters(
+        filterMap,
+        'mflow__Filter',
+        eventIdentifier
+      );
+
+      // map survey items into survey
+      surveys.addAll(this.buildSurvey(templates, financialAccount.Id));
+    }
+    return surveys;
+  }
+
+  /**
+   * @description  build survey object based on the template list
+   * @author Digital Align Team | 01-05-2022
+   * @param List<SurveyTemplate__c> surveyTemplates
+   * @param Id financialAccountId
+   * @return  List<Survey__c>
+   **/
   global virtual List<Survey__c> buildSurvey(
-    List<SurveyTemplate__c> surveyTemlates
+    List<SurveyTemplate__c> surveyTemplates,
+    Id financialAccountId
   ) {
     List<Survey__c> surveyList = new List<Survey__c>();
-    for (SurveyTemplate__c surveyTemplate : surveyTemlates) {
+    for (SurveyTemplate__c surveyTemplate : surveyTemplates) {
       for (SurveyQuestion__c item : surveyTemplate.SurveyQuestions__r) {
         Survey__c surveyObj = new Survey__c();
+        if (ApexRequest.getParams('applicantId') != null) {
+          surveyObj.Applicant__c = (Id) ApexRequest.getParams('applicantId');
+        }
+        if (String.isNotBlank(financialAccountId)) {
+          surveyObj.FinancialAccount__c = financialAccountId;
+        }
+        surveyObj.EventIdentifier__c = surveyTemplate.EventIdentifier__c;
         surveyObj.Answer__c = null;
         surveyObj.OptionType__c = item.OptionType__c;
         surveyObj.ParentQuestionCode__c = item.ParentQuestionCode__c;
@@ -77,5 +178,24 @@ global with sharing class SurveyResolver extends AbstractService {
       }
     }
     return surveyList;
+  }
+
+  /**
+   * @description remove duplicate survey
+   * @author Digital Align Team | 12-27-2021
+   * @param List<Survey__c> surveys
+   * @return List<Survey__c>
+   **/
+  global virtual List<Survey__c> removeDuplicateSurveys(
+    List<Survey__c> surveys
+  ) {
+    Set<String> consentCode = new Set<String>();
+    List<Survey__c> newSurveyList = new List<Survey__c>();
+    for (Survey__c survey : surveys) {
+      if (consentCode.add(survey.QuestionCode__c)) {
+        newSurveyList.add(survey);
+      }
+    }
+    return newSurveyList;
   }
 }

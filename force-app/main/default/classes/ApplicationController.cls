@@ -257,10 +257,9 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse fetchSurvey(ApexRequest request) {
     try {
       validateRequest(request);
-      List<Object> filters = (List<Object>) JSON.deserializeUntyped(
-        (string) ApexRequest.getParams('filter')
+      return ApexResponse.ok(
+        SurveyResolver.getInstance().fetchSurvey(request.data)
       );
-      return ApexResponse.ok(SurveyResolver.getInstance().fetchSurvey(filters));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);
