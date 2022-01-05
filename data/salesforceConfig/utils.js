@@ -50,7 +50,10 @@ function fetchRecords(result) {
     result.lastIndexOf("{QueryStart}") + 12,
     result.lastIndexOf("{QueryEnd}")
   );
-  jsonString = jsonString.split('\\"').join('"');
+  jsonString = '"' + jsonString + '"';
+  jsonString = JSON.parse(jsonString);
+  //console.log("jjsonString : " + jsonString);
+  //jsonString = jsonString.split('\\"').join('"');
   return JSON.parse(jsonString);
 }
 

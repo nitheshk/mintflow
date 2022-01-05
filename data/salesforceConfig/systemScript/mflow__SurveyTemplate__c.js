@@ -9,6 +9,8 @@ utils
   .then((result) => {
     const data = utils.fetchRecords(result);
 
+    console.log(data);
+
     // <== Script to update change for each config
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
@@ -22,9 +24,16 @@ utils
           utils.replaceUnwantedFields(item_c1);
           delete item_c1.mflow__SurveyTemplate__c;
           item_c1.attributes.referenceId =
-            "SurveyTemplateItemRef_" + index + "_" + index_c1;
+            "SurveyQuestionRef_" + index + "_" + index_c1;
         });
       }
+
+      if (item.mflow__FinancialProductCode__c) {
+        item.mflow__FinancialProduct__c =
+          "@" + item.mflow__FinancialProductCode__c;
+      }
+      //read only field
+      delete item.mflow__FinancialProductCode__c;
     });
     //   Script to update change for each config ==>
     utils
