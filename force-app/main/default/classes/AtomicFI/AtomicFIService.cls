@@ -175,7 +175,7 @@ global with sharing class AtomicFIService extends AbstractService {
     FinServ__Employment__c employmentObj = new FinServ__Employment__c();
     //check if there is an existing employment for the applicant if yes then map the id #TODO:
     employmentObj.Id = atomicObj.user.identifier;
-    employmentObj.Name = atomicObj.company.name;
+    //employmentObj.Name = atomicObj.company.name; The company Name should come from front end
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
       employmentObj.FinServ__EmploymentStatus__c = 'Employed';
     } else {

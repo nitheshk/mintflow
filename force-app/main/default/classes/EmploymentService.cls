@@ -67,8 +67,10 @@ global with sharing class EmploymentService extends AbstractService {
     String applicantId,
     String employerId
   ) {
+    String jsonResponse = AtomicFIProvider.getInstance()
+      .getAtomicResponse(applicantId, employerId);
     String responseJson = AtomicFIProvider.getInstance()
-      .generatePaySlipsW2(applicantId, employerId);
+      .generatePaySlipsW2(jsonResponse, employerId);
     return responseJson;
   }
 }

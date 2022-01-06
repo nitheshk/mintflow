@@ -22,6 +22,13 @@ global with sharing class HttpBuilder {
     return apiSetting;
   }
 
+  global static APISetting__mdt setAPISetting(
+    APISetting__mdt apiSettingObject
+  ) {
+    apiSetting = apiSettingObject;
+    return apiSetting;
+  }
+
   global static Boolean isActiveApiSetting(Object apiName) {
     return APISetting__mdt.getInstance(String.valueOf(apiName))?.isActive__c;
   }

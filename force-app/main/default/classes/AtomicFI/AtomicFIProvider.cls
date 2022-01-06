@@ -94,6 +94,8 @@ global with sharing class AtomicFIProvider extends AbstractService {
    * @description @description Get  AtomicFI response of employment verification
    * @author Digital Align Team | 11-01-2021
    * @param jsonResponse jsonRespomse
+   * @param employerId employerId
+   
    **/
   global virtual String generatePaySlipsW2(
     String jsonResponse,
@@ -102,18 +104,18 @@ global with sharing class AtomicFIProvider extends AbstractService {
     // To fetch the file from saved employer Information
     String formURL;
 
-    Blob pdfContent;
     List<Blob> pdfContentList = new List<Blob>();
     Integer cnt = 0;
     Map<String, String> header = new Map<String, String>();
     APISetting__mdt apiDynamicSetting = new APISetting__mdt();
+
     AtomicFIDTO atomicObj = AtomicFIDTO.parse(jsonResponse);
     List<AtomicFIDTO.statements> statementList = atomicObj.data.outputs.statements;
     List<AtomicFIDTO.w2s> w2sList = atomicObj.data.outputs.w2s;
+
     try {
       header.put('x-api-key', HttpBuilder.getApiConstant('x_api_key'));
       header.put('x-api-secret', HttpBuilder.getApiConstant('x_api_secret'));
-
       for (AtomicFIDTO.statements statementObj : statementList) {
         apiDynamicSetting = new APISetting__mdt();
         formURL = statementObj.paystub.url;
@@ -124,6 +126,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
         HttpResponse response = HttpBuilder.httpCallOut(null, null);
         pdfContentList.add(response.getBodyAsBlob());
       }
+
       for (AtomicFIDTO.w2s w2sObj : w2sList) {
         formURL = w2sObj.form.url;
         apiDynamicSetting.EndPoint__c = formURL;
@@ -131,7 +134,6 @@ global with sharing class AtomicFIProvider extends AbstractService {
         apiDynamicSetting.Method__c = 'GET';
         HttpBuilder.setAPISetting(apiDynamicSetting);
         HttpResponse response = HttpBuilder.httpCallOut(null, null);
-        System.debug('response of w2::' + response);
         pdfContentList.add(response.getBodyAsBlob());
       }
       for (Blob pdffile : pdfContentList) {

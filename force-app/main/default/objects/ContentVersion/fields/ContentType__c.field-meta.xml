@@ -57,6 +57,11 @@
                 <default>false</default>
                 <label>Other</label>
             </value>
+            <value>
+                <fullName>Paystubs</fullName>
+                <default>false</default>
+                <label>Paystubs</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
