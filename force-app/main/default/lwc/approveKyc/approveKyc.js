@@ -84,6 +84,7 @@ export default class ApproveKyc extends LightningElement {
       })
         .then((result) => {
           console.log("result" + JSON.stringify(result));
+          utils.successMessage(this, "Status Updated", "Success");
         })
         .catch((error) => {
           console.log("error : " + JSON.stringify(error));
