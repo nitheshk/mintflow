@@ -20,11 +20,11 @@ global with sharing class FinancingController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse generateLinkToken(ApexRequest request) {
+  global static ApexResponse fetchLinkToken(ApexRequest request) {
     try {
       validateRequest(request);
       return ApexResponse.ok(
-        PlaidService.getInstance().generateLinkToken(ApexRequest.getParams())
+        PlaidService.getInstance().fetchLinkToken(ApexRequest.getParams())
       );
     } catch (CustomException ex) {
       log?.error(ex);

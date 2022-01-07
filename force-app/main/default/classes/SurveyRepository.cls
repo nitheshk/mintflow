@@ -56,4 +56,24 @@ public with sharing class SurveyRepository extends DatabaseUtils {
       .whereEq('Id', applicationId);
     return (Account) getRecord(qry.toString());
   }
+
+  /**
+   * @description Read Existing Survey
+   * @author Digital Align Team | 01-07-2022
+   * @param String eventIdentifier
+   * @return List<Survey__c>
+   */
+  public static List<Survey__c> readExistingSurvey(String eventIdentifier) {
+    Query query = Query.newInstance(Survey__c.SObjectType)
+      .addFields()
+      .whereEq('mflow__EventIdentifier__c', eventIdentifier)
+      .andCon()
+      .whereEq('mflow__Application__c', ApexRequest.getApplicationId());
+    if (ApexRequest.getParams('applicantId') != null) {
+      query.andCon()
+        .whereEq('mflow__Applicant__c', ApexRequest.getParams('applicantId'));
+    }
+    query.orderBy('mflow__Order__c');
+    return (List<Survey__c>) getRecords(query.toString(true));
+  }
 }

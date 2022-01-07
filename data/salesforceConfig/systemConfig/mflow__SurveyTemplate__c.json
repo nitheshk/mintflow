@@ -586,7 +586,7 @@
               "referenceId": "SurveyQuestionRef_2_1"
             },
             "Name": "Approximately how many ACH Transactions per month",
-            "mflow__Condition__c": "q.Question1==true",
+            "mflow__Condition__c": "q.Question1==\"Yes\"",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__DeleteRecord__c": false,
             "mflow__LongDescription__c": "Approximately how many ACH Transactions per month",
@@ -607,7 +607,7 @@
               "referenceId": "SurveyQuestionRef_2_2"
             },
             "Name": "Approximately how much in ACH transactions per month",
-            "mflow__Condition__c": "q.Question1==true",
+            "mflow__Condition__c": "q.Question1==\"Yes\"",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__DeleteRecord__c": false,
             "mflow__LongDescription__c": "Approximately how much in ACH transactions per month",
@@ -647,7 +647,7 @@
               "referenceId": "SurveyQuestionRef_2_4"
             },
             "Name": "Approximately how many Wire transactions per month",
-            "mflow__Condition__c": "q.Question2==true",
+            "mflow__Condition__c": "q.Question2==\"Yes\"",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__DeleteRecord__c": false,
             "mflow__LongDescription__c": "Approximately how many Wire transactions per month",
@@ -668,7 +668,7 @@
               "referenceId": "SurveyQuestionRef_2_5"
             },
             "Name": "Approximately how much in wire activity per month",
-            "mflow__Condition__c": "q.Question2==true",
+            "mflow__Condition__c": "q.Question2==\"Yes\"",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__DeleteRecord__c": false,
             "mflow__LongDescription__c": "Approximately how much in wire activity per month",
@@ -708,7 +708,7 @@
               "referenceId": "SurveyQuestionRef_2_7"
             },
             "Name": "Approximately how many Cash transactions per month",
-            "mflow__Condition__c": "q.Question3==true",
+            "mflow__Condition__c": "q.Question3==\"Yes\"",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__DeleteRecord__c": false,
             "mflow__LongDescription__c": "Approximately how many Cash transactions per month",
@@ -729,7 +729,7 @@
               "referenceId": "SurveyQuestionRef_2_8"
             },
             "Name": "Approximately how much in Cash do you anticipate per month",
-            "mflow__Condition__c": "q.Question3==true",
+            "mflow__Condition__c": "q.Question3==\"Yes\"",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__DeleteRecord__c": false,
             "mflow__LongDescription__c": "Approximately how much in Cash do you anticipate per month",

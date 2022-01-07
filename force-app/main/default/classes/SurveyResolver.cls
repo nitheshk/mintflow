@@ -36,6 +36,15 @@ global with sharing class SurveyResolver extends AbstractService {
     List<Object> filters = (List<Object>) ApexRequest.getParams('filter');
     List<Survey__c> surveys = new List<Survey__c>();
 
+    String eventIdentifier = String.valueOf(
+      ApexRequest.getParams('eventIdentifier')
+    );
+
+    surveys = SurveyRepository.readExistingSurvey(eventIdentifier);
+    if (!surveys.isEmpty()) {
+      return surveys;
+    }
+
     Account application = SurveyRepository.readApplicationWithFA(
       ApexRequest.getApplicationId()
     );
@@ -45,7 +54,9 @@ global with sharing class SurveyResolver extends AbstractService {
     //resolve survey using custom filter
     surveys.addAll(resolveSurveys(application, filters));
     // remove duplicate survey
-    return removeDuplicateSurveys(surveys);
+    surveys = removeDuplicateSurveys(surveys);
+    SurveyRepository.upsertRecords(surveys);
+    return surveys;
   }
 
   /**

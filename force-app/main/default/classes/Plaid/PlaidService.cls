@@ -33,7 +33,7 @@ global with sharing class PlaidService extends AbstractService {
    * @param  Map<String, Object> params
    * @return Object
    **/
-  global virtual Object generatelinkToken(Map<String, Object> params) {
+  global virtual Object fetchLinkToken(Map<String, Object> params) {
     try {
       Flow.initialize(ApexRequest.getApplicationId());
       Flow.setFlow('Plaid');
