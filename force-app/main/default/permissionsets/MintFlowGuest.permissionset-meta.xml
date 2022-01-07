@@ -149,6 +149,35 @@
         <name>SiteSetting__c</name>
     </customSettingAccesses>
     <description>MintFlow Site Guest profile</description>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field
+    >FinServ__FinancialAccountTransaction__c.AccountHolderName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__FinancialAccountTransaction__c.AccountNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field
+    >FinServ__FinancialAccountTransaction__c.FinServ__TransactionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field
+    >FinServ__FinancialAccountTransaction__c.FinancialInstitute__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__FinancialAccountTransaction__c.RoutingNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+
      <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Employment__c.Employee_Type__c</field>
