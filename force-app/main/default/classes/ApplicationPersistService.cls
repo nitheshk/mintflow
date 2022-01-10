@@ -593,6 +593,14 @@ global with sharing class ApplicationPersistService extends AbstractService {
       if (String.isNotBlank(applicationId)) {
         financialAccountTransaction.FinServ__FinancialAccount__c = applicationId;
       }
+
+      if (
+        String.isBlank(
+          financialAccountTransaction.FinServ__TransactionStatus__c
+        )
+      ) {
+        financialAccountTransaction.FinServ__TransactionStatus__c = 'Pending';
+      }
     }
     ApplicantRepository.upsertRecords(financialAccountTransactions);
     return financialAccountTransactions;

@@ -22,11 +22,6 @@
                 <default>false</default>
                 <label>Debit</label>
             </value>
-            <value>
-                <fullName>Internal Funds Transfer</fullName>
-                <default>false</default>
-                <label>Internal Funds Transfer</label>
-            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
