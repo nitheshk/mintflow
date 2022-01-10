@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Digital Align
+ * @group DTO
+ * @author Digital Align Team
+ * @reference
+ * @description
+ **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class FundingDataAPI {
   private static logger log = logger.getInstance(ApplicationDataAPI.class);
@@ -15,43 +22,49 @@ global with sharing class FundingDataAPI {
         System.Label.Application_ApplicationNameCannotBeBlank
       );
     }
-    FinServ__FinancialAccount__c financialApplication = new FinServ__FinancialAccount__c();
-    // if (application == null) {
-    //   throw new customException(System.Label.Application_ApplicationNotFound);
-    // }
-    // financialApplication = ApplicationService.getInstance()
-    //   .readApplicationWithChild(application.Id);
-
-    if (financialApplication != null) {
-      FundingResponseMapper.FinancialAccount mapperApplication = new FundingResponseMapper.FinancialAccount();
-      mapperApplication.ExternalApplicationNumber = financialApplication.mflow__ExternalApplicationNumber__c;
-      mapperApplication.FinancialAccountType = financialApplication.FinServ__FinancialAccountType__c;
-      mapperApplication.FinancialProduct = financialApplication.mflow__FinancialProduct__c;
-      mapperApplication.Name = financialApplication.Name;
-      mapperApplication.Ownership = financialApplication.FinServ__Ownership__c;
-      mapperApplication.PrimaryOwner = financialApplication.FinServ__PrimaryOwner__c;
-      mapperApplication.Stage = financialApplication.FinServ__Stage__c;
-      mapperApplication.Status = financialApplication.FinServ__Status__c;
-      // if (
-      //   !CollectionUtils.isListEmpty(
-      //     financialApplication.FinancialAccountTranslations__r
-      //   )
-      // ) {
-      //   mapperApplication.FinancialAccountTranslations__r.addAll(
-      //     mapFinancialAccountTranslation(
-      //       mapperApplication.FinancialAccountTranslations__r
-      //     )
-      //   );
-      // } else {
-      //   throw new CustomException('No financial transaction account found');
-      // }
-      mapper.FinancialApplication = mapperApplication;
-    } else {
-      throw new CustomException(System.Label.Application_ApplicationNotFound);
+    Account application = DataAPIRepository.readApplicationByApplicationNumber(
+      applicationNumber
+    );
+    if (application == null) {
+      throw new customException(System.Label.Application_ApplicationNotFound);
     }
+    FinServ__FinancialAccount__c financialApplication = DataAPIRepository.readFinancialAccountWithChildByApplicationId(
+      application.Id
+    );
+    if (financialApplication == null) {
+      throw new customException(System.Label.Application_ApplicationNotFound);
+    }
+    FundingResponseMapper.FinancialAccount mapperApplication = new FundingResponseMapper.FinancialAccount();
+    mapperApplication.ExternalApplicationNumber = financialApplication.mflow__ExternalApplicationNumber__c;
+    mapperApplication.FinancialAccountType = financialApplication.FinServ__FinancialAccountType__c;
+    mapperApplication.FinancialProduct = financialApplication.mflow__FinancialProduct__c;
+    mapperApplication.Name = financialApplication.Name;
+    mapperApplication.Ownership = financialApplication.FinServ__Ownership__c;
+    mapperApplication.PrimaryOwner = financialApplication.FinServ__PrimaryOwner__c;
+    mapperApplication.Stage = financialApplication.FinServ__Stage__c;
+    mapperApplication.Status = financialApplication.FinServ__Status__c;
+    if (
+      !CollectionUtils.isListEmpty(
+        financialApplication.FinServ__FinancialAccountTranslations__r
+      )
+    ) {
+      mapperApplication.FinancialApplicationTransaction = mapFinancialAccountTranslation(
+        financialApplication.FinServ__FinancialAccountTranslations__r
+      );
+    } else {
+      throw new CustomException('No financial transaction account found');
+    }
+    mapper.FinancialApplication = mapperApplication;
+
     log?.info('obtainFundingData -> ReturnMapper -> ' + mapper);
     return mapper;
   }
+  /**
+   * @description
+   * @author Digital Align | 01-10-2022
+   * @param FinServ__FinancialAccountTransaction__c accountTransaction
+   * @return FundingResponseMapper.FinancialAccountTransaction
+   **/
   global static FundingResponseMapper.FinancialAccountTransaction mapFinancialAccountTranslation(
     FinServ__FinancialAccountTransaction__c accountTransaction
   ) {

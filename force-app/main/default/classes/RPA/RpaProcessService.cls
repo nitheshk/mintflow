@@ -105,6 +105,9 @@ global with sharing class RpaProcessService extends AbstractService {
       when 'obtainapplicationfiles' {
         this.buildObtainApplicationFiles();
       }
+      when 'obtainfundingdata' {
+        this.buildObtainFundingData();
+      }
     }
   }
 
@@ -227,6 +230,22 @@ global with sharing class RpaProcessService extends AbstractService {
     );
     RestResponse response = RestContext.response;
     response.responseBody = Blob.valueOf(JSON.serialize(applicationResponse));
+    response.statusCode = 200;
+    response.addHeader('Content-Type', 'application/json');
+  }
+
+  /**
+   * @description Step3: Fetch all funding data submitted by customer using applicationID
+   * @author Digital Align | 11-30-2021
+   **/
+  global virtual void buildObtainFundingData() {
+    RestRequest restReq = RestContext.request;
+    String applicationName = restReq.params.get('applicationName');
+    FundingResponseMapper fundingResponse = FundingDataAPI.obtainFundingData(
+      applicationName
+    );
+    RestResponse response = RestContext.response;
+    response.responseBody = Blob.valueOf(JSON.serialize(fundingResponse));
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');
   }

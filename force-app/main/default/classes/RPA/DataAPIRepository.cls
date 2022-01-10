@@ -1,4 +1,10 @@
-@SuppressWarnings('PMD.AvoidGlobalModifier')
+/**
+ * Copyright (c) 2021 Digital Align
+ * @group Repository
+ * @author Digital Align Team
+ * @reference
+ * @description Repository to collect application/ funding data which is then used by RPA
+ **/ @SuppressWarnings('PMD.AvoidGlobalModifier')
 global virtual inherited sharing class DataAPIRepository extends DatabaseUtils {
   /**
    * @description Read Application with child record using application Name
@@ -132,5 +138,24 @@ global virtual inherited sharing class DataAPIRepository extends DatabaseUtils {
     qry.whereIn('Id', applicantIds);
 
     return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
+  }
+  /**
+   * @description read financial account with child by Applicatiom Id
+   * @author Digital Align | 01-10-2022
+   * @param Id financialAccountId
+   * @return List<FinServ__FinancialAccount__c>
+   **/
+  global static FinServ__FinancialAccount__c readFinancialAccountWithChildByApplicationId(
+    string applicationId
+  ) {
+    return (FinServ__FinancialAccount__c) DatabaseUtils.getRecord(
+      Query.newInstance(FinServ__FinancialAccount__c.SObjectType)
+        .addFields()
+        .queryChild('FinServ__FinancialAccountTranslations__r')
+        .addFields()
+        .run()
+        .whereEq('mflow__Application__c', applicationId)
+        .toString()
+    );
   }
 }
