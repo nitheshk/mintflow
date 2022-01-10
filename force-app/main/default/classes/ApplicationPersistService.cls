@@ -59,8 +59,9 @@ global with sharing class ApplicationPersistService extends AbstractService {
 
     //save financial accounts
     if (!CollectionUtils.isListEmpty(application.mflow__FinancialAccounts__r)) {
-      List<FinServ__FinancialAccount__c> financialAccounts = saveFinancialAccount(
-        application.mflow__FinancialAccounts__r
+      List<FinServ__FinancialAccount__c> financialAccounts = saveFinancialAccounts(
+        application.mflow__FinancialAccounts__r,
+        application.Id
       );
       constructor.setChildObjects(
         'mflow__FinancialAccounts__r',
@@ -104,18 +105,18 @@ global with sharing class ApplicationPersistService extends AbstractService {
       return applicants;
     }
 
-    if (ApexRequest.getParams().containsKey('ApexSkipApplicants')) {
-      return applicants;
-    }
+    // if (ApexRequest.getParams().containsKey('ApexSkipApplicants')) {
+    //   return applicants;
+    // }
     //update value for applicant here
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicant(applicant, applicationId);
     }
     ApplicantRepository.upsertRecords(applicants);
 
-    if (ApexRequest.getParams().containsKey('ApexSkipApplicantsChild')) {
-      return applicants;
-    }
+    // if (ApexRequest.getParams().containsKey('ApexSkipApplicantsChild')) {
+    //   return applicants;
+    // }
     //save child of applicants
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicantChild(applicant);
@@ -501,17 +502,64 @@ global with sharing class ApplicationPersistService extends AbstractService {
   }
 
   /**
-   * @description Save financial account and children
-   * @author Digital Align Team | 10-25-2021
+   * @description  Save Financial Accounts
+   * @author Digital Align Team | 01-10-2022
    * @param List<FinServ__FinancialAccount__c> financialAccounts
+   * @param String applicationId
    * @return List<FinServ__FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> saveFinancialAccount(
-    List<FinServ__FinancialAccount__c> financialAccounts
+  global virtual List<FinServ__FinancialAccount__c> saveFinancialAccounts(
+    List<FinServ__FinancialAccount__c> financialAccounts,
+    String applicationId
   ) {
-    if (financialAccounts?.size() > 0) {
-      FinancialAccountRepository.upsertRecords(financialAccounts);
+    log?.fine('Inside save financialAccounts');
+    if (CollectionUtils.isListEmpty(financialAccounts)) {
+      return financialAccounts;
     }
+
+    //update value for financialAccount here
+    for (FinServ__FinancialAccount__c financialAccount : financialAccounts) {
+      financialAccount = saveFinancialAccount(financialAccount, applicationId);
+    }
+    FinancialAccountRepository.upsertRecords(financialAccounts);
+
+    //save child of FinancialAccounts
+    for (FinServ__FinancialAccount__c financialAccount : financialAccounts) {
+      financialAccount = saveFinancialAccountChild(financialAccount);
+    }
+    log?.fine('Finish save FinancialAccounts');
     return financialAccounts;
+  }
+
+  /**
+   * @description  save financial account
+   * @author Digital Align Team | 01-10-2022
+   * @param FinServ__FinancialAccount__c financialAccount
+   * @param String applicationId
+   * @return FinServ__FinancialAccount__c
+   **/
+  global virtual FinServ__FinancialAccount__c saveFinancialAccount(
+    FinServ__FinancialAccount__c financialAccount,
+    String applicationId
+  ) {
+    if (String.isNotBlank(applicationId)) {
+      //Set Application ID
+      financialAccount.FinServ__Household__c = applicationId;
+      financialAccount.Application__c = applicationId;
+    }
+    // #pending financialAccount record type mapping pending
+    return financialAccount;
+  }
+
+  /**
+   * @description Save Financial Account Child
+   * @author Digital Align Team | 01-10-2022
+   * @param FinServ__FinancialAccount__c financialAccount
+   * @return FinServ__FinancialAccount__c
+   **/
+  global virtual FinServ__FinancialAccount__c saveFinancialAccountChild(
+    FinServ__FinancialAccount__c financialAccount
+  ) {
+    return financialAccount;
   }
 }

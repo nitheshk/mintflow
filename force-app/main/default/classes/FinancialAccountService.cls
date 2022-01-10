@@ -58,6 +58,58 @@ global with sharing class FinancialAccountService extends AbstractService {
   }
 
   /**
+   * @description  before save finanical account
+   * @author Digital Align Team | 01-10-2022
+   * @param List<FinServ__FinancialAccount__c> financialAccounts
+   * @return List<FinServ__FinancialAccount__c>
+   **/
+  global virtual List<FinServ__FinancialAccount__c> beforeSaveFinancialAccounts(
+    List<FinServ__FinancialAccount__c> financialAccounts
+  ) {
+    return financialAccounts;
+  }
+
+  /**
+   * @description save financial account
+   * rollback on failure
+   * @author Digital Align Team | 01-10-2022
+   * @param List<FinServ__FinancialAccount__c> financialAccounts
+   * @param String applicationId
+   * @return  List<FinServ__FinancialAccount__c>
+   **/
+  global virtual List<FinServ__FinancialAccount__c> saveFinancialAccounts(
+    List<FinServ__FinancialAccount__c> financialAccounts,
+    String applicationId
+  ) {
+    //before saving financialAccounts
+    financialAccounts = this.beforeSaveFinancialAccounts(financialAccounts);
+    //save point count against DML operation
+    Savepoint sp = Database.setSavepoint();
+    try {
+      financialAccounts = ApplicationPersistService.getInstance()
+        .saveFinancialAccounts(financialAccounts, applicationId);
+    } catch (Exception ex) {
+      log?.error(ex);
+      Database.rollback(sp);
+      throw ex;
+    }
+    //after saving financialAccounts and child records
+    return this.afterSaveFinancialAccounts(financialAccounts);
+  }
+
+  /**
+   * @description after save finanical accounts
+   * @author Digital Align Team | 01-10-2022
+   * @param List<FinServ__FinancialAccount__c> financialAccounts
+   * @return List<FinServ__FinancialAccount__c>
+   **/
+  global virtual List<FinServ__FinancialAccount__c> afterSaveFinancialAccounts(
+    List<FinServ__FinancialAccount__c> financialAccounts
+  ) {
+    return financialAccounts;
+  }
+
+  /**
    * @description Create financial membership account record
    * @author Digital Align Team | 12-13-2021
    * @param Account application
