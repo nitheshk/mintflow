@@ -30,14 +30,13 @@ global with sharing class ApplicationDataAPI {
           System.Label.Application_ApplicationNameCannotBeBlank
         );
       }
-      Account application = ApplicationRepository.readApplicationByApplicationNumber(
+      Account application = DataAPIRepository.readApplicationByApplicationNumber(
         applicationNumber
       );
       if (application == null) {
         throw new customException(System.Label.Application_ApplicationNotFound);
       }
-      application = ApplicationService.getInstance()
-        .readApplicationWithChild(application.Id);
+      application = readApplicationWithChild(application.Id);
 
       log?.debug('Full Application Json : ' + json.serialize(application));
       if (application != null) {
@@ -350,7 +349,7 @@ global with sharing class ApplicationDataAPI {
 
     List<id> reletedEntityIdList = new List<id>();
 
-    Account application = ApplicationRepository.readApplicationByApplicationNumber(
+    Account application = DataAPIRepository.readApplicationByApplicationNumber(
       applicationNumber
     );
 
@@ -358,8 +357,7 @@ global with sharing class ApplicationDataAPI {
       throw new customException(System.Label.Application_ApplicationNotFound);
     }
 
-    application = ApplicationService.getInstance()
-      .readApplicationWithChild(application.Id);
+    application = readApplicationWithChild(application.Id);
 
     for (Applicant__c applicant : application.Applicants__r) {
       // documents related to applicant
@@ -376,5 +374,41 @@ global with sharing class ApplicationDataAPI {
       .fetchContentVersionByEntityIds(reletedEntityIdList, true);
     return ApexResponse.OK(new Map<Id, SObject>(fileList).keySet())
       .addHeader('Content-Type', 'application/json');
+  }
+  /**
+   * @description Read application by parameter passed
+   * @author Digital Align Team | 10-21-2021
+   * @param Map<String Object> params
+   * @return Account
+   **/
+  global static Account readApplicationWithChild(Id applicationId) {
+    Account application = DataAPIRepository.readApplicationWithChild(
+      applicationId
+    );
+
+    List<Applicant__c> applicants = readApplicantsWithChild(
+      application.Applicants__r
+    );
+    List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
+      .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
+
+    //Combine result into single application object
+    SObjectConstructor builder = SObjectConstructor.getInstance(application);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
+    builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
+    return (Account) builder.build();
+  }
+
+  /**
+   * @description Read all applicant by applicant records
+   * @author Digital Align Team | 10-26-2021
+   * @param List<Applicant__c> applicants
+   **/
+  global static List<Applicant__c> readApplicantsWithChild(
+    List<Applicant__c> applicants
+  ) {
+    return DataAPIRepository.readApplicantsWithChild(
+      new Map<Id, SObject>(applicants).keySet()
+    );
   }
 }
