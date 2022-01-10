@@ -519,13 +519,16 @@ global with sharing class ApplicationPersistService extends AbstractService {
 
     //update value for financialAccount here
     for (FinServ__FinancialAccount__c financialAccount : financialAccounts) {
-      financialAccount = saveFinancialAccount(financialAccount, applicationId);
+      financialAccount = this.saveFinancialAccount(
+        financialAccount,
+        applicationId
+      );
     }
     FinancialAccountRepository.upsertRecords(financialAccounts);
 
     //save child of FinancialAccounts
     for (FinServ__FinancialAccount__c financialAccount : financialAccounts) {
-      financialAccount = saveFinancialAccountChild(financialAccount);
+      financialAccount = this.saveFinancialAccountChild(financialAccount);
     }
     log?.fine('Finish save FinancialAccounts');
     return financialAccounts;
@@ -560,6 +563,38 @@ global with sharing class ApplicationPersistService extends AbstractService {
   global virtual FinServ__FinancialAccount__c saveFinancialAccountChild(
     FinServ__FinancialAccount__c financialAccount
   ) {
+    if (
+      !collectionUtils.isListEmpty(
+        financialAccount?.FinServ__FinancialAccountTranslations__r
+      )
+    ) {
+      this.saveFinancialAccountTransactions(
+        financialAccount.FinServ__FinancialAccountTranslations__r,
+        financialAccount.Id
+      );
+    }
     return financialAccount;
+  }
+
+  /**
+   * @description save financial transaction history
+   * @author Digital Align Team | 01-10-2022
+   * @param List<FinServ__FinancialAccountTransaction__c> financialAccountTransactions
+   * @param Id applicationId
+   * @return  List<FinServ__FinancialAccountTransaction__c>
+   **/
+  global virtual List<FinServ__FinancialAccountTransaction__c> saveFinancialAccountTransactions(
+    List<FinServ__FinancialAccountTransaction__c> financialAccountTransactions,
+    Id applicationId
+  ) {
+    for (
+      FinServ__FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions
+    ) {
+      if (String.isNotBlank(applicationId)) {
+        financialAccountTransaction.FinServ__FinancialAccount__c = applicationId;
+      }
+    }
+    ApplicantRepository.upsertRecords(financialAccountTransactions);
+    return financialAccountTransactions;
   }
 }
