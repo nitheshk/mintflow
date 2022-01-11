@@ -80,8 +80,8 @@ system.debug('Full Json : ' + res.data);
 ApexRequest request = new ApexRequest();
 request.setHeader(
   new Map<String, String>{
-    'applicantId' => 'a0b1y000001NMpiAAG',
-    'employerId' => 'a0A1y0000029HgVEAU'
+    'applicantId' => 'a0b1y000001NO5cAAG',
+    'employerId' => 'a0A1y000002vpKMEAY'
   }
 );
 ApexResponse res = ApplicantController.atomicAuthenticate(request);
@@ -126,10 +126,10 @@ for (Database.SaveResult sr : results) {
 ApexRequest request = new ApexRequest();
 request.setHeader(
   new Map<String, String>{
-    'applicantId' => 'a0b1y000001NMpiAAG',
-    'employerId' => 'a0A1y0000029HgVEAU'
+    'applicantId' => 'a0b1y000001NVOBAA4',
+    'employerId' => 'a0A1y000002vqm6EAA'
   }
 );
-ApexResponse res = ApplicantController.generatePaySlipsW2(request);
 
+ApexResponse res = ApplicantController.generatePaySlipsW2(request);
 system.debug('Payslips and W2 : ' + res);

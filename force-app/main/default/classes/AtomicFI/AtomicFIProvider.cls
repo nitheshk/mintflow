@@ -8,6 +8,8 @@ global with sharing class AtomicFIProvider extends AbstractService {
    **/
   @TestVisible
   private static AtomicFIProvider serviceInstance;
+  public static AtomicFIDTO atomicResponse { get; set; }
+  public static AtomicFIWrapper atomicWrapper { get; set; }
 
   public AtomicFIProvider() {
     super(AtomicFIProvider.class);
@@ -80,7 +82,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
       .fetchContentVersionByFileType(
         employerId,
         'Employment',
-        'AtomicFI',
+        'AtomicFIResponse',
         false
       );
     if (files != null && files.size() > 0) {
@@ -110,8 +112,11 @@ global with sharing class AtomicFIProvider extends AbstractService {
     APISetting__mdt apiDynamicSetting = new APISetting__mdt();
 
     AtomicFIDTO atomicObj = AtomicFIDTO.parse(jsonResponse);
+
+    log?.fine('jsonResponse::' + jsonResponse);
     List<AtomicFIDTO.statements> statementList = atomicObj.data.outputs.statements;
     List<AtomicFIDTO.w2s> w2sList = atomicObj.data.outputs.w2s;
+    List<FileDTO> files = new List<FileDTO>();
 
     try {
       header.put('x-api-key', HttpBuilder.getApiConstant('x_api_key'));
@@ -123,6 +128,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
         apiDynamicSetting.Timeout__c = 2000;
         apiDynamicSetting.Method__c = 'GET';
         HttpBuilder.setAPISetting(apiDynamicSetting);
+
         HttpResponse response = HttpBuilder.httpCallOut(null, null);
         pdfContentList.add(response.getBodyAsBlob());
       }
@@ -136,8 +142,10 @@ global with sharing class AtomicFIProvider extends AbstractService {
         HttpResponse response = HttpBuilder.httpCallOut(null, null);
         pdfContentList.add(response.getBodyAsBlob());
       }
+
       for (Blob pdffile : pdfContentList) {
         cnt++;
+
         FileService.getInstance()
           .createFile(
             new FileDTO(
@@ -146,13 +154,39 @@ global with sharing class AtomicFIProvider extends AbstractService {
               '.pdf',
               pdffile,
               employerId,
+              'Employment',
               'PayStubs'
             )
           );
       }
+      generatePDF(employerId);
       return 'Files generated successfully';
     } catch (exception ex) {
-      return 'There is some issue in generating the payslips and W2';
+      log?.error(ex.getmessage());
+      return 'There is some issue in generating the payslips and W2' +
+        ex.getMessage();
     }
+  }
+
+  public static void generatePDF(String employerId) {
+    List<FileDTO> files = new List<FileDTO>();
+    String sourceFileName = 'AtomicVerificationReport';
+    PageReference pdfFile = new PageReference(
+      '/apex/' +
+      sourceFileName +
+      '?id=' +
+      employerId
+    );
+    System.debug('pdf file called' + employerId);
+    files.add(
+      new FileDTO(
+        'Employment Verification.pdf',
+        pdfFile.getContent(),
+        employerId,
+        'Employment',
+        'AtomicFI'
+      )
+    );
+    FileService.getInstance().createFiles(files);
   }
 }

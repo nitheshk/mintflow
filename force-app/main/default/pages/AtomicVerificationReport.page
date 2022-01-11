@@ -1,0 +1,414 @@
+<apex:page
+  showHeader="false"
+  standardStylesheets="false"
+  cache="false"
+  renderAs="pdf"
+  controller="AtomicVerificationReportController"
+  applyBodyTag="false"
+  applyHtmlTag="false"
+  action="{!getVerifiedData}"
+>
+  <head>
+    <style>
+      .headerRow .headerStyle {
+          background: red;
+          font-weight: bold;
+      }
+
+      tr.dataRow.even {
+          background-color: rgb(250, 250, 249);
+      }
+
+      .rightAlign {
+          justify-content: right !important;
+      }
+
+      }
+    </style>
+  </head>
+  <apex:form>
+    <div class="main">
+      <c:DisplayImage name="mintflow"></c:DisplayImage>
+      <h1
+        class="font-weight-bold mb-2 mt-3"
+        style="text-align: center; background: #757c8a"
+      >
+        Employment Verification
+      </h1>
+      <apex:pageBlock>
+        <div>
+          <h4>
+            <apex:outputText
+              style="font-style: bold"
+              value="Evaluated On : "
+              styleClass="headerStyle "
+            ></apex:outputText>
+            <apex:outputText value="{0,date,dd MMM yyyy}">
+              <apex:param value="{!DATETIMEVALUE(atomicWrapper.evaluatedDate)}"
+            /></apex:outputText>
+          </h4>
+        </div>
+        <div>
+          <h4>
+            <apex:outputText
+              style="font-style: bold"
+              value="Loan Number : "
+              styleClass="headerStyle "
+            ></apex:outputText>
+            <apex:outputText
+              value="{!atomicWrapper.loanNumber}"
+            ></apex:outputText>
+          </h4>
+        </div>
+        <div>
+          <h4>
+            <apex:outputText
+              style="font-style: bold"
+              value="Employer : "
+            ></apex:outputText>
+            <apex:outputText
+              value="{!atomicwrapper.employmentInformation.employerName}"
+            ></apex:outputText>
+          </h4>
+        </div>
+        <div>
+          <h4>
+            <apex:outputText
+              style="font-style: bold"
+              value="Employment Status : "
+            ></apex:outputText>
+            <apex:outputText
+              value="{!atomicwrapper.employmentInformation.status}"
+            ></apex:outputText>
+          </h4>
+        </div>
+        <h3 style="background: #f5f6f8">Personal Details</h3>
+        <table class="table" width="100% ">
+          <tr style="height: 20px">
+            <td width="50% ">
+              <apex:outputText value="Name : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.personalInformation.firstName} {!atomicwrapper.personalInformation.lastName}"
+              ></apex:outputText>
+            </td>
+            <td width="50% ">
+              <apex:outputText value="Email : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.personalInformation.email}"
+              ></apex:outputText>
+            </td>
+          </tr>
+          <tr style="height: 20px">
+            <td width="50% ">
+              <apex:outputText
+                value="Date of Birth: "
+                style="font-style: bold"
+              ></apex:outputText>
+              <apex:outputText value=" {0,date,dd MMM yyyy} ">
+                <apex:param
+                  value="{!DATETIMEVALUE(atomicwrapper.personalInformation.dateofBirth)}"
+              /></apex:outputText>
+            </td>
+            <td width="50% ">
+              <apex:outputText value="Address : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.personalInformation.address}"
+              ></apex:outputText>
+            </td>
+          </tr>
+          <tr style="height: 20px">
+            <td width="50% ">
+              <apex:outputText value="City : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.personalInformation.city}"
+              ></apex:outputText>
+            </td>
+            <td width="50% ">
+              <apex:outputText value="State, Postal Code : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.personalInformation.state},{!atomicwrapper.personalInformation.postalCode}"
+              ></apex:outputText>
+            </td>
+          </tr>
+          <tr>
+            <td width="50% ">
+              <apex:outputText value="SSN : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.personalInformation.ssn}"
+              ></apex:outputText>
+            </td>
+            <td width="50% ">
+              <apex:outputText value="Phone : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.personalInformation.phone}"
+              ></apex:outputText>
+            </td>
+          </tr>
+        </table>
+        <h3 style="background: #f5f6f8">Employment Details</h3>
+        <table class="table" width="100% ">
+          <tr style="height: 20px">
+            <td width="50% ">
+              <apex:outputText value="Employee Type : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.employmentInformation.employeeType}"
+              ></apex:outputText>
+            </td>
+            <td width="50% ">
+              <apex:outputText value="Status : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.employmentInformation.status}"
+              ></apex:outputText>
+            </td>
+          </tr>
+          <tr style="height: 20px">
+            <td width="50% ">
+              <apex:outputText value="Income : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.employmentInformation.income}"
+              ></apex:outputText>
+            </td>
+            <td width="50% ">
+              <apex:outputText value="Income Type : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.employmentInformation.incomeType}"
+              ></apex:outputText>
+            </td>
+          </tr>
+          <tr style="height: 20px">
+            <td width="50% ">
+              <apex:outputText value="Job Title : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.employmentInformation.jobTitle}"
+              ></apex:outputText>
+            </td>
+            <td width="50% ">
+              <apex:outputText value="Pay Cycle : "></apex:outputText>
+              <apex:outputText
+                value="{!atomicwrapper.employmentInformation.payCycle}"
+              ></apex:outputText>
+            </td>
+          </tr>
+          <tr>
+            <td width="50% ">
+              <apex:outputText value="Start Date : "></apex:outputText>
+              <apex:outputText value=" {0,date,dd MMM yyyy} ">
+                <apex:param
+                  value="{!DATETIMEVALUE(atomicwrapper.employmentInformation.startDate)}"
+              /></apex:outputText>
+            </td>
+          </tr>
+        </table>
+
+        <h3 style="background: #f5f6f8">Accounts</h3>
+        <table>
+          <thead>
+            <tr>
+              <th class=" " scope="col ">
+                <div title="Routing Number " style="margin: 3px">
+                  <b>Routing Number</b>
+                </div>
+              </th>
+              <th class=" " scope="col ">
+                <div title="Account Number " style="margin: 3px">
+                  <b>Account Nmmber</b>
+                </div>
+              </th>
+              <th class=" " scope="col ">
+                <div title="Type " style="margin: 10px">
+                  <b>Type</b>
+                </div>
+              </th>
+              <th class=" " scope="col ">
+                <div title="Distribution Type " style="margin: 10px">
+                  <b>Distribution Type</b>
+                </div>
+              </th>
+              <th class=" " scope="col ">
+                <div title="Distribution Amount " style="margin: 10px">
+                  <b>Distribution Amount</b>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <apex:repeat var="acntvar" value="{!atomicWrapper.accountList}">
+              <tr>
+                <td data-label="Routing Number ">
+                  <div title="Routing Number " style="margin: 3px">
+                    {!acntvar.routingNumber}
+                  </div>
+                </td>
+                <td data-label="Account Number ">
+                  <div title="Account Number " style="margin: 3px">
+                    {!acntvar.accountNumber}
+                  </div>
+                </td>
+                <td data-label="Type ">
+                  <div title="Type " style="margin: 5px">{!acntvar.type}</div>
+                </td>
+                <td data-label="Distribution Type ">
+                  <div title="Distribution Type " style="margin: 5px">
+                    {!acntvar.distributionType}
+                  </div>
+                </td>
+                <td data-label="Distribution Amount ">
+                  <div
+                    title="Distribution Amount "
+                    style="margin: 5px; text-align: right"
+                  >
+                    {!acntvar.distributionAmount}
+                  </div>
+                </td>
+              </tr>
+            </apex:repeat>
+          </tbody>
+        </table>
+        <h3 style="background: #f5f6f8">W2</h3>
+        <table>
+          <thead>
+            <tr>
+              <th class=" " scope="col ">
+                <div title="Year " style="margin: 10px">
+                  <b>Year</b>
+                </div>
+              </th>
+              <th class=" " scope="col ">
+                <div title="Total Wages " style="margin: 10px">
+                  <b>Total Wages</b>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <apex:repeat var="w2var" value="{!atomicWrapper.w2List}">
+              <tr>
+                <td data-label="Routing Number ">
+                  <div title="Routing Number " style="margin: 10px">
+                    <apex:outputText value="{0,date,yyyy}">
+                      <apex:param value="{!DATETIMEVALUE(w2var.year)}"
+                    /></apex:outputText>
+                  </div>
+                </td>
+                <td data-label="Account Number ">
+                  <div
+                    title="Account Number "
+                    style="margin: 10px; text-align: right"
+                  >
+                    {!w2var.totalwages}
+                  </div>
+                </td>
+              </tr>
+            </apex:repeat>
+          </tbody>
+        </table>
+
+        <h3 style="background: #f5f6f8">Statements</h3>
+        <table>
+          <tbody>
+            <apex:repeat var="statevar" value="{!atomicWrapper.statementList}">
+              <tr style="margin: 10px; background: #f5f6f8">
+                <th class=" " scope="col ">
+                  <div title="Date " style="margin: 10px; background: #f5f6f8">
+                    <b>Date</b>
+                  </div>
+                </th>
+                <th class=" " scope="col ">
+                  <div
+                    title="Gross Amount "
+                    style="margin: 10px; background: #f5f6f8"
+                  >
+                    <b>Gross Amount</b>
+                  </div>
+                </th>
+                <th class=" " scope="col ">
+                  <div
+                    title="Net Amount "
+                    style="margin: 10px; background: #f5f6f8"
+                  >
+                    <b>Net Amount</b>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <td data-label="Statement Date ">
+                  <div title="Statement Date " style="margin: 10px">
+                    <apex:outputText value="{0,date,dd MMM yyyy}">
+                      <apex:param
+                        value="{!DATETIMEVALUE(statevar.statementdate)}"
+                    /></apex:outputText>
+                  </div>
+                </td>
+                <td data-label="Gross Amount ">
+                  <div
+                    title="Gross Amount "
+                    style="margin: 10px; text-align: right"
+                  >
+                    {!statevar.grossAmount}
+                  </div>
+                </td>
+                <td data-label="Net Amount ">
+                  <div
+                    title="Net Amount "
+                    style="margin: 10px; text-align: right"
+                  >
+                    {!statevar.netAmount}
+                  </div>
+                </td>
+                <h4 style="background: #e8edf8; margin: 25px">Deductions</h4>
+                <table style="margin: 25px; background: #e8edf8">
+                  <thead>
+                    <tr>
+                      <th class=" " scope="col ">
+                        <div title="Category " style="margin: 10px">
+                          <b>Category</b>
+                        </div>
+                      </th>
+                      <th class=" " scope="col ">
+                        <div title="Label " style="margin: 10px">
+                          <b>Label</b>
+                        </div>
+                      </th>
+                      <th class=" " scope="col ">
+                        <div title="Amount " style="margin: 10px">
+                          <b>Amount</b>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <apex:repeat var="deductvar" value="{!statevar.deductions}">
+                      <tr>
+                        <td data-label="Category ">
+                          <div title="Category " style="margin: 10px">
+                            {!deductvar.category}
+                          </div>
+                        </td>
+                        <td data-label="Label ">
+                          <div
+                            title="Label "
+                            style="margin: 10px; text-align: right"
+                          >
+                            {!deductvar.label}
+                          </div>
+                        </td>
+                        <td data-label="Amount ">
+                          <div
+                            title="Amount "
+                            style="margin: 10px; text-align: right"
+                          >
+                            {!statevar.netAmount}
+                          </div>
+                        </td>
+                      </tr>
+                    </apex:repeat>
+                  </tbody>
+                </table>
+              </tr>
+            </apex:repeat>
+          </tbody>
+        </table>
+      </apex:pageBlock>
+    </div>
+  </apex:form>
+</apex:page>

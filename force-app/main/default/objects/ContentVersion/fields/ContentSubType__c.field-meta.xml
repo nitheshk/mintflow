@@ -82,6 +82,40 @@
                 <default>false</default>
                 <label>Tribal Id</label>
             </value>
+            <value>
+                <fullName>PayStubs</fullName>
+                <default>false</default>
+                <label>PayStubs</label>
+            </value>
+            <value>
+                <fullName>AtomicFIResponse</fullName>
+                <default>false</default>
+                <label>AtomicFIResponse</label>
+            </value>
+            <value>
+                <fullName>Driver License</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Driver License</label>
+            </value>
+            <value>
+                <fullName>Green Card</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Green Card</label>
+            </value>
+            <value>
+                <fullName>Passport</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Passport</label>
+            </value>
+            <value>
+                <fullName>State Id</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>State Id</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
