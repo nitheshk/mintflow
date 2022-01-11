@@ -169,10 +169,24 @@ global with sharing class PlaidService extends AbstractService {
       for (PlaidAccountDTO.Ach item : accountResponse.numbers.ach) {
         map<string, object> balances = new Map<string, object>();
         PlaidAccountDTO.Account account = accountMap.get(item.account_id);
+
+        //ignore if the bank account other than saving and checking
+        if (
+          !(account?.subtype == 'savings' ||
+          account?.subtype == 'checking')
+        ) {
+          continue;
+        }
+        // ignore the balance less than zero and less than zero
+        if (!(account?.balances?.available > 0)) {
+          continue;
+        }
+
         balances.put('AccountNumber', item.account);
         balances.put('AvailableBalance', account.balances.available);
         balances.put('Routing', item.routing);
         balances.put('WireRouting', item.wire_routing);
+        balances.put('AccountType', account.subtype.capitalize());
         balances.put(
           'Label',
           account.name +
