@@ -10,6 +10,7 @@ export default class ResumeAppplication extends LightningElement {
   @track showSpinner = false;
   @track applicants = [];
   @track message;
+  @track disableButton = false;
   @wire(fetchApplicants, {
     applicationId: "$recordId"
   })
@@ -39,6 +40,7 @@ export default class ResumeAppplication extends LightningElement {
     this.message = "Selected " + this.selectedApplicant;
   }
   sendResumeEmail() {
+    this.disableButton = true;
     if (
       utils.checkAllValidations(this.template.querySelectorAll(".validation"))
     ) {
@@ -48,11 +50,13 @@ export default class ResumeAppplication extends LightningElement {
       })
         .then((result) => {
           if (result.status === 200) {
+            this.disableButton = false;
             this.message = "Email sent to " + this.selectedApplicant;
             utils.successMessage(this, "Email sent");
           }
         })
         .catch((error) => {
+          this.disableButton = false;
           console.log("error : " + JSON.stringify(error));
           utils.errorMessage(
             this,

@@ -136,6 +136,24 @@ global with sharing class LwcCustomController extends AbstractController {
       return ApexResponse.fail(ex);
     }
   }
+
+  /**
+   * @description send funding email from salesforce
+   * @author Digital Align | 01-11-2022
+   * @param string applicantIds
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse resendFundingRequest(string applicantionId) {
+    try {
+      log
+        ?.fine('Inside resendFundingRequest applicantionId =' + applicantionId);
+      LwcCustomService.getInstance().resendFundingRequest(applicantionId);
+      return ApexResponse.ok();
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
+    }
+  }
   /**
    * @description get salesforce fieldDescription
    * @author Digital Align Team | 11-30-2021

@@ -1,0 +1,18 @@
+<template>
+  <lightning-card title="Resend Funding Request" icon-name="standard:lead">
+    <div class="slds-var-m-around_medium">
+      <lightning-button-group>
+        <lightning-button
+          disabled={disableButton}
+          variant="brand"
+          label="Email"
+          title="Email"
+          onclick={sendFundingEmail}
+          class="slds-var-m-left_x-small"
+          icon-name="utility:save"
+          icon-position="right"
+        ></lightning-button>
+      </lightning-button-group>
+    </div>
+  </lightning-card>
+</template>

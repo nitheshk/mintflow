@@ -410,6 +410,18 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>resendFundingRequest</componentName>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.FinServ__Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Funding in Progress</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>relatedFiles</componentName>
             </componentInstance>
         </itemInstances>

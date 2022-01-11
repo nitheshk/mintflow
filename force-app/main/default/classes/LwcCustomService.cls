@@ -170,6 +170,21 @@ global with sharing class LwcCustomService extends AbstractService {
       CustomerEmailService.getInstance().resumeApplication(app);
     }
   }
+  /**
+   * @description send funding email from salesforce
+   * @author Digital Align | 12-10-2021
+   * @param string applicantIds
+   * @return virtual
+   **/
+  global virtual void resendFundingRequest(string applicantionId) {
+    Account application = ApplicationRepository.readApplicationWithApplicants(
+      applicantionId
+    );
+    if (application == null) {
+      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
+    }
+    CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);
+  }
 
   /**
    * @description fetch sobject field detail based on sobject name and field set name
