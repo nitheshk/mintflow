@@ -12,6 +12,10 @@
         <apexPage>OnlineAutoLogin</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+        <pageAccesses>
+        <apexPage>OnlineAutoLogin</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
 
     <!--recordTypeVisibilities-->
     <recordTypeVisibilities>
