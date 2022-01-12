@@ -274,6 +274,8 @@ global with sharing class ApplicationDataAPI {
       mapperSurvey.QuestionCode = survey.mflow__QuestionCode__c;
       mapperSurvey.QuestionNumber = survey.mflow__QuestionNumber__c;
       mapperSurvey.ShortDescription = survey.mflow__ShortDescription__c;
+      mapperSurvey.EventIdentifier = survey.mflow__EventIdentifier__c;
+      mapperSurvey.TemplateName = survey.mflow__TemplateName__c;
       mapperSurveyList.add(mapperSurvey);
     }
     return mapperSurveyList;

@@ -104,6 +104,8 @@ global with sharing class ApplicationResponseMapper {
     global String ShortDescription;
     global String ParentQuestionCode;
     global Decimal QuestionNumber;
+    global string EventIdentifier;
+    global string TemplateName;
   }
 
   global class Revenue {
