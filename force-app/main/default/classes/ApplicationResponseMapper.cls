@@ -67,6 +67,7 @@ global with sharing class ApplicationResponseMapper {
     global String SentiLinkRemarks;
     global String SentiLinkStatus;
     global String SSN;
+    global String Password;
     global List<IdentificationDocument> IdentificationDocuments;
     global List<ContactPointAddress> ContactPointAddresses;
     global List<Revenue> Revenues;

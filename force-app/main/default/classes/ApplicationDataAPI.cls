@@ -119,6 +119,7 @@ global with sharing class ApplicationDataAPI {
       mapperApplicant.SentiLinkRemarks = applicant.SentiLinkRemarks__c;
       mapperApplicant.SentiLinkStatus = applicant.SentiLinkStatus__c;
       mapperApplicant.SSN = applicant.SSN__c;
+      mapperApplicant.Password = applicant.Password__c;
 
       //Map employment data
       if (!CollectionUtils.isListEmpty(applicant.Employments__r)) {
