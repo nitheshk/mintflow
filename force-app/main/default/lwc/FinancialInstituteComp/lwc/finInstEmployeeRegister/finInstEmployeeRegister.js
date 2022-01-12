@@ -29,7 +29,11 @@ export default class FinInstEmployeeRegister extends NavigationMixin(
             this.isEmployeeCreated = true;
             utils.successMessage(this, "Employee Registered", "Success");
           } else {
-            utils.errorMessage(this, result.data.message, "Error");
+            utils.errorMessage(
+              this,
+              result.data.message,
+              "Error on contact creation, May be an employee with same email address exists"
+            );
           }
           this.showSpinner = false;
         })

@@ -1,10 +1,9 @@
-<messaging:emailTemplate
-  subject="Welcome to {!$Network.Name}"
+<messaging:emailTemplate subject="Welcome to {!$Network.Name}"
   recipientType="User"
   relatedToType="Network"
   renderUsingSystemContextWithoutSharing="True"
 >
-  <messaging:htmlEmailBody>
+  <messaging:htmlEmailBody >
     <html>
       <head>
         <title></title>
@@ -156,7 +155,7 @@
                       line-height: 48px;
                     "
                   >
-                    <c:DisplayImage name="AltifiLogo"></c:DisplayImage>
+                    <c:DisplayImage name="mintflow_Logo"></c:DisplayImage>
                     <h1 style="font-size: 48px; font-weight: 700; margin: 2">
                       Hi {!recipient.FirstName} {!recipient.LastName}
                     </h1>
