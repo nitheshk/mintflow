@@ -34,11 +34,11 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       .queryChild('mflow__Employments__r')
       .addFields()
       .orderBy('mflow__Order__c')
-      .run()
-      .queryChild('mflow__Surveys__r')
-      .addFields()
-      .orderBy('Order__c')
       .run();
+    // .queryChild('mflow__Surveys__r')
+    // .addFields()
+    // .orderBy('Order__c')
+    // .run();
     if (String.isNotBlank(eventIdentifier)) {
       qry
         .queryChild('mflow__ApplicantConsents__r')

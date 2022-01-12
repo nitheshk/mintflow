@@ -99,7 +99,8 @@ global with sharing class ApplicationService extends AbstractService {
       .getIpAddress();
     // #pending update version from custom setting
     application.Version__c = 'V1.0.1';
-    ApplicationServiceHelper.getInstance().resolveBranchLocation(application);
+    application = ApplicationServiceHelper.getInstance()
+      .resolveBranchLocation(application);
     ApplicationRepository.upsertRecord(application);
 
     application = ApplicationRepository.readApplicationById(application.Id);
