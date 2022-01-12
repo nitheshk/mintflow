@@ -80,19 +80,6 @@
         <itemInstances>
             <componentInstance>
                 <componentName>approveKyc</componentName>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.Status__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Revision in Progress</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.FlowState__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>review-information</rightValue>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
