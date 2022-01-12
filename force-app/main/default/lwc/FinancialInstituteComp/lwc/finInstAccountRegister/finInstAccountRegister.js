@@ -16,7 +16,8 @@ export default class FinInstAccountRegister extends constants {
   PickListValues({ data, error }) {
     if (data) {
       if (data.status === 200) {
-        this.Ownership = data.data.Account.Ownership;
+        let result = JSON.parse(data.data);
+        this.Ownership = result.Account.Ownership;
       } else {
         console.log("error " + JSON.stringify(data));
       }
@@ -51,7 +52,7 @@ export default class FinInstAccountRegister extends constants {
       })
         .then((result) => {
           if (result.status === 200) {
-            this.accountRecord = JSON.parse(JSON.stringify(result.data));
+            this.accountRecord = JSON.parse(result.data);
             utils.successMessage(this, "Saved!", "Success");
           } else {
             utils.errorMessage(this, "Error creating Account", "Error");
@@ -79,7 +80,7 @@ export default class FinInstAccountRegister extends constants {
     if (data) {
       //console.log("data:", JSON.stringify(data));
       if (data.status === 200) {
-        this.accountRecord = JSON.parse(JSON.stringify(data.data));
+        this.accountRecord = JSON.parse(data.data);
       }
       this.showSpinner = false;
     } else if (error) {
