@@ -803,6 +803,45 @@
           }
         ]
       }
+    },
+
+    {
+      "attributes": {
+        "type": "mflow__SurveyTemplate__c",
+        "referenceId": "SurveyTemplateRef_3"
+      },
+      "Name": "CustomerFeedbackQuestions",
+      "mflow__DeleteRecord__c": false,
+      "mflow__Order__c": 1,
+      "mflow__ApplicantType__c": "Primary",
+      "mflow__EventIdentifier__c": "CustomerFeedbackQuestions",
+      "mflow__isActive__c": true,
+      "mflow__Channel__c": "Virtual",
+      "mflow__SurveyQuestions__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__SurveyQuestion__c",
+              "referenceId": "SurveyQuestionRef_3_0"
+            },
+            "Name": "What brought you to P1FCU?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__DeleteRecord__c": false,
+            "mflow__LongDescription__c": "What brought you to P1FCU?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[{\r\n\t\"value\": \"Media Advertising\",\r\n\t\"name\": \"Media Advertising\"\r\n}, {\r\n\t\"value\": \"Social Media\",\r\n\t\"name\": \"Social Media\"\r\n}][{\r\n\t\"value\": \"Search Engine\",\r\n\t\"name\": \"Search Engine\"\r\n}, {\r\n\t\"value\": \"Employer\",\r\n\t\"name\": \"Employer\"\r\n},{\r\n\t\"value\": \"P1FCU Employee\",\r\n\t\"name\": \"P1FCU Employee\"\r\n},{\r\n\t\"value\": \"Other (Please fill in the box)\",\r\n\t\"name\": \"Other (Please fill in the box)\"\r\n}]",
+            "mflow__Order__c": 1,
+            "mflow__QuestionCode__c": "Question1",
+            "mflow__QuestionNumber__c": 1,
+            "mflow__Required__c": false,
+            "mflow__ShortDescription__c": "What brought you to P1FCU?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": true
+          }
+        ]
+      }
     }
   ]
 }
