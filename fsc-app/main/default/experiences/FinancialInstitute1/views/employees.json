@@ -70,7 +70,7 @@
                 },
                 {
                   "componentAttributes": {
-                    "filterString": "isactive=true and Contact.UserContactType__c ='FinancialInstituteEmployee'",
+                    "filterString": "Profile.Name='FinancialInstituteCommunity Profile'",
                     "metadataName": "FIEmployees",
                     "sortString": "Name"
                   },

@@ -13,7 +13,7 @@
         <enabled>true</enabled>
     </pageAccesses>
         <pageAccesses>
-        <apexPage>OnlineAutoLogin</apexPage>
+        <apexPage>AtomicVerificationReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
