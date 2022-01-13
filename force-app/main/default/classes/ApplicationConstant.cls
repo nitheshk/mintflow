@@ -34,9 +34,9 @@ public with sharing class ApplicationConstant {
   public static final String STAGE_EXISTING_CUSTOMER = 'ExistingCustomer';
 
   //Flow State
-  public static final String FINAL_CONFIRMATION = 'final-confirmation';
-  public static final String FUNDING_WELCOME = 'welcome-back';
-  public static final String JOINT_WELCOME = 'joint-welcome';
+  public static final String FINAL_CONFIRMATION = 'Complete';
+  public static final String FUNDING_WELCOME = 'WelcomeJoint';
+  public static final String JOINT_WELCOME = 'WelcomeJoint';
 
   // RPA to Salesforce Field Mapping
   /*  public Static final Map<String,String> STATUS_CONVERSION= new Map<String,String>{

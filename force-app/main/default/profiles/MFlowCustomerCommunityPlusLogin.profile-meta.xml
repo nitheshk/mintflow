@@ -222,10 +222,15 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.FlowType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Applicant__c.CustomerScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
- <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.HighRiskConsumer__c</field>
         <readable>true</readable>
@@ -1000,6 +1005,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.NaicsCode</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.FlowType__c</field>
         <readable>true</readable>
     </fieldPermissions>
      <fieldPermissions>

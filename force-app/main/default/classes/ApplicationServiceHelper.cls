@@ -171,4 +171,46 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
     FinancialAccountRepository.upsertRecord(application);
     return application;
   }
+
+  /**
+   * @description update application flow state
+   * @author Digital Align Team | 01-13-2022
+   * @param Account application
+   * @param Applicant__c applicant
+   * @return Account
+   **/
+  global virtual Account updateApplicationFlowState(Account application) {
+    if (ApexRequest.getApplicantType() == 'Primary') {
+      for (Applicant__c applicant : application.Applicants__r) {
+        if (
+          applicant.RecordType.Name ==
+          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+        ) {
+          application.FlowState__c = (String) ApexRequest.getParams(
+            'flowState'
+          );
+          application.FlowType__c = ApexRequest.getFlowType();
+          applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
+          applicant.FlowType__c = ApexRequest.getFlowType();
+          ApplicationRepository.UpsertRecord(application);
+          ApplicationRepository.UpsertRecord(applicant);
+          break;
+        }
+      }
+    } else if (ApexRequest.getApplicantType() == 'Joint') {
+      for (Applicant__c applicant : application.Applicants__r) {
+        if (
+          applicant.RecordType.Name ==
+          ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+        ) {
+          applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
+          applicant.FlowType__c = ApexRequest.getFlowType();
+          ApplicationRepository.UpsertRecord(applicant);
+          break;
+        }
+      }
+    }
+
+    return application;
+  }
 }

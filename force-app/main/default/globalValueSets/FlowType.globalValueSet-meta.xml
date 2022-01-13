@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>ApplicationFlow</fullName>
+        <default>false</default>
+        <label>ApplicationFlow</label>
+    </customValue>
+    <customValue>
+        <fullName>JointFlow</fullName>
+        <default>false</default>
+        <label>JointFlow</label>
+    </customValue>
+    <customValue>
+        <fullName>FundingFlow</fullName>
+        <default>false</default>
+        <label>FundingFlow</label>
+    </customValue>
+    <description>UI Flow Type Indicator</description>
+    <masterLabel>FlowType</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

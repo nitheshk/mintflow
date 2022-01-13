@@ -1,99 +1,123 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>get-started</fullName>
+        <fullName>GetStarted</fullName>
         <default>false</default>
-        <label>get-started</label>
+        <label>GetStarted</label>
     </customValue>
     <customValue>
-        <fullName>eligibility-confirmation</fullName>
+        <fullName>Eligibility</fullName>
         <default>false</default>
-        <label>eligibility-confirmation</label>
+        <label>Eligibility</label>
     </customValue>
     <customValue>
-        <fullName>family-connect</fullName>
+        <fullName>CountyValidate</fullName>
         <default>false</default>
-        <label>family-connect</label>
+        <label>CountyValidate</label>
     </customValue>
     <customValue>
-        <fullName>personal-information</fullName>
+        <fullName>InvalidCounty</fullName>
         <default>false</default>
-        <label>personal-information</label>
+        <label>InvalidCounty</label>
     </customValue>
     <customValue>
-        <fullName>otp-verification</fullName>
+        <fullName>FamilyConnect</fullName>
         <default>false</default>
-        <label>otp-verification</label>
+        <label>FamilyConnect</label>
     </customValue>
     <customValue>
-        <fullName>address-verification</fullName>
+        <fullName>PersonalInfo</fullName>
         <default>false</default>
-        <label>address-verification</label>
+        <label>PersonalInfo</label>
     </customValue>
     <customValue>
-        <fullName>joint</fullName>
+        <fullName>OtpVerification</fullName>
         <default>false</default>
-        <label>joint</label>
+        <label>OtpVerification</label>
     </customValue>
     <customValue>
-        <fullName>beneficiary</fullName>
+        <fullName>IdentityVerification</fullName>
         <default>false</default>
-        <label>beneficiary</label>
+        <label>IdentityVerification</label>
     </customValue>
     <customValue>
-        <fullName>emergency-contact</fullName>
+        <fullName>DocumentUpload</fullName>
         <default>false</default>
-        <label>emergency-contact</label>
+        <label>DocumentUpload</label>
     </customValue>
     <customValue>
-        <fullName>employment-information</fullName>
+        <fullName>AddressVerification</fullName>
         <default>false</default>
-        <label>employment-information</label>
+        <label>AddressVerification</label>
     </customValue>
     <customValue>
-        <fullName>review-information</fullName>
+        <fullName>AdditionalApplicant</fullName>
         <default>false</default>
-        <label>review-information</label>
+        <label>AdditionalApplicant</label>
     </customValue>
     <customValue>
-        <fullName>password</fullName>
+        <fullName>EmploymentReview</fullName>
         <default>false</default>
-        <label>password</label>
+        <label>EmploymentReview</label>
     </customValue>
     <customValue>
-        <fullName>email-confirmation</fullName>
+        <fullName>EmployeeInfo</fullName>
         <default>false</default>
-        <label>email-confirmation</label>
+        <label>EmployeeInfo</label>
     </customValue>
     <customValue>
-        <fullName>identity-verification</fullName>
+        <fullName>Review</fullName>
         <default>false</default>
-        <label>identity-verification</label>
+        <label>Review</label>
     </customValue>
     <customValue>
-        <fullName>funding</fullName>
+        <fullName>Questionary</fullName>
         <default>false</default>
-        <label>funding</label>
+        <label>Questionary</label>
     </customValue>
     <customValue>
-        <fullName>disclosures</fullName>
+        <fullName>Disclosure</fullName>
         <default>false</default>
-        <label>disclosures</label>
+        <label>Disclosure</label>
+    </customValue><customValue>
+        <fullName>Complete</fullName>
+        <default>false</default>
+        <label>Complete</label>
     </customValue>
     <customValue>
-        <fullName>final-confirmation</fullName>
+        <fullName>Sorry</fullName>
         <default>false</default>
-        <label>final-confirmation</label>
+        <label>Sorry</label>
     </customValue>
     <customValue>
-        <fullName>welcome-back</fullName>
+        <fullName>WelcomeJoint</fullName>
         <default>false</default>
-        <label>welcome-back</label>
+        <label>WelcomeJoint</label>
     </customValue>
     <customValue>
-        <fullName>joint-Welcome</fullName>
+        <fullName>Funding</fullName>
         <default>false</default>
-        <label>joint-Welcome</label>
+        <label>Funding</label>
+    </customValue>
+    <customValue>
+        <fullName>Agreement</fullName>
+        <default>false</default>
+        <label>Agreement</label>
+    </customValue>
+    <customValue>
+        <fullName>BranchPassword</fullName>
+        <default>false</default>
+        <label>BranchPassword</label>
+    </customValue>
+    <customValue>
+        <fullName>Congratulation</fullName>
+        <default>false</default>
+        <label>Congratulation</label>
+    </customValue>
+    <customValue>
+        <fullName>EmailConfirmation</fullName>
+        <default>false</default>
+        <label>EmailConfirmation</label>
     </customValue>
     <description>UI Flow State Indicator</description>
     <masterLabel>FlowState</masterLabel>

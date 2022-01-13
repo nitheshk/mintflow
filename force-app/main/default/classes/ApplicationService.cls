@@ -94,7 +94,8 @@ global with sharing class ApplicationService extends AbstractService {
     // #pending  value need to decide based on the parameter
     application.FinServ__CustomerType__c = 'Consumer';
     application.UserAccountType__c = 'CustomerApplication';
-    application.FlowState__c = 'get-started';
+    application.FlowState__c = 'GetStarted';
+    application.FlowType__c = 'ApplicationFlow';
     application.IPAddress__c = ApplicationServiceHelper.getInstance()
       .getIpAddress();
     // #pending update version from custom setting
@@ -347,5 +348,18 @@ global with sharing class ApplicationService extends AbstractService {
       Database.rollback(sp);
       throw ex;
     }
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 01-12-2022
+   * @param Account application
+   * @return Account
+   **/
+  global virtual Account updateApplicationFlowState(Account application) {
+    if (!ApexRequest.getParams().containsKey('flowState')) {
+      return application;
+    }
+    return helper.updateApplicationFlowState(application);
   }
 }

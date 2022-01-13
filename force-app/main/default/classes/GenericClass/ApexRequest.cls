@@ -15,10 +15,9 @@ global with sharing class ApexRequest {
   global String applicantId { get; set; }
   @AuraEnabled
   global String token { get; set; }
-  @AuraEnabled
+  @AuraEnabled // Possible Values : ApplicationFlow , JointFlow , FundingFlow
   global String flowType { get; set; }
-  //Primary Flow or Joint Flow
-  @AuraEnabled
+  @AuraEnabled // Possible Values : Primary ,Joint
   global String applicantType { get; set; }
   @AuraEnabled
   global String currentPage { get; set; }

@@ -30,79 +30,114 @@
     <picklistValues>
         <picklist>FlowState__c</picklist>
         <values>
-            <fullName>address-verification</fullName>
+            <fullName>AdditionalApplicant</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>beneficiary</fullName>
+            <fullName>AddressVerification</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>disclosures</fullName>
+            <fullName>Agreement</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>eligibility-confirmation</fullName>
+            <fullName>BranchPassword</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>email-confirmation</fullName>
+            <fullName>Complete</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>identity-verification</fullName>
+            <fullName>Congratulation</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>emergency-contact</fullName>
+            <fullName>CountyValidate</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>employment-information</fullName>
+            <fullName>Disclosure</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>family-connect</fullName>
+            <fullName>DocumentUpload</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>final-confirmation</fullName>
+            <fullName>Eligibility</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>funding</fullName>
+            <fullName>EmailConfirmation</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>get-started</fullName>
+            <fullName>EmployeeInfo</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>joint</fullName>
+            <fullName>EmploymentReview</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>joint-welcome</fullName>
-            <default>true</default>
-        </values>
-        <values>
-            <fullName>otp-verification</fullName>
+            <fullName>FamilyConnect</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>password</fullName>
+            <fullName>Funding</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>personal-information</fullName>
+            <fullName>GetStarted</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>review-information</fullName>
+            <fullName>IdentityVerification</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>welcome-back</fullName>
+            <fullName>InvalidCounty</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OtpVerification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PersonalInfo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Questionary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sorry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WelcomeJoint</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FlowType__c</picklist>
+        <values>
+            <fullName>ApplicationFlow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FundingFlow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JointFlow</fullName>
             <default>false</default>
         </values>
     </picklistValues>

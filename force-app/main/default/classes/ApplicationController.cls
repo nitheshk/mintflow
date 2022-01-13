@@ -57,22 +57,25 @@ global with sharing class ApplicationController extends AbstractController {
       }
 
       log?.debug('request' + request);
+      Account application;
       if (ApexRequest.getApplicantType() == 'Primary') {
-        return ApexResponse.ok(
-          ApplicationService.getInstance()
-            .readApplicationWithChild(applicationId)
-        );
+        application = ApplicationService.getInstance()
+          .readApplicationWithChild(applicationId);
       } else if (ApexRequest.getApplicantType() == 'Joint') {
-        return ApexResponse.ok(
-          ApplicationService.getInstance()
-            .readApplicationWithChild(
-              applicationId,
-              ApexRequest.getApplicantId()
-            )
-        );
+        application = ApplicationService.getInstance()
+          .readApplicationWithChild(
+            applicationId,
+            ApexRequest.getApplicantId()
+          );
       } else {
         throw new CustomException(System.Label.Applicant_ApplicantTypeNotFound);
       }
+
+      // save application state
+      application = ApplicationService.getInstance()
+        .updateApplicationFlowState(application);
+
+      return ApexResponse.ok(application);
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);

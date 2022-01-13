@@ -26,7 +26,7 @@ public with sharing class ApexRequestTest {
     ApexRequest.setApplicationName(acc.Name);
     ApexRequest.setApplicantId(applicant.Id);
     ApexRequest.setApplicantType(applicant.ApplicantType__c);
-    ApexRequest.setFlowType('get-started');
+    ApexRequest.setFlowType('GetStarted');
     ApexRequest.setToken('Token');
     request.setRequest();
     ApexRequest.setApplicationId(acc.Id);

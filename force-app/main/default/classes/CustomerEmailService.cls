@@ -131,13 +131,10 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
     ) {
       params.put('flw', 'ApplicationFlow');
-      params.put(
-        'urlSuffix',
-        '/membership/application/' + applicant.FlowState__c
-      );
+      params.put('urlSuffix', '/membership/application/otp');
     } else {
       params.put('flw', 'JointFlow');
-      params.put('urlSuffix', '/membership/joints/' + applicant.FlowState__c);
+      params.put('urlSuffix', '/membership/joints/otp');
     }
     params.put('aplType', applicant.ApplicantType__c);
     params.put('aplId', applicant.Id);
@@ -177,7 +174,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
             new Map<String, String>{
               'aplType' => 'Primary',
               'flw' => 'ApplicationFlow',
-              'urlSuffix' => '/membership/application/get-started',
+              'urlSuffix' => '/membership/application/otp',
               'aplId' => applicant.Id,
               'ch' => 'Virtual'
             }
