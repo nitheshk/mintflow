@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>All</fullName>
+    <fullName>Submit_for_KYC_Review</fullName>
     <columns>ApplicationNumber__c</columns>
     <columns>Stage__c</columns>
     <columns>FinServ__Status__c</columns>
@@ -8,9 +8,9 @@
     <columns>ACCOUNT.CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>ACCOUNT.RECORDTYPE</field>
+        <field>FinServ__Status__c</field>
         <operation>equals</operation>
-        <value>Account.Application</value>
+        <value>Submit for Review</value>
     </filters>
-    <label>All</label>
+    <label>Submit for KYC Review</label>
 </ListView>

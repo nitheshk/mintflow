@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SavedApplications</fullName>
+    <fullName>KYC_Approved</fullName>
     <columns>ApplicationNumber__c</columns>
     <columns>Stage__c</columns>
     <columns>FinServ__Status__c</columns>
-    <filterScope>Mine</filterScope>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>ACCOUNT.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
     <filters>
         <field>FinServ__Status__c</field>
         <operation>equals</operation>
-        <value>Saved</value>
+        <value>Approved</value>
     </filters>
-    <label>Saved Applications</label>
+    <label>KYC Approved</label>
 </ListView>
