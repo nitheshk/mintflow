@@ -6,11 +6,11 @@
         "referenceId": "SurveyTemplateRef_0"
       },
       "Name": "DealerSurvey",
-      "mflow__DeleteRecord__c": false,
-      "mflow__Order__c": 1,
-      "mflow__EventIdentifier__c": "DealerSurvey",
-      "mflow__isActive__c": true,
       "mflow__Channel__c": "Community",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EventIdentifier__c": "DealerSurvey",
+      "mflow__Order__c": 1,
+      "mflow__isActive__c": true,
       "mflow__SurveyQuestions__r": {
         "totalSize": 18,
         "done": true,
@@ -382,11 +382,11 @@
         "referenceId": "SurveyTemplateRef_1"
       },
       "Name": "DealerApprovalSurvey",
-      "mflow__DeleteRecord__c": false,
-      "mflow__Order__c": 2,
-      "mflow__EventIdentifier__c": "DealerApprovalSurvey",
-      "mflow__isActive__c": true,
       "mflow__Channel__c": "Community",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EventIdentifier__c": "DealerApprovalSurvey",
+      "mflow__Order__c": 2,
+      "mflow__isActive__c": true,
       "mflow__SurveyQuestions__r": {
         "totalSize": 8,
         "done": true,
@@ -551,12 +551,12 @@
         "referenceId": "SurveyTemplateRef_2"
       },
       "Name": "CustomerFlowQuestionaire",
-      "mflow__DeleteRecord__c": false,
-      "mflow__Order__c": 1,
       "mflow__ApplicantType__c": "Primary",
-      "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
-      "mflow__isActive__c": true,
       "mflow__Channel__c": "Virtual",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
+      "mflow__Order__c": 1,
+      "mflow__isActive__c": true,
       "mflow__SurveyQuestions__r": {
         "totalSize": 12,
         "done": true,
@@ -804,19 +804,18 @@
         ]
       }
     },
-
     {
       "attributes": {
         "type": "mflow__SurveyTemplate__c",
         "referenceId": "SurveyTemplateRef_3"
       },
       "Name": "CustomerFeedbackQuestions",
-      "mflow__DeleteRecord__c": false,
-      "mflow__Order__c": 1,
       "mflow__ApplicantType__c": "Primary",
-      "mflow__EventIdentifier__c": "CustomerFeedbackQuestions",
-      "mflow__isActive__c": true,
       "mflow__Channel__c": "Virtual",
+      "mflow__DeleteRecord__c": false,
+      "mflow__EventIdentifier__c": "CustomerFeedbackQuestions",
+      "mflow__Order__c": 1,
+      "mflow__isActive__c": true,
       "mflow__SurveyQuestions__r": {
         "totalSize": 1,
         "done": true,
@@ -830,8 +829,8 @@
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__DeleteRecord__c": false,
             "mflow__LongDescription__c": "What brought you to P1FCU?",
-            "mflow__OptionType__c": "CheckBox",
-            "mflow__Options__c": "[{\r\n\t\"value\": \"Media Advertising\",\r\n\t\"name\": \"Media Advertising\"\r\n}, {\r\n\t\"value\": \"Social Media\",\r\n\t\"name\": \"Social Media\"\r\n}][{\r\n\t\"value\": \"Search Engine\",\r\n\t\"name\": \"Search Engine\"\r\n}, {\r\n\t\"value\": \"Employer\",\r\n\t\"name\": \"Employer\"\r\n},{\r\n\t\"value\": \"P1FCU Employee\",\r\n\t\"name\": \"P1FCU Employee\"\r\n},{\r\n\t\"value\": \"Other (Please fill in the box)\",\r\n\t\"name\": \"Other (Please fill in the box)\"\r\n}]",
+            "mflow__OptionType__c": "Picklist",
+            "mflow__Options__c": "[{\"value\":\"Media Advertising\",\"name\":\"Media Advertising\"},{\"value\":\"Social Media\",\"name\":\"Social Media\"},{\"value\":\"Search Engine\",\"name\":\"Search Engine\"},{\"value\":\"Employer\",\"name\":\"Employer\"},{\"value\":\"P1FCU Employee\",\"name\":\"P1FCU Employee\"},{\"value\":\"Other (Please fill in the box)\",\"name\":\"Other (Please fill in the box)\"}]",
             "mflow__Order__c": 1,
             "mflow__QuestionCode__c": "Question1",
             "mflow__QuestionNumber__c": 1,
