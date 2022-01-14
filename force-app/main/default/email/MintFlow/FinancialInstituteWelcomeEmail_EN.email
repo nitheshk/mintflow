@@ -155,7 +155,7 @@
                       line-height: 48px;
                     "
                   >
-                    <c:DisplayImage name="mintflow_Logo"></c:DisplayImage>
+                    <c:DisplayImage name="MintflowLogo"></c:DisplayImage>
                     <h1 style="font-size: 48px; font-weight: 700; margin: 2">
                       Hi {!recipient.FirstName} {!recipient.LastName}
                     </h1>

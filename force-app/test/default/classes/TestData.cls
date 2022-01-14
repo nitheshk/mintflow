@@ -109,7 +109,7 @@ public with sharing class TestData {
     List<Folder> folderList = [SELECT Id, Name FROM Folder LIMIT 1];
     String docFolderId = folderList[0].Id; //Get Folder Id
     Document doc = new Document();
-    doc.Name = 'DaBackGround1';
+    doc.Name = 'MintflowLogo';
     doc.Body = Blob.valueOf('fileContent');
     doc.ContentType = 'text/plain';
     doc.FolderId = docFolderId;

@@ -15,15 +15,7 @@ EmailNotificationBuilder.newInstance('DealerInvitation', leadRecord.Id)
   .setToAddresses(leadRecord.Email)
   .setSubstitute(new Map<String, String>{ '{{url}}' => inviteUrl })
   .setdocumentNames(
-    new List<String>{
-      'DaBackGround1',
-      'DAContent1',
-      'AltifiLogo',
-      'facebook',
-      'twitter',
-      'youtube',
-      'skype'
-    }
+    new List<String>{ 'MintflowLogo', 'DAContent1', 'MintflowLogo' }
   );
 List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
 if (result != null) {

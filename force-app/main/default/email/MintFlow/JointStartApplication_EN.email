@@ -156,7 +156,7 @@
                       line-height: 48px;
                     "
                   >
-                    <c:DisplayImage name="AltifiLogo"></c:DisplayImage>
+                    <c:DisplayImage name="MintflowLogo"></c:DisplayImage>
                   </td>
                 </tr>
               </table>
