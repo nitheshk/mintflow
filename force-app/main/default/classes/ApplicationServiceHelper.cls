@@ -123,6 +123,9 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
       ) {
         log?.debug('Applicant Kyc : ' + applicantKyc);
         Applicant__c applicant = applicantMap.get(applicantKyc.ApplicantId);
+        if (applicant == null) {
+          continue;
+        }
         applicant.CustomerNumber__c = applicantKyc.CustomerNumber;
         applicant.OverallDebitBureauResult__c = applicantKyc.OverallDebitBureauResult;
         applicant.CreditScore__c = applicantKyc.CreditScore;
@@ -155,6 +158,7 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
     }
 
     application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
+    application.ExternalApplicationStatus__c = kycResult.ExternalApplicationStatus;
     switch on kycResult.ExternalApplicationStatus {
       when 'Accept', 'Passed' {
         application.FinServ__Status__c = ApplicationConstant.APPROVED;

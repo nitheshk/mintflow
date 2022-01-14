@@ -59,9 +59,17 @@
             {
               "components": [
                 {
+                  "componentAttributes": {},
+                  "componentName": "mflow:startOnlineApplication",
+                  "id": "76613772-4203-4529-8460-1400d2314a3b",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
                   "componentAttributes": {
                     "enableInlineEdit": true,
-                    "filterName": "00B6D000003kM8PUAU",
+                    "filterName": "00B1y000002s8NHEAY",
                     "layout": "FULL",
                     "pageSize": 25,
                     "scope": "Account",
@@ -76,7 +84,7 @@
                     "showSearchBar": true
                   },
                   "componentName": "forceCommunity:objectHome",
-                  "id": "fd8d4507-7d85-4604-801e-0f9080a72045",
+                  "id": "4700a0f3-8dd3-40fe-9f80-93bd2ebf8018",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
