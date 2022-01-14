@@ -59,30 +59,24 @@
             {
               "components": [
                 {
-                  "componentAttributes": {},
-                  "componentName": "mflow:startOnlineApplication",
-                  "id": "76613772-4203-4529-8460-1400d2314a3b",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"slds-page-header\">\n  <div class=\"slds-page-header__row\">\n    <div class=\"slds-page-header__col-title\">\n      <div class=\"slds-media\">\n        <div class=\"slds-media__figure\">\n          <span class=\"slds-icon_container slds-icon-standard-opportunity\" title=\"opportunity\">                       \n          </span>\n        </div>\n        <div class=\"slds-media__body\">\n          <div class=\"slds-page-header__name\">\n            <div class=\"slds-page-header__name-title\">\n              <h1>\n                <span style=\"color:#3b4eb0;\" class=\"slds-page-header__title slds-truncate\" title=\"All Applications\">All Applications</span>\n              </h1>\n            </div>\n          </div>\n          <p class=\"slds-page-header__name-meta\"></p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+                    "enableInlineEdit": true,
+                    "filterName": "00B6D000003kM8PUAU",
+                    "layout": "FULL",
+                    "pageSize": 25,
+                    "scope": "Account",
+                    "showActionBar": true,
+                    "showChartsPanel": true,
+                    "showDisplay": "showall",
+                    "showFilterPanel": true,
+                    "showImageIcon": true,
+                    "showManualRefreshButton": true,
+                    "showObjectName": true,
+                    "showPinnedList": true,
+                    "showSearchBar": true
                   },
-                  "componentName": "forceCommunity:htmlBlock",
-                  "id": "1f6bce79-7559-400b-857c-0186c701b970",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {
-                    "metadataName": "FIApplications",
-                    "sortString": "Name"
-                  },
-                  "componentName": "mflow:dynamicDataTable",
-                  "id": "aa870e0f-33f0-4d97-9e57-ea6ea06f2708",
+                  "componentName": "forceCommunity:objectHome",
+                  "id": "fd8d4507-7d85-4604-801e-0f9080a72045",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
