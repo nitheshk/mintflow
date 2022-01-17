@@ -132,4 +132,41 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description Read applicant record
+   * @author Digital Align Team | 11-16-2021
+   * @param Id applicantId
+   * @return Applicant__c
+   **/
+  global static Applicant__c readApplicantById(Id applicantId) {
+    return (Applicant__c) DatabaseUtils.getRecord(
+      Query.newInstance(Applicant__c.SObjectType)
+        .addFields()
+        .addFields('RecordType.Name')
+        .whereEq('Id', applicantId)
+        .toString()
+    );
+  }
+
+  /**
+   * @description Read application with Applicants
+   * @author Digital Align Team | 11-15-2021
+   * @param Id applicationId
+   * @return Account
+   **/
+  global static Account readApplicationWithApplicants(Id applicationId) {
+    return (Account) DatabaseUtils.getRecord(
+      Query.newInstance(Account.SObjectType)
+        //.addFieldSet('mflow__Application')
+        .addFields()
+        .queryChild('mflow__Applicants__r')
+        .addFields()
+        .addFields('RecordType.Name')
+        .orderBy('mflow__Order__c')
+        .run()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
 }

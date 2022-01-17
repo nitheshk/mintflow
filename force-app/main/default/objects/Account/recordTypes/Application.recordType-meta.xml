@@ -262,6 +262,10 @@
             <fullName>Under Review</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>FinServ__LastUsedChannel__c</picklist>

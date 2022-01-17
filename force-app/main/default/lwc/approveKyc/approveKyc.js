@@ -10,25 +10,26 @@ export default class ApproveKyc extends LightningElement {
   @track applicantStatus = [];
   @track showApplicationTab = false;
   @track showApplicantTab = false;
+  @track showSpinner = false;
 
   get approvalTypes() {
     return [
-      { label: "Update application", value: "UpdateApplication" },
+      { label: "Approve Application", value: "ApproveApplication" },
       {
-        label: "Update application and applicant",
-        value: "updateApplicationAndApplicant"
-      },
-      {
-        label: "Update application and primary",
-        value: "updateApplicationAndPrimary"
+        label: "Approve Application And Applicants",
+        value: "ApproveApplicationAndApplicants"
       }
     ];
   }
 
+  /**
+   * Load Picklist value for components
+   * @param {*} param
+   */
   @wire(getPickListValues, {
     params: {
-      Account: ["FinServ__Status__c"],
-      mflow__Applicant__c: ["mflow__Status__c"]
+      Account: ["FinServ__KYCStatus__c"],
+      mflow__Applicant__c: ["mflow__KYCStatus__c"]
     }
   })
   PickListValues({ data, error }) {
@@ -36,14 +37,14 @@ export default class ApproveKyc extends LightningElement {
       if (data.status === 200) {
         this.applicationStatus = JSON.parse(
           data.data
-        ).Account.FinServ__Status__c.filter(
-          (item) => item.value === "Approved" || item.value === "Rejected"
+        )?.Account.FinServ__KYCStatus__c.filter(
+          (item) => item.value === "Passed" || item.value === "Failed"
         );
 
         this.applicantStatus = JSON.parse(
           data.data
-        ).mflow__Applicant__c.mflow__Status__c.filter(
-          (item) => item.value === "Approved" || item.value === "Rejected"
+        ).mflow__Applicant__c.mflow__KYCStatus__c.filter(
+          (item) => item.value === "Passed" || item.value === "Failed"
         );
         if (this.objectApiName === "Account") {
           this.showApplicationTab = true;
@@ -58,6 +59,11 @@ export default class ApproveKyc extends LightningElement {
       utils.errorMessage(this, error.body.message, "Error fetching record");
     }
   }
+
+  /**
+   * Change in the Event of status picklist values
+   * @param {*} event
+   */
   handleChange(event) {
     let targetElement = event.target;
     if (this.objectApiName === "Account") {
@@ -69,6 +75,9 @@ export default class ApproveKyc extends LightningElement {
     }
   }
 
+  /**
+   * update kyc status of application and applicants
+   */
   updateStatus() {
     if (
       utils.checkAllValidations(this.template.querySelectorAll(".validation"))
@@ -84,10 +93,13 @@ export default class ApproveKyc extends LightningElement {
       })
         .then((result) => {
           console.log("result" + JSON.stringify(result));
+          this.showSpinner = false;
           utils.successMessage(this, "Status Updated", "Success");
+          utils.refreshLwcPage();
         })
         .catch((error) => {
           console.log("error : " + JSON.stringify(error));
+          this.showSpinner = false;
           utils.errorMessage(this, error.body.message, "Error");
         });
     }

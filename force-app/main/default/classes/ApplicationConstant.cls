@@ -30,6 +30,16 @@ public with sharing class ApplicationConstant {
   public static final String REJECTED = 'Rejected';
   public static final String DRAFT = 'DRAFT';
 
+  // KYC Status
+  public static final String KYC_PASSED = 'Passed';
+  public static final String KYC_FAILED = 'Failed';
+  public static final String KYC_UNDER_REVIEW = 'UnderReview';
+
+  //Flow Types
+  public static final String FLOW_TYPE_APPLICATION = 'ApplicationFlow';
+  public static final String FLOW_TYPE_JOINT = 'JointFlow';
+  public static final String FLOW_TYPE_FUNDING = 'FundingFlow';
+
   // Application Stage
   public static final String STAGE_EXISTING_CUSTOMER = 'ExistingCustomer';
 

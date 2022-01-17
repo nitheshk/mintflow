@@ -71,11 +71,19 @@ const toastMessage = (current, variant, message, title) => {
 
 /**** Toast Message Utils */
 
+/**
+ * Refresh current console page
+ */
+const refreshLwcPage = () => {
+  eval("$A.get('e.force:refreshView').fire();");
+};
+
 export {
   customDispatchEvent,
   toastMessage,
   successMessage,
   errorMessage,
   infoMessage,
-  checkAllValidations
+  checkAllValidations,
+  refreshLwcPage
 };
