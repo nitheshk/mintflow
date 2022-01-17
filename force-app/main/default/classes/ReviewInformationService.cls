@@ -102,7 +102,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       Object response = RpaProcessService.getInstance()
         .scheduleReviewApplication(application);
       if (response == null) {
-        application.Stage__c = 'FailedSubmitReview';
+        application.Stage__c = 'Exception';
       } else {
         application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       }
@@ -184,7 +184,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       Object response = RpaProcessService.getInstance()
         .scheduleReviewApplication(application);
       if (response == null) {
-        application.Stage__c = 'FailedSubmitReview';
+        application.Stage__c = 'Exception';
       } else {
         application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       }
