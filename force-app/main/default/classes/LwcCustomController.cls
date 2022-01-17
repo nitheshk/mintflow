@@ -211,11 +211,14 @@ global with sharing class LwcCustomController extends AbstractController {
    **/
   @AuraEnabled
   global static ApexResponse updateKycDecision(Map<String, Object> params) {
+    Savepoint sp = Database.setSavepoint();
     try {
       log?.fine('Inside updateKycDecision params =' + params);
       LwcCustomService.getInstance().updateKycDecision(params);
       return ApexResponse.ok();
     } catch (Exception ex) {
+      Database.rollback(sp);
+      log?.debug(ex);
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete updateKycDecision');

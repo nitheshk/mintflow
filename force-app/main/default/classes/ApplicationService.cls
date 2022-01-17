@@ -93,6 +93,7 @@ global with sharing class ApplicationService extends AbstractService {
     }
     // #pending  value need to decide based on the parameter
     application.FinServ__CustomerType__c = 'Consumer';
+    application.mflow__isMemberFlow__c = true;
     application.UserAccountType__c = 'CustomerApplication';
     application.FlowState__c = 'GetStarted';
     application.FlowType__c = 'ApplicationFlow';
@@ -312,21 +313,27 @@ global with sharing class ApplicationService extends AbstractService {
     );
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
+
+    if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
+      throw new CustomException('Kyc has already passed for the application ');
+    }
     // roll back whole transaction on failure
     Savepoint sp = Database.setSavepoint();
     try {
       // Primary is Existing Customer
       if (kycResult.IsExistingCustomer == true) {
-        return helper.processExistingMember(application, kycResult);
+        return KycReviewService.getInstance()
+          .processExistingMember(application, kycResult);
       }
 
       // Primary Kyc is Approved/Failed and Joint KYC is Approved/Failed
       // update Applicant detail accordingly
-      application = helper.updateApplicationKycDetails(application, kycResult);
+      application = KycReviewService.getInstance()
+        .updateApplicationKycDetails(application, kycResult);
 
       // if Application kyc status is approved, then proceed with creating Account & Contact for primary
       // And Open Membership Financial Account and relation with applicant
-      if (application.FinServ__Status__c == ApplicationConstant.APPROVED) {
+      if (application.FinServ__Status__c == ApplicationConstant.KYC_PASSED) {
         ApplicantService.getInstance().createMemberAccount(application);
       } else {
         return application;

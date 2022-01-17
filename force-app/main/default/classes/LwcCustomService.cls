@@ -314,17 +314,19 @@ global with sharing class LwcCustomService extends AbstractService {
             application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
           }
           LwcCustomRepository.upsertRecord(application);
-        }
-        if (approvalType == 'ApproveApplicationAndApplicants') {
+        } else if (approvalType == 'ApproveApplicationAndApplicants') {
           if (status == ApplicationConstant.KYC_PASSED) {
             application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
             application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
             application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
             application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
             for (Applicant__c applicant : application.Applicants__r) {
-              if (applicant.RecordType.Name == 'Primary') {
+              if (
+                applicant.RecordType.Name ==
+                ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+              ) {
                 applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-                applicant.mflow__FlowType__c = 'FundingFlow';
+                applicant.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
               }
               applicant.mflow__Status__c = ApplicationConstant.IN_PROGRESS;
               applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_PASSED;
@@ -337,8 +339,30 @@ global with sharing class LwcCustomService extends AbstractService {
               applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
             }
           }
-          ApplicationRepository.upsertRecords(application.Applicants__r);
-          ApplicationRepository.upsertRecord(application);
+          log?.debug('before save');
+          LwcCustomRepository.upsertRecords(application.Applicants__r);
+          LwcCustomRepository.upsertRecord(application);
+          log?.debug('after  save');
+        }
+
+        // Create membership account based on the KYC Approval
+        if (
+          application.mflow__isMemberFlow__c &&
+          application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED
+        ) {
+          try {
+            ApexRequest.setApplicationId(application.Id);
+            ApexRequest.setApplicationName(application.ApplicationNumber__c);
+            ApplicantService.getInstance().createMemberAccount(application);
+            application = FinancialAccountService.getInstance()
+              .createMembershipFinancialAccount(application);
+            //Send Funding Email Link to primary
+            CustomerEmailService.getInstance()
+              .fundingLinkOnKycApproval(application);
+          } catch (Exception ex) {
+            log?.error(ex);
+            throw ex;
+          }
         }
       }
       when else {
