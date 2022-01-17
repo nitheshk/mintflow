@@ -71,11 +71,13 @@ global with sharing class GeocodingProvider extends AbstractService {
     GeocodingDTO.Response responseDTO,
     List<string> eligibleCountyNameList
   ) {
-    Map<String, Object> result = new Map<String, Object>();
+    if (responseDTO.results.isEmpty()) {
+      throw new CustomException('Invalid Zipcode');
+    }
     Boolean isCountyEligible = false;
-    result.put('isCountyEligible', isCountyEligible);
-
     if (responseDTO?.status != 'OK') {
+      Map<String, Object> result = new Map<String, Object>();
+      result.put('isCountyEligible', isCountyEligible);
       return result;
     }
 
@@ -107,7 +109,10 @@ global with sharing class GeocodingProvider extends AbstractService {
           }
         }
       }
+      // if (eligibleCountyNameList.contains((string)matchingResult.get('state'))) {
+      // }
     }
+    Map<String, Object> result = new Map<String, Object>();
     result.put('matchingAddress', new List<Object>{ matchingResult });
     result.put('isCountyEligible', isCountyEligible);
 
