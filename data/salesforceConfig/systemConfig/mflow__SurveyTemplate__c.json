@@ -575,7 +575,7 @@
             "mflow__Order__c": 1,
             "mflow__QuestionCode__c": "Question1",
             "mflow__QuestionNumber__c": 1,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Will there be ACH Activity on the account to exceed $2,000 per month",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": true
@@ -596,7 +596,7 @@
             "mflow__ParentQuestionCode__c": "Question1",
             "mflow__QuestionCode__c": "Question7",
             "mflow__QuestionNumber__c": 1.1,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how many ACH transactions per month",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
@@ -617,7 +617,7 @@
             "mflow__ParentQuestionCode__c": "Question1",
             "mflow__QuestionCode__c": "Question8",
             "mflow__QuestionNumber__c": 1.2,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how much in ACH transactions per month",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
@@ -636,7 +636,7 @@
             "mflow__Order__c": 4,
             "mflow__QuestionCode__c": "Question2",
             "mflow__QuestionNumber__c": 2,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Will there be Wire activity on the account in excess of $2,000 per month",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": true
@@ -657,7 +657,7 @@
             "mflow__ParentQuestionCode__c": "Question2",
             "mflow__QuestionCode__c": "Question9",
             "mflow__QuestionNumber__c": 2.1,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how many Wire transactions per month",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
@@ -678,7 +678,7 @@
             "mflow__ParentQuestionCode__c": "Question2",
             "mflow__QuestionCode__c": "Question10",
             "mflow__QuestionNumber__c": 2.2,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how much in Wire activity per month",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
@@ -697,7 +697,7 @@
             "mflow__Order__c": 7,
             "mflow__QuestionCode__c": "Question3",
             "mflow__QuestionNumber__c": 3,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Do you plan to have cash transactions to your account in excess of $2,000 per month",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": true
@@ -718,7 +718,7 @@
             "mflow__ParentQuestionCode__c": "Question3",
             "mflow__QuestionCode__c": "Question11",
             "mflow__QuestionNumber__c": 3.1,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how many Cash transactions per month",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
@@ -739,7 +739,7 @@
             "mflow__ParentQuestionCode__c": "Question3",
             "mflow__QuestionCode__c": "Question12",
             "mflow__QuestionNumber__c": 3.2,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how much Cash do you anticipate per month",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
@@ -758,7 +758,7 @@
             "mflow__Order__c": 10,
             "mflow__QuestionCode__c": "Question4",
             "mflow__QuestionNumber__c": 4,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "BSA Risk Score (If yes to all 3 choose (3) Medium; otherwise choose (1) Low)",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
@@ -777,7 +777,7 @@
             "mflow__Order__c": 11,
             "mflow__QuestionCode__c": "Question5",
             "mflow__QuestionNumber__c": 5,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "The Taxpayer Identification Number shown above (TIN) is my correct taxpayer identification number",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
@@ -796,7 +796,7 @@
             "mflow__Order__c": 12,
             "mflow__QuestionCode__c": "Question6",
             "mflow__QuestionNumber__c": 6,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Has the IRS notified you that you are subject to backup withholding because you have failed to report all interest or dividends on your tax return",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
@@ -834,7 +834,7 @@
             "mflow__Order__c": 1,
             "mflow__QuestionCode__c": "Question1",
             "mflow__QuestionNumber__c": 1,
-            "mflow__Required__c": false,
+            "mflow__Required__c": true,
             "mflow__ShortDescription__c": "What brought you to P1FCU?",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": true

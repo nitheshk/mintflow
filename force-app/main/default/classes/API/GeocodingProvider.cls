@@ -109,8 +109,14 @@ global with sharing class GeocodingProvider extends AbstractService {
           }
         }
       }
-      // if (eligibleCountyNameList.contains((string)matchingResult.get('state'))) {
-      // }
+      if (
+        eligibleCountyNameList.contains((string) matchingResult.get('state'))
+      ) {
+        matchingResult.put(
+          'county',
+          ((string) matchingResult.get('county'))?.substringBefore(' County')
+        );
+      }
     }
     Map<String, Object> result = new Map<String, Object>();
     result.put('matchingAddress', new List<Object>{ matchingResult });
