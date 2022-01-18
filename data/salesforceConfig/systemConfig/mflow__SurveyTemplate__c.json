@@ -551,7 +551,7 @@
         "referenceId": "SurveyTemplateRef_2"
       },
       "Name": "CustomerFlowQuestionaire",
-      "mflow__ApplicantType__c": "Primary",
+      "mflow__ApplicantType__c": "Primary;Joint",
       "mflow__Channel__c": "Virtual",
       "mflow__DeleteRecord__c": false,
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
@@ -810,7 +810,7 @@
         "referenceId": "SurveyTemplateRef_3"
       },
       "Name": "CustomerFeedbackQuestions",
-      "mflow__ApplicantType__c": "Primary",
+      "mflow__ApplicantType__c": "Primary;Joint",
       "mflow__Channel__c": "Virtual",
       "mflow__DeleteRecord__c": false,
       "mflow__EventIdentifier__c": "CustomerFeedbackQuestions",
