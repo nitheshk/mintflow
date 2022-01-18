@@ -24,4 +24,20 @@ global with sharing class CommonRepository extends DatabaseUtils {
       .toString();
     return (List<Flow__c>) getRecords(q);
   }
+
+  /**
+   * @description  return custom notification type
+   * @author Digital Align Team | 01-18-2022
+   * @param string notificationName
+   * @return CustomNotificationType
+   **/
+  public static CustomNotificationType readNotificationType(
+    string notificationDeveloperName
+  ) {
+    return (CustomNotificationType) getRecord(
+      Query.newInstance(CustomNotificationType.SObjectType)
+        .whereEq('DeveloperName', notificationDeveloperName)
+        .toString()
+    );
+  }
 }

@@ -17,7 +17,7 @@ public with sharing class NotificationRepository extends DatabaseUtils {
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
         .whereEq('Id', applicantId)
-        .toString(true)
+        .toString()
     );
   }
 }

@@ -59,42 +59,4 @@ global inherited sharing class UserUtils {
   global static user assignProfileIdToUser(User userObj, ID profileId) {
     return SObjectWithoutSharing.assignProfileIdToUser(userObj, profileId);
   }
-
-  /**
-   * @description check whether salesforce username available to use
-   * @author Digital Align Team | 07-23-2021
-   * @param String userName
-   * @return Boolean
-   **/
-  global static Boolean validateUserNameExists(String userName) {
-    system.debug('username : ' + userName);
-    Boolean result = false;
-    User userObj = new User();
-    userObj.FirstName = 'Test';
-    userObj.LastName = 'User';
-    userObj.Alias = 'any';
-    userObj.Email = 'testda.datest@email' + System.currentTimeMillis() + '.com';
-    userObj.Username = userName;
-    userObj.CommunityNickname = 't1e2s3t4u5s6e7r ' + System.currentTimeMillis();
-    userObj.LocaleSidKey = 'en_US';
-    userObj.LanguageLocaleKey = 'en_US';
-    userObj.EmailEncodingKey = 'UTF-8';
-    userObj.TimeZoneSidKey = 'America/Los_Angeles';
-    UserUtils.assignProfileIdToUser(
-      userObj,
-      UtilsRepository.fetchProfileByName('Standard User')?.id
-    );
-    Savepoint sp = Database.setSavepoint();
-    try {
-      UtilsRepository.insertRecord(userObj);
-    } catch (DmlException ex) {
-      if (ex.getDmlStatusCode(0) == StatusCode.DUPLICATE_USERNAME.name()) {
-        result = true;
-      }
-      result = true;
-    } finally {
-      Database.rollback(sp);
-    }
-    return result;
-  }
 }

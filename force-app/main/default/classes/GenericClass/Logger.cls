@@ -9,7 +9,6 @@
  * <Info> - Trace Error and Info , Used to Log Information
  * <Debug> - Trace Error,Info and Debug logs , Used to log code level debug logs
  * <Fine> - Trace Error, Info ,Debug abd Fine(package level tracing), Specific to managed package logging
- *
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class Logger {
