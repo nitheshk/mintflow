@@ -103,8 +103,22 @@ global with sharing class ReviewInformationService extends AbstractService {
         .scheduleReviewApplication(application);
       if (response.statusCode == 400) {
         application.Stage__c = 'Exception';
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onExceptionKycReviewSubmit',
+            application.Id,
+            application.Name,
+            response.status
+          );
       } else {
         application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onSuccessKycReviewSubmit',
+            application.Id,
+            application.Name,
+            null
+          );
       }
       //2. Send notification Primary applicant with resume link
       CustomerEmailService.getInstance()
@@ -185,8 +199,22 @@ global with sharing class ReviewInformationService extends AbstractService {
         .scheduleReviewApplication(application);
       if (response.statusCode == 400) {
         application.Stage__c = 'Exception';
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onExceptionKycReviewSubmit',
+            application.Id,
+            application.Name,
+            response.status
+          );
       } else {
         application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onSuccessKycReviewSubmit',
+            application.Id,
+            application.Name,
+            null
+          );
       }
       // Send All Joint Completed Email to Primary and Application under process
       CustomerEmailService.getInstance()

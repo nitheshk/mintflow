@@ -298,6 +298,16 @@ global with sharing class LwcCustomService extends AbstractService {
           applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
         }
         LwcCustomRepository.upsertRecord(applicant);
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onManualKycAction',
+            applicant.mflow__Application__c,
+            applicant.mflow__Application__r.Name,
+            'Updated - Kyc Status to : ' +
+            status +
+            ' of Applicant : ' +
+            applicant.Name
+          );
       }
       when 'Account' {
         Account application = LwcCustomRepository.readApplicationWithApplicants(
@@ -339,11 +349,20 @@ global with sharing class LwcCustomService extends AbstractService {
               applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
             }
           }
-          log?.debug('before save');
           LwcCustomRepository.upsertRecords(application.Applicants__r);
           LwcCustomRepository.upsertRecord(application);
-          log?.debug('after  save');
         }
+
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onManualKycAction',
+            application.Id,
+            application.Name,
+            'Updated - Kyc Status to : ' +
+            status +
+            ' , approvalType : ' +
+            approvalType
+          );
 
         // Create membership account based on the KYC Approval
         if (

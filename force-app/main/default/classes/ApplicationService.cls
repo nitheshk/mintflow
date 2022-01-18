@@ -317,6 +317,13 @@ global with sharing class ApplicationService extends AbstractService {
     if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
       throw new CustomException('Kyc has already passed for the application ');
     }
+
+    //chatter post on record level
+    NotificationBuilder.chatterMessagePost(
+      application.Id,
+      'Kyc Result : ' + resultJson
+    );
+
     // roll back whole transaction on failure
     Savepoint sp = Database.setSavepoint();
     try {
@@ -335,22 +342,38 @@ global with sharing class ApplicationService extends AbstractService {
       // And Open Membership Financial Account and relation with applicant
       if (application.FinServ__Status__c == ApplicationConstant.KYC_PASSED) {
         ApplicantService.getInstance().createMemberAccount(application);
+
+        application = FinancialAccountService.getInstance()
+          .createMembershipFinancialAccount(application);
+
+        //Send Funding Email Link to primary
+        CustomerEmailService.getInstance()
+          .fundingLinkOnKycApproval(application);
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onSuccessKycProcess',
+            application.Id,
+            application.Name,
+            null
+          );
       } else {
-        return application;
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onReviewKycProcess',
+            application.Id,
+            application.Name,
+            null
+          );
       }
-
-      application = FinancialAccountService.getInstance()
-        .createMembershipFinancialAccount(application);
-
-      //Send Funding Email Link to primary
-      CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);
-
       return application;
     } catch (Exception ex) {
-      //#pending
-      //#major Chatter We need post the resultKYC in case of exception
-      //#minor Add into Revision Queue for process
-      //Stage value = Exception
+      NotificationService.getInstance()
+        .dispatchKycNotification(
+          'onExceptionKycProcess',
+          ApexRequest.getApplicantId(),
+          ApexRequest.getApplicationName(),
+          ex.getStackTraceString()
+        );
       log?.error(ex);
       Database.rollback(sp);
       throw ex;

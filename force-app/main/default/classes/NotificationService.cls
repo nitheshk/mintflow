@@ -64,4 +64,83 @@ global virtual with sharing class NotificationService extends AbstractService {
       throw ex;
     }
   }
+
+  /**
+   * @description dispatch kyc notification
+   * @author Digital Align Team | 01-18-2022
+   * @param String eventName
+   * @param Id entityId
+   * @param String title
+   * @param String message
+   **/
+  global virtual void dispatchKycNotification(
+    String eventName,
+    Id entityId,
+    String title,
+    String message
+  ) {
+    switch on eventName {
+      when 'onExceptionKycReviewSubmit' {
+        String chatterPost =
+          'Excpetion on Submit To RPA Review Queue For Kyc Verification \n Error Occured : ' +
+          message;
+        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
+
+        // Notification
+        NotificationBuilder.bellNotification(
+          entityId,
+          title,
+          'Exception on Submit Review Queue :' + title,
+          NotificationBuilder.getRegularGroupId('OnKycReview')
+        );
+      }
+      when 'onSuccessKycReviewSubmit' {
+        String chatterPost = 'Application Submitted for RPA review Queue';
+        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
+        // Notification
+        NotificationBuilder.bellNotification(
+          entityId,
+          title,
+          'Application Submitted for Review Queue :' + title,
+          NotificationBuilder.getRegularGroupId('OnKycSuccess')
+        );
+      }
+      when 'onExceptionKycProcess' {
+        String chatterPost = 'Exception on Process Kyc Result : ' + message;
+        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
+        // Notification
+        NotificationBuilder.bellNotification(
+          entityId,
+          title,
+          'Exception On :' + title,
+          NotificationBuilder.getRegularGroupId('OnKycReview')
+        );
+      }
+      when 'onReviewKycProcess' {
+        String chatterPost = 'Application Added to Review Process';
+        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
+        // Notification
+        NotificationBuilder.bellNotification(
+          entityId,
+          title,
+          'Application Added to Review Process : ' + title,
+          NotificationBuilder.getRegularGroupId('OnKycReview')
+        );
+      }
+      when 'onSuccessKycProcess' {
+        String chatterPost = 'Kyc Process Successfully for ' + title;
+        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
+        // Notification
+        NotificationBuilder.bellNotification(
+          entityId,
+          title,
+          chatterPost,
+          NotificationBuilder.getRegularGroupId('OnKycSuccess')
+        );
+      }
+      when 'onManualKycAction' {
+        NotificationBuilder.chatterMessagePost(entityId, message);
+      }
+    }
+  }
 }

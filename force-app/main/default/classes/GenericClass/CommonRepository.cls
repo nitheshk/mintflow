@@ -40,4 +40,18 @@ global with sharing class CommonRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description Read Regular Groups
+   * @author Digital Align Team | 01-18-2022
+   * @return List<Group>
+   **/
+  public static List<Group> readRegularGroup() {
+    return (List<Group>) getRecords(
+      Query.newInstance(Group.SObjectType)
+        .addFields('DeveloperName')
+        .whereEq('Type', 'Regular')
+        .toString()
+    );
+  }
 }

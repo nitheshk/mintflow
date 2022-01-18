@@ -9,7 +9,9 @@
 global with sharing class NotificationBuilder extends AbstractService {
   @TestVisible
   private static NotificationBuilder serviceInstance;
+  private static logger log = logger.getInstance(NotificationBuilder.class);
   private static Id notificationTypeId;
+  private static Map<String, Id> regularGroupNames;
 
   public NotificationBuilder() {
     super(NotificationBuilder.class);
@@ -27,6 +29,24 @@ global with sharing class NotificationBuilder extends AbstractService {
       );
     }
     return serviceInstance;
+  }
+
+  /**
+   * @description get Group Id by Name
+   * @author Digital Align Team | 01-18-2022
+   * @param String groupName
+   * @return Id
+   **/
+  public static Id getRegularGroupId(String groupName) {
+    if (regularGroupNames == null) {
+      regularGroupNames = new Map<String, Id>();
+      for (Group grp : CommonRepository.readRegularGroup()) {
+        regularGroupNames.put(grp.DeveloperName, grp.Id);
+      }
+      return regularGroupNames.get(groupName);
+    } else {
+      return regularGroupNames.get(groupName);
+    }
   }
 
   /**
@@ -60,24 +80,25 @@ global with sharing class NotificationBuilder extends AbstractService {
     String body,
     Set<String> recipientsIds
   ) {
-    if (String.isBlank(notificationTypeId)) {
-      notificationTypeId = CommonRepository.readNotificationType(
-          'MintFlowNotification'
-        )
-        ?.Id;
-    }
-    title = title?.left(250);
-    body = body?.left(750);
-    Messaging.CustomNotification notification = new Messaging.CustomNotification();
-    notification.setTitle(title);
-    notification.setBody(body);
-    notification.setSenderId(Userinfo.getUserId());
-    notification.setNotificationTypeId(notificationTypeId);
-    notification.setTargetId(entityId);
     try {
+      if (String.isBlank(notificationTypeId)) {
+        notificationTypeId = CommonRepository.readNotificationType(
+            'MintFlowNotification'
+          )
+          ?.Id;
+      }
+      title = title?.left(250);
+      body = body?.left(750);
+      Messaging.CustomNotification notification = new Messaging.CustomNotification();
+      notification.setTitle(title);
+      notification.setBody(body);
+      notification.setSenderId(Userinfo.getUserId());
+      notification.setNotificationTypeId(notificationTypeId);
+      notification.setTargetId(entityId);
+
       notification.send(recipientsIds);
-    } catch (Exception e) {
-      System.debug('Problem sending notification: ' + e.getMessage());
+    } catch (Exception ex) {
+      log?.error(ex);
     }
   }
 
@@ -88,10 +109,14 @@ global with sharing class NotificationBuilder extends AbstractService {
    * @param String body
    **/
   global static void chatterMessagePost(Id entityId, String body) {
-    FeedItem post = new FeedItem();
-    post.ParentId = entityId;
-    post.Body = body;
-    NotificationRepository.upsertRecord(post);
+    try {
+      FeedItem post = new FeedItem();
+      post.ParentId = entityId;
+      post.Body = body;
+      NotificationRepository.upsertRecord(post);
+    } catch (Exception ex) {
+      log?.error(ex);
+    }
   }
 
   /**
@@ -106,11 +131,15 @@ global with sharing class NotificationBuilder extends AbstractService {
     String body,
     String linkUrl
   ) {
-    FeedItem post = new FeedItem();
-    post.ParentId = entityId;
-    post.Body = body;
-    post.LinkUrl = linkUrl;
-    NotificationRepository.upsertRecord(post);
+    try {
+      FeedItem post = new FeedItem();
+      post.ParentId = entityId;
+      post.Body = body;
+      post.LinkUrl = linkUrl;
+      NotificationRepository.upsertRecord(post);
+    } catch (Exception ex) {
+      log?.error(ex);
+    }
   }
 
   /**
@@ -125,12 +154,16 @@ global with sharing class NotificationBuilder extends AbstractService {
     String body,
     FileDTO fileDto
   ) {
-    FeedItem post = new FeedItem();
-    post.ParentId = entityId;
-    post.Body = body;
-    post.Type = 'ContentPost';
-    ContentVersion cv = FileService.getInstance().createFile(fileDto);
-    post.RelatedRecordId = cv.Id;
-    NotificationRepository.upsertRecord(post);
+    try {
+      FeedItem post = new FeedItem();
+      post.ParentId = entityId;
+      post.Body = body;
+      post.Type = 'ContentPost';
+      ContentVersion cv = FileService.getInstance().createFile(fileDto);
+      post.RelatedRecordId = cv.Id;
+      NotificationRepository.upsertRecord(post);
+    } catch (Exception ex) {
+      log?.error(ex);
+    }
   }
 }

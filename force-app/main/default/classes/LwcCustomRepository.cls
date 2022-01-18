@@ -144,6 +144,9 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
         .addFields('RecordType.Name')
+        .queryLookup('mflow__Application__r')
+        .addFields('Name')
+        .run()
         .whereEq('Id', applicantId)
         .toString()
     );
