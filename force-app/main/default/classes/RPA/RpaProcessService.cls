@@ -119,9 +119,11 @@ global with sharing class RpaProcessService extends AbstractService {
    * failure will marked and will pick by scheduler job to resubmit later
    * @author Digital Align Team | 11-25-2021
    * @param Account application
-   * @return Account
+   * @return HttpBuilder.Response
    **/
-  global virtual Object scheduleReviewApplication(Account application) {
+  global virtual HttpBuilder.Response scheduleReviewApplication(
+    Account application
+  ) {
     Flow.initialize(application.Id);
     Flow.setFlow('Rpa-Process: review application');
     Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
@@ -133,8 +135,13 @@ global with sharing class RpaProcessService extends AbstractService {
           token = AuthenticationProvider.getInstance().generateUiPathToken();
         }
 
+        if (String.isBlank(token)) {
+          throw new customException('Invalid Token');
+        }
+
         HttpBuilder.setAPISetting(APINames.UiPathAddQueue);
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
+
         Map<String, Object> params = new Map<String, Object>();
         params.put('Name', HttpBuilder.getApiConstant('UipathQueueName'));
         params.put('Priority', HttpBuilder.getApiConstant('UipathPriority'));
@@ -164,13 +171,13 @@ global with sharing class RpaProcessService extends AbstractService {
         throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
     } catch (Exception ex) {
-      log?.error(ex.getMessage());
+      log?.error(ex);
       Flow.setSubFlowFailed(ex.getMessage());
       Flow.setFlowFailed('Failed');
+      return HttpBuilder.buildResponse(400, ex.getMessage(), null);
     } finally {
       Flow.finalize();
     }
-    return null;
   }
 
   /**

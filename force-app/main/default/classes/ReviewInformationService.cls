@@ -99,9 +99,9 @@ global with sharing class ReviewInformationService extends AbstractService {
       application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       //1. Push Primary applicant to RPA Queue
       // Need to move future thr is dml operation before this
-      Object response = RpaProcessService.getInstance()
+      HttpBuilder.Response response = RpaProcessService.getInstance()
         .scheduleReviewApplication(application);
-      if (response == null) {
+      if (response.statusCode == 400) {
         application.Stage__c = 'Exception';
       } else {
         application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
@@ -181,9 +181,9 @@ global with sharing class ReviewInformationService extends AbstractService {
       //Mark Application to submitted for review
       application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       // Need to move future thr is dml operation before this
-      Object response = RpaProcessService.getInstance()
+      HttpBuilder.Response response = RpaProcessService.getInstance()
         .scheduleReviewApplication(application);
-      if (response == null) {
+      if (response.statusCode == 400) {
         application.Stage__c = 'Exception';
       } else {
         application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;

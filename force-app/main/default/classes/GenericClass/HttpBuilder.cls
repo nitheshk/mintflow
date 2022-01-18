@@ -3,7 +3,7 @@
  * @group Builder
  * @author Digital Align Team
  * @reference
- * @description
+ * @description Http Builder Class
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class HttpBuilder {
