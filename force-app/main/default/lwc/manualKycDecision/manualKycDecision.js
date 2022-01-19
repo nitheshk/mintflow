@@ -2,7 +2,7 @@ import { LightningElement, api, wire, track } from "lwc";
 import utils from "c/generalUtils";
 import getPickListValues from "@salesforce/apex/LwcCustomController.fetchPickListValues";
 import updateKycDecision from "@salesforce/apex/LwcCustomController.updateKycDecision";
-export default class ApproveKyc extends LightningElement {
+export default class ManualKycDecision extends LightningElement {
   @api objectApiName;
   @api recordId;
   @track collectedInfo = {};
@@ -14,10 +14,10 @@ export default class ApproveKyc extends LightningElement {
 
   get approvalTypes() {
     return [
-      { label: "Approve Application", value: "ApproveApplication" },
+      { label: "Application", value: "Application" },
       {
-        label: "Approve Application And Applicants",
-        value: "ApproveApplicationAndApplicants"
+        label: "Application And Applicants",
+        value: "Application And Applicants"
       }
     ];
   }
@@ -93,8 +93,12 @@ export default class ApproveKyc extends LightningElement {
       })
         .then((result) => {
           console.log("result" + JSON.stringify(result));
+          if (result.status === 200) {
+            utils.successMessage(this, "Status Updated", "Success");
+          } else {
+            utils.errorMessage(this, result.data, "Error");
+          }
           this.showSpinner = false;
-          utils.successMessage(this, "Status Updated", "Success");
           utils.refreshLwcPage();
         })
         .catch((error) => {

@@ -79,7 +79,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>approveKyc</componentName>
+                <componentName>manualKycDecision</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>

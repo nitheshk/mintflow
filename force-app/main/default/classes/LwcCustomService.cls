@@ -313,7 +313,10 @@ global with sharing class LwcCustomService extends AbstractService {
         Account application = LwcCustomRepository.readApplicationWithApplicants(
           recordID
         );
-        if (approvalType == 'ApproveApplication') {
+        ApexRequest.setApplicationId(application.Id);
+        ApexRequest.setApplicationName(application.ApplicationNumber__c);
+
+        if (approvalType == 'Application') {
           if (status == ApplicationConstant.KYC_PASSED) {
             application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
             application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
@@ -324,7 +327,7 @@ global with sharing class LwcCustomService extends AbstractService {
             application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
           }
           LwcCustomRepository.upsertRecord(application);
-        } else if (approvalType == 'ApproveApplicationAndApplicants') {
+        } else if (approvalType == 'Application And Applicants') {
           if (status == ApplicationConstant.KYC_PASSED) {
             application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
             application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
@@ -360,7 +363,7 @@ global with sharing class LwcCustomService extends AbstractService {
             application.Name,
             'Updated - Kyc Status to : ' +
             status +
-            ' , approvalType : ' +
+            ' , Approval Type : ' +
             approvalType
           );
 
@@ -370,8 +373,6 @@ global with sharing class LwcCustomService extends AbstractService {
           application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED
         ) {
           try {
-            ApexRequest.setApplicationId(application.Id);
-            ApexRequest.setApplicationName(application.ApplicationNumber__c);
             ApplicantService.getInstance().createMemberAccount(application);
             application = FinancialAccountService.getInstance()
               .createMembershipFinancialAccount(application);
