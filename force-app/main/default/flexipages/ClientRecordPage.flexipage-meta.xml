@@ -50,15 +50,15 @@
         <name>facet-1721d005-c6bb-4b24-9e40-2b0956ee0b8d</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- <flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentName>application360View</componentName>
             </componentInstance>
         </itemInstances>
-        <name>Facet-94291bac-1cd9-4774-8910-c0b1b22cfbab</name>
+        <name>Facet-2aaaedfc-57c1-491d-bcc9-9af4e5d96856</name>
         <type>Facet</type>
-    </flexiPageRegions> -->
+    </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -182,15 +182,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>FinServ:goalDetailList</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>facet-88e5653f-db94-45f2-8b57-3c4e340592bd</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
                 <componentName>appplicationFlow</componentName>
             </componentInstance>
         </itemInstances>
@@ -220,19 +211,19 @@
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
         </itemInstances>
-        <!-- <itemInstances>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-94291bac-1cd9-4774-8910-c0b1b22cfbab</value>
+                    <value>Facet-2aaaedfc-57c1-491d-bcc9-9af4e5d96856</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
-                    <value>Member 360</value>
+                    <value>Application 360</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
-        </itemInstances> -->
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -255,19 +246,6 @@
                 <componentInstanceProperties>
                     <name>title</name>
                     <value>Relationships</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>facet-88e5653f-db94-45f2-8b57-3c4e340592bd</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Goals</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
@@ -393,6 +371,19 @@
         <itemInstances>
             <componentInstance>
                 <componentName>manualKycDecision</componentName>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.FlowType__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>ApplicationFlow</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.FinServ__KYCStatus__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Passed</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
