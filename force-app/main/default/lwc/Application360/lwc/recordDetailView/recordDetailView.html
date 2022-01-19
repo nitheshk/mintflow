@@ -3,28 +3,21 @@
   <template if:true={dataLoaded}>
     <div class="slds-grid slds-wrap">
       <template if:false={hideHeader}>
-        <div class="slds-float_right file-btn-right file-btn-right">
-          <lightning-button
-            class="slds-float_right"
-            variant="brand"
-            label="View Files"
-            title="View related files"
-            onclick={showRelatedFiles}
-          >
-          </lightning-button>
-        </div>
-
         <div
           class="
             slds-page-header
             slds-var-p-around_xx-small
-            slds-align_absolute-left
             slds-col
             slds-size_1-of-1
           "
         >
           <h3>
             <b> {titleName} </b>
+            [
+            <a onclick={showRelatedFiles} data-title="View related files"
+              >View Files</a
+            >
+            ]
           </h3>
         </div>
       </template>
@@ -54,7 +47,9 @@
                   class="slds-truncate slds-hyphenate preserveWrodWrap"
                   title="Hyperlink"
                 >
-                  {keyValue.value}
+                  {keyValue.value}&nbsp;
+                </div>
+                <div class="slds-border_bottom">
                   <!-- {keyValue.apiname} {keyValue.type} -->
                 </div>
               </div>

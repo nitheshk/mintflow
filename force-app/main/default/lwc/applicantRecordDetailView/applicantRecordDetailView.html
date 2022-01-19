@@ -3,28 +3,21 @@
   <template if:true={dataLoaded}>
     <div class="slds-grid slds-wrap">
       <template if:false={hideHeader}>
-        <div class="slds-align_absolute-right file-btn-right">
-          <lightning-button
-            class="slds-align_absolute-right"
-            variant="brand"
-            label="View Files"
-            title="View related files"
-            onclick={showRelatedFiles}
-          >
-          </lightning-button>
-        </div>
-
         <div
           class="
             slds-page-header
             slds-var-p-around_xx-small
-            slds-align_absolute-left
             slds-col
             slds-size_1-of-1
           "
         >
           <h3>
             <b> Personal Information </b>
+            [
+            <a onclick={showRelatedFiles} data-title="View related files"
+              >View Files</a
+            >
+            ]
           </h3>
         </div>
       </template>
@@ -54,9 +47,9 @@
                   class="slds-truncate slds-hyphenate preserveWrodWrap"
                   title="Hyperlink"
                 >
-                  {keyValue.value}
-                  <!-- {keyValue.apiname} {keyValue.type} -->
+                  {keyValue.value}&nbsp;
                 </div>
+                <div class="slds-border_bottom"></div>
               </div>
             </template>
           </div>
@@ -68,7 +61,6 @@
           class="
             slds-page-header
             slds-var-p-around_xx-small
-            slds-align_absolute-left
             slds-col
             slds-size_1-of-1
           "
@@ -104,9 +96,9 @@
                   class="slds-truncate slds-hyphenate preserveWrodWrap"
                   title="Hyperlink"
                 >
-                  {keyValue.value}
-                  <!-- {keyValue.apiname} {keyValue.type} -->
+                  {keyValue.value}&nbsp;
                 </div>
+                <div class="slds-border_bottom"></div>
               </div>
             </template>
           </div>
@@ -118,7 +110,6 @@
           class="
             slds-page-header
             slds-var-p-around_xx-small
-            slds-align_absolute-left
             slds-col
             slds-size_1-of-1
           "
@@ -154,9 +145,9 @@
                   class="slds-truncate slds-hyphenate preserveWrodWrap"
                   title="Hyperlink"
                 >
-                  {keyValue.value}
-                  <!-- {keyValue.apiname} {keyValue.type} -->
+                  {keyValue.value}&nbsp;
                 </div>
+                <div class="slds-border_bottom"></div>
               </div>
             </template>
           </div>

@@ -1,5 +1,4 @@
 <template>
-  <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
   <lightning-card
     if:true={showFile}
     title={titleName}
@@ -19,6 +18,9 @@
             </th>
             <th scope="col">
               <div title="Value">File Extension</div>
+            </th>
+            <th scope="col">
+              <div title="Value">View</div>
             </th>
           </tr>
         </thead>

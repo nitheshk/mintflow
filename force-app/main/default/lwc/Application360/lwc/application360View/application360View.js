@@ -1,13 +1,21 @@
 import { LightningElement, track, api, wire } from "lwc";
 //controller
 import readApplicationWithChild from "@salesforce/apex/LwcCustomController.readApplicationWithChild";
+import { publish, MessageContext } from "lightning/messageService";
+import application360Details from "@salesforce/messageChannel/Application360RelatedFiles__c";
 
 export default class Application360View extends LightningElement {
   @api recordId;
   @api applicationId;
   @track record;
-  // @api statusInformation = "mflow__StatusInformation";
 
+  @wire(MessageContext)
+  messageContext;
+
+  /**
+   * readApplicationWithChild
+   * @param {*} result
+   */
   @wire(readApplicationWithChild, {
     applicationId: "$recordId"
   })
@@ -25,7 +33,41 @@ export default class Application360View extends LightningElement {
     }
   }
 
-  printApplication() {
-    window.print();
+  handleActive(event) {
+    let idList = [];
+    let targetElement = event.target;
+    switch (targetElement.dataset.objectname) {
+      case "mflow__Applicant__c":
+        {
+          idList = [targetElement.dataset.recordid];
+        }
+        break;
+      case "mflow__IdentificationDocuments__r":
+      case "mflow__ContactPointAddresses__r":
+      case "mflow__Employments__r":
+        {
+          let applicant = this.record?.mflow__Applicants__r?.filter(
+            (element) => element.Id === targetElement.dataset.recordid
+          );
+
+          if (Array.isArray(applicant)) {
+            applicant[0][targetElement.dataset.objectname]?.forEach(function (
+              element
+            ) {
+              idList.push(element.Id);
+            });
+          }
+        }
+        break;
+      default:
+        break;
+    }
+
+    if (idList.length) {
+      publish(this.messageContext, application360Details, {
+        recordIds: idList,
+        titleName: "View related"
+      });
+    }
   }
 }

@@ -13,7 +13,6 @@ export default class FilePrivewInLWC extends NavigationMixin(LightningElement) {
   @track recordIds = [];
   @track error;
   @track showFile;
-  @track showSpinner = false;
   @track message = "No files to display";
   subscription = null;
   @track files;
@@ -21,24 +20,28 @@ export default class FilePrivewInLWC extends NavigationMixin(LightningElement) {
   @wire(MessageContext)
   messageContext;
 
+  /**
+   * renderedCallback
+   */
   renderedCallback() {
     this.subscription = subscribe(
       this.messageContext,
       application360Details,
       (data) => {
         this.showFile = true;
-        this.showSpinner = true;
         this.titleName = data.titleName + " Files";
         this.recordIds = data.recordIds;
         if (this.recordIds != null) {
           this.relatedFiles();
         }
-        this.showSpinner = false;
       },
       { scope: APPLICATION_SCOPE }
     );
   }
 
+  /**
+   * relatedFiles
+   */
   relatedFiles() {
     fetchRelatedFiles({
       relatedIds: JSON.stringify(this.recordIds)
@@ -56,7 +59,11 @@ export default class FilePrivewInLWC extends NavigationMixin(LightningElement) {
         utils.errorMessage(this, error.body.message, "Error fetching record");
       });
   }
-  // Reteriving the files to preview
+
+  /**
+   *  Reteriving the files to preview
+   * @param {*} event
+   */
   filePreview(event) {
     this[NavigationMixin.Navigate]({
       type: "standard__namedPage",

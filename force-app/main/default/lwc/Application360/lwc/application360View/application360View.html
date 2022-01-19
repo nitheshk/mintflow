@@ -1,16 +1,5 @@
 <!-- sldsValidatorIgnore -->
 <template>
-  <!-- <button
-    class="
-      slds-button slds-button_brand
-      slds-no-print
-      slds-align_absolute-center
-    "
-    onclick={printApplication}
-  >
-    Print
-  </button>-->
-
   <template if:true={record}>
     <!--  <lightning-tabset variant="scoped" active-tab-value="Applicant">
       <lightning-tab label="Application Details" value="Application"
@@ -28,17 +17,27 @@
         <template for:each={record.mflow__Applicants__r} for:item="data">
           <lightning-tab key={data.Id} label={data.Name}>
             <lightning-tabset variant="scoped">
-              <lightning-tab label="Detail">
+              <lightning-tab
+                label="Detail"
+                key={data.Id}
+                data-objectname="mflow__Applicant__c"
+                data-recordid={data.Id}
+                onactive={handleActive}
+              >
                 <c-applicant-record-detail-view
                   key={data.Id}
                   record={data}
                   s-object-name="mflow__Applicant__c"
                   title-name="Applicant Details"
-                  hide-null-values="true"
                 ></c-applicant-record-detail-view>
               </lightning-tab>
               <template if:true={data.mflow__ContactPointAddresses__r}>
-                <lightning-tab label="Addresses">
+                <lightning-tab
+                  label="Addresses"
+                  data-objectname="mflow__ContactPointAddresses__r"
+                  data-recordid={data.Id}
+                  onactive={handleActive}
+                >
                   <c-record-detail-view
                     key={data.Id}
                     record={data.mflow__ContactPointAddresses__r}
@@ -50,7 +49,12 @@
                 </lightning-tab>
               </template>
               <template if:true={data.mflow__IdentificationDocuments__r}>
-                <lightning-tab label="Identification">
+                <lightning-tab
+                  label="Identification"
+                  data-objectname="mflow__IdentificationDocuments__r"
+                  data-recordid={data.Id}
+                  onactive={handleActive}
+                >
                   <c-record-detail-view
                     key={data.Id}
                     record={data.mflow__IdentificationDocuments__r}
@@ -62,7 +66,12 @@
                 </lightning-tab>
               </template>
               <template if:true={data.mflow__Employments__r}>
-                <lightning-tab label="Employment">
+                <lightning-tab
+                  label="Employment"
+                  data-objectname="mflow__Employments__r"
+                  data-recordid={data.Id}
+                  onactive={handleActive}
+                >
                   <c-record-detail-view
                     key={data.Id}
                     record={data.mflow__Employments__r}

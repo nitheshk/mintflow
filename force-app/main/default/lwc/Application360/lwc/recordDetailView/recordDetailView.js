@@ -57,9 +57,6 @@ export default class RecordDetailView extends LightningElement {
                       type: result[keyValue].type
                     });
                   } else {
-                    if (result[keyValue].key === "id") {
-                      this.idList.push(this.record[d][result[keyValue].key]);
-                    }
                     tempData.push({
                       key: result[keyValue].value,
                       value: this.record[d][result[keyValue].key],
@@ -92,9 +89,6 @@ export default class RecordDetailView extends LightningElement {
                     type: result[keyValue].type
                   });
                 } else {
-                  if (result[keyValue].key === "id") {
-                    this.idList.push(this.record[result[keyValue].key]);
-                  }
                   tempData.push({
                     key: result[keyValue].value,
                     value: this.record[result[keyValue].key],
@@ -116,8 +110,12 @@ export default class RecordDetailView extends LightningElement {
       this.showSpinner = false;
     }
   }
+
+  /**
+   *showRelatedFiles
+   */
   showRelatedFiles() {
-    var idList = [];
+    let idList = [];
     if (Array.isArray(this.record)) {
       this.record.forEach((element) => {
         idList.push(element.Id);
@@ -125,11 +123,10 @@ export default class RecordDetailView extends LightningElement {
     } else {
       idList.push(this.record.Id);
     }
-    const data = {
+
+    publish(this.messageContext, application360Details, {
       recordIds: idList,
       titleName: this.titleName
-    };
-
-    publish(this.messageContext, application360Details, data);
+    });
   }
 }
