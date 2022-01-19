@@ -67,16 +67,6 @@
               "components": [
                 {
                   "componentAttributes": {
-                    "richTextValue": "<p><br></p><p><b>Current Username </b>:&nbsp;&nbsp;<span style=\"color: rgb(8, 7, 7); font-size: 14px;\">{!CurrentUser.userName}</span></p><p><b>Name </b>: <span style=\"font-size: 14px; color: rgb(8, 7, 7);\">{!CurrentUser.name}</span></p><p><span style=\"font-size: 14px; color: rgb(8, 7, 7);\">FirstName : {!CurrentUser.firstName}</span></p><p><span style=\"font-size: 14px; color: rgb(8, 7, 7);\">LastName :﻿{!CurrentUser.lastName}</span></p><p><span style=\"font-size: 14px; color: rgb(8, 7, 7);\">UserName: {!CurrentUser.userName}</span></p><p><span style=\"font-size: 14px; color: rgb(8, 7, 7);\">Email : {!CurrentUser.email}</span></p><p><span style=\"color: rgb(8, 7, 7); font-size: 14px;\">CommunityNickname : {!CurrentUser.communityNickname}﻿</span></p>"
-                  },
-                  "componentName": "forceCommunity:richTextInline",
-                  "id": "1200e8f9-3fe1-434a-b7b8-6ebc3f59279d",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {
                     "colorPalette": "default",
                     "details": "",
                     "detailsLabels": "[\"Status\"]",
