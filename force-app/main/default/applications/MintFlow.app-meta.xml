@@ -72,7 +72,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>ClientRecordPage</content>
+        <content>MemberRecordPage</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.FinServ__IndustriesIndividual</recordType>

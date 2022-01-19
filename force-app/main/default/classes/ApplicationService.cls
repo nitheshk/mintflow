@@ -340,7 +340,8 @@ global with sharing class ApplicationService extends AbstractService {
 
       // if Application kyc status is approved, then proceed with creating Account & Contact for primary
       // And Open Membership Financial Account and relation with applicant
-      if (application.FinServ__Status__c == ApplicationConstant.KYC_PASSED) {
+
+      if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
         ApplicantService.getInstance().createMemberAccount(application);
 
         application = FinancialAccountService.getInstance()

@@ -162,11 +162,11 @@ global with sharing class KycReviewService extends AbstractService {
       }
       when 'Fraud' {
         application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-        application.FinServ__Status__c = ApplicationConstant.KYC_FAILED;
+        application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
       }
       when else {
         application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-        application.FinServ__Status__c = ApplicationConstant.KYC_UNDER_REVIEW;
+        application.FinServ__KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
       }
     }
     FinancialAccountRepository.upsertRecords(application.Applicants__r);

@@ -106,7 +106,7 @@ global virtual with sharing class NotificationService extends AbstractService {
         );
       }
       when 'onExceptionKycProcess' {
-        String chatterPost = 'Exception on Process Kyc Result : ' + message;
+        String chatterPost = 'Exception on Processing Kyc Result : ' + message;
         NotificationBuilder.chatterMessagePost(entityId, chatterPost);
         // Notification
         NotificationBuilder.bellNotification(
@@ -117,18 +117,18 @@ global virtual with sharing class NotificationService extends AbstractService {
         );
       }
       when 'onReviewKycProcess' {
-        String chatterPost = 'Application Added to Review Process';
+        String chatterPost = 'KYC Process Under Review';
         NotificationBuilder.chatterMessagePost(entityId, chatterPost);
         // Notification
         NotificationBuilder.bellNotification(
           entityId,
           title,
-          'Application Added to Review Process : ' + title,
+          'KYC Process Under Review for : ' + title,
           NotificationBuilder.getRegularGroupId('OnKycReview')
         );
       }
       when 'onSuccessKycProcess' {
-        String chatterPost = 'Kyc Process Successfully for ' + title;
+        String chatterPost = 'Complete KYC Process for ' + title;
         NotificationBuilder.chatterMessagePost(entityId, chatterPost);
         // Notification
         NotificationBuilder.bellNotification(
