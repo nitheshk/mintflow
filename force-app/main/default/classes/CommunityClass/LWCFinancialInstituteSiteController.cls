@@ -30,13 +30,9 @@ global with sharing class LWCFinancialInstituteSiteController {
   global static ApexResponse createFinancialInstituteAccount(
     Map<String, Object> params
   ) {
-    try {
-      return ApexResponse.ok(
-        UserAccountManagementController.createFinancialInstituteAccount(params)
-      );
-    } catch (Exception ex) {
-      return ApexResponse.exception(ex);
-    }
+    return UserAccountManagementController.createFinancialInstituteAccount(
+      params
+    );
   }
 
   /**

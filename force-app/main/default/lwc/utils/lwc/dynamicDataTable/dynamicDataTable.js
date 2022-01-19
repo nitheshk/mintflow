@@ -7,7 +7,6 @@ export default class DynamicDataTable extends NavigationMixin(
   LightningElement
 ) {
   @track columns;
-
   @api metadataName;
   @api filterString;
   @api sortString;
@@ -27,6 +26,10 @@ export default class DynamicDataTable extends NavigationMixin(
     this.showTableData();
   }
 
+  /**
+   * showTableData
+   * @returns
+   */
   showTableData() {
     return getTableDetails({
       metaDataName: this.metadataName,
@@ -36,11 +39,12 @@ export default class DynamicDataTable extends NavigationMixin(
       limitSize: this.limitSize
     })
       .then((result) => {
-        console.log("result::" + JSON.stringify(result.data));
+        //console.log("result::" + JSON.stringify(result.data));
         if (result.status === 200) {
-          this.items = JSON.parse(result.data.tableData);
-          console.log("showtabledata offset" + JSON.stringify(this.items));
-          this.columns = JSON.parse(result.data.tableColumns);
+          let data = JSON.parse(result.data);
+          this.items = JSON.parse(data.tableData);
+          //console.log("showtabledata offset" + JSON.stringify(this.items));
+          this.columns = JSON.parse(data.tableColumns);
           this.columns = this.columns.map((item) => {
             if (item.typeAttributes) {
               item.typeAttributes = JSON.parse(item.typeAttributes);
@@ -63,6 +67,10 @@ export default class DynamicDataTable extends NavigationMixin(
       });
   }
 
+  /**
+   * handleSort
+   * @param {*} event
+   */
   handleSort(event) {
     // field name
     this.sortBy = event.detail.fieldName;
@@ -72,6 +80,11 @@ export default class DynamicDataTable extends NavigationMixin(
     this.sortData(event.detail.fieldName, event.detail.sortDirection);
   }
 
+  /**
+   * sortData
+   * @param {*} fieldname
+   * @param {*} direction
+   */
   sortData(fieldname, direction) {
     let parseData = JSON.parse(JSON.stringify(this.data));
     let sortValue = (a) => {
@@ -87,10 +100,14 @@ export default class DynamicDataTable extends NavigationMixin(
     this.data = parseData;
   }
 
+  /**
+   * handleAction
+   * @param {*} event
+   */
   handleAction(event) {
-    console.log(" id::" + JSON.stringify(event.detail.action.rowaction));
+    //console.log(" id::" + JSON.stringify(event.detail.action.rowaction));
     this.recordId = event.detail.row[event.detail.action.rowaction];
-    console.log(" id::" + this.recordId);
+    //console.log(" id::" + this.recordId);
     switch (event.detail.action.pageType) {
       case "comm__namedPage":
         this[NavigationMixin.Navigate]({
@@ -115,6 +132,10 @@ export default class DynamicDataTable extends NavigationMixin(
     }
   }
 
+  /**
+   * loadMoreData
+   * @param {*} event
+   */
   loadMoreData(event) {
     this.isLoading = true;
     this.offset = this.offset + this.limitSize;
