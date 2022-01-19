@@ -237,14 +237,9 @@
         <relatedList>RelatedAccountContactRelationList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>FULL_NAME</fields>
-        <fields>CONTACT.TITLE</fields>
-        <fields>CONTACT.EMAIL</fields>
-        <fields>CONTACT.PHONE1</fields>
-        <relatedList>RelatedContactList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
+        <fields>Answer__c</fields>
+        <fields>Applicant__c</fields>
         <relatedList>Survey__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>

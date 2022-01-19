@@ -164,6 +164,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>FlowType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>QualifiedDecision__c</field>
             </layoutItems>
             <layoutItems>
@@ -197,6 +201,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OverallDebitBureauResult__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Password__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -261,13 +269,12 @@
     <relatedLists>
         <fields>Name</fields>
         <fields>IsPrimary</fields>
-        <fields>ActiveFromDate</fields>
-        <fields>ActiveToDate</fields>
-        <fields>IsDefault</fields>
         <fields>ADDRESS.STREET</fields>
+        <fields>ADDRESS.STATE</fields>
+        <fields>StateCode__c</fields>
+        <fields>ADDRESS.ZIP</fields>
+        <fields>ADDRESS.COUNTRY</fields>
         <relatedList>ContactPointAddress.Applicant__c</relatedList>
-        <sortField>ActiveFromDate</sortField>
-        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -282,8 +289,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>FinServ__AnnualIncome__c</fields>
         <fields>FinServ__EmploymentStatus__c</fields>
+        <fields>Employee_Type__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>FinServ__Employment__c.Applicant__c</relatedList>
         <sortField>CREATED_DATE</sortField>
@@ -291,36 +298,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>FinServ__Type__c</fields>
-        <fields>FinServ__SubType__c</fields>
-        <fields>FinServ__Amount__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>FinServ__Revenue__c.Applicant__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
+        <fields>Answer__c</fields>
+        <fields>Application__c</fields>
         <relatedList>Survey__c.Applicant__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinancialAccount__c</fields>
-        <fields>isPrimary__c</fields>
-        <fields>Roles__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>ApplicantRelationship__c.Applicant__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__AssetsAndLiabilitiesType__c</fields>
-        <fields>FinServ__Amount__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>FinServ__AssetsAndLiabilities__c.Applicant__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedFileList</relatedList>
@@ -331,7 +311,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0w000001Sotz</masterLabel>
+        <masterLabel>00h6D0000020Oc0</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

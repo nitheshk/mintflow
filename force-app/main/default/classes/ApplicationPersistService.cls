@@ -141,6 +141,10 @@ global with sharing class ApplicationPersistService extends AbstractService {
       applicant.Application__c = applicationId;
     }
 
+    if (String.isNotBlank(ApexRequest.getFlowType())) {
+      applicant.FlowType__c = ApexRequest.getFlowType();
+    }
+
     //Set Applicant Record Type
     String recordTypeName = this.obtainApplicantRecordTypeName(applicant);
     applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
