@@ -287,7 +287,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
             new Map<String, String>{
               '{FirstName}' => applicant.FirstName__c,
               '{LastName}' => applicant.LastName__c,
-              '{ApplicationNumber}' => ApexRequest.getApplicationName(),
+              '{ApplicationNumber}' => application.Name,
               '{url}' => link
             }
           );

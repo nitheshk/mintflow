@@ -116,42 +116,64 @@ global with sharing class LwcCustomController extends AbstractController {
       return ApexResponse.fail(ex);
     }
   }
+
   /**
-   * @description send resume application email
-   * @author Digital Align | 12-10-2021
-   * @param string applicantIds
+   * @description read application resume link
+   * @author Digital Align Team | 01-19-2022
+   * @param String applicationId
    * @return ApexResponse
    **/
   @AuraEnabled(cacheable=true)
-  global static ApexResponse sendResumeApplicationEmail(string applicantIds) {
+  global static ApexResponse readApplicationForResume(String applicationId) {
     try {
-      log
-        ?.fine(
-          'Inside sendResumeApplicationEmail applicantIds =' + applicantIds
-        );
-      list<id> ids = (List<Id>) JSON.deserialize(applicantIds, List<Id>.class);
-      LwcCustomService.getInstance().sendResumeApplicationEmail(ids);
-      return ApexResponse.ok();
+      return ApexResponse.ok(
+        LwcCustomService.getInstance().readApplicationForResume(applicationId)
+      );
     } catch (Exception ex) {
       return ApexResponse.fail(ex);
     }
   }
 
   /**
-   * @description send funding email from salesforce
-   * @author Digital Align | 01-11-2022
+   * @description send resume application email
+   * @author Digital Align | 12-10-2021
    * @param string applicantIds
    * @return ApexResponse
    **/
-  @AuraEnabled(cacheable=true)
-  global static ApexResponse resendFundingRequest(string applicantionId) {
+  @AuraEnabled
+  global static ApexResponse sendResumeApplicationEmail(ApexRequest request) {
     try {
-      log
-        ?.fine('Inside resendFundingRequest applicantionId =' + applicantionId);
-      LwcCustomService.getInstance().resendFundingRequest(applicantionId);
+      validateRequest(request, true);
+      log?.debug('sendResumeApplicationEmail - applicantIds =' + request.data);
+      list<id> applicantIds = (List<Id>) JSON.deserialize(
+        request.data,
+        List<Id>.class
+      );
+      LwcCustomService.getInstance().sendResumeApplicationEmail(applicantIds);
       return ApexResponse.ok();
     } catch (Exception ex) {
       return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description send funding email from salesforce
+   * @author Digital Align | 01-11-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  global static ApexResponse resendFundingRequest(ApexRequest request) {
+    try {
+      log?.fine('resendFundingRequest - applicantionId =' + request.data);
+      LwcCustomService.getInstance().resendFundingRequest(request.data);
+      return ApexResponse.ok();
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
     }
   }
   /**

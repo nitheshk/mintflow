@@ -1,30 +1,50 @@
 <template>
-  <lightning-card title="Resume Application" icon-name="utility:email">
-    <div class="slds-var-m-around_medium">
-      <lightning-combobox
-        data-fieldname="applicants"
-        name="Applicants"
-        label="Applicants"
-        value={value}
-        placeholder="Select applicants"
-        options={applicants}
-        onchange={handleChange}
-        class="validation"
-      ></lightning-combobox>
-    </div>
-    <div class="slds-var-m-around_medium">
-      <lightning-button-group>
-        <lightning-button
-          disabled={disableButton}
-          variant="brand"
-          label="Submit"
-          title="Submit"
-          onclick={sendResumeEmail}
-          class="slds-var-m-left_x-small"
-          icon-name="utility:save"
-          icon-position="right"
-        ></lightning-button>
-      </lightning-button-group>
-    </div>
-  </lightning-card>
+  <template if:true={applicationFlow}>
+    <lightning-card title="Resume Application" icon-name="utility:email">
+      <div class="slds-var-m-around_medium">
+        <lightning-combobox
+          data-fieldname="applicants"
+          name="Applicants"
+          label="Applicants"
+          placeholder="Select applicants"
+          options={applicantNames}
+          onchange={handleChange}
+          class="validation"
+          required
+        ></lightning-combobox>
+      </div>
+      <div class="slds-var-m-around_medium">
+        <lightning-button-group>
+          <lightning-button
+            disabled={disableButton}
+            variant="brand"
+            label="Submit"
+            title="Submit"
+            onclick={sendResumeEmail}
+            class="slds-var-m-left_x-small"
+            icon-name="utility:save"
+            icon-position="right"
+          ></lightning-button>
+        </lightning-button-group>
+      </div>
+    </lightning-card>
+  </template>
+  <template if:true={fundingFlow}>
+    <lightning-card title="Resend Funding Request" icon-name="standard:lead">
+      <div class="slds-var-m-around_medium">
+        <lightning-button-group>
+          <lightning-button
+            disabled={disableButton}
+            variant="brand"
+            label="Email"
+            title="Email"
+            onclick={sendFundingEmail}
+            class="slds-var-m-left_x-small"
+            icon-name="utility:save"
+            icon-position="right"
+          ></lightning-button>
+        </lightning-button-group>
+      </div>
+    </lightning-card>
+  </template>
 </template>

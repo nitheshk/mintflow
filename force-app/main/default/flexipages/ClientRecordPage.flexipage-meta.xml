@@ -397,11 +397,6 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>resendFundingRequest</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>relatedFiles</componentName>
             </componentInstance>
         </itemInstances>

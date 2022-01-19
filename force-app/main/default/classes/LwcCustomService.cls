@@ -159,6 +159,15 @@ global with sharing class LwcCustomService extends AbstractService {
     }
     return results;
   }
+
+  /**
+   * @description  readApplicationForResume
+   * @author Digital Align Team | 01-19-2022
+   * @return Account
+   **/
+  global virtual Account readApplicationForResume(String applicationId) {
+    return LwcCustomRepository.readApplicationForResume(applicationId);
+  }
   /**
    * @description send resume application email to list of applicants
    * @author Digital Align | 12-10-2021
@@ -183,7 +192,7 @@ global with sharing class LwcCustomService extends AbstractService {
    * @return virtual
    **/
   global virtual void resendFundingRequest(string applicantionId) {
-    Account application = ApplicationRepository.readApplicationWithApplicants(
+    Account application = LwcCustomRepository.readApplicationForResume(
       applicantionId
     );
     if (application == null) {
