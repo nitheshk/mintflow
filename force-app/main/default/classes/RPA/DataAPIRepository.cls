@@ -145,10 +145,10 @@ global virtual inherited sharing class DataAPIRepository extends DatabaseUtils {
    * @param Id financialAccountId
    * @return List<FinServ__FinancialAccount__c>
    **/
-  global static FinServ__FinancialAccount__c readFinancialAccountWithChildByApplicationId(
+  global static List<FinServ__FinancialAccount__c> readFinancialAccountWithChildByApplicationId(
     string applicationId
   ) {
-    return (FinServ__FinancialAccount__c) DatabaseUtils.getRecord(
+    return (List<FinServ__FinancialAccount__c>) DatabaseUtils.getRecords(
       Query.newInstance(FinServ__FinancialAccount__c.SObjectType)
         .addFields()
         .queryChild('FinServ__FinancialAccountTranslations__r')

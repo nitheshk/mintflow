@@ -1,22 +1,22 @@
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
 global with sharing class FundingResponseMapper {
-  global FinancialAccount FinancialApplication;
+  global String ExternalApplicationNumber;
+  global List<FinancialAccount> FinancialApplication;
+  global String Application;
+  global String Status;
+  global String Stage;
   global FundingResponseMapper() {
-    FinancialApplication = new FinancialAccount();
+    FinancialApplication = new List<FinancialAccount>();
   }
   global class FinancialAccount {
-    global String ExternalApplicationNumber;
     global String Name;
     global String FinancialProduct;
     global String FinancialAccountType;
     global String PrimaryOwner;
     global String Ownership;
-    global String Status;
-    global String Stage;
-    global String Application;
-    global FinancialAccountTransaction FinancialApplicationTransaction;
+    global List<FinancialAccountTransaction> FinancialApplicationTransaction;
     global FinancialAccount() {
-      FinancialApplicationTransaction = new FinancialAccountTransaction();
+      FinancialApplicationTransaction = new List<FinancialAccountTransaction>();
     }
   }
   global class FinancialAccountTransaction {

@@ -25,39 +25,54 @@ global with sharing class FundingDataAPI {
     Account application = DataAPIRepository.readApplicationByApplicationNumber(
       applicationNumber
     );
+
     if (application == null) {
       throw new customException(System.Label.Application_ApplicationNotFound);
     }
-    FinServ__FinancialAccount__c financialApplication = DataAPIRepository.readFinancialAccountWithChildByApplicationId(
+    List<FinServ__FinancialAccount__c> financialApplications = DataAPIRepository.readFinancialAccountWithChildByApplicationId(
       application.Id
     );
-    if (financialApplication == null) {
+    if (CollectionUtils.isListEmpty(financialApplications)) {
       throw new customException(System.Label.Application_ApplicationNotFound);
     }
-    FundingResponseMapper.FinancialAccount mapperApplication = new FundingResponseMapper.FinancialAccount();
-    mapperApplication.ExternalApplicationNumber = financialApplication.mflow__ExternalApplicationNumber__c;
-    mapperApplication.FinancialAccountType = financialApplication.FinServ__FinancialAccountType__c;
-    mapperApplication.FinancialProduct = financialApplication.mflow__FinancialProduct__c;
-    mapperApplication.Name = financialApplication.Name;
-    mapperApplication.Ownership = financialApplication.FinServ__Ownership__c;
-    mapperApplication.PrimaryOwner = financialApplication.FinServ__PrimaryOwner__c;
-    mapperApplication.Stage = financialApplication.FinServ__Stage__c;
-    mapperApplication.Status = financialApplication.FinServ__Status__c;
-    if (
-      !CollectionUtils.isListEmpty(
-        financialApplication.FinServ__FinancialAccountTranslations__r
-      )
-    ) {
-      mapperApplication.FinancialApplicationTransaction = mapFinancialAccountTranslation(
-        financialApplication.FinServ__FinancialAccountTranslations__r
-      );
-    } else {
-      throw new CustomException('No financial transaction account found');
-    }
-    mapper.FinancialApplication = mapperApplication;
+    mapper.Application = application.Id;
+    mapper.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
+    mapper.Stage = application.mflow__Stage__c;
+    mapper.Status = application.FinServ__Status__c;
+    mapper.FinancialApplication.addAll(
+      mapFinancialApplication(financialApplications)
+    );
 
     log?.info('obtainFundingData -> ReturnMapper -> ' + mapper);
     return mapper;
+  }
+
+  global static list<FundingResponseMapper.FinancialAccount> mapFinancialApplication(
+    List<FinServ__FinancialAccount__c> financialApplicationsList
+  ) {
+    list<FundingResponseMapper.FinancialAccount> mapperFinancialAccountList = new List<FundingResponseMapper.FinancialAccount>();
+    for (
+      FinServ__FinancialAccount__c finApplication : financialApplicationsList
+    ) {
+      FundingResponseMapper.FinancialAccount mapperFinancialAccount = new FundingResponseMapper.FinancialAccount();
+
+      mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
+      mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
+      mapperFinancialAccount.Name = finApplication.Name;
+      mapperFinancialAccount.Ownership = finApplication.FinServ__Ownership__c;
+      mapperFinancialAccount.PrimaryOwner = finApplication.FinServ__PrimaryOwner__c;
+      if (
+        !CollectionUtils.isListEmpty(
+          finApplication.FinServ__FinancialAccountTranslations__r
+        )
+      ) {
+        mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
+          finApplication.FinServ__FinancialAccountTranslations__r
+        );
+      }
+      mapperFinancialAccountList.add(mapperFinancialAccount);
+    }
+    return mapperFinancialAccountList;
   }
   /**
    * @description
@@ -65,17 +80,23 @@ global with sharing class FundingDataAPI {
    * @param FinServ__FinancialAccountTransaction__c accountTransaction
    * @return FundingResponseMapper.FinancialAccountTransaction
    **/
-  global static FundingResponseMapper.FinancialAccountTransaction mapFinancialAccountTranslation(
-    FinServ__FinancialAccountTransaction__c accountTransaction
+  global static List<FundingResponseMapper.FinancialAccountTransaction> mapFinancialAccountTranslation(
+    List<FinServ__FinancialAccountTransaction__c> accountTransactions
   ) {
-    FundingResponseMapper.FinancialAccountTransaction mapperTransaction = new FundingResponseMapper.FinancialAccountTransaction();
-    mapperTransaction.AccountHolderName = accountTransaction.mflow__AccountHolderName__c;
-    mapperTransaction.AccountNumber = accountTransaction.mflow__AccountNumber__c;
-    mapperTransaction.Amount = accountTransaction.FinServ__Amount__c;
-    mapperTransaction.FinancialInstitute = accountTransaction.mflow__FinancialInstitute__c;
-    mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
-    mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;
-    mapperTransaction.TransactionType = accountTransaction.FinServ__TransactionType__c;
-    return mapperTransaction;
+    list<FundingResponseMapper.FinancialAccountTransaction> mapperAccountTransactions = new List<FundingResponseMapper.FinancialAccountTransaction>();
+    for (
+      FinServ__FinancialAccountTransaction__c accountTransaction : accountTransactions
+    ) {
+      FundingResponseMapper.FinancialAccountTransaction mapperTransaction = new FundingResponseMapper.FinancialAccountTransaction();
+      mapperTransaction.AccountHolderName = accountTransaction.mflow__AccountHolderName__c;
+      mapperTransaction.AccountNumber = accountTransaction.mflow__AccountNumber__c;
+      mapperTransaction.Amount = accountTransaction.FinServ__Amount__c;
+      mapperTransaction.FinancialInstitute = accountTransaction.mflow__FinancialInstitute__c;
+      mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
+      mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;
+      mapperTransaction.TransactionType = accountTransaction.FinServ__TransactionType__c;
+      mapperAccountTransactions.add(mapperTransaction);
+    }
+    return mapperAccountTransactions;
   }
 }
