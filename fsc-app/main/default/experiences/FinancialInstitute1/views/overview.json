@@ -69,38 +69,38 @@
                   "componentAttributes": {
                     "colorPalette": "default",
                     "details": "",
-                    "detailsLabels": "[\"Status\"]",
-                    "fill": false,
+                    "detailsLabels": "[\"In Progress\",\"Cancelled\",\"Saved\",\"Submit for Review\",\"Revision in Progress\"]",
+                    "fill": true,
                     "handler": "",
-                    "legendPosition": "top",
+                    "legendPosition": "right",
                     "recordId": "{!recordId}",
-                    "soql": "SELECT count(Id) value, Status label FROM Lead group by Status limit 1000",
+                    "soql": "SELECT count(Id) value,FinServ__Status__c label FROM Account where RecordType.Name='Application' group by FinServ__Status__c limit 1000",
                     "styleCss": "",
-                    "title": "Dealer Leads",
-                    "type": "doughnut"
+                    "title": "Application Status",
+                    "type": "bar"
                   },
                   "componentName": "mflow:chartBuilder",
-                  "id": "6c0701c2-be70-4afd-bb1a-36a67396dc26",
+                  "id": "981e9153-aa1b-4566-9d24-f75e45ff7c71",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 },
                 {
                   "componentAttributes": {
-                    "colorPalette": "bluegrass",
+                    "colorPalette": "default",
                     "details": "",
-                    "detailsLabels": "[\"Approved Dealers\"]",
+                    "detailsLabels": "[\"Passed\",\"Under Review\",\"Failed\"]",
                     "fill": true,
                     "handler": "",
-                    "legendPosition": "top",
-                    "recordId": "{!recordId}",
-                    "soql": "SELECT count(id) value, ConvertedDate label FROM Lead where status='Closed - Converted' group by ConvertedDate limit 7",
+                    "legendPosition": "right",
+                    "recordId": "",
+                    "soql": "SELECT count(Id) value,FinServ__KYCStatus__c label FROM Account where RecordType.Name='Application' group by FinServ__KYCStatus__c limit 1000",
                     "styleCss": "",
-                    "title": "Dealers Won",
-                    "type": "line"
+                    "title": "Application Kyc Status",
+                    "type": "pie"
                   },
                   "componentName": "mflow:chartBuilder",
-                  "id": "440e661e-2858-4f6e-a2d0-489d531dc626",
+                  "id": "8242e169-394e-4505-bb34-53d8730faf00",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
@@ -116,40 +116,40 @@
               "components": [
                 {
                   "componentAttributes": {
-                    "colorPalette": "bluegrass",
-                    "details": "[{\"labels\":\"Auto Loan\",\"detail\":[5,8]},{\"labels\":\"Auto Loan\", \"detail\":[2,1]},{\"labels\":\"Used Car Loan\", \"detail\":[0,1]},{\"labels\":\"Used Car Loan\", \"detail\":[10,15]}]",
-                    "detailsLabels": "[\"Approved\",\"Rejected\",\"Declined\",\"Pending\"]",
+                    "colorPalette": "default",
+                    "details": "",
+                    "detailsLabels": "[\"Saving\",\"Checking\",\"Loan\"]",
                     "fill": false,
                     "handler": "",
-                    "legendPosition": "top",
-                    "recordId": "",
-                    "soql": "",
+                    "legendPosition": "right",
+                    "recordId": "{!recordId}",
+                    "soql": "SELECT count(Id) value, FinServ__FinancialAccountType__c label FROM FinServ__FinancialAccount__c group by FinServ__FinancialAccountType__c limit 1000",
                     "styleCss": "",
-                    "title": "Applications",
-                    "type": "bar"
+                    "title": "Financial Account",
+                    "type": "doughnut"
                   },
                   "componentName": "mflow:chartBuilder",
-                  "id": "beeb39fa-31ef-4bba-8aac-d60aefd15cc2",
+                  "id": "e009d213-65bf-4a28-858d-c4160a142acb",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 },
                 {
                   "componentAttributes": {
-                    "colorPalette": "light",
-                    "details": "[{\"labels\":\"Jan\",\"detail\":[100000, 200000, 705000]},{\"labels\":\"Feb\",\"detail\":[200060,600000,500800]},{\"labels\":\"March\",\"detail\":[500000,700000,600000]}]",
-                    "detailsLabels": "[\"RV\",\"Car\",\"Motor Cycle\"]",
-                    "fill": false,
+                    "colorPalette": "default",
+                    "details": "",
+                    "detailsLabels": "[\"UnderReview\",\"Failed\",\"Passed\"]",
+                    "fill": true,
                     "handler": "",
-                    "legendPosition": "top",
-                    "recordId": "",
-                    "soql": "",
+                    "legendPosition": "right",
+                    "recordId": "{!recordId}",
+                    "soql": "SELECT count(Id) value,mflow__KYCStatus__c label FROM mflow__Applicant__c group by mflow__KYCStatus__c limit 1000",
                     "styleCss": "",
-                    "title": "Revenue",
-                    "type": "line"
+                    "title": "Applicant Kyc",
+                    "type": "pie"
                   },
                   "componentName": "mflow:chartBuilder",
-                  "id": "40fc67a8-159b-4f1a-be8e-305fb243142e",
+                  "id": "e9b2dc60-03e3-4f52-aaaa-8030f1553fbc",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"

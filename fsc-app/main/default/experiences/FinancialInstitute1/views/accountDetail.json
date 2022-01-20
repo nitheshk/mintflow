@@ -25,14 +25,14 @@
                   "UUID": "b285b888-3dd5-4716-8a58-b196160e7658",
                   "columnKey": "a2528",
                   "columnName": "Column 2",
-                  "columnWidth": "7",
+                  "columnWidth": "6",
                   "seedComponents": []
                 },
                 {
                   "UUID": "c1e91337-ff13-49ab-99c0-d37d177ce6b3",
                   "columnKey": "5b6ed",
                   "columnName": "Column 3",
-                  "columnWidth": "3",
+                  "columnWidth": "4",
                   "seedComponents": []
                 }
               ]
@@ -90,6 +90,22 @@
                           "tabName": "DETAILS"
                         },
                         {
+                          "UUID": "855c4ff1-5416-4cf5-bfb3-c306aad679ea",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "941ee",
+                          "tabName": "Application 360"
+                        },
+                        {
+                          "UUID": "211b82fb-047c-41b1-a2ba-dd1a4a3d622a",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "29239",
+                          "tabName": "Financial Account"
+                        },
+                        {
                           "UUID": "c9c5b454-b463-4286-9f50-129036d2d823",
                           "allowGuestUser": false,
                           "locked": false,
@@ -127,6 +143,42 @@
                       "id": "b5662ab4-974a-4555-ae92-e9e80b50b393",
                       "regionLabel": "DETAILS",
                       "regionName": "1",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "recordId": "{!recordId}"
+                          },
+                          "componentName": "mflow:application360View",
+                          "id": "6f23dc1d-73aa-4377-92f4-038ec27a6c44",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "855c4ff1-5416-4cf5-bfb3-c306aad679ea",
+                      "regionLabel": "Application 360",
+                      "regionName": "941ee",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "fieldSet": "WM_Client_Profile_Fin_Acct_Summary"
+                          },
+                          "componentName": "FinServ:financialSummary",
+                          "id": "042ec730-268a-48bf-be1d-30c7f0a802d6",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "211b82fb-047c-41b1-a2ba-dd1a4a3d622a",
+                      "regionLabel": "Financial Account",
+                      "regionName": "29239",
                       "renditionMap": {},
                       "type": "region"
                     },
@@ -198,6 +250,35 @@
             },
             {
               "components": [
+                {
+                  "componentAttributes": {
+                    "recordId": "{!recordId}"
+                  },
+                  "componentName": "mflow:resumeAppplication",
+                  "id": "38bbff13-11b4-4c06-acfe-e39e01ce62e7",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "objectApiName": "Account",
+                    "recordId": "{!recordId}"
+                  },
+                  "componentName": "mflow:manualKycDecision",
+                  "id": "7b7601c7-9d4f-46ce-a6fb-a38fab941656",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {},
+                  "componentName": "mflow:relatedFiles",
+                  "id": "6a89730d-a9c5-484f-ae29-f7e0e20392c9",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
                 {
                   "componentAttributes": {
                     "recordId": "{!recordId}",
