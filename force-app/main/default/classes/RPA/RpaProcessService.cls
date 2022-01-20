@@ -232,9 +232,8 @@ global with sharing class RpaProcessService extends AbstractService {
   global virtual void buildObtainReviewApplicationData() {
     RestRequest restReq = RestContext.request;
     String applicationName = restReq.params.get('applicationName');
-    ApplicationResponseMapper applicationResponse = ApplicationDataAPI.obtainApplicationData(
-      applicationName
-    );
+    ApplicationResponseMapper applicationResponse = ApplicationDataAPI.getInstance()
+      .obtainApplicationData(applicationName);
     RestResponse response = RestContext.response;
     response.responseBody = Blob.valueOf(JSON.serialize(applicationResponse));
     response.statusCode = 200;
@@ -248,9 +247,8 @@ global with sharing class RpaProcessService extends AbstractService {
   global virtual void buildObtainFundingData() {
     RestRequest restReq = RestContext.request;
     String applicationName = restReq.params.get('applicationName');
-    FundingResponseMapper fundingResponse = FundingDataAPI.obtainFundingData(
-      applicationName
-    );
+    FundingResponseMapper fundingResponse = FundingDataAPI.getInstance()
+      .obtainFundingData(applicationName);
     RestResponse response = RestContext.response;
     response.responseBody = Blob.valueOf(JSON.serialize(fundingResponse));
     response.statusCode = 200;
@@ -266,6 +264,6 @@ global with sharing class RpaProcessService extends AbstractService {
     RestRequest restReq = RestContext.request;
     String applicationNumber = restReq.params.get('applicationNumber');
     log?.debug('applicationNumber =' + applicationNumber);
-    ApplicationDataAPI.obtainApplicationFiles(applicationNumber);
+    ApplicationDataAPI.getInstance().obtainApplicationFiles(applicationNumber);
   }
 }

@@ -6,15 +6,34 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicationDataAPI {
-  private static logger log = logger.getInstance(ApplicationDataAPI.class);
+global with sharing class ApplicationDataAPI extends AbstractService {
+  @TestVisible
+  private static ApplicationDataAPI serviceInstance;
+
+  public ApplicationDataAPI() {
+    super(ApplicationDataAPI.class);
+  }
+  /**
+   * @description Provides a singleton instance of ApplicationDataAPI from which all other class methods can be accessed.
+   * @author Digital Align Team | 01/17/2022
+   * @return Object  singleton
+   **/
+  public static ApplicationDataAPI getInstance() {
+    if (serviceInstance == null) {
+      serviceInstance = (ApplicationDataAPI) getInstance(
+        ApplicationDataAPI.class
+      );
+    }
+    return serviceInstance;
+  }
+
   /**
    * @description
    * @author Digital Align | 11-10-2021
    * @param string applicationId
    * @return ApplicationResponseMapper
    **/
-  global static ApplicationResponseMapper obtainApplicationData(
+  global virtual ApplicationResponseMapper obtainApplicationData(
     string applicationNumber
   ) {
     {
@@ -50,16 +69,16 @@ global with sharing class ApplicationDataAPI {
         mapperApplication.CountyCode = application.CountyZipCode__c;
         mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
         mapperApplication.CreatedChannel = application.CreatedChannel__c;
-        mapperApplication.CustomerType = application.FinServ__CustomerType__c;
-        mapperApplication.FlowState = application.FlowState__c;
-        mapperApplication.IpAddress = application.IPAddress__c;
-        mapperApplication.IsMemberFlow = application.isMemberFlow__c;
-        mapperApplication.LastUsedChannel = application.FinServ__LastUsedChannel__c;
-        mapperApplication.Status = application.FinServ__Status__c;
-        mapperApplication.SubmittedBy = application.SubmittedBy__c;
-        mapperApplication.SubmittedDate = application.SubmittedDate__c;
-        mapperApplication.SubStatus = application.Stage__c;
-        mapperApplication.UserAccountType = application.UserAccountType__c;
+        // mapperApplication.CustomerType = application.FinServ__CustomerType__c;
+        // mapperApplication.FlowState = application.FlowState__c;
+        // mapperApplication.IpAddress = application.IPAddress__c;
+        // mapperApplication.IsMemberFlow = application.isMemberFlow__c;
+        // mapperApplication.LastUsedChannel = application.FinServ__LastUsedChannel__c;
+        // mapperApplication.Status = application.FinServ__Status__c;
+        // mapperApplication.SubmittedBy = application.SubmittedBy__c;
+        // mapperApplication.SubmittedDate = application.SubmittedDate__c;
+        // mapperApplication.SubStatus = application.Stage__c;
+        // mapperApplication.UserAccountType = application.UserAccountType__c;
 
         if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
           mapperApplication.Applicants.addAll(
@@ -87,7 +106,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<applicant__c> applicantList
    * @return list<ApplicationResponseMapper.Applicant>
    **/
-  global static list<ApplicationResponseMapper.Applicant> mapApplicant(
+  global virtual list<ApplicationResponseMapper.Applicant> mapApplicant(
     List<applicant__c> applicantList
   ) {
     list<ApplicationResponseMapper.Applicant> mapperApplicantList = new List<ApplicationResponseMapper.Applicant>();
@@ -98,28 +117,28 @@ global with sharing class ApplicationDataAPI {
       mapperApplicant.FirstName = applicant.FirstName__c;
       mapperApplicant.MiddleName = applicant.MiddleName__c;
       mapperApplicant.LastName = applicant.LastName__c;
-      mapperApplicant.IsEmailVerified = applicant.IsEmailVerified__c;
-      mapperApplicant.IsExistingCustomer = applicant.IsExistingCustomer__c;
-      mapperApplicant.IsPhoneNumberVerified = applicant.IsPhoneNumberVerified__c;
+      // mapperApplicant.IsEmailVerified = applicant.IsEmailVerified__c;
+      // mapperApplicant.IsExistingCustomer = applicant.IsExistingCustomer__c;
+      // mapperApplicant.IsPhoneNumberVerified = applicant.IsPhoneNumberVerified__c;
       mapperApplicant.ApplicantName = applicant.Name;
       mapperApplicant.ApplicantNumber = applicant.ApplicantNumber__c;
       mapperApplicant.ApplicantType = applicant.ApplicantType__c;
       mapperApplicant.Birthdate = applicant.Birthdate__c;
       mapperApplicant.CreditScore = applicant.CreditScore__c;
-      mapperApplicant.CustomerNumber = applicant.CustomerNumber__c;
+      // mapperApplicant.CustomerNumber = applicant.CustomerNumber__c;
       mapperApplicant.Email = applicant.Email__c;
-      mapperApplicant.FraudStatus = applicant.FraudStatus__c;
-      mapperApplicant.IdentityVerificationStatus = applicant.IdentityVerificationStatus__c;
-      mapperApplicant.IncomeVerificationStatus = applicant.IncomeVerificationStatus__c;
-      mapperApplicant.KYCStatus = applicant.KYCStatus__c;
-      mapperApplicant.Order = applicant.Order__c;
+      // mapperApplicant.FraudStatus = applicant.FraudStatus__c;
+      // mapperApplicant.IdentityVerificationStatus = applicant.IdentityVerificationStatus__c;
+      // mapperApplicant.IncomeVerificationStatus = applicant.IncomeVerificationStatus__c;
+      // mapperApplicant.KYCStatus = applicant.KYCStatus__c;
+      // mapperApplicant.Order = applicant.Order__c;
       mapperApplicant.Phone = applicant.Phone__c;
       mapperApplicant.Relationship = applicant.Relationship__c;
       mapperApplicant.SentiLinkFraudScore = applicant.SentiLinkFraudScore__c;
       mapperApplicant.SentiLinkRemarks = applicant.SentiLinkRemarks__c;
       mapperApplicant.SentiLinkStatus = applicant.SentiLinkStatus__c;
       mapperApplicant.SSN = applicant.SSN__c;
-      mapperApplicant.Password = applicant.Password__c;
+      // mapperApplicant.Password = applicant.Password__c;
 
       //Map employment data
       if (!CollectionUtils.isListEmpty(applicant.Employments__r)) {
@@ -172,7 +191,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<FinServ__Employment__c> employmentList
    * @return virtual
    **/
-  global static list<ApplicationResponseMapper.Employment> mapEmployment(
+  global virtual list<ApplicationResponseMapper.Employment> mapEmployment(
     List<FinServ__Employment__c> employmentList
   ) {
     list<ApplicationResponseMapper.Employment> mapperEmploymentList = new List<ApplicationResponseMapper.Employment>();
@@ -187,12 +206,12 @@ global with sharing class ApplicationDataAPI {
       mapperEmployment.Name = employment.Name;
       mapperEmployment.IncomeType = employment.IncomeType__c;
       mapperEmployment.PayCycle = employment.PayCycle__c;
-      mapperEmployment.Order = employment.Order__c;
+      // mapperEmployment.Order = employment.Order__c;
       mapperEmployment.PayGrade = employment.PayGrade__c;
       mapperEmployment.Position = employment.FinServ__Position__c;
       mapperEmployment.EmploymentDuration = employment.EmploymentDuration__c;
       mapperEmployment.DocumentType = employment.DocumentType__c;
-      mapperEmployment.EmploymentVerificationType = employment.EmploymentVerificationType__c;
+      // mapperEmployment.EmploymentVerificationType = employment.EmploymentVerificationType__c;
       mapperEmploymentList.add(mapperEmployment);
     }
     return mapperEmploymentList;
@@ -203,7 +222,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<FinServ__IdentificationDocument__c> identityList
    * @return virtual
    **/
-  global static list<ApplicationResponseMapper.IdentificationDocument> mapIdentity(
+  global virtual list<ApplicationResponseMapper.IdentificationDocument> mapIdentity(
     List<FinServ__IdentificationDocument__c> identityList
   ) {
     list<ApplicationResponseMapper.IdentificationDocument> mapperIdentityList = new List<ApplicationResponseMapper.IdentificationDocument>();
@@ -214,16 +233,16 @@ global with sharing class ApplicationDataAPI {
       mapperIdentity.DocumentNumber = identity.FinServ__DocumentNumber__c;
       mapperIdentity.DocumentType = identity.FinServ__DocumentType__c;
       mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
-      mapperIdentity.Gender = identity.Gender__c;
-      mapperIdentity.Height = identity.Height__c;
+      // mapperIdentity.Gender = identity.Gender__c;
+      // mapperIdentity.Height = identity.Height__c;
       mapperIdentity.IssueDate = identity.FinServ__IssueDate__c;
       mapperIdentity.IssuedRegion = identity.IssuedRegion__c;
       mapperIdentity.Name = identity.Name;
-      mapperIdentity.Nationality = identity.Nationality__c;
-      mapperIdentity.Order = identity.Order__c;
-      mapperIdentity.PrimaryContentDocumentID = identity.PrimaryContentDocumentID__c;
-      mapperIdentity.SecondaryContentDocumentId = identity.SecondaryContentDocumentId__c;
-      mapperIdentity.Weight = identity.Weight__c;
+      // mapperIdentity.Nationality = identity.Nationality__c;
+      // mapperIdentity.Order = identity.Order__c;
+      // mapperIdentity.PrimaryContentDocumentID = identity.PrimaryContentDocumentID__c;
+      // mapperIdentity.SecondaryContentDocumentId = identity.SecondaryContentDocumentId__c;
+      // mapperIdentity.Weight = identity.Weight__c;
 
       mapperIdentityList.add(mapperIdentity);
     }
@@ -235,7 +254,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<FinServ__Revenue__c> revenueList
    * @return virtual
    **/
-  global static list<ApplicationResponseMapper.Revenue> mapRevenue(
+  global virtual list<ApplicationResponseMapper.Revenue> mapRevenue(
     List<FinServ__Revenue__c> revenueList
   ) {
     list<ApplicationResponseMapper.Revenue> mapperRevenueList = new List<ApplicationResponseMapper.Revenue>();
@@ -259,7 +278,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<mflow__Survey__c> surveyList
    * @return list<ApplicationResponseMapper.Survey>
    **/
-  global static list<ApplicationResponseMapper.Survey> mapSurvey(
+  global virtual list<ApplicationResponseMapper.Survey> mapSurvey(
     List<mflow__Survey__c> surveyList
   ) {
     list<ApplicationResponseMapper.Survey> mapperSurveyList = new List<ApplicationResponseMapper.Survey>();
@@ -268,15 +287,15 @@ global with sharing class ApplicationDataAPI {
       mapperSurvey.SurveyId = survey.Id;
       mapperSurvey.Answer = survey.mflow__Answer__c;
       mapperSurvey.LongDescription = survey.mflow__LongDescription__c;
-      mapperSurvey.Name = survey.Name;
-      mapperSurvey.OptionType = survey.mflow__OptionType__c;
-      mapperSurvey.Order = survey.mflow__Order__c;
-      mapperSurvey.ParentQuestionCode = survey.mflow__ParentQuestionCode__c;
-      mapperSurvey.QuestionCode = survey.mflow__QuestionCode__c;
-      mapperSurvey.QuestionNumber = survey.mflow__QuestionNumber__c;
+      // mapperSurvey.Name = survey.Name;
+      // mapperSurvey.OptionType = survey.mflow__OptionType__c;
+      // mapperSurvey.Order = survey.mflow__Order__c;
+      // mapperSurvey.ParentQuestionCode = survey.mflow__ParentQuestionCode__c;
+      // mapperSurvey.QuestionCode = survey.mflow__QuestionCode__c;
+      // mapperSurvey.QuestionNumber = survey.mflow__QuestionNumber__c;
       mapperSurvey.ShortDescription = survey.mflow__ShortDescription__c;
-      mapperSurvey.EventIdentifier = survey.mflow__EventIdentifier__c;
-      mapperSurvey.TemplateName = survey.mflow__TemplateName__c;
+      // mapperSurvey.EventIdentifier = survey.mflow__EventIdentifier__c;
+      // mapperSurvey.TemplateName = survey.mflow__TemplateName__c;
       mapperSurveyList.add(mapperSurvey);
     }
     return mapperSurveyList;
@@ -287,7 +306,7 @@ global with sharing class ApplicationDataAPI {
    * @param List<ContactPointAddress> contactAddressList
    * @return virtual
    **/
-  global static list<ApplicationResponseMapper.ContactPointAddress> mapContactAddress(
+  global virtual list<ApplicationResponseMapper.ContactPointAddress> mapContactAddress(
     List<ContactPointAddress> contactAddressList
   ) {
     list<ApplicationResponseMapper.ContactPointAddress> mapperContactAddressList = new List<ApplicationResponseMapper.ContactPointAddress>();
@@ -303,8 +322,11 @@ global with sharing class ApplicationDataAPI {
       mapperContactAddress.State = contactAddress.State;
       mapperContactAddress.StateCode = contactAddress.StateCode__c;
       mapperContactAddress.Street = contactAddress.Street;
-      mapperContactAddress.Order = contactAddress.Order__c;
-      mapperContactAddress.OccupancyStatus = contactAddress.UsageType;
+      // mapperContactAddress.Order = contactAddress.Order__c;
+      mapperContactAddress.OccupancyStatus = getStatusMapping(
+        'UsageType',
+        contactAddress.UsageType
+      );
       mapperContactAddress.OccupancyDuration = contactAddress.OccupancyDuration__c;
       mapperContactAddressList.add(mapperContactAddress);
     }
@@ -312,7 +334,7 @@ global with sharing class ApplicationDataAPI {
   }
 
   /* Not required for phase 1
-  global static list<ApplicationResponseMapper.AssetsAndLiabilities> mapContactAddress(
+  global virtual list<ApplicationResponseMapper.AssetsAndLiabilities> mapContactAddress(
     List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilitiesList
   ) {
     list<ApplicationResponseMapper.AssetsAndLiabilities> mapperAssetsAndLiabilitiesList = new List<ApplicationResponseMapper.AssetsAndLiabilities>();
@@ -338,7 +360,7 @@ global with sharing class ApplicationDataAPI {
    * @param string applicationId
    * @return ApexResponse
    **/
-  public static Object obtainApplicationFiles(string applicationNumber) {
+  public virtual Object obtainApplicationFiles(string applicationNumber) {
     log
       ?.fine(
         'Inside obtainApplicationFiles -> applicationNumber -> ' +
@@ -384,7 +406,7 @@ global with sharing class ApplicationDataAPI {
    * @param Map<String Object> params
    * @return Account
    **/
-  global static Account readApplicationWithChild(Id applicationId) {
+  global virtual Account readApplicationWithChild(Id applicationId) {
     Account application = DataAPIRepository.readApplicationWithChild(
       applicationId
     );
@@ -407,11 +429,30 @@ global with sharing class ApplicationDataAPI {
    * @author Digital Align Team | 10-26-2021
    * @param List<Applicant__c> applicants
    **/
-  global static List<Applicant__c> readApplicantsWithChild(
+  global virtual List<Applicant__c> readApplicantsWithChild(
     List<Applicant__c> applicants
   ) {
     return DataAPIRepository.readApplicantsWithChild(
       new Map<Id, SObject>(applicants).keySet()
     );
+  }
+
+  /**
+   * @description
+   * @author Digital Align | 01-20-2022
+   * @param String fieldName
+   * @param String value
+   * @return virtual
+   **/
+  global virtual String getStatusMapping(String fieldName, String value) {
+    return (new Map<String, String>{
+        'Buying / Own With Mortgage' => 'Buying/Own With Mortgage',
+        'Government Quarters' => 'Government Quarters',
+        'Live With Parents' => 'Live With Parents',
+        'Other' => 'Other',
+        'Own-Free and Clear' => 'Own-Free and Clear',
+        'Rent' => 'Rent'
+      })
+      .get(value);
   }
 }

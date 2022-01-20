@@ -6,9 +6,32 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class FundingDataAPI {
-  private static logger log = logger.getInstance(ApplicationDataAPI.class);
-  global static FundingResponseMapper obtainFundingData(
+global with sharing class FundingDataAPI extends AbstractService {
+  @TestVisible
+  private static FundingDataAPI serviceInstance;
+
+  public FundingDataAPI() {
+    super(FundingDataAPI.class);
+  }
+  /**
+   * @description Provides a singleton instance of FundingDataAPI from which all other class methods can be accessed.
+   * @author Digital Align Team | 01/17/2022
+   * @return Object  singleton
+   **/
+  public static FundingDataAPI getInstance() {
+    if (serviceInstance == null) {
+      serviceInstance = (FundingDataAPI) getInstance(FundingDataAPI.class);
+    }
+    return serviceInstance;
+  }
+
+  /**
+   * @description
+   * @author Digital Align | 01-20-2022
+   * @param string applicationNumber
+   * @return FundingResponseMapper
+   **/
+  global virtual FundingResponseMapper obtainFundingData(
     string applicationNumber
   ) {
     log
@@ -39,6 +62,7 @@ global with sharing class FundingDataAPI {
     mapper.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
     mapper.Stage = application.mflow__Stage__c;
     mapper.Status = application.FinServ__Status__c;
+    // mapper.Password = application.Password__c;
     mapper.FinancialApplication.addAll(
       mapFinancialApplication(financialApplications)
     );
@@ -47,7 +71,13 @@ global with sharing class FundingDataAPI {
     return mapper;
   }
 
-  global static list<FundingResponseMapper.FinancialAccount> mapFinancialApplication(
+  /**
+   * @description
+   * @author Digital Align | 01-20-2022
+   * @param List<FinServ__FinancialAccount__c> financialApplicationsList
+   * @return virtual
+   **/
+  global virtual list<FundingResponseMapper.FinancialAccount> mapFinancialApplication(
     List<FinServ__FinancialAccount__c> financialApplicationsList
   ) {
     list<FundingResponseMapper.FinancialAccount> mapperFinancialAccountList = new List<FundingResponseMapper.FinancialAccount>();
@@ -80,7 +110,7 @@ global with sharing class FundingDataAPI {
    * @param FinServ__FinancialAccountTransaction__c accountTransaction
    * @return FundingResponseMapper.FinancialAccountTransaction
    **/
-  global static List<FundingResponseMapper.FinancialAccountTransaction> mapFinancialAccountTranslation(
+  global virtual List<FundingResponseMapper.FinancialAccountTransaction> mapFinancialAccountTranslation(
     List<FinServ__FinancialAccountTransaction__c> accountTransactions
   ) {
     list<FundingResponseMapper.FinancialAccountTransaction> mapperAccountTransactions = new List<FundingResponseMapper.FinancialAccountTransaction>();
@@ -94,9 +124,33 @@ global with sharing class FundingDataAPI {
       mapperTransaction.FinancialInstitute = accountTransaction.mflow__FinancialInstitute__c;
       mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
       mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;
-      mapperTransaction.TransactionType = accountTransaction.FinServ__TransactionType__c;
+      mapperTransaction.TransactionType = getStatusMapping(
+        'FinServ__TransactionSubtype__c',
+        accountTransaction.FinServ__TransactionSubtype__c
+      );
+      mapperTransaction.TransactionDate = date.newinstance(
+        accountTransaction.FinServ__TransactionDate__c.year(),
+        accountTransaction.FinServ__TransactionDate__c.month(),
+        accountTransaction.FinServ__TransactionDate__c.day()
+      );
       mapperAccountTransactions.add(mapperTransaction);
     }
     return mapperAccountTransactions;
+  }
+
+  /**
+   * @description
+   * @author Digital Align | 01-20-2022
+   * @param String fieldName
+   * @param String value
+   * @return virtual
+   **/
+  global virtual String getStatusMapping(String fieldName, String value) {
+    return (new Map<String, String>{
+        'ACH' => 'ACH',
+        'Check' => 'Check',
+        'Cash Deposit' => 'Cash'
+      })
+      .get(value);
   }
 }

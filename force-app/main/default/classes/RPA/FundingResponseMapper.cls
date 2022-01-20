@@ -5,6 +5,7 @@ global with sharing class FundingResponseMapper {
   global String Application;
   global String Status;
   global String Stage;
+  global String Password;
   global FundingResponseMapper() {
     FinancialApplication = new List<FinancialAccount>();
   }
@@ -20,6 +21,7 @@ global with sharing class FundingResponseMapper {
     }
   }
   global class FinancialAccountTransaction {
+    global Date TransactionDate;
     global String AccountNumber;
     global Decimal Amount;
     global String FinancialInstitute;
