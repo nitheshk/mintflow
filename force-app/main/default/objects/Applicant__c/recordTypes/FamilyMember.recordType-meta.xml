@@ -212,7 +212,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>UnderReview</fullName>
+            <fullName>Under Review</fullName>
             <default>false</default>
         </values>
     </picklistValues>

@@ -33,7 +33,7 @@ public with sharing class ApplicationConstant {
   // KYC Status
   public static final String KYC_PASSED = 'Passed';
   public static final String KYC_FAILED = 'Failed';
-  public static final String KYC_UNDER_REVIEW = 'UnderReview';
+  public static final String KYC_UNDER_REVIEW = 'Under Review';
 
   //Flow Types
   public static final String FLOW_TYPE_APPLICATION = 'ApplicationFlow';
