@@ -2,7 +2,7 @@ import { LightningElement, track, api, wire } from "lwc";
 //controller
 import readApplicationWithChild from "@salesforce/apex/LwcCustomController.readApplicationWithChild";
 import { publish, MessageContext } from "lightning/messageService";
-import application360Details from "@salesforce/messageChannel/Application360RelatedFiles__c";
+import application360Details from "@salesforce/messageChannel/ViewRelatedFiles__c";
 
 export default class Application360View extends LightningElement {
   @api recordId;

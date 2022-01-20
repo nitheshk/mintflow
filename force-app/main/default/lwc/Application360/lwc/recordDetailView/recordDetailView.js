@@ -1,7 +1,7 @@
 import { LightningElement, track, api, wire } from "lwc";
 import timezone from "@salesforce/i18n/timeZone";
 import { publish, MessageContext } from "lightning/messageService";
-import application360Details from "@salesforce/messageChannel/Application360RelatedFiles__c";
+import application360Details from "@salesforce/messageChannel/ViewRelatedFiles__c";
 
 //controller
 import fetchFieldDetails from "@salesforce/apex/LwcCustomController.fetchFieldDetails";

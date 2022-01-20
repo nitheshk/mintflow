@@ -7,7 +7,7 @@ import {
   APPLICATION_SCOPE,
   MessageContext
 } from "lightning/messageService";
-import application360Details from "@salesforce/messageChannel/Application360RelatedFiles__c";
+import application360Details from "@salesforce/messageChannel/ViewRelatedFiles__c";
 export default class FilePrivewInLWC extends NavigationMixin(LightningElement) {
   @track titleName;
   @track recordIds = [];
