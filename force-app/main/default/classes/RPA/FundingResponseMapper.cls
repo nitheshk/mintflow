@@ -10,19 +10,19 @@ global with sharing class FundingResponseMapper {
     FinancialAccount = new List<FinancialAccount>();
   }
   global class FinancialAccount {
-    global String Id;
+    global String FinancialAccountId;
     global String Name;
     global String FinancialProduct;
     global String FinancialAccountType;
     global String PrimaryOwner;
     global String Ownership;
-    global List<FinancialAccountTransaction> FinancialApplicationTransaction;
+    global FinancialAccountTransaction FinancialApplicationTransaction;
     global FinancialAccount() {
-      FinancialApplicationTransaction = new List<FinancialAccountTransaction>();
+      FinancialApplicationTransaction = new FinancialAccountTransaction();
     }
   }
   global class FinancialAccountTransaction {
-    global String Id;
+    global String FinancialAccountTransactionId;
     global Date TransactionDate;
     global string InstitutionState;
     global String AccountNumber;

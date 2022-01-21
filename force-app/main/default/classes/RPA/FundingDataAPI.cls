@@ -94,7 +94,7 @@ global with sharing class FundingDataAPI extends AbstractService {
       FinServ__FinancialAccount__c finApplication : financialApplicationsList
     ) {
       FundingResponseMapper.FinancialAccount mapperFinancialAccount = new FundingResponseMapper.FinancialAccount();
-      mapperFinancialAccount.Id = finApplication.Id;
+      mapperFinancialAccount.FinancialAccountId = finApplication.Id;
       mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
       mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
       mapperFinancialAccount.Name = finApplication.Name;
@@ -108,6 +108,8 @@ global with sharing class FundingDataAPI extends AbstractService {
         mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
           finApplication.FinServ__FinancialAccountTranslations__r
         );
+      } else {
+        throw new CustomException('No financial transaction account found');
       }
       mapperFinancialAccountList.add(mapperFinancialAccount);
     }
@@ -119,34 +121,28 @@ global with sharing class FundingDataAPI extends AbstractService {
    * @param FinServ__FinancialAccountTransaction__c accountTransaction
    * @return FundingResponseMapper.FinancialAccountTransaction
    **/
-  global virtual List<FundingResponseMapper.FinancialAccountTransaction> mapFinancialAccountTranslation(
-    List<FinServ__FinancialAccountTransaction__c> accountTransactions
+  global virtual FundingResponseMapper.FinancialAccountTransaction mapFinancialAccountTranslation(
+    FinServ__FinancialAccountTransaction__c accountTransaction
   ) {
-    list<FundingResponseMapper.FinancialAccountTransaction> mapperAccountTransactions = new List<FundingResponseMapper.FinancialAccountTransaction>();
-    for (
-      FinServ__FinancialAccountTransaction__c accountTransaction : accountTransactions
-    ) {
-      FundingResponseMapper.FinancialAccountTransaction mapperTransaction = new FundingResponseMapper.FinancialAccountTransaction();
-      mapperTransaction.Id = accountTransaction.Id;
-      mapperTransaction.AccountHolderName = accountTransaction.mflow__AccountHolderName__c;
-      mapperTransaction.AccountNumber = accountTransaction.mflow__AccountNumber__c;
-      mapperTransaction.Amount = accountTransaction.FinServ__Amount__c;
-      mapperTransaction.FinancialInstitute = accountTransaction.mflow__FinancialInstitute__c;
-      mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
-      mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;
-      mapperTransaction.InstitutionState = accountTransaction.mflow__TransactionStateCode__c;
-      mapperTransaction.TransactionType = getStatusMapping(
-        'FinServ__TransactionSubtype__c',
-        accountTransaction.FinServ__TransactionSubtype__c
-      );
-      mapperTransaction.TransactionDate = date.newinstance(
-        accountTransaction.FinServ__TransactionDate__c.year(),
-        accountTransaction.FinServ__TransactionDate__c.month(),
-        accountTransaction.FinServ__TransactionDate__c.day()
-      );
-      mapperAccountTransactions.add(mapperTransaction);
-    }
-    return mapperAccountTransactions;
+    FundingResponseMapper.FinancialAccountTransaction mapperTransaction = new FundingResponseMapper.FinancialAccountTransaction();
+    mapperTransaction.FinancialAccountTransactionId = accountTransaction.Id;
+    mapperTransaction.AccountHolderName = accountTransaction.mflow__AccountHolderName__c;
+    mapperTransaction.AccountNumber = accountTransaction.mflow__AccountNumber__c;
+    mapperTransaction.Amount = accountTransaction.FinServ__Amount__c;
+    mapperTransaction.FinancialInstitute = accountTransaction.mflow__FinancialInstitute__c;
+    mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
+    mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;
+    mapperTransaction.InstitutionState = accountTransaction.mflow__TransactionStateCode__c;
+    mapperTransaction.TransactionType = getStatusMapping(
+      'FinServ__TransactionSubtype__c',
+      accountTransaction.FinServ__TransactionSubtype__c
+    );
+    mapperTransaction.TransactionDate = date.newinstance(
+      accountTransaction.FinServ__TransactionDate__c.year(),
+      accountTransaction.FinServ__TransactionDate__c.month(),
+      accountTransaction.FinServ__TransactionDate__c.day()
+    );
+    return mapperTransaction;
   }
 
   /**
