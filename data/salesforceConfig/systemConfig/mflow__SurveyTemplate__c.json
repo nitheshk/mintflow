@@ -800,25 +800,6 @@
             "mflow__ShortDescription__c": "Has the IRS notified you that you are subject to backup withholding because you have failed to report all interest or dividends on your tax return",
             "mflow__ShowQuestionNumber__c": false,
             "mflow__hasChild__c": false
-          },
-          {
-            "attributes": {
-              "type": "mflow__SurveyQuestion__c",
-              "referenceId": "SurveyQuestionRef_2_12"
-            },
-            "Name": "What brought you to P1FCU?",
-            "mflow__CustomStyle__c": "slds-var-p-around_small",
-            "mflow__DeleteRecord__c": false,
-            "mflow__LongDescription__c": "What brought you to P1FCU?",
-            "mflow__OptionType__c": "Picklist",
-            "mflow__Options__c": "[{\"value\":\"Media Advertising\",\"name\":\"Media Advertising\"},{\"value\":\"Social Media\",\"name\":\"Social Media\"},{\"value\":\"Search Engine\",\"name\":\"Search Engine\"},{\"value\":\"Employer\",\"name\":\"Employer\"}]",
-            "mflow__Order__c": 13,
-            "mflow__QuestionCode__c": "Question13",
-            "mflow__QuestionNumber__c": 13,
-            "mflow__Required__c": true,
-            "mflow__ShortDescription__c": "What brought you to P1FCU?",
-            "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": true
           }
         ]
       }
@@ -829,10 +810,10 @@
         "referenceId": "SurveyTemplateRef_3"
       },
       "Name": "CustomerFeedbackQuestions",
-      "mflow__ApplicantType__c": "Primary;Joint",
+      "mflow__ApplicantType__c": "Primary",
       "mflow__Channel__c": "Virtual",
       "mflow__DeleteRecord__c": false,
-      "mflow__EventIdentifier__c": "CustomerFeedbackQuestions",
+      "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
       "mflow__Order__c": 1,
       "mflow__isActive__c": true,
       "mflow__SurveyQuestions__r": {
@@ -850,9 +831,9 @@
             "mflow__LongDescription__c": "What brought you to P1FCU?",
             "mflow__OptionType__c": "Picklist",
             "mflow__Options__c": "[{\"value\":\"Media Advertising\",\"name\":\"Media Advertising\"},{\"value\":\"Social Media\",\"name\":\"Social Media\"},{\"value\":\"Search Engine\",\"name\":\"Search Engine\"}]",
-            "mflow__Order__c": 1,
-            "mflow__QuestionCode__c": "Question1",
-            "mflow__QuestionNumber__c": 1,
+            "mflow__Order__c": 20,
+            "mflow__QuestionCode__c": "Question20",
+            "mflow__QuestionNumber__c": 20,
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "What brought you to P1FCU?",
             "mflow__ShowQuestionNumber__c": false,

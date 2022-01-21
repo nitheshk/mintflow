@@ -54,8 +54,12 @@ global with sharing class SurveyResolver extends AbstractService {
     //resolve survey using custom filter
     surveys.addAll(resolveSurveys(application, filters));
     // remove duplicate survey
-    surveys = removeDuplicateSurveys(surveys);
-    SurveyRepository.upsertRecords(surveys);
+    if (!surveys.isEmpty()) {
+      surveys = this.removeDuplicateSurveys(surveys);
+      surveys = this.sort(surveys);
+      SurveyRepository.upsertRecords(surveys);
+    }
+
     return surveys;
   }
 
@@ -216,5 +220,46 @@ global with sharing class SurveyResolver extends AbstractService {
       }
     }
     return newSurveyList;
+  }
+
+  // Custom Sort Wrapper Class
+  global class SurveyWrapper implements Comparable {
+    global Survey__c survey;
+    // Constructor
+    global SurveyWrapper(Survey__c survey) {
+      this.survey = survey;
+    }
+    global Integer compareTo(Object compareTo) {
+      SurveyWrapper compareToSurvey = (SurveyWrapper) compareTo;
+      // The return value of 0 indicates that both elements are equal.
+      Integer returnValue = 0;
+      if (survey.Order__c > compareToSurvey.survey.Order__c) {
+        // Set return value to a positive value.
+        returnValue = 1;
+      } else if (survey.Order__c < compareToSurvey.survey.Order__c) {
+        // Set return value to a negative value.
+        returnValue = -1;
+      }
+      return returnValue;
+    }
+  }
+
+  /**
+   * @description  Custom Sort for survey quesitons
+   * @author Digital Align Team | 01-21-2022
+   * @param List<Survey__c> surveys
+   * @return List<Survey__c>
+   **/
+  global virtual List<Survey__c> sort(List<Survey__c> surveys) {
+    List<SurveyWrapper> surveyWrapperList = new List<SurveyWrapper>();
+    for (Survey__c survey : surveys) {
+      surveyWrapperList.add(new SurveyWrapper(survey));
+    }
+    surveyWrapperList.sort();
+    surveys = new List<Survey__c>();
+    for (SurveyWrapper surveyWrapper : surveyWrapperList) {
+      surveys.add(surveyWrapper.survey);
+    }
+    return surveys;
   }
 }
