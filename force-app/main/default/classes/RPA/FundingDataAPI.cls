@@ -39,7 +39,7 @@ global with sharing class FundingDataAPI extends AbstractService {
         'Inside obtainFundingData -> applicationNumber -> ' + applicationNumber
       );
     FundingResponseMapper mapper = new FundingResponseMapper();
-
+    Applicant__c primaryApplicant;
     if (String.isBlank(applicationNumber)) {
       throw new CustomException(
         System.Label.Application_ApplicationNameCannotBeBlank
@@ -58,12 +58,21 @@ global with sharing class FundingDataAPI extends AbstractService {
     if (CollectionUtils.isListEmpty(financialApplications)) {
       throw new customException(System.Label.Application_ApplicationNotFound);
     }
+    for (Applicant__c applicant : application.applicants__r) {
+      Set<String> applicantTypes = new Set<String>(
+        applicant.ApplicantType__c.split(';')
+      );
+      if (applicantTypes.contains('Primary')) {
+        primaryApplicant = applicant;
+        break;
+      }
+    }
     mapper.Application = application.Id;
     mapper.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
     mapper.Stage = application.mflow__Stage__c;
     mapper.Status = application.FinServ__Status__c;
-    // mapper.Password = application.Password__c;
-    mapper.FinancialApplication.addAll(
+    mapper.Password = primaryApplicant.Password__c;
+    mapper.FinancialAccount.addAll(
       mapFinancialApplication(financialApplications)
     );
 
@@ -85,7 +94,7 @@ global with sharing class FundingDataAPI extends AbstractService {
       FinServ__FinancialAccount__c finApplication : financialApplicationsList
     ) {
       FundingResponseMapper.FinancialAccount mapperFinancialAccount = new FundingResponseMapper.FinancialAccount();
-
+      mapperFinancialAccount.Id = finApplication.Id;
       mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
       mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
       mapperFinancialAccount.Name = finApplication.Name;
@@ -118,12 +127,14 @@ global with sharing class FundingDataAPI extends AbstractService {
       FinServ__FinancialAccountTransaction__c accountTransaction : accountTransactions
     ) {
       FundingResponseMapper.FinancialAccountTransaction mapperTransaction = new FundingResponseMapper.FinancialAccountTransaction();
+      mapperTransaction.Id = accountTransaction.Id;
       mapperTransaction.AccountHolderName = accountTransaction.mflow__AccountHolderName__c;
       mapperTransaction.AccountNumber = accountTransaction.mflow__AccountNumber__c;
       mapperTransaction.Amount = accountTransaction.FinServ__Amount__c;
       mapperTransaction.FinancialInstitute = accountTransaction.mflow__FinancialInstitute__c;
       mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
       mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;
+      mapperTransaction.InstitutionState = accountTransaction.mflow__TransactionStateCode__c;
       mapperTransaction.TransactionType = getStatusMapping(
         'FinServ__TransactionSubtype__c',
         accountTransaction.FinServ__TransactionSubtype__c
