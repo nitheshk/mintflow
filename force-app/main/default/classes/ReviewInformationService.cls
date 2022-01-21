@@ -100,7 +100,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       //1. Push Primary applicant to RPA Queue
       // Need to move future thr is dml operation before this
       HttpBuilder.Response response = RpaProcessService.getInstance()
-        .scheduleReviewApplication(application);
+        .scheduleApplication(application);
       if (response.statusCode == 400) {
         application.Stage__c = 'Exception';
         NotificationService.getInstance()
@@ -196,7 +196,7 @@ global with sharing class ReviewInformationService extends AbstractService {
       application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       // Need to move future thr is dml operation before this
       HttpBuilder.Response response = RpaProcessService.getInstance()
-        .scheduleReviewApplication(application);
+        .scheduleApplication(application);
       if (response.statusCode == 400) {
         application.Stage__c = 'Exception';
         NotificationService.getInstance()

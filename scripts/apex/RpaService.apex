@@ -15,7 +15,16 @@ HTTPResponse res = http.send(req);
 System.debug(res.getBody());
 system.debug(HttpBuilder.getAPISetting());
 
-// #4
+// #4 // applicationFlow
+ApexRequest request = new ApexRequest();
+ApexRequest.setFlowType(ApplicationConstant.FLOW_TYPE_APPLICATION);
 Account res = ApplicationService.getInstance()
-  .readApplicationWithChild('0016D00000ZBlHDQA1');
-System.debug(RpaProcessService.getInstance().scheduleReviewApplication(res));
+  .readApplicationWithChild('0016D00000apNDpQAM');
+System.debug(RpaProcessService.getInstance().scheduleApplication(res));
+
+// #5 // fundingFlow
+ApexRequest request = new ApexRequest();
+ApexRequest.setFlowType(ApplicationConstant.FLOW_TYPE_FUNDING);
+Account res = ApplicationService.getInstance()
+  .readApplicationWithChild('0016D00000apNDpQAM');
+System.debug(RpaProcessService.getInstance().scheduleApplication(res));

@@ -124,9 +124,7 @@ global with sharing class RpaProcessService extends AbstractService {
    * @param Account application
    * @return HttpBuilder.Response
    **/
-  global virtual HttpBuilder.Response scheduleReviewApplication(
-    Account application
-  ) {
+  global virtual HttpBuilder.Response scheduleApplication(Account application) {
     Flow.initialize(application.Id);
     Flow.setFlow('Rpa-Process: review application');
     Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
@@ -146,7 +144,18 @@ global with sharing class RpaProcessService extends AbstractService {
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
 
         Map<String, Object> params = new Map<String, Object>();
-        params.put('Name', HttpBuilder.getApiConstant('UipathQueueName'));
+        if (
+          ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_APPLICATION
+        ) {
+          params.put(
+            'Name',
+            HttpBuilder.getApiConstant('ApplicationQueueName')
+          );
+        } else if (
+          ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_FUNDING
+        ) {
+          params.put('Name', HttpBuilder.getApiConstant('FundingQueueName'));
+        }
         params.put('Priority', HttpBuilder.getApiConstant('UipathPriority'));
         params.put(
           'SpecificContent',
