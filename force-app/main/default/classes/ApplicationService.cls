@@ -103,6 +103,10 @@ global with sharing class ApplicationService extends AbstractService {
     application.Version__c = 'V1.0.1';
     application = ApplicationServiceHelper.getInstance()
       .resolveBranchLocation(application);
+    // #info
+    // Added for customer community user license only
+    // Work for Cusotmer Community plus user without owner assingment
+    application.OwnerId = UserUtils.getCurrentUser().CreatedById;
     ApplicationRepository.upsertRecord(application);
 
     application = ApplicationRepository.readApplicationById(application.Id);
