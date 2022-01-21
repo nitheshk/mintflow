@@ -85,6 +85,9 @@ global with sharing class RpaProcessService extends AbstractService {
       when 'updatememberdetails' {
         this.buildUpdateMemberDetails();
       }
+      when 'updatefundingdetails' {
+        this.buildUpdateFundingDetails();
+      }
     }
   }
 
@@ -181,7 +184,24 @@ global with sharing class RpaProcessService extends AbstractService {
   }
 
   /**
-   * @description To update the application with member details from external system
+   * @description Step2: Fetch complete application data from review submit using applicationID
+   * @author Digital Align | 11-30-2021
+   **/
+  global virtual void buildObtainReviewApplicationData() {
+    RestRequest restReq = RestContext.request;
+    String applicationName = restReq.params.get('applicationName');
+    ApplicationResponseMapper applicationResponse = ApplicationDataAPI.getInstance()
+      .obtainApplicationData(applicationName);
+    RestResponse response = RestContext.response;
+    response.responseBody = Blob.valueOf(JSON.serialize(applicationResponse));
+    response.statusCode = 200;
+    response.addHeader('Content-Type', 'application/json');
+  }
+
+  /**
+   * @description 
+   * Step3:
+   * To update the application with member details from external system
    * @example Request Json Looking Like below
    * Post Request
    * Connected App : https://connect-customization-1792-dev-ed.cs73.my.salesforce.com/services/apexrest/mflow/rpa/v1/updatememberdetails
@@ -210,6 +230,7 @@ global with sharing class RpaProcessService extends AbstractService {
         }
     ]
     }
+  /** 
    * @author Digital Align Team | 11-25-2021
    **/
   global virtual void buildUpdateMemberDetails() {
@@ -226,22 +247,9 @@ global with sharing class RpaProcessService extends AbstractService {
   }
 
   /**
-   * @description Step2: Fetch complete application data from review submit using applicationID
-   * @author Digital Align | 11-30-2021
-   **/
-  global virtual void buildObtainReviewApplicationData() {
-    RestRequest restReq = RestContext.request;
-    String applicationName = restReq.params.get('applicationName');
-    ApplicationResponseMapper applicationResponse = ApplicationDataAPI.getInstance()
-      .obtainApplicationData(applicationName);
-    RestResponse response = RestContext.response;
-    response.responseBody = Blob.valueOf(JSON.serialize(applicationResponse));
-    response.statusCode = 200;
-    response.addHeader('Content-Type', 'application/json');
-  }
-
-  /**
-   * @description Step3: Fetch all funding data submitted by customer using applicationID
+   * @description
+   * Step4:
+   * Fetch all funding data submitted by customer using applicationID
    * @author Digital Align | 11-30-2021
    **/
   global virtual void buildObtainFundingData() {
@@ -251,6 +259,24 @@ global with sharing class RpaProcessService extends AbstractService {
       .obtainFundingData(applicationName);
     RestResponse response = RestContext.response;
     response.responseBody = Blob.valueOf(JSON.serialize(fundingResponse));
+    response.statusCode = 200;
+    response.addHeader('Content-Type', 'application/json');
+  }
+
+  /**
+   * @description
+   * Step5:
+   * Update Membership details returned from external application in salesforce
+   * @author Digital Align | 01-21-2022
+   **/
+  global virtual void buildUpdateFundingDetails() {
+    log?.debug('Inside buildUpdateFundingDetails');
+    log?.debug('requestBody =' + RestContext.request.requestBody.toString());
+
+    RestResponse response = RestContext.response;
+    String responseString =
+      'Request received :' + RestContext.request.requestBody.toString();
+    response.responseBody = Blob.valueOf(responseString);
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');
   }
