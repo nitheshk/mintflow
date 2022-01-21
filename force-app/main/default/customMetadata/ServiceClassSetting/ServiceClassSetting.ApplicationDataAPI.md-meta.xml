@@ -4,11 +4,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-    <label>ApplicationDataAPI</label>
+    <label>BuildApplicationWrapper</label>
     <protected>false</protected>
     <values>
         <field>ApexClassName__c</field>
-        <value xsi:type="xsd:string">ApplicationDataAPI</value>
+        <value xsi:type="xsd:string">BuildApplicationWrapper</value>
     </values>
     <values>
         <field>ClassType__c</field>
@@ -20,6 +20,6 @@
     </values>
     <values>
         <field>Functionality__c</field>
-        <value xsi:type="xsd:string">ApplicationDataAPI</value>
+        <value xsi:type="xsd:string">BuildApplicationWrapper</value>
     </values>
 </CustomMetadata>

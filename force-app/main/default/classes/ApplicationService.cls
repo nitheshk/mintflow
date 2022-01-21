@@ -305,9 +305,9 @@ global with sharing class ApplicationService extends AbstractService {
    * @return Account
    **/
   global virtual Account processMembershipKYC(String resultJson) {
-    ApplicationResponseMapper.KYCResult kycResult = (ApplicationResponseMapper.KYCResult) JSON.deserialize(
+    ApplicationSubmissionResponse.KYCResult kycResult = (ApplicationSubmissionResponse.KYCResult) JSON.deserialize(
       resultJson,
-      ApplicationResponseMapper.KYCResult.class
+      ApplicationSubmissionResponse.KYCResult.class
     );
     // When result is null
     if (kycResult == null) {

@@ -1,12 +1,12 @@
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
-global with sharing class FundingResponseMapper {
+global with sharing class FundingSubmissionResponse {
   global String ExternalApplicationNumber;
   global List<FinancialAccount> FinancialAccount;
   global String Application;
   global String Status;
   global String Stage;
   global String Password;
-  global FundingResponseMapper() {
+  global FundingSubmissionResponse() {
     FinancialAccount = new List<FinancialAccount>();
   }
   global class FinancialAccount {

@@ -5,7 +5,7 @@
  * @reference
  * @description Repository to collect application/ funding data which is then used by RPA
  **/ @SuppressWarnings('PMD.AvoidGlobalModifier')
-global virtual inherited sharing class DataAPIRepository extends DatabaseUtils {
+global virtual inherited sharing class SubmissionRepository extends DatabaseUtils {
   /**
    * @description Read Application with child record using application Name
    * Applicants contains only ids

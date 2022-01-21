@@ -6,10 +6,10 @@
  * @description Application Response Mapper class to sum up application data
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
-global with sharing class ApplicationResponseMapper {
+global with sharing class ApplicationSubmissionResponse {
   global Account Application;
 
-  global ApplicationResponseMapper() {
+  global ApplicationSubmissionResponse() {
     Application = new Account();
   }
   //global List<FinancialAccount> FinancialAccounts;

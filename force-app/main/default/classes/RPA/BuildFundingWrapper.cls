@@ -6,21 +6,23 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class FundingDataAPI extends AbstractService {
+global with sharing class BuildFundingWrapper extends AbstractService {
   @TestVisible
-  private static FundingDataAPI serviceInstance;
+  private static BuildFundingWrapper serviceInstance;
 
-  public FundingDataAPI() {
-    super(FundingDataAPI.class);
+  public BuildFundingWrapper() {
+    super(BuildFundingWrapper.class);
   }
   /**
-   * @description Provides a singleton instance of FundingDataAPI from which all other class methods can be accessed.
+   * @description Provides a singleton instance of BuildFundingWrapper from which all other class methods can be accessed.
    * @author Digital Align Team | 01/17/2022
    * @return Object  singleton
    **/
-  public static FundingDataAPI getInstance() {
+  public static BuildFundingWrapper getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (FundingDataAPI) getInstance(FundingDataAPI.class);
+      serviceInstance = (BuildFundingWrapper) getInstance(
+        BuildFundingWrapper.class
+      );
     }
     return serviceInstance;
   }
@@ -29,30 +31,30 @@ global with sharing class FundingDataAPI extends AbstractService {
    * @description
    * @author Digital Align | 01-20-2022
    * @param string applicationNumber
-   * @return FundingResponseMapper
+   * @return FundingSubmissionResponse
    **/
-  global virtual FundingResponseMapper obtainFundingData(
+  global virtual FundingSubmissionResponse obtainFundingData(
     string applicationNumber
   ) {
     log
       ?.fine(
         'Inside obtainFundingData -> applicationNumber -> ' + applicationNumber
       );
-    FundingResponseMapper mapper = new FundingResponseMapper();
+    FundingSubmissionResponse mapper = new FundingSubmissionResponse();
     Applicant__c primaryApplicant;
     if (String.isBlank(applicationNumber)) {
       throw new CustomException(
         System.Label.Application_ApplicationNameCannotBeBlank
       );
     }
-    Account application = DataAPIRepository.readApplicationByApplicationNumber(
+    Account application = SubmissionRepository.readApplicationByApplicationNumber(
       applicationNumber
     );
 
     if (application == null) {
       throw new customException(System.Label.Application_ApplicationNotFound);
     }
-    List<FinServ__FinancialAccount__c> financialApplications = DataAPIRepository.readFinancialAccountWithChildByApplicationId(
+    List<FinServ__FinancialAccount__c> financialApplications = SubmissionRepository.readFinancialAccountWithChildByApplicationId(
       application.Id
     );
     if (CollectionUtils.isListEmpty(financialApplications)) {
@@ -86,14 +88,14 @@ global with sharing class FundingDataAPI extends AbstractService {
    * @param List<FinServ__FinancialAccount__c> financialApplicationsList
    * @return virtual
    **/
-  global virtual list<FundingResponseMapper.FinancialAccount> mapFinancialApplication(
+  global virtual list<FundingSubmissionResponse.FinancialAccount> mapFinancialApplication(
     List<FinServ__FinancialAccount__c> financialApplicationsList
   ) {
-    list<FundingResponseMapper.FinancialAccount> mapperFinancialAccountList = new List<FundingResponseMapper.FinancialAccount>();
+    list<FundingSubmissionResponse.FinancialAccount> mapperFinancialAccountList = new List<FundingSubmissionResponse.FinancialAccount>();
     for (
       FinServ__FinancialAccount__c finApplication : financialApplicationsList
     ) {
-      FundingResponseMapper.FinancialAccount mapperFinancialAccount = new FundingResponseMapper.FinancialAccount();
+      FundingSubmissionResponse.FinancialAccount mapperFinancialAccount = new FundingSubmissionResponse.FinancialAccount();
       mapperFinancialAccount.FinancialAccountId = finApplication.Id;
       mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
       mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
@@ -119,12 +121,12 @@ global with sharing class FundingDataAPI extends AbstractService {
    * @description
    * @author Digital Align | 01-10-2022
    * @param FinServ__FinancialAccountTransaction__c accountTransaction
-   * @return FundingResponseMapper.FinancialAccountTransaction
+   * @return FundingSubmissionResponse.FinancialAccountTransaction
    **/
-  global virtual FundingResponseMapper.FinancialAccountTransaction mapFinancialAccountTranslation(
+  global virtual FundingSubmissionResponse.FinancialAccountTransaction mapFinancialAccountTranslation(
     FinServ__FinancialAccountTransaction__c accountTransaction
   ) {
-    FundingResponseMapper.FinancialAccountTransaction mapperTransaction = new FundingResponseMapper.FinancialAccountTransaction();
+    FundingSubmissionResponse.FinancialAccountTransaction mapperTransaction = new FundingSubmissionResponse.FinancialAccountTransaction();
     mapperTransaction.FinancialAccountTransactionId = accountTransaction.Id;
     mapperTransaction.AccountHolderName = accountTransaction.mflow__AccountHolderName__c;
     mapperTransaction.AccountNumber = accountTransaction.mflow__AccountNumber__c;

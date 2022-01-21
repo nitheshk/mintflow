@@ -1,7 +1,13 @@
-string applicationId = 'App-0002'; // account ID
+string applicationId = 'App-0083'; // account ID
 system.debug(
-  (JSON.serialize(ApplicationDataAPI.obtainApplicationData(applicationId)))
+  (JSON.serialize(
+    BuildApplicationWrapper.getInstance().obtainApplicationData(applicationId)
+  ))
 );
 
-string applicationId = 'App-0008'; // account ID
-system.debug((JSON.serialize(FundingDataAPI.obtainFundingData(applicationId))));
+string applicationId = 'App-0083'; // account ID
+system.debug(
+  (JSON.serialize(
+    BuildFundingWrapper.getInstance().obtainFundingData(applicationId)
+  ))
+);

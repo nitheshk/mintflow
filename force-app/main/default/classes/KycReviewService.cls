@@ -41,12 +41,12 @@ global with sharing class KycReviewService extends AbstractService {
    * Used when kyc result is return from Server
    * @author Digital Align Team | 12-07-2021
    * @param Account application
-   * @param ApplicationResponseMapper.KYCResult kycResult
+   * @param ApplicationSubmissionResponse.KYCResult kycResult
    * @return Account
    **/
   global virtual Account processExistingMember(
     Account application,
-    ApplicationResponseMapper.KYCResult kycResult
+    ApplicationSubmissionResponse.KYCResult kycResult
   ) {
     log?.debug('Inside processExistingMember');
     application.isMemberFlow__c = false;
@@ -77,12 +77,12 @@ global with sharing class KycReviewService extends AbstractService {
    * @description
    * @author Digital Align Team | 12-08-2021
    * @param Account application
-   * @param ApplicationResponseMapper.KYCResult kycResult
+   * @param ApplicationSubmissionResponse.KYCResult kycResult
    * @return Account
    **/
   global virtual Account updateApplicationKycDetails(
     Account application,
-    ApplicationResponseMapper.KYCResult kycResult
+    ApplicationSubmissionResponse.KYCResult kycResult
   ) {
     Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(
       application.Applicants__r
@@ -90,7 +90,7 @@ global with sharing class KycReviewService extends AbstractService {
 
     if (kycResult?.applicants != null) {
       for (
-        ApplicationResponseMapper.KYCApplicantResult applicantKyc : kycResult.applicants
+        ApplicationSubmissionResponse.KYCApplicantResult applicantKyc : kycResult.applicants
       ) {
         Applicant__c applicant = applicantMap.get(applicantKyc.ApplicantId);
         if (applicant == null) {

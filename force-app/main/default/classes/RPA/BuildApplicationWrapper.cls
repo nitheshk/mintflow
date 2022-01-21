@@ -6,22 +6,22 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicationDataAPI extends AbstractService {
+global with sharing class BuildApplicationWrapper extends AbstractService {
   @TestVisible
-  private static ApplicationDataAPI serviceInstance;
+  private static BuildApplicationWrapper serviceInstance;
 
-  public ApplicationDataAPI() {
-    super(ApplicationDataAPI.class);
+  public BuildApplicationWrapper() {
+    super(BuildApplicationWrapper.class);
   }
   /**
-   * @description Provides a singleton instance of ApplicationDataAPI from which all other class methods can be accessed.
+   * @description Provides a singleton instance of BuildApplicationWrapper from which all other class methods can be accessed.
    * @author Digital Align Team | 01/17/2022
    * @return Object  singleton
    **/
-  public static ApplicationDataAPI getInstance() {
+  public static BuildApplicationWrapper getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (ApplicationDataAPI) getInstance(
-        ApplicationDataAPI.class
+      serviceInstance = (BuildApplicationWrapper) getInstance(
+        BuildApplicationWrapper.class
       );
     }
     return serviceInstance;
@@ -31,9 +31,9 @@ global with sharing class ApplicationDataAPI extends AbstractService {
    * @description
    * @author Digital Align | 11-10-2021
    * @param string applicationId
-   * @return ApplicationResponseMapper
+   * @return ApplicationSubmissionResponse
    **/
-  global virtual ApplicationResponseMapper obtainApplicationData(
+  global virtual ApplicationSubmissionResponse obtainApplicationData(
     string applicationNumber
   ) {
     {
@@ -42,14 +42,14 @@ global with sharing class ApplicationDataAPI extends AbstractService {
           'Inside obtainApplicationData -> applicationNumber -> ' +
           applicationNumber
         );
-      ApplicationResponseMapper mapper = new ApplicationResponseMapper();
+      ApplicationSubmissionResponse mapper = new ApplicationSubmissionResponse();
 
       if (String.isBlank(applicationNumber)) {
         throw new CustomException(
           System.Label.Application_ApplicationNameCannotBeBlank
         );
       }
-      Account application = DataAPIRepository.readApplicationByApplicationNumber(
+      Account application = SubmissionRepository.readApplicationByApplicationNumber(
         applicationNumber
       );
       if (application == null) {
@@ -59,7 +59,7 @@ global with sharing class ApplicationDataAPI extends AbstractService {
 
       log?.debug('Full Application Json : ' + json.serialize(application));
       if (application != null) {
-        ApplicationResponseMapper.Account mapperApplication = new ApplicationResponseMapper.Account();
+        ApplicationSubmissionResponse.Account mapperApplication = new ApplicationSubmissionResponse.Account();
         mapperApplication.ApplicationId = application.Id;
         mapperApplication.ApplicationNumber = application.ApplicationNumber__c;
         mapperApplication.BranchCode = application.FinServ__BranchCode__c;
@@ -104,14 +104,14 @@ global with sharing class ApplicationDataAPI extends AbstractService {
    * @description
    * @author Digital Align | 11-16-2021
    * @param List<applicant__c> applicantList
-   * @return list<ApplicationResponseMapper.Applicant>
+   * @return list<ApplicationSubmissionResponse.Applicant>
    **/
-  global virtual list<ApplicationResponseMapper.Applicant> mapApplicant(
+  global virtual list<ApplicationSubmissionResponse.Applicant> mapApplicant(
     List<applicant__c> applicantList
   ) {
-    list<ApplicationResponseMapper.Applicant> mapperApplicantList = new List<ApplicationResponseMapper.Applicant>();
+    list<ApplicationSubmissionResponse.Applicant> mapperApplicantList = new List<ApplicationSubmissionResponse.Applicant>();
     for (applicant__c applicant : applicantList) {
-      ApplicationResponseMapper.Applicant mapperApplicant = new ApplicationResponseMapper.Applicant();
+      ApplicationSubmissionResponse.Applicant mapperApplicant = new ApplicationSubmissionResponse.Applicant();
       mapperApplicant.ApplicantId = applicant.Id;
       mapperApplicant.Application = applicant.Application__c;
       mapperApplicant.FirstName = applicant.FirstName__c;
@@ -191,12 +191,12 @@ global with sharing class ApplicationDataAPI extends AbstractService {
    * @param List<FinServ__Employment__c> employmentList
    * @return virtual
    **/
-  global virtual list<ApplicationResponseMapper.Employment> mapEmployment(
+  global virtual list<ApplicationSubmissionResponse.Employment> mapEmployment(
     List<FinServ__Employment__c> employmentList
   ) {
-    list<ApplicationResponseMapper.Employment> mapperEmploymentList = new List<ApplicationResponseMapper.Employment>();
+    list<ApplicationSubmissionResponse.Employment> mapperEmploymentList = new List<ApplicationSubmissionResponse.Employment>();
     for (FinServ__Employment__c employment : employmentList) {
-      ApplicationResponseMapper.Employment mapperEmployment = new ApplicationResponseMapper.Employment();
+      ApplicationSubmissionResponse.Employment mapperEmployment = new ApplicationSubmissionResponse.Employment();
       mapperEmployment.EmploymentId = employment.Id;
       mapperEmployment.EmploymentType = employment.EmploymentType__c;
       mapperEmployment.EmployerName = employment.Name;
@@ -222,12 +222,12 @@ global with sharing class ApplicationDataAPI extends AbstractService {
    * @param List<FinServ__IdentificationDocument__c> identityList
    * @return virtual
    **/
-  global virtual list<ApplicationResponseMapper.IdentificationDocument> mapIdentity(
+  global virtual list<ApplicationSubmissionResponse.IdentificationDocument> mapIdentity(
     List<FinServ__IdentificationDocument__c> identityList
   ) {
-    list<ApplicationResponseMapper.IdentificationDocument> mapperIdentityList = new List<ApplicationResponseMapper.IdentificationDocument>();
+    list<ApplicationSubmissionResponse.IdentificationDocument> mapperIdentityList = new List<ApplicationSubmissionResponse.IdentificationDocument>();
     for (FinServ__IdentificationDocument__c identity : identityList) {
-      ApplicationResponseMapper.IdentificationDocument mapperIdentity = new ApplicationResponseMapper.IdentificationDocument();
+      ApplicationSubmissionResponse.IdentificationDocument mapperIdentity = new ApplicationSubmissionResponse.IdentificationDocument();
       mapperIdentity.IdentificationDocumentId = identity.Id;
       mapperIdentity.IssuingCountry = identity.FinServ__IssuingCountry__c;
       mapperIdentity.DocumentNumber = identity.FinServ__DocumentNumber__c;
@@ -254,12 +254,12 @@ global with sharing class ApplicationDataAPI extends AbstractService {
    * @param List<FinServ__Revenue__c> revenueList
    * @return virtual
    **/
-  global virtual list<ApplicationResponseMapper.Revenue> mapRevenue(
+  global virtual list<ApplicationSubmissionResponse.Revenue> mapRevenue(
     List<FinServ__Revenue__c> revenueList
   ) {
-    list<ApplicationResponseMapper.Revenue> mapperRevenueList = new List<ApplicationResponseMapper.Revenue>();
+    list<ApplicationSubmissionResponse.Revenue> mapperRevenueList = new List<ApplicationSubmissionResponse.Revenue>();
     for (FinServ__Revenue__c revenue : revenueList) {
-      ApplicationResponseMapper.Revenue mapperRevenue = new ApplicationResponseMapper.Revenue();
+      ApplicationSubmissionResponse.Revenue mapperRevenue = new ApplicationSubmissionResponse.Revenue();
       mapperRevenue.RevenueId = revenue.Id;
       mapperRevenue.Amount = revenue.FinServ__Amount__c;
       mapperRevenue.Name = revenue.Name;
@@ -276,14 +276,14 @@ global with sharing class ApplicationDataAPI extends AbstractService {
    * @description
    * @author Digital Align | 12-22-2021
    * @param List<mflow__Survey__c> surveyList
-   * @return list<ApplicationResponseMapper.Survey>
+   * @return list<ApplicationSubmissionResponse.Survey>
    **/
-  global virtual list<ApplicationResponseMapper.Survey> mapSurvey(
+  global virtual list<ApplicationSubmissionResponse.Survey> mapSurvey(
     List<mflow__Survey__c> surveyList
   ) {
-    list<ApplicationResponseMapper.Survey> mapperSurveyList = new List<ApplicationResponseMapper.Survey>();
+    list<ApplicationSubmissionResponse.Survey> mapperSurveyList = new List<ApplicationSubmissionResponse.Survey>();
     for (mflow__Survey__c survey : surveyList) {
-      ApplicationResponseMapper.Survey mapperSurvey = new ApplicationResponseMapper.Survey();
+      ApplicationSubmissionResponse.Survey mapperSurvey = new ApplicationSubmissionResponse.Survey();
       mapperSurvey.SurveyId = survey.Id;
       mapperSurvey.Answer = survey.mflow__Answer__c;
       mapperSurvey.LongDescription = survey.mflow__LongDescription__c;
@@ -306,12 +306,12 @@ global with sharing class ApplicationDataAPI extends AbstractService {
    * @param List<ContactPointAddress> contactAddressList
    * @return virtual
    **/
-  global virtual list<ApplicationResponseMapper.ContactPointAddress> mapContactAddress(
+  global virtual list<ApplicationSubmissionResponse.ContactPointAddress> mapContactAddress(
     List<ContactPointAddress> contactAddressList
   ) {
-    list<ApplicationResponseMapper.ContactPointAddress> mapperContactAddressList = new List<ApplicationResponseMapper.ContactPointAddress>();
+    list<ApplicationSubmissionResponse.ContactPointAddress> mapperContactAddressList = new List<ApplicationSubmissionResponse.ContactPointAddress>();
     for (ContactPointAddress contactAddress : contactAddressList) {
-      ApplicationResponseMapper.ContactPointAddress mapperContactAddress = new ApplicationResponseMapper.ContactPointAddress();
+      ApplicationSubmissionResponse.ContactPointAddress mapperContactAddress = new ApplicationSubmissionResponse.ContactPointAddress();
       mapperContactAddress.ContactPointAddressId = contactAddress.Id;
       mapperContactAddress.IsPrimary = contactAddress.IsPrimary;
       mapperContactAddress.AddressType = contactAddress.AddressType;
@@ -334,14 +334,14 @@ global with sharing class ApplicationDataAPI extends AbstractService {
   }
 
   /* Not required for phase 1
-  global virtual list<ApplicationResponseMapper.AssetsAndLiabilities> mapContactAddress(
+  global virtual list<ApplicationSubmissionResponse.AssetsAndLiabilities> mapContactAddress(
     List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilitiesList
   ) {
-    list<ApplicationResponseMapper.AssetsAndLiabilities> mapperAssetsAndLiabilitiesList = new List<ApplicationResponseMapper.AssetsAndLiabilities>();
+    list<ApplicationSubmissionResponse.AssetsAndLiabilities> mapperAssetsAndLiabilitiesList = new List<ApplicationSubmissionResponse.AssetsAndLiabilities>();
     for (
       FinServ__AssetsAndLiabilities__c assetsAndLiabilities : assetsAndLiabilitiesList
     ) {
-      ApplicationResponseMapper.AssetsAndLiabilities mapperAssetsAndLiabilities = new ApplicationResponseMapper.AssetsAndLiabilities();
+      ApplicationSubmissionResponse.AssetsAndLiabilities mapperAssetsAndLiabilities = new ApplicationSubmissionResponse.AssetsAndLiabilities();
       mapperAssetsAndLiabilities.AssetsAndLiabilitieId = assetsAndLiabilities.Id;
       mapperAssetsAndLiabilities.Amount = assetsAndLiabilities.FinServ__Amount__c;
       mapperAssetsAndLiabilities.AssetsAndLiabilitiesType = assetsAndLiabilities.FinServ__AssetsAndLiabilitiesType__c;
@@ -374,7 +374,7 @@ global with sharing class ApplicationDataAPI extends AbstractService {
 
     List<id> reletedEntityIdList = new List<id>();
 
-    Account application = DataAPIRepository.readApplicationByApplicationNumber(
+    Account application = SubmissionRepository.readApplicationByApplicationNumber(
       applicationNumber
     );
 
@@ -407,7 +407,7 @@ global with sharing class ApplicationDataAPI extends AbstractService {
    * @return Account
    **/
   global virtual Account readApplicationWithChild(Id applicationId) {
-    Account application = DataAPIRepository.readApplicationWithChild(
+    Account application = SubmissionRepository.readApplicationWithChild(
       applicationId
     );
 
@@ -432,7 +432,7 @@ global with sharing class ApplicationDataAPI extends AbstractService {
   global virtual List<Applicant__c> readApplicantsWithChild(
     List<Applicant__c> applicants
   ) {
-    return DataAPIRepository.readApplicantsWithChild(
+    return SubmissionRepository.readApplicantsWithChild(
       new Map<Id, SObject>(applicants).keySet()
     );
   }
