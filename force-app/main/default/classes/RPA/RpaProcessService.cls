@@ -145,14 +145,14 @@ global with sharing class RpaProcessService extends AbstractService {
 
         Map<String, Object> params = new Map<String, Object>();
         if (
-          ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_APPLICATION
+          application.flowType__c == ApplicationConstant.FLOW_TYPE_APPLICATION
         ) {
           params.put(
             'Name',
             HttpBuilder.getApiConstant('ApplicationQueueName')
           );
         } else if (
-          ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_FUNDING
+          application.flowType__c == ApplicationConstant.FLOW_TYPE_FUNDING
         ) {
           params.put('Name', HttpBuilder.getApiConstant('FundingQueueName'));
         }
