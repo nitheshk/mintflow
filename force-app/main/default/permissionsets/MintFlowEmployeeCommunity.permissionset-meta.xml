@@ -5,6 +5,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>LwcCustomController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AbstractChartData</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -88,6 +92,18 @@
         <apexClass>UserAccountManagementController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <pageAccesses>
+        <apexPage>OnlineAutoLogin</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Error</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>OpenAccount</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>DynamicDataTableItem__mdt</name>
@@ -4086,7 +4102,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>MintFlow Customer Community</label>
+    <label>MintFlow Employee Community</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -4375,18 +4391,6 @@
         <object>Applicant__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <pageAccesses>
-        <apexPage>OnlineAutoLogin</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Error</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>OpenAccount</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Applicant__c.Beneficiary</recordType>
         <visible>true</visible>

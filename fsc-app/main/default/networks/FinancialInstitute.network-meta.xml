@@ -30,8 +30,7 @@
   >mflow__MintFlow/mflow__CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
     <networkMemberGroups>
-        <permissionSet>mflow__MintFlowGuest</permissionSet>
-        <permissionSet>mflow__MintFlowCustomerCommunity</permissionSet>
+        <permissionSet>mflow__MintFlowEmployeeCommunity</permissionSet>
         <profile>admin</profile>
         <profile>FinancialInstituteCommunity Profile</profile>
     </networkMemberGroups>
