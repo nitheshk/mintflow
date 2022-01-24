@@ -28,8 +28,8 @@
             "recordId": "{!recordId}",
             "relatedTabLabel": "Related",
             "tab1Type": "details",
-            "tab2Type": "related",
-            "tab3Type": "chatter",
+            "tab2Type": "none",
+            "tab3Type": "related",
             "tab4Type": "none",
             "timelineTabLabel": "Activity"
           },

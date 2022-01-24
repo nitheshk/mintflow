@@ -113,6 +113,8 @@ global with sharing class NotificationBuilder extends AbstractService {
       FeedItem post = new FeedItem();
       post.ParentId = entityId;
       post.Body = body;
+      post.NetworkScope = 'AllNetworks';
+      post.Visibility = 'AllUsers';
       NotificationRepository.upsertRecord(post);
     } catch (Exception ex) {
       log?.error(ex);
@@ -136,6 +138,8 @@ global with sharing class NotificationBuilder extends AbstractService {
       post.ParentId = entityId;
       post.Body = body;
       post.LinkUrl = linkUrl;
+      post.NetworkScope = 'AllNetworks';
+      post.Visibility = 'AllUsers';
       NotificationRepository.upsertRecord(post);
     } catch (Exception ex) {
       log?.error(ex);
@@ -161,6 +165,8 @@ global with sharing class NotificationBuilder extends AbstractService {
       post.Type = 'ContentPost';
       ContentVersion cv = FileService.getInstance().createFile(fileDto);
       post.RelatedRecordId = cv.Id;
+      post.NetworkScope = 'AllNetworks';
+      post.Visibility = 'AllUsers';
       NotificationRepository.upsertRecord(post);
     } catch (Exception ex) {
       log?.error(ex);
