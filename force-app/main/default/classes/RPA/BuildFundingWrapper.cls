@@ -58,7 +58,9 @@ global with sharing class BuildFundingWrapper extends AbstractService {
       application.Id
     );
     if (CollectionUtils.isListEmpty(financialApplications)) {
-      throw new customException(System.Label.Application_ApplicationNotFound);
+      throw new customException(
+        'Financial Account not found/ Requested application is under reivew'
+      );
     }
     for (Applicant__c applicant : application.applicants__r) {
       Set<String> applicantTypes = new Set<String>(
