@@ -26,14 +26,21 @@
         default=""
         label="Logo Name"
         description="Default Logo Name"
-      />     
+      />
        <property
         name="sectionLabel"
         type="String"
         default="Menu"
         label="Section Label"
         description="Default Section Label"
-      />         
+      />
+       <property
+        name="hideMenuLabel"
+        type="Boolean"
+        default="false"
+        label="Hide Menu Label"
+        description="Hide Menu Label"
+      />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

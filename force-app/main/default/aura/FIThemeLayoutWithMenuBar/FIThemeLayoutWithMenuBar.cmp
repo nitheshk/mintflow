@@ -18,9 +18,7 @@
   <aura:attribute name="section9" type="Aura.Component[]" />
 
   <div class="section slds-grid slds-wrap">
-    <div class="slds-col slds-size_1-of-1 slds-align_absolute-center">
-      {!v.section_header}
-    </div>
+    <div class="slds-col slds-size_1-of-1">{!v.page_header}</div>
     <div class="slds-col slds-size_2-of-12 slds-box menu">{!v.menu}</div>
     <div class="slds-col slds-size_10-of-12">
       <div class="slds-col slds-size_1-of-1">{!v.section1}</div>

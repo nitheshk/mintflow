@@ -8,6 +8,7 @@ export default class FinancialInsituteNavigationMenu extends NavigationMixin(
   @api menuName;
   @api logoName;
   @api sectionLabel;
+  @api hideMenuLabel = false;
   @track logoUrl;
   @track isEmployeePage;
   @track isDealerPage;
@@ -23,11 +24,6 @@ export default class FinancialInsituteNavigationMenu extends NavigationMixin(
           item.position == this.currentPosition
         ) {
           this.isEmployeePage = true;
-        } else if (
-          item.label === "Dealers" &&
-          item.position == this.currentPosition
-        ) {
-          this.isDealerPage = true;
         }
         return item;
       });

@@ -13,39 +13,51 @@
             <ul>
               <template for:each={menuItems} for:item="item">
                 <template if:true={item.isActive}>
-                  <li
-                    key={item.position}
-                    data-item={item.position}
-                    onclick={hanldleNavigation}
-                    class="active-nav"
-                  >
-                    <lightning-icon
-                      icon-name={item.iconName}
-                      alternative-text={item.label}
-                      title={item.label}
-                      size="medium"
-                      variant="inverse"
-                      class="slds-var-m-right_small icon-active-style"
-                    ></lightning-icon>
-                    {item.label}
-                  </li>
+                  <center key={item.position}>
+                    <li
+                      key={item.position}
+                      data-item={item.position}
+                      onclick={hanldleNavigation}
+                      class="active-nav"
+                    >
+                      <lightning-icon
+                        icon-name={item.iconName}
+                        alternative-text={item.label}
+                        title={item.label}
+                        size="medium"
+                        variant="inverse"
+                        class="slds-var-m-right_small icon-active-style"
+                        data-item={item.position}
+                        onclick={hanldleNavigation}
+                      ></lightning-icon>
+                      <template if:false={hideMenuLabel}>
+                        {item.label}
+                      </template>
+                    </li>
+                  </center>
                 </template>
 
                 <template if:false={item.isActive}>
-                  <li
-                    key={item.position}
-                    data-item={item.position}
-                    onclick={hanldleNavigation}
-                  >
-                    <lightning-icon
-                      icon-name={item.iconName}
-                      alternative-text={item.label}
-                      title={item.label}
-                      size="medium"
-                      class="slds-var-m-right_small icon-style"
-                    ></lightning-icon>
-                    {item.label}
-                  </li>
+                  <center key={item.position}>
+                    <li
+                      key={item.position}
+                      data-item={item.position}
+                      onclick={hanldleNavigation}
+                    >
+                      <lightning-icon
+                        icon-name={item.iconName}
+                        alternative-text={item.label}
+                        title={item.label}
+                        size="medium"
+                        class="slds-var-m-right_small icon-style"
+                        data-item={item.position}
+                        onclick={hanldleNavigation}
+                      ></lightning-icon>
+                      <template if:false={hideMenuLabel}>
+                        {item.label}
+                      </template>
+                    </li>
+                  </center>
                 </template>
               </template>
             </ul>

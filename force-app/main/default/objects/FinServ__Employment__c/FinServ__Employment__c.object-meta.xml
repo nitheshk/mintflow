@@ -156,7 +156,7 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Employment</label>
     <nameField>
         <label>Employer Name</label>
@@ -164,6 +164,6 @@
     </nameField>
     <pluralLabel>Employment</pluralLabel>
     <searchLayouts />
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

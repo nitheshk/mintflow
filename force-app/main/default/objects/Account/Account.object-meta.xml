@@ -2,7 +2,7 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>         
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
