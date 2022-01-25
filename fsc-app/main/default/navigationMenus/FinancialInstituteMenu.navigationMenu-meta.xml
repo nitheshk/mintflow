@@ -18,6 +18,13 @@
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
+        <label>Applicants;standard:user</label>
+        <position>3</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/Applicants</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
         <label>Employees;standard:groups</label>
         <position>4</position>
         <publiclyAvailable>true</publiclyAvailable>

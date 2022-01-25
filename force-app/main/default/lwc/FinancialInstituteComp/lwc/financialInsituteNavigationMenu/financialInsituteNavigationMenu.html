@@ -13,7 +13,6 @@
             <ul>
               <template for:each={menuItems} for:item="item">
                 <template if:true={item.isActive}>
-                  <center key={item.position}>
                     <li
                       key={item.position}
                       data-item={item.position}
@@ -34,11 +33,9 @@
                         {item.label}
                       </template>
                     </li>
-                  </center>
                 </template>
 
                 <template if:false={item.isActive}>
-                  <center key={item.position}>
                     <li
                       key={item.position}
                       data-item={item.position}
@@ -57,7 +54,6 @@
                         {item.label}
                       </template>
                     </li>
-                  </center>
                 </template>
               </template>
             </ul>

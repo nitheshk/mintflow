@@ -1,0 +1,50 @@
+<aura:component
+  implements="forceCommunity:layout"
+  description="Custom Content Layout"
+  access="global"
+>
+  <aura:attribute name="page_header" type="Aura.Component[]" />
+  <aura:attribute name="page_footer" type="Aura.Component[]" />
+  <aura:attribute name="content" type="Aura.Component[]" />
+  <aura:attribute name="menu" type="Aura.Component[]" />
+  <aura:attribute name="section1" type="Aura.Component[]" />
+  <aura:attribute name="section2" type="Aura.Component[]" />
+  <aura:attribute name="section3" type="Aura.Component[]" />
+  <aura:attribute name="section4" type="Aura.Component[]" />
+  <aura:attribute name="section5" type="Aura.Component[]" />
+  <aura:attribute name="section6" type="Aura.Component[]" />
+  <aura:attribute name="section7" type="Aura.Component[]" />
+  <aura:attribute name="section8" type="Aura.Component[]" />
+  <aura:attribute name="section9" type="Aura.Component[]" />
+
+  <div class="section slds-grid slds-wrap">
+    <div class="slds-col slds-size_1-of-1">{!v.page_header}</div>
+    <div class="slds-col slds-size_1-of-12 slds-box menu">{!v.menu}</div>
+    <div class="slds-col slds-size_11-of-12">
+      <div class="slds-col slds-size_1-of-1">{!v.section1}</div>
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_4-of-12">{!v.section2}</div>
+        <div class="slds-col slds-size_8-of-12">{!v.section3}</div>
+      </div>
+
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_6-of-12">{!v.section4}</div>
+        <div class="slds-col slds-size_6-of-12">{!v.section5}</div>
+      </div>
+
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_8-of-12">{!v.section6}</div>
+        <div class="slds-col slds-size_4-of-12">{!v.section7}</div>
+      </div>
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1">{!v.content}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section slds-grid slds-wrap">
+    <div class="slds-col slds-size_6-of-12">{!v.section8}</div>
+    <div class="slds-col slds-size_6-of-12">{!v.section9}</div>
+    <div class="slds-col slds-size_1-of-1">{!v.page_footer}</div>
+  </div>
+</aura:component>

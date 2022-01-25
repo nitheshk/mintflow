@@ -18,14 +18,14 @@
                   "UUID": "9579e437-a641-4ff8-8524-dc2b17e9c212",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "2",
+                  "columnWidth": "1",
                   "seedComponents": []
                 },
                 {
                   "UUID": "b7c9be2c-a504-40ad-a528-1061ac183783",
                   "columnKey": "7f855",
                   "columnName": "Column 2",
-                  "columnWidth": "6",
+                  "columnWidth": "7",
                   "seedComponents": []
                 },
                 {
@@ -46,6 +46,7 @@
               "components": [
                 {
                   "componentAttributes": {
+                    "hideMenuLabel": true,
                     "logoName": "",
                     "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"

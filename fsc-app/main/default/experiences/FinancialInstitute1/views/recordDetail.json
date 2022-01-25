@@ -1,6 +1,6 @@
 {
   "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
-  "componentName": "siteforce:sldsOneColLayout",
+  "componentName": "mflow:FIThemeRecordDetailPage",
   "id": "348146e6-52e5-4d9e-a357-0c9cef1b2cc0",
   "label": "Record Detail",
   "regions": [
@@ -11,16 +11,6 @@
     },
     {
       "components": [
-        {
-          "componentAttributes": {
-            "recordId": "{!recordId}"
-          },
-          "componentName": "forceCommunity:recordHeadline",
-          "id": "65c9db86-c87a-47b9-9974-a627321407ce",
-          "renderPriority": "NEUTRAL",
-          "renditionMap": {},
-          "type": "component"
-        },
         {
           "componentAttributes": {
             "detailsTabLabel": "Details",
@@ -66,9 +56,96 @@
       "id": "e77d21aa-83d2-4ba8-a9c5-940a5eaaab2c",
       "regionName": "sfdcHiddenRegion",
       "type": "region"
+    },
+    {
+      "id": "f7de0105-128b-409c-970e-41a1e008fd65",
+      "regionName": "page_header",
+      "type": "region"
+    },
+    {
+      "id": "e366c7d1-5aba-4448-9d84-888ace9cd73f",
+      "regionName": "page_footer",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "hideMenuLabel": true,
+            "logoName": "",
+            "menuName": "FinancialInstituteMenu",
+            "sectionLabel": "Menu"
+          },
+          "componentName": "mflow:financialInsituteNavigationMenu",
+          "id": "ec33cfe2-aa14-430c-a432-6a4adb338d5c",
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "fac58e21-93bd-49e6-b608-bd8c4d11b9bc",
+      "regionName": "menu",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "recordId": "{!recordId}"
+          },
+          "componentName": "forceCommunity:recordHeadline",
+          "id": "65c9db86-c87a-47b9-9974-a627321407ce",
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "3db1d847-66bb-4e0a-a96e-f97d9d43da9a",
+      "regionName": "section1",
+      "type": "region"
+    },
+    {
+      "id": "a425e707-0064-4f74-8fec-881875cb77e1",
+      "regionName": "section2",
+      "type": "region"
+    },
+    {
+      "id": "672d8c7b-de7c-4a26-89ad-16aa5f208715",
+      "regionName": "section3",
+      "type": "region"
+    },
+    {
+      "id": "3ddfc645-14aa-4db6-b006-f36afe725298",
+      "regionName": "section4",
+      "type": "region"
+    },
+    {
+      "id": "6171690e-9fe8-48df-9054-031022365396",
+      "regionName": "section5",
+      "type": "region"
+    },
+    {
+      "id": "a6b500dd-4701-405e-83a8-b3cc332e139b",
+      "regionName": "section6",
+      "type": "region"
+    },
+    {
+      "id": "b9598d49-932a-4cc5-beb8-8cb1156f203d",
+      "regionName": "section7",
+      "type": "region"
+    },
+    {
+      "id": "45bc0b19-4c1a-4cf9-bbc3-6a08aea767cb",
+      "regionName": "section8",
+      "type": "region"
+    },
+    {
+      "id": "6080801e-8b20-49cc-bc5d-f2cc44cffb7f",
+      "regionName": "section9",
+      "type": "region"
     }
   ],
-  "themeLayoutType": "Inner",
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
   "type": "view",
   "viewType": "detail"
 }

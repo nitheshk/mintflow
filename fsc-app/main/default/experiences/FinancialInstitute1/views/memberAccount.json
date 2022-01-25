@@ -151,9 +151,22 @@
                           "type": "component"
                         },
                         {
-                          "componentAttributes": {},
-                          "componentName": "FinServ:bankAccount",
-                          "id": "135269cd-67ab-4b78-ad61-da22873394d3",
+                          "componentAttributes": {
+                            "shouldShowGroupActivityRollup": true
+                          },
+                          "componentName": "FinServ:relationshipMembers",
+                          "id": "44ed1d48-c87a-458e-b7aa-2750952046b5",
+                          "renditionMap": {},
+                          "type": "component"
+                        },
+                        {
+                          "componentAttributes": {
+                            "relatedListApiName": "FinServ__ClientFinancialAccounts__r",
+                            "relatedListComponentOverride": "GRID",
+                            "width": "MEDIUM"
+                          },
+                          "componentName": "forceCommunity:responsiveRelatedListSingle",
+                          "id": "13d93589-ad06-4605-8b9d-1a24db02daa8",
                           "renditionMap": {},
                           "type": "component"
                         }
