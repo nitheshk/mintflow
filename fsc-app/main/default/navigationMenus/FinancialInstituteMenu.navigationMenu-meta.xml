@@ -17,23 +17,23 @@
         <target>/Applications</target>
         <type>InternalLink</type>
     </navigationMenuItem>
-    <navigationMenuItem>
+    <!-- <navigationMenuItem>
         <label>Applicants;standard:user</label>
         <position>3</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>/Applicants</target>
         <type>InternalLink</type>
-    </navigationMenuItem>
+    </navigationMenuItem> -->
     <navigationMenuItem>
         <label>Employees;standard:groups</label>
-        <position>4</position>
+        <position>3</position>
         <publiclyAvailable>true</publiclyAvailable>
         <target>/Employees</target>
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Search;standard:search</label>
-        <position>5</position>
+        <position>4</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>/FinancialInstituteSearch</target>
         <type>InternalLink</type>

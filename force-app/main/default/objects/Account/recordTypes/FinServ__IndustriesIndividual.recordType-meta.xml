@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Application</fullName>
+    <fullName>FinServ__IndustriesIndividual</fullName>
     <active>true</active>
-    <compactLayoutAssignment>FinServ__HouseholdCompactLayout</compactLayoutAssignment>
-    <description>Application for grorup MintFlow related details</description>
-    <label>Application</label>
+    <compactLayoutAssignment>FinServ__IndividualCompactLayout</compactLayoutAssignment>
+    <description>A person who is a prospect or a client</description>
+    <label>Individual</label>
     <picklistValues>
         <picklist>AccountSource</picklist>
         <values>
@@ -32,6 +32,10 @@
         <picklist>CreatedChannel__c</picklist>
         <values>
             <fullName>Branch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Community</fullName>
             <default>false</default>
         </values>
         <values>
@@ -159,25 +163,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FinServ__CustomerType__c</picklist>
-        <values>
-            <fullName>Consumer</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Lending</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Mortgage</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>SMB</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>FinServ__FinancialInterests__c</picklist>
         <values>
             <fullName>College Planning</fullName>
@@ -208,7 +193,7 @@
         <picklist>FinServ__IndividualType__c</picklist>
         <values>
             <fullName>Individual</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -256,15 +241,31 @@
     <picklistValues>
         <picklist>FinServ__KYCStatus__c</picklist>
         <values>
-            <fullName>Failed</fullName>
+            <fullName>Completed - Invalid</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Passed</fullName>
+            <fullName>Completed - Valid</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Under Review</fullName>
+            <fullName>Expired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Queue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Overdue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Required</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -272,10 +273,6 @@
         <picklist>FinServ__LastUsedChannel__c</picklist>
         <values>
             <fullName>Branch</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Virtual</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -377,60 +374,8 @@
     <picklistValues>
         <picklist>FinServ__Status__c</picklist>
         <values>
-            <fullName>Abandoned</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Approved</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Cancelled</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Completed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Draft</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Funding in Progress</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>In Progress</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Pending Review</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Rejected</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Review In Progress</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Revision in Progress</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Saved</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Submit for Review</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Submitted</fullName>
-            <default>false</default>
+            <fullName>Prospect</fullName>
+            <default>true</default>
         </values>
     </picklistValues>
     <picklistValues>
