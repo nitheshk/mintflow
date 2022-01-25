@@ -131,7 +131,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       // mapperApplicant.IdentityVerificationStatus = applicant.IdentityVerificationStatus__c;
       // mapperApplicant.IncomeVerificationStatus = applicant.IncomeVerificationStatus__c;
       // mapperApplicant.KYCStatus = applicant.KYCStatus__c;
-      // mapperApplicant.Order = applicant.Order__c;
+      mapperApplicant.Order = applicant.Order__c;
       mapperApplicant.Phone = applicant.Phone__c;
       mapperApplicant.Relationship = applicant.Relationship__c;
       mapperApplicant.SentiLinkFraudScore = applicant.SentiLinkFraudScore__c;
@@ -200,13 +200,15 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperEmployment.EmploymentId = employment.Id;
       mapperEmployment.EmploymentType = employment.EmploymentType__c;
       mapperEmployment.EmployerName = employment.Name;
-      mapperEmployment.EmploymentStatus = employment.FinServ__EmploymentStatus__c;
+      mapperEmployment.EmploymentStatus = getStatusMapping(
+        'FinServ__EmploymentStatus__c',
+        employment.FinServ__EmploymentStatus__c
+      );
       mapperEmployment.GrossMonthlySalary = employment.GrossMonthlySalary__c;
-      mapperEmployment.EmploymentStatus = employment.FinServ__EmploymentStatus__c;
       mapperEmployment.Name = employment.Name;
       mapperEmployment.IncomeType = employment.IncomeType__c;
       mapperEmployment.PayCycle = employment.PayCycle__c;
-      // mapperEmployment.Order = employment.Order__c;
+      mapperEmployment.Order = employment.Order__c;
       mapperEmployment.PayGrade = employment.PayGrade__c;
       mapperEmployment.Position = employment.FinServ__Position__c;
       mapperEmployment.EmploymentDuration = employment.EmploymentDuration__c;
@@ -239,7 +241,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperIdentity.IssuedRegion = identity.IssuedRegion__c;
       mapperIdentity.Name = identity.Name;
       // mapperIdentity.Nationality = identity.Nationality__c;
-      // mapperIdentity.Order = identity.Order__c;
+      mapperIdentity.Order = identity.Order__c;
       // mapperIdentity.PrimaryContentDocumentID = identity.PrimaryContentDocumentID__c;
       // mapperIdentity.SecondaryContentDocumentId = identity.SecondaryContentDocumentId__c;
       // mapperIdentity.Weight = identity.Weight__c;
@@ -289,7 +291,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperSurvey.LongDescription = survey.mflow__LongDescription__c;
       // mapperSurvey.Name = survey.Name;
       // mapperSurvey.OptionType = survey.mflow__OptionType__c;
-      // mapperSurvey.Order = survey.mflow__Order__c;
+      mapperSurvey.Order = survey.mflow__Order__c;
       // mapperSurvey.ParentQuestionCode = survey.mflow__ParentQuestionCode__c;
       // mapperSurvey.QuestionCode = survey.mflow__QuestionCode__c;
       // mapperSurvey.QuestionNumber = survey.mflow__QuestionNumber__c;
@@ -322,7 +324,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperContactAddress.State = contactAddress.State;
       mapperContactAddress.StateCode = contactAddress.StateCode__c;
       mapperContactAddress.Street = contactAddress.Street;
-      // mapperContactAddress.Order = contactAddress.Order__c;
+      mapperContactAddress.Order = contactAddress.Order__c;
       mapperContactAddress.OccupancyStatus = getStatusMapping(
         'UsageType',
         contactAddress.UsageType
@@ -445,14 +447,37 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
    * @return virtual
    **/
   global virtual String getStatusMapping(String fieldName, String value) {
-    return (new Map<String, String>{
-        'Buying / Own With Mortgage' => 'Buying/Own With Mortgage',
-        'Government Quarters' => 'Government Quarters',
-        'Live With Parents' => 'Live With Parents',
-        'Other' => 'Other',
-        'Own-Free and Clear' => 'Own-Free and Clear',
-        'Rent' => 'Rent'
-      })
-      .get(value);
+    switch on fieldName {
+      when 'UsageType' {
+        return (new Map<String, String>{
+            'Buying / Own With Mortgage' => 'Buying/Own With Mortgage',
+            'Government Quarters' => 'Government Quarters',
+            'Live With Parents' => 'Live With Parents',
+            'Other' => 'Other',
+            'Own-Free and Clear' => 'Own - Free & Clear',
+            'Rent' => 'Rent'
+          })
+          .get(value);
+      }
+      when 'FinServ__EmploymentStatus__c' {
+        return (new Map<String, String>{
+            'Employed' => 'Employed',
+            'Self Employed' => 'Self Employed',
+            'Home Maker' => 'HomeMaker',
+            'Retired' => 'Retired',
+            'Student' => 'Student',
+            'Active Military' => 'Active Military',
+            'Unemployed' => 'Unemployed',
+            'Government/ Dod' => 'Government/Dod',
+            'Other' => 'Other',
+            'Owner' => 'Owner',
+            'Retired Military' => 'Retired Military'
+          })
+          .get(value);
+      }
+      when else {
+        return null;
+      }
+    }
   }
 }
