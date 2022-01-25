@@ -273,4 +273,34 @@ global with sharing class ApplicationController extends AbstractController {
       Logger.persist();
     }
   }
+
+
+  /**
+  * @description final application submit 
+  * @author Digital Align Team | 01-25-2022 
+  * @param ApexRequest request 
+  * @return ApexResponse 
+  **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse submitApplication(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(
+        ApplicationSubmissionService.getInstance().submitApplication(request.data)
+      );
+    } catch (CustomException ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+
+
+
 }
