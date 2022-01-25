@@ -46,6 +46,7 @@
               "components": [
                 {
                   "componentAttributes": {
+                    "hideMenuLabel": true,
                     "logoName": "",
                     "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"
@@ -65,14 +66,6 @@
             },
             {
               "components": [
-                {
-                  "componentAttributes": {},
-                  "componentName": "mflow:relatedFiles",
-                  "id": "6a89730d-a9c5-484f-ae29-f7e0e20392c9",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
                 {
                   "componentAttributes": {
                     "recordId": "{!recordId}"
@@ -295,6 +288,14 @@
                   },
                   "componentName": "mflow:manualKycDecision",
                   "id": "7b7601c7-9d4f-46ce-a6fb-a38fab941656",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {},
+                  "componentName": "mflow:relatedFiles",
+                  "id": "6a89730d-a9c5-484f-ae29-f7e0e20392c9",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
