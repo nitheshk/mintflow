@@ -117,6 +117,16 @@
                 <default>false</default>
                 <label>ACH</label>
             </value>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>Check</fullName>
+                <default>false</default>
+                <label>Check</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Credit</controllingFieldValue>
