@@ -98,6 +98,14 @@ Map<String, String> params = new Map<String, String>{
   'ch' => 'Virtual'
 };
 
+Map<String, String> params = new Map<String, String>{
+  'aplType' => 'Primary',
+  'flw' => 'ApplicationFlow',
+  'urlSuffix' => '/membership/application/otp',
+  'aplId' => 'a0bN000000EZR2ZIAX',
+  'ch' => 'Virtual'
+};
+
 SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
 cipher.aplType = params.get('aplType');
 cipher.flw = params.get('flw');
