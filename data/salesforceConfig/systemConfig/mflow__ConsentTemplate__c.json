@@ -173,7 +173,7 @@
             "mflow__ExternalId__c": "CLI0005",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 5,
-            "mflow__isActive__c": true
+            "mflow__isActive__c": false
           }
         ]
       }

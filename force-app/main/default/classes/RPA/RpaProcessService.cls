@@ -280,10 +280,11 @@ global with sharing class RpaProcessService extends AbstractService {
   global virtual void updateFundingDetails() {
     log?.debug('Inside updateFundingDetails');
     log?.debug('requestBody =' + RestContext.request.requestBody.toString());
-
+    Account application = (Account) ApplicationSubmissionService.getInstance()
+      .processFundingSubmission(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
     String responseString =
-      'Request received :' + RestContext.request.requestBody.toString();
+      'Application Status :' + application.FinServ__Status__c;
     response.responseBody = Blob.valueOf(responseString);
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');

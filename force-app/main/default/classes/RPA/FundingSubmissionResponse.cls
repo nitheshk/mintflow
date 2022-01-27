@@ -33,4 +33,24 @@ global with sharing class FundingSubmissionResponse {
     global String TransactionStatus;
     global String AccountHolderName;
   }
+
+  /** Funding Response */
+  global class FundingResult {
+    global String ExternalApplicationNumber;
+    global String ExternalApplicationStatus;
+    global String MemberNumber;
+    global String Application;
+    global List<FinancialAccountResult> FinancialAccount;
+  }
+
+  global class FinancialAccountResult {
+    global String FinancialAccountId;
+    global String AccountNumber;
+    global FinancialTransactionResult FinancialApplicationTransaction;
+  }
+
+  global class FinancialTransactionResult {
+    global String FinancialAccountTransactionId;
+    global String TransactionStatus;
+  }
 }
