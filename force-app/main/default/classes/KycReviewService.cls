@@ -88,6 +88,7 @@ global with sharing class KycReviewService extends AbstractService {
       application.Applicants__r
     );
 
+    Boolean kycSuccessForApplicants = true;
     if (kycResult?.applicants != null) {
       for (
         ApplicationSubmissionResponse.KYCApplicantResult applicantKyc : kycResult.applicants
@@ -142,10 +143,12 @@ global with sharing class KycReviewService extends AbstractService {
           when 'Failed' {
             applicant.mflow__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
             applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+            kycSuccessForApplicants = false;
           }
           when else {
             applicant.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
             applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
+            kycSuccessForApplicants = false;
           }
         }
       }
@@ -154,19 +157,26 @@ global with sharing class KycReviewService extends AbstractService {
     application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
     application.ExternalApplicationStatus__c = kycResult.ExternalApplicationStatus;
     application.Stage__c = null;
+
     switch on kycResult.ExternalApplicationStatus {
-      when 'Accept', 'Passed', 'Approved' {
-        application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-        application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
-        application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-      }
+      // when 'Accept', 'Passed', 'Approved' {
+      //   application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
+      //   application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+      //   application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+      // }
       when 'Fraud' {
         application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
         application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
       }
       when else {
-        application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-        application.FinServ__KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
+        if (kycSuccessForApplicants) {
+          application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
+          application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+          application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+        } else {
+          application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+          application.FinServ__KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
+        }
       }
     }
     FinancialAccountRepository.upsertRecords(application.Applicants__r);
