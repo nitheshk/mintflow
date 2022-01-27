@@ -54,30 +54,6 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
       .queryChild('mflow__FinancialAccounts__r')
       .run();
 
-    if (String.isNotBlank(eventIdentifier)) {
-      qry
-        .queryChild('mflow__ApplicationConsents__r')
-        .addFields()
-        .queryLookup('mflow__ConsentTemplate__r')
-        .addFields()
-        .run()
-        .whereEq('mflow__EventIdentifier__c', eventIdentifier)
-        .andCon()
-        .whereNull('mflow__Applicant__c')
-        .orderBy('mflow__Order__c')
-        .run();
-    } else {
-      qry
-        .queryChild('mflow__ApplicationConsents__r')
-        .addFields()
-        .queryLookup('mflow__ConsentTemplate__r')
-        .addFields()
-        .run()
-        .whereNull('mflow__Applicant__c')
-        .orderBy('mflow__Order__c')
-        .run();
-    }
-
     qry.queryChild('mflow__Surveys__r')
       .addFields()
       .whereNull('Applicant__c')
@@ -119,26 +95,6 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
       .addFields()
       .orderBy('Order__c')
       .run();
-    if (String.isNotBlank(eventIdentifier)) {
-      qry
-        .queryChild('mflow__ApplicantConsents__r')
-        .addFields()
-        .queryLookup('mflow__ConsentTemplate__r')
-        .addFields()
-        .run()
-        .whereEq('mflow__EventIdentifier__c', eventIdentifier)
-        .orderBy('mflow__Order__c')
-        .run();
-    } else {
-      qry
-        .queryChild('mflow__ApplicantConsents__r')
-        .addFields()
-        .queryLookup('mflow__ConsentTemplate__r')
-        .addFields()
-        .run()
-        .orderBy('mflow__Order__c')
-        .run();
-    }
     qry.whereIn('Id', applicantIds);
 
     return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
@@ -181,5 +137,38 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
         .whereEq('Id', applicationId)
         .toString()
     );
+  }
+  /**
+   * @description
+   * @author Digital Align | 01-27-2022
+   * @param Set<Id> applicantIds
+   * @return List<Applicant__c>
+   **/
+  global static List<Applicant__c> readApplicantsWithIdentityAddress(
+    Set<Id> applicantIds
+  ) {
+    String eventIdentifier = String.valueOf(
+      ApexRequest.getParams('eventIdentifier')
+    );
+
+    Query qry = Query.newInstance(Applicant__c.SObjectType)
+      .addFields()
+      .removeFields('mflow__SessionToken__c')
+      .queryChild('mflow__IdentificationDocuments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__ContactPointAddresses__r')
+      .addFields()
+      .removeFields('Address')
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__Employments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run();
+    qry.whereIn('Id', applicantIds);
+
+    return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
   }
 }
