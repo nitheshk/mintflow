@@ -70,7 +70,7 @@
                           "locked": false,
                           "seedComponents": [],
                           "tabKey": "2",
-                          "tabName": "Search Employees"
+                          "tabName": "Search Member"
                         },
                         {
                           "UUID": "8a2c3e0e-4541-47c4-b3bc-a9a0d4ea10f4",
@@ -79,6 +79,14 @@
                           "seedComponents": [],
                           "tabKey": "79d08",
                           "tabName": "Search Applications"
+                        },
+                        {
+                          "UUID": "accc445b-3f8d-49f2-9718-744842098a45",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "a371a",
+                          "tabName": "Search Employees"
                         }
                       ],
                       "useOverflowMenu": false
@@ -88,19 +96,8 @@
                   "id": "c7796573-79d2-4383-aafa-70c3ff471b6b",
                   "regions": [
                     {
-                      "components": [
-                        {
-                          "componentAttributes": {
-                            "employeeContactType": "FinancialInstituteEmployee"
-                          },
-                          "componentName": "mflow:employeeSearch",
-                          "id": "c15045c4-8156-4c94-9583-b9a61f9d1c3a",
-                          "renditionMap": {},
-                          "type": "component"
-                        }
-                      ],
                       "id": "f63d1b33-fdae-4e87-926d-103c889b2f33",
-                      "regionLabel": "Search Employees",
+                      "regionLabel": "Search Applicants",
                       "regionName": "2",
                       "renditionMap": {},
                       "type": "region"
@@ -109,6 +106,22 @@
                       "id": "8a2c3e0e-4541-47c4-b3bc-a9a0d4ea10f4",
                       "regionLabel": "Search Applications",
                       "regionName": "79d08",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {},
+                          "componentName": "mflow:employeeSearch",
+                          "id": "2a97d078-f16f-48af-9368-c7477f9c0781",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "accc445b-3f8d-49f2-9718-744842098a45",
+                      "regionLabel": "Search Employees",
+                      "regionName": "a371a",
                       "renditionMap": {},
                       "type": "region"
                     }
