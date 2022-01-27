@@ -137,31 +137,12 @@ global with sharing class BuildFundingWrapper extends AbstractService {
     mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
     mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;
     mapperTransaction.InstitutionState = accountTransaction.mflow__TransactionStateCode__c;
-    mapperTransaction.TransactionType = getStatusMapping(
-      'FinServ__TransactionSubtype__c',
-      accountTransaction.FinServ__TransactionSubtype__c
-    );
+    mapperTransaction.TransactionType = accountTransaction.FinServ__TransactionSubtype__c;
     mapperTransaction.TransactionDate = date.newinstance(
       accountTransaction.FinServ__TransactionDate__c.year(),
       accountTransaction.FinServ__TransactionDate__c.month(),
       accountTransaction.FinServ__TransactionDate__c.day()
     );
     return mapperTransaction;
-  }
-
-  /**
-   * @description
-   * @author Digital Align | 01-20-2022
-   * @param String fieldName
-   * @param String value
-   * @return virtual
-   **/
-  global virtual String getStatusMapping(String fieldName, String value) {
-    return (new Map<String, String>{
-        'ACH' => 'ACH',
-        'Check' => 'Check',
-        'Cash Deposit' => 'Cash'
-      })
-      .get(value);
   }
 }

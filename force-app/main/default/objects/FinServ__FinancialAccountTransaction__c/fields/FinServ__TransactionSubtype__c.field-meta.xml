@@ -195,6 +195,14 @@
             <valueName>ACH</valueName>
         </valueSettings>
         <valueSettings>
+            <controllingFieldValue>Credit</controllingFieldValue>
+            <valueName>Cash</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Credit</controllingFieldValue>
+            <valueName>Check</valueName>
+        </valueSettings>
+        <valueSettings>
             <controllingFieldValue>Debit</controllingFieldValue>
             <valueName>ATM Withdrawal</valueName>
         </valueSettings>
