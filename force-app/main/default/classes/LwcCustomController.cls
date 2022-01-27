@@ -240,7 +240,7 @@ global with sharing class LwcCustomController extends AbstractController {
       return ApexResponse.ok();
     } catch (Exception ex) {
       Database.rollback(sp);
-      log?.debug(ex);
+      log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete updateKycDecision');

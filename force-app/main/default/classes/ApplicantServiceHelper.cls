@@ -57,6 +57,7 @@ global with sharing class ApplicantServiceHelper extends AbstractService {
       Account.SObjectType,
       'IndustriesIndividual'
     );
+    individualAccount.OwnerId = UserUtils.getCurrentUser().CreatedById;
     individualAccount.UserAccountType__c = 'IndividualCustomer';
     ApplicantRepository.upsertRecord(individualAccount);
     // Return Individual Contact created by Salesforce , when account is created
