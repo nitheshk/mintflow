@@ -19,15 +19,6 @@ public with sharing class CustomerAgreementController {
   /**
    * @description
    * @author Digital Align | 01-27-2022
-   * @param Datetime dateTimevalue
-   * @return string
-   **/
-  public static string getDateFormat(Datetime dateTimevalue) {
-    return DateUtils.formatDateGMT(dateTimevalue);
-  }
-  /**
-   * @description
-   * @author Digital Align | 01-27-2022
    * @param Id applicationId
    * @return virtual
    **/

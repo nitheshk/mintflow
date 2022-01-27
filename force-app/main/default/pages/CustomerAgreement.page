@@ -87,9 +87,11 @@
             ></apex:outputText>
             <apex:outputText
               style="font-style: bold"
-              value="{!application.mflow__SubmittedDate__c}"
+              value="{0,date,MM/dd/yyyy}"
               styleClass="headerStyle "
-            ></apex:outputText>
+            >
+              <apex:param value="{!application.mflow__SubmittedDate__c}" />
+            </apex:outputText>
           </h4>
         </div>
 
@@ -105,9 +107,9 @@
               </td>
               <td width="50% ">
                 <apex:outputText value="Birthdate : "></apex:outputText>
-                <apex:outputText
-                  value="{!applicantVar.Birthdate__c}"
-                ></apex:outputText>
+                <apex:outputText value="{0,date,MM/dd/yyyy}">
+                  <apex:param value="{!applicantVar.Birthdate__c}" />
+                </apex:outputText>
               </td>
             </tr>
             <tr style="height: 20px">
@@ -166,9 +168,9 @@
               <tr style="height: 20px">
                 <td width="50% ">
                   <apex:outputText value="Issued Date : "></apex:outputText>
-                  <apex:outputText
-                    value="{!identityVar.FinServ__IssueDate__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="{0,date,MM/dd/yyyy}">
+                    <apex:param value="{!identityVar.FinServ__IssueDate__c}" />
+                  </apex:outputText>
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Issuing Country : "></apex:outputText>
@@ -180,9 +182,11 @@
               <tr style="height: 20px">
                 <td width="50% ">
                   <apex:outputText value="Expiration Date : "></apex:outputText>
-                  <apex:outputText
-                    value="{!identityVar.FinServ__ExpirationDate__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="{0,date,MM/dd/yyyy}">
+                    <apex:param
+                      value="{!identityVar.FinServ__ExpirationDate__c}"
+                    />
+                  </apex:outputText>
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Issued Region : "></apex:outputText>
