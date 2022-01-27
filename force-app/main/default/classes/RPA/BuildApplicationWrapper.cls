@@ -57,7 +57,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       }
       application = readApplicationWithChild(application.Id);
 
-      log?.debug('Full Application Json : ' + json.serialize(application));
+      //log?.debug('Full Application Json : ' + json.serialize(application));
       if (application != null) {
         ApplicationSubmissionResponse.Account mapperApplication = new ApplicationSubmissionResponse.Account();
         mapperApplication.ApplicationId = application.Id;
@@ -96,7 +96,10 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       } else {
         throw new CustomException(System.Label.Application_ApplicationNotFound);
       }
-      log?.info('obtainApplicationData -> ReturnMapper -> ' + mapper);
+      log
+        ?.info(
+          'obtainApplicationData -> ReturnMapper -> ' + Json.serialize(mapper)
+        );
       return mapper;
     }
   }

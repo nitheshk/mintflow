@@ -192,6 +192,8 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
           ?.FinancialApplicationTransaction
           ?.FinancialAccountTransactionId != null
       ) {
+        //READY FOR FUNDING
+        //FUNDED
         FinServ__FinancialAccountTransaction__c fat = new FinServ__FinancialAccountTransaction__c(
           Id = financialAccountResult.FinancialApplicationTransaction.FinancialAccountTransactionId,
           FinServ__TransactionStatus__c = 'Posted'

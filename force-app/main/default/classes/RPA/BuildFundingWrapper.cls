@@ -80,7 +80,7 @@ global with sharing class BuildFundingWrapper extends AbstractService {
       mapFinancialApplication(financialApplications)
     );
 
-    log?.info('obtainFundingData -> ReturnMapper -> ' + mapper);
+    log?.info('obtainFundingData -> ReturnMapper -> ' + json.serialize(mapper));
     return mapper;
   }
 

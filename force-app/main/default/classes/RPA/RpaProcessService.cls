@@ -213,8 +213,8 @@ global with sharing class RpaProcessService extends AbstractService {
    * To update the application with member details from external system
    * @example Request Json Looking Like below
    * Post Request
-   * Connected App : https://connect-customization-1792-dev-ed.cs73.my.salesforce.com/services/apexrest/mflow/rpa/v1/updatememberdetails
-   * Site Url : https://sandbox-connect-customization-1792-d-17d7097ab15.cs73.force.com/Online/services/apexrest/mflow/rpa/v1/updatememberdetails
+   * Connected App : {{SfUrl}}/services/apexrest/mflow/rpa/v1/updatememberdetails
+   * Site Url : {{communityUrl}}/Online/services/apexrest/mflow/rpa/v1/updatememberdetails
    * Request JSON: {
     "ApplicationId": "0016D00000ZBuZTQA1",
     "ApplicationNumber": "APP-001",
@@ -275,6 +275,28 @@ global with sharing class RpaProcessService extends AbstractService {
    * @description
    * Step5:
    * Update Membership details returned from external application in salesforce
+   * @example Request Json Looking Like below
+   * Post Request
+   * Connected App : {{SfUrl}}/services/apexrest/mflow/rpa/v1/updatefundingdetails
+   * Site Url : {{communityUrl}}/Online/services/apexrest/mflow/rpa/v1/updatememberdetails
+   * Request JSON:  {
+    "FinancialAccount": [
+        {
+            "FinancialAccountId": "a0FN000000G781GMAR",
+            "Ownership": "Individual",
+            "AccountNumber": "34543",
+            "ProductCode": "",
+            "FinancialApplicationTransaction": {
+                "TransactionStatus": "Paid",
+                "FinancialAccountTransactionId": "a0EN000000JPrbuMAD"
+            }
+        }
+    ],
+    "ExternalApplicationNumber": "",
+    "ExternalApplicationStatus": "Approved",
+    "MemberNumber": " 229217 ",
+    "Application": "001N0000024vHDKIA2"
+    }
    * @author Digital Align | 01-21-2022
    **/
   global virtual void updateFundingDetails() {
