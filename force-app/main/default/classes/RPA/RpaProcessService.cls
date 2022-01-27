@@ -83,10 +83,10 @@ global with sharing class RpaProcessService extends AbstractService {
     switch on precedingUri {
       //RestContext.request.requestURI :/mflow/rpa/v1/updatememberdetails/
       when 'updatememberdetails' {
-        this.buildUpdateMemberDetails();
+        this.updateMemberDetails();
       }
       when 'updatefundingdetails' {
-        this.buildUpdateFundingDetails();
+        this.updateFundingDetails();
       }
     }
   }
@@ -103,13 +103,13 @@ global with sharing class RpaProcessService extends AbstractService {
       //RestContext.request.requestURI :/mflow/rpa/v1/obtainreviewapplicationdata/
       //STEP 2:
       when 'obtainreviewapplicationdata' {
-        this.buildObtainReviewApplicationData();
+        this.obtainReviewApplicationData();
       }
       when 'obtainapplicationfiles' {
-        this.buildObtainApplicationFiles();
+        this.obtainApplicationFiles();
       }
       when 'obtainfundingdata' {
-        this.buildObtainFundingData();
+        this.obtainFundingData();
       }
     }
   }
@@ -196,7 +196,7 @@ global with sharing class RpaProcessService extends AbstractService {
    * @description Step2: Fetch complete application data from review submit using applicationID
    * @author Digital Align | 11-30-2021
    **/
-  global virtual void buildObtainReviewApplicationData() {
+  global virtual void obtainReviewApplicationData() {
     RestRequest restReq = RestContext.request;
     String applicationName = restReq.params.get('applicationName');
     ApplicationSubmissionResponse applicationResponse = BuildApplicationWrapper.getInstance()
@@ -208,7 +208,7 @@ global with sharing class RpaProcessService extends AbstractService {
   }
 
   /**
-   * @description 
+   * @description
    * Step3:
    * To update the application with member details from external system
    * @example Request Json Looking Like below
@@ -239,11 +239,10 @@ global with sharing class RpaProcessService extends AbstractService {
         }
     ]
     }
-  /** 
    * @author Digital Align Team | 11-25-2021
    **/
-  global virtual void buildUpdateMemberDetails() {
-    log?.debug('Inside buildUpdateMemberDetails');
+  global virtual void updateMemberDetails() {
+    log?.debug('Inside updateMemberDetails');
     log?.debug('requestBody =' + RestContext.request.requestBody.toString());
     Account application = (Account) ApplicationService.getInstance()
       .processMembershipKYC(RestContext.request.requestBody.toString());
@@ -261,7 +260,7 @@ global with sharing class RpaProcessService extends AbstractService {
    * Fetch all funding data submitted by customer using applicationID
    * @author Digital Align | 11-30-2021
    **/
-  global virtual void buildObtainFundingData() {
+  global virtual void obtainFundingData() {
     RestRequest restReq = RestContext.request;
     String applicationName = restReq.params.get('applicationName');
     FundingSubmissionResponse fundingResponse = BuildFundingWrapper.getInstance()
@@ -278,8 +277,8 @@ global with sharing class RpaProcessService extends AbstractService {
    * Update Membership details returned from external application in salesforce
    * @author Digital Align | 01-21-2022
    **/
-  global virtual void buildUpdateFundingDetails() {
-    log?.debug('Inside buildUpdateFundingDetails');
+  global virtual void updateFundingDetails() {
+    log?.debug('Inside updateFundingDetails');
     log?.debug('requestBody =' + RestContext.request.requestBody.toString());
 
     RestResponse response = RestContext.response;
@@ -295,7 +294,7 @@ global with sharing class RpaProcessService extends AbstractService {
    * @author Digital Align | 12-02-2021
    * @return virtual
    **/
-  global virtual void buildObtainApplicationFiles() {
+  global virtual void obtainApplicationFiles() {
     RestRequest restReq = RestContext.request;
     String applicationNumber = restReq.params.get('applicationNumber');
     log?.debug('applicationNumber =' + applicationNumber);

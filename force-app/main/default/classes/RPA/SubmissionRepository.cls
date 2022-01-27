@@ -162,4 +162,24 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
         .toString()
     );
   }
+
+  /**
+   * @description Read application with Applicants
+   * @author Digital Align Team | 11-15-2021
+   * @param Id applicationId
+   * @return Account
+   **/
+  global static Account readApplicationWithApplicants(Id applicationId) {
+    return (Account) DatabaseUtils.getRecord(
+      Query.newInstance(Account.SObjectType)
+        .addFields()
+        .queryChild('mflow__Applicants__r')
+        .addFields()
+        .addFields('RecordType.Name')
+        .orderBy('mflow__Order__c')
+        .run()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
 }
