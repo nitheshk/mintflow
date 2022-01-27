@@ -63,3 +63,60 @@ Map<String, Object> header = new Map<String, Object>{
 };
 NotificationService ns = new NotificationService();
 ns.sendOTPMessage(header);
+
+// #4
+
+String notificationTypeId = CommonRepository.readNotificationType(
+    'MintFlowNotification'
+  )
+  ?.Id;
+Messaging.CustomNotification notification = new Messaging.CustomNotification();
+notification.setTitle('title');
+notification.setBody('body');
+notification.setSenderId(Userinfo.getUserId());
+notification.setNotificationTypeId(notificationTypeId);
+notification.setTargetId('a0bN000000EZR1WIAX');
+notification.send(
+  new Set<String>{ NotificationBuilder.getRegularGroupId('OnKycSuccess') }
+);
+
+//
+
+Map<String, String> params = new Map<String, String>{
+  'aplType' => 'Joint',
+  'flw' => 'JointFlow',
+  'urlSuffix' => '/membership/joints/welcome',
+  'aplId' => 'a0bN000000EZR1mIAH',
+  'ch' => 'Virtual'
+};
+
+Map<String, String> params = new Map<String, String>{
+  'aplType' => 'Primary',
+  'flw' => 'FundingFlow',
+  'urlSuffix' => '/membership/funding/welcome',
+  'aplId' => 'a0bN000000EZR1gIAH',
+  'ch' => 'Virtual'
+};
+
+SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+cipher.aplType = params.get('aplType');
+cipher.flw = params.get('flw');
+String urlSuffix = params.get('urlSuffix');
+cipher.appId = ApexRequest.getApplicationId();
+cipher.aplId = params.get('aplId');
+cipher.edt = Datetime.now()
+  .addHours(
+    (Integer) ApplicationConfiguration__c.getInstance()
+      .EmailLinkExpirationTime__c
+  );
+cipher.ch = params.get('ch');
+
+String link =
+  SiteSetting__c.getInstance().OnlineSiteUrl__c +
+  '/OpenAccount' +
+  '?vmf=' +
+  SecurityUtils.encryptUrl(JSON.serialize(cipher, true)) +
+  '&vue=' +
+  EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
+
+system.debug(link);
