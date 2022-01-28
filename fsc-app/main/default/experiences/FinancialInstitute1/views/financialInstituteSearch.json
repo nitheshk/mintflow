@@ -96,6 +96,15 @@
                   "id": "c7796573-79d2-4383-aafa-70c3ff471b6b",
                   "regions": [
                     {
+                      "components": [
+                        {
+                          "componentAttributes": {},
+                          "componentName": "mflow:employeeSearch",
+                          "id": "8ebe3d7c-cd61-46f0-b2a0-88148b0db86b",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
                       "id": "f63d1b33-fdae-4e87-926d-103c889b2f33",
                       "regionLabel": "Search Applicants",
                       "regionName": "2",
@@ -103,6 +112,15 @@
                       "type": "region"
                     },
                     {
+                      "components": [
+                        {
+                          "componentAttributes": {},
+                          "componentName": "mflow:employeeSearch",
+                          "id": "d926348d-7c91-44bd-8954-ccec16e50dda",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
                       "id": "8a2c3e0e-4541-47c4-b3bc-a9a0d4ea10f4",
                       "regionLabel": "Search Applications",
                       "regionName": "79d08",
