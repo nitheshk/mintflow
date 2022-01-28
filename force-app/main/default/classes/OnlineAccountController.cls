@@ -6,7 +6,7 @@
  * @description Online Account controller
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class OnlineAccountController extends AbstractController {
+global without sharing class OnlineAccountController extends AbstractController {
   private String id { get; set; }
   private Account application { get; set; }
   global String initialData { get; set; }
@@ -45,8 +45,11 @@ global with sharing class OnlineAccountController extends AbstractController {
         this.application = new Account();
       }
 
-      String sessId = UserInfo.getSessionId();
-      params.put('sftoken', sessId.substring(0, 50) + sessId.substring(50));
+      //String sessId = UserInfo.getSessionId();
+      // String s1 = UserInfo.getSessionId().substring(0, 50);
+      // String s2 = UserInfo.getSessionId().substring(50);
+      //log?.debug(sessId.substring(0, 50) + ' ' + sessId.substring(50));
+      params.put('sftoken', UserInfo.getSessionId());
       params.put('token', ApexRequest.getToken());
       params.put('timezone', UserInfo.getTimeZone().getID());
       Map<String, Object> initialData = new Map<String, Object>{
