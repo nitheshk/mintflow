@@ -1,5 +1,5 @@
 updateAdminPermissionSet();
-updateGuestPermissionSet();
+//updateGuestPermissionSet();
 updateRoleToCurrentUser();
 
 public static void updateGuestPermissionSet() {
