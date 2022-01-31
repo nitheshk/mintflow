@@ -69,9 +69,6 @@
       "path": "${workspaceFolder}/force-app/main/default/classes/API"
     },
     {
-      "path": "${workspaceFolder}/force-app/main/default/classes/Charts"
-    },
-    {
       "path": "${workspaceFolder}/force-app/main/default/classes/CommunityClass"
     },
     {
@@ -90,7 +87,13 @@
       "path": "${workspaceFolder}/force-app/main/default/classes/NavigationMenu"
     },
     {
+      "path": "${workspaceFolder}/force-app/main/default/classes/Plaid"
+    },
+    {
       "path": "${workspaceFolder}/force-app/main/default/classes/QueryGenerator"
+    },
+    {
+      "path": "${workspaceFolder}/force-app/main/default/classes/RPA"
     },
     {
       "path": "${workspaceFolder}/force-app/main/default/classes/TriggerActionsFramework"
