@@ -9,10 +9,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>AbstractChartData</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>OpenAccountController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -34,10 +30,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FinancialAccountController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ChartBuilderController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -82,10 +74,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>OnlineAccountLoginController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SOQLDataService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
