@@ -8,6 +8,10 @@
         <apexClass>OnlineAccountLoginController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>AtomicFIService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
      <pageAccesses>
         <apexPage>OnlineAutoLogin</apexPage>
         <enabled>true</enabled>
