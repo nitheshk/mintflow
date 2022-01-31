@@ -32,7 +32,7 @@
     <networkMemberGroups>
         <permissionSet>mflow__MintFlowEmployeeCommunity</permissionSet>
         <profile>admin</profile>
-        <profile>FinancialInstituteCommunity Profile</profile>
+        <profile>MFlowEmployeeCommunity</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting
