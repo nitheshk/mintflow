@@ -204,27 +204,27 @@
         <table>
           <thead>
             <tr>
-              <th class=" " scope="col ">
+              <th class="" scope="col ">
                 <div title="Routing Number " style="margin: 3px">
                   <b>Routing Number</b>
                 </div>
               </th>
-              <th class=" " scope="col ">
+              <th class="" scope="col ">
                 <div title="Account Number " style="margin: 3px">
                   <b>Account Nmmber</b>
                 </div>
               </th>
-              <th class=" " scope="col ">
+              <th class="" scope="col ">
                 <div title="Type " style="margin: 10px">
                   <b>Type</b>
                 </div>
               </th>
-              <th class=" " scope="col ">
+              <th class="" scope="col ">
                 <div title="Distribution Type " style="margin: 10px">
                   <b>Distribution Type</b>
                 </div>
               </th>
-              <th class=" " scope="col ">
+              <th class="" scope="col ">
                 <div title="Distribution Amount " style="margin: 10px">
                   <b>Distribution Amount</b>
                 </div>
@@ -268,12 +268,12 @@
         <table>
           <thead>
             <tr>
-              <th class=" " scope="col ">
+              <th class="" scope="col ">
                 <div title="Year " style="margin: 10px">
                   <b>Year</b>
                 </div>
               </th>
-              <th class=" " scope="col ">
+              <th class="" scope="col ">
                 <div title="Total Wages " style="margin: 10px">
                   <b>Total Wages</b>
                 </div>
@@ -308,12 +308,12 @@
           <tbody>
             <apex:repeat var="statevar" value="{!atomicWrapper.statementList}">
               <tr style="margin: 10px; background: #f5f6f8">
-                <th class=" " scope="col ">
+                <th class="" scope="col ">
                   <div title="Date " style="margin: 10px; background: #f5f6f8">
                     <b>Date</b>
                   </div>
                 </th>
-                <th class=" " scope="col ">
+                <th class="" scope="col ">
                   <div
                     title="Gross Amount "
                     style="margin: 10px; background: #f5f6f8"
@@ -321,7 +321,7 @@
                     <b>Gross Amount</b>
                   </div>
                 </th>
-                <th class=" " scope="col ">
+                <th class="" scope="col ">
                   <div
                     title="Net Amount "
                     style="margin: 10px; background: #f5f6f8"
@@ -359,17 +359,17 @@
                 <table style="margin: 25px; background: #e8edf8">
                   <thead>
                     <tr>
-                      <th class=" " scope="col ">
+                      <th class="" scope="col ">
                         <div title="Category " style="margin: 10px">
                           <b>Category</b>
                         </div>
                       </th>
-                      <th class=" " scope="col ">
+                      <th class="" scope="col ">
                         <div title="Label " style="margin: 10px">
                           <b>Label</b>
                         </div>
                       </th>
-                      <th class=" " scope="col ">
+                      <th class="" scope="col ">
                         <div title="Amount " style="margin: 10px">
                           <b>Amount</b>
                         </div>

@@ -64,48 +64,6 @@
               "type": "region"
             },
             {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "colorPalette": "default",
-                    "details": "",
-                    "detailsLabels": "[\"In Progress\",\"Cancelled\",\"Saved\",\"Submit for Review\",\"Revision in Progress\"]",
-                    "fill": true,
-                    "handler": "",
-                    "legendPosition": "right",
-                    "recordId": "{!recordId}",
-                    "soql": "SELECT count(Id) value,FinServ__Status__c label FROM Account where RecordType.Name='Application' group by FinServ__Status__c limit 1000",
-                    "styleCss": "",
-                    "title": "Application Status",
-                    "type": "bar"
-                  },
-                  "componentName": "mflow:chartBuilder",
-                  "id": "981e9153-aa1b-4566-9d24-f75e45ff7c71",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {
-                    "colorPalette": "default",
-                    "details": "",
-                    "detailsLabels": "[\"Passed\",\"Under Review\",\"Failed\"]",
-                    "fill": true,
-                    "handler": "",
-                    "legendPosition": "right",
-                    "recordId": "",
-                    "soql": "SELECT count(Id) value,FinServ__KYCStatus__c label FROM Account where RecordType.Name='Application' group by FinServ__KYCStatus__c limit 1000",
-                    "styleCss": "",
-                    "title": "Application Kyc Status",
-                    "type": "pie"
-                  },
-                  "componentName": "mflow:chartBuilder",
-                  "id": "8242e169-394e-4505-bb34-53d8730faf00",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
               "id": "63ef8255-b074-43f8-9006-836970e7ca04",
               "regionLabel": "Column 2",
               "regionName": "2d95f",
@@ -113,48 +71,6 @@
               "type": "region"
             },
             {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "colorPalette": "default",
-                    "details": "",
-                    "detailsLabels": "[\"Saving\",\"Checking\",\"Loan\"]",
-                    "fill": false,
-                    "handler": "",
-                    "legendPosition": "right",
-                    "recordId": "{!recordId}",
-                    "soql": "SELECT count(Id) value, FinServ__FinancialAccountType__c label FROM FinServ__FinancialAccount__c group by FinServ__FinancialAccountType__c limit 1000",
-                    "styleCss": "",
-                    "title": "Financial Account",
-                    "type": "doughnut"
-                  },
-                  "componentName": "mflow:chartBuilder",
-                  "id": "e009d213-65bf-4a28-858d-c4160a142acb",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {
-                    "colorPalette": "default",
-                    "details": "",
-                    "detailsLabels": "[\"Under Review\",\"Failed\",\"Passed\"]",
-                    "fill": true,
-                    "handler": "",
-                    "legendPosition": "right",
-                    "recordId": "{!recordId}",
-                    "soql": "SELECT count(Id) value,mflow__KYCStatus__c label FROM mflow__Applicant__c group by mflow__KYCStatus__c limit 1000",
-                    "styleCss": "",
-                    "title": "Applicant Kyc",
-                    "type": "pie"
-                  },
-                  "componentName": "mflow:chartBuilder",
-                  "id": "e9b2dc60-03e3-4f52-aaaa-8030f1553fbc",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
               "id": "65bb2ebb-ae32-45ed-924b-ffc907591403",
               "regionLabel": "Column 3",
               "regionName": "aca05",

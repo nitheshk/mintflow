@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Application</fullName>
     <active>true</active>
-    <compactLayoutAssignment>FinServ__HouseholdCompactLayout</compactLayoutAssignment>
+    <compactLayoutAssignment
+  >FinServ__HouseholdCompactLayout</compactLayoutAssignment>
     <description>Application for grorup MintFlow related details</description>
     <label>Application</label>
     <picklistValues>
