@@ -277,7 +277,7 @@ global with sharing class Logger {
   global static void persist() {
     try {
       if (!logs.isEmpty()) {
-        SystemSettingRepository.upsertRecords(logs);
+        CommonRepository.upsertRecords(logs);
         logs = new List<Diagnostic__c>();
       }
     } catch (Exception ex) {

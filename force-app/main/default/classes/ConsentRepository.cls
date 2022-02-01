@@ -96,4 +96,22 @@ public with sharing class ConsentRepository extends DatabaseUtils {
     qry.orderBy('mflow__Order__c');
     return (List<Consent__c>) getRecords(qry.toString(true));
   }
+
+  /**
+   * @description Read Existing Consent
+   * @author Digital Align Team | 01-07-2022
+   * @param String eventIdentifier
+   * @return List<Consent__c>
+   */
+  public static List<Consent__c> readExistingConsentByAppId(Id applicationId) {
+    return (List<Consent__c>) getRecords(
+      Query.newInstance(Consent__c.SObjectType)
+        .addFields()
+        .queryLookup('mflow__ConsentTemplate__r')
+        .addFields()
+        .run()
+        .whereEq('mflow__Application__c', applicationId)
+        .toString(true)
+    );
+  }
 }

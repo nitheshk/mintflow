@@ -98,3 +98,9 @@ request.header = '{"eventIdentifier":"MemberAgreementPage" }';
 //request.header = '{"eventIdentifier":"ElibilityPage"}';
 ApexResponse res = ApplicationController.fetchConsents(request);
 system.debug('Full Json : ' + res.data);
+
+// #6 generate pdf file for consent
+
+ConsentResolver.getInstance().generateConsentPdf('0011y00000OVagqAAD');
+
+ 

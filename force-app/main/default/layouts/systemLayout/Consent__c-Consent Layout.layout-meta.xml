@@ -48,9 +48,13 @@
                 <behavior>Edit</behavior>
                 <field>Order__c</field>
             </layoutItems>
-            <layoutItems>
+             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Remarks__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PrimaryContentDocumentID__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

@@ -303,4 +303,46 @@ global with sharing class ConsentResolver extends AbstractService {
     }
     return consents;
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 02-01-2022
+   * @param Id applicationId
+   * @return  List<Consent__c>
+   **/
+  global virtual List<Consent__c> generateConsentPdf(Id applicationId) {
+    List<Consent__c> consents = ConsentRepository.readExistingConsentByAppId(
+      applicationId
+    );
+    if (CollectionUtils.isListEmpty(consents)) {
+      return consents;
+    }
+    for (Consent__c consent : consents) {
+      if (
+        consent.mflow__ConsentTemplate__r.mflow__DocumentType__c ==
+        'Visualforce'
+      ) {
+        Pagereference consentPdf = new Pagereference(consent.mflow__URL__c);
+        Blob body;
+        if (Test.isRunningTest()) {
+          body = Blob.valueOf('TestFile');
+        } else {
+          body = consentPdf.getContent();
+        }
+        ContentVersion cv = FileService.getInstance()
+          .createFile(
+            new FileDTO(
+              consent.Name + '.pdf',
+              body,
+              consent.Id,
+              'Address',
+              'Other'
+            )
+          );
+        consent.PrimaryContentDocumentID__c = cv.ContentDocumentId;
+      }
+    }
+    ConsentRepository.upsertRecords(consents);
+    return consents;
+  }
 }
