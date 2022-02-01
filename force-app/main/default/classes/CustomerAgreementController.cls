@@ -7,13 +7,20 @@
  **/
 public with sharing class CustomerAgreementController {
   public static account application { get; set; }
+  private id applicationId;
   /**
    * @description
    * @author Digital Align | 01-27-2022
    * @return virtual
    **/
-  public virtual void getApplicantCompleteData() {
-    String applicationId = ApexRequest.getApplicationId();
+
+  public CustomerAgreementController() {
+    applicationId = String.escapeSingleQuotes(
+      ApexPages.CurrentPage().getparameters().get('id')
+    );
+  }
+
+  public void getApplicantCompleteData() {
     application = readApplicationWithChild(applicationId);
   }
   /**
@@ -22,7 +29,7 @@ public with sharing class CustomerAgreementController {
    * @param Id applicationId
    * @return virtual
    **/
-  public virtual Account readApplicationWithChild(Id applicationId) {
+  public Account readApplicationWithChild(Id applicationId) {
     Account application = SubmissionRepository.readApplicationWithChild(
       applicationId
     );

@@ -9,6 +9,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>CustomerAgreement</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Error</apexPage>
         <enabled>true</enabled>
     </pageAccesses>

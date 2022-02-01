@@ -85,3 +85,16 @@ request.header = '{"eventIdentifier":"ReviewSubmit"}';
 //request.header = '{"eventIdentifier":"ElibilityPage"}';
 ApexResponse res = ApplicationController.fetchConsents(request);
 system.debug('Full Json : ' + res.data);
+
+// #5 Agreement page
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  '0011y00000OVagqAAD',
+  'a0a1y000001Ydh0AAC',
+  'Primary',
+  'ApplicationFlow'
+);
+request.header = '{"eventIdentifier":"MemberAgreementPage" }';
+//request.header = '{"eventIdentifier":"ElibilityPage"}';
+ApexResponse res = ApplicationController.fetchConsents(request);
+system.debug('Full Json : ' + res.data);
