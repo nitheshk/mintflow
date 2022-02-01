@@ -73,4 +73,27 @@ public with sharing class ConsentRepository extends DatabaseUtils {
       .whereEq('Id', applicationId);
     return (Account) getRecord(qry.toString());
   }
+
+  /**
+   * @description Read Existing Consent
+   * @author Digital Align Team | 01-07-2022
+   * @param String eventIdentifier
+   * @return List<Consent__c>
+   */
+  public static List<Consent__c> readExistingConsent(String eventIdentifier) {
+    Query qry = Query.newInstance(Consent__c.SObjectType)
+      .addFields()
+      .queryLookup('mflow__ConsentTemplate__r')
+      .addFields()
+      .run()
+      .whereEq('mflow__EventIdentifier__c', eventIdentifier)
+      .andCon()
+      .whereEq('mflow__Application__c', ApexRequest.getApplicationId());
+    if (ApexRequest.getParams('applicantId') != null) {
+      qry.andCon()
+        .whereEq('mflow__Applicant__c', ApexRequest.getParams('applicantId'));
+    }
+    qry.orderBy('mflow__Order__c');
+    return (List<Consent__c>) getRecords(qry.toString(true));
+  }
 }

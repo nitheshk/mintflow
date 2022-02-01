@@ -44,6 +44,15 @@ global with sharing class ConsentResolver extends AbstractService {
     List<Object> filters = (List<Object>) ApexRequest.getParams('filter');
     List<Consent__c> consents = new List<Consent__c>();
 
+    String eventIdentifier = String.valueOf(
+      ApexRequest.getParams('eventIdentifier')
+    );
+
+    consents = ConsentRepository.readExistingConsent(eventIdentifier);
+    if (!consents.isEmpty()) {
+      return consents;
+    }
+
     Account application = ConsentRepository.readApplicationWithFA(
       ApexRequest.getApplicationId()
     );
@@ -52,8 +61,15 @@ global with sharing class ConsentResolver extends AbstractService {
     consents.addAll(resolveConsents(application));
     //resolve consent using custom filter
     consents.addAll(resolveConsents(application, filters));
-    // remove duplicate consent
-    return removeDuplicateConsent(consents);
+
+    if (!consents.isEmpty()) {
+      // remove duplicate consent
+      consents = this.removeDuplicateConsents(consents);
+      consents = this.sort(consents);
+      ConsentRepository.upsertRecords(consents);
+    }
+
+    return consents;
   }
 
   /**
@@ -226,7 +242,7 @@ global with sharing class ConsentResolver extends AbstractService {
    * @param List<Consent__c> consents
    * @return List<Consent__c>
    **/
-  global virtual List<Consent__c> removeDuplicateConsent(
+  global virtual List<Consent__c> removeDuplicateConsents(
     List<Consent__c> consents
   ) {
     Set<String> templateCode = new Set<String>();
@@ -237,5 +253,46 @@ global with sharing class ConsentResolver extends AbstractService {
       }
     }
     return newconsentsList;
+  }
+
+  // Custom Sort Wrapper Class
+  global class ConsentWrapper implements Comparable {
+    global Consent__c consent;
+    // Constructor
+    global ConsentWrapper(Consent__c consent) {
+      this.consent = consent;
+    }
+    global Integer compareTo(Object compareTo) {
+      ConsentWrapper compareToConsent = (ConsentWrapper) compareTo;
+      // The return value of 0 indicates that both elements are equal.
+      Integer returnValue = 0;
+      if (consent.Order__c > compareToConsent.consent.Order__c) {
+        // Set return value to a positive value.
+        returnValue = 1;
+      } else if (consent.Order__c < compareToConsent.consent.Order__c) {
+        // Set return value to a negative value.
+        returnValue = -1;
+      }
+      return returnValue;
+    }
+  }
+
+  /**
+   * @description  Custom Sort for Consent
+   * @author Digital Align Team | 01-21-2022
+   * @param List<Consent__c> consents
+   * @return List<Consent__c>
+   **/
+  global virtual List<Consent__c> sort(List<Consent__c> consents) {
+    List<ConsentWrapper> consentWrapperList = new List<ConsentWrapper>();
+    for (Consent__c consent : consents) {
+      consentWrapperList.add(new ConsentWrapper(consent));
+    }
+    consentWrapperList.sort();
+    consents = new List<Consent__c>();
+    for (ConsentWrapper consentWrapper : consentWrapperList) {
+      consents.add(consentWrapper.consent);
+    }
+    return consents;
   }
 }
