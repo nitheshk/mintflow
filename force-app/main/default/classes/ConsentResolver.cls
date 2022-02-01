@@ -222,14 +222,22 @@ global with sharing class ConsentResolver extends AbstractService {
             documentMap.get(documentName)?.Id
           );
         }
-      } else if (consentLineItem.ConsentTemplate__r.DocumentType__c == 'URL') {
-        consent.URL__c = consentLineItem.ConsentTemplate__r.URL__c;
       } else if (
-        consentLineItem.ConsentTemplate__r.DocumentType__c == 'Visualforce' ||
+        consentLineItem.ConsentTemplate__r.DocumentType__c == 'URL' ||
         consentLineItem.ConsentTemplate__r.DocumentType__c == 'Signed'
       ) {
-        //#pending Logic is pending to add
         consent.URL__c = consentLineItem.ConsentTemplate__r.URL__c;
+      } else if (
+        consentLineItem.ConsentTemplate__r.DocumentType__c == 'Visualforce'
+      ) {
+        //#pending Logic is pending to add
+        consent.URL__c =
+          SiteSetting__c.getInstance().mflow__OnlineSiteUrl__c +
+          '/' +
+          consentLineItem.ConsentTemplate__r.URL__c
+            ?.replace('{applicationId}', ApexRequest.getApplicationId());
+        //consent.URL__c = consent.URL__c?.replace('{applicantId}',ApexRequest.getApplicationId());
+        //consent.URL__c = consent.URL__c?.replace('{financialAccountId}',ApexRequest.getApplicationId());
       }
       consentList.add(consent);
     }
