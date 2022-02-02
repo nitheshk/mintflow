@@ -299,4 +299,27 @@ global with sharing class ApplicationController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description Generat Consent Pdf Files
+   * @author Digital Align Team | 02-02-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse generateConsentPdf(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(
+        ConsentResolver.getInstance()
+          .generateConsentPdf(ApexRequest.getApplicationId())
+      );
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
 }

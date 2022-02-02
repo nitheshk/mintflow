@@ -116,6 +116,12 @@
                 <isActive>false</isActive>
                 <label>State Id</label>
             </value>
+            <value>
+                <fullName>Signature</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Signature</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
