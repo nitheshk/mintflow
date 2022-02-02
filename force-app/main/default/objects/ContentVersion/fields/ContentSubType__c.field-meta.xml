@@ -93,28 +93,9 @@
                 <label>AtomicFIResponse</label>
             </value>
             <value>
-                <fullName>Driver License</fullName>
+                <fullName>Signature</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
-                <label>Driver License</label>
-            </value>
-            <value>
-                <fullName>Green Card</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Green Card</label>
-            </value>
-            <value>
-                <fullName>Passport</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Passport</label>
-            </value>
-            <value>
-                <fullName>State Id</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>State Id</label>
+                <label>Signature</label>
             </value>
         </valueSetDefinition>
     </valueSet>
