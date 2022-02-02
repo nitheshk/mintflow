@@ -101,4 +101,36 @@ system.debug('Full Json : ' + res.data);
 
 // #6 generate pdf file for consent
 
-ConsentResolver.getInstance().generateConsentPdf('0011y00000OVagqAAD');
+//ConsentResolver.getInstance().generateConsentPdf('0011y00000OVagqAAD');
+
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  '0011y00000OVagqAAD',
+  '',
+  'Primary',
+  'FundingFlow'
+);
+ApexResponse res = ApplicationController.generateConsentPdf(request);
+system.debug('Full Json : ' + res);
+
+List<ContentVersion> cvs = FileService.getInstance()
+  .fetchContentVersionByFileType(
+    'a0a1y000001Ydh0AAC',
+    'Identity',
+    'Signature',
+    false
+  );
+if (!cvs.isEmpty()) {
+  system.debug('cvs[0].ContentDocumentId : ' + cvs[0].ContentDocumentId);
+}
+
+ContentVersion cv = FileService.getInstance()
+  .createFile(
+    new FileDTO(
+      cvs[0].Title + '.png',
+      cvs[0].VersionData,
+      'a0a1y000001Ydh0AAC',
+      'Identity',
+      'Signature'
+    )
+  );

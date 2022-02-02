@@ -153,6 +153,7 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
 
     Query qry = Query.newInstance(Applicant__c.SObjectType)
       .addFields()
+      .addFields('RecordType.Name')
       .removeFields('mflow__SessionToken__c')
       .queryChild('mflow__IdentificationDocuments__r')
       .addFields()
