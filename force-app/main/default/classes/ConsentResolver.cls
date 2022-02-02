@@ -333,13 +333,7 @@ global with sharing class ConsentResolver extends AbstractService {
         }
         ContentVersion cv = FileService.getInstance()
           .createFile(
-            new FileDTO(
-              consent.Name + '.pdf',
-              body,
-              consent.Id,
-              'Address',
-              'Other'
-            )
+            new FileDTO(consent.Name + '.pdf', body, consent.Id, 'Agreement')
           );
         consent.PrimaryContentDocumentID__c = cv.ContentDocumentId;
       }
