@@ -378,7 +378,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
     }
 
     List<id> reletedEntityIdList = new List<id>();
-
+    List<Map<string, string>> fileDetails = new List<Map<string, string>>();
     Account application = SubmissionRepository.readApplicationByApplicationNumber(
       applicationNumber
     );
@@ -402,7 +402,19 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
 
     List<ContentVersion> fileList = FileService.getInstance()
       .fetchContentVersionByEntityIds(reletedEntityIdList, true);
-    return ApexResponse.OK(new Map<Id, SObject>(fileList).keySet())
+
+    for (ContentVersion cv : fileList) {
+      Map<string, string> fileDetail = new Map<string, string>();
+      fileDetail.put('Id', cv.Id);
+      fileDetail.put('FileType', cv.FileType);
+      fileDetail.put('FileExtension', cv.FileExtension);
+      fileDetail.put('Title', cv.Title);
+      fileDetail.put('DocumentType', cv.mflow__ContentSubType__c);
+      log?.debug('fileList =' + JSON.serialize(fileDetail));
+      fileDetails.add(fileDetail);
+    }
+    log?.debug('fileDetails =' + JSON.serialize(fileDetails));
+    return ApexResponse.OK(fileDetails)
       .addHeader('Content-Type', 'application/json');
   }
   /**
