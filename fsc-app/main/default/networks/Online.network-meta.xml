@@ -30,7 +30,7 @@
   >mflow__MintFlow/mflow__CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
   <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
   <logoutUrl
-  >https://sandbox-connect-customer-1030-dev-ed-17e8b1716d5.cs6.force.com/Online</logoutUrl>
+  >https://sandbox-energy-customer-8501-dev-ed-17eb91d19ce.cs73.force.com/Online</logoutUrl>
   <networkMemberGroups>
     <permissionSet>mflow__MintFlowGuest</permissionSet>
     <profile>admin</profile>
