@@ -6,7 +6,6 @@
   controller="CustomerAgreementController"
   applyBodyTag="false"
   applyHtmlTag="false"
-  action="{!getApplicantCompleteData}"
 >
   <head>
     <style>

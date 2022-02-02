@@ -322,7 +322,9 @@ global with sharing class ConsentResolver extends AbstractService {
         consent.mflow__ConsentTemplate__r.mflow__DocumentType__c ==
         'Visualforce'
       ) {
-        Pagereference consentPdf = new Pagereference(consent.mflow__URL__c);
+        Pagereference consentPdf = new Pagereference(
+          '/apex' + consent.mflow__URL__c?.substringAfterLast('/Online')
+        );
         Blob body;
         if (Test.isRunningTest()) {
           body = Blob.valueOf('TestFile');

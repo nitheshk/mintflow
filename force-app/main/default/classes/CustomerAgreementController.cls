@@ -5,8 +5,8 @@
  * @reference
  * @description Controller to display customer agreement
  **/
-public with sharing class CustomerAgreementController {
-  public static account application { get; set; }
+global with sharing class CustomerAgreementController {
+  global static account application { get; set; }
   private id applicationId;
   /**
    * @description
@@ -14,13 +14,10 @@ public with sharing class CustomerAgreementController {
    * @return virtual
    **/
 
-  public CustomerAgreementController() {
+  global CustomerAgreementController() {
     applicationId = String.escapeSingleQuotes(
       ApexPages.CurrentPage().getparameters().get('id')
     );
-  }
-
-  public void getApplicantCompleteData() {
     application = readApplicationWithChild(applicationId);
   }
   /**
@@ -29,7 +26,7 @@ public with sharing class CustomerAgreementController {
    * @param Id applicationId
    * @return virtual
    **/
-  public Account readApplicationWithChild(Id applicationId) {
+  global Account readApplicationWithChild(Id applicationId) {
     Account application = SubmissionRepository.readApplicationWithChild(
       applicationId
     );
