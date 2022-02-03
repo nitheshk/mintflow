@@ -14,7 +14,7 @@
       "problemMatcher": []
     },
     {
-      "label": "Task : Sfdx Push with overwrite",
+      "label": "Task : Sfdx Push with overwrite & Ignore Warning",
       "type": "shell",
       "command": "sfdx",
       "args": [
@@ -23,6 +23,7 @@
         "${input:scratchAliasName}",
         "--loglevel",
         "fatal",
+        "-g",
         "--forceoverwrite"
       ],
       "group": "build",

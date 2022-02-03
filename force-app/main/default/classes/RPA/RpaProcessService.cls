@@ -244,7 +244,7 @@ global with sharing class RpaProcessService extends AbstractService {
   global virtual void updateMemberDetails() {
     log?.debug('Inside updateMemberDetails');
     log?.debug('requestBody =' + RestContext.request.requestBody.toString());
-    Account application = (Account) ApplicationService.getInstance()
+    Account application = (Account) KycReviewService.getInstance()
       .processMembershipKYC(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
     String responseString =

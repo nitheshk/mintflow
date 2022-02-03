@@ -22,7 +22,7 @@
                 <expandOthers>false</expandOthers>
                 <groupingSortProperties />
                 <header>Applications</header>
-                <report>Mintflow/ApplicationStatus</report>
+                <report>MintFlow/ApplicationStatus</report>
                 <showPercentage>false</showPercentage>
                 <showPicturesOnCharts>false</showPicturesOnCharts>
                 <showValues>false</showValues>

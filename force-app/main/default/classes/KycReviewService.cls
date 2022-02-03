@@ -37,6 +37,94 @@ global with sharing class KycReviewService extends AbstractService {
   }
 
   /**
+   * @description Create Financial MemberShip account and Primary Account
+   * @author Digital Align Team | 12-02-2021
+   * @param String resultJson
+   * @return Account
+   **/
+  global virtual Account processMembershipKYC(String resultJson) {
+    ApplicationSubmissionResponse.KYCResult kycResult = (ApplicationSubmissionResponse.KYCResult) JSON.deserialize(
+      resultJson,
+      ApplicationSubmissionResponse.KYCResult.class
+    );
+    // When result is null
+    if (kycResult == null) {
+      throw new CustomException('Unable to process the empty request');
+    }
+    Account application = ApplicationRepository.readApplicationForKYC(
+      kycResult.ApplicationId
+    );
+    ApexRequest.setApplicationId(application.Id);
+    ApexRequest.setApplicationName(application.ApplicationNumber__c);
+
+    if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
+      throw new CustomException('Kyc has already passed for the application ');
+    }
+
+    //chatter post on record level
+    NotificationBuilder.chatterMessagePost(
+      application.Id,
+      'Kyc Result : ' + resultJson
+    );
+
+    // roll back whole transaction on failure
+    Savepoint sp = Database.setSavepoint();
+    try {
+      // Primary is Existing Customer
+      if (kycResult.IsExistingCustomer == true) {
+        return KycReviewService.getInstance()
+          .processExistingMember(application, kycResult);
+      }
+
+      // Primary Kyc is Approved/Failed and Joint KYC is Approved/Failed
+      // update Applicant detail accordingly
+      application = KycReviewService.getInstance()
+        .updateApplicationKycDetails(application, kycResult);
+
+      // if Application kyc status is approved, then proceed with creating Account & Contact for primary
+      // And Open Membership Financial Account and relation with applicant
+
+      if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
+        ApplicantService.getInstance().createMemberAccount(application);
+
+        application = FinancialAccountService.getInstance()
+          .createMembershipFinancialAccount(application);
+
+        //Send Funding Email Link to primary
+        CustomerEmailService.getInstance()
+          .fundingLinkOnKycApproval(application);
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onSuccessKycProcess',
+            application.Id,
+            application.Name,
+            null
+          );
+      } else {
+        NotificationService.getInstance()
+          .dispatchKycNotification(
+            'onReviewKycProcess',
+            application.Id,
+            application.Name,
+            null
+          );
+      }
+      return application;
+    } catch (Exception ex) {
+      NotificationService.getInstance()
+        .dispatchKycNotification(
+          'onExceptionKycProcess',
+          ApexRequest.getApplicantId(),
+          ApexRequest.getApplicationName(),
+          ex.getStackTraceString()
+        );
+      log?.error(ex);
+      Database.rollback(sp);
+      throw ex;
+    }
+  }
+
+  /**
    * @description  Primary is Existing Customer
    * Used when kyc result is return from Server
    * @author Digital Align Team | 12-07-2021
