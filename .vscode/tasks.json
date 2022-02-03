@@ -19,8 +19,6 @@
       "command": "sfdx",
       "args": [
         "force:source:push",
-        "--targetusername",
-        "${input:scratchAliasName}",
         "--loglevel",
         "fatal",
         "-g",
