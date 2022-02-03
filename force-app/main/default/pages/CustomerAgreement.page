@@ -300,7 +300,12 @@
         <hr />
         <div>Signature</div>
         <br />
-        <img height="50px" width="150px" src="{!primarySignatureImg}" />
+        <apex:outputPanel
+          layout="none"
+          rendered="{!if(primarySignatureImg==null, 'false','true')}"
+        >
+          <img height="50px" width="150px" src="{!primarySignatureImg}" />
+        </apex:outputPanel>
       </apex:pageBlock>
     </div>
   </apex:form>
