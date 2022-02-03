@@ -2,11 +2,10 @@
   showHeader="false"
   standardStylesheets="false"
   cache="false"
-  renderAs="pdf"
+  renderAs=""
   controller="CustomerAgreementController"
   applyBodyTag="false"
   applyHtmlTag="false"
-  action="{!getApplicantCompleteData}"
 >
   <head>
     <style>
@@ -298,6 +297,10 @@
             </table>
           </apex:repeat>
         </apex:repeat>
+        <hr />
+        <div>Signature</div>
+        <br />
+        <img height="50px" width="150px" src="{!primarySignatureImg}" />
       </apex:pageBlock>
     </div>
   </apex:form>

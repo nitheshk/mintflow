@@ -106,7 +106,7 @@
                         }
                       ],
                       "id": "f63d1b33-fdae-4e87-926d-103c889b2f33",
-                      "regionLabel": "Search Applicants",
+                      "regionLabel": "Search Member",
                       "regionName": "2",
                       "renditionMap": {},
                       "type": "region"
@@ -130,7 +130,9 @@
                     {
                       "components": [
                         {
-                          "componentAttributes": {},
+                          "componentAttributes": {
+                            "employeeContactType": "FinancialInstituteEmployee"
+                          },
                           "componentName": "mflow:employeeSearch",
                           "id": "2a97d078-f16f-48af-9368-c7477f9c0781",
                           "renditionMap": {},

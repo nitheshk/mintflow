@@ -140,7 +140,7 @@
         <div class="slds-col slds-size_6-of-12 slds-var-p-around_x-small">
           <lightning-input
             type="text"
-            placeholder="Enter Id, Name, Email, Phone to search"
+            placeholder="Globaly search your text "
             onchange={handleAccountName}
           ></lightning-input>
         </div>
@@ -163,16 +163,18 @@
         </div>
       </div>
     </div>
-
     <br />
     <div if:true={searchData}>
       <div class="slds-p-horizontal_x-large">
         <lightning-datatable
           data={searchData}
-          columns={columns}
+          columns={columnsdata}
           key-field="id"
           hide-checkbox-column="true"
-        ></lightning-datatable>
+          onrowaction={callRowAction}
+        >
+          ></lightning-datatable
+        >
       </div>
     </div>
   </lightning-card>
