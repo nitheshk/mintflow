@@ -52,10 +52,10 @@ global with sharing class LWCFinancialInstituteSiteController {
    * @return ApexResponse
    **/
   @AuraEnabled(Cacheable=true)
-  public static ApexResponse retriveEmployees(Map<String, Object> params) {
+  public static ApexResponse retrieveEmployees(Map<String, Object> params) {
     try {
       return ApexResponse.ok(
-        SearchService.getInstance().retriveEmployees(params)
+        SearchService.getInstance().retrieveEmployees(params)
       );
     } catch (Exception ex) {
       System.debug(ex.getMessage());

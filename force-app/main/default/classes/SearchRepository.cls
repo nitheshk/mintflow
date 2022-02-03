@@ -14,51 +14,66 @@ public with sharing class SearchRepository extends DatabaseUtils {
    * @param string userContactType
    * @return List<Contact>
    **/
-  public static List<Contact> retriveEmployees(
+  public static List<Contact> retrieveEmployees(
     String searchString,
     map<string, string> searchFilter,
     string userContactType
   ) {
-    query q = Query.newInstance(Contact.SObjectType)
-      .addFields()
-      .whereEq('mflow__UserContactType__c', userContactType);
-    if (!searchFilter.isEmpty()) {
-      if (String.isNotBlank(searchFilter.get('FirstName'))) {
-        q.andCon().whereLike('FirstName', searchFilter.get('FirstName'));
+    String searchStr1 = searchString;
+    String dynamicString = '';
+    String searchQuery;
+    List<Contact> employeeList = new List<Contact>();
+    if (String.isNotBlank(searchString)) {
+      if (searchFilter != null) {
+        dynamicString = ApexUtils.obtainSearchString(searchFilter);
       }
-      if (String.isNotBlank(searchFilter.get('LastName'))) {
-        q.andCon().whereLike('LastName', searchFilter.get('LastName'));
+      if (searchFilter.isEmpty()) {
+        searchQuery =
+          'FIND {' +
+          searchStr1 +
+          '} IN ALL FIELDS RETURNING  Contact(Id,FirstName,LastName,Email,MobilePhone,mflow__EmployeeId__c)';
+      } else {
+        searchQuery =
+          'FIND {' +
+          searchStr1 +
+          '} IN ALL FIELDS RETURNING  Contact(Id,FirstName,LastName,Email,MobilePhone,mflow__EmployeeId__c WHERE ' +
+          dynamicString +
+          ')';
       }
-      if (String.isNotBlank(searchFilter.get('Email'))) {
-        q.andCon().whereLike('Email', searchFilter.get('Email'));
-      }
-      if (String.isNotBlank(searchFilter.get('MobilePhone'))) {
-        q.andCon().whereLike('MobilePhone', searchFilter.get('MobilePhone'));
-      }
-      if (String.isNotBlank(searchFilter.get('mflow__EmployeeId__c'))) {
-        q.andCon()
-          .whereLike(
-            'mflow__EmployeeId__c',
-            searchFilter.get('mflow__EmployeeId__c')
-          );
-      }
+      System.debug('searchQuery:' + searchQuery);
+      List<List<sObject>> objectList = search.query(searchQuery);
+      employeeList = (List<Contact>) objectList[0];
+      System.debug('employeeList :' + employeeList);
+      return employeeList;
     } else {
-      q.andCon()
-        .grpOpen()
-        .whereLike('FirstName', searchString)
-        .orCon()
-        .whereLike('LastName', searchString)
-        .orCon()
-        .whereLike('Email', searchString)
-        .orCon()
-        .whereLike('MobilePhone', searchString)
-        .orCon()
-        .whereLike('mflow__EmployeeId__c', searchString)
-        .grpClose();
+      query q = Query.newInstance(Contact.SObjectType)
+        .addFields()
+        .whereEq('mflow__UserContactType__c', userContactType);
+      if (!searchFilter.isEmpty()) {
+        if (String.isNotBlank(searchFilter.get('FirstName'))) {
+          q.andCon().whereLike('FirstName', searchFilter.get('FirstName'));
+        }
+        if (String.isNotBlank(searchFilter.get('LastName'))) {
+          q.andCon().whereLike('LastName', searchFilter.get('LastName'));
+        }
+        if (String.isNotBlank(searchFilter.get('Email'))) {
+          q.andCon().whereLike('Email', searchFilter.get('Email'));
+        }
+        if (String.isNotBlank(searchFilter.get('MobilePhone'))) {
+          q.andCon().whereLike('MobilePhone', searchFilter.get('MobilePhone'));
+        }
+        if (String.isNotBlank(searchFilter.get('mflow__EmployeeId__c'))) {
+          q.andCon()
+            .whereLike(
+              'mflow__EmployeeId__c',
+              searchFilter.get('mflow__EmployeeId__c')
+            );
+        }
+      }
+      employeeList = (List<Contact>) DatabaseUtils.getRecords(q.toString(true));
+      System.debug('employeeList:' + employeeList);
+
+      return employeeList;
     }
-    List<Contact> employeeList = (List<Contact>) DatabaseUtils.getRecords(
-      q.toString(true)
-    );
-    return employeeList;
   }
 }

@@ -1,6 +1,6 @@
 import { LightningElement, track, api } from "lwc";
 
-import searchEmployees from "@salesforce/apex/LWCFinancialInstituteSiteController.retriveEmployees";
+import searchEmployees from "@salesforce/apex/LWCFinancialInstituteSiteController.retrieveEmployees";
 import { NavigationMixin } from "lightning/navigation";
 import utils from "c/generalUtils";
 const columns = [
@@ -17,7 +17,8 @@ const columns = [
       title: "View",
       disabled: false,
       value: "view",
-      iconPosition: "left"
+      iconPosition: "left",
+      variant: "brand"
     }
   }
 ];
