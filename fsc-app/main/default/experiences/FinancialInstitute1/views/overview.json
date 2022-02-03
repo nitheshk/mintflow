@@ -64,6 +64,19 @@
               "type": "region"
             },
             {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "height": "485",
+                    "recordId": "01ZN0000000nlJiMAI"
+                  },
+                  "componentName": "forceCommunity:dashboard",
+                  "id": "4fbd03e8-cf6e-4c93-830e-be52a51ee993",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
               "id": "63ef8255-b074-43f8-9006-836970e7ca04",
               "regionLabel": "Column 2",
               "regionName": "2d95f",
