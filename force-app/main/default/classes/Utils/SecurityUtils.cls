@@ -291,7 +291,7 @@ global inherited sharing class SecurityUtils {
     PageUtils.setCookie(
       new Cookie('token', application.SessionToken__c, null, -1, true)
     );
-    log?.fine('Session Token :' + ApexRequest.getToken());
+    //log?.fine('Session Token :' + ApexRequest.getToken());
     return application;
   }
 

@@ -152,7 +152,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
       recordTypeName
     );
     // Full Name
-    applicant.Name = String.isBlank(applicant.FirstName__c)
+    applicant.ApplicantName__c = String.isBlank(applicant.FirstName__c)
       ? applicant.LastName__c
       : applicant.FirstName__c + ' ' + applicant.LastName__c;
 

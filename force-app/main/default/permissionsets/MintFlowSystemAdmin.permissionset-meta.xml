@@ -1145,9 +1145,9 @@
         <field>Applicant__c.Relationship__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
-        <field>Applicant__c.ApplicantNumber__c</field>
+        <field>Applicant__c.ApplicantName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

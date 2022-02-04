@@ -123,8 +123,8 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       // mapperApplicant.IsEmailVerified = applicant.IsEmailVerified__c;
       // mapperApplicant.IsExistingCustomer = applicant.IsExistingCustomer__c;
       // mapperApplicant.IsPhoneNumberVerified = applicant.IsPhoneNumberVerified__c;
-      mapperApplicant.ApplicantName = applicant.Name;
-      mapperApplicant.ApplicantNumber = applicant.ApplicantNumber__c;
+      mapperApplicant.ApplicantName = applicant.ApplicantName__c;
+      mapperApplicant.ApplicantNumber = applicant.Name;
       mapperApplicant.ApplicantType = applicant.ApplicantType__c;
       mapperApplicant.Birthdate = applicant.Birthdate__c;
       mapperApplicant.CreditScore = applicant.CreditScore__c;

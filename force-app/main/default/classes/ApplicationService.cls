@@ -214,7 +214,7 @@ global with sharing class ApplicationService extends AbstractService {
       applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
     );
     params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
-    params.put('fullName', applicant.Name);
+    params.put('fullName', applicant.ApplicantName__c);
     AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
   }

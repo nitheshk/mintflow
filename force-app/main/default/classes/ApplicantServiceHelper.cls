@@ -52,7 +52,7 @@ global with sharing class ApplicantServiceHelper extends AbstractService {
    **/
   global virtual Contact createAccount(Applicant__c applicant) {
     Account individualAccount = new Account();
-    individualAccount.Name = applicant.Name;
+    individualAccount.Name = applicant.ApplicantName__c;
     individualAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       Account.SObjectType,
       'IndustriesIndividual'

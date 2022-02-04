@@ -168,7 +168,7 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>ApplicantNumber__c</fields>
+        <fields>ApplicantName__c</fields>
         <fields>ApplicantType__c</fields>
         <fields>Birthdate__c</fields>
         <relatedList>Applicant__c.Application__c</relatedList>

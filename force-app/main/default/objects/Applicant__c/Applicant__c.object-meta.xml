@@ -155,8 +155,9 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Applicant</label>
     <nameField>
-        <label>Applicant Name</label>
-        <type>Text</type>
+        <displayFormat>A-{0000}</displayFormat>
+        <label>Applicant Number</label>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Applicants</pluralLabel>
     <searchLayouts />
