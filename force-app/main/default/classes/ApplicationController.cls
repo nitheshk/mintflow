@@ -71,10 +71,6 @@ global with sharing class ApplicationController extends AbstractController {
         throw new CustomException(System.Label.Applicant_ApplicantTypeNotFound);
       }
 
-      // save application state
-      application = ApplicationService.getInstance()
-        .updateApplicationFlowState(application);
-
       return ApexResponse.ok(application);
     } catch (CustomException ex) {
       log?.error(ex);
@@ -103,8 +99,10 @@ global with sharing class ApplicationController extends AbstractController {
         request.data,
         Account.class
       );
+      application = ApplicationService.getInstance()
+        .saveApplication(application);
       return ApexResponse.ok(
-        ApplicationService.getInstance().saveApplication(application)
+        ApplicationService.getInstance().updateFlowState(application)
       );
     } catch (CustomException ex) {
       log?.error(ex);

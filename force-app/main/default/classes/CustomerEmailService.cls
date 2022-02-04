@@ -124,7 +124,6 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @return virtual
    **/
   global virtual void resumeApplication(Applicant__c applicant) {
-    String portalUrl = 'portalUrl';
     Map<String, String> params = new Map<String, String>();
     if (
       applicant.ApplicantType__c ==

@@ -34,6 +34,9 @@ global with sharing class FinancialAccountController extends AbstractController 
           financialAccounts,
           ApexRequest.getApplicationId()
         );
+
+      ApplicationService.getInstance().updateFlowState(financialAccounts);
+
       return ApexResponse.ok(financialAccounts);
     } catch (CustomException ex) {
       log?.error(ex);

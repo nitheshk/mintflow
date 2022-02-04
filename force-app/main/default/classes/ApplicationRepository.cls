@@ -257,4 +257,27 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         .toString()
     );
   }
+
+  /**
+   * @description Read Application With Primary
+   * @author Digital Align Team | 02-04-2022
+   * @param Id applicationId
+   * @return Account
+   **/
+  global static Account readApplicationWithPrimary(Id applicationId) {
+    return (Account) DatabaseUtils.getRecord(
+      Query.newInstance(Account.SObjectType)
+        .addFields()
+        .queryChild('mflow__Applicants__r')
+        .addFields()
+        .addFields('RecordType.Name')
+        .whereEq(
+          'RecordType.Name',
+          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+        )
+        .run()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
 }

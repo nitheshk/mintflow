@@ -106,7 +106,7 @@ global with sharing class ApplicationService extends AbstractService {
     // #info
     // Added for customer community user license only
     // Work for Cusotmer Community plus user without owner assingment
-    application.OwnerId = UserUtils.getCurrentUser().CreatedById;
+    // application.OwnerId = UserUtils.getCurrentUser().CreatedById;
     ApplicationRepository.upsertRecord(application);
 
     application = ApplicationRepository.readApplicationById(application.Id);
@@ -300,14 +300,44 @@ global with sharing class ApplicationService extends AbstractService {
 
   /**
    * @description
-   * @author Digital Align Team | 01-12-2022
-   * @param Account application
-   * @return Account
+   * @author Digital Align Team | 02-04-2022
+   * @param Object entity
+   * @return Object
    **/
-  global virtual Account updateApplicationFlowState(Account application) {
-    if (!ApexRequest.getParams().containsKey('flowState')) {
-      return application;
+  global virtual Object updateFlowState(Object entity) {
+    try {
+      if (!ApexRequest.getParams().containsKey('flowState')) {
+        return entity;
+      }
+      if (entity instanceof Account) {
+        Account application = (Account) entity;
+        if (application.applicants__r != null) {
+          return helper.updateFlowState(application, application.applicants__r);
+        } else {
+          return helper.updateFlowState(application, new List<Applicant__c>());
+        }
+      } else if (entity instanceof Applicant__c) {
+        Applicant__c applicant = (Applicant__c) entity;
+        Account application = new Account(Id = Apexrequest.getApplicationId());
+        return helper.updateFlowState(
+          application,
+          new List<Applicant__c>{ applicant }
+        );
+      } else if (entity instanceof List<Applicant__c>) {
+        List<Applicant__c> applicants = (List<Applicant__c>) entity;
+        Account application = new Account(Id = Apexrequest.getApplicationId());
+        return helper.updateFlowState(application, applicants);
+      } else if (entity instanceof List<FinServ__FinancialAccount__c>) {
+        //List<FinServ__FinancialAccount__c> finAccounts = (List<FinServ__FinancialAccount__c>) entity;
+        Account application = ApplicationRepository.readApplicationWithPrimary(
+          ApexRequest.getApplicationId()
+        );
+        return helper.updateFlowState(application, application.applicants__r);
+      }
+    } catch (Exception ex) {
+      log.error(ex);
+      log.error('Exception Has Ignored');
     }
-    return helper.updateApplicationFlowState(application);
+    return entity;
   }
 }
