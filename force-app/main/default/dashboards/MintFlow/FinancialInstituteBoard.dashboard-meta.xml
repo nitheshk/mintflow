@@ -9,7 +9,7 @@
     <dashboardColorPalette>unity</dashboardColorPalette>
     <dashboardGridLayout>
         <dashboardGridComponents>
-            <colSpan>4</colSpan>
+            <colSpan>5</colSpan>
             <columnIndex>0</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
@@ -30,31 +30,31 @@
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
-            <rowSpan>8</rowSpan>
+            <rowSpan>10</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
-            <colSpan>4</colSpan>
-            <columnIndex>4</columnIndex>
+            <colSpan>3</colSpan>
+            <columnIndex>5</columnIndex>
             <dashboardComponent>
-                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
-                <chartAxisRange>Auto</chartAxisRange>
-                <componentType>Bar</componentType>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartSummary>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Metric</componentType>
+                <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
-                <drillEnabled>false</drillEnabled>
-                <drillToDetailEnabled>false</drillToDetailEnabled>
-                <enableHover>false</enableHover>
-                <expandOthers>false</expandOthers>
                 <groupingSortProperties/>
-                <header>This month</header>
-                <report>MintFlow/NewApplications</report>
-                <showPercentage>false</showPercentage>
-                <showPicturesOnCharts>false</showPicturesOnCharts>
-                <showValues>false</showValues>
-                <sortBy>RowLabelAscending</sortBy>
-                <useReportChart>true</useReportChart>
+                <header>Abandoned Applications</header>
+                <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
+                <indicatorHighColor>#00716B</indicatorHighColor>
+                <indicatorLowColor>#C23934</indicatorLowColor>
+                <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
+                <report>MintFlow/AbandonedApplications</report>
+                <showRange>false</showRange>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
-            <rowSpan>8</rowSpan>
+            <rowSpan>5</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
             <colSpan>4</colSpan>
@@ -81,28 +81,52 @@
             <rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
-            <colSpan>3</colSpan>
-            <columnIndex>0</columnIndex>
+            <colSpan>4</colSpan>
+            <columnIndex>8</columnIndex>
             <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary>
-                    <column>RowCount</column>
-                </chartSummary>
-                <componentType>Metric</componentType>
-                <decimalPrecision>-1</decimalPrecision>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <componentType>Bar</componentType>
                 <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
                 <groupingSortProperties/>
-                <header>Abandoned Applications</header>
-                <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
-                <indicatorHighColor>#00716B</indicatorHighColor>
-                <indicatorLowColor>#C23934</indicatorLowColor>
-                <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
-                <report>MintFlow/AbandonedApplications</report>
-                <showRange>false</showRange>
+                <header>This month</header>
+                <report>MintFlow/NewApplications</report>
+                <showPercentage>false</showPercentage>
+                <showPicturesOnCharts>false</showPicturesOnCharts>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <useReportChart>true</useReportChart>
             </dashboardComponent>
             <rowIndex>8</rowIndex>
-            <rowSpan>5</rowSpan>
+            <rowSpan>9</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>5</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <componentType>Bar</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <groupingSortProperties/>
+                <header>Open Applications</header>
+                <report>MintFlow/OpenApplications</report>
+                <showPercentage>false</showPercentage>
+                <showPicturesOnCharts>false</showPicturesOnCharts>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <useReportChart>true</useReportChart>
+            </dashboardComponent>
+            <rowIndex>10</rowIndex>
+            <rowSpan>7</rowSpan>
         </dashboardGridComponents>
         <numberOfColumns>12</numberOfColumns>
         <rowHeight>36</rowHeight>
@@ -110,7 +134,7 @@
     <dashboardType>SpecifiedUser</dashboardType>
     <description>Dashboard to showcase charts in financial institute</description>
     <isGridLayout>true</isGridLayout>
-    <runningUser>support@digitalalign.com</runningUser>
+    <runningUser>test-tkajrdyzq6x7@example.com</runningUser>
     <textColor>#000000</textColor>
     <title>FinancialInstituteBoard</title>
     <titleColor>#000000</titleColor>
