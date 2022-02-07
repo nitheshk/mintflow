@@ -36,13 +36,13 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Applicant__c</pageOrSobjectType>
     </actionOverrides>
-    <defaultLandingTab>standard-Account</defaultLandingTab>
+    <defaultLandingTab>standard-home</defaultLandingTab>
     <description
   >Build client trust with collaboration and productivity tools for advisory teams</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>MintFlow</label>
+    <label>MintFlow Configuration</label>
     <navType>Console</navType>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -142,17 +142,12 @@
         <profile>Admin</profile>
     </profileActionOverrides>
     <tabs>standard-home</tabs>
-    <tabs>standard-Account</tabs>
-    <tabs>standard-Contact</tabs>
     <tabs>Diagnostic__c</tabs>
     <tabs>ApplicationConfiguration</tabs>
     <tabs>Flow__c</tabs>
-    <tabs>FinServ__FinancialAccount__c</tabs>
     <tabs>ConsentLineItem__c</tabs>
     <tabs>ConsentTemplate__c</tabs>
     <tabs>SurveyTemplate__c</tabs>
-    <tabs>FinServ__AssetsAndLiabilities__c</tabs>
-    <tabs>FinServ__FinancialGoal__c</tabs>
     <tabs>FinancialInstituteAccount</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
@@ -161,15 +156,6 @@
     <workspaceConfig>
         <mappings>
             <tab>Diagnostic__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinServ__AssetsAndLiabilities__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinServ__FinancialAccount__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinServ__FinancialGoal__c</tab>
         </mappings>
         <mappings>
             <tab>ConsentLineItem__c</tab>
@@ -188,12 +174,6 @@
         </mappings>
         <mappings>
             <tab>ApplicationConfiguration</tab>
-        </mappings>
-        <mappings>
-            <tab>standard-Account</tab>
-        </mappings>
-        <mappings>
-            <tab>standard-Contact</tab>
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>

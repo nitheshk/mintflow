@@ -124,6 +124,11 @@
         <visible>true</visible>
         <default>true</default>
     </applicationVisibilities>
+    <applicationVisibilities>
+        <application>MintFlowConfiguration</application>
+        <visible>true</visible>
+        <default>false</default>
+    </applicationVisibilities>
 
     <!--recordTypeVisibilities-->
     <recordTypeVisibilities>
