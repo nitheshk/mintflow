@@ -258,6 +258,7 @@ global with sharing class ApplicationService extends AbstractService {
       sessionToken = sessionToken.replace(' ', '+');
       ApexRequest.setToken(sessionToken);
       SecurityUtils.validateSession();
+      SecurityUtils.refreshToken();
     } catch (Exception ex) {
       throw new CustomException(System.Label.Session_InvalidSessionToken);
     }

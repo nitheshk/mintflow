@@ -85,6 +85,11 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
         ) {
           applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
           applicant.FlowType__c = ApexRequest.getFlowType();
+          applicant.sessionExpireTime__c = Datetime.now()
+            .addMinutes(
+              (Integer) ApplicationConfiguration__c.getOrgDefaults()
+                .SessionExpirationTime__c
+            );
           ApplicationRepository.UpsertRecord(applicant);
           break;
         }
@@ -97,6 +102,11 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
         if (applicant.Id == ApexRequest.getApplicantId()) {
           applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
           applicant.FlowType__c = ApexRequest.getFlowType();
+          applicant.sessionExpireTime__c = Datetime.now()
+            .addMinutes(
+              (Integer) ApplicationConfiguration__c.getOrgDefaults()
+                .SessionExpirationTime__c
+            );
           ApplicationRepository.UpsertRecord(applicant);
           break;
         }
