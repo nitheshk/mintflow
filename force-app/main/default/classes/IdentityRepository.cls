@@ -26,4 +26,18 @@ public with sharing class IdentityRepository extends DatabaseUtils {
         .toString()
     );
   }
+  /**
+   * @description
+   * @author Digital Align Team | 07-02-2021
+   * @param string zipcode
+   * @return EligibleCounty__c
+   **/
+  public static EligibleCounty__c fetchCountyByZipcode(string zipcode){
+    return (EligibleCounty__c) DatabaseUtils.getRecord(
+    Query.newInstance(EligibleCounty__c.SObjectType)
+    .addFields()
+    .whereEq('Postalcode__c', zipcode)
+    .toString()
+    );
+  }
 }

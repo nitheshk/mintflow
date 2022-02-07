@@ -33,43 +33,59 @@ global with sharing class IdentityService extends AbstractService {
    * @return Object
    **/
   global virtual Object verifyCounty(Map<String, Object> params) {
-    Flow.initialize(ApexRequest.getApplicationId());
-    Flow.setFlow('EligibilityFlow');
-    Flow.setSubFlow(APINames.Geocoding.name());
+    // Flow.initialize(ApexRequest.getApplicationId());
+    // Flow.setFlow('EligibilityFlow');
+    // Flow.setSubFlow(APINames.Geocoding.name());
     try {
-      String eligibleCountyNames = ApplicationConfiguration__c.getInstance()
-        .CountyNames__c;
-      List<String> eligibleCountyNameList = String.isNotBlank(
-          eligibleCountyNames
-        )
-        ? eligibleCountyNames.split(';')
-        : new List<String>();
-      params.put('eligibleCountyNameList', eligibleCountyNameList);
+      // String eligibleCountyNames = ApplicationConfiguration__c.getInstance()
+      //   .CountyNames__c;
+      // List<String> eligibleCountyNameList = String.isNotBlank(
+      //     eligibleCountyNames
+      //   )
+      //   ? eligibleCountyNames.split(';')
+      //   : new List<String>();
+      // params.put('eligibleCountyNameList', eligibleCountyNameList);
       string zipcode = (string) params.get('zipcode');
       if (string.isBlank(zipcode) && params != null) {
         throw new CustomException(System.Label.Identity_ZipcodeValueNotSet);
       }
-      if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
-        HttpBuilder.setAPISetting(APINames.Geocoding);
-        HttpBuilder.replaceEndpoint(
-          '{APIKey}',
-          HttpBuilder.getApiConstant('GeocodingAPIKey')
-        );
-        HttpBuilder.replaceEndpoint(
-          '{Pincode}',
-          (string) params.get('zipcode')
-        );
-        HttpBuilder.Response response = GeocodingProvider.getInstance()
-          .validateCountyUsingGoogleApi(params);
-        flow.setSubFlowPassed(response.status);
-        flow.setFlowPassed('Completed');
-        return response.data;
-      } else {
-        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
+      Map<String, Object> result = new Map<String, Object>();
+      Map<String, Object> matchingResult = new Map<String, Object>();
+      EligibleCounty__c county = new EligibleCounty__c();
+      county = IdentityRepository.fetchCountyByZipcode(zipcode);
+      if(county!=null){
+      matchingResult.put('zipcode', zipcode);
+      matchingResult.put('county', county.Name);
+      matchingResult.put('state', county.State__c);
+      result.put('matchingAddress', new List<Object>{ matchingResult });
+      result.put('isCountyEligible', true);
       }
+      else{
+        result.put('matchingAddress', new List<Object>());
+        result.put('isCountyEligible', false);
+      }
+      return result;
+      // if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
+      //   HttpBuilder.setAPISetting(APINames.Geocoding);
+      //   HttpBuilder.replaceEndpoint(
+      //     '{APIKey}',
+      //     HttpBuilder.getApiConstant('GeocodingAPIKey')
+      //   );
+      //   HttpBuilder.replaceEndpoint(
+      //     '{Pincode}',
+      //     (string) params.get('zipcode')
+      //   );
+      //   HttpBuilder.Response response = GeocodingProvider.getInstance()
+      //     .validateCountyUsingGoogleApi(params);
+      //   flow.setSubFlowPassed(response.status);
+      //   flow.setFlowPassed('Completed');
+      //   return response.data;
+      // } else {
+      //   throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
+      // }
     } catch (Exception ex) {
-      flow.setSubFlowFailed(ex.getMessage());
-      flow.setFlowFailed('Failed');
+      // flow.setSubFlowFailed(ex.getMessage());
+      // flow.setFlowFailed('Failed');
       throw ex;
     }
   }
