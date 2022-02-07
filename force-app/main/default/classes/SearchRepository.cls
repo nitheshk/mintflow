@@ -9,8 +9,8 @@ public with sharing class SearchRepository extends DatabaseUtils {
   /**
    * @description
    * @author Digital Align | 09-23-2021
-   * @param String searchString
-   * @param map<string string> searchFilter
+   * @param String retrieveEmployees
+   * @param map<string,string> searchFilter
    * @param string userContactType
    * @return List<Contact>
    **/
@@ -40,10 +40,8 @@ public with sharing class SearchRepository extends DatabaseUtils {
           dynamicString +
           ')';
       }
-      System.debug('searchQuery:' + searchQuery);
       List<List<sObject>> objectList = search.query(searchQuery);
       employeeList = (List<Contact>) objectList[0];
-      System.debug('employeeList :' + employeeList);
       return employeeList;
     } else {
       query q = Query.newInstance(Contact.SObjectType)
@@ -71,8 +69,79 @@ public with sharing class SearchRepository extends DatabaseUtils {
         }
       }
       employeeList = (List<Contact>) DatabaseUtils.getRecords(q.toString(true));
-      System.debug('employeeList:' + employeeList);
 
+      return employeeList;
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align | 09-23-2021
+   * @param String retrieveEmployees
+   * @param map<string,string> searchFilter
+   * @param string userContactType
+   * @return List<Contact>
+   **/
+  public static List<Applicant__c> retrieveApplicants(
+    String searchString,
+    map<string, string> searchFilter
+  ) {
+    String searchStr1 = searchString;
+    String dynamicString = '';
+    String searchQuery;
+    List<Applicant__c> employeeList = new List<Applicant__c>();
+    if (String.isNotBlank(searchString)) {
+      if (searchFilter != null) {
+        dynamicString = ApexUtils.obtainSearchString(searchFilter);
+      }
+
+      if (searchFilter.isEmpty()) {
+        searchQuery =
+          'FIND {' +
+          searchStr1 +
+          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c)';
+      } else {
+        searchQuery =
+          'FIND {' +
+          searchStr1 +
+          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c) WHERE ' +
+          dynamicString +
+          ')';
+      }
+      List<List<sObject>> objectList = new List<List<sObject>>();
+      objectList = search.query(searchQuery);
+
+      System.debug('employeeList first' + objectList);
+      employeeList = (List<Applicant__c>) objectList[0];
+      return employeeList;
+    } else {
+      query q = Query.newInstance(Applicant__c.SObjectType)
+        .addFields()
+        .whereNotNull('Name');
+      if (!searchFilter.isEmpty()) {
+        if (String.isNotBlank(searchFilter.get('FirstName'))) {
+          q.andCon()
+            .whereLike('mflow__FirstName__c', searchFilter.get('FirstName'));
+        }
+        if (String.isNotBlank(searchFilter.get('LastName'))) {
+          q.andCon()
+            .whereLike('mflow__LastName__c', searchFilter.get('LastName'));
+        }
+        if (String.isNotBlank(searchFilter.get('Email'))) {
+          q.andCon().whereLike('mflow__Email__c', searchFilter.get('Email'));
+        }
+        if (String.isNotBlank(searchFilter.get('MobilePhone'))) {
+          q.andCon()
+            .whereLike('mflow__Phone__c', searchFilter.get('MobilePhone'));
+        }
+        if (String.isNotBlank(searchFilter.get('SSN'))) {
+          q.andCon().whereLike('mflow__SSN__c', searchFilter.get('SSN'));
+        }
+      }
+      employeeList = (List<Applicant__c>) DatabaseUtils.getRecords(
+        q.toString(true)
+      );
+      System.debug('employeeList second' + employeeList);
       return employeeList;
     }
   }
