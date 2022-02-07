@@ -5,7 +5,7 @@
   >All the fields related to Personal Information of applicant</description>
 
     <displayedFields>
-        <field>mflow__ApplicantNumber__c</field>
+        <field>mflow__ApplicantName__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

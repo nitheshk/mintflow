@@ -27,7 +27,6 @@ public with sharing class SecurityUtilsTest {
     SecurityUtils.encryptBase64('encryptBase64');
     SecurityUtils.decryptBase64('decryptBase64');
     SecurityUtils.generateUUID();
-    SecurityUtils.createSessionForApplication(acc);
     SecurityUtils.createSessionForApplicant(applicant);
     SecurityUtils.validateSession();
     test.stopTest();

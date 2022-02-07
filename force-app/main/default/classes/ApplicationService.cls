@@ -76,17 +76,17 @@ global with sharing class ApplicationService extends AbstractService {
    **/
   global virtual Account createApplication(Map<String, Object> params) {
     log?.fine('Inside createApplication');
-    // Create init Account Application
+    /**** Create init Account Application */
     Account application = new Account();
-    application.Name = 'Mint';
+    application.Name = 'MintFlow';
     application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       Account.SObjectType,
       ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
     );
     application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-    if (params.get('channel') != null) {
-      application.CreatedChannel__c = (String) params.get('channel');
-      application.FinServ__LastUsedChannel__c = (String) params.get('channel');
+    if (params.get('ch') != null) {
+      application.CreatedChannel__c = (String) params.get('ch');
+      application.FinServ__LastUsedChannel__c = (String) params.get('ch');
     } else {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
       application.FinServ__LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
@@ -97,10 +97,10 @@ global with sharing class ApplicationService extends AbstractService {
     application.UserAccountType__c = 'CustomerApplication';
     application.FlowState__c = 'GetStarted';
     application.FlowType__c = 'ApplicationFlow';
-    application.IPAddress__c = ApplicationServiceHelper.getInstance()
-      .getIpAddress();
     // #pending update version from custom setting
     application.Version__c = 'V1.0.1';
+    application.IPAddress__c = ApplicationServiceHelper.getInstance()
+      .getIpAddress();
     application = ApplicationServiceHelper.getInstance()
       .resolveBranchLocation(application);
     // #info
@@ -108,16 +108,41 @@ global with sharing class ApplicationService extends AbstractService {
     // Work for Cusotmer Community plus user without owner assingment
     // application.OwnerId = UserUtils.getCurrentUser().CreatedById;
     ApplicationRepository.upsertRecord(application);
+    /*** */
+    /*** Create Empty Primary Applicant   */
+    Applicant__c applicant = new Applicant__c();
+    applicant.ApplicantType__c = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+    applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
+      Applicant__c.SObjectType,
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    );
+    applicant.Status__c = ApplicationConstant.IN_PROGRESS;
+    applicant.Application__c = application.Id;
+    ApplicationRepository.upsertRecord(applicant);
+    applicant = ApplicantRepository.readApplicantWithApplication(applicant.Id);
+    /***   */
 
-    application = ApplicationRepository.readApplicationById(application.Id);
     ApexRequest.setApplicationId(application.Id);
+    ApexRequest.setApplicantId(applicant.id);
     ApexRequest.setFlowType('ApplicationFlow');
-    application = SecurityUtils.createSessionForApplication(application);
+    ApexRequest.setApplicantType(
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    );
+
+    applicant = SecurityUtils.createSessionForApplicant(applicant);
+    ApplicationRepository.upsertRecord(applicant);
+
+    application = ApplicationRepository.readApplicationWithApplicants(
+      application.Id
+    );
+
     application.Name = application.ApplicationNumber__c;
     ApplicationRepository.upsertRecord(application);
     params.put('applicationId', ApexRequest.getApplicationId());
+    params.put('applicantId', ApexRequest.getApplicantId());
     params.put('applicantType', ApexRequest.getApplicantType());
     params.put('flowType', ApexRequest.getFlowType());
+    params.put('channel', application.FinServ__LastUsedChannel__c);
     return application;
   }
 
@@ -306,6 +331,7 @@ global with sharing class ApplicationService extends AbstractService {
    **/
   global virtual Object updateFlowState(Object entity) {
     try {
+      log?.fine('Inside updateFlowState');
       if (!ApexRequest.getParams().containsKey('flowState')) {
         return entity;
       }
@@ -316,6 +342,10 @@ global with sharing class ApplicationService extends AbstractService {
         } else {
           return helper.updateFlowState(application, new List<Applicant__c>());
         }
+      } else if (entity instanceof List<Applicant__c>) {
+        List<Applicant__c> applicants = (List<Applicant__c>) entity;
+        Account application = new Account(Id = Apexrequest.getApplicationId());
+        return helper.updateFlowState(application, applicants);
       } else if (entity instanceof Applicant__c) {
         Applicant__c applicant = (Applicant__c) entity;
         Account application = new Account(Id = Apexrequest.getApplicationId());
@@ -323,10 +353,6 @@ global with sharing class ApplicationService extends AbstractService {
           application,
           new List<Applicant__c>{ applicant }
         );
-      } else if (entity instanceof List<Applicant__c>) {
-        List<Applicant__c> applicants = (List<Applicant__c>) entity;
-        Account application = new Account(Id = Apexrequest.getApplicationId());
-        return helper.updateFlowState(application, applicants);
       } else if (entity instanceof List<FinServ__FinancialAccount__c>) {
         //List<FinServ__FinancialAccount__c> finAccounts = (List<FinServ__FinancialAccount__c>) entity;
         Account application = ApplicationRepository.readApplicationWithPrimary(
@@ -335,8 +361,8 @@ global with sharing class ApplicationService extends AbstractService {
         return helper.updateFlowState(application, application.applicants__r);
       }
     } catch (Exception ex) {
-      log.error(ex);
-      log.error('Exception Has Ignored');
+      log?.error(ex);
+      log?.error('Exception Has Ignored');
     }
     return entity;
   }
