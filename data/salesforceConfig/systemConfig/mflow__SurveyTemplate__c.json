@@ -870,7 +870,7 @@
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__DeleteRecord__c": false,
             "mflow__LongDescription__c": "Other",
-            "mflow__OptionType__c": "Text",
+            "mflow__OptionType__c": "TextField",
             "mflow__Options__c": "",
             "mflow__Order__c": 22,
             "mflow__ParentQuestionCode__c": "Question20",
