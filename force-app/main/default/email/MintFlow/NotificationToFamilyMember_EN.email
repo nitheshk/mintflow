@@ -1,5 +1,5 @@
 <messaging:emailTemplate
-  subject="Subject"
+  subject="You have been added as a Family Member"
   recipientType="User"
   relatedToType="Applicant__c"
   renderUsingSystemContextWithoutSharing="True"

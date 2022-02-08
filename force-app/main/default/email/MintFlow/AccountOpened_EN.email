@@ -1,5 +1,5 @@
 <messaging:emailTemplate
-  subject="Subject"
+  subject="Welcome on board! Access your Mintflow account"
   recipientType="User"
   relatedToType="Applicant__c"
   renderUsingSystemContextWithoutSharing="True"

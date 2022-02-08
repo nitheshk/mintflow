@@ -1,5 +1,5 @@
 <messaging:emailTemplate
-  subject="Subject"
+  subject="Hurray! Your account has been approved."
   recipientType="User"
   relatedToType="Applicant__c"
   renderUsingSystemContextWithoutSharing="True"

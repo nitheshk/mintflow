@@ -1,5 +1,5 @@
 <messaging:emailTemplate
-  subject="Subject"
+  subject="Join Us by completing your account registration process with Mintflow"
   recipientType="User"
   relatedToType="Applicant__c"
   renderUsingSystemContextWithoutSharing="True"

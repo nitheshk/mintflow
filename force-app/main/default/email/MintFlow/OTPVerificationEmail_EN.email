@@ -1,5 +1,5 @@
 <messaging:emailTemplate
-  subject="Subject"
+  subject="Mintflow - OTP to verify email address"
   recipientType="User"
   relatedToType="Applicant__c"
   renderUsingSystemContextWithoutSharing="True"
