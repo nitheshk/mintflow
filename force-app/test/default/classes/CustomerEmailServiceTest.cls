@@ -38,7 +38,6 @@ public with sharing class CustomerEmailServiceTest {
     Applicant__c applicant = makeApplicantData();
     Test.startTest();
     CustomerEmailService.getInstance().sendEmailOTP(applicant);
-    CustomerEmailService.getInstance().resumeAppAfterKycPassed(applicant);
     CustomerEmailService.getInstance().resumeApplication(applicant);
     CustomerEmailService.getInstance()
       .accountOpened(applicant, new FinServ__FinancialAccount__c());

@@ -96,28 +96,6 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
   /**
    * @description
-   * KycPassedResumeApp -> KYC passed notification with resume application link for primary applicant
-   * @author Digital Align | 11-12-2021
-   * @param Applicant__c applicant
-   * @return virtual
-   **/
-  global virtual void resumeAppAfterKycPassed(Applicant__c applicant) {
-    String portalUrl = 'portalUrl';
-
-    EmailNotificationBuilder.newInstance('KycPassedResumeApp', applicant.Id)
-      .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{
-          '{firstName}' => applicant.FirstName__c,
-          '{lastName}' => applicant.LastName__c,
-          '{url}' => portalUrl
-        }
-      );
-    sendEmail();
-  }
-
-  /**
-   * @description
    * ResumeApplicationEmail -> resume application email to primary applicant
    * @author Digital Align | 11-12-2021
    * @param Applicant__c applicant
