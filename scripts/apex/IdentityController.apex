@@ -95,3 +95,16 @@ HttpResponse response = HttpBuilder.httpCallOut(
   Json.serialize(requestDTO),
   header
 );
+
+//### generateUrlForIdentityUpload
+
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  '0011y00000OVagqAAD',
+  'a0a1y000001Ydh0AAC',
+  'Primary',
+  'ApplicationFlow'
+);
+
+ApexResponse res = IdentityController.generateUrlForIdentityUpload(request);
+system.debug('Full Json : ' + res.data);

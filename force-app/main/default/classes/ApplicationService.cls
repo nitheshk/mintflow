@@ -143,6 +143,7 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('applicantType', ApexRequest.getApplicantType());
     params.put('flowType', ApexRequest.getFlowType());
     params.put('channel', application.FinServ__LastUsedChannel__c);
+    params.put('applicationNumber', application.Name);
     return application;
   }
 
@@ -228,18 +229,19 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('applicantId', cipher.aplId);
     params.put('flowType', cipher.flw);
 
-    Applicant__c applicant = ApplicantRepository.readApplicantById(
+    Applicant__c applicant = ApplicantRepository.readApplicantWithApplication(
       cipher.aplId
     );
     if (applicant == null) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
-    params.put(
-      'maskedEmail',
-      applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
-    );
-    params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
+    // params.put(
+    //   'maskedEmail',
+    //   applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
+    // );
+    // params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
     params.put('fullName', applicant.ApplicantName__c);
+    params.put('applicationNumber', applicant.Application__r.Name);
     AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
   }
@@ -280,6 +282,7 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('applicationId', ApexRequest.getApplicationId());
     params.put('applicantId', ApexRequest.getApplicantId());
     params.put('flowType', ApexRequest.getFlowType());
+    params.put('applicationNumber', application.Name);
     return application;
   }
 
