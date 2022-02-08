@@ -305,6 +305,45 @@ global with sharing class ApplicationService extends AbstractService {
   }
 
   /**
+   * @description preserve Application
+   * @author Digital Align Team | 02-07-2022
+   * @param Account application
+   * @return Account
+   **/
+  global virtual Account preserveApplication(Account application) {
+    if (
+      ApexRequest.getApplicantType() ==
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    ) {
+      application.FinServ__Status__c = ApplicationConstant.SAVED;
+      for (Applicant__c applicant : application.Applicants__r) {
+        if (
+          applicant.ApplicantType__c ==
+          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+        ) {
+          applicant.mflow__Status__c = ApplicationConstant.SAVED;
+          break;
+        }
+      }
+    } else if (
+      ApexRequest.getApplicantType() ==
+      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+    ) {
+      for (Applicant__c applicant : application.Applicants__r) {
+        if (
+          applicant.ApplicantType__c.Contains(
+            ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+          )
+        ) {
+          applicant.mflow__Status__c = ApplicationConstant.SAVED;
+          break;
+        }
+      }
+    }
+    return this.saveApplication(application);
+  }
+
+  /**
    * @description  delete object by Id
    * @author Digital Align Team | 11-10-2021
    * @param Id recordId

@@ -320,4 +320,35 @@ global with sharing class ApplicationController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description Change Application Status to Saved
+   * @author Digital Align Team | 02-07-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse preserveApplication(ApexRequest request) {
+    try {
+      validateRequest(request);
+      Account application = (Account) SObjectConstructor.deserialize(
+        request.data,
+        Account.class
+      );
+      application = ApplicationService.getInstance()
+        .preserveApplication(application);
+      return ApexResponse.ok(
+        ApplicationService.getInstance().updateFlowState(application)
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
 }

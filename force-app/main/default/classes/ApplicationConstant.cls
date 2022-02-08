@@ -29,6 +29,7 @@ public with sharing class ApplicationConstant {
   public static final String REVISION_IN_PROGRESS = 'Revision in Progress';
   public static final String REJECTED = 'Rejected';
   public static final String DRAFT = 'DRAFT';
+  public static final String SAVED = 'Saved';
 
   // KYC Status
   public static final String KYC_PASSED = 'Passed';
