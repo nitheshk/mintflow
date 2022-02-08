@@ -69,6 +69,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
         mapperApplication.CountyCode = application.CountyZipCode__c;
         mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
         mapperApplication.CreatedChannel = application.CreatedChannel__c;
+        mapperApplication.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
         // mapperApplication.CustomerType = application.FinServ__CustomerType__c;
         // mapperApplication.FlowState = application.FlowState__c;
         // mapperApplication.IpAddress = application.IPAddress__c;
