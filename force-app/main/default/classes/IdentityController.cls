@@ -64,7 +64,7 @@ global with sharing class IdentityController extends AbstractController {
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete scanIdentityDocument');
-      Flow.finalize();
+      //Flow.finalize();
       Logger.persist();
     }
   }
@@ -90,6 +90,32 @@ global with sharing class IdentityController extends AbstractController {
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete identityVerify');
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description generate Url For Identity Upload
+   * @author Digital Align Team | 02-08-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  global static ApexResponse generateUrlForIdentityUpload(ApexRequest request) {
+    try {
+      log?.fine('Inside generateUrlForIdentityUpload');
+      validateRequest(request);
+      return ApexResponse.ok(
+        IdentityService.getInstance()
+          .generateUrlForIdentityUpload(ApexRequest.getApplicantId())
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete generateUrlForIdentityUpload');
       Logger.persist();
     }
   }

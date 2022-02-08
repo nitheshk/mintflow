@@ -339,6 +339,35 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   }
 
   /**
+   * @description Send Url to applicat to upload identity document from mobile device
+   * @author Digital Align Team | 02-08-2022
+   * @param Applicant__c applicant
+   **/
+  global virtual void uploadIdentityDocument(Applicant__c applicant) {
+    String link;
+    link = generateUrl(
+      new Map<String, String>{
+        'aplType' => 'Primary',
+        'flw' => 'ApplicationFlow',
+        'urlSuffix' => '/membership/application/otp',
+        'aplId' => applicant.Id,
+        'ch' => 'Virtual',
+        'pageName' => '/IdentityUpload'
+      }
+    );
+
+    EmailNotificationBuilder.newInstance('IdentityUploadDocument', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(
+        new Map<String, String>{
+          '{applicationNumber}' => applicant.Application__r.Name,
+          '{url}' => link
+        }
+      );
+    sendEmail();
+  }
+
+  /**
    * @description
    * Method to send email
    * @author Digital Align | 11-12-2021
@@ -382,10 +411,12 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           .EmailLinkExpirationTime__c
       );
     cipher.ch = params.get('ch');
-
+    String pageName = params.containsKey('pageName')
+      ? params.get('pageName')
+      : '/OpenAccount';
     String link =
       SiteSetting__c.getInstance().OnlineSiteUrl__c +
-      '/OpenAccount' +
+      pageName +
       '?vmf=' +
       SecurityUtils.encryptUrl(JSON.serialize(cipher, true)) +
       '&vue=' +

@@ -387,7 +387,7 @@ global inherited sharing class SecurityUtils {
         )
     );
     ApplicantRepository.upsertRecord(applicant);
-    return applicant;
+    return applicant.SessionToken__c;
   }
 
   /**

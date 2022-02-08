@@ -32,12 +32,31 @@ public with sharing class IdentityRepository extends DatabaseUtils {
    * @param string zipcode
    * @return EligibleCounty__c
    **/
-  public static EligibleCounty__c fetchCountyByZipcode(string zipcode){
+  public static EligibleCounty__c fetchCountyByZipcode(string zipcode) {
     return (EligibleCounty__c) DatabaseUtils.getRecord(
-    Query.newInstance(EligibleCounty__c.SObjectType)
-    .addFields()
-    .whereEq('Postalcode__c', zipcode)
-    .toString()
+      Query.newInstance(EligibleCounty__c.SObjectType)
+        .addFields()
+        .whereEq('Postalcode__c', zipcode)
+        .toString()
+    );
+  }
+
+  /**
+   * @description read applicant with application details
+   * @author Digital Align Team | 11-18-2021
+   * @param Id applicantId
+   * @return Applicant__c
+   **/
+  public static Applicant__c readApplicantWithApplication(Id applicantId) {
+    return (Applicant__c) DatabaseUtils.getRecord(
+      Query.newInstance(Applicant__c.SObjectType)
+        .addFields()
+        .addFields('RecordType.Name')
+        .queryLookup('mflow__Application__r')
+        .addFields()
+        .run()
+        .whereEq('Id', applicantId)
+        .toString()
     );
   }
 }

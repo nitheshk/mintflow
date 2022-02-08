@@ -53,14 +53,13 @@ global with sharing class IdentityService extends AbstractService {
       Map<String, Object> matchingResult = new Map<String, Object>();
       EligibleCounty__c county = new EligibleCounty__c();
       county = IdentityRepository.fetchCountyByZipcode(zipcode);
-      if(county!=null){
-      matchingResult.put('zipcode', zipcode);
-      matchingResult.put('county', county.Name);
-      matchingResult.put('state', county.State__c);
-      result.put('matchingAddress', new List<Object>{ matchingResult });
-      result.put('isCountyEligible', true);
-      }
-      else{
+      if (county != null) {
+        matchingResult.put('zipcode', zipcode);
+        matchingResult.put('county', county.Name);
+        matchingResult.put('state', county.State__c);
+        result.put('matchingAddress', new List<Object>{ matchingResult });
+        result.put('isCountyEligible', true);
+      } else {
         result.put('matchingAddress', new List<Object>());
         result.put('isCountyEligible', false);
       }
@@ -183,5 +182,23 @@ global with sharing class IdentityService extends AbstractService {
     } catch (Exception ex) {
       throw ex;
     }
+  }
+
+  /**
+   * @description Generate Url to upload identity Document Via mobile device
+   * @author Digital Align Team | 02-08-2022
+   * @param Id applicantId
+   * @return Object
+   **/
+  global virtual Object generateUrlForIdentityUpload(Id applicantId) {
+    Applicant__c currentApplicant = IdentityRepository.readApplicantWithApplication(
+      applicantId
+    );
+
+    // Send Email
+    CustomerEmailService.getInstance().uploadIdentityDocument(currentApplicant);
+    // Send SMS
+
+    return null;
   }
 }
