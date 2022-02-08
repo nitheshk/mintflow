@@ -208,7 +208,7 @@ global with sharing class IdentityService extends AbstractService {
         }
       );
     Map<String, Object> params = new Map<String, Object>();
-    String messageBody = System.Label.Api_RequestedApiIsDisabled;
+    String messageBody = System.Label.Identity_SmsBodyForUploadDocument;
     messageBody.replace('{url}', link);
     messageBody.replace(
       '{applicationNumber}',
