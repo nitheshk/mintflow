@@ -311,6 +311,8 @@ global with sharing class ApplicationService extends AbstractService {
    * @return Account
    **/
   global virtual Account preserveApplication(Account application) {
+    //current applicant
+    Applicant__c currentApplicant;
     if (
       ApexRequest.getApplicantType() ==
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -321,6 +323,7 @@ global with sharing class ApplicationService extends AbstractService {
           applicant.ApplicantType__c ==
           ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
         ) {
+          currentApplicant = applicant;
           applicant.mflow__Status__c = ApplicationConstant.SAVED;
           break;
         }
@@ -335,12 +338,16 @@ global with sharing class ApplicationService extends AbstractService {
             ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
           )
         ) {
+          currentApplicant = applicant;
           applicant.mflow__Status__c = ApplicationConstant.SAVED;
           break;
         }
       }
     }
-    return this.saveApplication(application);
+    application = this.saveApplication(application);
+    //send saved email to resume
+    CustomerEmailService.getInstance().savedApplication(currentApplicant);
+    return application;
   }
 
   /**

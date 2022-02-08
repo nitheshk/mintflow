@@ -99,7 +99,6 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * ResumeApplicationEmail -> resume application email to primary applicant
    * @author Digital Align | 11-12-2021
    * @param Applicant__c applicant
-   * @return virtual
    **/
   global virtual void resumeApplication(Applicant__c applicant) {
     Map<String, String> params = new Map<String, String>();
@@ -109,15 +108,52 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     ) {
       params.put('flw', 'ApplicationFlow');
       params.put('urlSuffix', '/membership/application/otp');
+      params.put('aplType', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
     } else {
       params.put('flw', 'JointFlow');
       params.put('urlSuffix', '/membership/joints/otp');
+      params.put('aplType', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
     }
-    params.put('aplType', applicant.ApplicantType__c);
     params.put('aplId', applicant.Id);
     params.put('ch', 'Virtual');
     String link = generateUrl(params);
     EmailNotificationBuilder.newInstance('ResumeApplicationEmail', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(
+        new Map<String, String>{
+          '{firstName}' => applicant.FirstName__c,
+          '{lastName}' => applicant.LastName__c,
+          '{url}' => link
+        }
+      );
+    sendEmail();
+  }
+
+  /**
+   * @description Saved application email to Primary/Joint applicant
+   * @author Digital Align | 11-12-2021
+   * @param Applicant__c applicant
+   **/
+  global virtual void savedApplication(Applicant__c applicant) {
+    Map<String, String> params = new Map<String, String>();
+    if (
+      ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_APPLICATION
+    ) {
+      params.put('urlSuffix', '/membership/application/otp');
+    } else if (
+      ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_FUNDING
+    ) {
+      params.put('urlSuffix', '/membership/funding/welcome');
+    } else {
+      params.put('urlSuffix', '/membership/joints/otp');
+    }
+
+    params.put('flw', ApexRequest.getFlowType());
+    params.put('aplType', ApexRequest.getApplicantType());
+    params.put('aplId', applicant.Id);
+    params.put('ch', 'Virtual');
+    String link = generateUrl(params);
+    EmailNotificationBuilder.newInstance('SavedApplication', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
