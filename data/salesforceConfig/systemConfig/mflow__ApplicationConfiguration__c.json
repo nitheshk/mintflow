@@ -12,7 +12,8 @@
       "mflow__EmailLinkExpirationTime__c": 4,
       "mflow__SessionExpirationTime__c": 180,
       "mflow__CountyNames__c": "Oregon;Idaho;Washington",
-      "mflow__SupportTeamEmail__c": "support@digitalalign.com"
+      "mflow__SupportTeamEmail__c": "support@digitalalign.com",
+      "mflow__SupportedFileTypes__c": "pdf;jpg"
     }
   ]
 }

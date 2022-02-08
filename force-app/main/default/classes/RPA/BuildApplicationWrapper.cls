@@ -400,19 +400,26 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
         new Map<id, SObject>(applicant.IdentificationDocuments__r).keySet()
       );
     }
-
+    String eligibleFileFormat = ApplicationConfiguration__c.getInstance().SupportedFileTypes__c;
+    List<String> eligibleFileFormatList = String.isNotBlank(
+      eligibleFileFormat
+        )
+        ? eligibleFileFormat.split(';')
+        : new List<String>();
     List<ContentVersion> fileList = FileService.getInstance()
       .fetchContentVersionByEntityIds(reletedEntityIdList, true);
 
     for (ContentVersion cv : fileList) {
       Map<string, string> fileDetail = new Map<string, string>();
+      if (eligibleFileFormatList.contains(cv.FileExtension))
+     { 
       fileDetail.put('Id', cv.Id);
       fileDetail.put('FileType', cv.FileType);
       fileDetail.put('FileExtension', cv.FileExtension);
       fileDetail.put('Title', cv.Title);
       fileDetail.put('DocumentType', cv.mflow__ContentSubType__c);
-      log?.debug('fileList =' + JSON.serialize(fileDetail));
       fileDetails.add(fileDetail);
+    }
     }
     log?.debug('fileDetails =' + JSON.serialize(fileDetails));
     return ApexResponse.OK(fileDetails)
