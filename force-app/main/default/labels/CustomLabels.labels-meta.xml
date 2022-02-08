@@ -123,6 +123,15 @@
         <value>Zipcode value not set</value>
     </labels>
     <labels>
+        <fullName>Identity_SmsBodyForUploadDocument</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SMS Message For Upload Document</shortDescription>
+        <value
+    >Upload the Identity Document Using the Link {url} to process further on the application  {applicationNumber}</value>
+    </labels>
+    <labels>
         <fullName>Otp_OtpHasExpired</fullName>
         <categories>Info</categories>
         <language>en_US</language>

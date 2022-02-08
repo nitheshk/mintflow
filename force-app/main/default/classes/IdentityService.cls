@@ -195,10 +195,36 @@ global with sharing class IdentityService extends AbstractService {
       applicantId
     );
 
+    // Send SMS
+    String link = CustomerEmailService.getInstance()
+      .generateUrl(
+        new Map<String, String>{
+          'aplType' => ApexRequest.getApplicantType(),
+          'flw' => ApexRequest.getFlowType(),
+          'urlSuffix' => '/membership/application/otp',
+          'aplId' => currentApplicant.Id,
+          'ch' => 'Virtual',
+          'pageName' => '/IdentityUpload'
+        }
+      );
+    Map<String, Object> params = new Map<String, Object>();
+    String messageBody = System.Label.Api_RequestedApiIsDisabled;
+    messageBody.replace('{url}', link);
+    messageBody.replace(
+      '{applicationNumber}',
+      currentApplicant.Application__r.Name
+    );
+    params.put('messageText', messageBody);
+    // #pending remove hardcode mobile number [currentApplicant.Phone__c]
+    params.put(
+      'toPhone',
+      HttpBuilder.getApiConstant('Twillio_Country') + '7892981668'
+    );
+    params.put('applicantId', currentApplicant.Id);
+    NotificationService.getInstance().sendOTPMessage(params);
+
     // Send Email
     CustomerEmailService.getInstance().uploadIdentityDocument(currentApplicant);
-    // Send SMS
-
     return null;
   }
 }

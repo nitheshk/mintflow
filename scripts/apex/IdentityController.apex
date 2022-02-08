@@ -105,6 +105,10 @@ request.token = SecurityUtils.generateTokenForTesting(
   'Primary',
   'ApplicationFlow'
 );
+system.debug(request.token);
+
+ApexRequest request = new ApexRequest();
+request.token = 'pyh8mYAVjrnj1iy5gF7JFK47w+KxidbycgQrn9aXie+QT6+YgtnCTP1gEveFYPIBLXMxI8q9nD2C7CbaP8VumD+1GuqZp4AuYQh0lmTpo0Ke3Axkr+j+7n5V96a16xhWcnfkz5BOLonsFgcx1nMjHg=='; //account ID
 
 ApexResponse res = IdentityController.generateUrlForIdentityUpload(request);
 system.debug('Full Json : ' + res.data);
