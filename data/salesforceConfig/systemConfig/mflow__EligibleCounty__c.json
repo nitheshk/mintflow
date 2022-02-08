@@ -1,0 +1,70 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "mflow__EligibleCounty__c",
+        "referenceId": "EligibleCountyRef_0"
+      },
+      "mflow__Postalcode__c": "83701",
+      "mflow__State__c": "Idaho",
+      "mflow__Country__c": "USA",
+      "mflow__City__c": "Boise"
+    },
+    {
+      "attributes": {
+        "type": "mflow__EligibleCounty__c",
+        "referenceId": "EligibleCountyRef_1"
+      },
+      "mflow__Postalcode__c": "83642",
+      "mflow__State__c": "Idaho",
+      "mflow__Country__c": "USA",
+      "mflow__City__c": "Meridian"
+    },
+    {
+      "attributes": {
+        "type": "mflow__EligibleCounty__c",
+        "referenceId": "EligibleCountyRef_2"
+      }
+    },
+    {
+      "attributes": {
+        "type": "mflow__EligibleCounty__c",
+        "referenceId": "EligibleCountyRef_3"
+      },
+      "mflow__Postalcode__c": "83680",
+      "mflow__State__c": "Idaho",
+      "mflow__Country__c": "USA",
+      "mflow__City__c": "Meridian"
+    },
+    {
+      "attributes": {
+        "type": "mflow__EligibleCounty__c",
+        "referenceId": "EligibleCountyRef_4"
+      },
+      "mflow__Postalcode__c": "83616",
+      "mflow__State__c": "Idaho",
+      "mflow__Country__c": "USA",
+      "mflow__City__c": "Eagle"
+    },
+    {
+      "attributes": {
+        "type": "mflow__EligibleCounty__c",
+        "referenceId": "EligibleCountyRef_5"
+      },
+      "mflow__Postalcode__c": "83634",
+      "mflow__State__c": "Idaho",
+      "mflow__Country__c": "USA",
+      "mflow__City__c": "Kuna"
+    },
+    {
+      "attributes": {
+        "type": "mflow__EligibleCounty__c",
+        "referenceId": "EligibleCountyRef_6"
+      },
+      "mflow__Postalcode__c": "83669",
+      "mflow__State__c": "Idaho",
+      "mflow__Country__c": "USA",
+      "mflow__City__c": "Star"
+    }
+  ]
+}
