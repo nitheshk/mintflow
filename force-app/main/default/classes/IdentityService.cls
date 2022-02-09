@@ -230,16 +230,17 @@ global with sharing class IdentityService extends AbstractService {
         new Map<String, String>{
           'aplType' => ApexRequest.getApplicantType(),
           'flw' => ApexRequest.getFlowType(),
-          'urlSuffix' => '/membership/application/otp',
+          'urlSuffix' => '/membership/upload/document-upload',
           'aplId' => currentApplicant.Id,
           'ch' => 'Virtual',
-          'pageName' => '/IdentityUpload'
+          'pageName' => '/IdentityUpload',
+          'suffixType' => 'path'
         }
       );
     Map<String, Object> params = new Map<String, Object>();
     String messageBody = System.Label.Identity_SmsBodyForUploadDocument;
-    messageBody.replace('{url}', link);
-    messageBody.replace(
+    messageBody = messageBody.replace('{url}', link);
+    messageBody = messageBody.replace(
       '{applicationNumber}',
       currentApplicant.Application__r.Name
     );
