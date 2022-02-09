@@ -1,5 +1,5 @@
 <messaging:emailTemplate
-  subject="Hurray! Your account has been approved."
+  subject="Congratulations! Your account has been approved."
   recipientType="User"
   relatedToType="Applicant__c"
   renderUsingSystemContextWithoutSharing="True"
@@ -191,7 +191,7 @@
                     <p style="margin: 0">
                       <h5>Hi {FirstName} {LastName},</h5>
                       <br />
-                      We are happy to announce that your application
+                      We are excited  to let you know that  your application
                       {ApplicationNumber} has been approved. One last step to
                       complete the process. Please
                       <a href="{url}" target="_blank">click here</a> to start
@@ -215,24 +215,7 @@
                     <p style="margin: 0">Happy banking.</p>
                   </td>
                 </tr>
-                <tr>
-                  <td bgcolor="#ffffff" align="left">
-                    <table
-                      width="100%"
-                      border="0"
-                      cellspacing="0"
-                      cellpadding="0"
-                    >
-                      <tr>
-                        <td
-                          bgcolor="#ffffff"
-                          align="center"
-                          style="padding: 20px 30px 60px 30px"
-                        ></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
+               
                 <tr>
                   <td
                     bgcolor="#ffffff"
@@ -246,17 +229,14 @@
                       line-height: 25px;
                     "
                   >
-                    <p style="margin: 0">
-                      If you have any questions, please email us at
-                      <a
+                        <p style="margin: 0">
+                    If you have any questions, please email us at  <a
                         href="mailto:support@digitalalign.com"
                         style="color: #ffa73b"
                         >support@digitalalign.com</a
-                      >
-                      or visit our <a style="color: #ffa73b">FAQs</a>. You can
-                      also chat with a real live human during our operating
-                      hours. They can answer questions about your account or
-                      help you with your meditation practice.
+                      > or visit our FAQs page. 
+                     If preferred, you can chat with an agent during our operating hours. 
+                     
                     </p>
                   </td>
                 </tr>

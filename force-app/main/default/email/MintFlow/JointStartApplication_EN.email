@@ -191,51 +191,17 @@
                     <p style="margin: 0">
                       <h5>Hi {FirstName} {LastName},</h5>
                       <br />
-                      Please register with Mintflow by loging in to portal by
-                      clicking
-                      <a href="{url}" target="_blank">Here</a>. Please keep your
-                      identity details handy. It takes hardly few seconds.<br />
-                      You will reveive an email once your account is succesfully
-                      opened.
+                      Please register with Mintflow by logging into the portal 
+                      <a href="{url}" target="_blank">Here</a>. <p>You will need to provide some personal information and proof of identity, 
+                      but it only takes a few moments.</p>
+                      You will receive a confirmation email once your new account has been established.
+                    </p>
+                      <p style="margin: 0">
+                    Thank you for your interest in Mintflow.
                     </p>
                   </td>
                 </tr>
-                <tr>
-                  <td
-                    bgcolor="#ffffff"
-                    align="left"
-                    style="
-                      padding: 20px 30px 40px 30px;
-                      color: #666666;
-                      font-family: 'Poppins', sans-serif;
-                      font-size: 18px;
-                      font-weight: 400;
-                      line-height: 25px;
-                    "
-                  >
-                    <p style="margin: 0">
-                      Thank you for your interest in Mintflow.
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td bgcolor="#ffffff" align="left">
-                    <table
-                      width="100%"
-                      border="0"
-                      cellspacing="0"
-                      cellpadding="0"
-                    >
-                      <tr>
-                        <td
-                          bgcolor="#ffffff"
-                          align="center"
-                          style="padding: 20px 30px 60px 30px"
-                        ></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
+               
                 <tr>
                   <td
                     bgcolor="#ffffff"
@@ -256,10 +222,8 @@
                         style="color: #ffa73b"
                         >support@digitalalign.com</a
                       >
-                      or visit our <a style="color: #ffa73b">FAQs</a>. You can
-                      also chat with a real live human during our operating
-                      hours. They can answer questions about your account or
-                      help you with your meditation practice.
+                      or visit our <a style="color: #ffa73b">FAQs</a> page. 
+                      <br/>If preferred, you can chat with an agent during our operating hours. 
                     </p>
                   </td>
                 </tr>

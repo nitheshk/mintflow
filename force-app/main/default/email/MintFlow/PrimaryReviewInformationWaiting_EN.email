@@ -191,16 +191,11 @@
                     <p style="margin: 0">
                       <h5>Hi {FirstName} {LastName},</h5>
                       <br />
-                      We'd like to confirm that your application
-                      [{ApplicationNumber}] was submitted successfully. we will
-                      proceed once joint applicant(s) completes the submission
-                      process.
-                      <br />An email will be served to you as a confirmation,
-                      after application is submitted.
-                      <br />
-                      You can always login to
-                      <a href="{url}" target="_blank">portal</a> and check
-                      status of your application.
+                        <br />
+                      Congratulations, your application  [{ApplicationNumber}] has been successfully submitted and is being reviewed.
+                     <p> We will notify you once joint applicant(s) completes and submits the information. 
+                     However, you may check the status anytime by logging into the <a href="{url}" target="_blank">portal</a>.</p>
+                     
                     </p>
                   </td>
                 </tr>
@@ -253,18 +248,14 @@
                       line-height: 25px;
                     "
                   >
-                    <p style="margin: 0">
-                      If you have any questions, please email us at
-                      <a
+                   <p>
+                      <br/>
+                      If you have any questions, please email us at   <a
                         href="mailto:support@digitalalign.com"
                         style="color: #ffa73b"
-                        >support@digitalalign.com</a
-                      >
-                      or visit our <a style="color: #ffa73b">FAQs</a>. You can
-                      also chat with a real live human during our operating
-                      hours. They can answer questions about your account or
-                      help you with your meditation practice.
-                    </p>
+                        >support@digitalalign.com</a> or visit our FAQs page. 
+                        <br/>If preferred, you can chat with an agent during our operating hours.
+                      </p>
                   </td>
                 </tr>
                 <tr>

@@ -11,7 +11,7 @@
         <namespace>FinServ</namespace>
     </packageVersions>
     <style>none</style>
-    <subject>Hurray! Your account has been approved.</subject>
+    <subject>Congratulations! Your account has been approved.</subject>
     <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

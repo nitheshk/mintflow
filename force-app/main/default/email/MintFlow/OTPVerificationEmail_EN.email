@@ -191,11 +191,20 @@
                     <p style="margin: 0">
                       <h5>Hi {FirstName} {LastName},</h5>
                       <br />
-                      Your Email One Time Password(OTP) to log in to your
-                      Mintflow account is {OTP} is valid for {ExpireTime}
-                      minutes.
-                      <br /> This OTP will be used to verify the email you are
-                      logging in from.
+
+                      Here's the login information you requested. This will be used to verify your email address.
+
+                     <p>Your One-Time Password (OTP) is {OTP} . Please note that this OTP will only be valid for {ExpireTime}. </p>
+
+                      <p>
+                      In order to keep your account safe, please do not share this OTP with anyone.
+                      <br/>
+                      If you have any questions, please email us at   <a
+                        href="mailto:support@digitalalign.com"
+                        style="color: #ffa73b"
+                        >support@digitalalign.com</a> or visit our FAQs page. 
+                        <br/>If preferred, you can chat with an agent during our operating hours.
+                      </P>
                     </p>
                   </td>
                 </tr>
@@ -212,9 +221,7 @@
                       line-height: 25px;
                     "
                   >
-                    <p style="margin: 0">
-                      For account safety, do not share your OTP with others.
-                    </p>
+                   
                   </td>
                 </tr>
                 <tr>
@@ -248,18 +255,7 @@
                       line-height: 25px;
                     "
                   >
-                    <p style="margin: 0">
-                      If you have any questions, please email us at
-                      <a
-                        href="mailto:support@digitalalign.com"
-                        style="color: #ffa73b"
-                        >support@digitalalign.com</a
-                      >
-                      or visit our <a style="color: #ffa73b">FAQs</a>. You can
-                      also chat with a real live human during our operating
-                      hours. They can answer questions about your account or
-                      help you with your meditation practice.
-                    </p>
+                    
                   </td>
                 </tr>
                 <tr>
