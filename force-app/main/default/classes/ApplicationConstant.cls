@@ -40,7 +40,6 @@ public with sharing class ApplicationConstant {
   public static final String FLOW_TYPE_APPLICATION = 'ApplicationFlow';
   public static final String FLOW_TYPE_JOINT = 'JointFlow';
   public static final String FLOW_TYPE_FUNDING = 'FundingFlow';
-  public static final String FLOW_TYPE_IDENTITY_UPLOAD = 'IdentityUploadFlow';
 
   // Application Stage
   public static final String STAGE_EXISTING_CUSTOMER = 'ExistingCustomer';

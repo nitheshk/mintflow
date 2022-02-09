@@ -347,11 +347,12 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     String link = generateUrl(
       new Map<String, String>{
         'aplType' => ApexRequest.getApplicantType(),
-        'flw' => ApplicationConstant.FLOW_TYPE_IDENTITY_UPLOAD,
-        'urlSuffix' => '/membership/upload/identity-verification',
+        'flw' => ApexRequest.getFlowType(),
+        'urlSuffix' => '/membership/upload/document-upload',
         'aplId' => applicant.Id,
         'ch' => 'Virtual',
-        'pageName' => '/IdentityUpload'
+        'pageName' => '/IdentityUpload',
+        'suffixType' => 'path'
       }
     );
 
@@ -417,9 +418,13 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       SiteSetting__c.getInstance().OnlineSiteUrl__c +
       pageName +
       '?vmf=' +
-      SecurityUtils.encryptUrl(JSON.serialize(cipher, true)) +
-      '&vue=' +
-      EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
+      SecurityUtils.encryptUrl(JSON.serialize(cipher, true));
+
+    if (params.get('suffixType') == 'path') {
+      link += '#' + urlSuffix;
+    } else {
+      link += '&vue=' + EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
+    }
     return link;
   }
 }
