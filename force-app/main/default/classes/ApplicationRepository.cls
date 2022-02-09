@@ -16,51 +16,14 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
    * @return Account
    **/
   global static Account readApplicationWithChild(Id applicationId) {
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
-
     Query qry = Query.newInstance(Account.SObjectType)
-      //.addFieldSet('mflow__Application')
       .addFields()
-      //.removeFields('mflow__SessionToken__c')
       .queryChild('mflow__Applicants__r')
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__FinancialAccounts__r')
-      .run();
-
-    if (String.isNotBlank(eventIdentifier)) {
-      qry
-        .queryChild('mflow__ApplicationConsents__r')
-        .addFields()
-        .queryLookup('mflow__ConsentTemplate__r')
-        .addFields()
-        .run()
-        .whereEq('mflow__EventIdentifier__c', eventIdentifier)
-        .andCon()
-        .whereNull('mflow__Applicant__c')
-        .orderBy('mflow__Order__c')
-        .run();
-    } else {
-      qry
-        .queryChild('mflow__ApplicationConsents__r')
-        .addFields()
-        .queryLookup('mflow__ConsentTemplate__r')
-        .addFields()
-        .run()
-        .whereNull('mflow__Applicant__c')
-        .orderBy('mflow__Order__c')
-        .run();
-    }
-
-    qry.queryChild('mflow__Surveys__r')
-      .addFields()
-      .whereNull('Applicant__c')
-      .orderBy('Order__c')
       .run()
       .whereEq('Id', applicationId);
-
     return (Account) DatabaseUtils.getRecord(qry.toString());
   }
 
@@ -77,7 +40,6 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   ) {
     return (Account) DatabaseUtils.getRecord(
       Query.newInstance(Account.SObjectType)
-        //.addFieldSet('mflow__Application')
         .addFields()
         .removeFields('mflow__SessionToken__c')
         .whereEq('mflow__ApplicationNumber__c', applicationNumber)
@@ -96,51 +58,16 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
     Id applicationId,
     Id applicantId
   ) {
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
-
     Query qry = Query.newInstance(Account.SObjectType)
-      //.addFieldSet('mflow__Application')
       .addFields()
       .removeFields('mflow__SessionToken__c')
-      //#minor Check Applicants is required
       .queryChild('mflow__Applicants__r')
       .whereEq('Id', applicantId)
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__FinancialAccounts__r')
-      .run();
-    if (String.isNotBlank(eventIdentifier)) {
-      qry
-        .queryChild('mflow__ApplicationConsents__r')
-        .addFields()
-        .queryLookup('mflow__ConsentTemplate__r')
-        .addFields()
-        .run()
-        .whereEq('mflow__EventIdentifier__c', eventIdentifier)
-        .andCon()
-        .whereNull('mflow__Applicant__c')
-        .orderBy('mflow__Order__c')
-        .run();
-    } else {
-      qry
-        .queryChild('mflow__ApplicationConsents__r')
-        .addFields()
-        .queryLookup('mflow__ConsentTemplate__r')
-        .addFields()
-        .run()
-        .whereNull('mflow__Applicant__c')
-        .orderBy('mflow__Order__c')
-        .run();
-    }
-    qry.queryChild('mflow__Surveys__r')
-      .addFields()
-      .whereNull('Applicant__c')
-      .orderBy('Order__c')
       .run()
       .whereEq('Id', applicationId);
-
     return (Account) DatabaseUtils.getRecord(qry.toString());
   }
 
@@ -168,7 +95,6 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   global static Account readApplicationWithApplicants(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
       Query.newInstance(Account.SObjectType)
-        //.addFieldSet('mflow__Application')
         .addFields()
         .queryChild('mflow__Applicants__r')
         .addFields()
@@ -234,10 +160,6 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
         )
         .orderBy('mflow__Order__c')
         .run()
-        //.queryChild('mflow__FinancialAccounts__r')
-        //.addFields()
-        //.addFields('RecordType.Name')
-        //.run()
         .whereEq('Id', applicationId)
         .toString()
     );
