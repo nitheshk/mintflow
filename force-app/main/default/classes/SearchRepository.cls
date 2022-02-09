@@ -77,10 +77,10 @@ public with sharing class SearchRepository extends DatabaseUtils {
   /**
    * @description
    * @author Digital Align | 09-23-2021
-   * @param String retrieveEmployees
+   * @param String retrieveApplicants
    * @param map<string,string> searchFilter
-   * @param string userContactType
-   * @return List<Contact>
+   * @return List<Applicant__c>
+>
    **/
   public static List<Applicant__c> retrieveApplicants(
     String searchString,
@@ -143,6 +143,69 @@ public with sharing class SearchRepository extends DatabaseUtils {
       );
       System.debug('employeeList second' + employeeList);
       return employeeList;
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align | 09-23-2021
+   * @param String retrieveApplications
+   * @param map<string,string> searchFilter
+   * @return List<Account>
+   **/
+  public static List<Account> retrieveApplications(
+    String searchString,
+    map<string, string> searchFilter
+  ) {
+    String searchStr1 = searchString;
+    String dynamicString = '';
+    String searchQuery;
+    List<Account> applicationsList = new List<Account>();
+    if (String.isNotBlank(searchString)) {
+      if (searchFilter != null) {
+        dynamicString = ApexUtils.obtainSearchString(searchFilter);
+      }
+
+      if (searchFilter.isEmpty()) {
+        searchQuery =
+          'FIND {' +
+          searchStr1 +
+          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate)';
+      } else {
+        searchQuery =
+          'FIND {' +
+          searchStr1 +
+          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate) WHERE ' +
+          dynamicString +
+          ')';
+      }
+      List<List<sObject>> objectList = new List<List<sObject>>();
+      objectList = search.query(searchQuery);
+
+      System.debug('Applications  first' + objectList);
+      applicationsList = (List<Account>) objectList[0];
+      return applicationsList;
+    } else {
+      query q = Query.newInstance(Account.SObjectType)
+        .addFields()
+        .whereNotNull('Name');
+      if (!searchFilter.isEmpty()) {
+        if (String.isNotBlank(searchFilter.get('AppNumber'))) {
+          q.andCon().whereLike('Name', searchFilter.get('AppNumber'));
+        }
+        if (String.isNotBlank(searchFilter.get('LOSNumber'))) {
+          q.andCon()
+            .whereLike(
+              'mflow__ExternalApplicationNumber__c',
+              searchFilter.get('LOSNumber')
+            );
+        }
+      }
+      applicationsList = (List<Account>) DatabaseUtils.getRecords(
+        q.toString(true)
+      );
+      System.debug('employeeList second' + applicationsList);
+      return applicationsList;
     }
   }
 }

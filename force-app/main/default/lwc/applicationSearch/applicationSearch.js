@@ -1,14 +1,13 @@
 import { LightningElement, track, api } from "lwc";
 
-import searchEmployees from "@salesforce/apex/LWCFinancialInstituteSiteController.retrieveEmployees";
+import searchApplicants from "@salesforce/apex/LWCFinancialInstituteSiteController.retrieveApplications";
 import { NavigationMixin } from "lightning/navigation";
 import utils from "c/generalUtils";
 const columns = [
-  { label: "Employee Id", fieldName: "mflow__EmployeeId__c" },
-  { label: "FirstName", fieldName: "FirstName" },
-  { label: "LastName", fieldName: "LastName" },
-  { label: "Mobile Number", fieldName: "MobilePhone" },
-  { label: "Email", fieldName: "Email", type: "Email" },
+  { label: "Name", fieldName: "Name" },
+  { label: "LOS Number", fieldName: "mflow__ExternalApplicationNumber__c" },
+  { label: "Status", fieldName: "FinServ__Status__c" },
+  { label: "Date", fieldName: "CreatedDate" },
   {
     type: "button",
     typeAttributes: {
@@ -23,7 +22,9 @@ const columns = [
   }
 ];
 
-export default class EmployeeSearch extends NavigationMixin(LightningElement) {
+export default class ApplicationSearch extends NavigationMixin(
+  LightningElement
+) {
   @track columnsdata;
   columnsdata = columns;
   @track searchData;
@@ -40,17 +41,16 @@ export default class EmployeeSearch extends NavigationMixin(LightningElement) {
 
   handleSearch() {
     this.showSpinner = true;
-    searchEmployees({
+    searchApplicants({
       params: {
         searchString: this.searchString,
-        searchFilter: this.searchFilter,
-        userContactType: this.employeeContactType
+        searchFilter: this.searchFilter
       }
     })
       .then((result) => {
         this.searchData = JSON.parse(result.data);
+        console.log("this.searchData::" + JSON.stringify(this.searchData));
         this.showSpinner = false;
-        console.log(this.employeeContactType);
       })
       .catch((error) => {
         console.log("error =====> " + JSON.stringify(error));
@@ -64,6 +64,8 @@ export default class EmployeeSearch extends NavigationMixin(LightningElement) {
   callRowAction(event) {
     const recId = event.detail.row.Id;
     const actionName = event.detail.action.name;
+    console.log("actionName" + actionName);
+    console.log("recId" + recId);
 
     if (actionName === "Edit") {
       this[NavigationMixin.Navigate]({
@@ -79,7 +81,7 @@ export default class EmployeeSearch extends NavigationMixin(LightningElement) {
         type: "standard__recordPage",
         attributes: {
           recordId: recId,
-          objectApiName: "Contact",
+          objectApiName: "Account",
           actionName: "view"
         }
       });

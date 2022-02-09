@@ -80,6 +80,24 @@ global with sharing class LWCFinancialInstituteSiteController {
       return ApexResponse.exception(ex);
     }
   }
+
+  /**
+   * @description To get application records based on the filters
+   * @author Digital Align | 09-21-2021
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled(Cacheable=true)
+  public static ApexResponse retrieveApplications(Map<String, Object> params) {
+    try {
+      return ApexResponse.ok(
+        SearchService.getInstance().retrieveApplications(params)
+      );
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    }
+  }
   /**
    * @description
    * @author Digital Align | 09-29-2021

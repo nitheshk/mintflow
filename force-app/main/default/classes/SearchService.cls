@@ -61,4 +61,21 @@ global virtual with sharing class SearchService extends AbstractService {
     );
     return SearchRepository.retrieveApplicants(searchString, searchFilter);
   }
+
+  /**
+   * @description
+   * @author Digital Align | 09-23-2021
+   * @param Map<String Object> params
+   * @return virtual
+   **/
+  global virtual List<Account> retrieveApplications(
+    Map<String, Object> params
+  ) {
+    String searchString = (String) params.get('searchString');
+    map<string, string> searchFilter = (map<string, string>) JSON.deserialize(
+      JSON.serialize(params.get('searchFilter')),
+      map<string, string>.class
+    );
+    return SearchRepository.retrieveApplications(searchString, searchFilter);
+  }
 }
