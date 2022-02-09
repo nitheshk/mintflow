@@ -370,6 +370,18 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>resubmitApplication</componentName>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.FinServ__Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Revision in Progress</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>manualKycDecision</componentName>
                 <visibilityRule>
                     <booleanFilter>1 AND 2</booleanFilter>

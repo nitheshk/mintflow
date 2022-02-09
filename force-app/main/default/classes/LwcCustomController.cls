@@ -268,4 +268,26 @@ global with sharing class LwcCustomController extends AbstractController {
       throw new AuraHandledException(e.getMessage());
     }
   }
+  /**
+   * @description
+   * @author Digital Align | 02-09-2022
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  global static ApexResponse resubmitTheApplication(string applicationId) {
+    try {
+      log
+        ?.fine('Inside resubmitTheApplication applicationId =' + applicationId);
+      return ApexResponse.ok(
+        ReviewInformationService.getInstance()
+          .resubmitApplicationForReview(applicationId)
+      );
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    } finally {
+      log?.fine('Complete resubmitTheApplication');
+      Logger.persist();
+    }
+  }
 }
