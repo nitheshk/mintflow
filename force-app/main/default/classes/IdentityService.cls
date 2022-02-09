@@ -229,7 +229,7 @@ global with sharing class IdentityService extends AbstractService {
       .generateUrl(
         new Map<String, String>{
           'aplType' => ApexRequest.getApplicantType(),
-          'flw' => ApexRequest.getFlowType(),
+          'flw' => ApplicationConstant.FLOW_TYPE_IDENTITY_UPLOAD,
           'urlSuffix' => '/membership/upload/document-upload',
           'aplId' => currentApplicant.Id,
           'ch' => 'Virtual',

@@ -347,7 +347,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     String link = generateUrl(
       new Map<String, String>{
         'aplType' => ApexRequest.getApplicantType(),
-        'flw' => ApexRequest.getFlowType(),
+        'flw' => ApplicationConstant.FLOW_TYPE_IDENTITY_UPLOAD,
         'urlSuffix' => '/membership/upload/document-upload',
         'aplId' => applicant.Id,
         'ch' => 'Virtual',
