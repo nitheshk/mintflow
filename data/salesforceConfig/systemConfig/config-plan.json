@@ -34,5 +34,11 @@
     "saveRefs": false,
     "resolveRefs": true,
     "files": ["mflow__ConsentTemplate__c.json"]
+  },
+  {
+    "sobject": "mflow__EligibleCounty__c",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["mflow__EligibleCounty__c.json"]
   }
 ]

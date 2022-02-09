@@ -117,6 +117,10 @@
         <tab>ConsentLineItem__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>EligibleCounty__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
 
     <!--applicationVisibilities-->
     <applicationVisibilities>

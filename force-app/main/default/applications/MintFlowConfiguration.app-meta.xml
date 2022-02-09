@@ -148,6 +148,7 @@
     <tabs>ConsentLineItem__c</tabs>
     <tabs>ConsentTemplate__c</tabs>
     <tabs>SurveyTemplate__c</tabs>
+    <tabs>EligibleCounty__c</tabs>
     <tabs>FinancialInstituteAccount</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
@@ -165,6 +166,9 @@
         </mappings>
         <mappings>
             <tab>SurveyTemplate__c</tab>
+        </mappings>
+        <mappings>
+            <tab>EligibleCounty__c</tab>
         </mappings>
         <mappings>
             <tab>FinancialInstituteAccount</tab>

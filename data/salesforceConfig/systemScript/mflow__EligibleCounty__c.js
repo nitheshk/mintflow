@@ -12,7 +12,6 @@ utils
     // <==  update change
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
-      delete item.Name;
       item.attributes.referenceId = "EligibleCountyRef_" + index;
     });
     //   update change ==>
