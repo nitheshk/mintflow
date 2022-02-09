@@ -6,7 +6,7 @@
   standardStylesheets="false"
   showheader="false"
   Controller="IdentityUploadController"
-  extensions="IdentityController,ApplicantController,FileController"
+  extensions="ApplicationController,IdentityController,ApplicantController,FileController"
   action="{!initializeApplication}"
 >
   <html lang="">
