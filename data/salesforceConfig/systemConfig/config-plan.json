@@ -39,6 +39,13 @@
     "sobject": "mflow__EligibleCounty__c",
     "saveRefs": false,
     "resolveRefs": true,
-    "files": ["mflow__EligibleCounty__c.json"]
+    "files": [
+      "mflow__EligibleCounty__c_0.json",
+      "mflow__EligibleCounty__c_1.json",
+      "mflow__EligibleCounty__c_2.json",
+      "mflow__EligibleCounty__c_3.json",
+      "mflow__EligibleCounty__c_4.json",
+      "mflow__EligibleCounty__c_5.json"
+    ]
   }
 ]

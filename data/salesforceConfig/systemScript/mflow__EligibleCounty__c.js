@@ -15,14 +15,16 @@ utils
       item.attributes.referenceId = "EligibleCountyRef_" + index;
     });
     //   update change ==>
-    utils
-      .createFile(
-        `${configPath}${objectName}.json`,
-        JSON.stringify({ records: data })
-      )
-      .catch((err) => {
-        console.log("errr :" + JSON.stringify(err));
-      });
+    for (let i = 0; data.length > 0 && i <= data.length / 200; i++) {
+      utils
+        .createFile(
+          `${configPath}${objectName}_${i}.json`,
+          JSON.stringify({ records: data.slice(i * 200, (i + 1) * 200 - 1) })
+        )
+        .catch((err) => {
+          console.log("errr :" + JSON.stringify(err));
+        });
+    }
   })
   .catch((err) => {
     console.log("err :" + err);

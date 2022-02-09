@@ -46,7 +46,7 @@ global with sharing class IdentityService extends AbstractService {
       //   : new List<String>();
       // params.put('eligibleCountyNameList', eligibleCountyNameList);
       string zipcode = (string) params.get('zipcode');
-      if (string.isBlank(zipcode) && params != null) {
+      if (string.isBlank(zipcode)) {
         throw new CustomException(System.Label.Identity_ZipcodeValueNotSet);
       }
       Map<String, Object> result = new Map<String, Object>();
@@ -225,6 +225,6 @@ global with sharing class IdentityService extends AbstractService {
 
     // Send Email
     CustomerEmailService.getInstance().uploadIdentityDocument(currentApplicant);
-    return null;
+    return true;
   }
 }

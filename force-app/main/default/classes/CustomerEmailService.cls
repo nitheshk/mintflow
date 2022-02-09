@@ -347,8 +347,8 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     String link = generateUrl(
       new Map<String, String>{
         'aplType' => ApexRequest.getApplicantType(),
-        'flw' => ApexRequest.getFlowType(),
-        'urlSuffix' => '/membership/application/otp',
+        'flw' => ApplicationConstant.FLOW_TYPE_IDENTITY_UPLOAD,
+        'urlSuffix' => '/membership/upload/identity-verification',
         'aplId' => applicant.Id,
         'ch' => 'Virtual',
         'pageName' => '/IdentityUpload'
