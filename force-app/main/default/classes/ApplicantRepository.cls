@@ -56,10 +56,6 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       .addFields()
       .orderBy('mflow__Order__c')
       .run()
-      .queryChild('mflow__Surveys__r')
-      .addFields()
-      .orderBy('Order__c')
-      .run()
       .whereEq('Id', applicantId);
     return (Applicant__c) DatabaseUtils.getRecord(qry.toString());
   }
