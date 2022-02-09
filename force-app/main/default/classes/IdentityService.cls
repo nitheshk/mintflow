@@ -51,8 +51,10 @@ global with sharing class IdentityService extends AbstractService {
       }
       Map<String, Object> result = new Map<String, Object>();
       Map<String, Object> matchingResult = new Map<String, Object>();
-      EligibleCounty__c county = new EligibleCounty__c();
-      county = IdentityRepository.fetchCountyByZipcode(zipcode);
+      EligibleCounty__c county = IdentityRepository.fetchCountyByZipcode(
+        zipcode
+      );
+
       if (county != null) {
         matchingResult.put('zipcode', zipcode);
         matchingResult.put('county', county.Name);
@@ -85,6 +87,7 @@ global with sharing class IdentityService extends AbstractService {
     } catch (Exception ex) {
       // flow.setSubFlowFailed(ex.getMessage());
       // flow.setFlowFailed('Failed');
+      log?.error(ex);
       throw ex;
     }
   }
