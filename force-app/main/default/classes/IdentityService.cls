@@ -33,18 +33,13 @@ global with sharing class IdentityService extends AbstractService {
    * @return Object
    **/
   global virtual Object verifyCounty(Map<String, Object> params) {
-    // Flow.initialize(ApexRequest.getApplicationId());
-    // Flow.setFlow('EligibilityFlow');
-    // Flow.setSubFlow(APINames.Geocoding.name());
+    return verifyCountyUsingConfiguration(params);
+  }
+
+  global virtual Object verifyCountyUsingConfiguration(
+    Map<String, Object> params
+  ) {
     try {
-      // String eligibleCountyNames = ApplicationConfiguration__c.getInstance()
-      //   .CountyNames__c;
-      // List<String> eligibleCountyNameList = String.isNotBlank(
-      //     eligibleCountyNames
-      //   )
-      //   ? eligibleCountyNames.split(';')
-      //   : new List<String>();
-      // params.put('eligibleCountyNameList', eligibleCountyNameList);
       string zipcode = (string) params.get('zipcode');
       if (string.isBlank(zipcode)) {
         throw new CustomException(System.Label.Identity_ZipcodeValueNotSet);
@@ -66,31 +61,62 @@ global with sharing class IdentityService extends AbstractService {
         result.put('isCountyEligible', false);
       }
       return result;
-      // if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
-      //   HttpBuilder.setAPISetting(APINames.Geocoding);
-      //   HttpBuilder.replaceEndpoint(
-      //     '{APIKey}',
-      //     HttpBuilder.getApiConstant('GeocodingAPIKey')
-      //   );
-      //   HttpBuilder.replaceEndpoint(
-      //     '{Pincode}',
-      //     (string) params.get('zipcode')
-      //   );
-      //   HttpBuilder.Response response = GeocodingProvider.getInstance()
-      //     .validateCountyUsingGoogleApi(params);
-      //   flow.setSubFlowPassed(response.status);
-      //   flow.setFlowPassed('Completed');
-      //   return response.data;
-      // } else {
-      //   throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
-      // }
     } catch (Exception ex) {
-      // flow.setSubFlowFailed(ex.getMessage());
-      // flow.setFlowFailed('Failed');
       log?.error(ex);
       throw ex;
     }
   }
+
+  /**
+   * @description verify county eligibility
+   * Pass "zipcode" as parameter
+   * @author Digital Align Team | 10-13-2021
+   * @param Map<String String> params
+   * @return Object
+   **/
+  global virtual Object verifyCountyUsingGoogleApi(Map<String, Object> params) {
+    Flow.initialize(ApexRequest.getApplicationId());
+    Flow.setFlow('EligibilityFlow');
+    Flow.setSubFlow(APINames.Geocoding.name());
+    try {
+      String eligibleCountyNames = ApplicationConfiguration__c.getInstance()
+        .CountyNames__c;
+      List<String> eligibleCountyNameList = String.isNotBlank(
+          eligibleCountyNames
+        )
+        ? eligibleCountyNames.split(';')
+        : new List<String>();
+      params.put('eligibleCountyNameList', eligibleCountyNameList);
+      string zipcode = (string) params.get('zipcode');
+      if (string.isBlank(zipcode) && params != null) {
+        throw new CustomException(System.Label.Identity_ZipcodeValueNotSet);
+      }
+      if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
+        HttpBuilder.setAPISetting(APINames.Geocoding);
+        HttpBuilder.replaceEndpoint(
+          '{APIKey}',
+          HttpBuilder.getApiConstant('GeocodingAPIKey')
+        );
+        HttpBuilder.replaceEndpoint(
+          '{Pincode}',
+          (string) params.get('zipcode')
+        );
+        HttpBuilder.Response response = GeocodingProvider.getInstance()
+          .validateCountyUsingGoogleApi(params);
+        flow.setSubFlowPassed(response.status);
+        flow.setFlowPassed('Completed');
+        return response.data;
+      } else {
+        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
+      }
+    } catch (Exception ex) {
+      log?.error(ex);
+      flow.setSubFlowFailed(ex.getMessage());
+      flow.setFlowFailed('Failed');
+      throw ex;
+    }
+  }
+
   /**
    * @description Document Scan functionality for identity verify
    * @author Digital Align | 10-26-2021
