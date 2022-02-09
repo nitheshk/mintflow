@@ -75,6 +75,8 @@ global with sharing class IdentityController extends AbstractController {
    * @param ApexRequest request
    * @return ApexResponse
    **/
+  @AuraEnabled
+  @RemoteAction
   global static ApexResponse identityVerify(ApexRequest request) {
     try {
       log?.fine('Inside identityVerify');
@@ -100,6 +102,8 @@ global with sharing class IdentityController extends AbstractController {
    * @param ApexRequest request
    * @return ApexResponse
    **/
+  @AuraEnabled
+  @RemoteAction
   global static ApexResponse generateUrlForIdentityUpload(ApexRequest request) {
     try {
       log?.fine('Inside generateUrlForIdentityUpload');
