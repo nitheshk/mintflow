@@ -78,15 +78,15 @@
         "type": "mflow__ConsentTemplate__c",
         "referenceId": "ConsentTemplateRef2"
       },
-      "Name": "Truth in Saving",
+      "Name": "Truth in Savings",
       "mflow__Code__c": "C0007",
       "mflow__ConsentType__c": "Disclosure",
       "mflow__DocumentName__c": "TruthInSaving_v1",
       "mflow__DocumentType__c": "Static",
       "mflow__ExternalId__c": "E0007",
       "mflow__Language__c": "English",
-      "mflow__LongDescipription__c": "Truth in Saving",
-      "mflow__ShortDescription__c": "Truth in Saving",
+      "mflow__LongDescipription__c": "Truth in Savings",
+      "mflow__ShortDescription__c": "Truth in Savings",
       "mflow__VersionNumber__c": "v1",
       "mflow__ConsentLineItems__r": {
         "totalSize": 1,
@@ -97,7 +97,7 @@
               "type": "mflow__ConsentLineItem__c",
               "referenceId": "ConsentLineItemRef2_0"
             },
-            "Name": "Truth in Saving",
+            "Name": "Truth in Savings",
             "mflow__ApplicantType__c": "Primary;Joint",
             "mflow__Channel__c": "Virtual;Branch",
             "mflow__EventIdentifier__c": "ReviewSubmit",

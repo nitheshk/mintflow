@@ -193,7 +193,7 @@
                       <br />
                         <br />
                       Congratulations, your application  [{ApplicationNumber}] has been successfully submitted and is being reviewed.
-                     <p> We will notify you once joint applicant(s) completes and submits the information. 
+                     <p> We will notify you once the joint applicant(s) completes and submits the information. 
                      However, you may check the status anytime by logging into the <a href="{url}" target="_blank">portal</a>.</p>
                      
                     </p>

@@ -195,7 +195,6 @@
                       We are excited to let you know that your family member, {primaryFirstName} {primaryLastName}, has just joined MintFlow.
                       <br/>They wouldn't have been able to do it without you, so we wanted to let you know how appreciative we are. 
                       
-                      <p> They have joined us for opening a {productName} with Application Number as {applicationNumber}. </p>
                       
                       <br /><br />
                       If this information is inaccurate, please email us at  <a
