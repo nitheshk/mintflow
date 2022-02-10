@@ -79,21 +79,19 @@
           <h4>
             <apex:outputText
               style="font-style: bold"
-              value="Submitted On : "
+              value="Date : "
               styleClass="headerStyle "
             ></apex:outputText>
-            <apex:outputText
-              style="font-style: bold"
-              value="{0,date,MM/dd/yyyy}"
-              styleClass="headerStyle "
-            >
-              <apex:param value="{!application.mflow__SubmittedDate__c}" />
+            <apex:outputText value="{0,date}">
+              <apex:param value="{!Today}" />
             </apex:outputText>
           </h4>
         </div>
 
         <apex:repeat var="applicantVar" value="{!application.Applicants__r}">
-          <h3 style="background: #b6bdca">{!applicantVar.Name}</h3>
+          <h3 style="background: #b6bdca">
+            {!applicantVar.mflow__ApplicantName__c}
+          </h3>
           <table class="table" width="100% ">
             <tr style="height: 20px">
               <td width="50% ">

@@ -8,6 +8,11 @@
 global with sharing class CustomerAgreementController {
   global account application { get; set; }
   global String primarySignatureImg { get; set; }
+  global Date Today {
+    get {
+      return Date.today();
+    }
+  }
   private id applicationId;
   /**
    * @description
