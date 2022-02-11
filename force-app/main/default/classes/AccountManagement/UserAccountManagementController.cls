@@ -24,6 +24,8 @@ global with sharing class UserAccountManagementController {
       );
     } catch (Exception ex) {
       return ApexResponse.exception(ex);
+    } finally {
+      Logger.persist();
     }
   }
 
