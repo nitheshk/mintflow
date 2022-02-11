@@ -1277,6 +1277,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.LastFourDigitsofSSN__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Applicant__c.MiddleName__c</field>
         <readable>true</readable>
     </fieldPermissions>

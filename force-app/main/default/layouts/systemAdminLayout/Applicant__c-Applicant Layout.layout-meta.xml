@@ -30,6 +30,10 @@
                 <behavior>Edit</behavior>
                 <field>SSN__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>LastFourDigitsofSSN__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

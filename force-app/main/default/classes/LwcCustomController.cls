@@ -290,4 +290,28 @@ global with sharing class LwcCustomController extends AbstractController {
       Logger.persist();
     }
   }
+  /**
+   * @description
+   * @author Digital Align | 02-11-2022
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  global static ApexResponse authorizeCustomer(map<string, object> params) {
+    try {
+      log?.fine('Inside authorizeCustomer params =' + params);
+      List<Account> applications = CustomerPortalService.getInstance()
+        .authorize(params);
+      if (applications != null) {
+        return ApexResponse.ok(applications);
+      } else {
+        return ApexResponse.fail(applications);
+      }
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    } finally {
+      log?.fine('Complete authorizeCustomer');
+      Logger.persist();
+    }
+  }
 }
