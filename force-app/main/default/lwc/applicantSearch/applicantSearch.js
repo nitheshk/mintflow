@@ -4,22 +4,30 @@ import searchApplicants from "@salesforce/apex/LWCFinancialInstituteSiteControll
 import { NavigationMixin } from "lightning/navigation";
 import utils from "c/generalUtils";
 const columns = [
-  { label: "FirstName", fieldName: "mflow__FirstName__c" },
-  { label: "LastName", fieldName: "mflow__LastName__c" },
+  {
+    label: "Application Number",
+    fieldName: "URL",
+    type: "url",
+    typeAttributes: {
+      label: {
+        fieldName: "ApplicationNumber"
+      }
+    }
+  },
+  {
+    label: "Applicant Name",
+    fieldName: "Id",
+    type: "url",
+    typeAttributes: {
+      label: {
+        fieldName: "mflow__ApplicantName__c"
+      }
+    }
+  },
   { label: "Mobile Number", fieldName: "mflow__Phone__c" },
   { label: "Email", fieldName: "mflow__Email__c", type: "Email" },
-  {
-    type: "button",
-    typeAttributes: {
-      label: "View",
-      name: "View",
-      title: "View",
-      disabled: false,
-      value: "view",
-      iconPosition: "left",
-      variant: "brand"
-    }
-  }
+  { label: "SSN", fieldName: "mflow__SSN__c" },
+  { label: "KYC Status", fieldName: "mflow__KYCStatus__c" }
 ];
 
 export default class ApplicantSearch extends NavigationMixin(LightningElement) {
@@ -47,8 +55,14 @@ export default class ApplicantSearch extends NavigationMixin(LightningElement) {
     })
       .then((result) => {
         this.searchData = JSON.parse(result.data);
-        console.log("this.searchData::" + JSON.stringify(this.searchData));
-        this.showSpinner = false;
+
+        this.searchData.map((record) => {
+          record.ApplicationNumber = record.mflow__Application__r.Name;
+          record.URL = "/account/" + record.mflow__Application__r.Id;
+
+          record.Id = "/detail/" + record.Id;
+          return record;
+        });
       })
       .catch((error) => {
         console.log("error =====> " + JSON.stringify(error));
@@ -62,9 +76,6 @@ export default class ApplicantSearch extends NavigationMixin(LightningElement) {
   callRowAction(event) {
     const recId = event.detail.row.Id;
     const actionName = event.detail.action.name;
-    console.log("actionName" + actionName);
-    console.log("recId" + recId);
-
     if (actionName === "Edit") {
       this[NavigationMixin.Navigate]({
         type: "standard__recordPage",
