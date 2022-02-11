@@ -1,25 +1,23 @@
 import { LightningElement, track, api } from "lwc";
 
-import searchApplicants from "@salesforce/apex/LWCFinancialInstituteSiteController.retrieveApplications";
+import searchApplications from "@salesforce/apex/LWCFinancialInstituteSiteController.retrieveApplications";
 import { NavigationMixin } from "lightning/navigation";
 import utils from "c/generalUtils";
 const columns = [
-  { label: "Name", fieldName: "Name" },
+  {
+    label: "Application Number",
+    fieldName: "URL",
+    type: "url",
+    typeAttributes: {
+      label: {
+        fieldName: "Name"
+      }
+    }
+  },
   { label: "LOS Number", fieldName: "mflow__ExternalApplicationNumber__c" },
   { label: "Status", fieldName: "FinServ__Status__c" },
   { label: "Date", fieldName: "CreatedDate" },
-  {
-    type: "button",
-    typeAttributes: {
-      label: "View",
-      name: "View",
-      title: "View",
-      disabled: false,
-      value: "view",
-      iconPosition: "left",
-      variant: "brand"
-    }
-  }
+  { label: "Owner", fieldName: "Owner" }
 ];
 
 export default class ApplicationSearch extends NavigationMixin(
@@ -30,6 +28,7 @@ export default class ApplicationSearch extends NavigationMixin(
   @track searchData;
   @track searchFilter = {};
 
+  isDVisible = false;
   searchString = "";
   showSpinner = false;
   @track openModal = false;
@@ -41,7 +40,7 @@ export default class ApplicationSearch extends NavigationMixin(
 
   handleSearch() {
     this.showSpinner = true;
-    searchApplicants({
+    searchApplications({
       params: {
         searchString: this.searchString,
         searchFilter: this.searchFilter
@@ -49,7 +48,13 @@ export default class ApplicationSearch extends NavigationMixin(
     })
       .then((result) => {
         this.searchData = JSON.parse(result.data);
-        console.log("this.searchData::" + JSON.stringify(this.searchData));
+        console.log("data::" + JSON.stringify(this.searchData));
+        this.searchData.map((record) => {
+          record.URL = "/account/" + record.Id;
+          record.Owner = record.CreatedBy.Name;
+          return record;
+        });
+
         this.showSpinner = false;
       })
       .catch((error) => {
@@ -90,10 +95,10 @@ export default class ApplicationSearch extends NavigationMixin(
   handleChange(event) {
     let targetElement = event.target;
     this.searchFilter[targetElement.dataset.fieldname] = targetElement.value;
-    console.log(JSON.stringify(this.searchFilter));
+    console.log("ahange :" + JSON.stringify(this.searchFilter));
   }
   showModal() {
-    this.openModal = true;
+    this.openModal = !this.openModal;
   }
   closeModal() {
     this.openModal = false;
@@ -101,10 +106,44 @@ export default class ApplicationSearch extends NavigationMixin(
   }
   clearFilter() {
     this.searchFilter = {};
+    this.handleSearch();
   }
   applyFilter() {
     this.showSpinner = true;
     this.handleSearch();
     this.openModal = false;
+  }
+
+  handleSort(event) {
+    // field name
+    this.sortBy = event.detail.fieldName;
+    // sort direction
+    this.sortDirection = event.detail.sortDirection;
+    // calling sortdata function to sort the data based on direction and selected field
+    this.sortData(event.detail.fieldName, event.detail.sortDirection);
+  }
+
+  /**
+   * sortData
+   * @param {*} fieldname
+   * @param {*} direction
+   */
+  sortData(fieldname, direction) {
+    let parseData = JSON.parse(JSON.stringify(this.searchData));
+    let sortValue = (a) => {
+      return a[fieldname];
+    };
+    let isReverse = direction === "asc" ? 1 : -1;
+    parseData.sort((x, y) => {
+      x = sortValue(x) ? sortValue(x) : ""; // handling null values
+      y = sortValue(y) ? sortValue(y) : "";
+      return isReverse * ((x > y) - (y > x));
+    });
+
+    this.data = parseData;
+  }
+
+  handleToggleSectionD() {
+    this.openModal = !this.openModal;
   }
 }

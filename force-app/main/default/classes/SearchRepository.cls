@@ -99,14 +99,14 @@ public with sharing class SearchRepository extends DatabaseUtils {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c)';
+          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c,mflow__Application__r.Name,mflow__ApplicantName__c,mflow__KYCStatus__c ORDER BY CreatedDate Desc)';
       } else {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c) WHERE ' +
+          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c,mflow__Application__r.Name,mflow__ApplicantName__c,mflow__KYCStatus__c) WHERE ' +
           dynamicString +
-          ')';
+          ' ORDER BY CreatedDate Desc)';
       }
       List<List<sObject>> objectList = new List<List<sObject>>();
       objectList = search.query(searchQuery);
@@ -161,25 +161,27 @@ public with sharing class SearchRepository extends DatabaseUtils {
     String dynamicString = '';
     String searchQuery;
     List<Account> applicationsList = new List<Account>();
+
     if (String.isNotBlank(searchString)) {
       if (searchFilter != null) {
         dynamicString = ApexUtils.obtainSearchString(searchFilter);
       }
-
       if (searchFilter.isEmpty()) {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate)';
+          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate,CreatedBy.Name  ORDER BY CreatedDate Desc)';
       } else {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate) WHERE ' +
+          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate,CreatedBy.Name  WHERE ' +
           dynamicString +
-          ')';
+          'ORDER BY CreatedDate Desc)';
       }
       List<List<sObject>> objectList = new List<List<sObject>>();
+
+      System.debug('searchQuery::' + searchQuery);
       objectList = search.query(searchQuery);
 
       System.debug('Applications  first' + objectList);
