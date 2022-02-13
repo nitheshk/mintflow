@@ -26,10 +26,11 @@
 
             <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
               <lightning-input
+                required
                 data-fieldname="mflow__LastFourDigitsofSSN__c"
                 label="Last 4 digits of SSN"
                 placeholder="Last 4 digits of SSN"
-                field-level-help={alphanumHelpText}
+                field-level-help="Enter last 4 digits of your SSN"
                 maxlength="4"
                 value={applicantData.mflow__LastFourDigitsofSSN__c}
                 onchange={handleChange}
@@ -42,52 +43,127 @@
                 required
                 data-fieldname="mflow__Email__c"
                 label="Email"
-                placeholder="Email"
-                pattern={alphanumValidation}
-                message-when-pattern-mismatch={alphanumValidationMessage}
-                field-level-help={alphanumHelpText}
-                maxlength="40"
+                type="Email"
+                placeholder="example@company.com"
                 value={applicantData.mflow__Email__c}
                 onchange={handleChange}
                 class="validation"
               ></lightning-input>
             </div>
+          </div>
+          <div class="slds-var-p-around_medium" style="text-align: end">
+            <lightning-button-group>
+              <lightning-button
+                variant="brand"
+                label="Login"
+                title="Login"
+                onclick={handleSubmit}
+                class="slds-var-m-left_x-small"
+                icon-name="utility:save"
+                icon-position="left"
+              ></lightning-button>
 
-            <div class="slds-var-p-around_medium" style="text-align: end">
-              <lightning-button-group>
-                <lightning-button
-                  variant="brand"
-                  label="Login"
-                  title="Login"
-                  onclick={handleSubmit}
-                  class="slds-var-m-left_x-small"
-                  icon-name="utility:save"
-                  icon-position="left"
-                ></lightning-button>
-
-                <lightning-button
-                  variant="brand"
-                  label="Cancel"
-                  title="Cancel"
-                  onclick={handleCancel}
-                  class="slds-var-m-left_x-small"
-                  icon-name="utility:close"
-                  icon-position="right"
-                ></lightning-button>
-              </lightning-button-group>
-            </div>
+              <lightning-button
+                variant="brand"
+                label="Clear"
+                title="Clear"
+                onclick={handleCancel}
+                class="slds-var-m-left_x-small"
+                icon-name="utility:close"
+                icon-position="right"
+              ></lightning-button>
+            </lightning-button-group>
           </div>
         </div>
       </lightning-card>
     </div>
   </template>
   <template if:true={isAuthenticated}>
-    <lightning-accordion>
-      <template for:each={applications} for:item="app">
-        <lightning-accordion-section name={app.Name} label={app.Name} key={app}>
-          <p>{app.Name}</p>
-        </lightning-accordion-section>
-      </template>
-    </lightning-accordion>
+    <div class="slds-m-top_medium slds-m-bottom_x-large">
+      <lightning-accordion>
+        <template for:each={applications} for:item="app">
+          <lightning-accordion-section
+            name={app.mflow__ApplicationNumber__c}
+            label={app.mflow__ApplicationNumber__c}
+            key={app.Id}
+          >
+            <div class="slds-p-around_medium lgc-bg">
+              <ul class="slds-has-dividers_bottom-space">
+                <li class="slds-item">
+                  <lightning-tile label="Application Status">
+                    <p class="slds-truncate" title={app.FinServ__Status__c}>
+                      {app.FinServ__Status__c}
+                    </p>
+                  </lightning-tile>
+                </li>
+
+                <template
+                  for:each={app.mflow__Applicants__r}
+                  for:item="applicant"
+                >
+                  <li class="slds-item" key={applicant.Id}>
+                    <lightning-tile
+                      label={applicant.mflow__ApplicantName__c}
+                      type="media"
+                    >
+                      <lightning-avatar
+                        slot="media"
+                        fallback-icon-name="standard:person_account"
+                        alternative-text={applicant.mflow__ApplicantName__c}
+                      ></lightning-avatar>
+                      <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label">
+                          <p class="slds-truncate" title="Applicant Type">
+                            Applicant Type :
+                          </p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                          <p class="slds-truncate" title="Salesforce">
+                            {applicant.mflow__ApplicantType__c}
+                          </p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                          <p class="slds-truncate" title="Email">Email :</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                          <p
+                            class="slds-truncate"
+                            title={applicant.mflow__Email__c}
+                          >
+                            {applicant.mflow__Email__c}
+                          </p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                          <p class="slds-truncate" title="Email">Status :</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                          <p
+                            class="slds-truncate"
+                            title={applicant.mflow__Status__c}
+                          >
+                            {applicant.mflow__Status__c}
+                          </p>
+                        </dd>
+
+                        <template if:true={app.isPrimaryLoggedIn}>
+                          <lightning-button
+                            data-fieldname={applicant.Id}
+                            variant="brand-outline"
+                            label="Resume"
+                            title="Resume"
+                            onclick={handleResume}
+                            class="slds-m-left_x-small"
+                          ></lightning-button>
+                        </template>
+                      </dl>
+                    </lightning-tile>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </lightning-accordion-section>
+        </template>
+      </lightning-accordion>
+    </div>
   </template>
 </template>

@@ -21,7 +21,7 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
   ) {
     return (List<Account>) DatabaseUtils.getRecords(
       Query.newInstance(Account.SObjectType)
-        .addFields(new List<string>{ 'Name', 'FinServ__Status__c' })
+        .addFields()
         .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')

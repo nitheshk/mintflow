@@ -27,6 +27,12 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
     }
     return serviceInstance;
   }
+  /**
+   * @description
+   * @author Digital Align Team | 02-14-2022
+   * @param map<string object> params
+   * @return virtual
+   **/
   global virtual List<Account> authorize(map<string, object> params) {
     Applicant__c applicant = (Applicant__c) JSON.deserialize(
       JSON.serialize(params.get('applicant')),
