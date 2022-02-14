@@ -146,14 +146,16 @@
                         </dd>
 
                         <template if:true={app.isPrimaryLoggedIn}>
-                          <lightning-button
-                            data-fieldname={applicant.Id}
-                            variant="brand-outline"
-                            label="Resume"
-                            title="Resume"
-                            onclick={handleResume}
-                            class="slds-m-left_x-small"
-                          ></lightning-button>
+                          <template if:true={applicant.isPrimaryOrJoint}>
+                            <lightning-button
+                              data-fieldname={applicant.Id}
+                              variant="brand-outline"
+                              label="Resume"
+                              title="Resume"
+                              onclick={handleResume}
+                              class="slds-m-left_x-small"
+                            ></lightning-button>
+                          </template>
                         </template>
                       </dl>
                     </lightning-tile>

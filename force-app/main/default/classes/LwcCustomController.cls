@@ -302,7 +302,7 @@ global with sharing class LwcCustomController extends AbstractController {
       log?.fine('Inside authorizeCustomer params =' + params);
       List<Account> applications = CustomerPortalService.getInstance()
         .authorize(params);
-      if (applications != null) {
+      if (!applications.isEmpty()) {
         return ApexResponse.ok(applications);
       } else {
         return ApexResponse.fail(applications);

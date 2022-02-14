@@ -46,8 +46,12 @@ export default class CustomerResumeApplication extends LightningElement {
                 ) {
                   if (element.mflow__ApplicantType__c === "Primary") {
                     app.isPrimaryLoggedIn = true;
+                    element.isPrimaryOrJoint = true;
                   } else if (element.mflow__ApplicantType__c === "Joint") {
                     app.isPrimaryLoggedIn = false;
+                    element.isPrimaryOrJoint = true;
+                  } else {
+                    element.isPrimaryOrJoint = false;
                   }
                 }
               });
