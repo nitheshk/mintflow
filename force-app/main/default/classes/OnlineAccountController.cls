@@ -25,7 +25,7 @@ global without sharing class OnlineAccountController extends AbstractController 
       Map<String, Object> params = PageUtils.getCurrentPageParameters();
       //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
-      log?.debug('vmf:' + vmf);
+      //log?.debug('vmf:' + vmf);
       Cookie pageToken = PageUtils.getCookie('token');
       log?.debug('Cookie: ' + pageToken?.getValue());
       // When Cookies is present on refresh of page
@@ -45,6 +45,7 @@ global without sharing class OnlineAccountController extends AbstractController 
       params.put('sftoken', UserInfo.getSessionId());
       params.put('token', ApexRequest.getToken());
       params.put('timezone', UserInfo.getTimeZone().getID());
+      params.put('isResume', String.valueOf(String.isNotBlank(vmf)));
       Map<String, Object> initialData = new Map<String, Object>{
         'id' => this.id,
         'application' => SObjectConstructor.writeFieldsAsMap(
