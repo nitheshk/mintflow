@@ -61,13 +61,12 @@
         <value>1</value>
     </params>
     <reportType>AccountList</reportType>
-    <scope>user</scope>
+    <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>false</showSubTotals>
     <timeFrameFilter>
         <dateColumn>CREATED_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
-        <startDate>2022-01-25</startDate>
     </timeFrameFilter>
 </Report>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
@@ -20,7 +20,7 @@
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
-                <groupingSortProperties/>
+                <groupingSortProperties />
                 <header>Applications</header>
                 <report>MintFlow/ApplicationStatus</report>
                 <showPercentage>false</showPercentage>
@@ -46,7 +46,7 @@
                 <displayUnits>Auto</displayUnits>
                 <gaugeMax>100.0</gaugeMax>
                 <gaugeMin>0.0</gaugeMin>
-                <groupingSortProperties/>
+                <groupingSortProperties />
                 <header>Approved Applications</header>
                 <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
@@ -74,7 +74,7 @@
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
-                <groupingSortProperties/>
+                <groupingSortProperties />
                 <header>This month</header>
                 <report>MintFlow/NewApplications</report>
                 <showPercentage>false</showPercentage>
@@ -98,7 +98,7 @@
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
-                <groupingSortProperties/>
+                <groupingSortProperties />
                 <header>Open Applications</header>
                 <report>MintFlow/OpenApplications</report>
                 <showPercentage>false</showPercentage>
@@ -121,7 +121,7 @@
                 <componentType>Metric</componentType>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
-                <groupingSortProperties/>
+                <groupingSortProperties />
                 <header>Abandoned Applications</header>
                 <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
@@ -146,7 +146,7 @@
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
-                <groupingSortProperties/>
+                <groupingSortProperties />
                 <header>Applications under review</header>
                 <report>MintFlow/ApplicationsUnderReview</report>
                 <showPercentage>false</showPercentage>
@@ -162,7 +162,8 @@
         <rowHeight>36</rowHeight>
     </dashboardGridLayout>
     <dashboardType>SpecifiedUser</dashboardType>
-    <description>Dashboard to showcase charts in financial institute</description>
+    <description
+  >Dashboard to showcase charts in financial institute</description>
     <isGridLayout>true</isGridLayout>
     <runningUser>test-tkajrdyzq6x7@example.com</runningUser>
     <textColor>#000000</textColor>
