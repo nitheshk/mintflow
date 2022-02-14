@@ -22,7 +22,9 @@ global without sharing class OnlineAccountController extends AbstractController 
    **/
   global PageReference initializeApplication() {
     try {
-      Map<String, Object> params = PageUtils.getCurrentPageParameters();
+      Map<String, Object> params = (Map<String, Object>) Json.deserializeUntyped(
+        Json.serialize(PageUtils.getCurrentPageParameters())
+      );
       //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
       //log?.debug('vmf:' + vmf);
@@ -45,7 +47,7 @@ global without sharing class OnlineAccountController extends AbstractController 
       params.put('sftoken', UserInfo.getSessionId());
       params.put('token', ApexRequest.getToken());
       params.put('timezone', UserInfo.getTimeZone().getID());
-      params.put('isResume', String.valueOf(String.isNotBlank(vmf)));
+      params.put('isResume', String.isNotBlank(vmf));
       Map<String, Object> initialData = new Map<String, Object>{
         'id' => this.id,
         'application' => SObjectConstructor.writeFieldsAsMap(
