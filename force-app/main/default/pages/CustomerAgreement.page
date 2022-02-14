@@ -2,7 +2,7 @@
   showHeader="false"
   standardStylesheets="false"
   cache="false"
-  renderAs=""
+  renderAs="pdf"
   controller="CustomerAgreementController"
   applyBodyTag="false"
   applyHtmlTag="false"
@@ -82,8 +82,8 @@
               value="Date : "
               styleClass="headerStyle "
             ></apex:outputText>
-            <apex:outputText value="{0,date}">
-              <apex:param value="{!Today}" />
+            <apex:outputText value="{0, date, MM-dd-yyyy}">
+              <apex:param value="{!Today()}" />
             </apex:outputText>
           </h4>
         </div>
