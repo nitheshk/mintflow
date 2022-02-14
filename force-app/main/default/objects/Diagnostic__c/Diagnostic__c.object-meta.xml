@@ -167,12 +167,6 @@
     >Message__c</customTabListAdditionalFields>
         <customTabListAdditionalFields
     >CREATED_DATE</customTabListAdditionalFields>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
-        <excludedStandardButtons>Import</excludedStandardButtons>
-        <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
-        <excludedStandardButtons>IsotopeSubscription</excludedStandardButtons>
-        <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
-        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>CREATED_DATE</searchFilterFields>
         <searchResultsAdditionalFields
