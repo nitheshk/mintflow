@@ -177,7 +177,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
           searchStr1 +
           '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate,CreatedBy.Name  WHERE ' +
           dynamicString +
-          'ORDER BY CreatedDate Desc)';
+          ' ORDER BY CreatedDate Desc)';
       }
       List<List<sObject>> objectList = new List<List<sObject>>();
 

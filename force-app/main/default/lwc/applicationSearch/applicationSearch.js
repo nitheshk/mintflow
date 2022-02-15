@@ -34,6 +34,16 @@ export default class ApplicationSearch extends NavigationMixin(
   @track openModal = false;
   @api employeeContactType;
 
+  get options() {
+    return [
+      { label: "This Week", value: "THIS_WEEK" },
+      { label: "Last Week", value: "LAST_WEEK" },
+      { label: "This Month", value: "THIS_MONTH" },
+      { label: "Today", value: "TODAY" },
+      { label: "Yesterday", value: "YESTERDAY" }
+    ];
+  }
+
   handleAccountName(event) {
     this.searchString = event.detail.value;
   }
@@ -47,22 +57,30 @@ export default class ApplicationSearch extends NavigationMixin(
       }
     })
       .then((result) => {
-        this.searchData = JSON.parse(result.data);
-        console.log("data::" + JSON.stringify(this.searchData));
-        this.searchData.map((record) => {
-          record.URL = "/account/" + record.Id;
-          record.Owner = record.CreatedBy.Name;
-          return record;
-        });
-
+        if (result.status === 200) {
+          this.searchData = JSON.parse(result.data);
+          console.log("data::" + JSON.stringify(this.searchData));
+          if (this.searchData === null) {
+            utils.infoMessage(
+              this,
+              "There are no records for this search result",
+              "Info"
+            );
+          }
+          this.searchData.map((record) => {
+            record.URL = "/account/" + record.Id;
+            record.Owner = record.CreatedBy.Name;
+            return record;
+          });
+        }
         this.showSpinner = false;
       })
       .catch((error) => {
         console.log("error =====> " + JSON.stringify(error));
         this.searchData = undefined;
-        if (error) {
-          utils.errorMessage(this, error.body.message, "Error fetching record");
-        }
+        //if (error) {
+        utils.errorMessage(this, error.body.message, "Error fetching record");
+        //}
         this.showSpinner = false;
       });
   }
@@ -95,7 +113,7 @@ export default class ApplicationSearch extends NavigationMixin(
   handleChange(event) {
     let targetElement = event.target;
     this.searchFilter[targetElement.dataset.fieldname] = targetElement.value;
-    console.log("ahange :" + JSON.stringify(this.searchFilter));
+    console.log("Change filter :" + JSON.stringify(this.searchFilter));
   }
   showModal() {
     this.openModal = !this.openModal;
@@ -110,6 +128,7 @@ export default class ApplicationSearch extends NavigationMixin(
   }
   applyFilter() {
     this.showSpinner = true;
+
     this.handleSearch();
     this.openModal = false;
   }
@@ -144,6 +163,7 @@ export default class ApplicationSearch extends NavigationMixin(
   }
 
   handleToggleSectionD() {
+    console.log("clicked toggle");
     this.openModal = !this.openModal;
   }
 }
