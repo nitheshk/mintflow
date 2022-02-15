@@ -265,37 +265,6 @@ global inherited sharing class SecurityUtils {
   }
 
   /**
-   * @description create session token for application
-   * @author Digital Align Team | 11-15-2021
-   * @param Account application
-   * @return Account
-   **/
-  global static Account createSessionForApplication(Account application) {
-    SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
-    cipher.appId = application.Id;
-    cipher.edt = Datetime.now()
-      .addMinutes(
-        (Integer) ApplicationConfiguration__c.getOrgDefaults()
-          .SessionExpirationTime__c
-      );
-    cipher.aplType = 'Primary';
-    cipher.flw = ApexRequest.getFlowType();
-
-    application.SessionToken__c = SecurityUtils.encryptBase64(
-      JSON.serialize(cipher, true)
-    );
-    ApexRequest.setToken(application.SessionToken__c);
-    ApexRequest.setApplicantType(cipher.aplType);
-    ApexRequest.setApplicationId(application.Id);
-    ApexRequest.setApplicationName(application.ApplicationNumber__c);
-    PageUtils.setCookie(
-      new Cookie('token', application.SessionToken__c, null, -1, true)
-    );
-    log?.fine('Session Token :' + ApexRequest.getToken());
-    return application;
-  }
-
-  /**
    * @description create a session for applicant
    * @author Digital Align Team | 11-16-2021
    * @param Applicant__c applicant
@@ -305,19 +274,19 @@ global inherited sharing class SecurityUtils {
     SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
     cipher.appId = applicant.Application__c;
     cipher.aplId = applicant.Id;
-    cipher.edt = Datetime.now()
-      .addMinutes(
-        (Integer) ApplicationConfiguration__c.getOrgDefaults()
-          .SessionExpirationTime__c
-      );
     cipher.aplType = applicant.RecordType.Name;
-    ApexRequest.setApplicantType(cipher.aplType);
     cipher.flw = ApexRequest.getFlowType();
 
     applicant.SessionToken__c = SecurityUtils.encryptBase64(
       JSON.serialize(cipher, true)
     );
+    applicant.sessionExpireTime__c = Datetime.now()
+      .addMinutes(
+        (Integer) ApplicationConfiguration__c.getOrgDefaults()
+          .SessionExpirationTime__c
+      );
     ApexRequest.setToken(applicant.SessionToken__c);
+    ApexRequest.setApplicantType(applicant.RecordType.Name);
     ApexRequest.setApplicationId(cipher.appId);
     ApexRequest.setApplicantId(cipher.aplId);
     ApexRequest.setApplicationName(
@@ -339,14 +308,11 @@ global inherited sharing class SecurityUtils {
     ApexRequest request = ApexRequest.getRequest();
     log?.debug('Token to Validate : ' + request.token);
     SecurityUtils.CipherDTO cipher = extractToken(request.token);
-    if (cipher.edt < Datetime.now()) {
-      throw new CustomException(System.Label.Session_SessionHasExpired);
-    }
+    // if (String.isNotBlank(cipher.edt) && cipher.edt < Datetime.now()) {
+    //   throw new CustomException(System.Label.Session_SessionHasExpired);
+    // }
     switch on cipher.aplType {
-      when 'Primary' {
-        validateSessionForApplication(cipher, request);
-      }
-      when 'Joint' {
+      when 'Primary', 'Joint' {
         validateSessionForApplicant(cipher, request);
       }
       when else {
@@ -354,29 +320,6 @@ global inherited sharing class SecurityUtils {
       }
     }
     log?.fine('Session Validated');
-  }
-
-  /**
-   * @description validate session for application
-   * @author Digital Align Team | 11-18-2021
-   * @param SecurityUtils.CipherDTO cipher
-   * @param ApexRequest request
-   **/
-  global static void validateSessionForApplication(
-    SecurityUtils.CipherDTO cipher,
-    ApexRequest request
-  ) {
-    Account application = ApplicationRepository.readApplicationForToken(
-      (Id) cipher.appId
-    );
-    if (application.SessionToken__c != request.token) {
-      throw new CustomException(System.Label.Session_TokenDoesNotMatch);
-    }
-    ApexRequest.setApplicationId(application.Id);
-    ApexRequest.setApplicationName(application.ApplicationNumber__c);
-    ApexRequest.setApplicantId(cipher.aplId);
-    ApexRequest.setApplicantType(cipher.aplType);
-    ApexRequest.setFlowType(cipher.flw);
   }
 
   /**
@@ -395,6 +338,9 @@ global inherited sharing class SecurityUtils {
 
     if (applicant.SessionToken__c != request.token) {
       throw new CustomException(System.Label.Session_TokenDoesNotMatch);
+    }
+    if (applicant.sessionExpireTime__c < Datetime.now()) {
+      throw new CustomException(System.Label.Session_SessionHasExpired);
     }
     ApexRequest.setApplicationId(applicant.Application__c);
     ApexRequest.setApplicationName(
@@ -431,33 +377,17 @@ global inherited sharing class SecurityUtils {
    **/
   global static Object refreshToken() {
     SecurityUtils.CipherDTO cipher = extractToken(ApexRequest.getToken());
-    cipher.edt = Datetime.now()
-      .addMinutes(
-        (Integer) ApplicationConfiguration__c.getOrgDefaults()
-          .SessionExpirationTime__c
-      );
-    String token = SecurityUtils.encryptBase64(JSON.serialize(cipher, true));
-    ApexRequest.setToken(token);
-
-    switch on cipher.aplType {
-      when 'Primary' {
-        Account application = new Account(
-          Id = cipher.appId,
-          SessionToken__c = token
-        );
-        ApplicationRepository.upsertRecord(application);
-      }
-      when 'Joint' {
-        Applicant__c applicant = new Applicant__c(
-          Id = cipher.aplId,
-          SessionToken__c = token
-        );
-        ApplicantRepository.upsertRecord(applicant);
-      }
-    }
-
-    //#pending update in cookies
-    return token;
+    Applicant__c applicant = new Applicant__c(
+      Id = cipher.aplId,
+      SessionToken__c = ApexRequest.getToken(),
+      sessionExpireTime__c = Datetime.now()
+        .addMinutes(
+          (Integer) ApplicationConfiguration__c.getOrgDefaults()
+            .SessionExpirationTime__c
+        )
+    );
+    ApplicantRepository.upsertRecord(applicant);
+    return applicant.SessionToken__c;
   }
 
   /**
@@ -466,20 +396,11 @@ global inherited sharing class SecurityUtils {
    **/
   global static void expireToken() {
     SecurityUtils.CipherDTO cipher = extractToken(ApexRequest.getToken());
-    ApexRequest.setToken('expired');
-    if (cipher.aplType == 'Primary') {
-      Account application = new Account(
-        Id = cipher.appId,
-        SessionToken__c = 'expired'
-      );
-      ApplicationRepository.upsertRecord(application);
-    } else if (cipher.aplType == 'Joint') {
-      Applicant__c applicant = new Applicant__c(
-        Id = cipher.aplId,
-        SessionToken__c = 'expired'
-      );
-      ApplicantRepository.upsertRecord(applicant);
-    }
-    //#pending remove from cookies
+    Applicant__c applicant = new Applicant__c(
+      Id = cipher.aplId,
+      SessionToken__c = ApexRequest.getToken(),
+      sessionExpireTime__c = Datetime.now()
+    );
+    ApplicantRepository.upsertRecord(applicant);
   }
 }

@@ -22,4 +22,32 @@ global inherited sharing class ApexUtils {
     String fullUrl = System.RestContext.request.requestURI.removeEnd('/');
     return fullUrl.toLowerCase().substringAfterLast(cBaseUrl.toLowerCase());
   }
+  /**
+   * @description
+   * @author Digital Align Team | 11-25-2021
+   * @param String searchFilter
+   * @return String
+   **/
+  global static String obtainSearchString(map<string, string> searchFilter) {
+    String keyValue;
+    String dynamicString;
+    for (String mapValue : searchFilter.keySet()) {
+      keyValue = searchFilter.get(mapValue);
+      if (String.isBlank(dynamicString)) {
+        dynamicString = mapValue + ' like \'' + '%' + keyValue + '%' + '\'';
+      } else {
+        dynamicString =
+          dynamicString +
+          'AND ' +
+          mapValue +
+          ' like \'' +
+          '%' +
+          keyValue +
+          '%' +
+          '\'';
+      }
+    }
+
+    return dynamicString;
+  }
 }

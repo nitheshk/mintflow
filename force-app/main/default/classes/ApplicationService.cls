@@ -76,17 +76,17 @@ global with sharing class ApplicationService extends AbstractService {
    **/
   global virtual Account createApplication(Map<String, Object> params) {
     log?.fine('Inside createApplication');
-    // Create init Account Application
+    /**** Create init Account Application */
     Account application = new Account();
-    application.Name = 'Mint';
+    application.Name = 'MintFlow';
     application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       Account.SObjectType,
       ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
     );
     application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-    if (params.get('channel') != null) {
-      application.CreatedChannel__c = (String) params.get('channel');
-      application.FinServ__LastUsedChannel__c = (String) params.get('channel');
+    if (params.get('ch') != null) {
+      application.CreatedChannel__c = (String) params.get('ch');
+      application.FinServ__LastUsedChannel__c = (String) params.get('ch');
     } else {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
       application.FinServ__LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
@@ -97,27 +97,53 @@ global with sharing class ApplicationService extends AbstractService {
     application.UserAccountType__c = 'CustomerApplication';
     application.FlowState__c = 'GetStarted';
     application.FlowType__c = 'ApplicationFlow';
-    application.IPAddress__c = ApplicationServiceHelper.getInstance()
-      .getIpAddress();
     // #pending update version from custom setting
     application.Version__c = 'V1.0.1';
+    application.IPAddress__c = ApplicationServiceHelper.getInstance()
+      .getIpAddress();
     application = ApplicationServiceHelper.getInstance()
       .resolveBranchLocation(application);
     // #info
     // Added for customer community user license only
     // Work for Cusotmer Community plus user without owner assingment
-    application.OwnerId = UserUtils.getCurrentUser().CreatedById;
+    // application.OwnerId = UserUtils.getCurrentUser().CreatedById;
     ApplicationRepository.upsertRecord(application);
+    /*** */
+    /*** Create Empty Primary Applicant   */
+    Applicant__c applicant = new Applicant__c();
+    applicant.ApplicantType__c = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+    applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
+      Applicant__c.SObjectType,
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    );
+    applicant.Status__c = ApplicationConstant.IN_PROGRESS;
+    applicant.Application__c = application.Id;
+    ApplicationRepository.upsertRecord(applicant);
+    applicant = ApplicantRepository.readApplicantWithApplication(applicant.Id);
+    /***   */
 
-    application = ApplicationRepository.readApplicationById(application.Id);
     ApexRequest.setApplicationId(application.Id);
+    ApexRequest.setApplicantId(applicant.id);
     ApexRequest.setFlowType('ApplicationFlow');
-    application = SecurityUtils.createSessionForApplication(application);
+    ApexRequest.setApplicantType(
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    );
+
+    applicant = SecurityUtils.createSessionForApplicant(applicant);
+    ApplicationRepository.upsertRecord(applicant);
+
+    application = ApplicationRepository.readApplicationWithApplicants(
+      application.Id
+    );
+
     application.Name = application.ApplicationNumber__c;
     ApplicationRepository.upsertRecord(application);
     params.put('applicationId', ApexRequest.getApplicationId());
+    params.put('applicantId', ApexRequest.getApplicantId());
     params.put('applicantType', ApexRequest.getApplicantType());
     params.put('flowType', ApexRequest.getFlowType());
+    params.put('channel', application.FinServ__LastUsedChannel__c);
+    params.put('applicationNumber', application.Name);
     return application;
   }
 
@@ -203,18 +229,19 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('applicantId', cipher.aplId);
     params.put('flowType', cipher.flw);
 
-    Applicant__c applicant = ApplicantRepository.readApplicantById(
+    Applicant__c applicant = ApplicantRepository.readApplicantWithApplication(
       cipher.aplId
     );
     if (applicant == null) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
-    params.put(
-      'maskedEmail',
-      applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
-    );
-    params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
-    params.put('fullName', applicant.Name);
+    // params.put(
+    //   'maskedEmail',
+    //   applicant.Email__c.replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*')
+    // );
+    // params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
+    params.put('fullName', applicant.ApplicantName__c);
+    params.put('applicationNumber', applicant.Application__r.Name);
     AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
   }
@@ -233,6 +260,7 @@ global with sharing class ApplicationService extends AbstractService {
       sessionToken = sessionToken.replace(' ', '+');
       ApexRequest.setToken(sessionToken);
       SecurityUtils.validateSession();
+      SecurityUtils.refreshToken();
     } catch (Exception ex) {
       throw new CustomException(System.Label.Session_InvalidSessionToken);
     }
@@ -254,6 +282,7 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('applicationId', ApexRequest.getApplicationId());
     params.put('applicantId', ApexRequest.getApplicantId());
     params.put('flowType', ApexRequest.getFlowType());
+    params.put('applicationNumber', application.Name);
     return application;
   }
 
@@ -279,6 +308,52 @@ global with sharing class ApplicationService extends AbstractService {
   }
 
   /**
+   * @description preserve Application
+   * @author Digital Align Team | 02-07-2022
+   * @param Account application
+   * @return Account
+   **/
+  global virtual Account preserveApplication(Account application) {
+    //current applicant
+    Applicant__c currentApplicant;
+    if (
+      ApexRequest.getApplicantType() ==
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    ) {
+      application.FinServ__Status__c = ApplicationConstant.SAVED;
+      for (Applicant__c applicant : application.Applicants__r) {
+        if (
+          applicant.ApplicantType__c ==
+          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+        ) {
+          currentApplicant = applicant;
+          applicant.mflow__Status__c = ApplicationConstant.SAVED;
+          break;
+        }
+      }
+    } else if (
+      ApexRequest.getApplicantType() ==
+      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+    ) {
+      for (Applicant__c applicant : application.Applicants__r) {
+        if (
+          applicant.ApplicantType__c.Contains(
+            ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+          )
+        ) {
+          currentApplicant = applicant;
+          applicant.mflow__Status__c = ApplicationConstant.SAVED;
+          break;
+        }
+      }
+    }
+    application = this.saveApplication(application);
+    //send saved email to resume
+    CustomerEmailService.getInstance().savedApplication(currentApplicant);
+    return application;
+  }
+
+  /**
    * @description  delete object by Id
    * @author Digital Align Team | 11-10-2021
    * @param Id recordId
@@ -299,103 +374,46 @@ global with sharing class ApplicationService extends AbstractService {
   }
 
   /**
-   * @description Create Financial MemberShip account and Primary Account
-   * @author Digital Align Team | 12-02-2021
-   * @param String resultJson
-   * @return Account
-   **/
-  global virtual Account processMembershipKYC(String resultJson) {
-    ApplicationSubmissionResponse.KYCResult kycResult = (ApplicationSubmissionResponse.KYCResult) JSON.deserialize(
-      resultJson,
-      ApplicationSubmissionResponse.KYCResult.class
-    );
-    // When result is null
-    if (kycResult == null) {
-      throw new CustomException('Unable to process the empty request');
-    }
-    Account application = ApplicationRepository.readApplicationForKYC(
-      kycResult.ApplicationId
-    );
-    ApexRequest.setApplicationId(application.Id);
-    ApexRequest.setApplicationName(application.ApplicationNumber__c);
-
-    if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
-      throw new CustomException('Kyc has already passed for the application ');
-    }
-
-    //chatter post on record level
-    NotificationBuilder.chatterMessagePost(
-      application.Id,
-      'Kyc Result : ' + resultJson
-    );
-
-    // roll back whole transaction on failure
-    Savepoint sp = Database.setSavepoint();
-    try {
-      // Primary is Existing Customer
-      if (kycResult.IsExistingCustomer == true) {
-        return KycReviewService.getInstance()
-          .processExistingMember(application, kycResult);
-      }
-
-      // Primary Kyc is Approved/Failed and Joint KYC is Approved/Failed
-      // update Applicant detail accordingly
-      application = KycReviewService.getInstance()
-        .updateApplicationKycDetails(application, kycResult);
-
-      // if Application kyc status is approved, then proceed with creating Account & Contact for primary
-      // And Open Membership Financial Account and relation with applicant
-
-      if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
-        ApplicantService.getInstance().createMemberAccount(application);
-
-        application = FinancialAccountService.getInstance()
-          .createMembershipFinancialAccount(application);
-
-        //Send Funding Email Link to primary
-        CustomerEmailService.getInstance()
-          .fundingLinkOnKycApproval(application);
-        NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onSuccessKycProcess',
-            application.Id,
-            application.Name,
-            null
-          );
-      } else {
-        NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onReviewKycProcess',
-            application.Id,
-            application.Name,
-            null
-          );
-      }
-      return application;
-    } catch (Exception ex) {
-      NotificationService.getInstance()
-        .dispatchKycNotification(
-          'onExceptionKycProcess',
-          ApexRequest.getApplicantId(),
-          ApexRequest.getApplicationName(),
-          ex.getStackTraceString()
-        );
-      log?.error(ex);
-      Database.rollback(sp);
-      throw ex;
-    }
-  }
-
-  /**
    * @description
-   * @author Digital Align Team | 01-12-2022
-   * @param Account application
-   * @return Account
+   * @author Digital Align Team | 02-04-2022
+   * @param Object entity
+   * @return Object
    **/
-  global virtual Account updateApplicationFlowState(Account application) {
-    if (!ApexRequest.getParams().containsKey('flowState')) {
-      return application;
+  global virtual Object updateFlowState(Object entity) {
+    try {
+      log?.fine('Inside updateFlowState');
+      if (!ApexRequest.getParams().containsKey('flowState')) {
+        return entity;
+      }
+      if (entity instanceof Account) {
+        Account application = (Account) entity;
+        if (application.applicants__r != null) {
+          return helper.updateFlowState(application, application.applicants__r);
+        } else {
+          return helper.updateFlowState(application, new List<Applicant__c>());
+        }
+      } else if (entity instanceof List<Applicant__c>) {
+        List<Applicant__c> applicants = (List<Applicant__c>) entity;
+        Account application = new Account(Id = Apexrequest.getApplicationId());
+        return helper.updateFlowState(application, applicants);
+      } else if (entity instanceof Applicant__c) {
+        Applicant__c applicant = (Applicant__c) entity;
+        Account application = new Account(Id = Apexrequest.getApplicationId());
+        return helper.updateFlowState(
+          application,
+          new List<Applicant__c>{ applicant }
+        );
+      } else if (entity instanceof List<FinServ__FinancialAccount__c>) {
+        //List<FinServ__FinancialAccount__c> finAccounts = (List<FinServ__FinancialAccount__c>) entity;
+        Account application = ApplicationRepository.readApplicationWithPrimary(
+          ApexRequest.getApplicationId()
+        );
+        return helper.updateFlowState(application, application.applicants__r);
+      }
+    } catch (Exception ex) {
+      log?.error(ex);
+      log?.error('Exception Has Ignored');
     }
-    return helper.updateApplicationFlowState(application);
+    return entity;
   }
 }

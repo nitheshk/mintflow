@@ -52,10 +52,10 @@ global with sharing class LWCFinancialInstituteSiteController {
    * @return ApexResponse
    **/
   @AuraEnabled(Cacheable=true)
-  public static ApexResponse retriveEmployees(Map<String, Object> params) {
+  public static ApexResponse retrieveEmployees(Map<String, Object> params) {
     try {
       return ApexResponse.ok(
-        SearchService.getInstance().retriveEmployees(params)
+        SearchService.getInstance().retrieveEmployees(params)
       );
     } catch (Exception ex) {
       System.debug(ex.getMessage());
@@ -63,6 +63,41 @@ global with sharing class LWCFinancialInstituteSiteController {
     }
   }
 
+  /**
+   * @description To get applicant records based on the filters
+   * @author Digital Align | 09-21-2021
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled(Cacheable=true)
+  public static ApexResponse retrieveApplicants(Map<String, Object> params) {
+    try {
+      return ApexResponse.ok(
+        SearchService.getInstance().retrieveApplicants(params)
+      );
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    }
+  }
+
+  /**
+   * @description To get application records based on the filters
+   * @author Digital Align | 09-21-2021
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled(Cacheable=true)
+  public static ApexResponse retrieveApplications(Map<String, Object> params) {
+    try {
+      return ApexResponse.ok(
+        SearchService.getInstance().retrieveApplications(params)
+      );
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    }
+  }
   /**
    * @description
    * @author Digital Align | 09-29-2021

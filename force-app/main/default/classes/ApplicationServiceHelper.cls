@@ -73,38 +73,45 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
    * @param Applicant__c applicant
    * @return Account
    **/
-  global virtual Account updateApplicationFlowState(Account application) {
+  global virtual Account updateFlowState(
+    Account application,
+    List<Applicant__c> applicants
+  ) {
     if (ApexRequest.getApplicantType() == 'Primary') {
-      for (Applicant__c applicant : application.Applicants__r) {
+      for (Applicant__c applicant : applicants) {
         if (
-          applicant.RecordType.Name ==
+          applicant.mflow__ApplicantType__c ==
           ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
         ) {
-          application.FlowState__c = (String) ApexRequest.getParams(
-            'flowState'
-          );
-          application.FlowType__c = ApexRequest.getFlowType();
           applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
           applicant.FlowType__c = ApexRequest.getFlowType();
-          ApplicationRepository.UpsertRecord(application);
+          applicant.sessionExpireTime__c = Datetime.now()
+            .addMinutes(
+              (Integer) ApplicationConfiguration__c.getOrgDefaults()
+                .SessionExpirationTime__c
+            );
           ApplicationRepository.UpsertRecord(applicant);
           break;
         }
       }
+      application.FlowState__c = (String) ApexRequest.getParams('flowState');
+      application.FlowType__c = ApexRequest.getFlowType();
+      ApplicationRepository.UpsertRecord(application);
     } else if (ApexRequest.getApplicantType() == 'Joint') {
-      for (Applicant__c applicant : application.Applicants__r) {
-        if (
-          applicant.RecordType.Name ==
-          ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-        ) {
+      for (Applicant__c applicant : applicants) {
+        if (applicant.Id == ApexRequest.getApplicantId()) {
           applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
           applicant.FlowType__c = ApexRequest.getFlowType();
+          applicant.sessionExpireTime__c = Datetime.now()
+            .addMinutes(
+              (Integer) ApplicationConfiguration__c.getOrgDefaults()
+                .SessionExpirationTime__c
+            );
           ApplicationRepository.UpsertRecord(applicant);
           break;
         }
       }
     }
-
     return application;
   }
 }

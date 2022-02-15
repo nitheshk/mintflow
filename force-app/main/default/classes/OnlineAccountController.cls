@@ -13,6 +13,7 @@ global without sharing class OnlineAccountController extends AbstractController 
 
   global OnlineAccountController() {
     super(OnlineAccountController.class);
+    application = new Account();
   }
 
   /**
@@ -21,10 +22,12 @@ global without sharing class OnlineAccountController extends AbstractController 
    **/
   global PageReference initializeApplication() {
     try {
-      Map<String, Object> params = PageUtils.getCurrentPageParameters();
+      Map<String, Object> params = (Map<String, Object>) Json.deserializeUntyped(
+        Json.serialize(PageUtils.getCurrentPageParameters())
+      );
       //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
-      log?.debug('vmf:' + vmf);
+      //log?.debug('vmf:' + vmf);
       Cookie pageToken = PageUtils.getCookie('token');
       log?.debug('Cookie: ' + pageToken?.getValue());
       // When Cookies is present on refresh of page
@@ -41,17 +44,10 @@ global without sharing class OnlineAccountController extends AbstractController 
         this.id = application.Id;
       }
 
-      if (this.application == null) {
-        this.application = new Account();
-      }
-
-      //String sessId = UserInfo.getSessionId();
-      // String s1 = UserInfo.getSessionId().substring(0, 50);
-      // String s2 = UserInfo.getSessionId().substring(50);
-      //log?.debug(sessId.substring(0, 50) + ' ' + sessId.substring(50));
       params.put('sftoken', UserInfo.getSessionId());
       params.put('token', ApexRequest.getToken());
       params.put('timezone', UserInfo.getTimeZone().getID());
+      params.put('isResume', String.isNotBlank(vmf));
       Map<String, Object> initialData = new Map<String, Object>{
         'id' => this.id,
         'application' => SObjectConstructor.writeFieldsAsMap(

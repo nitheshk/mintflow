@@ -1,0 +1,184 @@
+<template>
+  <lightning-card>
+    <template if:true={openModal}>
+      <div class="slds-modal slds-fade-in-open slds-backdrop">
+        <div class="slds-modal__container">
+          <!--HEADER Section-->
+          <div class="slds-modal__header">
+            <lightning-button-icon
+              icon-name="utility:close"
+              alternative-text="Close this window"
+              size="large"
+              variant="bare-inverse"
+              onclick={closeModal}
+              class="slds-modal__close"
+            >
+            </lightning-button-icon>
+            <h2>Add Filter</h2>
+          </div>
+          <!-- Body Section-->
+
+          <div class="slds-modal__content slds-p-around_medium">
+            <div class="slds-var-m-around_medium">
+              <div class="slds-grid slds-wrap slds-is-relative">
+                <c-spinner-utils
+                  visible={showModelSpinner}
+                  size="large"
+                ></c-spinner-utils>
+                <div class="slds-grid slds-wrap">
+                  <div
+                    class="slds-col slds-size_1-of-2 slds-var-p-around_x-small"
+                  >
+                    <lightning-input
+                      data-fieldname="FirstName"
+                      label="First Name"
+                      value={searchFilter.FirstName}
+                      placeholder="First Name"
+                      pattern={alphanumValidation}
+                      maxlength="40"
+                      message-when-too-long={messageWhenTooLong}
+                      onchange={handleChange}
+                    ></lightning-input>
+                  </div>
+
+                  <div
+                    class="slds-col slds-size_1-of-2 slds-var-p-around_x-small"
+                  >
+                    <lightning-input
+                      data-fieldname="LastName"
+                      label="Last Name"
+                      value={searchFilter.LastName}
+                      placeholder="Last Name"
+                      pattern={alphanumValidation}
+                      maxlength="40"
+                      message-when-too-long={messageWhenTooLong}
+                      onchange={handleChange}
+                    ></lightning-input>
+                  </div>
+
+                  <div
+                    class="slds-col slds-size_1-of-2 slds-var-p-around_x-small"
+                  >
+                    <lightning-input
+                      data-fieldname="MobilePhone"
+                      label="Mobile Phone"
+                      value={searchFilter.MobilePhone}
+                      placeholder="Mobile number"
+                      field-level-help={phoneNumberValidationMessage}
+                      maxlength="10"
+                      minlength="10"
+                      pattern={phonenumber}
+                      message-when-pattern-mismatch={phoneNumberValidationMessage}
+                      message-when-too-short={phoneNumberValidationMessage}
+                      message-when-bad-input={phoneNumberValidationMessage}
+                      onchange={handleChange}
+                    ></lightning-input>
+                  </div>
+
+                  <div
+                    class="slds-col slds-size_1-of-2 slds-var-p-around_x-small"
+                  >
+                    <lightning-input
+                      data-fieldname="Email"
+                      type="Email"
+                      label="Email"
+                      value={searchFilter.Email}
+                      placeholder="abc@email.com"
+                      onchange={handleChange}
+                    ></lightning-input>
+                  </div>
+                  <div class="slds-grid slds-wrap">
+                    <div
+                      class="
+                        slds-col
+                        slds-size_1-of-2
+                        slds-var-p-around_x-small
+                      "
+                    >
+                      <lightning-input
+                        data-fieldname="mflow__SSN__c"
+                        maxlength="4"
+                        label="Last 4 digits of SSN"
+                        value={searchFilter.SSN}
+                        placeholder="XXXX"
+                        onchange={handleChange}
+                      ></lightning-input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Footer Section-->
+          <div class="slds-modal__footer">
+            <lightning-button-group>
+              <lightning-button
+                variant="brand"
+                label="Apply Filter"
+                title="Apply Filter"
+                data-status="Approve"
+                onclick={applyFilter}
+                class="slds-var-m-left_x-small"
+                icon-name="action:approval"
+                icon-position="right"
+              ></lightning-button>
+
+              <lightning-button
+                variant="Neutral"
+                label="Clear All"
+                title="Clear All"
+                data-status="Clear"
+                onclick={clearFilter}
+                class="slds-var-m-left_x-small"
+                icon-name="action:close"
+                icon-position="right"
+              ></lightning-button>
+            </lightning-button-group>
+          </div>
+        </div>
+      </div>
+    </template>
+    <div class="slds-var-m-around_medium">
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_6-of-12 slds-var-p-around_x-small">
+          <lightning-input
+            type="text"
+            placeholder="Globaly search your text "
+            onchange={handleAccountName}
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_6-of-12 slds-var-p-top_x-large">
+          <lightning-button
+            variant="base"
+            label="Filter"
+            icon-name="utility:filterList"
+            icon-position="right"
+            onclick={showModal}
+            class="slds-var-p-horizontal_large text-style"
+          ></lightning-button>
+          <lightning-button
+            label="Search"
+            variant="brand"
+            onclick={handleSearch}
+            icon-name="utility:search"
+            icon-position="right"
+          ></lightning-button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div if:true={searchData}>
+      <div class="slds-p-horizontal_x-large">
+        <lightning-datatable
+          data={searchData}
+          columns={columnsdata}
+          key-field="id"
+          hide-checkbox-column="true"
+          onrowaction={callRowAction}
+        >
+          ></lightning-datatable
+        >
+      </div>
+    </div>
+  </lightning-card>
+</template>

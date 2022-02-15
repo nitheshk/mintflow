@@ -96,35 +96,11 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
   /**
    * @description
-   * KycPassedResumeApp -> KYC passed notification with resume application link for primary applicant
-   * @author Digital Align | 11-12-2021
-   * @param Applicant__c applicant
-   * @return virtual
-   **/
-  global virtual void resumeAppAfterKycPassed(Applicant__c applicant) {
-    String portalUrl = 'portalUrl';
-
-    EmailNotificationBuilder.newInstance('KycPassedResumeApp', applicant.Id)
-      .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{
-          '{firstName}' => applicant.FirstName__c,
-          '{lastName}' => applicant.LastName__c,
-          '{url}' => portalUrl
-        }
-      );
-    sendEmail();
-  }
-
-  /**
-   * @description
    * ResumeApplicationEmail -> resume application email to primary applicant
    * @author Digital Align | 11-12-2021
    * @param Applicant__c applicant
-   * @return virtual
    **/
   global virtual void resumeApplication(Applicant__c applicant) {
-    String portalUrl = 'portalUrl';
     Map<String, String> params = new Map<String, String>();
     if (
       applicant.ApplicantType__c ==
@@ -132,15 +108,52 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     ) {
       params.put('flw', 'ApplicationFlow');
       params.put('urlSuffix', '/membership/application/otp');
+      params.put('aplType', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
     } else {
       params.put('flw', 'JointFlow');
       params.put('urlSuffix', '/membership/joints/otp');
+      params.put('aplType', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
     }
-    params.put('aplType', applicant.ApplicantType__c);
     params.put('aplId', applicant.Id);
     params.put('ch', 'Virtual');
     String link = generateUrl(params);
     EmailNotificationBuilder.newInstance('ResumeApplicationEmail', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(
+        new Map<String, String>{
+          '{firstName}' => applicant.FirstName__c,
+          '{lastName}' => applicant.LastName__c,
+          '{url}' => link
+        }
+      );
+    sendEmail();
+  }
+
+  /**
+   * @description Saved application email to Primary/Joint applicant
+   * @author Digital Align | 11-12-2021
+   * @param Applicant__c applicant
+   **/
+  global virtual void savedApplication(Applicant__c applicant) {
+    Map<String, String> params = new Map<String, String>();
+    if (
+      ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_APPLICATION
+    ) {
+      params.put('urlSuffix', '/membership/application/otp');
+    } else if (
+      ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_FUNDING
+    ) {
+      params.put('urlSuffix', '/membership/funding/welcome');
+    } else {
+      params.put('urlSuffix', '/membership/joints/otp');
+    }
+
+    params.put('flw', ApexRequest.getFlowType());
+    params.put('aplType', ApexRequest.getApplicantType());
+    params.put('aplId', applicant.Id);
+    params.put('ch', 'Virtual');
+    String link = generateUrl(params);
+    EmailNotificationBuilder.newInstance('SavedApplication', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
@@ -318,8 +331,37 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       .setSubstitute(
         new Map<String, String>{
           '{ApplicationNumber}' => ApexRequest.getApplicationName(),
-          '{ApplicantName}' => applicant.Name,
+          '{ApplicantName}' => applicant.ApplicantName__c,
           '{Information}' => information
+        }
+      );
+    sendEmail();
+  }
+
+  /**
+   * @description Send Url to applicat to upload identity document from mobile device
+   * @author Digital Align Team | 02-08-2022
+   * @param Applicant__c applicant
+   **/
+  global virtual void uploadIdentityDocument(Applicant__c applicant) {
+    String link = generateUrl(
+      new Map<String, String>{
+        'aplType' => ApexRequest.getApplicantType(),
+        'flw' => ApplicationConstant.FLOW_TYPE_IDENTITY_UPLOAD,
+        'urlSuffix' => '/membership/upload/document-upload',
+        'aplId' => applicant.Id,
+        'ch' => 'Virtual',
+        'pageName' => '/IdentityUpload',
+        'suffixType' => 'path'
+      }
+    );
+
+    EmailNotificationBuilder.newInstance('IdentityUploadDocument', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(
+        new Map<String, String>{
+          '{applicationNumber}' => applicant.Application__r.Name,
+          '{url}' => link
         }
       );
     sendEmail();
@@ -369,14 +411,20 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           .EmailLinkExpirationTime__c
       );
     cipher.ch = params.get('ch');
-
+    String pageName = params.containsKey('pageName')
+      ? params.get('pageName')
+      : '/OpenAccount';
     String link =
       SiteSetting__c.getInstance().OnlineSiteUrl__c +
-      '/OpenAccount' +
+      pageName +
       '?vmf=' +
-      SecurityUtils.encryptUrl(JSON.serialize(cipher, true)) +
-      '&vue=' +
-      EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
+      SecurityUtils.encryptUrl(JSON.serialize(cipher, true));
+
+    if (params.get('suffixType') == 'path') {
+      link += '#' + urlSuffix;
+    } else {
+      link += '&vue=' + EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
+    }
     return link;
   }
 }

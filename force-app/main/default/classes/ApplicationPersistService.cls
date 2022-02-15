@@ -152,7 +152,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
       recordTypeName
     );
     // Full Name
-    applicant.Name = String.isBlank(applicant.FirstName__c)
+    applicant.ApplicantName__c = String.isBlank(applicant.FirstName__c)
       ? applicant.LastName__c
       : applicant.FirstName__c + ' ' + applicant.LastName__c;
 
@@ -167,6 +167,12 @@ global with sharing class ApplicationPersistService extends AbstractService {
         applicant.Status__c = ApplicationConstant.IN_PROGRESS;
       }
     }
+
+    // When Save Applicant called from UI, THat stand for Application is progress
+    // To make sure after Saved Application, if they process further , status if application need to changed to in progress
+    // if (String.isNotBlank(ApexRequest.getToken())) {
+    //   applicant.Status__c = ApplicationConstant.IN_PROGRESS;
+    // }
 
     return applicant;
   }

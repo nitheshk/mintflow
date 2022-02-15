@@ -35,6 +35,7 @@ global with sharing class ApplicationSubmissionResponse {
     global String SubmittedBy;
     global Date SubmittedDate;
     global String UserAccountType;
+    global string ExternalApplicationNumber;
     global Account() {
       Applicants = new List<Applicant>();
       Surveys = new List<Survey>();

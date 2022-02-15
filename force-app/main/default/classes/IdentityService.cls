@@ -33,6 +33,48 @@ global with sharing class IdentityService extends AbstractService {
    * @return Object
    **/
   global virtual Object verifyCounty(Map<String, Object> params) {
+    return verifyCountyUsingConfiguration(params);
+  }
+
+  global virtual Object verifyCountyUsingConfiguration(
+    Map<String, Object> params
+  ) {
+    try {
+      string zipcode = (string) params.get('zipcode');
+      if (string.isBlank(zipcode)) {
+        throw new CustomException(System.Label.Identity_ZipcodeValueNotSet);
+      }
+      Map<String, Object> result = new Map<String, Object>();
+      Map<String, Object> matchingResult = new Map<String, Object>();
+      EligibleCounty__c county = IdentityRepository.fetchCountyByZipcode(
+        zipcode
+      );
+
+      if (county != null) {
+        matchingResult.put('zipcode', zipcode);
+        matchingResult.put('county', county.Name);
+        matchingResult.put('state', county.State__c);
+        result.put('matchingAddress', new List<Object>{ matchingResult });
+        result.put('isCountyEligible', true);
+      } else {
+        result.put('matchingAddress', new List<Object>());
+        result.put('isCountyEligible', false);
+      }
+      return result;
+    } catch (Exception ex) {
+      log?.error(ex);
+      throw ex;
+    }
+  }
+
+  /**
+   * @description verify county eligibility
+   * Pass "zipcode" as parameter
+   * @author Digital Align Team | 10-13-2021
+   * @param Map<String String> params
+   * @return Object
+   **/
+  global virtual Object verifyCountyUsingGoogleApi(Map<String, Object> params) {
     Flow.initialize(ApexRequest.getApplicationId());
     Flow.setFlow('EligibilityFlow');
     Flow.setSubFlow(APINames.Geocoding.name());
@@ -68,11 +110,13 @@ global with sharing class IdentityService extends AbstractService {
         throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
       }
     } catch (Exception ex) {
+      log?.error(ex);
       flow.setSubFlowFailed(ex.getMessage());
       flow.setFlowFailed('Failed');
       throw ex;
     }
   }
+
   /**
    * @description Document Scan functionality for identity verify
    * @author Digital Align | 10-26-2021
@@ -167,5 +211,50 @@ global with sharing class IdentityService extends AbstractService {
     } catch (Exception ex) {
       throw ex;
     }
+  }
+
+  /**
+   * @description Generate Url to upload identity Document Via mobile device
+   * @author Digital Align Team | 02-08-2022
+   * @param Id applicantId
+   * @return Object
+   **/
+  global virtual Object generateUrlForIdentityUpload(Id applicantId) {
+    Applicant__c currentApplicant = IdentityRepository.readApplicantWithApplication(
+      applicantId
+    );
+
+    // Send SMS
+    String link = CustomerEmailService.getInstance()
+      .generateUrl(
+        new Map<String, String>{
+          'aplType' => ApexRequest.getApplicantType(),
+          'flw' => ApplicationConstant.FLOW_TYPE_IDENTITY_UPLOAD,
+          'urlSuffix' => '/membership/upload/document-upload',
+          'aplId' => currentApplicant.Id,
+          'ch' => 'Virtual',
+          'pageName' => '/IdentityUpload',
+          'suffixType' => 'path'
+        }
+      );
+    Map<String, Object> params = new Map<String, Object>();
+    String messageBody = System.Label.Identity_SmsBodyForUploadDocument;
+    messageBody = messageBody.replace('{url}', link);
+    messageBody = messageBody.replace(
+      '{applicationNumber}',
+      currentApplicant.Application__r.Name
+    );
+    params.put('messageText', messageBody);
+    // #pending remove hardcode mobile number [currentApplicant.Phone__c]
+    params.put(
+      'toPhone',
+      HttpBuilder.getApiConstant('Twillio_Country') + '7892981668'
+    );
+    params.put('applicantId', currentApplicant.Id);
+    NotificationService.getInstance().sendOTPMessage(params);
+
+    // Send Email
+    CustomerEmailService.getInstance().uploadIdentityDocument(currentApplicant);
+    return true;
   }
 }

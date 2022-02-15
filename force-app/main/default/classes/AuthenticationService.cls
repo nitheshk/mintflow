@@ -198,18 +198,9 @@ global with sharing class AuthenticationService extends AbstractService {
       //create a session for primary/joint applicant when token is not present
       if (String.isBlank(ApexRequest.getToken()) && otpValidated) {
         SecurityUtils.createSessionForApplicant(applicant);
-        if (ApexRequest.getApplicantType() == 'Primary') {
-          applicant.Application__r.SessionToken__c = applicant.SessionToken__c;
-          ApplicantRepository.updateRecord(applicant.Application__r);
-        }
-      }
-      /* //remove as read application is called on every page
-         applicant = (Applicant__c) SObjectConstructor.getInstance(applicant)
-        .removeFields('mflow__Application__r')
-        .build();*/
-      if (applicant.Status__c == ApplicationConstant.DRAFT) {
         applicant.Status__c = ApplicationConstant.IN_PROGRESS;
       }
+
       ApplicantRepository.updateRecord(applicant);
       applicant.SmsOtp__c = applicant.EmailOtp__c = '';
       return applicant;

@@ -83,6 +83,14 @@
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
+                },
+                {
+                  "componentAttributes": {},
+                  "componentName": "mflow:customerResumeApplication",
+                  "id": "42c459cd-74e3-4e19-9fd9-9fabd772168a",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
                 }
               ],
               "id": "53a972b2-5641-4a66-8f75-e1b2f634fc76",

@@ -115,7 +115,6 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
         businessAccountObj
       );
       //yet to done assigning permission set
-      //this.assignPermissionSet(userObj);
       return userObj;
     } catch (Exception ex) {
       Database.rollback(sp);
@@ -205,7 +204,7 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
   ) {
     //Permission Set Name need to move to customer setting
 
-    // #Issue Lead Does have access to createfor commmunity user
+    // #Issue commmunity user  Does have access to createfor Lead
     List<PermissionSet> permissionSetList = UserAccountManagementRepository.readPermissionSetByNames(
       new List<String>{
         FinancialInstituteConstants.FIN_INST_COMMUNITY_PEMRISSION_SET

@@ -14,15 +14,14 @@
       "problemMatcher": []
     },
     {
-      "label": "Task : Sfdx Push with overwrite",
+      "label": "Task : Sfdx Push with overwrite & Ignore Warning",
       "type": "shell",
       "command": "sfdx",
       "args": [
         "force:source:push",
-        "--targetusername",
-        "${input:scratchAliasName}",
         "--loglevel",
         "fatal",
+        "-g",
         "--forceoverwrite"
       ],
       "group": "build",

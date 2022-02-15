@@ -38,7 +38,7 @@ export default class ResumeAppplication extends LightningElement {
         // eslint-disable-next-line guard-for-in
         for (let key in applicants) {
           applicantNames.push({
-            label: `${applicants[key].Name} (${applicants[key].RecordType.Name}) `,
+            label: `${applicants[key].mflow__ApplicantName__c} (${applicants[key].RecordType.Name}) `,
             value: applicants[key].Id
           });
         }

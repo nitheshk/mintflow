@@ -117,12 +117,21 @@
         <tab>ConsentLineItem__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>EligibleCounty__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
 
     <!--applicationVisibilities-->
     <applicationVisibilities>
         <application>MintFlow</application>
         <visible>true</visible>
         <default>true</default>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>MintFlowConfiguration</application>
+        <visible>true</visible>
+        <default>false</default>
     </applicationVisibilities>
 
     <!--recordTypeVisibilities-->

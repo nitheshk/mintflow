@@ -155,6 +155,7 @@ global virtual with sharing class EmailNotificationBuilder {
       }
 
       //Save As Activity
+      //Object Should have Track Activities is enabled
       emailMessage.setSaveAsActivity(setting.TraceEmailActivity__c);
 
       //toAddress

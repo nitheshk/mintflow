@@ -63,11 +63,11 @@ global with sharing class ApplicantController extends AbstractController {
 
       applicants = ApplicantService.getInstance()
         .saveApplicants(applicants, ApexRequest.getApplicationId());
+
+      ApplicationService.getInstance().updateFlowState(applicants);
+
       return ApexResponse.ok(
-        ApplicantService.getInstance()
-          .readApplicantsWithChild(
-            (new Map<id, Applicant__c>(applicants)).keyset()
-          )
+        ApplicantService.getInstance().readApplicantsWithChild(applicants)
       );
     } catch (CustomException ex) {
       log?.error(ex);
@@ -96,10 +96,13 @@ global with sharing class ApplicantController extends AbstractController {
         request.data,
         Applicant__c.class
       );
-      return ApexResponse.ok(
-        ApplicantService.getInstance()
-          .saveApplicant(applicant, ApexRequest.getApplicationId())
-      );
+
+      applicant = ApplicantService.getInstance()
+        .saveApplicant(applicant, ApexRequest.getApplicationId());
+
+      ApplicationService.getInstance().updateFlowState(applicant);
+
+      return ApexResponse.ok(applicant);
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);

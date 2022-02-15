@@ -141,7 +141,7 @@ global with sharing class LwcCustomService extends AbstractService {
           ids.add(applicant.Id);
           result.put(
             'label',
-            applicant.Name +
+            applicant.ApplicantName__c +
             ' (' +
             applicant.ApplicantType__c +
             ')'
@@ -315,7 +315,7 @@ global with sharing class LwcCustomService extends AbstractService {
             'Updated - Kyc Status to : ' +
             status +
             ' of Applicant : ' +
-            applicant.Name
+            applicant.ApplicantName__c
           );
       }
       when 'Account' {

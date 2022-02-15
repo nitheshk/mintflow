@@ -29,6 +29,7 @@ public with sharing class ApplicationConstant {
   public static final String REVISION_IN_PROGRESS = 'Revision in Progress';
   public static final String REJECTED = 'Rejected';
   public static final String DRAFT = 'DRAFT';
+  public static final String SAVED = 'Saved';
 
   // KYC Status
   public static final String KYC_PASSED = 'Passed';
@@ -39,6 +40,7 @@ public with sharing class ApplicationConstant {
   public static final String FLOW_TYPE_APPLICATION = 'ApplicationFlow';
   public static final String FLOW_TYPE_JOINT = 'JointFlow';
   public static final String FLOW_TYPE_FUNDING = 'FundingFlow';
+  public static final String FLOW_TYPE_IDENTITY_UPLOAD = 'IdentityUploadFlow';
 
   // Application Stage
   public static final String STAGE_EXISTING_CUSTOMER = 'ExistingCustomer';

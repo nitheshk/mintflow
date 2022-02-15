@@ -15,7 +15,7 @@
       <!-- <lightning-tab label="Applicant Details" value="Applicant"> -->
       <lightning-tabset variant="scoped">
         <template for:each={record.mflow__Applicants__r} for:item="data">
-          <lightning-tab key={data.Id} label={data.Name}>
+          <lightning-tab key={data.Id} label={data.mflow__ApplicantName__c}>
             <lightning-tabset variant="scoped">
               <lightning-tab
                 label="Detail"

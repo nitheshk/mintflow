@@ -69,6 +69,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
         mapperApplication.CountyCode = application.CountyZipCode__c;
         mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
         mapperApplication.CreatedChannel = application.CreatedChannel__c;
+        mapperApplication.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
         // mapperApplication.CustomerType = application.FinServ__CustomerType__c;
         // mapperApplication.FlowState = application.FlowState__c;
         // mapperApplication.IpAddress = application.IPAddress__c;
@@ -123,8 +124,8 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       // mapperApplicant.IsEmailVerified = applicant.IsEmailVerified__c;
       // mapperApplicant.IsExistingCustomer = applicant.IsExistingCustomer__c;
       // mapperApplicant.IsPhoneNumberVerified = applicant.IsPhoneNumberVerified__c;
-      mapperApplicant.ApplicantName = applicant.Name;
-      mapperApplicant.ApplicantNumber = applicant.ApplicantNumber__c;
+      mapperApplicant.ApplicantName = applicant.ApplicantName__c;
+      mapperApplicant.ApplicantNumber = applicant.Name;
       mapperApplicant.ApplicantType = applicant.ApplicantType__c;
       mapperApplicant.Birthdate = applicant.Birthdate__c;
       mapperApplicant.CreditScore = applicant.CreditScore__c;
@@ -399,19 +400,24 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
         new Map<id, SObject>(applicant.IdentificationDocuments__r).keySet()
       );
     }
-
+    String eligibleFileFormat = ApplicationConfiguration__c.getInstance()
+      .SupportedFileTypes__c;
+    List<String> eligibleFileFormatList = String.isNotBlank(eligibleFileFormat)
+      ? eligibleFileFormat.split(';')
+      : new List<String>();
     List<ContentVersion> fileList = FileService.getInstance()
       .fetchContentVersionByEntityIds(reletedEntityIdList, true);
 
     for (ContentVersion cv : fileList) {
       Map<string, string> fileDetail = new Map<string, string>();
-      fileDetail.put('Id', cv.Id);
-      fileDetail.put('FileType', cv.FileType);
-      fileDetail.put('FileExtension', cv.FileExtension);
-      fileDetail.put('Title', cv.Title);
-      fileDetail.put('DocumentType', cv.mflow__ContentSubType__c);
-      log?.debug('fileList =' + JSON.serialize(fileDetail));
-      fileDetails.add(fileDetail);
+      if (eligibleFileFormatList.contains(cv.FileExtension)) {
+        fileDetail.put('Id', cv.Id);
+        fileDetail.put('FileType', cv.FileType);
+        fileDetail.put('FileExtension', cv.FileExtension);
+        fileDetail.put('Title', cv.Title);
+        fileDetail.put('DocumentType', cv.mflow__ContentSubType__c);
+        fileDetails.add(fileDetail);
+      }
     }
     log?.debug('fileDetails =' + JSON.serialize(fileDetails));
     return ApexResponse.OK(fileDetails)

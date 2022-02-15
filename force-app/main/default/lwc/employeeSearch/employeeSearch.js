@@ -1,6 +1,6 @@
 import { LightningElement, track, api } from "lwc";
 
-import searchEmployees from "@salesforce/apex/LWCFinancialInstituteSiteController.retriveEmployees";
+import searchEmployees from "@salesforce/apex/LWCFinancialInstituteSiteController.retrieveEmployees";
 import { NavigationMixin } from "lightning/navigation";
 import utils from "c/generalUtils";
 const columns = [
@@ -17,7 +17,8 @@ const columns = [
       title: "View",
       disabled: false,
       value: "view",
-      iconPosition: "left"
+      iconPosition: "left",
+      variant: "brand"
     }
   }
 ];
@@ -48,7 +49,6 @@ export default class EmployeeSearch extends NavigationMixin(LightningElement) {
     })
       .then((result) => {
         this.searchData = JSON.parse(result.data);
-        console.log("this.searchData::" + JSON.stringify(this.searchData));
         this.showSpinner = false;
         console.log(this.employeeContactType);
       })
@@ -64,8 +64,6 @@ export default class EmployeeSearch extends NavigationMixin(LightningElement) {
   callRowAction(event) {
     const recId = event.detail.row.Id;
     const actionName = event.detail.action.name;
-    console.log("actionName" + actionName);
-    console.log("recId" + recId);
 
     if (actionName === "Edit") {
       this[NavigationMixin.Navigate]({
@@ -81,7 +79,7 @@ export default class EmployeeSearch extends NavigationMixin(LightningElement) {
         type: "standard__recordPage",
         attributes: {
           recordId: recId,
-          objectApiName: "Account",
+          objectApiName: "Contact",
           actionName: "view"
         }
       });

@@ -99,8 +99,8 @@
                       "components": [
                         {
                           "componentAttributes": {},
-                          "componentName": "mflow:employeeSearch",
-                          "id": "8ebe3d7c-cd61-46f0-b2a0-88148b0db86b",
+                          "componentName": "mflow:applicantSearch",
+                          "id": "f6b5bfb2-e4aa-4cb9-8364-1b97bcc1c761",
                           "renditionMap": {},
                           "type": "component"
                         }
@@ -115,8 +115,8 @@
                       "components": [
                         {
                           "componentAttributes": {},
-                          "componentName": "mflow:employeeSearch",
-                          "id": "d926348d-7c91-44bd-8954-ccec16e50dda",
+                          "componentName": "mflow:applicationSearch",
+                          "id": "6c639873-aefe-4147-b862-1972fa01b6df",
                           "renditionMap": {},
                           "type": "component"
                         }
