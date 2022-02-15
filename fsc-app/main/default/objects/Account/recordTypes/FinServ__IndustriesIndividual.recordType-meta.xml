@@ -30,7 +30,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>CreatedChannel__c</picklist>
+        <picklist>mflow__CreatedChannel__c</picklist>
         <values>
             <fullName>Branch</fullName>
             <default>false</default>
@@ -395,7 +395,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FlowState__c</picklist>
+        <picklist>mflow__FlowState__c</picklist>
         <values>
             <fullName>AdditionalApplicant</fullName>
             <default>false</default>
@@ -494,7 +494,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FlowType__c</picklist>
+        <picklist>mflow__FlowType__c</picklist>
         <values>
             <fullName>ApplicationFlow</fullName>
             <default>false</default>
@@ -705,7 +705,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>UserAccountType__c</picklist>
+        <picklist>mflow__UserAccountType__c</picklist>
         <values>
             <fullName>CustomerApplication</fullName>
             <default>false</default>

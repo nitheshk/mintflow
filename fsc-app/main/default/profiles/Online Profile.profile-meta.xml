@@ -5,39 +5,39 @@
 
     <!-- Newly Added , need to move permission set-->
     <classAccesses>
-        <apexClass>OnlineAccountLoginController</apexClass>
+        <apexClass>mflow__OnlineAccountLoginController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IdentityUploadController</apexClass>
+        <apexClass>mflow__IdentityUploadController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ApplicationController</apexClass>
+        <apexClass>mflow__ApplicationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IdentityController</apexClass>
+        <apexClass>mflow__IdentityController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>FileController</apexClass>
+        <apexClass>mflow__FileController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>AtomicFIService</apexClass>
+        <apexClass>mflow__AtomicFIService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <pageAccesses>
-        <apexPage>OnlineAutoLogin</apexPage>
+        <apexPage>mflow__OnlineAutoLogin</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>AtomicVerificationReport</apexPage>
+        <apexPage>mflow__AtomicVerificationReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>IdentityUpload</apexPage>
+        <apexPage>mflow__IdentityUpload</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 

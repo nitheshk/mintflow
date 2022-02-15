@@ -2,8 +2,8 @@
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FinServ__HouseholdCompactLayout</fullName>
     <fields>Name</fields>
-    <fields>ExternalApplicationNumber__c</fields>
-    <fields>ExternalApplicationStatus__c</fields>
+    <fields>mflow__ExternalApplicationNumber__c</fields>
+    <fields>mflow__ExternalApplicationStatus__c</fields>
     <fields>FinServ__Status__c</fields>
     <fields>FinServ__KYCStatus__c</fields>
     <label>Household Compact Layout</label>
