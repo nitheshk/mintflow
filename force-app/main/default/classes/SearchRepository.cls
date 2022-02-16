@@ -14,6 +14,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
    * @param string userContactType
    * @return List<Contact>
    **/
+  private static Logger log = Logger.getInstance(SecurityUtils.class);
   public static List<Contact> retrieveEmployees(
     String searchString,
     map<string, string> searchFilter,
@@ -25,7 +26,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
     List<Contact> employeeList = new List<Contact>();
     if (String.isNotBlank(searchString)) {
       if (searchFilter != null) {
-        dynamicString = ApexUtils.obtainSearchString(searchFilter);
+        // dynamicString = ApexUtils.obtainSearchString(searchFilter);
       }
       if (searchFilter.isEmpty()) {
         searchQuery =
@@ -92,7 +93,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
     List<Applicant__c> employeeList = new List<Applicant__c>();
     if (String.isNotBlank(searchString)) {
       if (searchFilter != null) {
-        dynamicString = ApexUtils.obtainSearchString(searchFilter);
+        // dynamicString = ApexUtils.obtainSearchString(searchFilter);
       }
 
       if (searchFilter.isEmpty()) {
@@ -110,6 +111,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
       }
       List<List<sObject>> objectList = new List<List<sObject>>();
       objectList = search.query(searchQuery);
+      //objectList = DatabaseUtils.searchRecords(searchQuery);
 
       System.debug('employeeList first' + objectList);
       employeeList = (List<Applicant__c>) objectList[0];
@@ -160,7 +162,11 @@ public with sharing class SearchRepository extends DatabaseUtils {
     String searchStr1 = searchString;
     String dynamicString = '';
     String searchQuery;
+    Datetime dt;
+    DateTime dtAndTime;
+    String dateValue;
     List<Account> applicationsList = new List<Account>();
+    Query q;
 
     if (String.isNotBlank(searchString)) {
       if (searchFilter != null) {
@@ -179,21 +185,38 @@ public with sharing class SearchRepository extends DatabaseUtils {
           dynamicString +
           ' ORDER BY CreatedDate Desc)';
       }
+
       List<List<sObject>> objectList = new List<List<sObject>>();
-
-      System.debug('searchQuery::' + searchQuery);
-      objectList = search.query(searchQuery);
-
-      System.debug('Applications  first' + objectList);
+      objectList = DatabaseUtils.searchRecords(searchQuery);
+      log?.debug('retrieveApplications Query sosl:' + searchQuery);
       applicationsList = (List<Account>) objectList[0];
       return applicationsList;
     } else {
-      query q = Query.newInstance(Account.SObjectType)
-        .addFields()
-        .whereNotNull('Name');
-      if (!searchFilter.isEmpty()) {
-        if (String.isNotBlank(searchFilter.get('AppNumber'))) {
-          q.andCon().whereLike('Name', searchFilter.get('AppNumber'));
+      if (searchFilter != null) {
+        q = Query.newInstance(Account.SObjectType)
+          .addFields()
+          .addfields('CreatedBy.Name')
+          .whereNotNull('Name');
+        if (String.isNotBlank(searchFilter.get('CreatedDateFrom'))) {
+          dt = DateUtils.convertJsonStringToDateTime(
+            searchFilter.get('CreatedDateFrom')
+          );
+          dateValue = Dateutils.formatDateTimeGMT(dt);
+          q.andCon().whereGte('CreatedDate', dt);
+        }
+        if (String.isNotBlank(searchFilter.get('CreatedDateTo'))) {
+          dt = DateUtils.convertJsonStringToDateTime(
+            searchFilter.get('CreatedDateTo')
+          );
+          dateValue = Dateutils.formatDateTimeGMT(dt);
+          q.andCon().wherelte('CreatedDate', dt);
+        }
+        if (String.isNotBlank(searchFilter.get('dateRange'))) {
+          q.andCon()
+            .whereCon('CreatedDate', '=' + searchFilter.get('dateRange'));
+        }
+        if (String.isNotBlank(searchFilter.get('Name'))) {
+          q.andCon().whereLike('Name', searchFilter.get('Name'));
         }
         if (String.isNotBlank(searchFilter.get('LOSNumber'))) {
           q.andCon()
@@ -202,12 +225,18 @@ public with sharing class SearchRepository extends DatabaseUtils {
               searchFilter.get('LOSNumber')
             );
         }
+        System.debug(' Query is ' + q.toString(true));
+        applicationsList = (List<Account>) DatabaseUtils.getRecords(
+          q.toString(true)
+        );
+
+        log?.debug('retrieveApplications Query soql:' + q.toString(true));
+        log?.debug('retrieveApplications Filter:' + searchFilter);
+
+        return applicationsList;
+      } else {
+        return null;
       }
-      applicationsList = (List<Account>) DatabaseUtils.getRecords(
-        q.toString(true)
-      );
-      System.debug('employeeList second' + applicationsList);
-      return applicationsList;
     }
   }
 }

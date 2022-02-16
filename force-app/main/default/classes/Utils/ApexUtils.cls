@@ -65,7 +65,13 @@ global inherited sharing class ApexUtils {
             '%' +
             '\'';
         } else {
-          dynamicString = mapValue + ' like \'' + '%' + keyValue + '%' + '\'';
+          dynamicString =
+            mapValue +
+            ' like \'' +
+            '%' +
+            String.escapeSingleQuotes(keyValue) +
+            '%' +
+            '\'';
         }
       }
       if (
@@ -78,7 +84,6 @@ global inherited sharing class ApexUtils {
         }
       }
     }
-    System.debug(' the dynamic string' + dynamicString);
     return dynamicString;
   }
 }

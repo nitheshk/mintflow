@@ -187,4 +187,14 @@ global without sharing class SObjectWithoutSharing {
       emailMessage.getWhatId()
     );
   }
+
+  /**
+   * @description Dynamic SOQL  query
+   * @author Digital Align | 05-03-2021
+   * @param String queryString
+   * @return List<SObject>
+   **/
+  public static List<List<SObject>> searchRecords(String queryString) {
+    return Search.query(queryString);
+  }
 }
