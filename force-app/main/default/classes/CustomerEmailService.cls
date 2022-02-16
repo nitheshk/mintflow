@@ -351,7 +351,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         'urlSuffix' => '/membership/upload/document-upload',
         'aplId' => applicant.Id,
         'ch' => 'Virtual',
-        'pageName' => '/IdentityUpload',
+        'pageName' => '/mflow__IdentityUpload',
         'suffixType' => 'path'
       }
     );
@@ -413,7 +413,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     cipher.ch = params.get('ch');
     String pageName = params.containsKey('pageName')
       ? params.get('pageName')
-      : '/OpenAccount';
+      : '/mflow__OpenAccount';
     String link =
       SiteSetting__c.getInstance().OnlineSiteUrl__c +
       pageName +
