@@ -216,7 +216,7 @@ global inherited sharing class SObjectUtils {
    * @param string recordTypeName
    * @return Id
    **/
-  public static Id recordTypeIdByName(
+  global static Id recordTypeIdByName(
     SObjectType sType,
     string recordTypeName
   ) {
@@ -233,7 +233,7 @@ global inherited sharing class SObjectUtils {
    * @param string recordTypeDevName
    * @return Id
    **/
-  public static Id recordTypeIdByDevName(
+  global static Id recordTypeIdByDevName(
     SObjectType sType,
     string recordTypeDevName
   ) {
@@ -249,7 +249,7 @@ global inherited sharing class SObjectUtils {
    * @param SobjectType sType
    * @return Type
    **/
-  public static Type getSobjectClassType(SObjectType sType) {
+  global static Type getSobjectClassType(SObjectType sType) {
     return Type.forName(getObjectName(sType));
   }
 
@@ -259,7 +259,7 @@ global inherited sharing class SObjectUtils {
    * @param SObjectType sType
    * @return Type
    **/
-  public static Type getListSobjectClassType(SObjectType sType) {
+  global static Type getListSobjectClassType(SObjectType sType) {
     return Type.forName('List<' + getSobjectClassType(sType) + '>');
   }
 }

@@ -16,7 +16,7 @@ public static void createAccount() {
 
   Account accountObj = new Account();
   accountObj.Name = 'Online Community Account';
-  accountObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+  accountObj.RecordTypeId = mflow.SObjectUtils.recordTypeIdByDevName(
     Account.SobjectType,
     'IndustriesInstitution'
   );
@@ -26,7 +26,7 @@ public static void createAccount() {
   contactObj.FirstName = 'Community';
   contactObj.LastName = 'Plus User';
   contactObj.AccountId = accountObj.Id;
-  contactObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+  contactObj.RecordTypeId = mflow.SObjectUtils.recordTypeIdByDevName(
     Contact.SobjectType,
     'IndustriesIndividual'
   );

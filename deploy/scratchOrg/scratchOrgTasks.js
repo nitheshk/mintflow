@@ -90,8 +90,17 @@ gulp.task("createScratchOrg", function (finish) {
     .runCommand(scriptToRun)
     .then((result) => {
       console.log("Result :" + result);
+      scriptToRun = "sfdx force:user:display --json";
       utils
-        .createFile(config.scratchOrg.scratchOrgjson, result)
+        .runCommand(scriptToRun)
+        .then((orgResult) => {
+          console.log("Result :" + orgResult);
+          utils
+            .createFile(config.scratchOrg.scratchOrgjson, orgResult)
+            .catch((err) => {
+              console.log("errr :" + JSON.stringify(errr));
+            });
+        })
         .catch((err) => {
           console.log("errr :" + JSON.stringify(errr));
         });
