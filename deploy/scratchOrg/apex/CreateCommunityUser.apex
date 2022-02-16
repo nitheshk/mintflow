@@ -24,11 +24,12 @@ public static void createUser() {
   userObj.LanguageLocaleKey = 'en_US';
   userObj.EmailEncodingKey = 'UTF-8';
   userObj.TimeZoneSidKey = 'America/Los_Angeles';
-  UserUtils.assignProfileIdToUser(
+  mflow.UserUtils.assignProfileIdToUser(
     userObj,
-    UtilsRepository.fetchProfileByName('MFlowCustomerCommunityPlusLogin')?.id
+    mflow.UtilsRepository.fetchProfileByName('MFlowCustomerCommunityPlusLogin')
+      ?.id
   );
-  UtilsRepository.insertRecord(userObj);
+  mflow.UtilsRepository.insertRecord(userObj);
 
   system.setPassword(userObj.Id, 'Test@1234');
   system.resetPassword(userObj.Id, true);
