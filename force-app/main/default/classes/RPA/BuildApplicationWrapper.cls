@@ -217,6 +217,8 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperEmployment.Position = employment.FinServ__Position__c;
       mapperEmployment.EmploymentDuration = employment.EmploymentDuration__c;
       mapperEmployment.DocumentType = employment.DocumentType__c;
+      mapperEmployment.BranchofService = employment.BranchofService__c;
+      mapperEmployment.EnlistmentDate = employment.EnlistmentDate__c;
       // mapperEmployment.EmploymentVerificationType = employment.EmploymentVerificationType__c;
       mapperEmploymentList.add(mapperEmployment);
     }
@@ -239,17 +241,11 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperIdentity.DocumentNumber = identity.FinServ__DocumentNumber__c;
       mapperIdentity.DocumentType = identity.FinServ__DocumentType__c;
       mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
-      // mapperIdentity.Gender = identity.Gender__c;
-      // mapperIdentity.Height = identity.Height__c;
       mapperIdentity.IssueDate = identity.FinServ__IssueDate__c;
       mapperIdentity.IssuedRegion = identity.IssuedRegion__c;
       mapperIdentity.Name = identity.Name;
       // mapperIdentity.Nationality = identity.Nationality__c;
       mapperIdentity.Order = identity.Order__c;
-      // mapperIdentity.PrimaryContentDocumentID = identity.PrimaryContentDocumentID__c;
-      // mapperIdentity.SecondaryContentDocumentId = identity.SecondaryContentDocumentId__c;
-      // mapperIdentity.Weight = identity.Weight__c;
-
       mapperIdentityList.add(mapperIdentity);
     }
     return mapperIdentityList;
@@ -293,15 +289,8 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperSurvey.SurveyId = survey.Id;
       mapperSurvey.Answer = survey.mflow__Answer__c;
       mapperSurvey.LongDescription = survey.mflow__LongDescription__c;
-      // mapperSurvey.Name = survey.Name;
-      // mapperSurvey.OptionType = survey.mflow__OptionType__c;
       mapperSurvey.Order = survey.mflow__Order__c;
-      // mapperSurvey.ParentQuestionCode = survey.mflow__ParentQuestionCode__c;
-      // mapperSurvey.QuestionCode = survey.mflow__QuestionCode__c;
-      // mapperSurvey.QuestionNumber = survey.mflow__QuestionNumber__c;
       mapperSurvey.ShortDescription = survey.mflow__ShortDescription__c;
-      // mapperSurvey.EventIdentifier = survey.mflow__EventIdentifier__c;
-      // mapperSurvey.TemplateName = survey.mflow__TemplateName__c;
       mapperSurveyList.add(mapperSurvey);
     }
     return mapperSurveyList;

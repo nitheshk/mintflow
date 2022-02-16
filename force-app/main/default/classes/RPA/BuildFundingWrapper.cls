@@ -110,7 +110,7 @@ global with sharing class BuildFundingWrapper extends AbstractService {
         )
       ) {
         mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
-          finApplication.FinServ__FinancialAccountTranslations__r
+          finApplication.FinServ__FinancialAccountTranslations__r[0]
         );
       } else {
         throw new CustomException('No financial transaction account found');

@@ -6,74 +6,88 @@
 
     <!--layoutAssignments-->
     <layoutAssignments>
-        <layout>FinancialProduct__c-FinancialProduct Layout</layout>
+        <layout
+    >mflow__FinancialProduct__c-mflow__FinancialProduct Layout</layout>
     </layoutAssignments>
 
     <layoutAssignments>
-        <layout>Account-Application Layout</layout>
+        <layout>Account-mflow__Application Layout</layout>
         <recordType>Account.Application</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-mflow__Member Account Layout</layout>
+        <recordType>Account.FinServ__IndustriesIndividual</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-mflow__Member Account Layout</layout>
+        <recordType>Account.FinServ__IndustriesBusiness</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-mflow__Member Account Layout</layout>
+        <recordType>Contact.FinServ__IndustriesIndividual</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-mflow__Member Account Layout</layout>
+        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout
     >SObjectTriggerSetting__mdt-SObject Trigger Setting Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Survey__c-Survey Layout</layout>
+        <layout>Survey__c-mflow__Survey Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Address-Address Layout</layout>
+        <layout>Address-mflow__Address Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Contact-Contact Layout</layout>
+        <layout>ContentVersion-mflow__Content Version Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>ContentVersion-Content Version Layout</layout>
+        <layout>User-mflow__User Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>User-User Layout</layout>
+        <layout>Flow__c-mflow__Flow Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Flow__c-Flow Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Flow__c-Flow Layout</layout>
+        <layout>Flow__c-mflow__Flow Layout</layout>
         <recordType>Flow__c.Flow</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Flow__c-Sub Flow Layout</layout>
+        <layout>Flow__c-mflow__Sub Flow Layout</layout>
         <recordType>Flow__c.SubFlow</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Applicant__c-Applicant Layout</layout>
+        <layout>Applicant__c-mflow__Applicant Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Applicant__c-Applicant Layout</layout>
+        <layout>Applicant__c-mflow__Applicant Layout</layout>
         <recordType>Applicant__c.Beneficiary</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Applicant__c-Applicant Layout</layout>
+        <layout>Applicant__c-mflow__Applicant Layout</layout>
         <recordType>Applicant__c.EmergencyContact</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Applicant__c-Applicant Layout</layout>
+        <layout>Applicant__c-mflow__Applicant Layout</layout>
         <recordType>Applicant__c.FamilyMember</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Applicant__c-Applicant Layout</layout>
+        <layout>Applicant__c-mflow__Applicant Layout</layout>
         <recordType>Applicant__c.Joint</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Applicant__c-Applicant Layout</layout>
+        <layout>Applicant__c-mflow__Applicant Layout</layout>
         <recordType>Applicant__c.Primary</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Consent__c-Consent Layout</layout>
+        <layout>Consent__c-mflow__Consent Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>ConsentLineItem__c-Consent Line Item Layout</layout>
+        <layout>ConsentLineItem__c-mflow__Consent Line Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>ConsentTemplate__c-Consent Template Layout</layout>
+        <layout>ConsentTemplate__c-mflow__Consent Template Layout</layout>
     </layoutAssignments>
      <layoutAssignments>
         <layout
@@ -188,11 +202,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <recordType>FinServ__ChargesAndFees__c.FinServ__Credit</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
         <recordType
     >FinServ__FinancialAccountRole__c.FinServ__AccountRole</recordType>
         <visible>true</visible>
@@ -209,11 +218,4 @@
         <recordType>FinServ__ReciprocalRole__c.FinServ__AccountRole</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Opportunity.FinServ__WalletShareOpportunity</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-
-
 </Profile>

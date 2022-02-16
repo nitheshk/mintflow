@@ -113,6 +113,7 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
         .addFields()
         .queryChild('FinServ__FinancialAccountTranslations__r')
         .addFields()
+        .addLimit(1)
         .run()
         .whereEq('mflow__Application__c', applicationId)
         .toString()

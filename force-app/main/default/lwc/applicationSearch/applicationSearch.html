@@ -1,6 +1,6 @@
 <template>
   <lightning-card>
-    <div class="slds-var-m-around_medium">
+    <div>
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size_4-of-12 slds-var-p-around_x-small">
           <lightning-input
@@ -25,76 +25,107 @@
             onclick={showModal}
             class="slds-var-p-horizontal_large text-style"
           ></lightning-button>
-
-          <template if if:true={openModal}>
-            <lightning-accordion
-              class="example-accordion"
-              onsectiontoggle={handleToggleSection}
-              active-section-name="B"
-            >
-              <lightning-accordion-section name="A" label="Filter Applications">
-                <div class="slds-grid slds-wrap">
-                  <div
-                    class="slds-col slds-size_1-of-2 slds-var-p-around_x-small"
-                  >
-                    <lightning-input
-                      data-fieldname="mflow__ExternalApplicationNumber__c"
-                      label="LOS Number"
-                      value={searchFilter.LOSNumber}
-                      placeholder="LOS Number"
-                      pattern={alphanumValidation}
-                      maxlength="10"
-                      message-when-too-long={messageWhenTooLong}
-                      onchange={handleChange}
-                    ></lightning-input>
-                  </div>
-                  <div
-                    class="slds-col slds-size_1-of-2 slds-var-p-around_x-small"
-                  >
-                    <lightning-input
-                      data-fieldname="Name"
-                      label="Application Number"
-                      value={searchFilter.Name}
-                      placeholder="Application Number"
-                      pattern={alphanumValidation}
-                      maxlength="20"
-                      message-when-too-long={messageWhenTooLong}
-                      onchange={handleChange}
-                    ></lightning-input>
-                  </div>
-                </div>
-                <div class="slds-modal__footer">
-                  <lightning-button-group>
-                    <lightning-button
-                      variant="brand"
-                      label="Apply Filter"
-                      title="Apply Filter"
-                      data-status="Approve"
-                      onclick={applyFilter}
-                      class="slds-var-m-left_x-small"
-                      icon-name="action:approval"
-                      icon-position="right"
-                    ></lightning-button>
-                    <lightning-button
-                      variant="Neutral"
-                      label="Clear All"
-                      title="Clear All"
-                      data-status="Clear"
-                      onclick={clearFilter}
-                      class="slds-var-m-left_x-small"
-                      icon-name="action:close"
-                      icon-position="right"
-                    ></lightning-button>
-                  </lightning-button-group>
-                </div>
-              </lightning-accordion-section>
-            </lightning-accordion>
-          </template>
         </div>
       </div>
     </div>
-    <br />
-    <hr />
+    <template if:true={openModal}>
+      <hr />
+      <lightning-accordion
+        class="example-accordion"
+        onsectiontoggle={handleToggleSection}
+        active-section-name="B"
+      >
+        <lightning-accordion-section name="A" label="Filter Applications">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-3 slds-var-p-around_x-small">
+              <lightning-input
+                data-fieldname="mflow__ExternalApplicationNumber__c"
+                label="LOS Number"
+                value={searchFilter.LOSNumber}
+                placeholder="LOS Number"
+                pattern={alphanumValidation}
+                maxlength="10"
+                message-when-too-long={messageWhenTooLong}
+                onchange={handleChange}
+              ></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-var-p-around_x-small">
+              <lightning-input
+                data-fieldname="CreatedDateFrom"
+                label="Date From"
+                value={searchFilter.CreatedFrom}
+                placeholder="Date From"
+                maxlength="10"
+                message-when-too-long={messageWhenTooLong}
+                onchange={handleChange}
+                type="date"
+              ></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-var-p-around_x-small">
+              <lightning-input
+                data-fieldname="CreatedDateTo"
+                label="Date To "
+                value={searchFilter.CreatedTo}
+                placeholder="Date To"
+                maxlength="10"
+                onchange={handleChange}
+                type="date"
+              ></lightning-input>
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-3 slds-var-p-around_x-small">
+              <lightning-input
+                data-fieldname="Name"
+                label="Application Number"
+                value={searchFilter.Name}
+                placeholder="Application Number"
+                pattern={alphanumValidation}
+                maxlength="20"
+                message-when-too-long={messageWhenTooLong}
+                onchange={handleChange}
+              ></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-var-p-around_x-small">
+              <lightning-combobox
+                data-fieldname="dateRange"
+                name="dateRange"
+                label="Custom Data Range"
+                value={searchFilter.dateRange}
+                placeholder="Select Custom Range "
+                options={options}
+                onchange={handleChange}
+              ></lightning-combobox>
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap"></div>
+          <div class="slds-modal__footer">
+            <lightning-button-group>
+              <lightning-button
+                variant="brand"
+                label="Apply Filter"
+                title="Apply Filter"
+                data-status="Approve"
+                onclick={applyFilter}
+                class="slds-var-m-left_x-small"
+                icon-name="action:approval"
+                icon-position="right"
+              ></lightning-button>
+              <lightning-button
+                variant="Neutral"
+                label="Clear"
+                title="Clear"
+                data-status="Clear"
+                onclick={clearFilter}
+                class="slds-var-m-left_x-small"
+                icon-name="action:close"
+                icon-position="right"
+              ></lightning-button>
+            </lightning-button-group>
+          </div>
+        </lightning-accordion-section>
+      </lightning-accordion>
+    </template>
     <div if:true={searchData}>
       <div class="slds-p-horizontal_x-large">
         <lightning-datatable

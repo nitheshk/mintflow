@@ -10,6 +10,7 @@ export default class CustomerResumeApplication extends LightningElement {
   @track applicationStatus = [];
   @track showSpinner = false;
   @track selectedApplicant = [];
+  @track hasApplications = false;
   handleChange(event) {
     var targetElement = event.target;
     this.applicantData[targetElement.dataset.fieldname] = targetElement.value;
@@ -34,29 +35,34 @@ export default class CustomerResumeApplication extends LightningElement {
                 item.FinServ__Status__c === "Abandoned" ||
                 item.FinServ__Status__c === "In Progress"
             );
-
-            this.applications.forEach((app) => {
-              app.mflow__Applicants__r.forEach((element) => {
-                if (
-                  element.mflow__LastFourDigitsofSSN__c ===
-                    this.applicantData.mflow__LastFourDigitsofSSN__c &&
-                  element.mflow__LastName__c ===
-                    this.applicantData.mflow__LastName__c &&
-                  element.mflow__Email__c === this.applicantData.mflow__Email__c
-                ) {
-                  if (element.mflow__ApplicantType__c === "Primary") {
-                    app.isPrimaryLoggedIn = true;
-                    element.isPrimaryOrJoint = true;
-                  } else if (element.mflow__ApplicantType__c === "Joint") {
-                    app.isPrimaryLoggedIn = false;
-                    element.isPrimaryOrJoint = true;
-                  } else {
-                    element.isPrimaryOrJoint = false;
+            if (this.applications.length === 0) {
+              this.hasApplications = false;
+            } else {
+              this.hasApplications = true;
+              this.applications.forEach((app) => {
+                app.mflow__Applicants__r.forEach((element) => {
+                  if (
+                    element.mflow__LastFourDigitsofSSN__c ===
+                      this.applicantData.mflow__LastFourDigitsofSSN__c &&
+                    element.mflow__LastName__c ===
+                      this.applicantData.mflow__LastName__c &&
+                    element.mflow__Email__c ===
+                      this.applicantData.mflow__Email__c
+                  ) {
+                    if (element.mflow__ApplicantType__c === "Primary") {
+                      app.isPrimaryLoggedIn = true;
+                      element.isPrimaryOrJoint = true;
+                    } else if (element.mflow__ApplicantType__c === "Joint") {
+                      app.isPrimaryLoggedIn = false;
+                      element.isPrimaryOrJoint = true;
+                    } else {
+                      element.isPrimaryOrJoint = false;
+                    }
                   }
-                }
+                });
               });
-            });
-            console.log(this.applications);
+              console.log(this.applications);
+            }
           } else {
             utils.errorMessage(
               this,

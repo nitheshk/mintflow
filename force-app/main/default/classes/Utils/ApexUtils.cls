@@ -31,23 +31,54 @@ global inherited sharing class ApexUtils {
   global static String obtainSearchString(map<string, string> searchFilter) {
     String keyValue;
     String dynamicString;
+    String dateCondition;
+    Datetime dt;
+    DateTime dtAndTime;
+    String dateValue;
+
     for (String mapValue : searchFilter.keySet()) {
       keyValue = searchFilter.get(mapValue);
-      if (String.isBlank(dynamicString)) {
-        dynamicString = mapValue + ' like \'' + '%' + keyValue + '%' + '\'';
+      dateCondition = '';
+      if (mapValue.equalsIgnoreCase('CreatedDateFrom')) {
+        dt = DateUtils.convertJsonStringToDateTime(keyValue);
+        dateValue = Dateutils.formatDateTimeGMT(dt);
+        dateCondition = 'CreatedDate >=' + dateValue;
+      } else if (mapValue.equalsIgnoreCase('CreatedDateTo')) {
+        dt = DateUtils.convertJsonStringToDateTime(keyValue);
+        dateValue = Dateutils.formatDateTimeGMT(dt);
+        dateCondition = 'CreatedDate <=' + dateValue;
+      } else if (mapvalue.equalsignorecase('dateRange')) {
+        if (string.isNotBlank(dynamicString)) {
+          dynamicString = dynamicString + ' AND CreatedDate=' + keyValue;
+        } else {
+          dynamicString = ' CreatedDate=' + keyValue;
+        }
       } else {
-        dynamicString =
-          dynamicString +
-          'AND ' +
-          mapValue +
-          ' like \'' +
-          '%' +
-          keyValue +
-          '%' +
-          '\'';
+        if (String.isNotBlank(dynamicString)) {
+          dynamicString =
+            dynamicString +
+            ' AND ' +
+            mapValue +
+            ' like \'' +
+            '%' +
+            keyValue +
+            '%' +
+            '\'';
+        } else {
+          dynamicString = mapValue + ' like \'' + '%' + keyValue + '%' + '\'';
+        }
+      }
+      if (
+        String.isnotBlank(dynamicString) && String.isNotBlank(dateCondition)
+      ) {
+        dynamicString = dynamicString + ' AND ' + dateCondition;
+      } else {
+        if (String.isNotBlank(dateCondition)) {
+          dynamicString = dateCondition;
+        }
       }
     }
-
+    System.debug(' the dynamic string' + dynamicString);
     return dynamicString;
   }
 }
