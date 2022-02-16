@@ -234,6 +234,16 @@
         <field>FinServ__Employment__c.Verification_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.BranchofService__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinServ__Employment__c.EnlistmentDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
        <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.QualifiedScore__c</field>
