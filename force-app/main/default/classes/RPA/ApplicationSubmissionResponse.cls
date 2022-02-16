@@ -168,6 +168,8 @@ global with sharing class ApplicationSubmissionResponse {
     global String EmploymentStatus;
     global Decimal EmploymentDuration;
     global String EmploymentVerificationType;
+    global string BranchofService;
+    global Date EnlistmentDate;
   }
 
   /**
