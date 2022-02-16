@@ -79,93 +79,106 @@
     </div>
   </template>
   <template if:true={isAuthenticated}>
-    <div class="slds-m-top_medium slds-m-bottom_x-large">
-      <lightning-accordion>
-        <template for:each={applications} for:item="app">
-          <lightning-accordion-section
-            name={app.mflow__ApplicationNumber__c}
-            label={app.mflow__ApplicationNumber__c}
-            key={app.Id}
-          >
-            <div class="slds-p-around_medium lgc-bg">
-              <ul class="slds-has-dividers_bottom-space">
-                <li class="slds-item">
-                  <lightning-tile label="Application Status">
-                    <p class="slds-truncate" title={app.FinServ__Status__c}>
-                      {app.FinServ__Status__c}
-                    </p>
-                  </lightning-tile>
-                </li>
-
-                <template
-                  for:each={app.mflow__Applicants__r}
-                  for:item="applicant"
-                >
-                  <li class="slds-item" key={applicant.Id}>
-                    <lightning-tile
-                      label={applicant.mflow__ApplicantName__c}
-                      type="media"
-                    >
-                      <lightning-avatar
-                        slot="media"
-                        fallback-icon-name="standard:person_account"
-                        alternative-text={applicant.mflow__ApplicantName__c}
-                      ></lightning-avatar>
-                      <dl class="slds-dl_horizontal">
-                        <dt class="slds-dl_horizontal__label">
-                          <p class="slds-truncate" title="Applicant Type">
-                            Applicant Type :
-                          </p>
-                        </dt>
-                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
-                          <p class="slds-truncate" title="Salesforce">
-                            {applicant.mflow__ApplicantType__c}
-                          </p>
-                        </dd>
-                        <dt class="slds-dl_horizontal__label">
-                          <p class="slds-truncate" title="Email">Email :</p>
-                        </dt>
-                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
-                          <p
-                            class="slds-truncate"
-                            title={applicant.mflow__Email__c}
-                          >
-                            {applicant.mflow__Email__c}
-                          </p>
-                        </dd>
-                        <dt class="slds-dl_horizontal__label">
-                          <p class="slds-truncate" title="Email">Status :</p>
-                        </dt>
-                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
-                          <p
-                            class="slds-truncate"
-                            title={applicant.mflow__Status__c}
-                          >
-                            {applicant.mflow__Status__c}
-                          </p>
-                        </dd>
-
-                        <template if:true={app.isPrimaryLoggedIn}>
-                          <template if:true={applicant.isPrimaryOrJoint}>
-                            <lightning-button
-                              data-fieldname={applicant.Id}
-                              variant="brand-outline"
-                              label="Resume"
-                              title="Resume"
-                              onclick={handleResume}
-                              class="slds-m-left_x-small"
-                            ></lightning-button>
-                          </template>
-                        </template>
-                      </dl>
+    <template if:true={hasApplications}>
+      <div class="slds-m-top_medium slds-m-bottom_x-large">
+        <lightning-accordion>
+          <template for:each={applications} for:item="app">
+            <lightning-accordion-section
+              name={app.mflow__ApplicationNumber__c}
+              label={app.mflow__ApplicationNumber__c}
+              key={app.Id}
+            >
+              <div class="slds-p-around_medium lgc-bg">
+                <ul class="slds-has-dividers_bottom-space">
+                  <li class="slds-item">
+                    <lightning-tile label="Application Status">
+                      <p class="slds-truncate" title={app.FinServ__Status__c}>
+                        {app.FinServ__Status__c}
+                      </p>
                     </lightning-tile>
                   </li>
-                </template>
-              </ul>
-            </div>
-          </lightning-accordion-section>
-        </template>
-      </lightning-accordion>
-    </div>
+
+                  <template
+                    for:each={app.mflow__Applicants__r}
+                    for:item="applicant"
+                  >
+                    <li class="slds-item" key={applicant.Id}>
+                      <lightning-tile
+                        label={applicant.mflow__ApplicantName__c}
+                        type="media"
+                      >
+                        <lightning-avatar
+                          slot="media"
+                          fallback-icon-name="standard:person_account"
+                          alternative-text={applicant.mflow__ApplicantName__c}
+                        ></lightning-avatar>
+                        <dl class="slds-dl_horizontal">
+                          <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Applicant Type">
+                              Applicant Type :
+                            </p>
+                          </dt>
+                          <dd
+                            class="slds-dl_horizontal__detail slds-tile__meta"
+                          >
+                            <p class="slds-truncate" title="Salesforce">
+                              {applicant.mflow__ApplicantType__c}
+                            </p>
+                          </dd>
+                          <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Email">Email :</p>
+                          </dt>
+                          <dd
+                            class="slds-dl_horizontal__detail slds-tile__meta"
+                          >
+                            <p
+                              class="slds-truncate"
+                              title={applicant.mflow__Email__c}
+                            >
+                              {applicant.mflow__Email__c}
+                            </p>
+                          </dd>
+                          <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Email">Status :</p>
+                          </dt>
+                          <dd
+                            class="slds-dl_horizontal__detail slds-tile__meta"
+                          >
+                            <p
+                              class="slds-truncate"
+                              title={applicant.mflow__Status__c}
+                            >
+                              {applicant.mflow__Status__c}
+                            </p>
+                          </dd>
+
+                          <template if:true={app.isPrimaryLoggedIn}>
+                            <template if:true={applicant.isPrimaryOrJoint}>
+                              <lightning-button
+                                data-fieldname={applicant.Id}
+                                variant="brand-outline"
+                                label="Resume"
+                                title="Resume"
+                                onclick={handleResume}
+                                class="slds-m-left_x-small"
+                              ></lightning-button>
+                            </template>
+                          </template>
+                        </dl>
+                      </lightning-tile>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </lightning-accordion-section>
+          </template>
+        </lightning-accordion>
+      </div>
+    </template>
+    <template if:false={hasApplications}>
+      <lightning-card>
+        <h2>Hurray! Application(s) are completed by you</h2>
+      </lightning-card>
+    </template>
   </template>
 </template>
