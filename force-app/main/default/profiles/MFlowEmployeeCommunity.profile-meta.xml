@@ -3,19 +3,24 @@
     <custom>true</custom>
     <!--layoutAssignments-->
     <layoutAssignments>
-        <layout>Account-FI Application Layout</layout>
+        <layout>Account-mflow__FI Application Layout</layout>
         <recordType>Account.Application</recordType>
     </layoutAssignments>
-   <layoutAssignments>
-        <layout>Account-FinServ__Account (Individual) Layout</layout>
+    <layoutAssignments>
+        <layout>Account-mflow__Member Account Layout</layout>
         <recordType>Account.FinServ__IndustriesIndividual</recordType>
     </layoutAssignments>
-      <layoutAssignments>
+    <layoutAssignments>
         <layout>Contact-mflow__FI Contact Layout</layout>
         <recordType>Contact.FinServ__IndustriesIndividual</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Contact-Contact Layout</layout>
+        <layout>Account-mflow__Member Account Layout</layout>
+        <recordType>Account.FinServ__IndustriesBusiness</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-mflow__FI Contact Layout</layout>
+        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout
@@ -36,11 +41,11 @@
         <layout>Flow__c-Flow Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Flow__c-Flow Layout</layout>
+        <layout>Flow__c-mflow__Flow Layout</layout>
         <recordType>Flow__c.Flow</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Flow__c-Sub Flow Layout</layout>
+        <layout>Flow__c-mflow__Sub Flow Layout</layout>
         <recordType>Flow__c.SubFlow</recordType>
     </layoutAssignments>
     <layoutAssignments>
