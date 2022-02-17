@@ -128,7 +128,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperApplicant.ApplicantNumber = applicant.Name;
       mapperApplicant.ApplicantType = applicant.ApplicantType__c;
       mapperApplicant.Birthdate = applicant.Birthdate__c;
-      mapperApplicant.CreditScore = applicant.CreditScore__c;
+      // mapperApplicant.CreditScore = applicant.CreditScore__c;
       // mapperApplicant.CustomerNumber = applicant.CustomerNumber__c;
       mapperApplicant.Email = applicant.Email__c;
       // mapperApplicant.FraudStatus = applicant.FraudStatus__c;
@@ -138,11 +138,10 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperApplicant.Order = applicant.Order__c;
       mapperApplicant.Phone = applicant.Phone__c;
       mapperApplicant.Relationship = applicant.Relationship__c;
-      mapperApplicant.SentiLinkFraudScore = applicant.SentiLinkFraudScore__c;
-      mapperApplicant.SentiLinkRemarks = applicant.SentiLinkRemarks__c;
-      mapperApplicant.SentiLinkStatus = applicant.SentiLinkStatus__c;
+      // mapperApplicant.SentiLinkFraudScore = applicant.SentiLinkFraudScore__c;
+      // mapperApplicant.SentiLinkRemarks = applicant.SentiLinkRemarks__c;
+      // mapperApplicant.SentiLinkStatus = applicant.SentiLinkStatus__c;
       mapperApplicant.SSN = applicant.SSN__c;
-      // mapperApplicant.Password = applicant.Password__c;
 
       //Map employment data
       if (!CollectionUtils.isListEmpty(applicant.Employments__r)) {
@@ -159,9 +158,9 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       }
 
       //Map Revenue Data
-      if (!CollectionUtils.isListEmpty(applicant.Revenues__r)) {
-        mapperApplicant.Revenues.addAll(mapRevenue(applicant.Revenues__r));
-      }
+      // if (!CollectionUtils.isListEmpty(applicant.Revenues__r)) {
+      //   mapperApplicant.Revenues.addAll(mapRevenue(applicant.Revenues__r));
+      // }
       //Map Survey Data
       if (!CollectionUtils.isListEmpty(applicant.Surveys__r)) {
         mapperApplicant.Surveys.addAll(mapSurvey(applicant.Surveys__r));
@@ -219,7 +218,6 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperEmployment.DocumentType = employment.DocumentType__c;
       mapperEmployment.BranchofService = employment.BranchofService__c;
       mapperEmployment.EnlistmentDate = employment.EnlistmentDate__c;
-      // mapperEmployment.EmploymentVerificationType = employment.EmploymentVerificationType__c;
       mapperEmploymentList.add(mapperEmployment);
     }
     return mapperEmploymentList;
@@ -244,7 +242,6 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperIdentity.IssueDate = identity.FinServ__IssueDate__c;
       mapperIdentity.IssuedRegion = identity.IssuedRegion__c;
       mapperIdentity.Name = identity.Name;
-      // mapperIdentity.Nationality = identity.Nationality__c;
       mapperIdentity.Order = identity.Order__c;
       mapperIdentityList.add(mapperIdentity);
     }
@@ -256,23 +253,23 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
    * @param List<FinServ__Revenue__c> revenueList
    * @return virtual
    **/
-  global virtual list<ApplicationSubmissionResponse.Revenue> mapRevenue(
-    List<FinServ__Revenue__c> revenueList
-  ) {
-    list<ApplicationSubmissionResponse.Revenue> mapperRevenueList = new List<ApplicationSubmissionResponse.Revenue>();
-    for (FinServ__Revenue__c revenue : revenueList) {
-      ApplicationSubmissionResponse.Revenue mapperRevenue = new ApplicationSubmissionResponse.Revenue();
-      mapperRevenue.RevenueId = revenue.Id;
-      mapperRevenue.Amount = revenue.FinServ__Amount__c;
-      mapperRevenue.Name = revenue.Name;
-      mapperRevenue.Order = revenue.Order__c;
-      mapperRevenue.RevenueDate = revenue.FinServ__Date__c;
-      mapperRevenue.SubType = revenue.FinServ__SubType__c;
-      mapperRevenue.Type = revenue.FinServ__Type__c;
-      mapperRevenueList.add(mapperRevenue);
-    }
-    return mapperRevenueList;
-  }
+  // global virtual list<ApplicationSubmissionResponse.Revenue> mapRevenue(
+  //   List<FinServ__Revenue__c> revenueList
+  // ) {
+  //   list<ApplicationSubmissionResponse.Revenue> mapperRevenueList = new List<ApplicationSubmissionResponse.Revenue>();
+  //   for (FinServ__Revenue__c revenue : revenueList) {
+  //     ApplicationSubmissionResponse.Revenue mapperRevenue = new ApplicationSubmissionResponse.Revenue();
+  //     mapperRevenue.RevenueId = revenue.Id;
+  //     mapperRevenue.Amount = revenue.FinServ__Amount__c;
+  //     mapperRevenue.Name = revenue.Name;
+  //     mapperRevenue.Order = revenue.Order__c;
+  //     mapperRevenue.RevenueDate = revenue.FinServ__Date__c;
+  //     mapperRevenue.SubType = revenue.FinServ__SubType__c;
+  //     mapperRevenue.Type = revenue.FinServ__Type__c;
+  //     mapperRevenueList.add(mapperRevenue);
+  //   }
+  //   return mapperRevenueList;
+  // }
 
   /**
    * @description
@@ -308,7 +305,6 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
     for (ContactPointAddress contactAddress : contactAddressList) {
       ApplicationSubmissionResponse.ContactPointAddress mapperContactAddress = new ApplicationSubmissionResponse.ContactPointAddress();
       mapperContactAddress.ContactPointAddressId = contactAddress.Id;
-      mapperContactAddress.IsPrimary = contactAddress.IsPrimary;
       mapperContactAddress.AddressType = contactAddress.AddressType;
       mapperContactAddress.City = contactAddress.City;
       mapperContactAddress.Country = contactAddress.Country;
