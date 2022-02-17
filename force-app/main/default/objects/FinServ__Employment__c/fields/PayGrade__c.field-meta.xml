@@ -13,9 +13,79 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>For Goverment/DOD</fullName>
+                <fullName>GS1</fullName>
                 <default>false</default>
-                <label>For Goverment/DOD</label>
+                <label>GS1</label>
+            </value>
+            <value>
+                <fullName>GS2</fullName>
+                <default>false</default>
+                <label>GS2</label>
+            </value>
+            <value>
+                <fullName>GS3</fullName>
+                <default>false</default>
+                <label>GS3</label>
+            </value>
+            <value>
+                <fullName>GS4</fullName>
+                <default>false</default>
+                <label>GS4</label>
+            </value>
+            <value>
+                <fullName>GS5</fullName>
+                <default>false</default>
+                <label>GS5</label>
+            </value>
+            <value>
+                <fullName>GS6</fullName>
+                <default>false</default>
+                <label>GS6</label>
+            </value>
+            <value>
+                <fullName>GS7</fullName>
+                <default>false</default>
+                <label>GS7</label>
+            </value>
+            <value>
+                <fullName>GS8</fullName>
+                <default>false</default>
+                <label>GS8</label>
+            </value>
+            <value>
+                <fullName>GS9</fullName>
+                <default>false</default>
+                <label>GS9</label>
+            </value>
+            <value>
+                <fullName>GS10</fullName>
+                <default>false</default>
+                <label>GS10</label>
+            </value>
+            <value>
+                <fullName>GS11</fullName>
+                <default>false</default>
+                <label>GS11</label>
+            </value>
+            <value>
+                <fullName>GS12</fullName>
+                <default>false</default>
+                <label>GS12</label>
+            </value>
+            <value>
+                <fullName>GS13</fullName>
+                <default>false</default>
+                <label>GS13</label>
+            </value>
+            <value>
+                <fullName>GS14</fullName>
+                <default>false</default>
+                <label>GS14</label>
+            </value>
+            <value>
+                <fullName>GS15</fullName>
+                <default>false</default>
+                <label>GS15</label>
             </value>
         </valueSetDefinition>
     </valueSet>
