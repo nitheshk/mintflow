@@ -9,7 +9,7 @@
 global with sharing class IdentityController extends AbstractController {
   private static logger log = logger.getInstance(IdentityController.class);
   //Allow to expose the controller in Visualforce remoting
-  public IdentityController(AbstractController controller) {
+  global IdentityController(AbstractController controller) {
     super(IdentityController.class);
   }
   /**

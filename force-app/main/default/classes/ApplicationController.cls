@@ -9,7 +9,7 @@
 global with sharing class ApplicationController extends AbstractController {
   private static Logger log = Logger.getInstance(ApplicationController.class);
 
-  public ApplicationController(AbstractController controller) {
+  global ApplicationController(AbstractController controller) {
     super(ApplicationController.class);
   }
   /**

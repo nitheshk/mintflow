@@ -9,7 +9,7 @@
 global with sharing class FinancialAccountController extends AbstractController {
   private static logger log = logger.getInstance(ApplicationController.class);
 
-  public FinancialAccountController(AbstractController controller) {
+  global FinancialAccountController(AbstractController controller) {
     super(FinancialAccountController.class);
   }
 
