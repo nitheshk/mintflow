@@ -121,7 +121,7 @@ cipher.ch = params.get('ch');
 
 String link =
   SiteSetting__c.getInstance().OnlineSiteUrl__c +
-  '/OpenAccount' +
+  '/mflow__OpenAccount' +
   '?vmf=' +
   SecurityUtils.encryptUrl(JSON.serialize(cipher, true)) +
   '&vue=' +
