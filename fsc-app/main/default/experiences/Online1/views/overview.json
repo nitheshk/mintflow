@@ -37,6 +37,14 @@
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
+                },
+                {
+                  "componentAttributes": {},
+                  "componentName": "mflow:customerResumeApplication",
+                  "id": "e255b4aa-d637-40d8-bafa-e4d1b312f13e",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
                 }
               ],
               "id": "45f0dc3d-bd1c-4522-ba4d-aee31a5c8f1a",
@@ -80,14 +88,6 @@
                   },
                   "componentName": "forceCommunity:richTextInline",
                   "id": "3efc7659-8385-41ed-86eb-cce4e81ef4ea",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {},
-                  "componentName": "mflow:customerResumeApplication",
-                  "id": "42c459cd-74e3-4e19-9fd9-9fabd772168a",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"

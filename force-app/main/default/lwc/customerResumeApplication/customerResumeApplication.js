@@ -11,6 +11,7 @@ export default class CustomerResumeApplication extends LightningElement {
   @track showSpinner = false;
   @track selectedApplicant = [];
   @track hasApplications = false;
+  @track showResume = false;
   handleChange(event) {
     var targetElement = event.target;
     this.applicantData[targetElement.dataset.fieldname] = targetElement.value;
@@ -18,6 +19,9 @@ export default class CustomerResumeApplication extends LightningElement {
   }
   handleCancel() {
     this.applicantData = {};
+  }
+  showResumeFlow() {
+    this.showResume = true;
   }
   handleSubmit() {
     if (
@@ -41,22 +45,31 @@ export default class CustomerResumeApplication extends LightningElement {
               this.hasApplications = true;
               this.applications.forEach((app) => {
                 app.mflow__Applicants__r.forEach((element) => {
-                  if (
-                    element.mflow__LastFourDigitsofSSN__c ===
-                      this.applicantData.mflow__LastFourDigitsofSSN__c &&
-                    element.mflow__LastName__c ===
-                      this.applicantData.mflow__LastName__c &&
-                    element.mflow__Email__c ===
-                      this.applicantData.mflow__Email__c
-                  ) {
-                    if (element.mflow__ApplicantType__c === "Primary") {
+                  if (element.mflow__ApplicantType__c === "Primary") {
+                    element.isPrimaryOrJoint = true;
+                    if (
+                      element.mflow__LastFourDigitsofSSN__c ===
+                        this.applicantData.mflow__LastFourDigitsofSSN__c &&
+                      element.mflow__LastName__c ===
+                        this.applicantData.mflow__LastName__c &&
+                      element.mflow__Email__c ===
+                        this.applicantData.mflow__Email__c
+                    ) {
                       app.isPrimaryLoggedIn = true;
-                      element.isPrimaryOrJoint = true;
-                    } else if (element.mflow__ApplicantType__c === "Joint") {
+                    }
+                  } else if (
+                    element.mflow__ApplicantType__c.includes("Joint")
+                  ) {
+                    element.isPrimaryOrJoint = true;
+                    if (
+                      element.mflow__LastFourDigitsofSSN__c ===
+                        this.applicantData.mflow__LastFourDigitsofSSN__c &&
+                      element.mflow__LastName__c ===
+                        this.applicantData.mflow__LastName__c &&
+                      element.mflow__Email__c ===
+                        this.applicantData.mflow__Email__c
+                    ) {
                       app.isPrimaryLoggedIn = false;
-                      element.isPrimaryOrJoint = true;
-                    } else {
-                      element.isPrimaryOrJoint = false;
                     }
                   }
                 });
