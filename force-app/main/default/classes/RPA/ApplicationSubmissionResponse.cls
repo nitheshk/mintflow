@@ -48,7 +48,7 @@ global with sharing class ApplicationSubmissionResponse {
     global String ApplicantType;
     global String Application;
     global Date Birthdate;
-    global Decimal CreditScore;
+    // global Decimal CreditScore;
     global String CustomerNumber;
     global String Email;
     global String FirstName;
@@ -186,7 +186,7 @@ global with sharing class ApplicationSubmissionResponse {
     global String ApplicantId;
     global String CustomerNumber;
     global String OverallDebitBureauResult;
-    // global Integer CreditScore;
+    global Integer CreditScore;
     global Integer QualifiedScore;
     global Integer CustomerScore;
     global String HighRiskConsumer;
