@@ -68,7 +68,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
         mapperApplication.StateName = application.StateName__c;
         mapperApplication.CountyCode = application.CountyZipCode__c;
         mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
-        mapperApplication.CreatedChannel = application.CreatedChannel__c;
+        // mapperApplication.CreatedChannel = application.CreatedChannel__c;
         mapperApplication.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
         // mapperApplication.CustomerType = application.FinServ__CustomerType__c;
         // mapperApplication.FlowState = application.FlowState__c;
@@ -241,7 +241,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
       mapperIdentity.IssueDate = identity.FinServ__IssueDate__c;
       mapperIdentity.IssuedRegion = identity.IssuedRegion__c;
-      mapperIdentity.Name = identity.Name;
+      // mapperIdentity.Name = identity.Name;
       mapperIdentity.Order = identity.Order__c;
       mapperIdentityList.add(mapperIdentity);
     }

@@ -24,16 +24,16 @@ global with sharing class ApplicationSubmissionResponse {
     global String StateName;
     global String BranchCode;
     global String BranchName;
-    global String CreatedChannel;
-    global String LastUsedChannel;
+    // global String CreatedChannel;
+    // global String LastUsedChannel;
     // global String CustomerType;
     // global String FlowState;
     // global String IpAddress;
     global Boolean IsMemberFlow;
-    global String Status;
-    global String SubStatus;
-    global String SubmittedBy;
-    global Date SubmittedDate;
+    // global String Status;
+    // global String SubStatus;
+    // global String SubmittedBy;
+    // global Date SubmittedDate;
     // global String UserAccountType;
     global string ExternalApplicationNumber;
     global Account() {
@@ -68,7 +68,6 @@ global with sharing class ApplicationSubmissionResponse {
     // global String SentiLinkRemarks;
     // global String SentiLinkStatus;
     global String SSN;
-    global String Password;
     global List<IdentificationDocument> IdentificationDocuments;
     global List<ContactPointAddress> ContactPointAddresses;
     // global List<Revenue> Revenues;
@@ -140,7 +139,6 @@ global with sharing class ApplicationSubmissionResponse {
     // global String Gender;
     // global String Height;
     global String IssuedRegion;
-    global String Nationality;
     global Decimal Order;
     // global String PrimaryContentDocumentID;
     // global String SecondaryContentDocumentId;
@@ -149,7 +147,7 @@ global with sharing class ApplicationSubmissionResponse {
     global Date ExpirationDate;
     global Date IssueDate;
     global String DocumentNumber;
-    global String Name;
+    // global String Name;
     global String IssuingCountry;
   }
 
@@ -167,7 +165,6 @@ global with sharing class ApplicationSubmissionResponse {
     global String Name;
     global String EmploymentStatus;
     global Decimal EmploymentDuration;
-    global String EmploymentVerificationType;
     global string BranchofService;
     global Date EnlistmentDate;
   }
@@ -189,7 +186,7 @@ global with sharing class ApplicationSubmissionResponse {
     global String ApplicantId;
     global String CustomerNumber;
     global String OverallDebitBureauResult;
-    global Integer CreditScore;
+    // global Integer CreditScore;
     global Integer QualifiedScore;
     global Integer CustomerScore;
     global String HighRiskConsumer;
