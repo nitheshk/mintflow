@@ -682,4 +682,14 @@ global virtual inherited sharing class DatabaseUtils {
     }
     return SObjectWithoutSharing.deleteRecords(recordIds, allOrNone);
   }
+  /**
+   * @description get records by applying user sharing rule
+   * @author Digital Align | 05-11-2021
+   * @param String queryString
+   * @return List<SObject>
+   **/
+  global static List<List<SObject>> searchRecords(String queryString) {
+    //use enforcefls for more secure soql in query constructor
+    return SObjectWithoutSharing.searchRecords(queryString);
+  }
 }

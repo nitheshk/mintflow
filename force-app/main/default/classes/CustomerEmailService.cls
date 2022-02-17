@@ -54,6 +54,10 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       );
     sendEmail();
   }
+  // @InvocableMethod(label='Get Account Names')
+  // global static void sendAbandonedEmail(List<Id> accountIds) {
+  //   system.debug('triggered id=' + accountIds);
+  // }
 
   /**
    * @description Notification to family member on reference
@@ -91,6 +95,43 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           }
         );
     }
+    sendEmail();
+  }
+  /**
+   * @description Suggest primary applicant to remove joint applicant
+   * @author Digital Align Team | 11-10-2021
+   * @param List<Applicant__c> applicants
+   **/
+  global virtual void removeJointApplicant(List<Applicant__c> applicants) {
+    Applicant__c primaryApplicant;
+    string jointApplicantNames = '';
+
+    for (Applicant__c applicant : applicants) {
+      Set<String> applicantTypes = new Set<String>(
+        applicant.ApplicantType__c.split(';')
+      );
+      if (applicantTypes.contains('Primary')) {
+        primaryApplicant = applicant;
+      } else if (applicantTypes.contains('Joint')) {
+        jointApplicantNames =
+          jointApplicantNames +
+          applicant.FirstName__c +
+          ' ' +
+          applicant.LastName__c +
+          ', ';
+      }
+    }
+
+    EmailNotificationBuilder.newInstance('removeJoint', primaryApplicant.Id)
+      .setToAddresses(primaryApplicant.Email__c)
+      .setSubstitute(
+        new Map<String, String>{
+          '{firstName}' => primaryApplicant.FirstName__c,
+          '{lastName}' => primaryApplicant.LastName__c,
+          '{jointApplicantNames}' => jointApplicantNames
+        }
+      );
+
     sendEmail();
   }
 

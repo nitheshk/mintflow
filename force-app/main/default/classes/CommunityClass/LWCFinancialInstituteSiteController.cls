@@ -7,6 +7,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class LWCFinancialInstituteSiteController {
+  private static logger log = logger.getInstance(ApplicantController.class);
   /**
    * @description
    * @author Digital Align Team | 07-27-2021
@@ -51,7 +52,7 @@ global with sharing class LWCFinancialInstituteSiteController {
    * @param Map<String Object> params
    * @return ApexResponse
    **/
-  @AuraEnabled(Cacheable=true)
+  @AuraEnabled
   public static ApexResponse retrieveEmployees(Map<String, Object> params) {
     try {
       return ApexResponse.ok(
@@ -69,7 +70,7 @@ global with sharing class LWCFinancialInstituteSiteController {
    * @param Map<String Object> params
    * @return ApexResponse
    **/
-  @AuraEnabled(Cacheable=true)
+  @AuraEnabled
   public static ApexResponse retrieveApplicants(Map<String, Object> params) {
     try {
       return ApexResponse.ok(
@@ -87,15 +88,18 @@ global with sharing class LWCFinancialInstituteSiteController {
    * @param Map<String Object> params
    * @return ApexResponse
    **/
-  @AuraEnabled(Cacheable=true)
+  @AuraEnabled
   public static ApexResponse retrieveApplications(Map<String, Object> params) {
     try {
+      log?.debug('retrieveApplications ::' + params);
       return ApexResponse.ok(
         SearchService.getInstance().retrieveApplications(params)
       );
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
+    } finally {
+      Logger.persist();
     }
   }
   /**

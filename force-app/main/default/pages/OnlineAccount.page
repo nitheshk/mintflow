@@ -11,7 +11,7 @@
 >
   <html lang="">
     <head>
-      <base href="{!URLFOR($Resource.MintFlow)}" />
+      <base href="{!URLFOR($Resource.mflow__MintFlow)}" />
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -28,11 +28,11 @@
       />
 
       <link
-        href="{!URLFOR($Resource.MintFlow, 'css/chunk-vendors.css')}"
+        href="{!URLFOR($Resource.mflow__MintFlow, 'css/chunk-vendors.css')}"
         rel="stylesheet"
       />
       <link
-        href="{!URLFOR($Resource.MintFlow, 'css/app.css')}"
+        href="{!URLFOR($Resource.mflow__MintFlow, 'css/app.css')}"
         rel="stylesheet"
       />
     </head>
@@ -53,14 +53,14 @@
         initialData = "{!JSENCODE(initialData)}";
       </script>
       <script
-        src="{!URLFOR($Resource.MintFlow, 'js/chunk-vendors.js')}"
+        src="{!URLFOR($Resource.mflow__MintFlow, 'js/chunk-vendors.js')}"
       ></script>
-      <script src="{!URLFOR($Resource.MintFlow, 'js/app.js')}"></script>
+      <script src="{!URLFOR($Resource.mflow__MintFlow, 'js/app.js')}"></script>
       <script
         src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"
       ></script>
       <script type="text/javascript">
-        var Resourceurl = "{!URLFOR($Resource.MintFlow)}";
+        var Resourceurl = "{!URLFOR($Resource.mflow__MintFlow)}";
         Visualforce.remoting.timeout = 120000;
       </script>
     </body>
