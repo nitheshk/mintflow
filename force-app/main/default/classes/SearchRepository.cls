@@ -171,6 +171,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
     if (String.isNotBlank(searchString)) {
       if (searchFilter != null) {
         dynamicString = ApexUtils.obtainSearchString(searchFilter);
+        log?.debug('dynamicString::' + dynamicString);
       }
       if (searchFilter.isEmpty()) {
         searchQuery =

@@ -24,7 +24,7 @@
     <div class="slds-grid slds-wrap">
       <div class="slds-col slds-size_1-of-4 slds-var-p-around_x-small">
         <lightning-input
-          data-fieldname="LOSNumber"
+          data-fieldname="mflow__ExternalApplicationNumber__c"
           label="LOS Number"
           value={searchFilter.mflow__ExternalApplicationNumber__c}
           placeholder="LOS Number"
@@ -52,7 +52,7 @@
         <lightning-input
           data-fieldname="CreatedDateFrom"
           label="Date From"
-          value={searchFilter.CreatedFrom}
+          value={searchFilter.CreatedDateFrom}
           placeholder="Date From"
           class="validate"
           maxlength="10"
@@ -65,7 +65,7 @@
         <lightning-input
           data-fieldname="CreatedDateTo"
           label="Date To "
-          value={searchFilter.CreatedTo}
+          value={searchFilter.CreatedDateTo}
           placeholder="Date To"
           class="validate"
           maxlength="10"
