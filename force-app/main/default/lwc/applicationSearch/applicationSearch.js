@@ -151,16 +151,8 @@ export default class ApplicationSearch extends NavigationMixin(
         )
       ) {
         isValid = true;
-        this.searchFilter[inputField.Name] = inputField.value;
       }
     });
     return isValid;
-  }
-  validDate() {
-    let valid = true;
-    console.log("to :" + this.searchFilter["CreatedDateTo"].value);
-    console.log("from :" + this.searchFilter["CreatedDateFrom"].value);
-
-    return valid;
   }
 }
