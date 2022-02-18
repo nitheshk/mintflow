@@ -4,7 +4,7 @@
     <description
   >Display Name for outgoing email, Only allowed when org wide email address are not used</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText
   >Display Name for outgoing email, Only allowed when org wide email address are not used</inlineHelpText>
     <label>Display Name</label>

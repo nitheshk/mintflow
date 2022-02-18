@@ -3,7 +3,7 @@
     <fullName>DisplayOrder__c</fullName>
     <description>Display Order of the columns</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <label>DisplayOrder</label>
     <precision>2</precision>
     <required>false</required>

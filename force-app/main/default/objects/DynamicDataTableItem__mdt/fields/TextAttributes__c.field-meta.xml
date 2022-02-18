@@ -4,7 +4,7 @@
     <description
   >Type attributes for the fields to be used as columns</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <label>TextAttributes</label>
     <length>32768</length>
     <type>LongTextArea</type>

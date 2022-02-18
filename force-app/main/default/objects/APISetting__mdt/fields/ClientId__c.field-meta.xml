@@ -3,7 +3,7 @@
     <fullName>ClientId__c</fullName>
     <description>Oauth client id, also known as Consumer Key</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>Oauth client id, also known as Consumer Key</inlineHelpText>
     <label>Client Id</label>
     <length>255</length>
