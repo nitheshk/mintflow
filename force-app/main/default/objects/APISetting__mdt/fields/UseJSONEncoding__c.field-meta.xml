@@ -5,7 +5,7 @@
     <description
   >Should the OAuth Flow encode the Request Parameters as JSON?</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <label>Use JSON Encoding</label>
     <type>Checkbox</type>
 </CustomField>

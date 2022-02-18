@@ -24,17 +24,17 @@ global with sharing class ApplicationSubmissionResponse {
     global String StateName;
     global String BranchCode;
     global String BranchName;
-    global String CreatedChannel;
-    global String LastUsedChannel;
-    global String CustomerType;
-    global String FlowState;
-    global String IpAddress;
+    // global String CreatedChannel;
+    // global String LastUsedChannel;
+    // global String CustomerType;
+    // global String FlowState;
+    // global String IpAddress;
     global Boolean IsMemberFlow;
-    global String Status;
-    global String SubStatus;
-    global String SubmittedBy;
-    global Date SubmittedDate;
-    global String UserAccountType;
+    // global String Status;
+    // global String SubStatus;
+    // global String SubmittedBy;
+    // global Date SubmittedDate;
+    // global String UserAccountType;
     global string ExternalApplicationNumber;
     global Account() {
       Applicants = new List<Applicant>();
@@ -48,36 +48,35 @@ global with sharing class ApplicationSubmissionResponse {
     global String ApplicantType;
     global String Application;
     global Date Birthdate;
-    global Decimal CreditScore;
+    // global Decimal CreditScore;
     global String CustomerNumber;
     global String Email;
     global String FirstName;
-    global String FraudStatus;
-    global String IdentityVerificationStatus;
-    global String IncomeVerificationStatus;
-    global Boolean IsEmailVerified;
+    // global String FraudStatus;
+    // global String IdentityVerificationStatus;
+    // global String IncomeVerificationStatus;
+    // global Boolean IsEmailVerified;
     global Boolean IsExistingCustomer;
-    global Boolean IsPhoneNumberVerified;
-    global String KYCStatus;
+    // global Boolean IsPhoneNumberVerified;
+    // global String KYCStatus;
     global String LastName;
     global String MiddleName;
     global Decimal Order;
     global String Phone;
     global String Relationship;
-    global Decimal SentiLinkFraudScore;
-    global String SentiLinkRemarks;
-    global String SentiLinkStatus;
+    // global Decimal SentiLinkFraudScore;
+    // global String SentiLinkRemarks;
+    // global String SentiLinkStatus;
     global String SSN;
-    global String Password;
     global List<IdentificationDocument> IdentificationDocuments;
     global List<ContactPointAddress> ContactPointAddresses;
-    global List<Revenue> Revenues;
+    // global List<Revenue> Revenues;
     global List<Employment> Employments;
     global List<Survey> Surveys;
     // global List<AssetsAndLiabilities> AssetsAndLiabilities;
     global Applicant() {
       Employments = new List<Employment>();
-      Revenues = new List<Revenue>();
+      // Revenues = new List<Revenue>();
       ContactPointAddresses = new List<ContactPointAddress>();
       IdentificationDocuments = new List<IdentificationDocument>();
       Surveys = new List<Survey>();
@@ -97,28 +96,28 @@ global with sharing class ApplicationSubmissionResponse {
 
   global class Survey {
     global String SurveyId;
-    global String Name;
+    // global String Name;
     global String Answer;
     global String LongDescription;
-    global String OptionType;
-    global String QuestionCode;
+    // global String OptionType;
+    // global String QuestionCode;
     global Decimal Order;
     global String ShortDescription;
-    global String ParentQuestionCode;
-    global Decimal QuestionNumber;
-    global string EventIdentifier;
-    global string TemplateName;
+    // global String ParentQuestionCode;
+    // global Decimal QuestionNumber;
+    // global string EventIdentifier;
+    // global string TemplateName;
   }
 
-  global class Revenue {
-    global String RevenueId;
-    global String SubType;
-    global String Type;
-    global String Name;
-    global Double Amount;
-    global Date RevenueDate;
-    global Decimal Order;
-  }
+  // global class Revenue {
+  //   global String RevenueId;
+  //   global String SubType;
+  //   global String Type;
+  //   global String Name;
+  //   global Double Amount;
+  //   global Date RevenueDate;
+  //   global Decimal Order;
+  // }
 
   global class ContactPointAddress {
     global String ContactPointAddressId;
@@ -137,19 +136,18 @@ global with sharing class ApplicationSubmissionResponse {
 
   global class IdentificationDocument {
     global String IdentificationDocumentId;
-    global String Gender;
-    global String Height;
+    // global String Gender;
+    // global String Height;
     global String IssuedRegion;
-    global String Nationality;
     global Decimal Order;
-    global String PrimaryContentDocumentID;
-    global String SecondaryContentDocumentId;
-    global String Weight;
+    // global String PrimaryContentDocumentID;
+    // global String SecondaryContentDocumentId;
+    // global String Weight;
     global String DocumentType;
     global Date ExpirationDate;
     global Date IssueDate;
     global String DocumentNumber;
-    global String Name;
+    // global String Name;
     global String IssuingCountry;
   }
 
@@ -167,7 +165,6 @@ global with sharing class ApplicationSubmissionResponse {
     global String Name;
     global String EmploymentStatus;
     global Decimal EmploymentDuration;
-    global String EmploymentVerificationType;
     global string BranchofService;
     global Date EnlistmentDate;
   }

@@ -3,7 +3,7 @@
     <fullName>CallbackURL__c</fullName>
     <description>Auth callback url</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <label>Callback URL</label>
     <required>false</required>
     <type>Url</type>

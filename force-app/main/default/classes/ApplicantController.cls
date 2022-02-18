@@ -8,7 +8,7 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class ApplicantController extends AbstractController {
   private static logger log = logger.getInstance(ApplicantController.class);
-  public ApplicantController(AbstractController controller) {
+  global ApplicantController(AbstractController controller) {
     super(ApplicantController.class);
   }
 

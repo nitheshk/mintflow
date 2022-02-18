@@ -3,7 +3,7 @@
     <fullName>ParentObjectAPI__c</fullName>
     <description>Parent Object name for fetching the field</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <label>ParentObjectAPI</label>
     <length>255</length>
     <required>false</required>

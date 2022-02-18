@@ -3,7 +3,7 @@
     <fullName>CellAttributes__c</fullName>
     <description>CellAttributes of the data column</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <label>CellAttributes</label>
     <length>255</length>
     <required>false</required>

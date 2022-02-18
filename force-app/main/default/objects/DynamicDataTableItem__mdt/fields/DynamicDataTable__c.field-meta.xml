@@ -4,7 +4,7 @@
     <description
   >Master table to list the layout name or data table name</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <label>DynamicDataTable</label>
     <referenceTo>DynamicDataTable__mdt</referenceTo>
     <relationshipLabel>DynamicDataTableItems</relationshipLabel>
