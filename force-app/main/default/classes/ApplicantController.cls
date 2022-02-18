@@ -180,7 +180,7 @@ global with sharing class ApplicantController extends AbstractController {
   @RemoteAction
   public static ApexResponse atomicAuthenticate(ApexRequest request) {
     try {
-      log?.fine('Inside atomicAuthenticate');
+      log?.fine('Atomic FI authenticated successfully');
       validateRequest(request);
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       ID employerId = (Id) ApexRequest.getParams('employerId');
