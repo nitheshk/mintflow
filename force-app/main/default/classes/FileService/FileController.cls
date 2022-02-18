@@ -9,7 +9,7 @@
 global with sharing class FileController extends AbstractController {
   private static Logger log = Logger.getInstance(IdentityController.class);
 
-  public FileController(AbstractController controller) {
+  global FileController(AbstractController controller) {
     super(FileController.class);
   }
   /**

@@ -8,7 +8,7 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class FinancingController extends AbstractController {
   private static Logger log = Logger.getInstance(FinancingController.class);
-  public FinancingController(AbstractController controller) {
+  global FinancingController(AbstractController controller) {
     super(FinancingController.class);
   }
 

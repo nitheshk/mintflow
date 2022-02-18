@@ -8,7 +8,7 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class LwcCustomController extends AbstractController {
   private static logger log = logger.getInstance(LwcCustomController.class);
-  public LwcCustomController(AbstractController controller) {
+  global LwcCustomController(AbstractController controller) {
     super(LwcCustomController.class);
   }
 
