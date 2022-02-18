@@ -79,14 +79,6 @@
                           "seedComponents": [],
                           "tabKey": "79d08",
                           "tabName": "Search Applications"
-                        },
-                        {
-                          "UUID": "accc445b-3f8d-49f2-9718-744842098a45",
-                          "allowGuestUser": false,
-                          "locked": false,
-                          "seedComponents": [],
-                          "tabKey": "a371a",
-                          "tabName": "Search Employees"
                         }
                       ],
                       "useOverflowMenu": false
@@ -124,24 +116,6 @@
                       "id": "8a2c3e0e-4541-47c4-b3bc-a9a0d4ea10f4",
                       "regionLabel": "Search Applications",
                       "regionName": "79d08",
-                      "renditionMap": {},
-                      "type": "region"
-                    },
-                    {
-                      "components": [
-                        {
-                          "componentAttributes": {
-                            "employeeContactType": "FinancialInstituteEmployee"
-                          },
-                          "componentName": "mflow:employeeSearch",
-                          "id": "2a97d078-f16f-48af-9368-c7477f9c0781",
-                          "renditionMap": {},
-                          "type": "component"
-                        }
-                      ],
-                      "id": "accc445b-3f8d-49f2-9718-744842098a45",
-                      "regionLabel": "Search Employees",
-                      "regionName": "a371a",
                       "renditionMap": {},
                       "type": "region"
                     }
