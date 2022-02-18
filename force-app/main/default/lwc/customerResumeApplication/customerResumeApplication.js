@@ -36,8 +36,8 @@ export default class CustomerResumeApplication extends LightningElement {
             this.isAuthenticated = true;
             this.applications = JSON.parse(result.data)?.filter(
               (item) =>
-                item.FinServ__Status__c === "Abandoned" ||
-                item.FinServ__Status__c === "In Progress"
+                item.mflow__Status__c === "Abandoned" ||
+                item.mflow__Status__c === "In Progress"
             );
             if (this.applications.length === 0) {
               this.hasApplications = false;

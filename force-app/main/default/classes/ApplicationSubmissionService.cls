@@ -42,11 +42,11 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
     HttpBuilder.Response response = RpaProcessService.getInstance()
       .scheduleApplication(application);
     if (response.statusCode == 400) {
-      application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+      application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
       application.Stage__c = 'Exception';
       application.mflow__FlowState__c = '';
     } else {
-      application.FinServ__Status__c = ApplicationConstant.SUBMITTED;
+      application.Status__c = ApplicationConstant.SUBMITTED;
       application.Stage__c = 'Submitted';
     }
 
@@ -55,7 +55,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
       ) {
-        applicant.mflow__Status__c = application.FinServ__Status__c;
+        applicant.mflow__Status__c = application.Status__c;
         break;
       }
     }
@@ -88,7 +88,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
 
-    if (application.FinServ__Status__c == ApplicationConstant.COMPLETED) {
+    if (application.Status__c == ApplicationConstant.COMPLETED) {
       throw new CustomException('Application has already processed');
     }
 
@@ -103,7 +103,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
     try {
       application = this.updateFundingDetail(application, fundingResult);
 
-      if (application.FinServ__Status__c == ApplicationConstant.COMPLETED) {
+      if (application.Status__c == ApplicationConstant.COMPLETED) {
         //Send Funding Email Link to primary
         // CustomerEmailService.getInstance()
         //   .fundingLinkOnKycApproval(application);
@@ -151,7 +151,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
   ) {
     switch on fundingResult.ExternalApplicationStatus {
       when 'Accept', 'Passed', 'Approved' {
-        application.FinServ__Status__c = ApplicationConstant.COMPLETED;
+        application.Status__c = ApplicationConstant.COMPLETED;
         application.AccountNumber = fundingResult.MemberNumber;
         for (Applicant__c applicant : application.Applicants__r) {
           if (
@@ -180,7 +180,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
           Id = financialAccountResult.FinancialAccountId,
           FinServ__FinancialAccountNumber__c = financialAccountResult.AccountNumber
         );
-        if (application.FinServ__Status__c == ApplicationConstant.COMPLETED) {
+        if (application.Status__c == ApplicationConstant.COMPLETED) {
           fa.FinServ__Status__c = 'Paid out';
         }
         SubmissionRepository.upsertRecord(fa);

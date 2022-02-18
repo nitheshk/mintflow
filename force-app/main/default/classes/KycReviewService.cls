@@ -57,7 +57,7 @@ global with sharing class KycReviewService extends AbstractService {
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.ApplicationNumber__c);
 
-    if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
+    if (application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
       throw new CustomException('Kyc has already passed for the application ');
     }
 
@@ -84,7 +84,7 @@ global with sharing class KycReviewService extends AbstractService {
       // if Application kyc status is approved, then proceed with creating Account & Contact for primary
       // And Open Membership Financial Account and relation with applicant
 
-      if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
+      if (application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
         ApplicantService.getInstance().createMemberAccount(application);
 
         application = FinancialAccountService.getInstance()
@@ -140,7 +140,7 @@ global with sharing class KycReviewService extends AbstractService {
     application.isMemberFlow__c = false;
     application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
     application.ExternalApplicationStatus__c = kycResult.ExternalApplicationStatus;
-    application.FinServ__Status__c = ApplicationConstant.CANCELLED;
+    application.Status__c = ApplicationConstant.CANCELLED;
     application.mflow__Stage__c = ApplicationConstant.STAGE_EXISTING_CUSTOMER;
     application.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
     for (Applicant__c applicant : application.Applicants__r) {
@@ -248,22 +248,22 @@ global with sharing class KycReviewService extends AbstractService {
 
     switch on kycResult.ExternalApplicationStatus {
       // when 'Accept', 'Passed', 'Approved' {
-      //   application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-      //   application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+      //   application.Status__c = ApplicationConstant.IN_PROGRESS;
+      //   application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
       //   application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
       // }
       when 'Fraud' {
-        application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-        application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+        application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+        application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
       }
       when else {
         if (kycSuccessForApplicants) {
-          application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-          application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+          application.Status__c = ApplicationConstant.IN_PROGRESS;
+          application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
           application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
         } else {
-          application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-          application.FinServ__KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
+          application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+          application.KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
         }
       }
     }

@@ -74,7 +74,7 @@ global with sharing class BuildFundingWrapper extends AbstractService {
     mapper.Application = application.Id;
     mapper.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
     mapper.Stage = application.mflow__Stage__c;
-    mapper.Status = application.FinServ__Status__c;
+    mapper.Status = application.Status__c;
     mapper.Password = primaryApplicant.Password__c;
     mapper.FinancialAccount.addAll(
       mapFinancialApplication(financialApplications)

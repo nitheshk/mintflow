@@ -188,7 +188,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate,CreatedBy.Name WHERE RecordType.Name=' +
+          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,Status__c,CreatedDate,CreatedBy.Name WHERE RecordType.Name=' +
           '\'' +
           recordTypeName +
           '\'' +
@@ -197,7 +197,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate,CreatedBy.Name  WHERE RecordType.Name= ' +
+          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,Status__c,CreatedDate,CreatedBy.Name  WHERE RecordType.Name= ' +
           '\'' +
           recordTypeName +
           '\'' +

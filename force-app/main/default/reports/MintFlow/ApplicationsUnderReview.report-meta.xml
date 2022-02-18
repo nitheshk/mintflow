@@ -29,7 +29,7 @@
     </columns>
     <filter>
         <criteriaItems>
-            <column>Account.FinServ__Status__c</column>
+            <column>Account.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>

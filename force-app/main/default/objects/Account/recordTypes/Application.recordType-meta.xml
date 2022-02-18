@@ -160,7 +160,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FinServ__CustomerType__c</picklist>
+        <picklist>ApplicationType__c</picklist>
         <values>
             <fullName>Consumer</fullName>
             <default>false</default>
@@ -255,7 +255,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FinServ__KYCStatus__c</picklist>
+        <picklist>KYCStatus__c</picklist>
         <values>
             <fullName>Failed</fullName>
             <default>false</default>
@@ -270,7 +270,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FinServ__LastUsedChannel__c</picklist>
+        <picklist>LastUsedChannel__c</picklist>
         <values>
             <fullName>Branch</fullName>
             <default>false</default>
@@ -376,7 +376,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FinServ__Status__c</picklist>
+        <picklist>Status__c</picklist>
         <values>
             <fullName>Abandoned</fullName>
             <default>false</default>

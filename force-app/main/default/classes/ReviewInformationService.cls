@@ -96,7 +96,7 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     if (isFlowCompleted) {
       //Mark Application to submitted for review
-      application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       //1. Push Primary applicant to RPA Queue
       // Need to move future thr is dml operation before this
       HttpBuilder.Response response = RpaProcessService.getInstance()
@@ -193,7 +193,7 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     if (isFlowCompleted) {
       //Mark Application to submitted for review
-      application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       // Need to move future thr is dml operation before this
       HttpBuilder.Response response = RpaProcessService.getInstance()
         .scheduleApplication(application);
@@ -246,7 +246,7 @@ global with sharing class ReviewInformationService extends AbstractService {
     for (Applicant__c applicant : application.Applicants__r) {
       applicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
     }
-    application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+    application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
 
     //Add application to Loan Queue
     HttpBuilder.Response response = RpaProcessService.getInstance()

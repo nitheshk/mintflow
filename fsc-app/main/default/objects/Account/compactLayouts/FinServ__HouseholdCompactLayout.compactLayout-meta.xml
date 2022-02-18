@@ -4,7 +4,7 @@
     <fields>Name</fields>
     <fields>mflow__ExternalApplicationNumber__c</fields>
     <fields>mflow__ExternalApplicationStatus__c</fields>
-    <fields>FinServ__Status__c</fields>
-    <fields>FinServ__KYCStatus__c</fields>
+    <fields>mflow__Status__c</fields>
+    <fields>mflow__KYCStatus__c</fields>
     <label>Household Compact Layout</label>
 </CompactLayout>

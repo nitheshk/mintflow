@@ -83,16 +83,16 @@ global with sharing class ApplicationService extends AbstractService {
       Account.SObjectType,
       ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
     );
-    application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
+    application.Status__c = ApplicationConstant.IN_PROGRESS;
     if (params.get('ch') != null) {
       application.CreatedChannel__c = (String) params.get('ch');
-      application.FinServ__LastUsedChannel__c = (String) params.get('ch');
+      application.LastUsedChannel__c = (String) params.get('ch');
     } else {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
-      application.FinServ__LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
+      application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
     }
     // #pending  value need to decide based on the parameter
-    application.FinServ__CustomerType__c = 'Consumer';
+    application.ApplicationType__c = 'Consumer';
     application.mflow__isMemberFlow__c = true;
     application.UserAccountType__c = 'CustomerApplication';
     application.FlowState__c = 'GetStarted';
@@ -142,7 +142,7 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('applicantId', ApexRequest.getApplicantId());
     params.put('applicantType', ApexRequest.getApplicantType());
     params.put('flowType', ApexRequest.getFlowType());
-    params.put('channel', application.FinServ__LastUsedChannel__c);
+    params.put('channel', application.LastUsedChannel__c);
     params.put('applicationNumber', application.Name);
     return application;
   }
@@ -320,7 +320,7 @@ global with sharing class ApplicationService extends AbstractService {
       ApexRequest.getApplicantType() ==
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
     ) {
-      application.FinServ__Status__c = ApplicationConstant.SAVED;
+      application.Status__c = ApplicationConstant.SAVED;
       for (Applicant__c applicant : application.Applicants__r) {
         if (
           applicant.ApplicantType__c ==

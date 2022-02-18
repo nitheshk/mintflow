@@ -15,7 +15,7 @@ const columns = [
     }
   },
   { label: "LOS Number", fieldName: "mflow__ExternalApplicationNumber__c" },
-  { label: "Status", fieldName: "FinServ__Status__c" },
+  { label: "Status", fieldName: "mflow__Status__c" },
   { label: "Date", fieldName: "CreatedDate" },
   { label: "Owner", fieldName: "Owner" }
 ];

@@ -247,8 +247,7 @@ global with sharing class RpaProcessService extends AbstractService {
     Account application = (Account) KycReviewService.getInstance()
       .processMembershipKYC(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
-    String responseString =
-      'Application Status :' + application.FinServ__Status__c;
+    String responseString = 'Application Status :' + application.Status__c;
     response.responseBody = Blob.valueOf(responseString);
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');
@@ -305,8 +304,7 @@ global with sharing class RpaProcessService extends AbstractService {
     Account application = (Account) ApplicationSubmissionService.getInstance()
       .processFundingSubmission(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
-    String responseString =
-      'Application Status :' + application.FinServ__Status__c;
+    String responseString = 'Application Status :' + application.Status__c;
     response.responseBody = Blob.valueOf(responseString);
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');

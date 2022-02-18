@@ -536,17 +536,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.FinServ__KYCStatus__c</field>
+        <field>Account.KYCStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.FinServ__LastUsedChannel__c</field>
+        <field>Account.LastUsedChannel__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.FinServ__Status__c</field>
+        <field>Account.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
 
@@ -687,7 +687,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.FinServ__CustomerType__c</field>
+        <field>Account.ApplicationType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -747,7 +747,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.FinServ__KYCStatus__c</field>
+        <field>Account.KYCStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -777,7 +777,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.FinServ__LastUsedChannel__c</field>
+        <field>Account.LastUsedChannel__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -862,7 +862,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.FinServ__Status__c</field>
+        <field>Account.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

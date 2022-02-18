@@ -11,7 +11,7 @@
         <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>Account.FinServ__Status__c</groupingColumn>
+        <groupingColumn>Account.Status__c</groupingColumn>
         <location>CHART_BOTTOM</location>
         <showAxisLabels>false</showAxisLabels>
         <showPercentage>false</showPercentage>
@@ -35,7 +35,7 @@
     </columns>
     <filter>
         <criteriaItems>
-            <column>Account.FinServ__Status__c</column>
+            <column>Account.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
@@ -53,7 +53,7 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.FinServ__Status__c</field>
+        <field>Account.Status__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Abandoned Applications</name>

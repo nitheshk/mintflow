@@ -328,19 +328,19 @@ global with sharing class LwcCustomService extends AbstractService {
         if (approvalType == 'Application') {
           if (status == ApplicationConstant.KYC_PASSED) {
             application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-            application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-            application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+            application.Status__c = ApplicationConstant.IN_PROGRESS;
+            application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
             application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
           } else if (status == ApplicationConstant.KYC_FAILED) {
-            application.FinServ__Status__c = ApplicationConstant.CANCELLED;
-            application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+            application.Status__c = ApplicationConstant.CANCELLED;
+            application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
           }
           LwcCustomRepository.upsertRecord(application);
         } else if (approvalType == 'Application And Applicants') {
           if (status == ApplicationConstant.KYC_PASSED) {
             application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-            application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-            application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+            application.Status__c = ApplicationConstant.IN_PROGRESS;
+            application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
             application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
             for (Applicant__c applicant : application.Applicants__r) {
               if (
@@ -354,8 +354,8 @@ global with sharing class LwcCustomService extends AbstractService {
               applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_PASSED;
             }
           } else if (status == ApplicationConstant.KYC_FAILED) {
-            application.FinServ__Status__c = ApplicationConstant.CANCELLED;
-            application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+            application.Status__c = ApplicationConstant.CANCELLED;
+            application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
             for (Applicant__c applicant : application.Applicants__r) {
               applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
               applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
@@ -379,7 +379,7 @@ global with sharing class LwcCustomService extends AbstractService {
         // Create membership account based on the KYC Approval
         if (
           application.mflow__isMemberFlow__c &&
-          application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED
+          application.KYCStatus__c == ApplicationConstant.KYC_PASSED
         ) {
           try {
             ApplicantService.getInstance().createMemberAccount(application);

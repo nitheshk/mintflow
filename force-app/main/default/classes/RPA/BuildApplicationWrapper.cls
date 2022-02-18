@@ -70,12 +70,12 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
         mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
         // mapperApplication.CreatedChannel = application.CreatedChannel__c;
         mapperApplication.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
-        // mapperApplication.CustomerType = application.FinServ__CustomerType__c;
+        // mapperApplication.CustomerType = application.ApplicationType__c;
         // mapperApplication.FlowState = application.FlowState__c;
         // mapperApplication.IpAddress = application.IPAddress__c;
         // mapperApplication.IsMemberFlow = application.isMemberFlow__c;
-        // mapperApplication.LastUsedChannel = application.FinServ__LastUsedChannel__c;
-        // mapperApplication.Status = application.FinServ__Status__c;
+        // mapperApplication.LastUsedChannel = application.LastUsedChannel__c;
+        // mapperApplication.Status = application.Status__c;
         // mapperApplication.SubmittedBy = application.SubmittedBy__c;
         // mapperApplication.SubmittedDate = application.SubmittedDate__c;
         // mapperApplication.SubStatus = application.Stage__c;
