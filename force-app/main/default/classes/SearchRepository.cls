@@ -93,57 +93,67 @@ public with sharing class SearchRepository extends DatabaseUtils {
     List<Applicant__c> employeeList = new List<Applicant__c>();
     if (String.isNotBlank(searchString)) {
       if (searchFilter != null) {
-        // dynamicString = ApexUtils.obtainSearchString(searchFilter);
+        dynamicString = ApexUtils.obtainSearchString(searchFilter);
       }
-
+      log?.debug('Member search where condition ::' + dynamicString);
       if (searchFilter.isEmpty()) {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c,mflow__Application__r.Name,mflow__ApplicantName__c,mflow__KYCStatus__c ORDER BY CreatedDate Desc)';
+          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c,mflow__Application__r.Name,mflow__ApplicantName__c,mflow__KYCStatus__c  ORDER BY CreatedDate Desc)';
       } else {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c,mflow__Application__r.Name,mflow__ApplicantName__c,mflow__KYCStatus__c) WHERE ' +
+          '} IN ALL FIELDS RETURNING  mflow__Applicant__c(Id,mflow__FirstName__c,mflow__LastName__c,mflow__Email__c,mflow__Phone__c,mflow__SSN__c,mflow__Application__r.Name,mflow__ApplicantName__c,mflow__KYCStatus__c WHERE ' +
           dynamicString +
           ' ORDER BY CreatedDate Desc)';
       }
+      log?.debug('Member search query  ::' + searchQuery);
       List<List<sObject>> objectList = new List<List<sObject>>();
-      objectList = search.query(searchQuery);
-      //objectList = DatabaseUtils.searchRecords(searchQuery);
-
-      System.debug('employeeList first' + objectList);
+      objectList = DatabaseUtils.searchRecords(searchQuery);
       employeeList = (List<Applicant__c>) objectList[0];
       return employeeList;
     } else {
       query q = Query.newInstance(Applicant__c.SObjectType)
+        .addFields('mflow__Application__r.Name,mflow__Application__r.Id')
         .addFields()
         .whereNotNull('Name');
       if (!searchFilter.isEmpty()) {
-        if (String.isNotBlank(searchFilter.get('FirstName'))) {
+        if (String.isNotBlank(searchFilter.get('mflow__FirstName__c'))) {
           q.andCon()
-            .whereLike('mflow__FirstName__c', searchFilter.get('FirstName'));
+            .whereLike(
+              'mflow__FirstName__c',
+              searchFilter.get('mflow__FirstName__c')
+            );
         }
-        if (String.isNotBlank(searchFilter.get('LastName'))) {
+        if (String.isNotBlank(searchFilter.get('mflow__LastName__c'))) {
           q.andCon()
-            .whereLike('mflow__LastName__c', searchFilter.get('LastName'));
+            .whereLike(
+              'mflow__LastName__c',
+              searchFilter.get('mflow__LastName__c')
+            );
         }
-        if (String.isNotBlank(searchFilter.get('Email'))) {
-          q.andCon().whereLike('mflow__Email__c', searchFilter.get('Email'));
-        }
-        if (String.isNotBlank(searchFilter.get('MobilePhone'))) {
+        if (String.isNotBlank(searchFilter.get('mflow__Email__c'))) {
           q.andCon()
-            .whereLike('mflow__Phone__c', searchFilter.get('MobilePhone'));
+            .whereLike('mflow__Email__c', searchFilter.get('mflow__Email__c'));
         }
-        if (String.isNotBlank(searchFilter.get('SSN'))) {
-          q.andCon().whereLike('mflow__SSN__c', searchFilter.get('SSN'));
+        if (String.isNotBlank(searchFilter.get('mflow__Phone__c'))) {
+          q.andCon()
+            .whereLike('mflow__Phone__c', searchFilter.get('mflow__Phone__c'));
         }
+        if (String.isNotBlank(searchFilter.get('mflow__SSN__c'))) {
+          q.andCon()
+            .whereLike('mflow__SSN__c', searchFilter.get('mflow__SSN__c'));
+        }
+        if (String.isNotBlank(searchFilter.get('dateRange')))
+          q.andCon()
+            .whereCon('CreatedDate', '=' + searchFilter.get('dateRange'));
       }
       employeeList = (List<Applicant__c>) DatabaseUtils.getRecords(
         q.toString(true)
       );
-      System.debug('employeeList second' + employeeList);
+      log?.debug('SOQL query ::' + q.toString(true));
       return employeeList;
     }
   }
@@ -165,31 +175,40 @@ public with sharing class SearchRepository extends DatabaseUtils {
     Datetime dt;
     DateTime dtAndTime;
     String dateValue;
+    String recordTypeName = 'Application';
     List<Account> applicationsList = new List<Account>();
     Query q;
 
     if (String.isNotBlank(searchString)) {
       if (searchFilter != null) {
         dynamicString = ApexUtils.obtainSearchString(searchFilter);
-        log?.debug('dynamicString::' + dynamicString);
+        log?.debug('application search sosl filter ::' + dynamicString);
       }
       if (searchFilter.isEmpty()) {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate,CreatedBy.Name  ORDER BY CreatedDate Desc)';
+          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate,CreatedBy.Name WHERE RecordType.Name=' +
+          '\'' +
+          recordTypeName +
+          '\'' +
+          ' ORDER BY CreatedDate Desc)';
       } else {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate,CreatedBy.Name  WHERE ' +
+          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,FinServ__Status__c,CreatedDate,CreatedBy.Name  WHERE RecordType.Name= ' +
+          '\'' +
+          recordTypeName +
+          '\'' +
+          ' AND ' +
           dynamicString +
           ' ORDER BY CreatedDate Desc)';
       }
-
+      log?.debug('application sosql  query :' + searchQuery);
       List<List<sObject>> objectList = new List<List<sObject>>();
       objectList = DatabaseUtils.searchRecords(searchQuery);
-      log?.debug('retrieveApplications Query sosl:' + searchQuery);
+
       applicationsList = (List<Account>) objectList[0];
       return applicationsList;
     } else {
@@ -197,7 +216,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
         q = Query.newInstance(Account.SObjectType)
           .addFields()
           .addfields('CreatedBy.Name')
-          .whereNotNull('Name');
+          .wherecon('RecordType.Name', recordtypeName);
         if (String.isNotBlank(searchFilter.get('CreatedDateFrom'))) {
           dt = DateUtils.convertJsonStringToDateTime(
             searchFilter.get('CreatedDateFrom')
@@ -219,7 +238,11 @@ public with sharing class SearchRepository extends DatabaseUtils {
         if (String.isNotBlank(searchFilter.get('Name'))) {
           q.andCon().whereLike('Name', searchFilter.get('Name'));
         }
-        if (String.isNotBlank(searchFilter.get('LOSNumber'))) {
+        if (
+          String.isNotBlank(
+            searchFilter.get('mflow__ExternalApplicationNumber__c')
+          )
+        ) {
           q.andCon()
             .whereLike(
               'mflow__ExternalApplicationNumber__c',

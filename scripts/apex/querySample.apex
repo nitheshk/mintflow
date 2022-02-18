@@ -14,7 +14,7 @@ SOQL TESTING SAMPLE
 /** Updated SOQL */
 // New Updated
 
-Example 18 - Different way of Where Conditions   can written 
+Example 1 - Different way of Where Conditions   can written 
 
 String FirstName='Tim';
 String q = Query.newInstance(Contact.SObjectType)
@@ -51,7 +51,7 @@ String q = Query.newInstance(Contact.SObjectType)
   system.debug(system.JSON.Serialize(sl));
 
 
-Example 19- using IN SOQL
+Example 2- using IN SOQL
  
 String q = Query.newInstance(Account.SObjectType)
     .addFields('Name')
@@ -436,3 +436,21 @@ list<Contact> lst=new  List<Contact> {new Contact()};
 system.debug(SecurityUtils.crud(lst,crudType.UPDATABLE));
 
 
+  Exmaple 18 - Date greater than 
+  
+       String q = Query.newInstance(Contact.SObjectType)
+          .addFields('Name')
+          .whereGte('CreatedDate', DateTime.now())
+          .toString(true);
+          List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
+       
+
+  
+  Exmaple 1 - Date Less than 
+  
+       String q = Query.newInstance(Contact.SObjectType)
+          .addFields('Name')
+          .wherelte('CreatedDate', DateTime.now())
+          .toString(true);
+          List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
+       

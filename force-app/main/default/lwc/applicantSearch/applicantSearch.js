@@ -41,6 +41,16 @@ export default class ApplicantSearch extends NavigationMixin(LightningElement) {
   @track openModal = false;
   @api employeeContactType;
 
+  get options() {
+    return [
+      { label: "This Week", value: "THIS_WEEK" },
+      { label: "Last Week", value: "LAST_WEEK" },
+      { label: "This Month", value: "THIS_MONTH" },
+      { label: "Today", value: "TODAY" },
+      { label: "Yesterday", value: "YESTERDAY" }
+    ];
+  }
+
   handleAccountName(event) {
     this.searchString = event.detail.value;
   }
@@ -55,14 +65,20 @@ export default class ApplicantSearch extends NavigationMixin(LightningElement) {
     })
       .then((result) => {
         this.searchData = JSON.parse(result.data);
-
-        this.searchData.map((record) => {
-          record.ApplicationNumber = record.mflow__Application__r.Name;
-          record.URL = "/account/" + record.mflow__Application__r.Id;
-
-          record.Id = "/detail/" + record.Id;
-          return record;
-        });
+        if (this.searchData === null) {
+          utils.infoMessage(
+            this,
+            "There are no records for this search result",
+            "Info"
+          );
+        } else {
+          this.searchData.map((record) => {
+            record.ApplicationNumber = record.mflow__Application__r.Name;
+            record.URL = "/account/" + record.mflow__Application__r.Id;
+            record.Id = "/detail/" + record.Id;
+            return record;
+          });
+        }
       })
       .catch((error) => {
         console.log("error =====> " + JSON.stringify(error));
@@ -73,47 +89,44 @@ export default class ApplicantSearch extends NavigationMixin(LightningElement) {
         this.showSpinner = false;
       });
   }
-  callRowAction(event) {
-    const recId = event.detail.row.Id;
-    const actionName = event.detail.action.name;
-    if (actionName === "Edit") {
-      this[NavigationMixin.Navigate]({
-        type: "standard__recordPage",
-        attributes: {
-          recordId: recId,
-          objectApiName: "Account",
-          actionName: "edit"
-        }
-      });
-    } else if (actionName === "View") {
-      this[NavigationMixin.Navigate]({
-        type: "standard__recordPage",
-        attributes: {
-          recordId: recId,
-          objectApiName: "Account",
-          actionName: "view"
-        }
-      });
-    }
-  }
+
   handleChange(event) {
     let targetElement = event.target;
     this.searchFilter[targetElement.dataset.fieldname] = targetElement.value;
-    console.log(JSON.stringify(this.searchFilter));
+    console.log("filter::" + JSON.stringify(this.searchFilter));
   }
-  showModal() {
-    this.openModal = true;
-  }
-  closeModal() {
-    this.openModal = false;
-    this.searchFilter = {};
-  }
+
   clearFilter() {
     this.searchFilter = {};
+    this.searchData = {};
+    this.searchString = "";
   }
   applyFilter() {
     this.showSpinner = true;
-    this.handleSearch();
-    this.openModal = false;
+    if (this.isInputValid()) {
+      this.handleSearch();
+    } else {
+      utils.errorMessage(
+        this,
+        "Please select any one of the criteria to search"
+      );
+    }
+  }
+
+  isInputValid() {
+    let isValid = false;
+    let inputFields = this.template.querySelectorAll(".validate");
+    inputFields.forEach((inputField) => {
+      if (
+        !(
+          inputField.value === undefined ||
+          inputField.value === null ||
+          inputField.value === ""
+        )
+      ) {
+        isValid = true;
+      }
+    });
+    return isValid;
   }
 }

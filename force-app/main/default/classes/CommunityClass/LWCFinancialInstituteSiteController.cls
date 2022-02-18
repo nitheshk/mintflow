@@ -73,12 +73,16 @@ global with sharing class LWCFinancialInstituteSiteController {
   @AuraEnabled
   public static ApexResponse retrieveApplicants(Map<String, Object> params) {
     try {
+      log?.debug('retrieve Member ::' + params);
+
       return ApexResponse.ok(
         SearchService.getInstance().retrieveApplicants(params)
       );
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
+    } finally {
+      Logger.persist();
     }
   }
 
@@ -91,7 +95,7 @@ global with sharing class LWCFinancialInstituteSiteController {
   @AuraEnabled
   public static ApexResponse retrieveApplications(Map<String, Object> params) {
     try {
-      log?.debug('retrieveApplications ::' + params);
+      log?.debug('retrieve Applications ::' + params);
       return ApexResponse.ok(
         SearchService.getInstance().retrieveApplications(params)
       );

@@ -92,10 +92,10 @@ export default class ApplicationSearch extends NavigationMixin(
   clearFilter() {
     this.searchFilter = {};
     this.searchData = {};
+    this.searchString = "";
   }
   applyFilter() {
     this.showSpinner = true;
-
     if (this.isInputValid()) {
       this.handleSearch();
     } else {
@@ -135,10 +135,6 @@ export default class ApplicationSearch extends NavigationMixin(
     this.data = parseData;
   }
 
-  handleToggleSectionD() {
-    console.log("clicked toggle");
-    this.openModal = !this.openModal;
-  }
   isInputValid() {
     let isValid = false;
     let inputFields = this.template.querySelectorAll(".validate");
