@@ -12,7 +12,7 @@
   "ui": {
     "MintFlow": {
       "uiDistFolder": "p1fcu-olbui/dist/",
-      "staticResourceFolder": "./force-app/main/default/staticresources/",
+      "staticResourceFolder": "./fsc-app/main/default/staticresources/",
       "staticResourceName": "MintFlow.zip",
       "UIFolder": "p1fcu-olbui"
     }
