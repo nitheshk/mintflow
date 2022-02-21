@@ -53,11 +53,6 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>DeleteRecord__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
         <field>FlowState__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>

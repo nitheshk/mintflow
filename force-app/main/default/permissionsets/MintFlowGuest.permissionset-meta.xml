@@ -348,11 +348,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialProduct__c.DeleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FinancialProduct__c.DisplayLabel__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1073,11 +1068,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.DeleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>AccountContactRelation.EndDate</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1294,11 +1284,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsPhoneNumberVerified__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.DeleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1722,38 +1707,31 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.DeleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    
-
-<fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.FraudStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-<fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.IncomeVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-<fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.KYCStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-<fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.SentiLinkFraudScore__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
- <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.SentiLinkStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-<fieldPermissions>
+            <editable>true</editable>
+            <field>Contact.FraudStatus__c</field>
+            <readable>true</readable>
+        </fieldPermissions>
+    <fieldPermissions>
+            <editable>true</editable>
+            <field>Contact.IncomeVerificationStatus__c</field>
+            <readable>true</readable>
+        </fieldPermissions>
+    <fieldPermissions>
+            <editable>true</editable>
+            <field>Contact.KYCStatus__c</field>
+            <readable>true</readable>
+        </fieldPermissions>
+    <fieldPermissions>
+            <editable>true</editable>
+            <field>Contact.SentiLinkFraudScore__c</field>
+            <readable>true</readable>
+        </fieldPermissions>
+    <fieldPermissions>
+            <editable>true</editable>
+            <field>Contact.SentiLinkStatus__c</field>
+            <readable>true</readable>
+        </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.MiddleName__c</field>
         <readable>true</readable>
@@ -1846,11 +1824,6 @@
       <fieldPermissions>
         <editable>true</editable>
         <field>ContactPointAddress.OccupancyDuration__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>ContactPointAddress.DeleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2230,11 +2203,6 @@
 	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__AssetsAndLiabilities__c.DeleteRecord__c</field>
-        <readable>true</readable>
-	</fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FinServ__AssetsAndLiabilities__c.FinServ__Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2405,11 +2373,6 @@
         <field>FinServ__Employment__c.PrimaryContentDocumentID__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__Employment__c.DeleteRecord__c</field>
-        <readable>true</readable>
-	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Employment__c.FinServ__AnnualIncome__c</field>
@@ -3313,11 +3276,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.DeleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FinServ__LifeEvent__c.FinServ__Client__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3354,11 +3312,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Revenue__c.Applicant__c</field>
-        <readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__Revenue__c.DeleteRecord__c</field>
         <readable>true</readable>
 	</fieldPermissions>
     <fieldPermissions>
@@ -3882,11 +3835,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyQuestion__c.DeleteRecord__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>SurveyTemplate__c.ApplicantType__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3903,11 +3851,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SurveyTemplate__c.FinancilProductCategory__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SurveyTemplate__c.DeleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
      <fieldPermissions>
@@ -4003,11 +3946,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Survey__c.TemplateName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Survey__c.DeleteRecord__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
