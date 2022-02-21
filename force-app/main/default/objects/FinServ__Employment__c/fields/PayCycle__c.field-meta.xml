@@ -13,22 +13,22 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>monthly</fullName>
+                <fullName>Monthly</fullName>
                 <default>false</default>
                 <label>Monthly</label>
             </value>
             <value>
-                <fullName>semimonthly</fullName>
+                <fullName>Semi Monthly</fullName>
                 <default>false</default>
                 <label>Semi Monthly</label>
             </value>
             <value>
-                <fullName>biweekly</fullName>
+                <fullName>BiWeekly</fullName>
                 <default>false</default>
-                <label>Bi-Weekly</label>
+                <label>BiWeekly</label>
             </value>
             <value>
-                <fullName>weekly</fullName>
+                <fullName>Weekly</fullName>
                 <default>false</default>
                 <label>Weekly</label>
             </value>
