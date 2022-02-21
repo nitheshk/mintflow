@@ -173,29 +173,27 @@ global with sharing class AtomicFIService extends AbstractService {
     FinServ__Employment__c employmentObj = new FinServ__Employment__c();
     //check if there is an existing employment for the applicant if yes then map the id #TODO:
     employmentObj.Id = atomicObj.user.identifier;
-    //employmentObj.Name = atomicObj.company.name; The company Name should come from front end
-    // if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
-    //   employmentObj.FinServ__EmploymentStatus__c = 'Employed';
-    // } else {
-    //   employmentObj.FinServ__EmploymentStatus__c = 'Self-Employed';
-    // }
+    if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
+      employmentObj.FinServ__EmploymentStatus__c = 'Employed';
+    } else {
+      employmentObj.FinServ__EmploymentStatus__c = 'Self-Employed';
+    }
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
       employmentObj.mflow__EmploymentType__c = 'Current';
     }
     employmentObj.mflow__EmploymentVerificationType__c = 'Auto';
     employmentObj.FinServ__Position__c = atomicObj.data.outputs.jobTitle;
-    if (atomicObj.data.outputs.incomeType.equalsIgnoreCase('yearly')) {
-      employmentObj.FinServ__AnnualIncome__c = atomicObj.data.outputs.income;
-    }
+    employmentObj.FinServ__AnnualIncome__c = atomicObj.data.outputs.annualIncome;
+    employmentObj.mflow__PayCycle__c = atomicObj.data.outputs.payCycle;
     employmentObj.mflow__IncomeType__c = atomicObj.data.outputs.incomeType;
-    employmentObj.mflow__Employee_Type__c = atomicObj.data.outputs.employeeType;
-    employmentObj.mflow__Verification_Status__c = 'Verified';
-    // this.calculateIncome(atomicObj.data.outputs.income,atomicObj.data.outputs.incomeType);
+    employmentObj.mflow__EmployeeType__c = atomicObj.data.outputs.employeeType;
+    employmentObj.mflow__VerificationStatus__c = 'Verified';
+
     EmploymentRepository.UpsertRecord(employmentObj);
     log
       ?.debug(
         'Employment Verified Status :' +
-        employmentObj.mflow__Verification_Status__c
+        employmentObj.mflow__VerificationStatus__c
       );
     //Call a platform event and register this employer id created for the UI to pick it up
     publishEmployment(atomicObj.user.identifier, employmentObj.id);

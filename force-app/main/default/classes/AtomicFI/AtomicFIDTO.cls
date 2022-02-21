@@ -55,6 +55,7 @@ global with sharing class AtomicFIDTO {
     global list<statements> statements;
     global list<w2s> w2s;
     global list<account> accounts;
+    global Decimal annualIncome;
   }
 
   global class statements {
