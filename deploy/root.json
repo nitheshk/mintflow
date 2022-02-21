@@ -50,7 +50,7 @@
     "genericErrorPage": "Exception",
     "inMaintenancePage": "InMaintenance",
     "inactiveIndexPage": "InMaintenance",
-    "indexPage": "mflow__OnlineAccount",
+    "indexPage": "OnlineAccount",
     "siteName": "OnlineBanking",
     "siteAdmin": "",
     "siteGuestRecordDefaultOwner": "",

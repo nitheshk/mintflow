@@ -88,10 +88,6 @@
         <apexPage>Error</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>OpenAccount</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>DynamicDataTableItem__mdt</name>

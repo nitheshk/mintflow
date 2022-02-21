@@ -233,7 +233,7 @@ global with sharing class IdentityService extends AbstractService {
           'urlSuffix' => '/membership/upload/document-upload',
           'aplId' => currentApplicant.Id,
           'ch' => 'Virtual',
-          'pageName' => '/mflow__IdentityUpload',
+          'pageName' => '/IdentityUpload',
           'suffixType' => 'path'
         }
       );

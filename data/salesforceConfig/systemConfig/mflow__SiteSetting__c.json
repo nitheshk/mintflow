@@ -5,11 +5,11 @@
         "type": "mflow__SiteSetting__c",
         "referenceId": "SiteRef_0"
       },
-      "mflow__OnlineSiteUrl__c": "https://sandbox-data-ability-4870-dev-ed-17f0195cf8f.cs74.force.com/Online",
-      "mflow__FinInstSiteUrl__c": "https://sandbox-data-ability-4870-dev-ed-17f0195cf8f.cs74.force.com/HomePageFI",
-      "mflow__OnlineSiteUserName__c": "OnlineUser@Mflow.1645001714993.com",
+      "mflow__OnlineSiteUrl__c": "https://sandbox-platform-java-6991-dev-ed-17f1b23befa.cs75.force.com/Online",
+      "mflow__FinInstSiteUrl__c": "https://sandbox-platform-java-6991-dev-ed-17f1b23befa.cs75.force.com/HomePageFI",
+      "mflow__OnlineSiteUserName__c": "OnlineUser@Mflow.1645429067475.com",
       "mflow__OnlineSitePassword__c": "Test@123",
-      "mflow__OnlineAccountOpeningUrl__c": "/mflow__OpenAccount#/home"
+      "mflow__OnlineAccountOpeningUrl__c": "/OpenAccount#/home"
     }
   ]
 }

@@ -30,7 +30,7 @@ global with sharing class OnlineAccountLoginController {
 
       /**
        * salesforce issue with url parsing
-       * https://{Domain}/Online/mflow__onlineaccount#/membership/joints/welcome
+       * https://{Domain}/Online/onlineaccount#/membership/joints/welcome
        * Above url after #get ignore on page redirection
        * Below code to avoid that issue of redirecting
        */

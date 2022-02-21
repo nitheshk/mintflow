@@ -18,7 +18,7 @@ global with sharing class OpenAccountController {
     vuePath = String.isNotBlank(vuePath) ? '#' + vuePath : '';
 
     PageReference openAccountPage = new PageReference(
-      '/mflow__OnlineAccount' + vuePath
+      '/OnlineAccount' + vuePath
     );
 
     /*

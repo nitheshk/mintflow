@@ -5,13 +5,13 @@
   docType="html-5.0"
   standardStylesheets="false"
   showheader="false"
-  Controller="IdentityUploadController"
-  extensions="ApplicationController,IdentityController,ApplicantController,FileController"
+  Controller="mflow.OnlineAccountController"
+  extensions="mflow.ApplicationController,mflow.IdentityController,mflow.ApplicantController,mflow.FinancialAccountController,mflow.FileController,mflow.FinancingController"
   action="{!initializeApplication}"
 >
   <html lang="">
     <head>
-      <base href="{!URLFOR($Resource.mflow__MintFlow)}" />
+      <base href="{!URLFOR(staticUrl)}" />
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -28,19 +28,17 @@
       />
 
       <link
-        href="{!URLFOR($Resource.mflow__MintFlow, 'css/chunk-vendors.css')}"
+        href="{!URLFOR(staticUrl, 'css/chunk-vendors.css')}"
         rel="stylesheet"
       />
-      <link
-        href="{!URLFOR($Resource.mflow__MintFlow, 'css/app.css')}"
-        rel="stylesheet"
-      />
+      <link href="{!URLFOR(staticUrl, 'css/app.css')}" rel="stylesheet" />
     </head>
 
     <body>
       <apex:outputPanel>
         <apex:pageMessages />
       </apex:outputPanel>
+
       <noscript>
         <strong
           >We're sorry but ui doesn't work properly without JavaScript enabled.
@@ -51,15 +49,13 @@
       <script>
         initialData = "{!JSENCODE(initialData)}";
       </script>
-      <script
-        src="{!URLFOR($Resource.mflow__MintFlow, 'js/chunk-vendors.js')}"
-      ></script>
-      <script src="{!URLFOR($Resource.mflow__MintFlow, 'js/app.js')}"></script>
+      <script src="{!URLFOR(staticUrl, 'js/chunk-vendors.js')}"></script>
+      <script src="{!URLFOR(staticUrl, 'js/app.js')}"></script>
       <script
         src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"
       ></script>
       <script type="text/javascript">
-        var Resourceurl = "{!URLFOR($Resource.mflow__MintFlow)}";
+        var Resourceurl = "{!URLFOR(staticUrl)}";
         Visualforce.remoting.timeout = 120000;
       </script>
     </body>

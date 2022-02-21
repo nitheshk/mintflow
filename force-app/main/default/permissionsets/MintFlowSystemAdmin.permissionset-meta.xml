@@ -42,14 +42,6 @@
         <apexPage>CustomerAgreement</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>OnlineAccount</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>OpenAccount</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <classAccesses>
         <apexClass>ApplicantController</apexClass>
         <enabled>true</enabled>

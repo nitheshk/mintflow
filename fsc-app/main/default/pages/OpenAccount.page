@@ -1,6 +1,6 @@
 <apex:page
   id="OpenAccount"
-  controller="OpenAccountController"
+  controller="mflow.OpenAccountController"
   action="{!initOpenAccount}"
   title="OpenAccount"
 >
