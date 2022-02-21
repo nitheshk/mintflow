@@ -54,7 +54,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>mflow__Verification_Status__c</field>
+        <field>mflow__VerificationStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

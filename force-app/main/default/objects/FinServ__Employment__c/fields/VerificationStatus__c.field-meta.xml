@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Employee_Type__c</fullName>
-    <description
-  >Describe employee type that is parttime employee or full time</description>
+    <fullName>VerificationStatus__c</fullName>
     <externalId>false</externalId>
-    <label>Employee Type</label>
+    <label>Verification Status</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -13,14 +11,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>PartTime</fullName>
-                <default>false</default>
-                <label>PartTime</label>
+                <fullName>Not Verified</fullName>
+                <default>true</default>
+                <label>Not Verified</label>
             </value>
             <value>
-                <fullName>FullTime</fullName>
+                <fullName>Verified</fullName>
                 <default>false</default>
-                <label>FullTime</label>
+                <label>Verified</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
             </value>
         </valueSetDefinition>
     </valueSet>

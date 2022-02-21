@@ -12,39 +12,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Wages</fullName>
+                <fullName>monthly</fullName>
                 <default>false</default>
-                <label>Wages</label>
+                <label>Monthly</label>
             </value>
             <value>
-                <fullName>Salary</fullName>
+                <fullName>yearly</fullName>
                 <default>false</default>
-                <label>Salary</label>
+                <label>Yearly</label>
             </value>
             <value>
-                <fullName>Commission</fullName>
+                <fullName>weekly</fullName>
                 <default>false</default>
-                <label>Commission</label>
+                <label>Weekly</label>
             </value>
             <value>
-                <fullName>Interest</fullName>
+                <fullName>daily</fullName>
                 <default>false</default>
-                <label>Interest</label>
+                <label>Daily</label>
             </value>
-            <value>
-                <fullName>Investments</fullName>
+             <value>
+                <fullName>hourly</fullName>
                 <default>false</default>
-                <label>Investments</label>
-            </value>
-            <value>
-                <fullName>Gifts</fullName>
-                <default>false</default>
-                <label>Gifts</label>
-            </value>
-            <value>
-                <fullName>Government Payments</fullName>
-                <default>false</default>
-                <label>Government Payments</label>
+                <label>Hourly</label>
             </value>
         </valueSetDefinition>
     </valueSet>

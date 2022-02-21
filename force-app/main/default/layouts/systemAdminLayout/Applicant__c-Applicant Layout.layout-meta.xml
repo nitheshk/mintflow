@@ -278,7 +278,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>FinServ__EmploymentStatus__c</fields>
-        <fields>Employee_Type__c</fields>
+        <fields>EmployeeType__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>FinServ__Employment__c.Applicant__c</relatedList>
         <sortField>CREATED_DATE</sortField>
