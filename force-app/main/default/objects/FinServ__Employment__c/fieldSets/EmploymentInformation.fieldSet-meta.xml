@@ -24,7 +24,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
      <displayedFields>
-        <field>mflow__Employee_Type__c</field>
+        <field>mflow__EmployeeType__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
