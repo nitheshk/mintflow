@@ -123,4 +123,18 @@ global with sharing class IdentityController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description generate Url For Identity Upload
+   * @author Digital Align Team | 02-08-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse customerDueDiligence(ApexRequest request) {
+    String applicantId;
+    IdScanProvider.customerDueDiligence(applicantId);
+    return null;
+  }
 }

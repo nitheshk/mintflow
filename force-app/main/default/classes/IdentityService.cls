@@ -257,4 +257,18 @@ global with sharing class IdentityService extends AbstractService {
     CustomerEmailService.getInstance().uploadIdentityDocument(currentApplicant);
     return true;
   }
+
+  /**
+   * @description Generate OOW json to return response
+   * @author Digital Align Team | 02-08-2022
+   * @param Id applicantId
+   * @return Object
+   **/
+  global virtual string customerDueDiligence(Id applicantId) {
+    Applicant__c applicantObj = IdentityRepository.readApplicantWithIdentity(
+      applicantId
+    );
+    //dto conversion at this place
+    return '';
+  }
 }

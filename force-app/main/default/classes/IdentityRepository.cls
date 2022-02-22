@@ -59,4 +59,14 @@ public with sharing class IdentityRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description read applicant with identity information
+   * @author Digital Align Team | 11-18-2021
+   * @param Id applicantId
+   * @return Applicant__c
+   **/
+  public static Applicant__c readApplicantWithIdentity(Id applicantId) {
+    return null;
+  }
 }
