@@ -240,7 +240,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>KYCStatus__c</picklist>
+        <picklist>mflow__KYCStatus__c</picklist>
         <values>
             <fullName>Failed</fullName>
             <default>false</default>
@@ -255,7 +255,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>LastUsedChannel__c</picklist>
+        <picklist>mflow__LastUsedChannel__c</picklist>
         <values>
             <fullName>Branch</fullName>
             <default>false</default>

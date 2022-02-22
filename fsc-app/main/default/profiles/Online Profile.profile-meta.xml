@@ -37,7 +37,7 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>mflow__IdentityUpload</apexPage>
+        <apexPage>IdentityUpload</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
@@ -92,10 +92,4 @@
         <recordType>Opportunity.FinServ__WalletShareOpportunity</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <!--<recordTypeVisibilities>
-        <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
-        <recordType>PersonAccount.PersonAccount</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>-->
 </Profile>
