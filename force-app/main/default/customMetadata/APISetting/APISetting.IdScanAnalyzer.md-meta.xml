@@ -8,7 +8,9 @@
     <protected>false</protected>
     <values>
         <field>EndPoint__c</field>
-        <value xsi:type="xsd:string">callout:IdScanAnalyzer</value>
+        <value
+      xsi:type="xsd:string"
+    >callout:IdScanAnalyzer/DriverLicenseParserRest.svc/ParseImage</value>
     </values>
     <values>
         <field>Method__c</field>
