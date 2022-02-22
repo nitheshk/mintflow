@@ -18,19 +18,19 @@
                 <label>Monthly</label>
             </value>
             <value>
-                <fullName>Bi-Weekly</fullName>
+                <fullName>Semi Monthly</fullName>
                 <default>false</default>
-                <label>Bi-Weekly</label>
+                <label>Semi Monthly</label>
+            </value>
+            <value>
+                <fullName>BiWeekly</fullName>
+                <default>false</default>
+                <label>BiWeekly</label>
             </value>
             <value>
                 <fullName>Weekly</fullName>
                 <default>false</default>
                 <label>Weekly</label>
-            </value>
-            <value>
-                <fullName>Daily</fullName>
-                <default>false</default>
-                <label>Daily</label>
             </value>
         </valueSetDefinition>
     </valueSet>

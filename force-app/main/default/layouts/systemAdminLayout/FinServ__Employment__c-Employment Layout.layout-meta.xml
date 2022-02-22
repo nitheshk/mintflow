@@ -17,7 +17,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Employee_Type__c</field>
+                <field>EmployeeType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -41,7 +41,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Verification_Status__c</field>
+                <field>VerificationStatus__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
