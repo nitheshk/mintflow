@@ -10,7 +10,7 @@
         <field>EndPoint__c</field>
         <value
       xsi:type="xsd:string"
-    >callout:Geocoding/maps/api/geocode/json?address={Pincode}&amp;sensor=true&amp;key={APIKey}&amp;type=json</value>
+    >callout:mflow__Geocoding/maps/api/geocode/json?address={Pincode}&amp;sensor=true&amp;key={APIKey}&amp;type=json</value>
     </values>
     <values>
         <field>Method__c</field>
