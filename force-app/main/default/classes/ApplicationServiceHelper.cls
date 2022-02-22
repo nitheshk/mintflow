@@ -55,6 +55,21 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
   }
 
   /**
+   * @description return next application number
+   * @author Digital Align Team | 02-22-2022
+   * @return String
+   **/
+  global virtual String getApplicationNumber() {
+    ApplicationConfiguration__c config = ApplicationConfiguration__c.getInstance();
+    config.mflow__AppSequenceNumber__c = config.mflow__AppSequenceNumber__c + 1;
+    String applicationNumber =
+      'App-' +
+      String.valueOf((long) config.mflow__AppSequenceNumber__c).leftPad(5, '0');
+    ApplicationRepository.upsertRecord(config);
+    return applicationNumber;
+  }
+
+  /**
    * @description resolve branch location
    * @author Digital Align Team | 12-03-2021
    * @param Account application

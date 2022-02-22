@@ -442,12 +442,7 @@
         <field>FinServ__FinancialAccount__c.ExternalApplicationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.ApplicationNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.CreatedChannel__c</field>
         <readable>true</readable>

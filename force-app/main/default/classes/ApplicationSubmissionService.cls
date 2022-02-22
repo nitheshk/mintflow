@@ -86,7 +86,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
       fundingResult.Application
     );
     ApexRequest.setApplicationId(application.Id);
-    ApexRequest.setApplicationName(application.ApplicationNumber__c);
+    ApexRequest.setApplicationName(application.Name);
 
     if (application.Status__c == ApplicationConstant.COMPLETED) {
       throw new CustomException('Application has already processed');

@@ -42,7 +42,7 @@
             ></apex:outputText>
             <apex:outputText
               style="font-style: bold"
-              value="{!application.ApplicationNumber__c}"
+              value="{!application.Name}"
               styleClass="headerStyle "
             ></apex:outputText>
           </h4>

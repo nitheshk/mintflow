@@ -26,7 +26,7 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
         .orderBy('mflow__Order__c')
         .run()
         .removeFields('mflow__SessionToken__c')
-        .whereEq('mflow__ApplicationNumber__c', applicationNumber)
+        .whereEq('Name', applicationNumber)
         .toString()
     );
   }

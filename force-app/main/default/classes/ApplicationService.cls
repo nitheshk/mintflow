@@ -103,9 +103,11 @@ global with sharing class ApplicationService extends AbstractService {
       .getIpAddress();
     application = ApplicationServiceHelper.getInstance()
       .resolveBranchLocation(application);
+    application.Name = ApplicationServiceHelper.getInstance()
+      .getApplicationNumber();
     // #info
     // Added for customer community user license only
-    // Work for Cusotmer Community plus user without owner assingment
+    // Work for Customer Community plus user without owner assingment
     // application.OwnerId = UserUtils.getCurrentUser().CreatedById;
     ApplicationRepository.upsertRecord(application);
     /*** */
@@ -136,8 +138,8 @@ global with sharing class ApplicationService extends AbstractService {
       application.Id
     );
 
-    application.Name = application.ApplicationNumber__c;
-    ApplicationRepository.upsertRecord(application);
+    // application.Name = application.ApplicationNumber__c;
+    // ApplicationRepository.upsertRecord(application);
     params.put('applicationId', ApexRequest.getApplicationId());
     params.put('applicantId', ApexRequest.getApplicantId());
     params.put('applicantType', ApexRequest.getApplicantType());

@@ -55,7 +55,7 @@ global with sharing class KycReviewService extends AbstractService {
       kycResult.ApplicationId
     );
     ApexRequest.setApplicationId(application.Id);
-    ApexRequest.setApplicationName(application.ApplicationNumber__c);
+    ApexRequest.setApplicationName(application.Name);
 
     if (application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
       throw new CustomException('Kyc has already passed for the application ');

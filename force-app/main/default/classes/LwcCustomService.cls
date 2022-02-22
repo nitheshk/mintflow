@@ -323,7 +323,7 @@ global with sharing class LwcCustomService extends AbstractService {
           recordID
         );
         ApexRequest.setApplicationId(application.Id);
-        ApexRequest.setApplicationName(application.ApplicationNumber__c);
+        ApexRequest.setApplicationName(application.Name);
 
         if (approvalType == 'Application') {
           if (status == ApplicationConstant.KYC_PASSED) {

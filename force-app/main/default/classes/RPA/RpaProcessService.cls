@@ -159,9 +159,7 @@ global with sharing class RpaProcessService extends AbstractService {
         params.put('Priority', HttpBuilder.getApiConstant('UipathPriority'));
         params.put(
           'SpecificContent',
-          new Map<String, String>{
-            'LoanID' => application.ApplicationNumber__c
-          }
+          new Map<String, String>{ 'LoanID' => application.Name }
         );
         params.put('Reference', SecurityUtils.generateUUID());
         params.put(

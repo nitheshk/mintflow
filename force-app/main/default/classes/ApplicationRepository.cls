@@ -42,7 +42,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
       Query.newInstance(Account.SObjectType)
         .addFields()
         .removeFields('mflow__SessionToken__c')
-        .whereEq('mflow__ApplicationNumber__c', applicationNumber)
+        .whereEq('Name', applicationNumber)
         .toString()
     );
   }
@@ -80,7 +80,7 @@ global virtual inherited sharing class ApplicationRepository extends DatabaseUti
   global static Account readApplicationForToken(Id applicationId) {
     return (Account) DatabaseUtils.getRecord(
       Query.newInstance(Account.SObjectType)
-        .addFields('SessionToken__c,ApplicationNumber__c')
+        .addFields('SessionToken__c,Name')
         .whereEq('Id', applicationId)
         .toString()
     );

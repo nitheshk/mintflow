@@ -119,7 +119,7 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
     return (Applicant__c) DatabaseUtils.getRecord(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields(
-          'SessionToken__c,sessionExpireTime__c,Application__r.ApplicationNumber__c,Application__c'
+          'SessionToken__c,sessionExpireTime__c,Application__r.Name,Application__c'
         )
         .whereEq('Id', applicantId)
         .toString()

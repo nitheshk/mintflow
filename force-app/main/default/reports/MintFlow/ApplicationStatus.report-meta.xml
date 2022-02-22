@@ -27,7 +27,7 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>Account.ApplicationNumber__c</field>
+        <field>Account.Name</field>
     </columns>
     <columns>
         <field>CREATED_DATE</field>
