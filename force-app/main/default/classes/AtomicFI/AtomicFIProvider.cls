@@ -160,6 +160,7 @@ global with sharing class AtomicFIProvider extends AbstractService {
           );
       }
       generatePDF(employerId);
+      AtomicFIService.getinstance().updateFileGeneratedStatus(employerId);
       return 'Files generated successfully';
     } catch (exception ex) {
       log?.error(ex.getmessage());

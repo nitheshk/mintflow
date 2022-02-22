@@ -73,4 +73,8 @@ global with sharing class EmploymentService extends AbstractService {
       .generatePaySlipsW2(jsonResponse, employerId);
     return responseJson;
   }
+
+  global virtual FinServ__Employment__c readEmployerbyId(String employerId) {
+    return EmploymentRepository.readEmployerbyId(employerId);
+  }
 }
