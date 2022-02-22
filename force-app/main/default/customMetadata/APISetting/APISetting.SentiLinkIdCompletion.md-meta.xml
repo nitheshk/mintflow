@@ -10,7 +10,7 @@
         <field>EndPoint__c</field>
         <value
       xsi:type="xsd:string"
-    >https://api.sandbox-sentilink.com/v1/query/user/complete</value>
+    >callout:Sentilink/v1/query/user/complete</value>
     </values>
     <values>
         <field>Method__c</field>
