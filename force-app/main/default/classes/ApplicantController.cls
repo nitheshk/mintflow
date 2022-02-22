@@ -243,10 +243,11 @@ global with sharing class ApplicantController extends AbstractController {
   @RemoteAction
   public static ApexResponse generatePaySlipsW2(ApexRequest request) {
     try {
-      log?.fine('Inside generatePaySlipsW2');
+      log?.fine('Generate PaySlips and W2');
       validateRequest(request);
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       ID employerId = (Id) ApexRequest.getParams('employerId');
+
       return ApexResponse.ok(
         EmploymentService.getInstance()
           .generatePaySlipsW2(applicantId, employerId)

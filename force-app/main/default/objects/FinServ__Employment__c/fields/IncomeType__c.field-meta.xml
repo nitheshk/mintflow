@@ -12,27 +12,22 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>monthly</fullName>
+                <fullName>Monthly</fullName>
                 <default>false</default>
                 <label>Monthly</label>
             </value>
             <value>
-                <fullName>yearly</fullName>
-                <default>false</default>
-                <label>Yearly</label>
-            </value>
-            <value>
-                <fullName>weekly</fullName>
+                <fullName>Weekly</fullName>
                 <default>false</default>
                 <label>Weekly</label>
             </value>
             <value>
-                <fullName>daily</fullName>
+                <fullName>Daily</fullName>
                 <default>false</default>
                 <label>Daily</label>
             </value>
              <value>
-                <fullName>hourly</fullName>
+                <fullName>Hourly</fullName>
                 <default>false</default>
                 <label>Hourly</label>
             </value>

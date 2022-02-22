@@ -22,4 +22,27 @@ global with sharing class FinancialInstituteConstants {
 
   //default Rejected
   public static final String LEAD_REJECTED_STATUS = 'Rejected';
+
+  public static final Map<String, String> PAY_CYCLE = new Map<String, String>{
+    'monthly' => 'Monthly',
+    'weekly' => 'Weekly',
+    'daily' => 'Daily',
+    'hourly' => 'Hourly'
+  };
+
+  public static final Map<String, String> INCOME_TYPE = new Map<String, String>{
+    'yearly' => 'Yearly',
+    'monthly' => 'Monthly',
+    'weekly' => 'Weekly',
+    'daily' => 'Semi Monthly',
+    'hourly' => 'Hourly'
+  };
+
+  public static final Map<String, String> EMPLOYEE_TYPE = new Map<String, String>{
+    'parttime' => 'Part Time',
+    'fulltime' => 'Full Time',
+    'weekly' => 'Weekly',
+    'daily' => 'Semi Monthly',
+    'hourly' => 'Hourly'
+  };
 }

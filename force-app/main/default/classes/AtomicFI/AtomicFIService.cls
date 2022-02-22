@@ -175,18 +175,24 @@ global with sharing class AtomicFIService extends AbstractService {
     employmentObj.Id = atomicObj.user.identifier;
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
       employmentObj.FinServ__EmploymentStatus__c = 'Employed';
+      employmentObj.mflow__EmploymentType__c = 'Current';
     } else {
       employmentObj.FinServ__EmploymentStatus__c = 'Self-Employed';
+      employmentObj.mflow__EmploymentType__c = 'Previous';
     }
-    if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
-      employmentObj.mflow__EmploymentType__c = 'Current';
-    }
+
     employmentObj.mflow__EmploymentVerificationType__c = 'Auto';
     employmentObj.FinServ__Position__c = atomicObj.data.outputs.jobTitle;
     employmentObj.FinServ__AnnualIncome__c = atomicObj.data.outputs.annualIncome;
-    employmentObj.mflow__PayCycle__c = atomicObj.data.outputs.payCycle;
-    employmentObj.mflow__IncomeType__c = atomicObj.data.outputs.incomeType;
-    employmentObj.mflow__EmployeeType__c = atomicObj.data.outputs.employeeType;
+    employmentObj.mflow__PayCycle__c = FinancialInstituteConstants.PAY_CYCLE.get(
+      atomicObj.data.outputs.payCycle
+    );
+    employmentObj.mflow__IncomeType__c = FinancialInstituteConstants.INCOME_TYPE.get(
+      atomicObj.data.outputs.incomeType
+    );
+    employmentObj.mflow__EmployeeType__c = FinancialInstituteConstants.EMPLOYEE_TYPE.get(
+      atomicObj.data.outputs.employeeType
+    );
     employmentObj.mflow__VerificationStatus__c = 'Verified';
 
     EmploymentRepository.UpsertRecord(employmentObj);
