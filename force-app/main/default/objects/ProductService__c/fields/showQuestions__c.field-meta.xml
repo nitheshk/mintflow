@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>showQuestions__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >True if any questions are associated with the service</description>
+    <externalId>false</externalId>
+    <label>showQuestions?</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
