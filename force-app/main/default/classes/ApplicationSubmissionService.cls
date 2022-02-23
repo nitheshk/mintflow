@@ -165,7 +165,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
         }
       }
       when else {
-        application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+        application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
         application.AccountNumber = fundingResult.MemberNumber;
       }
     }
