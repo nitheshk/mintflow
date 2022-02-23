@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class NotificationBuilder extends AbstractService {
+global virtual with sharing class NotificationBuilder extends AbstractService {
   @TestVisible
   private static NotificationBuilder serviceInstance;
   private static logger log = logger.getInstance(NotificationBuilder.class);

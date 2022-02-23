@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class KycReviewService extends AbstractService {
+global virtual with sharing class KycReviewService extends AbstractService {
   @TestVisible
   private static KycReviewService serviceInstance;
 

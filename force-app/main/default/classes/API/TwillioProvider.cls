@@ -6,7 +6,7 @@
  * @description Provider for sending SMS using Twillio API
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class TwillioProvider extends AbstractService {
+global virtual with sharing class TwillioProvider extends AbstractService {
   @TestVisible
   private static TwillioProvider serviceInstance;
 

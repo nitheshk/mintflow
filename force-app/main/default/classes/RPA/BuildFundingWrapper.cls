@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class BuildFundingWrapper extends AbstractService {
+global virtual with sharing class BuildFundingWrapper extends AbstractService {
   @TestVisible
   private static BuildFundingWrapper serviceInstance;
 

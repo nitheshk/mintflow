@@ -6,7 +6,7 @@
  * @description Repository to fetch application object
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global virtual inherited sharing class ApplicationRepository extends DatabaseUtils {
+global inherited sharing class ApplicationRepository extends DatabaseUtils {
   /**
    * @description Read Application with child record
    * Applicants contains only ids

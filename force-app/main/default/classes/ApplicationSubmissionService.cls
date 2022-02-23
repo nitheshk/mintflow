@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicationSubmissionService extends AbstractService {
+global virtual with sharing class ApplicationSubmissionService extends AbstractService {
   @TestVisible
   private static ApplicationSubmissionService serviceInstance;
 
@@ -165,7 +165,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
         }
       }
       when else {
-        application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+        application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
         application.AccountNumber = fundingResult.MemberNumber;
       }
     }

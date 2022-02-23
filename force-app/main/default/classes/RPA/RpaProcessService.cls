@@ -8,7 +8,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 @RestResource(UrlMapping='/rpa/v1/*')
-global with sharing class RpaProcessService extends AbstractService {
+global virtual with sharing class RpaProcessService extends AbstractService {
   @TestVisible
   private static RpaProcessService serviceInstance;
   private static String classUrlMapping = '/rpa/v1/';

@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class LwcCustomService extends AbstractService {
+global virtual with sharing class LwcCustomService extends AbstractService {
   @TestVisible
   private static LwcCustomService serviceInstance;
 
