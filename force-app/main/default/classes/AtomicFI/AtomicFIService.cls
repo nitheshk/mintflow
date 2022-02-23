@@ -132,7 +132,6 @@ global with sharing class AtomicFIService extends AbstractService {
     String parentId;
 
     switch on precedingUri {
-      //RestContext.request.requestURI :/mflow/atomic/v1/employmentverify/
       when 'employmentverify' {
         List<FileDTO> files = new List<FileDTO>();
         List<ContentVersion> cvList = new List<ContentVersion>();
@@ -171,8 +170,8 @@ global with sharing class AtomicFIService extends AbstractService {
    **/
   global virtual String mapApplicantEmployment(AtomicFIDTO atomicObj) {
     FinServ__Employment__c employmentObj = new FinServ__Employment__c();
-    //check if there is an existing employment for the applicant if yes then map the id #TODO:
     employmentObj.Id = atomicObj.user.identifier;
+    //method to fetch application and applicant id based on employer id ::TODO
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
       employmentObj.FinServ__EmploymentStatus__c = 'Employed';
       employmentObj.mflow__EmploymentType__c = 'Current';

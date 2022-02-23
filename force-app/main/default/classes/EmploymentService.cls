@@ -37,10 +37,10 @@ global with sharing class EmploymentService extends AbstractService {
     String applicantId,
     String employerId
   ) {
-    System.debug('inside employement service');
     String body = AtomicFIProvider.getInstance()
       .authenticate(applicantId, employerId);
-    return body;
+      Flow.finalize();
+      return body;
   }
   /**
    * @description Get  AtomicFI response of employment verification
