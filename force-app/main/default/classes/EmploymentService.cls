@@ -6,7 +6,7 @@
  * @description Employment service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class EmploymentService extends AbstractService {
+global virtual with sharing class EmploymentService extends AbstractService {
   @TestVisible
   private static EmploymentService serviceInstance;
 

@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class AuthenticationService extends AbstractService {
+global virtual with sharing class AuthenticationService extends AbstractService {
   @TestVisible
   private static AuthenticationService serviceInstance;
   private String mintFlowAuthToken;

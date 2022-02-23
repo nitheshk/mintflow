@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity')
-global with sharing class ReviewInformationService extends AbstractService {
+global virtual with sharing class ReviewInformationService extends AbstractService {
   @TestVisible
   private static ReviewInformationService serviceInstance;
 

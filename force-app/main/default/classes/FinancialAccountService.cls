@@ -6,7 +6,7 @@
  * @description Financial Account Service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class FinancialAccountService extends AbstractService {
+global virtual with sharing class FinancialAccountService extends AbstractService {
   @TestVisible
   private static FinancialAccountService serviceInstance;
   private FinancialAccountServiceHelper helper = FinancialAccountServiceHelper.getInstance();
