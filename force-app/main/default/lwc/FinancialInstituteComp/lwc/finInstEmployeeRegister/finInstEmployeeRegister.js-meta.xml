@@ -5,4 +5,5 @@
     <targets>
     <target>lightningCommunity__Page</target>
     </targets>
+    <masterLabel>Financial Institute Employee Register</masterLabel>
 </LightningComponentBundle>

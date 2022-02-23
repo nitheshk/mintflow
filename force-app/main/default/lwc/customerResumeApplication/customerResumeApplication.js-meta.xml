@@ -9,6 +9,7 @@
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
     </targets>
+    <masterLabel>Consumer Resume Application</masterLabel>
     <!-- <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
             <property name="recordId" type="String" />

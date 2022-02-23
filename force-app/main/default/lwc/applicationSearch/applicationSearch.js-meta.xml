@@ -9,5 +9,5 @@
     <target>lightning__HomePage</target>
     <target>lightningCommunity__Default</target>
   </targets>
-  
+  <masterLabel>Application Search</masterLabel>
 </LightningComponentBundle>

@@ -19,4 +19,5 @@
       />
         </targetConfig>
          </targetConfigs>
+         <masterLabel>Employee Search</masterLabel>
 </LightningComponentBundle>
