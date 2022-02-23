@@ -68,6 +68,18 @@
       "problemMatcher": []
     },
     {
+      "label": "sfdx : Create Managed Scratch Org",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["newManagedScratchOrg"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "sfdx : Create New Trigger Handler",
       "type": "shell",
       "command": "gulp",

@@ -18,6 +18,9 @@ Step 1 : Creates a package.
 Step 2: Create package beta version
 `sfdx force:package:version:create --targetdevhubusername devhub --package DigitalAlignUtilities --path "force-app" --definitionfile "config/project-scratch-def.json" --tag "DAU V1.0" --installationkey Utilities@V1.0 --codecoverage --wait 100`
 
+--skipvalidation  [To Skip Package Validation]
+--installationkeybypass [To Skip Installation Key]
+
 Step 3: Package Released version
 `sfdx force:package:version:promote --targetdevhubusername devhub --package "DigitalAlignUtilities@1.0.0-1" --noprompt`
 
@@ -43,3 +46,12 @@ Deleting packing, Ensure before deleting the package delete all version before i
 `sfdx force:package:delete -p "Your Package Alias"`
 
 `sfdx force:package:delete -p 0Ho...`
+
+
+### Steps of packaging
+
+1. Creating scartch org for package deploy, Need to remove namespace from sfdx-project.json
+2. Package need to create with respect to FSC-APP custom meta data and object, rest are commentted
+3. Before package install , Profile need to create manually in salesforce
+
+
