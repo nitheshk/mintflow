@@ -305,7 +305,12 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
     for (ContactPointAddress contactAddress : contactAddressList) {
       ApplicationSubmissionResponse.ContactPointAddress mapperContactAddress = new ApplicationSubmissionResponse.ContactPointAddress();
       mapperContactAddress.ContactPointAddressId = contactAddress.Id;
-      mapperContactAddress.AddressType = contactAddress.AddressType;
+      if (contactAddressList.size() == 1) {
+        // Uploaded address will be current address
+        mapperContactAddress.AddressType = 'Current';
+      } else {
+        mapperContactAddress.AddressType = contactAddress.AddressType;
+      }
       mapperContactAddress.City = contactAddress.City;
       mapperContactAddress.Country = contactAddress.Country;
       mapperContactAddress.IsPrimary = contactAddress.IsPrimary;
