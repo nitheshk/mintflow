@@ -37,9 +37,9 @@ global virtual with sharing class EmploymentService extends AbstractService {
     String applicantId,
     String employerId
   ) {
-    System.debug('inside employement service');
     String body = AtomicFIProvider.getInstance()
       .authenticate(applicantId, employerId);
+    Flow.finalize();
     return body;
   }
   /**
@@ -72,5 +72,9 @@ global virtual with sharing class EmploymentService extends AbstractService {
     String responseJson = AtomicFIProvider.getInstance()
       .generatePaySlipsW2(jsonResponse, employerId);
     return responseJson;
+  }
+
+  global virtual FinServ__Employment__c readEmployerbyId(String employerId) {
+    return EmploymentRepository.readEmployerbyId(employerId);
   }
 }

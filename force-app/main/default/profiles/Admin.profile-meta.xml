@@ -19,6 +19,9 @@
         <recordType>Account.FinServ__IndustriesIndividual</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>ProductService__c-Product Service Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-mflow__Member Account Layout</layout>
         <recordType>Account.FinServ__IndustriesBusiness</recordType>
     </layoutAssignments>

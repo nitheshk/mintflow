@@ -12,4 +12,5 @@
             <property name="recordId" type="String" />
         </targetConfig>
   </targetConfigs>
+  <masterLabel>Resubmit Application</masterLabel>
 </LightningComponentBundle>

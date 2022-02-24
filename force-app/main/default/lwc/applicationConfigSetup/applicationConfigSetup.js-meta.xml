@@ -6,4 +6,5 @@
         <target>lightning__HomePage</target>
         <target>lightning__Tab</target>
   </targets>
+  <masterLabel>Application Configuration Setup</masterLabel>
 </LightningComponentBundle>

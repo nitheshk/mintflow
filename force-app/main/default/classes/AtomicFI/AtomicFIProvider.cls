@@ -40,17 +40,24 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
         .createApplicantRequestJson(applicant, employerId);
       jsonRequest = JSON.serialize(atomicObj, true);
       HttpBuilder.setAPISetting(APINames.AtomicFIToken);
-
+      Flow.initialize(ApexRequest.getApplicationId());
+      Flow.setFlow('Atomic FI Authentication');
+      Flow.setSubFlow(
+        APINames.AtomicFIToken.name(),
+        ApexRequest.getApplicationId()
+      );
       if (HttpBuilder.isActiveApiSetting(APINames.AtomicFIToken)) {
         Map<String, String> header = new Map<String, String>();
         header.put('accept', 'application/json');
         header.put('Content-Type', 'application/json');
-        header.put('x-api-key', HttpBuilder.getApiConstant('x_api_key'));
-        header.put('x-api-secret', HttpBuilder.getApiConstant('x_api_secret'));
+        header.put('x-api-key', '{!$Credential.Username}');
+        header.put('x-api-secret', '{!$Credential.Password}');
+        Flow.setSubFlowRequest(jsonRequest);
         HttpResponse response = HttpBuilder.httpCallOut(jsonRequest, header);
         map<string, Object> mapResponse = (Map<String, Object>) JSON.deserializeUntyped(
           response.getBody()
         );
+        Flow.setsubflowResponse(response.getBody());
         if (mapResponse.containsKey('data')) {
           objectData = (Map<String, Object>) mapResponse.get('data');
           tokenKey = (String) objectData.get('publicToken');
@@ -160,6 +167,7 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
           );
       }
       generatePDF(employerId);
+      AtomicFIService.getinstance().updateFileGeneratedStatus(employerId);
       return 'Files generated successfully';
     } catch (exception ex) {
       log?.error(ex.getmessage());

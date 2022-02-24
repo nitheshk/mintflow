@@ -132,7 +132,6 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     String parentId;
 
     switch on precedingUri {
-      //RestContext.request.requestURI :/mflow/atomic/v1/employmentverify/
       when 'employmentverify' {
         List<FileDTO> files = new List<FileDTO>();
         List<ContentVersion> cvList = new List<ContentVersion>();
@@ -171,8 +170,8 @@ global virtual with sharing class AtomicFIService extends AbstractService {
    **/
   global virtual String mapApplicantEmployment(AtomicFIDTO atomicObj) {
     FinServ__Employment__c employmentObj = new FinServ__Employment__c();
-    //check if there is an existing employment for the applicant if yes then map the id #TODO:
     employmentObj.Id = atomicObj.user.identifier;
+    //method to fetch application and applicant id based on employer id ::TODO
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
       employmentObj.FinServ__EmploymentStatus__c = 'Employed';
       employmentObj.mflow__EmploymentType__c = 'Current';
@@ -193,7 +192,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     employmentObj.mflow__EmployeeType__c = FinancialInstituteConstants.EMPLOYEE_TYPE.get(
       atomicObj.data.outputs.employeeType
     );
-    employmentObj.mflow__VerificationStatus__c = 'Verified';
+    employmentObj.mflow__VerificationStatus__c = 'Review';
 
     EmploymentRepository.UpsertRecord(employmentObj);
     log
@@ -261,5 +260,16 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     String responseJson = this.getAtomicResponse(applicantId, employerId);
     AtomicFIProvider.getInstance().generatePaySlipsW2(responseJson, employerId);
     log?.debug('Payslip and W2 generation completed successfully');
+  }
+  public void updateFileGeneratedStatus(String employerId) {
+    FinServ__Employment__c employmentObj = EmploymentRepository.readEmployerbyId(
+      employerId
+    );
+    if (employmentObj != null) {
+      employmentObj.isDocumentGenerated__c = true;
+      employmentObj.mflow__VerificationStatus__c = 'Verified';
+      EmploymentRepository.UpsertRecord(employmentObj);
+      log?.debug('Document Generated: True');
+    }
   }
 }

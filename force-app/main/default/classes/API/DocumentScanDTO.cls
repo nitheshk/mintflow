@@ -7,6 +7,11 @@
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
 global with sharing class DocumentScanDTO extends AbstractDTO {
+  global class IdScanRequest {
+    global string authKey;
+    global string data;
+  }
+
   global class Request {
     global String file_base64;
     global String file_back_base64;
@@ -58,6 +63,9 @@ global with sharing class DocumentScanDTO extends AbstractDTO {
     global String issued;
     global String address1;
     global String address2;
+    global string state;
+    global string city;
+    global string country;
     global String issuerOrgRegionAbbr;
     global String issuerOrgIso2;
     global String postalCode;

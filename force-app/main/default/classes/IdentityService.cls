@@ -134,21 +134,21 @@ global virtual with sharing class IdentityService extends AbstractService {
       ContentVersion frontCv = FileService.getInstance()
         .fetchContentVersionByCD(frontImage, false);
       if (String.isNotBlank(backImage)) {
-        backCv = FileService.getInstance()
+        frontCv = FileService.getInstance()
           .fetchContentVersionByCD(backImage, false);
       }
       if (frontCv == null) {
         throw new CustomException(System.Label.Document_DocumentNotFound);
       }
-      if (backCv != null) {
-        params.put('backContentVersion', backCv);
-      }
+      // if (backCv != null) {
+      //   params.put('backContentVersion', backCv);
+      // }
       params.put('frontContentVersion', frontCv);
 
       if (HttpBuilder.isActiveApiSetting(APINames.IdScanAnalyzer)) {
         HttpBuilder.setAPISetting(APINames.IdScanAnalyzer);
         HttpBuilder.Response response = DocumentScanProvider.getInstance()
-          .idScanAnalyzer(params);
+          .idScan(params);
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
         return (Applicant__c) response.data;
@@ -256,5 +256,19 @@ global virtual with sharing class IdentityService extends AbstractService {
     // Send Email
     CustomerEmailService.getInstance().uploadIdentityDocument(currentApplicant);
     return true;
+  }
+
+  /**
+   * @description Generate OOW json to return response
+   * @author Digital Align Team | 02-08-2022
+   * @param Id applicantId
+   * @return Object
+   **/
+  global virtual string customerDueDiligence(Id applicantId) {
+    Applicant__c applicantObj = IdentityRepository.readApplicantWithIdentity(
+      applicantId
+    );
+    //dto conversion at this place
+    return '';
   }
 }

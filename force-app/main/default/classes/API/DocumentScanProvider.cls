@@ -27,6 +27,88 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     }
     return serviceInstance;
   }
+  /**
+   * @description scan DL using idScan API
+   * @author Digital Align Team | 11-01-2021
+   * @param Map<String object> params
+   * @return virtual
+   **/
+  global virtual HttpBuilder.Response idScan(Map<String, object> params) {
+    ContentVersion frontCv = (ContentVersion) params.get('frontContentVersion');
+    //header
+    Map<String, String> header = new Map<String, String>();
+    header.put('Content-Type', 'application/json');
+    //request
+    DocumentScanDTO.IdScanRequest requestDTO = new DocumentScanDTO.IdScanRequest();
+    requestDTO.data = EncodingUtil.base64Encode(frontCv.VersionData);
+    requestDTO.authKey = HttpBuilder.getApiConstant('IdScanAnalyzerAPIKey');
+    frontCv = null;
+    params.remove('FrontContentVersion');
+
+    HttpResponse response = HttpBuilder.httpCallOut(
+      json.serialize(requestDTO),
+      header
+    );
+    flow.setSubFlowResponse(response?.getBody());
+    if (response.getStatusCode() != 200) {
+      throw new CustomException(response.getStatus());
+    }
+    Map<String, Object> idOldMap = (Map<String, Object>) JSON.deserializeUntyped(
+      response.getBody()
+    );
+
+    if (
+      (string) ((Map<String, Object>) idOldMap.get('ParseImageResult'))
+        .get('ErrorMessage') != 'OK'
+    ) {
+      throw new CustomException(System.Label.Document_UnableToParseTheDl);
+    }
+
+    Map<String, Object> result = (Map<String, Object>) ((Map<String, Object>) idOldMap.get(
+        'ParseImageResult'
+      ))
+      .get('DriverLicense');
+    Map<String, Object> newMap = new Map<String, Object>();
+    newMap.put('documentNumber', result.get('LicenseNumber'));
+    newMap.put('firstName', result.get('FirstName'));
+    newMap.put('lastName', result.get('LastName'));
+    newMap.put('fullName', result.get('FullName'));
+    newMap.put('gender', result.get('Gender'));
+    newMap.put('height', result.get('Height'));
+    newMap.put('weight', result.get('WeightKG'));
+    newMap.put('dob', result.get('Birthdate'));
+    newMap.put('expiry', result.get('ExpirationDate'));
+    newMap.put('issued', result.get('IssueDate'));
+    newMap.put('address1', result.get('Address1'));
+    newMap.put('city', result.get('City'));
+    newMap.put('postalCode', result.get('PostalCode'));
+    newMap.put('documentType', result.get('DocumentType'));
+    newMap.put('issuerRegion', result.get('IssuedBy'));
+    newMap.put(
+      'issuerCountry',
+      GenericUtils.fetchCountryFromCountryCode(
+        (string) result.get('CountryCode')
+      )
+    );
+    newMap.put('state', result.get('IssuedBy'));
+    newMap.put('nationality', result.get('CountryCode'));
+    system.debug('newMap =' + newMap);
+    DocumentScanDTO.Response returnDTO = (DocumentScanDTO.Response) JSON.deserialize(
+      JSON.serialize(
+        new Map<String, Object>{
+          'Data' => newMap,
+          'status' => response.getStatusCode()
+        }
+      ),
+      DocumentScanDTO.Response.class
+    );
+
+    return HttpBuilder.buildResponse(
+      response.getStatusCode(),
+      response.getStatus(),
+      mapIdentityResponse(new Applicant__c(), returnDTO)
+    );
+  }
 
   /**
    * @description scan DL using idScanAnalyzer API
@@ -193,28 +275,24 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
 
     applicant.FirstName__c = returnDTO.data.firstName;
     applicant.LastName__c = returnDTO.data.lastName;
-    applicant.Birthdate__c = DateUtils.convertStringToDate1(returnDTO.data.dob);
+    applicant.Birthdate__c = date.valueOf(returnDTO.data.dob);
     identity.Height__c = returnDTO.data.height;
     identity.IssuedRegion__c = returnDTO.data.issuerRegion;
     identity.Weight__c = returnDTO.data.weight;
-    identity.Gender__c = mapGenderValue(returnDTO.data.gender);
+    identity.Gender__c = returnDTO.data.gender;
     identity.FinServ__DocumentType__c = mapDocumentTypeValue(
       returnDTO.data.documentType
     );
     identity.FinServ__DocumentNumber__c = returnDTO.data.documentNumber;
     identity.FinServ__IssuingCountry__c = returnDTO.data.issuerCountry;
-    identity.Nationality__c = returnDTO.data.nationality;
-    identity.FinServ__ExpirationDate__c = DateUtils.convertStringToDate1(
-      returnDTO.data.expiry
-    );
-    identity.FinServ__IssueDate__c = DateUtils.convertStringToDate1(
-      returnDTO.data.issued
-    );
+    identity.Nationality__c = returnDTO.data.country;
+    identity.FinServ__ExpirationDate__c = date.valueOf(returnDTO.data.expiry);
+    identity.FinServ__IssueDate__c = date.valueOf(returnDTO.data.issued);
     idAddress.Street = returnDTO.data.address1;
-    idAddress.City = returnDTO.data.address2;
+    idAddress.City = returnDTO.data.city;
     idAddress.PostalCode = returnDTO.data.postalCode;
-    idAddress.StateCode__c = returnDTO.data.issuerOrgRegionAbbr;
-    idAddress.Country = returnDTO.data.issuerOrgIso2;
+    idAddress.StateCode__c = returnDTO.data.state;
+    idAddress.Country = returnDTO.data.country;
 
     SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
     construct.setChildObjects(
@@ -250,25 +328,15 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
   global string mapDocumentTypeValue(string value) {
     if (value != null) {
       switch on value {
-        when 'P' {
-          return 'US Passport';
-        }
-        when 'D' {
+        when 'DL' {
           return 'Drivers License';
         }
-        when 'I' {
+        when 'ID' {
           // If Identity card save as state ID
           return 'State Id Card';
         }
-        when 'V' {
-          return 'Visa';
-        }
-        when 'R' {
-          // Residence card
-          return 'Other';
-        }
-        when 'O' {
-          return 'Other';
+        when 'CAC' {
+          return 'Military Id';
         }
         when else {
           return 'Other';
