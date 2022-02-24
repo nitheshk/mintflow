@@ -2,6 +2,7 @@ const fs = require("fs");
 const gulp = require("gulp");
 const utils = require("../utils");
 var xml2js = require("xml2js");
+var zipFolder = require("zip-folder");
 
 let config = require("../root.json");
 
@@ -9,6 +10,37 @@ let config = require("../root.json");
 gulp.task("readConfig", function (finish) {
   console.log("Reading Configuration : " + JSON.stringify(config));
   finish();
+});
+
+//npmRunBuild_MintFlow
+gulp.task("npmRunBuild_MintFlow", function (finish) {
+  let scriptToRun = `npm run  --prefix ${config.ui.MintFlow.UIFolder} build`;
+  console.log("Script To Run - " + scriptToRun);
+  utils.runCommand(scriptToRun).then((result) => {
+    console.log(result);
+    finish();
+  });
+});
+
+//buildStaticResource_MintFlow
+gulp.task("buildStaticResource_MintFlow", (finish) => {
+  if (fs.existsSync(config.ui.MintFlow.uiDistFolder)) {
+    let dist = config.ui.MintFlow.uiDistFolder;
+    let staticResourcePath =
+      config.ui.MintFlow.staticResourceFolder +
+      config.ui.MintFlow.staticResourceName;
+
+    zipFolder(dist, staticResourcePath, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Static resource has created");
+        finish();
+      }
+    });
+  } else {
+    console.log("Unable to find the Dist Folder");
+  }
 });
 
 //setup devhub
@@ -523,9 +555,15 @@ gulp.task("createSiteProfile", function (finish) {
 });
 
 gulp.task(
+  "buildUI_MintFlow",
+  gulp.series("npmRunBuild_MintFlow", "buildStaticResource_MintFlow")
+);
+
+gulp.task(
   "newScratchOrg",
   gulp.series(
     "readConfig",
+    "buildUI_MintFlow",
     "setupDevHub",
     "deleteScratchOrg",
     "createScratchOrg",
@@ -544,6 +582,7 @@ gulp.task(
   "newScratchOrgWithSite",
   gulp.series(
     "readConfig",
+    "buildUI_MintFlow",
     "setupDevHub",
     "deleteScratchOrg",
     "createScratchOrg",
