@@ -38,7 +38,7 @@ force-app/main/default/layouts/systemAdminLayout/PersonAccount-Person Account La
 
 # Oauth Provider, Issue with executionUser name
 force-app/main/default/authproviders/UiPath.authprovider-meta.xml
-
+fsc-app/main/default/sharingRules
 
 # Package Creation
 
