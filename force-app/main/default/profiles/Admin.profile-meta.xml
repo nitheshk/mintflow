@@ -157,6 +157,14 @@
         <tab>EligibleCounty__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>ProductService__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>FinancialAccountService__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
 
     <!--applicationVisibilities-->
     <applicationVisibilities>

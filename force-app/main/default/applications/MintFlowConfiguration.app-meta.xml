@@ -150,6 +150,8 @@
     <tabs>SurveyTemplate__c</tabs>
     <tabs>EligibleCounty__c</tabs>
     <tabs>FinancialInstituteAccount</tabs>
+    <tabs>ProductService__c</tabs>
+    <tabs>FinancialAccountService__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
@@ -175,6 +177,12 @@
         </mappings>
         <mappings>
             <tab>Flow__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ProductService__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinancialAccountService__c</tab>
         </mappings>
         <mappings>
             <tab>ApplicationConfiguration</tab>
