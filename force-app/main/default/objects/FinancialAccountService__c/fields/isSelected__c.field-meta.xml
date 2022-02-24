@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>showQuestions__c</fullName>
+    <fullName>isSelected__c</fullName>
     <defaultValue>false</defaultValue>
-    <description
-  >True if any questions are associated with the service</description>
+    <description>True if service is selected by customer</description>
     <externalId>false</externalId>
-    <label>showQuestions?</label>
+    <label>isSelected?</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>
