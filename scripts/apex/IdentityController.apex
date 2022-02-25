@@ -112,3 +112,10 @@ request.token = 'pyh8mYAVjrnj1iy5gF7JFK47w+KxidbycgQrn9aXie+QT6+YgtnCTP1gEveFYPI
 
 ApexResponse res = IdentityController.generateUrlForIdentityUpload(request);
 system.debug('Full Json : ' + res.data);
+
+ApexRequest request = new ApexRequest();
+request.setHeader(
+  new Map<String, String>{ 'applicantId' => 'a0aN000000ANBttIAH' }
+);
+ApexResponse res = IdentityController.customerDueDiligence(request);
+system.debug('customer response : ' + res);

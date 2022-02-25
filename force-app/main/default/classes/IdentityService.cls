@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class IdentityService extends AbstractService {
+global virtual with sharing class IdentityService extends AbstractService {
   @TestVisible
   private static IdentityService serviceInstance;
 
@@ -264,11 +264,73 @@ global with sharing class IdentityService extends AbstractService {
    * @param Id applicantId
    * @return Object
    **/
-  global virtual string customerDueDiligence(Id applicantId) {
-    Applicant__c applicantObj = IdentityRepository.readApplicantWithIdentity(
+  global virtual string customerDueDiligence(Map<string, Object> params) {
+    IdScanDueDiligenceDTO.CustomerData customer = new IdScanDueDiligenceDTO.CustomerData();
+    List<string> services = new List<String>();
+    Id applicantId = (id) params.get('applicantId');
+    Applicant__c applicant = IdentityRepository.readApplicantWithIdentity(
       applicantId
     );
-    //dto conversion at this place
-    return '';
+    services.add(ApplicationConstant.CUSTOMER_SERVICES);
+
+    try {
+      if (applicant != null) {
+        Flow.initialize(applicantId);
+        Flow.setFlow('Customer Due Diligence');
+        // get public token
+
+        customer.firstName = applicant.firstName__c;
+        customer.lastName = applicant.LastName__c;
+        customer.dateOfBirths = applicant.Birthdate__c;
+        customer.middleName = applicant.mflow__MiddleName__c;
+        if (
+          applicant != null &&
+          applicant.mflow__IdentificationDocuments__r.size() > 0
+        ) {
+          customer = mapIdentity(
+            applicant.mflow__IdentificationDocuments__r[0],
+            customer
+          );
+        }
+        if (
+          applicant != null &&
+          applicant.mflow__ContactPointAddresses__r.size() > 0
+        ) {
+          mapAddress(applicant.mflow__ContactPointAddresses__r, customer);
+        }
+      }
+    } catch (exception ex) {
+      log?.debug('exception ::' + ex.getMessage());
+    } finally {
+      Logger.persist();
+    }
+    return JSON.serialize(customer, true);
+  }
+
+  private static IdScanDueDiligenceDTO.CustomerData mapIdentity(
+    FinServ__IdentificationDocument__c identity,
+    IdScanDueDiligenceDTO.CustomerData customer
+  ) {
+    customer.sex = identity.Gender__c;
+    customer.driverLicenseNumber = identity.FinServ__DocumentNumber__c;
+    customer.documentCategoryCode = 0;
+    customer.driverLicenseIssueDate = identity.FinServ__IssueDate__c;
+    customer.driverLicenseExpirationDate = identity.FinServ__ExpirationDate__c;
+    return customer;
+  }
+
+  private static IdScanDueDiligenceDTO.CustomerData mapAddress(
+    List<ContactPointAddress> addresses,
+    IdScanDueDiligenceDTO.CustomerData customer
+  ) {
+    for (ContactPointAddress idAddress : addresses) {
+      if (idAddress.AddressType.equalsignorecase('Current')) {
+        customer.address = idAddress.Street;
+        customer.city = idAddress.City;
+        customer.zip = idAddress.PostalCode;
+        customer.state = idAddress.State;
+      }
+    }
+    return customer;
   }
 }
