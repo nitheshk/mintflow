@@ -641,7 +641,10 @@ global with sharing class ApplicationPersistService extends AbstractService {
     for (
       mflow__FinancialAccountService__c financialAccountService : financialAccountServices
     ) {
-      if (String.isNotBlank(financialAccountId)) {
+      if (
+        String.isNotBlank(financialAccountId) &&
+        String.isNotBlank(financialAccountService.FinancialAccount__c)
+      ) {
         financialAccountService.FinancialAccount__c = financialAccountId;
       }
     }
