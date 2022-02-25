@@ -1,4 +1,26 @@
+/**
+ * Copyright (c) 2021 Digital Align
+ * @group Repository
+ * @author Digital Align Team
+ * @reference
+ * @description
+ **/
 public with sharing class ProductServiceRepository extends DatabaseUtils {
+  /**
+   * @description Read Existing Service
+   * @author Digital Align Team | 02-25-2022
+   * @param Id financialAccountId
+   * @return List<FinancialAccountService__c>
+   */
+  public static List<FinancialAccountService__c> readExistingService(
+    Id financialAccountId
+  ) {
+    Query query = Query.newInstance(FinancialAccountService__c.SObjectType)
+      .addFields()
+      .whereEq('FinancialAccount__c', financialAccountId)
+      .orderBy('mflow__Order__c');
+    return (List<FinancialAccountService__c>) getRecords(query.toString(true));
+  }
   /**
    * @description Read Application with child record
    * Applicants contains only ids

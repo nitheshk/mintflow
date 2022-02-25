@@ -146,6 +146,26 @@
       "mflow__SubCategory__c": "Membership",
       "mflow__Type__c": "Consumer",
       "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__FinancialProduct__c",
+        "referenceId": "IC-005"
+      },
+      "Name": "Prime Debit Account",
+      "mflow__Category__c": "Checking",
+      "mflow__DeleteRecord__c": false,
+      "mflow__DisplayLabel__c": "Prime Debit Account",
+      "mflow__EndDate__c": "2027-02-24",
+      "mflow__ExternalCode__c": "EC-005",
+      "mflow__InternalCode__c": "IC-005",
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__ShortDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__StartDate__c": "2022-02-24",
+      "mflow__Type__c": "Consumer",
+      "mflow__isActive__c": true
     }
   ]
 }
