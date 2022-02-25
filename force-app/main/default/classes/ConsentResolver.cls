@@ -202,9 +202,10 @@ global virtual with sharing class ConsentResolver extends AbstractService {
     for (ConsentLineItem__c consentLineItem : consentLineItems) {
       Consent__c consent = new Consent__c();
       consent.Application__c = ApexRequest.getApplicationId();
-      if (ApexRequest.getParams('applicantId') != null) {
-        consent.Applicant__c = (Id) ApexRequest.getParams('applicantId');
-      }
+      // if (ApexRequest.getParams('applicantId') != null) {
+      //   consent.Applicant__c = (Id) ApexRequest.getParams('applicantId');
+      // }
+      consent.Applicant__c = ApexRequest.getApplicantId();
       if (String.isNotBlank(financialAccountId)) {
         consent.FinancialAccount__c = financialAccountId;
       }

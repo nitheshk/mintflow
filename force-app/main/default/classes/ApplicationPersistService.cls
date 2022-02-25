@@ -583,6 +583,18 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         financialAccount.Id
       );
     }
+
+    // Save ProductServices
+    if (
+      !collectionUtils.isListEmpty(
+        financialAccount?.mflow__FinancialAccountServices__r
+      )
+    ) {
+      this.saveFinancialAccountServices(
+        financialAccount.mflow__FinancialAccountServices__r,
+        financialAccount.Id
+      );
+    }
     return financialAccount;
   }
 
@@ -614,5 +626,26 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
     ApplicantRepository.upsertRecords(financialAccountTransactions);
     return financialAccountTransactions;
+  }
+  /**
+   * @description save financial Account Services
+   * @author Digital Align Team | 01-10-2022
+   * @param List<mflow__FinancialAccountService__c> financialAccountTransactions
+   * @param Id financialAccountId
+   * @return  List<mflow__FinancialAccountService__c>
+   **/
+  global virtual List<mflow__FinancialAccountService__c> saveFinancialAccountServices(
+    List<mflow__FinancialAccountService__c> financialAccountServices,
+    Id financialAccountId
+  ) {
+    for (
+      mflow__FinancialAccountService__c financialAccountService : financialAccountServices
+    ) {
+      if (String.isNotBlank(financialAccountId)) {
+        financialAccountService.FinancialAccount__c = financialAccountId;
+      }
+    }
+    ApplicantRepository.upsertRecords(financialAccountServices);
+    return financialAccountServices;
   }
 }

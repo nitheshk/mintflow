@@ -48,4 +48,29 @@ global with sharing class FinancialAccountController extends AbstractController 
       Logger.persist();
     }
   }
+
+  /**
+   * @description Save Financial Account Service
+   * @author Digital Align Team | 02-24-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse fetchServices(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(
+        ProductServiceResolver.getInstance().fetchServices(request.data)
+      );
+    } catch (CustomException ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
 }
