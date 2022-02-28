@@ -132,7 +132,7 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
     mapperTransaction.FinancialAccountTransactionId = accountTransaction.Id;
     mapperTransaction.AccountHolderName = accountTransaction.mflow__AccountHolderName__c;
     mapperTransaction.AccountNumber = accountTransaction.mflow__AccountNumber__c;
-    mapperTransaction.Amount = accountTransaction.FinServ__Amount__c;
+    mapperTransaction.Amount = accountTransaction.mflow__Amount__c;
     mapperTransaction.FinancialInstitute = accountTransaction.mflow__FinancialInstitute__c;
     mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
     mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;

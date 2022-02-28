@@ -17,7 +17,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>FinServ__Amount__c</field>
+                <field>Amount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
