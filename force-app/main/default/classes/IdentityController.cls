@@ -133,8 +133,22 @@ global with sharing class IdentityController extends AbstractController {
   @AuraEnabled
   @RemoteAction
   global static ApexResponse customerDueDiligence(ApexRequest request) {
-    String applicantId;
-    IdScanProvider.customerDueDiligence(applicantId);
-    return null;
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(
+        IdentityService.getInstance()
+          .customerDueDiligence(ApexRequest.getParams())
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete customerDueDiligence');
+      Logger.persist();
+      Flow.finalize();
+    }
   }
 }

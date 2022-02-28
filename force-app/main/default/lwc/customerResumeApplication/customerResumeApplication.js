@@ -93,10 +93,11 @@ export default class CustomerResumeApplication extends LightningElement {
     }
   }
   handleResume(event) {
-    console.log("triggered");
-    var targetElement = event.target;
-    console.log(targetElement.dataset.fieldname);
-    this.selectedApplicant.push(targetElement.dataset.fieldname);
+    //console.log("triggered");
+    let targetElement = event.target;
+    //console.log(targetElement.dataset.fieldname);
+    let trimedVal = targetElement.dataset.fieldname?.trim();
+    this.selectedApplicant.push(trimedVal);
     console.log(JSON.stringify(this.selectedApplicant));
 
     // this.showSpinner = true;

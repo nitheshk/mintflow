@@ -67,6 +67,23 @@ public with sharing class IdentityRepository extends DatabaseUtils {
    * @return Applicant__c
    **/
   public static Applicant__c readApplicantWithIdentity(Id applicantId) {
-    return null;
+    return (Applicant__c) DatabaseUtils.getRecord(
+      Query.newInstance(Applicant__c.SObjectType)
+        .addFields()
+        .addFields('RecordType.Name')
+        .queryLookup('mflow__Application__r')
+        .addFields()
+        .run()
+        .queryChild('mflow__IdentificationDocuments__r')
+        .addFields()
+        .run()
+        .queryChild('mflow__ContactPointAddresses__r')
+        .addFields()
+        .removeFields('Address')
+        .orderBy('mflow__Order__c')
+        .run()
+        .whereEq('Id', applicantId)
+        .toString()
+    );
   }
 }

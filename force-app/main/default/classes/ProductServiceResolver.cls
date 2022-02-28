@@ -38,11 +38,19 @@ global with sharing class ProductServiceResolver extends AbstractService {
     Account application = ProductServiceRepository.readApplicationWithFA(
       ApexRequest.getApplicationId()
     );
-
+    //#Pending Doesn't work for multiple products
     List<FinancialAccountService__c> financialAccountService = new List<FinancialAccountService__c>();
     financialAccountService = ProductServiceRepository.readExistingService(
       application.FinancialAccounts__r[0].Id
     );
+
+    for (
+      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+    ) {
+      financialAccountService.addAll(
+        ProductServiceRepository.readExistingService(financialAccount.Id)
+      );
+    }
 
     if (!financialAccountService.isEmpty()) {
       return financialAccountService;

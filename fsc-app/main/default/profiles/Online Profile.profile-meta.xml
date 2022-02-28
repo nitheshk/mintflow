@@ -25,6 +25,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>mflow__LwcCustomController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>mflow__AtomicFIService</apexClass>
         <enabled>true</enabled>
     </classAccesses>

@@ -13,6 +13,21 @@ utils
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
       item.attributes.referenceId = item.mflow__InternalCode__c;
+      if (item.mflow__ProductServices__r) {
+        item.mflow__ProductServices__r.records.forEach(function (
+          item_c1,
+          index_c1
+        ) {
+          utils.replaceUnwantedFields(item_c1);
+          delete item_c1.mflow__FinancialProduct__c;
+          item_c1.attributes.referenceId =
+            "ProductServiceRef" + index + "_" + index_c1;
+
+          //read only field
+          delete item_c1.mflow__FinancialProductCode__c;
+          delete item_c1.Name;
+        });
+      }
     });
     //   Script to update change for each config ==>
     utils
