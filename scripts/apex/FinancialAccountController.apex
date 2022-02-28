@@ -14,7 +14,7 @@ FinancialAccountTransaction__c fst = new FinancialAccountTransaction__c(
 FinServ__FinancialAccount__c finacc = (FinServ__FinancialAccount__c) SObjectConstructor.getInstance(
     fs[0]
   )
-  .addChildObject('mflow__FinancialAccountTransactionsTemp__r', fst)
+  .addChildObject('mflow__FinancialAccountTransactions__r', fst)
   .build();
 
 fs = FinancialAccountService.getInstance()

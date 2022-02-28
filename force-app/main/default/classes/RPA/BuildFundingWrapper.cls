@@ -107,11 +107,11 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
       //#removeFSC
       // if (
       //   !CollectionUtils.isListEmpty(
-      //     finApplication.mflow__FinancialAccountTransactionsTemp__r
+      //     finApplication.FinancialAccountTransactions__r
       //   )
       // ) {
       //   mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
-      //     finApplication.mflow__FinancialAccountTransactionsTemp__r[0]
+      //     finApplication.FinancialAccountTransactions__r[0]
       //   );
       // } else {
       //   throw new CustomException('No financial transaction account found');

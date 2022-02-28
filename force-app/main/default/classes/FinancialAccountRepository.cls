@@ -19,7 +19,7 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
     return (List<FinServ__FinancialAccount__c>) DatabaseUtils.getRecords(
       Query.newInstance(FinServ__FinancialAccount__c.SObjectType)
         .addFields()
-        .queryChild('mflow__FinancialAccountTransactionsTemp__r')
+        .queryChild('mflow__FinancialAccountTransactions__r')
         .addFields()
         .run()
         .whereIn('Id', financialAccountIds)

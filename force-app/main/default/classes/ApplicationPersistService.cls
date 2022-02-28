@@ -501,11 +501,11 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     /*
     if (
       !collectionUtils.isListEmpty(
-        financialAccount?.mflow__FinancialAccountTransactionsTemp__r
+        financialAccount?.FinancialAccountTransactions__r
       )
     ) {
       this.saveFinancialAccountTransactions(
-        financialAccount.mflow__FinancialAccountTransactionsTemp__r,
+        financialAccount.FinancialAccountTransactions__r,
         financialAccount.Id
       );
     } */
