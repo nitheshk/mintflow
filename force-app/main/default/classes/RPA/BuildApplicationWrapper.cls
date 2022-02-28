@@ -247,29 +247,6 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
     }
     return mapperIdentityList;
   }
-  /**
-   * @description
-   * @author Digital Align | 11-10-2021
-   * @param List<FinServ__Revenue__c> revenueList
-   * @return virtual
-   **/
-  // global virtual list<ApplicationSubmissionResponse.Revenue> mapRevenue(
-  //   List<FinServ__Revenue__c> revenueList
-  // ) {
-  //   list<ApplicationSubmissionResponse.Revenue> mapperRevenueList = new List<ApplicationSubmissionResponse.Revenue>();
-  //   for (FinServ__Revenue__c revenue : revenueList) {
-  //     ApplicationSubmissionResponse.Revenue mapperRevenue = new ApplicationSubmissionResponse.Revenue();
-  //     mapperRevenue.RevenueId = revenue.Id;
-  //     mapperRevenue.Amount = revenue.FinServ__Amount__c;
-  //     mapperRevenue.Name = revenue.Name;
-  //     mapperRevenue.Order = revenue.Order__c;
-  //     mapperRevenue.RevenueDate = revenue.FinServ__Date__c;
-  //     mapperRevenue.SubType = revenue.FinServ__SubType__c;
-  //     mapperRevenue.Type = revenue.FinServ__Type__c;
-  //     mapperRevenueList.add(mapperRevenue);
-  //   }
-  //   return mapperRevenueList;
-  // }
 
   /**
    * @description

@@ -109,16 +109,6 @@ global with sharing class ApplicationSubmissionResponse {
     // global string TemplateName;
   }
 
-  // global class Revenue {
-  //   global String RevenueId;
-  //   global String SubType;
-  //   global String Type;
-  //   global String Name;
-  //   global Double Amount;
-  //   global Date RevenueDate;
-  //   global Decimal Order;
-  // }
-
   global class ContactPointAddress {
     global String ContactPointAddressId;
     global String PostalCode;

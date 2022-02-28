@@ -401,31 +401,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   } */
 
   /**
-   * @description Save Revenues
-   * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__Revenue__c> revenues
-   * @param Id applicantId
-   * @return List<FinServ__Revenue__c>
-   **/
-  /*
-  global virtual List<FinServ__Revenue__c> saveRevenues(
-    List<FinServ__Revenue__c> revenues,
-    Id applicantId
-  ) {
-    for (FinServ__Revenue__c revenue : revenues) {
-      if (String.isNotBlank(applicantId)) {
-        revenue.Applicant__c = applicantId;
-      }
-      if (String.isBlank(revenue.FinServ__Account__c)) {
-        revenue.FinServ__Account__c = ApexRequest.getApplicationId();
-      }
-    }
-    ApplicantRepository.upsertRecords(revenues);
-    return revenues;
-  }
-  */
-
-  /**
    * @description  delete object by Id
    * @author Digital Align Team | 11-10-2021
    * @param Id recordId
@@ -467,9 +442,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'FinServ__AssetsAndLiabilities__c' {
-        ApplicationRepository.deleteRecord(recordId, true);
-      }
-      when 'FinServ__Revenue__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
     }
