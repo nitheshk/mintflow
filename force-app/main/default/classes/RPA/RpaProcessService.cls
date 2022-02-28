@@ -8,7 +8,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 @RestResource(UrlMapping='/rpa/v1/*')
-global with sharing class RpaProcessService extends AbstractService {
+global virtual with sharing class RpaProcessService extends AbstractService {
   @TestVisible
   private static RpaProcessService serviceInstance;
   private static String classUrlMapping = '/rpa/v1/';
@@ -159,9 +159,7 @@ global with sharing class RpaProcessService extends AbstractService {
         params.put('Priority', HttpBuilder.getApiConstant('UipathPriority'));
         params.put(
           'SpecificContent',
-          new Map<String, String>{
-            'LoanID' => application.ApplicationNumber__c
-          }
+          new Map<String, String>{ 'LoanID' => application.Name }
         );
         params.put('Reference', SecurityUtils.generateUUID());
         params.put(
@@ -247,8 +245,7 @@ global with sharing class RpaProcessService extends AbstractService {
     Account application = (Account) KycReviewService.getInstance()
       .processMembershipKYC(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
-    String responseString =
-      'Application Status :' + application.FinServ__Status__c;
+    String responseString = 'Application Status :' + application.Status__c;
     response.responseBody = Blob.valueOf(responseString);
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');
@@ -305,8 +302,7 @@ global with sharing class RpaProcessService extends AbstractService {
     Account application = (Account) ApplicationSubmissionService.getInstance()
       .processFundingSubmission(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
-    String responseString =
-      'Application Status :' + application.FinServ__Status__c;
+    String responseString = 'Application Status :' + application.Status__c;
     response.responseBody = Blob.valueOf(responseString);
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');

@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class {{ServiceClass}} extends {{Namespace}}AbstractService {
+global virtual with sharing class {{ServiceClass}} extends {{Namespace}}AbstractService {
   @TestVisible
   private static {{ServiceClass}} serviceInstance;
 

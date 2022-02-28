@@ -3,12 +3,12 @@
     <fullName>Submit_for_KYC_Review</fullName>
     <columns>ACCOUNT.NAME</columns>
     <columns>Stage__c</columns>
-    <columns>FinServ__Status__c</columns>
+    <columns>Status__c</columns>
     <columns>CREATEDBY_USER.ALIAS</columns>
     <columns>ACCOUNT.CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>FinServ__Status__c</field>
+        <field>Status__c</field>
         <operation>equals</operation>
         <value>Submit for Review</value>
     </filters>

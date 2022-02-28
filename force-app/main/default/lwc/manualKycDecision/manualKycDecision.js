@@ -28,7 +28,7 @@ export default class ManualKycDecision extends LightningElement {
    */
   @wire(getPickListValues, {
     params: {
-      Account: ["FinServ__KYCStatus__c"],
+      Account: ["mflow__KYCStatus__c"],
       mflow__Applicant__c: ["mflow__KYCStatus__c"]
     }
   })
@@ -37,7 +37,7 @@ export default class ManualKycDecision extends LightningElement {
       if (data.status === 200) {
         this.applicationStatus = JSON.parse(
           data.data
-        )?.Account.FinServ__KYCStatus__c.filter(
+        )?.Account.mflow__KYCStatus__c.filter(
           (item) => item.value === "Passed" || item.value === "Failed"
         );
 

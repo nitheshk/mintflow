@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity')
-global with sharing class ApplicationPersistService extends AbstractService {
+global virtual with sharing class ApplicationPersistService extends AbstractService {
   @TestVisible
   private static ApplicationPersistService serviceInstance;
 

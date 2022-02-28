@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class SentiLinkProvider extends AbstractService {
+global virtual with sharing class SentiLinkProvider extends AbstractService {
   @TestVisible
   private static SentiLinkProvider serviceInstance;
 

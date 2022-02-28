@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <custom>false</custom>
+    <userLicense>Salesforce</userLicense>
+    <layoutAssignments>
+        <layout>Account-mflow__Application Layout</layout>
+        <recordType>Account.mflow__Application</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>mflow__Flow__c-mflow__Flow Layout</layout>
+        <recordType>mflow__Flow__c.mflow__Flow</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>mflow__Flow__c-mflow__Sub Flow Layout</layout>
+        <recordType>mflow__Flow__c.mflow__SubFlow</recordType>
+    </layoutAssignments>
+    <pageAccesses>
+        <apexPage>OpenAccount</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>OnlineAccount</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>IdentityUpload</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+</Profile>

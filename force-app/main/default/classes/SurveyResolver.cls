@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class SurveyResolver extends AbstractService {
+global virtual with sharing class SurveyResolver extends AbstractService {
   @TestVisible
   private static SurveyResolver serviceInstance;
 

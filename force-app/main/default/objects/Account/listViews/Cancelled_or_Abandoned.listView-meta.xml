@@ -5,16 +5,16 @@
     <columns>ACCOUNT.NAME</columns>
     <columns>CREATEDBY_USER.ALIAS</columns>
     <columns>Stage__c</columns>
-    <columns>FinServ__Status__c</columns>
+    <columns>Status__c</columns>
     <columns>ACCOUNT.CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>FinServ__Status__c</field>
+        <field>Status__c</field>
         <operation>equals</operation>
         <value>Cancelled</value>
     </filters>
     <filters>
-        <field>FinServ__Status__c</field>
+        <field>Status__c</field>
         <operation>equals</operation>
         <value>Abandoned</value>
     </filters>

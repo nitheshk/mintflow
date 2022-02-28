@@ -7,7 +7,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 @RestResource(urlMapping='/atomic/v1/*')
-global with sharing class AtomicFIService extends AbstractService {
+global virtual with sharing class AtomicFIService extends AbstractService {
   private static Logger log = Logger.getInstance(AtomicFIService.class);
   @TestVisible
   private static AtomicFIService serviceInstance;

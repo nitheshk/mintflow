@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class PlaidProvider extends AbstractService {
+global virtual with sharing class PlaidProvider extends AbstractService {
   @TestVisible
   private static PlaidProvider serviceInstance;
   private String accessToken;

@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class BuildApplicationWrapper extends AbstractService {
+global virtual with sharing class BuildApplicationWrapper extends AbstractService {
   @TestVisible
   private static BuildApplicationWrapper serviceInstance;
 
@@ -61,7 +61,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       if (application != null) {
         ApplicationSubmissionResponse.Account mapperApplication = new ApplicationSubmissionResponse.Account();
         mapperApplication.ApplicationId = application.Id;
-        mapperApplication.ApplicationNumber = application.ApplicationNumber__c;
+        mapperApplication.ApplicationNumber = application.Name;
         mapperApplication.BranchCode = application.FinServ__BranchCode__c;
         mapperApplication.BranchName = application.FinServ__BranchName__c;
         mapperApplication.CountyName = application.CountyName__c;
@@ -70,12 +70,12 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
         mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
         // mapperApplication.CreatedChannel = application.CreatedChannel__c;
         mapperApplication.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
-        // mapperApplication.CustomerType = application.FinServ__CustomerType__c;
+        // mapperApplication.CustomerType = application.ApplicationType__c;
         // mapperApplication.FlowState = application.FlowState__c;
         // mapperApplication.IpAddress = application.IPAddress__c;
         // mapperApplication.IsMemberFlow = application.isMemberFlow__c;
-        // mapperApplication.LastUsedChannel = application.FinServ__LastUsedChannel__c;
-        // mapperApplication.Status = application.FinServ__Status__c;
+        // mapperApplication.LastUsedChannel = application.LastUsedChannel__c;
+        // mapperApplication.Status = application.Status__c;
         // mapperApplication.SubmittedBy = application.SubmittedBy__c;
         // mapperApplication.SubmittedDate = application.SubmittedDate__c;
         // mapperApplication.SubStatus = application.Stage__c;

@@ -1,4 +1,4 @@
-global with sharing class AtomicFIProvider extends AbstractService {
+global virtual with sharing class AtomicFIProvider extends AbstractService {
   /**
    * Copyright (c) 2021 Digital Align
    * @group Provider

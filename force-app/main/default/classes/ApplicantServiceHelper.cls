@@ -6,7 +6,7 @@
  * @description Application service helper
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicantServiceHelper extends AbstractService {
+global virtual with sharing class ApplicantServiceHelper extends AbstractService {
   @TestVisible
   private static ApplicantServiceHelper serviceInstance;
 

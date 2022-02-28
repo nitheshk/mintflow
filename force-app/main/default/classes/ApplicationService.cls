@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicationService extends AbstractService {
+global virtual with sharing class ApplicationService extends AbstractService {
   @TestVisible
   private static ApplicationService serviceInstance;
   private ApplicationServiceHelper helper = ApplicationServiceHelper.getInstance();
@@ -83,16 +83,16 @@ global with sharing class ApplicationService extends AbstractService {
       Account.SObjectType,
       ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
     );
-    application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
+    application.Status__c = ApplicationConstant.IN_PROGRESS;
     if (params.get('ch') != null) {
       application.CreatedChannel__c = (String) params.get('ch');
-      application.FinServ__LastUsedChannel__c = (String) params.get('ch');
+      application.LastUsedChannel__c = (String) params.get('ch');
     } else {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
-      application.FinServ__LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
+      application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
     }
     // #pending  value need to decide based on the parameter
-    application.FinServ__CustomerType__c = 'Consumer';
+    application.ApplicationType__c = 'Consumer';
     application.mflow__isMemberFlow__c = true;
     application.UserAccountType__c = 'CustomerApplication';
     application.FlowState__c = 'GetStarted';
@@ -103,9 +103,11 @@ global with sharing class ApplicationService extends AbstractService {
       .getIpAddress();
     application = ApplicationServiceHelper.getInstance()
       .resolveBranchLocation(application);
+    application.Name = ApplicationServiceHelper.getInstance()
+      .getApplicationNumber();
     // #info
     // Added for customer community user license only
-    // Work for Cusotmer Community plus user without owner assingment
+    // Work for Customer Community plus user without owner assingment
     // application.OwnerId = UserUtils.getCurrentUser().CreatedById;
     ApplicationRepository.upsertRecord(application);
     /*** */
@@ -136,13 +138,13 @@ global with sharing class ApplicationService extends AbstractService {
       application.Id
     );
 
-    application.Name = application.ApplicationNumber__c;
-    ApplicationRepository.upsertRecord(application);
+    // application.Name = application.ApplicationNumber__c;
+    // ApplicationRepository.upsertRecord(application);
     params.put('applicationId', ApexRequest.getApplicationId());
     params.put('applicantId', ApexRequest.getApplicantId());
     params.put('applicantType', ApexRequest.getApplicantType());
     params.put('flowType', ApexRequest.getFlowType());
-    params.put('channel', application.FinServ__LastUsedChannel__c);
+    params.put('channel', application.LastUsedChannel__c);
     params.put('applicationNumber', application.Name);
     return application;
   }
@@ -320,7 +322,7 @@ global with sharing class ApplicationService extends AbstractService {
       ApexRequest.getApplicantType() ==
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
     ) {
-      application.FinServ__Status__c = ApplicationConstant.SAVED;
+      application.Status__c = ApplicationConstant.SAVED;
       for (Applicant__c applicant : application.Applicants__r) {
         if (
           applicant.ApplicantType__c ==

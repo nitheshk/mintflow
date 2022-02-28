@@ -18,7 +18,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>FinServ__LastUsedChannel__c</field>
+        <field>LastUsedChannel__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
@@ -48,12 +48,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>FinServ__Status__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>DeleteRecord__c</field>
+        <field>Status__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
@@ -78,7 +73,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>FinServ__KYCStatus__c</field>
+        <field>KYCStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
@@ -113,7 +108,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>FinServ__CustomerType__c</field>
+        <field>ApplicationType__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
@@ -139,11 +134,6 @@
     </displayedFields>
     <displayedFields>
         <field>FinServ__BranchName__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>ApplicationNumber__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

@@ -25,11 +25,11 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>Account.ApplicationNumber__c</field>
+        <field>Account.Name</field>
     </columns>
     <filter>
         <criteriaItems>
-            <column>Account.FinServ__Status__c</column>
+            <column>Account.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>

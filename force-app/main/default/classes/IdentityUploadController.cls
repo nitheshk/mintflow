@@ -82,4 +82,16 @@ global with sharing class IdentityUploadController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 02-21-2022
+   * @return String
+   **/
+  global String getStaticUrl() {
+    return System.PageReference.forResource(
+        ApplicationConfiguration__c.getInstance().UiStaticResourceName__c
+      )
+      .getUrl();
+  }
 }

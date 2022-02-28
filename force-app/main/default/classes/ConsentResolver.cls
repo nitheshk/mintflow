@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ConsentResolver extends AbstractService {
+global virtual with sharing class ConsentResolver extends AbstractService {
   @TestVisible
   private static ConsentResolver serviceInstance;
   private Map<String, Document> documentMap;

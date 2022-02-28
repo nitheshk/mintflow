@@ -8,7 +8,9 @@
     <protected>false</protected>
     <values>
         <field>EndPoint__c</field>
-        <value xsi:type="xsd:string">callout:Sentilink/v1/query/user</value>
+        <value
+      xsi:type="xsd:string"
+    >callout:mflow__Sentilink/v1/query/user</value>
     </values>
     <values>
         <field>Method__c</field>

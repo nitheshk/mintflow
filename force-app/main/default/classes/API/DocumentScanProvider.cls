@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class DocumentScanProvider extends AbstractService {
+global virtual with sharing class DocumentScanProvider extends AbstractService {
   @TestVisible
   private static DocumentScanProvider serviceInstance;
 

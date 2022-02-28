@@ -240,40 +240,28 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FinServ__KYCStatus__c</picklist>
+        <picklist>mflow__KYCStatus__c</picklist>
         <values>
-            <fullName>Completed - Invalid</fullName>
+            <fullName>Failed</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Completed - Valid</fullName>
+            <fullName>Passed</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Expired</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>In Queue</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>In progress</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Overdue</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Required</fullName>
+            <fullName>Under Review</fullName>
             <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FinServ__LastUsedChannel__c</picklist>
+        <picklist>mflow__LastUsedChannel__c</picklist>
         <values>
             <fullName>Branch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -370,13 +358,6 @@
         <values>
             <fullName>Tier 3</fullName>
             <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>FinServ__Status__c</picklist>
-        <values>
-            <fullName>Prospect</fullName>
-            <default>true</default>
         </values>
     </picklistValues>
     <picklistValues>
