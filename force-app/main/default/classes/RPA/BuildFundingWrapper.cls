@@ -104,17 +104,18 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
       mapperFinancialAccount.Name = finApplication.Name;
       mapperFinancialAccount.Ownership = finApplication.FinServ__Ownership__c;
       mapperFinancialAccount.PrimaryOwner = finApplication.FinServ__PrimaryOwner__c;
-      if (
-        !CollectionUtils.isListEmpty(
-          finApplication.FinServ__FinancialAccountTranslations__r
-        )
-      ) {
-        mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
-          finApplication.FinServ__FinancialAccountTranslations__r[0]
-        );
-      } else {
-        throw new CustomException('No financial transaction account found');
-      }
+      //#removeFSC
+      // if (
+      //   !CollectionUtils.isListEmpty(
+      //     finApplication.mflow__FinancialAccountTransactionsTemp__r
+      //   )
+      // ) {
+      //   mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
+      //     finApplication.mflow__FinancialAccountTransactionsTemp__r[0]
+      //   );
+      // } else {
+      //   throw new CustomException('No financial transaction account found');
+      // }
       mapperFinancialAccountList.add(mapperFinancialAccount);
     }
     return mapperFinancialAccountList;
@@ -122,11 +123,11 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
   /**
    * @description
    * @author Digital Align | 01-10-2022
-   * @param FinServ__FinancialAccountTransaction__c accountTransaction
+   * @param FinancialAccountTransaction__c accountTransaction
    * @return FundingSubmissionResponse.FinancialAccountTransaction
    **/
   global virtual FundingSubmissionResponse.FinancialAccountTransaction mapFinancialAccountTranslation(
-    FinServ__FinancialAccountTransaction__c accountTransaction
+    FinancialAccountTransaction__c accountTransaction
   ) {
     FundingSubmissionResponse.FinancialAccountTransaction mapperTransaction = new FundingSubmissionResponse.FinancialAccountTransaction();
     mapperTransaction.FinancialAccountTransactionId = accountTransaction.Id;

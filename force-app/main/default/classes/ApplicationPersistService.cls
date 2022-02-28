@@ -497,16 +497,18 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   global virtual FinServ__FinancialAccount__c saveFinancialAccountChild(
     FinServ__FinancialAccount__c financialAccount
   ) {
+    //#removeFSC
+    /*
     if (
       !collectionUtils.isListEmpty(
-        financialAccount?.FinServ__FinancialAccountTranslations__r
+        financialAccount?.mflow__FinancialAccountTransactionsTemp__r
       )
     ) {
       this.saveFinancialAccountTransactions(
-        financialAccount.FinServ__FinancialAccountTranslations__r,
+        financialAccount.mflow__FinancialAccountTransactionsTemp__r,
         financialAccount.Id
       );
-    }
+    } */
 
     // Save ProductServices
     if (
@@ -525,16 +527,16 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description save financial transaction history
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccountTransaction__c> financialAccountTransactions
+   * @param List<FinancialAccountTransaction__c> financialAccountTransactions
    * @param Id financialAccountId
-   * @return  List<FinServ__FinancialAccountTransaction__c>
+   * @return  List<FinancialAccountTransaction__c>
    **/
-  global virtual List<FinServ__FinancialAccountTransaction__c> saveFinancialAccountTransactions(
-    List<FinServ__FinancialAccountTransaction__c> financialAccountTransactions,
+  global virtual List<FinancialAccountTransaction__c> saveFinancialAccountTransactions(
+    List<FinancialAccountTransaction__c> financialAccountTransactions,
     Id financialAccountId
   ) {
     for (
-      FinServ__FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions
+      FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions
     ) {
       if (String.isNotBlank(financialAccountId)) {
         financialAccountTransaction.mflow__FinancialAccount__c = financialAccountId;

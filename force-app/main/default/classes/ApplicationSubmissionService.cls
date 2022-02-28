@@ -194,7 +194,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       ) {
         //READY FOR FUNDING
         //FUNDED
-        FinServ__FinancialAccountTransaction__c fat = new FinServ__FinancialAccountTransaction__c(
+        FinancialAccountTransaction__c fat = new FinancialAccountTransaction__c(
           Id = financialAccountResult.FinancialApplicationTransaction.FinancialAccountTransactionId,
           TransactionStatus__c = 'Posted'
         );

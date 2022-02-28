@@ -5,7 +5,7 @@ List<FinServ__FinancialAccount__c> fs = FinancialAccountRepository.readFinancial
 );
 
 fs[0].mflow__ExternalApplicationNumber__c = '45645';
-FinServ__FinancialAccountTransaction__c fst = new FinServ__FinancialAccountTransaction__c(
+FinancialAccountTransaction__c fst = new FinancialAccountTransaction__c(
   FinServ__FinancialAccount__c = fs[0].Id,
   mflow__Amount__c = 565,
   TransactionDate__c = Datetime.now()
@@ -14,7 +14,7 @@ FinServ__FinancialAccountTransaction__c fst = new FinServ__FinancialAccountTrans
 FinServ__FinancialAccount__c finacc = (FinServ__FinancialAccount__c) SObjectConstructor.getInstance(
     fs[0]
   )
-  .addChildObject('FinServ__FinancialAccountTranslations__r', fst)
+  .addChildObject('mflow__FinancialAccountTransactionsTemp__r', fst)
   .build();
 
 fs = FinancialAccountService.getInstance()
