@@ -526,18 +526,18 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @description save financial transaction history
    * @author Digital Align Team | 01-10-2022
    * @param List<FinServ__FinancialAccountTransaction__c> financialAccountTransactions
-   * @param Id applicationId
+   * @param Id financialAccountId
    * @return  List<FinServ__FinancialAccountTransaction__c>
    **/
   global virtual List<FinServ__FinancialAccountTransaction__c> saveFinancialAccountTransactions(
     List<FinServ__FinancialAccountTransaction__c> financialAccountTransactions,
-    Id applicationId
+    Id financialAccountId
   ) {
     for (
       FinServ__FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions
     ) {
-      if (String.isNotBlank(applicationId)) {
-        financialAccountTransaction.FinServ__FinancialAccount__c = applicationId;
+      if (String.isNotBlank(financialAccountId)) {
+        financialAccountTransaction.mflow__FinancialAccount__c = financialAccountId;
       }
 
       if (

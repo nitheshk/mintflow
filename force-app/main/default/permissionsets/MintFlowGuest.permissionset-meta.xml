@@ -2497,7 +2497,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field
-    >FinServ__FinancialAccountTransaction__c.FinServ__FinancialAccount__c</field>
+    >FinServ__FinancialAccountTransaction__c.FinancialAccount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
