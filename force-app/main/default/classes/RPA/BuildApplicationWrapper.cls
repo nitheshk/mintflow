@@ -157,10 +157,6 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
         );
       }
 
-      //Map Revenue Data
-      // if (!CollectionUtils.isListEmpty(applicant.Revenues__r)) {
-      //   mapperApplicant.Revenues.addAll(mapRevenue(applicant.Revenues__r));
-      // }
       //Map Survey Data
       if (!CollectionUtils.isListEmpty(applicant.Surveys__r)) {
         mapperApplicant.Surveys.addAll(mapSurvey(applicant.Surveys__r));

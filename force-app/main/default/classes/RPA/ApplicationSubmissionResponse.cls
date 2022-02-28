@@ -70,13 +70,11 @@ global with sharing class ApplicationSubmissionResponse {
     global String SSN;
     global List<IdentificationDocument> IdentificationDocuments;
     global List<ContactPointAddress> ContactPointAddresses;
-    // global List<Revenue> Revenues;
     global List<Employment> Employments;
     global List<Survey> Surveys;
     // global List<AssetsAndLiabilities> AssetsAndLiabilities;
     global Applicant() {
       Employments = new List<Employment>();
-      // Revenues = new List<Revenue>();
       ContactPointAddresses = new List<ContactPointAddress>();
       IdentificationDocuments = new List<IdentificationDocument>();
       Surveys = new List<Survey>();

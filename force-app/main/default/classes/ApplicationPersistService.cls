@@ -255,22 +255,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       this.saveConsents(applicant.ApplicantConsents__r, applicant.Id);
     }
 
-    // upsert Asset And Liabilities
-    // Not in this phase
-    /*
-    if (!CollectionUtils.isListEmpty(applicant?.AssetsAndLiabilities__r)) {
-      saveAssetsAndLiabilities(
-        applicant?.AssetsAndLiabilities__r,
-        applicant.Id
-      );
-    }*/
-
-    // upsert revenues
-    // Not in this phase
-    /*
-    if (!CollectionUtils.isListEmpty(applicant?.Revenues__r)) {
-      saveRevenues(applicant?.Revenues__r, applicant.Id);
-    }*/
     return applicant;
   }
 
@@ -473,9 +457,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       }
       if (!applicant.AssetsAndLiabilities__r.isEmpty()) {
         recordsToDelete.addAll(applicant.AssetsAndLiabilities__r);
-      }
-      if (!applicant.Revenues__r.isEmpty()) {
-        recordsToDelete.addAll(applicant.Revenues__r);
       }
       recordsToDelete.add(applicant);
     }
