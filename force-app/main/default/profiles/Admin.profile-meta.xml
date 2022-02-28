@@ -113,7 +113,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout
-    >FinServ__IdentificationDocument__c-mflow__Identification Document Layout</layout>
+    >IdentificationDocument__c-mflow__Identification Document Layout</layout>
     </layoutAssignments>
 
     <!--tabVisibilities-->

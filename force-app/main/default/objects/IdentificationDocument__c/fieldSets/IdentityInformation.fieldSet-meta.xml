@@ -14,7 +14,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
      <displayedFields>
-        <field>FinServ__IssueDate__c</field>
+        <field>IssueDate__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
@@ -24,12 +24,12 @@
         <isRequired>false</isRequired>
     </displayedFields>
      <displayedFields>
-        <field>FinServ__IssuingCountry__c</field>
+        <field>IssuingCountry__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
      <displayedFields>
-        <field>FinServ__ExpirationDate__c</field>
+        <field>ExpirationDate__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

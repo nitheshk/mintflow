@@ -261,15 +261,15 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description Save Identification Documents
    * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__IdentificationDocument__c> identityDocuments
+   * @param List<IdentificationDocument__c> identityDocuments
    * @param Id applicantId
-   * @return List<FinServ__IdentificationDocument__c>
+   * @return List<IdentificationDocument__c>
    **/
-  global virtual List<FinServ__IdentificationDocument__c> saveIdentificationDocuments(
-    List<FinServ__IdentificationDocument__c> identityDocuments,
+  global virtual List<IdentificationDocument__c> saveIdentificationDocuments(
+    List<IdentificationDocument__c> identityDocuments,
     Id applicantId
   ) {
-    for (FinServ__IdentificationDocument__c identityDoc : identityDocuments) {
+    for (IdentificationDocument__c identityDoc : identityDocuments) {
       if (String.isNotBlank(applicantId)) {
         identityDoc.Applicant__c = applicantId;
       }
@@ -392,7 +392,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       when 'mflow__Applicant__c' {
         this.deleteApplicants(new Set<Id>{ recordId });
       }
-      when 'FinServ__IdentificationDocument__c' {
+      when 'IdentificationDocument__c' {
         FileService.getInstance().deleteContentVersionByEntityId(recordId);
         ApplicationRepository.deleteRecord(recordId, true);
       }

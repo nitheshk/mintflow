@@ -267,11 +267,10 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>DocumentType__c</fields>
-        <fields>FinServ__IssueDate__c</fields>
-        <fields>FinServ__ExpirationDate__c</fields>
+        <fields>IssueDate__c</fields>
+        <fields>ExpirationDate__c</fields>
         <fields>CREATED_DATE</fields>
-        <relatedList
-    >FinServ__IdentificationDocument__c.Applicant__c</relatedList>
+        <relatedList>IdentificationDocument__c.Applicant__c</relatedList>
         <sortField>CREATED_DATE</sortField>
         <sortOrder>Desc</sortOrder>
     </relatedLists>

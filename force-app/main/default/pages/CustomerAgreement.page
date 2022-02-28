@@ -164,13 +164,13 @@
                 <td width="50% ">
                   <apex:outputText value="Issued Date : "></apex:outputText>
                   <apex:outputText value="{0,date,MM/dd/yyyy}">
-                    <apex:param value="{!identityVar.FinServ__IssueDate__c}" />
+                    <apex:param value="{!identityVar.IssueDate__c}" />
                   </apex:outputText>
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Issuing Country : "></apex:outputText>
                   <apex:outputText
-                    value="{!identityVar.FinServ__IssuingCountry__c}"
+                    value="{!identityVar.IssuingCountry__c}"
                   ></apex:outputText>
                 </td>
               </tr>
@@ -178,9 +178,7 @@
                 <td width="50% ">
                   <apex:outputText value="Expiration Date : "></apex:outputText>
                   <apex:outputText value="{0,date,MM/dd/yyyy}">
-                    <apex:param
-                      value="{!identityVar.FinServ__ExpirationDate__c}"
-                    />
+                    <apex:param value="{!identityVar.ExpirationDate__c}" />
                   </apex:outputText>
                 </td>
                 <td width="50% ">

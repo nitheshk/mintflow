@@ -15,10 +15,10 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
    */
   @SuppressWarnings('PMD.EmptyStatementBlock')
   public override void afterInsert() {
-    List<FinServ__IdentificationDocument__c> newIdentityDocuments = (List<FinServ__IdentificationDocument__c>) Trigger.new;
+    List<IdentificationDocument__c> newIdentityDocuments = (List<IdentificationDocument__c>) Trigger.new;
 
     List<FileDTO> fileDtos = new List<FileDTO>();
-    for (FinServ__IdentificationDocument__c iDoc : newIdentityDocuments) {
+    for (IdentificationDocument__c iDoc : newIdentityDocuments) {
       if (String.isNotBlank(iDoc.PrimaryContentDocumentID__c)) {
         fileDtos.add(new FileDTO(iDoc.PrimaryContentDocumentID__c, iDoc.Id));
       }
@@ -37,13 +37,13 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
    */
   @SuppressWarnings('PMD.EmptyStatementBlock,PMD.CognitiveComplexity')
   public override void afterUpdate() {
-    List<FinServ__IdentificationDocument__c> newIdentityDocuments = (List<FinServ__IdentificationDocument__c>) Trigger.new;
-    Map<Id, FinServ__IdentificationDocument__c> oldIdentityDocumentMap = (Map<Id, FinServ__IdentificationDocument__c>) Trigger.oldMap;
+    List<IdentificationDocument__c> newIdentityDocuments = (List<IdentificationDocument__c>) Trigger.new;
+    Map<Id, IdentificationDocument__c> oldIdentityDocumentMap = (Map<Id, IdentificationDocument__c>) Trigger.oldMap;
 
     List<FileDTO> fileDtos = new List<FileDTO>();
     List<Id> contentDocumentIds = new List<Id>();
-    for (FinServ__IdentificationDocument__c newIDoc : newIdentityDocuments) {
-      FinServ__IdentificationDocument__c oldIDoc = oldIdentityDocumentMap.get(
+    for (IdentificationDocument__c newIDoc : newIdentityDocuments) {
+      IdentificationDocument__c oldIDoc = oldIdentityDocumentMap.get(
         newIDoc.Id
       );
 
@@ -93,7 +93,7 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
   public override void beforeDelete() {
     List<Id> contentDocumentIds = new List<Id>();
     for (
-      FinServ__IdentificationDocument__c iDoc : (List<FinServ__IdentificationDocument__c>) Trigger.old
+      IdentificationDocument__c iDoc : (List<IdentificationDocument__c>) Trigger.old
     ) {
       if (String.isNotBlank(iDoc.PrimaryContentDocumentID__c)) {
         contentDocumentIds.add(iDoc.PrimaryContentDocumentID__c);

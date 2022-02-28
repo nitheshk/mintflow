@@ -278,7 +278,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     Applicant__c applicant,
     DocumentScanDTO.Response returnDTO
   ) {
-    FinServ__IdentificationDocument__c identity = new FinServ__IdentificationDocument__c();
+    IdentificationDocument__c identity = new IdentificationDocument__c();
     ContactPointAddress idAddress = new ContactPointAddress();
 
     applicant.FirstName__c = returnDTO.data.firstName;
@@ -292,10 +292,10 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
       returnDTO.data.documentType
     );
     identity.DocumentNumber__c = returnDTO.data.documentNumber;
-    identity.FinServ__IssuingCountry__c = returnDTO.data.issuerCountry;
+    identity.IssuingCountry__c = returnDTO.data.issuerCountry;
     identity.Nationality__c = returnDTO.data.country;
-    identity.FinServ__ExpirationDate__c = date.valueOf(returnDTO.data.expiry);
-    identity.FinServ__IssueDate__c = date.valueOf(returnDTO.data.issued);
+    identity.ExpirationDate__c = date.valueOf(returnDTO.data.expiry);
+    identity.IssueDate__c = date.valueOf(returnDTO.data.issued);
     idAddress.Street = returnDTO.data.address1;
     idAddress.City = returnDTO.data.city;
     idAddress.PostalCode = returnDTO.data.postalCode;
@@ -309,7 +309,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     );
     construct.setChildObjects(
       'mflow__IdentificationDocuments__r',
-      new List<finServ__IdentificationDocument__c>{ identity }
+      new List<IdentificationDocument__c>{ identity }
     );
     applicant = (Applicant__c) construct.build();
     return applicant;

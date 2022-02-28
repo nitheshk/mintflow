@@ -43,7 +43,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout
-    >FinServ__IdentificationDocument__c-mflow__Identification Document Layout</layout>
+    >IdentificationDocument__c-mflow__Identification Document Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Flow__c-mflow__Flow Layout</layout>

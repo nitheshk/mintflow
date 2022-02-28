@@ -210,21 +210,21 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
   /**
    * @description
    * @author Digital Align | 11-10-2021
-   * @param List<FinServ__IdentificationDocument__c> identityList
+   * @param List<IdentificationDocument__c> identityList
    * @return virtual
    **/
   global virtual list<ApplicationSubmissionResponse.IdentificationDocument> mapIdentity(
-    List<FinServ__IdentificationDocument__c> identityList
+    List<IdentificationDocument__c> identityList
   ) {
     list<ApplicationSubmissionResponse.IdentificationDocument> mapperIdentityList = new List<ApplicationSubmissionResponse.IdentificationDocument>();
-    for (FinServ__IdentificationDocument__c identity : identityList) {
+    for (IdentificationDocument__c identity : identityList) {
       ApplicationSubmissionResponse.IdentificationDocument mapperIdentity = new ApplicationSubmissionResponse.IdentificationDocument();
       mapperIdentity.IdentificationDocumentId = identity.Id;
-      mapperIdentity.IssuingCountry = identity.FinServ__IssuingCountry__c;
+      mapperIdentity.IssuingCountry = identity.IssuingCountry__c;
       mapperIdentity.DocumentNumber = identity.DocumentNumber__c;
       mapperIdentity.DocumentType = identity.DocumentType__c;
-      mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
-      mapperIdentity.IssueDate = identity.FinServ__IssueDate__c;
+      mapperIdentity.ExpirationDate = identity.ExpirationDate__c;
+      mapperIdentity.IssueDate = identity.IssueDate__c;
       mapperIdentity.IssuedRegion = identity.IssuedRegion__c;
       // mapperIdentity.Name = identity.Name;
       mapperIdentity.Order = identity.Order__c;

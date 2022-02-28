@@ -409,7 +409,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.Order__c</field>
+        <field>IdentificationDocument__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3181,72 +3181,57 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field
-    >FinServ__IdentificationDocument__c.PrimaryContentDocumentID__c</field>
+        <field>IdentificationDocument__c.PrimaryContentDocumentID__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	    <fieldPermissions>
         <editable>true</editable>
-        <field
-    >FinServ__IdentificationDocument__c.SecondaryContentDocumentId__c</field>
+        <field>IdentificationDocument__c.SecondaryContentDocumentId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.DocumentNumber__c</field>
+        <field>IdentificationDocument__c.DocumentNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.DocumentType__c</field>
+        <field>IdentificationDocument__c.DocumentType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field
-    >FinServ__IdentificationDocument__c.FinServ__ExpirationDate__c</field>
+        <field>IdentificationDocument__c.ExpirationDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.FinServ__IssueDate__c</field>
+        <field>IdentificationDocument__c.IssueDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field
-    >FinServ__IdentificationDocument__c.FinServ__IssuingCountry__c</field>
+        <field>IdentificationDocument__c.IssuingCountry__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field
-    >FinServ__IdentificationDocument__c.FinServ__SourceSystemId__c</field>
+        <field>IdentificationDocument__c.VerifiedBy__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.FinServ__VerifiedBy__c</field>
+        <field>IdentificationDocument__c.VerifiedOn__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.FinServ__VerifiedOn__c</field>
+        <field>IdentificationDocument__c.Nationality__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.Nationality__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.Nationality__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.Applicant__c</field>
+        <field>IdentificationDocument__c.Applicant__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3850,22 +3835,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.Height__c</field>
+        <field>IdentificationDocument__c.Height__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	    <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.Weight__c</field>
+        <field>IdentificationDocument__c.Weight__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	  <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.IssuedRegion__c</field>
+        <field>IdentificationDocument__c.IssuedRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	  <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.Gender__c</field>
+        <field>IdentificationDocument__c.Gender__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4287,7 +4272,7 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>FinServ__IdentificationDocument__c</object>
+        <object>IdentificationDocument__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>

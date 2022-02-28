@@ -308,14 +308,14 @@ global virtual with sharing class IdentityService extends AbstractService {
   }
 
   private static IdScanDueDiligenceDTO.CustomerData mapIdentity(
-    FinServ__IdentificationDocument__c identity,
+    IdentificationDocument__c identity,
     IdScanDueDiligenceDTO.CustomerData customer
   ) {
     customer.sex = identity.Gender__c;
     customer.driverLicenseNumber = identity.DocumentNumber__c;
     customer.documentCategoryCode = 0;
-    customer.driverLicenseIssueDate = identity.FinServ__IssueDate__c;
-    customer.driverLicenseExpirationDate = identity.FinServ__ExpirationDate__c;
+    customer.driverLicenseIssueDate = identity.IssueDate__c;
+    customer.driverLicenseExpirationDate = identity.ExpirationDate__c;
     return customer;
   }
 

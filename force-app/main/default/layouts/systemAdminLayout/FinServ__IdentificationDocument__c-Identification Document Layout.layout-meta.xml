@@ -47,11 +47,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__IssueDate__c</field>
+                <field>IssueDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__IssuingCountry__c</field>
+                <field>IssuingCountry__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -59,7 +59,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__ExpirationDate__c</field>
+                <field>ExpirationDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
