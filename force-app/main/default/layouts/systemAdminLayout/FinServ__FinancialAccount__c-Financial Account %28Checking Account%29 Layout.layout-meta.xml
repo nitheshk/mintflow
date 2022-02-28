@@ -261,7 +261,6 @@
         <fields>FinServ__TransactionType__c</fields>
         <fields>FinServ__TransactionStatus__c</fields>
         <fields>FinServ__PostDate__c</fields>
-        <fields>FinServ__CardAccountID__c</fields>
         <relatedList
     >FinServ__FinancialAccountTransaction__c.FinServ__FinancialAccount__c</relatedList>
         <sortField>FinServ__TransactionDate__c</sortField>
