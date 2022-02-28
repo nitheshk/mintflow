@@ -129,16 +129,14 @@
                           <div class="slds-col slds-size_1-of-1">
                             <div class="slds-float_right">
                               <template if:true={app.isPrimaryLoggedIn}>
-                                <template if:true={applicant.isPrimaryOrJoint}>
-                                  <lightning-button
-                                    data-fieldname={applicant.Id}
-                                    variant="brand"
-                                    label="Resume"
-                                    title="Resume"
-                                    onclick={handleResume}
-                                    class="slds-m-left_x-small"
-                                  ></lightning-button>
-                                </template>
+                                <lightning-button
+                                  data-fieldname={applicant.Id}
+                                  variant="brand"
+                                  label="Resume"
+                                  title="Resume"
+                                  onclick={handleResume}
+                                  class="slds-m-left_x-small"
+                                ></lightning-button>
                               </template>
                             </div>
                           </div>
