@@ -254,16 +254,16 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>FinServ__TransactionDate__c</fields>
+        <fields>TransactionDate__c</fields>
         <fields>FinServ__Description__c</fields>
         <fields>Amount__c</fields>
-        <fields>FinServ__TransactionId__c</fields>
-        <fields>FinServ__TransactionType__c</fields>
-        <fields>FinServ__TransactionStatus__c</fields>
-        <fields>FinServ__PostDate__c</fields>
+        <fields>TransactionId__c</fields>
+        <fields>TransactionType__c</fields>
+        <fields>TransactionStatus__c</fields>
+        <fields>PostDate__c</fields>
         <relatedList
     >FinServ__FinancialAccountTransaction__c.FinServ__FinancialAccount__c</relatedList>
-        <sortField>FinServ__TransactionDate__c</sortField>
+        <sortField>TransactionDate__c</sortField>
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>

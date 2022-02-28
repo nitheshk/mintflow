@@ -196,7 +196,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
         //FUNDED
         FinServ__FinancialAccountTransaction__c fat = new FinServ__FinancialAccountTransaction__c(
           Id = financialAccountResult.FinancialApplicationTransaction.FinancialAccountTransactionId,
-          FinServ__TransactionStatus__c = 'Posted'
+          TransactionStatus__c = 'Posted'
         );
         SubmissionRepository.upsertRecord(fat);
       }

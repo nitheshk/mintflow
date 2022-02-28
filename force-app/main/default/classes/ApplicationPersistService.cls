@@ -540,12 +540,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         financialAccountTransaction.mflow__FinancialAccount__c = financialAccountId;
       }
 
-      if (
-        String.isBlank(
-          financialAccountTransaction.FinServ__TransactionStatus__c
-        )
-      ) {
-        financialAccountTransaction.FinServ__TransactionStatus__c = 'Pending';
+      if (String.isBlank(financialAccountTransaction.TransactionStatus__c)) {
+        financialAccountTransaction.TransactionStatus__c = 'Pending';
       }
     }
     ApplicantRepository.upsertRecords(financialAccountTransactions);

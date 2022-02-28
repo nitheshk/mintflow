@@ -135,13 +135,13 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
     mapperTransaction.Amount = accountTransaction.mflow__Amount__c;
     mapperTransaction.FinancialInstitute = accountTransaction.mflow__FinancialInstitute__c;
     mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
-    mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;
+    mapperTransaction.TransactionStatus = accountTransaction.TransactionStatus__c;
     mapperTransaction.InstitutionState = accountTransaction.mflow__TransactionStateCode__c;
-    mapperTransaction.TransactionType = accountTransaction.FinServ__TransactionSubtype__c;
+    mapperTransaction.TransactionType = accountTransaction.TransactionSubType__c;
     mapperTransaction.TransactionDate = date.newinstance(
-      accountTransaction.FinServ__TransactionDate__c.year(),
-      accountTransaction.FinServ__TransactionDate__c.month(),
-      accountTransaction.FinServ__TransactionDate__c.day()
+      accountTransaction.TransactionDate__c.year(),
+      accountTransaction.TransactionDate__c.month(),
+      accountTransaction.TransactionDate__c.day()
     );
     return mapperTransaction;
   }

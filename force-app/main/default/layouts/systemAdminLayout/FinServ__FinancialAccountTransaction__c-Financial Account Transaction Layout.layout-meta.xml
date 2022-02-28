@@ -13,7 +13,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__TransactionId__c</field>
+                <field>TransactionId__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -21,7 +21,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>FinServ__TransactionDate__c</field>
+                <field>TransactionDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -33,11 +33,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__TransactionType__c</field>
+                <field>TransactionType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__TransactionSubtype__c</field>
+                <field>TransactionSubType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -51,15 +51,15 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__TransactionStatus__c</field>
+                <field>TransactionStatus__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__PostDate__c</field>
+                <field>PostDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__RunningBalance__c</field>
+                <field>RunningBalance__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

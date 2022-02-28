@@ -3,13 +3,13 @@
     <fullName>FinServ__FATransaction</fullName>
     <fields>Name</fields>
     <fields>FinancialAccount__c</fields>
-    <fields>FinServ__TransactionDate__c</fields>
+    <fields>TransactionDate__c</fields>
     <fields>FinServ__Description__c</fields>
     <fields>Amount__c</fields>
-    <fields>FinServ__TransactionId__c</fields>
-    <fields>FinServ__TransactionType__c</fields>
-    <fields>FinServ__TransactionStatus__c</fields>
-    <fields>FinServ__PostDate__c</fields>
+    <fields>TransactionId__c</fields>
+    <fields>TransactionType__c</fields>
+    <fields>TransactionStatus__c</fields>
+    <fields>PostDate__c</fields>
     <fields>FinServ__CardAccountID__c</fields>
     <label>FATransaction</label>
 </CompactLayout>

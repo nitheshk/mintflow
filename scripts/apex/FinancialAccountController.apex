@@ -8,7 +8,7 @@ fs[0].mflow__ExternalApplicationNumber__c = '45645';
 FinServ__FinancialAccountTransaction__c fst = new FinServ__FinancialAccountTransaction__c(
   FinServ__FinancialAccount__c = fs[0].Id,
   mflow__Amount__c = 565,
-  FinServ__TransactionDate__c = Datetime.now()
+  TransactionDate__c = Datetime.now()
 );
 
 FinServ__FinancialAccount__c finacc = (FinServ__FinancialAccount__c) SObjectConstructor.getInstance(
