@@ -16,83 +16,82 @@
   </template>
   <template if:true={showResume}>
     <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
-    <template if:false={isAuthenticated}>
-      <div class="slds-align_absolute-center slds-m-around_x-large">
-        <lightning-card
-          title="Resume from where you just left behind"
-          icon-name="standard:user"
-        >
-          <div class="slds-var-m-around_medium">
-            <div class="slds-grid slds-wrap">
-              <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
-                <lightning-input
-                  required
-                  data-fieldname="mflow__LastName__c"
-                  label="Last Name"
-                  placeholder="Last Name"
-                  pattern={alphanumValidation}
-                  message-when-pattern-mismatch={alphanumValidationMessage}
-                  field-level-help="Enter Last Name"
-                  maxlength="20"
-                  value={applicantData.mflow__LastName__c}
-                  onchange={handleChange}
-                  class="validation"
-                ></lightning-input>
-              </div>
-
-              <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
-                <lightning-input
-                  required
-                  data-fieldname="mflow__LastFourDigitsofSSN__c"
-                  label="Last 4 digits of SSN"
-                  placeholder="Last 4 digits of SSN"
-                  maxlength="4"
-                  value={applicantData.mflow__LastFourDigitsofSSN__c}
-                  onchange={handleChange}
-                  class="validation"
-                ></lightning-input>
-              </div>
-
-              <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
-                <lightning-input
-                  required
-                  data-fieldname="mflow__Email__c"
-                  label="Email"
-                  type="Email"
-                  placeholder="example@company.com"
-                  value={applicantData.mflow__Email__c}
-                  onchange={handleChange}
-                  class="validation"
-                ></lightning-input>
-              </div>
+    <div class="slds-align_absolute-center slds-m-around_x-large card-style">
+      <lightning-card
+        title="Resume from where you just left behind"
+        icon-name="standard:user"
+      >
+        <div class="slds-var-m-around_medium">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+              <lightning-input
+                required
+                data-fieldname="mflow__LastName__c"
+                label="Last Name"
+                placeholder="Last Name"
+                pattern={alphanumValidation}
+                message-when-pattern-mismatch={alphanumValidationMessage}
+                field-level-help="Enter Last Name"
+                maxlength="20"
+                value={applicantData.mflow__LastName__c}
+                onchange={handleChange}
+                class="validation"
+              ></lightning-input>
             </div>
-            <div class="slds-var-p-around_medium" style="text-align: end">
-              <lightning-button-group>
-                <lightning-button
-                  variant="brand"
-                  label="Login"
-                  title="Login"
-                  onclick={handleSubmit}
-                  class="slds-var-m-left_x-small"
-                  icon-name="utility:save"
-                  icon-position="left"
-                ></lightning-button>
 
-                <lightning-button
-                  variant="brand"
-                  label="Clear"
-                  title="Clear"
-                  onclick={handleCancel}
-                  class="slds-var-m-left_x-small"
-                  icon-name="utility:close"
-                  icon-position="right"
-                ></lightning-button>
-              </lightning-button-group>
+            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+              <lightning-input
+                required
+                data-fieldname="mflow__LastFourDigitsofSSN__c"
+                label="Last 4 digits of SSN"
+                placeholder="Last 4 digits of SSN"
+                maxlength="4"
+                value={applicantData.mflow__LastFourDigitsofSSN__c}
+                onchange={handleChange}
+                class="validation"
+              ></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+              <lightning-input
+                required
+                data-fieldname="mflow__Email__c"
+                label="Email"
+                type="Email"
+                placeholder="example@company.com"
+                value={applicantData.mflow__Email__c}
+                onchange={handleChange}
+                class="validation"
+              ></lightning-input>
             </div>
           </div>
-        </lightning-card>
-      </div>
-    </template>
+          <div class="slds-var-p-around_medium" style="text-align: end">
+            <lightning-button-group>
+              <lightning-button
+                variant="brand"
+                label="Login"
+                title="Login"
+                onclick={handleSubmit}
+                class="slds-var-m-left_x-small"
+                icon-name="utility:save"
+                icon-position="left"
+              ></lightning-button>
+
+              <lightning-button
+                variant="brand"
+                label="Clear"
+                title="Clear"
+                onclick={handleCancel}
+                class="slds-var-m-left_x-small"
+                icon-name="utility:close"
+                icon-position="right"
+              ></lightning-button>
+            </lightning-button-group>
+          </div>
+        </div>
+      </lightning-card>
+    </div>
+
     <template if:true={isAuthenticated}>
       <template if:true={hasApplications}>
         <div class="slds-m-top_medium slds-m-bottom_x-large">
@@ -103,7 +102,7 @@
                 label={app.mflow__ApplicationNumber__c}
                 key={app.Id}
               >
-                <div class="slds-p-around_medium lgc-bg">
+                <div class="slds-p-around_medium">
                   <ul class="slds-has-dividers_bottom-space">
                     <li class="slds-item">
                       <lightning-tile label="Application Status">
