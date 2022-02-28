@@ -266,7 +266,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>FinServ__DocumentType__c</fields>
+        <fields>DocumentType__c</fields>
         <fields>FinServ__IssueDate__c</fields>
         <fields>FinServ__ExpirationDate__c</fields>
         <fields>CREATED_DATE</fields>

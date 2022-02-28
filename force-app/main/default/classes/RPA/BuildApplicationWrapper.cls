@@ -221,8 +221,8 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       ApplicationSubmissionResponse.IdentificationDocument mapperIdentity = new ApplicationSubmissionResponse.IdentificationDocument();
       mapperIdentity.IdentificationDocumentId = identity.Id;
       mapperIdentity.IssuingCountry = identity.FinServ__IssuingCountry__c;
-      mapperIdentity.DocumentNumber = identity.FinServ__DocumentNumber__c;
-      mapperIdentity.DocumentType = identity.FinServ__DocumentType__c;
+      mapperIdentity.DocumentNumber = identity.DocumentNumber__c;
+      mapperIdentity.DocumentType = identity.DocumentType__c;
       mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
       mapperIdentity.IssueDate = identity.FinServ__IssueDate__c;
       mapperIdentity.IssuedRegion = identity.IssuedRegion__c;

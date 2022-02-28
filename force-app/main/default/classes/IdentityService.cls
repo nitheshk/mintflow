@@ -312,7 +312,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     IdScanDueDiligenceDTO.CustomerData customer
   ) {
     customer.sex = identity.Gender__c;
-    customer.driverLicenseNumber = identity.FinServ__DocumentNumber__c;
+    customer.driverLicenseNumber = identity.DocumentNumber__c;
     customer.documentCategoryCode = 0;
     customer.driverLicenseIssueDate = identity.FinServ__IssueDate__c;
     customer.driverLicenseExpirationDate = identity.FinServ__ExpirationDate__c;

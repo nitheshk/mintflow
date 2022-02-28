@@ -288,10 +288,10 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     identity.IssuedRegion__c = returnDTO.data.issuerRegion;
     identity.Weight__c = returnDTO.data.weight;
     identity.Gender__c = returnDTO.data.gender;
-    identity.FinServ__DocumentType__c = mapDocumentTypeValue(
+    identity.DocumentType__c = mapDocumentTypeValue(
       returnDTO.data.documentType
     );
-    identity.FinServ__DocumentNumber__c = returnDTO.data.documentNumber;
+    identity.DocumentNumber__c = returnDTO.data.documentNumber;
     identity.FinServ__IssuingCountry__c = returnDTO.data.issuerCountry;
     identity.Nationality__c = returnDTO.data.country;
     identity.FinServ__ExpirationDate__c = date.valueOf(returnDTO.data.expiry);

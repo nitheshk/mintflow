@@ -4,12 +4,12 @@
     <description
   >All the fields related to Identity Information of applicant</description>
    <displayedFields>
-        <field>FinServ__DocumentNumber__c</field>
+        <field>DocumentNumber__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>FinServ__DocumentType__c</field>
+        <field>DocumentType__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

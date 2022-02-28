@@ -150,13 +150,13 @@
                 <td width="50% ">
                   <apex:outputText value="Identity Type : "></apex:outputText>
                   <apex:outputText
-                    value="{!identityVar.FinServ__DocumentType__c}"
+                    value="{!identityVar.DocumentType__c}"
                   ></apex:outputText>
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Document Number : "></apex:outputText>
                   <apex:outputText
-                    value="{!identityVar.FinServ__DocumentNumber__c}"
+                    value="{!identityVar.DocumentNumber__c}"
                   ></apex:outputText>
                 </td>
               </tr>

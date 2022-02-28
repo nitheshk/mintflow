@@ -9,11 +9,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__Account__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FinServ__DocumentNumber__c</field>
+                <field>DocumentNumber__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -47,7 +43,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__DocumentType__c</field>
+                <field>DocumentType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -3252,19 +3252,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__IdentificationDocument__c.FinServ__Account__c</field>
+        <field>FinServ__IdentificationDocument__c.DocumentNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field
-    >FinServ__IdentificationDocument__c.FinServ__DocumentNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field
-    >FinServ__IdentificationDocument__c.FinServ__DocumentType__c</field>
+        <field>FinServ__IdentificationDocument__c.DocumentType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
