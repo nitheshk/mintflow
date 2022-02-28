@@ -151,7 +151,6 @@
     <tabs>ConsentLineItem__c</tabs>
     <tabs>ConsentTemplate__c</tabs>
     <tabs>SurveyTemplate__c</tabs>
-    <tabs>FinServ__AssetsAndLiabilities__c</tabs>
     <tabs>FinServ__FinancialGoal__c</tabs>
     <tabs>FinancialInstituteAccount</tabs>
     <tabs>ProductService__c</tabs>
@@ -163,9 +162,6 @@
     <workspaceConfig>
         <mappings>
             <tab>Diagnostic__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinServ__AssetsAndLiabilities__c</tab>
         </mappings>
         <mappings>
             <tab>FinServ__FinancialAccount__c</tab>

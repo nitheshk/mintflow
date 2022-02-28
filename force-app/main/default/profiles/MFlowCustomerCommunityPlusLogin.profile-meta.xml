@@ -23,12 +23,6 @@
         <default>true</default>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType
-    >FinServ__AssetsAndLiabilities__c.FinServ__Liability</recordType>
-        <visible>true</visible>
-        <default>true</default>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>FinServ__BillingStatement__c.FinServ__Credit</recordType>
         <visible>true</visible>
         <default>true</default>

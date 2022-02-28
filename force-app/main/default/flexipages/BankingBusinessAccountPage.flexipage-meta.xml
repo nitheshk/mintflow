@@ -202,11 +202,6 @@
                 <componentName>FinServ:financialAccountRole</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>FinServ:assetsAndLiabilities</componentName>
-            </componentInstance>
-        </itemInstances>
         <name>Facet-d9847b27-148c-4365-8c8e-525ca9afa55f</name>
         <type>Facet</type>
     </flexiPageRegions>

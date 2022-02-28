@@ -362,29 +362,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   }
 
   /**
-   * @description  Save Assets And Liabilities
-   * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities
-   * @param Id applicantId
-   * @return List<FinServ__AssetsAndLiabilities__c>
-   **/
-  /*
-  global virtual List<FinServ__AssetsAndLiabilities__c> saveAssetsAndLiabilities(
-    List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities,
-    Id applicantId
-  ) {
-    for (
-      FinServ__AssetsAndLiabilities__c assetAndLiability : assetsAndLiabilities
-    ) {
-      if (String.isNotBlank(applicantId)) {
-        assetAndLiability.Applicant__c = applicantId;
-      }
-    }
-    ApplicantRepository.upsertRecords(assetsAndLiabilities);
-    return assetsAndLiabilities;
-  } */
-
-  /**
    * @description  delete object by Id
    * @author Digital Align Team | 11-10-2021
    * @param Id recordId
@@ -425,9 +402,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       when 'ContactPointAddress' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
-      when 'FinServ__AssetsAndLiabilities__c' {
-        ApplicationRepository.deleteRecord(recordId, true);
-      }
     }
     log?.fine('Complete Delete Record');
     return true;
@@ -454,9 +428,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       }
       if (!applicant.Employments__r.isEmpty()) {
         recordsToDelete.addAll(applicant.Employments__r);
-      }
-      if (!applicant.AssetsAndLiabilities__r.isEmpty()) {
-        recordsToDelete.addAll(applicant.AssetsAndLiabilities__r);
       }
       recordsToDelete.add(applicant);
     }

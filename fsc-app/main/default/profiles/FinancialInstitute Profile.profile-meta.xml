@@ -17,12 +17,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <recordType
-    >FinServ__AssetsAndLiabilities__c.FinServ__Liability</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
         <recordType>FinServ__ChargesAndFees__c.FinServ__Credit</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

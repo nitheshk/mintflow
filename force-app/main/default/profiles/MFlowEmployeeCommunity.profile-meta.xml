@@ -24,10 +24,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout
-    >FinServ__AssetsAndLiabilities__c-FinServ__Assets and Liabilities Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout
     >FinServ__FinancialAccountTransaction__c-mflow__Financial Account Transaction Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

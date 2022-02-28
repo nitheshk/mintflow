@@ -168,17 +168,6 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
           mapContactAddress(applicant.ContactPointAddresses__r)
         );
       }
-
-      //Map Assest and Liabilities Data
-      /* Not required for phase 1
-      if (
-        !CollectionUtils.isListEmpty(applicant.AssetsAndLiabilities__r)
-      ) {
-        mapperApplicant.AssetsAndLiabilities.addAll(
-          mapContactAddress(applicant.AssetsAndLiabilities__r)
-        );
-      }*/
-
       mapperApplicantList.add(mapperApplicant);
     }
     return mapperApplicantList;
@@ -302,27 +291,6 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
     return mapperContactAddressList;
   }
 
-  /* Not required for phase 1
-  global virtual list<ApplicationSubmissionResponse.AssetsAndLiabilities> mapContactAddress(
-    List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilitiesList
-  ) {
-    list<ApplicationSubmissionResponse.AssetsAndLiabilities> mapperAssetsAndLiabilitiesList = new List<ApplicationSubmissionResponse.AssetsAndLiabilities>();
-    for (
-      FinServ__AssetsAndLiabilities__c assetsAndLiabilities : assetsAndLiabilitiesList
-    ) {
-      ApplicationSubmissionResponse.AssetsAndLiabilities mapperAssetsAndLiabilities = new ApplicationSubmissionResponse.AssetsAndLiabilities();
-      mapperAssetsAndLiabilities.AssetsAndLiabilitieId = assetsAndLiabilities.Id;
-      mapperAssetsAndLiabilities.Amount = assetsAndLiabilities.FinServ__Amount__c;
-      mapperAssetsAndLiabilities.AssetsAndLiabilitiesType = assetsAndLiabilities.FinServ__AssetsAndLiabilitiesType__c;
-      mapperAssetsAndLiabilities.Name = assetsAndLiabilities.Name;
-      mapperAssetsAndLiabilities.Order = assetsAndLiabilities.Order__c;
-      mapperAssetsAndLiabilities.Ownership = assetsAndLiabilities.FinServ__Ownership__c;
-      mapperAssetsAndLiabilities.OwnerType = assetsAndLiabilities.FinServ__OwnerType__c;
-      mapperAssetsAndLiabilitiesList.add(mapperAssetsAndLiabilities);
-    }
-    return mapperAssetsAndLiabilitiesList;
-  }
-  */
   /**
    * @description fetch all files saved under requested application and its child objects using application Id
    * @author Digital Align | 12-02-2021

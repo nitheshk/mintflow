@@ -72,25 +72,13 @@ global with sharing class ApplicationSubmissionResponse {
     global List<ContactPointAddress> ContactPointAddresses;
     global List<Employment> Employments;
     global List<Survey> Surveys;
-    // global List<AssetsAndLiabilities> AssetsAndLiabilities;
     global Applicant() {
       Employments = new List<Employment>();
       ContactPointAddresses = new List<ContactPointAddress>();
       IdentificationDocuments = new List<IdentificationDocument>();
       Surveys = new List<Survey>();
-      // AssetsAndLiabilities = new List<AssetsAndLiabilities>();
     }
   }
-
-  // global class AssetsAndLiabilities {
-  //   global String AssetsAndLiabilitieId;
-  //   global Double Amount;
-  //   global String AssetsAndLiabilitiesType;
-  //   global Decimal Order;
-  //   global String OwnerType;
-  //   global String Ownership;
-  //   global String Name;
-  // }
 
   global class Survey {
     global String SurveyId;

@@ -404,11 +404,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__AssetsAndLiabilities__c.Order__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FinServ__Employment__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2195,65 +2190,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FinServ__Alert__c.FinServ__SourceSystemId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__AssetsAndLiabilities__c.Applicant__c</field>
-        <readable>true</readable>
-	</fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__AssetsAndLiabilities__c.FinServ__Amount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field
-    >FinServ__AssetsAndLiabilities__c.FinServ__AssetsAndLiabilitiesSource__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field
-    >FinServ__AssetsAndLiabilities__c.FinServ__AssetsAndLiabilitiesType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__AssetsAndLiabilities__c.FinServ__Description__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field
-    >FinServ__AssetsAndLiabilities__c.FinServ__FinancialAccount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__AssetsAndLiabilities__c.FinServ__Household__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__AssetsAndLiabilities__c.FinServ__JointOwner__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__AssetsAndLiabilities__c.FinServ__OwnerType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__AssetsAndLiabilities__c.FinServ__Ownership__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field
-    >FinServ__AssetsAndLiabilities__c.FinServ__SourceSystemId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4286,15 +4222,6 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>FinServ__AssetsAndLiabilities__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
         <object>FinServ__ContactContactRelation__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -4514,16 +4441,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Event.FinServ__ClientAssociateEvent</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType
-    >FinServ__AssetsAndLiabilities__c.FinServ__Liability</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType
-    >FinServ__AssetsAndLiabilities__c.FinServ__NonfinancialAsset</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
