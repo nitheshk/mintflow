@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UserAccountType__c</fullName>
+    <description
+  >Field is used to indicate the account belong to which user type</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Field is used to indicate the account belong to which user type</inlineHelpText>
+    <label>User Account Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FinancialInstituteAccount</fullName>
+                <default>false</default>
+                <label>Financial Institute Account</label>
+            </value>
+             <value>
+                <fullName>FinancialInstituteEmployee</fullName>
+                <default>false</default>
+                <label>Financial Institute Employee</label>
+            </value>
+            <value>
+                <fullName>DealerAccount</fullName>
+                <default>false</default>
+                <label>Dealer Account</label>
+            </value>
+             <value>
+                <fullName>CustomerApplication</fullName>
+                <default>false</default>
+                <label>Customer Application</label>
+            </value>
+             <value>
+                <fullName>DealerEmployee</fullName>
+                <default>false</default>
+                <label>Dealer Employee</label>
+            </value>
+            <value>
+                <fullName>IndividualCustomer</fullName>
+                <default>false</default>
+                <label>Individual Customer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
