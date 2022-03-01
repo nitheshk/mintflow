@@ -850,7 +850,7 @@
             "mflow__DeleteRecord__c": false,
             "mflow__LongDescription__c": "Uncovered Opportunity?",
             "mflow__OptionType__c": "Picklist",
-            "mflow__Options__c": "[{\"value\":\"Employee Self Sourced Team\",\"name\":\"Employee Self Sourced Team\"},{\"value\":\"Member Referral\",\"name\":\"Member Referral\"}]",
+            "mflow__Options__c": "[{\"value\":\"Employee Self Sourced\",\"name\":\"Employee Self Sourced\"},{\"value\":\"Member Referral\",\"name\":\"Member Referral\"}]",
             "mflow__Order__c": 21,
             "mflow__ParentQuestionCode__c": "Question20",
             "mflow__QuestionCode__c": "Question21",
