@@ -6,11 +6,6 @@
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </availableFields>
-    <availableFields>
-        <field>Ownership</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </availableFields>
     <description>Set of all fields related to the application</description>
     <displayedFields>
         <field>Name</field>
@@ -63,11 +58,6 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>FinServ__CreditScore__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
         <field>Id</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
@@ -79,11 +69,6 @@
     </displayedFields>
     <displayedFields>
         <field>SessionToken__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>FinServ__KYCDate__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
