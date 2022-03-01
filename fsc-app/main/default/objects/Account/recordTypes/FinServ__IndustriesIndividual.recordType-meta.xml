@@ -217,29 +217,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>FinServ__InvestmentObjectives__c</picklist>
-        <values>
-            <fullName>Aggressive Growth</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Balanced</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Conservative Income</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Growth</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Income</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>mflow__KYCStatus__c</picklist>
         <values>
             <fullName>Failed</fullName>

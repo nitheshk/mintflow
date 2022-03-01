@@ -306,7 +306,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           '{FirstName}' => applicant.FirstName__c,
           '{LastName}' => applicant.LastName__c,
           '{productName}' => 'Member Account',
-          '{accountNumber}' => finAcc.FinServ__FinancialAccountNumber__c,
+          '{accountNumber}' => finAcc.AccountNumber__c,
           '{customerNumber}' => applicant.CustomerNumber__c
         }
       );

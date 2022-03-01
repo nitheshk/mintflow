@@ -178,10 +178,10 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       if (String.isNotBlank(financialAccountResult.FinancialAccountId)) {
         FinServ__FinancialAccount__c fa = new FinServ__FinancialAccount__c(
           Id = financialAccountResult.FinancialAccountId,
-          FinServ__FinancialAccountNumber__c = financialAccountResult.AccountNumber
+          AccountNumber__c = financialAccountResult.AccountNumber
         );
         if (application.Status__c == ApplicationConstant.COMPLETED) {
-          fa.FinServ__Status__c = 'Paid out';
+          fa.Status__c = 'Paid out';
         }
         SubmissionRepository.upsertRecord(fa);
       }

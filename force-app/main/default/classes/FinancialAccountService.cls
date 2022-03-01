@@ -165,11 +165,13 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     financialAccount.FinancialProduct__c = membershipProduct.Id;
     financialAccount.Name = membershipProduct.Name;
     financialAccount.ExternalApplicationNumber__c = application.ExternalApplicationNumber__c;
-    financialAccount.FinServ__FinancialAccountType__c = membershipProduct.Category__c;
-    financialAccount.FinServ__PrimaryOwner__c = primaryApplicant.Contact__r.AccountId;
-    financialAccount.FinServ__Ownership__c = 'Individual';
-    financialAccount.FinServ__Status__c = 'Open';
-    financialAccount.FinServ__Stage__c = 'Active';
+    //#removeFSC
+    //financialAccount.FinServ__FinancialAccountType__c = membershipProduct.Category__c;
+    //#removeFSC
+    //financialAccount.FinServ__PrimaryOwner__c = primaryApplicant.Contact__r.AccountId;
+    financialAccount.Ownership__c = 'Individual';
+    financialAccount.Status__c = 'Open';
+    financialAccount.Stage__c = 'Active';
     financialAccount.FinServ__Household__c = application.Id;
     financialAccount.Application__c = application.Id;
     financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(

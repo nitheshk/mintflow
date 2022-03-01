@@ -99,11 +99,13 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
     ) {
       FundingSubmissionResponse.FinancialAccount mapperFinancialAccount = new FundingSubmissionResponse.FinancialAccount();
       mapperFinancialAccount.FinancialAccountId = finApplication.Id;
-      mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
+      //#removeFSC
+      //mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
       mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
       mapperFinancialAccount.Name = finApplication.Name;
-      mapperFinancialAccount.Ownership = finApplication.FinServ__Ownership__c;
-      mapperFinancialAccount.PrimaryOwner = finApplication.FinServ__PrimaryOwner__c;
+      mapperFinancialAccount.Ownership = finApplication.Ownership__c;
+      //#removeFSC
+      //mapperFinancialAccount.PrimaryOwner = finApplication.FinServ__PrimaryOwner__c;
       //#removeFSC
       // if (
       //   !CollectionUtils.isListEmpty(

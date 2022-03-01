@@ -20,7 +20,7 @@
     </values>
     <values>
         <field>FieldName__c</field>
-        <value xsi:type="xsd:string">FinServ__FinancialAccountNumber__c</value>
+        <value xsi:type="xsd:string">mflow__AccountNumber__c</value>
     </values>
     <values>
         <field>ParentObjectAPI__c</field>
