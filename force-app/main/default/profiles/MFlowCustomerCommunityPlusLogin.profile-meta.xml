@@ -12,38 +12,6 @@
         <visible>true</visible>
         <default>true</default>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
-        <visible>true</visible>
-         <default>true</default>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Event.FinServ__AdvisorEvent</recordType>
-        <visible>true</visible>
-        <default>true</default>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FinServ__BillingStatement__c.FinServ__Credit</recordType>
-        <visible>true</visible>
-        <default>true</default>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FinServ__ChargesAndFees__c.FinServ__Credit</recordType>
-        <visible>true</visible>
-        <default>true</default>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType
-    >FinServ__FinancialAccountRole__c.FinServ__AccountRole</recordType>
-        <visible>true</visible>
-        <default>true</default>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType
-    >FinServ__FinancialAccount__c.FinServ__BankingAccount</recordType>
-        <visible>true</visible>
-        <default>true</default>
-    </recordTypeVisibilities>
     <loginIpRanges>
         <endAddress>255.255.255.255</endAddress>
         <startAddress>0.0.0.0</startAddress>

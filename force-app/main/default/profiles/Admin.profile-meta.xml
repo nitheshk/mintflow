@@ -101,18 +101,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout
-    >FinServ__FinancialAccount__c-mflow__Financial Account %28Checking Account%29 Layout</layout>
-        <recordType
-    >FinServ__FinancialAccount__c.FinServ__CheckingAccount</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout
-    >FinServ__FinancialAccount__c-mflow__Financial Account %28Savings Account%29 Layout</layout>
-        <recordType
-    >FinServ__FinancialAccount__c.FinServ__SavingsAccount</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout
     >IdentificationDocument__c-mflow__Identification Document Layout</layout>
     </layoutAssignments>
 
@@ -214,32 +202,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <!--<default>true</default>
-        <personAccountDefault>true</personAccountDefault>-->
         <recordType>Account.Application</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType
-    >FinServ__FinancialAccountRole__c.FinServ__AccountRole</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
-        <recordType
-    >FinServ__FinancialAccount__c.FinServ__BankingAccount</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>FinServ__ReciprocalRole__c.FinServ__AccountRole</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
 </Profile>
