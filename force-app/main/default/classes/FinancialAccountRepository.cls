@@ -28,47 +28,6 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
   }
 
   /**
-   * @description fetch Account Contact Relation by account and contact id
-   * @author Digital Align Team | 12-13-2021
-   * @param Id accountId
-   * @param Id contactId
-   * @return AccountContactRelation
-   **/
-  global static AccountContactRelation fetchAccountContactRelation(
-    Id accountId,
-    Id contactId
-  ) {
-    return (AccountContactRelation) DatabaseUtils.getRecord(
-      Query.newInstance(AccountContactRelation.SObjectType)
-        .whereEq('AccountId', accountId)
-        .andCon()
-        .whereEq('ContactId', contactId)
-        .addLimit(1)
-        .toString()
-    );
-  }
-
-  /**
-   * @description fetch Primary Account Contact Relation by contact id
-   * @author Digital Align Team | 12-13-2021
-   * @param Id accountId
-   * @param Id contactId
-   * @return AccountContactRelation
-   **/
-  global static AccountContactRelation fetchPrimaryAccountContactRelation(
-    Id contactId
-  ) {
-    return (AccountContactRelation) DatabaseUtils.getRecord(
-      Query.newInstance(AccountContactRelation.SObjectType)
-        .whereEq('FinServ__PrimaryGroup__c', true)
-        .andCon()
-        .whereEq('ContactId', contactId)
-        .addLimit(1)
-        .toString()
-    );
-  }
-
-  /**
    * @description read financial product by Internal Code
    * @author Digital Align Team | 12-13-2021
    * @param String internalProductCode

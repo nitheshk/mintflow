@@ -481,7 +481,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   ) {
     if (String.isNotBlank(applicationId)) {
       //Set Application ID
-      financialAccount.FinServ__Household__c = applicationId;
       financialAccount.Application__c = applicationId;
     }
     // #pending financialAccount record type mapping pending

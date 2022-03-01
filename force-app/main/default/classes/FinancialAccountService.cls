@@ -127,34 +127,6 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
       }
     }
 
-    //check already Application has Account Contact relation with primary
-    AccountContactRelation accountContactRel = FinancialAccountRepository.fetchAccountContactRelation(
-      application.Id,
-      primaryApplicant.Contact__c
-    );
-
-    if (accountContactRel == null) {
-      //check has primary group account contact relation is already created ? if not mark as primary group
-      AccountContactRelation hasPrimaryGroupRelation = FinancialAccountRepository.fetchPrimaryAccountContactRelation(
-        primaryApplicant.Contact__c
-      );
-
-      // purpose to link application and primary contact to view in household view
-      accountContactRel = new AccountContactRelation(
-        AccountId = application.Id,
-        ContactId = primaryApplicant.Contact__c,
-        IsActive = true,
-        FinServ__Primary__c = true,
-        FinServ__PrimaryGroup__c = hasPrimaryGroupRelation == null
-          ? true
-          : false,
-        StartDate = Date.today(),
-        EndDate = Date.today().addYears(100),
-        Roles = 'Business User',
-        FinServ__Rollups__c = 'All'
-      );
-      FinancialAccountRepository.upsertRecord(accountContactRel);
-    }
     //fetching membership product
     FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
       HttpBuilder.getApiConstant('MembershipAccountInternalCode')
@@ -167,12 +139,9 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     financialAccount.ExternalApplicationNumber__c = application.ExternalApplicationNumber__c;
     //#removeFSC
     //financialAccount.FinServ__FinancialAccountType__c = membershipProduct.Category__c;
-    //#removeFSC
-    //financialAccount.FinServ__PrimaryOwner__c = primaryApplicant.Contact__r.AccountId;
     financialAccount.Ownership__c = 'Individual';
     financialAccount.Status__c = 'Open';
     financialAccount.Stage__c = 'Active';
-    financialAccount.FinServ__Household__c = application.Id;
     financialAccount.Application__c = application.Id;
     financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       FinServ__FinancialAccount__c.SObjectType,

@@ -1703,11 +1703,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__FinancialAccount__c.FinServ__Household__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FinServ__FinancialAccount__c.Application__c</field>
         <readable>true</readable>
     </fieldPermissions>
