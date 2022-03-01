@@ -40,37 +40,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Consumer",
-      "mflow__isActive__c": true,
-      "mflow__ProductServices__r": {
-        "totalSize": 2,
-        "done": true,
-        "records": [
-          {
-            "attributes": {
-              "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef1_0"
-            },
-            "mflow__Order__c": 4,
-            "mflow__Required__c": false,
-            "mflow__Description__c": "Online banking to ease your banking",
-            "mflow__ServiceName__c": "Online Banking",
-            "mflow__isActive__c": true,
-            "mflow__ShowQuestions__c": false
-          },
-          {
-            "attributes": {
-              "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef1_1"
-            },
-            "mflow__Order__c": 3,
-            "mflow__Required__c": false,
-            "mflow__Description__c": "Select eStatments service",
-            "mflow__ServiceName__c": "eStatment",
-            "mflow__isActive__c": true,
-            "mflow__ShowQuestions__c": false
-          }
-        ]
-      }
+      "mflow__isActive__c": true
     },
     {
       "attributes": {
@@ -175,7 +145,37 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Membership",
       "mflow__Type__c": "Consumer",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__ProductServices__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__ProductService__c",
+              "referenceId": "ProductServiceRef6_0"
+            },
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__Description__c": "Select eStatments service",
+            "mflow__ServiceName__c": "eStatment",
+            "mflow__isActive__c": true,
+            "mflow__ShowQuestions__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__ProductService__c",
+              "referenceId": "ProductServiceRef6_1"
+            },
+            "mflow__Order__c": 4,
+            "mflow__Required__c": false,
+            "mflow__Description__c": "Online banking to ease your banking",
+            "mflow__ServiceName__c": "Online Banking",
+            "mflow__isActive__c": true,
+            "mflow__ShowQuestions__c": false
+          }
+        ]
+      }
     },
     {
       "attributes": {
@@ -205,10 +205,10 @@
               "type": "mflow__ProductService__c",
               "referenceId": "ProductServiceRef7_0"
             },
-            "mflow__Order__c": 1,
+            "mflow__Order__c": 2,
             "mflow__Required__c": false,
-            "mflow__Description__c": "Select debit card",
-            "mflow__ServiceName__c": "Debit Card",
+            "mflow__Description__c": "Overdraft service",
+            "mflow__ServiceName__c": "Overdraft Transfer",
             "mflow__isActive__c": true,
             "mflow__ShowQuestions__c": true
           },
@@ -217,10 +217,10 @@
               "type": "mflow__ProductService__c",
               "referenceId": "ProductServiceRef7_1"
             },
-            "mflow__Order__c": 2,
+            "mflow__Order__c": 1,
             "mflow__Required__c": false,
-            "mflow__Description__c": "Overdraft service",
-            "mflow__ServiceName__c": "Overdraft Transfer",
+            "mflow__Description__c": "Select debit card",
+            "mflow__ServiceName__c": "Debit Card",
             "mflow__isActive__c": true,
             "mflow__ShowQuestions__c": true
           }
