@@ -493,7 +493,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.AccountNumber</field>
+        <field>Account.MemberNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -504,16 +504,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AnnualRevenue</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.BillingAddress</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.CleanStatus</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -537,58 +527,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.FinServ__AUM__c</field>
+        <editable>true</editable>
+        <field>Account.BranchCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.FinServ__BankNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FinServ__BorrowingHistory__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FinServ__BorrowingPriorities__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FinServ__BranchCode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FinServ__BranchName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FinServ__ClaimsOnHouseholdPolicies__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FinServ__ClientCategory__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FinServ__ConversionDateTime__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FinServ__CreditRating__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.FinServ__CreditScore__c</field>
+        <field>Account.BranchName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1013,11 +958,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.Site</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.TickerSymbol</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1292,11 +1232,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Contact.CleanStatus</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Department</field>
         <readable>true</readable>
@@ -1339,11 +1274,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.FinServ__AnnualIncome__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contact.FinServ__BillingAddress__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

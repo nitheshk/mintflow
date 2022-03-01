@@ -76,8 +76,8 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
    * @return Account
    **/
   global virtual Account resolveBranchLocation(Account application) {
-    application.FinServ__BranchCode__c = '0001';
-    application.FinServ__BranchName__c = 'Main Branch';
+    application.BranchCode__c = '0001';
+    application.BranchName__c = 'Main Branch';
     return application;
   }
 

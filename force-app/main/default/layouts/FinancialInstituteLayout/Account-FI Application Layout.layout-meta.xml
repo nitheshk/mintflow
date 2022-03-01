@@ -31,15 +31,15 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>AccountNumber</field>
+                <field>MemberNumber__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__BranchCode__c</field>
+                <field>BranchCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__BranchName__c</field>
+                <field>BranchName__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

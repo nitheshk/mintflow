@@ -62,8 +62,8 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
         ApplicationSubmissionResponse.Account mapperApplication = new ApplicationSubmissionResponse.Account();
         mapperApplication.ApplicationId = application.Id;
         mapperApplication.ApplicationNumber = application.Name;
-        mapperApplication.BranchCode = application.FinServ__BranchCode__c;
-        mapperApplication.BranchName = application.FinServ__BranchName__c;
+        mapperApplication.BranchCode = application.BranchCode__c;
+        mapperApplication.BranchName = application.BranchName__c;
         mapperApplication.CountyName = application.CountyName__c;
         mapperApplication.StateName = application.StateName__c;
         mapperApplication.CountyCode = application.CountyZipCode__c;

@@ -152,7 +152,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
     switch on fundingResult.ExternalApplicationStatus {
       when 'Accept', 'Passed', 'Approved' {
         application.Status__c = ApplicationConstant.COMPLETED;
-        application.AccountNumber = fundingResult.MemberNumber;
+        application.MemberNumber__c = fundingResult.MemberNumber;
         for (Applicant__c applicant : application.Applicants__r) {
           if (
             applicant.RecordType.Name ==
@@ -166,7 +166,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       }
       when else {
         application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-        application.AccountNumber = fundingResult.MemberNumber;
+        application.MemberNumber__c = fundingResult.MemberNumber;
       }
     }
 
