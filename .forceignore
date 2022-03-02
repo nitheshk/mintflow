@@ -62,3 +62,9 @@ fsc-app/main/default/sharingRules
 # fsc-app/main/default/sharingRules
 # fsc-app/main/default/groups
 # fsc-app/main/default/connectedApps
+
+force-app/main/default/sharingRules
+force-app/main/default/dashboards
+force-app/main/default/reports
+force-app/main/default/flexipages
+force-app/main/default/applications
