@@ -76,13 +76,14 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
 
     //Save Disclosure
-    if (!CollectionUtils.isListEmpty(application.ApplicationConsents__r)) {
-      List<Consent__c> consents = saveConsents(
-        application.ApplicationConsents__r,
-        null
-      );
-      constructor.setChildObjects('mflow__ApplicationConsents__r', consents);
-    }
+    //#removeFSC Uncomment after resolve
+    // if (!CollectionUtils.isListEmpty(application.ApplicationConsents__r)) {
+    //   List<Consent__c> consents = saveConsents(
+    //     application.ApplicationConsents__r,
+    //     null
+    //   );
+    //   constructor.setChildObjects('mflow__ApplicationConsents__r', consents);
+    // }
 
     application = (Account) constructor.build();
 

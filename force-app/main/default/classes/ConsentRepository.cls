@@ -58,10 +58,10 @@ public with sharing class ConsentRepository extends DatabaseUtils {
    * Financial Account contains only Ids
    * @author Digital Align Team | 10-26-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  public static Account readApplicationWithFA(Id applicationId) {
-    Query qry = Query.newInstance(Account.SObjectType)
+  public static Application__c readApplicationWithFA(Id applicationId) {
+    Query qry = Query.newInstance(Application__c.SObjectType)
       .addFields()
       .queryChild('mflow__FinancialAccounts__r')
       .addFields()
@@ -71,7 +71,7 @@ public with sharing class ConsentRepository extends DatabaseUtils {
       .run()
       .addLimit(1)
       .whereEq('Id', applicationId);
-    return (Account) getRecord(qry.toString());
+    return (Application__c) getRecord(qry.toString());
   }
 
   /**

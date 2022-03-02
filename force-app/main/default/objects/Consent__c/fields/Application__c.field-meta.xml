@@ -6,7 +6,7 @@
     <externalId>false</externalId>
     <inlineHelpText>Consent related to application</inlineHelpText>
     <label>Application</label>
-    <referenceTo>Account</referenceTo>
+    <referenceTo>Application__c</referenceTo>
     <relationshipLabel>Application Consents</relationshipLabel>
     <relationshipName>ApplicationConsents</relationshipName>
     <required>false</required>
