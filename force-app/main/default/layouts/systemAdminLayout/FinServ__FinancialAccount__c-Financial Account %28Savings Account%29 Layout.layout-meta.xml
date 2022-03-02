@@ -265,6 +265,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>ServiceName__c</fields>
+        <fields>isSelected__c</fields>
+        <fields>Description__c</fields>
         <relatedList
     >FinancialAccountService__c.FinancialAccount__c</relatedList>
     </relatedLists>
