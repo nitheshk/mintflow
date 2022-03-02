@@ -182,16 +182,6 @@
         <relatedList>FinServ__FinancialAccount__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>Applicant__c</fields>
-        <fields>ConsentDateTime__c</fields>
-        <fields>CREATED_DATE</fields>
-        <fields>Status__c</fields>
-        <relatedList>Consent__c.Application__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
         <fields>CONTACT.FULL_NAME</fields>
         <fields>CONTACT.ACCOUNT_NAME</fields>
         <fields>CONTACT.TITLE</fields>
@@ -199,12 +189,6 @@
         <fields>CONTACT.PHONE1</fields>
         <fields>ACCCONRELATION.ROLES</fields>
         <relatedList>RelatedAccountContactRelationList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Answer__c</fields>
-        <fields>Applicant__c</fields>
-        <relatedList>Survey__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
