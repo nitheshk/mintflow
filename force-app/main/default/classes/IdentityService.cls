@@ -265,9 +265,10 @@ global virtual with sharing class IdentityService extends AbstractService {
    * @return Object
    **/
   global virtual string customerDueDiligence(Map<string, Object> params) {
-    IdScanDueDiligenceDTO.CustomerData customer = new IdScanDueDiligenceDTO.CustomerData();
+    IdScanDueDiligenceDTO.Request customer = new IdScanDueDiligenceDTO.Request();
     List<string> services = new List<String>();
     Id applicantId = (id) params.get('applicantId');
+    HttpBuilder.Response response;
     Applicant__c applicant = IdentityRepository.readApplicantWithIdentity(
       applicantId
     );
@@ -275,41 +276,70 @@ global virtual with sharing class IdentityService extends AbstractService {
 
     try {
       if (applicant != null) {
-        Flow.initialize(applicantId);
+        Flow.initialize(applicant.application__r.Id);
         Flow.setFlow('Customer Due Diligence');
         // get public token
+        customer = mapCustomer(applicant, customer);
+        customer.services = services;
 
-        customer.firstName = applicant.firstName__c;
-        customer.lastName = applicant.LastName__c;
-        customer.dateOfBirths = applicant.Birthdate__c;
-        customer.middleName = applicant.mflow__MiddleName__c;
-        if (
-          applicant != null &&
-          applicant.mflow__IdentificationDocuments__r.size() > 0
-        ) {
-          customer = mapIdentity(
-            applicant.mflow__IdentificationDocuments__r[0],
-            customer
+        response = IdscanProvider.idScanCheck(customer);
+        createFiles(applicantId, (String) response.data);
+        if (response.statusCode == 200) {
+          IdScanDueDiligenceDTO.Response responseDTO = (IdScanDueDiligenceDTO.Response) JSON.deserialize(
+            (String) response.data,
+            IdScanDueDiligenceDTO.Response.class
           );
-        }
-        if (
-          applicant != null &&
-          applicant.mflow__ContactPointAddresses__r.size() > 0
-        ) {
-          mapAddress(applicant.mflow__ContactPointAddresses__r, customer);
+          log?.debug('response.data ::' + (String) response.data);
+          Flow.setSubFlowPassed(response.status);
+          flow.setFlowPassed();
+        } else {
+          Flow.setSubFlowFailed(response.status);
+          throw new CustomException('Unable to retrieve due diligence');
         }
       }
     } catch (exception ex) {
       log?.debug('exception ::' + ex.getMessage());
     } finally {
       Logger.persist();
+      Flow.finalize();
     }
-    return JSON.serialize(customer, true);
+    return (string) response.data;
   }
 
-  private static IdScanDueDiligenceDTO.CustomerData mapIdentity(
+  global virtual IdScanDueDiligenceDTO.Request mapCustomer(
+    Applicant__c applicant,
+    IdScanDueDiligenceDTO.Request customer
+  ) {
+    customer.firstName = applicant.firstName__c;
+    customer.lastName = applicant.LastName__c;
+    customer.dateOfBirths = applicant.Birthdate__c;
+    customer.middleName = applicant.mflow__MiddleName__c;
+
+    if (
+      applicant != null &&
+      applicant.mflow__IdentificationDocuments__r.size() > 0
+    ) {
+      customer = mapIdentity(
+        applicant.mflow__IdentificationDocuments__r[0],
+        customer
+      );
+    }
+    if (
+      applicant != null &&
+      applicant.mflow__ContactPointAddresses__r.size() > 0
+    ) {
+      log?.debug('Inside address ');
+      customer = mapAddress(
+        applicant.mflow__ContactPointAddresses__r,
+        customer
+      );
+    }
+    return customer;
+  }
+
+  global virtual IdScanDueDiligenceDTO.Request mapIdentity(
     FinServ__IdentificationDocument__c identity,
-    IdScanDueDiligenceDTO.CustomerData customer
+    IdScanDueDiligenceDTO.Request customer
   ) {
     customer.sex = identity.Gender__c;
     customer.driverLicenseNumber = identity.FinServ__DocumentNumber__c;
@@ -319,18 +349,33 @@ global virtual with sharing class IdentityService extends AbstractService {
     return customer;
   }
 
-  private static IdScanDueDiligenceDTO.CustomerData mapAddress(
+  global virtual IdScanDueDiligenceDTO.Request mapAddress(
     List<ContactPointAddress> addresses,
-    IdScanDueDiligenceDTO.CustomerData customer
+    IdScanDueDiligenceDTO.Request customer
   ) {
+    log?.debug('address ::' + addresses);
     for (ContactPointAddress idAddress : addresses) {
-      if (idAddress.AddressType.equalsignorecase('Current')) {
+      if (idAddress.IsPrimary) {
         customer.address = idAddress.Street;
         customer.city = idAddress.City;
         customer.zip = idAddress.PostalCode;
-        customer.state = idAddress.State;
+        customer.state = idAddress.mflow__StateCode__c;
       }
     }
     return customer;
+  }
+
+  global virtual void createFiles(Id applicantId, String response) {
+    List<FileDTO> files = new List<FileDTO>();
+    FileDTO fileObj = new FileDTO(
+      'OOW Response.json',
+      blob.valueof(response),
+      applicantId,
+      'KYC'
+    );
+    files.add(fileObj);
+    List<ContentVersion> contents = FileService.getinstance()
+      .createFiles(files);
+    log?.debug('contents ::' + contents);
   }
 }
