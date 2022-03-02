@@ -1,14 +1,14 @@
 @istest
 public with sharing class SObjectWithoutSharingTest {
   private static Application__c makeAccountData() {
-    Application__c acc = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
   @istest
   static void SObjectWithoutSharingTestOne() {
-    Application__c acc = TestData.createAccount();
-    Application__c acc1 = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
+    Application__c acc1 = TestData.createApplication();
     SObjectField a;
     test.startTest();
     try {

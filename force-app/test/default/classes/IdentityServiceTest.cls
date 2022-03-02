@@ -1,7 +1,7 @@
 @isTest
 public with sharing class IdentityServiceTest {
   private static Application__c makeAccountData() {
-    Application__c acc = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
@@ -18,7 +18,7 @@ public with sharing class IdentityServiceTest {
     return cv;
   }
   private static Applicant__c makeApplicantData() {
-    Application__c acc = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecords(
       new List<Application__c>{ acc }
     )[0];

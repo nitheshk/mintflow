@@ -6,7 +6,7 @@ public with sharing class FileServiceTest {
     return cv;
   }
   private static Applicant__c makeApplicantData() {
-    Application__c acc = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecords(
       new List<Application__c>{ acc }
     )[0];

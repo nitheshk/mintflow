@@ -28,7 +28,7 @@ private class DatabaseUtilsTest {
     insert u;
 
     System.runAs(u) {
-      Application__c acc = TestData.createAccount();
+      Application__c acc = TestData.createApplication();
 
       try {
         acc = (Application__c) DatabaseUtils.insertRecordsBySharing(
@@ -116,7 +116,7 @@ private class DatabaseUtilsTest {
     insert u;
 
     System.runAs(u) {
-      Application__c acc = TestData.createAccount();
+      Application__c acc = TestData.createApplication();
       //excepted exception because before insert fields are getting strip because of no access on field for readonly profile
       try {
         acc = (Application__c) DatabaseUtils.insertRecordsByStrip(
@@ -130,7 +130,7 @@ private class DatabaseUtilsTest {
         System.AssertEquals(expectedExceptionThrown, true);
       }
 
-      acc = TestData.createAccount();
+      acc = TestData.createApplication();
       acc = (Application__c) DatabaseUtils.insertRecords(
         new List<Application__c>{ acc }
       )[0];
@@ -146,14 +146,14 @@ private class DatabaseUtilsTest {
 
   @IsTest
   private static void dmlOnSystemAdmin() {
-    Application__c acc = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
     DatabaseUtils.insertRecordBySharing(acc);
     DatabaseUtils.updateRecordBySharing(acc);
     DatabaseUtils.upsertRecordBySharing(acc);
     DatabaseUtils.upsertRecordBySharing(acc, Application__c.Id);
     DatabaseUtils.deleteRecordBySharing(acc);
 
-    acc = TestData.createAccount();
+    acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecordByStrip(acc);
     acc = (Application__c) DatabaseUtils.updateRecordByStrip(acc);
     acc = (Application__c) DatabaseUtils.upsertRecordByStrip(acc);
@@ -162,7 +162,7 @@ private class DatabaseUtilsTest {
       Application__c.Id
     );
 
-    acc = TestData.createAccount();
+    acc = TestData.createApplication();
     DatabaseUtils.insertRecord(acc);
     DatabaseUtils.updateRecord(acc);
     DatabaseUtils.upsertRecord(acc);

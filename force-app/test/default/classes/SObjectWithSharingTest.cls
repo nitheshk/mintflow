@@ -2,8 +2,8 @@
 public with sharing class SObjectWithSharingTest {
   @istest
   static void sObjectWithSharingTestOne() {
-    Application__c acc = TestData.createAccount();
-    Application__c acc1 = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
+    Application__c acc1 = TestData.createApplication();
     SObjectField a;
     test.startTest();
     try {

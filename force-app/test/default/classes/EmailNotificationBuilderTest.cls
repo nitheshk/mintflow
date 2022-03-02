@@ -1,7 +1,7 @@
 @isTest
 public with sharing class EmailNotificationBuilderTest {
   private static Application__c makeAccountData() {
-    Application__c acc = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }

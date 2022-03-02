@@ -5,13 +5,18 @@
  **/
 @isTest
 public with sharing class TestData {
-  public static Application__c createAccount() {
+  public static Application__c createApplication() {
     Application__c acc = new Application__c();
-    //acc.Name = 'Application__c Name';
     return acc;
   }
 
-  public static Opportunity createOpportunity(Application__c acc) {
+  public static Account createAccountRecord() {
+    Account acc = new Account();
+    acc.Name = 'Account Name';
+    return acc;
+  }
+
+  public static Opportunity createOpportunity(Account acc) {
     Opportunity opp = new Opportunity();
     if (acc != null) {
       opp.AccountId = acc.id;
@@ -23,7 +28,7 @@ public with sharing class TestData {
     return opp;
   }
 
-  public static contact createContact(Application__c acc) {
+  public static contact createContact(Account acc) {
     Contact con = new Contact();
     if (acc != null) {
       con.AccountId = acc.id;

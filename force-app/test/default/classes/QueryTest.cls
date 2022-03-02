@@ -6,7 +6,7 @@
 @isTest
 private class QueryTest {
   private static void makeData() {
-    Account acc = TestData.createAccount();
+    Account acc = TestData.createAccountRecord();
     acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
     Contact con = TestData.createContact(acc);
     con = (Contact) DatabaseUtils.insertRecords(new List<Contact>{ con })[0];

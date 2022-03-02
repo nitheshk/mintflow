@@ -2,7 +2,7 @@
 public with sharing class LoggerTest {
   // private static logger log = logger.getInstance(LoggerTest.class);
   private static Application__c makeAccountData() {
-    Application__c acc = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
