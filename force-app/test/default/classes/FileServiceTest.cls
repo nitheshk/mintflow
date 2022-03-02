@@ -36,7 +36,7 @@ public with sharing class FileServiceTest {
     header.put('entityId', applicant.Id);
     header.put('contentDocumentId', applicant.Id);
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.Application__c;
+    request.applicationId = applicant.ApplicationTemp__c;
     request.setData('Data');
     request.setHeader(header);
     test.startTest();

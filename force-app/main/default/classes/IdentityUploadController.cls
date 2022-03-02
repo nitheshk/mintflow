@@ -43,7 +43,7 @@ global with sharing class IdentityUploadController extends AbstractController {
 
         this.application = ApplicationService.getInstance()
           .readApplicationWithChild(cipher.appId, cipher.aplId);
-        Applicant__c currentApplicant = this.application.Applicants__r[0];
+        Applicant__c currentApplicant = this.application.ApplicantsTemp__r[0];
         params.put('applicantType', cipher.aplType);
         params.put('channel', cipher.ch);
         params.put('applicationId', cipher.appId);

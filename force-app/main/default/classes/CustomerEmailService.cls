@@ -319,7 +319,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @return virtual
    **/
   global virtual void fundingLinkOnKycApproval(Account application) {
-    for (Applicant__c applicant : application.Applicants__r) {
+    for (Applicant__c applicant : application.ApplicantsTemp__r) {
       if (
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -402,7 +402,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
-          '{applicationNumber}' => applicant.Application__r.Name,
+          '{applicationNumber}' => applicant.ApplicationTemp__r.Name,
           '{url}' => link
         }
       );

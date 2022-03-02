@@ -44,7 +44,7 @@ export default class CustomerResumeApplication extends LightningElement {
             } else {
               this.hasApplications = true;
               this.applications.forEach((app) => {
-                app.mflow__Applicants__r.forEach((element) => {
+                app.mflow__ApplicantsTemp__r.forEach((element) => {
                   if (element.mflow__ApplicantType__c === "Primary") {
                     element.isPrimaryOrJoint = true;
                     if (

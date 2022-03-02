@@ -182,7 +182,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
     String filter = '';
     Map<Id, Applicant__c> applicantToProcess = new Map<Id, Applicant__c>();
 
-    for (Applicant__c applicant : application.Applicants__r) {
+    for (Applicant__c applicant : application.ApplicantsTemp__r) {
       if (
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -233,7 +233,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
     }
 
     ApplicantRepository.upsertRecords(contactToUpsert);
-    ApplicantRepository.upsertRecords(application.Applicants__r);
+    ApplicantRepository.upsertRecords(application.ApplicantsTemp__r);
     return application;
   }
 }

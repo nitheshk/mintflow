@@ -143,7 +143,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
     application.Status__c = ApplicationConstant.CANCELLED;
     application.mflow__Stage__c = ApplicationConstant.STAGE_EXISTING_CUSTOMER;
     application.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
-    for (Applicant__c applicant : application.Applicants__r) {
+    for (Applicant__c applicant : application.ApplicantsTemp__r) {
       if (
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -156,7 +156,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
         applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
       }
     }
-    FinancialAccountRepository.upsertRecords(application.Applicants__r);
+    FinancialAccountRepository.upsertRecords(application.ApplicantsTemp__r);
     FinancialAccountRepository.upsertRecord(application);
     return application;
   }
@@ -173,7 +173,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
     ApplicationSubmissionResponse.KYCResult kycResult
   ) {
     Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(
-      application.Applicants__r
+      application.ApplicantsTemp__r
     );
 
     Boolean kycSuccessForApplicants = true;
@@ -267,7 +267,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
         }
       }
     }
-    FinancialAccountRepository.upsertRecords(application.Applicants__r);
+    FinancialAccountRepository.upsertRecords(application.ApplicantsTemp__r);
     FinancialAccountRepository.upsertRecord(application);
     return application;
   }

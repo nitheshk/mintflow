@@ -41,7 +41,7 @@ public with sharing class AtomicVerificationReportController {
     jsonResponse = request;
     atomicResponse = AtomicFIDTO.parse(jsonResponse);
     atomicWrapper.evaluatedDate = atomicResponse.eventTime;
-    atomicWrapper.loanNumber = empObj.Applicant__r.Application__r.Name;
+    atomicWrapper.loanNumber = empObj.Applicant__r.ApplicationTemp__r.Name;
     System.debug('loan number' + atomicWrapper.loanNumber);
     prefillPersonalInformationData();
     prefillEmploymentInformationData();

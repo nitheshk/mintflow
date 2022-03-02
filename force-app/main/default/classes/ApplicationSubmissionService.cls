@@ -50,7 +50,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       application.Stage__c = 'Submitted';
     }
 
-    for (Applicant__c applicant : application.Applicants__r) {
+    for (Applicant__c applicant : application.ApplicantsTemp__r) {
       if (
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -60,7 +60,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       }
     }
     SubmissionRepository.upsertRecord(application);
-    SubmissionRepository.upsertRecords(application.Applicants__r);
+    SubmissionRepository.upsertRecords(application.ApplicantsTemp__r);
     log?.debug('Completed submitApplication');
     return application;
   }
@@ -153,7 +153,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       when 'Accept', 'Passed', 'Approved' {
         application.Status__c = ApplicationConstant.COMPLETED;
         application.MemberNumber__c = fundingResult.MemberNumber;
-        for (Applicant__c applicant : application.Applicants__r) {
+        for (Applicant__c applicant : application.ApplicantsTemp__r) {
           if (
             applicant.RecordType.Name ==
             ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -203,7 +203,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
     }
 
     SubmissionRepository.upsertRecord(application);
-    SubmissionRepository.upsertRecords(application.Applicants__r);
+    SubmissionRepository.upsertRecords(application.ApplicantsTemp__r);
     return application;
   }
 }

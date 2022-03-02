@@ -66,11 +66,11 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     Applicant__c primaryApplicant;
     List<mflow__Applicant__c> jointApplicants = new List<mflow__Applicant__c>();
 
-    if (application.Applicants__r.isEmpty()) {
+    if (application.ApplicantsTemp__r.isEmpty()) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
 
-    for (Applicant__c applicant : application.Applicants__r) {
+    for (Applicant__c applicant : application.ApplicantsTemp__r) {
       if (
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -138,7 +138,7 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
         .reviewInformationSubmitted(jointApplicants, 'JointStartApplication');
     }
 
-    ApplicationRepository.upsertRecords(application.Applicants__r);
+    ApplicationRepository.upsertRecords(application.ApplicantsTemp__r);
     ApplicationRepository.upsertRecord(application);
     log?.info('Completed primaryConsumerFlow');
     return application;
@@ -156,11 +156,11 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     //Applicant__c currentJointApplicant;
     List<Applicant__c> jointApplicants = new List<Applicant__c>();
 
-    if (application.Applicants__r.isEmpty()) {
+    if (application.ApplicantsTemp__r.isEmpty()) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
 
-    for (Applicant__c applicant : application.Applicants__r) {
+    for (Applicant__c applicant : application.ApplicantsTemp__r) {
       if (
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -221,7 +221,7 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
         .primaryReviewInformationCompleted(primaryApplicant);
     }
 
-    ApplicationRepository.upsertRecords(application.Applicants__r);
+    ApplicationRepository.upsertRecords(application.ApplicantsTemp__r);
     ApplicationRepository.upsertRecord(application);
     log?.info('Completed jointConsumerFlow');
     return ApplicationService.getInstance()
@@ -238,12 +238,12 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     Account application = ApplicationRepository.readApplicationWithApplicants(
       applicationId
     );
-    if (application.Applicants__r.isEmpty()) {
+    if (application.ApplicantsTemp__r.isEmpty()) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
 
     //Mark Application and applicants to submitted for review
-    for (Applicant__c applicant : application.Applicants__r) {
+    for (Applicant__c applicant : application.ApplicantsTemp__r) {
       applicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
     }
     application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
@@ -254,7 +254,7 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     if (response.statusCode != 201) {
       throw new CustomException('Failed to add to queue');
     }
-    ApplicationRepository.upsertRecords(application.Applicants__r);
+    ApplicationRepository.upsertRecords(application.ApplicantsTemp__r);
     ApplicationRepository.upsertRecord(application);
     log?.info('Completed resubmitApplicationForReview');
     return ApplicationService.getInstance()
