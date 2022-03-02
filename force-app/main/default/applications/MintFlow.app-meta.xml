@@ -7,7 +7,7 @@
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>Account</pageOrSobjectType>
+        <pageOrSobjectType>Application__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
@@ -16,7 +16,7 @@
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>FinServ__FinancialAccount__c</pageOrSobjectType>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
@@ -36,7 +36,7 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Applicant__c</pageOrSobjectType>
     </actionOverrides>
-    <defaultLandingTab>standard-Account</defaultLandingTab>
+    <defaultLandingTab>Application__c</defaultLandingTab>
     <description
   >Build client trust with collaboration and productivity tools for advisory teams</description>
     <formFactors>Large</formFactors>
@@ -48,34 +48,7 @@
         <actionName>View</actionName>
         <content>ApplicationRecordPage</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.FinServ__IndustriesHousehold</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Application</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>MemberRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.FinServ__IndustriesIndividual</recordType>
+        <pageOrSobjectType>Application__c</pageOrSobjectType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
@@ -142,12 +115,12 @@
         <profile>Admin</profile>
     </profileActionOverrides>
     <tabs>standard-home</tabs>
-    <tabs>standard-Account</tabs>
+    <tabs>Application__c</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>Diagnostic__c</tabs>
     <tabs>ApplicationConfiguration</tabs>
     <tabs>Flow__c</tabs>
-    <tabs>FinServ__FinancialAccount__c</tabs>
+    <tabs>FinancialAccount__c</tabs>
     <tabs>ConsentLineItem__c</tabs>
     <tabs>ConsentTemplate__c</tabs>
     <tabs>SurveyTemplate__c</tabs>
@@ -164,7 +137,7 @@
             <tab>Diagnostic__c</tab>
         </mappings>
         <mappings>
-            <tab>FinServ__FinancialAccount__c</tab>
+            <tab>FinancialAccount__c</tab>
         </mappings>
         <mappings>
             <tab>FinServ__FinancialGoal__c</tab>
@@ -194,7 +167,7 @@
             <tab>FinancialAccountService__c</tab>
         </mappings>
         <mappings>
-            <tab>standard-Account</tab>
+            <tab>Application__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Contact</tab>

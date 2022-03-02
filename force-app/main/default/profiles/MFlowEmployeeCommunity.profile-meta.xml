@@ -3,20 +3,8 @@
     <custom>true</custom>
     <!--layoutAssignments-->
     <layoutAssignments>
-        <layout>Account-mflow__FI Application Layout</layout>
-        <recordType>Account.Application</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-mflow__Member Account Layout</layout>
-        <recordType>Account.FinServ__IndustriesIndividual</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Contact-mflow__FI Contact Layout</layout>
         <recordType>Contact.FinServ__IndustriesIndividual</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-mflow__Member Account Layout</layout>
-        <recordType>Account.FinServ__IndustriesBusiness</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-mflow__FI Contact Layout</layout>

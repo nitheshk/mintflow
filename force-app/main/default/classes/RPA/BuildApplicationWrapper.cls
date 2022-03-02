@@ -49,7 +49,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
           System.Label.Application_ApplicationNameCannotBeBlank
         );
       }
-      Account application = SubmissionRepository.readApplicationByApplicationNumber(
+      Application__c application = SubmissionRepository.readApplicationByApplicationNumber(
         applicationNumber
       );
       if (application == null) {
@@ -312,7 +312,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
 
     List<id> reletedEntityIdList = new List<id>();
     List<Map<string, string>> fileDetails = new List<Map<string, string>>();
-    Account application = SubmissionRepository.readApplicationByApplicationNumber(
+    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(
       applicationNumber
     );
 
@@ -359,24 +359,24 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @description Read application by parameter passed
    * @author Digital Align Team | 10-21-2021
    * @param Map<String Object> params
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account readApplicationWithChild(Id applicationId) {
-    Account application = SubmissionRepository.readApplicationWithChild(
+  global virtual Application__c readApplicationWithChild(Id applicationId) {
+    Application__c application = SubmissionRepository.readApplicationWithChild(
       applicationId
     );
 
     List<Applicant__c> applicants = readApplicantsWithChild(
       application.Applicants__r
     );
-    List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
+    List<FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
-    return (Account) builder.build();
+    return (Application__c) builder.build();
   }
 
   /**

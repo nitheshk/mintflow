@@ -13,10 +13,10 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * Financial Account contains only Ids
    * @author Digital Align Team | 10-26-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationWithChild(Id applicationId) {
-    Query qry = Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationWithChild(Id applicationId) {
+    Query qry = Query.newInstance(Application__c.SObjectType)
       .addFields()
       .queryChild('mflow__Applicants__r')
       .orderBy('mflow__Order__c')
@@ -24,7 +24,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .queryChild('mflow__FinancialAccounts__r')
       .run()
       .whereEq('Id', applicationId);
-    return (Account) DatabaseUtils.getRecord(qry.toString());
+    return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
 
   /**
@@ -33,13 +33,13 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * Financial Account contains only Ids
    * @author Digital Align | 12-01-2021
    * @param string applicationNumber
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationByApplicationNumber(
+  global static Application__c readApplicationByApplicationNumber(
     String applicationNumber
   ) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         .addFields()
         .removeFields('mflow__SessionToken__c')
         .whereEq('Name', applicationNumber)
@@ -52,13 +52,13 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * @author Digital Align Team | 11-19-2021
    * @param Id applicationId
    * @param Id applicantId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationWithChild(
+  global static Application__c readApplicationWithChild(
     Id applicationId,
     Id applicantId
   ) {
-    Query qry = Query.newInstance(Account.SObjectType)
+    Query qry = Query.newInstance(Application__c.SObjectType)
       .addFields()
       .removeFields('mflow__SessionToken__c')
       .queryChild('mflow__Applicants__r')
@@ -68,18 +68,18 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .queryChild('mflow__FinancialAccounts__r')
       .run()
       .whereEq('Id', applicationId);
-    return (Account) DatabaseUtils.getRecord(qry.toString());
+    return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
 
   /**
    * @description Read Application for session token verification
    * @author Digital Align Team | 11-17-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationForToken(Id applicationId) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationForToken(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         .addFields('SessionToken__c,Name')
         .whereEq('Id', applicationId)
         .toString()
@@ -90,11 +90,11 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * @description Read application with Applicants
    * @author Digital Align Team | 11-15-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationWithApplicants(Id applicationId) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationWithApplicants(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         .addFields()
         .queryChild('mflow__Applicants__r')
         .addFields()
@@ -140,11 +140,11 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * @description Read Application with FinancialAccount and Applicants
    * @author Digital Align Team | 12-02-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationForKYC(Id applicationId) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationForKYC(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         .addFields()
         .queryChild('mflow__Applicants__r')
         .addFields()
@@ -169,11 +169,11 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * @description Read Application With Primary
    * @author Digital Align Team | 02-04-2022
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationWithPrimary(Id applicationId) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationWithPrimary(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         .addFields()
         .queryChild('mflow__Applicants__r')
         .addFields()

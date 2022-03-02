@@ -297,7 +297,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void accountOpened(
     Applicant__c applicant,
-    FinServ__FinancialAccount__c finAcc
+    FinancialAccount__c finAcc
   ) {
     EmailNotificationBuilder.newInstance('AccountOpened', applicant.Id)
       .setToAddresses(applicant.Email__c)
@@ -318,7 +318,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Applicant__c applicant
    * @return virtual
    **/
-  global virtual void fundingLinkOnKycApproval(Account application) {
+  global virtual void fundingLinkOnKycApproval(Application__c application) {
     for (Applicant__c applicant : application.Applicants__r) {
       if (
         applicant.RecordType.Name ==

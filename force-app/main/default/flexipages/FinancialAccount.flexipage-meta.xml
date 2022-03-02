@@ -126,7 +126,7 @@
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>MintFlow FinancialAccount</masterLabel>
-    <sobjectType>FinServ__FinancialAccount__c</sobjectType>
+    <sobjectType>FinancialAccount__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>
     </template>

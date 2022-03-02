@@ -57,7 +57,7 @@ global with sharing class ApplicationController extends AbstractController {
       }
 
       log?.debug('request' + request);
-      Account application;
+      Application__c application;
       if (ApexRequest.getApplicantType() == 'Primary') {
         application = ApplicationService.getInstance()
           .readApplicationWithChild(applicationId);
@@ -95,9 +95,9 @@ global with sharing class ApplicationController extends AbstractController {
     try {
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.request.params);
-      Account application = (Account) SObjectConstructor.deserialize(
+      Application__c application = (Application__c) SObjectConstructor.deserialize(
         request.data,
-        Account.class
+        Application__c.class
       );
       application = ApplicationService.getInstance()
         .saveApplication(application);
@@ -332,9 +332,9 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse preserveApplication(ApexRequest request) {
     try {
       validateRequest(request);
-      Account application = (Account) SObjectConstructor.deserialize(
+      Application__c application = (Application__c) SObjectConstructor.deserialize(
         request.data,
-        Account.class
+        Application__c.class
       );
       application = ApplicationService.getInstance()
         .preserveApplication(application);

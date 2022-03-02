@@ -7,12 +7,12 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class IdentityUploadController extends AbstractController {
-  private Account application { get; set; }
+  private Application__c application { get; set; }
   global String initialData { get; set; }
 
   global IdentityUploadController() {
     super(IdentityUploadController.class);
-    this.application = new Account();
+    this.application = new Application__c();
   }
 
   /**

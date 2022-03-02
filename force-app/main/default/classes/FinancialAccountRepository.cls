@@ -11,13 +11,13 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
    * @description read financial account with child by ids
    * @author Digital Align Team | 10-26-2021
    * @param Set<Id> financialAccountIds
-   * @return List<FinServ__FinancialAccount__c>
+   * @return List<FinancialAccount__c>
    **/
-  global static List<FinServ__FinancialAccount__c> readFinancialAccountsWithChild(
+  global static List<FinancialAccount__c> readFinancialAccountsWithChild(
     Set<Id> financialAccountIds
   ) {
-    return (List<FinServ__FinancialAccount__c>) DatabaseUtils.getRecords(
-      Query.newInstance(FinServ__FinancialAccount__c.SObjectType)
+    return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
+      Query.newInstance(FinancialAccount__c.SObjectType)
         .addFields()
         .queryChild('mflow__FinancialAccountTransactions__r')
         .addFields()

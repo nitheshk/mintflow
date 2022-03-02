@@ -6,7 +6,7 @@
  * @description Controller to display customer agreement
  **/
 global with sharing class CustomerAgreementController {
-  global account application { get; set; }
+  global Application__c application { get; set; }
   global String primarySignatureImg { get; set; }
   private id applicationId;
   /**
@@ -28,8 +28,8 @@ global with sharing class CustomerAgreementController {
    * @param Id applicationId
    * @return virtual
    **/
-  global Account readApplicationWithChild(Id applicationId) {
-    Account application = SubmissionRepository.readApplicationWithChild(
+  global Application__c readApplicationWithChild(Id applicationId) {
+    Application__c application = SubmissionRepository.readApplicationWithChild(
       applicationId
     );
 
@@ -38,7 +38,7 @@ global with sharing class CustomerAgreementController {
     );
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
-    return (Account) builder.build();
+    return (Application__c) builder.build();
   }
 
   /**

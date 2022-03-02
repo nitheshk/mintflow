@@ -8,7 +8,7 @@ private class DatabaseUtilsTest {
   @IsTest
   private static void withSharingForReadOnlyProfile() {
     //Testing with  Insufficient permission
-    //excepected exception because readony profile don't have dml access on account object
+    //excepected exception because readony profile don't have dml access on Application__c object
     Test.startTest();
 
     User u = new User(
@@ -28,11 +28,11 @@ private class DatabaseUtilsTest {
     insert u;
 
     System.runAs(u) {
-      Account acc = TestData.createAccount();
+      Application__c acc = TestData.createAccount();
 
       try {
-        acc = (Account) DatabaseUtils.insertRecordsBySharing(
-          new List<Account>{ acc }
+        acc = (Application__c) DatabaseUtils.insertRecordsBySharing(
+          new List<Application__c>{ acc }
         )[0];
       } catch (Exception e) {
         Boolean expectedExceptionThrown = e.getMessage()
@@ -43,8 +43,8 @@ private class DatabaseUtilsTest {
       }
 
       try {
-        acc = (Account) DatabaseUtils.updateRecordsBySharing(
-          new List<Account>{ acc }
+        acc = (Application__c) DatabaseUtils.updateRecordsBySharing(
+          new List<Application__c>{ acc }
         )[0];
       } catch (Exception e) {
         Boolean expectedExceptionThrown = e.getMessage()
@@ -55,8 +55,8 @@ private class DatabaseUtilsTest {
       }
 
       try {
-        acc = (Account) DatabaseUtils.upsertRecordsBySharing(
-          new List<Account>{ acc }
+        acc = (Application__c) DatabaseUtils.upsertRecordsBySharing(
+          new List<Application__c>{ acc }
         )[0];
       } catch (Exception e) {
         Boolean expectedExceptionThrown = e.getMessage()
@@ -67,9 +67,9 @@ private class DatabaseUtilsTest {
       }
 
       try {
-        acc = (Account) DatabaseUtils.upsertRecordsBySharing(
-          new List<Account>{ acc },
-          Account.Id
+        acc = (Application__c) DatabaseUtils.upsertRecordsBySharing(
+          new List<Application__c>{ acc },
+          Application__c.Id
         )[0];
       } catch (Exception e) {
         Boolean expectedExceptionThrown = e.getMessage()
@@ -80,7 +80,7 @@ private class DatabaseUtilsTest {
       }
 
       try {
-        DatabaseUtils.deleteRecordsBySharing(new List<Account>{ acc });
+        DatabaseUtils.deleteRecordsBySharing(new List<Application__c>{ acc });
       } catch (Exception e) {
         Boolean expectedExceptionThrown = e.getMessage()
             .contains('Insufficient DELETEABLE permission on object')
@@ -116,11 +116,11 @@ private class DatabaseUtilsTest {
     insert u;
 
     System.runAs(u) {
-      Account acc = TestData.createAccount();
+      Application__c acc = TestData.createAccount();
       //excepted exception because before insert fields are getting strip because of no access on field for readonly profile
       try {
-        acc = (Account) DatabaseUtils.insertRecordsByStrip(
-          new List<Account>{ acc }
+        acc = (Application__c) DatabaseUtils.insertRecordsByStrip(
+          new List<Application__c>{ acc }
         )[0];
       } catch (Exception e) {
         Boolean expectedExceptionThrown = e.getMessage()
@@ -131,10 +131,12 @@ private class DatabaseUtilsTest {
       }
 
       acc = TestData.createAccount();
-      acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
+      acc = (Application__c) DatabaseUtils.insertRecords(
+        new List<Application__c>{ acc }
+      )[0];
 
-      acc = (Account) DatabaseUtils.upsertRecordsByStrip(
-        new List<Account>{ acc }
+      acc = (Application__c) DatabaseUtils.upsertRecordsByStrip(
+        new List<Application__c>{ acc }
       )[0];
 
       System.AssertNotEquals(null, acc);
@@ -144,71 +146,80 @@ private class DatabaseUtilsTest {
 
   @IsTest
   private static void dmlOnSystemAdmin() {
-    Account acc = TestData.createAccount();
+    Application__c acc = TestData.createAccount();
     DatabaseUtils.insertRecordBySharing(acc);
     DatabaseUtils.updateRecordBySharing(acc);
     DatabaseUtils.upsertRecordBySharing(acc);
-    DatabaseUtils.upsertRecordBySharing(acc, Account.Id);
+    DatabaseUtils.upsertRecordBySharing(acc, Application__c.Id);
     DatabaseUtils.deleteRecordBySharing(acc);
 
     acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecordByStrip(acc);
-    acc = (Account) DatabaseUtils.updateRecordByStrip(acc);
-    acc = (Account) DatabaseUtils.upsertRecordByStrip(acc);
-    acc = (Account) DatabaseUtils.upsertRecordByStrip(acc, Account.Id);
+    acc = (Application__c) DatabaseUtils.insertRecordByStrip(acc);
+    acc = (Application__c) DatabaseUtils.updateRecordByStrip(acc);
+    acc = (Application__c) DatabaseUtils.upsertRecordByStrip(acc);
+    acc = (Application__c) DatabaseUtils.upsertRecordByStrip(
+      acc,
+      Application__c.Id
+    );
 
     acc = TestData.createAccount();
     DatabaseUtils.insertRecord(acc);
     DatabaseUtils.updateRecord(acc);
     DatabaseUtils.upsertRecord(acc);
-    DatabaseUtils.upsertRecord(acc, Account.Id);
+    DatabaseUtils.upsertRecord(acc, Application__c.Id);
     DatabaseUtils.deleteRecord(acc);
 
     List<SObject> objs = DatabaseUtils.getRecords(
-      Query.newInstance(Account.SObjectType).toString()
+      Query.newInstance(Application__c.SObjectType).toString()
     );
     System.assertEquals(1, objs.size(), 'Failed to build query');
   }
 
   @IsTest
   private static void validateOnEmptyDML() {
-    Account acc;
+    Application__c acc;
     DatabaseUtils.insertRecordBySharing(acc);
     DatabaseUtils.updateRecordBySharing(acc);
     DatabaseUtils.upsertRecordBySharing(acc);
-    DatabaseUtils.upsertRecordBySharing(acc, Account.Id);
+    DatabaseUtils.upsertRecordBySharing(acc, Application__c.Id);
     DatabaseUtils.deleteRecordBySharing(acc);
 
-    DatabaseUtils.insertRecordsBySharing(new List<Account>{});
-    DatabaseUtils.updateRecordsBySharing(new List<Account>{});
-    DatabaseUtils.upsertRecordsBySharing(new List<Account>{});
-    DatabaseUtils.upsertRecordsBySharing(new List<Account>{}, Account.Id);
-    DatabaseUtils.deleteRecordsBySharing(new List<Account>{});
+    DatabaseUtils.insertRecordsBySharing(new List<Application__c>{});
+    DatabaseUtils.updateRecordsBySharing(new List<Application__c>{});
+    DatabaseUtils.upsertRecordsBySharing(new List<Application__c>{});
+    DatabaseUtils.upsertRecordsBySharing(
+      new List<Application__c>{},
+      Application__c.Id
+    );
+    DatabaseUtils.deleteRecordsBySharing(new List<Application__c>{});
 
     DatabaseUtils.insertRecordByStrip(acc);
     DatabaseUtils.updateRecordByStrip(acc);
     DatabaseUtils.upsertRecordByStrip(acc);
-    DatabaseUtils.upsertRecordByStrip(acc, Account.Id);
+    DatabaseUtils.upsertRecordByStrip(acc, Application__c.Id);
 
-    DatabaseUtils.insertRecordsByStrip(new List<Account>{});
-    DatabaseUtils.updateRecordsByStrip(new List<Account>{});
-    DatabaseUtils.upsertRecordsByStrip(new List<Account>{});
-    DatabaseUtils.upsertRecordsByStrip(new List<Account>{}, Account.Id);
+    DatabaseUtils.insertRecordsByStrip(new List<Application__c>{});
+    DatabaseUtils.updateRecordsByStrip(new List<Application__c>{});
+    DatabaseUtils.upsertRecordsByStrip(new List<Application__c>{});
+    DatabaseUtils.upsertRecordsByStrip(
+      new List<Application__c>{},
+      Application__c.Id
+    );
 
     DatabaseUtils.insertRecord(acc);
     DatabaseUtils.updateRecord(acc);
     DatabaseUtils.upsertRecord(acc);
-    DatabaseUtils.upsertRecord(acc, Account.Id);
+    DatabaseUtils.upsertRecord(acc, Application__c.Id);
     DatabaseUtils.deleteRecord(acc);
 
-    DatabaseUtils.insertRecords(new List<Account>{});
-    DatabaseUtils.updateRecords(new List<Account>{});
-    DatabaseUtils.upsertRecords(new List<Account>{});
-    DatabaseUtils.upsertRecords(new List<Account>{}, Account.Id);
-    DatabaseUtils.deleteRecords(new List<Account>{});
+    DatabaseUtils.insertRecords(new List<Application__c>{});
+    DatabaseUtils.updateRecords(new List<Application__c>{});
+    DatabaseUtils.upsertRecords(new List<Application__c>{});
+    DatabaseUtils.upsertRecords(new List<Application__c>{}, Application__c.Id);
+    DatabaseUtils.deleteRecords(new List<Application__c>{});
 
     List<SObject> objs = DatabaseUtils.getRecords(
-      Query.newInstance(Account.SObjectType).toString()
+      Query.newInstance(Application__c.SObjectType).toString()
     );
     System.assertEquals(0, objs.size(), 'Failed to build query');
   }

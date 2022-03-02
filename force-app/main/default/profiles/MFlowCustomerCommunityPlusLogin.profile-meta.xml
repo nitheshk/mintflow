@@ -7,11 +7,6 @@
         <recordType>Flow__c.Flow</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-     <recordTypeVisibilities>
-        <recordType>Account.Application</recordType>
-        <visible>true</visible>
-        <default>true</default>
-    </recordTypeVisibilities>
     <loginIpRanges>
         <endAddress>255.255.255.255</endAddress>
         <startAddress>0.0.0.0</startAddress>

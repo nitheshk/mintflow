@@ -32,11 +32,11 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   /**
    * @description Read Financial Account with child record
    * @author Digital Align Team | 10-26-2021
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
-   * @return List<FinServ__FinancialAccount__c>
+   * @param List<FinancialAccount__c> financialAccounts
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> readFinancialAccountsWithChild(
-    List<FinServ__FinancialAccount__c> financialAccounts
+  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(
+    List<FinancialAccount__c> financialAccounts
   ) {
     return readFinancialAccountsWithChild(
       (new Map<Id, SObject>(financialAccounts)).keySet()
@@ -47,9 +47,9 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @description  Read Financial Account with child record by ids
    * @author Digital Align Team | 10-26-2021
    * @param Set<Id> applicationIds
-   * @return List<FinServ__FinancialAccount__c>
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> readFinancialAccountsWithChild(
+  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(
     Set<Id> applicationIds
   ) {
     return FinancialAccountRepository.readFinancialAccountsWithChild(
@@ -60,11 +60,11 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   /**
    * @description  before save finanical account
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
-   * @return List<FinServ__FinancialAccount__c>
+   * @param List<FinancialAccount__c> financialAccounts
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> beforeSaveFinancialAccounts(
-    List<FinServ__FinancialAccount__c> financialAccounts
+  global virtual List<FinancialAccount__c> beforeSaveFinancialAccounts(
+    List<FinancialAccount__c> financialAccounts
   ) {
     return financialAccounts;
   }
@@ -73,12 +73,12 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @description save financial account
    * rollback on failure
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
+   * @param List<FinancialAccount__c> financialAccounts
    * @param String applicationId
-   * @return  List<FinServ__FinancialAccount__c>
+   * @return  List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> saveFinancialAccounts(
-    List<FinServ__FinancialAccount__c> financialAccounts,
+  global virtual List<FinancialAccount__c> saveFinancialAccounts(
+    List<FinancialAccount__c> financialAccounts,
     String applicationId
   ) {
     //before saving financialAccounts
@@ -100,11 +100,11 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   /**
    * @description after save finanical accounts
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
-   * @return List<FinServ__FinancialAccount__c>
+   * @param List<FinancialAccount__c> financialAccounts
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> afterSaveFinancialAccounts(
-    List<FinServ__FinancialAccount__c> financialAccounts
+  global virtual List<FinancialAccount__c> afterSaveFinancialAccounts(
+    List<FinancialAccount__c> financialAccounts
   ) {
     return financialAccounts;
   }
@@ -112,10 +112,12 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   /**
    * @description Create financial membership account record
    * @author Digital Align Team | 12-13-2021
-   * @param Account application
-   * @return Account
+   * @param Application__c application
+   * @return Application__c
    */
-  global Account createMembershipFinancialAccount(Account application) {
+  global Application__c createMembershipFinancialAccount(
+    Application__c application
+  ) {
     Applicant__c primaryApplicant;
 
     for (Applicant__c applicant : application.Applicants__r) {
@@ -133,9 +135,10 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     );
 
     // create membership financial account
-    FinServ__FinancialAccount__c financialAccount = new FinServ__FinancialAccount__c();
+    FinancialAccount__c financialAccount = new FinancialAccount__c();
     financialAccount.FinancialProduct__c = membershipProduct.Id;
-    financialAccount.Name = membershipProduct.Name;
+    //removeFSC
+    //financialAccount.Name = membershipProduct.Name;
     financialAccount.ExternalApplicationNumber__c = application.ExternalApplicationNumber__c;
     //#removeFSC
     //financialAccount.FinServ__FinancialAccountType__c = membershipProduct.Category__c;
@@ -144,7 +147,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     financialAccount.Stage__c = 'Active';
     financialAccount.Application__c = application.Id;
     financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      FinServ__FinancialAccount__c.SObjectType,
+      FinancialAccount__c.SObjectType,
       'SavingsAccount'
     );
     FinancialAccountRepository.upsertRecord(financialAccount);

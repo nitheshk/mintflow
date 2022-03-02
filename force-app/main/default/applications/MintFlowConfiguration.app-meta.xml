@@ -7,7 +7,7 @@
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>Account</pageOrSobjectType>
+        <pageOrSobjectType>Application__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
@@ -16,7 +16,7 @@
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>FinServ__FinancialAccount__c</pageOrSobjectType>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
@@ -48,34 +48,7 @@
         <actionName>View</actionName>
         <content>ApplicationRecordPage</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.FinServ__IndustriesHousehold</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Application</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>MemberRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.FinServ__IndustriesIndividual</recordType>
+        <pageOrSobjectType>Application__c</pageOrSobjectType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>

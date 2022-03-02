@@ -40,9 +40,9 @@ global virtual with sharing class KycReviewService extends AbstractService {
    * @description Create Financial MemberShip account and Primary Account
    * @author Digital Align Team | 12-02-2021
    * @param String resultJson
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account processMembershipKYC(String resultJson) {
+  global virtual Application__c processMembershipKYC(String resultJson) {
     ApplicationSubmissionResponse.KYCResult kycResult = (ApplicationSubmissionResponse.KYCResult) JSON.deserialize(
       resultJson,
       ApplicationSubmissionResponse.KYCResult.class
@@ -51,7 +51,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
     if (kycResult == null) {
       throw new CustomException('Unable to process the empty request');
     }
-    Account application = ApplicationRepository.readApplicationForKYC(
+    Application__c application = ApplicationRepository.readApplicationForKYC(
       kycResult.ApplicationId
     );
     ApexRequest.setApplicationId(application.Id);
@@ -128,12 +128,12 @@ global virtual with sharing class KycReviewService extends AbstractService {
    * @description  Primary is Existing Customer
    * Used when kyc result is return from Server
    * @author Digital Align Team | 12-07-2021
-   * @param Account application
+   * @param Application__c application
    * @param ApplicationSubmissionResponse.KYCResult kycResult
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account processExistingMember(
-    Account application,
+  global virtual Application__c processExistingMember(
+    Application__c application,
     ApplicationSubmissionResponse.KYCResult kycResult
   ) {
     log?.debug('Inside processExistingMember');
@@ -164,12 +164,12 @@ global virtual with sharing class KycReviewService extends AbstractService {
   /**
    * @description
    * @author Digital Align Team | 12-08-2021
-   * @param Account application
+   * @param Application__c application
    * @param ApplicationSubmissionResponse.KYCResult kycResult
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account updateApplicationKycDetails(
-    Account application,
+  global virtual Application__c updateApplicationKycDetails(
+    Application__c application,
     ApplicationSubmissionResponse.KYCResult kycResult
   ) {
     Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(

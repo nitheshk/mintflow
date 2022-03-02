@@ -192,14 +192,6 @@
             <sortOrder>8</sortOrder>
         </platformActionListItems>
     </platformActionList>
-    <relatedLists>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>ACCCONRELATION.ROLES</fields>
-        <fields>ACCCONRELATION.START_DATE</fields>
-        <fields>ACCCONRELATION.END_DATE</fields>
-        <fields>ACCCONRELATION.IS_ACTIVE</fields>
-        <relatedList>RelatedContactAccountRelationList</relatedList>
-    </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

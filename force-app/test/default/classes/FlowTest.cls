@@ -1,13 +1,13 @@
 @isTest
 public with sharing class FlowTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeAccountData() {
+    Application__c acc = TestData.createAccount();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
   @istest
   static void initializeTestOne() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     Boolean status;
     test.startTest();
     flow.initialize(acc.Id);
@@ -23,7 +23,7 @@ public with sharing class FlowTest {
   }
   @istest
   static void initializeTestTwo() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     Boolean status;
     test.startTest();
     flow.initialize(acc.Id);
@@ -42,7 +42,7 @@ public with sharing class FlowTest {
 
   @istest
   static void initializeTestThree() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     Boolean status;
     test.startTest();
     flow.initialize(acc.Id);
@@ -60,13 +60,13 @@ public with sharing class FlowTest {
   }
   @istest
   static void initializeTestFour() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     Boolean status;
     test.startTest();
     flow.initialize(acc.Id);
     flow.setFlow('TestFlow');
-    // Flow.setSubFlow('Account', acc);
-    // flow.setsubflow('Account', 'contact', acc);
+    // Flow.setSubFlow('Application__c', acc);
+    // flow.setsubflow('Application__c', 'contact', acc);
     flow.finalize();
     flow.setFlow('TestFlow');
     flow.setSubFlowNote('Completed');

@@ -78,10 +78,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__OverdraftLinkedAccount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>DateClosed__c</field>
             </layoutItems>
         </layoutColumns>

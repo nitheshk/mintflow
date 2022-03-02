@@ -31,18 +31,19 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description
    * @author Digital Align Team | 10-25-2021
-   * @param Account application
-   * @return virtual
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account saveApplication(Account application) {
+  global virtual Application__c saveApplication(Application__c application) {
     //Process Application Mapping
     {
-      if (String.isBlank(application.Id)) {
-        application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-          Account.SObjectType,
-          ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
-        );
-      }
+      //RemoveFSC remove comment
+      // if (String.isBlank(application.Id)) {
+      //   application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+      //     Application__c.SObjectType,
+      //     ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
+      //   );
+      // }
       ApplicationRepository.upsertRecord(application);
       ApexRequest.setApplicationId(application.Id);
     }
@@ -59,7 +60,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
     //save financial accounts
     if (!CollectionUtils.isListEmpty(application.mflow__FinancialAccounts__r)) {
-      List<FinServ__FinancialAccount__c> financialAccounts = saveFinancialAccounts(
+      List<FinancialAccount__c> financialAccounts = saveFinancialAccounts(
         application.mflow__FinancialAccounts__r,
         application.Id
       );
@@ -86,7 +87,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     //   constructor.setChildObjects('mflow__ApplicationConsents__r', consents);
     // }
 
-    application = (Account) constructor.build();
+    application = (Application__c) constructor.build();
 
     return application;
   }
@@ -372,9 +373,9 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   global virtual Boolean deleteEntity(Id recordId) {
     log?.fine('Inside Delete Record');
     switch on SObjectUtils.getObjectName(recordId) {
-      when 'Account' {
+      when 'mflow__Application__c' {
         List<SObject> recordsToDelete = new List<SObject>();
-        Account application = ApplicationRepository.readApplicationWithChild(
+        Application__c application = ApplicationRepository.readApplicationWithChild(
           recordId
         );
         if (!application.Applicants__r.isEmpty()) {
@@ -388,7 +389,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         recordsToDelete.add(application);
         ApplicationRepository.deleteRecords(recordsToDelete);
       }
-      when 'FinServ__FinancialAccount__c' {
+      when 'mflow__FinancialAccount__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'mflow__Applicant__c' {
@@ -440,12 +441,12 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description  Save Financial Accounts
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
+   * @param List<FinancialAccount__c> financialAccounts
    * @param String applicationId
-   * @return List<FinServ__FinancialAccount__c>
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> saveFinancialAccounts(
-    List<FinServ__FinancialAccount__c> financialAccounts,
+  global virtual List<FinancialAccount__c> saveFinancialAccounts(
+    List<FinancialAccount__c> financialAccounts,
     String applicationId
   ) {
     log?.fine('Inside save financialAccounts');
@@ -454,7 +455,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
 
     //update value for financialAccount here
-    for (FinServ__FinancialAccount__c financialAccount : financialAccounts) {
+    for (FinancialAccount__c financialAccount : financialAccounts) {
       financialAccount = this.saveFinancialAccount(
         financialAccount,
         applicationId
@@ -463,7 +464,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     FinancialAccountRepository.upsertRecords(financialAccounts);
 
     //save child of FinancialAccounts
-    for (FinServ__FinancialAccount__c financialAccount : financialAccounts) {
+    for (FinancialAccount__c financialAccount : financialAccounts) {
       financialAccount = this.saveFinancialAccountChild(financialAccount);
     }
     log?.fine('Finish save FinancialAccounts');
@@ -473,12 +474,12 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description  save financial account
    * @author Digital Align Team | 01-10-2022
-   * @param FinServ__FinancialAccount__c financialAccount
+   * @param FinancialAccount__c financialAccount
    * @param String applicationId
-   * @return FinServ__FinancialAccount__c
+   * @return FinancialAccount__c
    **/
-  global virtual FinServ__FinancialAccount__c saveFinancialAccount(
-    FinServ__FinancialAccount__c financialAccount,
+  global virtual FinancialAccount__c saveFinancialAccount(
+    FinancialAccount__c financialAccount,
     String applicationId
   ) {
     if (String.isNotBlank(applicationId)) {
@@ -492,11 +493,11 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description Save Financial Account Child
    * @author Digital Align Team | 01-10-2022
-   * @param FinServ__FinancialAccount__c financialAccount
-   * @return FinServ__FinancialAccount__c
+   * @param FinancialAccount__c financialAccount
+   * @return FinancialAccount__c
    **/
-  global virtual FinServ__FinancialAccount__c saveFinancialAccountChild(
-    FinServ__FinancialAccount__c financialAccount
+  global virtual FinancialAccount__c saveFinancialAccountChild(
+    FinancialAccount__c financialAccount
   ) {
     //#removeFSC
     /*

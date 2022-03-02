@@ -5,9 +5,9 @@
     <description>Applicant relation with application</description>
     <externalId>false</externalId>
     <label>Application</label>
-    <referenceTo>Account</referenceTo>
+    <referenceTo>Application__c</referenceTo>
     <relationshipLabel>Applicants</relationshipLabel>
-    <relationshipName>ApplicantsTemp</relationshipName>
+    <relationshipName>Applicants</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

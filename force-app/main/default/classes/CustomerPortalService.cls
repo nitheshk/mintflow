@@ -33,12 +33,12 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
    * @param map<string object> params
    * @return virtual
    **/
-  global virtual List<Account> authorize(map<string, object> params) {
+  global virtual List<Application__c> authorize(map<string, object> params) {
     Applicant__c applicant = (Applicant__c) JSON.deserialize(
       JSON.serialize(params.get('applicant')),
       Applicant__c.class
     );
-    List<Account> applications = CustomerPortalRepository.fetchApplicationByApplicantDetails(
+    List<Application__c> applications = CustomerPortalRepository.fetchApplicationByApplicantDetails(
       applicant.mflow__LastFourDigitsofSSN__c,
       applicant.mflow__Email__c,
       applicant.mflow__LastName__c

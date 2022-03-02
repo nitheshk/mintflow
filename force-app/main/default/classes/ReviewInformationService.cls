@@ -32,11 +32,11 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
    * @description Submit the application review by Primary/Joint
    * @author Digital Align Team | 11-12-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account reviewInformationSubmit(Id applicationId) {
+  global virtual Application__c reviewInformationSubmit(Id applicationId) {
     log?.fine('Inside reviewInformationSubmit');
-    Account application = ApplicationRepository.readApplicationWithApplicants(
+    Application__c application = ApplicationRepository.readApplicationWithApplicants(
       applicationId
     );
 
@@ -58,10 +58,12 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
   /**
    * @description Primary Review Submit action
    * @author Digital Align Team | 11-12-2021
-   * @param account application
-   * @return account
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account primaryConsumerFlow(Account application) {
+  global virtual Application__c primaryConsumerFlow(
+    Application__c application
+  ) {
     log?.info('Inside primaryConsumerFlow');
     Applicant__c primaryApplicant;
     List<mflow__Applicant__c> jointApplicants = new List<mflow__Applicant__c>();
@@ -147,10 +149,10 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
   /**
    * @description joint Review Submit action , submit for kyv
    * @author Digital Align Team | 11-24-2021
-   * @param account application
+   * @param Application__c application
    * @return virtual
    **/
-  global virtual Account jointConsumerFlow(Account application) {
+  global virtual Application__c jointConsumerFlow(Application__c application) {
     log?.info('Inside jointConsumerFlow');
     Applicant__c primaryApplicant;
     //Applicant__c currentJointApplicant;
@@ -230,12 +232,12 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
   /**
    * @description Primary Review Submit action
    * @author Digital Align Team | 02-09-2022
-   * @param account application
-   * @return account
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account resubmitApplicationForReview(Id applicationId) {
+  global virtual Application__c resubmitApplicationForReview(Id applicationId) {
     log?.info('Inside resubmitApplicationForReview');
-    Account application = ApplicationRepository.readApplicationWithApplicants(
+    Application__c application = ApplicationRepository.readApplicationWithApplicants(
       applicationId
     );
     if (application.Applicants__r.isEmpty()) {

@@ -12,15 +12,15 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
    * @param String lastFourDigitofSSN
    * @param string email
    * @param string lastName
-   * @return List<Account>
+   * @return List<Application__c>
    **/
-  global static List<Account> fetchApplicationByApplicantDetails(
+  global static List<Application__c> fetchApplicationByApplicantDetails(
     String lastFourDigitofSSN,
     string email,
     string lastName
   ) {
-    return (List<Account>) DatabaseUtils.getRecords(
-      Query.newInstance(Account.SObjectType)
+    return (List<Application__c>) DatabaseUtils.getRecords(
+      Query.newInstance(Application__c.SObjectType)
         .addFields()
         .queryChild('mflow__Applicants__r')
         .addFields()

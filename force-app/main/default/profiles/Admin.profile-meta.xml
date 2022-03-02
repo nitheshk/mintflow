@@ -11,27 +11,10 @@
     </layoutAssignments>
 
     <layoutAssignments>
-        <layout>Account-mflow__Application Layout</layout>
-        <recordType>Account.Application</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-mflow__Member Account Layout</layout>
-        <recordType>Account.FinServ__IndustriesIndividual</recordType>
+        <layout>Application__c-mflow__Application Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ProductService__c-Product Service Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-mflow__Member Account Layout</layout>
-        <recordType>Account.FinServ__IndustriesBusiness</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Contact-mflow__Member Account Layout</layout>
-        <recordType>Contact.FinServ__IndustriesIndividual</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Contact-mflow__Member Account Layout</layout>
-        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout
@@ -199,10 +182,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Flow__c.SubFlow</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Account.Application</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
 </Profile>

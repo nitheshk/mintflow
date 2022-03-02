@@ -175,10 +175,14 @@ global virtual with sharing class ApplicantService extends AbstractService {
    * @description create Membership Account
    * Create Contact and Account in system if contact is not already present
    * @author Digital Align Team | 12-10-2021
-   * @param Account application
-   * @return Account
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account createMemberAccount(Account application) {
+  global virtual Application__c createMemberAccount(
+    Application__c application
+  ) {
+    //#removeFSC
+    /*
     String filter = '';
     Map<Id, Applicant__c> applicantToProcess = new Map<Id, Applicant__c>();
 
@@ -233,7 +237,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
     }
 
     ApplicantRepository.upsertRecords(contactToUpsert);
-    ApplicantRepository.upsertRecords(application.Applicants__r);
+    ApplicantRepository.upsertRecords(application.Applicants__r); */
     return application;
   }
 }

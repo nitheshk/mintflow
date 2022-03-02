@@ -3,10 +3,6 @@
     <custom>false</custom>
     <userLicense>Salesforce</userLicense>
     <layoutAssignments>
-        <layout>Account-mflow__Application Layout</layout>
-        <recordType>Account.mflow__Application</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>mflow__Flow__c-mflow__Flow Layout</layout>
         <recordType>mflow__Flow__c.mflow__Flow</recordType>
     </layoutAssignments>

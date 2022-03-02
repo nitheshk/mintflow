@@ -32,11 +32,11 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
    * @description final application submit
    * @author Digital Align Team | 01-25-2022
    * @param String data
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account submitApplication(String data) {
+  global virtual Application__c submitApplication(String data) {
     log?.debug('Inside submitApplication');
-    Account application = SubmissionRepository.readApplicationWithApplicants(
+    Application__c application = SubmissionRepository.readApplicationWithApplicants(
       ApexRequest.getApplicationId()
     );
     HttpBuilder.Response response = RpaProcessService.getInstance()
@@ -69,9 +69,9 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
    * @description
    * @author Digital Align Team | 12-02-2021
    * @param String resultJson
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account processFundingSubmission(String resultJson) {
+  global virtual Application__c processFundingSubmission(String resultJson) {
     FundingSubmissionResponse.FundingResult fundingResult = (FundingSubmissionResponse.FundingResult) JSON.deserialize(
       resultJson,
       FundingSubmissionResponse.FundingResult.class
@@ -82,7 +82,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       throw new CustomException('Unable to process the empty request');
     }
 
-    Account application = SubmissionRepository.readApplicationWithApplicants(
+    Application__c application = SubmissionRepository.readApplicationWithApplicants(
       fundingResult.Application
     );
     ApexRequest.setApplicationId(application.Id);
@@ -141,12 +141,12 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
   /**
    * @description
    * @author Digital Align Team | 01-27-2022
-   * @param Account application
+   * @param Application__c application
    * @param FundingSubmissionResponse.FundingResult fundingResult
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account updateFundingDetail(
-    Account application,
+  global virtual Application__c updateFundingDetail(
+    Application__c application,
     FundingSubmissionResponse.FundingResult fundingResult
   ) {
     switch on fundingResult.ExternalApplicationStatus {
@@ -176,7 +176,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
     ) {
       FundingSubmissionResponse.FinancialAccountResult financialAccountResult = fundingResult.FinancialAccount[0];
       if (String.isNotBlank(financialAccountResult.FinancialAccountId)) {
-        FinServ__FinancialAccount__c fa = new FinServ__FinancialAccount__c(
+        FinancialAccount__c fa = new FinancialAccount__c(
           Id = financialAccountResult.FinancialAccountId,
           AccountNumber__c = financialAccountResult.AccountNumber
         );

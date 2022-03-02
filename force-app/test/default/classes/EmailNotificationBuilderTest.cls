@@ -1,14 +1,14 @@
 @isTest
 public with sharing class EmailNotificationBuilderTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeAccountData() {
+    Application__c acc = TestData.createAccount();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
 
   @isTest
   static void generateDocumentUrlTest() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     test.startTest();
     EmailNotificationBuilder.newInstance('OTPVerificationEmail', acc.Id)
       .setToAddresses('test@email.com')

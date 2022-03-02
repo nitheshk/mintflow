@@ -66,7 +66,7 @@ export default class ApplicationSearch extends NavigationMixin(
             );
           } else {
             this.searchData.map((record) => {
-              record.URL = "/account/" + record.Id;
+              record.URL = "/mflow__Application__c/" + record.Id;
               record.Owner = record.CreatedBy.Name;
               return record;
             });

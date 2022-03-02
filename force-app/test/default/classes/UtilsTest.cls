@@ -7,13 +7,13 @@
 private with sharing class UtilsTest {
   @IsTest
   private static void validateCrudOperation() {
-    Account record = new Account();
+    Application__c record = new Application__c();
     Test.startTest();
     Boolean result = SecurityUtils.crud(record, CrudType.READABLE);
     System.assertEquals(true, result);
 
     result = SecurityUtils.crud(
-      new List<Account>{ record },
+      new List<Application__c>{ record },
       CrudType.CREATABLE
     );
     System.assertEquals(true, result);
@@ -25,12 +25,12 @@ private with sharing class UtilsTest {
   private static void sObjectUtils() {
     Test.startTest();
 
-    Account record = new Account();
+    Application__c record = new Application__c();
     DescribeSObjectResult dsr = SObjectUtils.getDescribeSObjectResult(record);
     System.assertNotEquals(null, dsr);
 
     String objName = SObjectUtils.getObjectName(record);
-    System.assertEquals('Account', objName);
+    System.assertEquals('Application__c', objName);
 
     FieldSet fs = SObjectUtils.getFieldSet(
       record.getSObjectType(),

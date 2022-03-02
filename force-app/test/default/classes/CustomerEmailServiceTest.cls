@@ -1,8 +1,10 @@
 @IsTest
 public with sharing class CustomerEmailServiceTest {
   private static Applicant__c makeApplicantData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
+    Application__c acc = TestData.createAccount();
+    acc = (Application__c) DatabaseUtils.insertRecords(
+      new List<Application__c>{ acc }
+    )[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant.Email__c = 'test@mail.com';
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
@@ -26,8 +28,10 @@ public with sharing class CustomerEmailServiceTest {
     return appConfig;
   }
   private static Applicant__c makeApplicantDataWithoutEmail() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
+    Application__c acc = TestData.createAccount();
+    acc = (Application__c) DatabaseUtils.insertRecords(
+      new List<Application__c>{ acc }
+    )[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
     return applicant;
@@ -40,7 +44,7 @@ public with sharing class CustomerEmailServiceTest {
     CustomerEmailService.getInstance().sendEmailOTP(applicant);
     CustomerEmailService.getInstance().resumeApplication(applicant);
     CustomerEmailService.getInstance()
-      .accountOpened(applicant, new FinServ__FinancialAccount__c());
+      .accountOpened(applicant, new FinancialAccount__c());
     CustomerEmailService.getInstance()
       .primaryReviewInformationCompleted(applicant);
     Test.stopTest();

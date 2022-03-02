@@ -12,13 +12,13 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
    * Financial Account contains only Ids
    * @author Digital Align | 12-01-2021
    * @param string applicationNumber
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationByApplicationNumber(
+  global static Application__c readApplicationByApplicationNumber(
     String applicationNumber
   ) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         //.addFieldSet('mflow__Application')
         .addFields()
         .queryChild('mflow__Applicants__r')
@@ -34,17 +34,17 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
   /**
    * @description Read Application with child record
    * Applicants contains only ids
-   * Financial Account contains only Ids
+   * Financial Application__c contains only Ids
    * @author Digital Align Team | 10-26-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationWithChild(Id applicationId) {
+  global static Application__c readApplicationWithChild(Id applicationId) {
     String eventIdentifier = String.valueOf(
       ApexRequest.getParams('eventIdentifier')
     );
 
-    Query qry = Query.newInstance(Account.SObjectType)
+    Query qry = Query.newInstance(Application__c.SObjectType)
       //.addFieldSet('mflow__Application')
       .addFields()
       //.removeFields('mflow__SessionToken__c')
@@ -61,7 +61,7 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
       .run()
       .whereEq('Id', applicationId);
 
-    return (Account) DatabaseUtils.getRecord(qry.toString());
+    return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
   /**
    * @description read allapplicant with child record
@@ -103,13 +103,13 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
    * @description read financial account with child by Applicatiom Id
    * @author Digital Align | 01-10-2022
    * @param Id financialAccountId
-   * @return List<FinServ__FinancialAccount__c>
+   * @return List<FinancialAccount__c>
    **/
-  global static List<FinServ__FinancialAccount__c> readFinancialAccountWithChildByApplicationId(
+  global static List<FinancialAccount__c> readFinancialAccountWithChildByApplicationId(
     string applicationId
   ) {
-    return (List<FinServ__FinancialAccount__c>) DatabaseUtils.getRecords(
-      Query.newInstance(FinServ__FinancialAccount__c.SObjectType)
+    return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
+      Query.newInstance(FinancialAccount__c.SObjectType)
         .addFields()
         .queryChild('mflow__FinancialAccountTransactions__r')
         .addFields()
@@ -124,11 +124,11 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
    * @description Read application with Applicants
    * @author Digital Align Team | 11-15-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationWithApplicants(Id applicationId) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationWithApplicants(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         .addFields()
         .queryChild('mflow__Applicants__r')
         .addFields()

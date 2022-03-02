@@ -25,9 +25,9 @@ global with sharing class FinancialAccountController extends AbstractController 
     try {
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.request.params);
-      List<FinServ__FinancialAccount__c> financialAccounts = (List<FinServ__FinancialAccount__c>) SObjectConstructor.deserialize(
+      List<FinancialAccount__c> financialAccounts = (List<FinancialAccount__c>) SObjectConstructor.deserialize(
         request.data,
-        List<FinServ__FinancialAccount__c>.class
+        List<FinancialAccount__c>.class
       );
       financialAccounts = FinancialAccountService.getInstance()
         .saveFinancialAccounts(

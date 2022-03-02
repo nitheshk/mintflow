@@ -94,7 +94,7 @@ global virtual with sharing class PlaidService extends AbstractService {
         throw new CustomException('Unable to generate access token for plaid');
       }
 
-      // get account details
+      // get Application__c details
       Flow.setSubFlow(
         APINames.PlaidRetrieveAuth.name(),
         ApexRequest.getApplicationId()

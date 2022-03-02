@@ -50,6 +50,8 @@ global virtual with sharing class ApplicantServiceHelper extends AbstractService
    * @param Applicant__c applicant
    * @return Contact
    **/
+  //#removeFSC
+  /*
   global virtual Contact createAccount(Applicant__c applicant) {
     Account individualAccount = new Account();
     individualAccount.Name = applicant.ApplicantName__c;
@@ -65,7 +67,7 @@ global virtual with sharing class ApplicantServiceHelper extends AbstractService
     ApplicantRepository.upsertRecord(individualAccount);
     // Return Individual Contact created by Salesforce , when account is created
     return ApplicantRepository.fetchContactByAccountId(individualAccount.Id);
-  }
+  } */
 
   /**
    * @description map applicant data with contact data

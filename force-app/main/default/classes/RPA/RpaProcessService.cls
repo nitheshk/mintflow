@@ -121,10 +121,12 @@ global virtual with sharing class RpaProcessService extends AbstractService {
    * doesn't throw any exception on failure,
    * failure will marked and will pick by scheduler job to resubmit later
    * @author Digital Align Team | 11-25-2021
-   * @param Account application
+   * @param Application__c application
    * @return HttpBuilder.Response
    **/
-  global virtual HttpBuilder.Response scheduleApplication(Account application) {
+  global virtual HttpBuilder.Response scheduleApplication(
+    Application__c application
+  ) {
     Flow.initialize(application.Id);
     Flow.setFlow('Rpa-Process: review application');
     Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
@@ -242,7 +244,7 @@ global virtual with sharing class RpaProcessService extends AbstractService {
   global virtual void updateMemberDetails() {
     log?.debug('Inside updateMemberDetails');
     log?.debug('requestBody =' + RestContext.request.requestBody.toString());
-    Account application = (Account) KycReviewService.getInstance()
+    Application__c application = (Application__c) KycReviewService.getInstance()
       .processMembershipKYC(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
     String responseString = 'Application Status :' + application.Status__c;
@@ -299,7 +301,7 @@ global virtual with sharing class RpaProcessService extends AbstractService {
   global virtual void updateFundingDetails() {
     log?.debug('Inside updateFundingDetails');
     log?.debug('requestBody =' + RestContext.request.requestBody.toString());
-    Account application = (Account) ApplicationSubmissionService.getInstance()
+    Application__c application = (Application__c) ApplicationSubmissionService.getInstance()
       .processFundingSubmission(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
     String responseString = 'Application Status :' + application.Status__c;

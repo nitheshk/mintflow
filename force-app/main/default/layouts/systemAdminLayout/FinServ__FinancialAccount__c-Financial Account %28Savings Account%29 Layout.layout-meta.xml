@@ -78,10 +78,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__OverdraftLinkedAccount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>DateClosed__c</field>
             </layoutItems>
         </layoutColumns>
@@ -151,19 +147,6 @@
     </platformActionList>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__RelatedAccount__c</fields>
-        <fields>FinServ__RelatedContact__c</fields>
-        <fields>FinServ__Role__c</fields>
-        <fields>FinServ__Active__c</fields>
-        <fields>FinServ__StartDate__c</fields>
-        <fields>FinServ__EndDate__c</fields>
-        <relatedList
-    >FinServ__FinancialAccountRole__c.FinServ__FinancialAccount__c</relatedList>
-        <sortField>FinServ__Active__c</sortField>
-        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>

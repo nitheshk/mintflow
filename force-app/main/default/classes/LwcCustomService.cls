@@ -90,15 +90,15 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @param Id applicationId
    * @return virtual
    **/
-  global virtual Account readApplicationWithChild(Id applicationId) {
-    Account application = LwcCustomRepository.readApplicationWithChild(
+  global virtual Application__c readApplicationWithChild(Id applicationId) {
+    Application__c application = LwcCustomRepository.readApplicationWithChild(
       applicationId
     );
 
     List<Applicant__c> applicants = LwcCustomRepository.readApplicantsWithChild(
       new Map<id, SObject>(application.Applicants__r).keyset()
     );
-    List<FinServ__FinancialAccount__c> financialAccounts = LwcCustomRepository.readFinancialAccountsWithChild(
+    List<FinancialAccount__c> financialAccounts = LwcCustomRepository.readFinancialAccountsWithChild(
       new Map<id, SObject>(application.mflow__FinancialAccounts__r).keyset()
     );
 
@@ -106,7 +106,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
-    return (Account) builder.build();
+    return (Application__c) builder.build();
   }
 
   /**
@@ -126,7 +126,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
       );
     }
     list<id> ids = new List<id>();
-    Account application = ApplicationRepository.readApplicationWithApplicants(
+    Application__c application = ApplicationRepository.readApplicationWithApplicants(
       applicationId
     );
     if (application != null) {
@@ -163,9 +163,9 @@ global virtual with sharing class LwcCustomService extends AbstractService {
   /**
    * @description  readApplicationForResume
    * @author Digital Align Team | 01-19-2022
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account readApplicationForResume(String applicationId) {
+  global virtual Application__c readApplicationForResume(String applicationId) {
     return LwcCustomRepository.readApplicationForResume(applicationId);
   }
   /**
@@ -192,7 +192,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @return virtual
    **/
   global virtual void resendFundingRequest(string applicantionId) {
-    Account application = LwcCustomRepository.readApplicationForResume(
+    Application__c application = LwcCustomRepository.readApplicationForResume(
       applicantionId
     );
     if (application == null) {
@@ -310,16 +310,16 @@ global virtual with sharing class LwcCustomService extends AbstractService {
         NotificationService.getInstance()
           .dispatchKycNotification(
             'onManualKycAction',
-            applicant.mflow__ApplicationTemp__c,
-            applicant.mflow__ApplicationTemp__r.Name,
+            applicant.mflow__Application__c,
+            applicant.mflow__Application__r.Name,
             'Updated - Kyc Status to : ' +
             status +
             ' of Applicant : ' +
             applicant.ApplicantName__c
           );
       }
-      when 'Account' {
-        Account application = LwcCustomRepository.readApplicationWithApplicants(
+      when 'mflow__Application__c' {
+        Application__c application = LwcCustomRepository.readApplicationWithApplicants(
           recordID
         );
         ApexRequest.setApplicationId(application.Id);

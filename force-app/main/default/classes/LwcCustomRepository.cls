@@ -43,11 +43,11 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
    * @description fetch application details
    * @author Digital Align Team | 12-01-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationWithChild(Id applicationId) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationWithChild(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         //.addFieldSet('mflow__Application')
         .addFields()
         .addFields('CreatedBy.Name,LastModifiedBy.Name')
@@ -106,13 +106,13 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
    * @description fetch financial account detail
    * @author Digital Align Team | 12-01-2021
    * @param Set<Id> financialAccountIds
-   * @return List<FinServ__FinancialAccount__c>
+   * @return List<FinancialAccount__c>
    **/
-  global static List<FinServ__FinancialAccount__c> readFinancialAccountsWithChild(
+  global static List<FinancialAccount__c> readFinancialAccountsWithChild(
     Set<Id> financialAccountIds
   ) {
-    return (List<FinServ__FinancialAccount__c>) DatabaseUtils.getRecords(
-      Query.newInstance(FinServ__FinancialAccount__c.SObjectType)
+    return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
+      Query.newInstance(FinancialAccount__c.SObjectType)
         .addFields()
         .addFields('CreatedBy.Name,LastModifiedBy.Name')
         .removeFields(removeFields)
@@ -144,11 +144,11 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
    * @description Read application with Applicants
    * @author Digital Align Team | 11-15-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationWithApplicants(Id applicationId) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationWithApplicants(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         //.addFieldSet('mflow__Application')
         .addFields()
         .queryChild('mflow__Applicants__r')
@@ -165,11 +165,11 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
    * @description Read application with Applicants
    * @author Digital Align Team | 01-19-2022
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationForResume(Id applicationId) {
-    return (Account) DatabaseUtils.getRecord(
-      Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationForResume(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
         //.addFieldSet('mflow__Application')
         .addFields()
         .queryChild('mflow__Applicants__r')

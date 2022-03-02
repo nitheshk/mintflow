@@ -47,14 +47,14 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
         System.Label.Application_ApplicationNameCannotBeBlank
       );
     }
-    Account application = SubmissionRepository.readApplicationByApplicationNumber(
+    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(
       applicationNumber
     );
 
     if (application == null) {
       throw new customException(System.Label.Application_ApplicationNotFound);
     }
-    List<FinServ__FinancialAccount__c> financialApplications = SubmissionRepository.readFinancialAccountWithChildByApplicationId(
+    List<FinancialAccount__c> financialApplications = SubmissionRepository.readFinancialAccountWithChildByApplicationId(
       application.Id
     );
     if (CollectionUtils.isListEmpty(financialApplications)) {
@@ -87,16 +87,14 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
   /**
    * @description
    * @author Digital Align | 01-20-2022
-   * @param List<FinServ__FinancialAccount__c> financialApplicationsList
+   * @param List<FinancialAccount__c> financialApplicationsList
    * @return virtual
    **/
   global virtual list<FundingSubmissionResponse.FinancialAccount> mapFinancialApplication(
-    List<FinServ__FinancialAccount__c> financialApplicationsList
+    List<FinancialAccount__c> financialApplicationsList
   ) {
     list<FundingSubmissionResponse.FinancialAccount> mapperFinancialAccountList = new List<FundingSubmissionResponse.FinancialAccount>();
-    for (
-      FinServ__FinancialAccount__c finApplication : financialApplicationsList
-    ) {
+    for (FinancialAccount__c finApplication : financialApplicationsList) {
       FundingSubmissionResponse.FinancialAccount mapperFinancialAccount = new FundingSubmissionResponse.FinancialAccount();
       mapperFinancialAccount.FinancialAccountId = finApplication.Id;
       //#removeFSC

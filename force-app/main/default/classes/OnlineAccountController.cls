@@ -8,12 +8,12 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global without sharing class OnlineAccountController extends AbstractController {
   private String id { get; set; }
-  private Account application { get; set; }
+  private Application__c application { get; set; }
   global String initialData { get; set; }
 
   global OnlineAccountController() {
     super(OnlineAccountController.class);
-    application = new Account();
+    application = new Application__c();
   }
 
   /**

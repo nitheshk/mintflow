@@ -1,8 +1,8 @@
 @IsTest
 public with sharing class UserAccountManagementControllerTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeAccountData() {
+    Application__c acc = TestData.createAccount();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
   private static ApplicationConfiguration__c makeApplicationConfiguration() {
@@ -12,7 +12,7 @@ public with sharing class UserAccountManagementControllerTest {
     );
     return appConfig;
   }
-  private static Contact makeContactData(account acc) {
+  private static Contact makeContactData(Application__c acc) {
     Contact con = TestData.createContact(acc);
     con = (Contact) DatabaseUtils.insertRecord(con);
     return con;
@@ -22,14 +22,14 @@ public with sharing class UserAccountManagementControllerTest {
   @IsTest
   private static void createFinancialInstituteAccountTest() {
     makeApplicationConfiguration();
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     Map<String, Object> params = new Map<String, Object>{ 'account' => acc };
     Test.startTest();
     ApexResponse result = UserAccountManagementController.createFinancialInstituteAccount(
       params
     );
     ApexResponse result1 = UserAccountManagementController.createFinancialInstituteAccount(
-      new Map<String, Object>{ 'Noaccount' => new Account() }
+      new Map<String, Object>{ 'Noaccount' => new Application__c() }
     );
     Test.stopTest();
   }
@@ -46,7 +46,7 @@ public with sharing class UserAccountManagementControllerTest {
   @IsTest
   private static void fetchFinancialInstituteAccountTest() {
     makeApplicationConfiguration();
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     Map<String, Object> params = new Map<String, Object>{ 'account' => acc };
     UserAccountManagementController.createFinancialInstituteAccount(params);
     Test.startTest();
@@ -57,7 +57,7 @@ public with sharing class UserAccountManagementControllerTest {
   }
   @IsTest
   private static void createFinInstEmployeeUserAccountTest() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     ApplicationConfiguration__c config = makeApplicationConfiguration();
     config.FinancialInstituteAccountId__c = acc.Id;
     config = (ApplicationConfiguration__c) DatabaseUtils.updateRecord(config);
