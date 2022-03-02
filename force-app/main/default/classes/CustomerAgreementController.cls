@@ -34,10 +34,10 @@ global with sharing class CustomerAgreementController {
     );
 
     List<Applicant__c> applicants = SubmissionRepository.readApplicantsWithIdentityAddress(
-      new Map<Id, SObject>(application.ApplicantsTemp__r).keySet()
+      new Map<Id, SObject>(application.Applicants__r).keySet()
     );
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
-    builder.setChildObjects('mflow__ApplicantsTemp__r', applicants);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
     return (Account) builder.build();
   }
 
@@ -46,7 +46,7 @@ global with sharing class CustomerAgreementController {
    * @author Digital Align Team | 02-02-2022
    **/
   global void fetchSignatureData() {
-    for (Applicant__c applicant : this.application.ApplicantsTemp__r) {
+    for (Applicant__c applicant : this.application.Applicants__r) {
       if (
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE

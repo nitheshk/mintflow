@@ -18,7 +18,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
   global static Account readApplicationWithChild(Id applicationId) {
     Query qry = Query.newInstance(Account.SObjectType)
       .addFields()
-      .queryChild('mflow__ApplicantsTemp__r')
+      .queryChild('mflow__Applicants__r')
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__FinancialAccounts__r')
@@ -61,7 +61,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
     Query qry = Query.newInstance(Account.SObjectType)
       .addFields()
       .removeFields('mflow__SessionToken__c')
-      .queryChild('mflow__ApplicantsTemp__r')
+      .queryChild('mflow__Applicants__r')
       .whereEq('Id', applicantId)
       .orderBy('mflow__Order__c')
       .run()
@@ -96,7 +96,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
     return (Account) DatabaseUtils.getRecord(
       Query.newInstance(Account.SObjectType)
         .addFields()
-        .queryChild('mflow__ApplicantsTemp__r')
+        .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
         .orderBy('mflow__Order__c')
@@ -146,7 +146,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
     return (Account) DatabaseUtils.getRecord(
       Query.newInstance(Account.SObjectType)
         .addFields()
-        .queryChild('mflow__ApplicantsTemp__r')
+        .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
         .whereEq(
@@ -175,7 +175,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
     return (Account) DatabaseUtils.getRecord(
       Query.newInstance(Account.SObjectType)
         .addFields()
-        .queryChild('mflow__ApplicantsTemp__r')
+        .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
         .whereEq(

@@ -73,7 +73,7 @@ public with sharing class IdentityServiceTest {
     Applicant__c applicant = makeApplicantData();
     makeContactPointAddress(applicant.Id);
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.ApplicationTemp__c; //account ID
+    request.applicationId = applicant.Application__c; //account ID
     request.setHeader(
       new Map<String, String>{
         'applicantId' => applicant.Id,
@@ -94,7 +94,7 @@ public with sharing class IdentityServiceTest {
     Applicant__c applicant = makeApplicantData();
     makeContactPointAddress(applicant.Id);
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.ApplicationTemp__c; //account ID
+    request.applicationId = applicant.Application__c; //account ID
     request.setHeader(
       new Map<String, String>{
         'applicantId' => applicant.Id,
@@ -115,7 +115,7 @@ public with sharing class IdentityServiceTest {
     Applicant__c applicant = makeApplicantData();
     makeContactPointAddress(applicant.Id);
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.ApplicationTemp__c; //account ID
+    request.applicationId = applicant.Application__c; //account ID
     request.setHeader(
       new Map<String, String>{
         'applicantId' => applicant.Id,
@@ -138,7 +138,7 @@ public with sharing class IdentityServiceTest {
     cv = fileService.getInstance().fetchContentVersionById(cv.id, true);
     Applicant__c applicant = makeApplicantData();
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.ApplicationTemp__c; //account ID
+    request.applicationId = applicant.Application__c; //account ID
     request.setHeader(
       new Map<String, Object>{ 'contentDocumentId' => cv.ContentDocumentId }
     );
@@ -156,7 +156,7 @@ public with sharing class IdentityServiceTest {
     ContentVersion cv = makeContentVersion();
     Applicant__c applicant = makeApplicantData();
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.ApplicationTemp__c; //account ID
+    request.applicationId = applicant.Application__c; //account ID
     request.setHeader(
       new Map<String, Object>{ 'contentDocumentId' => cv.ContentDocumentId }
     );

@@ -88,10 +88,7 @@
           </h4>
         </div>
 
-        <apex:repeat
-          var="applicantVar"
-          value="{!application.ApplicantsTemp__r}"
-        >
+        <apex:repeat var="applicantVar" value="{!application.Applicants__r}">
           <h3 style="background: #b6bdca">
             {!applicantVar.mflow__ApplicantName__c}
           </h3>

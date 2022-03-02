@@ -119,7 +119,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
     );
     applicant.Status__c = ApplicationConstant.IN_PROGRESS;
-    applicant.ApplicationTemp__c = application.Id;
+    applicant.Application__c = application.Id;
     ApplicationRepository.upsertRecord(applicant);
     applicant = ApplicantRepository.readApplicantWithApplication(applicant.Id);
     /***   */
@@ -161,13 +161,13 @@ global virtual with sharing class ApplicationService extends AbstractService {
     );
 
     List<Applicant__c> applicants = ApplicantService.getInstance()
-      .readApplicantsWithChild(application.ApplicantsTemp__r);
+      .readApplicantsWithChild(application.Applicants__r);
     List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
-    builder.setChildObjects('mflow__ApplicantsTemp__r', applicants);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
     return (Account) builder.build();
   }
@@ -195,7 +195,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
-    builder.setChildObject('mflow__ApplicantsTemp__r', applicant);
+    builder.setChildObject('mflow__Applicants__r', applicant);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
     return (Account) builder.build();
   }
@@ -243,7 +243,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     // );
     // params.put('maskedPhone', applicant.Phone__c.replaceAll('.(?=.{4})', '*'));
     params.put('fullName', applicant.ApplicantName__c);
-    params.put('applicationNumber', applicant.ApplicationTemp__r.Name);
+    params.put('applicationNumber', applicant.Application__r.Name);
     AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
   }
@@ -323,7 +323,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
     ) {
       application.Status__c = ApplicationConstant.SAVED;
-      for (Applicant__c applicant : application.ApplicantsTemp__r) {
+      for (Applicant__c applicant : application.Applicants__r) {
         if (
           applicant.ApplicantType__c ==
           ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -337,7 +337,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
       ApexRequest.getApplicantType() ==
       ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
     ) {
-      for (Applicant__c applicant : application.ApplicantsTemp__r) {
+      for (Applicant__c applicant : application.Applicants__r) {
         if (
           applicant.ApplicantType__c.Contains(
             ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
@@ -389,11 +389,8 @@ global virtual with sharing class ApplicationService extends AbstractService {
       }
       if (entity instanceof Account) {
         Account application = (Account) entity;
-        if (application.ApplicantsTemp__r != null) {
-          return helper.updateFlowState(
-            application,
-            application.ApplicantsTemp__r
-          );
+        if (application.Applicants__r != null) {
+          return helper.updateFlowState(application, application.Applicants__r);
         } else {
           return helper.updateFlowState(application, new List<Applicant__c>());
         }
@@ -413,10 +410,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
         Account application = ApplicationRepository.readApplicationWithPrimary(
           ApexRequest.getApplicationId()
         );
-        return helper.updateFlowState(
-          application,
-          application.ApplicantsTemp__r
-        );
+        return helper.updateFlowState(application, application.Applicants__r);
       }
     } catch (Exception ex) {
       log?.error(ex);

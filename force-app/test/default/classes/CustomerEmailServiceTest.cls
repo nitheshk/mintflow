@@ -11,7 +11,7 @@ public with sharing class CustomerEmailServiceTest {
   private static List<Applicant__c> makeApplicantList(string applicantType) {
     Applicant__c primary = makeApplicantData();
     Applicant__c familyMember = TestData.createApplicant(
-      primary.ApplicationTemp__c
+      primary.Application__c
     );
     familyMember.Email__c = 'test@mail.com';
     familyMember.ApplicantType__c = applicantType;

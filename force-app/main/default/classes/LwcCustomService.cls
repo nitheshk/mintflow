@@ -96,7 +96,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
     );
 
     List<Applicant__c> applicants = LwcCustomRepository.readApplicantsWithChild(
-      new Map<id, SObject>(application.ApplicantsTemp__r).keyset()
+      new Map<id, SObject>(application.Applicants__r).keyset()
     );
     List<FinServ__FinancialAccount__c> financialAccounts = LwcCustomRepository.readFinancialAccountsWithChild(
       new Map<id, SObject>(application.mflow__FinancialAccounts__r).keyset()
@@ -104,7 +104,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
-    builder.setChildObjects('mflow__ApplicantsTemp__r', applicants);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
     return (Account) builder.build();
   }
@@ -130,7 +130,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
       applicationId
     );
     if (application != null) {
-      for (Applicant__c applicant : application.ApplicantsTemp__r) {
+      for (Applicant__c applicant : application.Applicants__r) {
         if (
           applicant.RecordType.Name ==
           ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE ||
@@ -342,7 +342,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
             application.Status__c = ApplicationConstant.IN_PROGRESS;
             application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
             application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
-            for (Applicant__c applicant : application.ApplicantsTemp__r) {
+            for (Applicant__c applicant : application.Applicants__r) {
               if (
                 applicant.RecordType.Name ==
                 ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
@@ -356,12 +356,12 @@ global virtual with sharing class LwcCustomService extends AbstractService {
           } else if (status == ApplicationConstant.KYC_FAILED) {
             application.Status__c = ApplicationConstant.CANCELLED;
             application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
-            for (Applicant__c applicant : application.ApplicantsTemp__r) {
+            for (Applicant__c applicant : application.Applicants__r) {
               applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
               applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
             }
           }
-          LwcCustomRepository.upsertRecords(application.ApplicantsTemp__r);
+          LwcCustomRepository.upsertRecords(application.Applicants__r);
           LwcCustomRepository.upsertRecord(application);
         }
 

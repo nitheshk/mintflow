@@ -22,7 +22,7 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
     return (List<Account>) DatabaseUtils.getRecords(
       Query.newInstance(Account.SObjectType)
         .addFields()
-        .queryChild('mflow__ApplicantsTemp__r')
+        .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
         .orderBy('mflow__Order__c')

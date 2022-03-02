@@ -51,10 +51,10 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       application
     );
     //save applicants
-    if (!CollectionUtils.isListEmpty(application.ApplicantsTemp__r)) {
+    if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
       List<Applicant__c> applicants = ApplicantService.getInstance()
-        .saveApplicants(application.ApplicantsTemp__r, application.Id);
-      constructor.setChildObjects('mflow__ApplicantsTemp__r', applicants);
+        .saveApplicants(application.Applicants__r, application.Id);
+      constructor.setChildObjects('mflow__Applicants__r', applicants);
     }
 
     //save financial accounts
@@ -140,7 +140,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   ) {
     if (String.isNotBlank(applicationId)) {
       //Set Application ID
-      applicant.ApplicationTemp__c = applicationId;
+      applicant.Application__c = applicationId;
     }
 
     if (String.isNotBlank(ApexRequest.getFlowType())) {
@@ -377,9 +377,9 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         Account application = ApplicationRepository.readApplicationWithChild(
           recordId
         );
-        if (!application.ApplicantsTemp__r.isEmpty()) {
+        if (!application.Applicants__r.isEmpty()) {
           this.deleteApplicants(
-            new Map<Id, SObject>(application.ApplicantsTemp__r).keySet()
+            new Map<Id, SObject>(application.Applicants__r).keySet()
           );
         }
         if (!application.mflow__FinancialAccounts__r.isEmpty()) {

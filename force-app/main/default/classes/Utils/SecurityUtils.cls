@@ -272,7 +272,7 @@ global inherited sharing class SecurityUtils {
    **/
   global static Applicant__c createSessionForApplicant(Applicant__c applicant) {
     SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
-    cipher.appId = applicant.ApplicationTemp__c;
+    cipher.appId = applicant.Application__c;
     cipher.aplId = applicant.Id;
     cipher.aplType = applicant.RecordType.Name;
     cipher.flw = ApexRequest.getFlowType();
@@ -289,7 +289,7 @@ global inherited sharing class SecurityUtils {
     ApexRequest.setApplicantType(applicant.RecordType.Name);
     ApexRequest.setApplicationId(cipher.appId);
     ApexRequest.setApplicantId(cipher.aplId);
-    ApexRequest.setApplicationName(applicant.ApplicationTemp__r.Name);
+    ApexRequest.setApplicationName(applicant.Application__r.Name);
     PageUtils.setCookie(
       new Cookie('token', applicant.SessionToken__c, null, -1, true)
     );
@@ -340,8 +340,8 @@ global inherited sharing class SecurityUtils {
     if (applicant.sessionExpireTime__c < Datetime.now()) {
       throw new CustomException(System.Label.Session_SessionHasExpired);
     }
-    ApexRequest.setApplicationId(applicant.ApplicationTemp__c);
-    ApexRequest.setApplicationName(applicant.ApplicationTemp__r.Name);
+    ApexRequest.setApplicationId(applicant.Application__c);
+    ApexRequest.setApplicationName(applicant.Application__r.Name);
     ApexRequest.setApplicantId(cipher.aplId);
     ApexRequest.setApplicantType(cipher.aplType);
     ApexRequest.setFlowType(cipher.flw);

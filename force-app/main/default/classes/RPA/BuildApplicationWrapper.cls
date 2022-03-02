@@ -81,9 +81,9 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
         // mapperApplication.SubStatus = application.Stage__c;
         // mapperApplication.UserAccountType = application.UserAccountType__c;
 
-        if (!CollectionUtils.isListEmpty(application.ApplicantsTemp__r)) {
+        if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
           mapperApplication.Applicants.addAll(
-            mapApplicant(application.ApplicantsTemp__r)
+            mapApplicant(application.Applicants__r)
           );
         } else {
           throw new CustomException(
@@ -118,7 +118,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
     for (applicant__c applicant : applicantList) {
       ApplicationSubmissionResponse.Applicant mapperApplicant = new ApplicationSubmissionResponse.Applicant();
       mapperApplicant.ApplicantId = applicant.Id;
-      mapperApplicant.Application = applicant.ApplicationTemp__c;
+      mapperApplicant.Application = applicant.Application__c;
       mapperApplicant.FirstName = applicant.FirstName__c;
       mapperApplicant.MiddleName = applicant.MiddleName__c;
       mapperApplicant.LastName = applicant.LastName__c;
@@ -322,7 +322,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
 
     application = readApplicationWithChild(application.Id);
 
-    for (Applicant__c applicant : application.ApplicantsTemp__r) {
+    for (Applicant__c applicant : application.Applicants__r) {
       // documents related to applicant
       reletedEntityIdList.add(applicant.Id);
       reletedEntityIdList.addAll(
@@ -367,14 +367,14 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
     );
 
     List<Applicant__c> applicants = readApplicantsWithChild(
-      application.ApplicantsTemp__r
+      application.Applicants__r
     );
     List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
-    builder.setChildObjects('mflow__ApplicantsTemp__r', applicants);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
     return (Account) builder.build();
   }

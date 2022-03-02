@@ -34,7 +34,7 @@ export default class ResumeAppplication extends LightningElement {
           this.fundingFlow = true;
         }
         let applicantNames = [{ label: "All", value: "All" }];
-        let applicants = this.application.mflow__ApplicantsTemp__r;
+        let applicants = this.application.mflow__Applicants__r;
         // eslint-disable-next-line guard-for-in
         for (let key in applicants) {
           applicantNames.push({

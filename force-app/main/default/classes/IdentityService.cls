@@ -242,7 +242,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     messageBody = messageBody.replace('{url}', link);
     messageBody = messageBody.replace(
       '{applicationNumber}',
-      currentApplicant.ApplicationTemp__r.Name
+      currentApplicant.Application__r.Name
     );
     params.put('messageText', messageBody);
     // #pending remove hardcode mobile number [currentApplicant.Phone__c]

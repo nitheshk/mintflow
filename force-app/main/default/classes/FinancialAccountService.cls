@@ -118,7 +118,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   global Account createMembershipFinancialAccount(Account application) {
     Applicant__c primaryApplicant;
 
-    for (Applicant__c applicant : application.ApplicantsTemp__r) {
+    for (Applicant__c applicant : application.Applicants__r) {
       if (
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE

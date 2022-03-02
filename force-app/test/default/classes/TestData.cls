@@ -47,7 +47,7 @@ public with sharing class TestData {
 
   public static Applicant__c createApplicant(id accId) {
     Applicant__c applicant = new Applicant__c();
-    applicant.ApplicationTemp__c = accId;
+    applicant.Application__c = accId;
     applicant.FirstName__c = 'John';
     applicant.LastName__c = 'Doe';
     applicant.EmailOtp__c = '4567';

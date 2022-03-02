@@ -62,7 +62,7 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
         'Financial Account not found/ Requested application is under reivew'
       );
     }
-    for (Applicant__c applicant : application.ApplicantsTemp__r) {
+    for (Applicant__c applicant : application.Applicants__r) {
       Set<String> applicantTypes = new Set<String>(
         applicant.ApplicantType__c.split(';')
       );

@@ -11,10 +11,10 @@
         ></c-record-detail-view>
       </lightning-tab> -->
 
-    <template if:true={record.mflow__ApplicantsTemp__r}>
+    <template if:true={record.mflow__Applicants__r}>
       <!-- <lightning-tab label="Applicant Details" value="Applicant"> -->
       <lightning-tabset variant="scoped">
-        <template for:each={record.mflow__ApplicantsTemp__r} for:item="data">
+        <template for:each={record.mflow__Applicants__r} for:item="data">
           <lightning-tab key={data.Id} label={data.mflow__ApplicantName__c}>
             <lightning-tabset variant="scoped">
               <lightning-tab
