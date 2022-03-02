@@ -150,11 +150,6 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList
-    >FinancialAccountService__c.FinancialAccount__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>
@@ -165,44 +160,6 @@
         <relatedList>RelatedActivityList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>CASES.CASE_NUMBER</fields>
-        <fields>CASES.SUBJECT</fields>
-        <fields>CASES.CREATED_DATE</fields>
-        <fields>CASES.PRIORITY</fields>
-        <relatedList>Case.FinServ__FinancialAccount__c</relatedList>
-        <sortField>CASES.CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>OPPORTUNITY.NAME</fields>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>OPPORTUNITY.AMOUNT</fields>
-        <fields>OPPORTUNITY.CLOSE_DATE</fields>
-        <relatedList>Opportunity.FinServ__FinancialAccount__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__BinNumber__c</fields>
-        <fields>FinServ__AccountHolder__c</fields>
-        <fields>FinServ__ValidUntil__c</fields>
-        <fields>FinServ__Active__c</fields>
-        <fields>FinServ__OwnershipType__c</fields>
-        <relatedList>FinServ__Card__c.FinServ__FinancialAccount__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__RelatedAccount__c</fields>
-        <fields>FinServ__RelatedContact__c</fields>
-        <fields>FinServ__Role__c</fields>
-        <fields>FinServ__Active__c</fields>
-        <fields>FinServ__StartDate__c</fields>
-        <fields>FinServ__EndDate__c</fields>
-        <relatedList
-    >FinServ__FinancialAccountRole__c.FinServ__FinancialAccount__c</relatedList>
-        <sortField>FinServ__Active__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>
@@ -210,18 +167,6 @@
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.LAST_UPDATE</fields>
         <relatedList>RelatedHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__EndingBalance__c</fields>
-        <fields>FinServ__Deposits__c</fields>
-        <fields>FinServ__Withdrawals__c</fields>
-        <fields>FinServ__PreviousBalance__c</fields>
-        <fields>FinServ__StatementDate__c</fields>
-        <relatedList
-    >FinServ__BillingStatement__c.FinServ__FinancialAccount__c</relatedList>
-        <sortField>FinServ__StatementDate__c</sortField>
-        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>

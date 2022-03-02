@@ -35,7 +35,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
    * @return List<FinancialAccountService__c>
    **/
   global virtual List<FinancialAccountService__c> fetchServices(String data) {
-    Account application = ProductServiceRepository.readApplicationWithFA(
+    Application__c application = ProductServiceRepository.readApplicationWithFA(
       ApexRequest.getApplicationId()
     );
     //#Pending Doesn't work for multiple products
@@ -45,7 +45,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
     );
 
     for (
-      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+      FinancialAccount__c financialAccount : application.FinancialAccounts__r
     ) {
       financialAccountService.addAll(
         ProductServiceRepository.readExistingService(financialAccount.Id)
@@ -57,7 +57,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
     }
 
     for (
-      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+      FinancialAccount__c financialAccount : application.FinancialAccounts__r
     ) {
       List<ProductService__c> services = ProductServiceRepository.fetchServicesByProduct(
         financialAccount.FinancialProduct__r.Id

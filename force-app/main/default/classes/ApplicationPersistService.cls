@@ -70,10 +70,11 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
 
     //Save survey
-    if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
-      List<Survey__c> surveys = saveSurveys(application.Surveys__r, null);
-      constructor.setChildObjects('mflow__Surveys__r', surveys);
-    }
+    //#removeFSC Uncomment after resolve
+    // if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
+    //   List<Survey__c> surveys = saveSurveys(application.Surveys__r, null);
+    //   constructor.setChildObjects('mflow__Surveys__r', surveys);
+    // }
 
     //Save Disclosure
     //#removeFSC Uncomment after resolve
@@ -511,16 +512,17 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     } */
 
     // Save ProductServices
-    if (
-      !collectionUtils.isListEmpty(
-        financialAccount?.mflow__FinancialAccountServices__r
-      )
-    ) {
-      this.saveFinancialAccountServices(
-        financialAccount.mflow__FinancialAccountServices__r,
-        financialAccount.Id
-      );
-    }
+    //#removeFSC
+    // if (
+    //   !collectionUtils.isListEmpty(
+    //     financialAccount?.mflow__FinancialAccountServices__r
+    //   )
+    // ) {
+    //   this.saveFinancialAccountServices(
+    //     financialAccount.mflow__FinancialAccountServices__r,
+    //     financialAccount.Id
+    //   );
+    // }
     return financialAccount;
   }
 

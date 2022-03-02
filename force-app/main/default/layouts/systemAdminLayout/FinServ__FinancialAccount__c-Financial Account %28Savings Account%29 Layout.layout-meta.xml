@@ -150,11 +150,6 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList
-    >FinancialAccountService__c.FinancialAccount__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -169,15 +164,6 @@
     >FinServ__FinancialAccountRole__c.FinServ__FinancialAccount__c</relatedList>
         <sortField>FinServ__Active__c</sortField>
         <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__BinNumber__c</fields>
-        <fields>FinServ__AccountHolder__c</fields>
-        <fields>FinServ__ValidUntil__c</fields>
-        <fields>FinServ__Active__c</fields>
-        <fields>FinServ__OwnershipType__c</fields>
-        <relatedList>FinServ__Card__c.FinServ__FinancialAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>

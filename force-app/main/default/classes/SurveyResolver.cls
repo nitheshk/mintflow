@@ -45,7 +45,7 @@ global virtual with sharing class SurveyResolver extends AbstractService {
       return surveys;
     }
 
-    Account application = SurveyRepository.readApplicationWithFA(
+    Application__c application = SurveyRepository.readApplicationWithFA(
       ApexRequest.getApplicationId()
     );
 
@@ -66,12 +66,12 @@ global virtual with sharing class SurveyResolver extends AbstractService {
   /**
    * @description resolve survey using custom filter
    * @author Digital Align Team | 12-27-2021
-   * @param Account application
+   * @param Application__c application
    * @param List<Object> filters
    * @return List<Survey__c>
    **/
   global virtual List<Survey__c> resolveSurveys(
-    Account application,
+    Application__c application,
     List<Object> filters
   ) {
     if (!CollectionUtils.isListEmpty(filters)) {
@@ -113,11 +113,11 @@ global virtual with sharing class SurveyResolver extends AbstractService {
   /**
    * @description Resolve survey using Financial Account selection
    * @author Digital Align Team | 12-27-2021
-   * @param Account application
+   * @param Application__c application
    * @param List<Object> filters
    * @return List<Survey__c>
    **/
-  global virtual List<Survey__c> resolveSurveys(Account application) {
+  global virtual List<Survey__c> resolveSurveys(Application__c application) {
     List<Survey__c> surveys = new List<Survey__c>();
 
     if (CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
@@ -129,7 +129,7 @@ global virtual with sharing class SurveyResolver extends AbstractService {
     );
 
     for (
-      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+      FinancialAccount__c financialAccount : application.FinancialAccounts__r
     ) {
       Map<String, Object> filterMap = new Map<String, Object>();
       filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());

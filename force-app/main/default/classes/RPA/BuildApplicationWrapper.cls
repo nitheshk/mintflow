@@ -90,9 +90,10 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
             System.Label.Application_ApplicationHasNoApplicants
           );
         }
-        if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
-          mapperApplication.Surveys.addAll(mapSurvey(application.Surveys__r));
-        }
+        //#removeFSC remove comment
+        // if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
+        //   mapperApplication.Surveys.addAll(mapSurvey(application.Surveys__r));
+        // }
         mapper.Application = mapperApplication;
       } else {
         throw new CustomException(System.Label.Application_ApplicationNotFound);
