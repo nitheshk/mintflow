@@ -173,16 +173,16 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     employmentObj.Id = atomicObj.user.identifier;
     //method to fetch application and applicant id based on employer id ::TODO
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
-      employmentObj.FinServ__EmploymentStatus__c = 'Employed';
+      employmentObj.EmploymentStatus__c = 'Employed';
       employmentObj.mflow__EmploymentType__c = 'Current';
     } else {
-      employmentObj.FinServ__EmploymentStatus__c = 'Self-Employed';
+      employmentObj.EmploymentStatus__c = 'Self-Employed';
       employmentObj.mflow__EmploymentType__c = 'Previous';
     }
 
     employmentObj.mflow__EmploymentVerificationType__c = 'Auto';
-    employmentObj.FinServ__Position__c = atomicObj.data.outputs.jobTitle;
-    employmentObj.FinServ__AnnualIncome__c = atomicObj.data.outputs.annualIncome;
+    employmentObj.Position__c = atomicObj.data.outputs.jobTitle;
+    employmentObj.AnnualIncome__c = atomicObj.data.outputs.annualIncome;
     employmentObj.mflow__PayCycle__c = FinancialInstituteConstants.PAY_CYCLE.get(
       atomicObj.data.outputs.payCycle
     );

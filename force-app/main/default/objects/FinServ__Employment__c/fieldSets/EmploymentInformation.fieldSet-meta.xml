@@ -4,7 +4,7 @@
     <description
   >All the fields related to Personal Information of applicant</description>
    <displayedFields>
-        <field>FinServ__EmploymentStatus__c</field>
+        <field>EmploymentStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
@@ -49,7 +49,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>FinServ__Position__c</field>
+        <field>Position__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

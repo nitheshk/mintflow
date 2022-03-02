@@ -240,42 +240,6 @@
         <fields>EMAIL_STATUS.LAST_OPEN_DATE</fields>
         <relatedList>RelatedEmailStatusList</relatedList>
     </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__RelatedContact__c</fields>
-        <fields>FinServ__Role__c</fields>
-        <fields>FinServ__StartDate__c</fields>
-        <fields>FinServ__EndDate__c</fields>
-        <fields>FinServ__Active__c</fields>
-        <relatedList
-    >FinServ__ContactContactRelation__c.FinServ__Contact__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__EducationLevel__c</fields>
-        <fields>FinServ__GraduationDate__c</fields>
-        <relatedList>FinServ__Education__c.FinServ__Contact__c</relatedList>
-        <sortField>FinServ__GraduationDate__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>FinServ__EmploymentStatus__c</fields>
-        <fields>FinServ__StartDate__c</fields>
-        <fields>FinServ__EndDate__c</fields>
-        <relatedList>FinServ__Employment__c.FinServ__Contact__c</relatedList>
-        <sortField>FinServ__StartDate__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>CASES.CASE_NUMBER</fields>
-        <fields>CASES.SUBJECT</fields>
-        <fields>CASES.PRIORITY</fields>
-        <fields>CASES.CREATED_DATE</fields>
-        <fields>CASES.STATUS</fields>
-        <fields>OWNER_NAME</fields>
-        <relatedList>RelatedCaseList</relatedList>
-    </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

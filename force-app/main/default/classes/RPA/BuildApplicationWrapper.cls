@@ -190,8 +190,8 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       mapperEmployment.EmploymentType = employment.EmploymentType__c;
       mapperEmployment.EmployerName = employment.Name;
       mapperEmployment.EmploymentStatus = getStatusMapping(
-        'FinServ__EmploymentStatus__c',
-        employment.FinServ__EmploymentStatus__c
+        'EmploymentStatus__c',
+        employment.EmploymentStatus__c
       );
       mapperEmployment.GrossMonthlySalary = employment.GrossMonthlySalary__c;
       mapperEmployment.Name = employment.Name;
@@ -199,7 +199,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       mapperEmployment.PayCycle = employment.PayCycle__c;
       mapperEmployment.Order = employment.Order__c;
       mapperEmployment.PayGrade = employment.PayGrade__c;
-      mapperEmployment.Position = employment.FinServ__Position__c;
+      mapperEmployment.Position = employment.Position__c;
       mapperEmployment.EmploymentDuration = employment.EmploymentDuration__c;
       mapperEmployment.DocumentType = employment.DocumentType__c;
       mapperEmployment.BranchofService = employment.BranchofService__c;
@@ -412,7 +412,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
           })
           .get(value);
       }
-      when 'FinServ__EmploymentStatus__c' {
+      when 'EmploymentStatus__c' {
         return (new Map<String, String>{
             'Employed' => 'Employed',
             'Self Employed' => 'Self Employed',

@@ -138,7 +138,7 @@
     </fieldPermissions>
       <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__Employment__c.FinServ__EmploymentStatus__c</field>
+        <field>FinServ__Employment__c.EmploymentStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1615,32 +1615,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__Employment__c.FinServ__AnnualIncome__c</field>
+        <field>FinServ__Employment__c.AnnualIncome__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__Employment__c.FinServ__Contact__c</field>
+        <field>FinServ__Employment__c.EmployerAddress__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__Employment__c.FinServ__EmployerAddress__c</field>
+        <field>FinServ__Employment__c.EmploymentStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__Employment__c.FinServ__EmployerPhoneNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__Employment__c.FinServ__EmploymentStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FinServ__Employment__c.FinServ__EndDate__c</field>
+        <field>FinServ__Employment__c.EndDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1650,12 +1640,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__Employment__c.FinServ__Occupation__c</field>
+        <field>FinServ__Employment__c.mflow__Occupation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinServ__Employment__c.FinServ__Position__c</field>
+        <field>FinServ__Employment__c.Position__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

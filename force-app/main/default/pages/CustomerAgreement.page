@@ -254,7 +254,7 @@
                     value="Employment Status : "
                   ></apex:outputText>
                   <apex:outputText
-                    value="{!employmentVar.FinServ__EmploymentStatus__c}"
+                    value="{!employmentVar.EmploymentStatus__c}"
                   ></apex:outputText>
                 </td>
               </tr>
@@ -278,7 +278,7 @@
                 <td width="50% ">
                   <apex:outputText value="Position : "></apex:outputText>
                   <apex:outputText
-                    value="{!employmentVar.FinServ__Position__c}"
+                    value="{!employmentVar.Position__c}"
                   ></apex:outputText>
                 </td>
                 <td width="50% ">

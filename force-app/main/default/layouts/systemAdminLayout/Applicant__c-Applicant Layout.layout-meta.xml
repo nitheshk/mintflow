@@ -276,7 +276,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>FinServ__EmploymentStatus__c</fields>
+        <fields>EmploymentStatus__c</fields>
         <fields>EmployeeType__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>FinServ__Employment__c.Applicant__c</relatedList>

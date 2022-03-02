@@ -29,7 +29,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__Position__c</field>
+                <field>Position__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -55,7 +55,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FinServ__EmploymentStatus__c</field>
+                <field>EmploymentStatus__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
