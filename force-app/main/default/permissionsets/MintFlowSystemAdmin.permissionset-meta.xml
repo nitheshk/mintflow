@@ -267,27 +267,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomerInterest__c.EndDate__c</field>
+        <field>AdditionalProduct__c.EndDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomerInterest__c.ExternalCode__c</field>
+        <field>AdditionalProduct__c.ExternalCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomerInterest__c.InterestProduct__c</field>
+        <field>AdditionalProduct__c.FinancialProduct__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomerInterest__c.ImageName__c</field>
+        <field>AdditionalProduct__c.ImageName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomerInterest__c.ImageURL__c</field>
+        <field>AdditionalProduct__c.ImageURL__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
