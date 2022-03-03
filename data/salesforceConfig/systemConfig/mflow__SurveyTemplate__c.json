@@ -747,25 +747,6 @@
           {
             "attributes": {
               "type": "mflow__SurveyQuestion__c",
-              "referenceId": "SurveyQuestionRef_2_9"
-            },
-            "Name": "BSA Risk Score (If yes to all 3 choose (3) Medium; otherwise choose (1) Low)",
-            "mflow__CustomStyle__c": "slds-var-p-around_small",
-            "mflow__DeleteRecord__c": false,
-            "mflow__LongDescription__c": "BSA Risk Score (If yes to all 3 choose (3) Medium; otherwise choose (1) Low)",
-            "mflow__OptionType__c": "Picklist",
-            "mflow__Options__c": "[{\"value\":\"(1) Low\",\"name\":\"(1) Low\"},{\"value\":\"(3) Medium\",\"name\":\"(3) Medium\"},{\"value\":\"(5) High\",\"name\":\"(5) High\"}]",
-            "mflow__Order__c": 10,
-            "mflow__QuestionCode__c": "Question4",
-            "mflow__QuestionNumber__c": 4,
-            "mflow__Required__c": true,
-            "mflow__ShortDescription__c": "BSA Risk Score (If yes to all 3 choose (3) Medium; otherwise choose (1) Low)",
-            "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
-          },
-          {
-            "attributes": {
-              "type": "mflow__SurveyQuestion__c",
               "referenceId": "SurveyQuestionRef_2_10"
             },
             "Name": "The Taxpayer Identification Number shown above (TIN) is my correct taxpayer iden",
