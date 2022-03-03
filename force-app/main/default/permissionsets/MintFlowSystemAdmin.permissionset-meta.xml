@@ -4,6 +4,10 @@
         <application>MintFlow</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <applicationVisibilities>
+        <application>MintFlowConfiguration</application>
+        <visible>false</visible>
+    </applicationVisibilities>
     <pageAccesses>
         <apexPage>Error</apexPage>
         <enabled>true</enabled>

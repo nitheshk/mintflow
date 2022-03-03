@@ -9,4 +9,5 @@
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
     </targets>
+    <masterLabel>Customer Portal Resume Application</masterLabel>
   </LightningComponentBundle>
