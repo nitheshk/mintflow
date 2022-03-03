@@ -85,21 +85,19 @@ global virtual with sharing class ApplicationService extends AbstractService {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
       application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
     }
-    // #pending  value need to decide based on the parameter
+    //#pending  value need to decide based on the parameter
     application.ApplicationType__c = 'Consumer';
     //#pending this true when no product is Present
     application.isMemberFlow__c = true;
     application.FlowState__c = 'GetStarted';
     application.FlowType__c = 'ApplicationFlow';
     // #pending update version from custom setting
-    application.Version__c = 'V1.0.1';
+    application.Version__c = ApplicationConfiguration__c.getInstance()
+      .PackageVersion__c;
     application.IPAddress__c = ApplicationServiceHelper.getInstance()
       .getIpAddress();
     application = ApplicationServiceHelper.getInstance()
       .resolveBranchLocation(application);
-    //#removeFSC
-    //application.Name = ApplicationServiceHelper.getInstance()
-    //  .getApplicationNumber();
     ApplicationRepository.upsertRecord(application);
     /*** */
     /*** Create Empty Primary Applicant   */
@@ -129,8 +127,6 @@ global virtual with sharing class ApplicationService extends AbstractService {
       application.Id
     );
 
-    // application.Name = application.ApplicationNumber__c;
-    // ApplicationRepository.upsertRecord(application);
     params.put('applicationId', ApexRequest.getApplicationId());
     params.put('applicantId', ApexRequest.getApplicantId());
     params.put('applicantType', ApexRequest.getApplicantType());
