@@ -186,7 +186,7 @@ global with sharing class ApplicationSubmissionResponse {
     global String ApplicantId;
     global String CustomerNumber;
     global String OverallDebitBureauResult;
-    global Integer CreditScore;
+    global String CreditScore;
     global Integer QualifiedScore;
     global Integer CustomerScore;
     global String HighRiskConsumer;
