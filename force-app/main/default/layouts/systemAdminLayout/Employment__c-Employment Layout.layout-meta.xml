@@ -9,7 +9,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Name</field>
+                <field>EmployerName__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
