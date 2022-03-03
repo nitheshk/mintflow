@@ -40,7 +40,6 @@ global virtual with sharing class ApplicationService extends AbstractService {
     log?.fine('Inside startApplication -> params -> ' + JSON.serialize(params));
 
     String recordId = (String) params?.get('recordId');
-
     if (String.isNotBlank(recordId)) {
       // encryption
       // this for start application from existing application
@@ -57,7 +56,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
         }
       }
     } else {
-      //start new application, redirect to site url
+      //start new application from online community page, redirect to site url
       result.put(
         'url',
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
@@ -78,8 +77,6 @@ global virtual with sharing class ApplicationService extends AbstractService {
     log?.fine('Inside createApplication');
     /**** Create init Application */
     Application__c application = new Application__c();
-    //#removeFSC
-    //application.Name = 'MintFlow';
     application.Status__c = ApplicationConstant.IN_PROGRESS;
     if (params.get('ch') != null) {
       application.CreatedChannel__c = (String) params.get('ch');
@@ -90,8 +87,8 @@ global virtual with sharing class ApplicationService extends AbstractService {
     }
     // #pending  value need to decide based on the parameter
     application.ApplicationType__c = 'Consumer';
-    application.mflow__isMemberFlow__c = true;
-    application.UserAccountType__c = 'CustomerApplication';
+    //#pending this true when no product is Present
+    application.isMemberFlow__c = true;
     application.FlowState__c = 'GetStarted';
     application.FlowType__c = 'ApplicationFlow';
     // #pending update version from custom setting

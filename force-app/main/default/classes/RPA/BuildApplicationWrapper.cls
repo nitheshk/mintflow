@@ -79,7 +79,6 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
         // mapperApplication.SubmittedBy = application.SubmittedBy__c;
         // mapperApplication.SubmittedDate = application.SubmittedDate__c;
         // mapperApplication.SubStatus = application.Stage__c;
-        // mapperApplication.UserAccountType = application.UserAccountType__c;
 
         if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
           mapperApplication.Applicants.addAll(
