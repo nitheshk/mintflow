@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides>
+    <!-- <actionOverrides>
         <actionName>View</actionName>
         <comment>Application Custom Flexipage</comment>
         <content>ApplicationRecordPage</content>
@@ -35,16 +35,16 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
         <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-    </actionOverrides>
+    </actionOverrides> -->
     <defaultLandingTab>Application__c</defaultLandingTab>
     <description
-  >Build client trust with collaboration and productivity tools for advisory teams</description>
+  >Build client trust with collaboration and productivity tools for teams</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>MintFlow</label>
     <navType>Console</navType>
-    <profileActionOverrides>
+    <!-- <profileActionOverrides>
         <actionName>View</actionName>
         <content>ApplicationRecordPage</content>
         <formFactor>Large</formFactor>
@@ -104,7 +104,7 @@
         <recordType>Applicant__c.Primary</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
-    </profileActionOverrides>
+    </profileActionOverrides> -->
     <tabs>standard-home</tabs>
     <tabs>Application__c</tabs>
     <tabs>standard-Contact</tabs>
