@@ -2,51 +2,51 @@
 <FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ContactInformation</fullName>
     <description
-  >All the fields related to Contact Information of applicant</description>   
-   <displayedFields>
-        <field>mflow__Phone__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields> 
+  >All the fields related to Contact Information of applicant</description>
     <displayedFields>
-        <field>mflow__Email__c</field>
+        <field>Phone__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
-    </displayedFields> 
+    </displayedFields>
     <displayedFields>
-        <field>mflow__IsPhoneNumberVerified__c</field>
+        <field>Email__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
-    </displayedFields> 
+    </displayedFields>
     <displayedFields>
-        <field>mflow__IsEmailVerified__c</field>
+        <field>IsPhoneNumberVerified__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
-    </displayedFields> 
+    </displayedFields>
     <displayedFields>
-        <field>mflow__EmailOtp__c</field>
+        <field>IsEmailVerified__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
-    </displayedFields> 
+    </displayedFields>
     <displayedFields>
-        <field>mflow__SmsOtp__c</field>
+        <field>EmailOtp__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
-    </displayedFields> 
-     <displayedFields>
-        <field>mflow__OTPExpireTime__c</field>
+    </displayedFields>
+    <displayedFields>
+        <field>SmsOtp__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
-    </displayedFields> 
-     <displayedFields>
-        <field>mflow__SessionToken__c</field>
+    </displayedFields>
+    <displayedFields>
+        <field>OTPExpireTime__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
-    </displayedFields>     
-     <displayedFields>
-        <field>mflow__OtpAttempts__c</field>
+    </displayedFields>
+    <displayedFields>
+        <field>SessionToken__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
-    </displayedFields> 
+    </displayedFields>
+    <displayedFields>
+        <field>OtpAttempts__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
     <label>Contact Information</label>
 </FieldSet>

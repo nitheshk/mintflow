@@ -5,6 +5,7 @@
     <externalId>false</externalId>
     <label>SentiLink Remarks</label>
     <length>500</length>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>LongTextArea</type>
     <visibleLines>3</visibleLines>

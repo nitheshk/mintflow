@@ -3,103 +3,103 @@
     <fullName>StatusInformation</fullName>
     <description
   >All the fields related to status Information of applicant</description>
-      <displayedFields>
-        <field>mflow__FlowState__c</field>
+    <displayedFields>
+        <field>FlowState__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
-        <field>mflow__Status__c</field>
+    <displayedFields>
+        <field>Status__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
-        <field>mflow__QualifiedDecision__c</field>
+    <displayedFields>
+        <field>QualifiedDecision__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
-        <field>mflow__QualifiedScore__c</field>
+    <displayedFields>
+        <field>QualifiedScore__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
-        <field>mflow__RunWithKIQ__c</field>
+    <displayedFields>
+        <field>RunWithKIQ__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
-        <field>mflow__RunWithoutKIQ__c</field>
+    <displayedFields>
+        <field>RunWithoutKIQ__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
-        <field>mflow__HighRiskConsumer__c</field>
+    <displayedFields>
+        <field>HighRiskConsumer__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
-        <field>mflow__CustomerScore__c</field>
+    <displayedFields>
+        <field>CustomerScore__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__FraudStatus__c</field>
+    <displayedFields>
+        <field>FraudStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__KYCStatus__c</field>
+    <displayedFields>
+        <field>KYCStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__IdentityVerificationStatus__c</field>
+    <displayedFields>
+        <field>IdentityVerificationStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__IncomeVerificationStatus__c</field>
+    <displayedFields>
+        <field>IncomeVerificationStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__SentiLinkStatus__c</field>
+    <displayedFields>
+        <field>SentiLinkStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__SentiLinkRemarks__c</field>
+    <displayedFields>
+        <field>SentiLinkRemarks__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__SentiLinkFraudScore__c</field>
+    <displayedFields>
+        <field>SentiLinkFraudScore__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__CreditScore__c</field>
+    <displayedFields>
+        <field>CreditScore__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__OFAC__c</field>
+    <displayedFields>
+        <field>OFAC__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__SSNValidation__c</field>
+    <displayedFields>
+        <field>SSNValidation__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__OverallDebitBureauResult__c</field>
+    <displayedFields>
+        <field>OverallDebitBureauResult__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__Order__c</field>
+    <displayedFields>
+        <field>Order__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

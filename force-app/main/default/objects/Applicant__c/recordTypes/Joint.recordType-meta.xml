@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Joint</fullName>
     <active>true</active>
+    <compactLayoutAssignment>Applicant</compactLayoutAssignment>
     <description>Joint Applicant</description>
     <label>Joint</label>
     <picklistValues>

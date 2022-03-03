@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EmergencyContact</fullName>
     <active>true</active>
+    <compactLayoutAssignment>Applicant</compactLayoutAssignment>
     <description>Emergency Contact</description>
     <label>Emergency Contact</label>
     <picklistValues>
