@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FinancialAccount</fullName>
+    <fields>Name</fields>
+    <fields>AccountNumber__c</fields>
+    <fields>Application__c</fields>
+    <fields>Balance__c</fields>
+    <fields>FinancialProduct__c</fields>
+    <label>Financial Account</label>
+</CompactLayout>

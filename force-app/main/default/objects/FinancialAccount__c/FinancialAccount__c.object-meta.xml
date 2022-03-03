@@ -163,6 +163,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Financial Accounts</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

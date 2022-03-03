@@ -10,9 +10,88 @@
     <navType>Console</navType>
     <profileActionOverrides>
         <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.Beneficiary</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.EmergencyContact</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.FamilyMember</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.Joint</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.Primary</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
         <content>ApplicationRecordPage</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Application__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>FinancialAccountRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>FinancialAccountRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
+        <recordType>FinancialAccount__c.Checking</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>FinancialAccountRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
+        <recordType>FinancialAccount__c.Savings</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
