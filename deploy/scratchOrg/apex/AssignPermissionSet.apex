@@ -39,11 +39,7 @@ public static void updateAdminPermissionSet() {
   List<PermissionSet> permissionSetList = [
     SELECT Id
     FROM PermissionSet
-    WHERE
-      Name = 'MintFlowSystemAdmin'
-      OR Name = 'FinancialServicesCloudExtension'
-      OR Name = 'FinancialServicesCloudBasic'
-      OR Name = 'FinancialServicesCloudStandard'
+    WHERE Name = 'MintFlowSystemAdmin'
   ];
 
   List<User> siteUser = [

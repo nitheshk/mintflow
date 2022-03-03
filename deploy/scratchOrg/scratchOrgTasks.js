@@ -162,34 +162,6 @@ gulp.task("installPackage", function (finish) {
   });
 });
 
-//installPackageFSC
-gulp.task("installPackageFSC", function (finish) {
-  let scriptToRun =
-    ` sfdx force:package:install --wait 100 --publishwait 100 ` +
-    ` --package ${config.dependentPackage.FinancialServiceCloud}  ` +
-    ` --noprompt --targetusername ${config.scratchOrg.scratchOrgName} --securitytype AllUsers --upgradetype Mixed `;
-
-  console.log("Script To Run - " + scriptToRun);
-  utils.runCommand(scriptToRun).then((result) => {
-    console.log("Result :" + result);
-    finish();
-  });
-});
-
-//installPackageFSCExt
-gulp.task("installPackageFSCExt", function (finish) {
-  let scriptToRun =
-    ` sfdx force:package:install --wait 100 --publishwait 100 ` +
-    ` --package ${config.dependentPackage.FinancialServiceCloudExt}  ` +
-    ` --noprompt --targetusername ${config.scratchOrg.scratchOrgName} --securitytype AllUsers --upgradetype Mixed `;
-
-  console.log("Script To Run - " + scriptToRun);
-  utils.runCommand(scriptToRun).then((result) => {
-    console.log("Result :" + result);
-    finish();
-  });
-});
-
 //pushToscratch
 gulp.task("pushToscratch", function (finish) {
   let scriptToRun =
@@ -568,8 +540,6 @@ gulp.task(
     "deleteScratchOrg",
     "createScratchOrg",
     "defaultToScratch",
-    "installPackageFSC",
-    "installPackageFSCExt",
     "pushToscratch",
     "updatePermissionSet",
     "createCommunityUser",
@@ -585,9 +555,7 @@ gulp.task(
     "setupDevHub",
     "deleteScratchOrg",
     "createScratchOrg",
-    "defaultToScratch",
-    "installPackageFSC",
-    "installPackageFSCExt"
+    "defaultToScratch"
   )
 );
 
@@ -602,8 +570,6 @@ gulp.task(
     "defaultToScratch",
     "createSite",
     "createSiteProfile",
-    "installPackageFSC",
-    "installPackageFSCExt",
     "pushToscratch",
     "updatePermissionSet",
     "createCommunityUser",

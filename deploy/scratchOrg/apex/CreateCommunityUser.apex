@@ -30,13 +30,9 @@ public static void createUser() {
       ?.id
   );
   mflow.UtilsRepository.insertRecord(userObj);
-
   system.setPassword(userObj.Id, 'Test@1234');
   system.resetPassword(userObj.Id, true);
 
-  //  Name = 'FinancialServicesCloudExtension'
-  //     OR Name = 'FinancialServicesCloudBasic'
-  //     OR Name = 'FinancialServicesCloudStandard'
   List<PermissionSet> permissionSetList = [
     SELECT Id
     FROM PermissionSet

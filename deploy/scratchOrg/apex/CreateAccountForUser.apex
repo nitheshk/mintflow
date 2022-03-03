@@ -16,19 +16,11 @@ public static void createAccount() {
 
   Account accountObj = new Account();
   accountObj.Name = 'Online Community Account';
-  accountObj.RecordTypeId = mflow.SObjectUtils.recordTypeIdByDevName(
-    Account.SobjectType,
-    'IndustriesInstitution'
-  );
   insert accountObj;
 
   Contact contactObj = new Contact();
   contactObj.FirstName = 'Community';
   contactObj.LastName = 'Plus User';
   contactObj.AccountId = accountObj.Id;
-  contactObj.RecordTypeId = mflow.SObjectUtils.recordTypeIdByDevName(
-    Contact.SobjectType,
-    'IndustriesIndividual'
-  );
   insert contactObj;
 }
