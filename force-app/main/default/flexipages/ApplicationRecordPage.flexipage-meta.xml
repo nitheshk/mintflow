@@ -77,7 +77,16 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>Facet-250m3v7vfs5</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>context</name>
+                    <value>RECORD</value>
+                </componentInstanceProperties>
+                <componentName>forceChatter:publisher</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-5c7e84b8-9ddd-4b08-bdcc-0b6dbc705444</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -128,7 +137,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-250m3v7vfs5</value>
+                    <value>Facet-5c7e84b8-9ddd-4b08-bdcc-0b6dbc705444</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
