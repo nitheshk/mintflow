@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>isDocumentGenerated__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Flag to check if employment verification documents are generated successfully.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Flag to check if employment verification documents are generated successfully.</inlineHelpText>
+    <label>isDocumentGenerated</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
