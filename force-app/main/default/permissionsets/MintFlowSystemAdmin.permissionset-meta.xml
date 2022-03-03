@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <applicationVisibilities>
+    <!-- <applicationVisibilities>
         <application>MintFlow</application>
         <visible>true</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__InsuranceConsole</application>
-        <visible>true</visible>
-    </applicationVisibilities>
+    </applicationVisibilities> -->
     <pageAccesses>
         <apexPage>Error</apexPage>
         <enabled>true</enabled>

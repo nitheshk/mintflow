@@ -138,16 +138,16 @@
     </tabVisibilities>
 
     <!--applicationVisibilities-->
-    <applicationVisibilities>
+    <!-- <applicationVisibilities>
         <application>MintFlow</application>
         <visible>true</visible>
         <default>true</default>
-    </applicationVisibilities>
-    <applicationVisibilities>
+    </applicationVisibilities> -->
+    <!-- <applicationVisibilities>
         <application>MintFlowConfiguration</application>
         <visible>true</visible>
         <default>false</default>
-    </applicationVisibilities>
+    </applicationVisibilities> -->
 
     <!--recordTypeVisibilities-->
     <recordTypeVisibilities>
