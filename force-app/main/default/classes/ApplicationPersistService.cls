@@ -37,13 +37,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   global virtual Application__c saveApplication(Application__c application) {
     //Process Application Mapping
     {
-      //RemoveFSC remove comment
-      // if (String.isBlank(application.Id)) {
-      //   application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      //     Application__c.SObjectType,
-      //     ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
-      //   );
-      // }
       ApplicationRepository.upsertRecord(application);
       ApexRequest.setApplicationId(application.Id);
     }
@@ -71,21 +64,19 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
 
     //Save survey
-    //#removeFSC Uncomment after resolve
-    // if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
-    //   List<Survey__c> surveys = saveSurveys(application.Surveys__r, null);
-    //   constructor.setChildObjects('mflow__Surveys__r', surveys);
-    // }
+    if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
+      List<Survey__c> surveys = saveSurveys(application.Surveys__r, null);
+      constructor.setChildObjects('mflow__Surveys__r', surveys);
+    }
 
     //Save Disclosure
-    //#removeFSC Uncomment after resolve
-    // if (!CollectionUtils.isListEmpty(application.ApplicationConsents__r)) {
-    //   List<Consent__c> consents = saveConsents(
-    //     application.ApplicationConsents__r,
-    //     null
-    //   );
-    //   constructor.setChildObjects('mflow__ApplicationConsents__r', consents);
-    // }
+    if (!CollectionUtils.isListEmpty(application.ApplicationConsents__r)) {
+      List<Consent__c> consents = saveConsents(
+        application.ApplicationConsents__r,
+        null
+      );
+      constructor.setChildObjects('mflow__ApplicationConsents__r', consents);
+    }
 
     application = (Application__c) constructor.build();
 
@@ -499,8 +490,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   global virtual FinancialAccount__c saveFinancialAccountChild(
     FinancialAccount__c financialAccount
   ) {
-    //#removeFSC
-    /*
     if (
       !collectionUtils.isListEmpty(
         financialAccount?.FinancialAccountTransactions__r
@@ -510,20 +499,19 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         financialAccount.FinancialAccountTransactions__r,
         financialAccount.Id
       );
-    } */
+    }
 
     // Save ProductServices
-    //#removeFSC
-    // if (
-    //   !collectionUtils.isListEmpty(
-    //     financialAccount?.mflow__FinancialAccountServices__r
-    //   )
-    // ) {
-    //   this.saveFinancialAccountServices(
-    //     financialAccount.mflow__FinancialAccountServices__r,
-    //     financialAccount.Id
-    //   );
-    // }
+    if (
+      !collectionUtils.isListEmpty(
+        financialAccount?.mflow__FinancialAccountServices__r
+      )
+    ) {
+      this.saveFinancialAccountServices(
+        financialAccount.mflow__FinancialAccountServices__r,
+        financialAccount.Id
+      );
+    }
     return financialAccount;
   }
 

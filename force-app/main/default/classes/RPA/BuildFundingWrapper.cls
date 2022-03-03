@@ -104,18 +104,17 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
       mapperFinancialAccount.Ownership = finApplication.Ownership__c;
       //#removeFSC
       //mapperFinancialAccount.PrimaryOwner = finApplication.FinServ__PrimaryOwner__c;
-      //#removeFSC
-      // if (
-      //   !CollectionUtils.isListEmpty(
-      //     finApplication.FinancialAccountTransactions__r
-      //   )
-      // ) {
-      //   mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
-      //     finApplication.FinancialAccountTransactions__r[0]
-      //   );
-      // } else {
-      //   throw new CustomException('No financial transaction account found');
-      // }
+      if (
+        !CollectionUtils.isListEmpty(
+          finApplication.FinancialAccountTransactions__r
+        )
+      ) {
+        mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
+          finApplication.FinancialAccountTransactions__r[0]
+        );
+      } else {
+        throw new CustomException('No financial transaction account found');
+      }
       mapperFinancialAccountList.add(mapperFinancialAccount);
     }
     return mapperFinancialAccountList;

@@ -6,7 +6,6 @@
  * @description
  **/
 public with sharing class ApplicationConstant {
-  public static final String ACCOUNT_APPLICATION_RECORDTYPE = 'Application';
   public static final String CHANNEL_VIRTUAL = 'Virtual';
   public static final String CHANNEL_BRANCH = 'Branch';
 

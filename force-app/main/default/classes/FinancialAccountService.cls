@@ -137,7 +137,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     // create membership financial account
     FinancialAccount__c financialAccount = new FinancialAccount__c();
     financialAccount.FinancialProduct__c = membershipProduct.Id;
-    //removeFSC
+    //#removeFSC
     //financialAccount.Name = membershipProduct.Name;
     financialAccount.ExternalApplicationNumber__c = application.ExternalApplicationNumber__c;
     //#removeFSC

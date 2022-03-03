@@ -80,11 +80,6 @@ global virtual with sharing class ApplicationService extends AbstractService {
     Application__c application = new Application__c();
     //#removeFSC
     //application.Name = 'MintFlow';
-    //removeFSC
-    // application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-    //   Application__c.SObjectType,
-    //   ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
-    // );
     application.Status__c = ApplicationConstant.IN_PROGRESS;
     if (params.get('ch') != null) {
       application.CreatedChannel__c = (String) params.get('ch');
@@ -108,10 +103,6 @@ global virtual with sharing class ApplicationService extends AbstractService {
     //#removeFSC
     //application.Name = ApplicationServiceHelper.getInstance()
     //  .getApplicationNumber();
-    // #info
-    // Added for customer community user license only
-    // Work for Customer Community plus user without owner assingment
-    // application.OwnerId = UserUtils.getCurrentUser().CreatedById;
     ApplicationRepository.upsertRecord(application);
     /*** */
     /*** Create Empty Primary Applicant   */
