@@ -5,11 +5,6 @@
     <description>Registration email.</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Joint applicant registration email - EN</name>
-    <packageVersions>
-        <majorNumber>230</majorNumber>
-        <minorNumber>3</minorNumber>
-        <namespace>FinServ</namespace>
-    </packageVersions>
     <style>none</style>
     <subject
   >Join Us by completing your account registration process with Mintflow</subject>

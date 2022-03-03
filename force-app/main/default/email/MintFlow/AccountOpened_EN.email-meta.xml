@@ -5,11 +5,6 @@
     <description>Email to notify successful account opening.</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Account Opened - EN</name>
-    <packageVersions>
-        <majorNumber>230</majorNumber>
-        <minorNumber>3</minorNumber>
-        <namespace>FinServ</namespace>
-    </packageVersions>
     <style>none</style>
     <subject>Welcome on board! Access your Mintflow account</subject>
     <type>visualforce</type>

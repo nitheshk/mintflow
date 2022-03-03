@@ -5,11 +5,6 @@
     <description>Application Submission Completed.</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Application Submission Completed - EN</name>
-    <packageVersions>
-        <majorNumber>230</majorNumber>
-        <minorNumber>3</minorNumber>
-        <namespace>FinServ</namespace>
-    </packageVersions>
     <style>none</style>
     <subject>Your application has been submitted!</subject>
     <type>visualforce</type>

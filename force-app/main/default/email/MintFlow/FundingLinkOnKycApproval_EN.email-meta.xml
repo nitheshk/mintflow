@@ -5,11 +5,6 @@
     <description>Notification to user about account approved.</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Funding Link On Kyc Approval_EN</name>
-    <packageVersions>
-        <majorNumber>230</majorNumber>
-        <minorNumber>3</minorNumber>
-        <namespace>FinServ</namespace>
-    </packageVersions>
     <style>none</style>
     <subject>Congratulations! Your account has been approved.</subject>
     <type>visualforce</type>

@@ -5,11 +5,6 @@
     <description>Email to suggest removal of joint applicant.</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Remove Joint - EN</name>
-    <packageVersions>
-        <majorNumber>230</majorNumber>
-        <minorNumber>3</minorNumber>
-        <namespace>FinServ</namespace>
-    </packageVersions>
     <style>none</style>
     <subject>Complete account submission by removing joint applicant</subject>
     <type>visualforce</type>

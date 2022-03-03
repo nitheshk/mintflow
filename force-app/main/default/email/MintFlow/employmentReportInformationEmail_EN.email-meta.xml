@@ -6,11 +6,6 @@
   >Notification to support team about employment report.</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Employment Report Information Email - EN</name>
-    <packageVersions>
-        <majorNumber>230</majorNumber>
-        <minorNumber>3</minorNumber>
-        <namespace>FinServ</namespace>
-    </packageVersions>
     <style>none</style>
     <subject>Employment Report incorrect.</subject>
     <type>visualforce</type>

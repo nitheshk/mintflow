@@ -5,11 +5,6 @@
     <description>Notification that user has been added to a site.</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Financial Institute : New Member Welcome Email - EN</name>
-    <packageVersions>
-        <majorNumber>234</majorNumber>
-        <minorNumber>1</minorNumber>
-        <namespace>FinServ</namespace>
-    </packageVersions>
     <style>none</style>
     <subject>Welcome to {!$Network.Name}</subject>
     <type>visualforce</type>

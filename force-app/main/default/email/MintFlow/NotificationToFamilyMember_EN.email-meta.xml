@@ -5,11 +5,6 @@
     <description>Notification To Family Member.</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Notification To Family Member - EN</name>
-    <packageVersions>
-        <majorNumber>230</majorNumber>
-        <minorNumber>3</minorNumber>
-        <namespace>FinServ</namespace>
-    </packageVersions>
     <style>none</style>
     <subject>You have been added as a Family Member</subject>
     <type>visualforce</type>
