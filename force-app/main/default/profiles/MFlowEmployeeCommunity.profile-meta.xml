@@ -3,14 +3,6 @@
     <custom>true</custom>
     <!--layoutAssignments-->
     <layoutAssignments>
-        <layout>Contact-mflow__FI Contact Layout</layout>
-        <recordType>Contact.FinServ__IndustriesIndividual</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Contact-mflow__FI Contact Layout</layout>
-        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout
     >FinancialAccountTransaction__c-mflow__Financial Account Transaction Layout</layout>
     </layoutAssignments>

@@ -82,6 +82,8 @@ global virtual with sharing class ApplicantServiceHelper extends AbstractService
     Contact memberContact,
     Boolean isExistingContact
   ) {
+    //#removeFSC
+    /*
     if (!isExistingContact) {
       memberContact.FirstName = applicant.FirstName__c;
       memberContact.LastName = applicant.LastName__c;
@@ -111,6 +113,7 @@ global virtual with sharing class ApplicantServiceHelper extends AbstractService
     memberContact.SentiLinkFraudScore__c = applicant.SentiLinkFraudScore__c;
     memberContact.SentiLinkStatus__c = applicant.SentiLinkStatus__c;
     memberContact.MiddleName__c = applicant.MiddleName__c;
+    */
     return memberContact;
   }
 }

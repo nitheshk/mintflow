@@ -54,15 +54,6 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>BankingBusinessContactPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
         <content>ApplicantRecordPage</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Applicant__c</pageOrSobjectType>
@@ -124,23 +115,18 @@
     <tabs>ConsentLineItem__c</tabs>
     <tabs>ConsentTemplate__c</tabs>
     <tabs>SurveyTemplate__c</tabs>
-    <tabs>FinServ__FinancialGoal__c</tabs>
     <tabs>FinancialInstituteAccount</tabs>
     <tabs>ProductService__c</tabs>
     <tabs>FinancialAccountService__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>FinServ__BankingConsoleUtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
             <tab>Diagnostic__c</tab>
         </mappings>
         <mappings>
             <tab>FinancialAccount__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinServ__FinancialGoal__c</tab>
         </mappings>
         <mappings>
             <tab>ConsentLineItem__c</tab>

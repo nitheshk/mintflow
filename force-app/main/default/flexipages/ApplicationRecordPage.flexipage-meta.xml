@@ -71,51 +71,6 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>faFieldSet</name>
-                    <value>FSC_Client_SavingsAccount</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>financialHoldingFieldSet</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>iconName</name>
-                    <value>custom:custom87</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>recordTypeNames</name>
-                    <value>FinServ__SavingsAccount</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Savings Accounts</value>
-                </componentInstanceProperties>
-                <componentName>FinServ:financialAccountList</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>faFieldSet</name>
-                    <value>FSC_Client_CheckingAccount</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>iconName</name>
-                    <value>custom:custom16</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>recordTypeNames</name>
-                    <value>FinServ__CheckingAccount</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Checking Accounts</value>
-                </componentInstanceProperties>
-                <componentName>FinServ:financialAccountList</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>FinServ:bankAccount</componentName>
             </componentInstance>
         </itemInstances>
@@ -124,7 +79,6 @@
                 <componentName>FinServ:financialAccountRole</componentName>
             </componentInstance>
         </itemInstances>
-         
         <name>facet-e3f494a8-5149-409a-a45f-43e5c37ecbc0</name>
         <type>Facet</type>
     </flexiPageRegions>

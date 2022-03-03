@@ -54,15 +54,6 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>BankingBusinessContactPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
         <content>ApplicantRecordPage</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Applicant__c</pageOrSobjectType>
@@ -128,7 +119,6 @@
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>FinServ__BankingConsoleUtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
             <tab>Diagnostic__c</tab>
