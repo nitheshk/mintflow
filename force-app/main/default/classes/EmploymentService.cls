@@ -74,7 +74,7 @@ global virtual with sharing class EmploymentService extends AbstractService {
     return responseJson;
   }
 
-  global virtual FinServ__Employment__c readEmployerbyId(String employerId) {
+  global virtual Employment__c readEmployerbyId(String employerId) {
     return EmploymentRepository.readEmployerbyId(employerId);
   }
 }

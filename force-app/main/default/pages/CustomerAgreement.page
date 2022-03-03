@@ -236,7 +236,7 @@
 
           <apex:repeat
             var="employmentVar"
-            value="{!applicantVar.Employments__r}"
+            value="{!applicantVar.EmploymentsTemp__r}"
           >
             <h3 style="background: #f5f6f8">
               {!employmentVar.EmploymentType__c} Employment Details

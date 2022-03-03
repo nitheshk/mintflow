@@ -245,8 +245,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
 
     // upsert employment
-    if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
-      this.saveEmployments(applicant?.Employments__r, applicant.Id);
+    if (!CollectionUtils.isListEmpty(applicant?.EmploymentsTemp__r)) {
+      this.saveEmployments(applicant?.EmploymentsTemp__r, applicant.Id);
     }
 
     if (!CollectionUtils.isListEmpty(applicant?.Surveys__r)) {
@@ -305,17 +305,17 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description Save employment detail of applicant
    * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__Employment__c> employments
+   * @param List<Employment__c> employments
    * @param Id applicantId
-   * @return List<FinServ__Employment__c>
+   * @return List<Employment__c>
    **/
-  global virtual List<FinServ__Employment__c> saveEmployments(
-    List<FinServ__Employment__c> employments,
+  global virtual List<Employment__c> saveEmployments(
+    List<Employment__c> employments,
     Id applicantId
   ) {
-    for (FinServ__Employment__c employment : employments) {
+    for (Employment__c employment : employments) {
       if (String.isNotBlank(applicantId)) {
-        employment.Applicant__c = applicantId;
+        employment.ApplicantTemp__c = applicantId;
       }
     }
     ApplicantRepository.upsertRecords(employments);
@@ -325,9 +325,9 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description Save Survey detail of applicant
    * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__Employment__c> employments
+   * @param List<Employment__c> employments
    * @param Id applicantId
-   * @return List<FinServ__Employment__c>
+   * @return List<Employment__c>
    **/
   global virtual List<Survey__c> saveSurveys(
     List<Survey__c> surveys,
@@ -399,7 +399,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         FileService.getInstance().deleteContentVersionByEntityId(recordId);
         ApplicationRepository.deleteRecord(recordId, true);
       }
-      when 'FinServ__Employment__c' {
+      when 'mflow__Employment__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'ContactPointAddress' {
@@ -429,8 +429,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       if (!applicant.ContactPointAddresses__r.isEmpty()) {
         recordsToDelete.addAll(applicant.ContactPointAddresses__r);
       }
-      if (!applicant.Employments__r.isEmpty()) {
-        recordsToDelete.addAll(applicant.Employments__r);
+      if (!applicant.EmploymentsTemp__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.EmploymentsTemp__r);
       }
       recordsToDelete.add(applicant);
     }

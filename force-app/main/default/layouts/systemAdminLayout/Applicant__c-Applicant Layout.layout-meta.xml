@@ -279,7 +279,7 @@
         <fields>EmploymentStatus__c</fields>
         <fields>EmployeeType__c</fields>
         <fields>CREATED_DATE</fields>
-        <relatedList>FinServ__Employment__c.Applicant__c</relatedList>
+        <relatedList>Employment__c.ApplicantTemp__c</relatedList>
         <sortField>CREATED_DATE</sortField>
         <sortOrder>Desc</sortOrder>
     </relatedLists>

@@ -15,7 +15,7 @@
     >FinancialAccountTransaction__c-mflow__Financial Account Transaction Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>FinServ__Employment__c-mflow__Employment Layout</layout>
+        <layout>Employment__c-mflow__Employment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout

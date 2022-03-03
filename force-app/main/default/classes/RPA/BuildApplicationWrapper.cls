@@ -145,9 +145,9 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       mapperApplicant.SSN = applicant.SSN__c;
 
       //Map employment data
-      if (!CollectionUtils.isListEmpty(applicant.Employments__r)) {
+      if (!CollectionUtils.isListEmpty(applicant.EmploymentsTemp__r)) {
         mapperApplicant.Employments.addAll(
-          mapEmployment(applicant.Employments__r)
+          mapEmployment(applicant.EmploymentsTemp__r)
         );
       }
 
@@ -177,14 +177,14 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
   /**
    * @description
    * @author Digital Align | 11-10-2021
-   * @param List<FinServ__Employment__c> employmentList
+   * @param List<Employment__c> employmentList
    * @return virtual
    **/
   global virtual list<ApplicationSubmissionResponse.Employment> mapEmployment(
-    List<FinServ__Employment__c> employmentList
+    List<Employment__c> employmentList
   ) {
     list<ApplicationSubmissionResponse.Employment> mapperEmploymentList = new List<ApplicationSubmissionResponse.Employment>();
-    for (FinServ__Employment__c employment : employmentList) {
+    for (Employment__c employment : employmentList) {
       ApplicationSubmissionResponse.Employment mapperEmployment = new ApplicationSubmissionResponse.Employment();
       mapperEmployment.EmploymentId = employment.Id;
       mapperEmployment.EmploymentType = employment.EmploymentType__c;
@@ -326,7 +326,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       // documents related to applicant
       reletedEntityIdList.add(applicant.Id);
       reletedEntityIdList.addAll(
-        new Map<id, SObject>(applicant.Employments__r).keySet()
+        new Map<id, SObject>(applicant.EmploymentsTemp__r).keySet()
       );
       reletedEntityIdList.addAll(
         new Map<id, SObject>(applicant.IdentificationDocuments__r).keySet()

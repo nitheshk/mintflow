@@ -169,7 +169,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
    * @return  List<AtomicFIDTO.Address>
    **/
   global virtual String mapApplicantEmployment(AtomicFIDTO atomicObj) {
-    FinServ__Employment__c employmentObj = new FinServ__Employment__c();
+    Employment__c employmentObj = new Employment__c();
     employmentObj.Id = atomicObj.user.identifier;
     //method to fetch application and applicant id based on employer id ::TODO
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
@@ -262,7 +262,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     log?.debug('Payslip and W2 generation completed successfully');
   }
   public void updateFileGeneratedStatus(String employerId) {
-    FinServ__Employment__c employmentObj = EmploymentRepository.readEmployerbyId(
+    Employment__c employmentObj = EmploymentRepository.readEmployerbyId(
       employerId
     );
     if (employmentObj != null) {
