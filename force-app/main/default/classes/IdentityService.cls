@@ -171,7 +171,7 @@ global virtual with sharing class IdentityService extends AbstractService {
   global virtual Applicant__c identityVerify(Map<String, object> params) {
     try {
       String applicantId = params.get('applicantId').toString();
-      if (String.isBlank('applicantId')) {
+      if (String.isBlank(applicantId)) {
         throw new customException(System.Label.Applicant_InvalidApplicantId);
       }
       String apiName = params.get('apiName').toString();
