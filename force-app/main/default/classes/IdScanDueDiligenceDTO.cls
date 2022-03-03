@@ -41,11 +41,16 @@ global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
   global class VerificationResult {
     global Data data { get; set; }
     global Boolean verified { get; set; }
-    global List<Questions> questions { get; set; }
   }
 
   global class Data {
     global List<Questions> questions { get; set; }
+  }
+
+  global class Results {
+    global Integer questionType { get; set; }
+    global Integer answerCode { get; set; }
+    global String answer { get; set; }
   }
   global class Questions {
     global String text { get; set; }
@@ -54,6 +59,7 @@ global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
   }
 
   global class Answers {
+    global Integer answerCode { get; set; }
     global String text { get; set; }
     global Boolean isCorrect { get; set; }
   }

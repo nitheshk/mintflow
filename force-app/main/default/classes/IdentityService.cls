@@ -269,6 +269,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     List<string> services = new List<String>();
     Id applicantId = (id) params.get('applicantId');
     HttpBuilder.Response response;
+    String responseJson;
     Applicant__c applicant = IdentityRepository.readApplicantWithIdentity(
       applicantId
     );
@@ -281,15 +282,20 @@ global virtual with sharing class IdentityService extends AbstractService {
         // get public token
         customer = mapCustomer(applicant, customer);
         customer.services = services;
-
         response = IdscanProvider.idScanCheck(customer);
+        log?.debug('response.json ::' + (String) response.data);
         createFiles(applicantId, (String) response.data);
         if (response.statusCode == 200) {
-          IdScanDueDiligenceDTO.Response responseDTO = (IdScanDueDiligenceDTO.Response) JSON.deserialize(
+          List<IdScanDueDiligenceDTO.Response> responseDTO = (List<IdScanDueDiligenceDTO.Response>) JSON.deserialize(
             (String) response.data,
-            IdScanDueDiligenceDTO.Response.class
+            List<IdScanDueDiligenceDTO.Response>.class
           );
-          log?.debug('response.data ::' + (String) response.data);
+          if (responseDTO != null && responseDTO.size() > 0) {
+            responseJson = parseResponse(responseDTO[0]);
+            log?.debug('response json ' + responseJson);
+          } else {
+            log?.debug('response  data not returned as expected ');
+          }
           Flow.setSubFlowPassed(response.status);
           flow.setFlowPassed();
         } else {
@@ -303,7 +309,7 @@ global virtual with sharing class IdentityService extends AbstractService {
       Logger.persist();
       Flow.finalize();
     }
-    return (string) response.data;
+    return responseJson;
   }
 
   global virtual IdScanDueDiligenceDTO.Request mapCustomer(
@@ -328,7 +334,6 @@ global virtual with sharing class IdentityService extends AbstractService {
       applicant != null &&
       applicant.mflow__ContactPointAddresses__r.size() > 0
     ) {
-      log?.debug('Inside address ');
       customer = mapAddress(
         applicant.mflow__ContactPointAddresses__r,
         customer
@@ -371,11 +376,104 @@ global virtual with sharing class IdentityService extends AbstractService {
       'OOW Response.json',
       blob.valueof(response),
       applicantId,
-      'KYC'
+      'KYC',
+      'IDScan'
     );
     files.add(fileObj);
     List<ContentVersion> contents = FileService.getinstance()
       .createFiles(files);
     log?.debug('contents ::' + contents);
+  }
+
+  private static String parseResponse(IdScanDueDiligenceDTO.Response response) {
+    List<IdScanDueDiligenceDTO.Questions> questions;
+    List<IdScanDueDiligenceDTO.Questions> questionList = new List<IdScanDueDiligenceDTO.Questions>();
+    List<IdScanDueDiligenceDTO.Answers> ansList = new List<IdScanDueDiligenceDTO.Answers>();
+    Integer ansCode = 0;
+    questions = response.profiles[0].verificationResult.data.questions;
+    for (IdScanDueDiligenceDTO.Questions question : questions) {
+      anscode = 0;
+      ansList = new List<IdScanDueDiligenceDTO.Answers>();
+      for (IdScanDueDiligenceDTO.Answers answer : question.answers) {
+        answer.answerCode = ++anscode;
+        ansList.add(answer);
+      }
+      question.answers = ansList;
+      questionList.add(question);
+    }
+    return JSON.serialize(questionList);
+  }
+
+  global virtual String validateCustomerAnswers(Map<string, Object> params) {
+    String applicantId = params.get('applicantId').toString();
+    Integer questionCode;
+    String correctAnswer;
+    String customerAnswer;
+    Integer totalQuestions, countofCorrectAnswers;
+    List<IdScanDueDiligenceDTO.Questions> questionSet;
+
+    try {
+      if (String.isBlank(applicantId)) {
+        throw new customException(System.Label.Applicant_InvalidApplicantId);
+      }
+      String jsonRequest = params.get('results').toString();
+      if (String.isBlank(jsonRequest)) {
+        throw new customException(System.Label.Applicant_InvalidApplicantId);
+      }
+      log?.debug('Customer Due diligence answers');
+      List<IdScanDueDiligenceDTO.Results> results = (List<IdScanDueDiligenceDTO.Results>) JSON.deserialize(
+        jsonRequest,
+        LIst<IdScanDueDiligenceDTO.Results>.class
+      );
+      List<ContentVersion> files = FileService.getinstance()
+        .fetchContentVersionByFileType(applicantId, 'KYC', 'IDScan', false);
+      if (files.size() > 0) {
+        String jsonRawResponse = files[0].versionData.toString();
+        List<IdScanDueDiligenceDTO.Response> response = (List<IdScanDueDiligenceDTO.Response>) JSON.deserialize(
+          jsonRawResponse,
+          LIst<IdScanDueDiligenceDTO.Response>.class
+        );
+        questionSet = response[0].profiles[0].verificationResult.data.questions;
+
+        // Loop through answers fr=irst
+        countofCorrectAnswers = 0;
+        totalQuestions = 0;
+        for (IdScanDueDiligenceDTO.Questions questionId : questionSet) {
+          //to loop through each question from the main collection of questions
+          questionCode = questionId.questionType;
+          totalQuestions++;
+          for (IdScanDueDiligenceDTO.Answers answerId : questionId.answers) {
+            if (answerId.isCorrect) {
+              //store the correct answer for that question.
+              correctAnswer = answerId.text;
+            }
+          }
+          // Loop through customer answer from the ui
+          for (IdScanDueDiligenceDTO.Results result : results) {
+            if (
+              result.questionType == questionCode &&
+              result.answer.equalsignorecase(correctAnswer)
+            )
+              countofCorrectAnswers++;
+          }
+        }
+        log
+          ?.debug(
+            ' There was ' +
+            countofCorrectAnswers +
+            'questions answered correctly out of a total of :' +
+            totalQuestions
+          );
+      }
+    } catch (exception ex) {
+      log
+        ?.error(
+          ' error at validateCustomerAnswers' +
+          ex.getLineNumber() +
+          '-' +
+          ex.getMessage()
+        );
+    }
+    return '';
   }
 }

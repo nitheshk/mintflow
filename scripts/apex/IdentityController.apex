@@ -115,7 +115,33 @@ system.debug('Full Json : ' + res.data);
 
 ApexRequest request = new ApexRequest();
 request.setHeader(
-  new Map<String, String>{ 'applicantId' => 'a0aN000000ANBttIAH' }
+  new Map<String, String>{ 'applicantId' => 'a0aN000000ANkKYIA1' }
 );
 ApexResponse res = IdentityController.customerDueDiligence(request);
+system.debug('customer response : ' + res.data);
+
+ApexRequest request = new ApexRequest();
+request.setHeader(
+  new Map<String, String>{
+    'applicantId' => 'a0aN000000ANkKYIA1',
+    'results' => '[{ "questionType": 1,"answer": "1111 BROADWAY AVE","answerCode": 5 }, {"questionType": 2,"answer": "502","answerCode": 3}]'
+  }
+);
+ApexResponse res = IdentityController.validateCustomerAnswers(request);
 system.debug('customer response : ' + res);
+
+(List<IdScanDueDiligenceDTO.Results>) JSON.deserialize(
+  jsonRequest,
+  LIst<IdScanDueDiligenceDTO.Results>.class
+);
+
+List<IdScanDueDiligenceDTO.Results> RESULTS = new List<IdScanDueDiligenceDTO.Results>();
+IdScanDueDiligenceDTO.Results resultobj = new IdScanDueDiligenceDTO.Results();
+resultobj.questionType = 1;
+resultobj.answerCode = 1;
+
+resultobj.answer = 'test';
+RESULTS.add(resultobj);
+
+json.serialize(RESULTS, true);
+system.debug('customer response : ' + RESULTS);
