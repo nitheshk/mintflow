@@ -20,7 +20,7 @@
           <lightning-input
             required
             data-fieldname="mflow__SessionExpirationTime__c"
-            label="Sesssion Expiration Time"
+            label="Session Expiration Time in Mintues"
             value={configData.mflow__SessionExpirationTime__c}
             placeholder="SesssionExpirationTime"
             onchange={handleChange}
@@ -61,7 +61,7 @@
         <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
           <lightning-input
             data-fieldname="mflow__EmailLinkExpirationTime__c"
-            label="Email Link Expiration Time"
+            label="Email Link Expiration Time In Hour"
             value={configData.mflow__EmailLinkExpirationTime__c}
             placeholder="EmailLinkExpirationTime"
             onchange={handleChange}
@@ -74,6 +74,16 @@
             label="Eligible County Names"
             value={configData.mflow__CountyNames__c}
             placeholder="County Names"
+            onchange={handleChange}
+            class="validation"
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
+          <lightning-input
+            data-fieldname="mflow__SupportedFileTypes__c"
+            label="DL Supported File Types"
+            value={configData.mflow__SupportedFileTypes__c}
+            placeholder="DL Supported File Types"
             onchange={handleChange}
             class="validation"
           ></lightning-input>
