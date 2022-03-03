@@ -1565,7 +1565,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.ApplicantTemp__c</field>
+        <field>Employment__c.Applicant__c</field>
         <readable>true</readable>
 	</fieldPermissions>
      <fieldPermissions>

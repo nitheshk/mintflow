@@ -245,8 +245,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
 
     // upsert employment
-    if (!CollectionUtils.isListEmpty(applicant?.EmploymentsTemp__r)) {
-      this.saveEmployments(applicant?.EmploymentsTemp__r, applicant.Id);
+    if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
+      this.saveEmployments(applicant?.Employments__r, applicant.Id);
     }
 
     if (!CollectionUtils.isListEmpty(applicant?.Surveys__r)) {
@@ -315,7 +315,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   ) {
     for (Employment__c employment : employments) {
       if (String.isNotBlank(applicantId)) {
-        employment.ApplicantTemp__c = applicantId;
+        employment.Applicant__c = applicantId;
       }
     }
     ApplicantRepository.upsertRecords(employments);
@@ -429,8 +429,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       if (!applicant.ContactPointAddresses__r.isEmpty()) {
         recordsToDelete.addAll(applicant.ContactPointAddresses__r);
       }
-      if (!applicant.EmploymentsTemp__r.isEmpty()) {
-        recordsToDelete.addAll(applicant.EmploymentsTemp__r);
+      if (!applicant.Employments__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.Employments__r);
       }
       recordsToDelete.add(applicant);
     }

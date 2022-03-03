@@ -30,7 +30,7 @@ public with sharing class AtomicVerificationReportController {
     Employment__c empObj = EmploymentRepository.readEmployerbyId(employerId);
     employerName = empObj.Name;
     String jsonResponse = AtomicFIProvider.getInstance()
-      .getAtomicResponse(empObj.ApplicantTemp__c, employerId);
+      .getAtomicResponse(empObj.Applicant__c, employerId);
     String request = jsonResponse.replaceAll('_id', 'id');
     jsonResponse = request;
     request = jsonResponse.replace('\\n', '');
@@ -39,7 +39,7 @@ public with sharing class AtomicVerificationReportController {
     jsonResponse = request;
     atomicResponse = AtomicFIDTO.parse(jsonResponse);
     atomicWrapper.evaluatedDate = atomicResponse.eventTime;
-    atomicWrapper.loanNumber = empObj.ApplicantTemp__r.Application__r.Name;
+    atomicWrapper.loanNumber = empObj.Applicant__r.Application__r.Name;
     System.debug('loan number' + atomicWrapper.loanNumber);
     prefillPersonalInformationData();
     prefillEmploymentInformationData();

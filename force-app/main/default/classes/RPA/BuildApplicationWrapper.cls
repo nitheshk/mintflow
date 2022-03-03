@@ -145,9 +145,9 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       mapperApplicant.SSN = applicant.SSN__c;
 
       //Map employment data
-      if (!CollectionUtils.isListEmpty(applicant.EmploymentsTemp__r)) {
+      if (!CollectionUtils.isListEmpty(applicant.Employments__r)) {
         mapperApplicant.Employments.addAll(
-          mapEmployment(applicant.EmploymentsTemp__r)
+          mapEmployment(applicant.Employments__r)
         );
       }
 
@@ -326,7 +326,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       // documents related to applicant
       reletedEntityIdList.add(applicant.Id);
       reletedEntityIdList.addAll(
-        new Map<id, SObject>(applicant.EmploymentsTemp__r).keySet()
+        new Map<id, SObject>(applicant.Employments__r).keySet()
       );
       reletedEntityIdList.addAll(
         new Map<id, SObject>(applicant.IdentificationDocuments__r).keySet()
