@@ -8,7 +8,7 @@
     <referenceTo>FinancialProduct__c</referenceTo>
     <relationshipLabel
   >Additional Products (CrossSell Product)</relationshipLabel>
-    <relationshipName>Additional_Products</relationshipName>
+    <relationshipName>CrossSellProducts</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

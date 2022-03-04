@@ -156,9 +156,8 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Additional Product</label>
     <nameField>
-        <displayFormat>APN-{0000}</displayFormat>
         <label>Additional Product Name</label>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Additional Products</pluralLabel>
     <searchLayouts />
