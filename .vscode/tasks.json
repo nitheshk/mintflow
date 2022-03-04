@@ -36,10 +36,9 @@
       "type": "shell",
       "command": "sfdx",
       "args": [
-        "force:source:legacy:push",
+        "force:source:legacy:pull",
         "--loglevel",
         "fatal",
-        "-g",
         "--forceoverwrite"
       ],
       "group": "build",
