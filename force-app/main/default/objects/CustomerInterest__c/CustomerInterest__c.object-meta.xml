@@ -157,9 +157,8 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Customer Interest</label>
     <nameField>
-        <displayFormat>CI-{0000}</displayFormat>
         <label>Customer Interest Name</label>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Customer Interests</pluralLabel>
     <searchLayouts />
