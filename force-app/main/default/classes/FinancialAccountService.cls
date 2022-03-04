@@ -118,17 +118,6 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   global Application__c createMembershipFinancialAccount(
     Application__c application
   ) {
-    Applicant__c primaryApplicant;
-
-    for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
-        primaryApplicant = applicant;
-      }
-    }
-
     //fetching membership product
     FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
       HttpBuilder.getApiConstant('MembershipAccountInternalCode')
@@ -137,18 +126,14 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     // create membership financial account
     FinancialAccount__c financialAccount = new FinancialAccount__c();
     financialAccount.FinancialProduct__c = membershipProduct.Id;
-    //#removeFSC
-    //financialAccount.Name = membershipProduct.Name;
     financialAccount.ExternalApplicationNumber__c = application.ExternalApplicationNumber__c;
-    //#removeFSC
-    //financialAccount.FinServ__FinancialAccountType__c = membershipProduct.Category__c;
     financialAccount.Ownership__c = 'Individual';
     financialAccount.Status__c = 'Open';
     financialAccount.Stage__c = 'Active';
     financialAccount.Application__c = application.Id;
     financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
       FinancialAccount__c.SObjectType,
-      'SavingsAccount'
+      membershipProduct.Category__c
     );
     FinancialAccountRepository.upsertRecord(financialAccount);
     log?.fine('financialAccount Created');
