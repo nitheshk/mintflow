@@ -3,6 +3,48 @@
     {
       "attributes": {
         "type": "mflow__FinancialProduct__c",
+        "referenceId": "IC007"
+      },
+      "Name": "Power Plus Debit Account",
+      "mflow__Category__c": "Checking",
+      "mflow__DeleteRecord__c": false,
+      "mflow__DisplayLabel__c": "Power Plus Debit Account",
+      "mflow__EndDate__c": "2027-03-05",
+      "mflow__ExternalCode__c": "EC007",
+      "mflow__InternalCode__c": "IC007",
+      "mflow__LongDescription__c": "Our most robust checking account with the POWER of all of our great features PLUS dividends all for $7.99 per month!",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__ShortDescription__c": "Our most robust checking account",
+      "mflow__StartDate__c": "2022-03-04",
+      "mflow__SubCategory__c": "Power Plus Debit Account",
+      "mflow__Type__c": "Consumer",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__FinancialProduct__c",
+        "referenceId": "IC006"
+      },
+      "Name": "Preferred Debit Account",
+      "mflow__Category__c": "Savings",
+      "mflow__DeleteRecord__c": false,
+      "mflow__DisplayLabel__c": "Preferred Debit Account",
+      "mflow__EndDate__c": "2034-03-03",
+      "mflow__ExternalCode__c": "EC006",
+      "mflow__InternalCode__c": "IC006",
+      "mflow__LongDescription__c": "A perfect account for our value minded members for only $4.99 per month. This account pays you in overwhelming benefits from cash back on debit card purchases, to cell phone protection, roadside assistance, local and national discounts and much more!",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__ShortDescription__c": "A perfect account for our value minded m",
+      "mflow__StartDate__c": "2022-03-04",
+      "mflow__SubCategory__c": "Preferred Debit Account",
+      "mflow__Type__c": "Consumer",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__FinancialProduct__c",
         "referenceId": "IC004"
       },
       "Name": "Special Savings",
@@ -40,37 +82,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Consumer",
-      "mflow__isActive__c": true,
-      "mflow__ProductServices__r": {
-        "totalSize": 2,
-        "done": true,
-        "records": [
-          {
-            "attributes": {
-              "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef1_0"
-            },
-            "mflow__Order__c": 4,
-            "mflow__Required__c": false,
-            "mflow__Description__c": "Online banking to ease your banking",
-            "mflow__ServiceName__c": "Online Banking",
-            "mflow__isActive__c": true,
-            "mflow__ShowQuestions__c": false
-          },
-          {
-            "attributes": {
-              "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef1_1"
-            },
-            "mflow__Order__c": 3,
-            "mflow__Required__c": false,
-            "mflow__Description__c": "Select eStatments service",
-            "mflow__ServiceName__c": "eStatment",
-            "mflow__isActive__c": true,
-            "mflow__ShowQuestions__c": false
-          }
-        ]
-      }
+      "mflow__isActive__c": true
     },
     {
       "attributes": {
@@ -175,25 +187,56 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Membership",
       "mflow__Type__c": "Consumer",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__ProductServices__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "mflow__ProductService__c",
+              "referenceId": "ProductServiceRef8_0"
+            },
+            "mflow__Order__c": 4,
+            "mflow__Required__c": false,
+            "mflow__Description__c": "Online banking to ease your banking",
+            "mflow__ServiceName__c": "Online Banking",
+            "mflow__isActive__c": true,
+            "mflow__ShowQuestions__c": false
+          },
+          {
+            "attributes": {
+              "type": "mflow__ProductService__c",
+              "referenceId": "ProductServiceRef8_1"
+            },
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__Description__c": "Select eStatments service",
+            "mflow__ServiceName__c": "eStatment",
+            "mflow__isActive__c": true,
+            "mflow__ShowQuestions__c": false
+          }
+        ]
+      }
     },
     {
       "attributes": {
         "type": "mflow__FinancialProduct__c",
-        "referenceId": "IC-005"
+        "referenceId": "IC005"
       },
       "Name": "Prime Debit Account",
       "mflow__Category__c": "Checking",
       "mflow__DeleteRecord__c": false,
       "mflow__DisplayLabel__c": "Prime Debit Account",
       "mflow__EndDate__c": "2027-02-24",
-      "mflow__ExternalCode__c": "EC-005",
-      "mflow__InternalCode__c": "IC-005",
+      "mflow__ExternalCode__c": "EC005",
+      "mflow__InternalCode__c": "IC005",
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
       "mflow__ShortDescription__c": "The Prime Debit Account offers all the b",
       "mflow__StartDate__c": "2022-02-24",
+      "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Consumer",
       "mflow__isActive__c": true,
       "mflow__ProductServices__r": {
@@ -203,7 +246,7 @@
           {
             "attributes": {
               "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef7_0"
+              "referenceId": "ProductServiceRef9_0"
             },
             "mflow__Order__c": 1,
             "mflow__Required__c": false,
@@ -215,7 +258,7 @@
           {
             "attributes": {
               "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef7_1"
+              "referenceId": "ProductServiceRef9_1"
             },
             "mflow__Order__c": 2,
             "mflow__Required__c": false,

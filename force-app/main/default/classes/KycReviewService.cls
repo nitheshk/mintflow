@@ -190,7 +190,13 @@ global with sharing class KycReviewService extends AbstractService {
           null,
           applicantKyc.OverallDebitBureauResult
         );
-        applicant.CreditScore__c = applicantKyc.CreditScore;
+        // Credit Report is not generated if CreditScore =NA
+        applicant.CreditScore__c = applicantKyc.CreditScore == 'NA'
+          ? null
+          : integer.valueof(applicantKyc.CreditScore);
+        applicant.mflow__CreditScoreStatus__c = applicantKyc.CreditScore == 'NA'
+          ? 'Reorder'
+          : 'Verified';
         applicant.QualifiedScore__c = applicantKyc.QualifiedScore;
         applicant.CustomerScore__c = applicantKyc.CustomerScore;
         applicant.HighRiskConsumer__c = this.getStatusMapping(

@@ -2,7 +2,10 @@
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>true</custom>
     <userLicense>Guest User License</userLicense>
-
+    <classAccesses>
+        <apexClass>mflow__LwcCustomController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <!--recordTypeVisibilities-->
     <recordTypeVisibilities>
         <default>true</default>

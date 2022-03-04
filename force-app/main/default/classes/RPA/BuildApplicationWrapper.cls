@@ -62,6 +62,9 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
         ApplicationSubmissionResponse.Account mapperApplication = new ApplicationSubmissionResponse.Account();
         mapperApplication.ApplicationId = application.Id;
         mapperApplication.ApplicationNumber = application.ApplicationNumber__c;
+        //#pending
+        mapperApplication.FinancialProductType = 'Savings';
+        mapperApplication.FinancialProduct = 'Regular Savings';
         mapperApplication.BranchCode = application.FinServ__BranchCode__c;
         mapperApplication.BranchName = application.FinServ__BranchName__c;
         mapperApplication.CountyName = application.CountyName__c;

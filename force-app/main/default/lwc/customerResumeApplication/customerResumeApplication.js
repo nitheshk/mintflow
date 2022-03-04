@@ -45,36 +45,24 @@ export default class CustomerResumeApplication extends LightningElement {
               this.hasApplications = true;
               this.applications.forEach((app) => {
                 app.mflow__Applicants__r.forEach((element) => {
-                  if (element.mflow__ApplicantType__c === "Primary") {
-                    element.isPrimaryOrJoint = true;
-                    if (
-                      element.mflow__LastFourDigitsofSSN__c ===
-                        this.applicantData.mflow__LastFourDigitsofSSN__c &&
-                      element.mflow__LastName__c ===
-                        this.applicantData.mflow__LastName__c &&
-                      element.mflow__Email__c ===
-                        this.applicantData.mflow__Email__c
-                    ) {
-                      app.isPrimaryLoggedIn = true;
-                    }
-                  } else if (
-                    element.mflow__ApplicantType__c.includes("Joint")
+                  if (
+                    element.mflow__LastFourDigitsofSSN__c ===
+                      this.applicantData.mflow__LastFourDigitsofSSN__c &&
+                    element.mflow__LastName__c ===
+                      this.applicantData.mflow__LastName__c &&
+                    element.mflow__Email__c ===
+                      this.applicantData.mflow__Email__c
                   ) {
-                    element.isPrimaryOrJoint = true;
-                    if (
-                      element.mflow__LastFourDigitsofSSN__c ===
-                        this.applicantData.mflow__LastFourDigitsofSSN__c &&
-                      element.mflow__LastName__c ===
-                        this.applicantData.mflow__LastName__c &&
-                      element.mflow__Email__c ===
-                        this.applicantData.mflow__Email__c
+                    if (element.mflow__ApplicantType__c === "Primary") {
+                      app.isPrimaryLoggedIn = true;
+                    } else if (
+                      element.mflow__ApplicantType__c.includes("Joint")
                     ) {
                       app.isPrimaryLoggedIn = false;
                     }
                   }
                 });
               });
-              console.log(this.applications);
             }
           } else {
             utils.errorMessage(

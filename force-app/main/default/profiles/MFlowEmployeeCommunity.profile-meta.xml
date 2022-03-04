@@ -15,6 +15,12 @@
         <recordType>Contact.FinServ__IndustriesIndividual</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>AdditionalProduct__c-Additional Product Layout</layout>
+    </layoutAssignments>
+   <layoutAssignments>
+        <layout>CustomerInterest__c-Customer Interest Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-mflow__Member Account Layout</layout>
         <recordType>Account.FinServ__IndustriesBusiness</recordType>
     </layoutAssignments>

@@ -1,0 +1,41 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "mflow__AdditionalProduct__c",
+        "referenceId": "AdditionalProductRef0"
+      },
+      "Name": "Regular Savings - Prime Debit Account",
+      "mflow__FinancialProduct__c": "@IC003",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false,
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__AdditionalProduct__c",
+        "referenceId": "AdditionalProductRef1"
+      },
+      "Name": "Regular Savings - Power Plus Debit Account",
+      "mflow__FinancialProduct__c": "@IC003",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false,
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": {
+        "type": "mflow__AdditionalProduct__c",
+        "referenceId": "AdditionalProductRef2"
+      },
+      "Name": "Regular Savings - Preferred Debit Account",
+      "mflow__FinancialProduct__c": "@IC003",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false,
+      "mflow__isActive__c": true
+    }
+  ]
+}

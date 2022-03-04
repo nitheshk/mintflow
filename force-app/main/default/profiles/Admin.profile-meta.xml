@@ -9,7 +9,12 @@
         <layout
     >mflow__FinancialProduct__c-mflow__FinancialProduct Layout</layout>
     </layoutAssignments>
-
+    <layoutAssignments>
+        <layout>AdditionalProduct__c-Additional Product Layout</layout>
+    </layoutAssignments>
+   <layoutAssignments>
+        <layout>CustomerInterest__c-Customer Interest Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Account-mflow__Application Layout</layout>
         <recordType>Account.Application</recordType>
@@ -117,6 +122,14 @@
     </layoutAssignments>
 
     <!--tabVisibilities-->
+    <tabVisibilities>
+        <tab>CustomerInterest__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AdditionalProduct__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Lead</tab>
         <visibility>DefaultOn</visibility>
