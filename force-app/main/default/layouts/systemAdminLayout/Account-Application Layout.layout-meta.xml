@@ -238,6 +238,14 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>InterestProduct__c</fields>
+        <fields>isSelected__c</fields>
+        <fields>StartDate__c</fields>
+        <fields>EndDate__c</fields>
+        <relatedList>CustomerInterest__c.Application__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>Answer__c</fields>
         <fields>Applicant__c</fields>
         <relatedList>Survey__c.Application__c</relatedList>
