@@ -2191,6 +2191,14 @@
         <recordType>Flow__c.SubFlow</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>FinancialAccount__c.Checking</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>FinancialAccount__c.Savings</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <userPermissions>
         <enabled>true</enabled>
         <name>CreateCustomizeReports</name>

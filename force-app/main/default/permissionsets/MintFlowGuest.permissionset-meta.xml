@@ -2154,4 +2154,24 @@
         <recordType>Flow__c.SubFlow</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>FinancialAccount__c.Checking</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>FinancialAccount__c.Savings</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <tabSettings>
+        <tab>Applicant__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Application__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>FinancialAccount__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>
