@@ -14,11 +14,29 @@
       "problemMatcher": []
     },
     {
-      "label": "Task : Sfdx Push with overwrite & Ignore Warning",
+      "label": "Task : Sfdx Push with overwrite",
       "type": "shell",
       "command": "sfdx",
       "args": [
-        "force:source:push",
+        "force:source:legacy:push",
+        "--loglevel",
+        "fatal",
+        "-g",
+        "--forceoverwrite"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Task : Sfdx pull with overwrite",
+      "type": "shell",
+      "command": "sfdx",
+      "args": [
+        "force:source:legacy:push",
         "--loglevel",
         "fatal",
         "-g",

@@ -36,6 +36,7 @@ Step 3. Update your Devhub configuration detail under `deploy\devhub.json`, upda
 
 ```
 {
+  "scratchOrgName": "mflow",
   "devhubUserName": "nithesh.k@digitalalign.devhub1.com",
   "devhubOrgName": "devhub",
   "devhubClientId": "3MVG9fe4g9fhX0E471xtv1cWppRlsmb9rINlWTtGfR0e40vBuAYbbM_oOmSf6FyOeAAa1g0IKlQXi7510KPWT",

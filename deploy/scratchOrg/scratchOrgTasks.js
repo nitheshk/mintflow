@@ -5,7 +5,7 @@ var xml2js = require("xml2js");
 var zipFolder = require("zip-folder");
 
 let config = require("../root.json");
-
+let devhub = require("../devhub.json");
 //Reading configuration
 gulp.task("readConfig", function (finish) {
   console.log("Reading Configuration : " + JSON.stringify(config));
@@ -86,7 +86,7 @@ gulp.task("setupDevHub", function (finish) {
 
 //deleteScratchOrg
 gulp.task("deleteScratchOrg", function (finish) {
-  let scriptToRun = ` sfdx force:org:delete -u ${config.scratchOrg.scratchOrgName} -p`;
+  let scriptToRun = ` sfdx force:org:delete -u ${devhub.scratchOrgName} -p`;
   console.log("Script To Run - " + scriptToRun);
   utils
     .runCommand(scriptToRun)
@@ -101,7 +101,7 @@ gulp.task("deleteScratchOrg", function (finish) {
 
 //defaultToScratch
 gulp.task("defaultToScratch", function (finish) {
-  let scriptToRun = ` sfdx force:config:set defaultusername=${config.scratchOrg.scratchOrgName}`;
+  let scriptToRun = ` sfdx force:config:set defaultusername=${devhub.scratchOrgName}`;
   console.log("Script To Run - " + scriptToRun);
   utils.runCommand(scriptToRun).then((result) => {
     console.log("Result :" + result);
@@ -113,7 +113,7 @@ gulp.task("defaultToScratch", function (finish) {
 gulp.task("createScratchOrg", function (finish) {
   let scriptToRun =
     ` sfdx force:org:create -f  ${config.projectScratchDef} ` +
-    ` --setalias  ${config.scratchOrg.scratchOrgName} --durationdays  ${config.scratchOrg.durationDays}` +
+    ` --setalias  ${devhub.scratchOrgName} --durationdays  ${config.scratchOrg.durationDays}` +
     ` -w 20 --setdefaultusername --json --loglevel fatal`;
 
   console.log("Script To Run - " + scriptToRun);
@@ -153,7 +153,7 @@ gulp.task("installPackage", function (finish) {
   let scriptToRun =
     ` sfdx force:package:install --wait 10 --publishwait 10 ` +
     ` --package ${config.dependentPackage.DigitalAlignUtilities}  --installationkey Utilities@V1.0 ` +
-    ` --noprompt --targetusername ${config.scratchOrg.scratchOrgName} --securitytype AllUsers --upgradetype Mixed `;
+    ` --noprompt --targetusername ${devhub.scratchOrgName} --securitytype AllUsers --upgradetype Mixed `;
 
   console.log("Script To Run - " + scriptToRun);
   utils.runCommand(scriptToRun).then((result) => {
@@ -165,7 +165,7 @@ gulp.task("installPackage", function (finish) {
 //pushToscratch
 gulp.task("pushToscratch", function (finish) {
   let scriptToRun =
-    ` sfdx force:source:push --targetusername  ${config.scratchOrg.scratchOrgName}` +
+    ` sfdx force:source:legacy:push --targetusername  ${devhub.scratchOrgName}` +
     ` --wait 20 --loglevel fatal --forceoverwrite`;
   console.log("Script To Run - " + scriptToRun);
   utils
@@ -276,7 +276,7 @@ gulp.task("publishCommunities", function (finish) {
 
   const publish = (index) =>
     new Promise((resolve, reject) => {
-      let scriptToRun = `sfdx force:community:publish --name ${config.communities.publishCommnitiesNames[index]} --targetusername  ${config.scratchOrg.scratchOrgName} --json`;
+      let scriptToRun = `sfdx force:community:publish --name ${config.communities.publishCommnitiesNames[index]} --targetusername  ${devhub.scratchOrgName} --json`;
       console.log("Script To Run - " + scriptToRun);
       utils
         .runCommand(scriptToRun)
