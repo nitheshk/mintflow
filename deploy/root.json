@@ -4,7 +4,7 @@
 
   "scratchOrg": {
     "devhubCredential": "./deploy/devhub.json",
-    "scratchOrgName": "mflow",
+    "scratchOrgName": "mflowpackage",
     "durationDays": "20",
     "scratchOrgjson": "./deploy/scratchOrg/scratchOrgDetail.json"
   },
