@@ -28,7 +28,7 @@ Step 2. Install the dependencies by run the below commands for first time for on
 
 `npm install --global gulp-cli` ( ERROR AND ISSUE : gulp : The term 'gulp' is not recognized, follow last section )
 
-`npm install --global sfdx-cli`
+`npm install --global sfdx-cli` or `npm install -g sfdx-cli@7.132.0` (Specified Version)
 
 `npm install sfdx-cli`
 

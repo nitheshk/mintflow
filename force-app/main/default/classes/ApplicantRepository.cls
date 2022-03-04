@@ -146,22 +146,6 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
   }
 
   /**
-   * @description fetch Contact with ID By AccountId
-   * @author Digital Align Team | 12-10-2021
-   * @param Id accountId
-   * @return Contact
-   **/
-  global static Contact fetchContactByAccountId(Id accountId) {
-    return (Contact) DatabaseUtils.getRecord(
-      Query.newInstance(Contact.SObjectType)
-        .addFields('AccountId')
-        .whereEq('AccountId', accountId)
-        .addLimit(1)
-        .toString()
-    );
-  }
-
-  /**
    * @description read applicant by application Id
    * Used in sending family member email notification
    * @author Digital Align Team | 01-05-2022

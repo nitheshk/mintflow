@@ -81,8 +81,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
       application = KycReviewService.getInstance()
         .updateApplicationKycDetails(application, kycResult);
 
-      // if Application kyc status is approved, then proceed with creating Account & Contact for primary
-      // And Open Membership Financial Account and relation with applicant
+      // if Application kyc status is approved, then proceed with creating Account & Contact for primary/Joint
 
       if (application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
         ApplicantService.getInstance().createMemberAccount(application);
