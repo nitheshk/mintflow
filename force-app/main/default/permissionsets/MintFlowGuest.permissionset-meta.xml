@@ -225,6 +225,11 @@
         <field>CustomerInterest__c.Required__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AdditionalProduct__c.isActive__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 <fieldPermissions>
         <editable>true</editable>
         <field>AdditionalProduct__c.CrossSellProduct__c</field>
