@@ -145,6 +145,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
       if (String.isNotBlank(applicationId)) {
         customerInterestObj.Application__c = applicationId;
       }
+      customerInterestObj.Name = additionalProduct.Name;
       customerInterestObj.EndDate__c = additionalProduct.EndDate__c;
       customerInterestObj.ExternalCode__c = additionalProduct.ExternalCode__c;
       customerInterestObj.ImageName__c = additionalProduct.ImageName__c;
