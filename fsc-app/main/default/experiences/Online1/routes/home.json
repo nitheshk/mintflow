@@ -4,7 +4,7 @@
   "configurationTags": [],
   "id": "0b7ddf1a-1d01-455c-bf04-bd850487e815",
   "label": "Home",
-  "pageAccess": "RequiresLogin",
+  "pageAccess": "Public",
   "routeType": "home",
   "type": "route",
   "urlPrefix": ""
