@@ -181,7 +181,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
           AccountNumber__c = financialAccountResult.AccountNumber
         );
         if (application.Status__c == ApplicationConstant.COMPLETED) {
-          fa.Status__c = 'Paid out';
+          fa.Status__c = ApplicationConstant.COMPLETED;
         }
         SubmissionRepository.upsertRecord(fa);
       }
