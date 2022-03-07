@@ -1,5 +1,5 @@
 updateAdminPermissionSet();
-//updateGuestPermissionSet();
+updateGuestPermissionSet();
 updateRoleToCurrentUser();
 
 public static void updateGuestPermissionSet() {
@@ -12,9 +12,7 @@ public static void updateGuestPermissionSet() {
   List<User> siteUser = [
     SELECT id, Name
     FROM User
-    WHERE
-      Profile.Name = 'Online Profile'
-      OR Profile.Name = 'FinancialInstitute Profile'
+    WHERE Profile.Name = 'Online Profile'
   ];
 
   delete [

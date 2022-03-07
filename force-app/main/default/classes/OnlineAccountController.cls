@@ -55,7 +55,7 @@ global without sharing class OnlineAccountController extends AbstractController 
         ),
         'params' => params,
         'applicationConfig' => ApplicationConfiguration__c.getInstance(),
-        'siteConfig' => ApplicationRepository.readSiteSetting()
+        'siteConfig' => SiteSetting__c.getInstance()
       };
       this.initialData = JSON.serialize(initialData);
       return null;

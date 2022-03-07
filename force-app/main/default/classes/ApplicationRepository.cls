@@ -107,22 +107,6 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
   }
 
   /**
-   * @description Read Site setting
-   * @author Digital Align Team | 11-22-2021
-   * @return SiteSetting__c
-   **/
-  global static SiteSetting__c readSiteSetting() {
-    return (SiteSetting__c) DatabaseUtils.getRecord(
-      Query.newInstance(SiteSetting__c.SObjectType)
-        .addFields()
-        .removeFields(
-          'mflow__OnlineSiteUserName__c,mflow__OnlineSitePassword__c'
-        )
-        .toString()
-    );
-  }
-
-  /**
    * @description get auth provider is existing or not
    * @author Digital Align Team | 12-08-2021
    * @param String developerName

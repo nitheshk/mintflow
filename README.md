@@ -61,15 +61,13 @@ Following command are executed in squence
 
 > Step 2.4 `gulp defaultToScratch`
 
-> Step 2.7 `gulp pushToscratch`
+> Step 2.5 `gulp pushToscratch`
 
-> Step 2.8 `gulp updatePermissionSet`
+> Step 2.6 `gulp updatePermissionSet`
 
-> Step 2.9 `gulp createCommunityUser`
+> Step 2.7 `gulp publishCommunities`
 
-> Step 2.10 `gulp publishCommunities`
-
-> Step 2.11 `gulp systemConfigImport`
+> Step 2.8 `gulp systemConfigImport`
 
 if any step fails in between, fix the error and continue executing next step
 

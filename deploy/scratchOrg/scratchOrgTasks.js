@@ -179,80 +179,6 @@ gulp.task("pushToscratch", function (finish) {
     });
 });
 
-//createCommunityUser
-gulp.task("createCommunityUser", function (finish) {
-  //create account and contact
-  let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createCommunityUserAccount}`;
-  console.log("Script To Run - " + scriptToRun);
-  utils
-    .runCommand(scriptToRun)
-    .then((result) => {
-      console.log("Result :" + result);
-
-      // update script with git email address
-      scriptToRun = `git config user.email`;
-      utils
-        .runCommand(scriptToRun)
-        .then((result) => {
-          console.log("Result :" + result);
-          const contents = fs.readFileSync(
-            `${config.permission.createUser.createCommunityUser}`,
-            "utf8"
-          );
-          let replaced_contents = contents.replace("{{Email}}", result.trim());
-          fs.writeFileSync(
-            `${config.permission.createUser.createCommunityUser}`,
-            replaced_contents,
-            "utf8"
-          );
-
-          //create community user
-          let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.createUser.createCommunityUser}`;
-          console.log("Script To Run - " + scriptToRun);
-
-          utils
-            .runCommand(scriptToRun)
-            .then((result) => {
-              console.log("Result :" + result);
-              let jsonString = result.substring(
-                result.lastIndexOf("{QueryStart}") + 12,
-                result.lastIndexOf("{QueryEnd}")
-              );
-              const data = JSON.parse(jsonString);
-              console.log("Username :" + data.Username);
-
-              let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json");
-              applicationConfiguration.records[0].mflow__OnlineSiteUserName__c =
-                data.Username;
-              // update site urls
-              utils
-                .createFile(
-                  "./data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json",
-                  JSON.stringify(applicationConfiguration, null, 2)
-                )
-                .catch((err) => {
-                  console.log("err :" + JSON.stringify(err));
-                  process.exit(1);
-                });
-
-              finish();
-            })
-            .catch((err) => {
-              console.log("Error :" + err.stdout);
-              process.exit(1);
-            });
-        })
-        .catch((err) => {
-          console.log("Error :" + err.stdout);
-          process.exit(1);
-        });
-    })
-    .catch((err) => {
-      console.log("Error :" + err.stdout);
-      process.exit(1);
-    });
-});
-
 //Update Permission Set
 gulp.task("updatePermissionSet", function (finish) {
   let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.permissionSet.permissionSet1}`;
@@ -309,7 +235,7 @@ gulp.task("publishCommunities", function (finish) {
                 link.url;
             }
             if (link.name === "FinancialInstitute") {
-              applicationConfiguration.records[0].mflow__FinInstSiteUrl__c =
+              applicationConfiguration.records[0].mflow__FinancialInstituteSiteUrl__c =
                 link.url;
             }
           });
@@ -418,114 +344,6 @@ gulp.task("sfdxCacheClear", function (finish) {
   finish();
 });
 
-//createSite
-gulp.task("createSite", function (finish) {
-  let scratchOrgDetail = JSON.parse(
-    fs.readFileSync(config.scratchOrg.scratchOrgjson)
-  );
-
-  let siteJsonTemplate = JSON.parse(
-    fs.readFileSync(config.siteSetup.template.siteFile)
-  );
-
-  if (scratchOrgDetail.status != 0) {
-    console.error(
-      "Scartch Org creation Failed, Please verify scratchOrgDetail.json"
-    );
-    return;
-  }
-
-  siteJsonTemplate.CustomSite.siteAdmin = config.siteSetup.siteAdmin
-    ? [config.siteSetup.siteAdmin]
-    : [scratchOrgDetail.result.username];
-  siteJsonTemplate.CustomSite.siteGuestRecordDefaultOwner = config.siteSetup
-    .siteGuestRecordDefaultOwner
-    ? [config.siteSetup.siteGuestRecordDefaultOwner]
-    : [scratchOrgDetail.result.username];
-
-  siteJsonTemplate.CustomSite.active = [config.siteSetup.active];
-  siteJsonTemplate.CustomSite.fileNotFoundPage = [
-    config.siteSetup.fileNotFoundPage
-  ];
-  siteJsonTemplate.CustomSite.genericErrorPage = [
-    config.siteSetup.genericErrorPage
-  ];
-  siteJsonTemplate.CustomSite.inMaintenancePage = [
-    config.siteSetup.inMaintenancePage
-  ];
-  siteJsonTemplate.CustomSite.inactiveIndexPage = [
-    config.siteSetup.inactiveIndexPage
-  ];
-  siteJsonTemplate.CustomSite.indexPage = [config.siteSetup.indexPage];
-  siteJsonTemplate.CustomSite.masterLabel = [config.siteSetup.siteName];
-  siteJsonTemplate.CustomSite.subdomain = [config.siteSetup.subdomain];
-  siteJsonTemplate.CustomSite.subdomain = [config.siteSetup.subdomain];
-  siteJsonTemplate.CustomSite.guestProfile = [config.siteSetup.guestProfile];
-  siteJsonTemplate.CustomSite.urlPathPrefix = [config.siteSetup.urlPathPrefix];
-
-  const builder = new xml2js.Builder();
-  const xml = builder.buildObject(siteJsonTemplate);
-
-  if (!fs.existsSync(config.siteSetup.siteSFDXLocation)) {
-    fs.mkdirSync(config.siteSetup.siteSFDXLocation);
-  }
-
-  const siteFilePath =
-    config.siteSetup.siteSFDXLocation +
-    config.siteSetup.siteName +
-    ".site-meta.xml";
-
-  console.log(`Site created in : ${siteFilePath}`);
-
-  utils.createFile(siteFilePath, xml).catch((err) => {
-    console.log("errr :" + JSON.stringify(err));
-    return;
-  });
-
-  finish();
-});
-
-//createSiteProfile
-gulp.task("createSiteProfile", function (finish) {
-  if (config.siteSetup.skipSiteProfile) {
-    finish();
-    return;
-  }
-
-  let siteProfileJsonTemplate = JSON.parse(
-    fs.readFileSync(config.siteSetup.template.siteProfile)
-  );
-
-  siteProfileJsonTemplate.Profile.pageAccesses = [
-    { apexPage: [config.siteSetup.indexPage], enabled: ["true"] }
-  ];
-
-  const xml = new xml2js.Builder().buildObject(siteProfileJsonTemplate);
-
-  if (!fs.existsSync(config.siteSetup.siteProfileSFDXLocation)) {
-    fs.mkdirSync(config.siteSetup.siteProfileSFDXLocation);
-  }
-
-  const siteProfileFilePath =
-    config.siteSetup.siteProfileSFDXLocation +
-    config.siteSetup.guestProfile +
-    ".profile-meta.xml";
-
-  if (fs.existsSync(siteProfileFilePath)) {
-    finish();
-    return;
-  }
-
-  console.log(`Site Profile Created in : ${siteProfileFilePath}`);
-
-  utils.createFile(siteProfileFilePath, xml).catch((err) => {
-    console.log("errr :" + JSON.stringify(errr));
-    return;
-  });
-
-  finish();
-});
-
 gulp.task(
   "buildUI_MintFlow",
   gulp.series("npmRunBuild_MintFlow", "buildStaticResource_MintFlow")
@@ -542,7 +360,6 @@ gulp.task(
     "defaultToScratch",
     "pushToscratch",
     "updatePermissionSet",
-    "createCommunityUser",
     "publishCommunities",
     "systemConfigImport"
   )
@@ -556,24 +373,5 @@ gulp.task(
     "deleteScratchOrg",
     "createScratchOrg",
     "defaultToScratch"
-  )
-);
-
-gulp.task(
-  "newScratchOrgWithSite",
-  gulp.series(
-    "readConfig",
-    "buildUI_MintFlow",
-    "setupDevHub",
-    "deleteScratchOrg",
-    "createScratchOrg",
-    "defaultToScratch",
-    "createSite",
-    "createSiteProfile",
-    "pushToscratch",
-    "updatePermissionSet",
-    "createCommunityUser",
-    "publishCommunities",
-    "systemConfigImport"
   )
 );
