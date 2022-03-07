@@ -264,12 +264,13 @@ global virtual with sharing class IdentityService extends AbstractService {
    * @param Id applicantId
    * @return Object
    **/
-  global virtual string customerDueDiligence(Map<string, Object> params) {
+  global virtual List<IdScanDueDiligenceDTO.Questions> customerDueDiligence(
+    Map<string, Object> params
+  ) {
     IdScanDueDiligenceDTO.Request customer = new IdScanDueDiligenceDTO.Request();
     List<string> services = new List<String>();
     Id applicantId = (id) params.get('applicantId');
     HttpBuilder.Response response;
-    String responseJson;
     Applicant__c applicant = IdentityRepository.readApplicantWithIdentity(
       applicantId
     );
@@ -291,25 +292,30 @@ global virtual with sharing class IdentityService extends AbstractService {
             List<IdScanDueDiligenceDTO.Response>.class
           );
           if (responseDTO != null && responseDTO.size() > 0) {
-            responseJson = parseResponse(responseDTO[0]);
-            log?.debug('response json ' + responseJson);
+            Flow.setSubFlowPassed(response.status);
+            flow.setFlowPassed();
+            return parseResponse(responseDTO[0]);
           } else {
             log?.debug('response  data not returned as expected ');
+            Flow.setSubFlowFailed(response.status);
+            throw new CustomException(
+              'response  data not returned as expected '
+            );
           }
-          Flow.setSubFlowPassed(response.status);
-          flow.setFlowPassed();
         } else {
-          Flow.setSubFlowFailed(response.status);
+          Flow.setSubFlowFailed('Failed');
           throw new CustomException('Unable to retrieve due diligence');
         }
       }
     } catch (exception ex) {
       log?.debug('exception ::' + ex.getMessage());
+      flow.setFlowFailed();
+      throw new CustomException(ex);
     } finally {
       Logger.persist();
       Flow.finalize();
     }
-    return responseJson;
+    return null;
   }
 
   global virtual IdScanDueDiligenceDTO.Request mapCustomer(
@@ -385,7 +391,9 @@ global virtual with sharing class IdentityService extends AbstractService {
     log?.debug('contents ::' + contents);
   }
 
-  private static String parseResponse(IdScanDueDiligenceDTO.Response response) {
+  private List<IdScanDueDiligenceDTO.Questions> parseResponse(
+    IdScanDueDiligenceDTO.Response response
+  ) {
     List<IdScanDueDiligenceDTO.Questions> questions;
     List<IdScanDueDiligenceDTO.Questions> questionList = new List<IdScanDueDiligenceDTO.Questions>();
     List<IdScanDueDiligenceDTO.Answers> ansList = new List<IdScanDueDiligenceDTO.Answers>();
@@ -401,7 +409,8 @@ global virtual with sharing class IdentityService extends AbstractService {
       question.answers = ansList;
       questionList.add(question);
     }
-    return JSON.serialize(questionList);
+    log?.debug(JSON.serialize(questionList));
+    return questionList;
   }
 
   global virtual String validateCustomerAnswers(Map<string, Object> params) {
