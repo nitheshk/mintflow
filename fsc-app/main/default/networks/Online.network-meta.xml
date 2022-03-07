@@ -42,7 +42,7 @@
     <forgotPasswordPageOverrideSetting
     >Designer</forgotPasswordPageOverrideSetting>
     <homePageOverrideSetting>Designer</homePageOverrideSetting>
-    <loginPageOverrideSetting>VisualForce</loginPageOverrideSetting>
+    <loginPageOverrideSetting>Designer</loginPageOverrideSetting>
     <selfRegProfilePageOverrideSetting
     >Designer</selfRegProfilePageOverrideSetting>
   </networkPageOverrides>

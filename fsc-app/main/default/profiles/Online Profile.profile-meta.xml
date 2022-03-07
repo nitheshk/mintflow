@@ -2,49 +2,19 @@
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>true</custom>
     <userLicense>Guest User License</userLicense>
-
     <!-- Newly Added , need to move permission set-->
-    <classAccesses>
-        <apexClass>mflow__OnlineAccountLoginController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>mflow__IdentityUploadController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>mflow__ApplicationController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>mflow__IdentityController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>mflow__FileController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>mflow__LwcCustomController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>mflow__AtomicFIService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <pageAccesses>
-        <apexPage>mflow__OnlineAutoLogin</apexPage>
+        <apexPage>OpenAccount</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>mflow__AtomicVerificationReport</apexPage>
+        <apexPage>OnlineAccount</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>IdentityUpload</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <!--recordTypeVisibilities-->
      
 </Profile>

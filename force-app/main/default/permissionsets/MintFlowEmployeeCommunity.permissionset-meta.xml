@@ -73,7 +73,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OnlineAccountLoginController</apexClass>
+        <apexClass>IdentityUploadController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AtomicFIService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -81,11 +85,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <pageAccesses>
-        <apexPage>OnlineAutoLogin</apexPage>
+        <apexPage>Error</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Error</apexPage>
+        <apexPage>AtomicVerificationReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <customMetadataTypeAccesses>
