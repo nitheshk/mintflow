@@ -165,6 +165,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>ProductName__c</fields>
+        <fields>AccountNumber__c</fields>
+        <fields>ExternalApplicationNumber__c</fields>
+        <fields>ExternalApplicationStatus__c</fields>
         <relatedList>FinancialAccount__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -176,10 +180,15 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Applicant__c</fields>
+        <fields>ConsentDateTime__c</fields>
+        <fields>EventIdentifier__c</fields>
         <relatedList>Consent__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Applicant__c</fields>
+        <fields>Answer__c</fields>
         <relatedList>Survey__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -191,7 +200,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h6D000002GzQh</masterLabel>
+        <masterLabel>00h9D000001KIbR</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

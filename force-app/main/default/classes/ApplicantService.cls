@@ -189,15 +189,14 @@ global virtual with sharing class ApplicantService extends AbstractService {
       if (String.isNotBlank(filter)) {
         filter += ' OR ';
       }
-      filter += 'SSN__c=\'' + applicant.SSN__c + '\' AND ';
-      filter += 'LastName=\'' + applicant.LastName__c + '\'';
+      filter += '(mflow__SSN__c=\'' + applicant.SSN__c + '\' AND ';
+      filter += 'LastName=\'' + applicant.LastName__c + '\')';
     }
 
     // #Attribute
     List<Contact> existingContacts = ApplicantRepository.fetchExistingContacts(
       filter
     );
-
     // #Attribute
     Map<String, Contact> ssnVsContact = new Map<String, Contact>();
     for (Contact con : existingContacts) {
