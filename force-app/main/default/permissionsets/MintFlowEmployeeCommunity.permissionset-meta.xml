@@ -190,44 +190,64 @@
         <field>Applicant__c.CustomerScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
- <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.HighRiskConsumer__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.OverallDebitBureauResult__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.RunWithKIQ__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.SSNValidation__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.CustomerScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
- <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.HighRiskConsumer__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.OverallDebitBureauResult__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.RunWithKIQ__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.SSN__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.IsEmailVerified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.IsPhoneNumberVerified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.LastFourDigitSSN__c</field>
         <readable>true</readable>
     </fieldPermissions>
 <fieldPermissions>

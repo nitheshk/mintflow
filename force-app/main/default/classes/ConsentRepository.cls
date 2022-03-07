@@ -90,7 +90,7 @@ public with sharing class ConsentRepository extends DatabaseUtils {
       .andCon()
       .whereEq('mflow__Application__c', ApexRequest.getApplicationId())
       .andCon()
-      .whereEq('mflow__Applicant__c', ApexRequest.getApplicationId())
+      .whereEq('mflow__Applicant__c', ApexRequest.getApplicantId())
       .orderBy('mflow__Order__c');
     return (List<Consent__c>) getRecords(qry.toString(true));
   }
