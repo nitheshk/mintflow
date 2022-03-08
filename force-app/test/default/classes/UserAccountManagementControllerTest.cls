@@ -1,7 +1,7 @@
 @IsTest
 public with sharing class UserAccountManagementControllerTest {
   private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
+    Account acc = TestData.createAccountRecord();
     acc = (Account) DatabaseUtils.insertRecord(acc);
     return acc;
   }
@@ -12,7 +12,7 @@ public with sharing class UserAccountManagementControllerTest {
     );
     return appConfig;
   }
-  private static Contact makeContactData(account acc) {
+  private static Contact makeContactData(Account acc) {
     Contact con = TestData.createContact(acc);
     con = (Contact) DatabaseUtils.insertRecord(con);
     return con;

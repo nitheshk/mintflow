@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicationService extends AbstractService {
+global virtual with sharing class ApplicationService extends AbstractService {
   @TestVisible
   private static ApplicationService serviceInstance;
   private ApplicationServiceHelper helper = ApplicationServiceHelper.getInstance();
@@ -40,7 +40,6 @@ global with sharing class ApplicationService extends AbstractService {
     log?.fine('Inside startApplication -> params -> ' + JSON.serialize(params));
 
     String recordId = (String) params?.get('recordId');
-
     if (String.isNotBlank(recordId)) {
       // encryption
       // this for start application from existing application
@@ -49,7 +48,7 @@ global with sharing class ApplicationService extends AbstractService {
         .getDescribe()
         .getName();
       switch on sObjectType {
-        when 'Account' {
+        when 'Application__c' {
           System.debug('Inside ' + sObjectType);
         }
         when 'FinancialAccount' {
@@ -57,7 +56,7 @@ global with sharing class ApplicationService extends AbstractService {
         }
       }
     } else {
-      //start new application, redirect to site url
+      //start new application from online community page, redirect to site url
       result.put(
         'url',
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
@@ -72,41 +71,33 @@ global with sharing class ApplicationService extends AbstractService {
    * @description create new house application
    * @author Digital Align Team | 10-05-2021
    * @param Map<String Object> params
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account createApplication(Map<String, Object> params) {
+  global virtual Application__c createApplication(Map<String, Object> params) {
     log?.fine('Inside createApplication');
-    /**** Create init Account Application */
-    Account application = new Account();
-    application.Name = 'MintFlow';
-    application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      Account.SObjectType,
-      ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
-    );
-    application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
+    /**** Create init Application */
+    Application__c application = new Application__c();
+    application.Status__c = ApplicationConstant.IN_PROGRESS;
     if (params.get('ch') != null) {
       application.CreatedChannel__c = (String) params.get('ch');
-      application.FinServ__LastUsedChannel__c = (String) params.get('ch');
+      application.LastUsedChannel__c = (String) params.get('ch');
     } else {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
-      application.FinServ__LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
+      application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
     }
-    // #pending  value need to decide based on the parameter
-    application.FinServ__CustomerType__c = 'Consumer';
-    application.mflow__isMemberFlow__c = true;
-    application.UserAccountType__c = 'CustomerApplication';
+    //#pending  value need to decide based on the parameter
+    application.ApplicationType__c = 'Consumer';
+    //#pending this true when no product is Present
+    application.isMemberFlow__c = true;
     application.FlowState__c = 'GetStarted';
     application.FlowType__c = 'ApplicationFlow';
     // #pending update version from custom setting
-    application.Version__c = 'V1.0.1';
+    application.Version__c = ApplicationConfiguration__c.getInstance()
+      .PackageVersion__c;
     application.IPAddress__c = ApplicationServiceHelper.getInstance()
       .getIpAddress();
     application = ApplicationServiceHelper.getInstance()
       .resolveBranchLocation(application);
-    // #info
-    // Added for customer community user license only
-    // Work for Cusotmer Community plus user without owner assingment
-    // application.OwnerId = UserUtils.getCurrentUser().CreatedById;
     ApplicationRepository.upsertRecord(application);
     /*** */
     /*** Create Empty Primary Applicant   */
@@ -136,13 +127,11 @@ global with sharing class ApplicationService extends AbstractService {
       application.Id
     );
 
-    application.Name = application.ApplicationNumber__c;
-    ApplicationRepository.upsertRecord(application);
     params.put('applicationId', ApexRequest.getApplicationId());
     params.put('applicantId', ApexRequest.getApplicantId());
     params.put('applicantType', ApexRequest.getApplicantType());
     params.put('flowType', ApexRequest.getFlowType());
-    params.put('channel', application.FinServ__LastUsedChannel__c);
+    params.put('channel', application.LastUsedChannel__c);
     params.put('applicationNumber', application.Name);
     return application;
   }
@@ -151,23 +140,23 @@ global with sharing class ApplicationService extends AbstractService {
    * @description Read application by parameter passed
    * @author Digital Align Team | 10-21-2021
    * @param Map<String Object> params
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account readApplicationWithChild(Id applicationId) {
-    Account application = ApplicationRepository.readApplicationWithChild(
+  global virtual Application__c readApplicationWithChild(Id applicationId) {
+    Application__c application = ApplicationRepository.readApplicationWithChild(
       applicationId
     );
 
     List<Applicant__c> applicants = ApplicantService.getInstance()
       .readApplicantsWithChild(application.Applicants__r);
-    List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
+    List<FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
-    return (Account) builder.build();
+    return (Application__c) builder.build();
   }
 
   /**
@@ -175,27 +164,27 @@ global with sharing class ApplicationService extends AbstractService {
    * @author Digital Align Team | 11-19-2021
    * @param Id applicationId
    * @param Id applicantId
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account readApplicationWithChild(
+  global virtual Application__c readApplicationWithChild(
     Id applicationId,
     Id applicantId
   ) {
-    Account application = ApplicationRepository.readApplicationWithChild(
+    Application__c application = ApplicationRepository.readApplicationWithChild(
       applicationId,
       applicantId
     );
 
     Applicant__c applicant = ApplicantService.getInstance()
       .readApplicantWithChild(applicantId);
-    List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
+    List<FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObject('mflow__Applicants__r', applicant);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
-    return (Account) builder.build();
+    return (Application__c) builder.build();
   }
 
   /**
@@ -279,7 +268,7 @@ global with sharing class ApplicationService extends AbstractService {
     params.put('flowType', cipher.flw);
     log?.debug('ApplicationID ' + cipher.appId);
 
-    Account application = ApplicationRepository.readApplicationToClone(
+    Application__c application = ApplicationRepository.readApplicationToClone(
       cipher.appId
     );
     //clone application to create new app
@@ -293,7 +282,12 @@ global with sharing class ApplicationService extends AbstractService {
     if (application == null) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
-    Account clonedAccountWithId = application.clone(false, true, false, false);
+    Application__c clonedAccountWithId = application.clone(
+      false,
+      true,
+      false,
+      false
+    );
     log?.debug('ClonedApplication = ' + Json.serialize(clonedAccountWithId));
 
     // AuthenticationService.getInstance().generateOTP(cipher.aplId);
@@ -304,9 +298,9 @@ global with sharing class ApplicationService extends AbstractService {
    * @description Handle Page Refresh
    * @author Digital Align Team | 11-22-2021
    * @param Map<String Object> params
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account refreshPage(Map<String, Object> params) {
+  global virtual Application__c refreshPage(Map<String, Object> params) {
     log?.fine('Inside refreshPage');
     //get existing token from cookie
     String sessionToken = PageUtils.getCookie('token').getValue();
@@ -319,7 +313,7 @@ global with sharing class ApplicationService extends AbstractService {
       throw new CustomException(System.Label.Session_InvalidSessionToken);
     }
 
-    Account application;
+    Application__c application;
     if (ApexRequest.getApplicantType() == 'Primary') {
       application = ApplicationService.getInstance()
         .readApplicationWithChild(ApexRequest.getApplicationId());
@@ -343,10 +337,10 @@ global with sharing class ApplicationService extends AbstractService {
   /**
    * @description Save Application
    * @author Digital Align Team | 11-20-2021
-   * @param Account application
-   * @return Account
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account saveApplication(Account application) {
+  global virtual Application__c saveApplication(Application__c application) {
     //before save
     //save point count against DML operation
     Savepoint sp = Database.setSavepoint();
@@ -364,17 +358,19 @@ global with sharing class ApplicationService extends AbstractService {
   /**
    * @description preserve Application
    * @author Digital Align Team | 02-07-2022
-   * @param Account application
-   * @return Account
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account preserveApplication(Account application) {
+  global virtual Application__c preserveApplication(
+    Application__c application
+  ) {
     //current applicant
     Applicant__c currentApplicant;
     if (
       ApexRequest.getApplicantType() ==
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
     ) {
-      application.FinServ__Status__c = ApplicationConstant.SAVED;
+      application.Status__c = ApplicationConstant.SAVED;
       for (Applicant__c applicant : application.Applicants__r) {
         if (
           applicant.ApplicantType__c ==
@@ -439,30 +435,34 @@ global with sharing class ApplicationService extends AbstractService {
       if (!ApexRequest.getParams().containsKey('flowState')) {
         return entity;
       }
-      if (entity instanceof Account) {
-        Account application = (Account) entity;
-        if (application.applicants__r != null) {
-          return helper.updateFlowState(application, application.applicants__r);
+      if (entity instanceof Application__c) {
+        Application__c application = (Application__c) entity;
+        if (application.Applicants__r != null) {
+          return helper.updateFlowState(application, application.Applicants__r);
         } else {
           return helper.updateFlowState(application, new List<Applicant__c>());
         }
       } else if (entity instanceof List<Applicant__c>) {
         List<Applicant__c> applicants = (List<Applicant__c>) entity;
-        Account application = new Account(Id = Apexrequest.getApplicationId());
+        Application__c application = new Application__c(
+          Id = Apexrequest.getApplicationId()
+        );
         return helper.updateFlowState(application, applicants);
       } else if (entity instanceof Applicant__c) {
         Applicant__c applicant = (Applicant__c) entity;
-        Account application = new Account(Id = Apexrequest.getApplicationId());
+        Application__c application = new Application__c(
+          Id = Apexrequest.getApplicationId()
+        );
         return helper.updateFlowState(
           application,
           new List<Applicant__c>{ applicant }
         );
-      } else if (entity instanceof List<FinServ__FinancialAccount__c>) {
-        //List<FinServ__FinancialAccount__c> finAccounts = (List<FinServ__FinancialAccount__c>) entity;
-        Account application = ApplicationRepository.readApplicationWithPrimary(
+      } else if (entity instanceof List<FinancialAccount__c>) {
+        //List<FinancialAccount__c> finAccounts = (List<FinancialAccount__c>) entity;
+        Application__c application = ApplicationRepository.readApplicationWithPrimary(
           ApexRequest.getApplicationId()
         );
-        return helper.updateFlowState(application, application.applicants__r);
+        return helper.updateFlowState(application, application.Applicants__r);
       }
     } catch (Exception ex) {
       log?.error(ex);

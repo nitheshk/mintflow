@@ -13,7 +13,9 @@
       "mflow__SessionExpirationTime__c": 180,
       "mflow__CountyNames__c": "Oregon;Idaho;Washington",
       "mflow__SupportTeamEmail__c": "support@digitalalign.com",
-      "mflow__SupportedFileTypes__c": "pdf;jpg"
+      "mflow__SupportedFileTypes__c": "pdf;jpg",
+      "mflow__UiStaticResourceName__c": "MintFlow",
+      "mflow__PackageVersion__c": "v1.0.2"
     }
   ]
 }

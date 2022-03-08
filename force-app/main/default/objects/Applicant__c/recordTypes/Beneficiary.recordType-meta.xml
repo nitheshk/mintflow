@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Beneficiary</fullName>
     <active>true</active>
+    <compactLayoutAssignment>Applicant</compactLayoutAssignment>
     <description>Beneficiary</description>
     <label>Beneficiary</label>
     <picklistValues>

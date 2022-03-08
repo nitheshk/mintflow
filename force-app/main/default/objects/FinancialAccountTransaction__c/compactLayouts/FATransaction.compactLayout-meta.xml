@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FATransaction</fullName>
+    <fields>Name</fields>
+    <fields>FinancialAccount__c</fields>
+    <fields>TransactionDate__c</fields>
+    <fields>Amount__c</fields>
+    <fields>TransactionId__c</fields>
+    <fields>TransactionType__c</fields>
+    <fields>TransactionStatus__c</fields>
+    <fields>PostDate__c</fields>
+    <label>FATransaction</label>
+</CompactLayout>

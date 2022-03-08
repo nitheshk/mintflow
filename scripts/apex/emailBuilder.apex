@@ -67,7 +67,7 @@ if (results[0].success) {
 
 //#4
 ApexRequest request = new ApexRequest();
-Account application = ApplicationRepository.readApplicationForKYC(
+Application__c application = ApplicationRepository.readApplicationForKYC(
   '0016D00000aYc5zQAC'
 );
 CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);

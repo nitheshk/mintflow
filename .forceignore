@@ -38,3 +38,29 @@ force-app/main/default/layouts/systemAdminLayout/PersonAccount-Person Account La
 
 # Oauth Provider, Issue with executionUser name
 force-app/main/default/authproviders/UiPath.authprovider-meta.xml
+fsc-app/main/default/sharingRules
+
+# Package Creation
+
+# force-app  
+# fsc-app/main/default/objects # Required While packaging
+# fsc-app/main/default/customMetadata # Required While packaging
+
+# Not Required When creating package version
+# fsc-app/main/default/audience
+# fsc-app/main/default/contentassets
+# fsc-app/main/default/experiences
+# fsc-app/main/default/navigationMenus
+# fsc-app/main/default/networks
+# fsc-app/main/default/sites
+# fsc-app/main/default/networkBranding
+# fsc-app/main/default/layouts
+# fsc-app/main/default/profiles
+# fsc-app/main/default/pages
+# fsc-app/main/default/staticresources
+# fsc-app/main/default/classes
+# fsc-app/main/default/groups
+# fsc-app/main/default/connectedApps
+
+force-app/main/default/dashboards
+force-app/main/default/reports

@@ -74,7 +74,8 @@ export default class ApplicantSearch extends NavigationMixin(LightningElement) {
         } else {
           this.searchData.map((record) => {
             record.ApplicationNumber = record.mflow__Application__r.Name;
-            record.URL = "/account/" + record.mflow__Application__r.Id;
+            record.URL =
+              "/mflow__Application__c/" + record.mflow__Application__r.Id;
             record.Id = "/detail/" + record.Id;
             return record;
           });

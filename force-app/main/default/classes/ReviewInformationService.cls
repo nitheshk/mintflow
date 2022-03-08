@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity')
-global with sharing class ReviewInformationService extends AbstractService {
+global virtual with sharing class ReviewInformationService extends AbstractService {
   @TestVisible
   private static ReviewInformationService serviceInstance;
 
@@ -32,11 +32,11 @@ global with sharing class ReviewInformationService extends AbstractService {
    * @description Submit the application review by Primary/Joint
    * @author Digital Align Team | 11-12-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account reviewInformationSubmit(Id applicationId) {
+  global virtual Application__c reviewInformationSubmit(Id applicationId) {
     log?.fine('Inside reviewInformationSubmit');
-    Account application = ApplicationRepository.readApplicationWithApplicants(
+    Application__c application = ApplicationRepository.readApplicationWithApplicants(
       applicationId
     );
 
@@ -58,10 +58,12 @@ global with sharing class ReviewInformationService extends AbstractService {
   /**
    * @description Primary Review Submit action
    * @author Digital Align Team | 11-12-2021
-   * @param account application
-   * @return account
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account primaryConsumerFlow(Account application) {
+  global virtual Application__c primaryConsumerFlow(
+    Application__c application
+  ) {
     log?.info('Inside primaryConsumerFlow');
     Applicant__c primaryApplicant;
     List<mflow__Applicant__c> jointApplicants = new List<mflow__Applicant__c>();
@@ -96,7 +98,7 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     if (isFlowCompleted) {
       //Mark Application to submitted for review
-      application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       //1. Push Primary applicant to RPA Queue
       // Need to move future thr is dml operation before this
       HttpBuilder.Response response = RpaProcessService.getInstance()
@@ -147,10 +149,10 @@ global with sharing class ReviewInformationService extends AbstractService {
   /**
    * @description joint Review Submit action , submit for kyv
    * @author Digital Align Team | 11-24-2021
-   * @param account application
+   * @param Application__c application
    * @return virtual
    **/
-  global virtual Account jointConsumerFlow(Account application) {
+  global virtual Application__c jointConsumerFlow(Application__c application) {
     log?.info('Inside jointConsumerFlow');
     Applicant__c primaryApplicant;
     //Applicant__c currentJointApplicant;
@@ -193,7 +195,7 @@ global with sharing class ReviewInformationService extends AbstractService {
 
     if (isFlowCompleted) {
       //Mark Application to submitted for review
-      application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+      application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       // Need to move future thr is dml operation before this
       HttpBuilder.Response response = RpaProcessService.getInstance()
         .scheduleApplication(application);
@@ -230,12 +232,12 @@ global with sharing class ReviewInformationService extends AbstractService {
   /**
    * @description Primary Review Submit action
    * @author Digital Align Team | 02-09-2022
-   * @param account application
-   * @return account
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account resubmitApplicationForReview(Id applicationId) {
+  global virtual Application__c resubmitApplicationForReview(Id applicationId) {
     log?.info('Inside resubmitApplicationForReview');
-    Account application = ApplicationRepository.readApplicationWithApplicants(
+    Application__c application = ApplicationRepository.readApplicationWithApplicants(
       applicationId
     );
     if (application.Applicants__r.isEmpty()) {
@@ -246,7 +248,7 @@ global with sharing class ReviewInformationService extends AbstractService {
     for (Applicant__c applicant : application.Applicants__r) {
       applicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
     }
-    application.FinServ__Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+    application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
 
     //Add application to Loan Queue
     HttpBuilder.Response response = RpaProcessService.getInstance()

@@ -6,7 +6,7 @@
  * @description Employment service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class EmploymentService extends AbstractService {
+global virtual with sharing class EmploymentService extends AbstractService {
   @TestVisible
   private static EmploymentService serviceInstance;
 
@@ -39,8 +39,8 @@ global with sharing class EmploymentService extends AbstractService {
   ) {
     String body = AtomicFIProvider.getInstance()
       .authenticate(applicantId, employerId);
-      Flow.finalize();
-      return body;
+    Flow.finalize();
+    return body;
   }
   /**
    * @description Get  AtomicFI response of employment verification
@@ -74,7 +74,7 @@ global with sharing class EmploymentService extends AbstractService {
     return responseJson;
   }
 
-  global virtual FinServ__Employment__c readEmployerbyId(String employerId) {
+  global virtual Employment__c readEmployerbyId(String employerId) {
     return EmploymentRepository.readEmployerbyId(employerId);
   }
 }

@@ -189,6 +189,21 @@ global without sharing class SObjectWithoutSharing {
   }
 
   /**
+   * @description Sends the list of emails instantiated with either SingleEmailMessage or
+   * MassEmailMessage and returns a list of SendEmailResult objects.
+   * @author Digital Align Team | 03-08-2022
+   * @param List<Messaging.SingleEmailMessage> emailMessages
+   * @param Boolean allOrNothing
+   * @return List<Messaging.SendEmailResult>
+   **/
+  public static List<Messaging.SendEmailResult> sendEmail(
+    List<Messaging.SingleEmailMessage> emailMessages,
+    Boolean allOrNothing
+  ) {
+    return Messaging.sendEmail(emailMessages, allOrNothing);
+  }
+
+  /**
    * @description Dynamic SOQL  query
    * @author Digital Align | 05-03-2021
    * @param String queryString

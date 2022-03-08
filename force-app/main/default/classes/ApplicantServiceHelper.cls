@@ -6,7 +6,7 @@
  * @description Application service helper
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicantServiceHelper extends AbstractService {
+global virtual with sharing class ApplicantServiceHelper extends AbstractService {
   @TestVisible
   private static ApplicantServiceHelper serviceInstance;
 
@@ -48,23 +48,19 @@ global with sharing class ApplicantServiceHelper extends AbstractService {
    * @description Create Individual Account and Contact in salesforce
    * @author Digital Align Team | 12-10-2021
    * @param Applicant__c applicant
-   * @return Contact
+   * @return Account
    **/
-  global virtual Contact createAccount(Applicant__c applicant) {
+  //#removeFSC
+  global virtual Account createAccount(Applicant__c applicant) {
     Account individualAccount = new Account();
     individualAccount.Name = applicant.ApplicantName__c;
-    individualAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      Account.SObjectType,
-      'IndustriesIndividual'
-    );
     // #info
     // Added for customer community user license only
     // Work for Cusotmer Community plus user without owner assingment
     //individualAccount.OwnerId = UserUtils.getCurrentUser().CreatedById;
     individualAccount.UserAccountType__c = 'IndividualCustomer';
     ApplicantRepository.upsertRecord(individualAccount);
-    // Return Individual Contact created by Salesforce , when account is created
-    return ApplicantRepository.fetchContactByAccountId(individualAccount.Id);
+    return individualAccount;
   }
 
   /**
@@ -72,25 +68,24 @@ global with sharing class ApplicantServiceHelper extends AbstractService {
    * @author Digital Align Team | 12-10-2021
    * @param Applicant__c applicant
    * @param Contact memberContact
-   * @param Boolean isExistingContact
    * @return Contact
    **/
   global virtual Contact mapApplicantWithContact(
     Applicant__c applicant,
-    Contact memberContact,
-    Boolean isExistingContact
+    Contact memberContact
   ) {
-    if (!isExistingContact) {
+    //#removeFSC
+    //Not existing Contact then map new names
+    if (String.isBlank(memberContact.Id)) {
       memberContact.FirstName = applicant.FirstName__c;
       memberContact.LastName = applicant.LastName__c;
-      memberContact.FinServ__TaxId__c = applicant.SSN__c;
+      memberContact.SSN__c = applicant.SSN__c;
     }
     memberContact.UserContactType__c = 'IndividualCustomer';
     memberContact.Email = applicant.Email__c;
     memberContact.Phone = applicant.Phone__c;
-    memberContact.FinServ__EmailVerified__c = applicant.IsEmailVerified__c;
-    memberContact.FinServ__HomePhoneVerified__c = applicant.IsPhoneNumberVerified__c;
-    memberContact.FinServ__LastFourDigitSSN__c = applicant.SSN__c.right(4);
+    memberContact.IsEmailVerified__c = applicant.IsEmailVerified__c;
+    memberContact.IsPhoneNumberVerified__c = applicant.IsPhoneNumberVerified__c;
     memberContact.RunWithKIQ__c = applicant.RunWithKIQ__c;
     memberContact.RunWithoutKIQ__c = applicant.RunWithoutKIQ__c;
     memberContact.IdentityVerificationStatus__c = applicant.IdentityVerificationStatus__c;

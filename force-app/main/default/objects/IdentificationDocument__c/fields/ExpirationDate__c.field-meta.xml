@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ExpirationDate__c</fullName>
+    <description>Expiration Date</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Expiration Date</inlineHelpText>
+    <label>Expiration Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

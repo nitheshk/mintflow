@@ -33,7 +33,7 @@
                 {
                   "componentAttributes": {
                     "height": "800",
-                    "pageName": "mflow__OnlineAccount",
+                    "pageName": "OnlineAccount",
                     "recordId": "{!recordId}"
                   },
                   "componentName": "forceCommunity:visualforcePage",

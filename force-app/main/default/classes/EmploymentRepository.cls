@@ -6,9 +6,9 @@
  * @description The repository class to save all Employment related information of an applicant
  **/
 global with sharing class EmploymentRepository extends DatabaseUtils {
-  global static FinServ__Employment__c readEmployerbyId(String employerId) {
-    return (FinServ__Employment__c) DatabaseUtils.getRecord(
-      Query.newInstance(FinServ__Employment__c.SObjectType)
+  global static Employment__c readEmployerbyId(String employerId) {
+    return (Employment__c) DatabaseUtils.getRecord(
+      Query.newInstance(Employment__c.SObjectType)
         .addFields()
         .queryLookup('mflow__Applicant__r')
         .addFields()

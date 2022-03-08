@@ -40,9 +40,6 @@
         <field>TYPE</field>
     </columns>
     <columns>
-        <field>RATING</field>
-    </columns>
-    <columns>
         <field>LAST_UPDATE</field>
     </columns>
     <description>New applications created against the created date</description>

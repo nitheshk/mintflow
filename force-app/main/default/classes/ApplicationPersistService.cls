@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity')
-global with sharing class ApplicationPersistService extends AbstractService {
+global virtual with sharing class ApplicationPersistService extends AbstractService {
   @TestVisible
   private static ApplicationPersistService serviceInstance;
 
@@ -31,18 +31,12 @@ global with sharing class ApplicationPersistService extends AbstractService {
   /**
    * @description
    * @author Digital Align Team | 10-25-2021
-   * @param Account application
-   * @return virtual
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account saveApplication(Account application) {
+  global virtual Application__c saveApplication(Application__c application) {
     //Process Application Mapping
     {
-      if (String.isBlank(application.Id)) {
-        application.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-          Account.SObjectType,
-          ApplicationConstant.ACCOUNT_APPLICATION_RECORDTYPE
-        );
-      }
       ApplicationRepository.upsertRecord(application);
       ApexRequest.setApplicationId(application.Id);
     }
@@ -59,7 +53,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
 
     //save financial accounts
     if (!CollectionUtils.isListEmpty(application.mflow__FinancialAccounts__r)) {
-      List<FinServ__FinancialAccount__c> financialAccounts = saveFinancialAccounts(
+      List<FinancialAccount__c> financialAccounts = saveFinancialAccounts(
         application.mflow__FinancialAccounts__r,
         application.Id
       );
@@ -96,7 +90,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
       );
     }
 
-    application = (Account) constructor.build();
+    application = (Application__c) constructor.build();
 
     return application;
   }
@@ -267,37 +261,21 @@ global with sharing class ApplicationPersistService extends AbstractService {
       this.saveConsents(applicant.ApplicantConsents__r, applicant.Id);
     }
 
-    // upsert Asset And Liabilities
-    // Not in this phase
-    /*
-    if (!CollectionUtils.isListEmpty(applicant?.AssetsAndLiabilities__r)) {
-      saveAssetsAndLiabilities(
-        applicant?.AssetsAndLiabilities__r,
-        applicant.Id
-      );
-    }*/
-
-    // upsert revenues
-    // Not in this phase
-    /*
-    if (!CollectionUtils.isListEmpty(applicant?.Revenues__r)) {
-      saveRevenues(applicant?.Revenues__r, applicant.Id);
-    }*/
     return applicant;
   }
 
   /**
    * @description Save Identification Documents
    * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__IdentificationDocument__c> identityDocuments
+   * @param List<IdentificationDocument__c> identityDocuments
    * @param Id applicantId
-   * @return List<FinServ__IdentificationDocument__c>
+   * @return List<IdentificationDocument__c>
    **/
-  global virtual List<FinServ__IdentificationDocument__c> saveIdentificationDocuments(
-    List<FinServ__IdentificationDocument__c> identityDocuments,
+  global virtual List<IdentificationDocument__c> saveIdentificationDocuments(
+    List<IdentificationDocument__c> identityDocuments,
     Id applicantId
   ) {
-    for (FinServ__IdentificationDocument__c identityDoc : identityDocuments) {
+    for (IdentificationDocument__c identityDoc : identityDocuments) {
       if (String.isNotBlank(applicantId)) {
         identityDoc.Applicant__c = applicantId;
       }
@@ -330,15 +308,15 @@ global with sharing class ApplicationPersistService extends AbstractService {
   /**
    * @description Save employment detail of applicant
    * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__Employment__c> employments
+   * @param List<Employment__c> employments
    * @param Id applicantId
-   * @return List<FinServ__Employment__c>
+   * @return List<Employment__c>
    **/
-  global virtual List<FinServ__Employment__c> saveEmployments(
-    List<FinServ__Employment__c> employments,
+  global virtual List<Employment__c> saveEmployments(
+    List<Employment__c> employments,
     Id applicantId
   ) {
-    for (FinServ__Employment__c employment : employments) {
+    for (Employment__c employment : employments) {
       if (String.isNotBlank(applicantId)) {
         employment.Applicant__c = applicantId;
       }
@@ -350,9 +328,9 @@ global with sharing class ApplicationPersistService extends AbstractService {
   /**
    * @description Save Survey detail of applicant
    * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__Employment__c> employments
+   * @param List<Employment__c> employments
    * @param Id applicantId
-   * @return List<FinServ__Employment__c>
+   * @return List<Employment__c>
    **/
   global virtual List<Survey__c> saveSurveys(
     List<Survey__c> surveys,
@@ -390,54 +368,6 @@ global with sharing class ApplicationPersistService extends AbstractService {
   }
 
   /**
-   * @description  Save Assets And Liabilities
-   * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities
-   * @param Id applicantId
-   * @return List<FinServ__AssetsAndLiabilities__c>
-   **/
-  /*
-  global virtual List<FinServ__AssetsAndLiabilities__c> saveAssetsAndLiabilities(
-    List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilities,
-    Id applicantId
-  ) {
-    for (
-      FinServ__AssetsAndLiabilities__c assetAndLiability : assetsAndLiabilities
-    ) {
-      if (String.isNotBlank(applicantId)) {
-        assetAndLiability.Applicant__c = applicantId;
-      }
-    }
-    ApplicantRepository.upsertRecords(assetsAndLiabilities);
-    return assetsAndLiabilities;
-  } */
-
-  /**
-   * @description Save Revenues
-   * @author Digital Align Team | 11-09-2021
-   * @param List<FinServ__Revenue__c> revenues
-   * @param Id applicantId
-   * @return List<FinServ__Revenue__c>
-   **/
-  /*
-  global virtual List<FinServ__Revenue__c> saveRevenues(
-    List<FinServ__Revenue__c> revenues,
-    Id applicantId
-  ) {
-    for (FinServ__Revenue__c revenue : revenues) {
-      if (String.isNotBlank(applicantId)) {
-        revenue.Applicant__c = applicantId;
-      }
-      if (String.isBlank(revenue.FinServ__Account__c)) {
-        revenue.FinServ__Account__c = ApexRequest.getApplicationId();
-      }
-    }
-    ApplicantRepository.upsertRecords(revenues);
-    return revenues;
-  }
-  */
-
-  /**
    * @description  delete object by Id
    * @author Digital Align Team | 11-10-2021
    * @param Id recordId
@@ -446,9 +376,9 @@ global with sharing class ApplicationPersistService extends AbstractService {
   global virtual Boolean deleteEntity(Id recordId) {
     log?.fine('Inside Delete Record');
     switch on SObjectUtils.getObjectName(recordId) {
-      when 'Account' {
+      when 'mflow__Application__c' {
         List<SObject> recordsToDelete = new List<SObject>();
-        Account application = ApplicationRepository.readApplicationWithChild(
+        Application__c application = ApplicationRepository.readApplicationWithChild(
           recordId
         );
         if (!application.Applicants__r.isEmpty()) {
@@ -462,26 +392,20 @@ global with sharing class ApplicationPersistService extends AbstractService {
         recordsToDelete.add(application);
         ApplicationRepository.deleteRecords(recordsToDelete);
       }
-      when 'FinServ__FinancialAccount__c' {
+      when 'mflow__FinancialAccount__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'mflow__Applicant__c' {
         this.deleteApplicants(new Set<Id>{ recordId });
       }
-      when 'FinServ__IdentificationDocument__c' {
+      when 'IdentificationDocument__c' {
         FileService.getInstance().deleteContentVersionByEntityId(recordId);
         ApplicationRepository.deleteRecord(recordId, true);
       }
-      when 'FinServ__Employment__c' {
+      when 'mflow__Employment__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'ContactPointAddress' {
-        ApplicationRepository.deleteRecord(recordId, true);
-      }
-      when 'FinServ__AssetsAndLiabilities__c' {
-        ApplicationRepository.deleteRecord(recordId, true);
-      }
-      when 'FinServ__Revenue__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
     }
@@ -511,12 +435,6 @@ global with sharing class ApplicationPersistService extends AbstractService {
       if (!applicant.Employments__r.isEmpty()) {
         recordsToDelete.addAll(applicant.Employments__r);
       }
-      if (!applicant.AssetsAndLiabilities__r.isEmpty()) {
-        recordsToDelete.addAll(applicant.AssetsAndLiabilities__r);
-      }
-      if (!applicant.Revenues__r.isEmpty()) {
-        recordsToDelete.addAll(applicant.Revenues__r);
-      }
       recordsToDelete.add(applicant);
     }
     ApplicationRepository.deleteRecords(recordsToDelete);
@@ -526,12 +444,12 @@ global with sharing class ApplicationPersistService extends AbstractService {
   /**
    * @description  Save Financial Accounts
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
+   * @param List<FinancialAccount__c> financialAccounts
    * @param String applicationId
-   * @return List<FinServ__FinancialAccount__c>
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> saveFinancialAccounts(
-    List<FinServ__FinancialAccount__c> financialAccounts,
+  global virtual List<FinancialAccount__c> saveFinancialAccounts(
+    List<FinancialAccount__c> financialAccounts,
     String applicationId
   ) {
     log?.fine('Inside save financialAccounts');
@@ -540,7 +458,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     }
 
     //update value for financialAccount here
-    for (FinServ__FinancialAccount__c financialAccount : financialAccounts) {
+    for (FinancialAccount__c financialAccount : financialAccounts) {
       financialAccount = this.saveFinancialAccount(
         financialAccount,
         applicationId
@@ -549,7 +467,7 @@ global with sharing class ApplicationPersistService extends AbstractService {
     FinancialAccountRepository.upsertRecords(financialAccounts);
 
     //save child of FinancialAccounts
-    for (FinServ__FinancialAccount__c financialAccount : financialAccounts) {
+    for (FinancialAccount__c financialAccount : financialAccounts) {
       financialAccount = this.saveFinancialAccountChild(financialAccount);
     }
     log?.fine('Finish save FinancialAccounts');
@@ -559,17 +477,16 @@ global with sharing class ApplicationPersistService extends AbstractService {
   /**
    * @description  save financial account
    * @author Digital Align Team | 01-10-2022
-   * @param FinServ__FinancialAccount__c financialAccount
+   * @param FinancialAccount__c financialAccount
    * @param String applicationId
-   * @return FinServ__FinancialAccount__c
+   * @return FinancialAccount__c
    **/
-  global virtual FinServ__FinancialAccount__c saveFinancialAccount(
-    FinServ__FinancialAccount__c financialAccount,
+  global virtual FinancialAccount__c saveFinancialAccount(
+    FinancialAccount__c financialAccount,
     String applicationId
   ) {
     if (String.isNotBlank(applicationId)) {
       //Set Application ID
-      financialAccount.FinServ__Household__c = applicationId;
       financialAccount.Application__c = applicationId;
     }
     // #pending financialAccount record type mapping pending
@@ -579,19 +496,19 @@ global with sharing class ApplicationPersistService extends AbstractService {
   /**
    * @description Save Financial Account Child
    * @author Digital Align Team | 01-10-2022
-   * @param FinServ__FinancialAccount__c financialAccount
-   * @return FinServ__FinancialAccount__c
+   * @param FinancialAccount__c financialAccount
+   * @return FinancialAccount__c
    **/
-  global virtual FinServ__FinancialAccount__c saveFinancialAccountChild(
-    FinServ__FinancialAccount__c financialAccount
+  global virtual FinancialAccount__c saveFinancialAccountChild(
+    FinancialAccount__c financialAccount
   ) {
     if (
       !collectionUtils.isListEmpty(
-        financialAccount?.FinServ__FinancialAccountTranslations__r
+        financialAccount?.FinancialAccountTransactions__r
       )
     ) {
       this.saveFinancialAccountTransactions(
-        financialAccount.FinServ__FinancialAccountTranslations__r,
+        financialAccount.FinancialAccountTransactions__r,
         financialAccount.Id
       );
     }
@@ -613,27 +530,23 @@ global with sharing class ApplicationPersistService extends AbstractService {
   /**
    * @description save financial transaction history
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccountTransaction__c> financialAccountTransactions
-   * @param Id applicationId
-   * @return  List<FinServ__FinancialAccountTransaction__c>
+   * @param List<FinancialAccountTransaction__c> financialAccountTransactions
+   * @param Id financialAccountId
+   * @return  List<FinancialAccountTransaction__c>
    **/
-  global virtual List<FinServ__FinancialAccountTransaction__c> saveFinancialAccountTransactions(
-    List<FinServ__FinancialAccountTransaction__c> financialAccountTransactions,
-    Id applicationId
+  global virtual List<FinancialAccountTransaction__c> saveFinancialAccountTransactions(
+    List<FinancialAccountTransaction__c> financialAccountTransactions,
+    Id financialAccountId
   ) {
     for (
-      FinServ__FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions
+      FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions
     ) {
-      if (String.isNotBlank(applicationId)) {
-        financialAccountTransaction.FinServ__FinancialAccount__c = applicationId;
+      if (String.isNotBlank(financialAccountId)) {
+        financialAccountTransaction.mflow__FinancialAccount__c = financialAccountId;
       }
 
-      if (
-        String.isBlank(
-          financialAccountTransaction.FinServ__TransactionStatus__c
-        )
-      ) {
-        financialAccountTransaction.FinServ__TransactionStatus__c = 'Pending';
+      if (String.isBlank(financialAccountTransaction.TransactionStatus__c)) {
+        financialAccountTransaction.TransactionStatus__c = 'Pending';
       }
     }
     ApplicantRepository.upsertRecords(financialAccountTransactions);

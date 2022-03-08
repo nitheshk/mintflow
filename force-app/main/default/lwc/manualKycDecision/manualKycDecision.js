@@ -28,7 +28,7 @@ export default class ManualKycDecision extends LightningElement {
    */
   @wire(getPickListValues, {
     params: {
-      Account: ["FinServ__KYCStatus__c"],
+      mflow__Application__c: ["mflow__KYCStatus__c"],
       mflow__Applicant__c: ["mflow__KYCStatus__c"]
     }
   })
@@ -37,7 +37,7 @@ export default class ManualKycDecision extends LightningElement {
       if (data.status === 200) {
         this.applicationStatus = JSON.parse(
           data.data
-        )?.Account.FinServ__KYCStatus__c.filter(
+        )?.mflow__Application__c.mflow__KYCStatus__c.filter(
           (item) => item.value === "Passed" || item.value === "Failed"
         );
 
@@ -46,7 +46,7 @@ export default class ManualKycDecision extends LightningElement {
         ).mflow__Applicant__c.mflow__KYCStatus__c.filter(
           (item) => item.value === "Passed" || item.value === "Failed"
         );
-        if (this.objectApiName === "Account") {
+        if (this.objectApiName === "mflow__Application__c") {
           this.showApplicationTab = true;
         } else if (this.objectApiName === "mflow__Applicant__c") {
           this.showApplicantTab = true;
@@ -66,7 +66,7 @@ export default class ManualKycDecision extends LightningElement {
    */
   handleChange(event) {
     let targetElement = event.target;
-    if (this.objectApiName === "Account") {
+    if (this.objectApiName === "mflow__Application__c") {
       this.collectedInfo[targetElement.dataset.fieldname] = targetElement.value;
       console.log(JSON.stringify(this.collectedInfo));
     } else if (this.objectApiName === "mflow__Applicant__c") {

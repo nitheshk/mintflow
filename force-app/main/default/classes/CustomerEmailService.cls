@@ -297,7 +297,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void accountOpened(
     Applicant__c applicant,
-    FinServ__FinancialAccount__c finAcc
+    FinancialAccount__c finAcc
   ) {
     EmailNotificationBuilder.newInstance('AccountOpened', applicant.Id)
       .setToAddresses(applicant.Email__c)
@@ -306,7 +306,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
           '{FirstName}' => applicant.FirstName__c,
           '{LastName}' => applicant.LastName__c,
           '{productName}' => 'Member Account',
-          '{accountNumber}' => finAcc.FinServ__FinancialAccountNumber__c,
+          '{accountNumber}' => finAcc.AccountNumber__c,
           '{customerNumber}' => applicant.CustomerNumber__c
         }
       );
@@ -318,7 +318,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Applicant__c applicant
    * @return virtual
    **/
-  global virtual void fundingLinkOnKycApproval(Account application) {
+  global virtual void fundingLinkOnKycApproval(Application__c application) {
     for (Applicant__c applicant : application.Applicants__r) {
       if (
         applicant.RecordType.Name ==
@@ -393,7 +393,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         'urlSuffix' => '/membership/upload/document-upload',
         'aplId' => applicant.Id,
         'ch' => 'Virtual',
-        'pageName' => '/mflow__IdentityUpload',
+        'pageName' => '/IdentityUpload',
         'suffixType' => 'path'
       }
     );
@@ -498,7 +498,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     cipher.ch = params.get('ch');
     String pageName = params.containsKey('pageName')
       ? params.get('pageName')
-      : '/mflow__OpenAccount';
+      : '/OpenAccount';
     String link =
       SiteSetting__c.getInstance().OnlineSiteUrl__c +
       pageName +

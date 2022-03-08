@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ConsentResolver extends AbstractService {
+global virtual with sharing class ConsentResolver extends AbstractService {
   @TestVisible
   private static ConsentResolver serviceInstance;
   private Map<String, Document> documentMap;
@@ -53,7 +53,7 @@ global with sharing class ConsentResolver extends AbstractService {
       return consents;
     }
 
-    Account application = ConsentRepository.readApplicationWithFA(
+    Application__c application = ConsentRepository.readApplicationWithFA(
       ApexRequest.getApplicationId()
     );
 
@@ -75,12 +75,12 @@ global with sharing class ConsentResolver extends AbstractService {
   /**
    * @description resolve consent using custom filter
    * @author Digital Align Team | 12-27-2021
-   * @param Account application
+   * @param Application__c application
    * @param List<Object> filters
    * @return List<Consent__c>
    **/
   global virtual List<Consent__c> resolveConsents(
-    Account application,
+    Application__c application,
     List<Object> filters
   ) {
     if (!CollectionUtils.isListEmpty(filters)) {
@@ -123,11 +123,11 @@ global with sharing class ConsentResolver extends AbstractService {
   /**
    * @description Resolve consent using Financial Account selection
    * @author Digital Align Team | 12-27-2021
-   * @param Account application
+   * @param Application__c application
    * @param List<Object> filters
    * @return List<Consent__c>
    **/
-  global virtual List<Consent__c> resolveConsents(Account application) {
+  global virtual List<Consent__c> resolveConsents(Application__c application) {
     List<Consent__c> consents = new List<Consent__c>();
 
     if (CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
@@ -139,7 +139,7 @@ global with sharing class ConsentResolver extends AbstractService {
     );
 
     for (
-      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+      FinancialAccount__c financialAccount : application.FinancialAccounts__r
     ) {
       Map<String, Object> filterMap = new Map<String, Object>();
       filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());

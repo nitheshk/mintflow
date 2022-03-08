@@ -68,7 +68,7 @@ global virtual with sharing class SearchService extends AbstractService {
    * @param Map<String Object> params
    * @return virtual
    **/
-  global virtual List<Account> retrieveApplications(
+  global virtual List<Application__c> retrieveApplications(
     Map<String, Object> params
   ) {
     String searchString = (String) params.get('searchString');

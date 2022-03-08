@@ -247,7 +247,7 @@ global with sharing class ApplicantController extends AbstractController {
       validateRequest(request);
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       ID employerId = (Id) ApexRequest.getParams('employerId');
-      FinServ__Employment__c employmentObj = EmploymentService.getInstance()
+      Employment__c employmentObj = EmploymentService.getInstance()
         .readEmployerbyId(employerId);
       if (
         employmentObj != null &&

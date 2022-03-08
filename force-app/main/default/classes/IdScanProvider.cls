@@ -5,7 +5,7 @@
  * @reference
  * @description IdScanProvider to perform customer due diligence
  **/
-global with sharing class IdScanProvider extends AbstractService {
+global virtual with sharing class IdScanProvider extends AbstractService {
   @TestVisible
   private static IdScanProvider serviceInstance;
 

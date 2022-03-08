@@ -1,5 +1,5 @@
 updateAdminPermissionSet();
-//updateGuestPermissionSet();
+updateGuestPermissionSet();
 updateRoleToCurrentUser();
 
 public static void updateGuestPermissionSet() {
@@ -12,9 +12,7 @@ public static void updateGuestPermissionSet() {
   List<User> siteUser = [
     SELECT id, Name
     FROM User
-    WHERE
-      Profile.Name = 'Online Profile'
-      OR Profile.Name = 'FinancialInstitute Profile'
+    WHERE Profile.Name = 'Online Profile'
   ];
 
   delete [
@@ -39,11 +37,7 @@ public static void updateAdminPermissionSet() {
   List<PermissionSet> permissionSetList = [
     SELECT Id
     FROM PermissionSet
-    WHERE
-      Name = 'MintFlowSystemAdmin'
-      OR Name = 'FinancialServicesCloudExtension'
-      OR Name = 'FinancialServicesCloudBasic'
-      OR Name = 'FinancialServicesCloudStandard'
+    WHERE Name = 'MintFlowSystemAdmin'
   ];
 
   List<User> siteUser = [

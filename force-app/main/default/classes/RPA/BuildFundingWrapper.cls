@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class BuildFundingWrapper extends AbstractService {
+global virtual with sharing class BuildFundingWrapper extends AbstractService {
   @TestVisible
   private static BuildFundingWrapper serviceInstance;
 
@@ -47,14 +47,14 @@ global with sharing class BuildFundingWrapper extends AbstractService {
         System.Label.Application_ApplicationNameCannotBeBlank
       );
     }
-    Account application = SubmissionRepository.readApplicationByApplicationNumber(
+    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(
       applicationNumber
     );
 
     if (application == null) {
       throw new customException(System.Label.Application_ApplicationNotFound);
     }
-    List<FinServ__FinancialAccount__c> financialApplications = SubmissionRepository.readFinancialAccountWithChildByApplicationId(
+    List<FinancialAccount__c> financialApplications = SubmissionRepository.readFinancialAccountWithChildByApplicationId(
       application.Id
     );
     if (CollectionUtils.isListEmpty(financialApplications)) {
@@ -62,7 +62,7 @@ global with sharing class BuildFundingWrapper extends AbstractService {
         'Financial Account not found/ Requested application is under reivew'
       );
     }
-    for (Applicant__c applicant : application.applicants__r) {
+    for (Applicant__c applicant : application.Applicants__r) {
       Set<String> applicantTypes = new Set<String>(
         applicant.ApplicantType__c.split(';')
       );
@@ -74,7 +74,7 @@ global with sharing class BuildFundingWrapper extends AbstractService {
     mapper.Application = application.Id;
     mapper.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
     mapper.Stage = application.mflow__Stage__c;
-    mapper.Status = application.FinServ__Status__c;
+    mapper.Status = application.Status__c;
     mapper.Password = primaryApplicant.Password__c;
     mapper.FinancialAccount.addAll(
       mapFinancialApplication(financialApplications)
@@ -87,30 +87,28 @@ global with sharing class BuildFundingWrapper extends AbstractService {
   /**
    * @description
    * @author Digital Align | 01-20-2022
-   * @param List<FinServ__FinancialAccount__c> financialApplicationsList
+   * @param List<FinancialAccount__c> financialApplicationsList
    * @return virtual
    **/
   global virtual list<FundingSubmissionResponse.FinancialAccount> mapFinancialApplication(
-    List<FinServ__FinancialAccount__c> financialApplicationsList
+    List<FinancialAccount__c> financialApplicationsList
   ) {
     list<FundingSubmissionResponse.FinancialAccount> mapperFinancialAccountList = new List<FundingSubmissionResponse.FinancialAccount>();
-    for (
-      FinServ__FinancialAccount__c finApplication : financialApplicationsList
-    ) {
+    for (FinancialAccount__c finApplication : financialApplicationsList) {
       FundingSubmissionResponse.FinancialAccount mapperFinancialAccount = new FundingSubmissionResponse.FinancialAccount();
       mapperFinancialAccount.FinancialAccountId = finApplication.Id;
-      mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
+      //#removeFSC
+      //mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
       mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
       mapperFinancialAccount.Name = finApplication.Name;
-      mapperFinancialAccount.Ownership = finApplication.FinServ__Ownership__c;
-      mapperFinancialAccount.PrimaryOwner = finApplication.FinServ__PrimaryOwner__c;
+      mapperFinancialAccount.Ownership = finApplication.Ownership__c;
       if (
         !CollectionUtils.isListEmpty(
-          finApplication.FinServ__FinancialAccountTranslations__r
+          finApplication.FinancialAccountTransactions__r
         )
       ) {
         mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
-          finApplication.FinServ__FinancialAccountTranslations__r[0]
+          finApplication.FinancialAccountTransactions__r[0]
         );
       } else {
         throw new CustomException('No financial transaction account found');
@@ -122,26 +120,26 @@ global with sharing class BuildFundingWrapper extends AbstractService {
   /**
    * @description
    * @author Digital Align | 01-10-2022
-   * @param FinServ__FinancialAccountTransaction__c accountTransaction
+   * @param FinancialAccountTransaction__c accountTransaction
    * @return FundingSubmissionResponse.FinancialAccountTransaction
    **/
   global virtual FundingSubmissionResponse.FinancialAccountTransaction mapFinancialAccountTranslation(
-    FinServ__FinancialAccountTransaction__c accountTransaction
+    FinancialAccountTransaction__c accountTransaction
   ) {
     FundingSubmissionResponse.FinancialAccountTransaction mapperTransaction = new FundingSubmissionResponse.FinancialAccountTransaction();
     mapperTransaction.FinancialAccountTransactionId = accountTransaction.Id;
     mapperTransaction.AccountHolderName = accountTransaction.mflow__AccountHolderName__c;
     mapperTransaction.AccountNumber = accountTransaction.mflow__AccountNumber__c;
-    mapperTransaction.Amount = accountTransaction.FinServ__Amount__c;
+    mapperTransaction.Amount = accountTransaction.mflow__Amount__c;
     mapperTransaction.FinancialInstitute = accountTransaction.mflow__FinancialInstitute__c;
     mapperTransaction.RoutingNumber = accountTransaction.mflow__RoutingNumber__c;
-    mapperTransaction.TransactionStatus = accountTransaction.FinServ__TransactionStatus__c;
+    mapperTransaction.TransactionStatus = accountTransaction.TransactionStatus__c;
     mapperTransaction.InstitutionState = accountTransaction.mflow__TransactionStateCode__c;
-    mapperTransaction.TransactionType = accountTransaction.FinServ__TransactionSubtype__c;
+    mapperTransaction.TransactionType = accountTransaction.TransactionSubType__c;
     mapperTransaction.TransactionDate = date.newinstance(
-      accountTransaction.FinServ__TransactionDate__c.year(),
-      accountTransaction.FinServ__TransactionDate__c.month(),
-      accountTransaction.FinServ__TransactionDate__c.day()
+      accountTransaction.TransactionDate__c.year(),
+      accountTransaction.TransactionDate__c.month(),
+      accountTransaction.TransactionDate__c.day()
     );
     return mapperTransaction;
   }

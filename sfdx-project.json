@@ -6,18 +6,7 @@
       "versionName": "Version 1.0",
       "versionNumber": "1.0.0.NEXT",
       "versionDescription": "Connected Devhuv : nithesh.k@digitalalign.devhub1.com , Managed package with namespace",
-      "default": true,
-      "unpackagedMetadata": {
-        "path": "fsc-app"
-      },
-      "dependencies": [
-        {
-          "subscriberPackageVersionId": "04t1E000001Ir0Q"
-        },
-        {
-          "subscriberPackageVersionId": "04t1E000001Iql5"
-        }
-      ]
+      "default": true
     },
     {
       "path": "fsc-app",
@@ -33,10 +22,8 @@
   "sourceApiVersion": "51.0",
   "packageAliases": {
     "mflowdemo3": "0Ho5g000000TNiFCAW",
-    "mflowdemo3@1.0.0-21": "04t5g000000ENZEAA4",
-    "mflowdemo3@1.0.0-22": "04t5g000000ENZOAA4",
-    "mflowdemo3@1.0.0-24": "04t5g000000ENaCAAW",
-    "mflowdemo3@1.0.0-25": "04t5g000000ENavAAG",
-    "mflowdemo3@1.0.0-26": "04t5g000000ENb6AAG"
+    "mflowdemo3@1.0.0-28": "04t5g000000ENfRAAW",
+    "mflowdemo3@1.0.0-29": "04t5g000000ENfqAAG",
+    "mflowdemo3@1.0.0-30": "04t5g000000ENgFAAW"
   }
 }

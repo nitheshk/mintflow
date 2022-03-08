@@ -300,7 +300,7 @@ global with sharing class LwcCustomController extends AbstractController {
   global static ApexResponse authorizeCustomer(map<string, object> params) {
     try {
       log?.fine('Inside authorizeCustomer params =' + params);
-      List<Account> applications = CustomerPortalService.getInstance()
+      List<Application__c> applications = CustomerPortalService.getInstance()
         .authorize(params);
       if (!applications.isEmpty()) {
         return ApexResponse.ok(applications);

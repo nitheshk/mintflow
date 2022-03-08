@@ -1,101 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Application Custom Flexipage</comment>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>FinancialAccount</comment>
-        <content>FinancialAccount</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>FinServ__FinancialAccount__c</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <content>MintFlowHome</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment
-    >Action override created by Lightning App Builder during activation.</comment>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-    </actionOverrides>
-    <defaultLandingTab>standard-Account</defaultLandingTab>
+    <defaultLandingTab>Application__c</defaultLandingTab>
     <description
-  >Build client trust with collaboration and productivity tools for advisory teams</description>
+  >Build client trust with collaboration and productivity tools for teams</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>MintFlow</label>
     <navType>Console</navType>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.FinServ__IndustriesHousehold</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Application</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>MemberRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.FinServ__IndustriesIndividual</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>BankingBusinessContactPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.FinServ__IndustriesBusiness</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
         <content>ApplicantRecordPage</content>
@@ -141,37 +53,70 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicationRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Application__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>FinancialAccountRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>FinancialAccountRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
+        <recordType>FinancialAccount__c.Checking</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>FinancialAccountRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
+        <recordType>FinancialAccount__c.Savings</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>standard-home</tabs>
-    <tabs>standard-Account</tabs>
+    <tabs>Application__c</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>Diagnostic__c</tabs>
     <tabs>ApplicationConfiguration</tabs>
     <tabs>Flow__c</tabs>
-    <tabs>FinServ__FinancialAccount__c</tabs>
+    <tabs>FinancialAccount__c</tabs>
     <tabs>ConsentLineItem__c</tabs>
     <tabs>ConsentTemplate__c</tabs>
     <tabs>SurveyTemplate__c</tabs>
-    <tabs>FinServ__AssetsAndLiabilities__c</tabs>
-    <tabs>FinServ__FinancialGoal__c</tabs>
     <tabs>FinancialInstituteAccount</tabs>
     <tabs>ProductService__c</tabs>
     <tabs>FinancialAccountService__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>FinServ__BankingConsoleUtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
-            <tab>Diagnostic__c</tab>
+            <tab>ApplicationConfiguration</tab>
         </mappings>
         <mappings>
-            <tab>FinServ__AssetsAndLiabilities__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinServ__FinancialAccount__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinServ__FinancialGoal__c</tab>
+            <tab>Application__c</tab>
         </mappings>
         <mappings>
             <tab>ConsentLineItem__c</tab>
@@ -180,7 +125,13 @@
             <tab>ConsentTemplate__c</tab>
         </mappings>
         <mappings>
-            <tab>SurveyTemplate__c</tab>
+            <tab>Diagnostic__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinancialAccountService__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinancialAccount__c</tab>
         </mappings>
         <mappings>
             <tab>FinancialInstituteAccount</tab>
@@ -189,16 +140,10 @@
             <tab>Flow__c</tab>
         </mappings>
         <mappings>
-            <tab>ApplicationConfiguration</tab>
-        </mappings>
-        <mappings>
             <tab>ProductService__c</tab>
         </mappings>
         <mappings>
-            <tab>FinancialAccountService__c</tab>
-        </mappings>
-        <mappings>
-            <tab>standard-Account</tab>
+            <tab>SurveyTemplate__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Contact</tab>

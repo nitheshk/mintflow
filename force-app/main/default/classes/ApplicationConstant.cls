@@ -6,7 +6,6 @@
  * @description
  **/
 public with sharing class ApplicationConstant {
-  public static final String ACCOUNT_APPLICATION_RECORDTYPE = 'Application';
   public static final String CHANNEL_VIRTUAL = 'Virtual';
   public static final String CHANNEL_BRANCH = 'Branch';
 
@@ -27,6 +26,7 @@ public with sharing class ApplicationConstant {
   public static final String SUBMITTED = 'Submitted';
   public static final String SUBMITTED_FOR_REVIEW = 'Submit for Review';
   public static final String REVISION_IN_PROGRESS = 'Revision in Progress';
+  public static final String FUNDING_IN_PROGRESS = 'Funding in Progress';
   public static final String REJECTED = 'Rejected';
   public static final String DRAFT = 'DRAFT';
   public static final String SAVED = 'Saved';

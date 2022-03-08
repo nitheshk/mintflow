@@ -72,29 +72,15 @@ global with sharing class ApplicationSubmissionResponse {
     global String SSN;
     global List<IdentificationDocument> IdentificationDocuments;
     global List<ContactPointAddress> ContactPointAddresses;
-    // global List<Revenue> Revenues;
     global List<Employment> Employments;
     global List<Survey> Surveys;
-    // global List<AssetsAndLiabilities> AssetsAndLiabilities;
     global Applicant() {
       Employments = new List<Employment>();
-      // Revenues = new List<Revenue>();
       ContactPointAddresses = new List<ContactPointAddress>();
       IdentificationDocuments = new List<IdentificationDocument>();
       Surveys = new List<Survey>();
-      // AssetsAndLiabilities = new List<AssetsAndLiabilities>();
     }
   }
-
-  // global class AssetsAndLiabilities {
-  //   global String AssetsAndLiabilitieId;
-  //   global Double Amount;
-  //   global String AssetsAndLiabilitiesType;
-  //   global Decimal Order;
-  //   global String OwnerType;
-  //   global String Ownership;
-  //   global String Name;
-  // }
 
   global class Survey {
     global String SurveyId;
@@ -110,16 +96,6 @@ global with sharing class ApplicationSubmissionResponse {
     // global string EventIdentifier;
     // global string TemplateName;
   }
-
-  // global class Revenue {
-  //   global String RevenueId;
-  //   global String SubType;
-  //   global String Type;
-  //   global String Name;
-  //   global Double Amount;
-  //   global Date RevenueDate;
-  //   global Decimal Order;
-  // }
 
   global class ContactPointAddress {
     global String ContactPointAddressId;

@@ -30,12 +30,11 @@
   >mflow__MintFlow/mflow__CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
   <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
   <logoutUrl
-  >https://sandbox-energy-customer-8501-dev-ed-17eb91d19ce.cs73.force.com/Online</logoutUrl>
+  >https://sandbox-ruby-computing-8534-dev-ed-17f6506541e.cs73.force.com/Online</logoutUrl>
   <networkMemberGroups>
     <permissionSet>mflow__MintFlowGuest</permissionSet>
     <profile>admin</profile>
     <profile>MFlowCustomerCommunityPlusLogin</profile>
-    <profile>MFlowCustomerCommunityLogin</profile>
   </networkMemberGroups>
   <networkPageOverrides>
     <changePasswordPageOverrideSetting
@@ -43,7 +42,7 @@
     <forgotPasswordPageOverrideSetting
     >Designer</forgotPasswordPageOverrideSetting>
     <homePageOverrideSetting>Designer</homePageOverrideSetting>
-    <loginPageOverrideSetting>VisualForce</loginPageOverrideSetting>
+    <loginPageOverrideSetting>Designer</loginPageOverrideSetting>
     <selfRegProfilePageOverrideSetting
     >Designer</selfRegProfilePageOverrideSetting>
   </networkPageOverrides>

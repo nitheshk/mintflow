@@ -1,13 +1,13 @@
 @istest
 public with sharing class ApexResponseTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeAccountData() {
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
   @istest
   static void apexResponseTestOne() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     ApexResponse res = new ApexResponse();
     ApexResponse.ok(acc);
     ApexResponse.ok(acc);
@@ -19,7 +19,7 @@ public with sharing class ApexResponseTest {
   }
   @istest
   static void apexResponseTestTwo() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     ApexResponse res = new ApexResponse();
     res.setEntity(acc);
     res.setData(acc);
@@ -27,7 +27,7 @@ public with sharing class ApexResponseTest {
   }
   @istest
   static void apexResponseTestThree() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     ApexResponse res = new ApexResponse();
     ApexResponse.fail(new customException('Test exception'));
     ApexResponse.exception(new customException('Test exception'));

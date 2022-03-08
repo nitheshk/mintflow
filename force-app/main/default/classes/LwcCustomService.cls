@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class LwcCustomService extends AbstractService {
+global virtual with sharing class LwcCustomService extends AbstractService {
   @TestVisible
   private static LwcCustomService serviceInstance;
 
@@ -90,15 +90,15 @@ global with sharing class LwcCustomService extends AbstractService {
    * @param Id applicationId
    * @return virtual
    **/
-  global virtual Account readApplicationWithChild(Id applicationId) {
-    Account application = LwcCustomRepository.readApplicationWithChild(
+  global virtual Application__c readApplicationWithChild(Id applicationId) {
+    Application__c application = LwcCustomRepository.readApplicationWithChild(
       applicationId
     );
 
     List<Applicant__c> applicants = LwcCustomRepository.readApplicantsWithChild(
       new Map<id, SObject>(application.Applicants__r).keyset()
     );
-    List<FinServ__FinancialAccount__c> financialAccounts = LwcCustomRepository.readFinancialAccountsWithChild(
+    List<FinancialAccount__c> financialAccounts = LwcCustomRepository.readFinancialAccountsWithChild(
       new Map<id, SObject>(application.mflow__FinancialAccounts__r).keyset()
     );
 
@@ -106,7 +106,7 @@ global with sharing class LwcCustomService extends AbstractService {
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
-    return (Account) builder.build();
+    return (Application__c) builder.build();
   }
 
   /**
@@ -126,7 +126,7 @@ global with sharing class LwcCustomService extends AbstractService {
       );
     }
     list<id> ids = new List<id>();
-    Account application = ApplicationRepository.readApplicationWithApplicants(
+    Application__c application = ApplicationRepository.readApplicationWithApplicants(
       applicationId
     );
     if (application != null) {
@@ -163,9 +163,9 @@ global with sharing class LwcCustomService extends AbstractService {
   /**
    * @description  readApplicationForResume
    * @author Digital Align Team | 01-19-2022
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account readApplicationForResume(String applicationId) {
+  global virtual Application__c readApplicationForResume(String applicationId) {
     return LwcCustomRepository.readApplicationForResume(applicationId);
   }
   /**
@@ -192,7 +192,7 @@ global with sharing class LwcCustomService extends AbstractService {
    * @return virtual
    **/
   global virtual void resendFundingRequest(string applicantionId) {
-    Account application = LwcCustomRepository.readApplicationForResume(
+    Application__c application = LwcCustomRepository.readApplicationForResume(
       applicantionId
     );
     if (application == null) {
@@ -318,29 +318,29 @@ global with sharing class LwcCustomService extends AbstractService {
             applicant.ApplicantName__c
           );
       }
-      when 'Account' {
-        Account application = LwcCustomRepository.readApplicationWithApplicants(
+      when 'mflow__Application__c' {
+        Application__c application = LwcCustomRepository.readApplicationWithApplicants(
           recordID
         );
         ApexRequest.setApplicationId(application.Id);
-        ApexRequest.setApplicationName(application.ApplicationNumber__c);
+        ApexRequest.setApplicationName(application.Name);
 
         if (approvalType == 'Application') {
           if (status == ApplicationConstant.KYC_PASSED) {
             application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-            application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-            application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+            application.Status__c = ApplicationConstant.IN_PROGRESS;
+            application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
             application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
           } else if (status == ApplicationConstant.KYC_FAILED) {
-            application.FinServ__Status__c = ApplicationConstant.CANCELLED;
-            application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+            application.Status__c = ApplicationConstant.CANCELLED;
+            application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
           }
           LwcCustomRepository.upsertRecord(application);
         } else if (approvalType == 'Application And Applicants') {
           if (status == ApplicationConstant.KYC_PASSED) {
             application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-            application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-            application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+            application.Status__c = ApplicationConstant.IN_PROGRESS;
+            application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
             application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
             for (Applicant__c applicant : application.Applicants__r) {
               if (
@@ -354,8 +354,8 @@ global with sharing class LwcCustomService extends AbstractService {
               applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_PASSED;
             }
           } else if (status == ApplicationConstant.KYC_FAILED) {
-            application.FinServ__Status__c = ApplicationConstant.CANCELLED;
-            application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+            application.Status__c = ApplicationConstant.CANCELLED;
+            application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
             for (Applicant__c applicant : application.Applicants__r) {
               applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
               applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
@@ -379,7 +379,7 @@ global with sharing class LwcCustomService extends AbstractService {
         // Create membership account based on the KYC Approval
         if (
           application.mflow__isMemberFlow__c &&
-          application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED
+          application.KYCStatus__c == ApplicationConstant.KYC_PASSED
         ) {
           try {
             ApplicantService.getInstance().createMemberAccount(application);

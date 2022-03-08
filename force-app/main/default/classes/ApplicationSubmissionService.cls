@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicationSubmissionService extends AbstractService {
+global virtual with sharing class ApplicationSubmissionService extends AbstractService {
   @TestVisible
   private static ApplicationSubmissionService serviceInstance;
 
@@ -32,21 +32,21 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
    * @description final application submit
    * @author Digital Align Team | 01-25-2022
    * @param String data
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account submitApplication(String data) {
+  global virtual Application__c submitApplication(String data) {
     log?.debug('Inside submitApplication');
-    Account application = SubmissionRepository.readApplicationWithApplicants(
+    Application__c application = SubmissionRepository.readApplicationWithApplicants(
       ApexRequest.getApplicationId()
     );
     HttpBuilder.Response response = RpaProcessService.getInstance()
       .scheduleApplication(application);
     if (response.statusCode == 400) {
-      application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+      application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
       application.Stage__c = 'Exception';
       application.mflow__FlowState__c = '';
     } else {
-      application.FinServ__Status__c = ApplicationConstant.SUBMITTED;
+      application.Status__c = ApplicationConstant.SUBMITTED;
       application.Stage__c = 'Submitted';
     }
 
@@ -55,7 +55,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
         applicant.RecordType.Name ==
         ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
       ) {
-        applicant.mflow__Status__c = application.FinServ__Status__c;
+        applicant.mflow__Status__c = application.Status__c;
         break;
       }
     }
@@ -69,9 +69,9 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
    * @description
    * @author Digital Align Team | 12-02-2021
    * @param String resultJson
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account processFundingSubmission(String resultJson) {
+  global virtual Application__c processFundingSubmission(String resultJson) {
     FundingSubmissionResponse.FundingResult fundingResult = (FundingSubmissionResponse.FundingResult) JSON.deserialize(
       resultJson,
       FundingSubmissionResponse.FundingResult.class
@@ -82,13 +82,13 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
       throw new CustomException('Unable to process the empty request');
     }
 
-    Account application = SubmissionRepository.readApplicationWithApplicants(
+    Application__c application = SubmissionRepository.readApplicationWithApplicants(
       fundingResult.Application
     );
     ApexRequest.setApplicationId(application.Id);
-    ApexRequest.setApplicationName(application.ApplicationNumber__c);
+    ApexRequest.setApplicationName(application.Name);
 
-    if (application.FinServ__Status__c == ApplicationConstant.COMPLETED) {
+    if (application.Status__c == ApplicationConstant.COMPLETED) {
       throw new CustomException('Application has already processed');
     }
 
@@ -103,7 +103,7 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
     try {
       application = this.updateFundingDetail(application, fundingResult);
 
-      if (application.FinServ__Status__c == ApplicationConstant.COMPLETED) {
+      if (application.Status__c == ApplicationConstant.COMPLETED) {
         //Send Funding Email Link to primary
         // CustomerEmailService.getInstance()
         //   .fundingLinkOnKycApproval(application);
@@ -141,18 +141,18 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
   /**
    * @description
    * @author Digital Align Team | 01-27-2022
-   * @param Account application
+   * @param Application__c application
    * @param FundingSubmissionResponse.FundingResult fundingResult
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account updateFundingDetail(
-    Account application,
+  global virtual Application__c updateFundingDetail(
+    Application__c application,
     FundingSubmissionResponse.FundingResult fundingResult
   ) {
     switch on fundingResult.ExternalApplicationStatus {
       when 'Accept', 'Passed', 'Approved' {
-        application.FinServ__Status__c = ApplicationConstant.COMPLETED;
-        application.AccountNumber = fundingResult.MemberNumber;
+        application.Status__c = ApplicationConstant.COMPLETED;
+        application.MemberNumber__c = fundingResult.MemberNumber;
         for (Applicant__c applicant : application.Applicants__r) {
           if (
             applicant.RecordType.Name ==
@@ -165,8 +165,8 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
         }
       }
       when else {
-        application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-        application.AccountNumber = fundingResult.MemberNumber;
+        application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+        application.MemberNumber__c = fundingResult.MemberNumber;
       }
     }
 
@@ -176,12 +176,12 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
     ) {
       FundingSubmissionResponse.FinancialAccountResult financialAccountResult = fundingResult.FinancialAccount[0];
       if (String.isNotBlank(financialAccountResult.FinancialAccountId)) {
-        FinServ__FinancialAccount__c fa = new FinServ__FinancialAccount__c(
+        FinancialAccount__c fa = new FinancialAccount__c(
           Id = financialAccountResult.FinancialAccountId,
-          FinServ__FinancialAccountNumber__c = financialAccountResult.AccountNumber
+          AccountNumber__c = financialAccountResult.AccountNumber
         );
-        if (application.FinServ__Status__c == ApplicationConstant.COMPLETED) {
-          fa.FinServ__Status__c = 'Paid out';
+        if (application.Status__c == ApplicationConstant.COMPLETED) {
+          fa.Status__c = ApplicationConstant.COMPLETED;
         }
         SubmissionRepository.upsertRecord(fa);
       }
@@ -194,9 +194,9 @@ global with sharing class ApplicationSubmissionService extends AbstractService {
       ) {
         //READY FOR FUNDING
         //FUNDED
-        FinServ__FinancialAccountTransaction__c fat = new FinServ__FinancialAccountTransaction__c(
+        FinancialAccountTransaction__c fat = new FinancialAccountTransaction__c(
           Id = financialAccountResult.FinancialApplicationTransaction.FinancialAccountTransactionId,
-          FinServ__TransactionStatus__c = 'Posted'
+          TransactionStatus__c = 'Posted'
         );
         SubmissionRepository.upsertRecord(fat);
       }

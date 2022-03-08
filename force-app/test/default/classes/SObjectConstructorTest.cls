@@ -1,14 +1,16 @@
 @istest
 public with sharing class SObjectConstructorTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeAccountData() {
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
 
   private static Applicant__c makeApplicantData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecords(
+      new List<Application__c>{ acc }
+    )[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant.Email__c = 'test@mail.com';
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
@@ -16,7 +18,7 @@ public with sharing class SObjectConstructorTest {
   }
   @istest
   static void SObjectConstructorTestOne() {
-    Account acc = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
     Applicant__c applicant = makeApplicantData();
     test.startTest();
     SObjectConstructor sObj = new SObjectConstructor();
@@ -29,7 +31,7 @@ public with sharing class SObjectConstructorTest {
       .build();
     SObjectConstructor.deserialize(
       SObjectConstructor.serialize(acc),
-      Account.class
+      Application__c.class
     );
     SObjectConstructor.writeFieldsAsList(new List<SObject>{ applicant });
 

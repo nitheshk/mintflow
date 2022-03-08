@@ -1,30 +1,25 @@
 @IsTest
 public with sharing class BuildApplicationWrapperTest {
-  private static Account makeApplicationData() {
-    Account acc = TestData.createApplication();
-    acc.Name = 'App-001';
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeApplicationData() {
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
 
     Applicant__c applicant = TestData.createApplicant('Primary');
     applicant.Application__c = acc.Id;
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
 
-    FinServ__IdentificationDocument__c identity = TestData.createIdentity();
+    IdentificationDocument__c identity = TestData.createIdentity();
     identity.Applicant__c = applicant.Id;
-    identity = (FinServ__IdentificationDocument__c) DatabaseUtils.insertRecord(
-      identity
-    );
+    identity = (IdentificationDocument__c) DatabaseUtils.insertRecord(identity);
     applicant.mflow__IdentificationDocuments__r.addAll(
-      new List<FinServ__IdentificationDocument__c>{ identity }
+      new List<IdentificationDocument__c>{ identity }
     );
 
-    FinServ__Employment__c employment = TestData.createEmployment();
+    Employment__c employment = TestData.createEmployment();
     employment.Applicant__c = applicant.Id;
-    employment = (FinServ__Employment__c) DatabaseUtils.insertRecord(
-      employment
-    );
+    employment = (Employment__c) DatabaseUtils.insertRecord(employment);
     applicant.mflow__Employments__r.addAll(
-      new List<FinServ__Employment__c>{ employment }
+      new List<Employment__c>{ employment }
     );
 
     ContactPointAddress address = TestData.createContactPointAddress();
@@ -44,17 +39,17 @@ public with sharing class BuildApplicationWrapperTest {
   }
   @IsTest
   private static void testObtainApplicationData() {
-    account application = makeApplicationData();
+    mflow__Application__c application = makeApplicationData();
     application = [
-      SELECT Id, mflow__ApplicationNumber__c
-      FROM account
+      SELECT Id, Name
+      FROM mflow__Application__c
       WHERE id = :application.id
     ];
     Test.startTest();
     BuildApplicationWrapper.getInstance()
-      .obtainApplicationData(application.mflow__ApplicationNumber__c);
+      .obtainApplicationData(application.Name);
     BuildApplicationWrapper.getInstance()
-      .obtainApplicationFiles(application.mflow__ApplicationNumber__c);
+      .obtainApplicationFiles(application.Name);
     Test.stopTest();
   }
 }

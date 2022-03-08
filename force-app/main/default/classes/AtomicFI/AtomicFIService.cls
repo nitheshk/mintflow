@@ -7,7 +7,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 @RestResource(urlMapping='/atomic/v1/*')
-global with sharing class AtomicFIService extends AbstractService {
+global virtual with sharing class AtomicFIService extends AbstractService {
   private static Logger log = Logger.getInstance(AtomicFIService.class);
   @TestVisible
   private static AtomicFIService serviceInstance;
@@ -169,20 +169,20 @@ global with sharing class AtomicFIService extends AbstractService {
    * @return  List<AtomicFIDTO.Address>
    **/
   global virtual String mapApplicantEmployment(AtomicFIDTO atomicObj) {
-    FinServ__Employment__c employmentObj = new FinServ__Employment__c();
+    Employment__c employmentObj = new Employment__c();
     employmentObj.Id = atomicObj.user.identifier;
     //method to fetch application and applicant id based on employer id ::TODO
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
-      employmentObj.FinServ__EmploymentStatus__c = 'Employed';
+      employmentObj.EmploymentStatus__c = 'Employed';
       employmentObj.mflow__EmploymentType__c = 'Current';
     } else {
-      employmentObj.FinServ__EmploymentStatus__c = 'Self-Employed';
+      employmentObj.EmploymentStatus__c = 'Self-Employed';
       employmentObj.mflow__EmploymentType__c = 'Previous';
     }
 
     employmentObj.mflow__EmploymentVerificationType__c = 'Auto';
-    employmentObj.FinServ__Position__c = atomicObj.data.outputs.jobTitle;
-    employmentObj.FinServ__AnnualIncome__c = atomicObj.data.outputs.annualIncome;
+    employmentObj.Position__c = atomicObj.data.outputs.jobTitle;
+    employmentObj.AnnualIncome__c = atomicObj.data.outputs.annualIncome;
     employmentObj.mflow__PayCycle__c = FinancialInstituteConstants.PAY_CYCLE.get(
       atomicObj.data.outputs.payCycle
     );
@@ -262,7 +262,7 @@ global with sharing class AtomicFIService extends AbstractService {
     log?.debug('Payslip and W2 generation completed successfully');
   }
   public void updateFileGeneratedStatus(String employerId) {
-    FinServ__Employment__c employmentObj = EmploymentRepository.readEmployerbyId(
+    Employment__c employmentObj = EmploymentRepository.readEmployerbyId(
       employerId
     );
     if (employmentObj != null) {

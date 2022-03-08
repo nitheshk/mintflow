@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class ApplicationServiceHelper extends AbstractService {
+global virtual with sharing class ApplicationServiceHelper extends AbstractService {
   @TestVisible
   private static ApplicationServiceHelper serviceInstance;
 
@@ -57,24 +57,26 @@ global with sharing class ApplicationServiceHelper extends AbstractService {
   /**
    * @description resolve branch location
    * @author Digital Align Team | 12-03-2021
-   * @param Account application
-   * @return Account
+   * @param Application__c application
+   * @return Application__c
    **/
-  global virtual Account resolveBranchLocation(Account application) {
-    application.FinServ__BranchCode__c = '0001';
-    application.FinServ__BranchName__c = 'Main Branch';
+  global virtual Application__c resolveBranchLocation(
+    Application__c application
+  ) {
+    application.BranchCode__c = '0001';
+    application.BranchName__c = 'Main Branch';
     return application;
   }
 
   /**
    * @description update application flow state
    * @author Digital Align Team | 01-13-2022
-   * @param Account application
+   * @param Application__c application
    * @param Applicant__c applicant
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account updateFlowState(
-    Account application,
+  global virtual Application__c updateFlowState(
+    Application__c application,
     List<Applicant__c> applicants
   ) {
     if (ApexRequest.getApplicantType() == 'Primary') {

@@ -11,11 +11,11 @@ public with sharing class TriggerDispatcherTest {
   private static void triggerHanlder() {
     String handlerName = 'AccountTriggerHandler';
     SObjectTriggerSetting__mdt triggerSetting = new SObjectTriggerSetting__mdt();
-    triggerSetting.ObjectAPIName__c = 'Account';
+    triggerSetting.ObjectAPIName__c = 'Application__c';
     triggerSetting.TriggerHandlerName__c = 'AccountTriggerHandler';
     triggerSetting.RecursionCount__c = 4;
 
-    TriggerDispatcher.run(Account.SObjectType);
+    TriggerDispatcher.run(Application__c.SObjectType);
     TriggerDispatcher.executeTriggerAction(triggerSetting, null);
     TriggerDispatcher.setMaxLoopCount(handlerName, 4);
     TriggerDispatcher.validateRun(handlerName);

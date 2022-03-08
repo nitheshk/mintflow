@@ -1,0 +1,67 @@
+<apex:page
+  applyHtmlTag="false"
+  applyBodyTag="false"
+  cache="false"
+  docType="html-5.0"
+  standardStylesheets="false"
+  showheader="false"
+  Controller="mflow.IdentityUploadController"
+  extensions="mflow.ApplicationController,mflow.IdentityController,mflow.ApplicantController,mflow.FileController"
+  action="{!initializeApplication}"
+>
+  <html lang="">
+    <head>
+      <base href="{!URLFOR($Resource.MintFlow)}" />
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <link rel="icon" href="favicon.ico" />
+      <title>OnlineAccount</title>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      />
+
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      />
+
+      <link
+        href="{!URLFOR($Resource.MintFlow, 'css/chunk-vendors.css')}"
+        rel="stylesheet"
+      />
+      <link
+        href="{!URLFOR($Resource.MintFlow, 'css/app.css')}"
+        rel="stylesheet"
+      />
+    </head>
+
+    <body>
+      <apex:outputPanel>
+        <apex:pageMessages />
+      </apex:outputPanel>
+      <noscript>
+        <strong
+          >We're sorry but ui doesn't work properly without JavaScript enabled.
+          Please enable it to continue.</strong
+        >
+      </noscript>
+      <div id="app"></div>
+      <script>
+        initialData = "{!JSENCODE(initialData)}";
+      </script>
+      <script
+        src="{!URLFOR($Resource.MintFlow, 'js/chunk-vendors.js')}"
+      ></script>
+      <script src="{!URLFOR($Resource.MintFlow, 'js/app.js')}"></script>
+      <script
+        src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"
+      ></script>
+      <script type="text/javascript">
+        var Resourceurl = "{!URLFOR($Resource.MintFlow)}";
+        Visualforce.remoting.timeout = 120000;
+      </script>
+    </body>
+  </html>
+</apex:page>

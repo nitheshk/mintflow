@@ -1,8 +1,8 @@
 @IsTest
 public with sharing class CustomerEmailServiceTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeAccountData() {
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
   private static List<FinancialProduct__c> makeProducts() {
@@ -13,8 +13,10 @@ public with sharing class CustomerEmailServiceTest {
     return products;
   }
   private static Applicant__c makeApplicantData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecords(
+      new List<Application__c>{ acc }
+    )[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant.Email__c = 'test@mail.com';
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
@@ -42,8 +44,10 @@ public with sharing class CustomerEmailServiceTest {
     return appConfig;
   }
   private static Applicant__c makeApplicantDataWithoutEmail() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecords(
+      new List<Application__c>{ acc }
+    )[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
     return applicant;
@@ -61,7 +65,7 @@ public with sharing class CustomerEmailServiceTest {
       .notifyAboutEmploymentReport(applicant, 'Notify');
     CustomerEmailService.getInstance().uploadIdentityDocument(applicant);
     CustomerEmailService.getInstance()
-      .accountOpened(applicant, new FinServ__FinancialAccount__c());
+      .accountOpened(applicant, new FinancialAccount__c());
     CustomerEmailService.getInstance()
       .primaryReviewInformationCompleted(applicant);
     Test.stopTest();
@@ -107,7 +111,7 @@ public with sharing class CustomerEmailServiceTest {
   @IsTest
   private static void validateProductEmails() {
     Applicant__c applicant = makeApplicantData();
-    Account app = makeAccountData();
+    Application__c app = makeAccountData();
     List<FinancialProduct__c> products = makeProducts();
     app.Applicants__r.addAll(makeApplicantList('Primary'));
     makeApplicationConfiguration();

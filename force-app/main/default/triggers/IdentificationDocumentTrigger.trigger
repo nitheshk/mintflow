@@ -6,10 +6,10 @@
  * @description
  * 1. To Insert/Delete ContentConversion Attacted to IdentificationDocument
  **/
-trigger IdentificationDocumentTrigger on FinServ__IdentificationDocument__c(
+trigger IdentificationDocumentTrigger on IdentificationDocument__c(
   after insert,
   after update,
   before delete
 ) {
-  TriggerDispatcher.run(FinServ__IdentificationDocument__c.SObjectType);
+  TriggerDispatcher.run(IdentificationDocument__c.SObjectType);
 }

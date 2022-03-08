@@ -1,5 +1,6 @@
 {
   "NK1": {
+    "scratchOrgName": "mflow",
     "devhubUserName": "nithesh.k@digitalalign.devhub1.com",
     "devhubOrgName": "devhub",
     "devhubClientId": "3MVG9fe4g9fhX0E471xtv1cWppRlsmb9rINlWTtGfR0e40vBuAYbbM_oOmSf6FyOeAAa1g0IKlQXi7510KPWT",
@@ -7,6 +8,7 @@
     "jwtkeyfile": "jwt/server.key"
   },
   "NK2": {
+    "scratchOrgName": "mflow",
     "devhubUserName": "nithesh.k@digitalalign.devhub2.com",
     "devhubOrgName": "devhub",
     "devhubClientId": "3MVG9fe4g9fhX0E6DLxg.Nir3zQRdt0_I0QCe5HEKQ1RdIeKCPQvrQ7J8RsHUPFuhbko4INytrcEZ3K.5JvXx",
@@ -14,6 +16,7 @@
     "jwtkeyfile": "jwt/server.key"
   },
   "NK3": {
+    "scratchOrgName": "mflow",
     "devhubUserName": "nithesh.k@digitalalign.devhub3.com",
     "devhubOrgName": "devhub",
     "devhubClientId": "3MVG9fe4g9fhX0E48nPzgwNmTpzMWJFpO_gzRFLGDVWJQ_eGycqbGslthktjPiKaTwm6weNWMMQS8t0EXR3jc",
@@ -21,6 +24,7 @@
     "jwtkeyfile": "jwt/server.key"
   },
   "NK4": {
+    "scratchOrgName": "mflow",
     "devhubUserName": "nithesh.k@digitalalign.devhub4.com",
     "devhubOrgName": "devhub4",
     "devhubClientId": "3MVG9fe4g9fhX0E4M9lieBEbquotUnvmft3Ep3MyRn1RrbqzxHaNaeI_73vgcrHQKCI4lK8hS4FaELB5SkibV",
@@ -28,6 +32,7 @@
     "jwtkeyfile": "jwt/server.key"
   },
   "puneeth": {
+    "scratchOrgName": "mflow",
     "devhubUserName": "puneeth.kumar@digitalalign.devhub1.com",
     "devhubOrgName": "devhub",
     "devhubClientId": "3MVG9fe4g9fhX0E505zX5WfveYUC2Iyoh4LUaOg5CI6BzR2s7ieOhNLZA1rumu50SMFC9f18gx45sdzPyO3wK",
@@ -36,6 +41,7 @@
   },
 
   "devhub1": {
+    "scratchOrgName": "mflow",
     "devhubUserName": "qa@digitalalign.com.dev",
     "devhubOrgName": "devhub",
     "devhubClientId": "3MVG9fe4g9fhX0E5ARmOxX5KKzzZnDDX0yNpnvJ8tyhypS3dWPdrT7BmiVD4bsCkIMsWFoo3WZgpNzlEHLMTt",
@@ -43,6 +49,7 @@
     "jwtkeyfile": "jwt/server.key"
   },
   "prod": {
+    "scratchOrgName": "mflow",
     "devhubUserName": "scratchuser@digitalalign.com",
     "devhubOrgName": "devhub",
     "devhubClientId": "3MVG9n_HvETGhr3CDJkPoRl4665RhtjVLRDpLAXYBxKmJ4FIQ82r.79BNzfl76buFXofkEobBRfVtBMg3DtL7",

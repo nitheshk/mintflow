@@ -6,10 +6,10 @@
  * @description
  * 1. To Insert/Delete ContentConversion Attacted to Employment records
  **/
-trigger EmploymentTrigger on FinServ__Employment__c(
+trigger EmploymentTrigger on Employment__c(
   after insert,
   after update,
   before delete
 ) {
-  TriggerDispatcher.run(FinServ__Employment__c.SObjectType);
+  TriggerDispatcher.run(Employment__c.SObjectType);
 }

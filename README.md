@@ -28,7 +28,7 @@ Step 2. Install the dependencies by run the below commands for first time for on
 
 `npm install --global gulp-cli` ( ERROR AND ISSUE : gulp : The term 'gulp' is not recognized, follow last section )
 
-`npm install --global sfdx-cli`
+`npm install --global sfdx-cli` or `npm install -g sfdx-cli@7.132.0` (Specified Version)
 
 `npm install sfdx-cli`
 
@@ -36,6 +36,7 @@ Step 3. Update your Devhub configuration detail under `deploy\devhub.json`, upda
 
 ```
 {
+  "scratchOrgName": "mflow",
   "devhubUserName": "nithesh.k@digitalalign.devhub1.com",
   "devhubOrgName": "devhub",
   "devhubClientId": "3MVG9fe4g9fhX0E471xtv1cWppRlsmb9rINlWTtGfR0e40vBuAYbbM_oOmSf6FyOeAAa1g0IKlQXi7510KPWT",
@@ -44,9 +45,16 @@ Step 3. Update your Devhub configuration detail under `deploy\devhub.json`, upda
 }
 ```
 
-## Create Scratch Org
+### Step 2: pulling submodule
 
-Step 2. Use **Cntr + Shift + B** and Select `SFDX: create new scratch org`
+Step 2.1 : `git clone --recursive git@github.com:DigitalAlignInc/p1fcu-olbui.git`
+Step 2.2 : Select develop branch in p1fcu-olbui
+Step 2:3 : run npn install in p1fcu-olbui git folder
+Step 2.4 : [Optional] Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks for Process`
+
+## Step 3. Create Scratch Org
+
+Use **Cntr + Shift + B** and Select `SFDX: create new scratch org`
 
 ### In Case of Failure while creating of scratch
 
@@ -60,19 +68,13 @@ Following command are executed in squence
 
 > Step 2.4 `gulp defaultToScratch`
 
-> Step 2.5 `gulp installPackageFSC`
+> Step 2.5 `gulp pushToscratch`
 
-> Step 2.6 `gulp installPackageFSCExt`
+> Step 2.6 `gulp updatePermissionSet`
 
-> Step 2.7 `gulp pushToscratch`
+> Step 2.7 `gulp publishCommunities`
 
-> Step 2.8 `gulp updatePermissionSet`
-
-> Step 2.9 `gulp createCommunityUser`
-
-> Step 2.10 `gulp publishCommunities`
-
-> Step 2.11 `gulp systemConfigImport`
+> Step 2.8 `gulp systemConfigImport`
 
 if any step fails in between, fix the error and continue executing next step
 
@@ -92,13 +94,6 @@ Step 5. Export Data (Refer detailed Readme File in **data\salesforceConfig\READM
 
 > Step 1: Open Scratch org and goto user (Setup->Users) , Search for the user "Online User, Reset the password for the user, Reset url sent to linked github account and Set Password as `Test@123`
 > Step 2: One time Remove "OAuthProvider.cls-meta.xml" from .forceIgnore file in root folder to push file to salesforce, and update executionUser with Scartch org user name. Push the changes to scartch org and revert .forceIgnore file. In Named Credential Connect the OauthProvider for required API. example UiPath named Credential.
-
-### Step 3: pulling submodule
-
-Step 3.1 : `git clone --recursive git@github.com:DigitalAlignInc/p1fcu-olbui.git`
-Step 3.2 : Select develop branch in p1fcu-olbui
-Step 3:3 : run npn install in p1fcu-olbui git folder
-Step 3.4 : Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks for Process`
 
 ### ERROR AND ISSUE
 

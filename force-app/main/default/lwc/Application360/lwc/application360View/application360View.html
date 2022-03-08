@@ -5,7 +5,7 @@
       <lightning-tab label="Application Details" value="Application"
         ><c-record-detail-view
           record={record}
-          s-object-name="Account"
+          s-object-name="mflow__Application__c"
           title-name="Application Details"
           hide-null-values="true"
         ></c-record-detail-view>
@@ -58,7 +58,7 @@
                   <c-record-detail-view
                     key={data.Id}
                     record={data.mflow__IdentificationDocuments__r}
-                    s-object-name="FinServ__IdentificationDocument__c"
+                    s-object-name="mflow__IdentificationDocument__c"
                     field-set-name="mflow__IdentityInformation"
                     title-name="Identification Details"
                     hide-null-values="true"
@@ -75,7 +75,7 @@
                   <c-record-detail-view
                     key={data.Id}
                     record={data.mflow__Employments__r}
-                    s-object-name="FinServ__Employment__c"
+                    s-object-name="mflow__Employment__c"
                     field-set-name="mflow__EmploymentInformation"
                     title-name="Employee Details"
                     hide-null-values="true"

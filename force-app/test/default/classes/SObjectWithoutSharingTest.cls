@@ -1,20 +1,20 @@
 @istest
 public with sharing class SObjectWithoutSharingTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeAccountData() {
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
   @istest
   static void SObjectWithoutSharingTestOne() {
-    Account acc = TestData.createAccount();
-    account acc1 = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
+    Application__c acc1 = TestData.createApplication();
     SObjectField a;
     test.startTest();
     try {
-      SObjectWithoutSharing.getRecords('select id from account');
+      SObjectWithoutSharing.getRecords('select id from Application__c');
       SObjectWithoutSharing.getRecords(
-        'select id from account',
+        'select id from Application__c',
         new List<Object>{ 1, 5, 6, 'd', 's', 4 }
       );
       SObjectWithoutSharing.processRecords(

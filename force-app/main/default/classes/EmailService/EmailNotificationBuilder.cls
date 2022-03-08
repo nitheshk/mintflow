@@ -90,7 +90,7 @@ global virtual with sharing class EmailNotificationBuilder {
     log?.fine('EmailMessages Size :' + emailMessages.size());
     List<Messaging.SendEmailResult> emailResult;
     if (!emailMessages.isEmpty()) {
-      emailResult = Messaging.sendEmail(emailMessages, false);
+      emailResult = SObjectWithoutSharing.sendEmail(emailMessages, false);
       //reset values
       emailTemplates = new Map<String, EmailTemplate>();
       documentURL = new Map<String, String>();

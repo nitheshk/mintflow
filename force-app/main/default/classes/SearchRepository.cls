@@ -163,9 +163,9 @@ public with sharing class SearchRepository extends DatabaseUtils {
    * @author Digital Align | 09-23-2021
    * @param String retrieveApplications
    * @param map<string,string> searchFilter
-   * @return List<Account>
+   * @return List<Application__c>
    **/
-  public static List<Account> retrieveApplications(
+  public static List<Application__c> retrieveApplications(
     String searchString,
     map<string, string> searchFilter
   ) {
@@ -176,7 +176,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
     DateTime dtAndTime;
     String dateValue;
     String recordTypeName = 'Application';
-    List<Account> applicationsList = new List<Account>();
+    List<Application__c> applicationsList = new List<Application__c>();
     Query q;
 
     if (String.isNotBlank(searchString)) {
@@ -188,7 +188,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name WHERE RecordType.Name=' +
+          '*} IN ALL FIELDS RETURNING  Application__c(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name WHERE RecordType.Name=' +
           '\'' +
           recordTypeName +
           '\'' +
@@ -197,7 +197,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Account(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name  WHERE RecordType.Name= ' +
+          '*} IN ALL FIELDS RETURNING  Application__c(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name  WHERE RecordType.Name= ' +
           '\'' +
           recordTypeName +
           '\'' +
@@ -209,11 +209,11 @@ public with sharing class SearchRepository extends DatabaseUtils {
       List<List<sObject>> objectList = new List<List<sObject>>();
       objectList = DatabaseUtils.searchRecords(searchQuery);
 
-      applicationsList = (List<Account>) objectList[0];
+      applicationsList = (List<Application__c>) objectList[0];
       return applicationsList;
     } else {
       if (searchFilter != null) {
-        q = Query.newInstance(Account.SObjectType)
+        q = Query.newInstance(Application__c.SObjectType)
           .addFields()
           .addfields('CreatedBy.Name')
           .wherecon('RecordType.Name', recordtypeName);
@@ -250,7 +250,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
             );
         }
         System.debug(' Query is ' + q.toString(true));
-        applicationsList = (List<Account>) DatabaseUtils.getRecords(
+        applicationsList = (List<Application__c>) DatabaseUtils.getRecords(
           q.toString(true)
         );
 

@@ -42,7 +42,7 @@
             ></apex:outputText>
             <apex:outputText
               style="font-style: bold"
-              value="{!application.ApplicationNumber__c}"
+              value="{!application.Name}"
               styleClass="headerStyle "
             ></apex:outputText>
           </h4>
@@ -70,7 +70,7 @@
             ></apex:outputText>
             <apex:outputText
               style="font-style: bold"
-              value="{!application.FinServ__Status__c}"
+              value="{!application.Status__c}"
               styleClass="headerStyle "
             ></apex:outputText>
           </h4>
@@ -150,13 +150,13 @@
                 <td width="50% ">
                   <apex:outputText value="Identity Type : "></apex:outputText>
                   <apex:outputText
-                    value="{!identityVar.FinServ__DocumentType__c}"
+                    value="{!identityVar.DocumentType__c}"
                   ></apex:outputText>
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Document Number : "></apex:outputText>
                   <apex:outputText
-                    value="{!identityVar.FinServ__DocumentNumber__c}"
+                    value="{!identityVar.DocumentNumber__c}"
                   ></apex:outputText>
                 </td>
               </tr>
@@ -164,13 +164,13 @@
                 <td width="50% ">
                   <apex:outputText value="Issued Date : "></apex:outputText>
                   <apex:outputText value="{0,date,MM/dd/yyyy}">
-                    <apex:param value="{!identityVar.FinServ__IssueDate__c}" />
+                    <apex:param value="{!identityVar.IssueDate__c}" />
                   </apex:outputText>
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Issuing Country : "></apex:outputText>
                   <apex:outputText
-                    value="{!identityVar.FinServ__IssuingCountry__c}"
+                    value="{!identityVar.IssuingCountry__c}"
                   ></apex:outputText>
                 </td>
               </tr>
@@ -178,9 +178,7 @@
                 <td width="50% ">
                   <apex:outputText value="Expiration Date : "></apex:outputText>
                   <apex:outputText value="{0,date,MM/dd/yyyy}">
-                    <apex:param
-                      value="{!identityVar.FinServ__ExpirationDate__c}"
-                    />
+                    <apex:param value="{!identityVar.ExpirationDate__c}" />
                   </apex:outputText>
                 </td>
                 <td width="50% ">
@@ -256,7 +254,7 @@
                     value="Employment Status : "
                   ></apex:outputText>
                   <apex:outputText
-                    value="{!employmentVar.FinServ__EmploymentStatus__c}"
+                    value="{!employmentVar.EmploymentStatus__c}"
                   ></apex:outputText>
                 </td>
               </tr>
@@ -280,7 +278,7 @@
                 <td width="50% ">
                   <apex:outputText value="Position : "></apex:outputText>
                   <apex:outputText
-                    value="{!employmentVar.FinServ__Position__c}"
+                    value="{!employmentVar.Position__c}"
                   ></apex:outputText>
                 </td>
                 <td width="50% ">

@@ -35,7 +35,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
    * @return List<FinancialAccountService__c>
    **/
   global virtual List<FinancialAccountService__c> fetchServices(String data) {
-    Account application = ProductServiceRepository.readApplicationWithFA(
+    Application__c application = ProductServiceRepository.readApplicationWithFA(
       ApexRequest.getApplicationId()
     );
     log?.debug('application=' + application);
@@ -43,7 +43,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
     List<FinancialAccountService__c> financialAccountService = new List<FinancialAccountService__c>();
 
     for (
-      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+      FinancialAccount__c financialAccount : application.FinancialAccounts__r
     ) {
       financialAccountService.addAll(
         ProductServiceRepository.readExistingService(financialAccount.Id)
@@ -55,7 +55,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
     }
 
     for (
-      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+      FinancialAccount__c financialAccount : application.FinancialAccounts__r
     ) {
       List<ProductService__c> services = ProductServiceRepository.fetchServicesByProduct(
         financialAccount.FinancialProduct__r.Id
@@ -108,14 +108,14 @@ global with sharing class ProductServiceResolver extends AbstractService {
   global virtual List<CustomerInterest__c> fetchAdditionalProducts(
     String data
   ) {
-    Account application = ProductServiceRepository.readApplicationWithFA(
+    mflow__Application__c application = ProductServiceRepository.readApplicationWithFA(
       ApexRequest.getApplicationId()
     );
 
     List<CustomerInterest__c> customerInterests = new List<CustomerInterest__c>();
 
     for (
-      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+      FinancialAccount__c financialAccount : application.FinancialAccounts__r
     ) {
       List<AdditionalProduct__c> additionalProducts = ProductServiceRepository.fetchAdditionalProductByProduct(
         financialAccount.FinancialProduct__r.Id

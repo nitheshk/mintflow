@@ -11,7 +11,7 @@
         <chartType>Funnel</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>false</expandOthers>
-        <groupingColumn>Account.FinServ__Status__c</groupingColumn>
+        <groupingColumn>Account.Status__c</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
         <showAxisLabels>false</showAxisLabels>
@@ -27,7 +27,7 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>Account.ApplicationNumber__c</field>
+        <field>Account.Name</field>
     </columns>
     <columns>
         <field>CREATED_DATE</field>
@@ -52,7 +52,7 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.FinServ__Status__c</field>
+        <field>Account.Status__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Application Statuses</name>

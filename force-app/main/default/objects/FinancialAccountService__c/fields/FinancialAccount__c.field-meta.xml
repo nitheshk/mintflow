@@ -5,7 +5,7 @@
     <description>Services for Financial Account</description>
     <externalId>false</externalId>
     <label>Financial Account</label>
-    <referenceTo>FinServ__FinancialAccount__c</referenceTo>
+    <referenceTo>FinancialAccount__c</referenceTo>
     <relationshipLabel>Financial Account Services</relationshipLabel>
     <relationshipName>FinancialAccountServices</relationshipName>
     <required>false</required>

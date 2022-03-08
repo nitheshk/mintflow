@@ -8,7 +8,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 @RestResource(UrlMapping='/rpa/v1/*')
-global with sharing class RpaProcessService extends AbstractService {
+global virtual with sharing class RpaProcessService extends AbstractService {
   @TestVisible
   private static RpaProcessService serviceInstance;
   private static String classUrlMapping = '/rpa/v1/';
@@ -121,10 +121,12 @@ global with sharing class RpaProcessService extends AbstractService {
    * doesn't throw any exception on failure,
    * failure will marked and will pick by scheduler job to resubmit later
    * @author Digital Align Team | 11-25-2021
-   * @param Account application
+   * @param Application__c application
    * @return HttpBuilder.Response
    **/
-  global virtual HttpBuilder.Response scheduleApplication(Account application) {
+  global virtual HttpBuilder.Response scheduleApplication(
+    Application__c application
+  ) {
     Flow.initialize(application.Id);
     Flow.setFlow('Rpa-Process: review application');
     Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
@@ -159,9 +161,7 @@ global with sharing class RpaProcessService extends AbstractService {
         params.put('Priority', HttpBuilder.getApiConstant('UipathPriority'));
         params.put(
           'SpecificContent',
-          new Map<String, String>{
-            'LoanID' => application.ApplicationNumber__c
-          }
+          new Map<String, String>{ 'LoanID' => application.Name }
         );
         params.put('Reference', SecurityUtils.generateUUID());
         params.put(
@@ -243,12 +243,11 @@ global with sharing class RpaProcessService extends AbstractService {
    **/
   global virtual void updateMemberDetails() {
     log?.debug('Inside updateMemberDetails');
-    log?.debug('requestBody =' + RestContext.request.requestBody.toString());
-    Account application = (Account) KycReviewService.getInstance()
+    log?.debug('Request =' + RestContext.request.requestBody.toString());
+    Application__c application = (Application__c) KycReviewService.getInstance()
       .processMembershipKYC(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
-    String responseString =
-      'Application Status :' + application.FinServ__Status__c;
+    String responseString = 'Application Status :' + application.Status__c;
     response.responseBody = Blob.valueOf(responseString);
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');
@@ -302,11 +301,10 @@ global with sharing class RpaProcessService extends AbstractService {
   global virtual void updateFundingDetails() {
     log?.debug('Inside updateFundingDetails');
     log?.debug('requestBody =' + RestContext.request.requestBody.toString());
-    Account application = (Account) ApplicationSubmissionService.getInstance()
+    Application__c application = (Application__c) ApplicationSubmissionService.getInstance()
       .processFundingSubmission(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
-    String responseString =
-      'Application Status :' + application.FinServ__Status__c;
+    String responseString = 'Application Status :' + application.Status__c;
     response.responseBody = Blob.valueOf(responseString);
     response.statusCode = 200;
     response.addHeader('Content-Type', 'application/json');

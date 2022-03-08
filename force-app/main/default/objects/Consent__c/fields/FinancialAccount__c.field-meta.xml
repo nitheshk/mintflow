@@ -5,7 +5,7 @@
     <description>Consent related to financial account</description>
     <externalId>false</externalId>
     <label>Financial Account</label>
-    <referenceTo>FinServ__FinancialAccount__c</referenceTo>
+    <referenceTo>FinancialAccount__c</referenceTo>
     <relationshipLabel>Consent Consents</relationshipLabel>
     <relationshipName>ConsentConsents</relationshipName>
     <required>false</required>

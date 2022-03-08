@@ -12,7 +12,7 @@
   "ui": {
     "MintFlow": {
       "uiDistFolder": "p1fcu-olbui/dist/",
-      "staticResourceFolder": "./force-app/main/default/staticresources/",
+      "staticResourceFolder": "./fsc-app/main/default/staticresources/",
       "staticResourceName": "MintFlow.zip",
       "UIFolder": "p1fcu-olbui"
     }
@@ -22,48 +22,18 @@
     "systemConfig": {
       "deleteConfigFile": "./data/salesforceConfig/systemConfig/deleteConfig.apex",
       "configPlanFile": "./data/salesforceConfig/systemConfig/config-plan.json"
-    },
-    "FSCConfig": {
-      "deleteConfigFile": "",
-      "configPlanFile": ""
     }
   },
 
   "permission": {
     "permissionSet": {
       "permissionSet1": "./deploy/scratchOrg/apex/AssignPermissionSet.apex"
-    },
-    "createUser": {
-      "createCommunityUserAccount": "./deploy/scratchOrg/apex/CreateAccountForUser.apex",
-      "createCommunityUser": "./deploy/scratchOrg/apex/CreateCommunityUser.apex"
     }
   },
 
   "communities": {
     "links": "communityLinks.json",
     "publishCommnitiesNames": ["Online", "FinancialInstitute"]
-  },
-
-  "siteSetup": {
-    "active": "true",
-    "fileNotFoundPage": "FileNotFound",
-    "genericErrorPage": "Exception",
-    "inMaintenancePage": "InMaintenance",
-    "inactiveIndexPage": "InMaintenance",
-    "indexPage": "mflow__OnlineAccount",
-    "siteName": "OnlineBanking",
-    "siteAdmin": "",
-    "siteGuestRecordDefaultOwner": "",
-    "subdomain": "digital-align-developer",
-    "urlPathPrefix": "",
-    "siteSFDXLocation": "./fsc-app/main/default/sites/",
-    "siteProfileSFDXLocation": "./fsc-app/main/default/profiles/",
-    "guestProfile": "OnlineBanking Profile",
-    "skipSiteProfile": false,
-    "template": {
-      "siteFile": "./deploy/scratchOrg/siteTemplates/sites.json",
-      "siteProfile": "./deploy/scratchOrg/siteTemplates/siteProfile.json"
-    }
   },
 
   "dependentPackage": {

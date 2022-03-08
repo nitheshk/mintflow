@@ -27,9 +27,7 @@ public with sharing class AtomicVerificationReportController {
   public static void PrefillEmploymentData(String employerId) {
     atomicResponse = new AtomicFIDTO();
     atomicWrapper = new AtomicFIWrapper();
-    FinServ__Employment__c empObj = EmploymentRepository.readEmployerbyId(
-      employerId
-    );
+    Employment__c empObj = EmploymentRepository.readEmployerbyId(employerId);
     employerName = empObj.Name;
     String jsonResponse = AtomicFIProvider.getInstance()
       .getAtomicResponse(empObj.Applicant__c, employerId);

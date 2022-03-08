@@ -6,6 +6,7 @@
     <formula>RIGHT(SSN__c, 4)</formula>
     <label>Last Four Digits of SSN</label>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>

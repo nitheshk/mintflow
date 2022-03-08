@@ -6,7 +6,7 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class KycReviewService extends AbstractService {
+global virtual with sharing class KycReviewService extends AbstractService {
   @TestVisible
   private static KycReviewService serviceInstance;
 
@@ -40,9 +40,9 @@ global with sharing class KycReviewService extends AbstractService {
    * @description Create Financial MemberShip account and Primary Account
    * @author Digital Align Team | 12-02-2021
    * @param String resultJson
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account processMembershipKYC(String resultJson) {
+  global virtual Application__c processMembershipKYC(String resultJson) {
     ApplicationSubmissionResponse.KYCResult kycResult = (ApplicationSubmissionResponse.KYCResult) JSON.deserialize(
       resultJson,
       ApplicationSubmissionResponse.KYCResult.class
@@ -51,13 +51,13 @@ global with sharing class KycReviewService extends AbstractService {
     if (kycResult == null) {
       throw new CustomException('Unable to process the empty request');
     }
-    Account application = ApplicationRepository.readApplicationForKYC(
+    Application__c application = ApplicationRepository.readApplicationForKYC(
       kycResult.ApplicationId
     );
     ApexRequest.setApplicationId(application.Id);
-    ApexRequest.setApplicationName(application.ApplicationNumber__c);
+    ApexRequest.setApplicationName(application.Name);
 
-    if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
+    if (application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
       throw new CustomException('Kyc has already passed for the application ');
     }
 
@@ -81,10 +81,9 @@ global with sharing class KycReviewService extends AbstractService {
       application = KycReviewService.getInstance()
         .updateApplicationKycDetails(application, kycResult);
 
-      // if Application kyc status is approved, then proceed with creating Account & Contact for primary
-      // And Open Membership Financial Account and relation with applicant
+      // if Application kyc status is approved, then proceed with creating Account & Contact for primary/Joint
 
-      if (application.FinServ__KYCStatus__c == ApplicationConstant.KYC_PASSED) {
+      if (application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
         ApplicantService.getInstance().createMemberAccount(application);
 
         application = FinancialAccountService.getInstance()
@@ -128,19 +127,19 @@ global with sharing class KycReviewService extends AbstractService {
    * @description  Primary is Existing Customer
    * Used when kyc result is return from Server
    * @author Digital Align Team | 12-07-2021
-   * @param Account application
+   * @param Application__c application
    * @param ApplicationSubmissionResponse.KYCResult kycResult
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account processExistingMember(
-    Account application,
+  global virtual Application__c processExistingMember(
+    Application__c application,
     ApplicationSubmissionResponse.KYCResult kycResult
   ) {
     log?.debug('Inside processExistingMember');
     application.isMemberFlow__c = false;
     application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
     application.ExternalApplicationStatus__c = kycResult.ExternalApplicationStatus;
-    application.FinServ__Status__c = ApplicationConstant.CANCELLED;
+    application.Status__c = ApplicationConstant.CANCELLED;
     application.mflow__Stage__c = ApplicationConstant.STAGE_EXISTING_CUSTOMER;
     application.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
     for (Applicant__c applicant : application.Applicants__r) {
@@ -164,12 +163,12 @@ global with sharing class KycReviewService extends AbstractService {
   /**
    * @description
    * @author Digital Align Team | 12-08-2021
-   * @param Account application
+   * @param Application__c application
    * @param ApplicationSubmissionResponse.KYCResult kycResult
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account updateApplicationKycDetails(
-    Account application,
+  global virtual Application__c updateApplicationKycDetails(
+    Application__c application,
     ApplicationSubmissionResponse.KYCResult kycResult
   ) {
     Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(
@@ -254,22 +253,22 @@ global with sharing class KycReviewService extends AbstractService {
 
     switch on kycResult.ExternalApplicationStatus {
       // when 'Accept', 'Passed', 'Approved' {
-      //   application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-      //   application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+      //   application.Status__c = ApplicationConstant.IN_PROGRESS;
+      //   application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
       //   application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
       // }
       when 'Fraud' {
-        application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-        application.FinServ__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+        application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+        application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
       }
       when else {
         if (kycSuccessForApplicants) {
-          application.FinServ__Status__c = ApplicationConstant.IN_PROGRESS;
-          application.FinServ__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+          application.Status__c = ApplicationConstant.IN_PROGRESS;
+          application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
           application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
         } else {
-          application.FinServ__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-          application.FinServ__KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
+          application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+          application.KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
         }
       }
     }

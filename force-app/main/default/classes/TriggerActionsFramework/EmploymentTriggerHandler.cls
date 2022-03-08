@@ -15,9 +15,9 @@ public with sharing class EmploymentTriggerHandler extends AbstractTriggerHandle
    */
   @SuppressWarnings('PMD.EmptyStatementBlock')
   public override void afterInsert() {
-    List<FinServ__Employment__c> newEmployments = (List<FinServ__Employment__c>) Trigger.new;
+    List<Employment__c> newEmployments = (List<Employment__c>) Trigger.new;
     List<FileDTO> fileDtos = new List<FileDTO>();
-    for (FinServ__Employment__c emp : newEmployments) {
+    for (Employment__c emp : newEmployments) {
       if (String.isNotBlank(emp.PrimaryContentDocumentID__c)) {
         fileDtos.add(new FileDTO(emp.PrimaryContentDocumentID__c, emp.Id));
       }
@@ -33,12 +33,12 @@ public with sharing class EmploymentTriggerHandler extends AbstractTriggerHandle
    */
   @SuppressWarnings('PMD.EmptyStatementBlock,PMD.CognitiveComplexity')
   public override void afterUpdate() {
-    List<FinServ__Employment__c> newEmployments = (List<FinServ__Employment__c>) Trigger.new;
-    Map<Id, FinServ__Employment__c> oldEmploymentMap = (Map<Id, FinServ__Employment__c>) Trigger.oldMap;
+    List<Employment__c> newEmployments = (List<Employment__c>) Trigger.new;
+    Map<Id, Employment__c> oldEmploymentMap = (Map<Id, Employment__c>) Trigger.oldMap;
     List<FileDTO> fileDtos = new List<FileDTO>();
     List<Id> contentDocumentIds = new List<Id>();
-    for (FinServ__Employment__c newEmp : newEmployments) {
-      FinServ__Employment__c oldEmp = oldEmploymentMap.get(newEmp.Id);
+    for (Employment__c newEmp : newEmployments) {
+      Employment__c oldEmp = oldEmploymentMap.get(newEmp.Id);
 
       if (
         oldEmp.PrimaryContentDocumentID__c != newEmp.PrimaryContentDocumentID__c
@@ -70,9 +70,7 @@ public with sharing class EmploymentTriggerHandler extends AbstractTriggerHandle
   @SuppressWarnings('PMD.EmptyStatementBlock')
   public override void beforeDelete() {
     List<Id> contentDocumentIds = new List<Id>();
-    for (
-      FinServ__Employment__c emp : (List<FinServ__Employment__c>) Trigger.old
-    ) {
+    for (Employment__c emp : (List<Employment__c>) Trigger.old) {
       if (String.isNotBlank(emp.PrimaryContentDocumentID__c)) {
         contentDocumentIds.add(emp.PrimaryContentDocumentID__c);
       }

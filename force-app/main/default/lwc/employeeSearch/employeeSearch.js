@@ -70,7 +70,7 @@ export default class EmployeeSearch extends NavigationMixin(LightningElement) {
         type: "standard__recordPage",
         attributes: {
           recordId: recId,
-          objectApiName: "Account",
+          objectApiName: "mflow__Application__c",
           actionName: "edit"
         }
       });

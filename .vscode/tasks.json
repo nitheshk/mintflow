@@ -14,14 +14,31 @@
       "problemMatcher": []
     },
     {
-      "label": "Task : Sfdx Push with overwrite & Ignore Warning",
+      "label": "Task : Sfdx Push with overwrite",
       "type": "shell",
       "command": "sfdx",
       "args": [
-        "force:source:push",
+        "force:source:legacy:push",
         "--loglevel",
         "fatal",
         "-g",
+        "--forceoverwrite"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Task : Sfdx pull with overwrite",
+      "type": "shell",
+      "command": "sfdx",
+      "args": [
+        "force:source:legacy:pull",
+        "--loglevel",
+        "fatal",
         "--forceoverwrite"
       ],
       "group": "build",
@@ -60,6 +77,18 @@
       "type": "shell",
       "command": "gulp",
       "args": ["newScratchOrg"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sfdx : Create Managed Scratch Org",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["newManagedScratchOrg"],
       "group": "build",
       "presentation": {
         "reveal": "always",

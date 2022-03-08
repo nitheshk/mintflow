@@ -60,32 +60,17 @@
                   <div class="slds-grid slds-wrap">
                     <!-- Header-->
                     <div
-                      class="
-                        slds-col
-                        slds-text-heading_small
-                        slds-p-horizontal_medium
-                        slds-size_4-of-12
-                      "
+                      class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_4-of-12"
                     >
                       <span>Application ID</span>
                     </div>
                     <div
-                      class="
-                        slds-col
-                        slds-text-heading_small
-                        slds-p-horizontal_medium
-                        slds-size_4-of-12
-                      "
+                      class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_4-of-12"
                     >
                       <span>Transaction ID</span>
                     </div>
                     <div
-                      class="
-                        slds-col
-                        slds-text-heading_small
-                        slds-p-horizontal_medium
-                        slds-size_4-of-12
-                      "
+                      class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_4-of-12"
                     >
                       <a
                         class="slds-card__footer-action"
@@ -96,35 +81,17 @@
                     </div>
                     <!-- data -->
                     <div
-                      class="
-                        slds-col
-                        slds-text-heading_small
-                        slds-p-top_medium
-                        slds-p-horizontal_medium
-                        slds-size_4-of-12
-                      "
+                      class="slds-col slds-text-heading_small slds-p-top_medium slds-p-horizontal_medium slds-size_4-of-12"
                     >
                       <b>{!wrapper.GeneralInfo.applicationId}</b>
                     </div>
                     <div
-                      class="
-                        slds-col
-                        slds-text-heading_small
-                        slds-p-top_medium
-                        slds-p-horizontal_medium
-                        slds-size_4-of-12
-                      "
+                      class="slds-col slds-text-heading_small slds-p-top_medium slds-p-horizontal_medium slds-size_4-of-12"
                     >
                       <b>{!wrapper.GeneralInfo.transactionId}</b>
                     </div>
                     <div
-                      class="
-                        slds-col
-                        slds-text-heading_small
-                        slds-p-top_medium
-                        slds-p-horizontal_medium
-                        slds-size_4-of-12
-                      "
+                      class="slds-col slds-text-heading_small slds-p-top_medium slds-p-horizontal_medium slds-size_4-of-12"
                     ></div>
                   </div>
                 </div>
@@ -133,12 +100,7 @@
             <div class="slds-col slds-p-around_small slds-size_1-of-1">
               <!-- CUSTOMER SCORE-->
               <div
-                class="
-                  slds-page-header
-                  slds-align_absolute-left
-                  slds-col
-                  slds-size_1-of-1
-                "
+                class="slds-page-header slds-align_absolute-left slds-col slds-size_1-of-1"
               >
                 <h1>
                   <b>
@@ -147,10 +109,7 @@
                       title="share_poll"
                     >
                       <svg
-                        class="
-                          slds-icon slds-icon-text-default
-                          slds-icon_xx-small
-                        "
+                        class="slds-icon slds-icon-text-default slds-icon_xx-small"
                         aria-hidden="true"
                       >
                         <use
@@ -164,12 +123,7 @@
               </div>
               <!--Fraud Score-->
               <div
-                class="
-                  slds-col
-                  slds-p-around_small
-                  slds-border_left slds-border_right slds-border_bottom
-                  slds-size_1-of-1
-                "
+                class="slds-col slds-p-around_small slds-border_left slds-border_right slds-border_bottom slds-size_1-of-1"
               >
                 <div class="slds-grid slds-wrap slds-p-around_small">
                   <apex:repeat var="scoreItem" value="{!wrapper.scores}">
@@ -199,12 +153,7 @@
                         </div>
                       </div>
                       <table
-                        class="
-                          slds-table
-                          slds-table_cell-buffer
-                          slds-table_bordered
-                          slds-table_col-bordered
-                        "
+                        class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
                       >
                         <thead>
                           <tr class="slds-line-height_reset">
@@ -262,12 +211,7 @@
             <div class="slds-col slds-p-around_small slds-size_1-of-1">
               <!-- CUSTOMER HISTORY -->
               <div
-                class="
-                  slds-page-header
-                  slds-align_absolute-left
-                  slds-col
-                  slds-size_1-of-1
-                "
+                class="slds-page-header slds-align_absolute-left slds-col slds-size_1-of-1"
               >
                 <h1>
                   <b>
@@ -276,10 +220,7 @@
                       title="share_poll"
                     >
                       <svg
-                        class="
-                          slds-icon slds-icon-text-default
-                          slds-icon_xx-small
-                        "
+                        class="slds-icon slds-icon-text-default slds-icon_xx-small"
                         aria-hidden="true"
                       >
                         <use
@@ -293,12 +234,7 @@
               </div>
 
               <div
-                class="
-                  slds-col
-                  slds-p-around_small
-                  slds-border_left slds-border_right slds-border_bottom
-                  slds-size_1-of-1
-                "
+                class="slds-col slds-p-around_small slds-border_left slds-border_right slds-border_bottom slds-size_1-of-1"
               >
                 <h2 class="slds-card__header-title">
                   <span
@@ -311,12 +247,7 @@
               </div>
 
               <div
-                class="
-                  slds-col
-                  slds-p-around_small
-                  slds-border_left slds-border_right slds-border_bottom
-                  slds-size_1-of-1
-                "
+                class="slds-col slds-p-around_small slds-border_left slds-border_right slds-border_bottom slds-size_1-of-1"
               >
                 <div class="slds-grid slds-wrap">
                   <div class="slds-col slds-p-around_small slds-size_6-of-12">

@@ -2,14 +2,14 @@
 public with sharing class SObjectWithSharingTest {
   @istest
   static void sObjectWithSharingTestOne() {
-    Account acc = TestData.createAccount();
-    account acc1 = TestData.createAccount();
+    Application__c acc = TestData.createApplication();
+    Application__c acc1 = TestData.createApplication();
     SObjectField a;
     test.startTest();
     try {
-      SObjectWithSharing.getRecords('select id from account');
+      SObjectWithSharing.getRecords('select id from Application__c');
       SObjectWithSharing.getRecords(
-        'select id from account',
+        'select id from Application__c',
         new List<Object>{ 1, 5, 6, 'd', 's', 4 }
       );
       SObjectWithSharing.processRecords(

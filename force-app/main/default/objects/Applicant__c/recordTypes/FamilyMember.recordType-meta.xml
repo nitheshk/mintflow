@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FamilyMember</fullName>
     <active>true</active>
+    <compactLayoutAssignment>Applicant</compactLayoutAssignment>
     <description>Family Member</description>
     <label>Family Member</label>
     <picklistValues>

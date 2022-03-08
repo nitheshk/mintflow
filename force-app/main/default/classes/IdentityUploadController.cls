@@ -7,12 +7,12 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class IdentityUploadController extends AbstractController {
-  private Account application { get; set; }
+  private Application__c application { get; set; }
   global String initialData { get; set; }
 
   global IdentityUploadController() {
     super(IdentityUploadController.class);
-    this.application = new Account();
+    this.application = new Application__c();
   }
 
   /**
@@ -62,7 +62,7 @@ global with sharing class IdentityUploadController extends AbstractController {
         ),
         'params' => params,
         'applicationConfig' => ApplicationConfiguration__c.getInstance(),
-        'siteConfig' => ApplicationRepository.readSiteSetting()
+        'siteConfig' => SiteSetting__c.getInstance()
       };
       this.initialData = JSON.serialize(initialData);
       return null;
@@ -81,5 +81,17 @@ global with sharing class IdentityUploadController extends AbstractController {
     } finally {
       Logger.persist();
     }
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 02-21-2022
+   * @return String
+   **/
+  global String getStaticUrl() {
+    return System.PageReference.forResource(
+        ApplicationConfiguration__c.getInstance().UiStaticResourceName__c
+      )
+      .getUrl();
   }
 }

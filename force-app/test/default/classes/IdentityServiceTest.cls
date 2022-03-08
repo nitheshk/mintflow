@@ -1,8 +1,8 @@
 @isTest
 public with sharing class IdentityServiceTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeAccountData() {
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
   private static ContactPointAddress makeContactPointAddress(Id applicantId) {
@@ -18,8 +18,10 @@ public with sharing class IdentityServiceTest {
     return cv;
   }
   private static Applicant__c makeApplicantData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecords(
+      new List<Application__c>{ acc }
+    )[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant.Email__c = 'test@mail.com';
     applicant.SSN__c = '986584759';
@@ -39,7 +41,7 @@ public with sharing class IdentityServiceTest {
   //------------------------------TEST METHOD--------------------------------------------
   @isTest
   static void verifyCountyTestOne() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     ApexRequest request = new ApexRequest();
     request.applicationId = acc.Id;
     request.setHeader(new Map<String, String>{ 'zipcode' => '98013' });
@@ -54,7 +56,7 @@ public with sharing class IdentityServiceTest {
   }
   @isTest
   static void verifyCountyTestTwo() {
-    Account acc = makeAccountData();
+    Application__c acc = makeAccountData();
     ApexRequest request = new ApexRequest();
     request.applicationId = acc.Id;
     Test.startTest();
@@ -73,7 +75,7 @@ public with sharing class IdentityServiceTest {
     Applicant__c applicant = makeApplicantData();
     makeContactPointAddress(applicant.Id);
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.Application__c; //account ID
+    request.applicationId = applicant.Application__c; //Application__c ID
     request.setHeader(
       new Map<String, String>{
         'applicantId' => applicant.Id,
@@ -94,7 +96,7 @@ public with sharing class IdentityServiceTest {
     Applicant__c applicant = makeApplicantData();
     makeContactPointAddress(applicant.Id);
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.Application__c; //account ID
+    request.applicationId = applicant.Application__c; //Application__c ID
     request.setHeader(
       new Map<String, String>{
         'applicantId' => applicant.Id,
@@ -115,7 +117,7 @@ public with sharing class IdentityServiceTest {
     Applicant__c applicant = makeApplicantData();
     makeContactPointAddress(applicant.Id);
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.Application__c; //account ID
+    request.applicationId = applicant.Application__c; //Application__c ID
     request.setHeader(
       new Map<String, String>{
         'applicantId' => applicant.Id,
@@ -138,7 +140,7 @@ public with sharing class IdentityServiceTest {
     cv = fileService.getInstance().fetchContentVersionById(cv.id, true);
     Applicant__c applicant = makeApplicantData();
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.Application__c; //account ID
+    request.applicationId = applicant.Application__c; //Application__c ID
     request.setHeader(
       new Map<String, Object>{ 'contentDocumentId' => cv.ContentDocumentId }
     );
@@ -156,7 +158,7 @@ public with sharing class IdentityServiceTest {
     ContentVersion cv = makeContentVersion();
     Applicant__c applicant = makeApplicantData();
     ApexRequest request = new ApexRequest();
-    request.applicationId = applicant.Application__c; //account ID
+    request.applicationId = applicant.Application__c; //Application__c ID
     request.setHeader(
       new Map<String, Object>{ 'contentDocumentId' => cv.ContentDocumentId }
     );

@@ -65,10 +65,6 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
     }
 
     accountRecord.UserAccountType__c = FinancialInstituteConstants.FIN_INST_ACOUNT_TYPE;
-    accountRecord.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      Account.SobjectType,
-      FinancialInstituteConstants.FIN_INST_ACCOUNT_RECORDTYPE
-    );
     FinancialInstituteSiteRepository.upsertRecord(accountRecord);
     ApplicationConfiguration__c ap = ApplicationConfiguration__c.getOrgDefaults();
     if (ap.FinancialInstituteAccountId__c == null) {
@@ -132,10 +128,6 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
     Contact employeeContactObj,
     Account businessAccountObj
   ) {
-    employeeContactObj.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      Contact.SobjectType,
-      FinancialInstituteConstants.FIN_INST_EMPLOYEE_CONTACT_RECORDTYPE
-    );
     employeeContactObj.AccountId = businessAccountObj?.id;
     employeeContactObj.LeadSource = 'Partner Referral';
     employeeContactObj.UserContactType__c = FinancialInstituteConstants.FIN_INST_EMPLOYEE_CONTACT_TYPE;

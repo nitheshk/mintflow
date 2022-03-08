@@ -65,29 +65,6 @@
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
-                },
-                {
-                  "componentAttributes": {
-                    "enableInlineEdit": true,
-                    "filterName": "All",
-                    "layout": "FULL",
-                    "pageSize": 25,
-                    "scope": "Account",
-                    "showActionBar": true,
-                    "showChartsPanel": true,
-                    "showDisplay": "showall",
-                    "showFilterPanel": true,
-                    "showImageIcon": true,
-                    "showManualRefreshButton": true,
-                    "showObjectName": true,
-                    "showPinnedList": true,
-                    "showSearchBar": true
-                  },
-                  "componentName": "forceCommunity:objectHome",
-                  "id": "4700a0f3-8dd3-40fe-9f80-93bd2ebf8018",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
                 }
               ],
               "id": "f7b4c157-46e3-4ab3-a6ee-46849e85753a",

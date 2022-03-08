@@ -6,7 +6,7 @@
  * @description Financial Account Service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class FinancialAccountService extends AbstractService {
+global virtual with sharing class FinancialAccountService extends AbstractService {
   @TestVisible
   private static FinancialAccountService serviceInstance;
   private FinancialAccountServiceHelper helper = FinancialAccountServiceHelper.getInstance();
@@ -32,11 +32,11 @@ global with sharing class FinancialAccountService extends AbstractService {
   /**
    * @description Read Financial Account with child record
    * @author Digital Align Team | 10-26-2021
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
-   * @return List<FinServ__FinancialAccount__c>
+   * @param List<FinancialAccount__c> financialAccounts
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> readFinancialAccountsWithChild(
-    List<FinServ__FinancialAccount__c> financialAccounts
+  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(
+    List<FinancialAccount__c> financialAccounts
   ) {
     return readFinancialAccountsWithChild(
       (new Map<Id, SObject>(financialAccounts)).keySet()
@@ -47,9 +47,9 @@ global with sharing class FinancialAccountService extends AbstractService {
    * @description  Read Financial Account with child record by ids
    * @author Digital Align Team | 10-26-2021
    * @param Set<Id> applicationIds
-   * @return List<FinServ__FinancialAccount__c>
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> readFinancialAccountsWithChild(
+  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(
     Set<Id> applicationIds
   ) {
     return FinancialAccountRepository.readFinancialAccountsWithChild(
@@ -60,11 +60,11 @@ global with sharing class FinancialAccountService extends AbstractService {
   /**
    * @description  before save finanical account
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
-   * @return List<FinServ__FinancialAccount__c>
+   * @param List<FinancialAccount__c> financialAccounts
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> beforeSaveFinancialAccounts(
-    List<FinServ__FinancialAccount__c> financialAccounts
+  global virtual List<FinancialAccount__c> beforeSaveFinancialAccounts(
+    List<FinancialAccount__c> financialAccounts
   ) {
     return financialAccounts;
   }
@@ -73,12 +73,12 @@ global with sharing class FinancialAccountService extends AbstractService {
    * @description save financial account
    * rollback on failure
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
+   * @param List<FinancialAccount__c> financialAccounts
    * @param String applicationId
-   * @return  List<FinServ__FinancialAccount__c>
+   * @return  List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> saveFinancialAccounts(
-    List<FinServ__FinancialAccount__c> financialAccounts,
+  global virtual List<FinancialAccount__c> saveFinancialAccounts(
+    List<FinancialAccount__c> financialAccounts,
     String applicationId
   ) {
     //before saving financialAccounts
@@ -100,11 +100,11 @@ global with sharing class FinancialAccountService extends AbstractService {
   /**
    * @description after save finanical accounts
    * @author Digital Align Team | 01-10-2022
-   * @param List<FinServ__FinancialAccount__c> financialAccounts
-   * @return List<FinServ__FinancialAccount__c>
+   * @param List<FinancialAccount__c> financialAccounts
+   * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinServ__FinancialAccount__c> afterSaveFinancialAccounts(
-    List<FinServ__FinancialAccount__c> financialAccounts
+  global virtual List<FinancialAccount__c> afterSaveFinancialAccounts(
+    List<FinancialAccount__c> financialAccounts
   ) {
     return financialAccounts;
   }
@@ -112,69 +112,28 @@ global with sharing class FinancialAccountService extends AbstractService {
   /**
    * @description Create financial membership account record
    * @author Digital Align Team | 12-13-2021
-   * @param Account application
-   * @return Account
+   * @param Application__c application
+   * @return Application__c
    */
-  global Account createMembershipFinancialAccount(Account application) {
-    Applicant__c primaryApplicant;
-
-    for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
-        primaryApplicant = applicant;
-      }
-    }
-
-    //check already Application has Account Contact relation with primary
-    AccountContactRelation accountContactRel = FinancialAccountRepository.fetchAccountContactRelation(
-      application.Id,
-      primaryApplicant.Contact__c
-    );
-
-    if (accountContactRel == null) {
-      //check has primary group account contact relation is already created ? if not mark as primary group
-      AccountContactRelation hasPrimaryGroupRelation = FinancialAccountRepository.fetchPrimaryAccountContactRelation(
-        primaryApplicant.Contact__c
-      );
-
-      // purpose to link application and primary contact to view in household view
-      accountContactRel = new AccountContactRelation(
-        AccountId = application.Id,
-        ContactId = primaryApplicant.Contact__c,
-        IsActive = true,
-        FinServ__Primary__c = true,
-        FinServ__PrimaryGroup__c = hasPrimaryGroupRelation == null
-          ? true
-          : false,
-        StartDate = Date.today(),
-        EndDate = Date.today().addYears(100),
-        Roles = 'Business User',
-        FinServ__Rollups__c = 'All'
-      );
-      FinancialAccountRepository.upsertRecord(accountContactRel);
-    }
+  global Application__c createMembershipFinancialAccount(
+    Application__c application
+  ) {
     //fetching membership product
     FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
       HttpBuilder.getApiConstant('MembershipAccountInternalCode')
     );
 
     // create membership financial account
-    FinServ__FinancialAccount__c financialAccount = new FinServ__FinancialAccount__c();
+    FinancialAccount__c financialAccount = new FinancialAccount__c();
     financialAccount.FinancialProduct__c = membershipProduct.Id;
-    financialAccount.Name = membershipProduct.Name;
     financialAccount.ExternalApplicationNumber__c = application.ExternalApplicationNumber__c;
-    financialAccount.FinServ__FinancialAccountType__c = membershipProduct.Category__c;
-    financialAccount.FinServ__PrimaryOwner__c = primaryApplicant.Contact__r.AccountId;
-    financialAccount.FinServ__Ownership__c = 'Individual';
-    financialAccount.FinServ__Status__c = 'Open';
-    financialAccount.FinServ__Stage__c = 'Active';
-    financialAccount.FinServ__Household__c = application.Id;
+    financialAccount.Ownership__c = 'Individual';
+    financialAccount.Status__c = ApplicationConstant.FUNDING_IN_PROGRESS;
+    financialAccount.Stage__c = 'Active';
     financialAccount.Application__c = application.Id;
     financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      FinServ__FinancialAccount__c.SObjectType,
-      'SavingsAccount'
+      FinancialAccount__c.SObjectType,
+      membershipProduct.Category__c
     );
     FinancialAccountRepository.upsertRecord(financialAccount);
     log?.fine('financialAccount Created');

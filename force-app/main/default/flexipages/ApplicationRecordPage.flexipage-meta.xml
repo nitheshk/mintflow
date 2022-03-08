@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description
-  >Lightning page template for cloning client and household record pages in Financial Services Cloud.</description>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -35,19 +33,11 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>FinServ:alert</componentName>
+                <componentName>force:detailPanel</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>contactFirst</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentName>FinServ:clientRecordDetail</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>facet-1721d005-c6bb-4b24-9e40-2b0956ee0b8d</name>
+        <mode>Replace</mode>
+        <name>detailTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -56,127 +46,7 @@
                 <componentName>application360View</componentName>
             </componentInstance>
         </itemInstances>
-        <name>Facet-2aaaedfc-57c1-491d-bcc9-9af4e5d96856</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>fieldSet</name>
-                    <value>WM_Client_Profile_Fin_Acct_Summary</value>
-                </componentInstanceProperties>
-                <componentName>FinServ:financialSummary</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>faFieldSet</name>
-                    <value>FSC_Client_SavingsAccount</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>financialHoldingFieldSet</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>iconName</name>
-                    <value>custom:custom87</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>recordTypeNames</name>
-                    <value>FinServ__SavingsAccount</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Savings Accounts</value>
-                </componentInstanceProperties>
-                <componentName>FinServ:financialAccountList</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>faFieldSet</name>
-                    <value>FSC_Client_CheckingAccount</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>iconName</name>
-                    <value>custom:custom16</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>recordTypeNames</name>
-                    <value>FinServ__CheckingAccount</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Checking Accounts</value>
-                </componentInstanceProperties>
-                <componentName>FinServ:financialAccountList</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>FinServ:bankAccount</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>FinServ:financialAccountRole</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>FinServ:assetsAndLiabilities</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>facet-e3f494a8-5149-409a-a45f-43e5c37ecbc0</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>relatedAccountsLabelKey</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedContactsLabelKey</name>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showRelatedAccounts</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showRelatedContacts</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentName>FinServ:relationshipMap</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>shouldShowGroupActivityRollup</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentName>FinServ:relationshipMembers</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>FinServ:relationshipGroupList</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>FinServ:relatedAccount</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>FinServ:relatedContact</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>facet-61578197-7a87-496c-a1df-b95baf1c4409</name>
+        <name>Facet-3e7e8464-9eef-4554-9af4-a34e94573fb5</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -188,25 +58,51 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>contactFirst</name>
-                    <value>false</value>
+                    <name>relatedListComponentOverride</name>
+                    <value>NONE</value>
                 </componentInstanceProperties>
-                <componentName>FinServ:clientRelatedLists</componentName>
+                <componentInstanceProperties>
+                    <name>rowsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListContainer</componentName>
             </componentInstance>
         </itemInstances>
-        <name>facet-943d543f-c212-4f34-bc2c-da0db02d0ffa</name>
+        <mode>Replace</mode>
+        <name>relatedTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>context</name>
+                    <value>RECORD</value>
+                </componentInstanceProperties>
+                <componentName>forceChatter:publisher</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-5c7e84b8-9ddd-4b08-bdcc-0b6dbc705444</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>active</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>body</name>
-                    <value>facet-1721d005-c6bb-4b24-9e40-2b0956ee0b8d</value>
+                    <value>detailTabContent</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
-                    <value>Application Detail</value>
+                    <value>Standard.Tab.detail</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
@@ -215,7 +111,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-2aaaedfc-57c1-491d-bcc9-9af4e5d96856</value>
+                    <value>Facet-3e7e8464-9eef-4554-9af4-a34e94573fb5</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
@@ -228,37 +124,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>facet-e3f494a8-5149-409a-a45f-43e5c37ecbc0</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Financial Accounts</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>facet-61578197-7a87-496c-a1df-b95baf1c4409</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Relationships</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>active</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>facet-943d543f-c212-4f34-bc2c-da0db02d0ffa</value>
+                    <value>relatedTabContent</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
@@ -267,7 +133,21 @@
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
         </itemInstances>
-        <name>facet-5a296679-559d-4144-963a-fb61b66279ea</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-5c7e84b8-9ddd-4b08-bdcc-0b6dbc705444</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Standard.Tab.collaborate</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+            </componentInstance>
+        </itemInstances>
+        <mode>Replace</mode>
+        <name>maintabs</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -275,7 +155,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>tabs</name>
-                    <value>facet-5a296679-559d-4144-963a-fb61b66279ea</value>
+                    <value>maintabs</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tabset</componentName>
             </componentInstance>
@@ -287,21 +167,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>FinServ:clientActivities</componentName>
+                <componentName
+        >runtime_sales_activities:activityPanel</componentName>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
         <name>activityTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>FinServ:clientCollaborate</componentName>
-            </componentInstance>
-        </itemInstances>
-        <mode>Replace</mode>
-        <name>feedTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -322,19 +193,6 @@
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>feedTabContent</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Standard.Tab.collaborate</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-            </componentInstance>
-        </itemInstances>
         <mode>Replace</mode>
         <name>sidebartabs</name>
         <type>Facet</type>
@@ -346,24 +204,24 @@
                 <visibilityRule>
                     <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.FinServ__Status__c}</leftValue>
+                        <leftValue>{!Record.Status__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Completed</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.FinServ__Status__c}</leftValue>
+                        <leftValue>{!Record.Status__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Submit for Review</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.FinServ__Status__c}</leftValue>
+                        <leftValue>{!Record.Status__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Submitted</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.FinServ__Status__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Revision in Progress</rightValue>
+                        <leftValue>{!Record.Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Review In Progress</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -373,7 +231,7 @@
                 <componentName>resubmitApplication</componentName>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.FinServ__Status__c}</leftValue>
+                        <leftValue>{!Record.Status__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Revision in Progress</rightValue>
                     </criteria>
@@ -391,16 +249,11 @@
                         <rightValue>ApplicationFlow</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.FinServ__KYCStatus__c}</leftValue>
+                        <leftValue>{!Record.KYCStatus__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Passed</rightValue>
                     </criteria>
                 </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>relatedFiles</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -416,9 +269,9 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>MintFlow Application Record Page</masterLabel>
-    <parentFlexiPage>sfa__Account_rec_L</parentFlexiPage>
-    <sobjectType>Account</sobjectType>
+    <masterLabel>Application Record Page</masterLabel>
+    <parentFlexiPage>flexipage__default_rec_L</parentFlexiPage>
+    <sobjectType>Application__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>
     </template>

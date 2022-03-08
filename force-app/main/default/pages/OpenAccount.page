@@ -1,7 +1,0 @@
-<apex:page
-  id="OpenAccount"
-  controller="OpenAccountController"
-  action="{!initOpenAccount}"
-  title="OpenAccount"
->
-</apex:page>

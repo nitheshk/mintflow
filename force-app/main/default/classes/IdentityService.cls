@@ -233,7 +233,7 @@ global virtual with sharing class IdentityService extends AbstractService {
           'urlSuffix' => '/membership/upload/document-upload',
           'aplId' => currentApplicant.Id,
           'ch' => 'Virtual',
-          'pageName' => '/mflow__IdentityUpload',
+          'pageName' => '/IdentityUpload',
           'suffixType' => 'path'
         }
       );
@@ -349,14 +349,14 @@ global virtual with sharing class IdentityService extends AbstractService {
   }
 
   global virtual IdScanDueDiligenceDTO.Request mapIdentity(
-    FinServ__IdentificationDocument__c identity,
+    IdentificationDocument__c identity,
     IdScanDueDiligenceDTO.Request customer
   ) {
     customer.sex = identity.Gender__c;
-    customer.driverLicenseNumber = identity.FinServ__DocumentNumber__c;
+    customer.driverLicenseNumber = identity.DocumentNumber__c;
     customer.documentCategoryCode = 0;
-    customer.driverLicenseIssueDate = identity.FinServ__IssueDate__c;
-    customer.driverLicenseExpirationDate = identity.FinServ__ExpirationDate__c;
+    customer.driverLicenseIssueDate = identity.IssueDate__c;
+    customer.driverLicenseExpirationDate = identity.ExpirationDate__c;
     return customer;
   }
 

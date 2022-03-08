@@ -6,7 +6,7 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class BuildApplicationWrapper extends AbstractService {
+global virtual with sharing class BuildApplicationWrapper extends AbstractService {
   @TestVisible
   private static BuildApplicationWrapper serviceInstance;
 
@@ -49,7 +49,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
           System.Label.Application_ApplicationNameCannotBeBlank
         );
       }
-      Account application = SubmissionRepository.readApplicationByApplicationNumber(
+      Application__c application = SubmissionRepository.readApplicationByApplicationNumber(
         applicationNumber
       );
       if (application == null) {
@@ -61,28 +61,27 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       if (application != null) {
         ApplicationSubmissionResponse.Account mapperApplication = new ApplicationSubmissionResponse.Account();
         mapperApplication.ApplicationId = application.Id;
-        mapperApplication.ApplicationNumber = application.ApplicationNumber__c;
+        mapperApplication.ApplicationNumber = application.Name;
         //#pending
         mapperApplication.FinancialProductType = 'Savings';
         mapperApplication.FinancialProduct = 'Regular Savings';
-        mapperApplication.BranchCode = application.FinServ__BranchCode__c;
-        mapperApplication.BranchName = application.FinServ__BranchName__c;
+        mapperApplication.BranchCode = application.BranchCode__c;
+        mapperApplication.BranchName = application.BranchName__c;
         mapperApplication.CountyName = application.CountyName__c;
         mapperApplication.StateName = application.StateName__c;
         mapperApplication.CountyCode = application.CountyZipCode__c;
         mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
         // mapperApplication.CreatedChannel = application.CreatedChannel__c;
         mapperApplication.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
-        // mapperApplication.CustomerType = application.FinServ__CustomerType__c;
+        // mapperApplication.CustomerType = application.ApplicationType__c;
         // mapperApplication.FlowState = application.FlowState__c;
         // mapperApplication.IpAddress = application.IPAddress__c;
         // mapperApplication.IsMemberFlow = application.isMemberFlow__c;
-        // mapperApplication.LastUsedChannel = application.FinServ__LastUsedChannel__c;
-        // mapperApplication.Status = application.FinServ__Status__c;
+        // mapperApplication.LastUsedChannel = application.LastUsedChannel__c;
+        // mapperApplication.Status = application.Status__c;
         // mapperApplication.SubmittedBy = application.SubmittedBy__c;
         // mapperApplication.SubmittedDate = application.SubmittedDate__c;
         // mapperApplication.SubStatus = application.Stage__c;
-        // mapperApplication.UserAccountType = application.UserAccountType__c;
 
         if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
           mapperApplication.Applicants.addAll(
@@ -160,10 +159,6 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
         );
       }
 
-      //Map Revenue Data
-      // if (!CollectionUtils.isListEmpty(applicant.Revenues__r)) {
-      //   mapperApplicant.Revenues.addAll(mapRevenue(applicant.Revenues__r));
-      // }
       //Map Survey Data
       if (!CollectionUtils.isListEmpty(applicant.Surveys__r)) {
         mapperApplicant.Surveys.addAll(mapSurvey(applicant.Surveys__r));
@@ -175,17 +170,6 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
           mapContactAddress(applicant.ContactPointAddresses__r)
         );
       }
-
-      //Map Assest and Liabilities Data
-      /* Not required for phase 1
-      if (
-        !CollectionUtils.isListEmpty(applicant.AssetsAndLiabilities__r)
-      ) {
-        mapperApplicant.AssetsAndLiabilities.addAll(
-          mapContactAddress(applicant.AssetsAndLiabilities__r)
-        );
-      }*/
-
       mapperApplicantList.add(mapperApplicant);
     }
     return mapperApplicantList;
@@ -194,21 +178,21 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
   /**
    * @description
    * @author Digital Align | 11-10-2021
-   * @param List<FinServ__Employment__c> employmentList
+   * @param List<Employment__c> employmentList
    * @return virtual
    **/
   global virtual list<ApplicationSubmissionResponse.Employment> mapEmployment(
-    List<FinServ__Employment__c> employmentList
+    List<Employment__c> employmentList
   ) {
     list<ApplicationSubmissionResponse.Employment> mapperEmploymentList = new List<ApplicationSubmissionResponse.Employment>();
-    for (FinServ__Employment__c employment : employmentList) {
+    for (Employment__c employment : employmentList) {
       ApplicationSubmissionResponse.Employment mapperEmployment = new ApplicationSubmissionResponse.Employment();
       mapperEmployment.EmploymentId = employment.Id;
       mapperEmployment.EmploymentType = employment.EmploymentType__c;
       mapperEmployment.EmployerName = employment.Name;
       mapperEmployment.EmploymentStatus = getStatusMapping(
-        'FinServ__EmploymentStatus__c',
-        employment.FinServ__EmploymentStatus__c
+        'EmploymentStatus__c',
+        employment.EmploymentStatus__c
       );
       mapperEmployment.GrossMonthlySalary = employment.GrossMonthlySalary__c;
       mapperEmployment.Name = employment.Name;
@@ -216,7 +200,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
       mapperEmployment.PayCycle = employment.PayCycle__c;
       mapperEmployment.Order = employment.Order__c;
       mapperEmployment.PayGrade = employment.PayGrade__c;
-      mapperEmployment.Position = employment.FinServ__Position__c;
+      mapperEmployment.Position = employment.Position__c;
       mapperEmployment.EmploymentDuration = employment.EmploymentDuration__c;
       mapperEmployment.DocumentType = employment.DocumentType__c;
       mapperEmployment.BranchofService = employment.BranchofService__c;
@@ -228,21 +212,21 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
   /**
    * @description
    * @author Digital Align | 11-10-2021
-   * @param List<FinServ__IdentificationDocument__c> identityList
+   * @param List<IdentificationDocument__c> identityList
    * @return virtual
    **/
   global virtual list<ApplicationSubmissionResponse.IdentificationDocument> mapIdentity(
-    List<FinServ__IdentificationDocument__c> identityList
+    List<IdentificationDocument__c> identityList
   ) {
     list<ApplicationSubmissionResponse.IdentificationDocument> mapperIdentityList = new List<ApplicationSubmissionResponse.IdentificationDocument>();
-    for (FinServ__IdentificationDocument__c identity : identityList) {
+    for (IdentificationDocument__c identity : identityList) {
       ApplicationSubmissionResponse.IdentificationDocument mapperIdentity = new ApplicationSubmissionResponse.IdentificationDocument();
       mapperIdentity.IdentificationDocumentId = identity.Id;
-      mapperIdentity.IssuingCountry = identity.FinServ__IssuingCountry__c;
-      mapperIdentity.DocumentNumber = identity.FinServ__DocumentNumber__c;
-      mapperIdentity.DocumentType = identity.FinServ__DocumentType__c;
-      mapperIdentity.ExpirationDate = identity.FinServ__ExpirationDate__c;
-      mapperIdentity.IssueDate = identity.FinServ__IssueDate__c;
+      mapperIdentity.IssuingCountry = identity.IssuingCountry__c;
+      mapperIdentity.DocumentNumber = identity.DocumentNumber__c;
+      mapperIdentity.DocumentType = identity.DocumentType__c;
+      mapperIdentity.ExpirationDate = identity.ExpirationDate__c;
+      mapperIdentity.IssueDate = identity.IssueDate__c;
       mapperIdentity.IssuedRegion = identity.IssuedRegion__c;
       // mapperIdentity.Name = identity.Name;
       mapperIdentity.Order = identity.Order__c;
@@ -250,29 +234,6 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
     }
     return mapperIdentityList;
   }
-  /**
-   * @description
-   * @author Digital Align | 11-10-2021
-   * @param List<FinServ__Revenue__c> revenueList
-   * @return virtual
-   **/
-  // global virtual list<ApplicationSubmissionResponse.Revenue> mapRevenue(
-  //   List<FinServ__Revenue__c> revenueList
-  // ) {
-  //   list<ApplicationSubmissionResponse.Revenue> mapperRevenueList = new List<ApplicationSubmissionResponse.Revenue>();
-  //   for (FinServ__Revenue__c revenue : revenueList) {
-  //     ApplicationSubmissionResponse.Revenue mapperRevenue = new ApplicationSubmissionResponse.Revenue();
-  //     mapperRevenue.RevenueId = revenue.Id;
-  //     mapperRevenue.Amount = revenue.FinServ__Amount__c;
-  //     mapperRevenue.Name = revenue.Name;
-  //     mapperRevenue.Order = revenue.Order__c;
-  //     mapperRevenue.RevenueDate = revenue.FinServ__Date__c;
-  //     mapperRevenue.SubType = revenue.FinServ__SubType__c;
-  //     mapperRevenue.Type = revenue.FinServ__Type__c;
-  //     mapperRevenueList.add(mapperRevenue);
-  //   }
-  //   return mapperRevenueList;
-  // }
 
   /**
    * @description
@@ -332,27 +293,6 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
     return mapperContactAddressList;
   }
 
-  /* Not required for phase 1
-  global virtual list<ApplicationSubmissionResponse.AssetsAndLiabilities> mapContactAddress(
-    List<FinServ__AssetsAndLiabilities__c> assetsAndLiabilitiesList
-  ) {
-    list<ApplicationSubmissionResponse.AssetsAndLiabilities> mapperAssetsAndLiabilitiesList = new List<ApplicationSubmissionResponse.AssetsAndLiabilities>();
-    for (
-      FinServ__AssetsAndLiabilities__c assetsAndLiabilities : assetsAndLiabilitiesList
-    ) {
-      ApplicationSubmissionResponse.AssetsAndLiabilities mapperAssetsAndLiabilities = new ApplicationSubmissionResponse.AssetsAndLiabilities();
-      mapperAssetsAndLiabilities.AssetsAndLiabilitieId = assetsAndLiabilities.Id;
-      mapperAssetsAndLiabilities.Amount = assetsAndLiabilities.FinServ__Amount__c;
-      mapperAssetsAndLiabilities.AssetsAndLiabilitiesType = assetsAndLiabilities.FinServ__AssetsAndLiabilitiesType__c;
-      mapperAssetsAndLiabilities.Name = assetsAndLiabilities.Name;
-      mapperAssetsAndLiabilities.Order = assetsAndLiabilities.Order__c;
-      mapperAssetsAndLiabilities.Ownership = assetsAndLiabilities.FinServ__Ownership__c;
-      mapperAssetsAndLiabilities.OwnerType = assetsAndLiabilities.FinServ__OwnerType__c;
-      mapperAssetsAndLiabilitiesList.add(mapperAssetsAndLiabilities);
-    }
-    return mapperAssetsAndLiabilitiesList;
-  }
-  */
   /**
    * @description fetch all files saved under requested application and its child objects using application Id
    * @author Digital Align | 12-02-2021
@@ -373,7 +313,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
 
     List<id> reletedEntityIdList = new List<id>();
     List<Map<string, string>> fileDetails = new List<Map<string, string>>();
-    Account application = SubmissionRepository.readApplicationByApplicationNumber(
+    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(
       applicationNumber
     );
 
@@ -420,24 +360,24 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
    * @description Read application by parameter passed
    * @author Digital Align Team | 10-21-2021
    * @param Map<String Object> params
-   * @return Account
+   * @return Application__c
    **/
-  global virtual Account readApplicationWithChild(Id applicationId) {
-    Account application = SubmissionRepository.readApplicationWithChild(
+  global virtual Application__c readApplicationWithChild(Id applicationId) {
+    Application__c application = SubmissionRepository.readApplicationWithChild(
       applicationId
     );
 
     List<Applicant__c> applicants = readApplicantsWithChild(
       application.Applicants__r
     );
-    List<FinServ__FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
+    List<FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
     //Combine result into single application object
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
-    return (Account) builder.build();
+    return (Application__c) builder.build();
   }
 
   /**
@@ -473,7 +413,7 @@ global with sharing class BuildApplicationWrapper extends AbstractService {
           })
           .get(value);
       }
-      when 'FinServ__EmploymentStatus__c' {
+      when 'EmploymentStatus__c' {
         return (new Map<String, String>{
             'Employed' => 'Employed',
             'Self Employed' => 'Self Employed',

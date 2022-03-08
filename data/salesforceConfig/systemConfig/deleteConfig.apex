@@ -1,6 +1,5 @@
 delete [SELECT id FROM mflow__ApplicationConfiguration__c LIMIT 1000];
 delete [SELECT id FROM mflow__SystemSetting__c LIMIT 1000];
-delete [SELECT id FROM FinServ__UsePersonAccount__c LIMIT 1000];
 delete [SELECT id FROM mflow__SurveyTemplate__c LIMIT 1000];
 delete [SELECT id FROM mflow__SiteSetting__c LIMIT 1000];
 delete [SELECT id FROM mflow__ProductService__c LIMIT 1000];

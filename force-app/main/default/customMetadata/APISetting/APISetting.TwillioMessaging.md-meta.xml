@@ -10,7 +10,7 @@
         <field>EndPoint__c</field>
         <value
       xsi:type="xsd:string"
-    >callout:Twilio/{Version}/Accounts/{Twillio_Account}/Messages</value>
+    >callout:mflow__Twilio/{Version}/Accounts/{Twillio_Account}/Messages</value>
     </values>
     <values>
         <field>Method__c</field>

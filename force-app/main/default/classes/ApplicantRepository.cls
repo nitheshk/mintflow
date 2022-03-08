@@ -119,7 +119,7 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
     return (Applicant__c) DatabaseUtils.getRecord(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields(
-          'SessionToken__c,sessionExpireTime__c,Application__r.ApplicationNumber__c,Application__c'
+          'SessionToken__c,sessionExpireTime__c,Application__r.Name,Application__c'
         )
         .whereEq('Id', applicantId)
         .toString()
@@ -141,22 +141,6 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
         .addFields()
         .whereCon(filter)
         .addLimit(50)
-        .toString()
-    );
-  }
-
-  /**
-   * @description fetch Contact with ID By AccountId
-   * @author Digital Align Team | 12-10-2021
-   * @param Id accountId
-   * @return Contact
-   **/
-  global static Contact fetchContactByAccountId(Id accountId) {
-    return (Contact) DatabaseUtils.getRecord(
-      Query.newInstance(Contact.SObjectType)
-        .addFields('AccountId')
-        .whereEq('AccountId', accountId)
-        .addLimit(1)
         .toString()
     );
   }
