@@ -45,9 +45,16 @@ Step 3. Update your Devhub configuration detail under `deploy\devhub.json`, upda
 }
 ```
 
-## Create Scratch Org
+### Step 2: pulling submodule
 
-Step 2. Use **Cntr + Shift + B** and Select `SFDX: create new scratch org`
+Step 2.1 : `git clone --recursive git@github.com:DigitalAlignInc/p1fcu-olbui.git`
+Step 2.2 : Select develop branch in p1fcu-olbui
+Step 2:3 : run npn install in p1fcu-olbui git folder
+Step 2.4 : [Optional] Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks for Process`
+
+## Step 3. Create Scratch Org
+
+Use **Cntr + Shift + B** and Select `SFDX: create new scratch org`
 
 ### In Case of Failure while creating of scratch
 
@@ -87,13 +94,6 @@ Step 5. Export Data (Refer detailed Readme File in **data\salesforceConfig\READM
 
 > Step 1: Open Scratch org and goto user (Setup->Users) , Search for the user "Online User, Reset the password for the user, Reset url sent to linked github account and Set Password as `Test@123`
 > Step 2: One time Remove "OAuthProvider.cls-meta.xml" from .forceIgnore file in root folder to push file to salesforce, and update executionUser with Scartch org user name. Push the changes to scartch org and revert .forceIgnore file. In Named Credential Connect the OauthProvider for required API. example UiPath named Credential.
-
-### Step 3: pulling submodule
-
-Step 3.1 : `git clone --recursive git@github.com:DigitalAlignInc/p1fcu-olbui.git`
-Step 3.2 : Select develop branch in p1fcu-olbui
-Step 3:3 : run npn install in p1fcu-olbui git folder
-Step 3.4 : Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks for Process`
 
 ### ERROR AND ISSUE
 
