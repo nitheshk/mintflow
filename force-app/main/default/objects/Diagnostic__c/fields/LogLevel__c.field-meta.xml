@@ -26,6 +26,11 @@
                 <default>false</default>
                 <label>Info</label>
             </value>
+            <value>
+                <fullName>Fine</fullName>
+                <default>false</default>
+                <label>Fine</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

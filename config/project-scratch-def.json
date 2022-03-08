@@ -1,13 +1,7 @@
 {
   "orgName": "Digital Align Inc",
   "edition": "Developer",
-  "features": [
-    "EnableSetPasswordInApi",
-    "Sites",
-    "Communities",
-    "FinancialServicesUser:5",
-    "ContactsToMultipleAccounts"
-  ],
+  "features": ["EnableSetPasswordInApi", "Sites", "Communities"],
   "hasSampleData": false,
   "settings": {
     "lightningExperienceSettings": {
