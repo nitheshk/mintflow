@@ -1,5 +1,17 @@
 @IsTest
 public with sharing class CustomerEmailServiceTest {
+  private static Account makeAccountData() {
+    Account acc = TestData.createAccount();
+    acc = (Account) DatabaseUtils.insertRecord(acc);
+    return acc;
+  }
+  private static List<FinancialProduct__c> makeProducts() {
+    List<FinancialProduct__c> products = TestData.createProduct();
+    products = (List<FinancialProduct__c>) DatabaseUtils.insertRecords(
+      products
+    );
+    return products;
+  }
   private static Applicant__c makeApplicantData() {
     Account acc = TestData.createAccount();
     acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
@@ -10,6 +22,10 @@ public with sharing class CustomerEmailServiceTest {
   }
   private static List<Applicant__c> makeApplicantList(string applicantType) {
     Applicant__c primary = makeApplicantData();
+    Id recType = Schema.SObjectType.Applicant__c.getRecordTypeInfosByName()
+      .get('Primary')
+      .getRecordTypeId();
+    primary.RecordTypeId = recType;
     Applicant__c familyMember = TestData.createApplicant(
       primary.Application__c
     );
@@ -36,9 +52,14 @@ public with sharing class CustomerEmailServiceTest {
   @IsTest
   private static void validatGeneralEmails() {
     Applicant__c applicant = makeApplicantData();
+    makeApplicationConfiguration();
     Test.startTest();
     CustomerEmailService.getInstance().sendEmailOTP(applicant);
+    CustomerEmailService.getInstance().savedApplication(applicant);
     CustomerEmailService.getInstance().resumeApplication(applicant);
+    CustomerEmailService.getInstance()
+      .notifyAboutEmploymentReport(applicant, 'Notify');
+    CustomerEmailService.getInstance().uploadIdentityDocument(applicant);
     CustomerEmailService.getInstance()
       .accountOpened(applicant, new FinServ__FinancialAccount__c());
     CustomerEmailService.getInstance()
@@ -51,6 +72,7 @@ public with sharing class CustomerEmailServiceTest {
   private static void validatFamilyNotificationEmail() {
     List<Applicant__c> applicants = makeApplicantList('Family Member');
     Test.startTest();
+    CustomerEmailService.getInstance().removeJointApplicant(applicants);
     CustomerEmailService.getInstance().notifyFamilyMember(applicants);
     Test.stopTest();
     System.assertEquals(0, Limits.getEmailInvocations(), 'success');
@@ -77,6 +99,23 @@ public with sharing class CustomerEmailServiceTest {
     Test.startTest();
     try {
       CustomerEmailService.getInstance().sendEmailOTP(applicant);
+    } catch (Exception e) {
+      System.assertEquals(e.getMessage(), 'email not sent');
+    }
+    Test.stopTest();
+  }
+  @IsTest
+  private static void validateProductEmails() {
+    Applicant__c applicant = makeApplicantData();
+    Account app = makeAccountData();
+    List<FinancialProduct__c> products = makeProducts();
+    app.Applicants__r.addAll(makeApplicantList('Primary'));
+    makeApplicationConfiguration();
+    Test.startTest();
+    try {
+      CustomerEmailService.getInstance().fundingLinkOnKycApproval(app);
+      CustomerEmailService.getInstance()
+        .startSecondaryApplication(applicant, products);
     } catch (Exception e) {
       System.assertEquals(e.getMessage(), 'email not sent');
     }
