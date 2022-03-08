@@ -34,6 +34,14 @@
                 <behavior>Readonly</behavior>
                 <field>LastFourDigitsofSSN__c</field>
             </layoutItems>
+             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOWCorrectAnswers__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOWTotalQuestions__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
