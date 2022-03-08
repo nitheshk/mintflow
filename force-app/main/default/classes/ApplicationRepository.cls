@@ -10,7 +10,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
   /**
    * @description Read Application with child record
    * Applicants contains only ids
-   * Financial Account contains only Ids
+   * Financial Application__c contains only Ids
    * @author Digital Align Team | 10-26-2021
    * @param Id applicationId
    * @return Application__c
@@ -177,15 +177,15 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * Financial Account contains only Ids
    * @author Digital Align Team | 10-26-2021
    * @param Id applicationId
-   * @return Account
+   * @return Application__c
    **/
-  global static Account readApplicationToClone(Id applicationId) {
-    Query qry = Query.newInstance(Account.SObjectType)
+  global static Application__c readApplicationToClone(Id applicationId) {
+    Query qry = Query.newInstance(Application__c.SObjectType)
       .addFields()
       .queryChild('mflow__FinancialAccounts__r')
       .run()
       .whereEq('Id', applicationId);
-    return (Account) DatabaseUtils.getRecord(qry.toString());
+    return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
 
   /**

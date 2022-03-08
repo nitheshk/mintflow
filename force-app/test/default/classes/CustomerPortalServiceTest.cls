@@ -1,8 +1,10 @@
 @Istest
 public with sharing class CustomerPortalServiceTest {
   private static Applicant__c makeApplicantData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecords(
+      new List<Application__c>{ acc }
+    )[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant.Email__c = 'test@mail.com';
     applicant.mflow__SSN__c = '323543454';

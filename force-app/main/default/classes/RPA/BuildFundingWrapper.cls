@@ -102,8 +102,6 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
       mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
       mapperFinancialAccount.Name = finApplication.Name;
       mapperFinancialAccount.Ownership = finApplication.Ownership__c;
-      //#removeFSC
-      //mapperFinancialAccount.PrimaryOwner = finApplication.FinServ__PrimaryOwner__c;
       if (
         !CollectionUtils.isListEmpty(
           finApplication.FinancialAccountTransactions__r

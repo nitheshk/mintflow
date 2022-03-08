@@ -5,11 +5,6 @@
     <description>Email to start checking/ saving application</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Start Secondary Application EN</name>
-    <packageVersions>
-        <majorNumber>230</majorNumber>
-        <minorNumber>3</minorNumber>
-        <namespace>FinServ</namespace>
-    </packageVersions>
     <style>none</style>
     <subject>Few steps to complete your application!</subject>
     <type>visualforce</type>

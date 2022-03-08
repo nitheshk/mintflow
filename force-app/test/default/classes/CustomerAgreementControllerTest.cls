@@ -1,13 +1,15 @@
 @IsTest
 public with sharing class CustomerAgreementControllerTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static mflow__Application__c makeAccountData() {
+    mflow__Application__c acc = TestData.createApplication();
+    acc = (mflow__Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
   private static Applicant__c makeApplicantData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecords(new List<Account>{ acc })[0];
+    mflow__Application__c acc = TestData.createApplication();
+    acc = (mflow__Application__c) DatabaseUtils.insertRecords(
+      new List<mflow__Application__c>{ acc }
+    )[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant.Email__c = 'test@mail.com';
     applicant.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
@@ -19,7 +21,7 @@ public with sharing class CustomerAgreementControllerTest {
   }
   @IsTest
   private static void testVfPage() {
-    account app = makeAccountData();
+    Application__c app = makeAccountData();
     Applicant__c applicant = makeApplicantData();
     PageReference customerAgreementPage = Page.CustomerAgreement;
     Test.setCurrentPage(customerAgreementPage);

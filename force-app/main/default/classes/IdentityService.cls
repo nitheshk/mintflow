@@ -349,7 +349,7 @@ global virtual with sharing class IdentityService extends AbstractService {
   }
 
   global virtual IdScanDueDiligenceDTO.Request mapIdentity(
-    FinServ__IdentificationDocument__c identity,
+    IdentificationDocument__c identity,
     IdScanDueDiligenceDTO.Request customer
   ) {
     customer.sex = identity.Gender__c;

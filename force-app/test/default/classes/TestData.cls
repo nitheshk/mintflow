@@ -5,11 +5,6 @@
  **/
 @isTest
 public with sharing class TestData {
-  public static Application__c createApplication() {
-    Application__c acc = new Application__c();
-    return acc;
-  }
-
   public static Account createAccountRecord() {
     Account acc = new Account();
     acc.Name = 'Account Name';
@@ -141,30 +136,30 @@ public with sharing class TestData {
     products.add(p);
     return products;
   }
-  public static FinServ__IdentificationDocument__c createIdentity() {
-    FinServ__IdentificationDocument__c identity = new FinServ__IdentificationDocument__c();
-    identity.FinServ__IssuingCountry__c = null;
-    identity.FinServ__DocumentNumber__c = 'Abcde1234';
-    identity.FinServ__DocumentType__c = 'Other';
-    identity.FinServ__ExpirationDate__c = null;
-    identity.FinServ__IssueDate__c = null;
+  public static IdentificationDocument__c createIdentity() {
+    IdentificationDocument__c identity = new IdentificationDocument__c();
+    identity.IssuingCountry__c = null;
+    identity.DocumentNumber__c = 'Abcde1234';
+    identity.DocumentType__c = 'Other';
+    identity.ExpirationDate__c = null;
+    identity.IssueDate__c = null;
     identity.IssuedRegion__c = 'CA';
     identity.Order__c = 1;
     return identity;
   }
-  public static FinServ__Employment__c createEmployment() {
-    FinServ__Employment__c employment = new FinServ__Employment__c();
+  public static Employment__c createEmployment() {
+    Employment__c employment = new Employment__c();
     employment.EmploymentType__c = 'Current';
 
-    employment.FinServ__EmploymentStatus__c = null;
+    employment.EmploymentStatus__c = null;
 
     employment.GrossMonthlySalary__c = 900;
-    employment.Name = 'Name';
+    employment.EmployerName__c = 'Name';
     employment.IncomeType__c = 'Monthly';
     employment.PayCycle__c = 'Monthly';
     employment.Order__c = 1;
     employment.PayGrade__c = 'GS12';
-    employment.FinServ__Position__c = 'Lead';
+    employment.Position__c = 'Lead';
     employment.EmploymentDuration__c = 3;
     employment.DocumentType__c = 'Payslip';
     employment.BranchofService__c = 'Air Force';
@@ -181,16 +176,15 @@ public with sharing class TestData {
       applicantType
     );
     applicant.mflow__Employments__r.addAll(
-      new List<FinServ__Employment__c>{ createEmployment() }
+      new List<Employment__c>{ createEmployment() }
     );
     applicant.mflow__IdentificationDocuments__r.addAll(
-      new List<FinServ__IdentificationDocument__c>{ createIdentity() }
+      new List<IdentificationDocument__c>{ createIdentity() }
     );
     return applicant;
   }
-  public static Account createApplication() {
-    account application = new Account();
-    application.name = 'App-001';
+  public static Application__c createApplication() {
+    Application__c application = new Application__c();
     application.Applicants__r.addAll(
       new List<Applicant__c>{ createApplicant('Primary') }
     );

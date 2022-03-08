@@ -108,14 +108,14 @@ global with sharing class ProductServiceResolver extends AbstractService {
   global virtual List<CustomerInterest__c> fetchAdditionalProducts(
     String data
   ) {
-    Account application = ProductServiceRepository.readApplicationWithFA(
+    mflow__Application__c application = ProductServiceRepository.readApplicationWithFA(
       ApexRequest.getApplicationId()
     );
 
     List<CustomerInterest__c> customerInterests = new List<CustomerInterest__c>();
 
     for (
-      FinServ__FinancialAccount__c financialAccount : application.FinancialAccounts__r
+      FinancialAccount__c financialAccount : application.FinancialAccounts__r
     ) {
       List<AdditionalProduct__c> additionalProducts = ProductServiceRepository.fetchAdditionalProductByProduct(
         financialAccount.FinancialProduct__r.Id

@@ -1,8 +1,8 @@
 @IsTest
 public with sharing class CustomerEmailServiceTest {
-  private static Account makeAccountData() {
-    Account acc = TestData.createAccount();
-    acc = (Account) DatabaseUtils.insertRecord(acc);
+  private static Application__c makeAccountData() {
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
   private static List<FinancialProduct__c> makeProducts() {
@@ -111,7 +111,7 @@ public with sharing class CustomerEmailServiceTest {
   @IsTest
   private static void validateProductEmails() {
     Applicant__c applicant = makeApplicantData();
-    Account app = makeAccountData();
+    Application__c app = makeAccountData();
     List<FinancialProduct__c> products = makeProducts();
     app.Applicants__r.addAll(makeApplicantList('Primary'));
     makeApplicationConfiguration();

@@ -268,7 +268,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     params.put('flowType', cipher.flw);
     log?.debug('ApplicationID ' + cipher.appId);
 
-    Account application = ApplicationRepository.readApplicationToClone(
+    Application__c application = ApplicationRepository.readApplicationToClone(
       cipher.appId
     );
     //clone application to create new app
@@ -282,7 +282,12 @@ global virtual with sharing class ApplicationService extends AbstractService {
     if (application == null) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
-    Account clonedAccountWithId = application.clone(false, true, false, false);
+    Application__c clonedAccountWithId = application.clone(
+      false,
+      true,
+      false,
+      false
+    );
     log?.debug('ClonedApplication = ' + Json.serialize(clonedAccountWithId));
 
     // AuthenticationService.getInstance().generateOTP(cipher.aplId);
