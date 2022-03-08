@@ -97,6 +97,11 @@
                 <default>false</default>
                 <label>Signature</label>
             </value>
+            <value>
+                <fullName>IDScan</fullName>
+                <default>false</default>
+                <label>IDScan</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

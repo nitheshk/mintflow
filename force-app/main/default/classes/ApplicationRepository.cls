@@ -171,4 +171,45 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
         .toString()
     );
   }
+  /**
+   * @description Read Application with child record
+   * Applicants contains only ids
+   * Financial Account contains only Ids
+   * @author Digital Align Team | 10-26-2021
+   * @param Id applicationId
+   * @return Account
+   **/
+  global static Account readApplicationToClone(Id applicationId) {
+    Query qry = Query.newInstance(Account.SObjectType)
+      .addFields()
+      .queryChild('mflow__FinancialAccounts__r')
+      .run()
+      .whereEq('Id', applicationId);
+    return (Account) DatabaseUtils.getRecord(qry.toString());
+  }
+
+  /**
+   * @description read  applicant with child record
+   * @author Digital Align Team | 10-26-2021
+   * @param Applicant__c applicantId
+   **/
+  global static List<Applicant__c> readApplicantsToClone(Id applicationId) {
+    Query qry = Query.newInstance(Applicant__c.SObjectType)
+      .addFields()
+      .queryChild('mflow__IdentificationDocuments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__ContactPointAddresses__r')
+      .addFields()
+      .removeFields('Address')
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__Employments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .whereEq('Application__c', applicationId);
+    return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
+  }
 }

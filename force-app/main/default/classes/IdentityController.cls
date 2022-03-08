@@ -151,4 +151,32 @@ global with sharing class IdentityController extends AbstractController {
       Flow.finalize();
     }
   }
+
+  /**
+   * @description generate Url For Identity Upload
+   * @author Digital Align Team | 02-08-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse validateCustomerAnswers(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(
+        IdentityService.getInstance()
+          .validateCustomerAnswers(ApexRequest.getParams())
+      );
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete validateCustomerAnswers');
+      Logger.persist();
+      Flow.finalize();
+    }
+  }
 }

@@ -27,13 +27,18 @@ global without sharing class OnlineAccountController extends AbstractController 
       );
       //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
-      //log?.debug('vmf:' + vmf);
+      //Product Name
+      String pid = PageUtils.getCurrentPageParameters('pid');
       Cookie pageToken = PageUtils.getCookie('token');
       log?.debug('Cookie: ' + pageToken?.getValue());
       // When Cookies is present on refresh of page
       if (pageToken != null && String.isNotBlank(pageToken.getValue())) {
         this.application = ApplicationService.getInstance().refreshPage(params);
         this.id = application.Id;
+      } else if (String.isNotBlank(vmf) && String.isNotBlank(pid)) {
+        log?.debug('params in if=' + params);
+        ApplicationService.getInstance().cloneAppFromMembership(params);
+        this.id = (String) params.get('applicationId');
       } else if (String.isNotBlank(vmf)) {
         //resume application mapping
         ApplicationService.getInstance().resumeApplication(params);

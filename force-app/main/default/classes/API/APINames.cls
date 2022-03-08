@@ -20,5 +20,6 @@ global enum APINames {
   PlaidTokenExchange,
   PlaidRetrieveAuth,
   PlaidLinkToken,
-  PlaidRetriveInstitue
+  PlaidRetriveInstitue,
+  DueDiligence
 }

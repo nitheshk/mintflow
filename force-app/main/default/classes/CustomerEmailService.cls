@@ -410,6 +410,49 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   }
 
   /**
+   * @description Send Url to applicat to complete account opening for interested products
+   * @author Digital Align Team | 02-08-2022
+   * @param Applicant__c applicant
+   **/
+  global virtual void startSecondaryApplication(
+    Applicant__c applicant,
+    List<FinancialProduct__c> products
+  ) {
+    Map<String, String> params = new Map<String, String>{
+      'flw' => ApplicationConstant.FLOW_TYPE_APPLICATION,
+      'urlSuffix' => '/membership/application/otp',
+      'ch' => 'Virtual',
+      'pageName' => '/mflow__OpenAccount'
+    };
+    String link = generateUrl(params);
+    string productDetails = '';
+    for (FinancialProduct__c product : products) {
+      string productLink = link + '&pid=' + product.Id;
+      productDetails =
+        productDetails +
+        product.DisplayLabel__c +
+        ' : ' +
+        '<a href="' +
+        productLink +
+        '" target="_blank">Start</a><br/>';
+    }
+    EmailNotificationBuilder.newInstance(
+        'StartSecondaryApplication',
+        applicant.Id
+      )
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(
+        new Map<string, String>{
+          '{FirstName}' => applicant.FirstName__c,
+          '{LastName}' => applicant.LastName__c,
+          //'{products}' => products[0].Name,
+          '{productDetails}' => productDetails
+        }
+      );
+    sendEmail();
+  }
+
+  /**
    * @description
    * Method to send email
    * @author Digital Align | 11-12-2021

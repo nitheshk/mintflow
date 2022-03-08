@@ -29,6 +29,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>CreditScoreStatus__c</picklist>
+        <values>
+            <fullName>Not Verified</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Reorder</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Verified</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>FlowState__c</picklist>
         <values>
             <fullName>AdditionalApplicant</fullName>

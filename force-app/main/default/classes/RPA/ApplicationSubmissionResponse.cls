@@ -16,6 +16,8 @@ global with sharing class ApplicationSubmissionResponse {
   global class Account {
     global List<Applicant> Applicants;
     global List<Survey> Surveys;
+    global string FinancialProductType;
+    global string FinancialProduct;
     global String ApplicationId;
     global Boolean IsCountyEligible;
     global String ApplicationNumber;
@@ -162,7 +164,7 @@ global with sharing class ApplicationSubmissionResponse {
     global String ApplicantId;
     global String CustomerNumber;
     global String OverallDebitBureauResult;
-    global Integer CreditScore;
+    global String CreditScore;
     global Integer QualifiedScore;
     global Integer CustomerScore;
     global String HighRiskConsumer;

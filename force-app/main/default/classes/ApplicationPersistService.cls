@@ -78,6 +78,18 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       constructor.setChildObjects('mflow__ApplicationConsents__r', consents);
     }
 
+    //Save Additional products
+    if (!CollectionUtils.isListEmpty(application.CustomerInterests__r)) {
+      List<CustomerInterest__c> customerInterests = saveCustomerInterest(
+        application.CustomerInterests__r,
+        application.Id
+      );
+      constructor.setChildObjects(
+        'mflow__CustomerInterests__r',
+        customerInterests
+      );
+    }
+
     application = (Application__c) constructor.build();
 
     return application;
@@ -563,5 +575,27 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
     ApplicantRepository.upsertRecords(financialAccountServices);
     return financialAccountServices;
+  }
+  /**
+   * @description Save Customer Interest
+   * @author Digital Align Team | 04-03-2022
+   * @param List<CustomerInterest__c> customerInterests
+   * @param Id applicantId
+   * @return List<CustomerInterest__c>
+   **/
+  global virtual List<CustomerInterest__c> saveCustomerInterest(
+    List<CustomerInterest__c> customerInterests,
+    Id applicationId
+  ) {
+    for (CustomerInterest__c customerInterest : customerInterests) {
+      if (
+        String.isNotBlank(applicationId) &&
+        String.isNotBlank(customerInterest.Application__c)
+      ) {
+        customerInterest.Application__c = applicationId;
+      }
+    }
+    ApplicantRepository.upsertRecords(customerInterests);
+    return customerInterests;
   }
 }

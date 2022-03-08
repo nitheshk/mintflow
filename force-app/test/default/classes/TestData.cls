@@ -69,7 +69,17 @@ public with sharing class TestData {
     address.State = 'CA';
     address.Country = 'USA';
     address.PostalCode = '10001';
+    address.UsageType = 'Buying / Own With Mortgage';
     return address;
+  }
+
+  public static mflow__Survey__c createSurvey() {
+    mflow__Survey__c survey = new mflow__Survey__c();
+    survey.mflow__Answer__c = 'Answer';
+    survey.mflow__LongDescription__c = 'Long descr';
+    survey.mflow__Order__c = 1;
+    survey.mflow__ShortDescription__c = 'CAT';
+    return survey;
   }
 
   public static ApplicationConfiguration__c createApplicationConfiguration() {
@@ -121,5 +131,69 @@ public with sharing class TestData {
     doc.Type = 'txt';
     doc.IsPublic = true;
     return doc;
+  }
+
+  public static List<FinancialProduct__c> createProduct() {
+    List<FinancialProduct__c> products = new List<FinancialProduct__c>();
+    FinancialProduct__c p = new FinancialProduct__c();
+    p.DisplayLabel__c = 'Product1';
+    p.mflow__Category__c = 'Checking';
+    products.add(p);
+    return products;
+  }
+  public static FinServ__IdentificationDocument__c createIdentity() {
+    FinServ__IdentificationDocument__c identity = new FinServ__IdentificationDocument__c();
+    identity.FinServ__IssuingCountry__c = null;
+    identity.FinServ__DocumentNumber__c = 'Abcde1234';
+    identity.FinServ__DocumentType__c = 'Other';
+    identity.FinServ__ExpirationDate__c = null;
+    identity.FinServ__IssueDate__c = null;
+    identity.IssuedRegion__c = 'CA';
+    identity.Order__c = 1;
+    return identity;
+  }
+  public static FinServ__Employment__c createEmployment() {
+    FinServ__Employment__c employment = new FinServ__Employment__c();
+    employment.EmploymentType__c = 'Current';
+
+    employment.FinServ__EmploymentStatus__c = null;
+
+    employment.GrossMonthlySalary__c = 900;
+    employment.Name = 'Name';
+    employment.IncomeType__c = 'Monthly';
+    employment.PayCycle__c = 'Monthly';
+    employment.Order__c = 1;
+    employment.PayGrade__c = 'GS12';
+    employment.FinServ__Position__c = 'Lead';
+    employment.EmploymentDuration__c = 3;
+    employment.DocumentType__c = 'Payslip';
+    employment.BranchofService__c = 'Air Force';
+    employment.EnlistmentDate__c = null;
+    return employment;
+  }
+  public static mflow__Applicant__c createApplicant(string applicantType) {
+    mflow__Applicant__c applicant = new mflow__Applicant__c();
+    applicant.mflow__FirstName__c = 'FirstName';
+    applicant.mflow__LastName__c = 'LastName';
+    applicant.mflow__ApplicantType__c = applicantType;
+    applicant.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+      Applicant__c.SObjectType,
+      applicantType
+    );
+    applicant.mflow__Employments__r.addAll(
+      new List<FinServ__Employment__c>{ createEmployment() }
+    );
+    applicant.mflow__IdentificationDocuments__r.addAll(
+      new List<FinServ__IdentificationDocument__c>{ createIdentity() }
+    );
+    return applicant;
+  }
+  public static Account createApplication() {
+    account application = new Account();
+    application.name = 'App-001';
+    application.Applicants__r.addAll(
+      new List<Applicant__c>{ createApplicant('Primary') }
+    );
+    return application;
   }
 }

@@ -171,7 +171,7 @@ global virtual with sharing class IdentityService extends AbstractService {
   global virtual Applicant__c identityVerify(Map<String, object> params) {
     try {
       String applicantId = params.get('applicantId').toString();
-      if (String.isBlank('applicantId')) {
+      if (String.isBlank(applicantId)) {
         throw new customException(System.Label.Applicant_InvalidApplicantId);
       }
       String apiName = params.get('apiName').toString();
@@ -264,10 +264,13 @@ global virtual with sharing class IdentityService extends AbstractService {
    * @param Id applicantId
    * @return Object
    **/
-  global virtual string customerDueDiligence(Map<string, Object> params) {
-    IdScanDueDiligenceDTO.CustomerData customer = new IdScanDueDiligenceDTO.CustomerData();
+  global virtual List<IdScanDueDiligenceDTO.Questions> customerDueDiligence(
+    Map<string, Object> params
+  ) {
+    IdScanDueDiligenceDTO.Request customer = new IdScanDueDiligenceDTO.Request();
     List<string> services = new List<String>();
     Id applicantId = (id) params.get('applicantId');
+    HttpBuilder.Response response;
     Applicant__c applicant = IdentityRepository.readApplicantWithIdentity(
       applicantId
     );
@@ -275,41 +278,79 @@ global virtual with sharing class IdentityService extends AbstractService {
 
     try {
       if (applicant != null) {
-        Flow.initialize(applicantId);
+        Flow.initialize(applicant.application__r.Id);
         Flow.setFlow('Customer Due Diligence');
         // get public token
-
-        customer.firstName = applicant.firstName__c;
-        customer.lastName = applicant.LastName__c;
-        customer.dateOfBirths = applicant.Birthdate__c;
-        customer.middleName = applicant.mflow__MiddleName__c;
-        if (
-          applicant != null &&
-          applicant.mflow__IdentificationDocuments__r.size() > 0
-        ) {
-          customer = mapIdentity(
-            applicant.mflow__IdentificationDocuments__r[0],
-            customer
+        customer = mapCustomer(applicant, customer);
+        customer.services = services;
+        response = IdscanProvider.idScanCheck(customer);
+        log?.debug('response.json ::' + (String) response.data);
+        createFiles(applicantId, (String) response.data);
+        if (response.statusCode == 200) {
+          List<IdScanDueDiligenceDTO.Response> responseDTO = (List<IdScanDueDiligenceDTO.Response>) JSON.deserialize(
+            (String) response.data,
+            List<IdScanDueDiligenceDTO.Response>.class
           );
-        }
-        if (
-          applicant != null &&
-          applicant.mflow__ContactPointAddresses__r.size() > 0
-        ) {
-          mapAddress(applicant.mflow__ContactPointAddresses__r, customer);
+          if (responseDTO != null && responseDTO.size() > 0) {
+            Flow.setSubFlowPassed(response.status);
+            flow.setFlowPassed();
+            return parseResponse(responseDTO[0]);
+          } else {
+            log?.debug('response  data not returned as expected ');
+            Flow.setSubFlowFailed(response.status);
+            throw new CustomException(
+              'response  data not returned as expected '
+            );
+          }
+        } else {
+          Flow.setSubFlowFailed('Failed');
+          throw new CustomException('Unable to retrieve due diligence');
         }
       }
     } catch (exception ex) {
       log?.debug('exception ::' + ex.getMessage());
+      flow.setFlowFailed();
+      throw new CustomException(ex);
     } finally {
       Logger.persist();
+      Flow.finalize();
     }
-    return JSON.serialize(customer, true);
+    return null;
   }
 
-  private static IdScanDueDiligenceDTO.CustomerData mapIdentity(
-    IdentificationDocument__c identity,
-    IdScanDueDiligenceDTO.CustomerData customer
+  global virtual IdScanDueDiligenceDTO.Request mapCustomer(
+    Applicant__c applicant,
+    IdScanDueDiligenceDTO.Request customer
+  ) {
+    customer.firstName = applicant.firstName__c;
+    customer.lastName = applicant.LastName__c;
+    customer.dateOfBirths = applicant.Birthdate__c;
+    customer.middleName = applicant.mflow__MiddleName__c;
+
+    if (
+      applicant != null &&
+      applicant.mflow__IdentificationDocuments__r.size() > 0
+    ) {
+      customer = mapIdentity(
+        applicant.mflow__IdentificationDocuments__r[0],
+        customer
+      );
+    }
+    if (
+      applicant != null &&
+      applicant.mflow__ContactPointAddresses__r.size() > 0
+    ) {
+      customer = mapAddress(
+        applicant.mflow__ContactPointAddresses__r,
+        customer
+      );
+    }
+    return customer;
+  }
+
+  global virtual IdScanDueDiligenceDTO.Request mapIdentity(
+    FinServ__IdentificationDocument__c identity,
+    IdScanDueDiligenceDTO.Request customer
   ) {
     customer.sex = identity.Gender__c;
     customer.driverLicenseNumber = identity.DocumentNumber__c;
@@ -319,18 +360,129 @@ global virtual with sharing class IdentityService extends AbstractService {
     return customer;
   }
 
-  private static IdScanDueDiligenceDTO.CustomerData mapAddress(
+  global virtual IdScanDueDiligenceDTO.Request mapAddress(
     List<ContactPointAddress> addresses,
-    IdScanDueDiligenceDTO.CustomerData customer
+    IdScanDueDiligenceDTO.Request customer
   ) {
+    log?.debug('address ::' + addresses);
     for (ContactPointAddress idAddress : addresses) {
-      if (idAddress.AddressType.equalsignorecase('Current')) {
+      if (idAddress.IsPrimary) {
         customer.address = idAddress.Street;
         customer.city = idAddress.City;
         customer.zip = idAddress.PostalCode;
-        customer.state = idAddress.State;
+        customer.state = idAddress.mflow__StateCode__c;
       }
     }
     return customer;
+  }
+
+  global virtual void createFiles(Id applicantId, String response) {
+    List<FileDTO> files = new List<FileDTO>();
+    FileDTO fileObj = new FileDTO(
+      'OOW Response.json',
+      blob.valueof(response),
+      applicantId,
+      'KYC',
+      'IDScan'
+    );
+    files.add(fileObj);
+    List<ContentVersion> contents = FileService.getinstance()
+      .createFiles(files);
+    log?.debug('contents ::' + contents);
+  }
+
+  private List<IdScanDueDiligenceDTO.Questions> parseResponse(
+    IdScanDueDiligenceDTO.Response response
+  ) {
+    List<IdScanDueDiligenceDTO.Questions> questions;
+    List<IdScanDueDiligenceDTO.Questions> questionList = new List<IdScanDueDiligenceDTO.Questions>();
+    List<IdScanDueDiligenceDTO.Answers> ansList = new List<IdScanDueDiligenceDTO.Answers>();
+    Integer ansCode = 0;
+    questions = response.profiles[0].verificationResult.data.questions;
+    for (IdScanDueDiligenceDTO.Questions question : questions) {
+      anscode = 0;
+      ansList = new List<IdScanDueDiligenceDTO.Answers>();
+      for (IdScanDueDiligenceDTO.Answers answer : question.answers) {
+        answer.answerCode = ++anscode;
+        ansList.add(answer);
+      }
+      question.answers = ansList;
+      questionList.add(question);
+    }
+    log?.debug(JSON.serialize(questionList));
+    return questionList;
+  }
+
+  global virtual String validateCustomerAnswers(Map<string, Object> params) {
+    String applicantId = params.get('applicantId').toString();
+    Integer questionCode;
+    String correctAnswer;
+    String customerAnswer;
+    Integer totalQuestions, countofCorrectAnswers;
+    List<IdScanDueDiligenceDTO.Questions> questionSet;
+
+    try {
+      if (String.isBlank(applicantId)) {
+        throw new customException(System.Label.Applicant_InvalidApplicantId);
+      }
+      String jsonRequest = params.get('results').toString();
+      if (String.isBlank(jsonRequest)) {
+        throw new customException(System.Label.Applicant_InvalidApplicantId);
+      }
+      log?.debug('Customer Due diligence answers');
+      List<IdScanDueDiligenceDTO.Results> results = (List<IdScanDueDiligenceDTO.Results>) JSON.deserialize(
+        jsonRequest,
+        LIst<IdScanDueDiligenceDTO.Results>.class
+      );
+      List<ContentVersion> files = FileService.getinstance()
+        .fetchContentVersionByFileType(applicantId, 'KYC', 'IDScan', false);
+      if (files.size() > 0) {
+        String jsonRawResponse = files[0].versionData.toString();
+        List<IdScanDueDiligenceDTO.Response> response = (List<IdScanDueDiligenceDTO.Response>) JSON.deserialize(
+          jsonRawResponse,
+          LIst<IdScanDueDiligenceDTO.Response>.class
+        );
+        questionSet = response[0].profiles[0].verificationResult.data.questions;
+
+        // Loop through answers fr=irst
+        countofCorrectAnswers = 0;
+        totalQuestions = 0;
+        for (IdScanDueDiligenceDTO.Questions questionId : questionSet) {
+          //to loop through each question from the main collection of questions
+          questionCode = questionId.questionType;
+          totalQuestions++;
+          for (IdScanDueDiligenceDTO.Answers answerId : questionId.answers) {
+            if (answerId.isCorrect) {
+              //store the correct answer for that question.
+              correctAnswer = answerId.text;
+            }
+          }
+          // Loop through customer answer from the ui
+          for (IdScanDueDiligenceDTO.Results result : results) {
+            if (
+              result.questionType == questionCode &&
+              result.answer.equalsignorecase(correctAnswer)
+            )
+              countofCorrectAnswers++;
+          }
+        }
+        log
+          ?.debug(
+            ' There was ' +
+            countofCorrectAnswers +
+            'questions answered correctly out of a total of :' +
+            totalQuestions
+          );
+      }
+    } catch (exception ex) {
+      log
+        ?.error(
+          ' error at validateCustomerAnswers' +
+          ex.getLineNumber() +
+          '-' +
+          ex.getMessage()
+        );
+    }
+    return '';
   }
 }

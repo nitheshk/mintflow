@@ -11,8 +11,13 @@
 )
 global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
   global class Response {
+    global string serviceId { get; set; }
+    global string serviceName { get; set; }
+    global string error { get; set; }
+    global string success { get; set; }
+    global List<Profiles> profiles { get; set; }
   }
-  global class CustomerData {
+  global class Request {
     global String firstName { get; set; }
     global String lastName { get; set; }
     global Date dateOfBirths { get; set; }
@@ -29,8 +34,33 @@ global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
     global Date driverLicenseExpirationDate { get; set; }
   }
 
+  global class Profiles {
+    global VerificationResult verificationResult { get; set; }
+  }
+
+  global class VerificationResult {
+    global Data data { get; set; }
+    global Boolean verified { get; set; }
+  }
+
+  global class Data {
+    global List<Questions> questions { get; set; }
+  }
+
   global class Results {
+    global Integer questionType { get; set; }
+    global Integer answerCode { get; set; }
+    global String answer { get; set; }
   }
   global class Questions {
+    global String text { get; set; }
+    global Integer questionType { get; set; }
+    global List<Answers> answers { get; set; }
+  }
+
+  global class Answers {
+    global Integer answerCode { get; set; }
+    global String text { get; set; }
+    global Boolean isCorrect { get; set; }
   }
 }

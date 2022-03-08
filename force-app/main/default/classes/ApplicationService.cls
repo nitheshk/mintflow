@@ -234,6 +234,60 @@ global virtual with sharing class ApplicationService extends AbstractService {
     AuthenticationService.getInstance().generateOTP(cipher.aplId);
     return params;
   }
+  /**
+   * @description Clone existing app to create new application based on product
+   * @author Digital Align Team | 09-29-2021
+   * @param Map<String Object> params
+   * @return Object
+   **/
+  //#pending
+  global virtual Map<String, Object> cloneAppFromMembership(
+    Map<String, Object> params
+  ) {
+    log?.fine('Inside cloneAppFromMembership');
+    String vmf = (String) params.get('vmf');
+    string productId = (String) params.get('pid');
+    params.remove('vmf');
+    //decrypt the url
+    SecurityUtils.CipherDTO cipher;
+    try {
+      cipher = SecurityUtils.extractToken(vmf);
+    } catch (Exception ex) {
+      throw new CustomException(
+        System.Label.Resume_TheSpecifiedUrlWasCorrupted
+      );
+    }
+    if (cipher.edt < Datetime.now()) {
+      throw new CustomException(System.Label.Resume_TheSpecifiedUrlWasExpired);
+    }
+
+    params.put('applicantType', cipher.aplType);
+    params.put('channel', cipher.ch);
+    params.put('applicationId', cipher.appId);
+    params.put('applicantId', cipher.aplId);
+    params.put('flowType', cipher.flw);
+    log?.debug('ApplicationID ' + cipher.appId);
+
+    Account application = ApplicationRepository.readApplicationToClone(
+      cipher.appId
+    );
+    //clone application to create new app
+    // #pending Map product selected to application
+    List<Applicant__c> applicants = ApplicationRepository.readApplicantsToClone(
+      cipher.appId
+    );
+    application.mflow__Applicants__r.addAll(applicants);
+    log?.debug('Application = ' + Json.serialize(application));
+    log?.debug('applicants = ' + Json.serialize(applicants));
+    if (application == null) {
+      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
+    }
+    Account clonedAccountWithId = application.clone(false, true, false, false);
+    log?.debug('ClonedApplication = ' + Json.serialize(clonedAccountWithId));
+
+    // AuthenticationService.getInstance().generateOTP(cipher.aplId);
+    return params;
+  }
 
   /**
    * @description Handle Page Refresh
