@@ -413,15 +413,22 @@ global virtual with sharing class IdentityService extends AbstractService {
     return questionList;
   }
 
-  global virtual String validateCustomerAnswers(Map<string, Object> params) {
+  global virtual IdScanDueDiligenceDTO.FinalScores validateCustomerAnswers(
+    Map<string, Object> params
+  ) {
     String applicantId = params.get('applicantId').toString();
     Integer questionCode;
     String correctAnswer;
     String customerAnswer;
     Integer totalQuestions, countofCorrectAnswers;
     List<IdScanDueDiligenceDTO.Questions> questionSet;
+    IdScanDueDiligenceDTO.FinalScores finalScores = new IdScanDueDiligenceDTO.FinalScores();
+    IdScanDueDiligenceDTO.FinalResult finalResults = new IdScanDueDiligenceDTO.FinalResult();
 
     try {
+      ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getOrgDefaults();
+      Decimal passThreshold = appConfig?.mflow__OOWPassThreshhold__c;
+
       if (String.isBlank(applicantId)) {
         throw new customException(System.Label.Applicant_InvalidApplicantId);
       }
@@ -466,23 +473,35 @@ global virtual with sharing class IdentityService extends AbstractService {
               countofCorrectAnswers++;
           }
         }
+
+        Applicant__c applicant = ApplicantRepository.readApplicantById(
+          applicantId
+        );
+        applicant.mflow__OOWCorrectAnswers__c = countofCorrectAnswers;
+        applicant.mflow__OOWTotalQuestions__c = totalQuestions;
+
+        ApplicantRepository.upsertRecord(applicant);
+        Decimal totalResult =
+          (decimal) countofCorrectAnswers *
+          100 /
+          (decimal) totalQuestions;
+
+        finalResults.result = totalResult >= passThreshold ? 'Pass' : 'Fail';
+        finalResults.scorePercent = totalResult;
+        finalScores.results = finalResults;
         log
           ?.debug(
-            ' There was ' +
-            countofCorrectAnswers +
-            'questions answered correctly out of a total of :' +
-            totalQuestions
+            ' Result is ' +
+            finalResults.result +
+            ' with % as ' +
+            finalResults.scorePercent
           );
-      }
+
+        return finalScores;
+      } else
+        return null;
     } catch (exception ex) {
-      log
-        ?.error(
-          ' error at validateCustomerAnswers' +
-          ex.getLineNumber() +
-          '-' +
-          ex.getMessage()
-        );
+      throw new CustomException(ex);
     }
-    return '';
   }
 }
