@@ -63,4 +63,13 @@ global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
     global String text { get; set; }
     global Boolean isCorrect { get; set; }
   }
+
+  global class FinalScores {
+    global FinalResult results { get; set; }
+  }
+
+  global class FinalResult {
+    global Decimal scorePercent { get; set; }
+    global String result { get; set; }
+  }
 }

@@ -359,6 +359,16 @@
         <field>EligibleCounty__c.City__c</field>
         <readable>true</readable>
     </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OOWCorrectAnswers__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OOWTotalQuestions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
        <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.QualifiedScore__c</field>
