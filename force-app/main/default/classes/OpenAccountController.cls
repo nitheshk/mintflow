@@ -21,32 +21,6 @@ global with sharing class OpenAccountController {
       '/OnlineAccount' + vuePath
     );
 
-    /*
-    List<String> encodedParams = new List<String>();
-    for (String key : PageUtils.getCurrentPageParameters().keySet()) {
-      encodedParams.add(key + '=' + PageUtils.getCurrentPageParameters(key));
-    }
-
-
-    if (!encodedParams.isEmpty()) {
-      String params = String.join(encodedParams, '&');
-      if (PageUtils.getCurrentPageParameters().containsKey('vue')) {
-        openAccountPage = new PageReference(
-          openAccountPage.getUrl() +
-          '?' +
-          params +
-          '#' +
-          PageUtils.getCurrentPageParameters('vue')
-        );
-      } else {
-        openAccountPage = new PageReference(
-          openAccountPage.getUrl() +
-          '?' +
-          params
-        );
-      }
-    }*/
-
     //System.debug('openAccountPage :' + openAccountPage.getUrl());
 
     //set cookie to 0, to delete

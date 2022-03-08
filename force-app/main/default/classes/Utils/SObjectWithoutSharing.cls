@@ -194,9 +194,9 @@ global without sharing class SObjectWithoutSharing {
    * @author Digital Align Team | 03-08-2022
    * @param List<Messaging.SingleEmailMessage> emailMessages
    * @param Boolean allOrNothing
-   * @return Messaging.SingleEmailMessage
+   * @return List<Messaging.SendEmailResult>
    **/
-  public static Messaging.SingleEmailMessage sendEmail(
+  public static List<Messaging.SendEmailResult> sendEmail(
     List<Messaging.SingleEmailMessage> emailMessages,
     Boolean allOrNothing
   ) {
