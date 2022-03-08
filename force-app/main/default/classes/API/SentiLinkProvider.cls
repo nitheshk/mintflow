@@ -111,7 +111,7 @@ global virtual with sharing class SentiLinkProvider extends AbstractService {
       : applicant.ContactPointAddresses__r[0];
     application.address_line_1 = address.Street;
     application.city = address.City;
-    application.state_code = address.State;
+    application.state_code = address.StateCode__c;
     application.zipcode = address.PostalCode;
     application.country_code = address.Country;
 
