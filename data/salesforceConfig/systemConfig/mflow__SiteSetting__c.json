@@ -7,7 +7,7 @@
       },
       "mflow__OnlineSiteUrl__c": "https://sandbox-data-velocity-91-dev-ed-17f686a9d68.cs75.force.com/Online",
       "mflow__FinancialInstituteSiteUrl__c": "https://sandbox-data-velocity-91-dev-ed-17f686a9d68.cs75.force.com/HomePageFI",
-      "mflow__OnlineAccountOpeningUrl__c": "/OpenAccount#/home",
+      "mflow__OnlineAccountOpeningUrl__c": "/OpenAccount?pid=IC003#/home",
       "mflow__OnlineContentUrl__c": "https://digitalalign.com/"
     }
   ]
