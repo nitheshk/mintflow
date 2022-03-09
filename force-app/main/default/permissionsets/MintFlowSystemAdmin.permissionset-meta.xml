@@ -277,6 +277,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Applicant__c.OOWStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Applicant__c.ApplicantName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2331,10 +2336,7 @@
         <apexPage>Error</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <recordTypeVisibilities>
-        <recordType>Applicant__c.OOW_Status__c</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
+  
     <recordTypeVisibilities>
         <recordType>Applicant__c.Beneficiary</recordType>
         <visible>true</visible>

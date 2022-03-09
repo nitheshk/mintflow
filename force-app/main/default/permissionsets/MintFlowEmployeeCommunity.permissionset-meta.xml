@@ -186,7 +186,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.OOW_Status__c</field>
+        <field>Applicant__c.OOWStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
        <fieldPermissions>

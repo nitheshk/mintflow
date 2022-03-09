@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>StatusInformation</fullName>
-    <description
-  >All the fields related to status Information of applicant</description>
+    <description>All the fields related to status Information of applicant</description>
     <displayedFields>
         <field>FlowState__c</field>
         <isFieldManaged>false</isFieldManaged>
@@ -29,7 +28,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>OOW_Status__c</field>
+        <field>OOWStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
