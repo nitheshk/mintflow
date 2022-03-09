@@ -414,9 +414,9 @@ global virtual with sharing class IdentityService extends AbstractService {
   }
 
   global virtual IdScanDueDiligenceDTO.FinalScores validateCustomerAnswers(
-    Map<string, Object> params
+    Map<string, Object> params,
+    String jsonRequest
   ) {
-    String applicantId = params.get('applicantId').toString();
     Integer questionCode;
     String correctAnswer;
     String customerAnswer;
@@ -424,6 +424,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     List<IdScanDueDiligenceDTO.Questions> questionSet;
     IdScanDueDiligenceDTO.FinalScores finalScores = new IdScanDueDiligenceDTO.FinalScores();
     IdScanDueDiligenceDTO.FinalResult finalResults = new IdScanDueDiligenceDTO.FinalResult();
+    String applicantId = params.get('applicantId').toString();
 
     try {
       ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getOrgDefaults();
@@ -432,11 +433,10 @@ global virtual with sharing class IdentityService extends AbstractService {
       if (String.isBlank(applicantId)) {
         throw new customException(System.Label.Applicant_InvalidApplicantId);
       }
-      String jsonRequest = params.get('results').toString();
+
       if (String.isBlank(jsonRequest)) {
         throw new customException(System.Label.Applicant_InvalidApplicantId);
       }
-      log?.debug('Customer Due diligence answers');
       List<IdScanDueDiligenceDTO.Results> results = (List<IdScanDueDiligenceDTO.Results>) JSON.deserialize(
         jsonRequest,
         LIst<IdScanDueDiligenceDTO.Results>.class

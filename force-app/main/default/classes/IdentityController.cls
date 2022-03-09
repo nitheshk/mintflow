@@ -165,7 +165,7 @@ global with sharing class IdentityController extends AbstractController {
       validateRequest(request);
       return ApexResponse.ok(
         IdentityService.getInstance()
-          .validateCustomerAnswers(ApexRequest.getParams())
+          .validateCustomerAnswers(ApexRequest.getParams(), request.data)
       );
     } catch (CustomException ex) {
       log?.error(ex);
