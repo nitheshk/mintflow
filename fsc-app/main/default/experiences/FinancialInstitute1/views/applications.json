@@ -65,6 +65,29 @@
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "enableInlineEdit": true,
+                    "filterName": "00B1y0000031daXEAQ",
+                    "layout": "FULL",
+                    "pageSize": 25,
+                    "scope": "mflow__Application__c",
+                    "showActionBar": true,
+                    "showChartsPanel": true,
+                    "showDisplay": "showall",
+                    "showFilterPanel": true,
+                    "showImageIcon": true,
+                    "showManualRefreshButton": true,
+                    "showObjectName": true,
+                    "showPinnedList": true,
+                    "showSearchBar": true
+                  },
+                  "componentName": "forceCommunity:objectHome",
+                  "id": "cd4facc8-fb51-4376-a128-629df5eee4bd",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
                 }
               ],
               "id": "f7b4c157-46e3-4ab3-a6ee-46849e85753a",
