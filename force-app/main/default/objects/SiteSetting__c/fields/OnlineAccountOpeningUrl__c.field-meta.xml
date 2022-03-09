@@ -5,9 +5,7 @@
     <externalId>false</externalId>
     <inlineHelpText>Online Site account opening redirect Url</inlineHelpText>
     <label>Online Account Opening Url</label>
-    <length>255</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>TextArea</type>
 </CustomField>

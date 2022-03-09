@@ -165,7 +165,7 @@ gulp.task("installPackage", function (finish) {
 //pushToscratch
 gulp.task("pushToscratch", function (finish) {
   let scriptToRun =
-    ` sfdx force:source:legacy:push --targetusername  ${devhub.scratchOrgName}` +
+    ` sfdx force:source:push --targetusername  ${devhub.scratchOrgName}` +
     ` --wait 20 --loglevel fatal --forceoverwrite`;
   console.log("Script To Run - " + scriptToRun);
   utils

@@ -101,17 +101,15 @@ global virtual with sharing class ApplicationService extends AbstractService {
     ApplicationRepository.upsertRecord(application);
     /*** */
     /*** Create Empty Primary Applicant   */
-    Applicant__c applicant = new Applicant__c();
-    applicant.ApplicantType__c = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
-    applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
-      Applicant__c.SObjectType,
-      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-    );
-    applicant.Status__c = ApplicationConstant.IN_PROGRESS;
-    applicant.Application__c = application.Id;
-    ApplicationRepository.upsertRecord(applicant);
-    applicant = ApplicantRepository.readApplicantWithApplication(applicant.Id);
+    Applicant__c applicant = ApplicantService.getInstance()
+      .createInitialPrimaryApplicant(application);
     /***   */
+    /*** Create Financial Account Base on Param */
+    FinancialAccountService.getInstance()
+      .createInitialFinancialAccount(application);
+    /***  */
+
+    applicant = ApplicantRepository.readApplicantWithApplication(applicant.Id);
 
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicantId(applicant.id);
@@ -123,9 +121,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     applicant = SecurityUtils.createSessionForApplicant(applicant);
     ApplicationRepository.upsertRecord(applicant);
 
-    application = ApplicationRepository.readApplicationWithApplicants(
-      application.Id
-    );
+    application = this.readApplicationWithChild(application.id);
 
     params.put('applicationId', ApexRequest.getApplicationId());
     params.put('applicantId', ApexRequest.getApplicantId());

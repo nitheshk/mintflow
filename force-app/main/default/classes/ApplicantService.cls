@@ -172,6 +172,27 @@ global virtual with sharing class ApplicantService extends AbstractService {
   }
 
   /**
+   * @description create Initial Primary Applicant when an empty application has started
+   * @author Digital Align Team | 03-08-2022
+   * @param Application__c application
+   * @return Applicant__c
+   **/
+  global virtual Applicant__c createInitialPrimaryApplicant(
+    Application__c application
+  ) {
+    Applicant__c applicant = new Applicant__c();
+    applicant.ApplicantType__c = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+    applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
+      Applicant__c.SObjectType,
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
+    );
+    applicant.Status__c = ApplicationConstant.IN_PROGRESS;
+    applicant.Application__c = application.Id;
+    ApplicationRepository.upsertRecord(applicant);
+    return applicant;
+  }
+
+  /**
    * @description create Membership Account
    * Create Contact and Account in system if contact is not already present
    * @author Digital Align Team | 12-10-2021

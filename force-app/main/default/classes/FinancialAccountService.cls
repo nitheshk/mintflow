@@ -110,6 +110,40 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   }
 
   /**
+   * @description
+   * @author Digital Align Team | 03-09-2022
+   * @param Application__c application
+   * @return FinancialAccount__c
+   **/
+  global virtual FinancialAccount__c createInitialFinancialAccount(
+    Application__c application
+  ) {
+    String productCode = String.isNotBlank(
+        PageUtils.getCurrentPageParameters('pid')
+      )
+      ? PageUtils.getCurrentPageParameters('pid')
+      : HttpBuilder.getApiConstant('MembershipAccountInternalCode');
+
+    FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
+      productCode
+    );
+    // create financial account
+    FinancialAccount__c financialAccount = new FinancialAccount__c();
+    financialAccount.FinancialProduct__c = membershipProduct.Id;
+    financialAccount.Ownership__c = 'Individual';
+    financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
+    financialAccount.Stage__c = 'Active';
+    financialAccount.Application__c = application.Id;
+    financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+      FinancialAccount__c.SObjectType,
+      membershipProduct.Category__c
+    );
+    FinancialAccountRepository.upsertRecord(financialAccount);
+    log?.fine('financialAccount Created');
+    return financialAccount;
+  }
+
+  /**
    * @description Create financial membership account record
    * @author Digital Align Team | 12-13-2021
    * @param Application__c application
