@@ -39,31 +39,12 @@ global virtual with sharing class ApplicationService extends AbstractService {
     Map<String, Object> result = new Map<String, Object>();
     log?.fine('Inside startApplication -> params -> ' + JSON.serialize(params));
 
-    String recordId = (String) params?.get('recordId');
-    if (String.isNotBlank(recordId)) {
-      // encryption
-      // this for start application from existing application
-      String sObjectType = ((Id) recordId)
-        .getSobjectType()
-        .getDescribe()
-        .getName();
-      switch on sObjectType {
-        when 'Application__c' {
-          System.debug('Inside ' + sObjectType);
-        }
-        when 'FinancialAccount' {
-          System.debug('Inside ' + sObjectType);
-        }
-      }
-    } else {
-      //start new application from online community page, redirect to site url
-      result.put(
-        'url',
-        SiteSetting__c.getInstance().OnlineSiteUrl__c +
-        SiteSetting__c.getInstance().OnlineAccountOpeningUrl__c
-      );
-      log?.info('startApplication -> Url -> ' + result.get('url'));
-    }
+    result.put(
+      'url',
+      SiteSetting__c.getInstance().OnlineSiteUrl__c +
+      SiteSetting__c.getInstance().OnlineAccountOpeningUrl__c
+    );
+    log?.info('startApplication -> Url -> ' + result.get('url'));
     return result;
   }
 
