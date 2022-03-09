@@ -17,13 +17,7 @@
       "label": "Task : Sfdx Push with overwrite",
       "type": "shell",
       "command": "sfdx",
-      "args": [
-        "force:source:legacy:push",
-        "--loglevel",
-        "fatal",
-        "-g",
-        "--forceoverwrite"
-      ],
+      "args": ["force:source:push", "--loglevel", "fatal", "-g", "--forceoverwrite"],
       "group": "build",
       "presentation": {
         "reveal": "always",
@@ -35,12 +29,7 @@
       "label": "Task : Sfdx pull with overwrite",
       "type": "shell",
       "command": "sfdx",
-      "args": [
-        "force:source:legacy:pull",
-        "--loglevel",
-        "fatal",
-        "--forceoverwrite"
-      ],
+      "args": ["force:source:pull", "--loglevel", "fatal", "--forceoverwrite"],
       "group": "build",
       "presentation": {
         "reveal": "always",
@@ -100,11 +89,7 @@
       "label": "sfdx : Create New Trigger Handler",
       "type": "shell",
       "command": "gulp",
-      "args": [
-        "CreateTriggerHandler",
-        "--triggerName",
-        "${input:triggerHandlerName}"
-      ],
+      "args": ["CreateTriggerHandler", "--triggerName", "${input:triggerHandlerName}"],
       "group": "build",
       "presentation": {
         "reveal": "always",
@@ -116,11 +101,7 @@
       "label": "sfdx : Create New Service Class",
       "type": "shell",
       "command": "gulp",
-      "args": [
-        "CreateServiceClass",
-        "--serviceClassName",
-        "${input:serviceClassName}"
-      ],
+      "args": ["CreateServiceClass", "--serviceClassName", "${input:serviceClassName}"],
       "group": "build",
       "presentation": {
         "reveal": "always",
