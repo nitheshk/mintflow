@@ -42,8 +42,8 @@
         "type": "mflow__AdditionalProduct__c",
         "referenceId": "AdditionalProductRef3"
       },
-      "Name": "Membership - Power Plus Debit Account",
-      "mflow__FinancialProduct__c": "@IC001",
+      "Name": "Regular Savings - Power Plus Debit Account",
+      "mflow__FinancialProduct__c": "@IC003",
       "mflow__CrossSellProduct__c": "@IC007",
       "mflow__LongDescription__c": "open Power Plus Debit Account along with",
       "mflow__Order__c": 4,

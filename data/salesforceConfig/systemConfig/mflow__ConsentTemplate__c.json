@@ -177,7 +177,7 @@
             "mflow__Channel__c": "Virtual;Branch",
             "mflow__EventIdentifier__c": "MemberAgreementPage",
             "mflow__ExternalId__c": "CLI0005",
-            "mflow__FinancialProduct__c": "@IC001",
+            "mflow__FinancialProduct__c": "@IC003",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 5,
             "mflow__isActive__c": true

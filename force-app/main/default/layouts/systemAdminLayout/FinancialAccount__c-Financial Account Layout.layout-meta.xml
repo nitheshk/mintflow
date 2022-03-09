@@ -151,20 +151,33 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Amount__c</fields>
+        <fields>TransactionType__c</fields>
+        <fields>TransactionSubType__c</fields>
+        <fields>TransactionStatus__c</fields>
         <relatedList
     >FinancialAccountTransaction__c.FinancialAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>ServiceName__c</fields>
+        <fields>isSelected__c</fields>
         <relatedList
     >FinancialAccountService__c.FinancialAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Applicant__c</fields>
+        <fields>ConsentDateTime__c</fields>
+        <fields>ConsentTemplate__c</fields>
+        <fields>Status__c</fields>
         <relatedList>Consent__c.FinancialAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Answer__c</fields>
+        <fields>EventIdentifier__c</fields>
+        <fields>Applicant__c</fields>
         <relatedList>Survey__c.FinancialAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -192,7 +205,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h6D000002GzQt</masterLabel>
+        <masterLabel>00h0w000001Kq7F</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
