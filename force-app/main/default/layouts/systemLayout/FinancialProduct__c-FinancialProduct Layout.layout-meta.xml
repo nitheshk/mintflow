@@ -29,7 +29,7 @@
                 <field>Type__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Category__c</field>
             </layoutItems>
             <layoutItems>
@@ -119,13 +119,49 @@
         <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>InternalCode__c</fields>
+        <fields>isActive__c</fields>
+        <relatedList>AdditionalProduct__c.FinancialProduct__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>InternalCode__c</fields>
+        <fields>isActive__c</fields>
+        <relatedList>AdditionalProduct__c.CrossSellProduct__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Channel__c</fields>
+        <fields>EventIdentifier__c</fields>
+        <fields>FinancialProductCode__c</fields>
+        <fields>FinancilProductCategory__c</fields>
+        <fields>ApplicantType__c</fields>
+        <relatedList>ConsentLineItem__c.FinancialProduct__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>FinancialProductCode__c</fields>
+        <fields>ShowQuestions__c</fields>
+        <relatedList>ProductService__c.FinancialProduct__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>EventIdentifier__c</fields>
+        <fields>FinancialProductCode__c</fields>
+        <fields>ApplicantType__c</fields>
+        <fields>Channel__c</fields>
+        <fields>isActive__c</fields>
+        <relatedList>SurveyTemplate__c.FinancialProduct__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h9D000000yCoW</masterLabel>
+        <masterLabel>00h0w000001Kq7G</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
