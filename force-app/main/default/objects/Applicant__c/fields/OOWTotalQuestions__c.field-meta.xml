@@ -3,10 +3,11 @@
     <fullName>OOWTotalQuestions__c</fullName>
     <description>Total number of OOW questions asked</description>
     <externalId>false</externalId>
-    <label>OOWTotalQuestions</label>
+    <label>OOW Total Questions</label>
     <precision>2</precision>
     <required>false</required>
     <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Number</type>

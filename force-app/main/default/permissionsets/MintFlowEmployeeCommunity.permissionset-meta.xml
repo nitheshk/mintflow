@@ -184,6 +184,11 @@
         <field>Employment__c.EnlistmentDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.OOW_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
        <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.QualifiedScore__c</field>
