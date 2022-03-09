@@ -5,6 +5,24 @@ public with sharing class SObjectConstructorTest {
     acc = (Application__c) DatabaseUtils.insertRecord(acc);
     return acc;
   }
+  private static Application__c makeApplicationData() {
+    Application__c acc = TestData.createApplication();
+    acc = (Application__c) DatabaseUtils.insertRecord(acc);
+
+    Applicant__c applicant = TestData.createApplicant('Primary');
+    applicant.Application__c = acc.Id;
+    applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
+
+    IdentificationDocument__c identity = TestData.createIdentity();
+    identity.Applicant__c = applicant.Id;
+    identity = (IdentificationDocument__c) DatabaseUtils.insertRecord(identity);
+    applicant.mflow__IdentificationDocuments__r.addAll(
+      new List<IdentificationDocument__c>{ identity }
+    );
+
+    acc.Applicants__r.addAll(new List<Applicant__c>{ applicant });
+    return acc;
+  }
 
   private static Applicant__c makeApplicantData() {
     Application__c acc = TestData.createApplication();
@@ -30,11 +48,11 @@ public with sharing class SObjectConstructorTest {
       .setLookupObject('relationShipName', applicant)
       .build();
     SObjectConstructor.deserialize(
-      SObjectConstructor.serialize(acc),
+      SObjectConstructor.serialize(makeApplicationData()),
       Application__c.class
     );
     SObjectConstructor.writeFieldsAsList(new List<SObject>{ applicant });
-
+    sObj.removeFields('relationShipName');
     test.stopTest();
   }
 }

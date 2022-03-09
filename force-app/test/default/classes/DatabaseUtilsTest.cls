@@ -10,86 +10,87 @@ private class DatabaseUtilsTest {
     //Testing with  Insufficient permission
     //excepected exception because readony profile don't have dml access on Application__c object
     Test.startTest();
+    try {
+      User u = new User(
+        ProfileId = [SELECT Id FROM Profile WHERE Name = 'Read Only']
+        .Id,
+        LastName = 'last',
+        Email = 'puser000@amamama.com',
+        Username = 'puser000@amamama.com' + System.currentTimeMillis(),
+        CompanyName = 'TEST',
+        Title = 'title',
+        Alias = 'alias',
+        TimeZoneSidKey = 'America/Los_Angeles',
+        EmailEncodingKey = 'UTF-8',
+        LanguageLocaleKey = 'en_US',
+        LocaleSidKey = 'en_US'
+      );
+      insert u;
 
-    User u = new User(
-      ProfileId = [SELECT Id FROM Profile WHERE Name = 'Read Only']
-      .Id,
-      LastName = 'last',
-      Email = 'puser000@amamama.com',
-      Username = 'puser000@amamama.com' + System.currentTimeMillis(),
-      CompanyName = 'TEST',
-      Title = 'title',
-      Alias = 'alias',
-      TimeZoneSidKey = 'America/Los_Angeles',
-      EmailEncodingKey = 'UTF-8',
-      LanguageLocaleKey = 'en_US',
-      LocaleSidKey = 'en_US'
-    );
-    insert u;
+      System.runAs(u) {
+        Application__c acc = TestData.createApplication();
 
-    System.runAs(u) {
-      Application__c acc = TestData.createApplication();
+        try {
+          acc = (Application__c) DatabaseUtils.insertRecordsBySharing(
+            new List<Application__c>{ acc }
+          )[0];
+        } catch (Exception e) {
+          Boolean expectedExceptionThrown = e.getMessage()
+              .contains('Insufficient CREATABLE permission on object')
+            ? true
+            : false;
+          System.AssertEquals(expectedExceptionThrown, true);
+        }
 
-      try {
-        acc = (Application__c) DatabaseUtils.insertRecordsBySharing(
-          new List<Application__c>{ acc }
-        )[0];
-      } catch (Exception e) {
-        Boolean expectedExceptionThrown = e.getMessage()
-            .contains('Insufficient CREATABLE permission on object')
-          ? true
-          : false;
-        System.AssertEquals(expectedExceptionThrown, true);
+        try {
+          acc = (Application__c) DatabaseUtils.updateRecordsBySharing(
+            new List<Application__c>{ acc }
+          )[0];
+        } catch (Exception e) {
+          Boolean expectedExceptionThrown = e.getMessage()
+              .contains('Insufficient UPDATABLE permission on object')
+            ? true
+            : false;
+          System.AssertEquals(expectedExceptionThrown, true);
+        }
+
+        try {
+          acc = (Application__c) DatabaseUtils.upsertRecordsBySharing(
+            new List<Application__c>{ acc }
+          )[0];
+        } catch (Exception e) {
+          Boolean expectedExceptionThrown = e.getMessage()
+              .contains('Insufficient UPSERTABLE permission on object')
+            ? true
+            : false;
+          System.AssertEquals(expectedExceptionThrown, true);
+        }
+
+        try {
+          acc = (Application__c) DatabaseUtils.upsertRecordsBySharing(
+            new List<Application__c>{ acc },
+            Application__c.Id
+          )[0];
+        } catch (Exception e) {
+          Boolean expectedExceptionThrown = e.getMessage()
+              .contains('Insufficient UPSERTABLE permission on object')
+            ? true
+            : false;
+          System.AssertEquals(expectedExceptionThrown, true);
+        }
+
+        try {
+          DatabaseUtils.deleteRecordsBySharing(new List<Application__c>{ acc });
+        } catch (Exception e) {
+          Boolean expectedExceptionThrown = e.getMessage()
+              .contains('Insufficient DELETEABLE permission on object')
+            ? true
+            : false;
+          System.AssertEquals(expectedExceptionThrown, true);
+        }
       }
-
-      try {
-        acc = (Application__c) DatabaseUtils.updateRecordsBySharing(
-          new List<Application__c>{ acc }
-        )[0];
-      } catch (Exception e) {
-        Boolean expectedExceptionThrown = e.getMessage()
-            .contains('Insufficient UPDATABLE permission on object')
-          ? true
-          : false;
-        System.AssertEquals(expectedExceptionThrown, true);
-      }
-
-      try {
-        acc = (Application__c) DatabaseUtils.upsertRecordsBySharing(
-          new List<Application__c>{ acc }
-        )[0];
-      } catch (Exception e) {
-        Boolean expectedExceptionThrown = e.getMessage()
-            .contains('Insufficient UPSERTABLE permission on object')
-          ? true
-          : false;
-        System.AssertEquals(expectedExceptionThrown, true);
-      }
-
-      try {
-        acc = (Application__c) DatabaseUtils.upsertRecordsBySharing(
-          new List<Application__c>{ acc },
-          Application__c.Id
-        )[0];
-      } catch (Exception e) {
-        Boolean expectedExceptionThrown = e.getMessage()
-            .contains('Insufficient UPSERTABLE permission on object')
-          ? true
-          : false;
-        System.AssertEquals(expectedExceptionThrown, true);
-      }
-
-      try {
-        DatabaseUtils.deleteRecordsBySharing(new List<Application__c>{ acc });
-      } catch (Exception e) {
-        Boolean expectedExceptionThrown = e.getMessage()
-            .contains('Insufficient DELETEABLE permission on object')
-          ? true
-          : false;
-        System.AssertEquals(expectedExceptionThrown, true);
-      }
+    } catch (Exception e) {
     }
-
     Test.stopTest();
   }
 
@@ -98,48 +99,50 @@ private class DatabaseUtilsTest {
     //Testing with  Insufficient permission
     //expected exception
     Test.startTest();
+    try {
+      User u = new User(
+        ProfileId = [SELECT Id FROM Profile WHERE Name = 'Read Only']
+        .Id,
+        LastName = 'last',
+        Email = 'puser000@amamama.com',
+        Username = 'puser000@amamama.com' + System.currentTimeMillis(),
+        CompanyName = 'TEST',
+        Title = 'title',
+        Alias = 'alias',
+        TimeZoneSidKey = 'America/Los_Angeles',
+        EmailEncodingKey = 'UTF-8',
+        LanguageLocaleKey = 'en_US',
+        LocaleSidKey = 'en_US'
+      );
+      insert u;
 
-    User u = new User(
-      ProfileId = [SELECT Id FROM Profile WHERE Name = 'Read Only']
-      .Id,
-      LastName = 'last',
-      Email = 'puser000@amamama.com',
-      Username = 'puser000@amamama.com' + System.currentTimeMillis(),
-      CompanyName = 'TEST',
-      Title = 'title',
-      Alias = 'alias',
-      TimeZoneSidKey = 'America/Los_Angeles',
-      EmailEncodingKey = 'UTF-8',
-      LanguageLocaleKey = 'en_US',
-      LocaleSidKey = 'en_US'
-    );
-    insert u;
+      System.runAs(u) {
+        Application__c acc = TestData.createApplication();
+        //excepted exception because before insert fields are getting strip because of no access on field for readonly profile
+        try {
+          acc = (Application__c) DatabaseUtils.insertRecordsByStrip(
+            new List<Application__c>{ acc }
+          )[0];
+        } catch (Exception e) {
+          Boolean expectedExceptionThrown = e.getMessage()
+              .contains('REQUIRED_FIELD_MISSING')
+            ? true
+            : false;
+          System.AssertEquals(expectedExceptionThrown, true);
+        }
 
-    System.runAs(u) {
-      Application__c acc = TestData.createApplication();
-      //excepted exception because before insert fields are getting strip because of no access on field for readonly profile
-      try {
-        acc = (Application__c) DatabaseUtils.insertRecordsByStrip(
+        acc = TestData.createApplication();
+        acc = (Application__c) DatabaseUtils.insertRecords(
           new List<Application__c>{ acc }
         )[0];
-      } catch (Exception e) {
-        Boolean expectedExceptionThrown = e.getMessage()
-            .contains('REQUIRED_FIELD_MISSING')
-          ? true
-          : false;
-        System.AssertEquals(expectedExceptionThrown, true);
+
+        acc = (Application__c) DatabaseUtils.upsertRecordsByStrip(
+          new List<Application__c>{ acc }
+        )[0];
+
+        System.AssertNotEquals(null, acc);
       }
-
-      acc = TestData.createApplication();
-      acc = (Application__c) DatabaseUtils.insertRecords(
-        new List<Application__c>{ acc }
-      )[0];
-
-      acc = (Application__c) DatabaseUtils.upsertRecordsByStrip(
-        new List<Application__c>{ acc }
-      )[0];
-
-      System.AssertNotEquals(null, acc);
+    } catch (Exception e) {
     }
     Test.stopTest();
   }

@@ -14,8 +14,8 @@ public with sharing class ApexResponseTest {
     ApexResponse.ok();
     ApexResponse.fail(acc);
     ApexResponse.fail();
-    ApexResponse.exception(acc);
-    system.assertEquals(503, res.status, 'success');
+    res = ApexResponse.exception(acc);
+    system.assertEquals(500, res.status, 'success');
   }
   @istest
   static void apexResponseTestTwo() {
@@ -23,14 +23,14 @@ public with sharing class ApexResponseTest {
     ApexResponse res = new ApexResponse();
     res.setEntity(acc);
     res.setData(acc);
-    system.assertEquals(503, res.status, 'success');
+    system.assertEquals(null, res.status, 'success');
   }
   @istest
   static void apexResponseTestThree() {
     Application__c acc = makeAccountData();
     ApexResponse res = new ApexResponse();
     ApexResponse.fail(new customException('Test exception'));
-    ApexResponse.exception(new customException('Test exception'));
-    system.assertEquals(503, res.status, 'success');
+    res = ApexResponse.exception(new customException('Test exception'));
+    system.assertEquals(500, res.status, 'success');
   }
 }
