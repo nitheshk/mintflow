@@ -1,4 +1,0 @@
-[submodule "p1fcu-olbui"]
-	path = p1fcu-olbui
-	url = git@github.com:DigitalAlignInc/p1fcu-olbui.git
-	branch = develop
