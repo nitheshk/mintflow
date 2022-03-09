@@ -22,9 +22,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    **/
   public static FinancialAccountService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (FinancialAccountService) getInstance(
-        FinancialAccountService.class
-      );
+      serviceInstance = (FinancialAccountService) getInstance(FinancialAccountService.class);
     }
     return serviceInstance;
   }
@@ -35,12 +33,8 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @param List<FinancialAccount__c> financialAccounts
    * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(
-    List<FinancialAccount__c> financialAccounts
-  ) {
-    return readFinancialAccountsWithChild(
-      (new Map<Id, SObject>(financialAccounts)).keySet()
-    );
+  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(List<FinancialAccount__c> financialAccounts) {
+    return readFinancialAccountsWithChild((new Map<Id, SObject>(financialAccounts)).keySet());
   }
 
   /**
@@ -49,12 +43,8 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @param Set<Id> applicationIds
    * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(
-    Set<Id> applicationIds
-  ) {
-    return FinancialAccountRepository.readFinancialAccountsWithChild(
-      applicationIds
-    );
+  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(Set<Id> applicationIds) {
+    return FinancialAccountRepository.readFinancialAccountsWithChild(applicationIds);
   }
 
   /**
@@ -63,9 +53,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @param List<FinancialAccount__c> financialAccounts
    * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinancialAccount__c> beforeSaveFinancialAccounts(
-    List<FinancialAccount__c> financialAccounts
-  ) {
+  global virtual List<FinancialAccount__c> beforeSaveFinancialAccounts(List<FinancialAccount__c> financialAccounts) {
     return financialAccounts;
   }
 
@@ -103,9 +91,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @param List<FinancialAccount__c> financialAccounts
    * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinancialAccount__c> afterSaveFinancialAccounts(
-    List<FinancialAccount__c> financialAccounts
-  ) {
+  global virtual List<FinancialAccount__c> afterSaveFinancialAccounts(List<FinancialAccount__c> financialAccounts) {
     return financialAccounts;
   }
 
@@ -115,18 +101,12 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @param Application__c application
    * @return FinancialAccount__c
    **/
-  global virtual FinancialAccount__c createInitialFinancialAccount(
-    Application__c application
-  ) {
-    String productCode = String.isNotBlank(
-        PageUtils.getCurrentPageParameters('pid')
-      )
+  global virtual FinancialAccount__c createInitialFinancialAccount(Application__c application) {
+    String productCode = String.isNotBlank(PageUtils.getCurrentPageParameters('pid'))
       ? PageUtils.getCurrentPageParameters('pid')
       : HttpBuilder.getApiConstant('MembershipAccountInternalCode');
 
-    FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
-      productCode
-    );
+    FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(productCode);
     // create financial account
     FinancialAccount__c financialAccount = new FinancialAccount__c();
     financialAccount.FinancialProduct__c = membershipProduct.Id;
@@ -141,36 +121,5 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     FinancialAccountRepository.upsertRecord(financialAccount);
     log?.fine('financialAccount Created');
     return financialAccount;
-  }
-
-  /**
-   * @description Create financial membership account record
-   * @author Digital Align Team | 12-13-2021
-   * @param Application__c application
-   * @return Application__c
-   */
-  global Application__c createMembershipFinancialAccount(
-    Application__c application
-  ) {
-    //fetching membership product
-    FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
-      HttpBuilder.getApiConstant('MembershipAccountInternalCode')
-    );
-
-    // create membership financial account
-    FinancialAccount__c financialAccount = new FinancialAccount__c();
-    financialAccount.FinancialProduct__c = membershipProduct.Id;
-    financialAccount.ExternalApplicationNumber__c = application.ExternalApplicationNumber__c;
-    financialAccount.Ownership__c = 'Individual';
-    financialAccount.Status__c = ApplicationConstant.FUNDING_IN_PROGRESS;
-    financialAccount.Stage__c = 'Active';
-    financialAccount.Application__c = application.Id;
-    financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      FinancialAccount__c.SObjectType,
-      membershipProduct.Category__c
-    );
-    FinancialAccountRepository.upsertRecord(financialAccount);
-    log?.fine('financialAccount Created');
-    return application;
   }
 }

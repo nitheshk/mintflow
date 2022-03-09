@@ -35,9 +35,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * @param string applicationNumber
    * @return Application__c
    **/
-  global static Application__c readApplicationByApplicationNumber(
-    String applicationNumber
-  ) {
+  global static Application__c readApplicationByApplicationNumber(String applicationNumber) {
     return (Application__c) DatabaseUtils.getRecord(
       Query.newInstance(Application__c.SObjectType)
         .addFields()
@@ -54,10 +52,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * @param Id applicantId
    * @return Application__c
    **/
-  global static Application__c readApplicationWithChild(
-    Id applicationId,
-    Id applicantId
-  ) {
+  global static Application__c readApplicationWithChild(Id applicationId, Id applicantId) {
     Query qry = Query.newInstance(Application__c.SObjectType)
       .addFields()
       .removeFields('mflow__SessionToken__c')
@@ -114,38 +109,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    **/
   global static AuthProvider readAuthProviderByDevName(String developerName) {
     return (AuthProvider) DatabaseUtils.getRecord(
-      Query.newInstance(AuthProvider.SObjectType)
-        .whereEq('DeveloperName', developerName)
-        .toString()
-    );
-  }
-
-  /**
-   * @description Read Application with FinancialAccount and Applicants
-   * @author Digital Align Team | 12-02-2021
-   * @param Id applicationId
-   * @return Application__c
-   **/
-  global static Application__c readApplicationForKYC(Id applicationId) {
-    return (Application__c) DatabaseUtils.getRecord(
-      Query.newInstance(Application__c.SObjectType)
-        .addFields()
-        .queryChild('mflow__Applicants__r')
-        .addFields()
-        .addFields('RecordType.Name')
-        .whereEq(
-          'RecordType.Name',
-          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-        )
-        .orCon()
-        .whereEq(
-          'RecordType.Name',
-          ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-        )
-        .orderBy('mflow__Order__c')
-        .run()
-        .whereEq('Id', applicationId)
-        .toString()
+      Query.newInstance(AuthProvider.SObjectType).whereEq('DeveloperName', developerName).toString()
     );
   }
 
@@ -162,10 +126,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
         .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
-        .whereEq(
-          'RecordType.Name',
-          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-        )
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
         .run()
         .whereEq('Id', applicationId)
         .toString()

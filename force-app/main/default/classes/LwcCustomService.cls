@@ -43,17 +43,13 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @param Map<String Object> params
    * @return ApplicationConfiguration__c
    **/
-  global virtual ApplicationConfiguration__c updateConfigValues(
-    Map<String, Object> params
-  ) {
+  global virtual ApplicationConfiguration__c updateConfigValues(Map<String, Object> params) {
     ApplicationConfiguration__c configData = (ApplicationConfiguration__c) JSON.deserialize(
       (string) params.get('configData'),
       ApplicationConfiguration__c.class
     );
     log?.debug(' configData : ' + configData);
-    return (ApplicationConfiguration__c) LwcCustomRepository.updateRecord(
-      configData
-    );
+    return (ApplicationConfiguration__c) LwcCustomRepository.updateRecord(configData);
   }
 
   /**
@@ -62,14 +58,10 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @param String sObjectName
    * @return List<Map<String, String>>  return all field in sobject
    **/
-  public virtual List<Map<String, String>> fetchFieldDetails(
-    String sObjectName
-  ) {
+  public virtual List<Map<String, String>> fetchFieldDetails(String sObjectName) {
     List<Map<String, String>> fieldNames = new List<Map<String, String>>();
 
-    Map<String, Schema.SObjectField> fieldMap = SObjectUtils.getFields(
-      SObjectUtils.getSobjectType(sObjectName)
-    );
+    Map<String, Schema.SObjectField> fieldMap = SObjectUtils.getFields(SObjectUtils.getSobjectType(sObjectName));
     for (Schema.SObjectField sfield : fieldMap.Values()) {
       //dField -> describe field
       schema.describefieldresult dField = sfield.getDescribe();
@@ -91,9 +83,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @return virtual
    **/
   global virtual Application__c readApplicationWithChild(Id applicationId) {
-    Application__c application = LwcCustomRepository.readApplicationWithChild(
-      applicationId
-    );
+    Application__c application = LwcCustomRepository.readApplicationWithChild(applicationId);
 
     List<Applicant__c> applicants = LwcCustomRepository.readApplicantsWithChild(
       new Map<id, SObject>(application.Applicants__r).keyset()
@@ -115,47 +105,28 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @param string applicationId
    * @return list<map<string, string>>
    **/
-  global virtual list<map<string, string>> readApplicationWithApplicants(
-    string applicationId
-  ) {
+  global virtual list<map<string, string>> readApplicationWithApplicants(string applicationId) {
     list<map<string, string>> results = new List<map<string, string>>();
 
     if (string.isBlank(applicationId)) {
-      throw new CustomException(
-        System.Label.Application_ApplicationIdCannotBeBlank
-      );
+      throw new CustomException(System.Label.Application_ApplicationIdCannotBeBlank);
     }
     list<id> ids = new List<id>();
-    Application__c application = ApplicationRepository.readApplicationWithApplicants(
-      applicationId
-    );
+    Application__c application = ApplicationRepository.readApplicationWithApplicants(applicationId);
     if (application != null) {
       for (Applicant__c applicant : application.Applicants__r) {
         if (
-          applicant.RecordType.Name ==
-          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE ||
-          applicant.RecordType.Name ==
-          ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+          applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE ||
+          applicant.RecordType.Name == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
         ) {
           map<string, string> result = new Map<string, string>();
           ids.add(applicant.Id);
-          result.put(
-            'label',
-            applicant.ApplicantName__c +
-            ' (' +
-            applicant.ApplicantType__c +
-            ')'
-          );
+          result.put('label', applicant.ApplicantName__c + ' (' + applicant.ApplicantType__c + ')');
           result.put('value', applicant.Id);
           results.add(result);
         }
       }
-      results.add(
-        new Map<string, string>{
-          'label' => 'All',
-          'value' => JSON.serialize(ids)
-        }
-      );
+      results.add(new Map<string, string>{ 'label' => 'All', 'value' => JSON.serialize(ids) });
     }
     return results;
   }
@@ -175,9 +146,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @return virtual
    **/
   global virtual void sendResumeApplicationEmail(list<id> applicantIds) {
-    List<Applicant__c> applicants = ApplicantRepository.readApplicantsById(
-      applicantIds
-    );
+    List<Applicant__c> applicants = ApplicantRepository.readApplicantsById(applicantIds);
     if (CollectionUtils.isListEmpty(applicants)) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
@@ -192,9 +161,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @return virtual
    **/
   global virtual void resendFundingRequest(string applicantionId) {
-    Application__c application = LwcCustomRepository.readApplicationForResume(
-      applicantionId
-    );
+    Application__c application = LwcCustomRepository.readApplicationForResume(applicantionId);
     if (application == null) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
@@ -208,16 +175,10 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @param String fieldSetName
    * @return List<Map<String, String>>
    **/
-  public virtual List<Map<String, String>> fetchFieldDetails(
-    String sObjectName,
-    String fieldSetName
-  ) {
+  public virtual List<Map<String, String>> fetchFieldDetails(String sObjectName, String fieldSetName) {
     List<Map<String, String>> fieldNames = new List<Map<String, String>>();
     //fs -> FiledSet
-    Schema.FieldSet fs = SObjectUtils.getFieldSet(
-      SObjectUtils.getSobjectType(sObjectName),
-      fieldSetName
-    );
+    Schema.FieldSet fs = SObjectUtils.getFieldSet(SObjectUtils.getSobjectType(sObjectName), fieldSetName);
     //fsm -> FieldSetMember
     for (Schema.FieldSetMember fsm : fs.getFields()) {
       fieldNames.add(
@@ -243,19 +204,12 @@ global virtual with sharing class LwcCustomService extends AbstractService {
         ]
       }
    **/
-  global virtual Map<String, Map<String, Object>> fetchPickListValues(
-    Map<String, Object> params
-  ) {
+  global virtual Map<String, Map<String, Object>> fetchPickListValues(Map<String, Object> params) {
     Map<String, Map<String, Object>> result = new Map<String, Map<String, Object>>();
 
     for (String sType : params.keySet()) {
-      List<String> fieldNames = (List<String>) JSON.deserialize(
-        JSON.serialize(params.get(sType)),
-        List<String>.class
-      );
-      Schema.DescribeSObjectResult sObjectResult = Schema.getGlobalDescribe()
-        .get(sType)
-        .getDescribe();
+      List<String> fieldNames = (List<String>) JSON.deserialize(JSON.serialize(params.get(sType)), List<String>.class);
+      Schema.DescribeSObjectResult sObjectResult = Schema.getGlobalDescribe().get(sType).getDescribe();
       result.put(sType, new Map<String, Object>());
       for (String fieldName : fieldNames) {
         List<Object> picklistValues = new List<Object>();
@@ -266,10 +220,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
             .getPicklistValues()
         ) {
           picklistValues.add(
-            new Map<String, String>{
-              'label' => picklistEntry.getLabel(),
-              'value' => picklistEntry.getValue()
-            }
+            new Map<String, String>{ 'label' => picklistEntry.getLabel(), 'value' => picklistEntry.getValue() }
           );
         }
         result.get(sType).put(fieldName, picklistValues);
@@ -291,9 +242,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
     string approvalType = (string) params.get('approvalType');
     switch on sobjectType {
       when 'mflow__Applicant__c' {
-        Applicant__c applicant = LwcCustomRepository.readApplicantById(
-          recordID
-        );
+        Applicant__c applicant = LwcCustomRepository.readApplicantById(recordID);
 
         if (status == ApplicationConstant.KYC_PASSED) {
           if (applicant.RecordType.Name == 'Primary') {
@@ -319,9 +268,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
           );
       }
       when 'mflow__Application__c' {
-        Application__c application = LwcCustomRepository.readApplicationWithApplicants(
-          recordID
-        );
+        Application__c application = LwcCustomRepository.readApplicationWithApplicants(recordID);
         ApexRequest.setApplicationId(application.Id);
         ApexRequest.setApplicationName(application.Name);
 
@@ -343,10 +290,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
             application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
             application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
             for (Applicant__c applicant : application.Applicants__r) {
-              if (
-                applicant.RecordType.Name ==
-                ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-              ) {
+              if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
                 applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
                 applicant.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
               }
@@ -377,17 +321,12 @@ global virtual with sharing class LwcCustomService extends AbstractService {
           );
 
         // Create membership account based on the KYC Approval
-        if (
-          application.mflow__isMemberFlow__c &&
-          application.KYCStatus__c == ApplicationConstant.KYC_PASSED
-        ) {
+        if (application.mflow__isMemberFlow__c && application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
           try {
-            ApplicantService.getInstance().createMemberAccount(application);
-            application = FinancialAccountService.getInstance()
-              .createMembershipFinancialAccount(application);
+            KycReviewService.getInstance().createMemberAccount(application);
+            application = KycReviewService.getInstance().updateFinancialAccount(application, null);
             //Send Funding Email Link to primary
-            CustomerEmailService.getInstance()
-              .fundingLinkOnKycApproval(application);
+            CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);
           } catch (Exception ex) {
             log?.error(ex);
             throw ex;
@@ -408,8 +347,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @return list<Object>
    **/
   global list<Object> fetchRelatedFiles(List<String> relatedEntityIds) {
-    List<ContentVersion> fileList = FileService.getInstance()
-      .fetchContentVersionByEntityIds(relatedEntityIds, true);
+    List<ContentVersion> fileList = FileService.getInstance().fetchContentVersionByEntityIds(relatedEntityIds, true);
     return fileList;
   }
 }

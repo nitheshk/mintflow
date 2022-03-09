@@ -28,12 +28,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
 
   //getStatusMapping
   global virtual String getStatusMapping(String fieldName, String value) {
-    return (new Map<String, String>{
-        'Passed' => 'Passed',
-        'Failed' => 'Failed',
-        'Accept' => 'Accept'
-      })
-      .get(value);
+    return (new Map<String, String>{ 'Passed' => 'Passed', 'Failed' => 'Failed', 'Accept' => 'Accept' }).get(value);
   }
 
   /**
@@ -51,9 +46,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
     if (kycResult == null) {
       throw new CustomException('Unable to process the empty request');
     }
-    Application__c application = ApplicationRepository.readApplicationForKYC(
-      kycResult.ApplicationId
-    );
+    Application__c application = KycReviewRepository.readApplicationForKYC(kycResult.ApplicationId);
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.Name);
 
@@ -62,51 +55,35 @@ global virtual with sharing class KycReviewService extends AbstractService {
     }
 
     //chatter post on record level
-    NotificationBuilder.chatterMessagePost(
-      application.Id,
-      'Kyc Result : ' + resultJson
-    );
+    NotificationBuilder.chatterMessagePost(application.Id, 'Kyc Result : ' + resultJson);
 
     // roll back whole transaction on failure
     Savepoint sp = Database.setSavepoint();
     try {
       // Primary is Existing Customer
       if (kycResult.IsExistingCustomer == true) {
-        return KycReviewService.getInstance()
-          .processExistingMember(application, kycResult);
+        return this.processExistingMember(application, kycResult);
       }
 
       // Primary Kyc is Approved/Failed and Joint KYC is Approved/Failed
       // update Applicant detail accordingly
-      application = KycReviewService.getInstance()
-        .updateApplicationKycDetails(application, kycResult);
+      application = this.updateApplicationKycDetails(application, kycResult);
 
       // if Application kyc status is approved, then proceed with creating Account & Contact for primary/Joint
 
       if (application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
-        ApplicantService.getInstance().createMemberAccount(application);
-
-        application = FinancialAccountService.getInstance()
-          .createMembershipFinancialAccount(application);
+        // account and contact
+        this.createMemberAccount(application);
+        //update financial Account details
+        application = this.updateFinancialAccount(application, kycResult);
 
         //Send Funding Email Link to primary
-        CustomerEmailService.getInstance()
-          .fundingLinkOnKycApproval(application);
+        CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);
         NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onSuccessKycProcess',
-            application.Id,
-            application.Name,
-            null
-          );
+          .dispatchKycNotification('onSuccessKycProcess', application.Id, application.Name, null);
       } else {
         NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onReviewKycProcess',
-            application.Id,
-            application.Name,
-            null
-          );
+          .dispatchKycNotification('onReviewKycProcess', application.Id, application.Name, null);
       }
       return application;
     } catch (Exception ex) {
@@ -143,10 +120,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
     application.mflow__Stage__c = ApplicationConstant.STAGE_EXISTING_CUSTOMER;
     application.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
     for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
         applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
       } else {
@@ -155,8 +129,8 @@ global virtual with sharing class KycReviewService extends AbstractService {
         applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
       }
     }
-    FinancialAccountRepository.upsertRecords(application.Applicants__r);
-    FinancialAccountRepository.upsertRecord(application);
+    KycReviewRepository.upsertRecords(application.Applicants__r);
+    KycReviewRepository.upsertRecord(application);
     return application;
   }
 
@@ -171,63 +145,34 @@ global virtual with sharing class KycReviewService extends AbstractService {
     Application__c application,
     ApplicationSubmissionResponse.KYCResult kycResult
   ) {
-    Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(
-      application.Applicants__r
-    );
+    Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(application.Applicants__r);
 
     Boolean kycSuccessForApplicants = true;
     if (kycResult?.applicants != null) {
-      for (
-        ApplicationSubmissionResponse.KYCApplicantResult applicantKyc : kycResult.applicants
-      ) {
+      for (ApplicationSubmissionResponse.KYCApplicantResult applicantKyc : kycResult.applicants) {
         Applicant__c applicant = applicantMap.get(applicantKyc.ApplicantId);
         if (applicant == null) {
           continue;
         }
         applicant.CustomerNumber__c = applicantKyc.CustomerNumber;
-        applicant.OverallDebitBureauResult__c = this.getStatusMapping(
-          null,
-          applicantKyc.OverallDebitBureauResult
-        );
+        applicant.OverallDebitBureauResult__c = this.getStatusMapping(null, applicantKyc.OverallDebitBureauResult);
         // Credit Report is not generated if CreditScore =NA
-        applicant.CreditScore__c = applicantKyc.CreditScore == 'NA'
-          ? null
-          : integer.valueof(applicantKyc.CreditScore);
-        applicant.mflow__CreditScoreStatus__c = applicantKyc.CreditScore == 'NA'
-          ? 'Reorder'
-          : 'Verified';
+        applicant.CreditScore__c = applicantKyc.CreditScore == 'NA' ? null : integer.valueof(applicantKyc.CreditScore);
+        applicant.mflow__CreditScoreStatus__c = applicantKyc.CreditScore == 'NA' ? 'Reorder' : 'Verified';
         applicant.QualifiedScore__c = applicantKyc.QualifiedScore;
         applicant.CustomerScore__c = applicantKyc.CustomerScore;
-        applicant.HighRiskConsumer__c = this.getStatusMapping(
-          null,
-          applicantKyc.HighRiskConsumer
-        );
-        applicant.QualifiedDecision__c = this.getStatusMapping(
-          null,
-          applicantKyc.QualifiedDecision
-        );
-        applicant.IdentityVerificationStatus__c = this.getStatusMapping(
-          null,
-          applicantKyc.IdentityVerificationStatus
-        );
+        applicant.HighRiskConsumer__c = this.getStatusMapping(null, applicantKyc.HighRiskConsumer);
+        applicant.QualifiedDecision__c = this.getStatusMapping(null, applicantKyc.QualifiedDecision);
+        applicant.IdentityVerificationStatus__c = this.getStatusMapping(null, applicantKyc.IdentityVerificationStatus);
         applicant.OFAC__c = this.getStatusMapping(null, applicantKyc.OFAC);
         applicant.SSNValidation__c = applicantKyc.SSNValidation;
-        applicant.RunWithoutKIQ__c = this.getStatusMapping(
-          null,
-          applicantKyc.RunWithoutKIQ
-        );
-        applicant.RunWithKIQ__c = this.getStatusMapping(
-          null,
-          applicantKyc.RunWithKIQ
-        );
+        applicant.RunWithoutKIQ__c = this.getStatusMapping(null, applicantKyc.RunWithoutKIQ);
+        applicant.RunWithKIQ__c = this.getStatusMapping(null, applicantKyc.RunWithKIQ);
 
         //Update Applicant Status based on RunWithKIQ__c Field
         switch on applicant.RunWithKIQ__c {
           when 'Accept', 'Passed' {
-            if (
-              applicant.RecordType.Name ==
-              ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-            ) {
+            if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
               applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
             }
             applicant.mflow__Status__c = ApplicationConstant.IN_PROGRESS;
@@ -272,8 +217,138 @@ global virtual with sharing class KycReviewService extends AbstractService {
         }
       }
     }
-    FinancialAccountRepository.upsertRecords(application.Applicants__r);
-    FinancialAccountRepository.upsertRecord(application);
+    KycReviewRepository.upsertRecords(application.Applicants__r);
+    KycReviewRepository.upsertRecord(application);
+    return application;
+  }
+
+  /**
+   * @description create Membership Account
+   * Create Contact and Account in system if contact is not already present
+   * @author Digital Align Team | 12-10-2021
+   * @param Application__c application
+   * @return Application__c
+   **/
+  global virtual Application__c createMemberAccount(Application__c application) {
+    String filter = '';
+    Map<Id, Applicant__c> applicantToProcess = new Map<Id, Applicant__c>();
+
+    for (Applicant__c applicant : application.Applicants__r) {
+      applicantToProcess.put(applicant.Id, applicant);
+      if (String.isNotBlank(filter)) {
+        filter += ' OR ';
+      }
+      filter += '(mflow__SSN__c=\'' + applicant.SSN__c?.trim() + '\' AND ';
+      filter += 'LastName=\'' + applicant.LastName__c?.trim() + '\')';
+    }
+
+    // #Attribute
+    List<Contact> existingContacts = KycReviewRepository.fetchExistingContacts(filter);
+    // #Attribute
+    Map<String, Contact> ssnVsContact = new Map<String, Contact>();
+    for (Contact con : existingContacts) {
+      ssnVsContact.put(con.SSN__c, con);
+    }
+
+    List<Contact> contactToUpsert = new List<Contact>();
+    for (Applicant__c applicant : applicantToProcess.values()) {
+      if (ssnVsContact.containsKey(applicant.SSN__c)) {
+        Contact memberContact = this.mapApplicantWithContact(applicant, ssnVsContact.get(applicant.SSN__c));
+        applicant.Contact__c = memberContact.Id;
+        applicant.Contact__r = memberContact;
+        contactToUpsert.add(memberContact);
+      } else {
+        Account memberAccount = this.createAccount(applicant);
+        Contact memberContact = new Contact(AccountId = memberAccount.Id);
+        memberContact = this.mapApplicantWithContact(applicant, memberContact);
+        KycReviewRepository.upsertRecord(memberContact);
+        applicant.Contact__c = memberContact.Id;
+        applicant.Contact__r = memberContact;
+        contactToUpsert.add(memberContact);
+      }
+    }
+
+    KycReviewRepository.upsertRecords(contactToUpsert);
+    KycReviewRepository.upsertRecords(application.Applicants__r);
+    return application;
+  }
+
+  /**
+   * @description Create Individual Account and Contact in salesforce
+   * @author Digital Align Team | 12-10-2021
+   * @param Applicant__c applicant
+   * @return Account
+   **/
+  //#removeFSC
+  global virtual Account createAccount(Applicant__c applicant) {
+    Account individualAccount = new Account();
+    individualAccount.Name = applicant.ApplicantName__c;
+    // #info
+    // Added for customer community user license only
+    // Work for Cusotmer Community plus user without owner assingment
+    //individualAccount.OwnerId = UserUtils.getCurrentUser().CreatedById;
+    individualAccount.UserAccountType__c = 'IndividualCustomer';
+    KycReviewRepository.upsertRecord(individualAccount);
+    return individualAccount;
+  }
+
+  /**
+   * @description map applicant data with contact data
+   * @author Digital Align Team | 12-10-2021
+   * @param Applicant__c applicant
+   * @param Contact memberContact
+   * @return Contact
+   **/
+  global virtual Contact mapApplicantWithContact(Applicant__c applicant, Contact memberContact) {
+    //#removeFSC
+    //Not existing Contact then map new names
+    if (String.isBlank(memberContact.Id)) {
+      memberContact.FirstName = applicant.FirstName__c;
+      memberContact.LastName = applicant.LastName__c;
+      memberContact.SSN__c = applicant.SSN__c;
+    }
+    memberContact.UserContactType__c = 'IndividualCustomer';
+    memberContact.Email = applicant.Email__c;
+    memberContact.Phone = applicant.Phone__c;
+    memberContact.IsEmailVerified__c = applicant.IsEmailVerified__c;
+    memberContact.IsPhoneNumberVerified__c = applicant.IsPhoneNumberVerified__c;
+    memberContact.RunWithKIQ__c = applicant.RunWithKIQ__c;
+    memberContact.RunWithoutKIQ__c = applicant.RunWithoutKIQ__c;
+    memberContact.IdentityVerificationStatus__c = applicant.IdentityVerificationStatus__c;
+    memberContact.Birthdate = applicant.Birthdate__c;
+    memberContact.SSNValidation__c = applicant.SSNValidation__c;
+    memberContact.CreditScore__c = applicant.CreditScore__c;
+    memberContact.CustomerScore__c = applicant.CustomerScore__c;
+    memberContact.HighRiskConsumer__c = applicant.HighRiskConsumer__c;
+    memberContact.OFAC__c = applicant.OFAC__c;
+    memberContact.OverallDebitBureauResult__c = applicant.OverallDebitBureauResult__c;
+    memberContact.QualifiedDecision__c = applicant.QualifiedDecision__c;
+    memberContact.QualifiedScore__c = applicant.QualifiedScore__c;
+    memberContact.FraudStatus__c = applicant.FraudStatus__c;
+    memberContact.IncomeVerificationStatus__c = applicant.IncomeVerificationStatus__c;
+    memberContact.KYCStatus__c = applicant.KYCStatus__c;
+    memberContact.SentiLinkFraudScore__c = applicant.SentiLinkFraudScore__c;
+    memberContact.SentiLinkStatus__c = applicant.SentiLinkStatus__c;
+    memberContact.MiddleName__c = applicant.MiddleName__c;
+    return memberContact;
+  }
+
+  /**
+   * @description  Create financial membership account record
+   * @author Digital Align Team | 03-09-2022
+   * @param Application__c application
+   * @param ApplicationSubmissionResponse.KYCResult kycResult
+   * @return Application__c
+   **/
+  global virtual Application__c updateFinancialAccount(
+    Application__c application,
+    ApplicationSubmissionResponse.KYCResult kycResult
+  ) {
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      financialAccount.Status__c = ApplicationConstant.FUNDING_IN_PROGRESS;
+    }
+    KycReviewRepository.upsertRecords(application.FinancialAccounts__r);
+
     return application;
   }
 }

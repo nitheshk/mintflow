@@ -12,9 +12,7 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
    * @author Digital Align Team | 10-26-2021
    * @param Set<Id> applicantIds
    **/
-  global static List<Applicant__c> readApplicantsWithChild(
-    Set<Id> applicantIds
-  ) {
+  global static List<Applicant__c> readApplicantsWithChild(Set<Id> applicantIds) {
     Query qry = Query.newInstance(Applicant__c.SObjectType)
       .addFields()
       .removeFields('mflow__SessionToken__c')
@@ -83,10 +81,7 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
    **/
   global static List<Applicant__c> readApplicantsById(List<Id> applicantIds) {
     return (List<Applicant__c>) DatabaseUtils.getRecords(
-      Query.newInstance(Applicant__c.SObjectType)
-        .addFields()
-        .whereIn('Id', applicantIds)
-        .toString()
+      Query.newInstance(Applicant__c.SObjectType).addFields().whereIn('Id', applicantIds).toString()
     );
   }
 
@@ -118,29 +113,8 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
   public static Applicant__c readApplicantForToken(Id applicantId) {
     return (Applicant__c) DatabaseUtils.getRecord(
       Query.newInstance(Applicant__c.SObjectType)
-        .addFields(
-          'SessionToken__c,sessionExpireTime__c,Application__r.Name,Application__c'
-        )
+        .addFields('SessionToken__c,sessionExpireTime__c,Application__r.Name,Application__c')
         .whereEq('Id', applicantId)
-        .toString()
-    );
-  }
-
-  /**
-   * @description fetch existing contact based on the ssn and last name
-   * @author Digital Align Team | 12-10-2021
-   * @param String filter
-   * @return List<Contact>
-   **/
-  global static List<Contact> fetchExistingContacts(String filter) {
-    if (String.isBlank(filter)) {
-      return new List<Contact>();
-    }
-    return (List<Contact>) DatabaseUtils.getRecords(
-      Query.newInstance(Contact.SObjectType)
-        .addFields()
-        .whereCon(filter)
-        .addLimit(50)
         .toString()
     );
   }
@@ -152,9 +126,7 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
    * @param Id applicationId
    * @return List<Applicant__c>
    **/
-  global static List<Applicant__c> readApplicantsByApplicationId(
-    Id applicationId
-  ) {
+  global static List<Applicant__c> readApplicantsByApplicationId(Id applicationId) {
     return (List<Applicant__c>) getRecords(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
