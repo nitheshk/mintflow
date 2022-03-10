@@ -66,16 +66,11 @@ export default class ApplicantSearch extends NavigationMixin(LightningElement) {
       .then((result) => {
         this.searchData = JSON.parse(result.data);
         if (this.searchData === null) {
-          utils.infoMessage(
-            this,
-            "There are no records for this search result",
-            "Info"
-          );
+          utils.infoMessage(this, "There are no records for this search result", "Info");
         } else {
           this.searchData.map((record) => {
             record.ApplicationNumber = record.mflow__Application__r.Name;
-            record.URL =
-              "/mflow__Application__c/" + record.mflow__Application__r.Id;
+            record.URL = "/application/" + record.mflow__Application__r.Id;
             record.Id = "/detail/" + record.Id;
             return record;
           });
@@ -107,10 +102,7 @@ export default class ApplicantSearch extends NavigationMixin(LightningElement) {
     if (this.isInputValid()) {
       this.handleSearch();
     } else {
-      utils.errorMessage(
-        this,
-        "Please select any one of the criteria to search"
-      );
+      utils.errorMessage(this, "Please select any one of the criteria to search");
     }
   }
 
@@ -118,13 +110,7 @@ export default class ApplicantSearch extends NavigationMixin(LightningElement) {
     let isValid = false;
     let inputFields = this.template.querySelectorAll(".validate");
     inputFields.forEach((inputField) => {
-      if (
-        !(
-          inputField.value === undefined ||
-          inputField.value === null ||
-          inputField.value === ""
-        )
-      ) {
+      if (!(inputField.value === undefined || inputField.value === null || inputField.value === "")) {
         isValid = true;
       }
     });

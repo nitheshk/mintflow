@@ -20,9 +20,7 @@ const columns = [
   { label: "Owner", fieldName: "Owner" }
 ];
 
-export default class ApplicationSearch extends NavigationMixin(
-  LightningElement
-) {
+export default class ApplicationSearch extends NavigationMixin(LightningElement) {
   @track columnsdata;
   columnsdata = columns;
   @track searchData;
@@ -48,10 +46,7 @@ export default class ApplicationSearch extends NavigationMixin(
 
   handleSearch() {
     console.log(" search::" + this.searchString);
-    if (
-      (this.searchString === "" || this.searchString == null) &&
-      this.searchFilter == null
-    ) {
+    if ((this.searchString === "" || this.searchString == null) && this.searchFilter == null) {
       utils.infoMessage(this, "Enter some search criteria", "Info");
       return;
     }
@@ -68,14 +63,10 @@ export default class ApplicationSearch extends NavigationMixin(
           this.searchData = JSON.parse(result.data);
           console.log("data::" + JSON.stringify(result));
           if (this.searchData === null) {
-            utils.infoMessage(
-              this,
-              "There are no records for this search result",
-              "Info"
-            );
+            utils.infoMessage(this, "There are no records for this search result", "Info");
           } else {
             this.searchData.map((record) => {
-              record.URL = "/mflow__Application__c/" + record.Id;
+              record.URL = "/application/" + record.Id;
               record.Owner = record.CreatedBy.Name;
               return record;
             });
@@ -108,10 +99,7 @@ export default class ApplicationSearch extends NavigationMixin(
     if (this.isInputValid()) {
       this.handleSearch();
     } else {
-      utils.errorMessage(
-        this,
-        "Please select any one of the criteria to search"
-      );
+      utils.errorMessage(this, "Please select any one of the criteria to search");
     }
   }
 
@@ -148,13 +136,7 @@ export default class ApplicationSearch extends NavigationMixin(
     let isValid = false;
     let inputFields = this.template.querySelectorAll(".validate");
     inputFields.forEach((inputField) => {
-      if (
-        !(
-          inputField.value === undefined ||
-          inputField.value === null ||
-          inputField.value === ""
-        )
-      ) {
+      if (!(inputField.value === undefined || inputField.value === null || inputField.value === "")) {
         isValid = true;
       }
     });
