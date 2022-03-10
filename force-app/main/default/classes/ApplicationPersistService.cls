@@ -504,7 +504,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     Id applicationId
   ) {
     for (CustomerInterest__c customerInterest : customerInterests) {
-      if (String.isNotBlank(applicationId) && String.isNotBlank(customerInterest.Application__c)) {
+      if (String.isNotBlank(applicationId) && String.isBlank(customerInterest.Application__c)) {
         customerInterest.Application__c = applicationId;
       }
     }
