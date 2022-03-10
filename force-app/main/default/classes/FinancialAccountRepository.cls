@@ -13,13 +13,15 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
    * @param Set<Id> financialAccountIds
    * @return List<FinancialAccount__c>
    **/
-  global static List<FinancialAccount__c> readFinancialAccountsWithChild(
-    Set<Id> financialAccountIds
-  ) {
+  global static List<FinancialAccount__c> readFinancialAccountsWithChild(Set<Id> financialAccountIds) {
     return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
       Query.newInstance(FinancialAccount__c.SObjectType)
         .addFields()
         .queryChild('mflow__FinancialAccountTransactions__r')
+        .addFields()
+        .run()
+        .addFields()
+        .queryChild('mflow__FinancialAccountServices__r')
         .addFields()
         .run()
         .whereIn('Id', financialAccountIds)
@@ -33,9 +35,7 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
    * @param String internalProductCode
    * @return FinancialProduct__c
    **/
-  global static FinancialProduct__c readFinancialProductByInternalCode(
-    String internalProductCode
-  ) {
+  global static FinancialProduct__c readFinancialProductByInternalCode(String internalProductCode) {
     return (FinancialProduct__c) DatabaseUtils.getRecord(
       Query.newInstance(FinancialProduct__c.SObjectType)
         .addFields()
