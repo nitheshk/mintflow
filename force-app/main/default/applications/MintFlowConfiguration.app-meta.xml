@@ -1,41 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
-    <!-- <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Application Custom Flexipage</comment>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>Application__c</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>FinancialAccount</comment>
-        <content>FinancialAccount</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
-    </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
-        <content>MintFlowHome</content>
+        <content>MIntFlowHomePage</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
     </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment
-    >Action override created by Lightning App Builder during activation.</comment>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-    </actionOverrides> -->
     <defaultLandingTab>standard-home</defaultLandingTab>
     <description>Build client trust with collaboration and productivity tools for teams</description>
     <formFactors>Large</formFactors>
@@ -43,67 +15,6 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>MintFlow Configuration</label>
     <navType>Console</navType>
-    <!-- <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicationRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Application__c</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-        <recordType>Applicant__c.Beneficiary</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-        <recordType>Applicant__c.EmergencyContact</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-        <recordType>Applicant__c.FamilyMember</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-        <recordType>Applicant__c.Joint</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-        <recordType>Applicant__c.Primary</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides> -->
     <tabs>standard-home</tabs>
     <tabs>Diagnostic__c</tabs>
     <tabs>ApplicationConfiguration</tabs>
@@ -121,7 +32,7 @@
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
-            <tab>Diagnostic__c</tab>
+            <tab>ApplicationConfiguration</tab>
         </mappings>
         <mappings>
             <tab>ConsentLineItem__c</tab>
@@ -130,10 +41,13 @@
             <tab>ConsentTemplate__c</tab>
         </mappings>
         <mappings>
-            <tab>SurveyTemplate__c</tab>
+            <tab>Diagnostic__c</tab>
         </mappings>
         <mappings>
             <tab>EligibleCounty__c</tab>
+        </mappings>
+        <mappings>
+            <tab>FinancialAccountService__c</tab>
         </mappings>
         <mappings>
             <tab>FinancialInstituteAccount</tab>
@@ -145,10 +59,10 @@
             <tab>ProductService__c</tab>
         </mappings>
         <mappings>
-            <tab>FinancialAccountService__c</tab>
+            <tab>ReferralProduct__c</tab>
         </mappings>
         <mappings>
-            <tab>ApplicationConfiguration</tab>
+            <tab>SurveyTemplate__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>
@@ -158,9 +72,6 @@
         </mappings>
         <mappings>
             <tab>standard-report</tab>
-        </mappings>
-        <mappings>
-            <tab>ReferralProduct__c</tab>
         </mappings>
     </workspaceConfig>
 </CustomApplication>
