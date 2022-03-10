@@ -8,52 +8,70 @@
             <axisBinding>y</axisBinding>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>HorizontalBar</chartType>
+        <chartType>Line</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>Account.Status__c</groupingColumn>
+        <groupingColumn>Application__c.FlowState__c</groupingColumn>
         <location>CHART_BOTTOM</location>
-        <showAxisLabels>false</showAxisLabels>
+        <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
-        <showValues>true</showValues>
+        <showValues>false</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
+        <title>Abandoned Applications</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>DUE_DATE</field>
+        <field>CUST_NAME</field>
     </columns>
     <columns>
-        <field>LAST_UPDATE</field>
+        <field>Application__c.CreatedChannel__c</field>
     </columns>
     <columns>
-        <field>Account.Name</field>
+        <field>Application__c.ApplicationType__c</field>
     </columns>
+    <columns>
+        <field>Application__c.FlowType__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.IPAddress__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.KYCStatus__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.IsCountyEligible__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.LastUsedChannel__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.isMemberFlow__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Stage__c</field>
+    </columns>
+    <description>Abandoned Applications</description>
     <filter>
         <criteriaItems>
-            <column>Account.Status__c</column>
+            <column>Application__c.Status__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
+            <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value>Abandoned</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>RECORDTYPE</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Account.Application</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Status__c</field>
+        <field>Application__c.FlowState__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Abandoned Applications</name>
@@ -61,13 +79,13 @@
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>AccountList</reportType>
+    <reportType>CustomEntity$Application__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>CREATED_DATE</dateColumn>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
         <interval>INTERVAL_LAST30</interval>
     </timeFrameFilter>
 </Report>

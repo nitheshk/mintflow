@@ -8,20 +8,21 @@
             <axisBinding>y</axisBinding>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>HorizontalBar</chartType>
+        <chartType>Funnel</chartType>
         <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>true</expandOthers>
-        <groupingColumn>Application__c.Status__c</groupingColumn>
+        <expandOthers>false</expandOthers>
+        <groupingColumn>FinancialAccount__c.ProductName__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
-        <showAxisLabels>true</showAxisLabels>
-        <showPercentage>false</showPercentage>
+        <showAxisLabels>false</showAxisLabels>
+        <showPercentage>true</showPercentage>
         <showTotal>false</showTotal>
-        <showValues>false</showValues>
+        <showValues>true</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
-        <title>Applications Under Review</title>
+        <title>Total Application Applied</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
@@ -29,66 +30,60 @@
         <field>CUST_NAME</field>
     </columns>
     <columns>
-        <field>Application__c.CreatedChannel__c</field>
+        <field>FK_NAME</field>
     </columns>
     <columns>
-        <field>Application__c.ApplicationType__c</field>
+        <field>FinancialAccount__c.AccountNumber__c</field>
     </columns>
     <columns>
-        <field>Application__c.FlowType__c</field>
+        <field>FinancialAccount__c.DateOpened__c</field>
     </columns>
     <columns>
-        <field>Application__c.IPAddress__c</field>
+        <field>FinancialAccount__c.ProductCategory__c</field>
     </columns>
     <columns>
-        <field>Application__c.KYCStatus__c</field>
+        <field>FinancialAccount__c.ProductCode__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Application__c.IsCountyEligible__c</field>
-    </columns>
-    <columns>
-        <field>Application__c.LastUsedChannel__c</field>
+        <field>FinancialAccount__c.Status__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Application__c.isMemberFlow__c</field>
+        <field>FinancialAccount__c.Balance__c</field>
     </columns>
     <columns>
-        <field>Application__c.Stage__c</field>
+        <field>FinancialAccount__c.Stage__c</field>
     </columns>
-    <columns>
-        <field>Application__c.FlowState__c</field>
-    </columns>
-    <description>Applications Under Review</description>
+    <description>Financial Account Applied</description>
     <filter>
         <criteriaItems>
-            <column>Application__c.Status__c</column>
+            <column>FinancialAccount__c.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
-            <value>Pending Review,Review In Progress,Submit for Review,Revision in Progress</value>
+            <value
+      >,Pending Review,Approved,Cancelled,Submitted,Completed,Abandoned,In Progress,Draft,Review In Progress,Submit for Review,Revision in Progress,Saved,Rejected,Funding in Progress</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Application__c.Status__c</field>
+        <field>FinancialAccount__c.ProductName__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Applications Under Review</name>
+    <name>Financial Account Applied</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>CustomEntity$Application__c</reportType>
+    <reportType>CustomEntity$FinancialAccount__c@FinancialAccount__c.Application__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>CUST_CREATED_DATE</dateColumn>
-        <interval>INTERVAL_LAST60</interval>
+        <dateColumn>FinancialAccount__c.DateClosed__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

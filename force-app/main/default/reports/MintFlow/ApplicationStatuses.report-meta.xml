@@ -8,51 +8,75 @@
             <axisBinding>y</axisBinding>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>Funnel</chartType>
+        <chartType>Donut</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>false</expandOthers>
-        <groupingColumn>Account.Status__c</groupingColumn>
+        <groupingColumn>Application__c.Status__c</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
-        <showAxisLabels>false</showAxisLabels>
+        <showAxisLabels>true</showAxisLabels>
         <showPercentage>true</showPercentage>
-        <showTotal>false</showTotal>
+        <showTotal>true</showTotal>
         <showValues>true</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
-        <title>Applications</title>
+        <title>Application Status</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>Account.Name</field>
+        <field>CUST_NAME</field>
     </columns>
     <columns>
-        <field>CREATED_DATE</field>
+        <field>Application__c.CreatedChannel__c</field>
     </columns>
     <columns>
-        <field>Account.CreatedChannel__c</field>
+        <field>Application__c.ApplicationType__c</field>
     </columns>
     <columns>
-        <field>LAST_UPDATE</field>
+        <field>Application__c.FlowType__c</field>
     </columns>
-    <description>Show report based on application status</description>
+    <columns>
+        <field>Application__c.IPAddress__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.KYCStatus__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.IsCountyEligible__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.LastUsedChannel__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.isMemberFlow__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Stage__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.FlowState__c</field>
+    </columns>
+    <description>Application Statuses</description>
     <filter>
         <criteriaItems>
-            <column>RECORDTYPE</column>
+            <column>Application__c.Status__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
+            <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
-            <value>Account.Application</value>
+            <value
+      >,Pending Review,Approved,Cancelled,Submitted,Completed,Abandoned,In Progress,Draft,Review In Progress,Submit for Review,Revision in Progress,Saved,Rejected,Funding in Progress</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Status__c</field>
+        <field>Application__c.Status__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Application Statuses</name>
@@ -60,13 +84,13 @@
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>AccountList</reportType>
+    <reportType>CustomEntity$Application__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>false</showSubTotals>
+    <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>CREATED_DATE</dateColumn>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

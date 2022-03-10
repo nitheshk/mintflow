@@ -8,68 +8,81 @@
             <axisBinding>y</axisBinding>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>Line</chartType>
+        <chartType>Funnel</chartType>
         <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>true</expandOthers>
-        <groupingColumn>CREATED_DATE</groupingColumn>
+        <expandOthers>false</expandOthers>
+        <groupingColumn>FinancialAccount__c.ProductName__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
         <showAxisLabels>false</showAxisLabels>
-        <showPercentage>false</showPercentage>
+        <showPercentage>true</showPercentage>
         <showTotal>false</showTotal>
-        <showValues>false</showValues>
+        <showValues>true</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
+        <title>Total Application Applied</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>DUE_DATE</field>
+        <field>CUST_NAME</field>
     </columns>
     <columns>
-        <field>USERS.NAME</field>
+        <field>FK_NAME</field>
     </columns>
     <columns>
-        <field>ACCOUNT.NAME</field>
+        <field>FinancialAccount__c.AccountNumber__c</field>
     </columns>
     <columns>
-        <field>ADDRESS1_STATE</field>
+        <field>FinancialAccount__c.DateOpened__c</field>
     </columns>
     <columns>
-        <field>TYPE</field>
+        <field>FinancialAccount__c.ProductCategory__c</field>
     </columns>
     <columns>
-        <field>LAST_UPDATE</field>
+        <field>FinancialAccount__c.ProductCode__c</field>
     </columns>
-    <description>New applications created against the created date</description>
+    <columns>
+        <field>FinancialAccount__c.Status__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>FinancialAccount__c.Balance__c</field>
+    </columns>
+    <columns>
+        <field>FinancialAccount__c.Stage__c</field>
+    </columns>
+    <description>Financial Account Opened</description>
     <filter>
         <criteriaItems>
-            <column>RECORDTYPE</column>
+            <column>FinancialAccount__c.Status__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
+            <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
-            <value>Account.Application</value>
+            <value>Completed</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>
-        <field>CREATED_DATE</field>
+        <dateGranularity>Day</dateGranularity>
+        <field>FinancialAccount__c.ProductName__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>New Applications</name>
+    <name>Financial Account Opened</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>AccountList</reportType>
+    <reportType>CustomEntity$FinancialAccount__c@FinancialAccount__c.Application__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>CREATED_DATE</dateColumn>
-        <interval>INTERVAL_THISMONTH</interval>
+        <dateColumn>FinancialAccount__c.DateClosed__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>
