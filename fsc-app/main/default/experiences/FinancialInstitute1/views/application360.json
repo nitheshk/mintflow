@@ -25,20 +25,13 @@
                   "UUID": "0270cb61-f55a-4f89-8c10-2a5c930bc4ae",
                   "columnKey": "b62b4",
                   "columnName": "Column 2",
-                  "columnWidth": "4",
+                  "columnWidth": "7",
                   "seedComponents": []
                 },
                 {
-                  "UUID": "9ac8d656-db78-49b4-bcc9-cab7f32fcfd7",
-                  "columnKey": "046cb",
+                  "UUID": "13f6a653-6d6c-441c-b4fa-5faac6707404",
+                  "columnKey": "e2dd5",
                   "columnName": "Column 3",
-                  "columnWidth": "3",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "fc5a4ad6-9207-4bf7-b221-1c532ba70fa8",
-                  "columnKey": "1feb1",
-                  "columnName": "Column 4",
                   "columnWidth": "3",
                   "seedComponents": []
                 }
@@ -72,6 +65,78 @@
               "type": "region"
             },
             {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "tabsetConfig": {
+                      "UUID": "40b17b0a-0650-422f-bb51-16ca845f0ff7",
+                      "activeTab": "",
+                      "tabs": [
+                        {
+                          "UUID": "328091f2-8f24-4294-91c8-0bc483d3ac4e",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "1",
+                          "tabName": "Application"
+                        },
+                        {
+                          "UUID": "60b9efad-4393-4a65-9e4b-a25b1cd9a3e8",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "2",
+                          "tabName": "Applicant 360"
+                        }
+                      ],
+                      "useOverflowMenu": false
+                    }
+                  },
+                  "componentName": "forceCommunity:tabset",
+                  "id": "40b17b0a-0650-422f-bb51-16ca845f0ff7",
+                  "regions": [
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "recordId": "{!recordId}"
+                          },
+                          "componentName": "forceCommunity:lwcRecordDetail",
+                          "id": "a0a9ddfe-1b44-497b-bfae-10c3b650804c",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "328091f2-8f24-4294-91c8-0bc483d3ac4e",
+                      "regionLabel": "Application",
+                      "regionName": "1",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "recordId": "{!recordId}"
+                          },
+                          "componentName": "mflow:application360View",
+                          "id": "385e5c6a-9bfe-4854-bfe9-1e147fea7b75",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "60b9efad-4393-4a65-9e4b-a25b1cd9a3e8",
+                      "regionLabel": "Applicant 360",
+                      "regionName": "2",
+                      "renditionMap": {},
+                      "type": "region"
+                    }
+                  ],
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
               "id": "0270cb61-f55a-4f89-8c10-2a5c930bc4ae",
               "regionLabel": "Column 2",
               "regionName": "b62b4",
@@ -79,16 +144,67 @@
               "type": "region"
             },
             {
-              "id": "9ac8d656-db78-49b4-bcc9-cab7f32fcfd7",
+              "components": [
+                {
+                  "componentAttributes": {},
+                  "componentName": "mflow:relatedFiles",
+                  "id": "716f0190-4891-4487-b10b-434a70f09c44",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "relatedListApiName": "mflow__FinancialAccounts__r",
+                    "relatedListComponentOverride": "ADVGRID",
+                    "width": "MEDIUM"
+                  },
+                  "componentName": "forceCommunity:responsiveRelatedListSingle",
+                  "id": "7b9cb0c2-39e1-4ae3-8fab-fd8e96d20f0a",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "relatedListApiName": "mflow__ApplicationConsents__r",
+                    "relatedListComponentOverride": "ADVGRID",
+                    "width": "MEDIUM"
+                  },
+                  "componentName": "forceCommunity:responsiveRelatedListSingle",
+                  "id": "061a57c9-4413-4499-a9a6-22e73e8c4ae3",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "relatedListApiName": "mflow__CustomerInterests__r",
+                    "relatedListComponentOverride": "GRID",
+                    "width": "MEDIUM"
+                  },
+                  "componentName": "forceCommunity:responsiveRelatedListSingle",
+                  "id": "1bad676b-ffb2-41b1-a3aa-9e8f4cb1ed62",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "relatedListApiName": "mflow__Surveys__r",
+                    "relatedListComponentOverride": "GRID",
+                    "width": "MEDIUM"
+                  },
+                  "componentName": "forceCommunity:responsiveRelatedListSingle",
+                  "id": "d4b63286-2243-4a46-9186-29bb3137f5b1",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "13f6a653-6d6c-441c-b4fa-5faac6707404",
               "regionLabel": "Column 3",
-              "regionName": "046cb",
-              "renditionMap": {},
-              "type": "region"
-            },
-            {
-              "id": "fc5a4ad6-9207-4bf7-b221-1c532ba70fa8",
-              "regionLabel": "Column 4",
-              "regionName": "1feb1",
+              "regionName": "e2dd5",
               "renditionMap": {},
               "type": "region"
             }
