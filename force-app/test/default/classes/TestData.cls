@@ -33,10 +33,7 @@ public with sharing class TestData {
     return con;
   }
 
-  public static OpportunityContactRole createOpportunityContactRole(
-    Opportunity opp,
-    Contact con
-  ) {
+  public static OpportunityContactRole createOpportunityContactRole(Opportunity opp, Contact con) {
     OpportunityContactRole ocr = new OpportunityContactRole();
     ocr.ContactId = con.Id;
     ocr.OpportunityId = opp.Id;
@@ -54,6 +51,14 @@ public with sharing class TestData {
     applicant.ApplicantType__c = 'Primary';
     applicant.CustomerNumber__c = '578784';
     return applicant;
+  }
+  public static EligibleCounty__c createCounty() {
+    EligibleCounty__c county = new EligibleCounty__c();
+    county.mflow__Country__c = 'USA';
+    county.mflow__City__c = 'New York';
+    county.mflow__Postalcode__c = '10001';
+    county.mflow__State__c = 'NY';
+    return county;
   }
   public static ContactPointAddress createContactPointAddress() {
     ContactPointAddress address = new ContactPointAddress();
@@ -108,11 +113,7 @@ public with sharing class TestData {
   }
 
   public static FileDTO createFileDto(string fileName, string parentID) {
-    FileDTO fileDto = new FileDTO(
-      fileName,
-      EncodingUtil.base64Decode('versionData'),
-      parentID
-    );
+    FileDTO fileDto = new FileDTO(fileName, EncodingUtil.base64Decode('versionData'), parentID);
     return fileDto;
   }
   public static Document createDocument() {
@@ -171,23 +172,14 @@ public with sharing class TestData {
     applicant.mflow__FirstName__c = 'FirstName';
     applicant.mflow__LastName__c = 'LastName';
     applicant.mflow__ApplicantType__c = applicantType;
-    applicant.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      Applicant__c.SObjectType,
-      applicantType
-    );
-    applicant.mflow__Employments__r.addAll(
-      new List<Employment__c>{ createEmployment() }
-    );
-    applicant.mflow__IdentificationDocuments__r.addAll(
-      new List<IdentificationDocument__c>{ createIdentity() }
-    );
+    applicant.RecordTypeId = SObjectUtils.recordTypeIdByDevName(Applicant__c.SObjectType, applicantType);
+    applicant.mflow__Employments__r.addAll(new List<Employment__c>{ createEmployment() });
+    applicant.mflow__IdentificationDocuments__r.addAll(new List<IdentificationDocument__c>{ createIdentity() });
     return applicant;
   }
   public static Application__c createApplication() {
     Application__c application = new Application__c();
-    application.Applicants__r.addAll(
-      new List<Applicant__c>{ createApplicant('Primary') }
-    );
+    application.Applicants__r.addAll(new List<Applicant__c>{ createApplicant('Primary') });
     return application;
   }
 }

@@ -16,9 +16,7 @@ public with sharing class SObjectConstructorTest {
     IdentificationDocument__c identity = TestData.createIdentity();
     identity.Applicant__c = applicant.Id;
     identity = (IdentificationDocument__c) DatabaseUtils.insertRecord(identity);
-    applicant.mflow__IdentificationDocuments__r.addAll(
-      new List<IdentificationDocument__c>{ identity }
-    );
+    applicant.mflow__IdentificationDocuments__r.addAll(new List<IdentificationDocument__c>{ identity });
 
     acc.Applicants__r.addAll(new List<Applicant__c>{ applicant });
     return acc;
@@ -26,9 +24,7 @@ public with sharing class SObjectConstructorTest {
 
   private static Applicant__c makeApplicantData() {
     Application__c acc = TestData.createApplication();
-    acc = (Application__c) DatabaseUtils.insertRecords(
-      new List<Application__c>{ acc }
-    )[0];
+    acc = (Application__c) DatabaseUtils.insertRecords(new List<Application__c>{ acc })[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant.Email__c = 'test@mail.com';
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
@@ -46,13 +42,10 @@ public with sharing class SObjectConstructorTest {
       .addChildObjects('relationShipName', new List<SObject>{ applicant })
       .addChildObject('relationShipName', applicant)
       .setLookupObject('relationShipName', applicant)
+      .removeFields('relationShipName')
       .build();
-    SObjectConstructor.deserialize(
-      SObjectConstructor.serialize(makeApplicationData()),
-      Application__c.class
-    );
+    SObjectConstructor.deserialize(SObjectConstructor.serialize(makeApplicationData()), Application__c.class);
     SObjectConstructor.writeFieldsAsList(new List<SObject>{ applicant });
-    sObj.removeFields('relationShipName');
     test.stopTest();
   }
 }
