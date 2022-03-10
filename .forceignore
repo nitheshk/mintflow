@@ -42,7 +42,7 @@ fsc-app/main/default/sharingRules
 
 # Package Creation
 
-# force-app  
+# force-app
 # fsc-app/main/default/objects # Required While packaging
 # fsc-app/main/default/customMetadata # Required While packaging
 
@@ -61,5 +61,3 @@ fsc-app/main/default/sharingRules
 # fsc-app/main/default/classes
 # fsc-app/main/default/groups
 # fsc-app/main/default/connectedApps
-
-force-app/main/default/dashboards
