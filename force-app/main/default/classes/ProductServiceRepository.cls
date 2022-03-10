@@ -30,6 +30,8 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
   public static Application__c readApplicationWithFA(Id applicationId) {
     Query qry = Query.newInstance(Application__c.SObjectType)
       .addFields()
+      .queryChild('mflow__CustomerInterests__r')
+      .run()
       .queryChild('mflow__FinancialAccounts__r')
       .addFields()
       .queryLookup('mflow__FinancialProduct__r')
@@ -59,16 +61,25 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
   /**
    * @description fetch templates based on filters
    * @author Digital Align Team | 01-04-2022
-   * @param String productId
+   * @param List<FinancialAccount__c> financialAccounts
    * @return List<ProductService__c>
    **/
-  public static List<ReferralProduct__c> fetchReferralProductByProduct(string productId) {
+  public static List<ReferralProduct__c> fetchReferralProducts(Set<Id> productIds) {
     return (List<ReferralProduct__c>) getRecords(
       Query.newInstance(ReferralProduct__c.SObjectType)
-        .addFields()
+        .addFields(
+          'Name,mflow__Required__c,mflow__Order__c,mflow__FinancialProduct__c,mflow__CrossSellProduct__c,IsSelected__c'
+        )
+        .queryLookup('mflow__CrossSellProduct__r')
+        .addFields(
+          'mflow__SubCategory__c,mflow__ShortDescription__c,mflow__InternalCode__c,mflow__Category__c,mflow__DisplayLabel__c'
+        )
+        .run()
         .whereEq('mflow__isActive__c', true)
         .andCon()
-        .whereEq('FinancialProduct__c', productId)
+        .whereIn('FinancialProduct__c', productIds)
+        .andCon()
+        .whereNotIn('CrossSellProduct__c', productIds)
         .orderBy('mflow__Order__c')
         .toString()
     );

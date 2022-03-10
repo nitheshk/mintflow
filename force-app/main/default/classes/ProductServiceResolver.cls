@@ -91,54 +91,16 @@ global with sharing class ProductServiceResolver extends AbstractService {
    * @description fetch referral Product product for the product selected in the application
    * @author Digital Align Team | 04-03-2022
    * @param String data
-   * @return List<CustomerInterest__c>
+   * @return List<referralProducts>
    **/
-  global virtual List<CustomerInterest__c> fetchReferralProducts(String data) {
+  global virtual List<ReferralProduct__c> fetchReferralProducts(String data) {
     mflow__Application__c application = ProductServiceRepository.readApplicationWithFA(ApexRequest.getApplicationId());
-
-    List<CustomerInterest__c> customerInterests = new List<CustomerInterest__c>();
-
-    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
-      List<ReferralProduct__c> ReferralProducts = ProductServiceRepository.fetchReferralProductByProduct(
-        financialAccount.FinancialProduct__r.Id
-      );
-      customerInterests.addAll(this.buildReferralProduct(ReferralProducts, application.Id));
+    ProductServiceRepository.deleteRecords(application.CustomerInterests__r);
+    Set<Id> productIds = new Set<Id>();
+    for (FinancialAccount__c fa : application.financialAccounts__r) {
+      productIds.add(fa.FinancialProduct__c);
     }
-    ProductServiceRepository.upsertRecords(customerInterests);
-    return customerInterests;
-  }
-  /**
-   * @description  build referral Products based on the interest list
-   * @author Digital Align Team | 04-03-2022
-   * @param List<ReferralProduct__c> ReferralProducts
-   * @param Id applicationId
-   * @return  List<CustomerInterest__c>
-   **/
-  global virtual List<CustomerInterest__c> buildReferralProduct(
-    List<ReferralProduct__c> ReferralProducts,
-    Id applicationId
-  ) {
-    List<CustomerInterest__c> customerInterests = new List<CustomerInterest__c>();
-    for (ReferralProduct__c referralProduct : ReferralProducts) {
-      CustomerInterest__c customerInterestObj = new CustomerInterest__c();
-
-      if (String.isNotBlank(applicationId)) {
-        customerInterestObj.Application__c = applicationId;
-      }
-      customerInterestObj.Name = referralProduct.Name;
-      customerInterestObj.EndDate__c = referralProduct.EndDate__c;
-      customerInterestObj.ExternalCode__c = referralProduct.ExternalCode__c;
-      customerInterestObj.ImageName__c = referralProduct.ImageName__c;
-      customerInterestObj.ImageURL__c = referralProduct.ImageURL__c;
-      customerInterestObj.InternalCode__c = referralProduct.InternalCode__c;
-      customerInterestObj.InterestProduct__c = referralProduct.CrossSellProduct__c;
-      customerInterestObj.LongDescription__c = referralProduct.LongDescription__c;
-      customerInterestObj.Order__c = referralProduct.Order__c;
-      customerInterestObj.StartDate__c = referralProduct.StartDate__c;
-      customerInterestObj.Required__c = referralProduct.Required__c;
-      customerInterestObj.isSelected__c = false;
-      customerInterests.add(customerInterestObj);
-    }
-    return customerInterests;
+    List<ReferralProduct__c> referralProducts = ProductServiceRepository.fetchReferralProducts(productIds);
+    return referralProducts;
   }
 }
