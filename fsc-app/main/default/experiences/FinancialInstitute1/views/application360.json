@@ -1,0 +1,127 @@
+{
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "73dcd5e8-d474-4a14-8a9b-765fba4e72ed",
+  "label": "Application360",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "2c25f208-9f53-4b17-9c01-64adedd11702",
+              "columns": [
+                {
+                  "UUID": "9a9e94cc-79f4-40e6-8e9a-970f55d19948",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "0270cb61-f55a-4f89-8c10-2a5c930bc4ae",
+                  "columnKey": "b62b4",
+                  "columnName": "Column 2",
+                  "columnWidth": "4",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "9ac8d656-db78-49b4-bcc9-cab7f32fcfd7",
+                  "columnKey": "046cb",
+                  "columnName": "Column 3",
+                  "columnWidth": "3",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "fc5a4ad6-9207-4bf7-b221-1c532ba70fa8",
+                  "columnKey": "1feb1",
+                  "columnName": "Column 4",
+                  "columnWidth": "3",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "2c25f208-9f53-4b17-9c01-64adedd11702",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "hideMenuLabel": false,
+                    "logoName": "",
+                    "menuName": "FinancialInstituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "mflow:financialInsituteNavigationMenu",
+                  "id": "35878dec-fe10-42c7-9c31-efd52a4de3af",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "9a9e94cc-79f4-40e6-8e9a-970f55d19948",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "id": "0270cb61-f55a-4f89-8c10-2a5c930bc4ae",
+              "regionLabel": "Column 2",
+              "regionName": "b62b4",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "id": "9ac8d656-db78-49b4-bcc9-cab7f32fcfd7",
+              "regionLabel": "Column 3",
+              "regionName": "046cb",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "id": "fc5a4ad6-9207-4bf7-b221-1c532ba70fa8",
+              "regionLabel": "Column 4",
+              "regionName": "1feb1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "23174596-c60c-42f7-9b41-a5b090225224",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "{!Record._Object}: {!Record._Title}"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "252c2d34-e364-4fc4-bc7c-552b4affa20c",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "cc46de5d-ae66-4767-8ae6-dd72c9a35c1b",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Inner",
+  "type": "view",
+  "viewType": "detail-a03"
+}

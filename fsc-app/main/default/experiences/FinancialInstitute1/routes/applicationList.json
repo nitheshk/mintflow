@@ -1,0 +1,11 @@
+{
+  "activeViewId": "2b338937-d112-418b-a88b-2f13b834992b",
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "configurationTags": [],
+  "id": "480d8f6a-03d5-4059-9c07-dcb42ba76ec3",
+  "label": "Application List",
+  "objectApiName": "mflow__Application__c",
+  "routeType": "list-a03",
+  "type": "route",
+  "urlPrefix": "application"
+}
