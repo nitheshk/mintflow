@@ -1647,6 +1647,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialAccount__c.FinancialProduct__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>FinancialAccount__c.ProductCategory__c</field>
         <readable>true</readable>
