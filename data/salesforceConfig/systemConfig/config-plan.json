@@ -24,10 +24,10 @@
     "files": ["mflow__FinancialProduct__c.json"]
   },
   {
-    "sobject": "mflow__AdditionalProduct__c",
+    "sobject": "mflow__ReferralProduct__c",
     "saveRefs": false,
     "resolveRefs": true,
-    "files": ["mflow__AdditionalProduct__c.json"]
+    "files": ["mflow__ReferralProduct__c.json"]
   },
   {
     "sobject": "mflow__SurveyTemplate__c",

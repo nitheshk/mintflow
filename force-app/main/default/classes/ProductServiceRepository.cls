@@ -12,9 +12,7 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
    * @param Id financialAccountId
    * @return List<FinancialAccountService__c>
    */
-  public static List<FinancialAccountService__c> readExistingService(
-    Id financialAccountId
-  ) {
+  public static List<FinancialAccountService__c> readExistingService(Id financialAccountId) {
     Query query = Query.newInstance(FinancialAccountService__c.SObjectType)
       .addFields()
       .whereEq('FinancialAccount__c', financialAccountId)
@@ -48,9 +46,7 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
    * @param String productId
    * @return List<ProductService__c>
    **/
-  public static List<ProductService__c> fetchServicesByProduct(
-    string productId
-  ) {
+  public static List<ProductService__c> fetchServicesByProduct(string productId) {
     return (List<ProductService__c>) getRecords(
       Query.newInstance(ProductService__c.SObjectType)
         .addFields()
@@ -66,11 +62,9 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
    * @param String productId
    * @return List<ProductService__c>
    **/
-  public static List<AdditionalProduct__c> fetchAdditionalProductByProduct(
-    string productId
-  ) {
-    return (List<AdditionalProduct__c>) getRecords(
-      Query.newInstance(AdditionalProduct__c.SObjectType)
+  public static List<ReferralProduct__c> fetchReferralProductByProduct(string productId) {
+    return (List<ReferralProduct__c>) getRecords(
+      Query.newInstance(ReferralProduct__c.SObjectType)
         .addFields()
         .whereEq('mflow__isActive__c', true)
         .andCon()

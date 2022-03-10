@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>FinancialProduct__c</fullName>
+    <fullName>CrossSellProduct__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>FinancialProduct</description>
+    <description>CrossSellProduct related to the product</description>
     <externalId>false</externalId>
-    <label>Financial Product</label>
+    <label>CrossSell Product</label>
     <referenceTo>FinancialProduct__c</referenceTo>
-    <relationshipLabel>Additional Products</relationshipLabel>
-    <relationshipName>AdditionalProducts</relationshipName>
+    <relationshipLabel>Referral Products</relationshipLabel>
+    <relationshipName>ReferralProducts</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

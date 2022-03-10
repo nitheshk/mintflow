@@ -21,9 +21,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    **/
   public static ApplicationPersistService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (ApplicationPersistService) getInstance(
-        ApplicationPersistService.class
-      );
+      serviceInstance = (ApplicationPersistService) getInstance(ApplicationPersistService.class);
     }
     return serviceInstance;
   }
@@ -41,9 +39,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       ApexRequest.setApplicationId(application.Id);
     }
 
-    SObjectConstructor constructor = SObjectConstructor.getInstance(
-      application
-    );
+    SObjectConstructor constructor = SObjectConstructor.getInstance(application);
     //save applicants
     if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
       List<Applicant__c> applicants = ApplicantService.getInstance()
@@ -57,10 +53,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         application.mflow__FinancialAccounts__r,
         application.Id
       );
-      constructor.setChildObjects(
-        'mflow__FinancialAccounts__r',
-        financialAccounts
-      );
+      constructor.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
     }
 
     //Save survey
@@ -71,23 +64,17 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
     //Save Disclosure
     if (!CollectionUtils.isListEmpty(application.ApplicationConsents__r)) {
-      List<Consent__c> consents = saveConsents(
-        application.ApplicationConsents__r,
-        null
-      );
+      List<Consent__c> consents = saveConsents(application.ApplicationConsents__r, null);
       constructor.setChildObjects('mflow__ApplicationConsents__r', consents);
     }
 
-    //Save Additional products
+    //Save referral products
     if (!CollectionUtils.isListEmpty(application.CustomerInterests__r)) {
       List<CustomerInterest__c> customerInterests = saveCustomerInterest(
         application.CustomerInterests__r,
         application.Id
       );
-      constructor.setChildObjects(
-        'mflow__CustomerInterests__r',
-        customerInterests
-      );
+      constructor.setChildObjects('mflow__CustomerInterests__r', customerInterests);
     }
 
     application = (Application__c) constructor.build();
@@ -102,10 +89,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @param List<Applicant__c> applicants
    * @return virtual
    **/
-  global virtual List<Applicant__c> saveApplicants(
-    List<Applicant__c> applicants,
-    String applicationId
-  ) {
+  global virtual List<Applicant__c> saveApplicants(List<Applicant__c> applicants, String applicationId) {
     log?.fine('Inside save applicants');
     if (CollectionUtils.isListEmpty(applicants)) {
       return applicants;
@@ -138,10 +122,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @param String applicationId
    * @return Applicant__c
    **/
-  global virtual Applicant__c saveApplicant(
-    Applicant__c applicant,
-    String applicationId
-  ) {
+  global virtual Applicant__c saveApplicant(Applicant__c applicant, String applicationId) {
     if (String.isNotBlank(applicationId)) {
       //Set Application ID
       applicant.Application__c = applicationId;
@@ -153,10 +134,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
     //Set Applicant Record Type
     String recordTypeName = this.obtainApplicantRecordTypeName(applicant);
-    applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
-      Applicant__c.SObjectType,
-      recordTypeName
-    );
+    applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(Applicant__c.SObjectType, recordTypeName);
     // Full Name
     applicant.ApplicantName__c = String.isBlank(applicant.FirstName__c)
       ? applicant.LastName__c
@@ -167,9 +145,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       if (recordTypeName == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE) {
         applicant.FlowState__c = ApplicationConstant.JOINT_WELCOME;
         applicant.Status__c = ApplicationConstant.DRAFT;
-      } else if (
-        recordTypeName == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
+      } else if (recordTypeName == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         applicant.Status__c = ApplicationConstant.IN_PROGRESS;
       }
     }
@@ -196,24 +172,16 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       applicant.ApplicantType__c = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
     } else {
       switch on applicant.ApplicantType__c {
-        when 'Primary',
-          'Joint',
-          'Beneficiary',
-          'Family Member',
-          'Emergency Contact' {
+        when 'Primary', 'Joint', 'Beneficiary', 'Family Member', 'Emergency Contact' {
           recordTypeName = applicant.ApplicantType__c;
         }
         when else {
-          Set<String> applicantTypes = new Set<String>(
-            applicant.ApplicantType__c.split(';')
-          );
+          Set<String> applicantTypes = new Set<String>(applicant.ApplicantType__c.split(';'));
           recordTypeName = applicantTypes.contains('Joint')
             ? 'Joint'
             : (applicantTypes.contains('Beneficiary')
                 ? 'Beneficiary'
-                : (applicantTypes.contains('Emergency Contact')
-                    ? 'Emergency Contact'
-                    : recordTypeName));
+                : (applicantTypes.contains('Emergency Contact') ? 'Emergency Contact' : recordTypeName));
         }
       }
     }
@@ -233,18 +201,12 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
     // upsert Identification document
     if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
-      saveIdentificationDocuments(
-        applicant?.IdentificationDocuments__r,
-        applicant.Id
-      );
+      saveIdentificationDocuments(applicant?.IdentificationDocuments__r, applicant.Id);
     }
 
     // upsert contact point address
     if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
-      saveContactPointAddresses(
-        applicant?.ContactPointAddresses__r,
-        applicant.Id
-      );
+      saveContactPointAddresses(applicant?.ContactPointAddresses__r, applicant.Id);
     }
 
     // upsert employment
@@ -312,10 +274,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @param Id applicantId
    * @return List<Employment__c>
    **/
-  global virtual List<Employment__c> saveEmployments(
-    List<Employment__c> employments,
-    Id applicantId
-  ) {
+  global virtual List<Employment__c> saveEmployments(List<Employment__c> employments, Id applicantId) {
     for (Employment__c employment : employments) {
       if (String.isNotBlank(applicantId)) {
         employment.Applicant__c = applicantId;
@@ -332,10 +291,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @param Id applicantId
    * @return List<Employment__c>
    **/
-  global virtual List<Survey__c> saveSurveys(
-    List<Survey__c> surveys,
-    Id applicantId
-  ) {
+  global virtual List<Survey__c> saveSurveys(List<Survey__c> surveys, Id applicantId) {
     for (Survey__c survey : surveys) {
       if (String.isNotBlank(applicantId)) {
         survey.Applicant__c = applicantId;
@@ -353,10 +309,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @param Id applicantId
    * @return List<Consent__c>
    **/
-  global virtual List<Consent__c> saveConsents(
-    List<Consent__c> consents,
-    Id applicantId
-  ) {
+  global virtual List<Consent__c> saveConsents(List<Consent__c> consents, Id applicantId) {
     for (Consent__c consent : consents) {
       if (String.isNotBlank(applicantId)) {
         consent.Applicant__c = applicantId;
@@ -378,13 +331,9 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     switch on SObjectUtils.getObjectName(recordId) {
       when 'mflow__Application__c' {
         List<SObject> recordsToDelete = new List<SObject>();
-        Application__c application = ApplicationRepository.readApplicationWithChild(
-          recordId
-        );
+        Application__c application = ApplicationRepository.readApplicationWithChild(recordId);
         if (!application.Applicants__r.isEmpty()) {
-          this.deleteApplicants(
-            new Map<Id, SObject>(application.Applicants__r).keySet()
-          );
+          this.deleteApplicants(new Map<Id, SObject>(application.Applicants__r).keySet());
         }
         if (!application.mflow__FinancialAccounts__r.isEmpty()) {
           recordsToDelete.addAll(application.mflow__FinancialAccounts__r);
@@ -421,11 +370,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    **/
   global virtual Boolean deleteApplicants(Set<Id> applicantIds) {
     List<SObject> recordsToDelete = new List<SObject>();
-    for (
-      Applicant__c applicant : ApplicantRepository.readApplicantsWithChild(
-        applicantIds
-      )
-    ) {
+    for (Applicant__c applicant : ApplicantRepository.readApplicantsWithChild(applicantIds)) {
       if (!applicant.IdentificationDocuments__r.isEmpty()) {
         recordsToDelete.addAll(applicant.IdentificationDocuments__r);
       }
@@ -459,10 +404,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
     //update value for financialAccount here
     for (FinancialAccount__c financialAccount : financialAccounts) {
-      financialAccount = this.saveFinancialAccount(
-        financialAccount,
-        applicationId
-      );
+      financialAccount = this.saveFinancialAccount(financialAccount, applicationId);
     }
     FinancialAccountRepository.upsertRecords(financialAccounts);
 
@@ -481,10 +423,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @param String applicationId
    * @return FinancialAccount__c
    **/
-  global virtual FinancialAccount__c saveFinancialAccount(
-    FinancialAccount__c financialAccount,
-    String applicationId
-  ) {
+  global virtual FinancialAccount__c saveFinancialAccount(FinancialAccount__c financialAccount, String applicationId) {
     if (String.isNotBlank(applicationId)) {
       //Set Application ID
       financialAccount.Application__c = applicationId;
@@ -499,30 +438,14 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @param FinancialAccount__c financialAccount
    * @return FinancialAccount__c
    **/
-  global virtual FinancialAccount__c saveFinancialAccountChild(
-    FinancialAccount__c financialAccount
-  ) {
-    if (
-      !collectionUtils.isListEmpty(
-        financialAccount?.FinancialAccountTransactions__r
-      )
-    ) {
-      this.saveFinancialAccountTransactions(
-        financialAccount.FinancialAccountTransactions__r,
-        financialAccount.Id
-      );
+  global virtual FinancialAccount__c saveFinancialAccountChild(FinancialAccount__c financialAccount) {
+    if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountTransactions__r)) {
+      this.saveFinancialAccountTransactions(financialAccount.FinancialAccountTransactions__r, financialAccount.Id);
     }
 
     // Save ProductServices
-    if (
-      !collectionUtils.isListEmpty(
-        financialAccount?.mflow__FinancialAccountServices__r
-      )
-    ) {
-      this.saveFinancialAccountServices(
-        financialAccount.mflow__FinancialAccountServices__r,
-        financialAccount.Id
-      );
+    if (!collectionUtils.isListEmpty(financialAccount?.mflow__FinancialAccountServices__r)) {
+      this.saveFinancialAccountServices(financialAccount.mflow__FinancialAccountServices__r, financialAccount.Id);
     }
     return financialAccount;
   }
@@ -538,9 +461,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     List<FinancialAccountTransaction__c> financialAccountTransactions,
     Id financialAccountId
   ) {
-    for (
-      FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions
-    ) {
+    for (FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions) {
       if (String.isNotBlank(financialAccountId)) {
         financialAccountTransaction.mflow__FinancialAccount__c = financialAccountId;
       }
@@ -563,13 +484,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     List<mflow__FinancialAccountService__c> financialAccountServices,
     Id financialAccountId
   ) {
-    for (
-      mflow__FinancialAccountService__c financialAccountService : financialAccountServices
-    ) {
-      if (
-        String.isNotBlank(financialAccountId) &&
-        String.isNotBlank(financialAccountService.FinancialAccount__c)
-      ) {
+    for (mflow__FinancialAccountService__c financialAccountService : financialAccountServices) {
+      if (String.isNotBlank(financialAccountId) && String.isNotBlank(financialAccountService.FinancialAccount__c)) {
         financialAccountService.FinancialAccount__c = financialAccountId;
       }
     }
@@ -588,10 +504,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     Id applicationId
   ) {
     for (CustomerInterest__c customerInterest : customerInterests) {
-      if (
-        String.isNotBlank(applicationId) &&
-        String.isNotBlank(customerInterest.Application__c)
-      ) {
+      if (String.isNotBlank(applicationId) && String.isNotBlank(customerInterest.Application__c)) {
         customerInterest.Application__c = applicationId;
       }
     }

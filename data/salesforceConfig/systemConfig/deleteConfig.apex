@@ -3,7 +3,7 @@ delete [SELECT id FROM mflow__SystemSetting__c LIMIT 1000];
 delete [SELECT id FROM mflow__SurveyTemplate__c LIMIT 1000];
 delete [SELECT id FROM mflow__SiteSetting__c LIMIT 1000];
 delete [SELECT id FROM mflow__ProductService__c LIMIT 1000];
-delete [SELECT id FROM mflow__AdditionalProduct__c LIMIT 1000];
+delete [SELECT id FROM mflow__ReferralProduct__c LIMIT 1000];
 delete [SELECT id FROM mflow__FinancialProduct__c LIMIT 1000];
 delete [SELECT id FROM mflow__ConsentLineItem__c LIMIT 1000];
 delete [SELECT id FROM mflow__ConsentTemplate__c LIMIT 1000];

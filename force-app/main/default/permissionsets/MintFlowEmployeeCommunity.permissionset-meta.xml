@@ -382,67 +382,67 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.isActive__c</field>
+        <field>ReferralProduct__c.isActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
 <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.CrossSellProduct__c</field>
+        <field>ReferralProduct__c.CrossSellProduct__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.FinancialProduct__c</field>
+        <field>ReferralProduct__c.FinancialProduct__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.EndDate__c</field>
+        <field>ReferralProduct__c.EndDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.ExternalCode__c</field>
+        <field>ReferralProduct__c.ExternalCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.FinancialProduct__c</field>
+        <field>ReferralProduct__c.FinancialProduct__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.ImageName__c</field>
+        <field>ReferralProduct__c.ImageName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.ImageURL__c</field>
+        <field>ReferralProduct__c.ImageURL__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.InternalCode__c</field>
+        <field>ReferralProduct__c.InternalCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.LongDescription__c</field>
+        <field>ReferralProduct__c.LongDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.Order__c</field>
+        <field>ReferralProduct__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.StartDate__c</field>
+        <field>ReferralProduct__c.StartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AdditionalProduct__c.Required__c</field>
+        <field>ReferralProduct__c.Required__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

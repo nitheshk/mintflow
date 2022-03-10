@@ -37,8 +37,7 @@
         <pageOrSobjectType>Applicant__c</pageOrSobjectType>
     </actionOverrides> -->
     <defaultLandingTab>standard-home</defaultLandingTab>
-    <description
-  >Build client trust with collaboration and productivity tools for teams</description>
+    <description>Build client trust with collaboration and productivity tools for teams</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
@@ -118,7 +117,7 @@
     <tabs>FinancialAccountService__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
-    <tabs>AdditionalProduct__c</tabs>
+    <tabs>ReferralProduct__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
@@ -161,7 +160,7 @@
             <tab>standard-report</tab>
         </mappings>
         <mappings>
-            <tab>AdditionalProduct__c</tab>
+            <tab>ReferralProduct__c</tab>
         </mappings>
     </workspaceConfig>
 </CustomApplication>

@@ -2,8 +2,8 @@
   "records": [
     {
       "attributes": {
-        "type": "mflow__AdditionalProduct__c",
-        "referenceId": "AdditionalProductRef0"
+        "type": "mflow__ReferralProduct__c",
+        "referenceId": "ReferralProductRef0"
       },
       "Name": "Regular Savings - Prime Debit Account",
       "mflow__FinancialProduct__c": "@IC003",
@@ -15,8 +15,8 @@
     },
     {
       "attributes": {
-        "type": "mflow__AdditionalProduct__c",
-        "referenceId": "AdditionalProductRef1"
+        "type": "mflow__ReferralProduct__c",
+        "referenceId": "ReferralProductRef1"
       },
       "Name": "Regular Savings - Power Plus Debit Account",
       "mflow__FinancialProduct__c": "@IC003",
@@ -27,8 +27,8 @@
     },
     {
       "attributes": {
-        "type": "mflow__AdditionalProduct__c",
-        "referenceId": "AdditionalProductRef2"
+        "type": "mflow__ReferralProduct__c",
+        "referenceId": "ReferralProductRef2"
       },
       "Name": "Regular Savings - Preferred Debit Account",
       "mflow__FinancialProduct__c": "@IC003",
@@ -39,8 +39,8 @@
     },
     {
       "attributes": {
-        "type": "mflow__AdditionalProduct__c",
-        "referenceId": "AdditionalProductRef3"
+        "type": "mflow__ReferralProduct__c",
+        "referenceId": "ReferralProductRef3"
       },
       "Name": "Regular Savings - Power Plus Debit Account",
       "mflow__FinancialProduct__c": "@IC003",

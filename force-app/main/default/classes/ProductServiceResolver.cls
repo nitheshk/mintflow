@@ -21,9 +21,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
    **/
   public static ProductServiceResolver getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (ProductServiceResolver) getInstance(
-        ProductServiceResolver.class
-      );
+      serviceInstance = (ProductServiceResolver) getInstance(ProductServiceResolver.class);
     }
     return serviceInstance;
   }
@@ -35,36 +33,26 @@ global with sharing class ProductServiceResolver extends AbstractService {
    * @return List<FinancialAccountService__c>
    **/
   global virtual List<FinancialAccountService__c> fetchServices(String data) {
-    Application__c application = ProductServiceRepository.readApplicationWithFA(
-      ApexRequest.getApplicationId()
-    );
+    Application__c application = ProductServiceRepository.readApplicationWithFA(ApexRequest.getApplicationId());
     log?.debug('application=' + application);
 
     List<FinancialAccountService__c> financialAccountService = new List<FinancialAccountService__c>();
 
-    for (
-      FinancialAccount__c financialAccount : application.FinancialAccounts__r
-    ) {
-      financialAccountService.addAll(
-        ProductServiceRepository.readExistingService(financialAccount.Id)
-      );
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      financialAccountService.addAll(ProductServiceRepository.readExistingService(financialAccount.Id));
     }
 
     if (!financialAccountService.isEmpty()) {
       return financialAccountService;
     }
 
-    for (
-      FinancialAccount__c financialAccount : application.FinancialAccounts__r
-    ) {
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
       List<ProductService__c> services = ProductServiceRepository.fetchServicesByProduct(
         financialAccount.FinancialProduct__r.Id
       );
       log?.debug(services);
 
-      financialAccountService.addAll(
-        this.buildService(services, financialAccount.Id)
-      );
+      financialAccountService.addAll(this.buildService(services, financialAccount.Id));
     }
     ProductServiceRepository.upsertRecords(financialAccountService);
     return financialAccountService;
@@ -100,62 +88,54 @@ global with sharing class ProductServiceResolver extends AbstractService {
     return serviceList;
   }
   /**
-   * @description fetch Additional Product product for the product selected in the application
+   * @description fetch referral Product product for the product selected in the application
    * @author Digital Align Team | 04-03-2022
    * @param String data
    * @return List<CustomerInterest__c>
    **/
-  global virtual List<CustomerInterest__c> fetchAdditionalProducts(
-    String data
-  ) {
-    mflow__Application__c application = ProductServiceRepository.readApplicationWithFA(
-      ApexRequest.getApplicationId()
-    );
+  global virtual List<CustomerInterest__c> fetchReferralProducts(String data) {
+    mflow__Application__c application = ProductServiceRepository.readApplicationWithFA(ApexRequest.getApplicationId());
 
     List<CustomerInterest__c> customerInterests = new List<CustomerInterest__c>();
 
-    for (
-      FinancialAccount__c financialAccount : application.FinancialAccounts__r
-    ) {
-      List<AdditionalProduct__c> additionalProducts = ProductServiceRepository.fetchAdditionalProductByProduct(
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      List<ReferralProduct__c> ReferralProducts = ProductServiceRepository.fetchReferralProductByProduct(
         financialAccount.FinancialProduct__r.Id
       );
-      customerInterests.addAll(
-        this.buildAdditionalProduct(additionalProducts, application.Id)
-      );
+      customerInterests.addAll(this.buildReferralProduct(ReferralProducts, application.Id));
     }
     ProductServiceRepository.upsertRecords(customerInterests);
     return customerInterests;
   }
   /**
-   * @description  build Additional Products based on the interest list
+   * @description  build referral Products based on the interest list
    * @author Digital Align Team | 04-03-2022
-   * @param List<AdditionalProduct__c> AdditionalProducts
+   * @param List<ReferralProduct__c> ReferralProducts
    * @param Id applicationId
    * @return  List<CustomerInterest__c>
    **/
-  global virtual List<CustomerInterest__c> buildAdditionalProduct(
-    List<AdditionalProduct__c> additionalProducts,
+  global virtual List<CustomerInterest__c> buildReferralProduct(
+    List<ReferralProduct__c> ReferralProducts,
     Id applicationId
   ) {
     List<CustomerInterest__c> customerInterests = new List<CustomerInterest__c>();
-    for (AdditionalProduct__c additionalProduct : additionalProducts) {
+    for (ReferralProduct__c referralProduct : ReferralProducts) {
       CustomerInterest__c customerInterestObj = new CustomerInterest__c();
 
       if (String.isNotBlank(applicationId)) {
         customerInterestObj.Application__c = applicationId;
       }
-      customerInterestObj.Name = additionalProduct.Name;
-      customerInterestObj.EndDate__c = additionalProduct.EndDate__c;
-      customerInterestObj.ExternalCode__c = additionalProduct.ExternalCode__c;
-      customerInterestObj.ImageName__c = additionalProduct.ImageName__c;
-      customerInterestObj.ImageURL__c = additionalProduct.ImageURL__c;
-      customerInterestObj.InternalCode__c = additionalProduct.InternalCode__c;
-      customerInterestObj.InterestProduct__c = additionalProduct.CrossSellProduct__c;
-      customerInterestObj.LongDescription__c = additionalProduct.LongDescription__c;
-      customerInterestObj.Order__c = additionalProduct.Order__c;
-      customerInterestObj.StartDate__c = additionalProduct.StartDate__c;
-      customerInterestObj.Required__c = additionalProduct.Required__c;
+      customerInterestObj.Name = referralProduct.Name;
+      customerInterestObj.EndDate__c = referralProduct.EndDate__c;
+      customerInterestObj.ExternalCode__c = referralProduct.ExternalCode__c;
+      customerInterestObj.ImageName__c = referralProduct.ImageName__c;
+      customerInterestObj.ImageURL__c = referralProduct.ImageURL__c;
+      customerInterestObj.InternalCode__c = referralProduct.InternalCode__c;
+      customerInterestObj.InterestProduct__c = referralProduct.CrossSellProduct__c;
+      customerInterestObj.LongDescription__c = referralProduct.LongDescription__c;
+      customerInterestObj.Order__c = referralProduct.Order__c;
+      customerInterestObj.StartDate__c = referralProduct.StartDate__c;
+      customerInterestObj.Required__c = referralProduct.Required__c;
       customerInterestObj.isSelected__c = false;
       customerInterests.add(customerInterestObj);
     }

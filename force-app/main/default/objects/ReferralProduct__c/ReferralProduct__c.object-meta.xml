@@ -143,7 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Object to store additional product details</description>
+    <description>Object to store Referral product details</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -154,12 +154,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Additional Product</label>
+    <label>Referral Product</label>
     <nameField>
-        <label>Additional Product Name</label>
+        <label>Referral Product Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Additional Products</pluralLabel>
+    <pluralLabel>Referral Products</pluralLabel>
     <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

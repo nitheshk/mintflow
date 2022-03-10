@@ -30,10 +30,7 @@ global with sharing class FinancialAccountController extends AbstractController 
         List<FinancialAccount__c>.class
       );
       financialAccounts = FinancialAccountService.getInstance()
-        .saveFinancialAccounts(
-          financialAccounts,
-          ApexRequest.getApplicationId()
-        );
+        .saveFinancialAccounts(financialAccounts, ApexRequest.getApplicationId());
 
       ApplicationService.getInstance().updateFlowState(financialAccounts);
 
@@ -60,9 +57,7 @@ global with sharing class FinancialAccountController extends AbstractController 
   global static ApexResponse fetchServices(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
-        ProductServiceResolver.getInstance().fetchServices(request.data)
-      );
+      return ApexResponse.ok(ProductServiceResolver.getInstance().fetchServices(request.data));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);
@@ -81,13 +76,10 @@ global with sharing class FinancialAccountController extends AbstractController 
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse fetchAdditionalProducts(ApexRequest request) {
+  global static ApexResponse fetchReferralProducts(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
-        ProductServiceResolver.getInstance()
-          .fetchAdditionalProducts(request.data)
-      );
+      return ApexResponse.ok(ProductServiceResolver.getInstance().fetchReferralProducts(request.data));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);

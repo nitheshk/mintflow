@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>Application__c</defaultLandingTab>
-    <description
-  >Build client trust with collaboration and productivity tools for teams</description>
+    <description>Build client trust with collaboration and productivity tools for teams</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
@@ -108,6 +107,7 @@
     <tabs>FinancialInstituteAccount</tabs>
     <tabs>ProductService__c</tabs>
     <tabs>FinancialAccountService__c</tabs>
+    <tabs>ReferralProduct__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
@@ -129,6 +129,9 @@
         </mappings>
         <mappings>
             <tab>FinancialAccountService__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ReferralProduct__c</tab>
         </mappings>
         <mappings>
             <tab>FinancialAccount__c</tab>

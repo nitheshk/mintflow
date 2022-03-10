@@ -1,4 +1,4 @@
-String q = Query.newInstance(mflow__AdditionalProduct__c.SObjectType)
+String q = Query.newInstance(mflow__ReferralProduct__c.SObjectType)
   .addFields()
   .queryLookup('mflow__CrossSellProduct__r')
   .addFields('mflow__InternalCode__c')
@@ -8,6 +8,6 @@ String q = Query.newInstance(mflow__AdditionalProduct__c.SObjectType)
   .run()
   .run()
   .toString(true);
-List<mflow__AdditionalProduct__c> sl = DatabaseUtils.getRecords(q);
+List<mflow__ReferralProduct__c> sl = DatabaseUtils.getRecords(q);
 //**Include below system.debug statement always for every script file**
 system.debug('{QueryStart} ' + system.JSON.Serialize(sl) + ' {QueryEnd}');
