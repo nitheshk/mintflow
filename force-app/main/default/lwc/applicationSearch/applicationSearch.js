@@ -47,7 +47,16 @@ export default class ApplicationSearch extends NavigationMixin(
   }
 
   handleSearch() {
+    console.log(" search::" + this.searchString);
+    if (
+      (this.searchString === "" || this.searchString == null) &&
+      this.searchFilter == null
+    ) {
+      utils.infoMessage(this, "Enter some search criteria", "Info");
+      return;
+    }
     this.showSpinner = true;
+    console.log(" before call ::");
     searchApplications({
       params: {
         searchString: this.searchString,
@@ -57,7 +66,7 @@ export default class ApplicationSearch extends NavigationMixin(
       .then((result) => {
         if (result.status === 200) {
           this.searchData = JSON.parse(result.data);
-          console.log("data::" + JSON.stringify(result.data));
+          console.log("data::" + JSON.stringify(result));
           if (this.searchData === null) {
             utils.infoMessage(
               this,

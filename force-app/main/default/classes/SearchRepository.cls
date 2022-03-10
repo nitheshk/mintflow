@@ -188,27 +188,17 @@ public with sharing class SearchRepository extends DatabaseUtils {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Application__c(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name WHERE RecordType.Name=' +
-          '\'' +
-          recordTypeName +
-          '\'' +
-          ' ORDER BY CreatedDate Desc)';
+          '*} IN ALL FIELDS RETURNING  mflow__Application__c(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name ORDER BY CreatedDate Desc)';
       } else {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  Application__c(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name  WHERE RecordType.Name= ' +
-          '\'' +
-          recordTypeName +
-          '\'' +
-          ' AND ' +
+          '*} IN ALL FIELDS RETURNING  mflow__Application__c(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name  WHERE ' +
           dynamicString +
           ' ORDER BY CreatedDate Desc)';
       }
       log?.debug('application sosql  query :' + searchQuery);
-      List<List<sObject>> objectList = new List<List<sObject>>();
-      objectList = DatabaseUtils.searchRecords(searchQuery);
-
+      List<List<sObject>> objectList = DatabaseUtils.searchRecords(searchQuery);
       applicationsList = (List<Application__c>) objectList[0];
       return applicationsList;
     } else {
@@ -216,7 +206,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
         q = Query.newInstance(Application__c.SObjectType)
           .addFields()
           .addfields('CreatedBy.Name')
-          .wherecon('RecordType.Name', recordtypeName);
+          .whereNotNull('Name');
         if (String.isNotBlank(searchFilter.get('CreatedDateFrom'))) {
           dt = DateUtils.convertJsonStringToDateTime(
             searchFilter.get('CreatedDateFrom')
@@ -249,14 +239,11 @@ public with sharing class SearchRepository extends DatabaseUtils {
               searchFilter.get('LOSNumber')
             );
         }
-        System.debug(' Query is ' + q.toString(true));
         applicationsList = (List<Application__c>) DatabaseUtils.getRecords(
           q.toString(true)
         );
 
         log?.debug('retrieveApplications Query soql:' + q.toString(true));
-        log?.debug('retrieveApplications Filter:' + searchFilter);
-
         return applicationsList;
       } else {
         return null;
