@@ -26,9 +26,7 @@ gulp.task("npmRunBuild_MintFlow", function (finish) {
 gulp.task("buildStaticResource_MintFlow", (finish) => {
   if (fs.existsSync(config.ui.MintFlow.uiDistFolder)) {
     let dist = config.ui.MintFlow.uiDistFolder;
-    let staticResourcePath =
-      config.ui.MintFlow.staticResourceFolder +
-      config.ui.MintFlow.staticResourceName;
+    let staticResourcePath = config.ui.MintFlow.staticResourceFolder + config.ui.MintFlow.staticResourceName;
 
     zipFolder(dist, staticResourcePath, function (err) {
       if (err) {
@@ -48,31 +46,23 @@ gulp.task("setupDevHub", function (finish) {
   let scriptToRun = "";
 
   if (fs.existsSync(config.scratchOrg.devhubCredential)) {
-    let devhubConfig = JSON.parse(
-      fs.readFileSync(config.scratchOrg.devhubCredential)
-    );
+    let devhubConfig = JSON.parse(fs.readFileSync(config.scratchOrg.devhubCredential));
 
     scriptToRun =
       ` sfdx force:auth:jwt:grant --clientid ${devhubConfig.devhubClientId}` +
       ` --username ${devhubConfig.devhubUserName} --instanceurl ${devhubConfig.devhubInstanceUrl}` +
       ` --jwtkeyfile ${devhubConfig.jwtkeyfile} --setdefaultdevhubusername --setalias ${devhubConfig.devhubOrgName}`;
   } else {
-    console.log(
-      `The file ${config.scratchOrg.devhubCredential} does not exist. Setting default devhub`
-    );
+    console.log(`The file ${config.scratchOrg.devhubCredential} does not exist. Setting default devhub`);
 
     let devhubConfig = JSON.parse(fs.readFileSync(config.defaultDevHubFile));
 
     scriptToRun =
-      ` sfdx force:auth:jwt:grant --clientid ${
-        devhubConfig[config.defaultDevhub].devhubClientId
+      ` sfdx force:auth:jwt:grant --clientid ${devhubConfig[config.defaultDevhub].devhubClientId}` +
+      ` --username ${devhubConfig[config.defaultDevhub].devhubUserName} --instanceurl ${
+        devhubConfig[config.defaultDevhub].devhubInstanceUrl
       }` +
-      ` --username ${
-        devhubConfig[config.defaultDevhub].devhubUserName
-      } --instanceurl ${devhubConfig[config.defaultDevhub].devhubInstanceUrl}` +
-      ` --jwtkeyfile ${
-        devhubConfig[config.defaultDevhub].jwtkeyfile
-      } --setdefaultdevhubusername --setalias ${
+      ` --jwtkeyfile ${devhubConfig[config.defaultDevhub].jwtkeyfile} --setdefaultdevhubusername --setalias ${
         devhubConfig[config.defaultDevhub].devhubOrgName
       }`;
   }
@@ -127,11 +117,9 @@ gulp.task("createScratchOrg", function (finish) {
         .runCommand(scriptToRun)
         .then((orgResult) => {
           console.log("Result :" + orgResult);
-          utils
-            .createFile(config.scratchOrg.scratchOrgjson, orgResult)
-            .catch((err) => {
-              console.log("errr :" + JSON.stringify(errr));
-            });
+          utils.createFile(config.scratchOrg.scratchOrgjson, orgResult).catch((err) => {
+            console.log("errr :" + JSON.stringify(errr));
+          });
         })
         .catch((err) => {
           console.log("errr :" + JSON.stringify(errr));
@@ -140,11 +128,9 @@ gulp.task("createScratchOrg", function (finish) {
     })
     .catch((err) => {
       console.log("Error :" + err.stdout);
-      utils
-        .createFile(config.scratchOrg.scratchOrgjson, err.stdout)
-        .catch((errr) => {
-          console.log("errr :" + JSON.stringify(errr));
-        });
+      utils.createFile(config.scratchOrg.scratchOrgjson, err.stdout).catch((errr) => {
+        console.log("errr :" + JSON.stringify(errr));
+      });
     });
 });
 
@@ -223,20 +209,15 @@ gulp.task("publishCommunities", function (finish) {
 
       // create community links and update data plan
       utils
-        .createFile(
-          config.communities.links,
-          JSON.stringify(communityLinks, null, 2)
-        )
+        .createFile(config.communities.links, JSON.stringify(communityLinks, null, 2))
         .then(() => {
           let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json");
           communityLinks.forEach((link) => {
             if (link.name === "Online") {
-              applicationConfiguration.records[0].mflow__OnlineSiteUrl__c =
-                link.url;
+              applicationConfiguration.records[0].mflow__OnlineSiteUrl__c = link.url;
             }
             if (link.name === "FinancialInstitute") {
-              applicationConfiguration.records[0].mflow__FinancialInstituteSiteUrl__c =
-                link.url;
+              applicationConfiguration.records[0].mflow__FinancialInstituteSiteUrl__c = link.url;
             }
           });
           // update site urls
@@ -251,28 +232,18 @@ gulp.task("publishCommunities", function (finish) {
 
           // update community logout url
 
-          fs.readFile(
-            "./fsc-app/main/default/networks/Online.network-meta.xml",
-            "utf-8",
-            function (err, data) {
+          fs.readFile("./fsc-app/main/default/networks/Online.network-meta.xml", "utf-8", function (err, data) {
+            if (err) console.log(err);
+            xml2js.parseString(data, function (err, result) {
               if (err) console.log(err);
-              xml2js.parseString(data, function (err, result) {
-                if (err) console.log(err);
-                result.Network.logoutUrl =
-                  applicationConfiguration.records[0].mflow__OnlineSiteUrl__c;
-                var builder = new xml2js.Builder();
-                var xml = builder.buildObject(result);
-                utils
-                  .createFile(
-                    "./fsc-app/main/default/networks/Online.network-meta.xml",
-                    xml
-                  )
-                  .catch((err) => {
-                    console.log("errr :" + JSON.stringify(errr));
-                  });
+              result.Network.logoutUrl = applicationConfiguration.records[0].mflow__OnlineSiteUrl__c;
+              var builder = new xml2js.Builder();
+              var xml = builder.buildObject(result);
+              utils.createFile("./fsc-app/main/default/networks/Online.network-meta.xml", xml).catch((err) => {
+                console.log("errr :" + JSON.stringify(errr));
               });
-            }
-          );
+            });
+          });
 
           finish();
         })
@@ -319,11 +290,7 @@ gulp.task("systemConfigImport", function (finish) {
 gulp.task("sfdxCacheClear", function (finish) {
   let scartchConfig = require("../scratchOrg/scratchOrgDetail.json");
 
-  let fileToDelete = [
-    "maxRevision.json",
-    "sourcePathInfos.json",
-    "sourcePathInfos.json.bak"
-  ];
+  let fileToDelete = ["maxRevision.json", "sourcePathInfos.json", "sourcePathInfos.json.bak"];
 
   if (scartchConfig && scartchConfig.result && scartchConfig.result.username) {
     const directory = `./.sfdx/orgs/${scartchConfig.result.username}/`;
@@ -344,10 +311,7 @@ gulp.task("sfdxCacheClear", function (finish) {
   finish();
 });
 
-gulp.task(
-  "buildUI_MintFlow",
-  gulp.series("npmRunBuild_MintFlow", "buildStaticResource_MintFlow")
-);
+gulp.task("buildUI_MintFlow", gulp.series("npmRunBuild_MintFlow", "buildStaticResource_MintFlow"));
 
 gulp.task(
   "newScratchOrg",
@@ -362,16 +326,5 @@ gulp.task(
     "updatePermissionSet",
     "publishCommunities",
     "systemConfigImport"
-  )
-);
-
-gulp.task(
-  "newManagedScratchOrg",
-  gulp.series(
-    "readConfig",
-    "setupDevHub",
-    "deleteScratchOrg",
-    "createScratchOrg",
-    "defaultToScratch"
   )
 );
