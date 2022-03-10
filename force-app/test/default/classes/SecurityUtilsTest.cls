@@ -61,7 +61,6 @@ public with sharing class SecurityUtilsTest {
     test.startTest();
     try {
       request.token = SecurityUtils.generateTokenForTesting(acc.Id, '', 'Primary', 'ApplicationFlow');
-      SecurityUtils.stripInaccessible(new List<Application__c>{ acc }, System.AccessType.CREATABLE);
       SecurityUtils.validateSession();
       SecurityUtils.createSessionForApplicant(acc.Applicants__r[0]);
       SecurityUtils.decryptBase64('decryptBase64');
