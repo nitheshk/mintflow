@@ -20,9 +20,7 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
    **/
   public static BuildFundingWrapper getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (BuildFundingWrapper) getInstance(
-        BuildFundingWrapper.class
-      );
+      serviceInstance = (BuildFundingWrapper) getInstance(BuildFundingWrapper.class);
     }
     return serviceInstance;
   }
@@ -33,23 +31,14 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
    * @param string applicationNumber
    * @return FundingSubmissionResponse
    **/
-  global virtual FundingSubmissionResponse obtainFundingData(
-    string applicationNumber
-  ) {
-    log
-      ?.fine(
-        'Inside obtainFundingData -> applicationNumber -> ' + applicationNumber
-      );
+  global virtual FundingSubmissionResponse obtainFundingData(string applicationNumber) {
+    log?.fine('Inside obtainFundingData -> applicationNumber -> ' + applicationNumber);
     FundingSubmissionResponse mapper = new FundingSubmissionResponse();
     Applicant__c primaryApplicant;
     if (String.isBlank(applicationNumber)) {
-      throw new CustomException(
-        System.Label.Application_ApplicationNameCannotBeBlank
-      );
+      throw new CustomException(System.Label.Application_ApplicationNameCannotBeBlank);
     }
-    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(
-      applicationNumber
-    );
+    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(applicationNumber);
 
     if (application == null) {
       throw new customException(System.Label.Application_ApplicationNotFound);
@@ -58,14 +47,10 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
       application.Id
     );
     if (CollectionUtils.isListEmpty(financialApplications)) {
-      throw new customException(
-        'Financial Account not found/ Requested application is under reivew'
-      );
+      throw new customException('Financial Account not found/ Requested application is under reivew');
     }
     for (Applicant__c applicant : application.Applicants__r) {
-      Set<String> applicantTypes = new Set<String>(
-        applicant.ApplicantType__c.split(';')
-      );
+      Set<String> applicantTypes = new Set<String>(applicant.ApplicantType__c.split(';'));
       if (applicantTypes.contains('Primary')) {
         primaryApplicant = applicant;
         break;
@@ -76,9 +61,7 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
     mapper.Stage = application.mflow__Stage__c;
     mapper.Status = application.Status__c;
     mapper.Password = primaryApplicant.Password__c;
-    mapper.FinancialAccount.addAll(
-      mapFinancialApplication(financialApplications)
-    );
+    mapper.FinancialAccount.addAll(mapFinancialApplication(financialApplications));
 
     log?.info('obtainFundingData -> ReturnMapper -> ' + json.serialize(mapper));
     return mapper;
@@ -99,14 +82,12 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
       mapperFinancialAccount.FinancialAccountId = finApplication.Id;
       //#removeFSC
       //mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
-      mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
+      mapperFinancialAccount.FinancialProductType = 'Savings';
+      mapperFinancialAccount.FinancialProduct = 'Regular Savings';
+      //mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
       mapperFinancialAccount.Name = finApplication.Name;
       mapperFinancialAccount.Ownership = finApplication.Ownership__c;
-      if (
-        !CollectionUtils.isListEmpty(
-          finApplication.FinancialAccountTransactions__r
-        )
-      ) {
+      if (!CollectionUtils.isListEmpty(finApplication.FinancialAccountTransactions__r)) {
         mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
           finApplication.FinancialAccountTransactions__r[0]
         );

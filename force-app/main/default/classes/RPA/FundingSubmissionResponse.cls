@@ -13,6 +13,7 @@ global with sharing class FundingSubmissionResponse {
     global String FinancialAccountId;
     global String Name;
     global String FinancialProduct;
+    global String FinancialProductType;
     global String FinancialAccountType;
     global String PrimaryOwner;
     global String Ownership;
