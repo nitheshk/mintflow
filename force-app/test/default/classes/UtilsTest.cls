@@ -12,10 +12,7 @@ private with sharing class UtilsTest {
     Boolean result = SecurityUtils.crud(record, CrudType.READABLE);
     System.assertEquals(true, result);
 
-    result = SecurityUtils.crud(
-      new List<Application__c>{ record },
-      CrudType.CREATABLE
-    );
+    result = SecurityUtils.crud(new List<Application__c>{ record }, CrudType.CREATABLE);
     System.assertEquals(true, result);
 
     Test.stopTest();
@@ -30,12 +27,9 @@ private with sharing class UtilsTest {
     System.assertNotEquals(null, dsr);
 
     String objName = SObjectUtils.getObjectName(record);
-    System.assertEquals('Application__c', objName);
+    System.assertEquals('mflow__Application__c', objName);
 
-    FieldSet fs = SObjectUtils.getFieldSet(
-      record.getSObjectType(),
-      'InvalidFieldSetName'
-    );
+    FieldSet fs = SObjectUtils.getFieldSet(record.getSObjectType(), 'InvalidFieldSetName');
     System.assertEquals(null, fs);
 
     Test.stopTest();

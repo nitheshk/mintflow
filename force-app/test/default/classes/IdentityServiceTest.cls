@@ -76,6 +76,7 @@ public with sharing class IdentityServiceTest {
     Test.startTest();
     try {
       ApexResponse response1 = IdentityController.verifyCounty(request);
+      IdScanProvider.getInstance();
     } catch (Exception e) {
       System.assertEquals(e.getMessage(), 'Zipcode value not set');
     }
