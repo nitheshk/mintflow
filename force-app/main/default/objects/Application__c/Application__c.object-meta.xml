@@ -158,6 +158,7 @@
     <nameField>
         <displayFormat>App-{00000}</displayFormat>
         <label>Application Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
