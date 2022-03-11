@@ -90,4 +90,16 @@ public with sharing class ApplicantServiceTest {
     }
     test.stopTest();
   }
+  @isTest
+  static void exceptionTest() {
+    Application__c application = makeApplicationData();
+    ApexRequest request = new ApexRequest();
+    request.setHeader(new Map<String, object>{ 'applicantIds' => application.applicants__r });
+    request.setData(application.applicants__r);
+    test.startTest();
+    ApplicantController.atomicAuthenticate(request);
+    ApplicantController.getAtomicResponse(request);
+    ApplicantController.generatePaySlipsW2(request);
+    test.stopTest();
+  }
 }

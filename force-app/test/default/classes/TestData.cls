@@ -129,14 +129,6 @@ public with sharing class TestData {
     return doc;
   }
 
-  public static List<FinancialProduct__c> createProduct() {
-    List<FinancialProduct__c> products = new List<FinancialProduct__c>();
-    FinancialProduct__c p = new FinancialProduct__c();
-    p.DisplayLabel__c = 'Product1';
-    p.mflow__Category__c = 'Checking';
-    products.add(p);
-    return products;
-  }
   public static IdentificationDocument__c createIdentity() {
     IdentificationDocument__c identity = new IdentificationDocument__c();
     identity.IssuingCountry__c = null;
@@ -181,5 +173,31 @@ public with sharing class TestData {
     Application__c application = new Application__c();
     application.Applicants__r.addAll(new List<Applicant__c>{ createApplicant('Primary') });
     return application;
+  }
+
+  public static FinancialAccount__c makeFinancialAccount() {
+    FinancialAccount__c finAcc = new FinancialAccount__c();
+    return finAcc;
+  }
+
+  public static FinancialAccountTransaction__c createFinancialAccountTransaction() {
+    FinancialAccountTransaction__c finAccTran = new FinancialAccountTransaction__c();
+    return finAccTran;
+  }
+
+  public static List<FinancialProduct__c> createProduct() {
+    List<FinancialProduct__c> products = new List<FinancialProduct__c>();
+    FinancialProduct__c p = new FinancialProduct__c();
+    p.DisplayLabel__c = 'Product1';
+    p.mflow__Category__c = 'Checking';
+    products.add(p);
+    return products;
+  }
+
+  public static ProductService__c makeProductService() {
+    ProductService__c productService = new ProductService__c();
+    productService.mflow__isActive__c = true;
+    productService.mflow__ServiceName__c = 'Product Service';
+    return productService;
   }
 }
