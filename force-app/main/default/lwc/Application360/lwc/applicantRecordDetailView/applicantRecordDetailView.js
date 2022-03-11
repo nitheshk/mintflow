@@ -1,11 +1,12 @@
 import { LightningElement, track, api, wire } from "lwc";
 import timezone from "@salesforce/i18n/timeZone";
 import { publish, MessageContext } from "lightning/messageService";
+import { NavigationMixin } from "lightning/navigation";
 import application360Details from "@salesforce/messageChannel/ViewRelatedFiles__c";
 
 //controller
 import fetchFieldDetails from "@salesforce/apex/LwcCustomController.fetchFieldDetails";
-export default class ApplicantRecordDetailView extends LightningElement {
+export default class ApplicantRecordDetailView extends NavigationMixin(LightningElement) {
   @api record;
   @api sObjectName;
   @api titleName;
@@ -94,6 +95,17 @@ export default class ApplicantRecordDetailView extends LightningElement {
     publish(this.messageContext, application360Details, {
       recordIds: idList,
       titleName: this.titleName
+    });
+  }
+
+  redirectRecords() {
+    this[NavigationMixin.Navigate]({
+      type: "standard__recordPage",
+      attributes: {
+        recordId: this.record.Id,
+        objectApiName: "Applicant__c",
+        actionName: "edit"
+      }
     });
   }
 }
