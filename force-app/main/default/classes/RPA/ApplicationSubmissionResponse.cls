@@ -7,13 +7,13 @@
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
 global with sharing class ApplicationSubmissionResponse {
-  global Account Application;
+  global Application Application;
 
   global ApplicationSubmissionResponse() {
-    Application = new Account();
+    Application = new Application();
   }
   //global List<FinancialAccount> FinancialAccounts;
-  global class Account {
+  global class Application {
     global List<Applicant> Applicants;
     global List<Survey> Surveys;
     global string FinancialProductType;
@@ -38,7 +38,7 @@ global with sharing class ApplicationSubmissionResponse {
     // global Date SubmittedDate;
     // global String UserAccountType;
     global string ExternalApplicationNumber;
-    global Account() {
+    global Application() {
       Applicants = new List<Applicant>();
       Surveys = new List<Survey>();
     }

@@ -47,7 +47,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
 
       //log?.debug('Full Application Json : ' + json.serialize(application));
       if (application != null) {
-        ApplicationSubmissionResponse.Account mapperApplication = new ApplicationSubmissionResponse.Account();
+        ApplicationSubmissionResponse.Application mapperApplication = new ApplicationSubmissionResponse.Application();
         mapperApplication.ApplicationId = application.Id;
         mapperApplication.ApplicationNumber = application.Name;
         //#pending

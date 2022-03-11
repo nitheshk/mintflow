@@ -257,6 +257,11 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>relatedFiles</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>sidebartabs</value>
