@@ -15,7 +15,9 @@
       "mflow__SupportTeamEmail__c": "support@digitalalign.com",
       "mflow__SupportedFileTypes__c": "pdf;jpg",
       "mflow__UiStaticResourceName__c": "MintFlow",
-      "mflow__PackageVersion__c": "v1.0.2"
+      "mflow__PackageVersion__c": "v1.0.2",
+      "mflow__OOWAnswerPercent__c": 80,
+      "mflow__OOWPassThreshhold__c": 70
     }
   ]
 }

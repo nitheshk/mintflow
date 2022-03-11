@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>OOWNumberofAnswer__c</fullName>
+    <fullName>OOWAnswerPercent__c</fullName>
     <description>Number of answer to be given by the customer</description>
     <externalId>false</externalId>
     <label>OOWNumberofAnswer</label>

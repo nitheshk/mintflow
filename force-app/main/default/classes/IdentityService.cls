@@ -341,6 +341,9 @@ global virtual with sharing class IdentityService extends AbstractService {
 
   private IdScanDueDiligenceDTO.Data parseResponse(IdScanDueDiligenceDTO.Response response) {
     List<IdScanDueDiligenceDTO.Questions> questions;
+    Integer totalNumberofQuestions = 0;
+    Decimal minimumToBeAnswered = ApplicationConfiguration__c.getOrgdefaults().OOWAnswerPercent__c;
+
     IdScanDueDiligenceDTO.Data data = new IdScanDueDiligenceDTO.Data();
 
     List<IdScanDueDiligenceDTO.Questions> questionList = new List<IdScanDueDiligenceDTO.Questions>();
@@ -350,6 +353,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     for (IdScanDueDiligenceDTO.Questions question : questions) {
       anscode = 0;
       ansList = new List<IdScanDueDiligenceDTO.Answers>();
+      totalNumberofQuestions++;
       for (IdScanDueDiligenceDTO.Answers answer : question.answers) {
         answer.answerCode = ++anscode;
         ansList.add(answer);
@@ -358,7 +362,9 @@ global virtual with sharing class IdentityService extends AbstractService {
       questionList.add(question);
     }
     data.questions = questionList;
-    data.minimumQuestionToAnswer = 5;
+    system.debug('total ::' + totalNumberofQuestions);
+    data.minimumQuestionToAnswer = (Integer) (totalNumberofQuestions * (minimumToBeAnswered / 100));
+
     log?.debug(JSON.serialize(questionList));
     return data;
   }
