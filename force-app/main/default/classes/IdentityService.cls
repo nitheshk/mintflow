@@ -237,7 +237,7 @@ global virtual with sharing class IdentityService extends AbstractService {
    * @param Id applicantId
    * @return Object
    **/
-  global virtual List<IdScanDueDiligenceDTO.Questions> customerDueDiligence(Map<string, Object> params) {
+  global virtual IdScanDueDiligenceDTO.Data customerDueDiligence(Map<string, Object> params) {
     IdScanDueDiligenceDTO.Request customer = new IdScanDueDiligenceDTO.Request();
     List<string> services = new List<String>();
     Id applicantId = (id) params.get('applicantId');
@@ -339,8 +339,10 @@ global virtual with sharing class IdentityService extends AbstractService {
     log?.debug('contents ::' + contents);
   }
 
-  private List<IdScanDueDiligenceDTO.Questions> parseResponse(IdScanDueDiligenceDTO.Response response) {
+  private IdScanDueDiligenceDTO.Data parseResponse(IdScanDueDiligenceDTO.Response response) {
     List<IdScanDueDiligenceDTO.Questions> questions;
+    IdScanDueDiligenceDTO.Data data = new IdScanDueDiligenceDTO.Data();
+
     List<IdScanDueDiligenceDTO.Questions> questionList = new List<IdScanDueDiligenceDTO.Questions>();
     List<IdScanDueDiligenceDTO.Answers> ansList = new List<IdScanDueDiligenceDTO.Answers>();
     Integer ansCode = 0;
@@ -355,8 +357,10 @@ global virtual with sharing class IdentityService extends AbstractService {
       question.answers = ansList;
       questionList.add(question);
     }
+    data.questions = questionList;
+    data.minimumQuestionToAnswer = 5;
     log?.debug(JSON.serialize(questionList));
-    return questionList;
+    return data;
   }
 
   global virtual IdScanDueDiligenceDTO.FinalScores validateCustomerAnswers(

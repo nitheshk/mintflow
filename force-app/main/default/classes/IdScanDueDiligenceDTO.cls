@@ -42,6 +42,7 @@ global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
   }
 
   global class Data {
+    global Integer minimumQuestionToAnswer { get; set; }
     global List<Questions> questions { get; set; }
   }
 
