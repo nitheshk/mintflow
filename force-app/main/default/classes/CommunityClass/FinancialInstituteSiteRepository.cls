@@ -14,11 +14,7 @@ public with sharing class FinancialInstituteSiteRepository extends DatabaseUtils
    **/
   public static Account fetchAccountById(String accountId) {
     return (Account) getRecord(
-      Query.newInstance(account.SObjectType)
-        .addFields()
-        .removeMergedFields()
-        .whereEq('Id', accountId)
-        .toString(true)
+      Query.newInstance(account.SObjectType).addFields().removeMergedFields().whereEq('Id', accountId).toString(true)
     );
   }
 }

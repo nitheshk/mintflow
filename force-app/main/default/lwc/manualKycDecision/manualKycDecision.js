@@ -35,15 +35,11 @@ export default class ManualKycDecision extends LightningElement {
   PickListValues({ data, error }) {
     if (data) {
       if (data.status === 200) {
-        this.applicationStatus = JSON.parse(
-          data.data
-        )?.mflow__Application__c.mflow__KYCStatus__c.filter(
+        this.applicationStatus = JSON.parse(data.data)?.mflow__Application__c.mflow__KYCStatus__c.filter(
           (item) => item.value === "Passed" || item.value === "Failed"
         );
 
-        this.applicantStatus = JSON.parse(
-          data.data
-        ).mflow__Applicant__c.mflow__KYCStatus__c.filter(
+        this.applicantStatus = JSON.parse(data.data).mflow__Applicant__c.mflow__KYCStatus__c.filter(
           (item) => item.value === "Passed" || item.value === "Failed"
         );
         if (this.objectApiName === "mflow__Application__c") {
@@ -79,9 +75,7 @@ export default class ManualKycDecision extends LightningElement {
    * update kyc status of application and applicants
    */
   updateStatus() {
-    if (
-      utils.checkAllValidations(this.template.querySelectorAll(".validation"))
-    ) {
+    if (utils.checkAllValidations(this.template.querySelectorAll(".validation"))) {
       this.showSpinner = true;
       updateKycDecision({
         params: {

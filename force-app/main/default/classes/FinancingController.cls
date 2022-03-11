@@ -23,9 +23,7 @@ global with sharing class FinancingController extends AbstractController {
   global static ApexResponse fetchLinkToken(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
-        PlaidService.getInstance().fetchLinkToken(ApexRequest.getParams())
-      );
+      return ApexResponse.ok(PlaidService.getInstance().fetchLinkToken(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -49,10 +47,7 @@ global with sharing class FinancingController extends AbstractController {
   global static ApexResponse fetchAccountsForTransaction(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
-        PlaidService.getInstance()
-          .fetchAccountsForTransaction(ApexRequest.getParams())
-      );
+      return ApexResponse.ok(PlaidService.getInstance().fetchAccountsForTransaction(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);

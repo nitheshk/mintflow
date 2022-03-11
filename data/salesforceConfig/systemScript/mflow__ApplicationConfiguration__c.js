@@ -16,14 +16,9 @@ utils
       item.attributes.referenceId = "ApplicationConfigurationRef_" + index;
     });
     //   update change ==>
-    utils
-      .createFile(
-        `${configPath}${objectName}.json`,
-        JSON.stringify({ records: data })
-      )
-      .catch((err) => {
-        console.log("errr :" + JSON.stringify(err));
-      });
+    utils.createFile(`${configPath}${objectName}.json`, JSON.stringify({ records: data })).catch((err) => {
+      console.log("errr :" + JSON.stringify(err));
+    });
   })
   .catch((err) => {
     console.log("err :" + err);

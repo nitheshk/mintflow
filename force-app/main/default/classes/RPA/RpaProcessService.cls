@@ -25,9 +25,7 @@ global virtual with sharing class RpaProcessService extends AbstractService {
    **/
   public static RpaProcessService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (RpaProcessService) getInstance(
-        RpaProcessService.class
-      );
+      serviceInstance = (RpaProcessService) getInstance(RpaProcessService.class);
     }
     return serviceInstance;
   }
@@ -124,9 +122,7 @@ global virtual with sharing class RpaProcessService extends AbstractService {
    * @param Application__c application
    * @return HttpBuilder.Response
    **/
-  global virtual HttpBuilder.Response scheduleApplication(
-    Application__c application
-  ) {
+  global virtual HttpBuilder.Response scheduleApplication(Application__c application) {
     Flow.initialize(application.Id);
     Flow.setFlow('Rpa-Process: review application');
     Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
@@ -146,32 +142,17 @@ global virtual with sharing class RpaProcessService extends AbstractService {
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
 
         Map<String, Object> params = new Map<String, Object>();
-        if (
-          application.flowType__c == ApplicationConstant.FLOW_TYPE_APPLICATION
-        ) {
-          params.put(
-            'Name',
-            HttpBuilder.getApiConstant('ApplicationQueueName')
-          );
-        } else if (
-          application.flowType__c == ApplicationConstant.FLOW_TYPE_FUNDING
-        ) {
+        if (application.flowType__c == ApplicationConstant.FLOW_TYPE_APPLICATION) {
+          params.put('Name', HttpBuilder.getApiConstant('ApplicationQueueName'));
+        } else if (application.flowType__c == ApplicationConstant.FLOW_TYPE_FUNDING) {
           params.put('Name', HttpBuilder.getApiConstant('FundingQueueName'));
         }
         params.put('Priority', HttpBuilder.getApiConstant('UipathPriority'));
-        params.put(
-          'SpecificContent',
-          new Map<String, String>{ 'LoanID' => application.Name }
-        );
+        params.put('SpecificContent', new Map<String, String>{ 'LoanID' => application.Name });
         params.put('Reference', SecurityUtils.generateUUID());
-        params.put(
-          'Progress',
-          HttpBuilder.getApiConstant('UipathQueueProgress')
-        );
+        params.put('Progress', HttpBuilder.getApiConstant('UipathQueueProgress'));
         HttpBuilder.Response response = RpaProcessProvider.getInstance()
-          .addKycReviewQueue(
-            new Map<String, Object>{ 'itemData' => params, 'token' => token }
-          );
+          .addKycReviewQueue(new Map<String, Object>{ 'itemData' => params, 'token' => token });
 
         if (response.statusCode != 201) {
           throw new CustomException(response.status);
@@ -262,8 +243,7 @@ global virtual with sharing class RpaProcessService extends AbstractService {
   global virtual void obtainFundingData() {
     RestRequest restReq = RestContext.request;
     String applicationName = restReq.params.get('applicationName');
-    FundingSubmissionResponse fundingResponse = BuildFundingWrapper.getInstance()
-      .obtainFundingData(applicationName);
+    FundingSubmissionResponse fundingResponse = BuildFundingWrapper.getInstance().obtainFundingData(applicationName);
     RestResponse response = RestContext.response;
     response.responseBody = Blob.valueOf(JSON.serialize(fundingResponse));
     response.statusCode = 200;
@@ -319,7 +299,6 @@ global virtual with sharing class RpaProcessService extends AbstractService {
     RestRequest restReq = RestContext.request;
     String applicationNumber = restReq.params.get('applicationNumber');
     log?.debug('applicationNumber =' + applicationNumber);
-    BuildApplicationWrapper.getInstance()
-      .obtainApplicationFiles(applicationNumber);
+    BuildApplicationWrapper.getInstance().obtainApplicationFiles(applicationNumber);
   }
 }

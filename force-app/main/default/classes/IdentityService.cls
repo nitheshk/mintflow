@@ -36,9 +36,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     return verifyCountyUsingConfiguration(params);
   }
 
-  global virtual Object verifyCountyUsingConfiguration(
-    Map<String, Object> params
-  ) {
+  global virtual Object verifyCountyUsingConfiguration(Map<String, Object> params) {
     try {
       string zipcode = (string) params.get('zipcode');
       if (string.isBlank(zipcode)) {
@@ -46,9 +44,7 @@ global virtual with sharing class IdentityService extends AbstractService {
       }
       Map<String, Object> result = new Map<String, Object>();
       Map<String, Object> matchingResult = new Map<String, Object>();
-      EligibleCounty__c county = IdentityRepository.fetchCountyByZipcode(
-        zipcode
-      );
+      EligibleCounty__c county = IdentityRepository.fetchCountyByZipcode(zipcode);
 
       if (county != null) {
         matchingResult.put('zipcode', zipcode);
@@ -79,11 +75,8 @@ global virtual with sharing class IdentityService extends AbstractService {
     Flow.setFlow('EligibilityFlow');
     Flow.setSubFlow(APINames.Geocoding.name());
     try {
-      String eligibleCountyNames = ApplicationConfiguration__c.getInstance()
-        .CountyNames__c;
-      List<String> eligibleCountyNameList = String.isNotBlank(
-          eligibleCountyNames
-        )
+      String eligibleCountyNames = ApplicationConfiguration__c.getInstance().CountyNames__c;
+      List<String> eligibleCountyNameList = String.isNotBlank(eligibleCountyNames)
         ? eligibleCountyNames.split(';')
         : new List<String>();
       params.put('eligibleCountyNameList', eligibleCountyNameList);
@@ -93,16 +86,9 @@ global virtual with sharing class IdentityService extends AbstractService {
       }
       if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
         HttpBuilder.setAPISetting(APINames.Geocoding);
-        HttpBuilder.replaceEndpoint(
-          '{APIKey}',
-          HttpBuilder.getApiConstant('GeocodingAPIKey')
-        );
-        HttpBuilder.replaceEndpoint(
-          '{Pincode}',
-          (string) params.get('zipcode')
-        );
-        HttpBuilder.Response response = GeocodingProvider.getInstance()
-          .validateCountyUsingGoogleApi(params);
+        HttpBuilder.replaceEndpoint('{APIKey}', HttpBuilder.getApiConstant('GeocodingAPIKey'));
+        HttpBuilder.replaceEndpoint('{Pincode}', (string) params.get('zipcode'));
+        HttpBuilder.Response response = GeocodingProvider.getInstance().validateCountyUsingGoogleApi(params);
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
         return response.data;
@@ -131,11 +117,9 @@ global virtual with sharing class IdentityService extends AbstractService {
       ContentVersion backCv;
       string frontImage = (string) params.get('frontImageDocumentId');
       string backImage = (string) params.get('backImageDocumentId');
-      ContentVersion frontCv = FileService.getInstance()
-        .fetchContentVersionByCD(frontImage, false);
+      ContentVersion frontCv = FileService.getInstance().fetchContentVersionByCD(frontImage, false);
       if (String.isNotBlank(backImage)) {
-        frontCv = FileService.getInstance()
-          .fetchContentVersionByCD(backImage, false);
+        frontCv = FileService.getInstance().fetchContentVersionByCD(backImage, false);
       }
       if (frontCv == null) {
         throw new CustomException(System.Label.Document_DocumentNotFound);
@@ -147,8 +131,7 @@ global virtual with sharing class IdentityService extends AbstractService {
 
       if (HttpBuilder.isActiveApiSetting(APINames.IdScanAnalyzer)) {
         HttpBuilder.setAPISetting(APINames.IdScanAnalyzer);
-        HttpBuilder.Response response = DocumentScanProvider.getInstance()
-          .idScan(params);
+        HttpBuilder.Response response = DocumentScanProvider.getInstance().idScan(params);
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
         return (Applicant__c) response.data;
@@ -175,9 +158,7 @@ global virtual with sharing class IdentityService extends AbstractService {
         throw new customException(System.Label.Applicant_InvalidApplicantId);
       }
       String apiName = params.get('apiName').toString();
-      Applicant__c applicant = IdentityRepository.readApplicantForIdentity(
-        (ID) applicantId
-      );
+      Applicant__c applicant = IdentityRepository.readApplicantForIdentity((ID) applicantId);
 
       if (ApplicationConfiguration__c.getInstance().SentiLink__c == false) {
         return applicant;
@@ -220,9 +201,7 @@ global virtual with sharing class IdentityService extends AbstractService {
    * @return Object
    **/
   global virtual Object generateUrlForIdentityUpload(Id applicantId) {
-    Applicant__c currentApplicant = IdentityRepository.readApplicantWithApplication(
-      applicantId
-    );
+    Applicant__c currentApplicant = IdentityRepository.readApplicantWithApplication(applicantId);
 
     // Send SMS
     String link = CustomerEmailService.getInstance()
@@ -240,16 +219,10 @@ global virtual with sharing class IdentityService extends AbstractService {
     Map<String, Object> params = new Map<String, Object>();
     String messageBody = System.Label.Identity_SmsBodyForUploadDocument;
     messageBody = messageBody.replace('{url}', link);
-    messageBody = messageBody.replace(
-      '{applicationNumber}',
-      currentApplicant.Application__r.Name
-    );
+    messageBody = messageBody.replace('{applicationNumber}', currentApplicant.Application__r.Name);
     params.put('messageText', messageBody);
     // #pending remove hardcode mobile number [currentApplicant.Phone__c]
-    params.put(
-      'toPhone',
-      HttpBuilder.getApiConstant('Twillio_Country') + '7892981668'
-    );
+    params.put('toPhone', HttpBuilder.getApiConstant('Twillio_Country') + '7892981668');
     params.put('applicantId', currentApplicant.Id);
     NotificationService.getInstance().sendOTPMessage(params);
 
@@ -264,16 +237,12 @@ global virtual with sharing class IdentityService extends AbstractService {
    * @param Id applicantId
    * @return Object
    **/
-  global virtual List<IdScanDueDiligenceDTO.Questions> customerDueDiligence(
-    Map<string, Object> params
-  ) {
+  global virtual List<IdScanDueDiligenceDTO.Questions> customerDueDiligence(Map<string, Object> params) {
     IdScanDueDiligenceDTO.Request customer = new IdScanDueDiligenceDTO.Request();
     List<string> services = new List<String>();
     Id applicantId = (id) params.get('applicantId');
     HttpBuilder.Response response;
-    Applicant__c applicant = IdentityRepository.readApplicantWithIdentity(
-      applicantId
-    );
+    Applicant__c applicant = IdentityRepository.readApplicantWithIdentity(applicantId);
     services.add(ApplicationConstant.CUSTOMER_SERVICES);
 
     try {
@@ -298,9 +267,7 @@ global virtual with sharing class IdentityService extends AbstractService {
           } else {
             log?.debug('response  data not returned as expected ');
             Flow.setSubFlowFailed(response.status);
-            throw new CustomException(
-              'response  data not returned as expected '
-            );
+            throw new CustomException('response  data not returned as expected ');
           }
         } else {
           Flow.setSubFlowFailed('Failed');
@@ -327,23 +294,11 @@ global virtual with sharing class IdentityService extends AbstractService {
     customer.dateOfBirths = applicant.Birthdate__c;
     customer.middleName = applicant.mflow__MiddleName__c;
 
-    if (
-      applicant != null &&
-      applicant.mflow__IdentificationDocuments__r.size() > 0
-    ) {
-      customer = mapIdentity(
-        applicant.mflow__IdentificationDocuments__r[0],
-        customer
-      );
+    if (applicant != null && applicant.mflow__IdentificationDocuments__r.size() > 0) {
+      customer = mapIdentity(applicant.mflow__IdentificationDocuments__r[0], customer);
     }
-    if (
-      applicant != null &&
-      applicant.mflow__ContactPointAddresses__r.size() > 0
-    ) {
-      customer = mapAddress(
-        applicant.mflow__ContactPointAddresses__r,
-        customer
-      );
+    if (applicant != null && applicant.mflow__ContactPointAddresses__r.size() > 0) {
+      customer = mapAddress(applicant.mflow__ContactPointAddresses__r, customer);
     }
     return customer;
   }
@@ -378,22 +333,13 @@ global virtual with sharing class IdentityService extends AbstractService {
 
   global virtual void createFiles(Id applicantId, String response) {
     List<FileDTO> files = new List<FileDTO>();
-    FileDTO fileObj = new FileDTO(
-      'OOW Response.json',
-      blob.valueof(response),
-      applicantId,
-      'KYC',
-      'IDScan'
-    );
+    FileDTO fileObj = new FileDTO('OOW Response.json', blob.valueof(response), applicantId, 'KYC', 'IDScan');
     files.add(fileObj);
-    List<ContentVersion> contents = FileService.getinstance()
-      .createFiles(files);
+    List<ContentVersion> contents = FileService.getinstance().createFiles(files);
     log?.debug('contents ::' + contents);
   }
 
-  private List<IdScanDueDiligenceDTO.Questions> parseResponse(
-    IdScanDueDiligenceDTO.Response response
-  ) {
+  private List<IdScanDueDiligenceDTO.Questions> parseResponse(IdScanDueDiligenceDTO.Response response) {
     List<IdScanDueDiligenceDTO.Questions> questions;
     List<IdScanDueDiligenceDTO.Questions> questionList = new List<IdScanDueDiligenceDTO.Questions>();
     List<IdScanDueDiligenceDTO.Answers> ansList = new List<IdScanDueDiligenceDTO.Answers>();
@@ -466,36 +412,22 @@ global virtual with sharing class IdentityService extends AbstractService {
           }
           // Loop through customer answer from the ui
           for (IdScanDueDiligenceDTO.Results result : results) {
-            if (
-              result.questionType == questionCode &&
-              result.answer.equalsignorecase(correctAnswer)
-            )
+            if (result.questionType == questionCode && result.answer.equalsignorecase(correctAnswer))
               countofCorrectAnswers++;
           }
         }
 
-        Applicant__c applicant = ApplicantRepository.readApplicantById(
-          applicantId
-        );
+        Applicant__c applicant = ApplicantRepository.readApplicantById(applicantId);
         applicant.mflow__OOWCorrectAnswers__c = countofCorrectAnswers;
         applicant.mflow__OOWTotalQuestions__c = totalQuestions;
 
         ApplicantRepository.upsertRecord(applicant);
-        Decimal totalResult =
-          (decimal) countofCorrectAnswers *
-          100 /
-          (decimal) totalQuestions;
+        Decimal totalResult = (decimal) countofCorrectAnswers * 100 / (decimal) totalQuestions;
 
         finalResults.result = totalResult >= passThreshold ? 'Pass' : 'Fail';
         finalResults.scorePercent = totalResult;
         finalScores.results = finalResults;
-        log
-          ?.debug(
-            ' Result is ' +
-            finalResults.result +
-            ' with % as ' +
-            finalResults.scorePercent
-          );
+        log?.debug(' Result is ' + finalResults.result + ' with % as ' + finalResults.scorePercent);
 
         return finalScores;
       } else

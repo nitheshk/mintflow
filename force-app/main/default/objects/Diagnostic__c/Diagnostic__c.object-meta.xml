@@ -163,14 +163,11 @@
     </nameField>
     <pluralLabel>Diagnostics</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields
-    >Message__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields
-    >CREATED_DATE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Message__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>CREATED_DATE</searchFilterFields>
-        <searchResultsAdditionalFields
-    >Message__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Message__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
     <visibility>Public</visibility>

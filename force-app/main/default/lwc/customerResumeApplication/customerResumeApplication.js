@@ -24,9 +24,7 @@ export default class CustomerResumeApplication extends LightningElement {
     this.showResume = true;
   }
   handleSubmit() {
-    if (
-      utils.checkAllValidations(this.template.querySelectorAll(".validation"))
-    ) {
+    if (utils.checkAllValidations(this.template.querySelectorAll(".validation"))) {
       this.showSpinner = true;
       authorize({
         params: { applicant: this.applicantData }
@@ -35,9 +33,7 @@ export default class CustomerResumeApplication extends LightningElement {
           if (result.status === 200) {
             this.isAuthenticated = true;
             this.applications = JSON.parse(result.data)?.filter(
-              (item) =>
-                item.mflow__Status__c === "Abandoned" ||
-                item.mflow__Status__c === "In Progress"
+              (item) => item.mflow__Status__c === "Abandoned" || item.mflow__Status__c === "In Progress"
             );
             if (this.applications.length === 0) {
               this.hasApplications = false;
@@ -46,18 +42,13 @@ export default class CustomerResumeApplication extends LightningElement {
               this.applications.forEach((app) => {
                 app.mflow__Applicants__r.forEach((element) => {
                   if (
-                    element.mflow__LastFourDigitsofSSN__c ===
-                      this.applicantData.mflow__LastFourDigitsofSSN__c &&
-                    element.mflow__LastName__c ===
-                      this.applicantData.mflow__LastName__c &&
-                    element.mflow__Email__c ===
-                      this.applicantData.mflow__Email__c
+                    element.mflow__LastFourDigitsofSSN__c === this.applicantData.mflow__LastFourDigitsofSSN__c &&
+                    element.mflow__LastName__c === this.applicantData.mflow__LastName__c &&
+                    element.mflow__Email__c === this.applicantData.mflow__Email__c
                   ) {
                     if (element.mflow__ApplicantType__c === "Primary") {
                       app.isPrimaryLoggedIn = true;
-                    } else if (
-                      element.mflow__ApplicantType__c.includes("Joint")
-                    ) {
+                    } else if (element.mflow__ApplicantType__c.includes("Joint")) {
                       app.isPrimaryLoggedIn = false;
                     }
                   }
@@ -65,11 +56,7 @@ export default class CustomerResumeApplication extends LightningElement {
               });
             }
           } else {
-            utils.errorMessage(
-              this,
-              result.data.message,
-              "Please enter correct details"
-            );
+            utils.errorMessage(this, result.data.message, "Please enter correct details");
           }
           this.showSpinner = false;
         })

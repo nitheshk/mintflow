@@ -33,19 +33,13 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
     String tokenKey;
     Map<String, Object> objectData;
     try {
-      Applicant__c applicant = ApplicantRepository.readApplicantWithChild(
-        applicantId
-      );
-      AtomicFIDTO atomicObj = AtomicFIService.getInstance()
-        .createApplicantRequestJson(applicant, employerId);
+      Applicant__c applicant = ApplicantRepository.readApplicantWithChild(applicantId);
+      AtomicFIDTO atomicObj = AtomicFIService.getInstance().createApplicantRequestJson(applicant, employerId);
       jsonRequest = JSON.serialize(atomicObj, true);
       HttpBuilder.setAPISetting(APINames.AtomicFIToken);
       Flow.initialize(ApexRequest.getApplicationId());
       Flow.setFlow('Atomic FI Authentication');
-      Flow.setSubFlow(
-        APINames.AtomicFIToken.name(),
-        ApexRequest.getApplicationId()
-      );
+      Flow.setSubFlow(APINames.AtomicFIToken.name(), ApexRequest.getApplicationId());
       if (HttpBuilder.isActiveApiSetting(APINames.AtomicFIToken)) {
         Map<String, String> header = new Map<String, String>();
         header.put('accept', 'application/json');
@@ -54,9 +48,7 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
         header.put('x-api-secret', '{!$Credential.Password}');
         Flow.setSubFlowRequest(jsonRequest);
         HttpResponse response = HttpBuilder.httpCallOut(jsonRequest, header);
-        map<string, Object> mapResponse = (Map<String, Object>) JSON.deserializeUntyped(
-          response.getBody()
-        );
+        map<string, Object> mapResponse = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
         Flow.setsubflowResponse(response.getBody());
         if (mapResponse.containsKey('data')) {
           objectData = (Map<String, Object>) mapResponse.get('data');
@@ -80,18 +72,10 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
    * @param EmployerId
    * @return String
    **/
-  global virtual String getAtomicResponse(
-    String applicantId,
-    String employerId
-  ) {
+  global virtual String getAtomicResponse(String applicantId, String employerId) {
     String textValue;
     List<ContentVersion> files = Fileservice.getinstance()
-      .fetchContentVersionByFileType(
-        employerId,
-        'Employment',
-        'AtomicFIResponse',
-        false
-      );
+      .fetchContentVersionByFileType(employerId, 'Employment', 'AtomicFIResponse', false);
     if (files != null && files.size() > 0) {
       textValue = files[0].VersionData.toString();
       return textValue;
@@ -106,10 +90,7 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
    * @param employerId employerId
    
    **/
-  global virtual String generatePaySlipsW2(
-    String jsonResponse,
-    String employerId
-  ) {
+  global virtual String generatePaySlipsW2(String jsonResponse, String employerId) {
     // To fetch the file from saved employer Information
     String formURL;
 
@@ -154,47 +135,23 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
         cnt++;
 
         FileService.getInstance()
-          .createFile(
-            new FileDTO(
-              'Income Files -' +
-              cnt +
-              '.pdf',
-              pdffile,
-              employerId,
-              'Employment',
-              'PayStubs'
-            )
-          );
+          .createFile(new FileDTO('Income Files -' + cnt + '.pdf', pdffile, employerId, 'Employment', 'PayStubs'));
       }
       generatePDF(employerId);
       AtomicFIService.getinstance().updateFileGeneratedStatus(employerId);
       return 'Files generated successfully';
     } catch (exception ex) {
       log?.error(ex.getmessage());
-      return 'There is some issue in generating the payslips and W2' +
-        ex.getMessage();
+      return 'There is some issue in generating the payslips and W2' + ex.getMessage();
     }
   }
 
   public static void generatePDF(String employerId) {
     List<FileDTO> files = new List<FileDTO>();
     String sourceFileName = 'AtomicVerificationReport';
-    PageReference pdfFile = new PageReference(
-      '/apex/' +
-      sourceFileName +
-      '?id=' +
-      employerId
-    );
+    PageReference pdfFile = new PageReference('/apex/' + sourceFileName + '?id=' + employerId);
     System.debug('pdf file called' + employerId);
-    files.add(
-      new FileDTO(
-        'Employment Verification.pdf',
-        pdfFile.getContent(),
-        employerId,
-        'Employment',
-        'AtomicFI'
-      )
-    );
+    files.add(new FileDTO('Employment Verification.pdf', pdfFile.getContent(), employerId, 'Employment', 'AtomicFI'));
     FileService.getInstance().createFiles(files);
   }
 }

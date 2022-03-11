@@ -11,9 +11,7 @@ public with sharing class LoggerTest {
     if (debugLevel != null) {
       systemSetting.LoggingLevel__c = debugLevel;
     }
-    systemSetting = (SystemSetting__c) DatabaseUtils.insertRecord(
-      systemSetting
-    );
+    systemSetting = (SystemSetting__c) DatabaseUtils.insertRecord(systemSetting);
     return systemSetting;
   }
   @istest

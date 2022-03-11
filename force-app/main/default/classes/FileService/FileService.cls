@@ -131,10 +131,7 @@ global virtual with sharing class FileService extends AbstractService {
     List<ContentDocumentLink> cDocLinks = new List<ContentDocumentLink>();
     for (FileDTO fileDto : contentKeyMapping.keySet()) {
       ContentDocumentLink cDocLink = new ContentDocumentLink();
-      cDocLink.ContentDocumentId = contentVersionMap.get(
-          contentKeyMapping.get(fileDto)
-        )
-        .ContentDocumentId;
+      cDocLink.ContentDocumentId = contentVersionMap.get(contentKeyMapping.get(fileDto)).ContentDocumentId;
       cDocLink.LinkedEntityId = fileDto.parentID;
       cDocLink.ShareType = fileDto.shareType.Name();
       cDocLink.Visibility = fileDto.visibility.Name();
@@ -152,10 +149,7 @@ global virtual with sharing class FileService extends AbstractService {
    * @param List<Id> entityIds
    * @return List<ContentDocumentLink>
    **/
-  global virtual List<ContentDocumentLink> linkContentDocumentWithEntity(
-    Id contentDocumentId,
-    List<Id> entityIds
-  ) {
+  global virtual List<ContentDocumentLink> linkContentDocumentWithEntity(Id contentDocumentId, List<Id> entityIds) {
     List<ContentDocumentLink> cDocLinks = new List<ContentDocumentLink>();
     for (Id entityId : entityIds) {
       ContentDocumentLink cDocLink = new ContentDocumentLink();
@@ -175,9 +169,7 @@ global virtual with sharing class FileService extends AbstractService {
    * @param List<FileDTO> fileDtos
    * @return virtual
    **/
-  global virtual List<ContentDocumentLink> linkContentDocumentWithEntity(
-    List<FileDTO> fileDtos
-  ) {
+  global virtual List<ContentDocumentLink> linkContentDocumentWithEntity(List<FileDTO> fileDtos) {
     List<ContentDocumentLink> cDocLinks = new List<ContentDocumentLink>();
     for (FileDTO dto : fileDtos) {
       ContentDocumentLink cDocLink = new ContentDocumentLink();
@@ -198,14 +190,8 @@ global virtual with sharing class FileService extends AbstractService {
    * @param Boolean ignoreVersionData
    * @return ContentVersion
    **/
-  global virtual ContentVersion fetchContentVersionById(
-    Id contentVersionId,
-    Boolean ignoreVersionData
-  ) {
-    return FileRepository.fetchContentVersionById(
-      contentVersionId,
-      ignoreVersionData
-    );
+  global virtual ContentVersion fetchContentVersionById(Id contentVersionId, Boolean ignoreVersionData) {
+    return FileRepository.fetchContentVersionById(contentVersionId, ignoreVersionData);
   }
 
   /**
@@ -215,14 +201,8 @@ global virtual with sharing class FileService extends AbstractService {
    * @param Boolean ignoreVersionData
    * @return List<ContentVersion>
    **/
-  global virtual List<ContentVersion> fetchContentVersionsByIds(
-    List<Id> contentVersionIds,
-    Boolean ignoreVersionData
-  ) {
-    return FileRepository.fetchContentVersionsByIds(
-      contentVersionIds,
-      ignoreVersionData
-    );
+  global virtual List<ContentVersion> fetchContentVersionsByIds(List<Id> contentVersionIds, Boolean ignoreVersionData) {
+    return FileRepository.fetchContentVersionsByIds(contentVersionIds, ignoreVersionData);
   }
 
   /**
@@ -232,14 +212,8 @@ global virtual with sharing class FileService extends AbstractService {
    * @param Boolean ignoreVersionData
    * @return ContentVersion
    **/
-  global virtual ContentVersion fetchContentVersionByCD(
-    Id contentDocumentId,
-    Boolean ignoreVersionData
-  ) {
-    return FileRepository.fetchContentVersionByCD(
-      contentDocumentId,
-      ignoreVersionData
-    );
+  global virtual ContentVersion fetchContentVersionByCD(Id contentDocumentId, Boolean ignoreVersionData) {
+    return FileRepository.fetchContentVersionByCD(contentDocumentId, ignoreVersionData);
   }
 
   /**
@@ -249,14 +223,8 @@ global virtual with sharing class FileService extends AbstractService {
    * @param Boolean ignoreVersionData
    * @return List<ContentVersion>
    **/
-  global virtual List<ContentVersion> fetchContentVersionsByCD(
-    List<Id> contentDocumentIds,
-    Boolean ignoreVersionData
-  ) {
-    return FileRepository.fetchContentVersionsByCD(
-      contentDocumentIds,
-      ignoreVersionData
-    );
+  global virtual List<ContentVersion> fetchContentVersionsByCD(List<Id> contentDocumentIds, Boolean ignoreVersionData) {
+    return FileRepository.fetchContentVersionsByCD(contentDocumentIds, ignoreVersionData);
   }
 
   /**
@@ -266,22 +234,12 @@ global virtual with sharing class FileService extends AbstractService {
    * @param Boolean ignoreVersionData
    * @return List<ContentVersion>
    **/
-  global virtual List<ContentVersion> fetchContentVersionByEntityId(
-    Id entityId,
-    Boolean ignoreVersionData
-  ) {
+  global virtual List<ContentVersion> fetchContentVersionByEntityId(Id entityId, Boolean ignoreVersionData) {
     list<Id> contentDocumentIds = new List<Id>();
-    for (
-      ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(
-        entityId
-      )
-    ) {
+    for (ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(entityId)) {
       contentDocumentIds.add(cdl.ContentDocumentId);
     }
-    return FileRepository.fetchContentVersionsByCD(
-      contentDocumentIds,
-      ignoreVersionData
-    );
+    return FileRepository.fetchContentVersionsByCD(contentDocumentIds, ignoreVersionData);
   }
 
   /**
@@ -291,23 +249,13 @@ global virtual with sharing class FileService extends AbstractService {
    * @param Boolean ignoreVersionData
    * @return virtual
    **/
-  global virtual List<ContentVersion> fetchContentVersionByEntityIds(
-    list<Id> entityIds,
-    Boolean ignoreVersionData
-  ) {
+  global virtual List<ContentVersion> fetchContentVersionByEntityIds(list<Id> entityIds, Boolean ignoreVersionData) {
     list<Id> contentDocumentIds = new List<Id>();
-    for (
-      ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(
-        entityIds
-      )
-    ) {
+    for (ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(entityIds)) {
       contentDocumentIds.add(cdl.ContentDocumentId);
     }
 
-    return FileRepository.fetchContentVersionsByCD(
-      contentDocumentIds,
-      ignoreVersionData
-    );
+    return FileRepository.fetchContentVersionsByCD(contentDocumentIds, ignoreVersionData);
   }
 
   /**
@@ -327,19 +275,10 @@ global virtual with sharing class FileService extends AbstractService {
     Boolean ignoreVersionData
   ) {
     list<Id> contentDocumentIds = new List<Id>();
-    for (
-      ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(
-        entityId
-      )
-    ) {
+    for (ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(entityId)) {
       contentDocumentIds.add(cdl.ContentDocumentId);
     }
-    return FileRepository.fetchContentVersions(
-      contentDocumentIds,
-      contentType,
-      contentSubType,
-      ignoreVersionData
-    );
+    return FileRepository.fetchContentVersions(contentDocumentIds, contentType, contentSubType, ignoreVersionData);
   }
 
   /**
@@ -357,9 +296,7 @@ global virtual with sharing class FileService extends AbstractService {
    * @param List<Id> contentDocumentIds
    **/
   global virtual void deleteContentVersions(List<Id> contentDocumentIds) {
-    FileRepository.deleteRecords(
-      FileRepository.fetchContentDocument(contentDocumentIds)
-    );
+    FileRepository.deleteRecords(FileRepository.fetchContentDocument(contentDocumentIds));
   }
 
   /**
@@ -370,11 +307,7 @@ global virtual with sharing class FileService extends AbstractService {
    **/
   global virtual void deleteContentVersionByEntityId(Id entityId) {
     list<Id> contentDocumentIds = new List<Id>();
-    for (
-      ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(
-        entityId
-      )
-    ) {
+    for (ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(entityId)) {
       contentDocumentIds.add(cdl.ContentDocumentId);
     }
     deleteContentVersions(contentDocumentIds);
@@ -387,14 +320,9 @@ global virtual with sharing class FileService extends AbstractService {
    * @return ContentDistribution
    **/
   global virtual ContentDistribution generatePublicUrl(Id contentVersionId) {
-    FileRepository.deleteRecords(
-      FileRepository.fetchContentDistributionsById(contentVersionId)
-    );
+    FileRepository.deleteRecords(FileRepository.fetchContentDistributionsById(contentVersionId));
 
-    ContentVersion cv = FileRepository.fetchContentVersionById(
-      contentVersionId,
-      true
-    );
+    ContentVersion cv = FileRepository.fetchContentVersionById(contentVersionId, true);
     ContentDistribution cd = new ContentDistribution();
     cd.Name = cv.Title;
     cd.ContentVersionId = cv.id;

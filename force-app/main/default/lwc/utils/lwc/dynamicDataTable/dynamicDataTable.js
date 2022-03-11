@@ -3,9 +3,7 @@ import { LightningElement, track, api } from "lwc";
 import getTableDetails from "@salesforce/apex/DynamicLWCDataTableController.getTableDetails";
 import { NavigationMixin } from "lightning/navigation";
 import utils from "c/generalUtils";
-export default class DynamicDataTable extends NavigationMixin(
-  LightningElement
-) {
+export default class DynamicDataTable extends NavigationMixin(LightningElement) {
   @track columns;
   @api metadataName;
   @api filterString;

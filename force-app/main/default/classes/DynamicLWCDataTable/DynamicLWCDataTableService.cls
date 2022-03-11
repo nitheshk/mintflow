@@ -28,9 +28,7 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
    **/
   public static DynamicLWCDataTableService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (DynamicLWCDataTableService) getInstance(
-        DynamicLWCDataTableService.class
-      );
+      serviceInstance = (DynamicLWCDataTableService) getInstance(DynamicLWCDataTableService.class);
     }
     return serviceInstance;
   }
@@ -83,20 +81,13 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
       JSONGenerator gen = JSON.createGenerator(false);
       gen.writeStartArray();
 
-      for (
-        DynamicDataTableItem__mdt column : dynamicDataObj.DynamicDataTableItems__r
-      ) {
+      for (DynamicDataTableItem__mdt column : dynamicDataObj.DynamicDataTableItems__r) {
         gen.writeStartObject();
         gen.writeStringField('label', column.MasterLabel);
         if (String.isBlank(column.ParentObjectAPI__c)) {
           gen.writeStringField('fieldName', column.FieldName__c);
         } else {
-          gen.writeStringField(
-            'fieldName',
-            column.ParentObjectAPI__c +
-            '.' +
-            column.FieldName__c
-          );
+          gen.writeStringField('fieldName', column.ParentObjectAPI__c + '.' + column.FieldName__c);
         }
 
         gen.writeStringField('type', column.Type__c);
@@ -124,17 +115,11 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
     String queryString = '';
     queryString += 'SELECT  ';
 
-    for (
-      DynamicDataTableItem__mdt column : dynamicDataObj.DynamicDataTableItems__r
-    ) {
+    for (DynamicDataTableItem__mdt column : dynamicDataObj.DynamicDataTableItems__r) {
       if (String.isBlank(column.ParentObjectAPI__c)) {
         queryString += column.FieldName__c + ', ';
       } else {
-        queryString +=
-          column.ParentObjectAPI__c +
-          '.' +
-          column.FieldName__c +
-          ', ';
+        queryString += column.ParentObjectAPI__c + '.' + column.FieldName__c + ', ';
       }
     }
     queryString = queryString.removeEnd(', ');
@@ -145,13 +130,7 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
     }
 
     if (!String.isBlank(QuerySortString)) {
-      queryString +=
-        ' Order By ' +
-        QuerySortString +
-        ' LIMIT ' +
-        Limitset +
-        ' OFFSET ' +
-        offset;
+      queryString += ' Order By ' + QuerySortString + ' LIMIT ' + Limitset + ' OFFSET ' + offset;
     }
     System.debug('queryString::' + queryString);
     return queryString;
@@ -171,9 +150,7 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
     gen.writeStartArray();
     for (SObject data : dataList) {
       gen.writeStartObject();
-      for (
-        DynamicDataTableItem__mdt column : dynamicDataObj.DynamicDataTableItems__r
-      ) {
+      for (DynamicDataTableItem__mdt column : dynamicDataObj.DynamicDataTableItems__r) {
         SObject target = data;
         if (!String.isBlank(column.ParentObjectAPI__c)) {
           List<String> parents = column.ParentObjectAPI__c.split('\\.');
@@ -187,12 +164,7 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
           ? String.valueOf(target.get(column.FieldName__c))
           : '';
         if (String.isnotBlank(column.ParentObjectAPI__c)) {
-          gen.writeStringField(
-            column.ParentObjectAPI__c +
-            '.' +
-            column.FieldName__c,
-            check(elementValue)
-          );
+          gen.writeStringField(column.ParentObjectAPI__c + '.' + column.FieldName__c, check(elementValue));
         } else {
           gen.writeStringField(column.FieldName__c, check(elementValue));
         }
@@ -239,9 +211,7 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
         ApexResponse response = UserAccountManagementController.fetchFinancialInstituteAccount();
         acnt = (Account) response.data;
       } else {
-        throw new CustomException(
-          System.Label.FinInst_BusinessAccountHasNotSetup
-        );
+        throw new CustomException(System.Label.FinInst_BusinessAccountHasNotSetup);
       }
     }
     return acnt.id;

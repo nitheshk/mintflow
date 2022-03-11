@@ -23,10 +23,7 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse startApplication(ApexRequest request) {
     try {
       validateRequest(request, true);
-      return ApexResponse.ok(
-        ApplicationService.getInstance()
-          .startApplication(ApexRequest.getParams())
-      );
+      return ApexResponse.ok(ApplicationService.getInstance().startApplication(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -59,14 +56,10 @@ global with sharing class ApplicationController extends AbstractController {
       log?.debug('request' + request);
       Application__c application;
       if (ApexRequest.getApplicantType() == 'Primary') {
-        application = ApplicationService.getInstance()
-          .readApplicationWithChild(applicationId);
+        application = ApplicationService.getInstance().readApplicationWithChild(applicationId);
       } else if (ApexRequest.getApplicantType() == 'Joint') {
         application = ApplicationService.getInstance()
-          .readApplicationWithChild(
-            applicationId,
-            ApexRequest.getApplicantId()
-          );
+          .readApplicationWithChild(applicationId, ApexRequest.getApplicantId());
       } else {
         throw new CustomException(System.Label.Applicant_ApplicantTypeNotFound);
       }
@@ -95,15 +88,9 @@ global with sharing class ApplicationController extends AbstractController {
     try {
       validateRequest(request);
       log?.debug('params : ' + ApexRequest.request.params);
-      Application__c application = (Application__c) SObjectConstructor.deserialize(
-        request.data,
-        Application__c.class
-      );
-      application = ApplicationService.getInstance()
-        .saveApplication(application);
-      return ApexResponse.ok(
-        ApplicationService.getInstance().updateFlowState(application)
-      );
+      Application__c application = (Application__c) SObjectConstructor.deserialize(request.data, Application__c.class);
+      application = ApplicationService.getInstance().saveApplication(application);
+      return ApexResponse.ok(ApplicationService.getInstance().updateFlowState(application));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -131,16 +118,11 @@ global with sharing class ApplicationController extends AbstractController {
       if (ApexRequest.getParams('recordId') != null) {
         recordIds.add((Id) ApexRequest.getParams('recordId'));
       } else if (ApexRequest.getParams('recordIds') != null) {
-        for (
-          Object recordId : (List<Object>) ApexRequest.getParams()
-            .get('recordIds')
-        ) {
+        for (Object recordId : (List<Object>) ApexRequest.getParams().get('recordIds')) {
           recordIds.add(String.valueOf(recordId));
         }
       }
-      return ApexResponse.ok(
-        ApplicationService.getInstance().deleteEntities(recordIds)
-      );
+      return ApexResponse.ok(ApplicationService.getInstance().deleteEntities(recordIds));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -165,8 +147,7 @@ global with sharing class ApplicationController extends AbstractController {
     try {
       validateRequest(request);
       return ApexResponse.ok(
-        ReviewInformationService.getInstance()
-          .reviewInformationSubmit(ApexRequest.getApplicationId())
+        ReviewInformationService.getInstance().reviewInformationSubmit(ApexRequest.getApplicationId())
       );
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
@@ -234,9 +215,7 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse fetchConsents(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
-        ConsentResolver.getInstance().fetchConsents(request.data)
-      );
+      return ApexResponse.ok(ConsentResolver.getInstance().fetchConsents(request.data));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);
@@ -258,9 +237,7 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse fetchSurvey(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
-        SurveyResolver.getInstance().fetchSurvey(request.data)
-      );
+      return ApexResponse.ok(SurveyResolver.getInstance().fetchSurvey(request.data));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);
@@ -283,10 +260,7 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse submitApplication(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
-        ApplicationSubmissionService.getInstance()
-          .submitApplication(request.data)
-      );
+      return ApexResponse.ok(ApplicationSubmissionService.getInstance().submitApplication(request.data));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);
@@ -309,10 +283,7 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse generateConsentPdf(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
-        ConsentResolver.getInstance()
-          .generateConsentPdf(ApexRequest.getApplicationId())
-      );
+      return ApexResponse.ok(ConsentResolver.getInstance().generateConsentPdf(ApexRequest.getApplicationId()));
     } catch (Exception ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.fail(ex);
@@ -332,15 +303,9 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse preserveApplication(ApexRequest request) {
     try {
       validateRequest(request);
-      Application__c application = (Application__c) SObjectConstructor.deserialize(
-        request.data,
-        Application__c.class
-      );
-      application = ApplicationService.getInstance()
-        .preserveApplication(application);
-      return ApexResponse.ok(
-        ApplicationService.getInstance().updateFlowState(application)
-      );
+      Application__c application = (Application__c) SObjectConstructor.deserialize(request.data, Application__c.class);
+      application = ApplicationService.getInstance().preserveApplication(application);
+      return ApexResponse.ok(ApplicationService.getInstance().updateFlowState(application));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);

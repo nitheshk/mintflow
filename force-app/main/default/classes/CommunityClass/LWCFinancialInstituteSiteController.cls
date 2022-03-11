@@ -15,9 +15,7 @@ global with sharing class LWCFinancialInstituteSiteController {
    * @return ApexResponse
    **/
   @AuraEnabled
-  global static ApexResponse createFinInstEmployeeAccount(
-    Map<String, Object> params
-  ) {
+  global static ApexResponse createFinInstEmployeeAccount(Map<String, Object> params) {
     return UserAccountManagementController.createFinInstEmployeeAccount(params);
   }
 
@@ -28,12 +26,8 @@ global with sharing class LWCFinancialInstituteSiteController {
    * @return ApexResponse
    **/
   @AuraEnabled
-  global static ApexResponse createFinancialInstituteAccount(
-    Map<String, Object> params
-  ) {
-    return UserAccountManagementController.createFinancialInstituteAccount(
-      params
-    );
+  global static ApexResponse createFinancialInstituteAccount(Map<String, Object> params) {
+    return UserAccountManagementController.createFinancialInstituteAccount(params);
   }
 
   /**
@@ -55,9 +49,7 @@ global with sharing class LWCFinancialInstituteSiteController {
   @AuraEnabled
   public static ApexResponse retrieveEmployees(Map<String, Object> params) {
     try {
-      return ApexResponse.ok(
-        SearchService.getInstance().retrieveEmployees(params)
-      );
+      return ApexResponse.ok(SearchService.getInstance().retrieveEmployees(params));
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
@@ -75,9 +67,7 @@ global with sharing class LWCFinancialInstituteSiteController {
     try {
       log?.debug('retrieve Member ::' + params);
 
-      return ApexResponse.ok(
-        SearchService.getInstance().retrieveApplicants(params)
-      );
+      return ApexResponse.ok(SearchService.getInstance().retrieveApplicants(params));
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
@@ -96,9 +86,7 @@ global with sharing class LWCFinancialInstituteSiteController {
   public static ApexResponse retrieveApplications(Map<String, Object> params) {
     try {
       log?.debug('retrieve Applications ::' + params);
-      return ApexResponse.ok(
-        SearchService.getInstance().retrieveApplications(params)
-      );
+      return ApexResponse.ok(SearchService.getInstance().retrieveApplications(params));
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.exception(ex);
@@ -115,9 +103,7 @@ global with sharing class LWCFinancialInstituteSiteController {
   @AuraEnabled(cacheable=true)
   global static ApexResponse fetchPickListValues(Map<String, Object> params) {
     try {
-      return ApexResponse.ok(
-        FinancialInstituteSiteService.getInstance().fetchPickListValues(params)
-      );
+      return ApexResponse.ok(FinancialInstituteSiteService.getInstance().fetchPickListValues(params));
     } catch (Exception e) {
       throw new AuraHandledException(e.getMessage());
     }

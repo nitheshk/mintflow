@@ -31,9 +31,7 @@ global virtual with sharing class TwillioProvider extends AbstractService {
    * @param Map<String object> params
    * @return virtual
    **/
-  global virtual HttpBuilder.Response sendMessageUsingTwillio(
-    Map<String, object> params
-  ) {
+  global virtual HttpBuilder.Response sendMessageUsingTwillio(Map<String, object> params) {
     String requestBody =
       'From=' +
       EncodingUtil.urlEncode(HttpBuilder.getApiConstant('FromPhone'), 'UTF-8') +
@@ -45,21 +43,14 @@ global virtual with sharing class TwillioProvider extends AbstractService {
     log?.debug(' The request body is ' + requestBody);
     flow.setSubFlowRequest(requestBody);
 
-    HttpResponse response = HttpBuilder.httpCallOut(
-      requestBody,
-      getHeader(params)
-    );
+    HttpResponse response = HttpBuilder.httpCallOut(requestBody, getHeader(params));
     flow.setSubFlowResponse(response.getBody());
     log?.debug(' The response body is ' + response.getBody());
 
     if (response.getStatusCode() != 200 && response.getStatusCode() != 201) {
       throw new CustomException(response.getStatus());
     }
-    return HttpBuilder.buildResponse(
-      response.getStatusCode(),
-      response.getStatus(),
-      response.getBody()
-    );
+    return HttpBuilder.buildResponse(response.getStatusCode(), response.getStatus(), response.getBody());
   }
 
   /**
@@ -70,24 +61,14 @@ global virtual with sharing class TwillioProvider extends AbstractService {
    **/
   private Map<String, String> getHeader(Map<String, object> params) {
     Map<String, String> header = new Map<String, String>();
-    header.put(
-      'X-Twilio-Client',
-      'salesforce-' + HttpBuilder.getApiConstant('Version')
-    );
-    header.put(
-      'User-Agent',
-      'twilio-salesforce-' + HttpBuilder.getApiConstant('Version')
-    );
+    header.put('X-Twilio-Client', 'salesforce-' + HttpBuilder.getApiConstant('Version'));
+    header.put('User-Agent', 'twilio-salesforce-' + HttpBuilder.getApiConstant('Version'));
     header.put('Accept', 'application/json');
     header.put(
       'Authorization',
       'Basic ' +
       EncodingUtil.base64Encode(
-        Blob.valueOf(
-          HttpBuilder.getApiConstant('Twillio_Account') +
-          ':' +
-          HttpBuilder.getApiConstant('Twillio_Token')
-        )
+        Blob.valueOf(HttpBuilder.getApiConstant('Twillio_Account') + ':' + HttpBuilder.getApiConstant('Twillio_Token'))
       )
     );
     return header;

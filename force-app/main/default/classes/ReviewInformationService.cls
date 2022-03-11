@@ -21,9 +21,7 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
    **/
   public static ReviewInformationService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (ReviewInformationService) getInstance(
-        ReviewInformationService.class
-      );
+      serviceInstance = (ReviewInformationService) getInstance(ReviewInformationService.class);
     }
     return serviceInstance;
   }
@@ -36,18 +34,14 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
    **/
   global virtual Application__c reviewInformationSubmit(Id applicationId) {
     log?.fine('Inside reviewInformationSubmit');
-    Application__c application = ApplicationRepository.readApplicationWithApplicants(
-      applicationId
-    );
+    Application__c application = ApplicationRepository.readApplicationWithApplicants(applicationId);
 
     String applicantType = ApexRequest.getApplicantType();
 
     if (applicantType == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
       // send email to primary and joint
       this.primaryConsumerFlow(application);
-    } else if (
-      applicantType == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-    ) {
+    } else if (applicantType == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE) {
       // send email to primary on completion
       jointConsumerFlow(application);
     }
@@ -61,9 +55,7 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
    * @param Application__c application
    * @return Application__c
    **/
-  global virtual Application__c primaryConsumerFlow(
-    Application__c application
-  ) {
+  global virtual Application__c primaryConsumerFlow(Application__c application) {
     log?.info('Inside primaryConsumerFlow');
     Applicant__c primaryApplicant;
     List<mflow__Applicant__c> jointApplicants = new List<mflow__Applicant__c>();
@@ -73,15 +65,9 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     }
 
     for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         primaryApplicant = applicant;
-      } else if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-      ) {
+      } else if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE) {
         jointApplicants.add(applicant);
       }
     }
@@ -101,26 +87,15 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
       application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       //1. Push Primary applicant to RPA Queue
       // Need to move future thr is dml operation before this
-      HttpBuilder.Response response = RpaProcessService.getInstance()
-        .scheduleApplication(application);
+      HttpBuilder.Response response = RpaProcessService.getInstance().scheduleApplication(application);
       if (response.statusCode == 400) {
         application.Stage__c = 'Exception';
         NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onExceptionKycReviewSubmit',
-            application.Id,
-            application.Name,
-            response.status
-          );
+          .dispatchKycNotification('onExceptionKycReviewSubmit', application.Id, application.Name, response.status);
       } else {
         application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
         NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onSuccessKycReviewSubmit',
-            application.Id,
-            application.Name,
-            null
-          );
+          .dispatchKycNotification('onSuccessKycReviewSubmit', application.Id, application.Name, null);
       }
       //2. Send notification Primary applicant with resume link
       CustomerEmailService.getInstance()
@@ -136,8 +111,7 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
           'PrimaryReviewInformationWaiting'
         );
       //2. Send Email to Joint with resume link
-      CustomerEmailService.getInstance()
-        .reviewInformationSubmitted(jointApplicants, 'JointStartApplication');
+      CustomerEmailService.getInstance().reviewInformationSubmitted(jointApplicants, 'JointStartApplication');
     }
 
     ApplicationRepository.upsertRecords(application.Applicants__r);
@@ -163,15 +137,9 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     }
 
     for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         primaryApplicant = applicant;
-      } else if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-      ) {
+      } else if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE) {
         jointApplicants.add(applicant);
         // mark current joint applicant as submitted for review
         if (applicant.Id == ApexRequest.getApplicantId()) {
@@ -181,9 +149,7 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     }
 
     Boolean isFlowCompleted = true;
-    if (
-      primaryApplicant.Status__c != ApplicationConstant.SUBMITTED_FOR_REVIEW
-    ) {
+    if (primaryApplicant.Status__c != ApplicationConstant.SUBMITTED_FOR_REVIEW) {
       isFlowCompleted = false;
     }
     //check all joint application has completed or If no joint present isFlowCompleted will always true
@@ -197,37 +163,24 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
       //Mark Application to submitted for review
       application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
       // Need to move future thr is dml operation before this
-      HttpBuilder.Response response = RpaProcessService.getInstance()
-        .scheduleApplication(application);
+      HttpBuilder.Response response = RpaProcessService.getInstance().scheduleApplication(application);
       if (response.statusCode == 400) {
         application.Stage__c = 'Exception';
         NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onExceptionKycReviewSubmit',
-            application.Id,
-            application.Name,
-            response.status
-          );
+          .dispatchKycNotification('onExceptionKycReviewSubmit', application.Id, application.Name, response.status);
       } else {
         application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
         NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onSuccessKycReviewSubmit',
-            application.Id,
-            application.Name,
-            null
-          );
+          .dispatchKycNotification('onSuccessKycReviewSubmit', application.Id, application.Name, null);
       }
       // Send All Joint Completed Email to Primary and Application under process
-      CustomerEmailService.getInstance()
-        .primaryReviewInformationCompleted(primaryApplicant);
+      CustomerEmailService.getInstance().primaryReviewInformationCompleted(primaryApplicant);
     }
 
     ApplicationRepository.upsertRecords(application.Applicants__r);
     ApplicationRepository.upsertRecord(application);
     log?.info('Completed jointConsumerFlow');
-    return ApplicationService.getInstance()
-      .readApplicationWithChild(application.Id, ApexRequest.getApplicantId());
+    return ApplicationService.getInstance().readApplicationWithChild(application.Id, ApexRequest.getApplicantId());
   }
   /**
    * @description Primary Review Submit action
@@ -237,9 +190,7 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
    **/
   global virtual Application__c resubmitApplicationForReview(Id applicationId) {
     log?.info('Inside resubmitApplicationForReview');
-    Application__c application = ApplicationRepository.readApplicationWithApplicants(
-      applicationId
-    );
+    Application__c application = ApplicationRepository.readApplicationWithApplicants(applicationId);
     if (application.Applicants__r.isEmpty()) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
@@ -251,15 +202,13 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
 
     //Add application to Loan Queue
-    HttpBuilder.Response response = RpaProcessService.getInstance()
-      .scheduleApplication(application);
+    HttpBuilder.Response response = RpaProcessService.getInstance().scheduleApplication(application);
     if (response.statusCode != 201) {
       throw new CustomException('Failed to add to queue');
     }
     ApplicationRepository.upsertRecords(application.Applicants__r);
     ApplicationRepository.upsertRecord(application);
     log?.info('Completed resubmitApplicationForReview');
-    return ApplicationService.getInstance()
-      .readApplicationWithChild(application.Id);
+    return ApplicationService.getInstance().readApplicationWithChild(application.Id);
   }
 }

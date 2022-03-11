@@ -24,9 +24,7 @@
     </values>
     <values>
         <field>EndPoint__c</field>
-        <value
-      xsi:type="xsd:string"
-    >callout:mflow__Plaid/item/public_token/exchange</value>
+        <value xsi:type="xsd:string">callout:mflow__Plaid/item/public_token/exchange</value>
     </values>
     <values>
         <field>Method__c</field>

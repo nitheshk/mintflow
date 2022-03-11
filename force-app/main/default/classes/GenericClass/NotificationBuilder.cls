@@ -24,9 +24,7 @@ global virtual with sharing class NotificationBuilder extends AbstractService {
    **/
   public static NotificationBuilder getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (NotificationBuilder) getInstance(
-        NotificationBuilder.class
-      );
+      serviceInstance = (NotificationBuilder) getInstance(NotificationBuilder.class);
     }
     return serviceInstance;
   }
@@ -57,12 +55,7 @@ global virtual with sharing class NotificationBuilder extends AbstractService {
    * @param String body  - The body of the notification, as it will be seen by recipients. Maximum characters: 750
    * @param Set<String> targetUserIds  - UserId ,AccountId ,OpportunityId ,GroupId ,QueueId
    **/
-  global static void bellNotification(
-    Id entityId,
-    String title,
-    String body,
-    String recipientsId
-  ) {
+  global static void bellNotification(Id entityId, String title, String body, String recipientsId) {
     bellNotification(entityId, title, body, new Set<String>{ recipientsId });
   }
 
@@ -74,18 +67,10 @@ global virtual with sharing class NotificationBuilder extends AbstractService {
    * @param String body  - The body of the notification, as it will be seen by recipients. Maximum characters: 750
    * @param Set<String> recipientsIds  - UserId ,AccountId ,OpportunityId ,GroupId ,QueueId
    **/
-  global static void bellNotification(
-    Id entityId,
-    String title,
-    String body,
-    Set<String> recipientsIds
-  ) {
+  global static void bellNotification(Id entityId, String title, String body, Set<String> recipientsIds) {
     try {
       if (String.isBlank(notificationTypeId)) {
-        notificationTypeId = CommonRepository.readNotificationType(
-            'MintFlowNotification'
-          )
-          ?.Id;
+        notificationTypeId = CommonRepository.readNotificationType('MintFlowNotification')?.Id;
       }
       title = title?.left(250);
       body = body?.left(750);
@@ -128,11 +113,7 @@ global virtual with sharing class NotificationBuilder extends AbstractService {
    * @param String body
    * @param String linkUrl
    **/
-  global static void chatterLinkMessagePost(
-    Id entityId,
-    String body,
-    String linkUrl
-  ) {
+  global static void chatterLinkMessagePost(Id entityId, String body, String linkUrl) {
     try {
       FeedItem post = new FeedItem();
       post.ParentId = entityId;
@@ -153,11 +134,7 @@ global virtual with sharing class NotificationBuilder extends AbstractService {
    * @param String body
    * @param FileDTO fileDto
    **/
-  global static void chatterContentDataPost(
-    Id entityId,
-    String body,
-    FileDTO fileDto
-  ) {
+  global static void chatterContentDataPost(Id entityId, String body, FileDTO fileDto) {
     try {
       FeedItem post = new FeedItem();
       post.ParentId = entityId;

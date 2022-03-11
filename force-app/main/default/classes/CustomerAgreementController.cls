@@ -16,9 +16,7 @@ global with sharing class CustomerAgreementController {
    **/
 
   global CustomerAgreementController() {
-    applicationId = String.escapeSingleQuotes(
-      ApexPages.CurrentPage().getparameters().get('id')
-    );
+    applicationId = String.escapeSingleQuotes(ApexPages.CurrentPage().getparameters().get('id'));
     application = readApplicationWithChild(applicationId);
     fetchSignatureData();
   }
@@ -29,9 +27,7 @@ global with sharing class CustomerAgreementController {
    * @return virtual
    **/
   global Application__c readApplicationWithChild(Id applicationId) {
-    Application__c application = SubmissionRepository.readApplicationWithChild(
-      applicationId
-    );
+    Application__c application = SubmissionRepository.readApplicationWithChild(applicationId);
 
     List<Applicant__c> applicants = SubmissionRepository.readApplicantsWithIdentityAddress(
       new Map<Id, SObject>(application.Applicants__r).keySet()
@@ -47,23 +43,13 @@ global with sharing class CustomerAgreementController {
    **/
   global void fetchSignatureData() {
     for (Applicant__c applicant : this.application.Applicants__r) {
-      if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         List<ContentVersion> cvs = FileService.getInstance()
-          .fetchContentVersionByFileType(
-            applicant.id,
-            'Identity',
-            'Signature',
-            false
-          );
+          .fetchContentVersionByFileType(applicant.id, 'Identity', 'Signature', false);
         system.debug('cvs :' + cvs);
         if (!cvs.isEmpty()) {
           //primarySignatureImg = cvs[0].ContentDocumentId;
-          primarySignatureImg =
-            'data:image/png;charset=utf-8;base64, ' +
-            EncodingUtil.base64Encode(cvs[0].versionData);
+          primarySignatureImg = 'data:image/png;charset=utf-8;base64, ' + EncodingUtil.base64Encode(cvs[0].versionData);
         }
         break;
       }

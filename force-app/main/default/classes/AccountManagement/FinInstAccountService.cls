@@ -21,9 +21,7 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
    **/
   public static FinInstAccountService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (FinInstAccountService) getInstance(
-        FinInstAccountService.class
-      );
+      serviceInstance = (FinInstAccountService) getInstance(FinInstAccountService.class);
     }
     return serviceInstance;
   }
@@ -39,9 +37,7 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
     ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getOrgDefaults();
     String accountId = appConfig?.FinancialInstituteAccountId__c;
 
-    return (accountId == null)
-      ? null
-      : FinancialInstituteSiteRepository.fetchAccountById(accountId);
+    return (accountId == null) ? null : FinancialInstituteSiteRepository.fetchAccountById(accountId);
   }
 
   /**
@@ -50,18 +46,11 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
    * @param Map<String Object> params
    * @return virtual
    **/
-  global virtual Account createFinancialInstituteAccount(
-    Map<String, Object> params
-  ) {
-    Account accountRecord = (Account) JSON.deserialize(
-      JSON.serialize(params.get('account')),
-      Account.class
-    );
+  global virtual Account createFinancialInstituteAccount(Map<String, Object> params) {
+    Account accountRecord = (Account) JSON.deserialize(JSON.serialize(params.get('account')), Account.class);
 
     if (accountRecord == null) {
-      throw new CustomException(
-        System.Label.FinInst_AccountRecordRecordNotFound
-      );
+      throw new CustomException(System.Label.FinInst_AccountRecordRecordNotFound);
     }
 
     accountRecord.UserAccountType__c = FinancialInstituteConstants.FIN_INST_ACOUNT_TYPE;
@@ -76,13 +65,8 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
 
   //************ FinInstSite Employee Account Creation  ****************/
 
-  global virtual object createFinInstEmployeeUserAccount(
-    Map<String, Object> params
-  ) {
-    Contact employeeContactObj = (Contact) JSON.deserialize(
-      JSON.serialize(params.get('contact')),
-      Contact.class
-    );
+  global virtual object createFinInstEmployeeUserAccount(Map<String, Object> params) {
+    Contact employeeContactObj = (Contact) JSON.deserialize(JSON.serialize(params.get('contact')), Contact.class);
     system.debug('employeeContactObj : ' + JSON.serialize(employeeContactObj));
 
     if (employeeContactObj == null) {
@@ -94,22 +78,14 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
       Account businessAccountObj = this.fetchFinancialInstituteAccount();
 
       if (businessAccountObj == null) {
-        throw new CustomException(
-          System.Label.FinInst_BusinessAccountHasNotSetup
-        );
+        throw new CustomException(System.Label.FinInst_BusinessAccountHasNotSetup);
       }
       //Process Contact
-      employeeContactObj = this.createFinInstEmployeeContact(
-        employeeContactObj,
-        businessAccountObj
-      );
+      employeeContactObj = this.createFinInstEmployeeContact(employeeContactObj, businessAccountObj);
 
       system.debug('Contact Id : ' + employeeContactObj.id);
       //Create an user for Contact on approval
-      User userObj = this.createFinInstEmployeeUser(
-        employeeContactObj,
-        businessAccountObj
-      );
+      User userObj = this.createFinInstEmployeeUser(employeeContactObj, businessAccountObj);
       //yet to done assigning permission set
       return userObj;
     } catch (Exception ex) {
@@ -124,10 +100,7 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
    * @param Contact employeeContactObj
    * @return Contact
    **/
-  global virtual Contact createFinInstEmployeeContact(
-    Contact employeeContactObj,
-    Account businessAccountObj
-  ) {
+  global virtual Contact createFinInstEmployeeContact(Contact employeeContactObj, Account businessAccountObj) {
     employeeContactObj.AccountId = businessAccountObj?.id;
     employeeContactObj.LeadSource = 'Partner Referral';
     employeeContactObj.UserContactType__c = FinancialInstituteConstants.FIN_INST_EMPLOYEE_CONTACT_TYPE;
@@ -141,19 +114,13 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
    * @param Contact employeeContactObj
    * @return User
    **/
-  global virtual User createFinInstEmployeeUser(
-    Contact employeeContactObj,
-    Account businessAccountObj
-  ) {
+  global virtual User createFinInstEmployeeUser(Contact employeeContactObj, Account businessAccountObj) {
     User userObj = new User();
     Long currentTimeStamp = System.currentTimeMillis();
     //special use case
     userObj = UserUtils.assignProfileIdToUser(
       userObj,
-      UserAccountManagementRepository.readProfileByName(
-          FinancialInstituteConstants.FIN_INST_EMPLOYEE_USER_PROFILE
-        )
-        ?.Id
+      UserAccountManagementRepository.readProfileByName(FinancialInstituteConstants.FIN_INST_EMPLOYEE_USER_PROFILE)?.Id
     );
     userObj.ContactId = employeeContactObj.Id;
     userObj.FirstName = employeeContactObj.FirstName;
@@ -191,26 +158,17 @@ global virtual with sharing class FinInstAccountService extends AbstractService 
    * @param Id userObj
    * @return virtual
    **/
-  global virtual List<PermissionSetAssignment> assignCommunityPermissionSet(
-    Id userId
-  ) {
+  global virtual List<PermissionSetAssignment> assignCommunityPermissionSet(Id userId) {
     //Permission Set Name need to move to customer setting
 
     // #Issue commmunity user  Does have access to createfor Lead
     List<PermissionSet> permissionSetList = UserAccountManagementRepository.readPermissionSetByNames(
-      new List<String>{
-        FinancialInstituteConstants.FIN_INST_COMMUNITY_PEMRISSION_SET
-      }
+      new List<String>{ FinancialInstituteConstants.FIN_INST_COMMUNITY_PEMRISSION_SET }
     );
 
     List<PermissionSetAssignment> permissionSetAssignmentList = new List<PermissionSetAssignment>();
     for (PermissionSet ps : permissionSetList) {
-      permissionSetAssignmentList.add(
-        new PermissionSetAssignment(
-          PermissionSetId = ps.Id,
-          AssigneeId = userId
-        )
-      );
+      permissionSetAssignmentList.add(new PermissionSetAssignment(PermissionSetId = ps.Id, AssigneeId = userId));
     }
     UserAccountManagementRepository.insertRecords(permissionSetAssignmentList);
     return permissionSetAssignmentList;

@@ -38,11 +38,7 @@ global virtual with sharing class SearchService extends AbstractService {
       JSON.serialize(params.get('searchFilter')),
       map<string, string>.class
     );
-    return SearchRepository.retrieveEmployees(
-      searchString,
-      searchFilter,
-      userContactType
-    );
+    return SearchRepository.retrieveEmployees(searchString, searchFilter, userContactType);
   }
 
   /**
@@ -51,9 +47,7 @@ global virtual with sharing class SearchService extends AbstractService {
    * @param Map<String Object> params
    * @return virtual
    **/
-  global virtual List<Applicant__c> retrieveApplicants(
-    Map<String, Object> params
-  ) {
+  global virtual List<Applicant__c> retrieveApplicants(Map<String, Object> params) {
     String searchString = (String) params.get('searchString');
     map<string, string> searchFilter = (map<string, string>) JSON.deserialize(
       JSON.serialize(params.get('searchFilter')),
@@ -68,9 +62,7 @@ global virtual with sharing class SearchService extends AbstractService {
    * @param Map<String Object> params
    * @return virtual
    **/
-  global virtual List<Application__c> retrieveApplications(
-    Map<String, Object> params
-  ) {
+  global virtual List<Application__c> retrieveApplications(Map<String, Object> params) {
     String searchString = (String) params.get('searchString');
     map<string, string> searchFilter = (map<string, string>) JSON.deserialize(
       JSON.serialize(params.get('searchFilter')),

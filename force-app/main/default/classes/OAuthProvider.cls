@@ -57,10 +57,7 @@ global class OAuthProvider extends Auth.AuthProviderPluginClass {
    * @param String stateToPropagate
    * @return PageReference
    **/
-  public PageReference initiate(
-    Map<string, string> config,
-    String stateToPropagate
-  ) {
+  public PageReference initiate(Map<string, string> config, String stateToPropagate) {
     System.debug('initiate');
     final PageReference pageRef = new PageReference(getCallbackUrl(config)); //NOSONAR
     pageRef.getParameters().put('state', stateToPropagate);
@@ -124,16 +121,10 @@ global class OAuthProvider extends Auth.AuthProviderPluginClass {
    * @param String refreshToken
    * @return Auth.OAuthRefreshResult
    **/
-  public override Auth.OAuthRefreshResult refresh(
-    Map<String, String> config,
-    String refreshToken
-  ) {
+  public override Auth.OAuthRefreshResult refresh(Map<String, String> config, String refreshToken) {
     System.debug('refresh');
     final TokenResponse response = retrieveToken(config);
-    return new Auth.OAuthRefreshResult(
-      response.access_token,
-      response.token_type
-    );
+    return new Auth.OAuthRefreshResult(response.access_token, response.token_type);
   }
 
   /**
@@ -145,10 +136,7 @@ global class OAuthProvider extends Auth.AuthProviderPluginClass {
    * @param Auth.AuthProviderTokenResponse response
    * @return Auth.UserData
    **/
-  public Auth.UserData getUserInfo(
-    Map<string, string> config,
-    Auth.AuthProviderTokenResponse response
-  ) {
+  public Auth.UserData getUserInfo(Map<string, string> config, Auth.AuthProviderTokenResponse response) {
     System.debug('getUserInfo-was-called');
     final TokenResponse token = retrieveToken(config);
     final Auth.UserData userData = new Auth.UserData(
@@ -176,15 +164,11 @@ global class OAuthProvider extends Auth.AuthProviderPluginClass {
   private TokenResponse retrieveToken(Map<String, String> config) {
     System.debug('retrieveToken');
 
-    final Boolean useJSONEncoding = Boolean.valueOf(
-      config.get(MDT_FIELD_USE_JSON)
-    );
+    final Boolean useJSONEncoding = Boolean.valueOf(config.get(MDT_FIELD_USE_JSON));
 
     final HttpRequest req = new HttpRequest();
 
-    final PageReference endpoint = new PageReference(
-      config.get(MDT_FIELD_AUTHTOKEN_URL)
-    ); //NOSONAR -- Protected by RemoteSite Setting
+    final PageReference endpoint = new PageReference(config.get(MDT_FIELD_AUTHTOKEN_URL)); //NOSONAR -- Protected by RemoteSite Setting
     if (!useJSONEncoding) {
       // Including the Query String breaks JSON encoded OAuth
       endpoint.getParameters().put('grant_type', GRANT_TYPE_CLIENT_CREDS);
@@ -205,19 +189,12 @@ global class OAuthProvider extends Auth.AuthProviderPluginClass {
 
     final HTTPResponse res = new Http().send(req);
 
-    System.debug(
-      'Token Response Status: ' +
-      res.getStatus() +
-      ' ' +
-      res.getStatusCode()
-    );
+    System.debug('Token Response Status: ' + res.getStatus() + ' ' + res.getStatusCode());
 
     if (res.getStatusCode() == 200) {
       TokenResponse token = deserializeToken(res.getBody());
       // Ensure values for key fields
-      token.token_type = (token.token_type == null)
-        ? DEFAULT_TOKEN_TYPE
-        : token.token_type;
+      token.token_type = (token.token_type == null) ? DEFAULT_TOKEN_TYPE : token.token_type;
       return token;
     } else {
       return deserializeToken(res.getBody());
@@ -229,14 +206,9 @@ global class OAuthProvider extends Auth.AuthProviderPluginClass {
   private TokenResponse deserializeToken(String responseBody) {
     System.debug('token response:' + responseBody);
     // use default parsing for everything we can.
-    TokenResponse parsedResponse = (TokenResponse) System.JSON.deserialize(
-      responseBody,
-      TokenResponse.class
-    );
+    TokenResponse parsedResponse = (TokenResponse) System.JSON.deserialize(responseBody, TokenResponse.class);
     // explicitly parse out the developer.email property because it's an illegal identifier
-    Map<String, Object> props = (Map<String, Object>) System.JSON.deserializeUntyped(
-      responseBody
-    );
+    Map<String, Object> props = (Map<String, Object>) System.JSON.deserializeUntyped(responseBody);
     parsedResponse.developer_email = (String) props.get('developer.email');
     return parsedResponse;
   }
@@ -260,9 +232,7 @@ global class OAuthProvider extends Auth.AuthProviderPluginClass {
       params.put(SCOPE_PARAM, scope);
     }
 
-    return encoding == ENCODING_JSON
-      ? encodeAsJSON(params)
-      : encodeAsURL(params);
+    return encoding == ENCODING_JSON ? encodeAsJSON(params) : encodeAsURL(params);
   }
 
   /**

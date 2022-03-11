@@ -81,9 +81,7 @@ export default class ResumeAppplication extends LightningElement {
    * Send Resume Link
    */
   sendResumeEmail() {
-    if (
-      utils.checkAllValidations(this.template.querySelectorAll(".validation"))
-    ) {
+    if (utils.checkAllValidations(this.template.querySelectorAll(".validation"))) {
       this.showSpinner = true;
       this.disableButton = true;
       sendResumeEmail({

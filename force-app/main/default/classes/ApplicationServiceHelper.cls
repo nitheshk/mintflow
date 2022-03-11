@@ -21,9 +21,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
    **/
   public static ApplicationServiceHelper getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (ApplicationServiceHelper) getInstance(
-        ApplicationServiceHelper.class
-      );
+      serviceInstance = (ApplicationServiceHelper) getInstance(ApplicationServiceHelper.class);
     }
     return serviceInstance;
   }
@@ -41,9 +39,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
       ipAddress = ApexPages.currentPage().getHeaders().get('True-Client-IP');
       // X-Salesforce-SIP has the value when no caching integration or via secure URL.
       if (String.isBlank(ipAddress)) {
-        ipAddress = ApexPages.currentPage()
-          .getHeaders()
-          .get('X-Salesforce-SIP');
+        ipAddress = ApexPages.currentPage().getHeaders().get('X-Salesforce-SIP');
       }
       // get IP address when no caching (sandbox, dev, secure urls)
       if (String.isBlank(ipAddress)) {
@@ -60,9 +56,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
    * @param Application__c application
    * @return Application__c
    **/
-  global virtual Application__c resolveBranchLocation(
-    Application__c application
-  ) {
+  global virtual Application__c resolveBranchLocation(Application__c application) {
     application.BranchCode__c = '0001';
     application.BranchName__c = 'Main Branch';
     return application;
@@ -75,23 +69,14 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
    * @param Applicant__c applicant
    * @return Application__c
    **/
-  global virtual Application__c updateFlowState(
-    Application__c application,
-    List<Applicant__c> applicants
-  ) {
+  global virtual Application__c updateFlowState(Application__c application, List<Applicant__c> applicants) {
     if (ApexRequest.getApplicantType() == 'Primary') {
       for (Applicant__c applicant : applicants) {
-        if (
-          applicant.mflow__ApplicantType__c ==
-          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-        ) {
+        if (applicant.mflow__ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
           applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
           applicant.FlowType__c = ApexRequest.getFlowType();
           applicant.sessionExpireTime__c = Datetime.now()
-            .addMinutes(
-              (Integer) ApplicationConfiguration__c.getOrgDefaults()
-                .SessionExpirationTime__c
-            );
+            .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().SessionExpirationTime__c);
           ApplicationRepository.UpsertRecord(applicant);
           break;
         }
@@ -105,10 +90,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
           applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
           applicant.FlowType__c = ApexRequest.getFlowType();
           applicant.sessionExpireTime__c = Datetime.now()
-            .addMinutes(
-              (Integer) ApplicationConfiguration__c.getOrgDefaults()
-                .SessionExpirationTime__c
-            );
+            .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().SessionExpirationTime__c);
           ApplicationRepository.UpsertRecord(applicant);
           break;
         }

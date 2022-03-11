@@ -55,28 +55,12 @@ global inherited sharing class ApexUtils {
         }
       } else {
         if (String.isNotBlank(dynamicString)) {
-          dynamicString =
-            dynamicString +
-            ' AND ' +
-            mapValue +
-            ' like \'' +
-            '%' +
-            keyValue +
-            '%' +
-            '\'';
+          dynamicString = dynamicString + ' AND ' + mapValue + ' like \'' + '%' + keyValue + '%' + '\'';
         } else {
-          dynamicString =
-            mapValue +
-            ' like \'' +
-            '%' +
-            String.escapeSingleQuotes(keyValue) +
-            '%' +
-            '\'';
+          dynamicString = mapValue + ' like \'' + '%' + String.escapeSingleQuotes(keyValue) + '%' + '\'';
         }
       }
-      if (
-        String.isnotBlank(dynamicString) && String.isNotBlank(dateCondition)
-      ) {
+      if (String.isnotBlank(dynamicString) && String.isNotBlank(dateCondition)) {
         dynamicString = dynamicString + ' AND ' + dateCondition;
       } else {
         if (String.isNotBlank(dateCondition)) {

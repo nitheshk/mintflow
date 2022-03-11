@@ -12,9 +12,7 @@
     </values>
     <values>
         <field>Description__c</field>
-        <value
-      xsi:type="xsd:string"
-    >Version for connecting to Salesforce</value>
+        <value xsi:type="xsd:string">Version for connecting to Salesforce</value>
     </values>
     <values>
         <field>Value__c</field>

@@ -8,9 +8,7 @@
     <protected>false</protected>
     <values>
         <field>Description__c</field>
-        <value
-      xsi:type="xsd:string"
-    >IdentificationDocument Trigger Handler</value>
+        <value xsi:type="xsd:string">IdentificationDocument Trigger Handler</value>
     </values>
     <values>
         <field>Disabled__c</field>
@@ -30,8 +28,6 @@
     </values>
     <values>
         <field>TriggerHandlerName__c</field>
-        <value
-      xsi:type="xsd:string"
-    >IdentificationDocumentTriggerHandler</value>
+        <value xsi:type="xsd:string">IdentificationDocumentTriggerHandler</value>
     </values>
 </CustomMetadata>

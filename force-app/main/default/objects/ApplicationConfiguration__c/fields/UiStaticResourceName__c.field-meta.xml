@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>UiStaticResourceName__c</fullName>
-    <description
-  >Static Resource Name Need to Be rendered for pages</description>
+    <description>Static Resource Name Need to Be rendered for pages</description>
     <externalId>false</externalId>
     <label>Ui Static Resource Name</label>
     <length>255</length>

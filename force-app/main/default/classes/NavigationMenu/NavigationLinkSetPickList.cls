@@ -13,10 +13,7 @@ global with sharing class NavigationLinkSetPickList extends VisualEditor.Dynamic
    * @return VisualEditor.DataRow
    **/
   global override VisualEditor.DataRow getDefaultValue() {
-    VisualEditor.DataRow defaultValue = new VisualEditor.DataRow(
-      'Default Navigation',
-      'Default Navigation'
-    );
+    VisualEditor.DataRow defaultValue = new VisualEditor.DataRow('Default Navigation', 'Default Navigation');
     return defaultValue;
   }
 
@@ -29,9 +26,7 @@ global with sharing class NavigationLinkSetPickList extends VisualEditor.Dynamic
     VisualEditor.DynamicPickListRows picklistValues = new VisualEditor.DynamicPickListRows();
 
     List<NavigationLinkSet> navigationLinkSetList = (List<NavigationLinkSet>) DatabaseUtils.getRecords(
-      Query.newInstance(NavigationLinkSet.SObjectType)
-        .addFields('MasterLabel,DeveloperName')
-        .toString()
+      Query.newInstance(NavigationLinkSet.SObjectType).addFields('MasterLabel,DeveloperName').toString()
     );
 
     for (NavigationLinkSet navigationLinkSet : navigationLinkSetList) {

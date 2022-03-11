@@ -93,10 +93,8 @@
         <categories>Info</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription
-    >Financial Business Account has not setup</shortDescription>
-        <value
-    >Financial Business Account has not setup, Please contact your admin</value>
+        <shortDescription>Financial Business Account has not setup</shortDescription>
+        <value>Financial Business Account has not setup, Please contact your admin</value>
     </labels>
     <labels>
         <fullName>FinInst_ContactRecordNotFound</fullName>
@@ -241,8 +239,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Twillio Otp Format</shortDescription>
-        <value
-    >{OTP} is OTP for your MINTFLOW, OTP valid for 2 minutes. Do not share this OTP with anyone.
+        <value>{OTP} is OTP for your MINTFLOW, OTP valid for 2 minutes. Do not share this OTP with anyone.
 
 @Digitalalign.com #{OTP}</value>
     </labels>

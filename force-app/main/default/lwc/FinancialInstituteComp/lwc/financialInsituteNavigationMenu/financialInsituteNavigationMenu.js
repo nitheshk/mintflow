@@ -2,9 +2,7 @@ import { api, track } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 import menu from "c/navigationMenu";
 import lwcResource from "@salesforce/resourceUrl/LWCResource";
-export default class FinancialInsituteNavigationMenu extends NavigationMixin(
-  menu
-) {
+export default class FinancialInsituteNavigationMenu extends NavigationMixin(menu) {
   @api menuName;
   @api logoName;
   @api sectionLabel;
@@ -19,10 +17,7 @@ export default class FinancialInsituteNavigationMenu extends NavigationMixin(
   renderedCallback() {
     if (this.menuItems && this.menuItems.length > 0 && this.currentState) {
       this.menuItems.map((item) => {
-        if (
-          item.label === "Employees" &&
-          item.position == this.currentPosition
-        ) {
+        if (item.label === "Employees" && item.position == this.currentPosition) {
           this.isEmployeePage = true;
         }
         return item;

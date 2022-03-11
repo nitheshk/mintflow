@@ -26,10 +26,7 @@
   <apex:form>
     <div class="main">
       <c:DisplayImage name="MintflowLogo"></c:DisplayImage>
-      <h1
-        class="font-weight-bold mb-2 mt-3"
-        style="text-align: center; background: #757c8a"
-      >
+      <h1 class="font-weight-bold mb-2 mt-3" style="text-align: center; background: #757c8a">
         Application Information
       </h1>
       <apex:pageBlock>
@@ -77,11 +74,7 @@
         </div>
         <div>
           <h4>
-            <apex:outputText
-              style="font-style: bold"
-              value="Date : "
-              styleClass="headerStyle "
-            ></apex:outputText>
+            <apex:outputText style="font-style: bold" value="Date : " styleClass="headerStyle "></apex:outputText>
             <apex:outputText value="{0, date, MM-dd-yyyy}">
               <apex:param value="{!Today()}" />
             </apex:outputText>
@@ -89,16 +82,12 @@
         </div>
 
         <apex:repeat var="applicantVar" value="{!application.Applicants__r}">
-          <h3 style="background: #b6bdca">
-            {!applicantVar.mflow__ApplicantName__c}
-          </h3>
+          <h3 style="background: #b6bdca">{!applicantVar.mflow__ApplicantName__c}</h3>
           <table class="table" width="100% ">
             <tr style="height: 20px">
               <td width="50% ">
                 <apex:outputText value="Applicant Type : "></apex:outputText>
-                <apex:outputText
-                  value="{!applicantVar.ApplicantType__c}"
-                ></apex:outputText>
+                <apex:outputText value="{!applicantVar.ApplicantType__c}"></apex:outputText>
               </td>
               <td width="50% ">
                 <apex:outputText value="Birthdate : "></apex:outputText>
@@ -109,55 +98,37 @@
             </tr>
             <tr style="height: 20px">
               <td width="50% ">
-                <apex:outputText
-                  value="Phone: "
-                  style="font-style: bold"
-                ></apex:outputText>
-                <apex:outputText
-                  value="{!applicantVar.Phone__c}"
-                ></apex:outputText>
+                <apex:outputText value="Phone: " style="font-style: bold"></apex:outputText>
+                <apex:outputText value="{!applicantVar.Phone__c}"></apex:outputText>
               </td>
               <td width="50% ">
                 <apex:outputText value="Email : "></apex:outputText>
-                <apex:outputText
-                  value="{!applicantVar.Email__c}"
-                ></apex:outputText>
+                <apex:outputText value="{!applicantVar.Email__c}"></apex:outputText>
               </td>
             </tr>
             <tr>
               <td width="50% ">
                 <apex:outputText value="SSN : "></apex:outputText>
-                <apex:outputText
-                  value="{!applicantVar.SSN__c}"
-                ></apex:outputText>
+                <apex:outputText value="{!applicantVar.SSN__c}"></apex:outputText>
               </td>
               <td width="50% ">
                 <apex:outputText value="Relationship : "></apex:outputText>
-                <apex:outputText
-                  value="{!applicantVar.Relationship__c}"
-                ></apex:outputText>
+                <apex:outputText value="{!applicantVar.Relationship__c}"></apex:outputText>
               </td>
             </tr>
           </table>
 
-          <apex:repeat
-            var="identityVar"
-            value="{!applicantVar.mflow__IdentificationDocuments__r}"
-          >
+          <apex:repeat var="identityVar" value="{!applicantVar.mflow__IdentificationDocuments__r}">
             <h3 style="background: #f5f6f8">Identity Details</h3>
             <table class="table" width="100% ">
               <tr style="height: 20px">
                 <td width="50% ">
                   <apex:outputText value="Identity Type : "></apex:outputText>
-                  <apex:outputText
-                    value="{!identityVar.DocumentType__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="{!identityVar.DocumentType__c}"></apex:outputText>
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Document Number : "></apex:outputText>
-                  <apex:outputText
-                    value="{!identityVar.DocumentNumber__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="{!identityVar.DocumentNumber__c}"></apex:outputText>
                 </td>
               </tr>
               <tr style="height: 20px">
@@ -169,9 +140,7 @@
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Issuing Country : "></apex:outputText>
-                  <apex:outputText
-                    value="{!identityVar.IssuingCountry__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="{!identityVar.IssuingCountry__c}"></apex:outputText>
                 </td>
               </tr>
               <tr style="height: 20px">
@@ -183,36 +152,23 @@
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Issued Region : "></apex:outputText>
-                  <apex:outputText
-                    value="{!identityVar.IssuedRegion__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="{!identityVar.IssuedRegion__c}"></apex:outputText>
                 </td>
               </tr>
             </table>
           </apex:repeat>
 
-          <apex:repeat
-            var="addressVar"
-            value="{!applicantVar.ContactPointAddresses__r}"
-          >
-            <h3 style="background: #f5f6f8">
-              {!addressVar.AddressType} Address
-            </h3>
+          <apex:repeat var="addressVar" value="{!applicantVar.ContactPointAddresses__r}">
+            <h3 style="background: #f5f6f8">{!addressVar.AddressType} Address</h3>
             <table class="table" width="100% ">
               <tr style="height: 20px">
                 <td width="50% ">
                   <apex:outputText value=""></apex:outputText>
-                  <apex:outputText
-                    value="{!addressVar.Street}"
-                  ></apex:outputText>
+                  <apex:outputText value="{!addressVar.Street}"></apex:outputText>
                 </td>
                 <td width="50% ">
-                  <apex:outputText
-                    value="Occupancy Status : "
-                  ></apex:outputText>
-                  <apex:outputText
-                    value="{!addressVar.UsageType}"
-                  ></apex:outputText>
+                  <apex:outputText value="Occupancy Status : "></apex:outputText>
+                  <apex:outputText value="{!addressVar.UsageType}"></apex:outputText>
                 </td>
               </tr>
               <tr style="height: 20px">
@@ -223,71 +179,44 @@
                   ></apex:outputText>
                 </td>
                 <td width="50% ">
-                  <apex:outputText
-                    value="Occupancy Duration : "
-                  ></apex:outputText>
-                  <apex:outputText
-                    value="{!addressVar.OccupancyDuration__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="Occupancy Duration : "></apex:outputText>
+                  <apex:outputText value="{!addressVar.OccupancyDuration__c}"></apex:outputText>
                 </td>
               </tr>
             </table>
           </apex:repeat>
 
-          <apex:repeat
-            var="employmentVar"
-            value="{!applicantVar.Employments__r}"
-          >
-            <h3 style="background: #f5f6f8">
-              {!employmentVar.EmploymentType__c} Employment Details
-            </h3>
+          <apex:repeat var="employmentVar" value="{!applicantVar.Employments__r}">
+            <h3 style="background: #f5f6f8">{!employmentVar.EmploymentType__c} Employment Details</h3>
             <table class="table" width="100% ">
               <tr style="height: 20px">
                 <td width="50% ">
                   <apex:outputText value="Employer Name : "></apex:outputText>
-                  <apex:outputText
-                    value="{!employmentVar.Name}"
-                  ></apex:outputText>
+                  <apex:outputText value="{!employmentVar.Name}"></apex:outputText>
                 </td>
                 <td width="50% ">
-                  <apex:outputText
-                    value="Employment Status : "
-                  ></apex:outputText>
-                  <apex:outputText
-                    value="{!employmentVar.EmploymentStatus__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="Employment Status : "></apex:outputText>
+                  <apex:outputText value="{!employmentVar.EmploymentStatus__c}"></apex:outputText>
                 </td>
               </tr>
               <tr style="height: 20px">
                 <td width="50% ">
-                  <apex:outputText
-                    value="Gross Monthly Salary : "
-                  ></apex:outputText>
-                  <apex:outputText
-                    value="{!employmentVar.GrossMonthlySalary__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="Gross Monthly Salary : "></apex:outputText>
+                  <apex:outputText value="{!employmentVar.GrossMonthlySalary__c}"></apex:outputText>
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Income Type : "></apex:outputText>
-                  <apex:outputText
-                    value="{!employmentVar.IncomeType__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="{!employmentVar.IncomeType__c}"></apex:outputText>
                 </td>
               </tr>
               <tr style="height: 20px">
                 <td width="50% ">
                   <apex:outputText value="Position : "></apex:outputText>
-                  <apex:outputText
-                    value="{!employmentVar.Position__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="{!employmentVar.Position__c}"></apex:outputText>
                 </td>
                 <td width="50% ">
-                  <apex:outputText
-                    value="Employment Duration : "
-                  ></apex:outputText>
-                  <apex:outputText
-                    value="{!employmentVar.EmploymentDuration__c}"
-                  ></apex:outputText>
+                  <apex:outputText value="Employment Duration : "></apex:outputText>
+                  <apex:outputText value="{!employmentVar.EmploymentDuration__c}"></apex:outputText>
                 </td>
               </tr>
             </table>
@@ -296,10 +225,7 @@
         <hr />
         <div>Signature</div>
         <br />
-        <apex:outputPanel
-          layout="none"
-          rendered="{!if(primarySignatureImg==null, 'false','true')}"
-        >
+        <apex:outputPanel layout="none" rendered="{!if(primarySignatureImg==null, 'false','true')}">
           <img height="50px" width="150px" src="{!primarySignatureImg}" />
         </apex:outputPanel>
       </apex:pageBlock>

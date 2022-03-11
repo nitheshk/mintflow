@@ -21,9 +21,7 @@ global virtual with sharing class EmploymentService extends AbstractService {
    **/
   public static EmploymentService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (EmploymentService) getInstance(
-        EmploymentService.class
-      );
+      serviceInstance = (EmploymentService) getInstance(EmploymentService.class);
     }
     return serviceInstance;
   }
@@ -33,12 +31,8 @@ global virtual with sharing class EmploymentService extends AbstractService {
    * @author Digital Align Team | 10-26-2021
    * @param applicantId applicantId
    **/
-  global virtual String atomicAuthenticate(
-    String applicantId,
-    String employerId
-  ) {
-    String body = AtomicFIProvider.getInstance()
-      .authenticate(applicantId, employerId);
+  global virtual String atomicAuthenticate(String applicantId, String employerId) {
+    String body = AtomicFIProvider.getInstance().authenticate(applicantId, employerId);
     Flow.finalize();
     return body;
   }
@@ -48,12 +42,8 @@ global virtual with sharing class EmploymentService extends AbstractService {
    * @param applicantId applicantId
    * @param employerId employerId
    **/
-  global virtual String getAtomicResponse(
-    String applicantId,
-    String employerId
-  ) {
-    String responseJson = AtomicFIProvider.getInstance()
-      .getAtomicResponse(applicantId, employerId);
+  global virtual String getAtomicResponse(String applicantId, String employerId) {
+    String responseJson = AtomicFIProvider.getInstance().getAtomicResponse(applicantId, employerId);
     return responseJson;
   }
 
@@ -63,14 +53,9 @@ global virtual with sharing class EmploymentService extends AbstractService {
    * @param applicantId applicantId
    * @param employerId employerId
    **/
-  global virtual String generatePaySlipsW2(
-    String applicantId,
-    String employerId
-  ) {
-    String jsonResponse = AtomicFIProvider.getInstance()
-      .getAtomicResponse(applicantId, employerId);
-    String responseJson = AtomicFIProvider.getInstance()
-      .generatePaySlipsW2(jsonResponse, employerId);
+  global virtual String generatePaySlipsW2(String applicantId, String employerId) {
+    String jsonResponse = AtomicFIProvider.getInstance().getAtomicResponse(applicantId, employerId);
+    String responseJson = AtomicFIProvider.getInstance().generatePaySlipsW2(jsonResponse, employerId);
     return responseJson;
   }
 

@@ -42,9 +42,7 @@ gulp.task("npmRunBuild_MintFlow", function (finish) {
 gulp.task("buildStaticResource_MintFlow", (finish) => {
   if (fs.existsSync(config.ui.MintFlow.uiDistFolder)) {
     let dist = config.ui.MintFlow.uiDistFolder;
-    let staticResourcePath =
-      config.ui.MintFlow.staticResourceFolder +
-      config.ui.MintFlow.staticResourceName;
+    let staticResourcePath = config.ui.MintFlow.staticResourceFolder + config.ui.MintFlow.staticResourceName;
 
     zipFolder(dist, staticResourcePath, function (err) {
       if (err) {

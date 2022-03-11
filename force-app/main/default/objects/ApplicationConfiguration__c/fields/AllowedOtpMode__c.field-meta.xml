@@ -3,8 +3,7 @@
     <fullName>AllowedOtpMode__c</fullName>
     <description>Allowed different OTP veriifcation</description>
     <externalId>false</externalId>
-    <inlineHelpText
-  >Enter value by comma seperated, Ex SMS;EMAIL</inlineHelpText>
+    <inlineHelpText>Enter value by comma seperated, Ex SMS;EMAIL</inlineHelpText>
     <label>Allowed Otp Mode</label>
     <length>255</length>
     <required>true</required>

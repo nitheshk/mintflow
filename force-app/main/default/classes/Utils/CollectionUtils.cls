@@ -27,12 +27,9 @@ global inherited sharing class CollectionUtils {
    * @param Schema.SObjectType sObjectType
    * @return List<SObject>
    **/
-  global static List<SObject> instanceOfListBySobjectType(
-    Schema.SObjectType sObjectType
-  ) {
+  global static List<SObject> instanceOfListBySobjectType(Schema.SObjectType sObjectType) {
     String listType = 'List<' + sObjectType + '>';
-    List<SObject> records = (List<SObject>) Type.forName(listType)
-      .newInstance();
+    List<SObject> records = (List<SObject>) Type.forName(listType).newInstance();
     return (List<SObject>) Type.forName(listType).newInstance();
   }
 
@@ -43,9 +40,7 @@ global inherited sharing class CollectionUtils {
    * @return List<SObject>
    **/
   global static List<SObject> convertSobjectToListSobject(SObject record) {
-    List<SObject> records = instanceOfListBySobjectType(
-      record.getSObjectType()
-    );
+    List<SObject> records = instanceOfListBySobjectType(record.getSObjectType());
     records.add(record);
     return records;
   }

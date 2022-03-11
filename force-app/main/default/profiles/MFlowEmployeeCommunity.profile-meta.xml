@@ -3,15 +3,13 @@
     <custom>true</custom>
     <!--layoutAssignments-->
     <layoutAssignments>
-        <layout
-    >FinancialAccountTransaction__c-mflow__Financial Account Transaction Layout</layout>
+        <layout>FinancialAccountTransaction__c-mflow__Financial Account Transaction Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Employment__c-mflow__Employment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout
-    >IdentificationDocument__c-mflow__Identification Document Layout</layout>
+        <layout>IdentificationDocument__c-mflow__Identification Document Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Flow__c-mflow__Flow Layout</layout>

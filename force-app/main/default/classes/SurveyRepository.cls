@@ -70,8 +70,7 @@ public with sharing class SurveyRepository extends DatabaseUtils {
       .andCon()
       .whereEq('mflow__Application__c', ApexRequest.getApplicationId());
     if (ApexRequest.getParams('applicantId') != null) {
-      query.andCon()
-        .whereEq('mflow__Applicant__c', ApexRequest.getParams('applicantId'));
+      query.andCon().whereEq('mflow__Applicant__c', ApexRequest.getParams('applicantId'));
     }
     query.orderBy('mflow__Order__c');
     return (List<Survey__c>) getRecords(query.toString(true));

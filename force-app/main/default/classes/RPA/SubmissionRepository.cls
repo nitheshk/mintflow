@@ -14,9 +14,7 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
    * @param string applicationNumber
    * @return Application__c
    **/
-  global static Application__c readApplicationByApplicationNumber(
-    String applicationNumber
-  ) {
+  global static Application__c readApplicationByApplicationNumber(String applicationNumber) {
     return (Application__c) DatabaseUtils.getRecord(
       Query.newInstance(Application__c.SObjectType)
         //.addFieldSet('mflow__Application')
@@ -40,9 +38,7 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
    * @return Application__c
    **/
   global static Application__c readApplicationWithChild(Id applicationId) {
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     Query qry = Query.newInstance(Application__c.SObjectType)
       //.addFieldSet('mflow__Application')
@@ -68,12 +64,8 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
    * @author Digital Align Team | 10-26-2021
    * @param Set<Id> applicantIds
    **/
-  global static List<Applicant__c> readApplicantsWithChild(
-    Set<Id> applicantIds
-  ) {
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
+  global static List<Applicant__c> readApplicantsWithChild(Set<Id> applicantIds) {
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     Query qry = Query.newInstance(Applicant__c.SObjectType)
       .addFields()
@@ -105,9 +97,7 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
    * @param Id financialAccountId
    * @return List<FinancialAccount__c>
    **/
-  global static List<FinancialAccount__c> readFinancialAccountWithChildByApplicationId(
-    string applicationId
-  ) {
+  global static List<FinancialAccount__c> readFinancialAccountWithChildByApplicationId(string applicationId) {
     return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
       Query.newInstance(FinancialAccount__c.SObjectType)
         .addFields()
@@ -145,12 +135,8 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
    * @param Set<Id> applicantIds
    * @return List<Applicant__c>
    **/
-  global static List<Applicant__c> readApplicantsWithIdentityAddress(
-    Set<Id> applicantIds
-  ) {
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
+  global static List<Applicant__c> readApplicantsWithIdentityAddress(Set<Id> applicantIds) {
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     Query qry = Query.newInstance(Applicant__c.SObjectType)
       .addFields()

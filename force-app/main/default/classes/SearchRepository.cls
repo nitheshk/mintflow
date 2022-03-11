@@ -62,11 +62,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
           q.andCon().whereLike('MobilePhone', searchFilter.get('MobilePhone'));
         }
         if (String.isNotBlank(searchFilter.get('mflow__EmployeeId__c'))) {
-          q.andCon()
-            .whereLike(
-              'mflow__EmployeeId__c',
-              searchFilter.get('mflow__EmployeeId__c')
-            );
+          q.andCon().whereLike('mflow__EmployeeId__c', searchFilter.get('mflow__EmployeeId__c'));
         }
       }
       employeeList = (List<Contact>) DatabaseUtils.getRecords(q.toString(true));
@@ -83,10 +79,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
    * @return List<Applicant__c>
 >
    **/
-  public static List<Applicant__c> retrieveApplicants(
-    String searchString,
-    map<string, string> searchFilter
-  ) {
+  public static List<Applicant__c> retrieveApplicants(String searchString, map<string, string> searchFilter) {
     String searchStr1 = searchString;
     String dynamicString = '';
     String searchQuery;
@@ -121,38 +114,24 @@ public with sharing class SearchRepository extends DatabaseUtils {
         .whereNotNull('Name');
       if (!searchFilter.isEmpty()) {
         if (String.isNotBlank(searchFilter.get('mflow__FirstName__c'))) {
-          q.andCon()
-            .whereLike(
-              'mflow__FirstName__c',
-              searchFilter.get('mflow__FirstName__c')
-            );
+          q.andCon().whereLike('mflow__FirstName__c', searchFilter.get('mflow__FirstName__c'));
         }
         if (String.isNotBlank(searchFilter.get('mflow__LastName__c'))) {
-          q.andCon()
-            .whereLike(
-              'mflow__LastName__c',
-              searchFilter.get('mflow__LastName__c')
-            );
+          q.andCon().whereLike('mflow__LastName__c', searchFilter.get('mflow__LastName__c'));
         }
         if (String.isNotBlank(searchFilter.get('mflow__Email__c'))) {
-          q.andCon()
-            .whereLike('mflow__Email__c', searchFilter.get('mflow__Email__c'));
+          q.andCon().whereLike('mflow__Email__c', searchFilter.get('mflow__Email__c'));
         }
         if (String.isNotBlank(searchFilter.get('mflow__Phone__c'))) {
-          q.andCon()
-            .whereLike('mflow__Phone__c', searchFilter.get('mflow__Phone__c'));
+          q.andCon().whereLike('mflow__Phone__c', searchFilter.get('mflow__Phone__c'));
         }
         if (String.isNotBlank(searchFilter.get('mflow__SSN__c'))) {
-          q.andCon()
-            .whereLike('mflow__SSN__c', searchFilter.get('mflow__SSN__c'));
+          q.andCon().whereLike('mflow__SSN__c', searchFilter.get('mflow__SSN__c'));
         }
         if (String.isNotBlank(searchFilter.get('dateRange')))
-          q.andCon()
-            .whereCon('CreatedDate', '=' + searchFilter.get('dateRange'));
+          q.andCon().whereCon('CreatedDate', '=' + searchFilter.get('dateRange'));
       }
-      employeeList = (List<Applicant__c>) DatabaseUtils.getRecords(
-        q.toString(true)
-      );
+      employeeList = (List<Applicant__c>) DatabaseUtils.getRecords(q.toString(true));
       log?.debug('SOQL query ::' + q.toString(true));
       return employeeList;
     }
@@ -165,10 +144,7 @@ public with sharing class SearchRepository extends DatabaseUtils {
    * @param map<string,string> searchFilter
    * @return List<Application__c>
    **/
-  public static List<Application__c> retrieveApplications(
-    String searchString,
-    map<string, string> searchFilter
-  ) {
+  public static List<Application__c> retrieveApplications(String searchString, map<string, string> searchFilter) {
     String searchStr1 = searchString;
     String dynamicString = '';
     String searchQuery;
@@ -203,45 +179,27 @@ public with sharing class SearchRepository extends DatabaseUtils {
       return applicationsList;
     } else {
       if (searchFilter != null) {
-        q = Query.newInstance(Application__c.SObjectType)
-          .addFields()
-          .addfields('CreatedBy.Name')
-          .whereNotNull('Name');
+        q = Query.newInstance(Application__c.SObjectType).addFields().addfields('CreatedBy.Name').whereNotNull('Name');
         if (String.isNotBlank(searchFilter.get('CreatedDateFrom'))) {
-          dt = DateUtils.convertJsonStringToDateTime(
-            searchFilter.get('CreatedDateFrom')
-          );
+          dt = DateUtils.convertJsonStringToDateTime(searchFilter.get('CreatedDateFrom'));
           dateValue = Dateutils.formatDateTimeGMT(dt);
           q.andCon().whereGte('CreatedDate', dt);
         }
         if (String.isNotBlank(searchFilter.get('CreatedDateTo'))) {
-          dt = DateUtils.convertJsonStringToDateTime(
-            searchFilter.get('CreatedDateTo')
-          );
+          dt = DateUtils.convertJsonStringToDateTime(searchFilter.get('CreatedDateTo'));
           dateValue = Dateutils.formatDateTimeGMT(dt);
           q.andCon().wherelte('CreatedDate', dt);
         }
         if (String.isNotBlank(searchFilter.get('dateRange'))) {
-          q.andCon()
-            .whereCon('CreatedDate', '=' + searchFilter.get('dateRange'));
+          q.andCon().whereCon('CreatedDate', '=' + searchFilter.get('dateRange'));
         }
         if (String.isNotBlank(searchFilter.get('Name'))) {
           q.andCon().whereLike('Name', searchFilter.get('Name'));
         }
-        if (
-          String.isNotBlank(
-            searchFilter.get('mflow__ExternalApplicationNumber__c')
-          )
-        ) {
-          q.andCon()
-            .whereLike(
-              'mflow__ExternalApplicationNumber__c',
-              searchFilter.get('LOSNumber')
-            );
+        if (String.isNotBlank(searchFilter.get('mflow__ExternalApplicationNumber__c'))) {
+          q.andCon().whereLike('mflow__ExternalApplicationNumber__c', searchFilter.get('LOSNumber'));
         }
-        applicationsList = (List<Application__c>) DatabaseUtils.getRecords(
-          q.toString(true)
-        );
+        applicationsList = (List<Application__c>) DatabaseUtils.getRecords(q.toString(true));
 
         log?.debug('retrieveApplications Query soql:' + q.toString(true));
         return applicationsList;

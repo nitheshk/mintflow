@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ShortDescription__c</fullName>
-    <description
-  >alternate text for original question if it exceeds length 255</description>
+    <description>alternate text for original question if it exceeds length 255</description>
     <externalId>false</externalId>
     <label>Short Description</label>
     <length>255</length>

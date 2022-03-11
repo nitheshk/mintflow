@@ -25,10 +25,7 @@ global with sharing class SObjectConstructor {
    * @param SObject lookupObj
    * @return SObjectConstructor
    **/
-  global SObjectConstructor setLookupObject(
-    String relationShipName,
-    SObject lookupObj
-  ) {
+  global SObjectConstructor setLookupObject(String relationShipName, SObject lookupObj) {
     lookupObjects.put(relationShipName, lookupObj);
     return this;
   }
@@ -51,14 +48,8 @@ global with sharing class SObjectConstructor {
    * @param SObject childObj
    * @return SObjectConstructor
    **/
-  global SObjectConstructor addChildObject(
-    String relationShipName,
-    SObject childObj
-  ) {
-    return this.addChildObjects(
-      relationShipName,
-      new List<SObject>{ childObj }
-    );
+  global SObjectConstructor addChildObject(String relationShipName, SObject childObj) {
+    return this.addChildObjects(relationShipName, new List<SObject>{ childObj });
   }
 
   /**
@@ -68,13 +59,8 @@ global with sharing class SObjectConstructor {
    * @param List<SObject> childObjs
    * @return SObjectConstructor
    **/
-  global SObjectConstructor addChildObjects(
-    String relationShipName,
-    List<SObject> childObjs
-  ) {
-    List<SObject> objects = (List<SObject>) this.childObjects.get(
-      relationshipName
-    );
+  global SObjectConstructor addChildObjects(String relationShipName, List<SObject> childObjs) {
+    List<SObject> objects = (List<SObject>) this.childObjects.get(relationshipName);
     if (CollectionUtils.isListEmpty(objects)) {
       objects = childObjs;
     } else {
@@ -91,14 +77,8 @@ global with sharing class SObjectConstructor {
    * @param SObject childObj
    * @return SObjectConstructor
    **/
-  global SObjectConstructor setChildObject(
-    String relationShipName,
-    SObject childObj
-  ) {
-    return this.setChildObjects(
-      relationShipName,
-      new List<SObject>{ childObj }
-    );
+  global SObjectConstructor setChildObject(String relationShipName, SObject childObj) {
+    return this.setChildObjects(relationShipName, new List<SObject>{ childObj });
   }
 
   /**
@@ -108,10 +88,7 @@ global with sharing class SObjectConstructor {
    * @param List<SObject> childObjs
    * @return SObjectConstructor
    **/
-  global SObjectConstructor setChildObjects(
-    String relationShipName,
-    List<SObject> childObjs
-  ) {
+  global SObjectConstructor setChildObjects(String relationShipName, List<SObject> childObjs) {
     this.childObjects.put(relationShipName, childObjs);
     return this;
   }
@@ -125,25 +102,17 @@ global with sharing class SObjectConstructor {
     if (this.parentObj == null) {
       return null;
     }
-    Map<String, Object> parentMap = (Map<String, Object>) JSON.deserializeUntyped(
-      Json.Serialize(this.parentObj)
-    );
+    Map<String, Object> parentMap = (Map<String, Object>) JSON.deserializeUntyped(Json.Serialize(this.parentObj));
 
     for (String fieldName : removeFields) {
       parentMap.remove(fieldName);
     }
 
     for (String relationshipName : this.childObjects.keySet()) {
-      List<SObject> childObjs = (List<SObject>) this.childObjects.get(
-        relationshipName
-      );
+      List<SObject> childObjs = (List<SObject>) this.childObjects.get(relationshipName);
       parentMap.put(
         relationshipName,
-        new Map<String, Object>{
-          'totalSize' => childObjs?.size(),
-          'done' => true,
-          'records' => childObjs
-        }
+        new Map<String, Object>{ 'totalSize' => childObjs?.size(), 'done' => true, 'records' => childObjs }
       );
     }
 
@@ -218,10 +187,7 @@ global with sharing class SObjectConstructor {
         if (jt == System.JSONToken.VALUE_NULL) {
           gen.writeNullField(fieldName);
         } else {
-          if (
-            fieldType == System.JSONToken.VALUE_FALSE ||
-            fieldType == System.JSONToken.VALUE_TRUE
-          ) {
+          if (fieldType == System.JSONToken.VALUE_FALSE || fieldType == System.JSONToken.VALUE_TRUE) {
             gen.writeBooleanField(fieldName, parser.getBooleanValue());
           } else {
             gen.writeStringField(fieldName, val);
@@ -280,15 +246,9 @@ global with sharing class SObjectConstructor {
     for (string fieldName : sMap.keySet()) {
       Object fieldValue = sMap.get(fieldName);
       if (fieldValue instanceof List<SObject>) {
-        populatedFieldsAsMap.put(
-          fieldName,
-          writeFieldsAsList((List<SObject>) fieldValue)
-        );
+        populatedFieldsAsMap.put(fieldName, writeFieldsAsList((List<SObject>) fieldValue));
       } else if (fieldValue instanceof SObject) {
-        populatedFieldsAsMap.put(
-          fieldName,
-          writeFieldsAsMap((SObject) fieldValue)
-        );
+        populatedFieldsAsMap.put(fieldName, writeFieldsAsMap((SObject) fieldValue));
       } else {
         populatedFieldsAsMap.put(fieldName, fieldValue);
       }

@@ -6,9 +6,7 @@
  * @description IdScanDueDiligenceDTO
  **/
 
-@SuppressWarnings(
-  'PMD.VariableNamingConventions{get;set;}PMD.AvoidGlobalModifier'
-)
+@SuppressWarnings('PMD.VariableNamingConventions{get;set;}PMD.AvoidGlobalModifier')
 global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
   global class Response {
     global string serviceId { get; set; }

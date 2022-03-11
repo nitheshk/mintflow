@@ -5,9 +5,7 @@
  * @reference
  * @description
  **/
-@SuppressWarnings(
-  'PMD.CognitiveComplexity,PMD.NcssMethodCount,PMD.AvoidGlobalModifier'
-)
+@SuppressWarnings('PMD.CognitiveComplexity,PMD.NcssMethodCount,PMD.AvoidGlobalModifier')
 global without sharing class SObjectWithoutSharing {
   private static logger log = Logger.getInstance(SObjectWithoutSharing.class);
   /**
@@ -27,10 +25,7 @@ global without sharing class SObjectWithoutSharing {
    * @param List<Object> values
    * @return List<SObject>
    **/
-  public static List<SObject> getRecords(
-    String queryString,
-    List<Object> values
-  ) {
+  public static List<SObject> getRecords(String queryString, List<Object> values) {
     if (values == null) {
       return Database.query(queryString);
     }
@@ -82,11 +77,7 @@ global without sharing class SObjectWithoutSharing {
    * @param SObjectField externalFieldName
    * @return List<SObject>
    **/
-  public static List<SObject> processRecords(
-    CrudType crudType,
-    List<SObject> records,
-    SObjectField externalFieldName
-  ) {
+  public static List<SObject> processRecords(CrudType crudType, List<SObject> records, SObjectField externalFieldName) {
     if (CollectionUtils.isListEmpty(records)) {
       return records;
     }
@@ -127,17 +118,9 @@ global without sharing class SObjectWithoutSharing {
    * @param Boolean allOrNone
    * @return List<Database.DeleteResult>
    **/
-  public static List<Database.DeleteResult> deleteRecords(
-    List<ID> recordIds,
-    Boolean allOrNone
-  ) {
+  public static List<Database.DeleteResult> deleteRecords(List<ID> recordIds, Boolean allOrNone) {
     List<Database.DeleteResult> results = Database.delete(recordIds, allOrNone);
-    log
-      ?.fine(
-        CrudType.DELETEABLE +
-        ' ' +
-        SObjectUtils.getObjectName(recordIds[0])
-      );
+    log?.fine(CrudType.DELETEABLE + ' ' + SObjectUtils.getObjectName(recordIds[0]));
     return results;
   }
 
@@ -165,9 +148,7 @@ global without sharing class SObjectWithoutSharing {
    * @param Database.LeadConvert leadToConvert
    * @return Database.LeadConvertResult
    **/
-  public static Database.LeadConvertResult convertLead(
-    Database.LeadConvert leadToConvert
-  ) {
+  public static Database.LeadConvertResult convertLead(Database.LeadConvert leadToConvert) {
     return Database.convertLead(leadToConvert);
   }
 
@@ -178,9 +159,7 @@ global without sharing class SObjectWithoutSharing {
    * @param Messaging.SingleEmailMessage emailMessage
    * @return Messaging.SingleEmailMessage
    **/
-  public static Messaging.SingleEmailMessage renderStoredEmailTemplate(
-    Messaging.SingleEmailMessage emailMessage
-  ) {
+  public static Messaging.SingleEmailMessage renderStoredEmailTemplate(Messaging.SingleEmailMessage emailMessage) {
     return Messaging.renderStoredEmailTemplate(
       emailMessage.getTemplateId(),
       emailMessage.getTargetObjectId(),

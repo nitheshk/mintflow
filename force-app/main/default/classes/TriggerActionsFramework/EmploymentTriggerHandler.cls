@@ -40,13 +40,9 @@ public with sharing class EmploymentTriggerHandler extends AbstractTriggerHandle
     for (Employment__c newEmp : newEmployments) {
       Employment__c oldEmp = oldEmploymentMap.get(newEmp.Id);
 
-      if (
-        oldEmp.PrimaryContentDocumentID__c != newEmp.PrimaryContentDocumentID__c
-      ) {
+      if (oldEmp.PrimaryContentDocumentID__c != newEmp.PrimaryContentDocumentID__c) {
         if (String.isNotBlank(newEmp.PrimaryContentDocumentID__c)) {
-          fileDtos.add(
-            new FileDTO(newEmp.PrimaryContentDocumentID__c, newEmp.Id)
-          );
+          fileDtos.add(new FileDTO(newEmp.PrimaryContentDocumentID__c, newEmp.Id));
         }
         if (String.isNotBlank(oldEmp.PrimaryContentDocumentID__c)) {
           contentDocumentIds.add(oldEmp.PrimaryContentDocumentID__c);

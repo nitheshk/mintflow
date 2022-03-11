@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customMetadataTypeRecord
-  >mflow__APISetting__mdt.mflow__UiPath</customMetadataTypeRecord>
+    <customMetadataTypeRecord>mflow__APISetting__mdt.mflow__UiPath</customMetadataTypeRecord>
     <executionUser>test-a0culo8oeyyj@example.com</executionUser>
     <friendlyName>UiPath</friendlyName>
     <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>

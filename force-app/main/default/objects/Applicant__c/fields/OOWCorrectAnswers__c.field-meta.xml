@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OOWCorrectAnswers__c</fullName>
-    <description
-  >OOW correct answer given by primary or joint applicants</description>
+    <description>OOW correct answer given by primary or joint applicants</description>
     <externalId>false</externalId>
     <label>OOW Correct Answers</label>
     <precision>2</precision>

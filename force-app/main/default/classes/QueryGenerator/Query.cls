@@ -92,14 +92,9 @@ global inherited sharing class Query {
    * @param Relationship relationType
    * @param String relationName
    **/
-  private Query setRelationship(
-    Relationship relationType,
-    String relationName
-  ) {
+  private Query setRelationship(Relationship relationType, String relationName) {
     this.relationType = relationType;
-    this.relationName = this.relationType == Relationship.PARENT
-      ? SObjectUtils.getObjectName(sType)
-      : relationName;
+    this.relationName = this.relationType == Relationship.PARENT ? SObjectUtils.getObjectName(sType) : relationName;
     return this;
   }
 
@@ -118,23 +113,14 @@ global inherited sharing class Query {
     if (!byFieldName) {
       return queryLookup(fieldName);
     }
-    Schema.SObjectField field = SObjectUtils.resolveReferenceByFieldName(
-      this.sType,
-      fieldName
-    );
+    Schema.SObjectField field = SObjectUtils.resolveReferenceByFieldName(this.sType, fieldName);
 
     if (field == null) {
-      GenericUtils.customException(
-        'Not found for {0}.{1}',
-        new List<String>{ this.relationName, fieldName }
-      );
+      GenericUtils.customException('Not found for {0}.{1}', new List<String>{ this.relationName, fieldName });
     }
 
     return new Query(field.getDescribe().getReferenceTo().get(0), this)
-      .setRelationship(
-        Relationship.LOOKUP,
-        resolveApiName(field.getDescribe().getRelationshipName())
-      );
+      .setRelationship(Relationship.LOOKUP, resolveApiName(field.getDescribe().getRelationshipName()));
   }
 
   /**
@@ -148,23 +134,14 @@ global inherited sharing class Query {
    *   .toString(true);
    **/
   global Query queryLookup(String fieldRelationName) {
-    Schema.SObjectField field = SObjectUtils.resolveReferenceByRelationName(
-      this.sType,
-      fieldRelationName
-    );
+    Schema.SObjectField field = SObjectUtils.resolveReferenceByRelationName(this.sType, fieldRelationName);
 
     if (field == null) {
-      GenericUtils.customException(
-        'Not found for {0}.{1}',
-        new List<String>{ this.relationName, fieldRelationName }
-      );
+      GenericUtils.customException('Not found for {0}.{1}', new List<String>{ this.relationName, fieldRelationName });
     }
 
     return new Query(field.getDescribe().getReferenceTo().get(0), this)
-      .setRelationship(
-        Relationship.LOOKUP,
-        resolveApiName(field.getDescribe().getRelationshipName())
-      );
+      .setRelationship(Relationship.LOOKUP, resolveApiName(field.getDescribe().getRelationshipName()));
   }
 
   /**
@@ -194,27 +171,17 @@ global inherited sharing class Query {
   global Query queryChild(String childRelationName) {
     //nested sub query is not allowed in salesforce
     if (this.parent != null) {
-      GenericUtils.customException(
-        'Not found for {0}.{1}',
-        new List<String>{ this.relationName, childRelationName }
-      );
+      GenericUtils.customException('Not found for {0}.{1}', new List<String>{ this.relationName, childRelationName });
     }
 
     //cr->ChildRelationship
-    ChildRelationship cr = SObjectUtils.resolveChildReferenceByRelationName(
-      this.sType,
-      childRelationName
-    );
+    ChildRelationship cr = SObjectUtils.resolveChildReferenceByRelationName(this.sType, childRelationName);
 
     if (cr == null) {
-      GenericUtils.customException(
-        'Not found for {0}.{1}',
-        new List<String>{ this.relationName, childRelationName }
-      );
+      GenericUtils.customException('Not found for {0}.{1}', new List<String>{ this.relationName, childRelationName });
     }
 
-    return new Query(cr.getChildSObject(), this)
-      .setRelationship(Relationship.CHILD, cr.getRelationshipName());
+    return new Query(cr.getChildSObject(), this).setRelationship(Relationship.CHILD, cr.getRelationshipName());
   }
 
   /**
@@ -240,9 +207,7 @@ global inherited sharing class Query {
    *    .toString();
    **/
   global Query addFields() {
-    Map<String, Schema.SObjectField> fields = SObjectUtils.getFields(
-      this.sType
-    );
+    Map<String, Schema.SObjectField> fields = SObjectUtils.getFields(this.sType);
 
     for (String f : fields.keySet()) {
       if (!ignoreFields.contains(String.valueOf(fields.get(f)))) {
@@ -311,10 +276,7 @@ global inherited sharing class Query {
     FieldSet fs = SObjectUtils.getFieldSet(this.sType, fieldSetName);
 
     if (fs == null) {
-      GenericUtils.customException(
-        'Not found for {0}.{1}',
-        new List<String>{ this.relationName, fieldSetName }
-      );
+      GenericUtils.customException('Not found for {0}.{1}', new List<String>{ this.relationName, fieldSetName });
     }
 
     for (FieldSetMember fsm : fs.getFields()) {
@@ -437,15 +399,8 @@ global inherited sharing class Query {
    *  .whereCon('LastName','=\'Rogers\'',false)
    *  .toString(true);
    **/
-  global Query whereCon(
-    String fieldName,
-    String value,
-    Boolean escapeSingleQuotes
-  ) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      (escapeSingleQuotes ? String.escapeSingleQuotes(value) : value)
-    );
+  global Query whereCon(String fieldName, String value, Boolean escapeSingleQuotes) {
+    this.whereClause.add(resolveApiName(fieldName) + (escapeSingleQuotes ? String.escapeSingleQuotes(value) : value));
     return this;
   }
 
@@ -466,11 +421,7 @@ global inherited sharing class Query {
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
   global Query whereCon(String fieldName, String operation, Object value) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      operation +
-      formatCriteriaInput(value)
-    );
+    this.whereClause.add(resolveApiName(fieldName) + operation + formatCriteriaInput(value));
 
     return this;
   }
@@ -491,11 +442,7 @@ global inherited sharing class Query {
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
   global Query whereEq(String fieldName, Object value) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_EQ +
-      formatCriteriaInput(value)
-    );
+    this.whereClause.add(resolveApiName(fieldName) + QueryConstants.SYB_EQ + formatCriteriaInput(value));
     return this;
   }
 
@@ -515,11 +462,7 @@ global inherited sharing class Query {
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
   global Query whereNeq(String fieldName, Object value) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_NEQ +
-      formatCriteriaInput(value)
-    );
+    this.whereClause.add(resolveApiName(fieldName) + QueryConstants.SYB_NEQ + formatCriteriaInput(value));
     return this;
   }
 
@@ -536,11 +479,7 @@ global inherited sharing class Query {
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
   global Query whereGte(String fieldName, Object value) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_GTE +
-      formatCriteriaInput(value)
-    );
+    this.whereClause.add(resolveApiName(fieldName) + QueryConstants.SYB_GTE + formatCriteriaInput(value));
     return this;
   }
 
@@ -557,11 +496,7 @@ global inherited sharing class Query {
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
   global Query whereGt(String fieldName, Object value) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_GT +
-      formatCriteriaInput(value)
-    );
+    this.whereClause.add(resolveApiName(fieldName) + QueryConstants.SYB_GT + formatCriteriaInput(value));
     return this;
   }
 
@@ -578,11 +513,7 @@ global inherited sharing class Query {
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
   global Query whereLte(String fieldName, Object value) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_LTE +
-      formatCriteriaInput(value)
-    );
+    this.whereClause.add(resolveApiName(fieldName) + QueryConstants.SYB_LTE + formatCriteriaInput(value));
     return this;
   }
 
@@ -599,11 +530,7 @@ global inherited sharing class Query {
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
   global Query whereLt(String fieldName, Object value) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_LT +
-      formatCriteriaInput(value)
-    );
+    this.whereClause.add(resolveApiName(fieldName) + QueryConstants.SYB_LT + formatCriteriaInput(value));
     return this;
   }
 
@@ -619,11 +546,7 @@ global inherited sharing class Query {
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
   global Query whereNull(String fieldName) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_EQ +
-      null
-    );
+    this.whereClause.add(resolveApiName(fieldName) + QueryConstants.SYB_EQ + null);
     return this;
   }
 
@@ -639,11 +562,7 @@ global inherited sharing class Query {
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q);
    **/
   global Query whereNotNull(String fieldName) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_NEQ +
-      null
-    );
+    this.whereClause.add(resolveApiName(fieldName) + QueryConstants.SYB_NEQ + null);
     return this;
   }
 
@@ -763,9 +682,7 @@ global inherited sharing class Query {
       criteriaList.add(this.formatCriteriaInput(obj));
     }
 
-    String concatValues = criteriaList.isEmpty()
-      ? ''
-      : String.join(criteriaList, QueryConstants.SYB_COMMA);
+    String concatValues = criteriaList.isEmpty() ? '' : String.join(criteriaList, QueryConstants.SYB_COMMA);
 
     this.whereClause.add(
       resolveApiName(fieldName) +
@@ -893,9 +810,7 @@ global inherited sharing class Query {
       criteriaList.add(this.formatCriteriaInput(obj));
     }
 
-    String concatValues = criteriaList.isEmpty()
-      ? ''
-      : String.join(criteriaList, QueryConstants.SYB_COMMA);
+    String concatValues = criteriaList.isEmpty() ? '' : String.join(criteriaList, QueryConstants.SYB_COMMA);
 
     this.whereClause.add(
       resolveApiName(fieldName) +
@@ -940,15 +855,8 @@ global inherited sharing class Query {
    *   .toString(true);
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q,parameters);
    **/
-  global Query whereAnd(
-    String fieldName,
-    String value,
-    Boolean escapeSingleQuotes
-  ) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      (escapeSingleQuotes ? String.escapeSingleQuotes(value) : value)
-    );
+  global Query whereAnd(String fieldName, String value, Boolean escapeSingleQuotes) {
+    this.whereClause.add(resolveApiName(fieldName) + (escapeSingleQuotes ? String.escapeSingleQuotes(value) : value));
     this.whereClause.add(QueryConstants.CONDITION_AND);
     return this;
   }
@@ -986,15 +894,8 @@ global inherited sharing class Query {
    *   .toString(true);
    *   List<Contact> sl =(List<Contact> ) DatabaseUtils.getRecords(q,parameters);
    **/
-  global Query whereOr(
-    String fieldName,
-    String value,
-    Boolean escapeSingleQuotes
-  ) {
-    this.whereClause.add(
-      resolveApiName(fieldName) +
-      (escapeSingleQuotes ? String.escapeSingleQuotes(value) : value)
-    );
+  global Query whereOr(String fieldName, String value, Boolean escapeSingleQuotes) {
+    this.whereClause.add(resolveApiName(fieldName) + (escapeSingleQuotes ? String.escapeSingleQuotes(value) : value));
     this.whereClause.add(QueryConstants.CONDITION_OR);
     return this;
   }
@@ -1033,10 +934,7 @@ global inherited sharing class Query {
    *    .toString(true);
    **/
   global Query whereIncludes(String fieldName, String values) {
-    return this.whereIncludes(
-      fieldName,
-      values.split(QueryConstants.SYB_COMMA)
-    );
+    return this.whereIncludes(fieldName, values.split(QueryConstants.SYB_COMMA));
   }
 
   /**
@@ -1132,12 +1030,7 @@ global inherited sharing class Query {
    *   .whereDistance('MailingAddress', Location.newInstance(28.635308,77.22496)  , 'mi','<500')
    *   .toString(true);
    **/
-  global Query whereDistance(
-    String fieldName,
-    System.Location destinationLocation,
-    String unit,
-    String value
-  ) {
+  global Query whereDistance(String fieldName, System.Location destinationLocation, String unit, String value) {
     String condition =
       'DISTANCE(' +
       resolveApiName(fieldName) +
@@ -1148,11 +1041,7 @@ global inherited sharing class Query {
       '),\'' +
       String.escapeSingleQuotes(unit) +
       '\')';
-    this.whereClause.add(
-      condition +
-      QueryConstants.SYB_SPACE +
-      String.escapeSingleQuotes(value)
-    );
+    this.whereClause.add(condition + QueryConstants.SYB_SPACE + String.escapeSingleQuotes(value));
     return this;
   }
 
@@ -1257,11 +1146,7 @@ global inherited sharing class Query {
    **/
   global Query orderBy(String fieldName, Boolean direction) {
     String orderBy = direction ? 'DESC' : 'ASC';
-    this.orderClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_SPACE +
-      orderBy
-    );
+    this.orderClause.add(resolveApiName(fieldName) + QueryConstants.SYB_SPACE + orderBy);
     return this;
   }
 
@@ -1280,12 +1165,7 @@ global inherited sharing class Query {
   global Query orderBy(String fieldName, Boolean direction, Boolean nullsLast) {
     String orderBy = direction ? 'DESC' : 'ASC';
     String nullValueOrder = nullsLast ? ' NULLS LAST ' : ' NULLS FIRST ';
-    this.orderClause.add(
-      resolveApiName(fieldName) +
-      QueryConstants.SYB_SPACE +
-      orderBy +
-      nullValueOrder
-    );
+    this.orderClause.add(resolveApiName(fieldName) + QueryConstants.SYB_SPACE + orderBy + nullValueOrder);
     return this;
   }
 
@@ -1301,11 +1181,7 @@ global inherited sharing class Query {
    *   .orderByDistance('MailingAddress',Location.newInstance(28.635308,77.22496),  'mi')
    *   .toString(true);
    **/
-  global Query orderByDistance(
-    String fieldName,
-    System.Location destinationLocation,
-    String unit
-  ) {
+  global Query orderByDistance(String fieldName, System.Location destinationLocation, String unit) {
     return this.orderByDistance(fieldName, destinationLocation, unit, false);
   }
 
@@ -1322,12 +1198,7 @@ global inherited sharing class Query {
    *   .orderByDistance('MailingAddress',Location.newInstance(28.635308,77.22496),  'mi',true)
    *   .toString(true);
    **/
-  global Query orderByDistance(
-    String fieldName,
-    System.Location destinationLocation,
-    String unit,
-    Boolean direction
-  ) {
+  global Query orderByDistance(String fieldName, System.Location destinationLocation, String unit, Boolean direction) {
     String condition =
       'DISTANCE(' +
       resolveApiName(fieldName) +
@@ -1437,10 +1308,7 @@ global inherited sharing class Query {
     // fs-> FieldSet
     FieldSet fs = SObjectUtils.getFieldSet(this.sType, fieldSetName);
     if (fs == null) {
-      GenericUtils.customException(
-        '{0} Field Set not found ',
-        new List<String>{ fieldSetName }
-      );
+      GenericUtils.customException('{0} Field Set not found ', new List<String>{ fieldSetName });
     }
 
     Boolean hasMoreFilter = false;
@@ -1470,11 +1338,7 @@ global inherited sharing class Query {
         this.andCon();
       }
       if (filter.containsKey(fsm.getFieldPath())) {
-        resolveFilterField(
-          fsm,
-          filter.get(fsm.getFieldPath()),
-          String.valueOf(filter.get('$' + fsm.getFieldPath()))
-        );
+        resolveFilterField(fsm, filter.get(fsm.getFieldPath()), String.valueOf(filter.get('$' + fsm.getFieldPath())));
       } else {
         resolveFilterField(fsm, null, null);
       }
@@ -1490,56 +1354,33 @@ global inherited sharing class Query {
    * @param FieldSetMember fsm
    * @param Object fieldValue
    **/
-  private void resolveFilterField(
-    FieldSetMember fsm,
-    Object fieldValue,
-    String logic
-  ) {
+  private void resolveFilterField(FieldSetMember fsm, Object fieldValue, String logic) {
     switch on fsm.getType() {
       when BOOLEAN {
-        this.whereEq(
-          fsm.getFieldPath(),
-          fieldValue != null ? Boolean.valueOf(fieldValue) : false
-        );
+        this.whereEq(fsm.getFieldPath(), fieldValue != null ? Boolean.valueOf(fieldValue) : false);
       }
       when else {
         switch on logic {
           when '=', '!=', '<', '>', '<=', '>=' {
-            this.whereCon(
-              fsm.getFieldPath(),
-              logic,
-              fieldValue != null ? fieldValue : null
-            );
+            this.whereCon(fsm.getFieldPath(), logic, fieldValue != null ? fieldValue : null);
           }
           when 'LIKE' {
-            this.whereLike(
-              fsm.getFieldPath(),
-              fieldValue != null ? String.valueOf(fieldValue) : null
-            );
+            this.whereLike(fsm.getFieldPath(), fieldValue != null ? String.valueOf(fieldValue) : null);
           }
           when 'INCLUDES' {
             if (fieldValue == null) {
               this.whereIncludes(fsm.getFieldPath(), '');
             } else if (fieldValue instanceof String) {
-              this.whereIncludes(
-                fsm.getFieldPath(),
-                String.valueOf(fieldValue)
-              );
+              this.whereIncludes(fsm.getFieldPath(), String.valueOf(fieldValue));
             } else if (fieldValue instanceof List<Object>) {
               this.whereIncludes(
                 fsm.getFieldPath(),
-                (List<String>) JSON.deserialize(
-                  JSON.serialize(fieldValue),
-                  List<String>.class
-                )
+                (List<String>) JSON.deserialize(JSON.serialize(fieldValue), List<String>.class)
               );
             }
           }
           when else {
-            this.whereEq(
-              fsm.getFieldPath(),
-              fieldValue != null ? fieldValue : null
-            );
+            this.whereEq(fsm.getFieldPath(), fieldValue != null ? fieldValue : null);
           }
         }
       }
@@ -1560,11 +1401,7 @@ global inherited sharing class Query {
   global Query run() {
     switch on this.relationType {
       when CHILD {
-        this.parent.fieldNames.add(
-          QueryConstants.SYB_OPEN_BRACKET +
-          toString() +
-          QueryConstants.SYB_CLOSE_BRACKET
-        );
+        this.parent.fieldNames.add(QueryConstants.SYB_OPEN_BRACKET + toString() + QueryConstants.SYB_CLOSE_BRACKET);
       }
       when LOOKUP {
         if (this.fieldNames.isEmpty()) {
@@ -1675,18 +1512,13 @@ global inherited sharing class Query {
     } else {
       queryString +=
         QueryConstants.QUERY_SELECT +
-        String.join(
-          (Iterable<String>) this.fieldNames,
-          QueryConstants.SYB_COMMA
-        ) +
+        String.join((Iterable<String>) this.fieldNames, QueryConstants.SYB_COMMA) +
         QueryConstants.QUERY_FROM +
         this.relationName;
     }
 
     if (!this.whereClause.isEmpty()) {
-      queryString +=
-        QueryConstants.QUERY_WHERE +
-        String.join(this.whereClause, QueryConstants.SYB_SPACE);
+      queryString += QueryConstants.QUERY_WHERE + String.join(this.whereClause, QueryConstants.SYB_SPACE);
     }
 
     if (this.enforceSecurity) {
@@ -1694,21 +1526,15 @@ global inherited sharing class Query {
     }
 
     if (!this.groupClause.isEmpty()) {
-      queryString +=
-        QueryConstants.QUERY_GROUP_BY +
-        String.join(this.groupClause, QueryConstants.SYB_COMMA);
+      queryString += QueryConstants.QUERY_GROUP_BY + String.join(this.groupClause, QueryConstants.SYB_COMMA);
     }
 
     if (!this.havingClause.isEmpty()) {
-      queryString +=
-        QueryConstants.QUERY_HAVING +
-        String.join(this.havingClause, QueryConstants.SYB_SPACE);
+      queryString += QueryConstants.QUERY_HAVING + String.join(this.havingClause, QueryConstants.SYB_SPACE);
     }
 
     if (!this.orderClause.isEmpty()) {
-      queryString +=
-        QueryConstants.QUERY_ORDER_BY +
-        String.join(this.orderClause, QueryConstants.SYB_COMMA);
+      queryString += QueryConstants.QUERY_ORDER_BY + String.join(this.orderClause, QueryConstants.SYB_COMMA);
     }
 
     if (this.limitClause != null && this.limitClause > 0) {

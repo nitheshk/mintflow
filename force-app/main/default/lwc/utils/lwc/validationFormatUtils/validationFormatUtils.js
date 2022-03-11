@@ -18,11 +18,9 @@ export default class ValidationFormatUtils extends LightningElement {
   //personal info
   numericValidation = "[0-9]*";
   messageWhenNumberOfEmployeesExceeds = "Max value allowed is 99,999,999";
-  messageWhenAnnualCurrencyExceeds =
-    "Max value allowed is 999,999,999,999,999,999";
+  messageWhenAnnualCurrencyExceeds = "Max value allowed is 999,999,999,999,999,999";
   postalCode = "^([0-9]{5}-[0-9]{4})$||^([0-9]{5})$";
-  postalCodeValidation =
-    "Please enter postal code in xxxxx or xxxxx-xxxx format";
+  postalCodeValidation = "Please enter postal code in xxxxx or xxxxx-xxxx format";
   websitePattern =
     "^((ftp|http|https)://)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(.[a-zA-Z]+)+((/)[w#]+)*(/w+?[a-zA-Z0-9_]+=w+(&[a-zA-Z0-9_]+=w+)*)?$";
   websitePatternValidation = "Please enter valid website";

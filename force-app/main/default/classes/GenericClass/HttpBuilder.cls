@@ -22,9 +22,7 @@ global with sharing class HttpBuilder {
     return apiSetting;
   }
 
-  global static APISetting__mdt setAPISetting(
-    APISetting__mdt apiSettingObject
-  ) {
+  global static APISetting__mdt setAPISetting(APISetting__mdt apiSettingObject) {
     apiSetting = apiSettingObject;
     return apiSetting;
   }
@@ -37,10 +35,7 @@ global with sharing class HttpBuilder {
     return apiSetting.isActive__c;
   }
 
-  global static APISetting__mdt replaceEndpoint(
-    String oldValue,
-    String newValue
-  ) {
+  global static APISetting__mdt replaceEndpoint(String oldValue, String newValue) {
     apiSetting.EndPoint__c = apiSetting.EndPoint__c.replace(oldValue, newValue);
     return apiSetting;
   }
@@ -77,11 +72,7 @@ global with sharing class HttpBuilder {
    * @param Object data
    * @return Response
    **/
-  global static Response buildResponse(
-    Integer statusCode,
-    String status,
-    Object data
-  ) {
+  global static Response buildResponse(Integer statusCode, String status, Object data) {
     return new Response(statusCode, status, data);
   }
 
@@ -92,11 +83,7 @@ global with sharing class HttpBuilder {
    * @return Response
    **/
   global static Response buildResponse(HttpResponse httpResponseObj) {
-    return new Response(
-      httpResponseObj.getStatusCode(),
-      httpResponseObj.getStatus(),
-      httpResponseObj.getBody()
-    );
+    return new Response(httpResponseObj.getStatusCode(), httpResponseObj.getStatus(), httpResponseObj.getBody());
   }
 
   /**
@@ -106,10 +93,7 @@ global with sharing class HttpBuilder {
    * @param Map<String String> header
    * @return HttpResponse
    **/
-  global static HttpResponse httpCallOut(
-    String requestBody,
-    Map<String, String> header
-  ) {
+  global static HttpResponse httpCallOut(String requestBody, Map<String, String> header) {
     HttpRequest req = new HttpRequest();
     req.setTimeout(Integer.valueOf(HttpBuilder.apiSetting.Timeout__c));
     req.setEndpoint(HttpBuilder.apiSetting.EndPoint__c);

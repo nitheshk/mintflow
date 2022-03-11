@@ -51,9 +51,7 @@ global with sharing class ApexRequest {
     request.nextPage = this.nextPage;
     request.applicantId = this.applicantId;
     if (String.isNotBlank(this.header)) {
-      request.params = (Map<String, Object>) Json.deserializeUntyped(
-        this.header
-      );
+      request.params = (Map<String, Object>) Json.deserializeUntyped(this.header);
     }
     if (String.isNotBlank(this.applicationId)) {
       Logger.setEntity(this.applicationId);

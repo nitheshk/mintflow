@@ -21,9 +21,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
    **/
   public static ApplicationService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (ApplicationService) getInstance(
-        ApplicationService.class
-      );
+      serviceInstance = (ApplicationService) getInstance(ApplicationService.class);
     }
     return serviceInstance;
   }
@@ -41,8 +39,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
 
     result.put(
       'url',
-      SiteSetting__c.getInstance().OnlineSiteUrl__c +
-      SiteSetting__c.getInstance().OnlineAccountOpeningUrl__c
+      SiteSetting__c.getInstance().OnlineSiteUrl__c + SiteSetting__c.getInstance().OnlineAccountOpeningUrl__c
     );
     log?.info('startApplication -> Url -> ' + result.get('url'));
     return result;
@@ -73,21 +70,16 @@ global virtual with sharing class ApplicationService extends AbstractService {
     application.FlowState__c = 'GetStarted';
     application.FlowType__c = 'ApplicationFlow';
     // #pending update version from custom setting
-    application.Version__c = ApplicationConfiguration__c.getInstance()
-      .PackageVersion__c;
-    application.IPAddress__c = ApplicationServiceHelper.getInstance()
-      .getIpAddress();
-    application = ApplicationServiceHelper.getInstance()
-      .resolveBranchLocation(application);
+    application.Version__c = ApplicationConfiguration__c.getInstance().PackageVersion__c;
+    application.IPAddress__c = ApplicationServiceHelper.getInstance().getIpAddress();
+    application = ApplicationServiceHelper.getInstance().resolveBranchLocation(application);
     ApplicationRepository.upsertRecord(application);
     /*** */
     /*** Create Empty Primary Applicant   */
-    Applicant__c applicant = ApplicantService.getInstance()
-      .createInitialPrimaryApplicant(application);
+    Applicant__c applicant = ApplicantService.getInstance().createInitialPrimaryApplicant(application);
     /***   */
     /*** Create Financial Account Base on Param */
-    FinancialAccountService.getInstance()
-      .createInitialFinancialAccount(application);
+    FinancialAccountService.getInstance().createInitialFinancialAccount(application);
     /***  */
 
     applicant = ApplicantRepository.readApplicantWithApplication(applicant.Id);
@@ -95,9 +87,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicantId(applicant.id);
     ApexRequest.setFlowType('ApplicationFlow');
-    ApexRequest.setApplicantType(
-      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-    );
+    ApexRequest.setApplicantType(ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
 
     applicant = SecurityUtils.createSessionForApplicant(applicant);
     ApplicationRepository.upsertRecord(applicant);
@@ -120,12 +110,9 @@ global virtual with sharing class ApplicationService extends AbstractService {
    * @return Application__c
    **/
   global virtual Application__c readApplicationWithChild(Id applicationId) {
-    Application__c application = ApplicationRepository.readApplicationWithChild(
-      applicationId
-    );
+    Application__c application = ApplicationRepository.readApplicationWithChild(applicationId);
 
-    List<Applicant__c> applicants = ApplicantService.getInstance()
-      .readApplicantsWithChild(application.Applicants__r);
+    List<Applicant__c> applicants = ApplicantService.getInstance().readApplicantsWithChild(application.Applicants__r);
     List<FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
@@ -143,17 +130,10 @@ global virtual with sharing class ApplicationService extends AbstractService {
    * @param Id applicantId
    * @return Application__c
    **/
-  global virtual Application__c readApplicationWithChild(
-    Id applicationId,
-    Id applicantId
-  ) {
-    Application__c application = ApplicationRepository.readApplicationWithChild(
-      applicationId,
-      applicantId
-    );
+  global virtual Application__c readApplicationWithChild(Id applicationId, Id applicantId) {
+    Application__c application = ApplicationRepository.readApplicationWithChild(applicationId, applicantId);
 
-    Applicant__c applicant = ApplicantService.getInstance()
-      .readApplicantWithChild(applicantId);
+    Applicant__c applicant = ApplicantService.getInstance().readApplicantWithChild(applicantId);
     List<FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
@@ -170,9 +150,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
    * @param Map<String Object> params
    * @return Object
    **/
-  global virtual Map<String, Object> resumeApplication(
-    Map<String, Object> params
-  ) {
+  global virtual Map<String, Object> resumeApplication(Map<String, Object> params) {
     log?.fine('Inside resumeApplication');
     String vmf = (String) params.get('vmf');
     params.remove('vmf');
@@ -181,9 +159,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     try {
       cipher = SecurityUtils.extractToken(vmf);
     } catch (Exception ex) {
-      throw new CustomException(
-        System.Label.Resume_TheSpecifiedUrlWasCorrupted
-      );
+      throw new CustomException(System.Label.Resume_TheSpecifiedUrlWasCorrupted);
     }
     if (cipher.edt < Datetime.now()) {
       throw new CustomException(System.Label.Resume_TheSpecifiedUrlWasExpired);
@@ -195,9 +171,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     params.put('applicantId', cipher.aplId);
     params.put('flowType', cipher.flw);
 
-    Applicant__c applicant = ApplicantRepository.readApplicantWithApplication(
-      cipher.aplId
-    );
+    Applicant__c applicant = ApplicantRepository.readApplicantWithApplication(cipher.aplId);
     if (applicant == null) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
@@ -218,9 +192,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
    * @return Object
    **/
   //#pending
-  global virtual Map<String, Object> cloneAppFromMembership(
-    Map<String, Object> params
-  ) {
+  global virtual Map<String, Object> cloneAppFromMembership(Map<String, Object> params) {
     log?.fine('Inside cloneAppFromMembership');
     String vmf = (String) params.get('vmf');
     string productId = (String) params.get('pid');
@@ -230,9 +202,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     try {
       cipher = SecurityUtils.extractToken(vmf);
     } catch (Exception ex) {
-      throw new CustomException(
-        System.Label.Resume_TheSpecifiedUrlWasCorrupted
-      );
+      throw new CustomException(System.Label.Resume_TheSpecifiedUrlWasCorrupted);
     }
     if (cipher.edt < Datetime.now()) {
       throw new CustomException(System.Label.Resume_TheSpecifiedUrlWasExpired);
@@ -245,26 +215,17 @@ global virtual with sharing class ApplicationService extends AbstractService {
     params.put('flowType', cipher.flw);
     log?.debug('ApplicationID ' + cipher.appId);
 
-    Application__c application = ApplicationRepository.readApplicationToClone(
-      cipher.appId
-    );
+    Application__c application = ApplicationRepository.readApplicationToClone(cipher.appId);
     //clone application to create new app
     // #pending Map product selected to application
-    List<Applicant__c> applicants = ApplicationRepository.readApplicantsToClone(
-      cipher.appId
-    );
+    List<Applicant__c> applicants = ApplicationRepository.readApplicantsToClone(cipher.appId);
     application.mflow__Applicants__r.addAll(applicants);
     log?.debug('Application = ' + Json.serialize(application));
     log?.debug('applicants = ' + Json.serialize(applicants));
     if (application == null) {
       throw new CustomException(System.Label.Applicant_ApplicantNotFound);
     }
-    Application__c clonedAccountWithId = application.clone(
-      false,
-      true,
-      false,
-      false
-    );
+    Application__c clonedAccountWithId = application.clone(false, true, false, false);
     log?.debug('ClonedApplication = ' + Json.serialize(clonedAccountWithId));
 
     // AuthenticationService.getInstance().generateOTP(cipher.aplId);
@@ -292,14 +253,10 @@ global virtual with sharing class ApplicationService extends AbstractService {
 
     Application__c application;
     if (ApexRequest.getApplicantType() == 'Primary') {
-      application = ApplicationService.getInstance()
-        .readApplicationWithChild(ApexRequest.getApplicationId());
+      application = ApplicationService.getInstance().readApplicationWithChild(ApexRequest.getApplicationId());
     } else if (ApexRequest.getApplicantType() == 'Joint') {
       application = ApplicationService.getInstance()
-        .readApplicationWithChild(
-          ApexRequest.getApplicationId(),
-          ApexRequest.getApplicantId()
-        );
+        .readApplicationWithChild(ApexRequest.getApplicationId(), ApexRequest.getApplicantId());
     }
 
     params.put('applicantType', ApexRequest.getApplicantType());
@@ -322,8 +279,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     //save point count against DML operation
     Savepoint sp = Database.setSavepoint();
     try {
-      return ApplicationPersistService.getInstance()
-        .saveApplication(application);
+      return ApplicationPersistService.getInstance().saveApplication(application);
     } catch (Exception ex) {
       log?.error(ex);
       Database.rollback(sp);
@@ -338,36 +294,21 @@ global virtual with sharing class ApplicationService extends AbstractService {
    * @param Application__c application
    * @return Application__c
    **/
-  global virtual Application__c preserveApplication(
-    Application__c application
-  ) {
+  global virtual Application__c preserveApplication(Application__c application) {
     //current applicant
     Applicant__c currentApplicant;
-    if (
-      ApexRequest.getApplicantType() ==
-      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-    ) {
+    if (ApexRequest.getApplicantType() == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
       application.Status__c = ApplicationConstant.SAVED;
       for (Applicant__c applicant : application.Applicants__r) {
-        if (
-          applicant.ApplicantType__c ==
-          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-        ) {
+        if (applicant.ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
           currentApplicant = applicant;
           applicant.mflow__Status__c = ApplicationConstant.SAVED;
           break;
         }
       }
-    } else if (
-      ApexRequest.getApplicantType() ==
-      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-    ) {
+    } else if (ApexRequest.getApplicantType() == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE) {
       for (Applicant__c applicant : application.Applicants__r) {
-        if (
-          applicant.ApplicantType__c.Contains(
-            ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-          )
-        ) {
+        if (applicant.ApplicantType__c.Contains(ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)) {
           currentApplicant = applicant;
           applicant.mflow__Status__c = ApplicationConstant.SAVED;
           break;
@@ -421,24 +362,15 @@ global virtual with sharing class ApplicationService extends AbstractService {
         }
       } else if (entity instanceof List<Applicant__c>) {
         List<Applicant__c> applicants = (List<Applicant__c>) entity;
-        Application__c application = new Application__c(
-          Id = Apexrequest.getApplicationId()
-        );
+        Application__c application = new Application__c(Id = Apexrequest.getApplicationId());
         return helper.updateFlowState(application, applicants);
       } else if (entity instanceof Applicant__c) {
         Applicant__c applicant = (Applicant__c) entity;
-        Application__c application = new Application__c(
-          Id = Apexrequest.getApplicationId()
-        );
-        return helper.updateFlowState(
-          application,
-          new List<Applicant__c>{ applicant }
-        );
+        Application__c application = new Application__c(Id = Apexrequest.getApplicationId());
+        return helper.updateFlowState(application, new List<Applicant__c>{ applicant });
       } else if (entity instanceof List<FinancialAccount__c>) {
         //List<FinancialAccount__c> finAccounts = (List<FinancialAccount__c>) entity;
-        Application__c application = ApplicationRepository.readApplicationWithPrimary(
-          ApexRequest.getApplicationId()
-        );
+        Application__c application = ApplicationRepository.readApplicationWithPrimary(ApexRequest.getApplicationId());
         return helper.updateFlowState(application, application.Applicants__r);
       }
     } catch (Exception ex) {

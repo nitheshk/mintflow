@@ -6,8 +6,7 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Joint applicant registration email - EN</name>
     <style>none</style>
-    <subject
-  >Join Us by completing your account registration process with Mintflow</subject>
+    <subject>Join Us by completing your account registration process with Mintflow</subject>
     <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

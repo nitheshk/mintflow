@@ -29,9 +29,6 @@ public with sharing class TriggerDispatcherTest {
     TriggerDispatcher.loopCountMap.get(handlerName).increment();
     TriggerDispatcher.loopCountMap.get(handlerName).decrement();
     TriggerDispatcher.loopCountMap.get(handlerName).getCount();
-    system.assertEquals(
-      false,
-      TriggerDispatcher.loopCountMap.get(handlerName).exceeded()
-    );
+    system.assertEquals(false, TriggerDispatcher.loopCountMap.get(handlerName).exceeded());
   }
 }

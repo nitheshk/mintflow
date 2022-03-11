@@ -23,9 +23,7 @@ global with sharing class Logger {
 
   static {
     try {
-      level = LoggingLevel.valueOf(
-        SystemSetting__c.getInstance().LoggingLevel__c
-      );
+      level = LoggingLevel.valueOf(SystemSetting__c.getInstance().LoggingLevel__c);
     } catch (Exception e) {
       System.debug(e.getMessage());
     }
@@ -57,10 +55,7 @@ global with sharing class Logger {
    * @return Boolean
    **/
   private Boolean skipLogging(System.LoggingLevel currentLoggerLevel) {
-    if (
-      SystemSetting__c.getInstance().DebugLogs__c &&
-      currentLoggerLevel.ordinal() >= Logger.level.ordinal()
-    ) {
+    if (SystemSetting__c.getInstance().DebugLogs__c && currentLoggerLevel.ordinal() >= Logger.level.ordinal()) {
       return false;
     }
     return true;
@@ -105,10 +100,7 @@ global with sharing class Logger {
     if (skipLogging(LoggingLevel.ERROR)) {
       return;
     }
-    Diagnostic__c diagnosticLog = new Diagnostic__c(
-      LogLevel__c = LoggingLevel.ERROR.Name(),
-      Class__c = this.className
-    );
+    Diagnostic__c diagnosticLog = new Diagnostic__c(LogLevel__c = LoggingLevel.ERROR.Name(), Class__c = this.className);
 
     if (Obj instanceof String) {
       diagnosticLog.Message__c = String.valueOf(Obj);
@@ -128,15 +120,8 @@ global with sharing class Logger {
    * @param className Name of the apex class need to log
    * @param msg String that will be logged
    */
-  global static void customlog(
-    LoggingLevel logLevel,
-    String className,
-    String msg
-  ) {
-    if (
-      !(SystemSetting__c.getInstance().DebugLogs__c &&
-      logLevel.ordinal() >= Logger.level.ordinal())
-    ) {
+  global static void customlog(LoggingLevel logLevel, String className, String msg) {
+    if (!(SystemSetting__c.getInstance().DebugLogs__c && logLevel.ordinal() >= Logger.level.ordinal())) {
       return;
     }
     Diagnostic__c diagnosticLog = new Diagnostic__c(
@@ -183,10 +168,7 @@ global with sharing class Logger {
     if (skipLogging(LoggingLevel.INFO)) {
       return;
     }
-    Diagnostic__c diagnosticLog = new Diagnostic__c(
-      LogLevel__c = LoggingLevel.INFO.Name(),
-      Class__c = this.className
-    );
+    Diagnostic__c diagnosticLog = new Diagnostic__c(LogLevel__c = LoggingLevel.INFO.Name(), Class__c = this.className);
 
     if (Obj instanceof String) {
       diagnosticLog.Message__c = String.valueOf(Obj);
@@ -207,10 +189,7 @@ global with sharing class Logger {
     if (skipLogging(LoggingLevel.FINE)) {
       return;
     }
-    Diagnostic__c diagnosticLog = new Diagnostic__c(
-      LogLevel__c = LoggingLevel.FINE.Name(),
-      Class__c = this.className
-    );
+    Diagnostic__c diagnosticLog = new Diagnostic__c(LogLevel__c = LoggingLevel.FINE.Name(), Class__c = this.className);
 
     if (Obj instanceof String) {
       diagnosticLog.Message__c = String.valueOf(Obj);
@@ -247,11 +226,7 @@ global with sharing class Logger {
   private static String stringifyObjectMap(Map<String, Object> objMap) {
     List<String> mapStrings = new List<String>();
     for (String key : objMap.keySet()) {
-      String message =
-        'Key: ' +
-        key +
-        ' Object: ' +
-        String.valueOf(objMap.get(key));
+      String message = 'Key: ' + key + ' Object: ' + String.valueOf(objMap.get(key));
       mapStrings.add(message);
     }
     return String.join(mapStrings, DELIMITER);

@@ -17,9 +17,7 @@ global with sharing class XMLSerializer {
    * @Returns        : XML String
    **/
   global string serialize(object objectToSerialize) {
-    object deSerialized = JSON.deserializeUntyped(
-      JSON.serialize(objectToSerialize)
-    );
+    object deSerialized = JSON.deserializeUntyped(JSON.serialize(objectToSerialize));
     return !string.isEmpty(rootElement)
       ? Wrap(rootElement, serialize((Map<string, object>) deSerialized))
       : serialize((Map<string, object>) deSerialized);
@@ -32,11 +30,7 @@ global with sharing class XMLSerializer {
    * @Parameter	     : Name of the root element to wrap serialized string with.
    * @Returns        : XML String
    **/
-  global string serialize(
-    object objectToSerialize,
-    boolean suppressApexObjectNulls,
-    string addRootElementName
-  ) {
+  global string serialize(object objectToSerialize, boolean suppressApexObjectNulls, string addRootElementName) {
     this.serializeNulls = !suppressApexObjectNulls;
     this.rootElement = addRootElementName;
     return serialize(objectToSerialize);
@@ -83,11 +77,7 @@ global with sharing class XMLSerializer {
    * @Parameter      : deSerializeNodesAsArray  = collection of node names to deserialize as array (Even if xml representation is not an array)
    * @Returns        : object of type apexType
    **/
-  global object deSerialize(
-    string xmlString,
-    System.Type apexType,
-    Set<String> deSerializeNodesAsArray
-  ) {
+  global object deSerialize(string xmlString, System.Type apexType, Set<String> deSerializeNodesAsArray) {
     this.deSerializeAsArrayNodes = toLower(deSerializeNodesAsArray);
     return deSerialize(xmlString, apexType);
   }
@@ -107,10 +97,7 @@ global with sharing class XMLSerializer {
    * @Parameter      : deSerializeNodesAsArray  = collection of node names to deserialize as array (Even if xml representation is not an array)
    * @Returns        : collection of primitive data types
    **/
-  global object deSerializeUnTyped(
-    string xmlString,
-    Set<string> deSerializeNodesAsArray
-  ) {
+  global object deSerializeUnTyped(string xmlString, Set<string> deSerializeNodesAsArray) {
     this.deSerializeAsArrayNodes = toLower(deSerializeNodesAsArray);
     return xmlToUnTyped(xmlString);
   }
@@ -130,10 +117,7 @@ global with sharing class XMLSerializer {
    * @Parameter      : deSerializeNodesAsArray  = collection of node names to deserialize as array (Even if xml representation is not an array)
    * @Returns        : JSON String
    **/
-  global string xmlToJSON(
-    string xmlString,
-    Set<string> deSerializeNodesAsArray
-  ) {
+  global string xmlToJSON(string xmlString, Set<string> deSerializeNodesAsArray) {
     this.deSerializeAsArrayNodes = toLower(deSerializeNodesAsArray);
     return System.JSON.serialize(xmlToUnTyped(xmlString));
   }
@@ -201,13 +185,7 @@ global with sharing class XMLSerializer {
    **/
   private string wrap(string key, string value) {
     return (string.isNotBlank(value) || serializeNulls)
-      ? ('<' +
-        key +
-        '>' +
-        (string.isBlank(value) ? '' : value) +
-        '</' +
-        key +
-        '>')
+      ? ('<' + key + '>' + (string.isBlank(value) ? '' : value) + '</' + key + '>')
       : value;
   }
 

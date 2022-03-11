@@ -21,9 +21,7 @@ global virtual with sharing class FinancialAccountServiceHelper extends Abstract
    **/
   public static FinancialAccountServiceHelper getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (FinancialAccountServiceHelper) getInstance(
-        FinancialAccountServiceHelper.class
-      );
+      serviceInstance = (FinancialAccountServiceHelper) getInstance(FinancialAccountServiceHelper.class);
     }
     return serviceInstance;
   }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TextAttributes__c</fullName>
-    <description
-  >Type attributes for the fields to be used as columns</description>
+    <description>Type attributes for the fields to be used as columns</description>
     <externalId>false</externalId>
     <fieldManageability>SubscriberControlled</fieldManageability>
     <label>TextAttributes</label>

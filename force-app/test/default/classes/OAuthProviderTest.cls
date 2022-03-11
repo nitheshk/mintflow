@@ -47,23 +47,11 @@ public class OAuthProviderTest {
 
   private static Map<String, String> setupAuthProviderConfig() {
     final Map<String, String> authProviderConfiguration = new Map<String, String>();
-    authProviderConfiguration.put(
-      OAuthProvider.MDT_FIELD_PROVIDER_NAME,
-      PROVIDER_NAME
-    );
-    authProviderConfiguration.put(
-      OAuthProvider.MDT_FIELD_AUTHTOKEN_URL,
-      ACCESS_TOKEN_URL
-    );
-    authProviderConfiguration.put(
-      OAuthProvider.MDT_FIELD_CALLBACK_URL,
-      EMPTY_VALUE
-    );
+    authProviderConfiguration.put(OAuthProvider.MDT_FIELD_PROVIDER_NAME, PROVIDER_NAME);
+    authProviderConfiguration.put(OAuthProvider.MDT_FIELD_AUTHTOKEN_URL, ACCESS_TOKEN_URL);
+    authProviderConfiguration.put(OAuthProvider.MDT_FIELD_CALLBACK_URL, EMPTY_VALUE);
     authProviderConfiguration.put(OAuthProvider.MDT_FIELD_CLIENT_ID, KEY);
-    authProviderConfiguration.put(
-      OAuthProvider.MDT_FIELD_CLIENT_SECRET,
-      SECRET
-    );
+    authProviderConfiguration.put(OAuthProvider.MDT_FIELD_CLIENT_SECRET, SECRET);
     authProviderConfiguration.put(OAuthProvider.MDT_FIELD_SCOPE, SCOPE);
     authProviderConfiguration.put(OAuthProvider.MDT_FIELD_USE_JSON, 'False');
 
@@ -81,39 +69,24 @@ public class OAuthProviderTest {
     final Map<String, String> authProviderConfiguration = setupAuthProviderConfig();
     final OAuthProvider provider = new OAuthProvider();
 
-    final PageReference expectedUrl = new PageReference(
-      authProviderConfiguration.get('mflow__CallbackURL__c')
-    );
+    final PageReference expectedUrl = new PageReference(authProviderConfiguration.get('mflow__CallbackURL__c'));
     expectedUrl.getParameters().put('state', STATE_TO_PROPOGATE);
 
-    final PageReference actualUrl = provider.initiate(
-      authProviderConfiguration,
-      STATE_TO_PROPOGATE
-    );
-    System.assertEquals(
-      expectedUrl.getParameters().get('state'),
-      actualUrl.getParameters().get('state')
-    );
+    final PageReference actualUrl = provider.initiate(authProviderConfiguration, STATE_TO_PROPOGATE);
+    System.assertEquals(expectedUrl.getParameters().get('state'), actualUrl.getParameters().get('state'));
   }
 
   static testMethod void testHandleCallback() {
     final Map<String, String> authProviderConfiguration = setupAuthProviderConfig();
     final OAuthProvider provider = new OAuthProvider();
 
-    Test.setMock(
-      HttpCalloutMock.class,
-      new ApigeeMockService(jsonGoodToken, 200)
-    );
+    Test.setMock(HttpCalloutMock.class, new ApigeeMockService(jsonGoodToken, 200));
 
     final Map<String, String> queryParams = new Map<String, String>();
     queryParams.put('code', 'code');
     queryParams.put('state', STATE);
 
-    final Auth.AuthProviderCallbackState cbState = new Auth.AuthProviderCallbackState(
-      null,
-      null,
-      queryParams
-    );
+    final Auth.AuthProviderCallbackState cbState = new Auth.AuthProviderCallbackState(null, null, queryParams);
 
     final Auth.AuthProviderTokenResponse actualAuthProvResponse = provider.handleCallback(
       authProviderConfiguration,
@@ -127,22 +100,13 @@ public class OAuthProviderTest {
       STATE
     );
 
-    System.assertEquals(
-      expectedAuthProvResponse.provider,
-      actualAuthProvResponse.provider
-    );
-    System.assertEquals(
-      expectedAuthProvResponse.oauthToken,
-      actualAuthProvResponse.oauthToken
-    );
+    System.assertEquals(expectedAuthProvResponse.provider, actualAuthProvResponse.provider);
+    System.assertEquals(expectedAuthProvResponse.oauthToken, actualAuthProvResponse.oauthToken);
     System.assertEquals(
       expectedAuthProvResponse.oauthSecretOrRefreshToken,
       actualAuthProvResponse.oauthSecretOrRefreshToken
     );
-    System.assertEquals(
-      expectedAuthProvResponse.state,
-      actualAuthProvResponse.state
-    );
+    System.assertEquals(expectedAuthProvResponse.state, actualAuthProvResponse.state);
   }
 
   static testMethod void testHandleCallbackJson() {
@@ -152,20 +116,13 @@ public class OAuthProviderTest {
 
     final OAuthProvider provider = new OAuthProvider();
 
-    Test.setMock(
-      HttpCalloutMock.class,
-      new ApigeeMockService(jsonGoodToken, 200)
-    );
+    Test.setMock(HttpCalloutMock.class, new ApigeeMockService(jsonGoodToken, 200));
 
     final Map<String, String> queryParams = new Map<String, String>();
     queryParams.put('code', 'code');
     queryParams.put('state', STATE);
 
-    final Auth.AuthProviderCallbackState cbState = new Auth.AuthProviderCallbackState(
-      null,
-      null,
-      queryParams
-    );
+    final Auth.AuthProviderCallbackState cbState = new Auth.AuthProviderCallbackState(null, null, queryParams);
 
     final Auth.AuthProviderTokenResponse actualAuthProvResponse = provider.handleCallback(
       authProviderConfiguration,
@@ -179,22 +136,13 @@ public class OAuthProviderTest {
       STATE
     );
 
-    System.assertEquals(
-      expectedAuthProvResponse.provider,
-      actualAuthProvResponse.provider
-    );
-    System.assertEquals(
-      expectedAuthProvResponse.oauthToken,
-      actualAuthProvResponse.oauthToken
-    );
+    System.assertEquals(expectedAuthProvResponse.provider, actualAuthProvResponse.provider);
+    System.assertEquals(expectedAuthProvResponse.oauthToken, actualAuthProvResponse.oauthToken);
     System.assertEquals(
       expectedAuthProvResponse.oauthSecretOrRefreshToken,
       actualAuthProvResponse.oauthSecretOrRefreshToken
     );
-    System.assertEquals(
-      expectedAuthProvResponse.state,
-      actualAuthProvResponse.state
-    );
+    System.assertEquals(expectedAuthProvResponse.state, actualAuthProvResponse.state);
   }
 
   static testMethod void testHandleCallbackError1() {
@@ -207,26 +155,16 @@ public class OAuthProviderTest {
     queryParams.put('code', 'code');
     queryParams.put('state', STATE);
 
-    final Auth.AuthProviderCallbackState cbState = new Auth.AuthProviderCallbackState(
-      null,
-      null,
-      queryParams
-    );
+    final Auth.AuthProviderCallbackState cbState = new Auth.AuthProviderCallbackState(null, null, queryParams);
 
     try {
       final Auth.AuthProviderTokenResponse actualAuthProvResponse = provider.handleCallback(
         authProviderConfiguration,
         cbState
       );
-      System.Assert(
-        false,
-        'Should throw an Exception on bad http return code!'
-      );
+      System.Assert(false, 'Should throw an Exception on bad http return code!');
     } catch (CustomException ex) {
-      System.AssertEquals(
-        'Invalid client identifier oauth.v2.InvalidClientIdentifier',
-        ex.getMessage()
-      );
+      System.AssertEquals('Invalid client identifier oauth.v2.InvalidClientIdentifier', ex.getMessage());
     }
   }
 
@@ -240,21 +178,14 @@ public class OAuthProviderTest {
     queryParams.put('code', 'code');
     queryParams.put('state', STATE);
 
-    final Auth.AuthProviderCallbackState cbState = new Auth.AuthProviderCallbackState(
-      null,
-      null,
-      queryParams
-    );
+    final Auth.AuthProviderCallbackState cbState = new Auth.AuthProviderCallbackState(null, null, queryParams);
 
     try {
       final Auth.AuthProviderTokenResponse actualAuthProvResponse = provider.handleCallback(
         authProviderConfiguration,
         cbState
       );
-      System.Assert(
-        false,
-        'Should throw an Exception on bad http return code!'
-      );
+      System.Assert(false, 'Should throw an Exception on bad http return code!');
     } catch (CustomException ex) {
       System.AssertEquals('invalid_client', ex.getMessage());
     }
@@ -264,20 +195,11 @@ public class OAuthProviderTest {
     final Map<String, String> config = setupAuthProviderConfig();
     final OAuthProvider provider = new OAuthProvider();
 
-    Test.setMock(
-      HttpCalloutMock.class,
-      new ApigeeMockService(jsonGoodToken, 200)
-    );
+    Test.setMock(HttpCalloutMock.class, new ApigeeMockService(jsonGoodToken, 200));
 
-    final Auth.OAuthRefreshResult actual = provider.refresh(
-      config,
-      'myUnusedRefreshToken'
-    );
+    final Auth.OAuthRefreshResult actual = provider.refresh(config, 'myUnusedRefreshToken');
 
-    final Auth.OAuthRefreshResult expected = new Auth.OAuthRefreshResult(
-      ACCESS_TOKEN,
-      TOKEN_TYPE
-    );
+    final Auth.OAuthRefreshResult expected = new Auth.OAuthRefreshResult(ACCESS_TOKEN, TOKEN_TYPE);
 
     System.assertEquals(expected.accessToken, actual.accessToken);
     System.assertEquals(expected.refreshToken, actual.refreshToken);
@@ -288,10 +210,7 @@ public class OAuthProviderTest {
     Map<String, String> authProviderConfiguration = setupAuthProviderConfig();
     OAuthProvider provider = new OAuthProvider();
 
-    Test.setMock(
-      HttpCalloutMock.class,
-      new ApigeeMockService(jsonGoodToken, 200)
-    );
+    Test.setMock(HttpCalloutMock.class, new ApigeeMockService(jsonGoodToken, 200));
 
     Auth.AuthProviderTokenResponse response = new Auth.AuthProviderTokenResponse(
       PROVIDER_NAME,
@@ -299,10 +218,7 @@ public class OAuthProviderTest {
       'sampleOauthSecret',
       STATE
     );
-    Auth.UserData actualUserData = provider.getUserInfo(
-      authProviderConfiguration,
-      response
-    );
+    Auth.UserData actualUserData = provider.getUserInfo(authProviderConfiguration, response);
 
     Map<String, String> provMap = new Map<String, String>();
     provMap.put('key1', 'value1');
@@ -330,44 +246,26 @@ public class OAuthProviderTest {
     System.assertEquals(expectedUserData.username, actualUserData.username);
     System.assertEquals(expectedUserData.locale, actualUserData.locale);
     System.assertEquals(expectedUserData.provider, actualUserData.provider);
-    System.assertEquals(
-      expectedUserData.siteLoginUrl,
-      actualUserData.siteLoginUrl
-    );
+    System.assertEquals(expectedUserData.siteLoginUrl, actualUserData.siteLoginUrl);
   }
 
   static testMethod void testEncodingAsJSON() {
     final Map<String, String> config = setupAuthProviderConfig();
 
-    final String output = new OAuthProvider()
-      .encodeParameters(config, OAuthProvider.ENCODING_JSON);
+    final String output = new OAuthProvider().encodeParameters(config, OAuthProvider.ENCODING_JSON);
     System.debug('encoded jSON: ' + output);
 
     // Assert that we deserialize parse the output as JSON
-    Map<String, Object> result = (Map<String, Object>) JSON.deserializeUntyped(
-      output
-    );
+    Map<String, Object> result = (Map<String, Object>) JSON.deserializeUntyped(output);
 
     System.AssertEquals(
       'client_credentials',
       (String) result.get(OAuthProvider.GRANT_TYPE_PARAM),
       'Grant type did not match'
     );
-    System.AssertEquals(
-      KEY,
-      (String) result.get(OAuthProvider.CLIENT_ID_PARAM),
-      'Client key did not match'
-    );
-    System.AssertEquals(
-      SECRET,
-      (String) result.get(OAuthProvider.CLIENT_SECRET_PARAM),
-      'Client secret did not match'
-    );
-    System.AssertEquals(
-      SCOPE,
-      (String) result.get(OAuthProvider.SCOPE_PARAM),
-      'Scope did not match'
-    );
+    System.AssertEquals(KEY, (String) result.get(OAuthProvider.CLIENT_ID_PARAM), 'Client key did not match');
+    System.AssertEquals(SECRET, (String) result.get(OAuthProvider.CLIENT_SECRET_PARAM), 'Client secret did not match');
+    System.AssertEquals(SCOPE, (String) result.get(OAuthProvider.SCOPE_PARAM), 'Scope did not match');
   }
 
   static testMethod void testTokenMembers() {
@@ -378,20 +276,14 @@ public class OAuthProviderTest {
 
     System.AssertEquals('testKey', resp.client_id);
     System.AssertEquals('0', resp.refresh_token_expires_in);
-    System.AssertEquals(
-      '[helloworld, HelloWorld_OAuth2-Product]',
-      resp.api_product_list
-    );
+    System.AssertEquals('[helloworld, HelloWorld_OAuth2-Product]', resp.api_product_list);
     System.AssertEquals(2, resp.api_product_list_json.size());
     System.AssertEquals('bobbywhite-eval', resp.organization_name);
     //System.AssertEquals('developer@example.com',resp.developer_email);
     System.AssertEquals('Bearer', resp.token_type);
     System.AssertEquals('1521077832490', resp.issued_at);
     System.AssertEquals('gv6iCx48OaH76ufiGXBUlRTRTXxx', resp.access_token);
-    System.AssertEquals(
-      '47bc6c8d-34f3-4141-b9e6-f1679a8240e7',
-      resp.application_name
-    );
+    System.AssertEquals('47bc6c8d-34f3-4141-b9e6-f1679a8240e7', resp.application_name);
     System.AssertEquals('', resp.scope);
     System.AssertEquals('3599', resp.expires_in);
     System.AssertEquals('0', resp.refresh_count);

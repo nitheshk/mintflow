@@ -31,16 +31,12 @@ global virtual with sharing class AbstractService {
     if (className.contains('.')) {
       className = className.split('\\.')[1];
     }
-    ServiceClassSetting__mdt serviceClassObj = ServiceClassSetting__mdt.getInstance(
-      className
-    );
+    ServiceClassSetting__mdt serviceClassObj = ServiceClassSetting__mdt.getInstance(className);
 
     if (serviceClassObj != null && !serviceClassObj.Disabled__c) {
       return Type.forName(serviceClassObj.ApexClassName__c).newInstance();
     } else {
-      throw new CustomException(
-        'Unable to find service class setting for : ' + classType.getName()
-      );
+      throw new CustomException('Unable to find service class setting for : ' + classType.getName());
     }
   }
 

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Filter</fullName>
-    <description
-  >Filter to fetch templates to display in application flow</description>
+    <description>Filter to fetch templates to display in application flow</description>
     <displayedFields>
         <field>ApplicantType__c</field>
         <isFieldManaged>false</isFieldManaged>

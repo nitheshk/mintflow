@@ -37,12 +37,8 @@ gulp.task("CreateTriggerHandler", function (finish) {
     encoding: "utf8",
     flag: "r"
   });
-  rawData = rawData.replace(
-    "{{apiVersion}}",
-    sfdxProjectConfig.sourceApiVersion
-  );
-  filePath =
-    config.TriggerHandler.classPath + triggerHandlerName + ".cls-meta.xml";
+  rawData = rawData.replace("{{apiVersion}}", sfdxProjectConfig.sourceApiVersion);
+  filePath = config.TriggerHandler.classPath + triggerHandlerName + ".cls-meta.xml";
 
   fs.writeFileSync(filePath, rawData, {
     encoding: "utf8",
@@ -95,10 +91,7 @@ gulp.task("CreateServiceClass", function (finish) {
     encoding: "utf8",
     flag: "r"
   });
-  rawData = rawData.replace(
-    "{{apiVersion}}",
-    sfdxProjectConfig.sourceApiVersion
-  );
+  rawData = rawData.replace("{{apiVersion}}", sfdxProjectConfig.sourceApiVersion);
   filePath = config.ServiceClass.classPath + serviceClassName + ".cls-meta.xml";
 
   fs.writeFileSync(filePath, rawData, {
@@ -113,11 +106,7 @@ gulp.task("CreateServiceClass", function (finish) {
     flag: "r"
   });
   rawData = rawData.replace(/{{ServiceClass}}/g, serviceClassName);
-  filePath =
-    config.ServiceClass.customMetdaDataPath +
-    "ServiceClassSetting." +
-    serviceClassName +
-    ".md-meta.xml";
+  filePath = config.ServiceClass.customMetdaDataPath + "ServiceClassSetting." + serviceClassName + ".md-meta.xml";
 
   fs.writeFileSync(filePath, rawData, {
     encoding: "utf8",

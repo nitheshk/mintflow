@@ -21,9 +21,7 @@ global virtual with sharing class AuthenticationService extends AbstractService 
    **/
   public static AuthenticationService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (AuthenticationService) getInstance(
-        AuthenticationService.class
-      );
+      serviceInstance = (AuthenticationService) getInstance(AuthenticationService.class);
     }
     return serviceInstance;
   }
@@ -38,8 +36,7 @@ global virtual with sharing class AuthenticationService extends AbstractService 
       return mintFlowAuthToken;
     }
     HttpBuilder.setAPISetting(APINames.AWSAuth);
-    HttpBuilder.Response response = (HttpBuilder.Response) AuthenticationProvider.getInstance()
-      .generateToken(null);
+    HttpBuilder.Response response = (HttpBuilder.Response) AuthenticationProvider.getInstance().generateToken(null);
     if (response.statusCode == 200) {
       return String.valueOf(response.data);
     }
@@ -60,43 +57,28 @@ global virtual with sharing class AuthenticationService extends AbstractService 
       ? (String) ApexRequest.getParams('otpMode')
       : ApplicationConfiguration__c.getInstance().AllowedOtpMode__c;
 
-    List<String> otpModeList = String.isNotBlank(otpMode)
-      ? otpMode.split(';')
-      : new List<String>();
+    List<String> otpModeList = String.isNotBlank(otpMode) ? otpMode.split(';') : new List<String>();
 
     applicant.OTPExpireTime__c = Datetime.now()
-      .addMinutes(
-        (Integer) ApplicationConfiguration__c.getOrgDefaults()
-          .OTPExpirationTime__c
-      );
+      .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().OTPExpirationTime__c);
     applicant.OtpAttempts__c = 0;
 
     //SMS
     if (otpModeList.contains('SMS')) {
       applicant.IsPhoneNumberVerified__c = false;
-      applicant.SmsOtp__c = String.valueOf(
-        Math.round((Math.random() * (9000) + 1000))
-      );
+      applicant.SmsOtp__c = String.valueOf(Math.round((Math.random() * (9000) + 1000)));
 
       Map<String, Object> params = new Map<String, Object>();
-      params.put(
-        'messageText',
-        System.Label.TwillioOtpFormat.replace('{OTP}', applicant.SmsOtp__c)
-      );
+      params.put('messageText', System.Label.TwillioOtpFormat.replace('{OTP}', applicant.SmsOtp__c));
       // #pending remove hardcode mobile number [applicant.Phone__c]
-      params.put(
-        'toPhone',
-        HttpBuilder.getApiConstant('Twillio_Country') + '7892981668'
-      );
+      params.put('toPhone', HttpBuilder.getApiConstant('Twillio_Country') + '7892981668');
       params.put('applicantId', applicant.Id);
       //NotificationService.getInstance().sendOTPMessage(params);
     }
     //Email
     if (otpModeList.contains('EMAIL')) {
       applicant.IsEmailVerified__c = false;
-      applicant.EmailOtp__c = String.valueOf(
-        Math.round((Math.random() * (9000) + 1000))
-      );
+      applicant.EmailOtp__c = String.valueOf(Math.round((Math.random() * (9000) + 1000)));
       //CustomerEmailService.getInstance().sendEmailOTP(applicant);
     }
 
@@ -111,18 +93,14 @@ global virtual with sharing class AuthenticationService extends AbstractService 
    * @return virtual
    **/
   global virtual Applicant__c validateOTP(Map<String, Object> params) {
-    Applicant__c applicant = ApplicantRepository.readApplicantWithApplication(
-      (Id) params.get('applicantId')
-    );
+    Applicant__c applicant = ApplicantRepository.readApplicantWithApplication((Id) params.get('applicantId'));
     ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getInstance();
     try {
       String otpMode = ApexRequest.getParams('otpMode') != null
         ? (String) ApexRequest.getParams('otpMode')
         : appConfig.AllowedOtpMode__c;
 
-      List<String> otpModeList = String.isNotBlank(otpMode)
-        ? otpMode.split(';')
-        : new List<String>();
+      List<String> otpModeList = String.isNotBlank(otpMode) ? otpMode.split(';') : new List<String>();
 
       if (otpModeList.isEmpty()) {
         throw new CustomException('Please verify the otp configuration');
@@ -167,19 +145,13 @@ global virtual with sharing class AuthenticationService extends AbstractService 
       }
 
       // Generate Token base on the OTP verified from configuration
-      List<String> otpConfiguredModeList = String.isNotBlank(
-          appConfig.AllowedOtpMode__c
-        )
+      List<String> otpConfiguredModeList = String.isNotBlank(appConfig.AllowedOtpMode__c)
         ? appConfig.AllowedOtpMode__c.split(';')
         : new List<String>();
 
       Boolean otpValidated = false;
-      if (
-        otpConfiguredModeList.contains('SMS') &&
-        otpConfiguredModeList.contains('EMAIL')
-      ) {
-        otpValidated =
-          applicant.IsPhoneNumberVerified__c && applicant.IsEmailVerified__c;
+      if (otpConfiguredModeList.contains('SMS') && otpConfiguredModeList.contains('EMAIL')) {
+        otpValidated = applicant.IsPhoneNumberVerified__c && applicant.IsEmailVerified__c;
         if (otpValidated) {
           applicant.SmsOtp__c = applicant.EmailOtp__c = '';
         }

@@ -11,16 +11,9 @@ private class QueryTest {
     Contact con = TestData.createContact(acc);
     con = (Contact) DatabaseUtils.insertRecords(new List<Contact>{ con })[0];
     Opportunity opp = TestData.createOpportunity(acc);
-    opp = (Opportunity) DatabaseUtils.insertRecords(
-      new List<Opportunity>{ opp }
-    )[0];
-    OpportunityContactRole ocr = TestData.createOpportunityContactRole(
-      opp,
-      con
-    );
-    ocr = (OpportunityContactRole) DatabaseUtils.insertRecords(
-      new List<OpportunityContactRole>{ ocr }
-    )[0];
+    opp = (Opportunity) DatabaseUtils.insertRecords(new List<Opportunity>{ opp })[0];
+    OpportunityContactRole ocr = TestData.createOpportunityContactRole(opp, con);
+    ocr = (OpportunityContactRole) DatabaseUtils.insertRecords(new List<OpportunityContactRole>{ ocr })[0];
   }
 
   @isTest
@@ -156,22 +149,13 @@ private class QueryTest {
       .whereCon('LastName', '={1}')
       .toString(true);
 
-    objs = DatabaseUtils.getRecords(
-      q,
-      new List<Object>{ 'FirstName', 'LastName' }
-    );
+    objs = DatabaseUtils.getRecords(q, new List<Object>{ 'FirstName', 'LastName' });
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    objs = DatabaseUtils.getRecordsByStrip(
-      q,
-      new List<Object>{ 'FirstName', 'LastName' }
-    );
+    objs = DatabaseUtils.getRecordsByStrip(q, new List<Object>{ 'FirstName', 'LastName' });
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    objs = DatabaseUtils.getRecordsBySharing(
-      q,
-      new List<Object>{ 'FirstName', 'LastName' }
-    );
+    objs = DatabaseUtils.getRecordsBySharing(q, new List<Object>{ 'FirstName', 'LastName' });
     System.assertEquals(1, objs.size(), 'Failed to build query');
     //using order by
 
@@ -213,9 +197,7 @@ private class QueryTest {
       .groupBy('CampaignId')
       .havingCon(' AVG(Amount) > 100 And  AVG(Amount) <20000000')
       .toString(true);
-    List<AggregateResult> agr = (List<AggregateResult>) DatabaseUtils.getRecordsByStrip(
-      q
-    );
+    List<AggregateResult> agr = (List<AggregateResult>) DatabaseUtils.getRecordsByStrip(q);
     System.assertEquals(0, agr.size(), 'Failed to build query');
 
     //Multiple object example
@@ -259,55 +241,31 @@ private class QueryTest {
     //Using Distance on soql
     q = Query.newInstance(Contact.SObjectType)
       .addFields()
-      .whereDistance(
-        'MailingAddress',
-        Location.newInstance(28.635308, 77.22496),
-        'mi',
-        '<500'
-      )
-      .orderByDistance(
-        'MailingAddress',
-        Location.newInstance(28.635308, 77.22496),
-        'mi'
-      )
+      .whereDistance('MailingAddress', Location.newInstance(28.635308, 77.22496), 'mi', '<500')
+      .orderByDistance('MailingAddress', Location.newInstance(28.635308, 77.22496), 'mi')
       .toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(0, objs.size(), 'Failed to build query');
 
     // Using Like in soql
-    q = Query.newInstance(Account.SObjectType)
-      .addFields('Name')
-      .whereLeftLike('Name', 'Name')
-      .toString(true);
+    q = Query.newInstance(Account.SObjectType).addFields('Name').whereLeftLike('Name', 'Name').toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = Query.newInstance(Account.SObjectType)
-      .addFields('Name')
-      .whereRightLike('Name', 'Account')
-      .toString(true);
+    q = Query.newInstance(Account.SObjectType).addFields('Name').whereRightLike('Name', 'Account').toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = Query.newInstance(Account.SObjectType)
-      .addFields('Name')
-      .whereLike('Name', 'account')
-      .toString(true);
+    q = Query.newInstance(Account.SObjectType).addFields('Name').whereLike('Name', 'account').toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
     // SQOL One short build
 
-    q = Query.newInstance(Contact.SObjectType)
-      .addFields()
-      .buildLookUp('Account')
-      .toString(true);
+    q = Query.newInstance(Contact.SObjectType).addFields().buildLookUp('Account').toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = Query.newInstance(Account.SObjectType)
-      .addFields()
-      .buildChild('Contacts')
-      .toString(true);
+    q = Query.newInstance(Account.SObjectType).addFields().buildChild('Contacts').toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
@@ -322,10 +280,7 @@ private class QueryTest {
     objs = DatabaseUtils.getRecords(q, new List<Object>{ 'FirstName' });
     System.assertEquals(0, objs.size(), 'Failed to build query');
 
-    q = Query.newInstance(Contact.SObjectType)
-      .addFields('Name')
-      .whereCon('LastName=\'LastName\'')
-      .toString(true);
+    q = Query.newInstance(Contact.SObjectType).addFields('Name').whereCon('LastName=\'LastName\'').toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
@@ -349,10 +304,7 @@ private class QueryTest {
       .whereAnd('LastName', '=\'Lastname\'', false)
       .whereCon('FirstName', '={1}')
       .toString(true);
-    objs = DatabaseUtils.getRecords(
-      q,
-      new List<Object>{ 'LastName', 'FirstName' }
-    );
+    objs = DatabaseUtils.getRecords(q, new List<Object>{ 'LastName', 'FirstName' });
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
     q = Query.newInstance(Contact.SObjectType)
@@ -371,10 +323,7 @@ private class QueryTest {
       .whereCon('FirstName', '={1}')
       .grpClose()
       .toString(true);
-    objs = DatabaseUtils.getRecords(
-      q,
-      new List<Object>{ 'LastName', 'FirstName' }
-    );
+    objs = DatabaseUtils.getRecords(q, new List<Object>{ 'LastName', 'FirstName' });
     System.assertEquals(1, objs.size(), 'Failed to build query');
   }
 
@@ -392,14 +341,7 @@ private class QueryTest {
       .WhereOr('LastName', '={5}')
       .toString(true);
 
-    List<Object> paramter = new List<Object>{
-      'LastName',
-      'LastName',
-      'LastName',
-      'LastName',
-      'LastName',
-      'LastName'
-    };
+    List<Object> paramter = new List<Object>{ 'LastName', 'LastName', 'LastName', 'LastName', 'LastName', 'LastName' };
 
     List<SObject> objs = DatabaseUtils.getRecords(q, paramter);
     objs = DatabaseUtils.getRecordsBySharing(q, paramter);
@@ -407,16 +349,11 @@ private class QueryTest {
 
     //SOQL by ID
 
-    q = Query.newInstance(Contact.SObjectType)
-      .addFields()
-      .queryById(objs[0].get('Id'));
+    q = Query.newInstance(Contact.SObjectType).addFields().queryById(objs[0].get('Id'));
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
-    q = Query.newInstance(Contact.SObjectType)
-      .addFields()
-      .orderBy('Name', true)
-      .toString(true);
+    q = Query.newInstance(Contact.SObjectType).addFields().orderBy('Name', true).toString(true);
     objs = DatabaseUtils.getRecords(q);
     System.assertEquals(1, objs.size(), 'Failed to build query');
 
@@ -429,13 +366,9 @@ private class QueryTest {
 
     //soql on invalid relationship filed name
     try {
-      String q = Query.newInstance(Account.SObjectType)
-        .queryLookup('InvalidFieldName', true)
-        .run()
-        .toString();
+      String q = Query.newInstance(Account.SObjectType).queryLookup('InvalidFieldName', true).run().toString();
     } catch (Exception e) {
-      Boolean expectedExceptionThrown = e.getMessage()
-          .contains('Not found for Account.InvalidFieldName')
+      Boolean expectedExceptionThrown = e.getMessage().contains('Not found for Account.InvalidFieldName')
         ? true
         : false;
       System.AssertEquals(expectedExceptionThrown, true);
@@ -443,13 +376,9 @@ private class QueryTest {
 
     // soql on invalid relationship name
     try {
-      String q = Query.newInstance(Account.SObjectType)
-        .queryLookup('InvalidFieldName')
-        .run()
-        .toString();
+      String q = Query.newInstance(Account.SObjectType).queryLookup('InvalidFieldName').run().toString();
     } catch (Exception e) {
-      Boolean expectedExceptionThrown = e.getMessage()
-          .contains('Not found for Account.InvalidFieldName')
+      Boolean expectedExceptionThrown = e.getMessage().contains('Not found for Account.InvalidFieldName')
         ? true
         : false;
       System.AssertEquals(expectedExceptionThrown, true);
@@ -457,13 +386,9 @@ private class QueryTest {
 
     // soql on invalid child relationship name
     try {
-      String q = Query.newInstance(Account.SObjectType)
-        .queryChild('InvalidFieldName')
-        .run()
-        .toString();
+      String q = Query.newInstance(Account.SObjectType).queryChild('InvalidFieldName').run().toString();
     } catch (Exception e) {
-      Boolean expectedExceptionThrown = e.getMessage()
-          .contains('Not found for Account.InvalidFieldName')
+      Boolean expectedExceptionThrown = e.getMessage().contains('Not found for Account.InvalidFieldName')
         ? true
         : false;
       System.AssertEquals(expectedExceptionThrown, true);
@@ -478,9 +403,7 @@ private class QueryTest {
         .run()
         .toString();
     } catch (Exception e) {
-      Boolean expectedExceptionThrown = e.getMessage().contains('Not found for')
-        ? true
-        : false;
+      Boolean expectedExceptionThrown = e.getMessage().contains('Not found for') ? true : false;
       System.AssertEquals(expectedExceptionThrown, true);
     }
 

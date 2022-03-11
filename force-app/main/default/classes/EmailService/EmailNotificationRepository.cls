@@ -12,9 +12,7 @@ public with sharing class EmailNotificationRepository extends DatabaseUtils {
    * @param List<String> emailTemplateNames
    * @return List<EmailTemplate>
    **/
-  public static List<EmailTemplate> fetchEmailTemplateByDevName(
-    Set<String> emailTemplateNames
-  ) {
+  public static List<EmailTemplate> fetchEmailTemplateByDevName(Set<String> emailTemplateNames) {
     return (List<EmailTemplate>) getRecords(
       Query.newInstance(EmailTemplate.SObjectType)
         .addFields('DeveloperName,Subject,Body,HTMLValue')
@@ -31,9 +29,7 @@ public with sharing class EmailNotificationRepository extends DatabaseUtils {
    **/
   public static List<OrgWideEmailAddress> fetchOrgWideEmailAddress() {
     return (List<OrgWideEmailAddress>) getRecords(
-      Query.newInstance(OrgWideEmailAddress.SObjectType)
-        .addFields()
-        .toString(true)
+      Query.newInstance(OrgWideEmailAddress.SObjectType).addFields().toString(true)
     );
   }
 
@@ -43,9 +39,7 @@ public with sharing class EmailNotificationRepository extends DatabaseUtils {
    * @param List<String> documentNames
    * @return Set<Document>
    **/
-  public static List<Document> fetchDocumentByDevName(
-    Set<String> documentNames
-  ) {
+  public static List<Document> fetchDocumentByDevName(Set<String> documentNames) {
     return (List<Document>) getRecords(
       Query.newInstance(Document.SObjectType)
         .addFields('DeveloperName')

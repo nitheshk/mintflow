@@ -22,22 +22,16 @@ global with sharing class FileController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse fetchContentVersionByEntityId(
-    ApexRequest request
-  ) {
+  global static ApexResponse fetchContentVersionByEntityId(ApexRequest request) {
     try {
       // Upsert dealer record
       log?.fine('Inside fetchContentVersionByEntityId');
       validateRequest(request);
       Id entityId = (Id) ApexRequest.getParams('entityId');
-      Boolean ignoreVersionData = ApexRequest.getParams('ignoreVersionData') !=
-        null
+      Boolean ignoreVersionData = ApexRequest.getParams('ignoreVersionData') != null
         ? (Boolean) ApexRequest.getParams('ignoreVersionData')
         : true;
-      return ApexResponse.ok(
-        FileService.getInstance()
-          .fetchContentVersionByEntityId(entityId, ignoreVersionData)
-      );
+      return ApexResponse.ok(FileService.getInstance().fetchContentVersionByEntityId(entityId, ignoreVersionData));
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.fail(ex);
@@ -85,9 +79,7 @@ global with sharing class FileController extends AbstractController {
       log?.fine('Inside generatePublicUrl');
       validateRequest(request);
       Id contentVersionId = (Id) ApexRequest.getParams('contentVersionId');
-      return ApexResponse.ok(
-        FileService.getInstance().generatePublicUrl(contentVersionId)
-      );
+      return ApexResponse.ok(FileService.getInstance().generatePublicUrl(contentVersionId));
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.fail(ex);
@@ -113,22 +105,16 @@ global with sharing class FileController extends AbstractController {
       validateRequest(request);
       FileDTO dto = new FileDTO(
         (String) ApexRequest.getParams('title'),
-        EncodingUtil.base64Decode(
-          (String) JSON.deserialize(request.data, String.class)
-        ),
+        EncodingUtil.base64Decode((String) JSON.deserialize(request.data, String.class)),
         (String) ApexRequest.getParams('parentID'),
         (String) ApexRequest.getParams('fileType'),
         (String) ApexRequest.getParams('fileSubType')
       );
       if (ApexRequest.getParams('shareType') != null) {
-        dto.shareType = FileDTO.FileShareType.valueOf(
-          (String) ApexRequest.getParams('shareType')
-        );
+        dto.shareType = FileDTO.FileShareType.valueOf((String) ApexRequest.getParams('shareType'));
       }
       if (ApexRequest.getParams('visibility') != null) {
-        dto.visibility = FileDTO.FileVisibility.valueOf(
-          (String) ApexRequest.getParams('visibility')
-        );
+        dto.visibility = FileDTO.FileVisibility.valueOf((String) ApexRequest.getParams('visibility'));
       }
       return ApexResponse.ok(FileService.getInstance().createFile(dto));
     } catch (Exception ex) {
@@ -154,14 +140,10 @@ global with sharing class FileController extends AbstractController {
       log?.fine('Inside fetchContentVersionByCD');
       validateRequest(request);
       Id contentDocumentId = (Id) ApexRequest.getParams('contentDocumentId');
-      Boolean ignoreVersionData = ApexRequest.getParams('ignoreVersionData') !=
-        null
+      Boolean ignoreVersionData = ApexRequest.getParams('ignoreVersionData') != null
         ? (Boolean) ApexRequest.getParams('ignoreVersionData')
         : true;
-      return ApexResponse.ok(
-        FileService.getInstance()
-          .fetchContentVersionByCD(contentDocumentId, ignoreVersionData)
-      );
+      return ApexResponse.ok(FileService.getInstance().fetchContentVersionByCD(contentDocumentId, ignoreVersionData));
     } catch (Exception ex) {
       System.debug(ex.getMessage());
       return ApexResponse.fail(ex);

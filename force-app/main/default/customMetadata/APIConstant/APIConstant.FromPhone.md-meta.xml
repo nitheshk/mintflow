@@ -12,9 +12,7 @@
     </values>
     <values>
         <field>Description__c</field>
-        <value
-      xsi:type="xsd:string"
-    >From Phone Number from where the message needs to be sent</value>
+        <value xsi:type="xsd:string">From Phone Number from where the message needs to be sent</value>
     </values>
     <values>
         <field>Value__c</field>

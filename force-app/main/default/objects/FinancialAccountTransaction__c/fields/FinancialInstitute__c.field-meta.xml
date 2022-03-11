@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FinancialInstitute__c</fullName>
-    <description
-  >Name of Financial Institute used to transfer amount.</description>
+    <description>Name of Financial Institute used to transfer amount.</description>
     <externalId>false</externalId>
     <label>Financial Institute</label>
     <length>40</length>

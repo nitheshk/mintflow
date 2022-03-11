@@ -24,13 +24,7 @@ global with sharing class DynamicLWCDataTableController {
     try {
       return ApexResponse.ok(
         DynamicLWCDataTableService.getInstance()
-          .getTableDetails(
-            MetaDataName,
-            FilterString,
-            SortString,
-            offset,
-            limitSize
-          )
+          .getTableDetails(MetaDataName, FilterString, SortString, offset, limitSize)
       );
     } catch (Exception ex) {
       return ApexResponse.exception(ex);

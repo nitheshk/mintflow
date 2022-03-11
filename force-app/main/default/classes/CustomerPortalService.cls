@@ -21,9 +21,7 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
    **/
   public static CustomerPortalService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (CustomerPortalService) getInstance(
-        CustomerPortalService.class
-      );
+      serviceInstance = (CustomerPortalService) getInstance(CustomerPortalService.class);
     }
     return serviceInstance;
   }

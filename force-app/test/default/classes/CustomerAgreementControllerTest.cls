@@ -7,15 +7,10 @@ public with sharing class CustomerAgreementControllerTest {
   }
   private static Applicant__c makeApplicantData() {
     mflow__Application__c acc = TestData.createApplication();
-    acc = (mflow__Application__c) DatabaseUtils.insertRecords(
-      new List<mflow__Application__c>{ acc }
-    )[0];
+    acc = (mflow__Application__c) DatabaseUtils.insertRecords(new List<mflow__Application__c>{ acc })[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant.Email__c = 'test@mail.com';
-    applicant.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
-      Applicant__c.SObjectType,
-      'Primary'
-    );
+    applicant.RecordTypeId = SObjectUtils.recordTypeIdByDevName(Applicant__c.SObjectType, 'Primary');
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
     return applicant;
   }

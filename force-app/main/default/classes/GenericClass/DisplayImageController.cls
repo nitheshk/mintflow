@@ -23,9 +23,7 @@ public with sharing class DisplayImageController {
    * @return String
    **/
   public String getImageUrl() {
-    Document documentObj = FileRepository.fetchDocumentIdByDeveloperName(
-      imageName
-    );
+    Document documentObj = FileRepository.fetchDocumentIdByDeveloperName(imageName);
     imageUrl =
       URL.getSalesforceBaseUrl().getProtocol() +
       '://' +

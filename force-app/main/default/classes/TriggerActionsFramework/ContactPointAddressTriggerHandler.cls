@@ -34,14 +34,10 @@ public with sharing class ContactPointAddressTriggerHandler extends AbstractTrig
    * @param List<ContactPointAddress> addresses
    * @return List<ContactPointAddress>
    **/
-  public List<ContactPointAddress> saveContactPointAddresses(
-    List<ContactPointAddress> addresses
-  ) {
+  public List<ContactPointAddress> saveContactPointAddresses(List<ContactPointAddress> addresses) {
     for (ContactPointAddress address : addresses) {
       if (String.isNotBlank(address.StateCode__c)) {
-        address.State = GenericUtils.fetchStateFromStateCode(
-          address.StateCode__c
-        );
+        address.State = GenericUtils.fetchStateFromStateCode(address.StateCode__c);
       }
     }
     return addresses;

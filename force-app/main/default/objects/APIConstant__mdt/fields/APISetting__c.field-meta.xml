@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>APISetting__c</fullName>
-    <description
-  >API Setting name for which constant needs to be created</description>
+    <description>API Setting name for which constant needs to be created</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
     <label>APISetting</label>

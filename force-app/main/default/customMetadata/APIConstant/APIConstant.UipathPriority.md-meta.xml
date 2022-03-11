@@ -12,9 +12,7 @@
     </values>
     <values>
         <field>Description__c</field>
-        <value
-      xsi:type="xsd:string"
-    >Uipath Queue Priority to Add application to review</value>
+        <value xsi:type="xsd:string">Uipath Queue Priority to Add application to review</value>
     </values>
     <values>
         <field>Value__c</field>

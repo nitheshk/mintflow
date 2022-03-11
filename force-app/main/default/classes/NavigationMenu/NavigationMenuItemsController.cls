@@ -19,10 +19,7 @@ global with sharing class NavigationMenuItemsController {
    * Cacheable = true allows this function to be wired.
    */
   @AuraEnabled(cacheable=true)
-  public static List<NavigationMenuItem> getNavigationMenuItems(
-    String menuName,
-    String publishedState
-  ) {
+  public static List<NavigationMenuItem> getNavigationMenuItems(String menuName, String publishedState) {
     if (String.isEmpty(menuName)) {
       return new List<NavigationMenuItem>();
     }
@@ -40,9 +37,7 @@ global with sharing class NavigationMenuItemsController {
 
     List<NavigationMenuItem> navMenu = (List<NavigationMenuItem>) DatabaseUtils.getRecords(
       Query.newInstance(NavigationMenuItem.SObjectType)
-        .addFields(
-          'Label,Target,Type,DefaultListViewId,AccessRestriction,ParentId,Position,Status,TargetPrefs'
-        )
+        .addFields('Label,Target,Type,DefaultListViewId,AccessRestriction,ParentId,Position,Status,TargetPrefs')
         .whereEq('NavigationLinkSetId', linkSet?.id)
         .andCon()
         .whereEq('Status', publishedState)

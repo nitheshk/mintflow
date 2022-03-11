@@ -66,9 +66,7 @@ global with sharing class LwcCustomController extends AbstractController {
   global static ApexResponse updateConfigValues(Map<String, String> params) {
     try {
       log?.fine('Inside updateConfigValues');
-      return ApexResponse.ok(
-        LwcCustomService.getInstance().updateConfigValues(params)
-      );
+      return ApexResponse.ok(LwcCustomService.getInstance().updateConfigValues(params));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -90,9 +88,7 @@ global with sharing class LwcCustomController extends AbstractController {
   @AuraEnabled(cacheable=true)
   global static ApexResponse readApplicationWithChild(String applicationId) {
     try {
-      return ApexResponse.ok(
-        LwcCustomService.getInstance().readApplicationWithChild(applicationId)
-      );
+      return ApexResponse.ok(LwcCustomService.getInstance().readApplicationWithChild(applicationId));
     } catch (Exception ex) {
       return ApexResponse.fail(ex);
     }
@@ -104,14 +100,9 @@ global with sharing class LwcCustomController extends AbstractController {
    * @return ApexResponse
    **/
   @AuraEnabled(cacheable=true)
-  global static ApexResponse readApplicationWithApplicants(
-    String applicationId
-  ) {
+  global static ApexResponse readApplicationWithApplicants(String applicationId) {
     try {
-      return ApexResponse.ok(
-        LwcCustomService.getInstance()
-          .readApplicationWithApplicants(applicationId)
-      );
+      return ApexResponse.ok(LwcCustomService.getInstance().readApplicationWithApplicants(applicationId));
     } catch (Exception ex) {
       return ApexResponse.fail(ex);
     }
@@ -126,9 +117,7 @@ global with sharing class LwcCustomController extends AbstractController {
   @AuraEnabled(cacheable=true)
   global static ApexResponse readApplicationForResume(String applicationId) {
     try {
-      return ApexResponse.ok(
-        LwcCustomService.getInstance().readApplicationForResume(applicationId)
-      );
+      return ApexResponse.ok(LwcCustomService.getInstance().readApplicationForResume(applicationId));
     } catch (Exception ex) {
       return ApexResponse.fail(ex);
     }
@@ -145,10 +134,7 @@ global with sharing class LwcCustomController extends AbstractController {
     try {
       validateRequest(request, true);
       log?.debug('sendResumeApplicationEmail - applicantIds =' + request.data);
-      list<id> applicantIds = (List<Id>) JSON.deserialize(
-        request.data,
-        List<Id>.class
-      );
+      list<id> applicantIds = (List<Id>) JSON.deserialize(request.data, List<Id>.class);
       LwcCustomService.getInstance().sendResumeApplicationEmail(applicantIds);
       return ApexResponse.ok();
     } catch (Exception ex) {
@@ -189,14 +175,9 @@ global with sharing class LwcCustomController extends AbstractController {
       String sObjectName = params.get('sObjectName');
       String fieldSetName = params.get('fieldSetName');
       if (String.isNotBlank(sObjectName) && String.isNotBlank(fieldSetName)) {
-        return ApexResponse.ok(
-          LwcCustomService.getInstance()
-            .fetchFieldDetails(sObjectName, fieldSetName)
-        );
+        return ApexResponse.ok(LwcCustomService.getInstance().fetchFieldDetails(sObjectName, fieldSetName));
       } else {
-        return ApexResponse.ok(
-          LwcCustomService.getInstance().fetchFieldDetails(sObjectName)
-        );
+        return ApexResponse.ok(LwcCustomService.getInstance().fetchFieldDetails(sObjectName));
       }
     } catch (Exception ex) {
       log?.error(ex);
@@ -217,9 +198,7 @@ global with sharing class LwcCustomController extends AbstractController {
   global static ApexResponse fetchPickListValues(Map<String, Object> params) {
     try {
       log?.fine('Inside fetchPickListValues');
-      return ApexResponse.ok(
-        LwcCustomService.getInstance().fetchPickListValues(params)
-      );
+      return ApexResponse.ok(LwcCustomService.getInstance().fetchPickListValues(params));
     } catch (Exception e) {
       throw new AuraHandledException(e.getMessage());
     }
@@ -257,13 +236,8 @@ global with sharing class LwcCustomController extends AbstractController {
   @AuraEnabled(cacheable=true)
   global static ApexResponse fetchRelatedFiles(string relatedIds) {
     try {
-      List<String> relatedEntityIds = (List<String>) JSON.deserialize(
-        relatedIds,
-        List<String>.class
-      );
-      return ApexResponse.ok(
-        LwcCustomService.getInstance().fetchRelatedFiles(relatedEntityIds)
-      );
+      List<String> relatedEntityIds = (List<String>) JSON.deserialize(relatedIds, List<String>.class);
+      return ApexResponse.ok(LwcCustomService.getInstance().fetchRelatedFiles(relatedEntityIds));
     } catch (Exception e) {
       throw new AuraHandledException(e.getMessage());
     }
@@ -277,12 +251,8 @@ global with sharing class LwcCustomController extends AbstractController {
   @AuraEnabled
   global static ApexResponse resubmitTheApplication(string applicationId) {
     try {
-      log
-        ?.fine('Inside resubmitTheApplication applicationId =' + applicationId);
-      return ApexResponse.ok(
-        ReviewInformationService.getInstance()
-          .resubmitApplicationForReview(applicationId)
-      );
+      log?.fine('Inside resubmitTheApplication applicationId =' + applicationId);
+      return ApexResponse.ok(ReviewInformationService.getInstance().resubmitApplicationForReview(applicationId));
     } catch (Exception e) {
       throw new AuraHandledException(e.getMessage());
     } finally {
@@ -300,8 +270,7 @@ global with sharing class LwcCustomController extends AbstractController {
   global static ApexResponse authorizeCustomer(map<string, object> params) {
     try {
       log?.fine('Inside authorizeCustomer params =' + params);
-      List<Application__c> applications = CustomerPortalService.getInstance()
-        .authorize(params);
+      List<Application__c> applications = CustomerPortalService.getInstance().authorize(params);
       if (!applications.isEmpty()) {
         return ApexResponse.ok(applications);
       } else {

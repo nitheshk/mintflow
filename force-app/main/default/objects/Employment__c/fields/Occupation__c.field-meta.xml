@@ -16,8 +16,7 @@
                 <label>Architecture and Engineering</label>
             </value>
             <value>
-                <fullName
-        >Arts, Design, Entertainment, Sports, and Media</fullName>
+                <fullName>Arts, Design, Entertainment, Sports, and Media</fullName>
                 <default>false</default>
                 <label>Arts, Design, Entertainment, Sports, and Media</label>
             </value>

@@ -6,8 +6,7 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Primary Review Information Submission Waiting - EN</name>
     <style>none</style>
-    <subject
-  >Your application has been submitted. Waiting for joint applicant to completed the application</subject>
+    <subject>Your application has been submitted. Waiting for joint applicant to completed the application</subject>
     <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

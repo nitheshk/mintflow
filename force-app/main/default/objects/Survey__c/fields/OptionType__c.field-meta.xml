@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OptionType__c</fullName>
-    <description
-  >Type of the question Text/ Sub Question/ Dependent question</description>
+    <description>Type of the question Text/ Sub Question/ Dependent question</description>
     <externalId>false</externalId>
     <label>Option Type</label>
     <length>40</length>

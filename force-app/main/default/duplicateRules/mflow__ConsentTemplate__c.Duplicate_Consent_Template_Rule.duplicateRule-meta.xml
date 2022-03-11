@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<DuplicateRule
-  xmlns="http://soap.sforce.com/2006/04/metadata"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
->
+<DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOnInsert>Allow</actionOnInsert>
     <actionOnUpdate>Allow</actionOnUpdate>
-    <alertText
-  >Code and version number already present, Please used different code or version number</alertText>
+    <alertText>Code and version number already present, Please used different code or version number</alertText>
     <description>Duplicate Consent Template Rule</description>
     <duplicateRuleFilter xsi:nil="true" />
     <duplicateRuleMatchRules>

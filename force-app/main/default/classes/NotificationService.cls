@@ -21,9 +21,7 @@ global virtual with sharing class NotificationService extends AbstractService {
    **/
   public static NotificationService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (NotificationService) getInstance(
-        NotificationService.class
-      );
+      serviceInstance = (NotificationService) getInstance(NotificationService.class);
     }
     return serviceInstance;
   }
@@ -41,17 +39,10 @@ global virtual with sharing class NotificationService extends AbstractService {
     try {
       if (HttpBuilder.isActiveApiSetting(APINames.TwillioMessaging)) {
         HttpBuilder.setAPISetting(APINames.TwillioMessaging);
-        HttpBuilder.replaceEndpoint(
-          '{Twillio_Account}',
-          HttpBuilder.getApiConstant('Twillio_Account')
-        );
-        HttpBuilder.replaceEndpoint(
-          '{Version}',
-          HttpBuilder.getApiConstant('Version')
-        );
+        HttpBuilder.replaceEndpoint('{Twillio_Account}', HttpBuilder.getApiConstant('Twillio_Account'));
+        HttpBuilder.replaceEndpoint('{Version}', HttpBuilder.getApiConstant('Version'));
         log?.debug('Endpoint :' + HttpBuilder.getAPISetting());
-        HttpBuilder.Response response = TwillioProvider.getInstance()
-          .sendMessageUsingTwillio(params);
+        HttpBuilder.Response response = TwillioProvider.getInstance().sendMessageUsingTwillio(params);
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
         return true;
@@ -73,17 +64,11 @@ global virtual with sharing class NotificationService extends AbstractService {
    * @param String title
    * @param String message
    **/
-  global virtual void dispatchKycNotification(
-    String eventName,
-    Id entityId,
-    String title,
-    String message
-  ) {
+  global virtual void dispatchKycNotification(String eventName, Id entityId, String title, String message) {
     switch on eventName {
       when 'onExceptionKycReviewSubmit' {
         String chatterPost =
-          'Excpetion on Submit To RPA Review Queue For Kyc Verification \n Error Occured : ' +
-          message;
+          'Excpetion on Submit To RPA Review Queue For Kyc Verification \n Error Occured : ' + message;
         NotificationBuilder.chatterMessagePost(entityId, chatterPost);
 
         // Notification

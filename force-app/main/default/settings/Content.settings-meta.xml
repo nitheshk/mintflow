@@ -3,6 +3,5 @@
     <enableJPGPreviews>false</enableJPGPreviews>
     <enableSiteGuestUserToUploadFiles>true</enableSiteGuestUserToUploadFiles>
     <enableUploadFilesOnAttachments>true</enableUploadFilesOnAttachments>
-    <setValidContentTypeForAtchDocDownload
-  >false</setValidContentTypeForAtchDocDownload>
+    <setValidContentTypeForAtchDocDownload>false</setValidContentTypeForAtchDocDownload>
 </ContentSettings>

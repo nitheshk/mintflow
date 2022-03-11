@@ -3,8 +3,7 @@
     <fullName>LoggingLevel__c</fullName>
     <description>Support Values are Error,Debug,Info and Fine</description>
     <externalId>false</externalId>
-    <inlineHelpText
-  >Support Values are Error,Debug,Info and Fine</inlineHelpText>
+    <inlineHelpText>Support Values are Error,Debug,Info and Fine</inlineHelpText>
     <label>Logging Level</label>
     <length>20</length>
     <required>false</required>

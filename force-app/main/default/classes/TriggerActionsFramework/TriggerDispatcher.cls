@@ -27,23 +27,14 @@ global virtual with sharing class TriggerDispatcher {
    **/
   global static void run(Schema.SObjectType sType) {
     String sObjectName = sType.getDescribe().getName();
-    for (
-      SObjectTriggerSetting__mdt triggerSetting : TriggerRepository.fetchTriggerSettingBySobject(
-        sObjectName
-      )
-    ) {
+    for (SObjectTriggerSetting__mdt triggerSetting : TriggerRepository.fetchTriggerSettingBySobject(sObjectName)) {
       //Driving from metadata
 
       Type classType = Type.forName(triggerSetting.TriggerHandlerName__c);
       if (classType == null) {
-        throw new SObjectException(
-          'Class has not defined : ' + triggerSetting.TriggerHandlerName__c
-        );
+        throw new SObjectException('Class has not defined : ' + triggerSetting.TriggerHandlerName__c);
       }
-      TriggerDispatcher.executeTriggerAction(
-        triggerSetting,
-        (AbstractTriggerHandler) classType.newInstance()
-      );
+      TriggerDispatcher.executeTriggerAction(triggerSetting, (AbstractTriggerHandler) classType.newInstance());
     }
   }
 
@@ -137,12 +128,9 @@ global virtual with sharing class TriggerDispatcher {
   @testVisible
   private static void addToLoopCount(String handlerName) {
     if (TriggerDispatcher.loopCountMap.containsKey(handlerName)) {
-      Boolean exceeded = TriggerDispatcher.loopCountMap.get(handlerName)
-        .increment();
+      Boolean exceeded = TriggerDispatcher.loopCountMap.get(handlerName).increment();
       if (exceeded) {
-        throw new SObjectException(
-          'Maximum loop count has reached in ' + handlerName
-        );
+        throw new SObjectException('Maximum loop count has reached in ' + handlerName);
       }
     }
   }

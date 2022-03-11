@@ -43,32 +43,20 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
     List<FileDTO> fileDtos = new List<FileDTO>();
     List<Id> contentDocumentIds = new List<Id>();
     for (IdentificationDocument__c newIDoc : newIdentityDocuments) {
-      IdentificationDocument__c oldIDoc = oldIdentityDocumentMap.get(
-        newIDoc.Id
-      );
+      IdentificationDocument__c oldIDoc = oldIdentityDocumentMap.get(newIDoc.Id);
 
-      if (
-        oldIDoc.PrimaryContentDocumentID__c !=
-        newIDoc.PrimaryContentDocumentID__c
-      ) {
+      if (oldIDoc.PrimaryContentDocumentID__c != newIDoc.PrimaryContentDocumentID__c) {
         if (String.isNotBlank(newIDoc.PrimaryContentDocumentID__c)) {
-          fileDtos.add(
-            new FileDTO(newIDoc.PrimaryContentDocumentID__c, newIDoc.Id)
-          );
+          fileDtos.add(new FileDTO(newIDoc.PrimaryContentDocumentID__c, newIDoc.Id));
         }
         if (String.isNotBlank(oldIDoc.PrimaryContentDocumentID__c)) {
           contentDocumentIds.add(oldIDoc.PrimaryContentDocumentID__c);
         }
       }
 
-      if (
-        oldIDoc.SecondaryContentDocumentId__c !=
-        newIDoc.SecondaryContentDocumentId__c
-      ) {
+      if (oldIDoc.SecondaryContentDocumentId__c != newIDoc.SecondaryContentDocumentId__c) {
         if (String.isNotBlank(newIDoc.SecondaryContentDocumentId__c)) {
-          fileDtos.add(
-            new FileDTO(newIDoc.SecondaryContentDocumentId__c, newIDoc.Id)
-          );
+          fileDtos.add(new FileDTO(newIDoc.SecondaryContentDocumentId__c, newIDoc.Id));
         }
         if (String.isNotBlank(oldIDoc.SecondaryContentDocumentId__c)) {
           contentDocumentIds.add(oldIDoc.SecondaryContentDocumentId__c);
@@ -92,9 +80,7 @@ public with sharing class IdentificationDocumentTriggerHandler extends AbstractT
   @SuppressWarnings('PMD.EmptyStatementBlock')
   public override void beforeDelete() {
     List<Id> contentDocumentIds = new List<Id>();
-    for (
-      IdentificationDocument__c iDoc : (List<IdentificationDocument__c>) Trigger.old
-    ) {
+    for (IdentificationDocument__c iDoc : (List<IdentificationDocument__c>) Trigger.old) {
       if (String.isNotBlank(iDoc.PrimaryContentDocumentID__c)) {
         contentDocumentIds.add(iDoc.PrimaryContentDocumentID__c);
       }

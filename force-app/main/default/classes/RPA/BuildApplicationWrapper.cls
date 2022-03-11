@@ -20,9 +20,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    **/
   public static BuildApplicationWrapper getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (BuildApplicationWrapper) getInstance(
-        BuildApplicationWrapper.class
-      );
+      serviceInstance = (BuildApplicationWrapper) getInstance(BuildApplicationWrapper.class);
     }
     return serviceInstance;
   }
@@ -33,25 +31,15 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @param string applicationId
    * @return ApplicationSubmissionResponse
    **/
-  global virtual ApplicationSubmissionResponse obtainApplicationData(
-    string applicationNumber
-  ) {
+  global virtual ApplicationSubmissionResponse obtainApplicationData(string applicationNumber) {
     {
-      log
-        ?.fine(
-          'Inside obtainApplicationData -> applicationNumber -> ' +
-          applicationNumber
-        );
+      log?.fine('Inside obtainApplicationData -> applicationNumber -> ' + applicationNumber);
       ApplicationSubmissionResponse mapper = new ApplicationSubmissionResponse();
 
       if (String.isBlank(applicationNumber)) {
-        throw new CustomException(
-          System.Label.Application_ApplicationNameCannotBeBlank
-        );
+        throw new CustomException(System.Label.Application_ApplicationNameCannotBeBlank);
       }
-      Application__c application = SubmissionRepository.readApplicationByApplicationNumber(
-        applicationNumber
-      );
+      Application__c application = SubmissionRepository.readApplicationByApplicationNumber(applicationNumber);
       if (application == null) {
         throw new customException(System.Label.Application_ApplicationNotFound);
       }
@@ -84,13 +72,9 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
         // mapperApplication.SubStatus = application.Stage__c;
 
         if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
-          mapperApplication.Applicants.addAll(
-            mapApplicant(application.Applicants__r)
-          );
+          mapperApplication.Applicants.addAll(mapApplicant(application.Applicants__r));
         } else {
-          throw new CustomException(
-            System.Label.Application_ApplicationHasNoApplicants
-          );
+          throw new CustomException(System.Label.Application_ApplicationHasNoApplicants);
         }
         if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
           mapperApplication.Surveys.addAll(mapSurvey(application.Surveys__r));
@@ -99,10 +83,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       } else {
         throw new CustomException(System.Label.Application_ApplicationNotFound);
       }
-      log
-        ?.info(
-          'obtainApplicationData -> ReturnMapper -> ' + Json.serialize(mapper)
-        );
+      log?.info('obtainApplicationData -> ReturnMapper -> ' + Json.serialize(mapper));
       return mapper;
     }
   }
@@ -112,9 +93,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @param List<applicant__c> applicantList
    * @return list<ApplicationSubmissionResponse.Applicant>
    **/
-  global virtual list<ApplicationSubmissionResponse.Applicant> mapApplicant(
-    List<applicant__c> applicantList
-  ) {
+  global virtual list<ApplicationSubmissionResponse.Applicant> mapApplicant(List<applicant__c> applicantList) {
     list<ApplicationSubmissionResponse.Applicant> mapperApplicantList = new List<ApplicationSubmissionResponse.Applicant>();
     for (applicant__c applicant : applicantList) {
       ApplicationSubmissionResponse.Applicant mapperApplicant = new ApplicationSubmissionResponse.Applicant();
@@ -147,16 +126,12 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
 
       //Map employment data
       if (!CollectionUtils.isListEmpty(applicant.Employments__r)) {
-        mapperApplicant.Employments.addAll(
-          mapEmployment(applicant.Employments__r)
-        );
+        mapperApplicant.Employments.addAll(mapEmployment(applicant.Employments__r));
       }
 
       //Map Identity Data
       if (!CollectionUtils.isListEmpty(applicant.IdentificationDocuments__r)) {
-        mapperApplicant.IdentificationDocuments.addAll(
-          mapIdentity(applicant.IdentificationDocuments__r)
-        );
+        mapperApplicant.IdentificationDocuments.addAll(mapIdentity(applicant.IdentificationDocuments__r));
       }
 
       //Map Survey Data
@@ -166,9 +141,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
 
       //Map ContatcPointAddress Data
       if (!CollectionUtils.isListEmpty(applicant.ContactPointAddresses__r)) {
-        mapperApplicant.ContactPointAddresses.addAll(
-          mapContactAddress(applicant.ContactPointAddresses__r)
-        );
+        mapperApplicant.ContactPointAddresses.addAll(mapContactAddress(applicant.ContactPointAddresses__r));
       }
       mapperApplicantList.add(mapperApplicant);
     }
@@ -181,19 +154,14 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @param List<Employment__c> employmentList
    * @return virtual
    **/
-  global virtual list<ApplicationSubmissionResponse.Employment> mapEmployment(
-    List<Employment__c> employmentList
-  ) {
+  global virtual list<ApplicationSubmissionResponse.Employment> mapEmployment(List<Employment__c> employmentList) {
     list<ApplicationSubmissionResponse.Employment> mapperEmploymentList = new List<ApplicationSubmissionResponse.Employment>();
     for (Employment__c employment : employmentList) {
       ApplicationSubmissionResponse.Employment mapperEmployment = new ApplicationSubmissionResponse.Employment();
       mapperEmployment.EmploymentId = employment.Id;
       mapperEmployment.EmploymentType = employment.EmploymentType__c;
       mapperEmployment.EmployerName = employment.Name;
-      mapperEmployment.EmploymentStatus = getStatusMapping(
-        'EmploymentStatus__c',
-        employment.EmploymentStatus__c
-      );
+      mapperEmployment.EmploymentStatus = getStatusMapping('EmploymentStatus__c', employment.EmploymentStatus__c);
       mapperEmployment.GrossMonthlySalary = employment.GrossMonthlySalary__c;
       mapperEmployment.Name = employment.Name;
       mapperEmployment.IncomeType = employment.IncomeType__c;
@@ -241,9 +209,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @param List<mflow__Survey__c> surveyList
    * @return list<ApplicationSubmissionResponse.Survey>
    **/
-  global virtual list<ApplicationSubmissionResponse.Survey> mapSurvey(
-    List<mflow__Survey__c> surveyList
-  ) {
+  global virtual list<ApplicationSubmissionResponse.Survey> mapSurvey(List<mflow__Survey__c> surveyList) {
     list<ApplicationSubmissionResponse.Survey> mapperSurveyList = new List<ApplicationSubmissionResponse.Survey>();
     for (mflow__Survey__c survey : surveyList) {
       ApplicationSubmissionResponse.Survey mapperSurvey = new ApplicationSubmissionResponse.Survey();
@@ -283,10 +249,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       mapperContactAddress.StateCode = contactAddress.StateCode__c;
       mapperContactAddress.Street = contactAddress.Street;
       mapperContactAddress.Order = contactAddress.Order__c;
-      mapperContactAddress.OccupancyStatus = getStatusMapping(
-        'UsageType',
-        contactAddress.UsageType
-      );
+      mapperContactAddress.OccupancyStatus = getStatusMapping('UsageType', contactAddress.UsageType);
       mapperContactAddress.OccupancyDuration = contactAddress.OccupancyDuration__c;
       mapperContactAddressList.add(mapperContactAddress);
     }
@@ -300,22 +263,14 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @return ApexResponse
    **/
   public virtual Object obtainApplicationFiles(string applicationNumber) {
-    log
-      ?.fine(
-        'Inside obtainApplicationFiles -> applicationNumber -> ' +
-        applicationNumber
-      );
+    log?.fine('Inside obtainApplicationFiles -> applicationNumber -> ' + applicationNumber);
     if (string.isBlank(applicationNumber)) {
-      throw new CustomException(
-        System.Label.Application_ApplicationNameCannotBeBlank
-      );
+      throw new CustomException(System.Label.Application_ApplicationNameCannotBeBlank);
     }
 
     List<id> reletedEntityIdList = new List<id>();
     List<Map<string, string>> fileDetails = new List<Map<string, string>>();
-    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(
-      applicationNumber
-    );
+    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(applicationNumber);
 
     if (application == null) {
       throw new customException(System.Label.Application_ApplicationNotFound);
@@ -326,20 +281,14 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
     for (Applicant__c applicant : application.Applicants__r) {
       // documents related to applicant
       reletedEntityIdList.add(applicant.Id);
-      reletedEntityIdList.addAll(
-        new Map<id, SObject>(applicant.Employments__r).keySet()
-      );
-      reletedEntityIdList.addAll(
-        new Map<id, SObject>(applicant.IdentificationDocuments__r).keySet()
-      );
+      reletedEntityIdList.addAll(new Map<id, SObject>(applicant.Employments__r).keySet());
+      reletedEntityIdList.addAll(new Map<id, SObject>(applicant.IdentificationDocuments__r).keySet());
     }
-    String eligibleFileFormat = ApplicationConfiguration__c.getInstance()
-      .SupportedFileTypes__c;
+    String eligibleFileFormat = ApplicationConfiguration__c.getInstance().SupportedFileTypes__c;
     List<String> eligibleFileFormatList = String.isNotBlank(eligibleFileFormat)
       ? eligibleFileFormat.split(';')
       : new List<String>();
-    List<ContentVersion> fileList = FileService.getInstance()
-      .fetchContentVersionByEntityIds(reletedEntityIdList, true);
+    List<ContentVersion> fileList = FileService.getInstance().fetchContentVersionByEntityIds(reletedEntityIdList, true);
 
     for (ContentVersion cv : fileList) {
       Map<string, string> fileDetail = new Map<string, string>();
@@ -353,8 +302,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       }
     }
     log?.debug('fileDetails =' + JSON.serialize(fileDetails));
-    return ApexResponse.OK(fileDetails)
-      .addHeader('Content-Type', 'application/json');
+    return ApexResponse.OK(fileDetails).addHeader('Content-Type', 'application/json');
   }
   /**
    * @description Read application by parameter passed
@@ -363,13 +311,9 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @return Application__c
    **/
   global virtual Application__c readApplicationWithChild(Id applicationId) {
-    Application__c application = SubmissionRepository.readApplicationWithChild(
-      applicationId
-    );
+    Application__c application = SubmissionRepository.readApplicationWithChild(applicationId);
 
-    List<Applicant__c> applicants = readApplicantsWithChild(
-      application.Applicants__r
-    );
+    List<Applicant__c> applicants = readApplicantsWithChild(application.Applicants__r);
     List<FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
       .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
 
@@ -385,12 +329,8 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @author Digital Align Team | 10-26-2021
    * @param List<Applicant__c> applicants
    **/
-  global virtual List<Applicant__c> readApplicantsWithChild(
-    List<Applicant__c> applicants
-  ) {
-    return SubmissionRepository.readApplicantsWithChild(
-      new Map<Id, SObject>(applicants).keySet()
-    );
+  global virtual List<Applicant__c> readApplicantsWithChild(List<Applicant__c> applicants) {
+    return SubmissionRepository.readApplicantsWithChild(new Map<Id, SObject>(applicants).keySet());
   }
 
   /**

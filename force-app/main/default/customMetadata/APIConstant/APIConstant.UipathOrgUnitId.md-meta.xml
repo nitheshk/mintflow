@@ -12,9 +12,7 @@
     </values>
     <values>
         <field>Description__c</field>
-        <value
-      xsi:type="xsd:string"
-    >Uipath Organisation Unit Id for UiPath Add to Queue function</value>
+        <value xsi:type="xsd:string">Uipath Organisation Unit Id for UiPath Add to Queue function</value>
     </values>
     <values>
         <field>Value__c</field>

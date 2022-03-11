@@ -38,12 +38,8 @@ global virtual with sharing class PlaidService extends AbstractService {
       Flow.initialize(ApexRequest.getApplicationId());
       Flow.setFlow('Plaid');
       // get public token
-      Flow.setSubFlow(
-        APINames.PlaidLinkToken.name(),
-        ApexRequest.getApplicationId()
-      );
-      HttpBuilder.Response tokenResponse = PlaidProvider.getInstance()
-        .generatelinkToken(params);
+      Flow.setSubFlow(APINames.PlaidLinkToken.name(), ApexRequest.getApplicationId());
+      HttpBuilder.Response tokenResponse = PlaidProvider.getInstance().generatelinkToken(params);
       PlaidTokenDTO.LinkTokenResponse responseDTO;
       if (tokenResponse.statusCode == 200) {
         responseDTO = (PlaidTokenDTO.LinkTokenResponse) System.JSON.deserialize(
@@ -70,23 +66,15 @@ global virtual with sharing class PlaidService extends AbstractService {
    * @param String data
    * @return Object
    **/
-  global virtual Map<string, object> fetchAccountsForTransaction(
-    Map<String, Object> params
-  ) {
+  global virtual Map<string, object> fetchAccountsForTransaction(Map<String, Object> params) {
     try {
       Flow.initialize(ApexRequest.getApplicationId());
       Flow.setFlow('Plaid');
       // get public token
-      Flow.setSubFlow(
-        APINames.PlaidTokenExchange.name(),
-        ApexRequest.getApplicationId()
-      );
-      HttpBuilder.Response tokenResponse = PlaidProvider.getInstance()
-        .generateExchangeToken(ApexRequest.getParams());
+      Flow.setSubFlow(APINames.PlaidTokenExchange.name(), ApexRequest.getApplicationId());
+      HttpBuilder.Response tokenResponse = PlaidProvider.getInstance().generateExchangeToken(ApexRequest.getParams());
       if (tokenResponse.statusCode == 200) {
-        Map<String, Object> result = (Map<String, Object>) JSON.deserializeUntyped(
-          (String) tokenResponse.data
-        );
+        Map<String, Object> result = (Map<String, Object>) JSON.deserializeUntyped((String) tokenResponse.data);
         accessToken = (String) result.get('access_token');
         Flow.setSubFlowPassed(tokenResponse.status);
       } else {
@@ -95,13 +83,9 @@ global virtual with sharing class PlaidService extends AbstractService {
       }
 
       // get Application__c details
-      Flow.setSubFlow(
-        APINames.PlaidRetrieveAuth.name(),
-        ApexRequest.getApplicationId()
-      );
+      Flow.setSubFlow(APINames.PlaidRetrieveAuth.name(), ApexRequest.getApplicationId());
       ApexRequest.getParams().put('accessToken', accessToken);
-      HttpBuilder.Response authResponse = PlaidProvider.getInstance()
-        .retrieveAuth(ApexRequest.getParams());
+      HttpBuilder.Response authResponse = PlaidProvider.getInstance().retrieveAuth(ApexRequest.getParams());
       if (authResponse.statusCode == 200) {
         Flow.setSubFlowPassed(authResponse.status);
       } else {
@@ -115,14 +99,9 @@ global virtual with sharing class PlaidService extends AbstractService {
       );
 
       // get institute details
-      Flow.setSubFlow(
-        APINames.PlaidRetriveInstitue.name(),
-        ApexRequest.getApplicationId()
-      );
-      ApexRequest.getParams()
-        .put('institution_id', plaidAccountResponse.item.institution_id);
-      HttpBuilder.Response instituteResponse = PlaidProvider.getInstance()
-        .retriveInstitue(ApexRequest.getParams());
+      Flow.setSubFlow(APINames.PlaidRetriveInstitue.name(), ApexRequest.getApplicationId());
+      ApexRequest.getParams().put('institution_id', plaidAccountResponse.item.institution_id);
+      HttpBuilder.Response instituteResponse = PlaidProvider.getInstance().retriveInstitue(ApexRequest.getParams());
       if (instituteResponse.statusCode == 200) {
         Flow.setSubFlowPassed(instituteResponse.status);
       } else {
@@ -136,10 +115,7 @@ global virtual with sharing class PlaidService extends AbstractService {
       );
 
       // parse the result of auth and institute
-      Map<string, object> balances = fetchAccountBalances(
-        plaidAccountResponse,
-        plaidInstituteResponse
-      );
+      Map<string, object> balances = fetchAccountBalances(plaidAccountResponse, plaidInstituteResponse);
 
       Flow.setFlowPassed();
       return balances;
@@ -171,10 +147,7 @@ global virtual with sharing class PlaidService extends AbstractService {
         PlaidAccountDTO.Account account = accountMap.get(item.account_id);
 
         //ignore if the bank account other than saving and checking
-        if (
-          !(account?.subtype == 'savings' ||
-          account?.subtype == 'checking')
-        ) {
+        if (!(account?.subtype == 'savings' || account?.subtype == 'checking')) {
           continue;
         }
         // ignore the balance less than zero and less than zero
@@ -187,22 +160,11 @@ global virtual with sharing class PlaidService extends AbstractService {
         balances.put('Routing', item.routing);
         balances.put('WireRouting', item.wire_routing);
         balances.put('AccountType', account.subtype.capitalize());
-        balances.put(
-          'Label',
-          account.name +
-          ' (' +
-          item.account +
-          ')' +
-          ' - ' +
-          account.balances.available
-        );
+        balances.put('Label', account.name + ' (' + item.account + ')' + ' - ' + account.balances.available);
         balancesList.add(balances);
       }
 
-      return new Map<string, object>{
-        'Institute' => instituteResponse.institution.name,
-        'Accounts' => balancesList
-      };
+      return new Map<string, object>{ 'Institute' => instituteResponse.institution.name, 'Accounts' => balancesList };
     }
     return null;
   }

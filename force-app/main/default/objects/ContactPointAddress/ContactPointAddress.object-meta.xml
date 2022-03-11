@@ -134,17 +134,13 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <searchLayouts>
         <customTabListAdditionalFields>Parent</customTabListAdditionalFields>
-        <customTabListAdditionalFields
-    >ActiveFromDate</customTabListAdditionalFields>
-        <customTabListAdditionalFields
-    >ActiveToDate</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ActiveFromDate</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ActiveToDate</customTabListAdditionalFields>
         <customTabListAdditionalFields>IsPrimary</customTabListAdditionalFields>
         <customTabListAdditionalFields>IsDefault</customTabListAdditionalFields>
         <searchResultsAdditionalFields>Parent</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-    >ActiveFromDate</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-    >ActiveToDate</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ActiveFromDate</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ActiveToDate</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>IsPrimary</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>IsDefault</searchResultsAdditionalFields>
     </searchLayouts>

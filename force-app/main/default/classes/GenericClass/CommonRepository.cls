@@ -31,9 +31,7 @@ global with sharing class CommonRepository extends DatabaseUtils {
    * @param string notificationName
    * @return CustomNotificationType
    **/
-  public static CustomNotificationType readNotificationType(
-    string notificationDeveloperName
-  ) {
+  public static CustomNotificationType readNotificationType(string notificationDeveloperName) {
     return (CustomNotificationType) getRecord(
       Query.newInstance(CustomNotificationType.SObjectType)
         .whereEq('DeveloperName', notificationDeveloperName)
@@ -48,10 +46,7 @@ global with sharing class CommonRepository extends DatabaseUtils {
    **/
   public static List<Group> readRegularGroup() {
     return (List<Group>) getRecords(
-      Query.newInstance(Group.SObjectType)
-        .addFields('DeveloperName')
-        .whereEq('Type', 'Regular')
-        .toString()
+      Query.newInstance(Group.SObjectType).addFields('DeveloperName').whereEq('Type', 'Regular').toString()
     );
   }
 }

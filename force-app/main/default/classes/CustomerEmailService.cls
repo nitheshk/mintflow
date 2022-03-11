@@ -21,9 +21,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   public static CustomerEmailService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (CustomerEmailService) getInstance(
-        CustomerEmailService.class
-      );
+      serviceInstance = (CustomerEmailService) getInstance(CustomerEmailService.class);
     }
     return serviceInstance;
   }
@@ -34,10 +32,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Applicant__c applicant
    **/
   global virtual void sendEmailOTP(Applicant__c applicant) {
-    String expireTime = String.valueOf(
-      (Integer) ApplicationConfiguration__c.getOrgDefaults()
-        .OTPExpirationTime__c
-    );
+    String expireTime = String.valueOf((Integer) ApplicationConfiguration__c.getOrgDefaults().OTPExpirationTime__c);
     //applicant.OTPExpireTime__c.format('MM/dd/yyyy HH:mm:ss')
     // #pending remove SMS OTP From Email
     EmailNotificationBuilder.newInstance('OTPVerificationEmail', applicant.Id)
@@ -69,9 +64,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     List<Applicant__c> familyMembers = new List<Applicant__c>();
 
     for (Applicant__c applicant : applicants) {
-      Set<String> applicantTypes = new Set<String>(
-        applicant.ApplicantType__c.split(';')
-      );
+      Set<String> applicantTypes = new Set<String>(applicant.ApplicantType__c.split(';'));
       if (applicantTypes.contains('Primary')) {
         primaryApplicant = applicant;
       } else if (applicantTypes.contains('Family Member')) {
@@ -80,10 +73,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     }
 
     for (Applicant__c applicant : familyMembers) {
-      EmailNotificationBuilder.newInstance(
-          'NotificationToFamilyMember',
-          applicant.Id
-        )
+      EmailNotificationBuilder.newInstance('NotificationToFamilyMember', applicant.Id)
         .setToAddresses(applicant.Email__c)
         .setCcAddresses(primaryApplicant.Email__c)
         .setSubstitute(
@@ -107,18 +97,11 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     string jointApplicantNames = '';
 
     for (Applicant__c applicant : applicants) {
-      Set<String> applicantTypes = new Set<String>(
-        applicant.ApplicantType__c.split(';')
-      );
+      Set<String> applicantTypes = new Set<String>(applicant.ApplicantType__c.split(';'));
       if (applicantTypes.contains('Primary')) {
         primaryApplicant = applicant;
       } else if (applicantTypes.contains('Joint')) {
-        jointApplicantNames =
-          jointApplicantNames +
-          applicant.FirstName__c +
-          ' ' +
-          applicant.LastName__c +
-          ', ';
+        jointApplicantNames = jointApplicantNames + applicant.FirstName__c + ' ' + applicant.LastName__c + ', ';
       }
     }
 
@@ -143,10 +126,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void resumeApplication(Applicant__c applicant) {
     Map<String, String> params = new Map<String, String>();
-    if (
-      applicant.ApplicantType__c ==
-      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-    ) {
+    if (applicant.ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
       params.put('flw', 'ApplicationFlow');
       params.put('urlSuffix', '/membership/application/otp');
       params.put('aplType', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
@@ -177,13 +157,9 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void savedApplication(Applicant__c applicant) {
     Map<String, String> params = new Map<String, String>();
-    if (
-      ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_APPLICATION
-    ) {
+    if (ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_APPLICATION) {
       params.put('urlSuffix', '/membership/application/otp');
-    } else if (
-      ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_FUNDING
-    ) {
+    } else if (ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_FUNDING) {
       params.put('urlSuffix', '/membership/funding/welcome');
     } else {
       params.put('urlSuffix', '/membership/joints/otp');
@@ -215,15 +191,11 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param List<Applicant__c> applicants
    * @param String eventName
    **/
-  global virtual void reviewInformationSubmitted(
-    List<Applicant__c> applicants,
-    String notificationName
-  ) {
+  global virtual void reviewInformationSubmitted(List<Applicant__c> applicants, String notificationName) {
     for (Applicant__c applicant : applicants) {
       String link;
       switch on notificationName {
-        when 'PrimaryReviewInformationSubmitted',
-          'PrimaryReviewInformationWaiting' {
+        when 'PrimaryReviewInformationSubmitted', 'PrimaryReviewInformationWaiting' {
           link = generateUrl(
             new Map<String, String>{
               'aplType' => 'Primary',
@@ -269,13 +241,8 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Applicant__c applicant
    * @return virtual
    **/
-  global virtual void primaryReviewInformationCompleted(
-    Applicant__c applicant
-  ) {
-    EmailNotificationBuilder.newInstance(
-        'PrimaryReviewInformationCompleted',
-        applicant.Id
-      )
+  global virtual void primaryReviewInformationCompleted(Applicant__c applicant) {
+    EmailNotificationBuilder.newInstance('PrimaryReviewInformationCompleted', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
@@ -295,10 +262,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param Applicant__c applicant
    * @return virtual
    **/
-  global virtual void accountOpened(
-    Applicant__c applicant,
-    FinancialAccount__c finAcc
-  ) {
+  global virtual void accountOpened(Applicant__c applicant, FinancialAccount__c finAcc) {
     EmailNotificationBuilder.newInstance('AccountOpened', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
@@ -320,10 +284,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void fundingLinkOnKycApproval(Application__c application) {
     for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         String link = generateUrl(
           new Map<String, String>{
             'aplType' => 'Primary',
@@ -333,10 +294,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
             'ch' => 'Virtual'
           }
         );
-        EmailNotificationBuilder.newInstance(
-            'FundingLinkOnKycApproval',
-            applicant.Id
-          )
+        EmailNotificationBuilder.newInstance('FundingLinkOnKycApproval', applicant.Id)
           .setToAddresses(applicant.Email__c)
           .setSubstitute(
             new Map<String, String>{
@@ -358,18 +316,9 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @param string information
    * @return virtual
    **/
-  global virtual void notifyAboutEmploymentReport(
-    Applicant__c applicant,
-    String information
-  ) {
-    EmailNotificationBuilder.newInstance(
-        'employmentReportInformation',
-        applicant.Id
-      )
-      .setToAddresses(
-        (String) ApplicationConfiguration__c.getOrgDefaults()
-          .SupportTeamEmail__c
-      )
+  global virtual void notifyAboutEmploymentReport(Applicant__c applicant, String information) {
+    EmailNotificationBuilder.newInstance('employmentReportInformation', applicant.Id)
+      .setToAddresses((String) ApplicationConfiguration__c.getOrgDefaults().SupportTeamEmail__c)
       .setSubstitute(
         new Map<String, String>{
           '{ApplicationNumber}' => ApexRequest.getApplicationName(),
@@ -401,10 +350,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     EmailNotificationBuilder.newInstance('IdentityUploadDocument', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
-        new Map<String, String>{
-          '{applicationNumber}' => applicant.Application__r.Name,
-          '{url}' => link
-        }
+        new Map<String, String>{ '{applicationNumber}' => applicant.Application__r.Name, '{url}' => link }
       );
     sendEmail();
   }
@@ -414,10 +360,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @author Digital Align Team | 02-08-2022
    * @param Applicant__c applicant
    **/
-  global virtual void startSecondaryApplication(
-    Applicant__c applicant,
-    List<FinancialProduct__c> products
-  ) {
+  global virtual void startSecondaryApplication(Applicant__c applicant, List<FinancialProduct__c> products) {
     Map<String, String> params = new Map<String, String>{
       'flw' => ApplicationConstant.FLOW_TYPE_APPLICATION,
       'urlSuffix' => '/membership/application/otp',
@@ -436,10 +379,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         productLink +
         '" target="_blank">Start</a><br/>';
     }
-    EmailNotificationBuilder.newInstance(
-        'StartSecondaryApplication',
-        applicant.Id
-      )
+    EmailNotificationBuilder.newInstance('StartSecondaryApplication', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<string, String>{
@@ -491,14 +431,9 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     cipher.appId = ApexRequest.getApplicationId();
     cipher.aplId = params.get('aplId');
     cipher.edt = Datetime.now()
-      .addHours(
-        (Integer) ApplicationConfiguration__c.getInstance()
-          .EmailLinkExpirationTime__c
-      );
+      .addHours((Integer) ApplicationConfiguration__c.getInstance().EmailLinkExpirationTime__c);
     cipher.ch = params.get('ch');
-    String pageName = params.containsKey('pageName')
-      ? params.get('pageName')
-      : '/OpenAccount';
+    String pageName = params.containsKey('pageName') ? params.get('pageName') : '/OpenAccount';
     String link =
       SiteSetting__c.getInstance().OnlineSiteUrl__c +
       pageName +

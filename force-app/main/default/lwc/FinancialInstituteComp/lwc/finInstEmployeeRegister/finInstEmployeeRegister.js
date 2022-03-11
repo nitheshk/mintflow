@@ -4,9 +4,7 @@ import createUser from "@salesforce/apex/LWCFinancialInstituteSiteController.cre
 import constants from "c/validationFormatUtils";
 import utils from "c/generalUtils";
 
-export default class FinInstEmployeeRegister extends NavigationMixin(
-  constants
-) {
+export default class FinInstEmployeeRegister extends NavigationMixin(constants) {
   @track contactData = {};
   isEmployeeCreated = false;
   @track showSpinner = false;
@@ -17,9 +15,7 @@ export default class FinInstEmployeeRegister extends NavigationMixin(
   }
 
   handleSave() {
-    if (
-      utils.checkAllValidations(this.template.querySelectorAll(".validation"))
-    ) {
+    if (utils.checkAllValidations(this.template.querySelectorAll(".validation"))) {
       this.showSpinner = true;
       createUser({
         params: { contact: this.contactData }
@@ -39,11 +35,7 @@ export default class FinInstEmployeeRegister extends NavigationMixin(
         })
         .catch((error) => {
           console.log("error : " + error);
-          utils.errorMessage(
-            this,
-            error.body.message,
-            "Error creating employee data"
-          );
+          utils.errorMessage(this, error.body.message, "Error creating employee data");
           this.showSpinner = false;
         });
     }

@@ -41,9 +41,7 @@ export default class FinInstAccountRegister extends constants {
   }
 
   handleSave() {
-    if (
-      utils.checkAllValidations(this.template.querySelectorAll(".validation"))
-    ) {
+    if (utils.checkAllValidations(this.template.querySelectorAll(".validation"))) {
       this.showSpinner = true;
       createAccount({
         params: {
@@ -61,11 +59,7 @@ export default class FinInstAccountRegister extends constants {
         })
         .catch((error) => {
           console.log("error " + JSON.stringify(error));
-          utils.errorMessage(
-            this,
-            error.body.message,
-            "Error creating Account"
-          );
+          utils.errorMessage(this, error.body.message, "Error creating Account");
           this.showSpinner = false;
         });
     }

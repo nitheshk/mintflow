@@ -13,9 +13,7 @@ public with sharing class TriggerRepository extends DatabaseUtils {
    * @param Stirng sObjectName
    * @return list<SObjectTriggerSetting__mdt>
    **/
-  public static list<SObjectTriggerSetting__mdt> fetchTriggerSettingBySObject(
-    String sObjectName
-  ) {
+  public static list<SObjectTriggerSetting__mdt> fetchTriggerSettingBySObject(String sObjectName) {
     String q = Query.newInstance(SObjectTriggerSetting__mdt.SObjectType)
       .addFields()
       .whereEq('mflow__ObjectAPIName__c', sObjectName)

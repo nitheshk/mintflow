@@ -13,10 +13,7 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param Boolean ignoreVersionData
    * @return ContentVersion
    **/
-  public static ContentVersion fetchContentVersionById(
-    Id contentVersionId,
-    Boolean ignoreVersionData
-  ) {
+  public static ContentVersion fetchContentVersionById(Id contentVersionId, Boolean ignoreVersionData) {
     if (contentVersionId == null) {
       return null;
     }
@@ -24,9 +21,7 @@ public with sharing class FileRepository extends DatabaseUtils {
     if (ignoreVersionData) {
       q.removeFields('VersionData');
     }
-    return (ContentVersion) getRecord(
-      q.whereEq('Id', contentVersionId).toString()
-    );
+    return (ContentVersion) getRecord(q.whereEq('Id', contentVersionId).toString());
   }
 
   /**
@@ -36,10 +31,7 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param Boolean ignoreVersionData
    * @return List<ContentVersion>
    **/
-  public static List<ContentVersion> fetchContentVersionsByIds(
-    List<Id> contentVersionIds,
-    Boolean ignoreVersionData
-  ) {
+  public static List<ContentVersion> fetchContentVersionsByIds(List<Id> contentVersionIds, Boolean ignoreVersionData) {
     if (CollectionUtils.isListEmpty(contentVersionIds)) {
       return new List<ContentVersion>();
     }
@@ -47,9 +39,7 @@ public with sharing class FileRepository extends DatabaseUtils {
     if (ignoreVersionData) {
       q.removeFields('VersionData');
     }
-    return (List<ContentVersion>) getRecords(
-      q.whereIn('Id', contentVersionIds).toString()
-    );
+    return (List<ContentVersion>) getRecords(q.whereIn('Id', contentVersionIds).toString());
   }
 
   /**
@@ -59,10 +49,7 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param Boolean ignoreVersionData
    * @return ContentVersion
    **/
-  public static ContentVersion fetchContentVersionByCD(
-    Id contentDocumentId,
-    Boolean ignoreVersionData
-  ) {
+  public static ContentVersion fetchContentVersionByCD(Id contentDocumentId, Boolean ignoreVersionData) {
     if (contentDocumentId == null) {
       return null;
     }
@@ -70,9 +57,7 @@ public with sharing class FileRepository extends DatabaseUtils {
     if (ignoreVersionData) {
       q.removeFields('VersionData');
     }
-    return (ContentVersion) getRecord(
-      q.whereEq('ContentDocumentId', contentDocumentId).toString()
-    );
+    return (ContentVersion) getRecord(q.whereEq('ContentDocumentId', contentDocumentId).toString());
   }
 
   /**
@@ -82,10 +67,7 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param Boolean ignoreVersionData
    * @return List<ContentVersion>
    **/
-  public static List<ContentVersion> fetchContentVersionsByCD(
-    List<Id> contentDocumentIds,
-    Boolean ignoreVersionData
-  ) {
+  public static List<ContentVersion> fetchContentVersionsByCD(List<Id> contentDocumentIds, Boolean ignoreVersionData) {
     if (CollectionUtils.isListEmpty(contentDocumentIds)) {
       return new List<ContentVersion>();
     }
@@ -93,9 +75,7 @@ public with sharing class FileRepository extends DatabaseUtils {
     if (ignoreVersionData) {
       q.removeFields('VersionData');
     }
-    return (List<ContentVersion>) getRecords(
-      q.whereIn('ContentDocumentId', contentDocumentIds).toString(true)
-    );
+    return (List<ContentVersion>) getRecords(q.whereIn('ContentDocumentId', contentDocumentIds).toString(true));
   }
 
   /**
@@ -137,9 +117,7 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param Id entityId
    * @return List<ContentDocumentLink>
    **/
-  public static List<ContentDocumentLink> fetchContentDocumentLinks(
-    Id entityId
-  ) {
+  public static List<ContentDocumentLink> fetchContentDocumentLinks(Id entityId) {
     if (entityId == null) {
       return null;
     }
@@ -157,9 +135,7 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param list<Id> entityIds
    * @return List<ContentDocumentLink>
    **/
-  public static List<ContentDocumentLink> fetchContentDocumentLinks(
-    list<Id> entityIds
-  ) {
+  public static List<ContentDocumentLink> fetchContentDocumentLinks(list<Id> entityIds) {
     if (CollectionUtils.isListEmpty(entityIds)) {
       return new List<ContentDocumentLink>();
     }
@@ -177,16 +153,12 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param List<Id> contentDocumentIds
    * @return List<ContentDocument>
    **/
-  public static List<ContentDocument> fetchContentDocument(
-    List<Id> contentDocumentIds
-  ) {
+  public static List<ContentDocument> fetchContentDocument(List<Id> contentDocumentIds) {
     if (CollectionUtils.isListEmpty(contentDocumentIds)) {
       return new List<ContentDocument>();
     }
     return (List<ContentDocument>) getRecords(
-      Query.newInstance(ContentDocument.SObjectType)
-        .whereIn('Id', contentDocumentIds)
-        .toString(true)
+      Query.newInstance(ContentDocument.SObjectType).whereIn('Id', contentDocumentIds).toString(true)
     );
   }
 
@@ -198,10 +170,7 @@ public with sharing class FileRepository extends DatabaseUtils {
    **/
   public static Document fetchDocumentIdByDeveloperName(String developerName) {
     return (Document) getRecord(
-      Query.newInstance(Document.SObjectType)
-        .whereEq('DeveloperName', developerName)
-        .addLimit(1)
-        .toString(true)
+      Query.newInstance(Document.SObjectType).whereEq('DeveloperName', developerName).addLimit(1).toString(true)
     );
   }
 
@@ -211,9 +180,7 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param Id contentDistributionId
    * @return ContentDistribution
    **/
-  public static ContentDistribution fetchContentDistributionById(
-    Id contentDistributionId
-  ) {
+  public static ContentDistribution fetchContentDistributionById(Id contentDistributionId) {
     if (contentDistributionId == null) {
       return null;
     }
@@ -232,16 +199,12 @@ public with sharing class FileRepository extends DatabaseUtils {
    * @param Id contentVersionId
    * @return List<ContentDistribution>
    **/
-  public static List<ContentDistribution> fetchContentDistributionsById(
-    Id contentVersionId
-  ) {
+  public static List<ContentDistribution> fetchContentDistributionsById(Id contentVersionId) {
     if (contentVersionId == null) {
       return null;
     }
     return (List<ContentDistribution>) getRecords(
-      Query.newInstance(ContentDistribution.SObjectType)
-        .whereEq('ContentVersionId', contentVersionId)
-        .toString(true)
+      Query.newInstance(ContentDistribution.SObjectType).whereEq('ContentVersionId', contentVersionId).toString(true)
     );
   }
 }

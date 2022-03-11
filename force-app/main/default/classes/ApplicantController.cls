@@ -25,14 +25,10 @@ global with sharing class ApplicantController extends AbstractController {
     try {
       validateRequest(request);
       Set<Id> applicantIds = new Set<Id>();
-      for (
-        Object obj : (List<Object>) ApexRequest.getParams().get('applicantIds')
-      ) {
+      for (Object obj : (List<Object>) ApexRequest.getParams().get('applicantIds')) {
         applicantIds.add(String.valueOf(Obj));
       }
-      return ApexResponse.ok(
-        ApplicantService.getInstance().readApplicantsWithChild(applicantIds)
-      );
+      return ApexResponse.ok(ApplicantService.getInstance().readApplicantsWithChild(applicantIds));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -61,14 +57,11 @@ global with sharing class ApplicantController extends AbstractController {
         List<Applicant__c>.class
       );
 
-      applicants = ApplicantService.getInstance()
-        .saveApplicants(applicants, ApexRequest.getApplicationId());
+      applicants = ApplicantService.getInstance().saveApplicants(applicants, ApexRequest.getApplicationId());
 
       ApplicationService.getInstance().updateFlowState(applicants);
 
-      return ApexResponse.ok(
-        ApplicantService.getInstance().readApplicantsWithChild(applicants)
-      );
+      return ApexResponse.ok(ApplicantService.getInstance().readApplicantsWithChild(applicants));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -92,13 +85,9 @@ global with sharing class ApplicantController extends AbstractController {
   global static ApexResponse saveApplicant(ApexRequest request) {
     try {
       validateRequest(request);
-      Applicant__c applicant = (Applicant__c) SObjectConstructor.deserialize(
-        request.data,
-        Applicant__c.class
-      );
+      Applicant__c applicant = (Applicant__c) SObjectConstructor.deserialize(request.data, Applicant__c.class);
 
-      applicant = ApplicantService.getInstance()
-        .saveApplicant(applicant, ApexRequest.getApplicationId());
+      applicant = ApplicantService.getInstance().saveApplicant(applicant, ApexRequest.getApplicationId());
 
       ApplicationService.getInstance().updateFlowState(applicant);
 
@@ -129,9 +118,7 @@ global with sharing class ApplicantController extends AbstractController {
       validateRequest(request, true);
       log?.debug('params : ' + ApexRequest.getParams());
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
-      return ApexResponse.ok(
-        AuthenticationService.getInstance().generateOTP(applicantId)
-      );
+      return ApexResponse.ok(AuthenticationService.getInstance().generateOTP(applicantId));
     } catch (Exception ex) {
       log?.error(ex);
       return ApexResponse.fail(ex);
@@ -155,9 +142,7 @@ global with sharing class ApplicantController extends AbstractController {
       log?.fine('Inside validateOTP');
       validateRequest(request, true);
       log?.debug('params : ' + ApexRequest.getParams());
-      return ApexResponse.ok(
-        AuthenticationService.getInstance().validateOTP(ApexRequest.getParams())
-      );
+      return ApexResponse.ok(AuthenticationService.getInstance().validateOTP(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -185,14 +170,9 @@ global with sharing class ApplicantController extends AbstractController {
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       ID employerId = (Id) ApexRequest.getParams('employerId');
       if (String.isEmpty(applicantId) || String.isempty(employerId)) {
-        return ApexResponse.ok(
-          'Applicant Id or Employer Id is missing in the request'
-        );
+        return ApexResponse.ok('Applicant Id or Employer Id is missing in the request');
       }
-      return ApexResponse.ok(
-        EmploymentService.getInstance()
-          .atomicAuthenticate(applicantId, employerId)
-      );
+      return ApexResponse.ok(EmploymentService.getInstance().atomicAuthenticate(applicantId, employerId));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -218,10 +198,7 @@ global with sharing class ApplicantController extends AbstractController {
       validateRequest(request);
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       ID employerId = (Id) ApexRequest.getParams('employerId');
-      return ApexResponse.ok(
-        EmploymentService.getInstance()
-          .getAtomicResponse(applicantId, employerId)
-      );
+      return ApexResponse.ok(EmploymentService.getInstance().getAtomicResponse(applicantId, employerId));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -247,16 +224,9 @@ global with sharing class ApplicantController extends AbstractController {
       validateRequest(request);
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       ID employerId = (Id) ApexRequest.getParams('employerId');
-      Employment__c employmentObj = EmploymentService.getInstance()
-        .readEmployerbyId(employerId);
-      if (
-        employmentObj != null &&
-        employmentObj.isDocumentGenerated__c == false
-      ) {
-        return ApexResponse.ok(
-          EmploymentService.getInstance()
-            .generatePaySlipsW2(applicantId, employerId)
-        );
+      Employment__c employmentObj = EmploymentService.getInstance().readEmployerbyId(employerId);
+      if (employmentObj != null && employmentObj.isDocumentGenerated__c == false) {
+        return ApexResponse.ok(EmploymentService.getInstance().generatePaySlipsW2(applicantId, employerId));
       } else {
         return ApexResponse.ok('The files are already generated, so skipping ');
       }

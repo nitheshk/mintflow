@@ -21,9 +21,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
    **/
   public static ApplicationSubmissionService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (ApplicationSubmissionService) getInstance(
-        ApplicationSubmissionService.class
-      );
+      serviceInstance = (ApplicationSubmissionService) getInstance(ApplicationSubmissionService.class);
     }
     return serviceInstance;
   }
@@ -36,11 +34,8 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
    **/
   global virtual Application__c submitApplication(String data) {
     log?.debug('Inside submitApplication');
-    Application__c application = SubmissionRepository.readApplicationWithApplicants(
-      ApexRequest.getApplicationId()
-    );
-    HttpBuilder.Response response = RpaProcessService.getInstance()
-      .scheduleApplication(application);
+    Application__c application = SubmissionRepository.readApplicationWithApplicants(ApexRequest.getApplicationId());
+    HttpBuilder.Response response = RpaProcessService.getInstance().scheduleApplication(application);
     if (response.statusCode == 400) {
       application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
       application.Stage__c = 'Exception';
@@ -51,10 +46,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
     }
 
     for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name ==
-        ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-      ) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         applicant.mflow__Status__c = application.Status__c;
         break;
       }
@@ -82,9 +74,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       throw new CustomException('Unable to process the empty request');
     }
 
-    Application__c application = SubmissionRepository.readApplicationWithApplicants(
-      fundingResult.Application
-    );
+    Application__c application = SubmissionRepository.readApplicationWithApplicants(fundingResult.Application);
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.Name);
 
@@ -93,10 +83,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
     }
 
     //chatter post on record level
-    NotificationBuilder.chatterMessagePost(
-      application.Id,
-      'Funding Response from meridian link  : ' + resultJson
-    );
+    NotificationBuilder.chatterMessagePost(application.Id, 'Funding Response from meridian link  : ' + resultJson);
 
     // roll back whole transaction on failure
     Savepoint sp = Database.setSavepoint();
@@ -154,10 +141,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
         application.Status__c = ApplicationConstant.COMPLETED;
         application.MemberNumber__c = fundingResult.MemberNumber;
         for (Applicant__c applicant : application.Applicants__r) {
-          if (
-            applicant.RecordType.Name ==
-            ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-          ) {
+          if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
             applicant.mflow__CustomerNumber__c = fundingResult.MemberNumber;
             applicant.mflow__Status__c = ApplicationConstant.COMPLETED;
             break;
@@ -170,10 +154,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       }
     }
 
-    if (
-      fundingResult?.FinancialAccount != null &&
-      fundingResult.FinancialAccount.size() > 0
-    ) {
+    if (fundingResult?.FinancialAccount != null && fundingResult.FinancialAccount.size() > 0) {
       FundingSubmissionResponse.FinancialAccountResult financialAccountResult = fundingResult.FinancialAccount[0];
       if (String.isNotBlank(financialAccountResult.FinancialAccountId)) {
         FinancialAccount__c fa = new FinancialAccount__c(
@@ -188,9 +169,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
 
       if (
         financialAccountResult?.FinancialApplicationTransaction != null &&
-        financialAccountResult
-          ?.FinancialApplicationTransaction
-          ?.FinancialAccountTransactionId != null
+        financialAccountResult?.FinancialApplicationTransaction?.FinancialAccountTransactionId != null
       ) {
         //READY FOR FUNDING
         //FUNDED

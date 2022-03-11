@@ -15,10 +15,7 @@ global with sharing class UserAccountManagementRepository extends DatabaseUtils 
    **/
   global static Profile readProfileByName(String profileName) {
     return (Profile) getRecord(
-      Query.newInstance(Profile.SObjectType)
-        .whereEq('Name', profileName)
-        .addLimit(1)
-        .toString(true)
+      Query.newInstance(Profile.SObjectType).whereEq('Name', profileName).addLimit(1).toString(true)
     );
   }
 
@@ -28,13 +25,9 @@ global with sharing class UserAccountManagementRepository extends DatabaseUtils 
    * @param List<String> permissionSetNames
    * @return List<PermissionSet>
    **/
-  global static List<PermissionSet> readPermissionSetByNames(
-    List<String> permissionSetNames
-  ) {
+  global static List<PermissionSet> readPermissionSetByNames(List<String> permissionSetNames) {
     return (List<PermissionSet>) getRecords(
-      Query.newInstance(PermissionSet.SObjectType)
-        .whereIn('Name', permissionSetNames)
-        .toString(true)
+      Query.newInstance(PermissionSet.SObjectType).whereIn('Name', permissionSetNames).toString(true)
     );
   }
 

@@ -4,8 +4,7 @@
     <description>Class Type indicate to categorize the apex class</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <inlineHelpText
-  >Class Type indicate to categorize the apex class</inlineHelpText>
+    <inlineHelpText>Class Type indicate to categorize the apex class</inlineHelpText>
     <label>Class Type</label>
     <required>true</required>
     <type>Picklist</type>

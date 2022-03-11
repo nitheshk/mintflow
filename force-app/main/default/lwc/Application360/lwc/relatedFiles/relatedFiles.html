@@ -1,13 +1,7 @@
 <template>
-  <lightning-card
-    if:true={showFile}
-    title={titleName}
-    icon-name="standard:file"
-  >
+  <lightning-card if:true={showFile} title={titleName} icon-name="standard:file">
     <template if:false={files}
-      ><div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
-        {message}
-      </div></template
+      ><div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">{message}</div></template
     >
     <template if:true={files}>
       <table class="slds-table slds-table_bordered slds-table_cell-buffer">

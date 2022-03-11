@@ -44,18 +44,14 @@ global virtual with sharing class ConsentResolver extends AbstractService {
     List<Object> filters = (List<Object>) ApexRequest.getParams('filter');
     List<Consent__c> consents = new List<Consent__c>();
 
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     consents = ConsentRepository.readExistingConsent(eventIdentifier);
     if (!consents.isEmpty()) {
       return consents;
     }
 
-    Application__c application = ConsentRepository.readApplicationWithFA(
-      ApexRequest.getApplicationId()
-    );
+    Application__c application = ConsentRepository.readApplicationWithFA(ApexRequest.getApplicationId());
 
     //resolve consent using financial account
     consents.addAll(resolveConsents(application));
@@ -79,17 +75,11 @@ global virtual with sharing class ConsentResolver extends AbstractService {
    * @param List<Object> filters
    * @return List<Consent__c>
    **/
-  global virtual List<Consent__c> resolveConsents(
-    Application__c application,
-    List<Object> filters
-  ) {
+  global virtual List<Consent__c> resolveConsents(Application__c application, List<Object> filters) {
     if (!CollectionUtils.isListEmpty(filters)) {
       for (Object filter : filters) {
         Map<String, Object> filterMap = (Map<String, Object>) filter;
-        filterMap.put(
-          'mflow__ApplicantType__c',
-          ApexRequest.getApplicantType()
-        );
+        filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
         filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
         filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
         filterMap.put('$mflow__Channel__c', 'INCLUDES');
@@ -104,9 +94,7 @@ global virtual with sharing class ConsentResolver extends AbstractService {
       filters.add(filterMap);
     }
 
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     // fetch consent item by  custom filter
     List<ConsentLineItem__c> consentLineItems = ConsentRepository.fetchConsentByFilter(
@@ -134,22 +122,15 @@ global virtual with sharing class ConsentResolver extends AbstractService {
       return consents;
     }
 
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
-    for (
-      FinancialAccount__c financialAccount : application.FinancialAccounts__r
-    ) {
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
       Map<String, Object> filterMap = new Map<String, Object>();
       filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
       filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
       filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
       filterMap.put('$mflow__Channel__c', 'INCLUDES');
-      filterMap.put(
-        'mflow__FinancialProductCode__c',
-        financialAccount.FinancialProduct__r.InternalCode__c
-      );
+      filterMap.put('mflow__FinancialProductCode__c', financialAccount.FinancialProduct__r.InternalCode__c);
 
       // fetch consent item by  custom filter
       List<ConsentLineItem__c> consentLineItems = ConsentRepository.fetchConsentByFilter(
@@ -160,9 +141,7 @@ global virtual with sharing class ConsentResolver extends AbstractService {
       //prepare document mapping
       this.setDocumentMap(consentLineItems);
       // map consent items into consent
-      consents.addAll(
-        this.mapConsentItemToConsent(consentLineItems, financialAccount.Id)
-      );
+      consents.addAll(this.mapConsentItemToConsent(consentLineItems, financialAccount.Id));
     }
     return consents;
   }
@@ -218,25 +197,19 @@ global virtual with sharing class ConsentResolver extends AbstractService {
       if (consentLineItem.ConsentTemplate__r.DocumentType__c == 'Static') {
         String documentName = consentLineItem.ConsentTemplate__r.DocumentName__c;
         if (documentMap.containsKey(documentName)) {
-          consent.URL__c = baseUrl.replace(
-            '{{docID}}',
-            documentMap.get(documentName)?.Id
-          );
+          consent.URL__c = baseUrl.replace('{{docID}}', documentMap.get(documentName)?.Id);
         }
       } else if (
         consentLineItem.ConsentTemplate__r.DocumentType__c == 'URL' ||
         consentLineItem.ConsentTemplate__r.DocumentType__c == 'Signed'
       ) {
         consent.URL__c = consentLineItem.ConsentTemplate__r.URL__c;
-      } else if (
-        consentLineItem.ConsentTemplate__r.DocumentType__c == 'Visualforce'
-      ) {
+      } else if (consentLineItem.ConsentTemplate__r.DocumentType__c == 'Visualforce') {
         //#pending Logic is pending to add
         consent.URL__c =
           SiteSetting__c.getInstance().mflow__OnlineSiteUrl__c +
           '/' +
-          consentLineItem.ConsentTemplate__r.URL__c
-            ?.replace('{applicationId}', ApexRequest.getApplicationId());
+          consentLineItem.ConsentTemplate__r.URL__c?.replace('{applicationId}', ApexRequest.getApplicationId());
         //consent.URL__c = consent.URL__c?.replace('{applicantId}',ApexRequest.getApplicationId());
         //consent.URL__c = consent.URL__c?.replace('{financialAccountId}',ApexRequest.getApplicationId());
       }
@@ -251,9 +224,7 @@ global virtual with sharing class ConsentResolver extends AbstractService {
    * @param List<Consent__c> consents
    * @return List<Consent__c>
    **/
-  global virtual List<Consent__c> removeDuplicateConsents(
-    List<Consent__c> consents
-  ) {
+  global virtual List<Consent__c> removeDuplicateConsents(List<Consent__c> consents) {
     Set<String> templateCode = new Set<String>();
     List<Consent__c> newconsentsList = new List<Consent__c>();
     for (Consent__c consent : consents) {
@@ -312,20 +283,13 @@ global virtual with sharing class ConsentResolver extends AbstractService {
    * @return  List<Consent__c>
    **/
   global virtual List<Consent__c> generateConsentPdf(Id applicationId) {
-    List<Consent__c> consents = ConsentRepository.readExistingConsentByAppId(
-      applicationId
-    );
+    List<Consent__c> consents = ConsentRepository.readExistingConsentByAppId(applicationId);
     if (CollectionUtils.isListEmpty(consents)) {
       return consents;
     }
     for (Consent__c consent : consents) {
-      if (
-        consent.mflow__ConsentTemplate__r.mflow__DocumentType__c ==
-        'Visualforce'
-      ) {
-        Pagereference consentPdf = new Pagereference(
-          '/apex' + consent.mflow__URL__c?.substringAfterLast('/Online')
-        );
+      if (consent.mflow__ConsentTemplate__r.mflow__DocumentType__c == 'Visualforce') {
+        Pagereference consentPdf = new Pagereference('/apex' + consent.mflow__URL__c?.substringAfterLast('/Online'));
         Blob body;
         if (Test.isRunningTest()) {
           body = Blob.valueOf('TestFile');
@@ -333,9 +297,7 @@ global virtual with sharing class ConsentResolver extends AbstractService {
           body = consentPdf.getContent();
         }
         ContentVersion cv = FileService.getInstance()
-          .createFile(
-            new FileDTO(consent.Name + '.pdf', body, consent.Id, 'Agreement')
-          );
+          .createFile(new FileDTO(consent.Name + '.pdf', body, consent.Id, 'Agreement'));
         consent.PrimaryContentDocumentID__c = cv.ContentDocumentId;
       }
     }

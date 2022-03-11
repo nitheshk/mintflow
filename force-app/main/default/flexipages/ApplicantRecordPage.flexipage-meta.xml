@@ -43,8 +43,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName
-        >runtime_sales_activities:activityPanel</componentName>
+                <componentName>runtime_sales_activities:activityPanel</componentName>
             </componentInstance>
         </itemInstances>
         <name>Facet-98d8ca7d-6412-427f-915e-e39986c395eb</name>

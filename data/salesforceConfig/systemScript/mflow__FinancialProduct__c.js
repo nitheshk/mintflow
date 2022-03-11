@@ -14,14 +14,10 @@ utils
       utils.replaceUnwantedFields(item);
       item.attributes.referenceId = item.mflow__InternalCode__c;
       if (item.mflow__ProductServices__r) {
-        item.mflow__ProductServices__r.records.forEach(function (
-          item_c1,
-          index_c1
-        ) {
+        item.mflow__ProductServices__r.records.forEach(function (item_c1, index_c1) {
           utils.replaceUnwantedFields(item_c1);
           delete item_c1.mflow__FinancialProduct__c;
-          item_c1.attributes.referenceId =
-            "ProductServiceRef" + index + "_" + index_c1;
+          item_c1.attributes.referenceId = "ProductServiceRef" + index + "_" + index_c1;
 
           //read only field
           delete item_c1.mflow__FinancialProductCode__c;
@@ -30,14 +26,9 @@ utils
       }
     });
     //   Script to update change for each config ==>
-    utils
-      .createFile(
-        `${configPath}${objectName}.json`,
-        JSON.stringify({ records: data })
-      )
-      .catch((err) => {
-        console.log("errr :" + JSON.stringify(err));
-      });
+    utils.createFile(`${configPath}${objectName}.json`, JSON.stringify({ records: data })).catch((err) => {
+      console.log("errr :" + JSON.stringify(err));
+    });
   })
   .catch((err) => {
     console.log("err :" + err);

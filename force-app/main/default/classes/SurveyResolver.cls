@@ -36,18 +36,14 @@ global virtual with sharing class SurveyResolver extends AbstractService {
     List<Object> filters = (List<Object>) ApexRequest.getParams('filter');
     List<Survey__c> surveys = new List<Survey__c>();
 
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     surveys = SurveyRepository.readExistingSurvey(eventIdentifier);
     if (!surveys.isEmpty()) {
       return surveys;
     }
 
-    Application__c application = SurveyRepository.readApplicationWithFA(
-      ApexRequest.getApplicationId()
-    );
+    Application__c application = SurveyRepository.readApplicationWithFA(ApexRequest.getApplicationId());
 
     //resolve survey using financial account
     surveys.addAll(resolveSurveys(application));
@@ -70,17 +66,11 @@ global virtual with sharing class SurveyResolver extends AbstractService {
    * @param List<Object> filters
    * @return List<Survey__c>
    **/
-  global virtual List<Survey__c> resolveSurveys(
-    Application__c application,
-    List<Object> filters
-  ) {
+  global virtual List<Survey__c> resolveSurveys(Application__c application, List<Object> filters) {
     if (!CollectionUtils.isListEmpty(filters)) {
       for (Object filter : filters) {
         Map<String, Object> filterMap = (Map<String, Object>) filter;
-        filterMap.put(
-          'mflow__ApplicantType__c',
-          ApexRequest.getApplicantType()
-        );
+        filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
         filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
         filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
         filterMap.put('$mflow__Channel__c', 'INCLUDES');
@@ -95,9 +85,7 @@ global virtual with sharing class SurveyResolver extends AbstractService {
       filters.add(filterMap);
     }
 
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     // fetch survey item by  custom filter
     List<SurveyTemplate__c> templates = SurveyRepository.fetchSurveyTemplateByFilters(
@@ -124,22 +112,15 @@ global virtual with sharing class SurveyResolver extends AbstractService {
       return surveys;
     }
 
-    String eventIdentifier = String.valueOf(
-      ApexRequest.getParams('eventIdentifier')
-    );
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
-    for (
-      FinancialAccount__c financialAccount : application.FinancialAccounts__r
-    ) {
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
       Map<String, Object> filterMap = new Map<String, Object>();
       filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
       filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
       filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
       filterMap.put('$mflow__Channel__c', 'INCLUDES');
-      filterMap.put(
-        'mflow__FinancialProductCode__c',
-        financialAccount.FinancialProduct__r.InternalCode__c
-      );
+      filterMap.put('mflow__FinancialProductCode__c', financialAccount.FinancialProduct__r.InternalCode__c);
 
       // fetch survey item by  custom filter
       List<SurveyTemplate__c> templates = SurveyRepository.fetchSurveyTemplateByFilters(
@@ -161,10 +142,7 @@ global virtual with sharing class SurveyResolver extends AbstractService {
    * @param Id financialAccountId
    * @return  List<Survey__c>
    **/
-  global virtual List<Survey__c> buildSurvey(
-    List<SurveyTemplate__c> surveyTemplates,
-    Id financialAccountId
-  ) {
+  global virtual List<Survey__c> buildSurvey(List<SurveyTemplate__c> surveyTemplates, Id financialAccountId) {
     List<Survey__c> surveyList = new List<Survey__c>();
     for (SurveyTemplate__c surveyTemplate : surveyTemplates) {
       for (SurveyQuestion__c item : surveyTemplate.SurveyQuestions__r) {
@@ -209,9 +187,7 @@ global virtual with sharing class SurveyResolver extends AbstractService {
    * @param List<Survey__c> surveys
    * @return List<Survey__c>
    **/
-  global virtual List<Survey__c> removeDuplicateSurveys(
-    List<Survey__c> surveys
-  ) {
+  global virtual List<Survey__c> removeDuplicateSurveys(List<Survey__c> surveys) {
     Set<String> consentCode = new Set<String>();
     List<Survey__c> newSurveyList = new List<Survey__c>();
     for (Survey__c survey : surveys) {

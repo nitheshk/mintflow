@@ -62,10 +62,7 @@ export default class NavigationMenu extends NavigationMixin(LightningElement) {
         })
         .filter((item) => {
           // Only show "Public" items if guest user
-          return (
-            item.accessRestriction === "None" ||
-            (item.accessRestriction === "LoginRequired" && !isGuestUser)
-          );
+          return item.accessRestriction === "None" || (item.accessRestriction === "LoginRequired" && !isGuestUser);
         });
       this.error = undefined;
       this.isLoaded = true;
@@ -123,11 +120,7 @@ export default class NavigationMenu extends NavigationMixin(LightningElement) {
     if (pageReference) {
       this[NavigationMixin.Navigate](pageReference);
     } else {
-      console.log(
-        `Navigation menu type "${
-          this.item.type
-        }" not implemented for item ${JSON.stringify(item)}`
-      );
+      console.log(`Navigation menu type "${this.item.type}" not implemented for item ${JSON.stringify(item)}`);
     }
   }
 }

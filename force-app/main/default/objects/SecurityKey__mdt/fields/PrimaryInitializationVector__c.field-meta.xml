@@ -4,8 +4,7 @@
     <description>Primary Initialization Vector used for encryption</description>
     <externalId>false</externalId>
     <fieldManageability>SubscriberControlled</fieldManageability>
-    <inlineHelpText
-  >Primary Initialization Vector used for encryption</inlineHelpText>
+    <inlineHelpText>Primary Initialization Vector used for encryption</inlineHelpText>
     <label>Primary Initialization Vector</label>
     <length>255</length>
     <required>false</required>

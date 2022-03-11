@@ -29,8 +29,7 @@ public with sharing class AtomicVerificationReportController {
     atomicWrapper = new AtomicFIWrapper();
     Employment__c empObj = EmploymentRepository.readEmployerbyId(employerId);
     employerName = empObj.Name;
-    String jsonResponse = AtomicFIProvider.getInstance()
-      .getAtomicResponse(empObj.Applicant__c, employerId);
+    String jsonResponse = AtomicFIProvider.getInstance().getAtomicResponse(empObj.Applicant__c, employerId);
     String request = jsonResponse.replaceAll('_id', 'id');
     jsonResponse = request;
     request = jsonResponse.replace('\\n', '');

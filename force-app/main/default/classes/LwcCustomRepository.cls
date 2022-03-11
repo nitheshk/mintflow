@@ -69,9 +69,7 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
    * @param Set<Id> applicantIds
    * @return List<Applicant__c>
    **/
-  public static List<Applicant__c> readApplicantsWithChild(
-    Set<Id> applicantIds
-  ) {
+  public static List<Applicant__c> readApplicantsWithChild(Set<Id> applicantIds) {
     return (List<Applicant__c>) DatabaseUtils.getRecords(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
@@ -108,9 +106,7 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
    * @param Set<Id> financialAccountIds
    * @return List<FinancialAccount__c>
    **/
-  global static List<FinancialAccount__c> readFinancialAccountsWithChild(
-    Set<Id> financialAccountIds
-  ) {
+  global static List<FinancialAccount__c> readFinancialAccountsWithChild(Set<Id> financialAccountIds) {
     return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
       Query.newInstance(FinancialAccount__c.SObjectType)
         .addFields()
@@ -175,15 +171,9 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
         .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
-        .whereEq(
-          'RecordType.Name',
-          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-        )
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
         .orCon()
-        .whereEq(
-          'RecordType.Name',
-          ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-        )
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)
         .orderBy('mflow__Order__c')
         .run()
         .whereEq('Id', applicationId)

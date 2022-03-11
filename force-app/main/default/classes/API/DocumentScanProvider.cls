@@ -21,9 +21,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
    **/
   public static DocumentScanProvider getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (DocumentScanProvider) getInstance(
-        DocumentScanProvider.class
-      );
+      serviceInstance = (DocumentScanProvider) getInstance(DocumentScanProvider.class);
     }
     return serviceInstance;
   }
@@ -61,20 +59,13 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     if (response.getStatusCode() != 200) {
       throw new CustomException(response.getStatus());
     }
-    Map<String, Object> idOldMap = (Map<String, Object>) JSON.deserializeUntyped(
-      response.getBody()
-    );
+    Map<String, Object> idOldMap = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
 
-    if (
-      (string) ((Map<String, Object>) idOldMap.get('ParseImageResult'))
-        .get('ErrorMessage') != 'OK'
-    ) {
+    if ((string) ((Map<String, Object>) idOldMap.get('ParseImageResult')).get('ErrorMessage') != 'OK') {
       throw new CustomException(System.Label.Document_UnableToParseTheDl);
     }
 
-    Map<String, Object> result = (Map<String, Object>) ((Map<String, Object>) idOldMap.get(
-        'ParseImageResult'
-      ))
+    Map<String, Object> result = (Map<String, Object>) ((Map<String, Object>) idOldMap.get('ParseImageResult'))
       .get('DriverLicense');
     Map<String, Object> newMap = new Map<String, Object>();
     newMap.put('documentNumber', result.get('LicenseNumber'));
@@ -92,22 +83,12 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     newMap.put('postalCode', result.get('PostalCode'));
     newMap.put('documentType', result.get('DocumentType'));
     newMap.put('issuerRegion', result.get('IssuedBy'));
-    newMap.put(
-      'issuerCountry',
-      GenericUtils.fetchCountryFromCountryCode(
-        (string) result.get('CountryCode')
-      )
-    );
+    newMap.put('issuerCountry', GenericUtils.fetchCountryFromCountryCode((string) result.get('CountryCode')));
     newMap.put('state', result.get('IssuedBy'));
     newMap.put('nationality', result.get('CountryCode'));
     system.debug('newMap =' + newMap);
     DocumentScanDTO.Response returnDTO = (DocumentScanDTO.Response) JSON.deserialize(
-      JSON.serialize(
-        new Map<String, Object>{
-          'Data' => newMap,
-          'status' => response.getStatusCode()
-        }
-      ),
+      JSON.serialize(new Map<String, Object>{ 'Data' => newMap, 'status' => response.getStatusCode() }),
       DocumentScanDTO.Response.class
     );
 
@@ -124,9 +105,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
    * @param Map<String object> params
    * @return virtual
    **/
-  global virtual HttpBuilder.Response idScanAnalyzer(
-    Map<String, object> params
-  ) {
+  global virtual HttpBuilder.Response idScanAnalyzer(Map<String, object> params) {
     ContentVersion frontCv = (ContentVersion) params.get('frontContentVersion');
     ContentVersion backCv = params.containsKey('backContentVersion')
       ? (ContentVersion) params.get('backContentVersion')
@@ -139,9 +118,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     DocumentScanDTO.Request requestDTO = new DocumentScanDTO.Request();
     requestDTO.file_base64 = EncodingUtil.base64Encode(frontCv.VersionData);
     if (backCv != null) {
-      requestDTO.file_back_base64 = EncodingUtil.base64Encode(
-        backCv?.VersionData
-      );
+      requestDTO.file_back_base64 = EncodingUtil.base64Encode(backCv?.VersionData);
       backCv = null; //remove binary data for heap issue
     }
     requestDTO.apikey = HttpBuilder.getApiConstant('IdScanAnalyzerAPIKey');
@@ -190,9 +167,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
       throw new CustomException(response.getStatus());
     }
 
-    Map<String, Object> idOldMap = (Map<String, Object>) JSON.deserializeUntyped(
-      response.getBody()
-    );
+    Map<String, Object> idOldMap = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
 
     if (idOldMap.ContainsKey('error')) {
       throw new CustomException(System.Label.Document_UnableToParseTheDl);
@@ -204,28 +179,15 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
       ))
       .get('breakdown');
     Map<String, Object> validation = new Map<String, Object>();
-    validation.put(
-      'isExpired',
-      (Boolean) ((Map<String, Object>) idOldMap.get('verification'))
-        .get('passed')
-    );
-    validation.put(
-      'score',
-      ((Map<String, Object>) idOldMap.get('authentication')).get('score')
-    );
+    validation.put('isExpired', (Boolean) ((Map<String, Object>) idOldMap.get('verification')).get('passed'));
+    validation.put('score', ((Map<String, Object>) idOldMap.get('authentication')).get('score'));
     validation.put(
       'imageQualityPassed',
-      (Boolean) ((Map<String, Object>) authenticatioBreakdown.get(
-          'image_quality'
-        ))
-        .get('passed')
+      (Boolean) ((Map<String, Object>) authenticatioBreakdown.get('image_quality')).get('passed')
     );
     validation.put(
       'securityCheckPassed',
-      (Boolean) ((Map<String, Object>) authenticatioBreakdown.get(
-          'security_feature_check'
-        ))
-        .get('passed')
+      (Boolean) ((Map<String, Object>) authenticatioBreakdown.get('security_feature_check')).get('passed')
     );
 
     Map<String, Object> newMap = new Map<String, Object>();
@@ -251,12 +213,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     newMap.put('validation', validation);
 
     DocumentScanDTO.Response returnDTO = (DocumentScanDTO.Response) JSON.deserialize(
-      JSON.serialize(
-        new Map<String, Object>{
-          'Data' => newMap,
-          'status' => response.getStatusCode()
-        }
-      ),
+      JSON.serialize(new Map<String, Object>{ 'Data' => newMap, 'status' => response.getStatusCode() }),
       DocumentScanDTO.Response.class
     );
 
@@ -274,10 +231,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
    * @param DocumentScanDTO.Response returnDTO
    * @return Applicant__c
    **/
-  global virtual Applicant__c mapIdentityResponse(
-    Applicant__c applicant,
-    DocumentScanDTO.Response returnDTO
-  ) {
+  global virtual Applicant__c mapIdentityResponse(Applicant__c applicant, DocumentScanDTO.Response returnDTO) {
     IdentificationDocument__c identity = new IdentificationDocument__c();
     ContactPointAddress idAddress = new ContactPointAddress();
 
@@ -288,9 +242,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     identity.IssuedRegion__c = returnDTO.data.issuerRegion;
     identity.Weight__c = returnDTO.data.weight;
     identity.Gender__c = returnDTO.data.gender;
-    identity.DocumentType__c = mapDocumentTypeValue(
-      returnDTO.data.documentType
-    );
+    identity.DocumentType__c = mapDocumentTypeValue(returnDTO.data.documentType);
     identity.DocumentNumber__c = returnDTO.data.documentNumber;
     identity.IssuingCountry__c = returnDTO.data.issuerCountry;
     identity.Nationality__c = returnDTO.data.country;
@@ -303,14 +255,8 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     idAddress.Country = returnDTO.data.country;
 
     SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
-    construct.setChildObjects(
-      'mflow__ContactPointAddresses__r',
-      new List<ContactPointAddress>{ idAddress }
-    );
-    construct.setChildObjects(
-      'mflow__IdentificationDocuments__r',
-      new List<IdentificationDocument__c>{ identity }
-    );
+    construct.setChildObjects('mflow__ContactPointAddresses__r', new List<ContactPointAddress>{ idAddress });
+    construct.setChildObjects('mflow__IdentificationDocuments__r', new List<IdentificationDocument__c>{ identity });
     applicant = (Applicant__c) construct.build();
     return applicant;
   }

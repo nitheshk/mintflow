@@ -34,10 +34,7 @@ public with sharing class IdentityRepository extends DatabaseUtils {
    **/
   public static EligibleCounty__c fetchCountyByZipcode(string zipcode) {
     return (EligibleCounty__c) DatabaseUtils.getRecord(
-      Query.newInstance(EligibleCounty__c.SObjectType)
-        .addFields()
-        .whereEq('Postalcode__c', zipcode)
-        .toString()
+      Query.newInstance(EligibleCounty__c.SObjectType).addFields().whereEq('Postalcode__c', zipcode).toString()
     );
   }
 

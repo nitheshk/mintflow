@@ -32,10 +32,7 @@ global abstract with sharing class AbstractDTO {
    * @param Boolean suppressNull
    * @return virtual
    **/
-  public virtual String generateRequest(
-    object requestObj,
-    Boolean suppressNull
-  ) {
+  public virtual String generateRequest(object requestObj, Boolean suppressNull) {
     return JSON.serializePretty(requestObj, suppressNull);
   }
 

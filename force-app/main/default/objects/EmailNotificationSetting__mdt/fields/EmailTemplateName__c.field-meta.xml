@@ -4,8 +4,7 @@
     <description>Unique Email Template Name of salesforce metadata</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <inlineHelpText
-  >Unique Email Template Name of salesforce metadata</inlineHelpText>
+    <inlineHelpText>Unique Email Template Name of salesforce metadata</inlineHelpText>
     <label>Email Template Name</label>
     <length>255</length>
     <required>true</required>

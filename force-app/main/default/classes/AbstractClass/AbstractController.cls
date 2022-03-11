@@ -31,9 +31,7 @@ global abstract with sharing class AbstractController {
       if (!Test.isRunningTest() && UserUtils.isGuestUser()) {
         //validate token;
         SecurityUtils.validateSession();
-      } else if (
-        !UserUtils.isGuestUser() && String.isNotBlank(ApexRequest.getToken())
-      ) {
+      } else if (!UserUtils.isGuestUser() && String.isNotBlank(ApexRequest.getToken())) {
         SecurityUtils.validateSession();
       }
     } else {
@@ -47,10 +45,7 @@ global abstract with sharing class AbstractController {
    * @param ApexRequest request
    * @param Boolean skipValidation
    **/
-  global static void validateRequest(
-    ApexRequest request,
-    Boolean skipValidation
-  ) {
+  global static void validateRequest(ApexRequest request, Boolean skipValidation) {
     if (request != null) {
       request?.setRequest();
       if (String.isBlank(ApexRequest.getToken()) && skipValidation) {

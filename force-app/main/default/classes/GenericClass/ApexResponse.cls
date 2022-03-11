@@ -165,9 +165,7 @@ global with sharing class ApexResponse {
       if (data instanceof String) {
         RestContext.response.responseBody = blob.valueOf((String) data);
       } else {
-        RestContext.response.responseBody = blob.valueOf(
-          SObjectConstructor.serialize(data)
-        );
+        RestContext.response.responseBody = blob.valueOf(SObjectConstructor.serialize(data));
       }
     } else {
       this.data = data;
@@ -186,9 +184,7 @@ global with sharing class ApexResponse {
       if (data instanceof String) {
         RestContext.response.responseBody = blob.valueOf((String) data);
       } else {
-        RestContext.response.responseBody = blob.valueOf(
-          SObjectConstructor.serialize(data)
-        );
+        RestContext.response.responseBody = blob.valueOf(SObjectConstructor.serialize(data));
       }
     } else {
       this.data = SObjectConstructor.serialize(data);

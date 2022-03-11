@@ -135,16 +135,10 @@ global abstract with sharing class AbstractTriggerHandler {
    * @param Map<Id SObject> oldRecords
    * @return Set<Id>
    **/
-  global Set<Id> filterUnchangedRecords(
-    Map<Id, SObject> newRecords,
-    Map<Id, SObject> oldRecords
-  ) {
+  global Set<Id> filterUnchangedRecords(Map<Id, SObject> newRecords, Map<Id, SObject> oldRecords) {
     Set<Id> changedRecordIds = new Set<Id>();
     for (Id recordId : newRecords.keySet()) {
-      if (
-        newRecords.get(recordId).clone(false, false, false) !=
-        oldRecords.get(recordId).clone(false, false, false)
-      ) {
+      if (newRecords.get(recordId).clone(false, false, false) != oldRecords.get(recordId).clone(false, false, false)) {
         changedRecordIds.add(recordId);
       }
     }

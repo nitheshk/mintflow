@@ -30,9 +30,7 @@ global virtual with sharing class IdScanProvider extends AbstractService {
    * @author Digital Align Team | 12/28/2021
    * @return HttpBuilder.HttpResponse
    **/
-  public static HttpBuilder.Response idScanCheck(
-    IdScanDueDiligenceDTO.Request customer
-  ) {
+  public static HttpBuilder.Response idScanCheck(IdScanDueDiligenceDTO.Request customer) {
     HttpBuilder.setAPISetting(APINames.DueDiligence);
     //body
     String requestBody = JSON.serialize(customer, true);

@@ -16,9 +16,7 @@
     </values>
     <values>
         <field>Value__c</field>
-        <value
-      xsi:type="xsd:string"
-    >AIzaSyBde4M1GsqsJCM8tyxS_o18wHYKXw__MkI</value>
+        <value xsi:type="xsd:string">AIzaSyBde4M1GsqsJCM8tyxS_o18wHYKXw__MkI</value>
     </values>
     <values>
         <field>isActive__c</field>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IdentityInformation</fullName>
-    <description
-  >All the fields related to Identity Information of applicant</description>
+    <description>All the fields related to Identity Information of applicant</description>
    <displayedFields>
         <field>DocumentNumber__c</field>
         <isFieldManaged>false</isFieldManaged>

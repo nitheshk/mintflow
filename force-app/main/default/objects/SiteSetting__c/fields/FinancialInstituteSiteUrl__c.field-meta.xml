@@ -3,8 +3,7 @@
     <fullName>FinancialInstituteSiteUrl__c</fullName>
     <description>Financial Institute Account Opening Site Url</description>
     <externalId>false</externalId>
-    <inlineHelpText
-  >Financial Institute Account Opening Site Url</inlineHelpText>
+    <inlineHelpText>Financial Institute Account Opening Site Url</inlineHelpText>
     <label>Financial Institute Site Url</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

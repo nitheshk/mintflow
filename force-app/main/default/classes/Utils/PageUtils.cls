@@ -94,8 +94,6 @@ global with sharing class PageUtils {
    * @param String message
    **/
   global static void addPageErrorMessage(String message) {
-    ApexPages.addmessage(
-      new ApexPages.message(ApexPages.severity.ERROR, message)
-    );
+    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, message));
   }
 }

@@ -74,10 +74,7 @@ public with sharing class XMLDom {
 
           // add all attributes from this element
           for (integer i = 0; i < reader.getAttributeCount(); i++) {
-            child.attributes.put(
-              reader.getAttributeLocalName(i),
-              reader.getAttributeValueAt(i)
-            );
+            child.attributes.put(reader.getAttributeLocalName(i), reader.getAttributeValueAt(i));
           }
           // add namespace info to each node/element ( for now storing on attributes map)
           for (integer j = 0; j < reader.getNamespaceCount(); j++) {
@@ -328,15 +325,7 @@ public with sharing class XMLDom {
      **/
     public void dump(string pre) {
       // just current node
-      system.debug(
-        pre +
-        ' ' +
-        this.nodeName +
-        '->' +
-        this.nodeValue +
-        ' ' +
-        this.attributes
-      );
+      system.debug(pre + ' ' + this.nodeName + '->' + this.nodeValue + ' ' + this.attributes);
     }
 
     /**
@@ -354,14 +343,7 @@ public with sharing class XMLDom {
      **/
     public void dumpAll(string pre) {
       // node and all children
-      system.debug(
-        pre +
-        this.nodeName +
-        '->' +
-        this.nodeValue +
-        ' ' +
-        this.attributes
-      );
+      system.debug(pre + this.nodeName + '->' + this.nodeValue + ' ' + this.attributes);
       for (Element c : this.childNodes) {
         c.dumpAll(pre + '   ');
       }

@@ -7,9 +7,7 @@ public with sharing class UserAccountManagementControllerTest {
   }
   private static ApplicationConfiguration__c makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
-    appConfig = (ApplicationConfiguration__c) DatabaseUtils.insertRecord(
-      appConfig
-    );
+    appConfig = (ApplicationConfiguration__c) DatabaseUtils.insertRecord(appConfig);
     return appConfig;
   }
   private static Contact makeContactData(Account acc) {
@@ -25,9 +23,7 @@ public with sharing class UserAccountManagementControllerTest {
     Account acc = makeAccountData();
     Map<String, Object> params = new Map<String, Object>{ 'account' => acc };
     Test.startTest();
-    ApexResponse result = UserAccountManagementController.createFinancialInstituteAccount(
-      params
-    );
+    ApexResponse result = UserAccountManagementController.createFinancialInstituteAccount(params);
     ApexResponse result1 = UserAccountManagementController.createFinancialInstituteAccount(
       new Map<String, Object>{ 'Noaccount' => new Account() }
     );
@@ -64,9 +60,7 @@ public with sharing class UserAccountManagementControllerTest {
     Contact con = makeContactData(null);
     Map<String, Object> params = new Map<String, Object>{ 'contact' => con };
     Test.startTest();
-    ApexResponse result = UserAccountManagementController.createFinInstEmployeeAccount(
-      params
-    );
+    ApexResponse result = UserAccountManagementController.createFinInstEmployeeAccount(params);
     Test.stopTest();
     //system.assertEquals(null, result1, 'Success');
   }

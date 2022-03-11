@@ -13,12 +13,7 @@
             <ul>
               <template for:each={menuItems} for:item="item">
                 <template if:true={item.isActive}>
-                  <li
-                    key={item.position}
-                    data-item={item.position}
-                    onclick={hanldleNavigation}
-                    class="active-nav"
-                  >
+                  <li key={item.position} data-item={item.position} onclick={hanldleNavigation} class="active-nav">
                     <lightning-icon
                       icon-name={item.iconName}
                       alternative-text={item.label}
@@ -34,11 +29,7 @@
                 </template>
 
                 <template if:false={item.isActive}>
-                  <li
-                    key={item.position}
-                    data-item={item.position}
-                    onclick={hanldleNavigation}
-                  >
+                  <li key={item.position} data-item={item.position} onclick={hanldleNavigation}>
                     <lightning-icon
                       icon-name={item.iconName}
                       alternative-text={item.label}

@@ -29,10 +29,8 @@ global inherited sharing class SecurityUtils {
         return SObjectUtils.getDescribeSObjectResult(records).isUpdateable();
       }
       when UPSERTABLE {
-        Boolean creatable = SObjectUtils.getDescribeSObjectResult(records)
-          .isCreateable();
-        Boolean updatable = SObjectUtils.getDescribeSObjectResult(records)
-          .isUpdateable();
+        Boolean creatable = SObjectUtils.getDescribeSObjectResult(records).isCreateable();
+        Boolean updatable = SObjectUtils.getDescribeSObjectResult(records).isUpdateable();
         return creatable && updatable;
       }
       when DELETEABLE {
@@ -50,10 +48,7 @@ global inherited sharing class SecurityUtils {
    * @return Boolean
    **/
   global static Boolean crud(SObject record, CrudType permission) {
-    return crud(
-      CollectionUtils.convertSobjectToListSobject(record),
-      permission
-    );
+    return crud(CollectionUtils.convertSobjectToListSobject(record), permission);
   }
 
   /**
@@ -65,10 +60,7 @@ global inherited sharing class SecurityUtils {
    * @param CrudType crudType
    * @return List<SObject>
    **/
-  global static List<SObject> stripInaccessible(
-    List<SObject> records,
-    CrudType crudType
-  ) {
+  global static List<SObject> stripInaccessible(List<SObject> records, CrudType crudType) {
     AccessType accessType;
     switch on crudType {
       when CREATABLE {
@@ -84,11 +76,7 @@ global inherited sharing class SecurityUtils {
         accessType = System.AccessType.UPSERTABLE;
       }
     }
-    SObjectAccessDecision securityDecision = Security.stripInaccessible(
-      accessType,
-      records,
-      false
-    );
+    SObjectAccessDecision securityDecision = Security.stripInaccessible(accessType, records, false);
     return securityDecision.getRecords();
   }
 
@@ -106,10 +94,7 @@ global inherited sharing class SecurityUtils {
       Blob.valueOf(keyMetaData.PrimaryInitializationVector__c),
       Blob.valueOf(planData)
     );
-    return EncodingUtil.urlEncode(
-      EncodingUtil.base64Encode(encryptedData),
-      'UTF-8'
-    );
+    return EncodingUtil.urlEncode(EncodingUtil.base64Encode(encryptedData), 'UTF-8');
   }
 
   /**
@@ -172,9 +157,7 @@ global inherited sharing class SecurityUtils {
    * @return Blob
    **/
   global static Blob encryptWithManagedIV(String securityKeyName, Blob data) {
-    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance(
-      securityKeyName
-    );
+    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance(securityKeyName);
     return Crypto.encryptWithManagedIV(
       keyMetaData.EncryptionType__c,
       Blob.valueOf(keyMetaData.PrimarySecretKey__c),
@@ -190,13 +173,8 @@ global inherited sharing class SecurityUtils {
    * @param Blob encryptedData
    * @return Blob
    **/
-  global static Blob decryptWithManagedIV(
-    String securityKeyName,
-    Blob encryptedData
-  ) {
-    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance(
-      securityKeyName
-    );
+  global static Blob decryptWithManagedIV(String securityKeyName, Blob encryptedData) {
+    SecurityKey__mdt keyMetaData = SecurityKey__mdt.getInstance(securityKeyName);
     return Crypto.decryptWithManagedIV(
       keyMetaData.EncryptionType__c,
       Blob.valueOf(keyMetaData.PrimarySecretKey__c),
@@ -258,9 +236,7 @@ global inherited sharing class SecurityUtils {
     cipher.aplId = applicantId;
     cipher.aplType = applicantType;
     cipher.flw = flowType;
-    ApexRequest.setToken(
-      SecurityUtils.encryptBase64(JSON.serialize(cipher, true))
-    );
+    ApexRequest.setToken(SecurityUtils.encryptBase64(JSON.serialize(cipher, true)));
     return (String) refreshToken();
   }
 
@@ -277,22 +253,15 @@ global inherited sharing class SecurityUtils {
     cipher.aplType = applicant.RecordType.Name;
     cipher.flw = ApexRequest.getFlowType();
 
-    applicant.SessionToken__c = SecurityUtils.encryptBase64(
-      JSON.serialize(cipher, true)
-    );
+    applicant.SessionToken__c = SecurityUtils.encryptBase64(JSON.serialize(cipher, true));
     applicant.sessionExpireTime__c = Datetime.now()
-      .addMinutes(
-        (Integer) ApplicationConfiguration__c.getOrgDefaults()
-          .SessionExpirationTime__c
-      );
+      .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().SessionExpirationTime__c);
     ApexRequest.setToken(applicant.SessionToken__c);
     ApexRequest.setApplicantType(applicant.RecordType.Name);
     ApexRequest.setApplicationId(cipher.appId);
     ApexRequest.setApplicantId(cipher.aplId);
     ApexRequest.setApplicationName(applicant.Application__r.Name);
-    PageUtils.setCookie(
-      new Cookie('token', applicant.SessionToken__c, null, -1, true)
-    );
+    PageUtils.setCookie(new Cookie('token', applicant.SessionToken__c, null, -1, true));
     log?.fine('Session Token :' + ApexRequest.getToken());
     return applicant;
   }
@@ -326,13 +295,8 @@ global inherited sharing class SecurityUtils {
    * @param SecurityUtils.CipherDTO cipher
    * @param ApexRequest request
    **/
-  private static void validateSessionForApplicant(
-    SecurityUtils.CipherDTO cipher,
-    ApexRequest request
-  ) {
-    Applicant__c applicant = ApplicantRepository.readApplicantForToken(
-      (Id) cipher.aplId
-    );
+  private static void validateSessionForApplicant(SecurityUtils.CipherDTO cipher, ApexRequest request) {
+    Applicant__c applicant = ApplicantRepository.readApplicantForToken((Id) cipher.aplId);
 
     if (applicant.SessionToken__c != request.token) {
       throw new CustomException(System.Label.Session_TokenDoesNotMatch);
@@ -377,10 +341,7 @@ global inherited sharing class SecurityUtils {
       Id = cipher.aplId,
       SessionToken__c = ApexRequest.getToken(),
       sessionExpireTime__c = Datetime.now()
-        .addMinutes(
-          (Integer) ApplicationConfiguration__c.getOrgDefaults()
-            .SessionExpirationTime__c
-        )
+        .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().SessionExpirationTime__c)
     );
     ApplicantRepository.upsertRecord(applicant);
     return applicant.SessionToken__c;

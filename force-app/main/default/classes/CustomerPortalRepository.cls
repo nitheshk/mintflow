@@ -25,15 +25,9 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
         .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
-        .whereEq(
-          'RecordType.Name',
-          ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
-        )
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
         .orCon()
-        .whereEq(
-          'RecordType.Name',
-          ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-        )
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)
         .orderBy('mflow__Order__c')
         .run()
         .whereIn(

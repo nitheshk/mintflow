@@ -46,10 +46,7 @@ function replaceUnwantedFields(obj) {
 }
 
 function fetchRecords(result) {
-  let jsonString = result.substring(
-    result.lastIndexOf("{QueryStart}") + 12,
-    result.lastIndexOf("{QueryEnd}")
-  );
+  let jsonString = result.substring(result.lastIndexOf("{QueryStart}") + 12, result.lastIndexOf("{QueryEnd}"));
   jsonString = '"' + jsonString + '"';
   jsonString = JSON.parse(jsonString);
   //console.log("jjsonString : " + jsonString);

@@ -17,9 +17,7 @@ global with sharing class OpenAccountController {
     String vuePath = PageUtils.getCurrentPageParameters('vue');
     vuePath = String.isNotBlank(vuePath) ? '#' + vuePath : '';
 
-    PageReference openAccountPage = new PageReference(
-      '/OnlineAccount' + vuePath
-    );
+    PageReference openAccountPage = new PageReference('/OnlineAccount' + vuePath);
 
     //System.debug('openAccountPage :' + openAccountPage.getUrl());
 
@@ -28,8 +26,7 @@ global with sharing class OpenAccountController {
     if (existingToken != null) {
       PageUtils.setCookie(new Cookie('token', null, null, -1, false));
     }
-    openAccountPage.getParameters()
-      .putAll(PageUtils.getCurrentPageParameters());
+    openAccountPage.getParameters().putAll(PageUtils.getCurrentPageParameters());
     return openAccountPage;
   }
 }

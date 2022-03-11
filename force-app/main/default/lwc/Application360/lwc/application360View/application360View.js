@@ -51,9 +51,7 @@ export default class Application360View extends LightningElement {
           );
 
           if (Array.isArray(applicant)) {
-            applicant[0][targetElement.dataset.objectname]?.forEach(function (
-              element
-            ) {
+            applicant[0][targetElement.dataset.objectname]?.forEach(function (element) {
               idList.push(element.Id);
             });
           }

@@ -1,9 +1,7 @@
 import { LightningElement, api, track } from "lwc";
 import readFlows from "@salesforce/apex/LwcCustomController.readFlows";
 import { NavigationMixin } from "lightning/navigation";
-export default class AppplicationFlow extends NavigationMixin(
-  LightningElement
-) {
+export default class AppplicationFlow extends NavigationMixin(LightningElement) {
   @track flowData = [];
   @api recordId;
 
@@ -46,8 +44,7 @@ export default class AppplicationFlow extends NavigationMixin(
               element._children = element.mflow__SubFlows__r;
               delete element.mflow__SubFlows__r;
               element._children.forEach((childElement) => {
-                childElement.navUrl =
-                  window.location.origin + "\\" + childElement.Id;
+                childElement.navUrl = window.location.origin + "\\" + childElement.Id;
               });
             }
             element.navUrl = window.location.origin + "\\" + element.Id;

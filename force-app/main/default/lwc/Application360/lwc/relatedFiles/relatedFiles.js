@@ -2,11 +2,7 @@ import { LightningElement, wire, track } from "lwc";
 import utils from "c/generalUtils";
 import fetchRelatedFiles from "@salesforce/apex/LwcCustomController.fetchRelatedFiles";
 import { NavigationMixin } from "lightning/navigation";
-import {
-  subscribe,
-  APPLICATION_SCOPE,
-  MessageContext
-} from "lightning/messageService";
+import { subscribe, APPLICATION_SCOPE, MessageContext } from "lightning/messageService";
 import application360Details from "@salesforce/messageChannel/ViewRelatedFiles__c";
 export default class FilePrivewInLWC extends NavigationMixin(LightningElement) {
   @track titleName;

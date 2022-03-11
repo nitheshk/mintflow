@@ -38,10 +38,7 @@ export default class RecordDetailView extends LightningElement {
             for (let d in this.record) {
               let tempData = [];
               for (let keyValue in result) {
-                if (
-                  !this.hideNullValues ||
-                  this.record[d][result[keyValue].key]
-                ) {
+                if (!this.hideNullValues || this.record[d][result[keyValue].key]) {
                   if (result[keyValue].type === "REFERENCE") {
                     continue;
                   }
@@ -49,10 +46,7 @@ export default class RecordDetailView extends LightningElement {
                     let dt = new Date(this.record[d][result[keyValue].key]);
                     tempData.push({
                       key: result[keyValue].value,
-                      value:
-                        dt instanceof Date && !isNaN(dt)
-                          ? dt.toLocaleString("en-US", { timeZone: timezone })
-                          : "",
+                      value: dt instanceof Date && !isNaN(dt) ? dt.toLocaleString("en-US", { timeZone: timezone }) : "",
                       apiname: result[keyValue].key,
                       type: result[keyValue].type
                     });
@@ -81,10 +75,7 @@ export default class RecordDetailView extends LightningElement {
                   let dt = new Date(this.record[result[keyValue].key]);
                   tempData.push({
                     key: result[keyValue].value,
-                    value:
-                      dt instanceof Date && !isNaN(dt)
-                        ? dt.toLocaleString("en-US", { timeZone: timezone })
-                        : "",
+                    value: dt instanceof Date && !isNaN(dt) ? dt.toLocaleString("en-US", { timeZone: timezone }) : "",
                     apiname: result[keyValue].key,
                     type: result[keyValue].type
                   });

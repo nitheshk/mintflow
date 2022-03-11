@@ -3,15 +3,11 @@
   <template if:true={dataLoaded}>
     <div class="slds-grid slds-wrap">
       <template if:false={hideHeader}>
-        <div
-          class="slds-page-header slds-var-p-around_xx-small slds-col slds-size_1-of-1"
-        >
+        <div class="slds-page-header slds-var-p-around_xx-small slds-col slds-size_1-of-1">
           <h3>
             <b> Personal Information </b>
             [
-            <a onclick={showRelatedFiles} data-title="View related files"
-              >View Files</a
-            >
+            <a onclick={showRelatedFiles} data-title="View related files">View Files</a>
             ]
           </h3>
         </div>
@@ -23,17 +19,11 @@
         >
           <div class="slds-grid slds-wrap">
             <template for:each={rKey} for:item="keyValue">
-              <div
-                key={keyValue.key}
-                class="slds-col slds-var-p-around_x-small slds-size_6-of-12"
-              >
+              <div key={keyValue.key} class="slds-col slds-var-p-around_x-small slds-size_6-of-12">
                 <div class="slds-text-title slds-truncate" title={keyValue.key}>
                   <b>{keyValue.key}</b>
                 </div>
-                <div
-                  class="slds-truncate slds-hyphenate preserveWrodWrap"
-                  title="Hyperlink"
-                >
+                <div class="slds-truncate slds-hyphenate preserveWrodWrap" title="Hyperlink">
                   {keyValue.value}&nbsp;
                 </div>
                 <div class="slds-border_bottom"></div>
@@ -44,9 +34,7 @@
       </template>
 
       <template if:false={hideHeader}>
-        <div
-          class="slds-page-header slds-var-p-around_xx-small slds-col slds-size_1-of-1"
-        >
+        <div class="slds-page-header slds-var-p-around_xx-small slds-col slds-size_1-of-1">
           <h3>
             <b> Contact Information </b>
           </h3>
@@ -59,17 +47,11 @@
         >
           <div class="slds-grid slds-wrap">
             <template for:each={rKey} for:item="keyValue">
-              <div
-                key={keyValue.key}
-                class="slds-col slds-var-p-around_x-small slds-size_6-of-12"
-              >
+              <div key={keyValue.key} class="slds-col slds-var-p-around_x-small slds-size_6-of-12">
                 <div class="slds-text-title slds-truncate" title={keyValue.key}>
                   <b>{keyValue.key}</b>
                 </div>
-                <div
-                  class="slds-truncate slds-hyphenate preserveWrodWrap"
-                  title="Hyperlink"
-                >
+                <div class="slds-truncate slds-hyphenate preserveWrodWrap" title="Hyperlink">
                   {keyValue.value}&nbsp;
                 </div>
                 <div class="slds-border_bottom"></div>
@@ -80,9 +62,7 @@
       </template>
 
       <template if:false={hideHeader}>
-        <div
-          class="slds-page-header slds-var-p-around_xx-small slds-col slds-size_1-of-1"
-        >
+        <div class="slds-page-header slds-var-p-around_xx-small slds-col slds-size_1-of-1">
           <h3>
             <b> Status Information </b>
           </h3>
@@ -95,17 +75,11 @@
         >
           <div class="slds-grid slds-wrap">
             <template for:each={rKey} for:item="keyValue">
-              <div
-                key={keyValue.key}
-                class="slds-col slds-var-p-around_x-small slds-size_6-of-12"
-              >
+              <div key={keyValue.key} class="slds-col slds-var-p-around_x-small slds-size_6-of-12">
                 <div class="slds-text-title slds-truncate" title={keyValue.key}>
                   <b>{keyValue.key}</b>
                 </div>
-                <div
-                  class="slds-truncate slds-hyphenate preserveWrodWrap"
-                  title="Hyperlink"
-                >
+                <div class="slds-truncate slds-hyphenate preserveWrodWrap" title="Hyperlink">
                   {keyValue.value}&nbsp;
                 </div>
                 <div class="slds-border_bottom"></div>

@@ -45,8 +45,7 @@ global without sharing class OnlineAccountController extends AbstractController 
         ApplicationService.getInstance().resumeApplication(params);
         this.id = (String) params.get('applicationId');
       } else {
-        this.application = ApplicationService.getInstance()
-          .createApplication(params);
+        this.application = ApplicationService.getInstance().createApplication(params);
         this.id = application.Id;
       }
 
@@ -56,9 +55,7 @@ global without sharing class OnlineAccountController extends AbstractController 
       params.put('isResume', String.isNotBlank(vmf));
       Map<String, Object> initialData = new Map<String, Object>{
         'id' => this.id,
-        'application' => SObjectConstructor.writeFieldsAsMap(
-          (SObject) this.application
-        ),
+        'application' => SObjectConstructor.writeFieldsAsMap((SObject) this.application),
         'params' => params,
         'applicationConfig' => ApplicationConfiguration__c.getInstance(),
         'siteConfig' => SiteSetting__c.getInstance()
@@ -88,9 +85,6 @@ global without sharing class OnlineAccountController extends AbstractController 
    * @return String
    **/
   global String getStaticUrl() {
-    return System.PageReference.forResource(
-        ApplicationConfiguration__c.getInstance().UiStaticResourceName__c
-      )
-      .getUrl();
+    return System.PageReference.forResource(ApplicationConfiguration__c.getInstance().UiStaticResourceName__c).getUrl();
   }
 }

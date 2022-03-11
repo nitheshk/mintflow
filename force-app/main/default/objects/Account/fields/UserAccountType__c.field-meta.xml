@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>UserAccountType__c</fullName>
-    <description
-  >Field is used to indicate the account belong to which user type</description>
+    <description>Field is used to indicate the account belong to which user type</description>
     <externalId>false</externalId>
-    <inlineHelpText
-  >Field is used to indicate the account belong to which user type</inlineHelpText>
+    <inlineHelpText>Field is used to indicate the account belong to which user type</inlineHelpText>
     <label>User Account Type</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

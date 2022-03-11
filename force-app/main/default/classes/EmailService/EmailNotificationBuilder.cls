@@ -12,9 +12,7 @@ global virtual with sharing class EmailNotificationBuilder {
   private static Map<String, String> documentURL = new Map<String, String>();
   private static Map<String, Id> orgWideEmailAddress = new Map<String, Id>();
   private static List<EmailNotificationBuilder> notificationServices = new List<EmailNotificationBuilder>();
-  private static Logger log = Logger.getInstance(
-    EmailNotificationBuilder.class
-  );
+  private static Logger log = Logger.getInstance(EmailNotificationBuilder.class);
 
   // scoped context
   private String notificationName;
@@ -53,9 +51,7 @@ global virtual with sharing class EmailNotificationBuilder {
    * @return EmailNotificationBuilder
    **/
   global static EmailNotificationBuilder newInstance(String notificationName) {
-    EmailNotificationBuilder notificationService = new EmailNotificationBuilder(
-      notificationName
-    );
+    EmailNotificationBuilder notificationService = new EmailNotificationBuilder(notificationName);
     EmailNotificationBuilder.notificationServices.add(notificationService);
     return notificationService;
   }
@@ -67,14 +63,8 @@ global virtual with sharing class EmailNotificationBuilder {
    * @param Id linkedEntityId
    * @return EmailNotificationBuilder
    **/
-  global static EmailNotificationBuilder newInstance(
-    String notificationName,
-    Id linkedEntityId
-  ) {
-    EmailNotificationBuilder notificationService = new EmailNotificationBuilder(
-      notificationName,
-      linkedEntityId
-    );
+  global static EmailNotificationBuilder newInstance(String notificationName, Id linkedEntityId) {
+    EmailNotificationBuilder notificationService = new EmailNotificationBuilder(notificationName, linkedEntityId);
     EmailNotificationBuilder.notificationServices.add(notificationService);
     return notificationService;
   }
@@ -108,9 +98,7 @@ global virtual with sharing class EmailNotificationBuilder {
     List<Messaging.SingleEmailMessage> emailMessages = new List<Messaging.SingleEmailMessage>();
     //get OrgWideEmailAddress
     if (orgWideEmailAddress.isEmpty()) {
-      for (
-        OrgWideEmailAddress owa : EmailNotificationRepository.fetchOrgWideEmailAddress()
-      ) {
+      for (OrgWideEmailAddress owa : EmailNotificationRepository.fetchOrgWideEmailAddress()) {
         orgWideEmailAddress.put(owa.DisplayName, owa.Id);
       }
     }
@@ -121,18 +109,14 @@ global virtual with sharing class EmailNotificationBuilder {
     EmailNotificationBuilder.buildDocumentUrl();
 
     // build single Email message
-    for (
-      EmailNotificationBuilder notificationService : EmailNotificationBuilder.notificationServices
-    ) {
+    for (EmailNotificationBuilder notificationService : EmailNotificationBuilder.notificationServices) {
       EmailNotificationSetting__mdt setting = EmailNotificationSetting__mdt.getInstance(
         notificationService.notificationName
       );
       if (!(setting != null && !setting.mflow__Disabled__c)) {
         continue;
       }
-      EmailTemplate emailTemplate = emailTemplates.get(
-        setting.EmailTemplateName__c
-      );
+      EmailTemplate emailTemplate = emailTemplates.get(setting.EmailTemplateName__c);
 
       Messaging.SingleEmailMessage emailMessage = new Messaging.SingleEmailMessage();
       emailMessage.setTargetObjectId(UserInfo.getUserId());
@@ -142,16 +126,10 @@ global virtual with sharing class EmailNotificationBuilder {
       emailMessage.setUseSignature(false);
 
       //replace
-      substituteEmailMessage(
-        emailMessage,
-        notificationService.substitute,
-        notificationService.documentNames
-      );
+      substituteEmailMessage(emailMessage, notificationService.substitute, notificationService.documentNames);
 
       if (orgWideEmailAddress.containsKey(setting.OrgWideName__c)) {
-        emailMessage.setOrgWideEmailAddressId(
-          orgWideEmailAddress.get(setting.OrgWideName__c)
-        );
+        emailMessage.setOrgWideEmailAddressId(orgWideEmailAddress.get(setting.OrgWideName__c));
       }
 
       //Save As Activity
@@ -168,9 +146,7 @@ global virtual with sharing class EmailNotificationBuilder {
 
       //ccAddress
       if (String.isNotBlank(setting.CCEmailAddress__c)) {
-        notificationService.ccAddresses.addAll(
-          setting.CCEmailAddress__c.split(';')
-        );
+        notificationService.ccAddresses.addAll(setting.CCEmailAddress__c.split(';'));
       }
       if (!notificationService.ccAddresses.isEmpty()) {
         emailMessage.setCcAddresses(notificationService.ccAddresses);
@@ -178,9 +154,7 @@ global virtual with sharing class EmailNotificationBuilder {
 
       //bccAddress
       if (String.isNotBlank(setting.BCCEmailAddress__c)) {
-        notificationService.bccAddresses.addAll(
-          setting.BCCEmailAddress__c.split(';')
-        );
+        notificationService.bccAddresses.addAll(setting.BCCEmailAddress__c.split(';'));
       }
       if (!notificationService.bccAddresses.isEmpty()) {
         emailMessage.setBccAddresses(notificationService.bccAddresses);
@@ -193,15 +167,10 @@ global virtual with sharing class EmailNotificationBuilder {
 
       //
       if (!notificationService.entityAttachmentIds.isEmpty()) {
-        emailMessage.setEntityAttachments(
-          notificationService.entityAttachmentIds
-        );
+        emailMessage.setEntityAttachments(notificationService.entityAttachmentIds);
       }
 
-      if (
-        String.isBlank(setting.OrgWideName__c) &&
-        String.isNotBlank(setting.DisplayName__c)
-      ) {
+      if (String.isBlank(setting.OrgWideName__c) && String.isNotBlank(setting.DisplayName__c)) {
         emailMessage.setSenderDisplayName(setting.DisplayName__c);
       }
 
@@ -221,25 +190,16 @@ global virtual with sharing class EmailNotificationBuilder {
    * @author Digital Align Team | 08-03-2021
    **/
   private static void setEmailTemplates() {
-    for (
-      EmailNotificationBuilder notificationService : EmailNotificationBuilder.notificationServices
-    ) {
+    for (EmailNotificationBuilder notificationService : EmailNotificationBuilder.notificationServices) {
       EmailNotificationSetting__mdt setting = EmailNotificationSetting__mdt.getInstance(
         notificationService.notificationName
       );
       emailTemplates.put(
-        EmailNotificationSetting__mdt.getInstance(
-            notificationService.notificationName
-          )
-          ?.EmailTemplateName__c,
+        EmailNotificationSetting__mdt.getInstance(notificationService.notificationName)?.EmailTemplateName__c,
         null
       );
     }
-    for (
-      EmailTemplate template : EmailNotificationRepository.fetchEmailTemplateByDevName(
-        emailTemplates.keySet()
-      )
-    ) {
+    for (EmailTemplate template : EmailNotificationRepository.fetchEmailTemplateByDevName(emailTemplates.keySet())) {
       emailTemplates.put(template.DeveloperName, template);
     }
   }
@@ -250,9 +210,7 @@ global virtual with sharing class EmailNotificationBuilder {
    **/
   private static void buildDocumentUrl() {
     Set<String> docuementNameList = new Set<String>();
-    for (
-      EmailNotificationBuilder notificationService : EmailNotificationBuilder.notificationServices
-    ) {
+    for (EmailNotificationBuilder notificationService : EmailNotificationBuilder.notificationServices) {
       for (String documentName : notificationService.documentNames) {
         docuementNameList.add(documentName);
       }
@@ -264,17 +222,8 @@ global virtual with sharing class EmailNotificationBuilder {
       '/servlet/servlet.ImageServer?id={{docID}}' +
       '&oid=' +
       UserInfo.getOrganizationId();
-    for (
-      Document doc : EmailNotificationRepository.fetchDocumentByDevName(
-        docuementNameList
-      )
-    ) {
-      documentURL.put(
-        '{{' +
-        doc.DeveloperName +
-        '}}',
-        baseUrl.replace('{{docID}}', doc.Id)
-      );
+    for (Document doc : EmailNotificationRepository.fetchDocumentByDevName(docuementNameList)) {
+      documentURL.put('{{' + doc.DeveloperName + '}}', baseUrl.replace('{{docID}}', doc.Id));
     }
   }
   /**
@@ -288,47 +237,27 @@ global virtual with sharing class EmailNotificationBuilder {
     Map<String, String> substitute,
     Set<String> documentNames
   ) {
-    Messaging.SingleEmailMessage emailMessageTemp = SObjectWithoutSharing.renderStoredEmailTemplate(
-      emailMessage
-    );
+    Messaging.SingleEmailMessage emailMessageTemp = SObjectWithoutSharing.renderStoredEmailTemplate(emailMessage);
 
     for (String key : substitute.keySet()) {
       if (String.isEmpty(substitute.get(key))) {
         continue;
       }
-      emailMessageTemp.setSubject(
-        emailMessageTemp.getSubject().replace(key, substitute.get(key))
-      );
-      emailMessageTemp.setPlainTextBody(
-        emailMessageTemp.getPlainTextBody().replace(key, substitute.get(key))
-      );
-      emailMessageTemp.setHtmlBody(
-        emailMessageTemp.getHtmlBody().replace(key, substitute.get(key))
-      );
+      emailMessageTemp.setSubject(emailMessageTemp.getSubject().replace(key, substitute.get(key)));
+      emailMessageTemp.setPlainTextBody(emailMessageTemp.getPlainTextBody().replace(key, substitute.get(key)));
+      emailMessageTemp.setHtmlBody(emailMessageTemp.getHtmlBody().replace(key, substitute.get(key)));
     }
 
     for (String key : documentNames) {
       String substituteDocumentUrl = '{{' + key + '}}';
       emailMessageTemp.setSubject(
-        emailMessageTemp.getSubject()
-          .replace(
-            substituteDocumentUrl,
-            documentURL.get(substituteDocumentUrl)
-          )
+        emailMessageTemp.getSubject().replace(substituteDocumentUrl, documentURL.get(substituteDocumentUrl))
       );
       emailMessageTemp.setPlainTextBody(
-        emailMessageTemp.getPlainTextBody()
-          .replace(
-            substituteDocumentUrl,
-            documentURL.get(substituteDocumentUrl)
-          )
+        emailMessageTemp.getPlainTextBody().replace(substituteDocumentUrl, documentURL.get(substituteDocumentUrl))
       );
       emailMessageTemp.setHtmlBody(
-        emailMessageTemp.getHtmlBody()
-          .replace(
-            substituteDocumentUrl,
-            documentURL.get(substituteDocumentUrl)
-          )
+        emailMessageTemp.getHtmlBody().replace(substituteDocumentUrl, documentURL.get(substituteDocumentUrl))
       );
     }
 
@@ -471,9 +400,7 @@ global virtual with sharing class EmailNotificationBuilder {
    * @param List<Id> entityAttachmentIds
    * @return EmailNotificationBuilder
    **/
-  global EmailNotificationBuilder setEntityAttachmentIds(
-    List<Id> entityAttachmentIds
-  ) {
+  global EmailNotificationBuilder setEntityAttachmentIds(List<Id> entityAttachmentIds) {
     this.entityAttachmentIds = entityAttachmentIds;
     return this;
   }
@@ -484,9 +411,7 @@ global virtual with sharing class EmailNotificationBuilder {
    * @param Map<String Blob> fileAttachments
    * @return EmailNotificationBuilder
    **/
-  global EmailNotificationBuilder setFileAttachments(
-    Map<String, Blob> fileAttachments
-  ) {
+  global EmailNotificationBuilder setFileAttachments(Map<String, Blob> fileAttachments) {
     this.fileAttachments.putAll(fileAttachments);
     return this;
   }
@@ -497,9 +422,7 @@ global virtual with sharing class EmailNotificationBuilder {
    * @param Map<String String> substitute
    * @return EmailNotificationBuilder
    **/
-  global EmailNotificationBuilder setSubstitute(
-    Map<String, String> substitute
-  ) {
+  global EmailNotificationBuilder setSubstitute(Map<String, String> substitute) {
     this.substitute.putAll(substitute);
     return this;
   }

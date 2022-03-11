@@ -33,9 +33,7 @@ global virtual with sharing class PlaidProvider extends AbstractService {
    * @param Map<String Object> params
    * @return HttpBuilder.Response
    **/
-  global virtual HttpBuilder.Response generatelinkToken(
-    Map<String, Object> params
-  ) {
+  global virtual HttpBuilder.Response generatelinkToken(Map<String, Object> params) {
     //api setting
     HttpBuilder.setAPISetting(APINames.PlaidLinkToken);
     //body
@@ -66,9 +64,7 @@ global virtual with sharing class PlaidProvider extends AbstractService {
    * @param Map<String Object> params
    * @return HttpBuilder.Response
    **/
-  global virtual HttpBuilder.Response generateExchangeToken(
-    Map<String, Object> params
-  ) {
+  global virtual HttpBuilder.Response generateExchangeToken(Map<String, Object> params) {
     if (params.get('publicToken') == null) {
       throw new CustomException('Invalid Public Token');
     }
@@ -123,9 +119,7 @@ global virtual with sharing class PlaidProvider extends AbstractService {
    * @param Map<String Object> params
    * @return virtual
    **/
-  global virtual HttpBuilder.Response retriveInstitue(
-    Map<String, Object> params
-  ) {
+  global virtual HttpBuilder.Response retriveInstitue(Map<String, Object> params) {
     //api setting
     HttpBuilder.setAPISetting(APINames.PlaidRetriveInstitue);
     //body

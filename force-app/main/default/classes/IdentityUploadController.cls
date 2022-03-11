@@ -31,18 +31,13 @@ global with sharing class IdentityUploadController extends AbstractController {
         try {
           cipher = SecurityUtils.extractToken(vmf);
         } catch (Exception ex) {
-          throw new CustomException(
-            System.Label.Resume_TheSpecifiedUrlWasCorrupted
-          );
+          throw new CustomException(System.Label.Resume_TheSpecifiedUrlWasCorrupted);
         }
         if (cipher.edt < Datetime.now()) {
-          throw new CustomException(
-            System.Label.Resume_TheSpecifiedUrlWasExpired
-          );
+          throw new CustomException(System.Label.Resume_TheSpecifiedUrlWasExpired);
         }
 
-        this.application = ApplicationService.getInstance()
-          .readApplicationWithChild(cipher.appId, cipher.aplId);
+        this.application = ApplicationService.getInstance().readApplicationWithChild(cipher.appId, cipher.aplId);
         Applicant__c currentApplicant = this.application.Applicants__r[0];
         params.put('applicantType', cipher.aplType);
         params.put('channel', cipher.ch);
@@ -57,9 +52,7 @@ global with sharing class IdentityUploadController extends AbstractController {
       }
 
       Map<String, Object> initialData = new Map<String, Object>{
-        'application' => SObjectConstructor.writeFieldsAsMap(
-          (SObject) this.application
-        ),
+        'application' => SObjectConstructor.writeFieldsAsMap((SObject) this.application),
         'params' => params,
         'applicationConfig' => ApplicationConfiguration__c.getInstance(),
         'siteConfig' => SiteSetting__c.getInstance()
@@ -89,9 +82,6 @@ global with sharing class IdentityUploadController extends AbstractController {
    * @return String
    **/
   global String getStaticUrl() {
-    return System.PageReference.forResource(
-        ApplicationConfiguration__c.getInstance().UiStaticResourceName__c
-      )
-      .getUrl();
+    return System.PageReference.forResource(ApplicationConfiguration__c.getInstance().UiStaticResourceName__c).getUrl();
   }
 }

@@ -17,10 +17,7 @@
   <template if:true={showResume}>
     <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
     <div class="slds-align_absolute-center slds-m-around_x-large card-style">
-      <lightning-card
-        title="Resume from where you just left behind"
-        icon-name="standard:user"
-      >
+      <lightning-card title="Resume from where you just left behind" icon-name="standard:user">
         <div class="slds-var-m-around_medium">
           <div class="slds-grid slds-wrap">
             <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
@@ -97,30 +94,18 @@
         <div class="slds-m-top_medium slds-m-bottom_x-large">
           <lightning-accordion>
             <template for:each={applications} for:item="app">
-              <lightning-accordion-section
-                name={app.Name}
-                label={app.Name}
-                key={app.Id}
-              >
+              <lightning-accordion-section name={app.Name} label={app.Name} key={app.Id}>
                 <div class="slds-p-around_medium">
                   <ul class="slds-has-dividers_bottom-space">
                     <li class="slds-item">
                       <lightning-tile label="Application Status">
-                        <p class="slds-truncate" title={app.mflow__Status__c}>
-                          {app.mflow__Status__c}
-                        </p>
+                        <p class="slds-truncate" title={app.mflow__Status__c}>{app.mflow__Status__c}</p>
                       </lightning-tile>
                     </li>
 
-                    <template
-                      for:each={app.mflow__Applicants__r}
-                      for:item="applicant"
-                    >
+                    <template for:each={app.mflow__Applicants__r} for:item="applicant">
                       <li class="slds-item" key={applicant.Id}>
-                        <lightning-tile
-                          label={applicant.mflow__ApplicantName__c}
-                          type="media"
-                        >
+                        <lightning-tile label={applicant.mflow__ApplicantName__c} type="media">
                           <lightning-avatar
                             slot="media"
                             fallback-icon-name="standard:person_account"
@@ -142,42 +127,22 @@
                           </div>
                           <dl class="slds-dl_horizontal">
                             <dt class="slds-dl_horizontal__label">
-                              <p class="slds-truncate" title="Applicant Type">
-                                Applicant Type :
-                              </p>
+                              <p class="slds-truncate" title="Applicant Type">Applicant Type :</p>
                             </dt>
-                            <dd
-                              class="slds-dl_horizontal__detail slds-tile__meta"
-                            >
-                              <p class="slds-truncate" title="Salesforce">
-                                {applicant.mflow__ApplicantType__c}
-                              </p>
+                            <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                              <p class="slds-truncate" title="Salesforce">{applicant.mflow__ApplicantType__c}</p>
                             </dd>
                             <dt class="slds-dl_horizontal__label">
                               <p class="slds-truncate" title="Email">Email :</p>
                             </dt>
-                            <dd
-                              class="slds-dl_horizontal__detail slds-tile__meta"
-                            >
-                              <p
-                                class="slds-truncate"
-                                title={applicant.mflow__Email__c}
-                              >
-                                {applicant.mflow__Email__c}
-                              </p>
+                            <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                              <p class="slds-truncate" title={applicant.mflow__Email__c}>{applicant.mflow__Email__c}</p>
                             </dd>
                             <dt class="slds-dl_horizontal__label">
-                              <p class="slds-truncate" title="Email">
-                                Status :
-                              </p>
+                              <p class="slds-truncate" title="Email">Status :</p>
                             </dt>
-                            <dd
-                              class="slds-dl_horizontal__detail slds-tile__meta"
-                            >
-                              <p
-                                class="slds-truncate"
-                                title={applicant.mflow__Status__c}
-                              >
+                            <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                              <p class="slds-truncate" title={applicant.mflow__Status__c}>
                                 {applicant.mflow__Status__c}
                               </p>
                             </dd>

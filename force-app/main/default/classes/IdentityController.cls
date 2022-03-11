@@ -24,9 +24,7 @@ global with sharing class IdentityController extends AbstractController {
     try {
       log?.fine('Inside verifyCounty');
       validateRequest(request);
-      return ApexResponse.ok(
-        IdentityService.getInstance().verifyCounty(ApexRequest.getParams())
-      );
+      return ApexResponse.ok(IdentityService.getInstance().verifyCounty(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -52,10 +50,7 @@ global with sharing class IdentityController extends AbstractController {
     try {
       log?.fine('Inside scanIdentityDocument');
       validateRequest(request);
-      return ApexResponse.ok(
-        IdentityService.getInstance()
-          .scanIdentityDocument(ApexRequest.getParams())
-      );
+      return ApexResponse.ok(IdentityService.getInstance().scanIdentityDocument(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -81,9 +76,7 @@ global with sharing class IdentityController extends AbstractController {
     try {
       log?.fine('Inside identityVerify');
       validateRequest(request);
-      return ApexResponse.ok(
-        IdentityService.getInstance().identityVerify(ApexRequest.getParams())
-      );
+      return ApexResponse.ok(IdentityService.getInstance().identityVerify(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -108,10 +101,7 @@ global with sharing class IdentityController extends AbstractController {
     try {
       log?.fine('Inside generateUrlForIdentityUpload');
       validateRequest(request);
-      return ApexResponse.ok(
-        IdentityService.getInstance()
-          .generateUrlForIdentityUpload(ApexRequest.getApplicantId())
-      );
+      return ApexResponse.ok(IdentityService.getInstance().generateUrlForIdentityUpload(ApexRequest.getApplicantId()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -135,10 +125,7 @@ global with sharing class IdentityController extends AbstractController {
   global static ApexResponse customerDueDiligence(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(
-        IdentityService.getInstance()
-          .customerDueDiligence(ApexRequest.getParams())
-      );
+      return ApexResponse.ok(IdentityService.getInstance().customerDueDiligence(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -164,8 +151,7 @@ global with sharing class IdentityController extends AbstractController {
     try {
       validateRequest(request);
       return ApexResponse.ok(
-        IdentityService.getInstance()
-          .validateCustomerAnswers(ApexRequest.getParams(), request.data)
+        IdentityService.getInstance().validateCustomerAnswers(ApexRequest.getParams(), request.data)
       );
     } catch (CustomException ex) {
       log?.error(ex);

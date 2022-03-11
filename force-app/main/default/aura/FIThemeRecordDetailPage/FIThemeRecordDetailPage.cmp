@@ -1,8 +1,4 @@
-<aura:component
-  implements="forceCommunity:layout"
-  description="Custom Content Layout"
-  access="global"
->
+<aura:component implements="forceCommunity:layout" description="Custom Content Layout" access="global">
   <aura:attribute name="page_header" type="Aura.Component[]" />
   <aura:attribute name="page_footer" type="Aura.Component[]" />
   <aura:attribute name="content" type="Aura.Component[]" />

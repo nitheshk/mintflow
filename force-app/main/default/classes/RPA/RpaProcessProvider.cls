@@ -21,9 +21,7 @@ global virtual with sharing class RpaProcessProvider extends AbstractService {
    **/
   public static RpaProcessProvider getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (RpaProcessProvider) getInstance(
-        RpaProcessProvider.class
-      );
+      serviceInstance = (RpaProcessProvider) getInstance(RpaProcessProvider.class);
     }
     return serviceInstance;
   }
@@ -34,9 +32,7 @@ global virtual with sharing class RpaProcessProvider extends AbstractService {
    * @param Map<String object> params
    * @return HttpBuilder.Response
    **/
-  global virtual HttpBuilder.Response addKycReviewQueue(
-    Map<String, Object> params
-  ) {
+  global virtual HttpBuilder.Response addKycReviewQueue(Map<String, Object> params) {
     String token = (String) params.get('token');
     params.remove('token');
 
@@ -46,10 +42,7 @@ global virtual with sharing class RpaProcessProvider extends AbstractService {
     }
     header.put('Content-Type', 'application/json');
     header.put('Accept', 'application/json');
-    header.put(
-      'X-UIPATH-OrganizationUnitId',
-      HttpBuilder.getApiConstant('UipathOrgUnitId')
-    );
+    header.put('X-UIPATH-OrganizationUnitId', HttpBuilder.getApiConstant('UipathOrgUnitId'));
 
     String requestBody = JSON.serialize(params, true);
     Flow.setSubFlowRequest(requestBody);
@@ -57,10 +50,6 @@ global virtual with sharing class RpaProcessProvider extends AbstractService {
     HttpResponse response = HttpBuilder.httpCallOut(requestBody, header);
     Flow.setSubFlowResponse(response.getBody());
 
-    return HttpBuilder.buildResponse(
-      response.getStatusCode(),
-      response.getStatus(),
-      response.getBody()
-    );
+    return HttpBuilder.buildResponse(response.getStatusCode(), response.getStatus(), response.getBody());
   }
 }

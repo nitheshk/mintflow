@@ -21,26 +21,17 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
    **/
   public static FinancialInstituteSiteService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (FinancialInstituteSiteService) getInstance(
-        FinancialInstituteSiteService.class
-      );
+      serviceInstance = (FinancialInstituteSiteService) getInstance(FinancialInstituteSiteService.class);
     }
     return serviceInstance;
   }
 
-  global virtual Map<String, Map<String, Object>> fetchPickListValues(
-    Map<String, Object> params
-  ) {
+  global virtual Map<String, Map<String, Object>> fetchPickListValues(Map<String, Object> params) {
     Map<String, Map<String, Object>> result = new Map<String, Map<String, Object>>();
 
     for (String sType : params.keySet()) {
-      List<String> fieldNames = (List<String>) JSON.deserialize(
-        JSON.serialize(params.get(sType)),
-        List<String>.class
-      );
-      Schema.DescribeSObjectResult sObjectResult = Schema.getGlobalDescribe()
-        .get(sType)
-        .getDescribe();
+      List<String> fieldNames = (List<String>) JSON.deserialize(JSON.serialize(params.get(sType)), List<String>.class);
+      Schema.DescribeSObjectResult sObjectResult = Schema.getGlobalDescribe().get(sType).getDescribe();
       result.put(sType, new Map<String, Object>());
       for (String fieldName : fieldNames) {
         List<Object> picklistValues = new List<Object>();
@@ -51,10 +42,7 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
             .getPicklistValues()
         ) {
           picklistValues.add(
-            new Map<String, String>{
-              'label' => picklistEntry.getLabel(),
-              'value' => picklistEntry.getValue()
-            }
+            new Map<String, String>{ 'label' => picklistEntry.getLabel(), 'value' => picklistEntry.getValue() }
           );
         }
         result.get(sType).put(fieldName, picklistValues);

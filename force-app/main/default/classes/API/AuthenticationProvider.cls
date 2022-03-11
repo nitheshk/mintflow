@@ -22,9 +22,7 @@ global virtual with sharing class AuthenticationProvider extends AbstractService
    **/
   public static AuthenticationProvider getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (AuthenticationProvider) getInstance(
-        AuthenticationProvider.class
-      );
+      serviceInstance = (AuthenticationProvider) getInstance(AuthenticationProvider.class);
     }
     return serviceInstance;
   }
@@ -43,18 +41,11 @@ global virtual with sharing class AuthenticationProvider extends AbstractService
       Map<String, String> header = new Map<String, String>();
       header.put('accept', '*/*');
       header.put('Content-Type', 'application/json');
-      HttpResponse response = HttpBuilder.httpCallOut(
-        JSON.serialize(dto),
-        header
-      );
+      HttpResponse response = HttpBuilder.httpCallOut(JSON.serialize(dto), header);
       return HttpBuilder.buildResponse(response);
     } catch (Exception ex) {
       log?.error(ex);
-      return HttpBuilder.buildResponse(
-        400,
-        System.Label.Util_ThereIsSomeIssueOnTheApiCall,
-        null
-      );
+      return HttpBuilder.buildResponse(400, System.Label.Util_ThereIsSomeIssueOnTheApiCall, null);
     }
   }
 
@@ -86,10 +77,7 @@ global virtual with sharing class AuthenticationProvider extends AbstractService
       }
       Map<String, String> header = new Map<String, String>();
       header.put('accept', '*/*');
-      header.put(
-        'Content-Type',
-        'application/x-www-form-urlencoded;charset=UTF-8'
-      );
+      header.put('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
       HttpResponse response = HttpBuilder.httpCallOut(encodedParams, header);
 
       if (response.getStatusCode() == 200) {

@@ -21,9 +21,7 @@ global virtual with sharing class SentiLinkProvider extends AbstractService {
    **/
   public static SentiLinkProvider getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (SentiLinkProvider) getInstance(
-        SentiLinkProvider.class
-      );
+      serviceInstance = (SentiLinkProvider) getInstance(SentiLinkProvider.class);
     }
     return serviceInstance;
   }
@@ -34,22 +32,14 @@ global virtual with sharing class SentiLinkProvider extends AbstractService {
    * @param Map<String object> params
    * @return  HttpBuilder.Response
    **/
-  global virtual HttpBuilder.Response validateSentiLink(
-    Map<String, object> params
-  ) {
+  global virtual HttpBuilder.Response validateSentiLink(Map<String, object> params) {
     Applicant__c applicant = (Applicant__c) params.get('applicant');
-    SentiLinkDTO.Request requestDTO = generateSentiLinkDTO(
-      applicant,
-      new SentiLinkDTO.Request()
-    );
+    SentiLinkDTO.Request requestDTO = generateSentiLinkDTO(applicant, new SentiLinkDTO.Request());
 
     flow.setSubFlowRequest(json.serialize(requestDTO, true));
     log?.debug('Request : ' + json.serialize(requestDTO, true));
 
-    HttpResponse response = HttpBuilder.httpCallOut(
-      json.serialize(requestDTO, true),
-      getHeader(params)
-    );
+    HttpResponse response = HttpBuilder.httpCallOut(json.serialize(requestDTO, true), getHeader(params));
 
     flow.setSubFlowResponse(response?.getBody());
     log?.debug('response : ' + response.getBody());
@@ -66,22 +56,12 @@ global virtual with sharing class SentiLinkProvider extends AbstractService {
     //Create Response File
     FileService.getInstance()
       .createFile(
-        new FileDTO(
-          'SentiLink.json',
-          blob.valueof(response.getBody()),
-          applicant.Id,
-          'Identity',
-          'SentiLink'
-        )
+        new FileDTO('SentiLink.json', blob.valueof(response.getBody()), applicant.Id, 'Identity', 'SentiLink')
       );
 
     applicant = mapSentiLinkDTO(applicant, responseDTO);
 
-    return HttpBuilder.buildResponse(
-      response.getStatusCode(),
-      response.getStatus(),
-      applicant
-    );
+    return HttpBuilder.buildResponse(response.getStatusCode(), response.getStatus(), applicant);
   }
 
   /**
@@ -90,10 +70,7 @@ global virtual with sharing class SentiLinkProvider extends AbstractService {
    * @param Map<String object> params
    * @return virtual
    **/
-  global virtual SentiLinkDTO.Request generateSentiLinkDTO(
-    Applicant__c applicant,
-    SentiLinkDTO.Request requestDTO
-  ) {
+  global virtual SentiLinkDTO.Request generateSentiLinkDTO(Applicant__c applicant, SentiLinkDTO.Request requestDTO) {
     SentiLinkDTO.Application application = requestDTO.application;
     application.first_name = applicant.FirstName__c;
     application.last_name = applicant.LastName__c;
@@ -115,16 +92,10 @@ global virtual with sharing class SentiLinkProvider extends AbstractService {
     application.zipcode = address.PostalCode;
     application.country_code = address.Country;
 
-    for (
-      String scoreName : HttpBuilder.getApiConstant('SentiLinkScoreNames')
-        .split(',')
-    ) {
+    for (String scoreName : HttpBuilder.getApiConstant('SentiLinkScoreNames').split(',')) {
       requestDTO.scores.add(new SentiLinkDTO.ReqScores(scoreName));
     }
-    for (
-      String extraDataType : HttpBuilder.getApiConstant('SentiLinkExtraData')
-        .split(',')
-    ) {
+    for (String extraDataType : HttpBuilder.getApiConstant('SentiLinkExtraData').split(',')) {
       requestDTO.extra_data.add(new SentiLinkDTO.ReqExtraData(extraDataType));
     }
     return requestDTO;
@@ -137,10 +108,7 @@ global virtual with sharing class SentiLinkProvider extends AbstractService {
    * @param SentiLinkDTO.Response responseDTO
    * @return virtual
    **/
-  global virtual Applicant__c mapSentiLinkDTO(
-    Applicant__c applicant,
-    SentiLinkDTO.Response responseDTO
-  ) {
+  global virtual Applicant__c mapSentiLinkDTO(Applicant__c applicant, SentiLinkDTO.Response responseDTO) {
     applicant.SentiLinkStatus__c = 'Passsed';
     String remarks = '';
     if (responseDTO?.scores != null) {

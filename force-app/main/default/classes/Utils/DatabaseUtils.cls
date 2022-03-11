@@ -41,10 +41,7 @@ global virtual inherited sharing class DatabaseUtils {
    * @param List<Object> records
    * @return List<Object>
    **/
-  global static List<SObject> getRecordsBySharing(
-    String queryString,
-    List<Object> records
-  ) {
+  global static List<SObject> getRecordsBySharing(String queryString, List<Object> records) {
     //use enforcefls for more secure soql in query constructor
     return SObjectWithSharing.getRecords(queryString, records);
   }
@@ -56,14 +53,8 @@ global virtual inherited sharing class DatabaseUtils {
    * @param List<Object> records
    * @return SObject
    **/
-  global static SObject getRecordBySharing(
-    String queryString,
-    List<Object> records
-  ) {
-    List<SObject> sObjectList = SObjectWithSharing.getRecords(
-      queryString,
-      records
-    );
+  global static SObject getRecordBySharing(String queryString, List<Object> records) {
+    List<SObject> sObjectList = SObjectWithSharing.getRecords(queryString, records);
     return sObjectList.isEmpty() ? null : sObjectList[0];
   }
 
@@ -91,11 +82,7 @@ global virtual inherited sharing class DatabaseUtils {
         SObjectUtils.getObjectName(records)
       );
     }
-    return SObjectWithSharing.processRecords(
-      crudType,
-      records,
-      externalFieldName
-    );
+    return SObjectWithSharing.processRecords(crudType, records, externalFieldName);
   }
 
   /**
@@ -118,9 +105,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (record == null) {
       return record;
     }
-    return insertRecordsBySharing(
-      CollectionUtils.convertSobjectToListSobject(record)
-    )[0];
+    return insertRecordsBySharing(CollectionUtils.convertSobjectToListSobject(record))[0];
   }
 
   /**
@@ -143,9 +128,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (record == null) {
       return record;
     }
-    return updateRecordsBySharing(
-      CollectionUtils.convertSobjectToListSobject(record)
-    )[0];
+    return updateRecordsBySharing(CollectionUtils.convertSobjectToListSobject(record))[0];
   }
 
   /**
@@ -168,9 +151,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (record == null) {
       return record;
     }
-    return upsertRecordsBySharing(
-      CollectionUtils.convertSobjectToListSobject(record)
-    )[0];
+    return upsertRecordsBySharing(CollectionUtils.convertSobjectToListSobject(record))[0];
   }
 
   /**
@@ -180,15 +161,8 @@ global virtual inherited sharing class DatabaseUtils {
    * @param SObjectField externalFieldName
    * @return List<SObject>
    **/
-  global static List<SObject> upsertRecordsBySharing(
-    List<SObject> records,
-    SObjectField externalFieldName
-  ) {
-    return processRecordsWithSharing(
-      CrudType.UPSERTABLE,
-      records,
-      externalFieldName
-    );
+  global static List<SObject> upsertRecordsBySharing(List<SObject> records, SObjectField externalFieldName) {
+    return processRecordsWithSharing(CrudType.UPSERTABLE, records, externalFieldName);
   }
 
   /**
@@ -198,17 +172,11 @@ global virtual inherited sharing class DatabaseUtils {
    * @param SObjectField externalFieldName
    * @return SObject
    **/
-  global static SObject upsertRecordBySharing(
-    SObject record,
-    SObjectField externalFieldName
-  ) {
+  global static SObject upsertRecordBySharing(SObject record, SObjectField externalFieldName) {
     if (record == null) {
       return record;
     }
-    return upsertRecordsBySharing(
-      CollectionUtils.convertSobjectToListSobject(record),
-      externalFieldName
-    )[0];
+    return upsertRecordsBySharing(CollectionUtils.convertSobjectToListSobject(record), externalFieldName)[0];
   }
 
   /**
@@ -242,10 +210,7 @@ global virtual inherited sharing class DatabaseUtils {
    * @return List<SObject>
    **/
   global static List<SObject> getRecordsByStrip(String queryString) {
-    return SecurityUtils.stripInaccessible(
-      SObjectWithoutSharing.getRecords(queryString),
-      CrudType.READABLE
-    );
+    return SecurityUtils.stripInaccessible(SObjectWithoutSharing.getRecords(queryString), CrudType.READABLE);
   }
 
   /**
@@ -269,14 +234,8 @@ global virtual inherited sharing class DatabaseUtils {
    * @param List<Object> records
    * @return List<SObject>
    **/
-  global static List<SObject> getRecordsByStrip(
-    String queryString,
-    List<Object> records
-  ) {
-    return SecurityUtils.stripInaccessible(
-      SObjectWithoutSharing.getRecords(queryString, records),
-      CrudType.READABLE
-    );
+  global static List<SObject> getRecordsByStrip(String queryString, List<Object> records) {
+    return SecurityUtils.stripInaccessible(SObjectWithoutSharing.getRecords(queryString, records), CrudType.READABLE);
   }
 
   /**
@@ -286,10 +245,7 @@ global virtual inherited sharing class DatabaseUtils {
    * @param List<Object> records
    * @return SObject
    **/
-  global static SObject getRecordByStrip(
-    String queryString,
-    List<Object> records
-  ) {
+  global static SObject getRecordByStrip(String queryString, List<Object> records) {
     List<SObject> sObjectList = SecurityUtils.stripInaccessible(
       SObjectWithoutSharing.getRecords(queryString, records),
       CrudType.READABLE
@@ -340,9 +296,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (record == null) {
       return record;
     }
-    return insertRecordsByStrip(
-      CollectionUtils.convertSobjectToListSobject(record)
-    )[0];
+    return insertRecordsByStrip(CollectionUtils.convertSobjectToListSobject(record))[0];
   }
 
   /**
@@ -365,9 +319,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (record == null) {
       return record;
     }
-    return updateRecordsByStrip(
-      CollectionUtils.convertSobjectToListSobject(record)
-    )[0];
+    return updateRecordsByStrip(CollectionUtils.convertSobjectToListSobject(record))[0];
   }
 
   /**
@@ -390,9 +342,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (record == null) {
       return record;
     }
-    return upsertRecordsByStrip(
-      CollectionUtils.convertSobjectToListSobject(record)
-    )[0];
+    return upsertRecordsByStrip(CollectionUtils.convertSobjectToListSobject(record))[0];
   }
 
   /**
@@ -402,15 +352,8 @@ global virtual inherited sharing class DatabaseUtils {
    * @param SObjectField externalFieldName
    * @return List<SObject>
    **/
-  global static List<SObject> upsertRecordsByStrip(
-    List<SObject> records,
-    SObjectField externalFieldName
-  ) {
-    return processRecordsByStrip(
-      CrudType.UPSERTABLE,
-      records,
-      externalFieldName
-    );
+  global static List<SObject> upsertRecordsByStrip(List<SObject> records, SObjectField externalFieldName) {
+    return processRecordsByStrip(CrudType.UPSERTABLE, records, externalFieldName);
   }
 
   /**
@@ -420,17 +363,11 @@ global virtual inherited sharing class DatabaseUtils {
    * @param SObjectField externalFieldName
    * @return SObject
    **/
-  global static SObject upsertRecordByStrip(
-    SObject record,
-    SObjectField externalFieldName
-  ) {
+  global static SObject upsertRecordByStrip(SObject record, SObjectField externalFieldName) {
     if (record == null) {
       return record;
     }
-    return upsertRecordsByStrip(
-      CollectionUtils.convertSobjectToListSobject(record),
-      externalFieldName
-    )[0];
+    return upsertRecordsByStrip(CollectionUtils.convertSobjectToListSobject(record), externalFieldName)[0];
   }
 
   /*
@@ -464,10 +401,7 @@ global virtual inherited sharing class DatabaseUtils {
    * @param List<Object> records
    * @return List<SObject>
    **/
-  global static List<SObject> getRecords(
-    String queryString,
-    List<Object> records
-  ) {
+  global static List<SObject> getRecords(String queryString, List<Object> records) {
     return SObjectWithoutSharing.getRecords(queryString, records);
   }
 
@@ -479,10 +413,7 @@ global virtual inherited sharing class DatabaseUtils {
    * @return SObject
    **/
   global static SObject getRecord(String queryString, List<Object> records) {
-    List<SObject> sObjectList = SObjectWithoutSharing.getRecords(
-      queryString,
-      records
-    );
+    List<SObject> sObjectList = SObjectWithoutSharing.getRecords(queryString, records);
     return sObjectList.isEmpty() ? null : sObjectList[0];
   }
 
@@ -502,11 +433,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (CollectionUtils.isListEmpty(records)) {
       return records;
     }
-    return SObjectWithoutSharing.processRecords(
-      crudType,
-      records,
-      externalFieldName
-    );
+    return SObjectWithoutSharing.processRecords(crudType, records, externalFieldName);
   }
 
   /**
@@ -529,9 +456,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (record == null) {
       return record;
     }
-    return insertRecords(
-      CollectionUtils.convertSobjectToListSobject(record)
-    )[0];
+    return insertRecords(CollectionUtils.convertSobjectToListSobject(record))[0];
   }
 
   /**
@@ -554,9 +479,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (record == null) {
       return record;
     }
-    return updateRecords(
-      CollectionUtils.convertSobjectToListSobject(record)
-    )[0];
+    return updateRecords(CollectionUtils.convertSobjectToListSobject(record))[0];
   }
 
   /**
@@ -579,9 +502,7 @@ global virtual inherited sharing class DatabaseUtils {
     if (record == null) {
       return record;
     }
-    return upsertRecords(
-      CollectionUtils.convertSobjectToListSobject(record)
-    )[0];
+    return upsertRecords(CollectionUtils.convertSobjectToListSobject(record))[0];
   }
 
   /**
@@ -591,15 +512,8 @@ global virtual inherited sharing class DatabaseUtils {
    * @param SObjectField externalFieldName
    * @return List<SObject>
    **/
-  global static List<SObject> upsertRecords(
-    List<SObject> records,
-    SObjectField externalFieldName
-  ) {
-    return processRecordsWithoutSharing(
-      CrudType.UPSERTABLE,
-      records,
-      externalFieldName
-    );
+  global static List<SObject> upsertRecords(List<SObject> records, SObjectField externalFieldName) {
+    return processRecordsWithoutSharing(CrudType.UPSERTABLE, records, externalFieldName);
   }
 
   /**
@@ -609,17 +523,11 @@ global virtual inherited sharing class DatabaseUtils {
    * @param SObjectField externalFieldName
    * @return SObject
    **/
-  global static SObject upsertRecord(
-    SObject record,
-    SObjectField externalFieldName
-  ) {
+  global static SObject upsertRecord(SObject record, SObjectField externalFieldName) {
     if (record == null) {
       return record;
     }
-    return upsertRecords(
-      CollectionUtils.convertSobjectToListSobject(record),
-      externalFieldName
-    )[0];
+    return upsertRecords(CollectionUtils.convertSobjectToListSobject(record), externalFieldName)[0];
   }
 
   /**
@@ -653,10 +561,7 @@ global virtual inherited sharing class DatabaseUtils {
    * @param Boolean allOrNone
    * @return List<Database.DeleteResult>
    **/
-  global static List<Database.DeleteResult> deleteRecord(
-    Id recordId,
-    Boolean allOrNone
-  ) {
+  global static List<Database.DeleteResult> deleteRecord(Id recordId, Boolean allOrNone) {
     if (recordId == null) {
       return null;
     }
@@ -673,10 +578,7 @@ global virtual inherited sharing class DatabaseUtils {
    * @param Boolean allOrNone
    * @return List<Database.DeleteResult>
    **/
-  global static List<Database.DeleteResult> deleteRecords(
-    List<ID> recordIds,
-    Boolean allOrNone
-  ) {
+  global static List<Database.DeleteResult> deleteRecords(List<ID> recordIds, Boolean allOrNone) {
     if (CollectionUtils.isListEmpty(recordIds)) {
       return null;
     }

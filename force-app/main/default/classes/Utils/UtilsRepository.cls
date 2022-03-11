@@ -14,9 +14,7 @@ global inherited sharing class UtilsRepository extends DatabaseUtils {
    * @return User
    **/
   global static User getUserById(Id userId) {
-    return (User) getRecord(
-      Query.newInstance(User.SObjectType).addFields().queryById(userId)
-    );
+    return (User) getRecord(Query.newInstance(User.SObjectType).addFields().queryById(userId));
   }
 
   /**
@@ -66,11 +64,7 @@ global inherited sharing class UtilsRepository extends DatabaseUtils {
    **/
   global static Profile fetchProfileByName(String profileName) {
     return (Profile) getRecord(
-      Query.newInstance(Profile.SObjectType)
-        .addFields()
-        .whereEq('Name', profileName)
-        .addLimit(1)
-        .toString()
+      Query.newInstance(Profile.SObjectType).addFields().whereEq('Name', profileName).addLimit(1).toString()
     );
   }
 }

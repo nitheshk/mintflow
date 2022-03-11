@@ -102,13 +102,7 @@ global with sharing class FileDTO {
    * @param String fileType
    * @param String fileSubType
    **/
-  global FileDTO(
-    String title,
-    Blob versionData,
-    Id parentID,
-    String fileType,
-    String fileSubType
-  ) {
+  global FileDTO(String title, Blob versionData, Id parentID, String fileType, String fileSubType) {
     this.title = title;
     this.pathOnClient = title;
     this.versionData = versionData;

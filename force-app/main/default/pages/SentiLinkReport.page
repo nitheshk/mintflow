@@ -9,10 +9,7 @@
   controller="SentiLinkReportController"
   action="{!prefillFraudCheckDetail}"
 >
-  <html
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-  >
+  <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <head>
       <apex:slds />
     </head>
@@ -20,21 +17,13 @@
     <body>
       <div class="slds-scope">
         <div class="slds-grid slds-wrap">
-          <apex:outputPanel
-            layout="none"
-            rendered="{!if(showResult==true,'true','false')}"
-          >
+          <apex:outputPanel layout="none" rendered="{!if(showResult==true,'true','false')}">
             <!-- Page header-->
             <div class="slds-page-header slds-col slds-size_1-of-1">
               <div class="slds-page-header__row">
-                <header
-                  class="slds-media slds-media_center slds-has-flexi-truncate"
-                >
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
                   <div class="slds-media__figure">
-                    <span
-                      class="slds-icon_container slds-icon-action-user"
-                      title="user"
-                    >
+                    <span class="slds-icon_container slds-icon-action-user" title="user">
                       <svg class="slds-icon slds-icon_small" aria-hidden="true">
                         <use
                           xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#user')}"
@@ -59,23 +48,14 @@
                 <div class="slds-card__body slds-card__body_inner">
                   <div class="slds-grid slds-wrap">
                     <!-- Header-->
-                    <div
-                      class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_4-of-12"
-                    >
+                    <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_4-of-12">
                       <span>Application ID</span>
                     </div>
-                    <div
-                      class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_4-of-12"
-                    >
+                    <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_4-of-12">
                       <span>Transaction ID</span>
                     </div>
-                    <div
-                      class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_4-of-12"
-                    >
-                      <a
-                        class="slds-card__footer-action"
-                        href="javascript:void(0);"
-                        onclick="showRawResponse()"
+                    <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_4-of-12">
+                      <a class="slds-card__footer-action" href="javascript:void(0);" onclick="showRawResponse()"
                         >Show Raw Response</a
                       >
                     </div>
@@ -99,19 +79,11 @@
             </div>
             <div class="slds-col slds-p-around_small slds-size_1-of-1">
               <!-- CUSTOMER SCORE-->
-              <div
-                class="slds-page-header slds-align_absolute-left slds-col slds-size_1-of-1"
-              >
+              <div class="slds-page-header slds-align_absolute-left slds-col slds-size_1-of-1">
                 <h1>
                   <b>
-                    <span
-                      class="slds-icon_container slds-icon-action-share_poll"
-                      title="share_poll"
-                    >
-                      <svg
-                        class="slds-icon slds-icon-text-default slds-icon_xx-small"
-                        aria-hidden="true"
-                      >
+                    <span class="slds-icon_container slds-icon-action-share_poll" title="share_poll">
+                      <svg class="slds-icon slds-icon-text-default slds-icon_xx-small" aria-hidden="true">
                         <use
                           xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
                         ></use>
@@ -127,34 +99,24 @@
               >
                 <div class="slds-grid slds-wrap slds-p-around_small">
                   <apex:repeat var="scoreItem" value="{!wrapper.scores}">
-                    <div
-                      class="slds-col slds-size_1-of-2 slds-var-p-around_small"
-                    >
+                    <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
                       <div class="slds-grid slds-wrap slds-p-around_small">
                         <div class="slds-col slds-size_1-of-2">
                           <h2 class="slds-card__header-title">
-                            <span
-                              class="slds-card__header-link slds-truncate"
-                              title="Fraud Score"
-                            >
+                            <span class="slds-card__header-link slds-truncate" title="Fraud Score">
                               <span>{!scoreItem.name}</span>
                             </span>
                           </h2>
                         </div>
                         <div class="slds-col slds-size_1-of-2">
                           <h2 class="slds-card__header-title">
-                            <span
-                              class="slds-card__header-link slds-truncate"
-                              title="Fraud Score"
-                            >
+                            <span class="slds-card__header-link slds-truncate" title="Fraud Score">
                               <span>Score : {!scoreItem.score}</span>
                             </span>
                           </h2>
                         </div>
                       </div>
-                      <table
-                        class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
-                      >
+                      <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
                         <thead>
                           <tr class="slds-line-height_reset">
                             <th class="" scope="col">
@@ -175,28 +137,16 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <apex:repeat
-                            var="reasonCodesItem"
-                            value="{!scoreItem.reasonCodes}"
-                          >
+                          <apex:repeat var="reasonCodesItem" value="{!scoreItem.reasonCodes}">
                             <tr class="slds-hint-parent">
                               <td data-label="Account Name">
-                                <div class="slds-truncate" title="Source Name">
-                                  {!reasonCodesItem.rank}
-                                </div>
+                                <div class="slds-truncate" title="Source Name">{!reasonCodesItem.rank}</div>
                               </td>
                               <td data-label="Close Date">
-                                <div
-                                  class="slds-truncate"
-                                  title="Attribute Name"
-                                >
-                                  {!reasonCodesItem.direction}
-                                </div>
+                                <div class="slds-truncate" title="Attribute Name">{!reasonCodesItem.direction}</div>
                               </td>
                               <td data-label="Account Name">
-                                <div class="slds-truncate" title="Raw Score">
-                                  {!reasonCodesItem.explanation}
-                                </div>
+                                <div class="slds-truncate" title="Raw Score">{!reasonCodesItem.explanation}</div>
                               </td>
                             </tr>
                           </apex:repeat>
@@ -210,19 +160,11 @@
 
             <div class="slds-col slds-p-around_small slds-size_1-of-1">
               <!-- CUSTOMER HISTORY -->
-              <div
-                class="slds-page-header slds-align_absolute-left slds-col slds-size_1-of-1"
-              >
+              <div class="slds-page-header slds-align_absolute-left slds-col slds-size_1-of-1">
                 <h1>
                   <b>
-                    <span
-                      class="slds-icon_container slds-icon-action-share_poll"
-                      title="share_poll"
-                    >
-                      <svg
-                        class="slds-icon slds-icon-text-default slds-icon_xx-small"
-                        aria-hidden="true"
-                      >
+                    <span class="slds-icon_container slds-icon-action-share_poll" title="share_poll">
+                      <svg class="slds-icon slds-icon-text-default slds-icon_xx-small" aria-hidden="true">
                         <use
                           xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#share_poll')}"
                         ></use>
@@ -237,10 +179,7 @@
                 class="slds-col slds-p-around_small slds-border_left slds-border_right slds-border_bottom slds-size_1-of-1"
               >
                 <h2 class="slds-card__header-title">
-                  <span
-                    class="slds-card__header-link slds-truncate"
-                    title="Iovation"
-                  >
+                  <span class="slds-card__header-link slds-truncate" title="Iovation">
                     <span>Attributes</span>
                   </span>
                 </h2>
@@ -251,41 +190,31 @@
               >
                 <div class="slds-grid slds-wrap">
                   <div class="slds-col slds-p-around_small slds-size_6-of-12">
-                    <b>SSN shared count</b>:
-                    {!wrapper.attributes.ssn_shared_count}
+                    <b>SSN shared count</b>: {!wrapper.attributes.ssn_shared_count}
                   </div>
                   <div class="slds-col slds-p-around_small slds-size_6-of-12">
-                    <b>Name Dob shared count </b>:
-                    {!wrapper.attributes.name_dob_shared_count}
+                    <b>Name Dob shared count </b>: {!wrapper.attributes.name_dob_shared_count}
                   </div>
                   <div class="slds-col slds-p-around_small slds-size_6-of-12">
-                    <b>SSN issuance dob mismatch </b>:
-                    {!wrapper.attributes.ssn_issuance_dob_mismatch}
+                    <b>SSN issuance dob mismatch </b>: {!wrapper.attributes.ssn_issuance_dob_mismatch}
                   </div>
                   <div class="slds-col slds-p-around_small slds-size_6-of-12">
-                    <b>SSN issued before dob </b>:
-                    {!wrapper.attributes.ssn_issued_before_dob}
+                    <b>SSN issued before dob </b>: {!wrapper.attributes.ssn_issued_before_dob}
                   </div>
                   <div class="slds-col slds-p-around_small slds-size_6-of-12">
-                    <b>Name SSN synthetic address </b>:
-                    {!wrapper.attributes.name_ssn_synthetic_address}
+                    <b>Name SSN synthetic address </b>: {!wrapper.attributes.name_ssn_synthetic_address}
                   </div>
                   <div class="slds-col slds-p-around_small slds-size_6-of-12">
                     <b>SSN bogus </b>: {!wrapper.attributes.ssn_bogus}
                   </div>
                   <div class="slds-col slds-p-around_small slds-size_6-of-12">
-                    <b>SSN history longer months </b>:
-                    {!wrapper.attributes.ssn_history_longer_months}
+                    <b>SSN history longer months </b>: {!wrapper.attributes.ssn_history_longer_months}
                   </div>
                 </div>
               </div>
             </div>
             <!-- model of rawResponse-->
-            <div
-              id="rawResponse"
-              style="display: none"
-              class="slds-align_absolute-center slds-col slds-size_1-of-1"
-            >
+            <div id="rawResponse" style="display: none" class="slds-align_absolute-center slds-col slds-size_1-of-1">
               <section
                 role="dialog"
                 tabindex="-1"
@@ -297,32 +226,15 @@
                 <div class="slds-modal__container">
                   <header class="slds-modal__header">
                     <div class="slds-grid slds-wrap">
-                      <div
-                        class="slds-col slds-p-around_small slds-size_11-of-12"
-                      >
-                        <h2
-                          id="modal-heading-01"
-                          class="slds-modal__title slds-hyphenate"
-                        >
+                      <div class="slds-col slds-p-around_small slds-size_11-of-12">
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
                           <b>Raw Response</b>
                         </h2>
                       </div>
-                      <div
-                        class="slds-col slds-p-around_small slds-size_1-of-12"
-                      >
-                        <a
-                          class="slds-card__footer-action"
-                          href="javascript:void(0);"
-                          onclick="hideRawResponse()"
-                        >
-                          <span
-                            class="slds-icon_container slds-icon-action-remove"
-                            title="remove"
-                          >
-                            <svg
-                              class="slds-icon slds-icon_xx-small"
-                              aria-hidden="false"
-                            >
+                      <div class="slds-col slds-p-around_small slds-size_1-of-12">
+                        <a class="slds-card__footer-action" href="javascript:void(0);" onclick="hideRawResponse()">
+                          <span class="slds-icon_container slds-icon-action-remove" title="remove">
+                            <svg class="slds-icon slds-icon_xx-small" aria-hidden="false">
                               <use
                                 xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/action-sprite/svg/symbols.svg#remove')}"
                               ></use>
@@ -332,19 +244,11 @@
                       </div>
                     </div>
                   </header>
-                  <div
-                    class="slds-modal__content slds-p-around_medium"
-                    id="modal-content-id-2"
-                  >
+                  <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
                     <div id="rawTextArea"></div>
                   </div>
                   <footer class="slds-modal__footer">
-                    <button
-                      class="slds-button slds-button_neutral"
-                      onclick="hideRawResponse()"
-                    >
-                      Close
-                    </button>
+                    <button class="slds-button slds-button_neutral" onclick="hideRawResponse()">Close</button>
                   </footer>
                 </div>
               </section>

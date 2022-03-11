@@ -15,14 +15,8 @@ global with sharing class Flow extends AbstractService {
   //Constant
   private static final String STATUS_SUCCESS = 'Completed';
   private static final String STATUS_FAILED = 'Failed';
-  private static final String RECORDTYPE_FLOW = SObjectUtils.recordTypeIdByDevName(
-    Flow__c.SObjectType,
-    'Flow'
-  );
-  private static final String RECORDTYPE_SUBFLOW = SObjectUtils.recordTypeIdByDevName(
-    Flow__c.SObjectType,
-    'SubFlow'
-  );
+  private static final String RECORDTYPE_FLOW = SObjectUtils.recordTypeIdByDevName(Flow__c.SObjectType, 'Flow');
+  private static final String RECORDTYPE_SUBFLOW = SObjectUtils.recordTypeIdByDevName(Flow__c.SObjectType, 'SubFlow');
 
   //Attribute
   @TestVisible
@@ -207,12 +201,7 @@ global with sharing class Flow extends AbstractService {
    * @return String
    **/
   public static String setSubFlow(Object flowName) {
-    return setSubFlow(
-      new Flow__c(
-        FlowName__c = String.valueOf(flowName),
-        ServiceName__c = String.valueOf(flowName)
-      )
-    );
+    return setSubFlow(new Flow__c(FlowName__c = String.valueOf(flowName), ServiceName__c = String.valueOf(flowName)));
   }
 
   /**
@@ -226,11 +215,7 @@ global with sharing class Flow extends AbstractService {
   public static String setSubFlow(Object serviceName, String entity) {
     String uniqueName = String.valueOf(serviceName) + '_' + entity;
     return setSubFlow(
-      new Flow__c(
-        mflow__FlowName__c = uniqueName,
-        Entity__c = entity,
-        ServiceName__c = String.valueOf(serviceName)
-      )
+      new Flow__c(mflow__FlowName__c = uniqueName, Entity__c = entity, ServiceName__c = String.valueOf(serviceName))
     );
   }
 
@@ -243,17 +228,8 @@ global with sharing class Flow extends AbstractService {
    * @param String childEntity
    * @return String
    **/
-  public static String setSubFlow(
-    Object serviceName,
-    String entity,
-    String childEntity
-  ) {
-    String uniqueName =
-      String.valueOf(serviceName) +
-      '_' +
-      entity +
-      '_' +
-      childEntity;
+  public static String setSubFlow(Object serviceName, String entity, String childEntity) {
+    String uniqueName = String.valueOf(serviceName) + '_' + entity + '_' + childEntity;
     return setSubFlow(
       new Flow__c(
         mflow__FlowName__c = uniqueName,

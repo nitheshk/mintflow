@@ -25,10 +25,7 @@ public with sharing class SObjectWithSharing {
    * @param List<Object> values
    * @return List<SObject>
    **/
-  public static List<SObject> getRecords(
-    String queryString,
-    List<Object> values
-  ) {
+  public static List<SObject> getRecords(String queryString, List<Object> values) {
     if (values == null) {
       return Database.query(queryString);
     }
@@ -80,11 +77,7 @@ public with sharing class SObjectWithSharing {
    * @param SObjectField externalFieldName
    * @return List<SObject>
    **/
-  public static List<SObject> processRecords(
-    CrudType crudType,
-    List<SObject> records,
-    SObjectField externalFieldName
-  ) {
+  public static List<SObject> processRecords(CrudType crudType, List<SObject> records, SObjectField externalFieldName) {
     if (CollectionUtils.isListEmpty(records)) {
       return records;
     }

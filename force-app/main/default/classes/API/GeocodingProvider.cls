@@ -21,9 +21,7 @@ global virtual with sharing class GeocodingProvider extends AbstractService {
    **/
   public static GeocodingProvider getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (GeocodingProvider) getInstance(
-        GeocodingProvider.class
-      );
+      serviceInstance = (GeocodingProvider) getInstance(GeocodingProvider.class);
     }
     return serviceInstance;
   }
@@ -34,9 +32,7 @@ global virtual with sharing class GeocodingProvider extends AbstractService {
    * @param Map<String object> params
    * @return HttpBuilder.Response
    **/
-  global virtual HttpBuilder.Response validateCountyUsingGoogleApi(
-    Map<String, object> params
-  ) {
+  global virtual HttpBuilder.Response validateCountyUsingGoogleApi(Map<String, object> params) {
     log?.fine('Inside invokeAPI -> params -> ' + Json.serialize(params));
 
     HttpResponse response = HttpBuilder.httpCallOut(null, null);
@@ -54,10 +50,7 @@ global virtual with sharing class GeocodingProvider extends AbstractService {
     return HttpBuilder.buildResponse(
       response.getStatusCode(),
       response.getStatus(),
-      mapGeoLocation(
-        responseDTO,
-        (List<string>) params.get('eligibleCountyNameList')
-      )
+      mapGeoLocation(responseDTO, (List<string>) params.get('eligibleCountyNameList'))
     );
   }
 
@@ -82,10 +75,7 @@ global virtual with sharing class GeocodingProvider extends AbstractService {
     }
 
     Map<String, Object> matchingResult = new Map<String, Object>();
-    for (
-      GeocodingDTO.AddressComponents addresses : responseDTO.results[0]
-        .address_components
-    ) {
+    for (GeocodingDTO.AddressComponents addresses : responseDTO.results[0].address_components) {
       for (string type : addresses.types) {
         switch on type {
           when 'country', 'locality', 'neighborhood' {
@@ -109,13 +99,8 @@ global virtual with sharing class GeocodingProvider extends AbstractService {
           }
         }
       }
-      if (
-        eligibleCountyNameList.contains((string) matchingResult.get('state'))
-      ) {
-        matchingResult.put(
-          'county',
-          ((string) matchingResult.get('county'))?.substringBefore(' County')
-        );
+      if (eligibleCountyNameList.contains((string) matchingResult.get('state'))) {
+        matchingResult.put('county', ((string) matchingResult.get('county'))?.substringBefore(' County'));
       }
     }
     Map<String, Object> result = new Map<String, Object>();

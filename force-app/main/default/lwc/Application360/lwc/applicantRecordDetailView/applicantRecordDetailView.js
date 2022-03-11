@@ -15,11 +15,7 @@ export default class ApplicantRecordDetailView extends LightningElement {
   @track contactResult = [];
   @track personalResult = [];
   @track statusResult = [];
-  @track fieldsets = [
-    "mflow__ContactInformation",
-    "mflow__PersonalInformation",
-    "mflow__StatusInformation"
-  ];
+  @track fieldsets = ["mflow__ContactInformation", "mflow__PersonalInformation", "mflow__StatusInformation"];
   @track dataLoaded = false;
 
   @wire(MessageContext)
@@ -50,10 +46,7 @@ export default class ApplicantRecordDetailView extends LightningElement {
                   let dt = new Date(this.record[result[keyValue].key]);
                   tempData.push({
                     key: result[keyValue].value,
-                    value:
-                      dt instanceof Date && !isNaN(dt)
-                        ? dt.toLocaleString("en-US", { timeZone: timezone })
-                        : "",
+                    value: dt instanceof Date && !isNaN(dt) ? dt.toLocaleString("en-US", { timeZone: timezone }) : "",
                     apiname: result[keyValue].key,
                     type: result[keyValue].type
                   });

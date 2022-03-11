@@ -26,17 +26,12 @@ global inherited sharing class SObjectUtils {
    * @param SObjectType sType
    * @return DescribeSObjectResult
    **/
-  global static DescribeSObjectResult getDescribeSObjectResult(
-    SObjectType sType
-  ) {
+  global static DescribeSObjectResult getDescribeSObjectResult(SObjectType sType) {
     if (sType == null) {
       return null;
     }
     if (!sObjectDescribeMap.containsKey(sType)) {
-      sObjectDescribeMap.put(
-        sType,
-        sType.getDescribe(SObjectDescribeOptions.DEFERRED)
-      );
+      sObjectDescribeMap.put(sType, sType.getDescribe(SObjectDescribeOptions.DEFERRED));
     }
     return sObjectDescribeMap.get(sType);
   }
@@ -47,9 +42,7 @@ global inherited sharing class SObjectUtils {
    * @param List<SObject> records
    * @return DescribeSObjectResult
    **/
-  global static DescribeSObjectResult getDescribeSObjectResult(
-    List<SObject> records
-  ) {
+  global static DescribeSObjectResult getDescribeSObjectResult(List<SObject> records) {
     return getDescribeSObjectResult(records?.getSObjectType());
   }
 
@@ -121,10 +114,7 @@ global inherited sharing class SObjectUtils {
    **/
   global static Map<String, Schema.SObjectField> getFields(SObjectType sType) {
     if (!sObjectFieldMap.containsKey(sType)) {
-      sObjectFieldMap.put(
-        sType,
-        getDescribeSObjectResult(sType).fields.getMap()
-      );
+      sObjectFieldMap.put(sType, getDescribeSObjectResult(sType).fields.getMap());
     }
     return sObjectFieldMap.get(sType);
   }
@@ -147,10 +137,7 @@ global inherited sharing class SObjectUtils {
    * @param String fieldRelationName
    * @return Schema.SObjectField
    **/
-  global static Schema.SObjectField resolveReferenceByRelationName(
-    SObjectType sType,
-    String fieldRelationName
-  ) {
+  global static Schema.SObjectField resolveReferenceByRelationName(SObjectType sType, String fieldRelationName) {
     if (!sObjectReference.containsKey(sType)) {
       Map<String, Schema.SObjectField> allFields = getFields(sType);
       //rMap -> Referene Field Map
@@ -174,10 +161,7 @@ global inherited sharing class SObjectUtils {
    * @param String fieldName
    * @return Schema.SObjectField
    **/
-  global static Schema.SObjectField resolveReferenceByFieldName(
-    SObjectType sType,
-    String fieldName
-  ) {
+  global static Schema.SObjectField resolveReferenceByFieldName(SObjectType sType, String fieldName) {
     return getFields(sType).get(fieldName.toLowerCase());
   }
 
@@ -188,18 +172,12 @@ global inherited sharing class SObjectUtils {
    * @param String ChildRelationshipMap
    * @return ChildRelationship
    **/
-  global static ChildRelationship resolveChildReferenceByRelationName(
-    SObjectType sType,
-    String childRelationshipMap
-  ) {
+  global static ChildRelationship resolveChildReferenceByRelationName(SObjectType sType, String childRelationshipMap) {
     if (!sObjectChildReference.containsKey(sType)) {
       //crmap -> ChildRelationshipMap
       Map<String, ChildRelationship> crMap = new Map<String, ChildRelationship>();
       //cr -> ChildRelationship
-      for (
-        ChildRelationship cr : sObjectDescribeMap.get(sType)
-          .getChildRelationships()
-      ) {
+      for (ChildRelationship cr : sObjectDescribeMap.get(sType).getChildRelationships()) {
         if (cr.getRelationshipName() != null) {
           crMap.put(cr.getRelationshipName(), cr);
         }
@@ -216,10 +194,7 @@ global inherited sharing class SObjectUtils {
    * @param string recordTypeName
    * @return Id
    **/
-  global static Id recordTypeIdByName(
-    SObjectType sType,
-    string recordTypeName
-  ) {
+  global static Id recordTypeIdByName(SObjectType sType, string recordTypeName) {
     return SObjectUtils.getDescribeSObjectResult(sType)
       ?.getRecordTypeInfosByName()
       .get(recordTypeName)
@@ -233,10 +208,7 @@ global inherited sharing class SObjectUtils {
    * @param string recordTypeDevName
    * @return Id
    **/
-  global static Id recordTypeIdByDevName(
-    SObjectType sType,
-    string recordTypeDevName
-  ) {
+  global static Id recordTypeIdByDevName(SObjectType sType, string recordTypeDevName) {
     return SObjectUtils.getDescribeSObjectResult(sType)
       ?.getRecordTypeInfosByDeveloperName()
       .get(recordTypeDevName)

@@ -14,10 +14,7 @@ public with sharing class NotificationRepository extends DatabaseUtils {
    **/
   public static Applicant__c fetchApplicantById(string applicantId) {
     return (Applicant__c) getRecord(
-      Query.newInstance(Applicant__c.SObjectType)
-        .addFields()
-        .whereEq('Id', applicantId)
-        .toString()
+      Query.newInstance(Applicant__c.SObjectType).addFields().whereEq('Id', applicantId).toString()
     );
   }
 }

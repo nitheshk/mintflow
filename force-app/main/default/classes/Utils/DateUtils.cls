@@ -21,10 +21,7 @@ global with sharing class DateUtils {
       // then this will be off by one due to monthsBetween only accounting for months
       // ex: 04/16/2019 monthsBetween 05/20/2019 = 1
       //   but, we want 2 so add 1
-      if (
-        endDate.day() >= startDate.day() ||
-        (isLastDayOfMonth(endDate) && endDate.day() < startDate.day())
-      ) {
+      if (endDate.day() >= startDate.day() || (isLastDayOfMonth(endDate) && endDate.day() < startDate.day())) {
         ++monthDiff;
       }
     }
@@ -95,12 +92,7 @@ global with sharing class DateUtils {
    **/
   global static Datetime convertJsonStringToDateTime(Object dateObject) {
     if (dateObject != null) {
-      return (Datetime) JSON.deserialize(
-        '"' +
-        dateObject +
-        '"',
-        Datetime.class
-      );
+      return (Datetime) JSON.deserialize('"' + dateObject + '"', Datetime.class);
     }
     return null;
   }

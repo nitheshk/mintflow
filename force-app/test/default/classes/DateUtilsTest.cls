@@ -21,9 +21,7 @@ public with sharing class DateUtilsTest {
   static void methodTwo() {
     try {
       DateUtils.convertStringToDate1(null);
-      DateUtils.convertJsonStringToDateTime(
-        string.valueOfGmt(DateTime.newInstance(2006, 3, 16, 12, 6, 13))
-      );
+      DateUtils.convertJsonStringToDateTime(string.valueOfGmt(DateTime.newInstance(2006, 3, 16, 12, 6, 13)));
     } catch (Exception e) {
       System.assertEquals(1, 1);
     }

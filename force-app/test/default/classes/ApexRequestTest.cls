@@ -7,9 +7,7 @@ public with sharing class ApexRequestTest {
   }
   private static Applicant__c makeApplicantData() {
     Application__c acc = TestData.createApplication();
-    acc = (Application__c) DatabaseUtils.insertRecords(
-      new List<Application__c>{ acc }
-    )[0];
+    acc = (Application__c) DatabaseUtils.insertRecords(new List<Application__c>{ acc })[0];
     Applicant__c applicant = TestData.createApplicant(acc.Id);
     applicant.Email__c = 'test@mail.com';
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
