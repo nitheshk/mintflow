@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>ObjectAPIName__c</field>
-        <value xsi:type="xsd:string">Employment__c</value>
+        <value xsi:type="xsd:string">mflow__Employment__c</value>
     </values>
     <values>
         <field>Order__c</field>
