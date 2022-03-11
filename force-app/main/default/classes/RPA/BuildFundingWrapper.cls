@@ -26,6 +26,35 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
   }
 
   /**
+   * @description Read application by application number
+   * @author Digital Align Team | 10-21-2021
+   * @param Map<String Object> params
+   * @return Application__c
+   **/
+  global virtual Application__c readApplicationWithChild(String applicationNumber) {
+    Application__c application;
+    if (String.isBlank(applicationNumber)) {
+      throw new CustomException(System.Label.Application_ApplicationNameCannotBeBlank);
+    }
+    application = SubmissionRepository.readApplicationByApplicationNumber(applicationNumber);
+    if (application == null) {
+      throw new customException(System.Label.Application_ApplicationNotFound);
+    }
+
+    List<Applicant__c> applicants = SubmissionRepository.readApplicantsWithChild(
+      new Map<Id, SObject>(application.Applicants__r).keySet()
+    );
+    List<FinancialAccount__c> financialAccounts = SubmissionRepository.readFinancialAccountsWithChild(
+      new Map<Id, SObject>(application.mflow__FinancialAccounts__r).keySet()
+    );
+    //Combine result into single application object
+    SObjectConstructor builder = SObjectConstructor.getInstance(application);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
+    builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
+    return (Application__c) builder.build();
+  }
+
+  /**
    * @description
    * @author Digital Align | 01-20-2022
    * @param string applicationNumber
@@ -33,35 +62,19 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
    **/
   global virtual FundingSubmissionResponse obtainFundingData(string applicationNumber) {
     log?.fine('Inside obtainFundingData -> applicationNumber -> ' + applicationNumber);
-    FundingSubmissionResponse mapper = new FundingSubmissionResponse();
-    Applicant__c primaryApplicant;
-    if (String.isBlank(applicationNumber)) {
-      throw new CustomException(System.Label.Application_ApplicationNameCannotBeBlank);
-    }
-    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(applicationNumber);
 
-    if (application == null) {
-      throw new customException(System.Label.Application_ApplicationNotFound);
-    }
-    List<FinancialAccount__c> financialApplications = SubmissionRepository.readFinancialAccountWithChildByApplicationId(
-      application.Id
-    );
-    if (CollectionUtils.isListEmpty(financialApplications)) {
-      throw new customException('Financial Account not found/ Requested application is under reivew');
-    }
-    for (Applicant__c applicant : application.Applicants__r) {
-      Set<String> applicantTypes = new Set<String>(applicant.ApplicantType__c.split(';'));
-      if (applicantTypes.contains('Primary')) {
-        primaryApplicant = applicant;
-        break;
-      }
-    }
+    Application__c application = readApplicationWithChild(applicationNumber);
+    FundingSubmissionResponse mapper = new FundingSubmissionResponse();
     mapper.Application = application.Id;
-    mapper.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
     mapper.Stage = application.mflow__Stage__c;
     mapper.Status = application.Status__c;
-    mapper.Password = primaryApplicant.Password__c;
-    mapper.FinancialAccount.addAll(mapFinancialApplication(financialApplications));
+
+    for (Applicant__c applicant : application.Applicants__r) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+        mapper.Password = applicant.Password__c;
+      }
+    }
+    mapper = mapFinancialAccounts(application, mapper);
 
     log?.info('obtainFundingData -> ReturnMapper -> ' + json.serialize(mapper));
     return mapper;
@@ -69,34 +82,38 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
 
   /**
    * @description
-   * @author Digital Align | 01-20-2022
-   * @param List<FinancialAccount__c> financialApplicationsList
-   * @return virtual
+   * @author Digital Align Team | 03-11-2022
+   * @param Application__c application
+   * @param FundingSubmissionResponse mapper
+   * @return FundingSubmissionResponse
    **/
-  global virtual list<FundingSubmissionResponse.FinancialAccount> mapFinancialApplication(
-    List<FinancialAccount__c> financialApplicationsList
+  global virtual FundingSubmissionResponse mapFinancialAccounts(
+    Application__c application,
+    FundingSubmissionResponse mapper
   ) {
-    list<FundingSubmissionResponse.FinancialAccount> mapperFinancialAccountList = new List<FundingSubmissionResponse.FinancialAccount>();
-    for (FinancialAccount__c finApplication : financialApplicationsList) {
+    if (CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
+      throw new customException('Financial Account not found/ Requested application is under reivew');
+    }
+
+    list<FundingSubmissionResponse.FinancialAccount> mapperFinancialAccountList = mapper.FinancialAccount;
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
       FundingSubmissionResponse.FinancialAccount mapperFinancialAccount = new FundingSubmissionResponse.FinancialAccount();
-      mapperFinancialAccount.FinancialAccountId = finApplication.Id;
-      //#removeFSC
-      //mapperFinancialAccount.FinancialAccountType = finApplication.FinServ__FinancialAccountType__c;
-      mapperFinancialAccount.FinancialProductType = 'Savings';
-      mapperFinancialAccount.FinancialProduct = 'Regular Savings';
-      //mapperFinancialAccount.FinancialProduct = finApplication.mflow__FinancialProduct__c;
-      mapperFinancialAccount.Name = finApplication.Name;
-      mapperFinancialAccount.Ownership = finApplication.Ownership__c;
-      if (!CollectionUtils.isListEmpty(finApplication.FinancialAccountTransactions__r)) {
+      mapperFinancialAccount.FinancialAccountId = financialAccount.Id;
+      mapperFinancialAccount.FinancialProductType = financialAccount.ProductCategory__c;
+      mapperFinancialAccount.FinancialProduct = financialAccount.ProductName__c;
+      mapperFinancialAccount.Ownership = financialAccount.Ownership__c;
+      mapperFinancialAccount.ExternalApplicationNumber = financialAccount.ExternalApplicationNumber__c;
+
+      if (!CollectionUtils.isListEmpty(financialAccount.FinancialAccountTransactions__r)) {
         mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
-          finApplication.FinancialAccountTransactions__r[0]
+          financialAccount.FinancialAccountTransactions__r[0]
         );
-      } else {
-        throw new CustomException('No financial transaction account found');
       }
       mapperFinancialAccountList.add(mapperFinancialAccount);
     }
-    return mapperFinancialAccountList;
+
+    mapper.ExternalApplicationNumber = mapperFinancialAccountList[0].ExternalApplicationNumber;
+    return mapper;
   }
   /**
    * @description

@@ -2,8 +2,6 @@
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Application</fullName>
     <fields>Name</fields>
-    <fields>ExternalApplicationNumber__c</fields>
-    <fields>ExternalApplicationStatus__c</fields>
     <fields>Status__c</fields>
     <fields>KYCStatus__c</fields>
     <label>Application Compact Layout</label>

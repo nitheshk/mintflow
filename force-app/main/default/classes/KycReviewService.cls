@@ -38,6 +38,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
    * @return Application__c
    **/
   global virtual Application__c processMembershipKYC(String resultJson) {
+    log?.info('Inside processMembershipKYC');
     ApplicationSubmissionResponse.KYCResult kycResult = (ApplicationSubmissionResponse.KYCResult) JSON.deserialize(
       resultJson,
       ApplicationSubmissionResponse.KYCResult.class
@@ -97,6 +98,8 @@ global virtual with sharing class KycReviewService extends AbstractService {
       log?.error(ex);
       Database.rollback(sp);
       throw ex;
+    } finally {
+      log?.info('Completed processMembershipKYC');
     }
   }
 
@@ -112,15 +115,14 @@ global virtual with sharing class KycReviewService extends AbstractService {
     Application__c application,
     ApplicationSubmissionResponse.KYCResult kycResult
   ) {
-    log?.debug('Inside processExistingMember');
+    log?.info('Inside processExistingMember');
     application.isMemberFlow__c = false;
-    application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
-    application.ExternalApplicationStatus__c = kycResult.ExternalApplicationStatus;
     application.Status__c = ApplicationConstant.CANCELLED;
     application.mflow__Stage__c = ApplicationConstant.STAGE_EXISTING_CUSTOMER;
     application.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
     for (Applicant__c applicant : application.Applicants__r) {
       if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+        applicant.IsExistingCustomer__c = true;
         applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
         applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
       } else {
@@ -129,8 +131,19 @@ global virtual with sharing class KycReviewService extends AbstractService {
         applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
       }
     }
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      financialAccount.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
+      financialAccount.ExternalApplicationStatus__c = kycResult.ExternalApplicationStatus;
+    }
+
+    NotificationBuilder.chatterMessagePost(
+      application.Id,
+      'Primary Account already linked with Membership Account, Application has been cancelled because of existing member'
+    );
     KycReviewRepository.upsertRecords(application.Applicants__r);
+    KycReviewRepository.upsertRecords(application.FinancialAccounts__r);
     KycReviewRepository.upsertRecord(application);
+    log?.info('Completed processExistingMember');
     return application;
   }
 
@@ -148,52 +161,53 @@ global virtual with sharing class KycReviewService extends AbstractService {
     Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(application.Applicants__r);
 
     Boolean kycSuccessForApplicants = true;
-    if (kycResult?.applicants != null) {
-      for (ApplicationSubmissionResponse.KYCApplicantResult applicantKyc : kycResult.applicants) {
-        Applicant__c applicant = applicantMap.get(applicantKyc.ApplicantId);
-        if (applicant == null) {
-          continue;
-        }
-        applicant.CustomerNumber__c = applicantKyc.CustomerNumber;
-        applicant.OverallDebitBureauResult__c = this.getStatusMapping(null, applicantKyc.OverallDebitBureauResult);
-        // Credit Report is not generated if CreditScore =NA
-        applicant.CreditScore__c = applicantKyc.CreditScore == 'NA' ? null : integer.valueof(applicantKyc.CreditScore);
-        applicant.mflow__CreditScoreStatus__c = applicantKyc.CreditScore == 'NA' ? 'Reorder' : 'Verified';
-        applicant.QualifiedScore__c = applicantKyc.QualifiedScore;
-        applicant.CustomerScore__c = applicantKyc.CustomerScore;
-        applicant.HighRiskConsumer__c = this.getStatusMapping(null, applicantKyc.HighRiskConsumer);
-        applicant.QualifiedDecision__c = this.getStatusMapping(null, applicantKyc.QualifiedDecision);
-        applicant.IdentityVerificationStatus__c = this.getStatusMapping(null, applicantKyc.IdentityVerificationStatus);
-        applicant.OFAC__c = this.getStatusMapping(null, applicantKyc.OFAC);
-        applicant.SSNValidation__c = applicantKyc.SSNValidation;
-        applicant.RunWithoutKIQ__c = this.getStatusMapping(null, applicantKyc.RunWithoutKIQ);
-        applicant.RunWithKIQ__c = this.getStatusMapping(null, applicantKyc.RunWithKIQ);
 
-        //Update Applicant Status based on RunWithKIQ__c Field
-        switch on applicant.RunWithKIQ__c {
-          when 'Accept', 'Passed' {
-            if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-              applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-            }
-            applicant.mflow__Status__c = ApplicationConstant.IN_PROGRESS;
-            applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+    for (ApplicationSubmissionResponse.KYCApplicantResult applicantKyc : kycResult.applicants) {
+      Applicant__c applicant = applicantMap.get(applicantKyc.ApplicantId);
+      if (applicant == null) {
+        continue;
+      }
+      applicant.CustomerNumber__c = applicantKyc.CustomerNumber;
+      applicant.OverallDebitBureauResult__c = this.getStatusMapping(null, applicantKyc.OverallDebitBureauResult);
+      // Credit Report is not generated if CreditScore =NA
+      applicant.CreditScore__c = applicantKyc.CreditScore == 'NA' ? null : integer.valueof(applicantKyc.CreditScore);
+      applicant.mflow__CreditScoreStatus__c = applicantKyc.CreditScore == 'NA' ? 'Reorder' : 'Verified';
+      applicant.QualifiedScore__c = applicantKyc.QualifiedScore;
+      applicant.CustomerScore__c = applicantKyc.CustomerScore;
+      applicant.HighRiskConsumer__c = this.getStatusMapping(null, applicantKyc.HighRiskConsumer);
+      applicant.QualifiedDecision__c = this.getStatusMapping(null, applicantKyc.QualifiedDecision);
+      applicant.IdentityVerificationStatus__c = this.getStatusMapping(null, applicantKyc.IdentityVerificationStatus);
+      applicant.OFAC__c = this.getStatusMapping(null, applicantKyc.OFAC);
+      applicant.SSNValidation__c = applicantKyc.SSNValidation;
+      applicant.RunWithoutKIQ__c = this.getStatusMapping(null, applicantKyc.RunWithoutKIQ);
+      applicant.RunWithKIQ__c = this.getStatusMapping(null, applicantKyc.RunWithKIQ);
+
+      //Update Applicant Status based on RunWithKIQ__c Field
+      switch on applicant.RunWithKIQ__c {
+        when 'Accept', 'Passed' {
+          if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+            applicant.FlowState__c = ApplicationConstant.FUNDING_FUNDING;
           }
-          when 'Failed' {
-            applicant.mflow__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-            applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
-            kycSuccessForApplicants = false;
-          }
-          when else {
-            applicant.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
-            applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
-            kycSuccessForApplicants = false;
-          }
+          applicant.mflow__Status__c = ApplicationConstant.FUNDING_IN_PROGRESS;
+          applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+        }
+        when 'Failed' {
+          applicant.mflow__Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+          applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+          kycSuccessForApplicants = false;
+        }
+        when else {
+          applicant.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+          applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
+          kycSuccessForApplicants = false;
         }
       }
     }
 
-    application.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
-    application.ExternalApplicationStatus__c = kycResult.ExternalApplicationStatus;
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      financialAccount.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
+      financialAccount.ExternalApplicationStatus__c = kycResult.ExternalApplicationStatus;
+    }
     application.Stage__c = null;
 
     switch on kycResult.ExternalApplicationStatus {
@@ -208,7 +222,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
       }
       when else {
         if (kycSuccessForApplicants) {
-          application.Status__c = ApplicationConstant.IN_PROGRESS;
+          application.Status__c = ApplicationConstant.FUNDING_IN_PROGRESS;
           application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
           application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
         } else {
@@ -218,6 +232,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
       }
     }
     KycReviewRepository.upsertRecords(application.Applicants__r);
+    KycReviewRepository.upsertRecords(application.FinancialAccounts__r);
     KycReviewRepository.upsertRecord(application);
     return application;
   }
@@ -279,7 +294,6 @@ global virtual with sharing class KycReviewService extends AbstractService {
    * @param Applicant__c applicant
    * @return Account
    **/
-  //#removeFSC
   global virtual Account createAccount(Applicant__c applicant) {
     Account individualAccount = new Account();
     individualAccount.Name = applicant.ApplicantName__c;
@@ -300,7 +314,6 @@ global virtual with sharing class KycReviewService extends AbstractService {
    * @return Contact
    **/
   global virtual Contact mapApplicantWithContact(Applicant__c applicant, Contact memberContact) {
-    //#removeFSC
     //Not existing Contact then map new names
     if (String.isBlank(memberContact.Id)) {
       memberContact.FirstName = applicant.FirstName__c;

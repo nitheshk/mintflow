@@ -20,7 +20,6 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .queryChild('mflow__FinancialAccountTransactions__r')
         .addFields()
         .run()
-        .addFields()
         .queryChild('mflow__FinancialAccountServices__r')
         .addFields()
         .run()

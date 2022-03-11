@@ -17,13 +17,17 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
   global static Application__c readApplicationByApplicationNumber(String applicationNumber) {
     return (Application__c) DatabaseUtils.getRecord(
       Query.newInstance(Application__c.SObjectType)
-        //.addFieldSet('mflow__Application')
         .addFields()
         .queryChild('mflow__Applicants__r')
-        .addFields()
         .orderBy('mflow__Order__c')
         .run()
-        .removeFields('mflow__SessionToken__c')
+        .queryChild('mflow__FinancialAccounts__r')
+        .run()
+        .queryChild('mflow__Surveys__r')
+        .addFields()
+        .whereNull('Applicant__c')
+        .orderBy('Order__c')
+        .run()
         .whereEq('Name', applicationNumber)
         .toString()
     );
@@ -41,16 +45,13 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
     String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     Query qry = Query.newInstance(Application__c.SObjectType)
-      //.addFieldSet('mflow__Application')
       .addFields()
-      //.removeFields('mflow__SessionToken__c')
       .queryChild('mflow__Applicants__r')
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__FinancialAccounts__r')
-      .run();
-
-    qry.queryChild('mflow__Surveys__r')
+      .run()
+      .queryChild('mflow__Surveys__r')
       .addFields()
       .whereNull('Applicant__c')
       .orderBy('Order__c')
@@ -59,17 +60,40 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
 
     return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
+
+  /**
+   * @description read financial account with child by ids
+   * @author Digital Align Team | 10-26-2021
+   * @param Set<Id> financialAccountIds
+   * @return List<FinancialAccount__c>
+   **/
+  global static List<FinancialAccount__c> readFinancialAccountsWithChild(Set<Id> financialAccountIds) {
+    return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
+      Query.newInstance(FinancialAccount__c.SObjectType)
+        .addFields()
+        .queryLookup('mflow__FinancialProduct__r')
+        .addFields()
+        .run()
+        .queryChild('mflow__FinancialAccountTransactions__r')
+        .addFields()
+        .run()
+        // .queryChild('mflow__FinancialAccountServices__r')
+        // .addFields()
+        // .run()
+        .whereIn('Id', financialAccountIds)
+        .toString()
+    );
+  }
+
   /**
    * @description read allapplicant with child record
    * @author Digital Align Team | 10-26-2021
    * @param Set<Id> applicantIds
    **/
   global static List<Applicant__c> readApplicantsWithChild(Set<Id> applicantIds) {
-    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
-
     Query qry = Query.newInstance(Applicant__c.SObjectType)
       .addFields()
-      .removeFields('mflow__SessionToken__c')
+      .addFields('RecordType.Name')
       .queryChild('mflow__IdentificationDocuments__r')
       .addFields()
       .orderBy('mflow__Order__c')
@@ -86,28 +110,9 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
       .queryChild('mflow__Surveys__r')
       .addFields()
       .orderBy('Order__c')
-      .run();
-    qry.whereIn('Id', applicantIds);
-
+      .run()
+      .whereIn('Id', applicantIds);
     return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
-  }
-  /**
-   * @description read financial account with child by Applicatiom Id
-   * @author Digital Align | 01-10-2022
-   * @param Id financialAccountId
-   * @return List<FinancialAccount__c>
-   **/
-  global static List<FinancialAccount__c> readFinancialAccountWithChildByApplicationId(string applicationId) {
-    return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
-      Query.newInstance(FinancialAccount__c.SObjectType)
-        .addFields()
-        .queryChild('mflow__FinancialAccountTransactions__r')
-        .addFields()
-        .addLimit(1)
-        .run()
-        .whereEq('mflow__Application__c', applicationId)
-        .toString()
-    );
   }
 
   /**
@@ -128,35 +133,5 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
         .whereEq('Id', applicationId)
         .toString()
     );
-  }
-  /**
-   * @description
-   * @author Digital Align | 01-27-2022
-   * @param Set<Id> applicantIds
-   * @return List<Applicant__c>
-   **/
-  global static List<Applicant__c> readApplicantsWithIdentityAddress(Set<Id> applicantIds) {
-    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
-
-    Query qry = Query.newInstance(Applicant__c.SObjectType)
-      .addFields()
-      .addFields('RecordType.Name')
-      .removeFields('mflow__SessionToken__c')
-      .queryChild('mflow__IdentificationDocuments__r')
-      .addFields()
-      .orderBy('mflow__Order__c')
-      .run()
-      .queryChild('mflow__ContactPointAddresses__r')
-      .addFields()
-      .removeFields('Address')
-      .orderBy('mflow__Order__c')
-      .run()
-      .queryChild('mflow__Employments__r')
-      .addFields()
-      .orderBy('mflow__Order__c')
-      .run();
-    qry.whereIn('Id', applicantIds);
-
-    return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
   }
 }

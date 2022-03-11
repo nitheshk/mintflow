@@ -164,12 +164,12 @@ public with sharing class SearchRepository extends DatabaseUtils {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  mflow__Application__c(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name ORDER BY CreatedDate Desc)';
+          '*} IN ALL FIELDS RETURNING  mflow__Application__c(Id,Name,mflow__Status__c,CreatedDate,CreatedBy.Name ORDER BY CreatedDate Desc)';
       } else {
         searchQuery =
           'FIND {' +
           searchStr1 +
-          '*} IN ALL FIELDS RETURNING  mflow__Application__c(Id,Name,mflow__ExternalApplicationNumber__c,mflow__Status__c,CreatedDate,CreatedBy.Name  WHERE ' +
+          '*} IN ALL FIELDS RETURNING  mflow__Application__c(Id,Name,mflow__Status__c,CreatedDate,CreatedBy.Name  WHERE ' +
           dynamicString +
           ' ORDER BY CreatedDate Desc)';
       }
@@ -196,9 +196,9 @@ public with sharing class SearchRepository extends DatabaseUtils {
         if (String.isNotBlank(searchFilter.get('Name'))) {
           q.andCon().whereLike('Name', searchFilter.get('Name'));
         }
-        if (String.isNotBlank(searchFilter.get('mflow__ExternalApplicationNumber__c'))) {
-          q.andCon().whereLike('mflow__ExternalApplicationNumber__c', searchFilter.get('LOSNumber'));
-        }
+        // if (String.isNotBlank(searchFilter.get('mflow__ExternalApplicationNumber__c'))) {
+        //   q.andCon().whereLike('mflow__ExternalApplicationNumber__c', searchFilter.get('LOSNumber'));
+        // }
         applicationsList = (List<Application__c>) DatabaseUtils.getRecords(q.toString(true));
 
         log?.debug('retrieveApplications Query soql:' + q.toString(true));

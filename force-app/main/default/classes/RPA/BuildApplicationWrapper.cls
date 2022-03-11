@@ -26,6 +26,35 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
   }
 
   /**
+   * @description Read application by parameter passed
+   * @author Digital Align Team | 10-21-2021
+   * @param Map<String Object> params
+   * @return Application__c
+   **/
+  global virtual Application__c readApplicationWithChild(String applicationNumber) {
+    Application__c application;
+    if (String.isBlank(applicationNumber)) {
+      throw new CustomException(System.Label.Application_ApplicationNameCannotBeBlank);
+    }
+    application = SubmissionRepository.readApplicationByApplicationNumber(applicationNumber);
+    if (application == null) {
+      throw new customException(System.Label.Application_ApplicationNotFound);
+    }
+
+    List<Applicant__c> applicants = SubmissionRepository.readApplicantsWithChild(
+      new Map<Id, SObject>(application.Applicants__r).keySet()
+    );
+    List<FinancialAccount__c> financialAccounts = SubmissionRepository.readFinancialAccountsWithChild(
+      new Map<Id, SObject>(application.mflow__FinancialAccounts__r).keySet()
+    );
+    //Combine result into single application object
+    SObjectConstructor builder = SObjectConstructor.getInstance(application);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
+    builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
+    return (Application__c) builder.build();
+  }
+
+  /**
    * @description
    * @author Digital Align | 11-10-2021
    * @param string applicationId
@@ -33,67 +62,97 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    **/
   global virtual ApplicationSubmissionResponse obtainApplicationData(string applicationNumber) {
     {
-      log?.fine('Inside obtainApplicationData -> applicationNumber -> ' + applicationNumber);
+      log?.debug('Inside obtainApplicationData -> applicationNumber -> ' + applicationNumber);
+
+      Application__c application = readApplicationWithChild(applicationNumber);
+
       ApplicationSubmissionResponse mapper = new ApplicationSubmissionResponse();
+      ApplicationSubmissionResponse.Application mapperApplication = mapper.Application;
+      mapper.Application = mapperApplication;
+      mapperApplication.ApplicationId = application.Id;
+      mapperApplication.ApplicationNumber = application.Name;
+      mapperApplication.BranchCode = application.BranchCode__c;
+      mapperApplication.BranchName = application.BranchName__c;
+      mapperApplication.CountyName = application.CountyName__c;
+      mapperApplication.StateName = application.StateName__c;
+      mapperApplication.CountyCode = application.CountyZipCode__c;
+      mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
+      mapperApplication.IsMemberFlow = application.isMemberFlow__c;
+      // mapperApplication.CreatedChannel = application.CreatedChannel__c;
+      // mapperApplication.CustomerType = application.ApplicationType__c;
+      // mapperApplication.FlowState = application.FlowState__c;
+      // mapperApplication.IpAddress = application.IPAddress__c;
+      // mapperApplication.LastUsedChannel = application.LastUsedChannel__c;
+      // mapperApplication.Status = application.Status__c;
+      // mapperApplication.SubmittedBy = application.SubmittedBy__c;
+      // mapperApplication.SubmittedDate = application.SubmittedDate__c;
+      // mapperApplication.SubStatus = application.Stage__c;
 
-      if (String.isBlank(applicationNumber)) {
-        throw new CustomException(System.Label.Application_ApplicationNameCannotBeBlank);
-      }
-      Application__c application = SubmissionRepository.readApplicationByApplicationNumber(applicationNumber);
-      if (application == null) {
-        throw new customException(System.Label.Application_ApplicationNotFound);
-      }
-      application = readApplicationWithChild(application.Id);
+      //Map Finanical Accounts
+      mapperApplication = mapFinancialAcounts(mapperApplication, application);
 
-      //log?.debug('Full Application Json : ' + json.serialize(application));
-      if (application != null) {
-        ApplicationSubmissionResponse.Application mapperApplication = new ApplicationSubmissionResponse.Application();
-        mapperApplication.ApplicationId = application.Id;
-        mapperApplication.ApplicationNumber = application.Name;
-        //#pending
-        mapperApplication.FinancialProductType = 'Savings';
-        mapperApplication.FinancialProduct = 'Regular Savings';
-        mapperApplication.BranchCode = application.BranchCode__c;
-        mapperApplication.BranchName = application.BranchName__c;
-        mapperApplication.CountyName = application.CountyName__c;
-        mapperApplication.StateName = application.StateName__c;
-        mapperApplication.CountyCode = application.CountyZipCode__c;
-        mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
-        // mapperApplication.CreatedChannel = application.CreatedChannel__c;
-        mapperApplication.ExternalApplicationNumber = application.ExternalApplicationNumber__c;
-        // mapperApplication.CustomerType = application.ApplicationType__c;
-        // mapperApplication.FlowState = application.FlowState__c;
-        // mapperApplication.IpAddress = application.IPAddress__c;
-        // mapperApplication.IsMemberFlow = application.isMemberFlow__c;
-        // mapperApplication.LastUsedChannel = application.LastUsedChannel__c;
-        // mapperApplication.Status = application.Status__c;
-        // mapperApplication.SubmittedBy = application.SubmittedBy__c;
-        // mapperApplication.SubmittedDate = application.SubmittedDate__c;
-        // mapperApplication.SubStatus = application.Stage__c;
-
-        if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
-          mapperApplication.Applicants.addAll(mapApplicant(application.Applicants__r));
-        } else {
-          throw new CustomException(System.Label.Application_ApplicationHasNoApplicants);
-        }
-        if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
-          mapperApplication.Surveys.addAll(mapSurvey(application.Surveys__r));
-        }
-        mapper.Application = mapperApplication;
+      //applicants
+      if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
+        mapperApplication = mapApplicants(mapperApplication, application.Applicants__r);
       } else {
-        throw new CustomException(System.Label.Application_ApplicationNotFound);
+        throw new CustomException(System.Label.Application_ApplicationHasNoApplicants);
       }
+      //Surveys
+      if (!CollectionUtils.isListEmpty(application.Surveys__r)) {
+        mapperApplication.Surveys.addAll(mapSurvey(application.Surveys__r));
+      }
+
       log?.info('obtainApplicationData -> ReturnMapper -> ' + Json.serialize(mapper));
+      log?.debug('Completed obtainApplicationData -> applicationNumber -> ' + applicationNumber);
       return mapper;
     }
   }
+
   /**
    * @description
-   * @author Digital Align | 11-16-2021
-   * @param List<applicant__c> applicantList
-   * @return list<ApplicationSubmissionResponse.Applicant>
+   * @author Digital Align Team | 03-11-2022
+   * @param ApplicationSubmissionResponse.Application mapperApplication
+   * @param Application__c application
+   * @return ApplicationSubmissionResponse.Application
    **/
-  global virtual list<ApplicationSubmissionResponse.Applicant> mapApplicant(List<applicant__c> applicantList) {
+  global virtual ApplicationSubmissionResponse.Application mapFinancialAcounts(
+    ApplicationSubmissionResponse.Application mapperApplication,
+    Application__c application
+  ) {
+    if (CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
+      return mapperApplication;
+    }
+    mapperApplication.FinancialAccounts = new List<ApplicationSubmissionResponse.FinancialAccount>();
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      ApplicationSubmissionResponse.FinancialAccount mapperFinancialAccount = new ApplicationSubmissionResponse.FinancialAccount();
+      mapperFinancialAccount.FinancialAccountId = financialAccount.Id;
+      mapperFinancialAccount.FinancialProduct = financialAccount.ProductName__c;
+      mapperFinancialAccount.FinancialProductType = financialAccount.ProductCategory__c;
+      mapperFinancialAccount.ExternalCode = financialAccount.FinancialProduct__r.ExternalCode__c;
+      mapperFinancialAccount.InternalCode = financialAccount.FinancialProduct__r.InternalCode__c;
+      mapperFinancialAccount.ExternalApplicationNumber = financialAccount.ExternalApplicationNumber__c;
+      mapperFinancialAccount.Ownership = financialAccount.Ownership__c;
+      mapperApplication.FinancialAccounts.add(mapperFinancialAccount);
+    }
+
+    //exisitng application and product mapping
+    mapperApplication.ExternalApplicationNumber = mapperApplication.FinancialAccounts[0].ExternalApplicationNumber;
+    mapperApplication.FinancialProductType = mapperApplication.FinancialAccounts[0].FinancialProductType;
+    mapperApplication.FinancialProduct = mapperApplication.FinancialAccounts[0].FinancialProduct;
+    return mapperApplication;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 03-11-2022
+   * @param ApplicationSubmissionResponse.Application mapperApplication
+   * @param List<applicant__c> applicantList
+   * @return ApplicationSubmissionResponse.Application
+   **/
+  global virtual ApplicationSubmissionResponse.Application mapApplicants(
+    ApplicationSubmissionResponse.Application mapperApplication,
+    List<applicant__c> applicantList
+  ) {
     list<ApplicationSubmissionResponse.Applicant> mapperApplicantList = new List<ApplicationSubmissionResponse.Applicant>();
     for (applicant__c applicant : applicantList) {
       ApplicationSubmissionResponse.Applicant mapperApplicant = new ApplicationSubmissionResponse.Applicant();
@@ -126,12 +185,12 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
 
       //Map employment data
       if (!CollectionUtils.isListEmpty(applicant.Employments__r)) {
-        mapperApplicant.Employments.addAll(mapEmployment(applicant.Employments__r));
+        mapperApplicant.Employments.addAll(mapEmployments(applicant.Employments__r));
       }
 
       //Map Identity Data
       if (!CollectionUtils.isListEmpty(applicant.IdentificationDocuments__r)) {
-        mapperApplicant.IdentificationDocuments.addAll(mapIdentity(applicant.IdentificationDocuments__r));
+        mapperApplicant.IdentificationDocuments.addAll(mapIdentities(applicant.IdentificationDocuments__r));
       }
 
       //Map Survey Data
@@ -145,7 +204,9 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       }
       mapperApplicantList.add(mapperApplicant);
     }
-    return mapperApplicantList;
+
+    mapperApplication.Applicants.addAll(mapperApplicantList);
+    return mapperApplication;
   }
 
   /**
@@ -154,7 +215,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @param List<Employment__c> employmentList
    * @return virtual
    **/
-  global virtual list<ApplicationSubmissionResponse.Employment> mapEmployment(List<Employment__c> employmentList) {
+  global virtual list<ApplicationSubmissionResponse.Employment> mapEmployments(List<Employment__c> employmentList) {
     list<ApplicationSubmissionResponse.Employment> mapperEmploymentList = new List<ApplicationSubmissionResponse.Employment>();
     for (Employment__c employment : employmentList) {
       ApplicationSubmissionResponse.Employment mapperEmployment = new ApplicationSubmissionResponse.Employment();
@@ -183,7 +244,7 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    * @param List<IdentificationDocument__c> identityList
    * @return virtual
    **/
-  global virtual list<ApplicationSubmissionResponse.IdentificationDocument> mapIdentity(
+  global virtual list<ApplicationSubmissionResponse.IdentificationDocument> mapIdentities(
     List<IdentificationDocument__c> identityList
   ) {
     list<ApplicationSubmissionResponse.IdentificationDocument> mapperIdentityList = new List<ApplicationSubmissionResponse.IdentificationDocument>();
@@ -267,16 +328,13 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
     if (string.isBlank(applicationNumber)) {
       throw new CustomException(System.Label.Application_ApplicationNameCannotBeBlank);
     }
-
-    List<id> reletedEntityIdList = new List<id>();
-    List<Map<string, string>> fileDetails = new List<Map<string, string>>();
     Application__c application = SubmissionRepository.readApplicationByApplicationNumber(applicationNumber);
-
     if (application == null) {
       throw new customException(System.Label.Application_ApplicationNotFound);
     }
-
     application = readApplicationWithChild(application.Id);
+    List<id> reletedEntityIdList = new List<id>();
+    List<Map<string, string>> fileDetails = new List<Map<string, string>>();
 
     for (Applicant__c applicant : application.Applicants__r) {
       // documents related to applicant
@@ -303,34 +361,6 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
     }
     log?.debug('fileDetails =' + JSON.serialize(fileDetails));
     return ApexResponse.OK(fileDetails).addHeader('Content-Type', 'application/json');
-  }
-  /**
-   * @description Read application by parameter passed
-   * @author Digital Align Team | 10-21-2021
-   * @param Map<String Object> params
-   * @return Application__c
-   **/
-  global virtual Application__c readApplicationWithChild(Id applicationId) {
-    Application__c application = SubmissionRepository.readApplicationWithChild(applicationId);
-
-    List<Applicant__c> applicants = readApplicantsWithChild(application.Applicants__r);
-    List<FinancialAccount__c> financialAccounts = FinancialAccountService.getInstance()
-      .readFinancialAccountsWithChild(application.mflow__FinancialAccounts__r);
-
-    //Combine result into single application object
-    SObjectConstructor builder = SObjectConstructor.getInstance(application);
-    builder.setChildObjects('mflow__Applicants__r', applicants);
-    builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
-    return (Application__c) builder.build();
-  }
-
-  /**
-   * @description Read all applicant by applicant records
-   * @author Digital Align Team | 10-26-2021
-   * @param List<Applicant__c> applicants
-   **/
-  global virtual List<Applicant__c> readApplicantsWithChild(List<Applicant__c> applicants) {
-    return SubmissionRepository.readApplicantsWithChild(new Map<Id, SObject>(applicants).keySet());
   }
 
   /**

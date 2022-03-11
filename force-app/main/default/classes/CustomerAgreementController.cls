@@ -29,7 +29,7 @@ global with sharing class CustomerAgreementController {
   global Application__c readApplicationWithChild(Id applicationId) {
     Application__c application = SubmissionRepository.readApplicationWithChild(applicationId);
 
-    List<Applicant__c> applicants = SubmissionRepository.readApplicantsWithIdentityAddress(
+    List<Applicant__c> applicants = SubmissionRepository.readApplicantsWithChild(
       new Map<Id, SObject>(application.Applicants__r).keySet()
     );
     SObjectConstructor builder = SObjectConstructor.getInstance(application);

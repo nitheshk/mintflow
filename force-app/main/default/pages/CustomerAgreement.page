@@ -51,11 +51,11 @@
               value="LOS Application Number : "
               styleClass="headerStyle "
             ></apex:outputText>
-            <apex:outputText
+            <!-- <apex:outputText
               style="font-style: bold"
               value="{!application.ExternalApplicationNumber__c}"
               styleClass="headerStyle "
-            ></apex:outputText>
+            ></apex:outputText> -->
           </h4>
         </div>
         <div>

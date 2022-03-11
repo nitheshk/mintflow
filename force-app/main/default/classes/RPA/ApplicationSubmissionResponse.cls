@@ -12,8 +12,8 @@ global with sharing class ApplicationSubmissionResponse {
   global ApplicationSubmissionResponse() {
     Application = new Application();
   }
-  //global List<FinancialAccount> FinancialAccounts;
   global class Application {
+    global List<FinancialAccount> FinancialAccounts;
     global List<Applicant> Applicants;
     global List<Survey> Surveys;
     global string FinancialProductType;
@@ -39,10 +39,22 @@ global with sharing class ApplicationSubmissionResponse {
     // global String UserAccountType;
     global string ExternalApplicationNumber;
     global Application() {
+      FinancialAccounts = new List<FinancialAccount>();
       Applicants = new List<Applicant>();
       Surveys = new List<Survey>();
     }
   }
+
+  global class FinancialAccount {
+    global String FinancialAccountId;
+    global String ExternalApplicationNumber;
+    global String InternalCode;
+    global String ExternalCode;
+    global String FinancialProduct;
+    global String FinancialProductType;
+    global String Ownership;
+  }
+
   global class Applicant {
     global String ApplicantId;
     global String ApplicantName;
