@@ -297,8 +297,8 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF",
-                "backgroundOverlayColor": "rgba(0, 0, 0, 0.3)",
+                "background": "background: rgba(236,246,254,0.51) url(/sfsites/c/file-asset/mflow__p1fcuimage?v=1) center center /cover",
+                "backgroundOverlayColor": "rgba(29, 31, 109, 0.3)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,
                 "collapseNavMenu": false,
@@ -309,12 +309,12 @@
                 "dropdownBorderColor": "#F0F0F0",
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
-                "headerHeight": 16,
+                "headerHeight": 25,
                 "linkActiveBorderColor": "",
                 "linkColor": "rgba(0, 0, 0, 0.8)",
                 "linkHoverColor": "rgba(0, 0, 0, 0.7)",
                 "linkTextShadowColor": "rgba(255, 255, 255, 0)",
-                "logoWidth": 150,
+                "logoWidth": 82,
                 "searchStyle": "expanded",
                 "showAppLauncher": false,
                 "showNavMenuOnLeft": true,
@@ -329,18 +329,18 @@
                   "components": [
                     {
                       "componentAttributes": {
-                        "buttonBackgroundColor": "",
-                        "buttonBackgroundHoverColor": "",
-                        "buttonBorderColor": "rgba(0, 0, 0, 0)",
-                        "buttonBorderRadius": 15,
+                        "buttonBackgroundColor": "inherit",
+                        "buttonBackgroundHoverColor": "inherit",
+                        "buttonBorderColor": "transparent",
+                        "buttonBorderRadius": 5,
                         "buttonText": "Log in",
-                        "buttonTextColor": "",
-                        "buttonTextHoverColor": "",
-                        "customizableUserProfileMenuEditor": "FinancialInstituteProfileMenu",
-                        "menuStyleSettings": "{\"selectedMenuStyleSetting\":\"iconOnly\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
+                        "buttonTextColor": "#fff",
+                        "buttonTextHoverColor": "#0099de",
+                        "customizableUserProfileMenuEditor": "Default_User_Profile_Menu",
+                        "menuStyleSettings": ""
                       },
                       "componentName": "forceCommunity:customizableUserProfileMenu",
-                      "id": "acf6adc3-6b9e-4bbe-93a0-8d1f3ee7aeeb",
+                      "id": "2f33ffd5-0376-49ba-b47d-99121caa343e",
                       "renditionMap": {},
                       "type": "component"
                     }
@@ -353,23 +353,21 @@
                   "components": [
                     {
                       "componentAttributes": {
-                        "backgroundColor": "#FFFFFF",
-                        "borderColor": "rgba(0, 0, 0, 0.8)",
-                        "borderRadius": 20,
-                        "borderStyle": "outline",
-                        "buttonColor": "",
-                        "buttonHoverColor": "",
+                        "contineActionLabel": "Ask the community",
+                        "continueLabel": "Don’t see it?",
                         "crossObjectTypeaheadApiNames": "",
-                        "iconColor": "rgba(0, 0, 0, 0.8)",
-                        "placeholderText": "Search...",
-                        "placeholderTextColor": "rgba(0, 0, 0, 0.6)",
-                        "showSearchButton": false,
-                        "textColor": "rgba(0, 0, 0, 0.8)",
-                        "typeaheadResultMax": 5,
-                        "useTypeahead": true
+                        "disableCrossObjectRelevance": false,
+                        "enableAutocomplete": true,
+                        "maxNumberOfResults": 6,
+                        "placeholder": "Search...",
+                        "questionResultsFirst": false,
+                        "showContinueAction": true,
+                        "showDetails": false,
+                        "showTopics": true,
+                        "signInActionLabel": "Sign in to ask the community"
                       },
-                      "componentName": "forceCommunity:themeSearch",
-                      "id": "c876d1b6-d56b-4d02-a966-edff427abcec",
+                      "componentName": "forceCommunity:searchBox",
+                      "id": "020d54cd-a9f0-4bac-9478-c34883371173",
                       "renditionMap": {},
                       "type": "component"
                     }
@@ -379,6 +377,17 @@
                   "type": "region"
                 },
                 {
+                  "components": [
+                    {
+                      "componentAttributes": {
+                        "richTextValue": "<h1 style=\"text-align:center;color:white;font-size:32px;\">\n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1FCU_Logo_white.png\" height=\"100\" width=\"100\" style=\"text-align:center;\"/>\n<br/>>A Pacific Northwet Original since 1938\n</h1>"
+                      },
+                      "componentName": "forceCommunity:htmlBlock",
+                      "id": "a6853c02-86a9-45fb-b117-6eec8e24b36d",
+                      "renditionMap": {},
+                      "type": "component"
+                    }
+                  ],
                   "id": "5bc7f048-d53c-483c-a5b0-5189543c44cf",
                   "regionName": "nav",
                   "type": "region"
