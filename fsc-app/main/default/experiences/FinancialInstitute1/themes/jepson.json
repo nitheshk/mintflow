@@ -336,7 +336,7 @@
                         "buttonText": "Log in",
                         "buttonTextColor": "#fff",
                         "buttonTextHoverColor": "#0099de",
-                        "customizableUserProfileMenuEditor": "Default_User_Profile_Menu",
+                        "customizableUserProfileMenuEditor": "FinancialInstituteProfileMenu",
                         "menuStyleSettings": ""
                       },
                       "componentName": "forceCommunity:customizableUserProfileMenu",
