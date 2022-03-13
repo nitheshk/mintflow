@@ -380,7 +380,7 @@
                   "components": [
                     {
                       "componentAttributes": {
-                        "richTextValue": "<h1 style=\"text-align:center;color:white;font-size:32px;\">\n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1FCU_Logo_white.png\" height=\"100\" width=\"100\" style=\"text-align:center;\"/>\n<br/>>A Pacific Northwet Original since 1938\n</h1>"
+                        "richTextValue": "<h1 style=\"text-align:center;color:white;font-size:32px;\">\n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1FCU_Logo_white.png\" height=\"100\" width=\"100\" style=\"text-align:center;\"/>\n<br/>A Pacific Northwest Original Since 1938\n</h1>"
                       },
                       "componentName": "forceCommunity:htmlBlock",
                       "id": "a6853c02-86a9-45fb-b117-6eec8e24b36d",
