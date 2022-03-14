@@ -25,8 +25,30 @@
     <layoutAssignments>
         <layout>mflow__Survey__c-mflow__Survey Layout</layout>
     </layoutAssignments>
-
-    <userLicense>Customer Community Plus Login</userLicense>
+    <layoutAssignments>
+        <layout>mflow__Application__c-mflow__FI Application Layout</layout>
+    </layoutAssignments>
+     <layoutAssignments>
+        <layout>mflow__Applicant__c-FI Applicant Layout</layout>
+           <recordType>mflow__Applicant__c.Beneficiary</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>mflow__Applicant__c-FI Applicant Layout</layout>
+           <recordType>mflow__Applicant__c.EmergencyContact</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>mflow__Applicant__c-FI Applicant Layout</layout>
+           <recordType>mflow__Applicant__c.FamilyMember</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>mflow__Applicant__c-FI Applicant Layout</layout>
+           <recordType>mflow__Applicant__c.Joint</recordType>
+    </layoutAssignments>
+ <layoutAssignments>
+        <layout>mflow__Applicant__c-FI Applicant Layout</layout>
+           <recordType>mflow__Applicant__c.Primary</recordType>
+    </layoutAssignments>
+  <userLicense>Customer Community Plus Login</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>ActivitiesAccess</name>
