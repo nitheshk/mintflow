@@ -5,13 +5,7 @@
     <layoutAssignments>
         <layout>FinancialAccountTransaction__c-mflow__Financial Account Transaction Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
-        <layout>Employment__c-mflow__Employment Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>IdentificationDocument__c-mflow__Identification Document Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
+     <layoutAssignments>
         <layout>Flow__c-mflow__Flow Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -47,6 +41,15 @@
  <layoutAssignments>
         <layout>mflow__Applicant__c-FI Applicant Layout</layout>
            <recordType>mflow__Applicant__c.Primary</recordType>
+    </layoutAssignments>
+     <layoutAssignments>
+        <layout>mflow__IdentificationDocument__c-FI Identification Document Layout</layout>
+    </layoutAssignments>
+     <layoutAssignments>
+        <layout>mflow__Employment__c-FI Employment Layout</layout>
+    </layoutAssignments>
+     <layoutAssignments>
+        <layout>ContactPointAddress-FI Contact Point Address Layout</layout>
     </layoutAssignments>
   <userLicense>Customer Community Plus Login</userLicense>
     <userPermissions>
