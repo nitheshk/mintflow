@@ -134,6 +134,7 @@ global virtual with sharing class BuildFundingWrapper extends AbstractService {
     mapperTransaction.TransactionStatus = accountTransaction.TransactionStatus__c;
     mapperTransaction.InstitutionState = accountTransaction.mflow__TransactionStateCode__c;
     mapperTransaction.TransactionType = accountTransaction.TransactionSubType__c;
+    mapperTransaction.TransactionAccountType = accountTransaction.TransactionAccountType__c;
     mapperTransaction.TransactionDate = date.newinstance(
       accountTransaction.TransactionDate__c.year(),
       accountTransaction.TransactionDate__c.month(),

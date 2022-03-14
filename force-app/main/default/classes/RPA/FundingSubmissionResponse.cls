@@ -31,6 +31,7 @@ global with sharing class FundingSubmissionResponse {
     global String TransactionType;
     global String TransactionStatus;
     global String AccountHolderName;
+    global String TransactionAccountType;
   }
 
   /** Funding Response */
