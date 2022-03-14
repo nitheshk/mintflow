@@ -189,14 +189,13 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {firstName} {lastName},</h5>
+                      <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
                       <br />
                       We're happy that another incredible person is now a
-                      Mintflow customer. Your {productName} account is now ready
+                      Mintflow customer. Your account is now ready
                       to use.
-                      <br />Here are the details of your account <br /> Account
-                      Number - {accountNumber} <br /> Customer Number -
-                      {customerNumber}
+                      <br />Here are the details of your account <br />
+                      {AccountDetail}
                     </p>
                   </td>
                 </tr>

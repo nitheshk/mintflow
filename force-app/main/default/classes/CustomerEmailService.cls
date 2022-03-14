@@ -39,8 +39,6 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
-          '{FirstName}' => applicant.FirstName__c,
-          '{LastName}' => applicant.LastName__c,
           '{OTP}' => applicant.SmsOtp__c +
           ' ' +
           applicant.EmailOtp__c,
@@ -49,10 +47,6 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       );
     sendEmail();
   }
-  // @InvocableMethod(label='Get Account Names')
-  // global static void sendAbandonedEmail(List<Id> accountIds) {
-  //   system.debug('triggered id=' + accountIds);
-  // }
 
   /**
    * @description Notification to family member on reference
@@ -107,14 +101,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
     EmailNotificationBuilder.newInstance('removeJoint', primaryApplicant.Id)
       .setToAddresses(primaryApplicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{
-          '{firstName}' => primaryApplicant.FirstName__c,
-          '{lastName}' => primaryApplicant.LastName__c,
-          '{jointApplicantNames}' => jointApplicantNames
-        }
-      );
-
+      .setSubstitute(new Map<String, String>{ '{jointApplicantNames}' => jointApplicantNames });
     sendEmail();
   }
 
@@ -137,16 +124,9 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     }
     params.put('aplId', applicant.Id);
     params.put('ch', 'Virtual');
-    String link = generateUrl(params);
     EmailNotificationBuilder.newInstance('ResumeApplicationEmail', applicant.Id)
       .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{
-          '{firstName}' => applicant.FirstName__c,
-          '{lastName}' => applicant.LastName__c,
-          '{url}' => link
-        }
-      );
+      .setSubstitute(new Map<String, String>{ '{url}' => generateUrl(params) });
     sendEmail();
   }
 
@@ -169,16 +149,9 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     params.put('aplType', ApexRequest.getApplicantType());
     params.put('aplId', applicant.Id);
     params.put('ch', 'Virtual');
-    String link = generateUrl(params);
     EmailNotificationBuilder.newInstance('SavedApplication', applicant.Id)
       .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{
-          '{firstName}' => applicant.FirstName__c,
-          '{lastName}' => applicant.LastName__c,
-          '{url}' => link
-        }
-      );
+      .setSubstitute(new Map<String, String>{ '{url}' => generateUrl(params) });
     sendEmail();
   }
 
@@ -221,14 +194,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
       EmailNotificationBuilder.newInstance(notificationName, applicant.Id)
         .setToAddresses(applicant.Email__c)
-        .setSubstitute(
-          new Map<String, String>{
-            '{FirstName}' => applicant.FirstName__c,
-            '{LastName}' => applicant.LastName__c,
-            '{ApplicationNumber}' => ApexRequest.getApplicationName(),
-            '{url}' => link
-          }
-        );
+        .setSubstitute(new Map<String, String>{ '{url}' => link });
     }
     sendEmail();
   }
@@ -267,11 +233,11 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       .setToAddresses(applicant.Email__c)
       .setSubstitute(
         new Map<String, String>{
-          '{FirstName}' => applicant.FirstName__c,
-          '{LastName}' => applicant.LastName__c,
-          '{productName}' => 'Member Account',
-          '{accountNumber}' => finAcc.AccountNumber__c,
-          '{customerNumber}' => applicant.CustomerNumber__c
+          '{AccountDetail}' => 'Account Number - ' +
+          finAcc.AccountNumber__c +
+          ', Customer Number  -' +
+          finAcc.ProductName__c +
+          '<br />'
         }
       );
     sendEmail();
@@ -296,14 +262,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         );
         EmailNotificationBuilder.newInstance('FundingLinkOnKycApproval', applicant.Id)
           .setToAddresses(applicant.Email__c)
-          .setSubstitute(
-            new Map<String, String>{
-              '{FirstName}' => applicant.FirstName__c,
-              '{LastName}' => applicant.LastName__c,
-              '{ApplicationNumber}' => application.Name,
-              '{url}' => link
-            }
-          );
+          .setSubstitute(new Map<String, String>{ '{url}' => link });
         break;
       }
     }
@@ -349,9 +308,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
 
     EmailNotificationBuilder.newInstance('IdentityUploadDocument', applicant.Id)
       .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{ '{applicationNumber}' => applicant.Application__r.Name, '{url}' => link }
-      );
+      .setSubstitute(new Map<String, String>{ '{url}' => link });
     sendEmail();
   }
 
@@ -365,7 +322,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       'flw' => ApplicationConstant.FLOW_TYPE_APPLICATION,
       'urlSuffix' => '/membership/application/otp',
       'ch' => 'Virtual',
-      'pageName' => '/mflow__OpenAccount'
+      'pageName' => '/OpenAccount'
     };
     String link = generateUrl(params);
     string productDetails = '';
@@ -381,14 +338,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     }
     EmailNotificationBuilder.newInstance('StartSecondaryApplication', applicant.Id)
       .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<string, String>{
-          '{FirstName}' => applicant.FirstName__c,
-          '{LastName}' => applicant.LastName__c,
-          //'{products}' => products[0].Name,
-          '{productDetails}' => productDetails
-        }
-      );
+      .setSubstitute(new Map<string, String>{ '{productDetails}' => productDetails });
     sendEmail();
   }
 
@@ -412,6 +362,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         log?.debug('Email sent Successfully');
       } else {
         log?.debug('Failed to send Email ');
+        NotificationBuilder.chatterMessagePost(ApexRequest.getApplicationId(), 'Email Trigger Failure ' + results);
         // #pending exception on sending email
         //throw new customException(System.Label.Email_EmailNotSent);
       }

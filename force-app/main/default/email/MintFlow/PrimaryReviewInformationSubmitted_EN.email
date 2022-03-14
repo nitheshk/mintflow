@@ -189,12 +189,11 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {FirstName} {LastName},</h5>
+                      <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
                       <br />
-                      Congratulations, your application   [{ApplicationNumber}] has been successfully submitted and is being reviewed.
+                      Congratulations, your application  {!RelatedTo.Application__r.Name} has been successfully submitted and is being reviewed.
                      <p> We will notify you once it has been completed however, you may check the status anytime by logging into the <a href="{url}" target="_blank">portal</a>.</p>
                       <br />
-                  
                     </p>
                   </td>
                 </tr>
@@ -216,7 +215,6 @@
                     </p>
                   </td>
                 </tr>
-               
                 <tr>
                   <td
                     bgcolor="#ffffff"

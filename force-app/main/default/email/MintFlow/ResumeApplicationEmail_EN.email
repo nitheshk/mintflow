@@ -189,11 +189,11 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {firstName} {lastName},</h5>
+                      <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
                       <br />
-                        We need some additional information in order to complete your application. 
+                        We need some additional information in order to complete your application [{!RelatedTo.Application__r.Name}].
                          It will only take a few more moments. Please simply log in to the e <a href="{url}" target="_blank">portal</a> here to complete it. <br/>
-                       <br/> You will receive a confirmation email once it is successfully opened. 
+                       <br/> You will receive a confirmation email once it is successfully opened.
                     </p>
                   </td>
                 </tr>
@@ -213,7 +213,6 @@
                     <p style="margin: 0">Thank you for your interest in MintFlow.</p>
                   </td>
                 </tr>
-              
                 <tr>
                   <td
                     bgcolor="#ffffff"

@@ -189,10 +189,10 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {FirstName} {LastName},</h5>
+                      <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
                       <br />
                       We are excited  to let you know that  your application
-                      {ApplicationNumber} has been approved. One last step to
+                      {!RelatedTo.Application__r.Name} has been approved. One last step to
                       complete the process. Please
                       <a href="{url}" target="_blank">click here</a> to start
                       the funding process of your account.
@@ -215,7 +215,6 @@
                     <p style="margin: 0">Happy banking.</p>
                   </td>
                 </tr>
-               
                 <tr>
                   <td
                     bgcolor="#ffffff"
@@ -234,9 +233,8 @@
                         href="mailto:support@digitalalign.com"
                         style="color: #ffa73b"
                         >support@digitalalign.com</a
-                      > or visit our FAQs page. 
-                     If preferred, you can chat with an agent during our operating hours. 
-                     
+                      > or visit our FAQs page.
+                     If preferred, you can chat with an agent during our operating hours.
                     </p>
                   </td>
                 </tr>

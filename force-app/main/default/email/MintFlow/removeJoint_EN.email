@@ -189,10 +189,9 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {firstName} {lastName},</h5>
+                      <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
                       <br />
-                      Your application [{applicationNumber}] is open from long time. You can simply remove joint applicant(s) {jointApplicantNames} by clicking <a href="{link}" target="_blank">portal</a> and complete your account opening process.
-                     
+                      Your application {applicationNumber} is open from long time. You can simply remove joint applicant(s) {jointApplicantNames} by clicking <a href="{link}" target="_blank">portal</a> and complete your account opening process.
                     </p>
                   </td>
                 </tr>

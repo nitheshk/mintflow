@@ -189,7 +189,7 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {FirstName} {LastName},</h5>
+                      <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
                       <br />
 
                       Here's the login information you requested. This will be used to verify your email address.

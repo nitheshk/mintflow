@@ -89,7 +89,6 @@
           padding: 0 !important;
         "
       >
-       
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <!-- LOGO -->
           <tr>
@@ -175,8 +174,8 @@
                     <p style="margin: 0">
                       <h5>Hi  {!relatedTo.FirstName__c} {!relatedTo.LastName__c},</h5>
                       <br />
-                      Please upload your Identity Document(s) using this <a href="{url}" target="_blank">link</a> 
-                      to proceed further on the Application {applicationNumber}.
+                      Please upload your Identity Document(s) using this <a href="{url}" target="_blank">link</a>
+                      to proceed further on the Application {!RelatedTo.Application__r.Name}.
                       <br />
                     </p>
                   </td>
@@ -199,7 +198,6 @@
                     </p>
                   </td>
                 </tr>
-               
                 <tr>
                   <td
                     bgcolor="#ffffff"
