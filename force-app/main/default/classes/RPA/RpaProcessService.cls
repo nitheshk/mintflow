@@ -41,9 +41,13 @@ global virtual with sharing class RpaProcessService extends AbstractService {
       RpaProcessService.getInstance().resolveDoPost();
     } catch (CustomException ex) {
       log?.error(ex);
+      NotificationService.getInstance()
+        .generalExceptionNotification(ApexRequest.getApplicationId(), ApexRequest.getApplicationName(), ex);
       ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
+      NotificationService.getInstance()
+        .generalExceptionNotification(ApexRequest.getApplicationId(), ApexRequest.getApplicationName(), ex);
       ApexResponse.fail(ex);
     } finally {
       Logger.persist();
@@ -61,9 +65,13 @@ global virtual with sharing class RpaProcessService extends AbstractService {
       RpaProcessService.getInstance().resolveDoGet();
     } catch (CustomException ex) {
       log?.error(ex);
+      NotificationService.getInstance()
+        .generalExceptionNotification(ApexRequest.getApplicationId(), ApexRequest.getApplicationName(), ex);
       ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
+      NotificationService.getInstance()
+        .generalExceptionNotification(ApexRequest.getApplicationId(), ApexRequest.getApplicationName(), ex);
       ApexResponse.fail(ex);
     } finally {
       Logger.persist();
@@ -124,8 +132,8 @@ global virtual with sharing class RpaProcessService extends AbstractService {
    **/
   global virtual HttpBuilder.Response scheduleApplication(Application__c application) {
     Flow.initialize(application.Id);
-    Flow.setFlow('Rpa-Process: review application');
-    Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id);
+    Flow.setFlow('Rpa Queue Process');
+    Flow.setSubFlow(APINames.UiPathAddQueue.name(), application.Id, String.valueOf(Datetime.now().getTime()));
     try {
       if (HttpBuilder.isActiveApiSetting(APINames.UiPathAddQueue)) {
         String token;

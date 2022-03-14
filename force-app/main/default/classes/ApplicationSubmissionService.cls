@@ -42,7 +42,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       application.mflow__FlowState__c = '';
     } else {
       application.Status__c = ApplicationConstant.SUBMITTED;
-      application.Stage__c = 'Submitted';
+      application.Stage__c = ApplicationConstant.SUBMITTED;
     }
 
     for (Applicant__c applicant : application.Applicants__r) {
@@ -51,6 +51,8 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
         break;
       }
     }
+    application.SubmittedDate__c = Datetime.now();
+    application.SubmittedBy__c = UserInfo.getUserId();
     SubmissionRepository.upsertRecord(application);
     SubmissionRepository.upsertRecords(application.Applicants__r);
     log?.debug('Completed submitApplication');
@@ -78,12 +80,12 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.Name);
 
+    //chatter post on record level
+    NotificationBuilder.chatterMessagePost(application.Id, 'Funding Response from meridian link  : ' + resultJson);
+
     if (application.Status__c == ApplicationConstant.COMPLETED) {
       throw new CustomException('Application has already processed');
     }
-
-    //chatter post on record level
-    NotificationBuilder.chatterMessagePost(application.Id, 'Funding Response from meridian link  : ' + resultJson);
 
     // roll back whole transaction on failure
     Savepoint sp = Database.setSavepoint();
@@ -94,31 +96,26 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
         //Send Funding Email Link to primary
         // CustomerEmailService.getInstance()
         //   .fundingLinkOnKycApproval(application);
-        // NotificationService.getInstance()
-        //   .dispatchKycNotification(
-        //     'onSuccessKycProcess',
-        //     application.Id,
-        //     application.Name,
-        //     null
-        //   );
+        NotificationService.getInstance()
+          .dispatchSubmitNotification(
+            'onApplicationCompleted',
+            ApexRequest.getApplicationId(),
+            ApexRequest.getApplicationName(),
+            null
+          );
       } else {
-        // NotificationService.getInstance()
-        //   .dispatchKycNotification(
-        //     'onReviewKycProcess',
-        //     application.Id,
-        //     application.Name,
-        //     null
-        //   );
+        NotificationService.getInstance()
+          .dispatchSubmitNotification(
+            'onApplicationFailed',
+            ApexRequest.getApplicationId(),
+            ApexRequest.getApplicationName(),
+            null
+          );
       }
       return application;
     } catch (Exception ex) {
-      // NotificationService.getInstance()
-      //   .dispatchKycNotification(
-      //     'onExceptionKycProcess',
-      //     ApexRequest.getApplicantId(),
-      //     ApexRequest.getApplicationName(),
-      //     ex.getStackTraceString()
-      //   );
+      NotificationService.getInstance()
+        .generalExceptionNotification(ApexRequest.getApplicationId(), ApexRequest.getApplicationName(), ex);
       log?.error(ex);
       Database.rollback(sp);
       throw ex;

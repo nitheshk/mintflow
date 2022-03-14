@@ -65,6 +65,8 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       log?.debug('Inside obtainApplicationData -> applicationNumber -> ' + applicationNumber);
 
       Application__c application = readApplicationWithChild(applicationNumber);
+      ApexRequest.setApplicationId(application.id);
+      ApexRequest.setApplicationName(application.Name);
 
       ApplicationSubmissionResponse mapper = new ApplicationSubmissionResponse();
       ApplicationSubmissionResponse.Application mapperApplication = mapper.Application;
@@ -325,14 +327,11 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
    **/
   public virtual Object obtainApplicationFiles(string applicationNumber) {
     log?.fine('Inside obtainApplicationFiles -> applicationNumber -> ' + applicationNumber);
-    if (string.isBlank(applicationNumber)) {
-      throw new CustomException(System.Label.Application_ApplicationNameCannotBeBlank);
-    }
-    Application__c application = SubmissionRepository.readApplicationByApplicationNumber(applicationNumber);
-    if (application == null) {
-      throw new customException(System.Label.Application_ApplicationNotFound);
-    }
-    application = readApplicationWithChild(application.Id);
+
+    Application__c application = readApplicationWithChild(applicationNumber);
+    ApexRequest.setApplicationId(application.id);
+    ApexRequest.setApplicationName(application.Name);
+
     List<id> reletedEntityIdList = new List<id>();
     List<Map<string, string>> fileDetails = new List<Map<string, string>>();
 

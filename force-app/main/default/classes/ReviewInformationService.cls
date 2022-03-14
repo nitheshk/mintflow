@@ -94,6 +94,8 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
           .dispatchKycNotification('onExceptionKycReviewSubmit', application.Id, application.Name, response.status);
       } else {
         application.Stage__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+        application.SubmittedDate__c = Datetime.now();
+        application.SubmittedBy__c = UserInfo.getUserId();
         NotificationService.getInstance()
           .dispatchKycNotification('onSuccessKycReviewSubmit', application.Id, application.Name, null);
       }
@@ -162,7 +164,8 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     if (isFlowCompleted) {
       //Mark Application to submitted for review
       application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-      // Need to move future thr is dml operation before this
+      application.SubmittedDate__c = Datetime.now();
+      application.SubmittedBy__c = UserInfo.getUserId();
       HttpBuilder.Response response = RpaProcessService.getInstance().scheduleApplication(application);
       if (response.statusCode == 400) {
         application.Stage__c = 'Exception';

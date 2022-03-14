@@ -128,4 +128,65 @@ global virtual with sharing class NotificationService extends AbstractService {
       }
     }
   }
+
+  /**
+   * @description dispatch kyc notification
+   * @author Digital Align Team | 01-18-2022
+   * @param String eventName
+   * @param Id entityId
+   * @param String title
+   * @param String message
+   **/
+  global virtual void dispatchSubmitNotification(String eventName, Id entityId, String title, String message) {
+    switch on eventName {
+      when 'onApplicationCompleted' {
+        String chatterPost = 'Application Completed Succesfully';
+        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
+        NotificationBuilder.bellNotification(
+          entityId,
+          title,
+          chatterPost,
+          NotificationBuilder.getRegularGroupId('OnKycSuccess')
+        );
+      }
+      when 'onApplicationFailed' {
+        String chatterPost = 'Application has failed to process, Please Review';
+        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
+        NotificationBuilder.bellNotification(
+          entityId,
+          title,
+          chatterPost,
+          NotificationBuilder.getRegularGroupId('OnKycReview')
+        );
+      }
+    }
+  }
+
+  /**
+   * @description general Exception Notification
+   * @author Digital Align Team | 01-18-2022
+   * @param String eventName
+   * @param Id entityId
+   * @param String title
+   * @param String message
+   **/
+  global virtual void generalExceptionNotification(Id entityId, String title, Exception ex) {
+    String exceptionTrace =
+      'Message: ' +
+      ex.getMessage() +
+      ' ; Line Number: ' +
+      ex.getLineNumber() +
+      ' ; Type: ' +
+      ex.getTypeName() +
+      ' ; Stack Trace: ' +
+      ex.getStackTraceString();
+    NotificationBuilder.chatterMessagePost(entityId, exceptionTrace);
+    // Notification
+    NotificationBuilder.bellNotification(
+      entityId,
+      title,
+      'Exception Occur while processing application',
+      NotificationBuilder.getRegularGroupId('OnKycReview')
+    );
+  }
 }
