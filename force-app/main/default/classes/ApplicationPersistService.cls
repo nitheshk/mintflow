@@ -143,7 +143,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     //Initially set joint flow state
     if (String.isBlank(applicant.Id)) {
       if (recordTypeName == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE) {
-        applicant.FlowState__c = ApplicationConstant.JOINT_WELCOME;
+        applicant.FlowState__c = ApplicationConstant.PERSONAL_INFO;
         applicant.Status__c = ApplicationConstant.DRAFT;
       } else if (recordTypeName == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         applicant.Status__c = ApplicationConstant.IN_PROGRESS;

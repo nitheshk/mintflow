@@ -73,7 +73,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     if (ApexRequest.getApplicantType() == 'Primary') {
       for (Applicant__c applicant : applicants) {
         if (applicant.mflow__ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-          applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
+          applicant.FlowState__c = ApexRequest.getRequest().currentPage;
           applicant.FlowType__c = ApexRequest.getFlowType();
           applicant.sessionExpireTime__c = Datetime.now()
             .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().SessionExpirationTime__c);
@@ -81,13 +81,13 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
           break;
         }
       }
-      application.FlowState__c = (String) ApexRequest.getParams('flowState');
+      application.FlowState__c = ApexRequest.getRequest().currentPage;
       application.FlowType__c = ApexRequest.getFlowType();
       ApplicationRepository.UpsertRecord(application);
     } else if (ApexRequest.getApplicantType() == 'Joint') {
       for (Applicant__c applicant : applicants) {
         if (applicant.Id == ApexRequest.getApplicantId()) {
-          applicant.FlowState__c = (String) ApexRequest.getParams('flowState');
+          applicant.FlowState__c = ApexRequest.getRequest().currentPage;
           applicant.FlowType__c = ApexRequest.getFlowType();
           applicant.sessionExpireTime__c = Datetime.now()
             .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().SessionExpirationTime__c);

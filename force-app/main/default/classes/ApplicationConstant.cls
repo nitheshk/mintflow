@@ -49,6 +49,7 @@ public with sharing class ApplicationConstant {
   public static final String FINAL_CONFIRMATION = 'Complete';
   public static final String FUNDING_WELCOME = 'WelcomeJoint';
   public static final String JOINT_WELCOME = 'WelcomeJoint';
+  public static final String PERSONAL_INFO = 'PersonalInfo';
   public static final String FUNDING_FUNDING = 'Funding';
 
   public static String CUSTOMER_SERVICES = '211B428E-B8B5-4EB9-973D-106F013C371F';

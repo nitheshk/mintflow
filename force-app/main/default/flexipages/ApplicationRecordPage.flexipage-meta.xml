@@ -79,11 +79,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>context</name>
-                    <value>RECORD</value>
-                </componentInstanceProperties>
-                <componentName>forceChatter:publisher</componentName>
+                <componentName>forceChatter:recordFeedContainer</componentName>
             </componentInstance>
         </itemInstances>
         <name>Facet-5c7e84b8-9ddd-4b08-bdcc-0b6dbc705444</name>

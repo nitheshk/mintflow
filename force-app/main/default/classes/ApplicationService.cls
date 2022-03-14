@@ -350,7 +350,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
   global virtual Object updateFlowState(Object entity) {
     try {
       log?.fine('Inside updateFlowState');
-      if (!ApexRequest.getParams().containsKey('flowState')) {
+      if (String.isBlank(ApexRequest.getRequest().currentPage)) {
         return entity;
       }
       if (entity instanceof Application__c) {
