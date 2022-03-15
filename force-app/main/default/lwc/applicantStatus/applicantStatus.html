@@ -1,0 +1,46 @@
+<template>
+  <div class="slds-grid slds-wrap">
+    <div class="slds-col slds-size_1-of-4">
+      <lightning-input
+        type="toggle"
+        label="Phone Verified"
+        class="slds-var-m-around_medium"
+        checked={record.mflow__IsPhoneNumberVerified__c}
+      ></lightning-input>
+    </div>
+    <div class="slds-col slds-size_1-of-4">
+      <lightning-input
+        type="toggle"
+        label="Email Verified"
+        class="slds-var-m-around_medium"
+        checked={record.mflow__IsEmailVerified__c}
+      ></lightning-input>
+    </div>
+    <div class="slds-col slds-size_1-of-4">
+      <lightning-input
+        type="toggle"
+        label="Identity Verified"
+        class="slds-var-m-around_medium"
+        checked={identityVerified}
+      ></lightning-input>
+    </div>
+    <div class="slds-col slds-size_1-of-4">
+      <lightning-input
+        type="toggle"
+        label="OOW Answered"
+        class="slds-var-m-around_medium"
+        checked={record.mflow__OOWStatus__c}
+      ></lightning-input>
+    </div>
+  </div>
+  <div>
+    <div class="slds-col slds-size_1-of-4">
+      <lightning-input
+        type="toggle"
+        label="Phone Verified"
+        class="slds-var-m-around_medium"
+        checked={record.mflow__IsPhoneNumberVerified__c}
+      ></lightning-input>
+    </div>
+  </div>
+</template>

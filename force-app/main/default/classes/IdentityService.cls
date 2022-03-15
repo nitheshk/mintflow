@@ -432,7 +432,7 @@ global virtual with sharing class IdentityService extends AbstractService {
         Applicant__c applicant = ApplicantRepository.readApplicantById(applicantId);
         applicant.mflow__OOWCorrectAnswers__c = countofCorrectAnswers;
         applicant.mflow__OOWTotalQuestions__c = totalQuestions;
-
+        applicant.mflow__OOWStatus__c = true;
         ApplicantRepository.upsertRecord(applicant);
         Decimal totalResult = (decimal) countofCorrectAnswers * 100 / (decimal) totalQuestions;
 

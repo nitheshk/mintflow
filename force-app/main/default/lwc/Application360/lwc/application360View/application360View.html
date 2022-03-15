@@ -82,6 +82,14 @@
                   ></c-record-detail-view>
                 </lightning-tab>
               </template>
+              <lightning-tab label="Status and Report" data-recordid={data.Id} onactive={handleActive}>
+                <c-applicant-status
+                  key={data.Id}
+                  record={data}
+                  s-object-name="mflow__Applicant__c"
+                  title-name="Applicant Details"
+                ></c-applicant-status>
+              </lightning-tab>
             </lightning-tabset>
           </lightning-tab>
         </template>
