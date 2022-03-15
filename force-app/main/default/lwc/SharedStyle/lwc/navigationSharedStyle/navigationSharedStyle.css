@@ -39,11 +39,22 @@
 }
 .nav-bar ul li:hover {
   cursor: pointer;
+  background: #18305d;
+  color: white;
+  border-radius: 25px;
+}
+
+.nav-bar ul li:hover > .icon-style {
+  --sds-c-icon-color-foreground: #ffffff;
+  --sds-c-icon-color-background: none;
 }
 
 .active-nav {
   background: #18305d;
   color: white;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border-radius: 25px !important;
 }
 
 .icon-style {
