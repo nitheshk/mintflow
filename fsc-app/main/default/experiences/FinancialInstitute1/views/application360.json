@@ -146,14 +146,6 @@
             {
               "components": [
                 {
-                  "componentAttributes": {},
-                  "componentName": "mflow:relatedFiles",
-                  "id": "716f0190-4891-4487-b10b-434a70f09c44",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
                   "componentAttributes": {
                     "relatedListApiName": "mflow__FinancialAccounts__r",
                     "relatedListComponentOverride": "ADVGRID",
@@ -166,8 +158,16 @@
                   "type": "component"
                 },
                 {
+                  "componentAttributes": {},
+                  "componentName": "mflow:relatedFiles",
+                  "id": "716f0190-4891-4487-b10b-434a70f09c44",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
                   "componentAttributes": {
-                    "objectApiName": "{!objectApiName}",
+                    "objectApiName": "mflow__Application__c",
                     "recordId": "{!recordId}"
                   },
                   "componentName": "mflow:manualKycDecision",
