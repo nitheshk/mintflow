@@ -215,24 +215,29 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   }
 
   /**
-   * @description
-   * AccountOpened -> Notify Primary applicant that account is opened
-   * @author Digital Align | 11-12-2021
-   * @param Applicant__c applicant
-   * @return virtual
+   * @description Notify Primary applicant that account is opened
+   * @author Digital Align Team | 03-15-2022
+   * @param Application__c application
    **/
-  global virtual void accountOpened(Applicant__c applicant, FinancialAccount__c finAcc) {
-    EmailNotificationBuilder.newInstance('AccountOpened', applicant.Id)
-      .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{
-          '{AccountDetail}' => 'Account Number - ' +
-          finAcc.AccountNumber__c +
-          ', Customer Number  -' +
-          finAcc.ProductName__c +
-          '<br />'
-        }
-      );
+  global virtual void accountOpened(Application__c application) {
+    EmailNotificationBuilder builder = EmailNotificationBuilder.newInstance('AccountOpened', application.Id);
+    for (Applicant__c applicant : application.Applicants__r) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+        builder.setToAddresses(applicant.Email__c);
+      } else if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE) {
+        builder.setCcAddresses(applicant.Email__c);
+      }
+    }
+    String accountDetails = '<br/>';
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      accountDetails +=
+        '<b>Account Name : ' +
+        financialAccount.ProductName__c +
+        ' [ ' +
+        financialAccount.AccountNumber__c +
+        ' ] </b><br/>';
+    }
+    builder.setSubstitute(new Map<String, String>{ '{AccountDetail}' => accountDetails });
     sendEmail();
   }
   /**

@@ -76,7 +76,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       throw new CustomException('Unable to process the empty request');
     }
 
-    Application__c application = SubmissionRepository.readApplicationWithApplicants(fundingResult.Application);
+    Application__c application = SubmissionRepository.readApplicationForFundingProcess(fundingResult.Application);
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.Name);
 
@@ -94,8 +94,7 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
 
       if (application.Status__c == ApplicationConstant.COMPLETED) {
         //Send Funding Email Link to primary
-        // CustomerEmailService.getInstance()
-        //   .fundingLinkOnKycApproval(application);
+        CustomerEmailService.getInstance().accountOpened(application);
         NotificationService.getInstance()
           .dispatchSubmitNotification(
             'onApplicationCompleted',

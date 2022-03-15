@@ -51,7 +51,7 @@ public with sharing class CustomerEmailServiceTest {
     CustomerEmailService.getInstance().resumeApplication(applicant);
     CustomerEmailService.getInstance().notifyAboutEmploymentReport(applicant, 'Notify');
     CustomerEmailService.getInstance().uploadIdentityDocument(applicant);
-    CustomerEmailService.getInstance().accountOpened(applicant, new FinancialAccount__c());
+    //CustomerEmailService.getInstance().accountOpened(applicant, new FinancialAccount__c());
     CustomerEmailService.getInstance().primaryReviewInformationCompleted(applicant);
     Test.stopTest();
     System.assertEquals(0, Limits.getEmailInvocations(), 'success');

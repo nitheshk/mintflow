@@ -1,7 +1,7 @@
 <messaging:emailTemplate
   subject="Welcome on board! Access your Mintflow account"
   recipientType="User"
-  relatedToType="Applicant__c"
+  relatedToType="Application__c"
   renderUsingSystemContextWithoutSharing="True"
 >
   <messaging:htmlEmailBody>
@@ -189,7 +189,7 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
+                      <h5>Hi,</h5>
                       <br />
                       We're happy that another incredible person is now a
                       Mintflow customer. Your account is now ready
