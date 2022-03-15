@@ -175,7 +175,6 @@ global virtual with sharing class BuildApplicationWrapper extends AbstractServic
       mapperApplicant.Email = applicant.Email__c;
       // mapperApplicant.FraudStatus = applicant.FraudStatus__c;
       // mapperApplicant.IdentityVerificationStatus = applicant.IdentityVerificationStatus__c;
-      // mapperApplicant.IncomeVerificationStatus = applicant.IncomeVerificationStatus__c;
       // mapperApplicant.KYCStatus = applicant.KYCStatus__c;
       mapperApplicant.Order = applicant.Order__c;
       mapperApplicant.Phone = applicant.Phone__c;

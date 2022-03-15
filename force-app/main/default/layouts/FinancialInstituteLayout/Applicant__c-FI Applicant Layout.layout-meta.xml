@@ -142,10 +142,7 @@
                 <behavior>Edit</behavior>
                 <field>IdentityVerificationStatus__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IncomeVerificationStatus__c</field>
-            </layoutItems>
+          
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OFAC__c</field>

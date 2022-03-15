@@ -621,6 +621,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.mflow__IsEmploymentVerified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Applicant__c.Application__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -714,11 +719,7 @@
         <field>Applicant__c.SentiLinkFraudScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.IncomeVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+   
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsExistingCustomer__c</field>
@@ -949,11 +950,7 @@
             <field>Contact.FraudStatus__c</field>
             <readable>true</readable>
         </fieldPermissions>
-    <fieldPermissions>
-            <editable>true</editable>
-            <field>Contact.IncomeVerificationStatus__c</field>
-            <readable>true</readable>
-        </fieldPermissions>
+   
     <fieldPermissions>
             <editable>true</editable>
             <field>Contact.KYCStatus__c</field>

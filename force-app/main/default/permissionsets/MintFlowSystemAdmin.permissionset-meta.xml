@@ -310,11 +310,7 @@
         <field>Applicant__c.IdentityVerificationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.IncomeVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsEmailVerified__c</field>
@@ -455,7 +451,12 @@
         <field>Applicant__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.IsEmploymentVerified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
         <editable>true</editable>
         <field>Application__c.ApplicationType__c</field>
         <readable>true</readable>
@@ -820,11 +821,7 @@
         <field>Contact.IdentityVerificationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.IncomeVerificationStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+   
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.IsEmailVerified__c</field>

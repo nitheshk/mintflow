@@ -338,7 +338,6 @@ global virtual with sharing class KycReviewService extends AbstractService {
     memberContact.QualifiedDecision__c = applicant.QualifiedDecision__c;
     memberContact.QualifiedScore__c = applicant.QualifiedScore__c;
     memberContact.FraudStatus__c = applicant.FraudStatus__c;
-    memberContact.IncomeVerificationStatus__c = applicant.IncomeVerificationStatus__c;
     memberContact.KYCStatus__c = applicant.KYCStatus__c;
     memberContact.SentiLinkFraudScore__c = applicant.SentiLinkFraudScore__c;
     memberContact.SentiLinkStatus__c = applicant.SentiLinkStatus__c;
