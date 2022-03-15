@@ -91,6 +91,7 @@ public with sharing class TestData {
     appConfig.SentiLink__c = true;
     appConfig.SessionExpirationTime__c = 2;
     appConfig.CountyNames__c = 'Oregaon;Idhaho;Washington';
+    appConfig.PackageVersion__c = '1';
     return appConfig;
   }
 
@@ -190,6 +191,7 @@ public with sharing class TestData {
     FinancialProduct__c p = new FinancialProduct__c();
     p.DisplayLabel__c = 'Product1';
     p.mflow__Category__c = 'Checking';
+    p.mflow__InternalCode__c = 'IC001';
     products.add(p);
     return products;
   }
@@ -199,5 +201,33 @@ public with sharing class TestData {
     productService.mflow__isActive__c = true;
     productService.mflow__ServiceName__c = 'Product Service';
     return productService;
+  }
+  public static mflow__Consent__c createConsent() {
+    mflow__Consent__c consent = new mflow__Consent__c();
+    consent.Name = 'Consent Name';
+    return consent;
+  }
+  public static ConsentLineItem__c createConsentLineItem() {
+    ConsentLineItem__c consentLine = new ConsentLineItem__c();
+    consentLine.Name = 'Consent Line Item';
+    consentLine.EventIdentifier__c = 'event';
+    consentLine.Order__c = 1;
+    return consentLine;
+  }
+  public static mflow__SurveyTemplate__c createSurveyTemplates() {
+    mflow__SurveyTemplate__c survey = new mflow__SurveyTemplate__c();
+    survey.Name = 'survey Item';
+    survey.Order__c = 1;
+    return survey;
+  }
+  public static SurveyQuestion__c createSurveyQuestion() {
+    SurveyQuestion__c surveyQue = new SurveyQuestion__c();
+    surveyQue.Name = 'survey question';
+    surveyQue.Order__c = 1;
+    return surveyQue;
+  }
+
+  public static string getSentilinkData() {
+    return '{"transaction_id":"01FJ8X21-N86Z-3MBZNSR8","application_id":"APP-10848","scores":[{"name":"sentilink_abuse_score","version":"1.7.1","score":746,"reason_codes":[{"code":"R000","rank":1,"direction":"more_fraudy","explanation":"Whether the supplied name or SSN is nonsense"},{"code":"R010","rank":2,"direction":"more_fraudy","explanation":"The depth of the consumers history with this information"},{"code":"R015","rank":3,"direction":"more_fraudy","explanation":"How well the supplied information matches Manifest records"}]},{"name":"sentilink_first_party_synthetic_score","version":"1.7.1","score":808,"reason_codes":[{"code":"R014","rank":1,"direction":"less_fraudy","explanation":"Whether the consumer appears to have a better SSN"},{"code":"R013","rank":2,"direction":"less_fraudy","explanation":"Whether there is a better owner for the SSN"},{"code":"R008","rank":3,"direction":"less_fraudy","explanation":"Whether the SSN is tied to a clump of SSNs empirically used for fraud"}]},{"name":"sentilink_third_party_synthetic_score","version":"1.7.1","score":275,"reason_codes":[{"code":"R021","rank":1,"direction":"more_fraudy","explanation":"Whether the supplied phone number corresponds to a risky carrier or line type"},{"code":"R010","rank":2,"direction":"more_fraudy","explanation":"The depth of the consumers history with this information"},{"code":"R014","rank":3,"direction":"more_fraudy","explanation":"Whether the consumer appears to have a better SSN"}]},{"name":"sentilink_id_theft_score","version":"1.6.2","score":575,"reason_codes":[{"code":"R034","rank":1,"direction":"more_fraudy","explanation":"Length of history of the email"},{"code":"R023","rank":2,"direction":"more_fraudy","explanation":"How consistent the address is with the consumers history"},{"code":"R025","rank":3,"direction":"more_fraudy","explanation":"Whether the email has had suspicious application activity"}]}],"customer_id":"01ESVTRBVQ8EWAP2SNVR1Y6TH6","environment":"SANDBOX","notes":"","timestamp":"2021-10-18T05:12:48.228888536Z","latency_ms":700}';
   }
 }
