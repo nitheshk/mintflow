@@ -221,8 +221,10 @@ global virtual with sharing class IdentityService extends AbstractService {
     messageBody = messageBody.replace('{url}', link);
     messageBody = messageBody.replace('{applicationNumber}', currentApplicant.Application__r.Name);
     params.put('messageText', messageBody);
-    // #pending remove hardcode mobile number [currentApplicant.Phone__c]
-    params.put('toPhone', HttpBuilder.getApiConstant('Twillio_Country') + '7892981668');
+    String toPhone = String.isBlank(HttpBuilder.getApiConstant('TwillioToPhoneNumber'))
+      ? currentApplicant.Phone__c
+      : HttpBuilder.getApiConstant('TwillioToPhoneNumber');
+    params.put('toPhone', HttpBuilder.getApiConstant('Twillio_Country') + toPhone);
     params.put('applicantId', currentApplicant.Id);
     NotificationService.getInstance().sendOTPMessage(params);
 

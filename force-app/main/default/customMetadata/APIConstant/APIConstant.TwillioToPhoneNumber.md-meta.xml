@@ -4,7 +4,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-    <label>Twillio_Token</label>
+    <label>Twillio To Phone Number</label>
     <protected>false</protected>
     <values>
         <field>APISetting__c</field>
@@ -12,11 +12,11 @@
     </values>
     <values>
         <field>Description__c</field>
-        <value xsi:type="xsd:string">Auth Token for Twillio integration</value>
+        <value xsi:type="xsd:string">Remove the value for PRoduction</value>
     </values>
     <values>
         <field>Value__c</field>
-        <value xsi:type="xsd:string">19f0364c115f62158417137d4e852d94</value>
+        <value xsi:type="xsd:string">7019689253</value>
     </values>
     <values>
         <field>isActive__c</field>
