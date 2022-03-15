@@ -70,8 +70,10 @@ global virtual with sharing class AuthenticationService extends AbstractService 
 
       Map<String, Object> params = new Map<String, Object>();
       params.put('messageText', System.Label.TwillioOtpFormat.replace('{OTP}', applicant.SmsOtp__c));
-      // #pending remove hardcode mobile number [applicant.Phone__c]
-      params.put('toPhone', HttpBuilder.getApiConstant('Twillio_Country') + '7892981668');
+      String toPhone = String.isBlank(HttpBuilder.getApiConstant('TwillioToPhoneNumber'))
+        ? applicant.Phone__c
+        : HttpBuilder.getApiConstant('TwillioToPhoneNumber');
+      params.put('toPhone', HttpBuilder.getApiConstant('Twillio_Country') + toPhone);
       params.put('applicantId', applicant.Id);
       //NotificationService.getInstance().sendOTPMessage(params);
     }
