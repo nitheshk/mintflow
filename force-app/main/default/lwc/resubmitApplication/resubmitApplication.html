@@ -1,18 +1,16 @@
 <template>
   <lightning-card title="Resubmit Application" icon-name="action:change_record_type">
     <div class="slds-var-m-around_medium">
-      <lightning-button-group>
-        <lightning-button
-          disabled={disableButton}
-          variant="brand"
-          label="Resubmit Application"
-          title="Resubmit Application"
-          onclick={Resubmit}
-          class="slds-var-m-left_x-small"
-          icon-name="utility:save"
-          icon-position="right"
-        ></lightning-button>
-      </lightning-button-group>
+      <lightning-button
+        disabled={disableButton}
+        variant="brand"
+        label="Resubmit Application"
+        title="Resubmit Application"
+        onclick={Resubmit}
+        class="slds-var-m-left_x-small"
+        icon-name="utility:save"
+        icon-position="right"
+      ></lightning-button>
     </div>
   </lightning-card>
 </template>

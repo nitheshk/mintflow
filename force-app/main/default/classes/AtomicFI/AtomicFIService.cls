@@ -220,16 +220,26 @@ global virtual with sharing class AtomicFIService extends AbstractService {
    **/
   global virtual void generatePaySlipsW2(String applicantId, String employerId) {
     String responseJson = this.getAtomicResponse(applicantId, employerId);
-    AtomicFIProvider.getInstance().generatePaySlipsW2(responseJson, employerId);
+    AtomicFIProvider.getInstance().generatePaySlipsW2(responseJson, employerId, applicantId);
     log?.debug('Payslip and W2 generation completed successfully');
   }
-  public void updateFileGeneratedStatus(String employerId) {
+  public void updateFileGeneratedStatus(String employerId, String applicantId) {
     Employment__c employmentObj = EmploymentRepository.readEmployerbyId(employerId);
-    if (employmentObj != null) {
-      employmentObj.isDocumentGenerated__c = true;
-      employmentObj.mflow__VerificationStatus__c = 'Verified';
-      EmploymentRepository.UpsertRecord(employmentObj);
-      log?.debug('Document Generated: True');
+    Applicant__c applicant = ApplicantRepository.readApplicantById(applicantId);
+    try {
+      if (employmentObj != null) {
+        employmentObj.isDocumentGenerated__c = true;
+        employmentObj.mflow__VerificationStatus__c = 'Verified';
+        EmploymentRepository.UpsertRecord(employmentObj);
+        log?.debug('Document Generated: True');
+      }
+      if (applicant != null) {
+        applicant.mflow__IsEmploymentVerified__c = true;
+      }
+    } catch (Exception ex) {
+      applicant.mflow__IsEmploymentVerified__c = false;
+    } finally {
+      ApplicantRepository.upsertRecord(applicant);
     }
   }
 }

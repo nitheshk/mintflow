@@ -90,7 +90,7 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
    * @param employerId employerId
    
    **/
-  global virtual String generatePaySlipsW2(String jsonResponse, String employerId) {
+  global virtual String generatePaySlipsW2(String jsonResponse, String employerId, String applicantId) {
     // To fetch the file from saved employer Information
     String formURL;
 
@@ -138,7 +138,7 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
           .createFile(new FileDTO('Income Files -' + cnt + '.pdf', pdffile, employerId, 'Employment', 'PayStubs'));
       }
       generatePDF(employerId);
-      AtomicFIService.getinstance().updateFileGeneratedStatus(employerId);
+      AtomicFIService.getinstance().updateFileGeneratedStatus(employerId, applicantId);
       return 'Files generated successfully';
     } catch (exception ex) {
       log?.error(ex.getmessage());

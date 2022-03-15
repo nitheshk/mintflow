@@ -1,46 +1,71 @@
 <template>
-  <div class="slds-grid slds-wrap">
-    <div class="slds-col slds-size_1-of-4">
-      <lightning-input
-        type="toggle"
-        label="Phone Verified"
-        class="slds-var-m-around_medium"
-        checked={record.mflow__IsPhoneNumberVerified__c}
-      ></lightning-input>
+  <lightning-card title="Status">
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-size_1-of-4">
+        <lightning-input
+          type="toggle"
+          label="Phone Verified"
+          class="slds-var-m-around_medium"
+          checked={record.mflow__IsPhoneNumberVerified__c}
+        ></lightning-input>
+      </div>
+      <div class="slds-col slds-size_1-of-4">
+        <lightning-input
+          type="toggle"
+          label="Email Verified"
+          class="slds-var-m-around_medium"
+          checked={record.mflow__IsEmailVerified__c}
+        ></lightning-input>
+      </div>
+      <div class="slds-col slds-size_1-of-4">
+        <lightning-input
+          type="toggle"
+          label="Identity Verified"
+          class="slds-var-m-around_medium"
+          checked={identityVerified}
+        ></lightning-input>
+      </div>
+      <div class="slds-col slds-size_1-of-4">
+        <lightning-input
+          type="toggle"
+          label="OOW Answered"
+          class="slds-var-m-around_medium"
+          checked={record.mflow__OOWStatus__c}
+        ></lightning-input>
+      </div>
     </div>
-    <div class="slds-col slds-size_1-of-4">
-      <lightning-input
-        type="toggle"
-        label="Email Verified"
-        class="slds-var-m-around_medium"
-        checked={record.mflow__IsEmailVerified__c}
-      ></lightning-input>
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-size_1-of-4">
+        <lightning-input
+          type="toggle"
+          label="Employment Verified"
+          class="slds-var-m-around_medium"
+          checked={record.mflow__VerificationStatus__c}
+        ></lightning-input>
+      </div>
+      <div class="slds-col slds-size_1-of-4">
+        <lightning-input
+          type="toggle"
+          label="KYC Verified"
+          class="slds-var-m-around_medium"
+          checked={kycStatus}
+        ></lightning-input>
+      </div>
     </div>
-    <div class="slds-col slds-size_1-of-4">
-      <lightning-input
-        type="toggle"
-        label="Identity Verified"
-        class="slds-var-m-around_medium"
-        checked={identityVerified}
-      ></lightning-input>
+  </lightning-card>
+  <lightning-card title="Reports">
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-size_1-of-3">
+        <lightning-button label="OOW" variant="brand" value="OOW" onclick={filePreview}></lightning-button>
+      </div>
+      <div class="slds-col slds-size_1-of-3">
+        <lightning-button
+          label="Employment Verification"
+          variant="brand"
+          value="Employment"
+          onclick={filePreview}
+        ></lightning-button>
+      </div>
     </div>
-    <div class="slds-col slds-size_1-of-4">
-      <lightning-input
-        type="toggle"
-        label="OOW Answered"
-        class="slds-var-m-around_medium"
-        checked={record.mflow__OOWStatus__c}
-      ></lightning-input>
-    </div>
-  </div>
-  <div>
-    <div class="slds-col slds-size_1-of-4">
-      <lightning-input
-        type="toggle"
-        label="Phone Verified"
-        class="slds-var-m-around_medium"
-        checked={record.mflow__IsPhoneNumberVerified__c}
-      ></lightning-input>
-    </div>
-  </div>
+  </lightning-card>
 </template>

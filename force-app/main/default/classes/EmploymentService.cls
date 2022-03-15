@@ -55,7 +55,7 @@ global virtual with sharing class EmploymentService extends AbstractService {
    **/
   global virtual String generatePaySlipsW2(String applicantId, String employerId) {
     String jsonResponse = AtomicFIProvider.getInstance().getAtomicResponse(applicantId, employerId);
-    String responseJson = AtomicFIProvider.getInstance().generatePaySlipsW2(jsonResponse, employerId);
+    String responseJson = AtomicFIProvider.getInstance().generatePaySlipsW2(jsonResponse, employerId, applicantId);
     return responseJson;
   }
 
