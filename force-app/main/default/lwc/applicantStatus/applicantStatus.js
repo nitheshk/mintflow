@@ -1,6 +1,7 @@
 import { LightningElement, api } from "lwc";
+import { NavigationMixin } from "lightning/navigation";
 
-export default class ApplicantStatus extends LightningElement {
+export default class ApplicantStatus extends NavigationMixin(LightningElement) {
   @api record;
   @api sObjectName;
   @api titleName;
@@ -15,5 +16,17 @@ export default class ApplicantStatus extends LightningElement {
     if (this.record.mflow__KYCStatus__c === "Passed") {
       this.kycStatus = true;
     }
+  }
+
+  handleNavigate() {
+    this[NavigationMixin.Navigate]({
+      type: "standard__component",
+      attributes: {
+        componentName: "c__identityVerificationReport"
+      },
+      state: {
+        c__propertyValue: "500"
+      }
+    });
   }
 }

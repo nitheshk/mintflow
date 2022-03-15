@@ -283,4 +283,24 @@ global with sharing class LwcCustomController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description to get the data of OOW report of the applicant
+   * @author Digital Align | 02-11-2022
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  global static ApexResponse fetchOOWReportData(String applicationId) {
+    try {
+      log?.fine('Inside fetch OOW Report' + applicationId);
+      //IdentityService.getInstance().fetchOOWReportData(applicationId);
+      return ApexResponse.ok('');
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    } finally {
+      log?.fine('Complete authorizeCustomer');
+      Logger.persist();
+    }
+  }
 }
