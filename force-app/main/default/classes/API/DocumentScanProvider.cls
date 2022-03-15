@@ -238,6 +238,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     applicant.FirstName__c = returnDTO.data.firstName;
     applicant.LastName__c = returnDTO.data.lastName;
     applicant.Birthdate__c = date.valueOf(returnDTO.data.dob);
+    applicant.IdentityVerificationStatus__c = 'Passed';
     identity.Height__c = returnDTO.data.height;
     identity.IssuedRegion__c = returnDTO.data.issuerRegion;
     identity.Weight__c = returnDTO.data.weight;
