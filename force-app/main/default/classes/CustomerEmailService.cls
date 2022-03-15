@@ -210,14 +210,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   global virtual void primaryReviewInformationCompleted(Applicant__c applicant) {
     EmailNotificationBuilder.newInstance('PrimaryReviewInformationCompleted', applicant.Id)
       .setToAddresses(applicant.Email__c)
-      .setSubstitute(
-        new Map<String, String>{
-          '{FirstName}' => applicant.FirstName__c,
-          '{LastName}' => applicant.LastName__c,
-          '{ApplicationNumber}' => ApexRequest.getApplicationName(),
-          '{url}' => SiteSetting__c.getInstance().OnlineSiteUrl__c
-        }
-      );
+      .setSubstitute(new Map<String, String>{ '{url}' => SiteSetting__c.getInstance().OnlineSiteUrl__c });
     sendEmail();
   }
 

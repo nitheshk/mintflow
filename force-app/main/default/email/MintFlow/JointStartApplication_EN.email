@@ -189,10 +189,10 @@
                     "
                   >
                     <p style="margin: 0">
-                      <h5>Hi {FirstName} {LastName},</h5>
+                      <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
                       <br />
-                      Please register with Mintflow by logging into the portal 
-                      <a href="{url}" target="_blank">Here</a>. <p>You will need to provide some personal information and proof of identity, 
+                      Please register with Mintflow by logging into the portal
+                      <a href="{url}" target="_blank">Here</a> [{!RelatedTo.Application__r.Name}]. <p>You will need to provide some personal information and proof of identity,
                       but it only takes a few moments.</p>
                       You will receive a confirmation email once your new account has been established.
                     </p>
@@ -201,7 +201,6 @@
                     </p>
                   </td>
                 </tr>
-               
                 <tr>
                   <td
                     bgcolor="#ffffff"
