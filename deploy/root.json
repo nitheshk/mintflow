@@ -28,6 +28,10 @@
   "permission": {
     "permissionSet": {
       "permissionSet1": "./deploy/scratchOrg/apex/AssignPermissionSet.apex"
+    },
+    "createUser": {
+      "createCommunityUserAccount": "./deploy/scratchOrg/apex/CreateAccountForUser.apex",
+      "createCommunityUser": "./deploy/scratchOrg/apex/CreateCommunityUser.apex"
     }
   },
 
