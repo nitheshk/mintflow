@@ -167,36 +167,31 @@
                 },
                 {
                   "componentAttributes": {
-                    "relatedListApiName": "mflow__ApplicationConsents__r",
-                    "relatedListComponentOverride": "ADVGRID",
-                    "width": "MEDIUM"
+                    "objectApiName": "{!objectApiName}",
+                    "recordId": "{!recordId}"
                   },
-                  "componentName": "forceCommunity:responsiveRelatedListSingle",
-                  "id": "061a57c9-4413-4499-a9a6-22e73e8c4ae3",
+                  "componentName": "mflow:manualKycDecision",
+                  "id": "e9d8b7b2-213b-42d4-9dd2-9ffae11348d6",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 },
                 {
                   "componentAttributes": {
-                    "relatedListApiName": "mflow__CustomerInterests__r",
-                    "relatedListComponentOverride": "GRID",
-                    "width": "MEDIUM"
+                    "recordId": "{!recordId}"
                   },
-                  "componentName": "forceCommunity:responsiveRelatedListSingle",
-                  "id": "1bad676b-ffb2-41b1-a3aa-9e8f4cb1ed62",
+                  "componentName": "mflow:resumeAppplication",
+                  "id": "4efe6235-2a27-4518-b5b2-55f189061fce",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 },
                 {
                   "componentAttributes": {
-                    "relatedListApiName": "mflow__Surveys__r",
-                    "relatedListComponentOverride": "GRID",
-                    "width": "MEDIUM"
+                    "recordId": "{!recordId}"
                   },
-                  "componentName": "forceCommunity:responsiveRelatedListSingle",
-                  "id": "d4b63286-2243-4a46-9186-29bb3137f5b1",
+                  "componentName": "mflow:resubmitApplication",
+                  "id": "3aab7448-6b29-4d8c-b8bd-603c352dd9cd",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
