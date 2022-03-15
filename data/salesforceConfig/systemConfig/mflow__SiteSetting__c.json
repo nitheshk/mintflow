@@ -5,12 +5,10 @@
         "type": "mflow__SiteSetting__c",
         "referenceId": "SiteRef_0"
       },
-      "mflow__OnlineSiteUrl__c": "https://sandbox-efficiency-enterprise-8306-d-17f6e971958.cs73.force.com/Online",
-      "mflow__FinancialInstituteSiteUrl__c": "https://sandbox-efficiency-enterprise-8306-d-17f6e971958.cs73.force.com/HomePageFI",
+      "mflow__OnlineSiteUrl__c": "https://sandbox-data-velocity-91-dev-ed-17f686a9d68.cs75.force.com/Online",
+      "mflow__FinancialInstituteSiteUrl__c": "https://sandbox-data-velocity-91-dev-ed-17f686a9d68.cs75.force.com/HomePageFI",
       "mflow__OnlineAccountOpeningUrl__c": "/OpenAccount?pid=IC003#/home",
-      "mflow__OnlineContentUrl__c": "https://ik.imagekit.io/disczlxo8kv/P1FCU/",
-      "mflow__OnlineSiteUserName__c": "OnlineUser@Mflow.1647333645244.com",
-      "mflow__OnlineSitePassword__c": "Test@123"
+      "mflow__OnlineContentUrl__c": "https://ik.imagekit.io/disczlxo8kv/P1FCU/"
     }
   ]
 }

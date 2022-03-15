@@ -74,8 +74,6 @@ Following command are executed in squence
 
 > Step 2.7 `gulp publishCommunities`
 
-> Step 2.7 `gulp createCommunityUser`
-
 > Step 2.8 `gulp systemConfigImport`
 
 if any step fails in between, fix the error and continue executing next step
