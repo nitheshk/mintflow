@@ -20,7 +20,7 @@
     </values>
     <values>
         <field>DisplayName__c</field>
-        <value xsi:type="xsd:string">MintFlow</value>
+        <value xsi:type="xsd:string">Support</value>
     </values>
     <values>
         <field>EmailTemplateName__c</field>
@@ -28,7 +28,7 @@
     </values>
     <values>
         <field>OrgWideName__c</field>
-        <value xsi:nil="true" />
+        <value xsi:type="xsd:string">Support</value>
     </values>
     <values>
         <field>ReplyToAddress__c</field>

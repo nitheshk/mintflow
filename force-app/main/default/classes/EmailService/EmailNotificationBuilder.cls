@@ -170,7 +170,7 @@ global virtual with sharing class EmailNotificationBuilder {
         emailMessage.setEntityAttachments(notificationService.entityAttachmentIds);
       }
 
-      if (String.isBlank(setting.OrgWideName__c) && String.isNotBlank(setting.DisplayName__c)) {
+      if (String.isBlank(emailMessage.getOrgWideEmailAddressId())) {
         emailMessage.setSenderDisplayName(setting.DisplayName__c);
       }
 
