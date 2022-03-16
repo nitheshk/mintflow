@@ -22,8 +22,8 @@ public with sharing class ApplicantServiceTest {
     applicant.Application__c = acc.Id;
     applicant.OTPExpireTime__c = Datetime.now();
     applicant.OtpAttempts__c = 1;
-    applicant.SmsOtp__c = '1234';
-    applicant.EmailOtp__c = '1234';
+    applicant.SmsOtp__c = '0000';
+    applicant.EmailOtp__c = '0000';
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
 
     Employment__c employment = TestData.createEmployment();
@@ -33,8 +33,14 @@ public with sharing class ApplicantServiceTest {
 
     return applicant;
   }
+  private static ApplicationConfiguration__c makeApplicationConfiguration() {
+    ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
+    appConfig = (ApplicationConfiguration__c) DatabaseUtils.insertRecord(appConfig);
+    return appConfig;
+  }
   @isTest
   static void applicantListTest() {
+    makeApplicationConfiguration();
     Application__c application = makeApplicationData();
     ApexRequest request = new ApexRequest();
     request.setHeader(new Map<String, object>{ 'applicantIds' => application.applicants__r });
@@ -45,6 +51,7 @@ public with sharing class ApplicantServiceTest {
   }
   @isTest
   static void singleApplicantTest() {
+    makeApplicationConfiguration();
     Application__c application = makeApplicationData();
     Applicant__c applicant = makeApplicantData();
     ApexRequest request = new ApexRequest();
@@ -52,9 +59,9 @@ public with sharing class ApplicantServiceTest {
       new Map<String, object>{
         'applicantIds' => new List<Applicant__c>{ applicant, applicant },
         'applicantId' => applicant.Id,
-        'otpMode' => 'SMS',
-        'sms' => '1234',
-        'email' => '1234'
+        'otpMode' => 'SMS;EMAIL',
+        'sms' => '0000',
+        'email' => '0000'
       }
     );
     request.setData(new Applicant__c());
@@ -67,6 +74,7 @@ public with sharing class ApplicantServiceTest {
   }
   @isTest
   static void singleApplicantTestTwo() {
+    makeApplicationConfiguration();
     Application__c application = makeApplicationData();
     Applicant__c applicant = makeApplicantData();
     ApexRequest request = new ApexRequest();
@@ -74,9 +82,9 @@ public with sharing class ApplicantServiceTest {
       new Map<String, object>{
         'applicantIds' => new List<Applicant__c>{ applicant, applicant },
         'applicantId' => applicant.Id,
-        'otpMode' => 'SMS',
-        'sms' => '1234',
-        'email' => '1234'
+        'otpMode' => 'SMS;EMAIL',
+        'sms' => '0000',
+        'email' => '0000'
       }
     );
     request.setData(new Applicant__c());

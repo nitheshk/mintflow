@@ -84,7 +84,7 @@ public with sharing class TestData {
 
   public static ApplicationConfiguration__c createApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = new ApplicationConfiguration__c();
-    appConfig.AllowedOtpMode__c = 'SMS';
+    appConfig.AllowedOtpMode__c = 'SMS;EMAIL';
     appConfig.EmailLinkExpirationTime__c = 2;
     appConfig.OTPExpirationTime__c = 3;
     appConfig.OTPMaxAllowedAttempts__c = 5;

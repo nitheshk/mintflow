@@ -1,5 +1,11 @@
 @IsTest
 public with sharing class CustomerEmailServiceTest {
+  public static List<FileDTO> makeFileDtos(string applicantId) {
+    List<FileDTO> fileDtos = new List<FileDTO>();
+    fileDtos.add(TestData.createFileDto('TestFile.txt', applicantId));
+    fileDtos.add(TestData.createFileDto('TestFileTwo.txt', applicantId));
+    return fileDtos;
+  }
   private static Application__c makeAccountData() {
     Application__c acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecord(acc);
@@ -51,7 +57,7 @@ public with sharing class CustomerEmailServiceTest {
     CustomerEmailService.getInstance().resumeApplication(applicant);
     CustomerEmailService.getInstance().notifyAboutEmploymentReport(applicant, 'Notify');
     CustomerEmailService.getInstance().uploadIdentityDocument(applicant);
-    //CustomerEmailService.getInstance().accountOpened(applicant, new FinancialAccount__c());
+    // CustomerEmailService.getInstance().accountOpened(applicant, new FinancialAccount__c());
     CustomerEmailService.getInstance().primaryReviewInformationCompleted(applicant);
     Test.stopTest();
     System.assertEquals(0, Limits.getEmailInvocations(), 'success');
@@ -100,6 +106,40 @@ public with sharing class CustomerEmailServiceTest {
     try {
       CustomerEmailService.getInstance().fundingLinkOnKycApproval(app);
       CustomerEmailService.getInstance().startSecondaryApplication(applicant, products);
+    } catch (Exception e) {
+      System.assertEquals(e.getMessage(), 'email not sent');
+    }
+    Test.stopTest();
+  }
+  @IsTest
+  private static void NotificationTest() {
+    Applicant__c applicant = makeApplicantData();
+    Application__c app = makeAccountData();
+    List<FinancialProduct__c> products = makeProducts();
+    app.Applicants__r.addAll(makeApplicantList('Primary'));
+    makeApplicationConfiguration();
+    Test.startTest();
+    try {
+      NotificationService.getInstance()
+        .dispatchKycNotification('onExceptionKycReviewSubmit', applicant.Id, 'string', 'string');
+      NotificationService.getInstance()
+        .dispatchKycNotification('onSuccessKycReviewSubmit', applicant.Id, 'string', 'string');
+      NotificationService.getInstance()
+        .dispatchKycNotification('onExceptionKycProcess', applicant.Id, 'string', 'string');
+      NotificationService.getInstance().dispatchKycNotification('onReviewKycProcess', applicant.Id, 'string', 'string');
+      NotificationService.getInstance()
+        .dispatchKycNotification('onSuccessKycProcess', applicant.Id, 'string', 'string');
+      NotificationService.getInstance().dispatchKycNotification('onManualKycAction', applicant.Id, 'string', 'string');
+
+      NotificationService.getInstance()
+        .dispatchSubmitNotification('onApplicationCompleted', applicant.Id, 'string', 'string');
+      NotificationService.getInstance()
+        .dispatchSubmitNotification('onApplicationFailed', applicant.Id, 'string', 'string');
+
+      NotificationBuilder.chatterLinkMessagePost(applicant.Id, 'string', 'string');
+      NotificationBuilder.chatterContentDataPost(applicant.Id, 'string', makeFileDtos(applicant.Id)[0]);
+      NotificationBuilder nb = new NotificationBuilder();
+      NotificationBuilder.getInstance();
     } catch (Exception e) {
       System.assertEquals(e.getMessage(), 'email not sent');
     }

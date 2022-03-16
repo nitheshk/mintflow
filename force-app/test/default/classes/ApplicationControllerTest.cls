@@ -35,6 +35,26 @@ public with sharing class ApplicationControllerTest {
     ApplicationController.saveApplication(request);
     ApplicationController.deleteEntity(request);
     ApplicationController.reviewInformationSubmit(request);
+    ApplicationController.refreshToken(request);
+    ApplicationController.expireToken(request);
+    ApplicationController.generateConsentPdf(request);
+    ApplicationController.preserveApplication(request);
+    ApplicationController.fetchConsents(request);
+    ApplicationController.fetchSurvey(request);
     test.stopTest();
+  }
+  @istest
+  private static void submitApplicationTest() {
+    Application__c application = makeApplicationData();
+    makeApplicationConfiguration();
+    ApexRequest request = new ApexRequest();
+    request.setHeader(new Map<String, object>{ 'url' => 'url', 'ch' => 'Virtual' });
+    ApexRequest.setApplicationId(application.Id);
+    ApexRequest.setApplicantType('Primary');
+    request.setData(application);
+    Test.setMock(HttpCalloutMock.class, new RpaServiceMock('updatememberdetails', '200'));
+    Test.startTest();
+    ApplicationController.submitApplication(request);
+    Test.stopTest();
   }
 }
