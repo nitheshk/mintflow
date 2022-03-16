@@ -102,6 +102,8 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
             ApexRequest.getApplicationName(),
             null
           );
+        // Send Customer Interest to Primary Applicant
+        ApplicationSubmissionService.notifyProductInterestAsync(ApexRequest.getApplicationId());
       } else {
         NotificationService.getInstance()
           .dispatchSubmitNotification(
@@ -179,6 +181,28 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
 
     SubmissionRepository.upsertRecord(application);
     SubmissionRepository.upsertRecords(application.Applicants__r);
+    return application;
+  }
+
+  /**
+   * @description Notify Product Interest Async
+   * @author Digital Align Team | 03-15-2022
+   * @param Id applicationId
+   **/
+  @future
+  global static void notifyProductInterestAsync(Id applicationId) {
+    ApplicationSubmissionService.getInstance().notifyProductInterest(applicationId);
+  }
+
+  /**
+   * @description  Notify Product Interest
+   * @author Digital Align Team | 03-15-2022
+   * @param applicationId ;
+   * @return Application__c
+   **/
+  global virtual Application__c notifyProductInterest(Id applicationId) {
+    Application__c application = SubmissionRepository.readApplicationForProductInterest(applicationId);
+
     return application;
   }
 }

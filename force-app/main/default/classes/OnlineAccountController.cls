@@ -36,11 +36,6 @@ global without sharing class OnlineAccountController extends AbstractController 
         this.application = ApplicationService.getInstance().refreshPage(params);
         this.id = application.Id;
       } else if (String.isNotBlank(vmf)) {
-        // else if (String.isNotBlank(vmf) && String.isNotBlank(pid)) {
-        //   log?.debug('params in if=' + params);
-        //   ApplicationService.getInstance().cloneAppFromMembership(params);
-        //   this.id = (String) params.get('applicationId');
-        // }
         //resume application mapping
         ApplicationService.getInstance().resumeApplication(params);
         this.id = (String) params.get('applicationId');
