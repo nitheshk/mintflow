@@ -6,7 +6,8 @@
     <inlineHelpText>Page name where the flow is stopped.</inlineHelpText>
     <label>Flow State</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
