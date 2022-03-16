@@ -240,4 +240,26 @@ global with sharing class ApplicantController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description  validate atomic fi report has genreated
+   * @author Digital Align Team | 03-16-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse validateAtomicFi(ApexRequest request) {
+    try {
+      log?.fine('Inside validateAtomicFi');
+      validateRequest(request);
+      return ApexResponse.ok(EmploymentService.getInstance().validateAtomicFi(ApexRequest.getParams()));
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Completed validateAtomicFi');
+      Logger.persist();
+    }
+  }
 }

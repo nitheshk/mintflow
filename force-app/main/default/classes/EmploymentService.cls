@@ -64,10 +64,10 @@ global virtual with sharing class EmploymentService extends AbstractService {
   }
 
   /**
-   * @description
+   * @description validate atomic fi report has genreated
    * @author Digital Align Team | 03-16-2022
    * @param Map<String Object> params
-   * @return Boolean validate atomic fi report has genreated
+   * @return Boolean
    **/
   global virtual Boolean validateAtomicFi(Map<String, Object> params) {
     Employment__c employment = EmploymentRepository.readEmployerbyId((String) params.get('employmentId'));
