@@ -14,7 +14,7 @@
       "mflow__ShortDescription__c": "The Cash Reward Account offers all the b",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Cash Rewards",
-      "mflow__Type__c": "Consumer",
+      "mflow__Type__c": "Lending",
       "mflow__isActive__c": true
     },
     {
@@ -31,7 +31,7 @@
       "mflow__ShortDescription__c": "Our most robust checking account",
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Power Plus Debit Account",
-      "mflow__Type__c": "Consumer",
+      "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true
     },
     {
@@ -48,7 +48,7 @@
       "mflow__ShortDescription__c": "A perfect account for our value minded m",
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Preferred Debit Account",
-      "mflow__Type__c": "Consumer",
+      "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true
     },
     {
@@ -65,7 +65,7 @@
       "mflow__ShortDescription__c": "Looking for a place to keep your mad mon",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Special Savings",
-      "mflow__Type__c": "Consumer",
+      "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true
     },
     {
@@ -82,7 +82,7 @@
       "mflow__ShortDescription__c": "The Regular Savings product is required",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Regular Savings",
-      "mflow__Type__c": "Consumer",
+      "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__ProductServices__r": {
         "totalSize": 2,
@@ -123,7 +123,7 @@
       "mflow__ShortDescription__c": "Infuse your business with working capita",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Working Capital Loans",
-      "mflow__Type__c": "Business",
+      "mflow__Type__c": "Lending",
       "mflow__isActive__c": true
     },
     {
@@ -157,7 +157,7 @@
       "mflow__ShortDescription__c": "An Idaho Medical Savings Account (MSA) a",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Idaho Medical Savings Accounts",
-      "mflow__Type__c": "Consumer",
+      "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true
     },
     {
@@ -191,7 +191,7 @@
       "mflow__ShortDescription__c": "The Prime Debit Account offers all the b",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Prime Debit Account",
-      "mflow__Type__c": "Consumer",
+      "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__ProductServices__r": {
         "totalSize": 2,
@@ -232,7 +232,7 @@
       "mflow__ShortDescription__c": "The SecuredVisa Account offers all the b",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
-      "mflow__Type__c": "Consumer",
+      "mflow__Type__c": "Lending",
       "mflow__isActive__c": true
     }
   ]

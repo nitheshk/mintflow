@@ -64,7 +64,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
       application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
     }
     //#pending  value need to decide based on the parameter
-    application.ApplicationType__c = 'Consumer';
+    application.ApplicationType__c = 'Deposit';
     //#pending this true when no product is Present
     application.isMemberFlow__c = true;
     application.FlowState__c = 'GetStarted';

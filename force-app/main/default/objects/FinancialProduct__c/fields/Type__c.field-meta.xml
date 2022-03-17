@@ -16,9 +16,9 @@
                 <label>Business</label>
             </value>
             <value>
-                <fullName>Consumer</fullName>
+                <fullName>Deposit</fullName>
                 <default>false</default>
-                <label>Consumer</label>
+                <label>Deposit</label>
             </value>
             <value>
                 <fullName>Lending</fullName>

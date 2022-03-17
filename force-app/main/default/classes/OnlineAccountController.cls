@@ -27,8 +27,6 @@ global without sharing class OnlineAccountController extends AbstractController 
       );
       //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
-      //Product Name
-      String pid = PageUtils.getCurrentPageParameters('pid');
       Cookie pageToken = PageUtils.getCookie('token');
       log?.debug('Cookie: ' + pageToken?.getValue());
       // When Cookies is present on refresh of page

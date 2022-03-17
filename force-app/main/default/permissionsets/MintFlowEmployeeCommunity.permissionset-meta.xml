@@ -1590,6 +1590,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FinancialAccount__c.ProductType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FinancialAccount__c.ProductName__c</field>
         <readable>true</readable>
     </fieldPermissions>

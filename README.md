@@ -92,7 +92,11 @@ Step 5. Export Data (Refer detailed Readme File in **data\salesforceConfig\READM
 
 #### Post deployment Changes
 
-> Step 1: One time Remove "OAuthProvider.cls-meta.xml" from .forceIgnore file in root folder to push file to salesforce, and update executionUser with Scartch org user name. Push the changes to scartch org and revert .forceIgnore file. In Named Credential Connect the OauthProvider for required API. example UiPath named Credential.
+> Step 1: Create ORg Wide Address in slaesforce with display name "Support"
+
+> Step 2: Disable Duplicate Rule for Contact and Account in salesforce
+
+> Step 3: [Optional] One time Remove "OAuthProvider.cls-meta.xml" from .forceIgnore file in root folder to push file to salesforce, and update executionUser with Scartch org user name. Push the changes to scartch org and revert .forceIgnore file. In Named Credential Connect the OauthProvider for required API. example UiPath named Credential.
 
 ### ERROR AND ISSUE
 

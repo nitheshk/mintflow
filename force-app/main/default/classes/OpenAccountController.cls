@@ -14,13 +14,20 @@ global with sharing class OpenAccountController {
    * @return PageReference
    **/
   global PageReference initOpenAccount() {
-    String vuePath = PageUtils.getCurrentPageParameters('vue');
-    vuePath = String.isNotBlank(vuePath) ? '#' + vuePath : '';
-
-    PageReference openAccountPage = new PageReference('/OnlineAccount' + vuePath);
-
-    //System.debug('openAccountPage :' + openAccountPage.getUrl());
-
+    PageReference openAccountPage;
+    String cvmf = PageUtils.getCurrentPageParameters('cvmf');
+    if (String.isNotBlank(cvmf)) {
+      //Clone Application
+      String vuePath = PageUtils.getCurrentPageParameters('vue');
+      vuePath = String.isNotBlank(vuePath) ? '#' + vuePath : '';
+      openAccountPage = new PageReference('/OnlineAccount' + vuePath);
+      //System.debug('openAccountPage :' + openAccountPage.getUrl());
+    } else {
+      String vuePath = PageUtils.getCurrentPageParameters('vue');
+      vuePath = String.isNotBlank(vuePath) ? '#' + vuePath : '';
+      openAccountPage = new PageReference('/OnlineAccount' + vuePath);
+      //System.debug('openAccountPage :' + openAccountPage.getUrl());
+    }
     //set cookie to 0, to delete
     Cookie existingToken = PageUtils.getCookie('token');
     if (existingToken != null) {
