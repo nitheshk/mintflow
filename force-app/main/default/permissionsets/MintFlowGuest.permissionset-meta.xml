@@ -2270,6 +2270,10 @@
         <recordType>FinancialAccount__c.Savings</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>FinancialAccount__c.CreditCard</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <tabSettings>
         <tab>Applicant__c</tab>
         <visibility>Visible</visibility>

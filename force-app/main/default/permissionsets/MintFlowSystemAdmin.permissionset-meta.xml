@@ -2307,6 +2307,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>FinancialAccount__c.CreditCard</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Flow__c.Flow</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
