@@ -85,6 +85,7 @@ global virtual with sharing class DocumentScanProvider extends AbstractService {
     newMap.put('issuerRegion', result.get('IssuedBy'));
     newMap.put('issuerCountry', GenericUtils.fetchCountryFromCountryCode((string) result.get('CountryCode')));
     newMap.put('state', result.get('IssuedBy'));
+    newMap.put('Country', GenericUtils.fetchCountryFromCountryCode((string) result.get('CountryCode')));
     newMap.put('nationality', result.get('CountryCode'));
     system.debug('newMap =' + newMap);
     DocumentScanDTO.Response returnDTO = (DocumentScanDTO.Response) JSON.deserialize(
