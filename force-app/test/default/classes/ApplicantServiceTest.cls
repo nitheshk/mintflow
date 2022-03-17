@@ -94,6 +94,7 @@ public with sharing class ApplicantServiceTest {
       ApplicantController.saveApplicant(new ApexRequest());
       ApplicantController.generateOTP(new ApexRequest());
       ApplicantController.validateOTP(new ApexRequest());
+      ApplicantService.getInstance().createInitialPrimaryApplicant(application);
     } catch (Exception e) {
     }
     test.stopTest();

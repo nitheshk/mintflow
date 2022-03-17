@@ -7,7 +7,8 @@ public with sharing class PageUtilsTest {
     PageUtils.setCurrentPageParameter('key', 'value');
     PageUtils.getCookie('key');
     PageUtils.getHeaders();
-    // PageUtils.getHeaders('Key');
+    PageUtils.getHeader('key');
+    PageUtils.setCookie(null);
     PageUtils.addPageErrorMessage('Key');
   }
 }

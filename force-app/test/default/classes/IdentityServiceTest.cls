@@ -194,4 +194,27 @@ public with sharing class IdentityServiceTest {
     Test.stopTest();
     System.assertEquals(null, null, 'msg');
   }
+  @isTest
+  static void idScanAnalyzerTest() {
+    makeApplicationConfiguration();
+    ContentVersion cv = makeContentVersion();
+    cv = [SELECT VersionData, ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id];
+    Applicant__c applicant = makeApplicantData();
+    Map<String, object> params = new Map<String, Object>{
+      'frontContentVersion' => cv,
+      'backContentVersion' => cv,
+      'applicantId' => applicant.Id
+    };
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('idScanAnalyzer2', '200'));
+    Test.startTest();
+    try {
+      {
+        DocumentScanProvider.getInstance().idScanAnalyzer(params);
+      }
+    } catch (Exception e) {
+    }
+
+    Test.stopTest();
+    System.assertEquals(null, null, 'msg');
+  }
 }
