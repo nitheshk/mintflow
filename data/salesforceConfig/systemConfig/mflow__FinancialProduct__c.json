@@ -1,10 +1,24 @@
 {
   "records": [
     {
-      "attributes": {
-        "type": "mflow__FinancialProduct__c",
-        "referenceId": "IC007"
-      },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC009" },
+      "Name": "Cash Rewards",
+      "mflow__Category__c": "Credit Card",
+      "mflow__DisplayLabel__c": "Cash Rewards",
+      "mflow__EndDate__c": "2027-02-24",
+      "mflow__ExternalCode__c": "EC009",
+      "mflow__InternalCode__c": "IC009",
+      "mflow__LongDescription__c": "The Cash Rewards Account offers all the b",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__ShortDescription__c": "The Cash Reward Account offers all the b",
+      "mflow__StartDate__c": "2022-02-24",
+      "mflow__SubCategory__c": "Cash Rewards",
+      "mflow__Type__c": "Consumer",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC007" },
       "Name": "Power Plus Debit Account",
       "mflow__Category__c": "Checking",
       "mflow__DisplayLabel__c": "Power Plus Debit Account",
@@ -21,10 +35,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": {
-        "type": "mflow__FinancialProduct__c",
-        "referenceId": "IC006"
-      },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC006" },
       "Name": "Preferred Debit Account",
       "mflow__Category__c": "Savings",
       "mflow__DisplayLabel__c": "Preferred Debit Account",
@@ -41,10 +52,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": {
-        "type": "mflow__FinancialProduct__c",
-        "referenceId": "IC004"
-      },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC004" },
       "Name": "Special Savings",
       "mflow__Category__c": "Savings",
       "mflow__DisplayLabel__c": "Special Savings",
@@ -61,10 +69,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": {
-        "type": "mflow__FinancialProduct__c",
-        "referenceId": "IC003"
-      },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC003" },
       "Name": "Regular Savings",
       "mflow__Category__c": "Savings",
       "mflow__DisplayLabel__c": "Regular Savings",
@@ -84,37 +89,28 @@
         "done": true,
         "records": [
           {
-            "attributes": {
-              "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef8_0"
-            },
-            "mflow__Order__c": 4,
-            "mflow__Required__c": false,
-            "mflow__Description__c": "Online banking to ease your banking",
-            "mflow__ServiceName__c": "Online Banking",
-            "mflow__isActive__c": true,
-            "mflow__ShowQuestions__c": false
-          },
-          {
-            "attributes": {
-              "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef8_1"
-            },
+            "attributes": { "type": "mflow__ProductService__c", "referenceId": "ProductServiceRef4_0" },
+            "mflow__Description__c": "Select eStatments service",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
-            "mflow__Description__c": "Select eStatments service",
             "mflow__ServiceName__c": "eStatment",
-            "mflow__isActive__c": true,
-            "mflow__ShowQuestions__c": false
+            "mflow__ShowQuestions__c": false,
+            "mflow__isActive__c": true
+          },
+          {
+            "attributes": { "type": "mflow__ProductService__c", "referenceId": "ProductServiceRef4_1" },
+            "mflow__Description__c": "Online banking to ease your banking",
+            "mflow__Order__c": 4,
+            "mflow__Required__c": false,
+            "mflow__ServiceName__c": "Online Banking",
+            "mflow__ShowQuestions__c": false,
+            "mflow__isActive__c": true
           }
         ]
       }
     },
     {
-      "attributes": {
-        "type": "mflow__FinancialProduct__c",
-        "referenceId": "IB-004"
-      },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-004" },
       "Name": "Working Capital Loans",
       "mflow__Category__c": "Loans",
       "mflow__DisplayLabel__c": "Working Capital Loans",
@@ -131,10 +127,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": {
-        "type": "mflow__FinancialProduct__c",
-        "referenceId": "IB-002"
-      },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-002" },
       "Name": "Equipment & Vehicle Loans",
       "mflow__Category__c": "Loans",
       "mflow__DisplayLabel__c": "Equipment & Vehicle Loans",
@@ -151,10 +144,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": {
-        "type": "mflow__FinancialProduct__c",
-        "referenceId": "IC002"
-      },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC002" },
       "Name": "Idaho Medical Savings Accounts",
       "mflow__Category__c": "Savings",
       "mflow__DisplayLabel__c": "Idaho Medical Savings Accounts",
@@ -171,10 +161,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": {
-        "type": "mflow__FinancialProduct__c",
-        "referenceId": "IB-005"
-      },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-005" },
       "Name": "Business Non Profit",
       "mflow__Category__c": "Checking",
       "mflow__DisplayLabel__c": "Business Non Profit",
@@ -191,10 +178,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": {
-        "type": "mflow__FinancialProduct__c",
-        "referenceId": "IC005"
-      },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC005" },
       "Name": "Prime Debit Account",
       "mflow__Category__c": "Checking",
       "mflow__DisplayLabel__c": "Prime Debit Account",
@@ -214,31 +198,42 @@
         "done": true,
         "records": [
           {
-            "attributes": {
-              "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef9_0"
-            },
+            "attributes": { "type": "mflow__ProductService__c", "referenceId": "ProductServiceRef9_0" },
+            "mflow__Description__c": "Select debit card",
             "mflow__Order__c": 1,
             "mflow__Required__c": false,
-            "mflow__Description__c": "Select debit card",
             "mflow__ServiceName__c": "Debit Card",
-            "mflow__isActive__c": true,
-            "mflow__ShowQuestions__c": true
+            "mflow__ShowQuestions__c": true,
+            "mflow__isActive__c": true
           },
           {
-            "attributes": {
-              "type": "mflow__ProductService__c",
-              "referenceId": "ProductServiceRef9_1"
-            },
+            "attributes": { "type": "mflow__ProductService__c", "referenceId": "ProductServiceRef9_1" },
+            "mflow__Description__c": "Overdraft service",
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
-            "mflow__Description__c": "Overdraft service",
             "mflow__ServiceName__c": "Overdraft Transfer",
-            "mflow__isActive__c": true,
-            "mflow__ShowQuestions__c": true
+            "mflow__ShowQuestions__c": true,
+            "mflow__isActive__c": true
           }
         ]
       }
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC008" },
+      "Name": "Secured Visa",
+      "mflow__Category__c": "Credit Card",
+      "mflow__DisplayLabel__c": "Secured Visa",
+      "mflow__EndDate__c": "2027-02-24",
+      "mflow__ExternalCode__c": "EC008",
+      "mflow__InternalCode__c": "IC008",
+      "mflow__LongDescription__c": "The Secured Visa Account offers all the b",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__ShortDescription__c": "The SecuredVisa Account offers all the b",
+      "mflow__StartDate__c": "2022-02-24",
+      "mflow__SubCategory__c": "Secured Visa",
+      "mflow__Type__c": "Consumer",
+      "mflow__isActive__c": true
     }
   ]
 }

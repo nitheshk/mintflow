@@ -1,41 +1,57 @@
 {
   "records": [
     {
-      "attributes": {
-        "type": "mflow__ReferralProduct__c",
-        "referenceId": "ReferralProductRef0"
-      },
-      "Name": "Regular Savings - Prime Debit Account",
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef0" },
+      "Name": "Regular Savings - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
       "mflow__FinancialProduct__c": "@IC003",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef1" },
+      "Name": "Regular Savings - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC003",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef2" },
+      "Name": "Regular Savings - Prime Debit Account",
       "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC003",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false,
-      "mflow__isActive__c": true
+      "mflow__Required__c": false
     },
     {
-      "attributes": {
-        "type": "mflow__ReferralProduct__c",
-        "referenceId": "ReferralProductRef1"
-      },
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef3" },
       "Name": "Regular Savings - Power Plus Debit Account",
-      "mflow__FinancialProduct__c": "@IC003",
       "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC003",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false,
-      "mflow__isActive__c": true
+      "mflow__Required__c": false
     },
     {
-      "attributes": {
-        "type": "mflow__ReferralProduct__c",
-        "referenceId": "ReferralProductRef2"
-      },
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef4" },
       "Name": "Regular Savings - Preferred Debit Account",
-      "mflow__FinancialProduct__c": "@IC003",
       "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC003",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false,
-      "mflow__isActive__c": true
+      "mflow__Required__c": false
     }
   ]
 }
