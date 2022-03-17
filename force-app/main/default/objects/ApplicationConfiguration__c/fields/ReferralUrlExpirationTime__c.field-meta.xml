@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ReferralUrlExpirationTime__c</fullName>
+    <description>Referral Email Link Expiration Time in hour</description>
+    <externalId>false</externalId>
+    <label>Referral URl Expiration Time In Hour</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <scale>0</scale>
+    <precision>4</precision>
+    <unique>false</unique>
+</CustomField>

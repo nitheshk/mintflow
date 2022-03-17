@@ -17,7 +17,8 @@
       "mflow__UiStaticResourceName__c": "MintFlow",
       "mflow__PackageVersion__c": "v1.0.2",
       "mflow__OOWAnswerPercent__c": 80,
-      "mflow__OOWPassThreshhold__c": 70
+      "mflow__OOWPassThreshhold__c": 70,
+      "mflow__ReferralUrlExpirationTime__c": 72
     }
   ]
 }

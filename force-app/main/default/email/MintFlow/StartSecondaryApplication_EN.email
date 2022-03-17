@@ -191,7 +191,7 @@
                     <p style="margin: 0">
                       <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
                       <br />
-                      Thank you for your interest your product(s)is ready to submit. Please review and complete account opening procedure.
+                      Thank you for your interest in our product(s). Please click on below link to open a new account.
                          It will only take a few more moments.<br/>
                          {productDetails}
                        <br/> You will receive a confirmation email once it is successfully opened.

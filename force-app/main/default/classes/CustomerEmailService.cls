@@ -314,25 +314,16 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @description Send Url to applicat to complete account opening for interested products
    * @author Digital Align Team | 02-08-2022
    * @param Applicant__c applicant
+   * @param Map<String, Object> interestedProductParams
    **/
-  global virtual void startSecondaryApplication(Applicant__c applicant, List<FinancialProduct__c> products) {
-    Map<String, String> params = new Map<String, String>{
-      'flw' => ApplicationConstant.FLOW_TYPE_APPLICATION,
-      'urlSuffix' => '/membership/application/otp',
-      'ch' => 'Virtual',
-      'pageName' => '/OpenAccount'
-    };
-    String link = generateUrl(params);
-    string productDetails = '';
-    for (FinancialProduct__c product : products) {
-      string productLink = link + '&pid=' + product.Id;
-      productDetails =
-        productDetails +
-        product.DisplayLabel__c +
-        ' : ' +
-        '<a href="' +
-        productLink +
-        '" target="_blank">Start</a><br/>';
+  global virtual void notifyProductInterest(Applicant__c applicant, Map<String, Object> interestedProductParams) {
+    String productDetails = '<br/>';
+    for (String key : interestedProductParams.keySet()) {
+      String link =
+        SiteSetting__c.getInstance().OnlineSiteUrl__c +
+        '/OpenAccount?cvmf=' +
+        interestedProductParams.get(key);
+      productDetails += '</i><b><a href="' + link + '" target="_blank">' + key + '</a></b></i><br/><br/>';
     }
     EmailNotificationBuilder.newInstance('StartSecondaryApplication', applicant.Id)
       .setToAddresses(applicant.Email__c)

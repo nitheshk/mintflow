@@ -201,8 +201,33 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
    * @return Application__c
    **/
   global virtual Application__c notifyProductInterest(Id applicationId) {
+    log?.fine('Inside notifyProductInterest');
     Application__c application = SubmissionRepository.readApplicationForProductInterest(applicationId);
+    if (!CollectionUtils.isListEmpty(application.mflow__CustomerInterests__r)) {
+      Map<String, Object> interestedProductParams = new Map<String, Object>();
+      for (CustomerInterest__c customerInterest : application.mflow__CustomerInterests__r) {
+        Map<String, Object> params = new Map<String, Object>();
+        params.put('app', applicationId);
+        params.put('ch', application.CreatedChannel__c);
+        params.put('pid', customerInterest.InterestProduct__c);
+        params.put(
+          'edt',
+          Datetime.now().addHours((Integer) ApplicationConfiguration__c.getInstance().ReferralUrlExpirationTime__c)
+        );
+        interestedProductParams.put(
+          customerInterest.InterestProduct__r.DisplayLabel__c,
+          SecurityUtils.encryptUrl(JSON.serialize(params, true))
+        );
+      }
 
+      for (Applicant__c applicant : application.Applicants__r) {
+        if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+          CustomerEmailService.getInstance().notifyProductInterest(applicant, interestedProductParams);
+          break;
+        }
+      }
+    }
+    log?.fine('Completed notifyProductInterest');
     return application;
   }
 }
