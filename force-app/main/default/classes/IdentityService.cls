@@ -111,8 +111,8 @@ global virtual with sharing class IdentityService extends AbstractService {
    **/
   global virtual Applicant__c scanIdentityDocument(Map<String, object> params) {
     Flow.initialize(ApexRequest.getApplicationId());
-    Flow.setFlow('IdentityFlow');
-    Flow.setSubFlow(APINames.IdScanAnalyzer);
+    Flow.setFlow('IdScan');
+    Flow.setSubFlow(APINames.IdScan);
     try {
       ContentVersion backCv;
       string frontImage = (string) params.get('frontImageDocumentId');
@@ -129,9 +129,9 @@ global virtual with sharing class IdentityService extends AbstractService {
       // }
       params.put('frontContentVersion', frontCv);
 
-      if (HttpBuilder.isActiveApiSetting(APINames.IdScanAnalyzer)) {
-        HttpBuilder.setAPISetting(APINames.IdScanAnalyzer);
-        HttpBuilder.Response response = DocumentScanProvider.getInstance().idScan(params);
+      if (HttpBuilder.isActiveApiSetting(APINames.IdScan)) {
+        HttpBuilder.setAPISetting(APINames.IdScan);
+        HttpBuilder.Response response = IdScanProvider.getInstance().idScan(params);
         flow.setSubFlowPassed(response.status);
         flow.setFlowPassed('Completed');
         return (Applicant__c) response.data;

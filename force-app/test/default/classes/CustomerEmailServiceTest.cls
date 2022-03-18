@@ -105,7 +105,7 @@ public with sharing class CustomerEmailServiceTest {
     Test.startTest();
     try {
       CustomerEmailService.getInstance().fundingLinkOnKycApproval(app);
-      CustomerEmailService.getInstance().startSecondaryApplication(applicant, products);
+      //  CustomerEmailService.getInstance().startSecondaryApplication(applicant, products);
     } catch (Exception e) {
       System.assertEquals(e.getMessage(), 'email not sent');
     }

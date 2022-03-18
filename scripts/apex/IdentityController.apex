@@ -61,7 +61,7 @@ system.debug('res = ' + Json.serialize(res));
 // #3
 
 ContentVersion cv = FileService.getInstance().fetchContentVersionByCD('0699D000000k1TBQAY', false);
-DocumentScanDTO.Request requestDTO = new DocumentScanDTO.Request();
+IdScanDTO.Request requestDTO = new IdScanDTO.Request();
 requestDTO.file_base64 = EncodingUtil.base64Encode(cv.VersionData);
 requestDTO.apikey = 'rfdNfcbatBLzmdtTHqVaMLphOQQdLNw2';
 requestDTO.authenticate = 'true';

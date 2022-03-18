@@ -6,7 +6,7 @@
  * @description Identity Docuement parsing DTO
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
-global with sharing class DocumentScanDTO extends AbstractDTO {
+global with sharing class IdScanDTO extends AbstractDTO {
   global class IdScanRequest {
     global string authKey;
     global string data;

@@ -4,11 +4,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-    <label>IdScanAnalyzer</label>
+    <label>IdScan</label>
     <protected>false</protected>
     <values>
         <field>EndPoint__c</field>
-        <value xsi:type="xsd:string">callout:mflow__IdScanAnalyzer/DriverLicenseParserRest.svc/ParseImage</value>
+        <value xsi:type="xsd:string">callout:mflow__IdScan/DriverLicenseParserRest.svc/ParseImage</value>
     </values>
     <values>
         <field>Method__c</field>
