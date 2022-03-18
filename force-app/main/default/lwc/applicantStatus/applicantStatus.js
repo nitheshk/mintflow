@@ -23,7 +23,8 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
     ) {
       this.OOWText = "Not answered any questions yet.";
     } else {
-      this.record.mflow__OOWCorrectAnswers__c +
+      this.OOWText =
+        this.record.mflow__OOWCorrectAnswers__c +
         " out of " +
         this.record.mflow__OOWTotalQuestions__c +
         "  questions answered correctly.";
