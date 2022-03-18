@@ -32,6 +32,7 @@
           class="slds-var-m-around_medium"
           checked={record.mflow__OOWStatus__c}
         ></lightning-input>
+        <lightning-formatted-text value={OOWText}></lightning-formatted-text>
       </div>
     </div>
     <div class="slds-grid slds-wrap">
@@ -56,7 +57,13 @@
   <lightning-card title="Reports">
     <div class="slds-grid slds-wrap">
       <div class="slds-col slds-size_1-of-3">
-        <lightning-button label="OOW" variant="brand" value="OOW" onclick={handleNavigate}></lightning-button>
+        <lightning-button
+          label="OOW"
+          variant="brand"
+          value="OOW"
+          onclick={handleNavigate}
+          class="slds-var-m-around_medium"
+        ></lightning-button>
       </div>
       <div class="slds-col slds-size_1-of-3">
         <lightning-button
@@ -64,8 +71,15 @@
           variant="brand"
           value="Employment"
           onclick={handleNavigate}
+          class="slds-var-m-around_medium"
         ></lightning-button>
       </div>
     </div>
   </lightning-card>
+  <template if:true={openModal}>
+    <c-identity-verification-report
+      record-id={record.Id}
+      onidentityverifyclose={handleIdentityVerifyClose}
+    ></c-identity-verification-report>
+  </template>
 </template>

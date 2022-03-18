@@ -11,6 +11,7 @@ global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
   global class Response {
     global string serviceId { get; set; }
     global string serviceName { get; set; }
+    global string serviceDescription { get; set; }
     global string error { get; set; }
     global string success { get; set; }
     global List<Profiles> profiles { get; set; }
@@ -44,6 +45,18 @@ global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
   global class Data {
     global Integer minimumQuestionToAnswer { get; set; }
     global List<Questions> questions { get; set; }
+    public WorkflowOutcome workflowOutcome { get; set; }
+    public WorkflowOutcome primaryResult { get; set; }
+    public WorkflowOutcome addressVerificationResult { get; set; }
+    public WorkflowOutcome addressUnitMismatchResult { get; set; }
+    public WorkflowOutcome addressTypeResult { get; set; }
+    public WorkflowOutcome addressHighRiskResult { get; set; }
+    public WorkflowOutcome driverLicenseResult { get; set; }
+    public WorkflowOutcome driverLicenseFormat { get; set; }
+    public WorkflowOutcome ssnResult { get; set; }
+
+    public WorkflowOutcome dateOfBirthResult { get; set; }
+    public OfacValidation ofacValidation { get; set; }
   }
 
   global class Results {
@@ -70,5 +83,16 @@ global with sharing class IdScanDueDiligenceDTO extends AbstractDTO {
   global class FinalResult {
     global Decimal scorePercent { get; set; }
     global String result { get; set; }
+  }
+
+  public class WorkflowOutcome {
+    public Integer id { get; set; }
+    public String code { get; set; }
+    public String message { get; set; }
+  }
+
+  public class OfacValidation {
+    public WorkflowOutcome ofacValidationResult { get; set; }
+    public String ofacRecord { get; set; }
   }
 }

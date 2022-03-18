@@ -290,17 +290,16 @@ global with sharing class LwcCustomController extends AbstractController {
    * @param Map<String Object> params
    * @return ApexResponse
    **/
-  @AuraEnabled
+  @AuraEnabled(cacheable=true)
   global static ApexResponse fetchOOWReportData(String applicationId) {
     try {
-      log?.fine('Inside fetch OOW Report' + applicationId);
-      //IdentityService.getInstance().fetchOOWReportData(applicationId);
-      return ApexResponse.ok('');
+      log?.fine('Inside fetchOOWReportData applicationId =' + applicationId);
+      return ApexResponse.ok(IdentityService.getInstance().fetchOOWReportData(applicationId));
     } catch (Exception e) {
       throw new AuraHandledException(e.getMessage());
     } finally {
-      log?.fine('Complete authorizeCustomer');
-      Logger.persist();
+      log?.fine('Complete fetchOOWReportData');
+      //Logger.persist();
     }
   }
 }

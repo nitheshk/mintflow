@@ -1,13 +1,6 @@
 /** Geocoding */
 //Generate Token first and use in the next method, for api call
-System.debug(
-  SecurityUtils.generateTokenForTesting(
-    '0010p000011QD8gAAG',
-    '',
-    'Primary',
-    'ApplicationFlow'
-  )
-);
+System.debug(SecurityUtils.generateTokenForTesting('0010p000011QD8gAAG', '', 'Primary', 'ApplicationFlow'));
 //random input // ERROR OUTPUT
 ApexRequest request = new ApexRequest();
 request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrScR/dDv6vV/U+HjLxYevBFbpCs3ToDb5moQBSTdlrmktUu4u0YeGEGTdACKbKBa5lpUH3YSa/TpoTFcqpsJUCSOTK4vaIChw50J9JXAAgKSo4XNcF9h39b8y2ZPnADJyU=';
@@ -32,12 +25,7 @@ system.debug('res=+' + JSON.serialize(res));
 // #6 Senti LInk
 ApexRequest request = new ApexRequest();
 request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM='; //account ID
-request.setHeader(
-  new Map<String, String>{
-    'applicantId' => 'a0b9D000002h0JcQAI',
-    'apiName' => 'SentiLink'
-  }
-);
+request.setHeader(new Map<String, String>{ 'applicantId' => 'a0b9D000002h0JcQAI', 'apiName' => 'SentiLink' });
 ApexResponse res = IdentityController.identityVerify(request);
 system.debug('res = ' + Json.serialize(res));
 
@@ -47,11 +35,7 @@ system.debug('res = ' + Json.serialize(res));
 // fetch contentdocumentID using linkedentityId
 system.debug(
   'contentDocumentId =' +
-  [
-    SELECT Id, LinkedEntityId, ContentDocumentId
-    FROM ContentDocumentLink
-    WHERE LinkedEntityId = 'a0b0p000001z1FxAAI'
-  ]
+  [SELECT Id, LinkedEntityId, ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId = 'a0b0p000001z1FxAAI']
 );
 
 ApexRequest request = new ApexRequest();
@@ -70,16 +54,13 @@ system.debug('res=' + JSON.serialize(res));
 //Working
 ApexRequest request = new ApexRequest();
 request.token = 'pyh8mYAVjrnj1iy5gF7JFONvS2ENRY3tJ2dmX4xaGrQZeoO8jqZp2PUltZQE0PkmlWbAj/kvtSqjKVPiVhCpQ0timwgg9ICys9ycH6hGX+H6bnTSpKIvp0IuNCunKqMPsAvcuXPdI9LAVkW2mM0sig8pkN5XlLalSGuZuWZuHGM='; //account ID
-request.setHeader(
-  new Map<String, String>{ 'contentDocumentId' => '0699D000000k1TBQAY' }
-);
+request.setHeader(new Map<String, String>{ 'contentDocumentId' => '0699D000000k1TBQAY' });
 ApexResponse res = IdentityController.scanIdentityDocument(request);
 system.debug('res = ' + Json.serialize(res));
 
 // #3
 
-ContentVersion cv = FileService.getInstance()
-  .fetchContentVersionByCD('0699D000000k1TBQAY', false);
+ContentVersion cv = FileService.getInstance().fetchContentVersionByCD('0699D000000k1TBQAY', false);
 DocumentScanDTO.Request requestDTO = new DocumentScanDTO.Request();
 requestDTO.file_base64 = EncodingUtil.base64Encode(cv.VersionData);
 requestDTO.apikey = 'rfdNfcbatBLzmdtTHqVaMLphOQQdLNw2';
@@ -91,10 +72,7 @@ Map<String, String> header = new Map<String, String>();
 header.put('Content-Type', 'application/json');
 header.put('Accept', 'application/json');
 HttpBuilder.setAPISetting(APINames.IdScanAnalyzer);
-HttpResponse response = HttpBuilder.httpCallOut(
-  Json.serialize(requestDTO),
-  header
-);
+HttpResponse response = HttpBuilder.httpCallOut(Json.serialize(requestDTO), header);
 
 //### generateUrlForIdentityUpload
 
@@ -114,9 +92,7 @@ ApexResponse res = IdentityController.generateUrlForIdentityUpload(request);
 system.debug('Full Json : ' + res.data);
 
 ApexRequest request = new ApexRequest();
-request.setHeader(
-  new Map<String, String>{ 'applicantId' => 'a0aN000000ANkKYIA1' }
-);
+request.setHeader(new Map<String, String>{ 'applicantId' => 'a0aN000000ANkKYIA1' });
 ApexResponse res = IdentityController.customerDueDiligence(request);
 system.debug('customer response : ' + res.data);
 
@@ -130,10 +106,7 @@ request.setHeader(
 ApexResponse res = IdentityController.validateCustomerAnswers(request);
 system.debug('customer response : ' + res);
 
-(List<IdScanDueDiligenceDTO.Results>) JSON.deserialize(
-  jsonRequest,
-  LIst<IdScanDueDiligenceDTO.Results>.class
-);
+(List<IdScanDueDiligenceDTO.Results>) JSON.deserialize(jsonRequest, LIst<IdScanDueDiligenceDTO.Results>.class);
 
 List<IdScanDueDiligenceDTO.Results> RESULTS = new List<IdScanDueDiligenceDTO.Results>();
 IdScanDueDiligenceDTO.Results resultobj = new IdScanDueDiligenceDTO.Results();
@@ -145,3 +118,8 @@ RESULTS.add(resultobj);
 
 json.serialize(RESULTS, true);
 system.debug('customer response : ' + RESULTS);
+
+IdentityService.getInstance().fetchOOWReportData('a01N000000NIsMDIA1'));
+
+ApexResponse res = LwcCustomController.fetchOOWReportData('a01N000000NIsMDIA1');
+system.debug('response::' + res.data);

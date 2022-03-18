@@ -287,6 +287,14 @@ global virtual with sharing class IdentityService extends AbstractService {
     return null;
   }
 
+  /**
+   * @description map customer data to the DTO
+   * @author Digital Align Team | 02-08-2022
+   * @param Applicant__c applicant
+   *  @param IdScanDueDiligenceDTO.Request customer
+   * @return Object
+   **/
+
   global virtual IdScanDueDiligenceDTO.Request mapCustomer(
     Applicant__c applicant,
     IdScanDueDiligenceDTO.Request customer
@@ -305,6 +313,13 @@ global virtual with sharing class IdentityService extends AbstractService {
     return customer;
   }
 
+  /**
+   * @description map identity  data to the DTO
+   * @author Digital Align Team | 02-08-2022
+   * @param IdentificationDocument__c identity
+   *  @param IdScanDueDiligenceDTO.Request customer
+   * @return Object
+   **/
   global virtual IdScanDueDiligenceDTO.Request mapIdentity(
     IdentificationDocument__c identity,
     IdScanDueDiligenceDTO.Request customer
@@ -316,6 +331,14 @@ global virtual with sharing class IdentityService extends AbstractService {
     customer.driverLicenseExpirationDate = identity.ExpirationDate__c;
     return customer;
   }
+
+  /**
+   * @description map address  data to the DTO
+   * @author Digital Align Team | 02-08-2022
+   * @param List<ContactPointAddress> addresses
+   *  @param IdScanDueDiligenceDTO.Request customer
+   * @return Object
+   **/
 
   global virtual IdScanDueDiligenceDTO.Request mapAddress(
     List<ContactPointAddress> addresses,
@@ -446,6 +469,114 @@ global virtual with sharing class IdentityService extends AbstractService {
         return null;
     } catch (exception ex) {
       throw new CustomException(ex);
+    }
+  }
+
+  global virtual IdScanWrapper.ServiceData fetchOOWReportData(String applicantId) {
+    String textValue;
+
+    IdScanWrapper.ServiceData servicedata = new IdScanWrapper.ServiceData();
+    IdScanWrapper.Data data = new IdScanWrapper.Data();
+    List<IdScanWrapper.Data> dataList = new List<IdScanWrapper.Data>();
+    IdScanWrapper.WorkflowOutcome workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+
+    List<ContentVersion> files = Fileservice.getinstance()
+      .fetchContentVersionByFileType(applicantId, 'KYC', 'IDScan', false);
+
+    if (files != null && files.size() > 0) {
+      textValue = files[0].VersionData.toString();
+      List<IdScanDueDiligenceDTO.Response> response = (List<IdScanDueDiligenceDTO.Response>) JSON.deserialize(
+        textValue,
+        LIst<IdScanDueDiligenceDTO.Response>.class
+      );
+
+      servicedata.serviceDescription = response[0].serviceDescription;
+      servicedata.serviceName = response[0].serviceName;
+
+      workflowOutcome.result = 'workflowOutcome'; //response.profiles[0].verificationResult.data.workflowOutcome TODO:: Need to replace it with map values
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.workflowOutcome.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.workflowOutcome.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+      data = new IdScanWrapper.Data();
+      workflowOutcome.result = 'primaryResult'; //response.profiles[0].verificationResult.data.workflowOutcome
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.primaryResult.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.primaryResult.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+      data = new IdScanWrapper.Data();
+      workflowOutcome.result = 'addressVerificationResult'; //response.profiles[0].verificationResult.data.workflowOutcome
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.addressVerificationResult.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.addressVerificationResult.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+      data = new IdScanWrapper.Data();
+      workflowOutcome.result = 'addressUnitMismatchResult'; //response.profiles[0].verificationResult.data.workflowOutcome
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.addressUnitMismatchResult.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.addressUnitMismatchResult.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+      data = new IdScanWrapper.Data();
+      workflowOutcome.result = 'addressTypeResult'; //response.profiles[0].verificationResult.data.workflowOutcome
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.addressTypeResult.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.addressTypeResult.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+      data = new IdScanWrapper.Data();
+      workflowOutcome.result = 'addressHighRiskResult'; //response.profiles[0].verificationResult.data.workflowOutcome
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.addressHighRiskResult.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.addressHighRiskResult.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+
+      data = new IdScanWrapper.Data();
+      workflowOutcome.result = 'driverLicenseResult'; //response.profiles[0].verificationResult.data.workflowOutcome
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.driverLicenseResult.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.driverLicenseResult.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+      data = new IdScanWrapper.Data();
+      workflowOutcome.result = 'driverLicenseFormat'; //response.profiles[0].verificationResult.data.workflowOutcome
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.driverLicenseFormat.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.driverLicenseFormat.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+      data = new IdScanWrapper.Data();
+      workflowOutcome.result = 'ssnResult'; //response.profiles[0].verificationResult.data.workflowOutcome
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.ssnResult.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.ssnResult.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      workflowOutcome = new IdScanWrapper.WorkflowOutcome();
+      data = new IdScanWrapper.Data();
+      workflowOutcome.result = 'dateOfBirthResult'; //response.profiles[0].verificationResult.data.workflowOutcome
+      workflowOutcome.message = response[0].profiles[0].verificationResult.data.dateOfBirthResult.message;
+      workflowOutcome.code = response[0].profiles[0].verificationResult.data.dateOfBirthResult.code;
+      data.workflowOutcome = workflowOutcome;
+      dataList.add(data);
+
+      servicedata.data = dataList;
+      System.debug(' servicedata' + servicedata);
+      return servicedata;
+    } else {
+      return null;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { LightningElement, api } from "lwc";
+import { LightningElement, api, track } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 
 export default class ApplicantStatus extends NavigationMixin(LightningElement) {
@@ -7,26 +7,34 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
   @api titleName;
   identityVerified = false;
   kycStatus = false;
-
+  openModal = false;
+  @track OOWText;
   renderedCallback() {
     if (this.record.mflow__IsPhoneNumberVerified__c != "Failed") {
       this.identityVerified = true;
     }
-    console.log("this.record.mflow__KYCStatus__c::" + this.record.mflow__KYCStatus__c);
     if (this.record.mflow__KYCStatus__c === "Passed") {
       this.kycStatus = true;
+    }
+
+    if (
+      this.record.mflow__OOWCorrectAnswers__c === undefined &&
+      this.record.mflow__OOWTotalQuestions__c === undefined
+    ) {
+      this.OOWText = "Not answered any questions yet.";
+    } else {
+      this.record.mflow__OOWCorrectAnswers__c +
+        " out of " +
+        this.record.mflow__OOWTotalQuestions__c +
+        "  questions answered correctly.";
     }
   }
 
   handleNavigate() {
-    this[NavigationMixin.Navigate]({
-      type: "standard__component",
-      attributes: {
-        componentName: "c__identityVerificationReport"
-      },
-      state: {
-        c__propertyValue: "500"
-      }
-    });
+    this.openModal = true;
+  }
+
+  handleIdentityVerifyClose() {
+    this.openModal = false;
   }
 }

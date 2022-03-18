@@ -1,1 +1,68 @@
-<template> {propertyValue} </template>
+<template>
+  <template if:true={flowData}>
+    <div class="slds-modal slds-fade-in-open slds-backdrop slds-modal_medium">
+      <div class="slds-modal__container">
+        <!---HEADER Section-->
+        <div class="slds-modal__header">
+          <lightning-button-icon
+            icon-name="utility:close"
+            alternative-text="Close this window"
+            size="large"
+            variant="bare-inverse"
+            onclick={closeModal}
+            class="slds-modal__close"
+          >
+          </lightning-button-icon>
+          <h2>OOW Report</h2>
+        </div>
+        <!------Body Section-->
+        <div class="slds-modal__content slds-p-around_medium">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_1-of-2">
+              <lightning-formatted-text value="Service Name :"></lightning-formatted-text>
+              <lightning-formatted-text value={flowData.serviceName}></lightning-formatted-text>
+            </div>
+            <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_1-of-2">
+              <lightning-formatted-text value="Service Description :"></lightning-formatted-text>
+              <lightning-formatted-text value={flowData.serviceDescription}></lightning-formatted-text>
+            </div>
+          </div>
+          <!------Body Section-->
+          <br />
+          <div class="slds-modal__content slds-p-around_medium">
+            <div class="section slds-grid slds-wrap">
+              <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_1-of-3">
+                <lightning-formatted-text value="Result"></lightning-formatted-text><br />
+              </div>
+              <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_1-of-3">
+                <lightning-formatted-text value="Message"></lightning-formatted-text><br />
+              </div>
+              <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_1-of-3">
+                <lightning-formatted-text value="Code"></lightning-formatted-text><br />
+              </div>
+            </div>
+            <template for:each={flowData.data} for:item="rkey">
+              <div key={rKey}>
+                <div class="section slds-grid slds-wrap">
+                  <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_1-of-3">
+                    <lightning-formatted-text value={rkey.workflowOutcome.result}></lightning-formatted-text>
+                  </div>
+                  <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_1-of-3">
+                    <lightning-formatted-text value={rkey.workflowOutcome.message}></lightning-formatted-text>
+                  </div>
+                  <div class="slds-col slds-text-heading_small slds-p-horizontal_medium slds-size_1-of-3">
+                    <lightning-formatted-text value={rkey.workflowOutcome.code}></lightning-formatted-text>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div class="slds-modal__footer">
+          <lightning-button icon-name="utility:close" label="close" variant="brand" onclick={closeModal}>
+          </lightning-button>
+        </div>
+      </div>
+    </div>
+  </template>
+</template>
