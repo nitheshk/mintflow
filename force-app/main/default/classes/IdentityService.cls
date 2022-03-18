@@ -36,26 +36,20 @@ global virtual with sharing class IdentityService extends AbstractService {
     return verifyCountyUsingConfiguration(params);
   }
 
+  /**
+   * @description verify county eligibility
+   * Pass "zipcode" as parameter
+   * @author Digital Align Team | 10-13-2021
+   * @param Map<String String> params
+   * @return Object
+   **/
   global virtual Object verifyCountyUsingConfiguration(Map<String, Object> params) {
     try {
       string zipcode = (string) params.get('zipcode');
       if (string.isBlank(zipcode)) {
         throw new CustomException(System.Label.Identity_ZipcodeValueNotSet);
       }
-      Map<String, Object> result = new Map<String, Object>();
-      Map<String, Object> matchingResult = new Map<String, Object>();
-      EligibleCounty__c county = IdentityRepository.fetchCountyByZipcode(zipcode);
-
-      if (county != null) {
-        matchingResult.put('zipcode', zipcode);
-        matchingResult.put('county', county.Name);
-        matchingResult.put('state', county.State__c);
-        result.put('matchingAddress', new List<Object>{ matchingResult });
-        result.put('isCountyEligible', true);
-      } else {
-        result.put('matchingAddress', new List<Object>());
-        result.put('isCountyEligible', false);
-      }
+      Object result = IdScanProvider.fetchCountyByZipcode(zipcode);
       return result;
     } catch (Exception ex) {
       log?.error(ex);
@@ -163,7 +157,6 @@ global virtual with sharing class IdentityService extends AbstractService {
       if (ApplicationConfiguration__c.getInstance().SentiLink__c == false) {
         return applicant;
       }
-
       params.put('applicant', applicant);
 
       HttpBuilder.Response response;

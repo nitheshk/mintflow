@@ -159,6 +159,13 @@ global virtual with sharing class IdScanProvider extends AbstractService {
     return applicant;
   }
 
+  /**
+   * @description parse identity response into applicant record
+   * @author Digital Align Team | 11-01-2021
+   * @param Applicant__c applicant
+   * @param IdScanDTO.Response returnDTO
+   * @return string
+   **/
   global string mapDocumentTypeValue(string value) {
     if (value != null) {
       switch on value {
@@ -178,5 +185,28 @@ global virtual with sharing class IdScanProvider extends AbstractService {
       }
     }
     return null;
+  }
+  /**
+   * @description parse identity response into applicant record
+   * @author Digital Align Team | 11-01-2021
+   * @param String  zipcode
+   * @return Object
+   **/
+  public static Object fetchCountyByZipcode(String zipcode) {
+    Map<String, Object> result = new Map<String, Object>();
+    Map<String, Object> matchingResult = new Map<String, Object>();
+    EligibleCounty__c county = IdentityRepository.fetchCountyByZipcode(zipcode);
+
+    if (county != null) {
+      matchingResult.put('zipcode', zipcode);
+      matchingResult.put('county', county.Name);
+      matchingResult.put('state', county.State__c);
+      result.put('matchingAddress', new List<Object>{ matchingResult });
+      result.put('isCountyEligible', true);
+    } else {
+      result.put('matchingAddress', new List<Object>());
+      result.put('isCountyEligible', false);
+    }
+    return result;
   }
 }
