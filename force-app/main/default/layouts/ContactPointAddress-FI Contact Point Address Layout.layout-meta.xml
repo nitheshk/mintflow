@@ -26,6 +26,10 @@
                 <behavior>Edit</behavior>
                 <field>UsageType</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>HousingStatus__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -2,53 +2,57 @@
 <FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>AddresslInformation</fullName>
     <description>All the fields related to Personal Information of applicant</description>
-  <displayedFields>
+    <displayedFields>
         <field>AddressType</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
+    <displayedFields>
         <field>Street</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
+    <displayedFields>
         <field>City</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
+    <displayedFields>
         <field>State</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
+    <displayedFields>
         <field>PostalCode</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-
-     <displayedFields>
+    <displayedFields>
         <field>Country</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
+    <displayedFields>
+        <field>HousingStatus__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
         <field>UsageType</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
-        <field>mflow__OccupancyDuration__c</field>
+    <displayedFields>
+        <field>OccupancyDuration__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
-        <field>mflow__StateCode__c</field>
+    <displayedFields>
+        <field>StateCode__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-      <displayedFields>
+    <displayedFields>
         <field>IsPrimary</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
