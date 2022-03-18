@@ -207,9 +207,9 @@ global virtual with sharing class ApplicationSubmissionService extends AbstractS
       Map<String, Object> interestedProductParams = new Map<String, Object>();
       for (CustomerInterest__c customerInterest : application.mflow__CustomerInterests__r) {
         Map<String, Object> params = new Map<String, Object>();
-        params.put('app', applicationId);
+        params.put('app', application.Name);
         params.put('ch', application.CreatedChannel__c);
-        params.put('pid', customerInterest.InterestProduct__c);
+        params.put('pid', customerInterest.InterestProduct__r.InternalCode__c);
         params.put(
           'edt',
           Datetime.now().addHours((Integer) ApplicationConfiguration__c.getInstance().ReferralUrlExpirationTime__c)

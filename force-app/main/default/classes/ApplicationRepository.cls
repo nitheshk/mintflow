@@ -137,15 +137,13 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * Applicants contains only ids
    * Financial Account contains only Ids
    * @author Digital Align Team | 10-26-2021
-   * @param Id applicationId
+   * @param String applicationId
    * @return Application__c
    **/
-  global static Application__c readApplicationToClone(Id applicationId) {
+  global static Application__c readApplicationToClone(String applicationName) {
     Query qry = Query.newInstance(Application__c.SObjectType)
-      .addFields()
-      .queryChild('mflow__FinancialAccounts__r')
-      .run()
-      .whereEq('Id', applicationId);
+      .addFieldSet('mflow__CloneApplication')
+      .whereEq('Name', applicationName);
     return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
 
@@ -156,9 +154,10 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    **/
   global static List<Applicant__c> readApplicantsToClone(Id applicationId) {
     Query qry = Query.newInstance(Applicant__c.SObjectType)
-      .addFields()
+      .addFieldSet('mflow__CloneApplicant')
+      .addFields('RecordType.Name')
       .queryChild('mflow__IdentificationDocuments__r')
-      .addFields()
+      .addFieldSet('mflow__CloneIdentification')
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__ContactPointAddresses__r')
@@ -167,7 +166,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__Employments__r')
-      .addFields()
+      .addFieldSet('mflow__CloneEmployment')
       .orderBy('mflow__Order__c')
       .run()
       .whereEq('Application__c', applicationId);

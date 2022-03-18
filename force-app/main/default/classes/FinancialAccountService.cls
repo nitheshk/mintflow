@@ -114,7 +114,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
     financialAccount.Stage__c = 'Active';
     financialAccount.Application__c = application.Id;
-    financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByDevName(
+    financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
       FinancialAccount__c.SObjectType,
       membershipProduct.Category__c
     );
