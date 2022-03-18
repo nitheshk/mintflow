@@ -7,7 +7,6 @@
  **/
 
 global enum APINames {
-  DocumentScan,
   TwillioMessaging,
   SentiLink,
   SentiLinkIdCompletion,

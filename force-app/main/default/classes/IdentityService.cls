@@ -69,26 +69,8 @@ global virtual with sharing class IdentityService extends AbstractService {
     Flow.setFlow('EligibilityFlow');
     Flow.setSubFlow(APINames.Geocoding.name());
     try {
-      String eligibleCountyNames = ApplicationConfiguration__c.getInstance().CountyNames__c;
-      List<String> eligibleCountyNameList = String.isNotBlank(eligibleCountyNames)
-        ? eligibleCountyNames.split(';')
-        : new List<String>();
-      params.put('eligibleCountyNameList', eligibleCountyNameList);
-      string zipcode = (string) params.get('zipcode');
-      if (string.isBlank(zipcode) && params != null) {
-        throw new CustomException(System.Label.Identity_ZipcodeValueNotSet);
-      }
-      if (HttpBuilder.isActiveApiSetting(APINames.Geocoding)) {
-        HttpBuilder.setAPISetting(APINames.Geocoding);
-        HttpBuilder.replaceEndpoint('{APIKey}', HttpBuilder.getApiConstant('GeocodingAPIKey'));
-        HttpBuilder.replaceEndpoint('{Pincode}', (string) params.get('zipcode'));
-        HttpBuilder.Response response = GeocodingProvider.getInstance().validateCountyUsingGoogleApi(params);
-        flow.setSubFlowPassed(response.status);
-        flow.setFlowPassed('Completed');
-        return response.data;
-      } else {
-        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
-      }
+      Object result = IdScanProvider.verifyCountyUsingGoogleApi(params);
+      return result;
     } catch (Exception ex) {
       log?.error(ex);
       flow.setSubFlowFailed(ex.getMessage());
@@ -118,20 +100,12 @@ global virtual with sharing class IdentityService extends AbstractService {
       if (frontCv == null) {
         throw new CustomException(System.Label.Document_DocumentNotFound);
       }
-      // if (backCv != null) {
-      //   params.put('backContentVersion', backCv);
-      // }
       params.put('frontContentVersion', frontCv);
 
-      if (HttpBuilder.isActiveApiSetting(APINames.IdScan)) {
-        HttpBuilder.setAPISetting(APINames.IdScan);
-        HttpBuilder.Response response = IdScanProvider.getInstance().idScan(params);
-        flow.setSubFlowPassed(response.status);
-        flow.setFlowPassed('Completed');
-        return (Applicant__c) response.data;
-      } else {
-        throw new CustomException(System.Label.Api_RequestedApiIsDisabled);
-      }
+      HttpBuilder.Response response = IdScanProvider.getInstance().idScan(params);
+      flow.setSubFlowPassed(response.status);
+      flow.setFlowPassed('Completed');
+      return (Applicant__c) response.data;
     } catch (Exception ex) {
       flow.setSubFlowFailed(ex.getMessage());
       flow.setFlowFailed('Failed');
