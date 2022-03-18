@@ -71,9 +71,7 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
           'Name,mflow__Required__c,mflow__Order__c,mflow__FinancialProduct__c,mflow__CrossSellProduct__c,IsSelected__c'
         )
         .queryLookup('mflow__CrossSellProduct__r')
-        .addFields(
-          'mflow__SubCategory__c,mflow__ShortDescription__c,mflow__InternalCode__c,mflow__Category__c,mflow__DisplayLabel__c'
-        )
+        .addFields()
         .run()
         .whereEq('mflow__isActive__c', true)
         .andCon()
