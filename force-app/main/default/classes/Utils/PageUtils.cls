@@ -42,6 +42,12 @@ global with sharing class PageUtils {
     }
   }
 
+  global static void removeCurrentPageParameter(String key) {
+    if (ApexPages.currentPage() != null) {
+      ApexPages.currentPage().getParameters().remove(key);
+    }
+  }
+
   /**
    * @description get cookie by Key
    * @author Digital Align Team | 09-29-2021

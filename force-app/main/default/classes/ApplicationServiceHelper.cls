@@ -100,7 +100,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
   }
 
   /**
-   * @description
+   * @description Clone Application into new Application
    * @author Digital Align Team | 03-18-2022
    * @param Map<String Object> params
    * @return Application__c
@@ -133,6 +133,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     newApplication = this.resolveBranchLocation(newApplication);
     ApplicationRepository.upsertRecord(newApplication);
 
+    ApexRequest.setApplicationId(newApplication.Id);
     //Financial Account
     FinancialAccount__c financialAccount = new FinancialAccount__c();
     financialAccount.FinancialProduct__c = selectedProduct.Id;
@@ -158,38 +159,41 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
       //Primary Applicant
       if (oldApplicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         newPrimaryApplicant = newApplicant;
+        newApplicant.IsExistingCustomer__c = true;
       }
       newApplicants.add(newApplicant);
     }
     ApplicationRepository.upsertRecords(newApplicants);
+    ApexRequest.setApplicantId(newPrimaryApplicant.Id);
     //Applicant Child
+
+    List<IdentificationDocument__c> newIdentityDocs = new List<IdentificationDocument__c>();
+    List<Employment__c> newEmployments = new List<Employment__c>();
+    List<ContactPointAddress> newAddreses = new List<ContactPointAddress>();
     for (Applicant__c newApplicant : newApplicants) {
-      List<SObject> newApplicantChildreen = new List<SObject>();
       //Identification Document
       for (IdentificationDocument__c oldIdentityDoc : newApplicant.IdentificationDocuments__r) {
         IdentificationDocument__c newIdentityDoc = oldIdentityDoc.clone(false, true, false, false);
         newIdentityDoc.Applicant__c = newApplicant.Id;
-        newApplicantChildreen.add(newIdentityDoc);
+        newIdentityDocs.add(newIdentityDoc);
       }
-      ApplicationRepository.upsertRecords(newApplicantChildreen);
       //Employment
-      // for (Employment__c oldEmployment : newApplicant.Employments__r) {
-      //   Employment__c newEmployment = oldEmployment.clone(false, true, false, false);
-      //   newEmployment.Applicant__c = newApplicant.Id;
-      //   newApplicantChildreen.add(newEmployment);
-      // }
-      // ApplicationRepository.upsertRecords(newApplicantChildreen);
+      for (Employment__c oldEmployment : newApplicant.Employments__r) {
+        Employment__c newEmployment = oldEmployment.clone(false, true, false, false);
+        newEmployment.Applicant__c = newApplicant.Id;
+        newEmployments.add(newEmployment);
+      }
       // //Contact Point Address
-      // for (ContactPointAddress oldAddress : newApplicant.ContactPointAddresses__r) {
-      //   ContactPointAddress newAddress = oldAddress.clone(false, true, false, false);
-      //   newAddress.Applicant__c = newApplicant.Id;
-      //   newApplicantChildreen.add(newAddress);
-      // }
-      // ApplicationRepository.upsertRecords(newApplicantChildreen);
+      for (ContactPointAddress oldAddress : newApplicant.ContactPointAddresses__r) {
+        ContactPointAddress newAddress = oldAddress.clone(false, true, false, false);
+        newAddress.Applicant__c = newApplicant.Id;
+        newAddreses.add(newAddress);
+      }
     }
+    ApplicationRepository.upsertRecords(newIdentityDocs);
+    ApplicationRepository.upsertRecords(newEmployments);
+    ApplicationRepository.upsertRecords(newAddreses);
 
-    log?.debug('newApplication = ' + Json.serialize(newApplication));
-    log?.debug('newApplicants = ' + Json.serialize(newApplicants));
-    return oldApplication;
+    return newApplication;
   }
 }

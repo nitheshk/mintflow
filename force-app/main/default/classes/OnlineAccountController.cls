@@ -22,11 +22,13 @@ global without sharing class OnlineAccountController extends AbstractController 
    **/
   global PageReference initializeApplication() {
     try {
+      log?.Fine('Inside initializeApplication');
       Map<String, Object> params = (Map<String, Object>) Json.deserializeUntyped(
         Json.serialize(PageUtils.getCurrentPageParameters())
       );
       //virtual mintflow(vmf)
       String vmf = PageUtils.getCurrentPageParameters('vmf');
+      log?.info('vmf :' + vmf);
       Cookie pageToken = PageUtils.getCookie('token');
       log?.debug('Cookie: ' + pageToken?.getValue());
       // When Cookies is present on refresh of page
@@ -57,17 +59,16 @@ global without sharing class OnlineAccountController extends AbstractController 
       return null;
     } catch (CustomException ex) {
       log?.error(ex);
-      //PageUtils.addPageErrorMessage(ex.getMessage());
       PageReference error = Page.Error;
-      error.setRedirect(true);
+      error.getParameters().put('exception', ex.getMessage());
       return error;
     } catch (Exception ex) {
       log?.error(ex);
-      //PageUtils.addPageErrorMessage('Unknown Exception');
       PageReference error = Page.Error;
       error.setRedirect(true);
       return error;
     } finally {
+      log?.Fine('Exit initializeApplication');
       Logger.persist();
     }
   }

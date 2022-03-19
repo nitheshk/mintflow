@@ -318,11 +318,14 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void notifyProductInterest(Applicant__c applicant, Map<String, Object> interestedProductParams) {
     String productDetails = '<br/>';
+    String urlSuffix = '/membership/application/otp';
     for (String key : interestedProductParams.keySet()) {
       String link =
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
         '/OpenAccount?cvmf=' +
-        interestedProductParams.get(key);
+        interestedProductParams.get(key) +
+        '&vue=' +
+        EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
       productDetails += '</i><b><a href="' + link + '" target="_blank">' + key + '</a></b></i><br/><br/>';
     }
     EmailNotificationBuilder.newInstance('StartSecondaryApplication', applicant.Id)

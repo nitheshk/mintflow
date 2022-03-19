@@ -21,36 +21,38 @@ global with sharing class OpenAccountController extends AbstractController {
    **/
   global PageReference initOpenAccount() {
     try {
-      PageReference openAccountPage;
       log?.debug('initOpenAccount');
+      PageReference openAccountPage;
       String cvmf = PageUtils.getCurrentPageParameters('cvmf');
+      String vuePath = PageUtils.getCurrentPageParameters('vue');
+      log?.debug('cvmf : ' + cvmf + ' , vuePath: ' + vuePath);
+
+      //set cookie to 0, to delete
+      if (PageUtils.getCookie('token') != null) {
+        PageUtils.setCookie(new Cookie('token', null, null, -1, false));
+      }
 
       if (String.isNotBlank(cvmf)) {
         //Clone Application
-        log?.debug('cvmf : ' + cvmf);
-        String vuePath = PageUtils.getCurrentPageParameters('vue');
-        vuePath = String.isNotBlank(vuePath) ? '#' + vuePath : '';
-        openAccountPage = new PageReference('/OnlineAccount' + vuePath);
-        ApplicationService.getInstance().startReferralApplication();
-        //System.debug('openAccountPage :' + openAccountPage.getUrl());
-      } else {
-        String vuePath = PageUtils.getCurrentPageParameters('vue');
-        vuePath = String.isNotBlank(vuePath) ? '#' + vuePath : '';
-        openAccountPage = new PageReference('/OnlineAccount' + vuePath);
-        //System.debug('openAccountPage :' + openAccountPage.getUrl());
+        PageUtils.setCurrentPageParameter('vmf', (String) ApplicationService.getInstance().startReferralApplication());
+        PageUtils.removeCurrentPageParameter('cvmf');
       }
-      //set cookie to 0, to delete
-      Cookie existingToken = PageUtils.getCookie('token');
-      if (existingToken != null) {
-        PageUtils.setCookie(new Cookie('token', null, null, -1, false));
-      }
+
+      vuePath = String.isNotBlank(vuePath) ? '#' + vuePath : '';
+      openAccountPage = new PageReference('/OnlineAccount' + vuePath);
+      PageUtils.removeCurrentPageParameter('vue');
       openAccountPage.getParameters().putAll(PageUtils.getCurrentPageParameters());
       log?.debug('Completed initOpenAccount');
       return openAccountPage;
+    } catch (CustomException ex) {
+      log?.error(ex);
+      PageReference error = Page.Error;
+      error.getParameters().put('exception', ex.getMessage());
+      return error;
     } catch (Exception ex) {
       log?.error(ex);
-      //throw new CustomException(ex);
-      return null;
+      PageReference error = Page.Error;
+      return error;
     } finally {
       Logger.persist();
     }

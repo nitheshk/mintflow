@@ -352,8 +352,26 @@ global virtual with sharing class ApplicationService extends AbstractService {
     if (edt < Datetime.now()) {
       throw new CustomException(System.Label.Resume_TheSpecifiedUrlWasExpired);
     }
-    ApplicationServiceHelper.getInstance().cloneApplicationRecord(params);
-    log?.fine('Completed startReferralApplication');
-    return null;
+    Application__c application;
+    Savepoint sp = Database.setSavepoint();
+    try {
+      application = ApplicationServiceHelper.getInstance().cloneApplicationRecord(params);
+    } catch (Exception ex) {
+      log?.error(ex);
+      Database.rollback(sp);
+      throw ex;
+    }
+    //Create new Token For Reusme Application Immediatly
+    SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+    cipher.aplType = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+    cipher.flw = 'ApplicationFlow';
+    cipher.appId = application.Id;
+    cipher.aplId = ApexRequest.getApplicantId();
+    cipher.ch = application.CreatedChannel__c;
+    cipher.edt = Datetime.now()
+      .addHours((Integer) ApplicationConfiguration__c.getInstance().EmailLinkExpirationTime__c);
+    String vmf = SecurityUtils.encryptBase64(JSON.serialize(cipher, true));
+    log?.fine('Exit StartReferralApplication');
+    return vmf;
   }
 }
