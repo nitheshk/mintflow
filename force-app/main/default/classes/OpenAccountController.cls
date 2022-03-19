@@ -51,8 +51,7 @@ global with sharing class OpenAccountController extends AbstractController {
       return error;
     } catch (Exception ex) {
       log?.error(ex);
-      PageReference error = Page.Error;
-      return error;
+      return Page.Error;
     } finally {
       Logger.persist();
     }

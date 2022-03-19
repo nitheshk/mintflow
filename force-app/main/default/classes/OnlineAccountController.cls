@@ -64,9 +64,7 @@ global without sharing class OnlineAccountController extends AbstractController 
       return error;
     } catch (Exception ex) {
       log?.error(ex);
-      PageReference error = Page.Error;
-      error.setRedirect(true);
-      return error;
+      return Page.Error;
     } finally {
       log?.Fine('Exit initializeApplication');
       Logger.persist();
