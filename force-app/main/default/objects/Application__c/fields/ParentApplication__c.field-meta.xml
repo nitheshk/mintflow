@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SubmittedBy__c</fullName>
+    <fullName>ParentApplication__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>Submitted by user name</description>
+    <description>Connected Application</description>
     <externalId>false</externalId>
-    <label>Submitted By</label>
-    <referenceTo>User</referenceTo>
-    <relationshipName>Applications</relationshipName>
+    <label>Parent Application</label>
+    <referenceTo>Application__c</referenceTo>
+    <relationshipLabel>Child Applications</relationshipLabel>
+    <relationshipName>ChildApplications</relationshipName>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>

@@ -57,6 +57,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
    * @return Application__c
    **/
   global virtual Application__c resolveBranchLocation(Application__c application) {
+    //#pending Create a Branch Object to connect application
     application.BranchCode__c = '0001';
     application.BranchName__c = 'Main Branch';
     return application;
@@ -122,6 +123,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     //Application
     Application__c newApplication = oldApplication.clone(false, true, false, false);
+    newApplication.ParentApplication__c = oldApplication.Id;
     newApplication.Status__c = ApplicationConstant.IN_PROGRESS;
     newApplication.CreatedChannel__c = oldApplication.LastUsedChannel__c = ch;
     newApplication.ApplicationType__c = selectedProduct.Type__c;

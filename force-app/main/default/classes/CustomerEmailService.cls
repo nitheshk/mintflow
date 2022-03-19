@@ -66,6 +66,9 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       }
     }
 
+    if (familyMembers.isEmpty()) {
+      return;
+    }
     for (Applicant__c applicant : familyMembers) {
       EmailNotificationBuilder.newInstance('NotificationToFamilyMember', applicant.Id)
         .setToAddresses(applicant.Email__c)
@@ -355,8 +358,6 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
       } else {
         log?.debug('Failed to send Email ');
         NotificationBuilder.chatterMessagePost(ApexRequest.getApplicationId(), 'Email Trigger Failure ' + results);
-        // #pending exception on sending email
-        //throw new customException(System.Label.Email_EmailNotSent);
       }
     }
   }

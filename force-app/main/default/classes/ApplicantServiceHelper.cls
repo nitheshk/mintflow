@@ -30,10 +30,10 @@ global virtual with sharing class ApplicantServiceHelper extends AbstractService
    * @description  Send Email to reference person on family connect
    * @author Digital Align Team | 11-09-2021
    **/
-  global virtual void notifyFamilyConnectReference() {
+  global virtual void notifyFamilyConnectReference(String applicationId) {
     log?.debug('inside notifyFamilyConnectReference');
     try {
-      List<Applicant__c> applicants = ApplicantRepository.readApplicantsByApplicationId(ApexRequest.getApplicationId());
+      List<Applicant__c> applicants = ApplicantRepository.readApplicantsByApplicationId(applicationId);
       CustomerEmailService.getInstance().notifyFamilyMember(applicants);
     } catch (exception ex) {
       log?.error(ex);

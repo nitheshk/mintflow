@@ -123,13 +123,9 @@ global virtual with sharing class KycReviewService extends AbstractService {
     for (Applicant__c applicant : application.Applicants__r) {
       if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         applicant.IsExistingCustomer__c = true;
-        applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
-        applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
-      } else {
-        // #pending Joint also need to mark has cancelled
-        applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
-        applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
       }
+      applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
+      applicant.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;
     }
     for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
       financialAccount.ExternalApplicationNumber__c = kycResult.ExternalApplicationNumber;
@@ -138,7 +134,7 @@ global virtual with sharing class KycReviewService extends AbstractService {
 
     NotificationBuilder.chatterMessagePost(
       application.Id,
-      'Primary Account already linked with Membership Account, Application has been cancelled because of existing member'
+      'Application has been cancelled because, Primary member already linked with membership account'
     );
     KycReviewRepository.upsertRecords(application.Applicants__r);
     KycReviewRepository.upsertRecords(application.FinancialAccounts__r);

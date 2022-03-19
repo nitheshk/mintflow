@@ -5,6 +5,8 @@
     <description>True if county is eligible</description>
     <externalId>false</externalId>
     <label>IsCountyEligible</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

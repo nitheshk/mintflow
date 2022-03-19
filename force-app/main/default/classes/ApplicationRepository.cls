@@ -161,7 +161,7 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__ContactPointAddresses__r')
-      .addFields()
+      .addFieldSet('mflow__CloneAddress')
       .removeFields('Address')
       .orderBy('mflow__Order__c')
       .run()

@@ -63,13 +63,10 @@ global virtual with sharing class ApplicationService extends AbstractService {
       application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
       application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
     }
-    //#pending  value need to decide based on the parameter
-    application.ApplicationType__c = 'Deposit';
-    //#pending this true when no product is Present
-    application.isMemberFlow__c = true;
-    application.FlowState__c = 'GetStarted';
-    application.FlowType__c = 'ApplicationFlow';
-    // #pending update version from custom setting
+    application.ApplicationType__c = 'Deposit'; //Also Decide in Financial Account Creation
+    application.isMemberFlow__c = true; //Also Decide in Financial Account Creation
+    application.FlowState__c = ApplicationConstant.GET_STARTED;
+    application.FlowType__c = ApplicationConstant.FLOW_TYPE_APPLICATION;
     application.Version__c = ApplicationConfiguration__c.getInstance().PackageVersion__c;
     application.IPAddress__c = ApplicationServiceHelper.getInstance().getIpAddress();
     application = ApplicationServiceHelper.getInstance().resolveBranchLocation(application);

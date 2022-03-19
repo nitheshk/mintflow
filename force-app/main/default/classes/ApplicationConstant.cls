@@ -46,6 +46,7 @@ public with sharing class ApplicationConstant {
   public static final String STAGE_EXISTING_CUSTOMER = 'ExistingCustomer';
 
   //Flow State
+  public static final String GET_STARTED = 'GetStarted';
   public static final String FINAL_CONFIRMATION = 'Complete';
   public static final String FUNDING_WELCOME = 'WelcomeJoint';
   public static final String JOINT_WELCOME = 'WelcomeJoint';

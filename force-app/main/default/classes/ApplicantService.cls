@@ -96,8 +96,10 @@ global virtual with sharing class ApplicantService extends AbstractService {
   global virtual List<Applicant__c> afterSaveApplicants(List<Applicant__c> applicants) {
     String currentPage = ApexRequest.getRequest().currentPage;
     switch on currentPage {
-      when 'personal-info' {
-        helper.notifyFamilyConnectReference();
+      when 'PersonalInfo' {
+        if (ApexRequest.getApplicantType() == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+          helper.notifyFamilyConnectReference(ApexRequest.getApplicationId());
+        }
       }
     }
     return applicants;
@@ -146,8 +148,10 @@ global virtual with sharing class ApplicantService extends AbstractService {
   global virtual Applicant__c afterSaveApplicant(Applicant__c applicant) {
     String currentPage = ApexRequest.getRequest().currentPage;
     switch on currentPage {
-      when 'personal-info' {
-        helper.notifyFamilyConnectReference();
+      when 'PersonalInfo' {
+        if (ApexRequest.getApplicantType() == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+          helper.notifyFamilyConnectReference(ApexRequest.getApplicationId());
+        }
       }
     }
     return applicant;

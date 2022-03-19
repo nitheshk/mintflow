@@ -106,19 +106,24 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
       ? PageUtils.getCurrentPageParameters('pid')
       : HttpBuilder.getApiConstant('MembershipAccountInternalCode');
 
-    FinancialProduct__c membershipProduct = FinancialAccountRepository.readFinancialProductByInternalCode(productCode);
+    FinancialProduct__c selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(productCode);
+    application.ApplicationType__c = selectedProduct.Type__c;
+    if (selectedProduct.InternalCode__c != HttpBuilder.getApiConstant('MembershipAccountInternalCode')) {
+      application.isMemberFlow__c = false;
+    }
     // create financial account
     FinancialAccount__c financialAccount = new FinancialAccount__c();
-    financialAccount.FinancialProduct__c = membershipProduct.Id;
+    financialAccount.FinancialProduct__c = selectedProduct.Id;
     financialAccount.Ownership__c = 'Individual';
     financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
     financialAccount.Stage__c = 'Active';
     financialAccount.Application__c = application.Id;
     financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
       FinancialAccount__c.SObjectType,
-      membershipProduct.Category__c
+      selectedProduct.Category__c
     );
     FinancialAccountRepository.upsertRecord(financialAccount);
+    FinancialAccountRepository.upsertRecord(application);
     log?.fine('financialAccount Created');
     return financialAccount;
   }

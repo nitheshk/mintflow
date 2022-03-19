@@ -402,8 +402,18 @@
 
     <div class="error">
       <div class="error__title">404</div>
-      <div class="error__subtitle">Hmmm...</div>
-      <div class="error__description">It looks like one of the developers fell asleep</div>
+
+      <apex:outputPanel layout="none" rendered="{!IF($CurrentPage.parameters.exception != null, true, false)}">
+        <div class="error__subtitle" style="color: rgb(85, 11, 11); text-shadow: 2px 2px #ffffffb2">
+          {!$CurrentPage.parameters.exception}
+        </div>
+      </apex:outputPanel>
+      <apex:outputPanel layout="none" rendered="{!IF($CurrentPage.parameters.exception != null, false, true)}">
+        <div class="error__subtitle" style="color: rgb(85, 11, 11); text-shadow: 2px 2px #ffffffb2">
+          Something Went Wrong
+        </div>
+      </apex:outputPanel>
+      <div class="error__description">Please contact <b>support@digitalalign.com</b> for more information</div>
       <button class="error__button error__button--active">LOGIN</button>
       <button class="error__button">CONTACT</button>
     </div>
