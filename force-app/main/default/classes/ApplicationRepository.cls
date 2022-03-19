@@ -169,7 +169,9 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .addFieldSet('mflow__CloneEmployment')
       .orderBy('mflow__Order__c')
       .run()
-      .whereEq('Application__c', applicationId);
+      .whereEq('Application__c', applicationId)
+      .andCon()
+      .whereNeq('RecordType.Name', ApplicationConstant.APPLICANT_FAMILY_MEMBER_RECORDTYPE);
     return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
   }
 }
