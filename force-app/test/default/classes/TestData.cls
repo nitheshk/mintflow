@@ -202,8 +202,11 @@ public with sharing class TestData {
     List<FinancialProduct__c> products = new List<FinancialProduct__c>();
     FinancialProduct__c p = new FinancialProduct__c();
     p.DisplayLabel__c = 'Product1';
-    p.mflow__Category__c = 'Checking';
-    p.mflow__InternalCode__c = 'IC001';
+    p.mflow__Category__c = 'Savings';
+    p.InternalCode__c = 'IC001';
+    p.ExternalCode__c = 'IC001';
+    p.Type__c = 'Deposit';
+    p.SubCategory__c = 'Regular Savings';
     products.add(p);
     return products;
   }

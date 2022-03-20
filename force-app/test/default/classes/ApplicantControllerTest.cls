@@ -59,6 +59,9 @@ public with sharing class ApplicantControllerTest {
     request.token = token;
     res = ApplicantController.readApplicantsWithChild(request);
     system.assertEquals(400, res.status, 'success');
+
+    //Applicant Service Read
+    ApplicantService.getInstance().readApplicantWithChild(applicant.Id);
   }
 
   @isTest
@@ -119,7 +122,6 @@ public with sharing class ApplicantControllerTest {
     ApexResponse res = ApplicantController.readApplicantsWithChild(request);
     system.assertEquals(200, res.status, 'success');
 
-    system.debug('res:' + res.data);
     List<Object> applicants = (List<Object>) Json.deserializeUntyped((String) res.data);
     String applicantJson = Json.serialize(applicants[0]);
     //200
@@ -423,6 +425,50 @@ public with sharing class ApplicantControllerTest {
     request.setHeader(new Map<String, object>{ 'employerId' => applicant.Employments__r[0].Id });
     request.token = token;
     ApexResponse res = ApplicantController.validateAtomicFi(request);
+    system.assertEquals(200, res.status, 'success');
+  }
+
+  /** Application Service  */
+  @isTest
+  static void afterSaveApplicantsTest() {
+    makeApplicationConfiguration();
+    List<FinancialProduct__c> products = TestData.createProduct();
+    insert products;
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+
+    Applicant__c familyMember = TestData.createApplicant(application.id);
+    familyMember.ApplicantType__c = 'Family Member';
+    familyMember.Email__c = 'test@test.com';
+    familyMember.Phone__c = '9876543210';
+    insert familyMember;
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.setHeader(new Map<String, object>{ 'applicantIds' => new List<String>{ ApexRequest.getApplicantId() } });
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicantController.readApplicantsWithChild(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //Save Applicant
+    List<Object> applicants = (List<Object>) Json.deserializeUntyped((String) res.data);
+    String applicantJson = Json.serialize(applicants[0]);
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.currentPage = 'PersonalInfo';
+    request.data = applicantJson;
+    res = ApplicantController.saveApplicant(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200 //saveApplicants
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.data = (String) Json.serialize(applicants);
+    request.currentPage = 'PersonalInfo';
+    res = ApplicantController.saveApplicants(request);
     system.assertEquals(200, res.status, 'success');
   }
 }
