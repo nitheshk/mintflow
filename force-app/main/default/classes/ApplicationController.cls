@@ -24,9 +24,6 @@ global with sharing class ApplicationController extends AbstractController {
     try {
       validateRequest(request, true);
       return ApexResponse.ok(ApplicationService.getInstance().startApplication(ApexRequest.getParams()));
-    } catch (CustomException ex) {
-      log?.error(ex);
-      return ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
       return ApexResponse.fail(ex);

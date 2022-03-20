@@ -1,60 +1,247 @@
 @istest
 public with sharing class ApplicationControllerTest {
-  private static ApplicationConfiguration__c makeApplicationConfiguration() {
+  //makeApplicationConfiguration
+  private static void makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
-    appConfig = (ApplicationConfiguration__c) DatabaseUtils.insertRecord(appConfig);
-    return appConfig;
+    insert appConfig;
+    TestData.createSiteSetting();
+    List<FinancialProduct__c> products = TestData.createProduct();
+    insert products;
   }
-  private static Application__c makeApplicationData() {
-    Application__c acc = TestData.createApplication();
-    acc = (Application__c) DatabaseUtils.insertRecord(acc);
+  //createApplicantDataWithChild
+  private static Applicant__c createApplicantDataWithChild(Application__c application) {
+    Applicant__c applicant = Application.Applicants__r[0];
+    SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
 
-    Applicant__c applicant = TestData.createApplicant('Primary');
-    applicant.Application__c = acc.Id;
-    applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
+    IdentificationDocument__c identity = TestData.createIdentity(applicant.Id);
+    insert identity;
 
-    IdentificationDocument__c identity = TestData.createIdentity(null);
-    identity.Applicant__c = applicant.Id;
-    identity = (IdentificationDocument__c) DatabaseUtils.insertRecord(identity);
-    applicant.mflow__IdentificationDocuments__r.addAll(new List<IdentificationDocument__c>{ identity });
-    acc.Applicants__r.addAll(new List<Applicant__c>{ applicant });
-    return acc;
+    Employment__c employment = TestData.createEmployment(applicant.Id);
+    insert employment;
+
+    ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
+    insert address;
+
+    construct.addChildObject('mflow__IdentificationDocuments__r', identity);
+    construct.addChildObject('mflow__Employments__r', employment);
+    construct.addChildObject('mflow__ContactPointAddresses__r', address);
+
+    return (Applicant__c) construct.build();
   }
-  @istest
-  private static void startApplicationTest() {
-    Application__c application = makeApplicationData();
+
+  //startApplicationTest
+  @isTest
+  static void startApplicationTest() {
     makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
     ApexRequest request = new ApexRequest();
-    request.setHeader(new Map<String, object>{ 'url' => 'url', 'ch' => 'Virtual' });
-    ApexRequest.setApplicationId(application.Id);
-    ApexRequest.setApplicantType('Primary');
-    request.setData(application);
-    test.startTest();
-    ApplicationController.startApplication(request);
-    ApplicationController.readApplicationWithChild(request);
-    ApplicationController.saveApplication(request);
-    ApplicationController.deleteEntity(request);
-    ApplicationController.reviewInformationSubmit(request);
-    ApplicationController.refreshToken(request);
-    ApplicationController.expireToken(request);
-    ApplicationController.generateConsentPdf(request);
-    ApplicationController.preserveApplication(request);
-    ApplicationController.fetchConsents(request);
-    ApplicationController.fetchSurvey(request);
-    test.stopTest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicationController.startApplication(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //400
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    res = ApplicationController.startApplication(null);
+    system.assertEquals(400, res.status, 'success');
   }
-  @istest
-  private static void submitApplicationTest() {
-    Application__c application = makeApplicationData();
+
+  //readApplicationWithChild
+  @isTest
+  static void readApplicationWithChildTest() {
     makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200 //Primary
     ApexRequest request = new ApexRequest();
-    request.setHeader(new Map<String, object>{ 'url' => 'url', 'ch' => 'Virtual' });
-    ApexRequest.setApplicationId(application.Id);
-    ApexRequest.setApplicantType('Primary');
-    request.setData(application);
-    Test.setMock(HttpCalloutMock.class, new RpaServiceMock('updatememberdetails', '200'));
-    Test.startTest();
-    ApplicationController.submitApplication(request);
-    Test.stopTest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicationController.readApplicationWithChild(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200 //Joint
+    String token = SecurityUtils.generateTokenForTesting(
+      application.Id,
+      applicant.id,
+      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE,
+      ApplicationConstant.FLOW_TYPE_APPLICATION
+    );
+    request = new ApexRequest();
+    request.token = token;
+    res = ApplicationController.readApplicationWithChild(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //500
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    res = ApplicationController.readApplicationWithChild(request);
+    system.assertEquals(500, res.status, 'success');
+  }
+
+  //saveApplicationTest
+  @isTest
+  static void saveApplicationTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicationController.readApplicationWithChild(request);
+    system.assertEquals(200, res.status, 'success');
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.data = (String) res.data;
+    res = ApplicationController.saveApplication(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //400
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.data = 'InvalidaJson';
+    res = ApplicationController.saveApplication(request);
+    system.assertEquals(400, res.status, 'success');
+    //500
+    request = new ApexRequest();
+    request.token = 'invalidToken';
+    request.data = (String) res.data;
+    res = ApplicationController.saveApplication(request);
+    system.assertEquals(500, res.status, 'success');
+  }
+
+  //saveApplicationFlowStateTest
+  @isTest
+  static void saveApplicationFlowStateTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.currentPage = ApplicationConstant.GET_STARTED;
+    ApexResponse res = ApplicationController.readApplicationWithChild(request);
+    system.assertEquals(200, res.status, 'success');
+    //200
+    ApplicationService.getInstance().updateFlowState(application);
+    ApplicationService.getInstance().updateFlowState(application.Applicants__r);
+    ApplicationService.getInstance().updateFlowState(applicant);
+    ApplicationService.getInstance().updateFlowState(application.FinancialAccounts__r);
+
+    ApexRequest.setApplicantType(ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
+    ApplicationService.getInstance().updateFlowState(applicant);
+
+    //Exception
+    ApexRequest.getRequest().currentPage = 'InvalidPage';
+    ApplicationService.getInstance().updateFlowState(applicant);
+  }
+
+  //deleteEntityTest1
+  @isTest
+  static void deleteEntityTest1() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicationController.readApplicationWithChild(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'recordId' => application.FinancialAccounts__r[0].Id });
+    res = ApplicationController.deleteEntity(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'recordId' => applicant.IdentificationDocuments__r[0].Id });
+    res = ApplicationController.deleteEntity(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'recordId' => applicant.ContactPointAddresses__r[0].Id });
+    res = ApplicationController.deleteEntity(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'recordId' => applicant.Employments__r[0].Id });
+    res = ApplicationController.deleteEntity(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    Application__c app = new Application__c();
+    insert app;
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'recordId' => app.Id });
+    res = ApplicationController.deleteEntity(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'recordId' => applicant.Id });
+    res = ApplicationController.deleteEntity(request);
+    system.assertEquals(200, res.status, 'success');
+  }
+
+  //deleteEntityTest2
+  @isTest
+  static void deleteEntityTest2() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicationController.readApplicationWithChild(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'recordIds' => new List<String>{ application.Id } });
+    res = ApplicationController.deleteEntity(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //500
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    request.setHeader(new Map<String, object>{ 'recordIds' => new List<String>{ application.Id } });
+    res = ApplicationController.deleteEntity(request);
+    system.assertEquals(500, res.status, 'success');
   }
 }

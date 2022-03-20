@@ -18,6 +18,24 @@ public with sharing class TestData {
     return appConfig;
   }
 
+  public static SystemSetting__c createSystemSetting() {
+    SystemSetting__c systemSetting = new SystemSetting__c();
+    systemSetting.DebugLogs__c = true;
+    systemSetting.Flow__c = true;
+    systemSetting.LoggingLevel__c = 'Fine';
+    return systemSetting;
+  }
+
+  public static SiteSetting__c createSiteSetting() {
+    SiteSetting__c siteSetting = new SiteSetting__c();
+    siteSetting.mflow__OnlineSiteUrl__c = 'https://sandbox-efficiency-enterprise-8306-d-17f6e971958.cs73.force.com/Online';
+    siteSetting.mflow__FinancialInstituteSiteUrl__c = 'https://sandbox-efficiency-enterprise-8306-d-17f6e971958.cs73.force.com/HomePageFI';
+    siteSetting.mflow__OnlineAccountOpeningUrl__c = '/OpenAccount?pid=IC003#/home';
+    siteSetting.mflow__OnlineContentUrl__c = 'https://ik.imagekit.io/disczlxo8kv/P1FCU/';
+    insert siteSetting;
+    return siteSetting;
+  }
+
   public static Account createAccountRecord() {
     Account acc = new Account();
     acc.Name = 'Account Name';
@@ -146,13 +164,6 @@ public with sharing class TestData {
       origin = 'H'
     );
     return cv;
-  }
-  public static SystemSetting__c createSystemSetting() {
-    SystemSetting__c systemSetting = new SystemSetting__c();
-    systemSetting.DebugLogs__c = true;
-    systemSetting.Flow__c = true;
-    systemSetting.LoggingLevel__c = 'Fine';
-    return systemSetting;
   }
 
   public static FileDTO createFileDto(string fileName, string parentID) {
