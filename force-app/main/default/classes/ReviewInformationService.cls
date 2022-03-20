@@ -38,6 +38,10 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
 
     String applicantType = ApexRequest.getApplicantType();
 
+    if (application.Status__c == ApplicationConstant.SUBMITTED_FOR_REVIEW) {
+      throw new CustomException('Application Already Submitted');
+    }
+
     if (applicantType == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
       // send email to primary and joint
       this.primaryConsumerFlow(application);

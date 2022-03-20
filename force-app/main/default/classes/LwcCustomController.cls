@@ -253,8 +253,12 @@ global with sharing class LwcCustomController extends AbstractController {
     try {
       log?.fine('Inside resubmitTheApplication applicationId =' + applicationId);
       return ApexResponse.ok(ReviewInformationService.getInstance().resubmitApplicationForReview(applicationId));
-    } catch (Exception e) {
-      throw new AuraHandledException(e.getMessage());
+    } catch (CustomException ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete resubmitTheApplication');
       Logger.persist();
