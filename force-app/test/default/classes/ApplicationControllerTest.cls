@@ -4,7 +4,6 @@ public with sharing class ApplicationControllerTest {
   /**
    * fetchConsents
    * fetchSurvey
-   * submitApplication
    * generateConsentPdf
    */
 
@@ -486,6 +485,38 @@ public with sharing class ApplicationControllerTest {
     request.token = 'invalidToken';
     request.data = (String) res.data;
     res = ApplicationController.preserveApplication(request);
+    system.assertEquals(500, res.status, 'success');
+  }
+
+  //submitApplicationTest
+  @isTest
+  static void submitApplicationTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //500 API Exception
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicationController.submitApplication(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200 //Primary
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    res = ApplicationController.submitApplication(request);
+    system.assertEquals(200, res.status, 'success');
+    Test.stopTest();
+
+    //500
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    res = ApplicationController.submitApplication(request);
     system.assertEquals(500, res.status, 'success');
   }
 }
