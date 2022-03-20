@@ -6,7 +6,7 @@ public with sharing class SentiLinkReportControllerTest {
     return cv;
   }
   private static ContactPointAddress makeContactPointAddress(Id applicantId) {
-    ContactPointAddress address = TestData.createContactPointAddress();
+    ContactPointAddress address = TestData.createContactPointAddress(null);
     address.Applicant__c = applicantId;
     address = (ContactPointAddress) DatabaseUtils.insertRecord(address);
     return address;

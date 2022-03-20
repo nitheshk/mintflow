@@ -8,17 +8,17 @@ public with sharing class BuildApplicationWrapperTest {
     applicant.Application__c = acc.Id;
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
 
-    IdentificationDocument__c identity = TestData.createIdentity();
+    IdentificationDocument__c identity = TestData.createIdentity(null);
     identity.Applicant__c = applicant.Id;
     identity = (IdentificationDocument__c) DatabaseUtils.insertRecord(identity);
     applicant.mflow__IdentificationDocuments__r.addAll(new List<IdentificationDocument__c>{ identity });
 
-    Employment__c employment = TestData.createEmployment();
+    Employment__c employment = TestData.createEmployment(null);
     employment.Applicant__c = applicant.Id;
     employment = (Employment__c) DatabaseUtils.insertRecord(employment);
     applicant.mflow__Employments__r.addAll(new List<Employment__c>{ employment });
 
-    ContactPointAddress address = TestData.createContactPointAddress();
+    ContactPointAddress address = TestData.createContactPointAddress(null);
     address.Applicant__c = applicant.Id;
     address = (ContactPointAddress) DatabaseUtils.insertRecord(address);
     applicant.mflow__ContactPointAddresses__r.addAll(new List<ContactPointAddress>{ address });

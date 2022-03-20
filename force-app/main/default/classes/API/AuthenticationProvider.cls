@@ -33,21 +33,21 @@ global virtual with sharing class AuthenticationProvider extends AbstractService
    * @param Map<String Object> params
    * @return Object
    **/
-  public Object generateToken(Map<String, Object> params) {
-    try {
-      Map<String, String> dto = new Map<String, String>();
-      dto.put('username', 'admin'); //'{!$Credential.Username}');
-      dto.put('password', 'grf37ygdN6eWnXAePhRH'); // '{!$Credential.Password}');
-      Map<String, String> header = new Map<String, String>();
-      header.put('accept', '*/*');
-      header.put('Content-Type', 'application/json');
-      HttpResponse response = HttpBuilder.httpCallOut(JSON.serialize(dto), header);
-      return HttpBuilder.buildResponse(response);
-    } catch (Exception ex) {
-      log?.error(ex);
-      return HttpBuilder.buildResponse(400, System.Label.Util_ThereIsSomeIssueOnTheApiCall, null);
-    }
-  }
+  // public Object generateToken(Map<String, Object> params) {
+  //   try {
+  //     Map<String, String> dto = new Map<String, String>();
+  //     dto.put('username', 'admin'); //'{!$Credential.Username}');
+  //     dto.put('password', 'grf37ygdN6eWnXAePhRH'); // '{!$Credential.Password}');
+  //     Map<String, String> header = new Map<String, String>();
+  //     header.put('accept', '*/*');
+  //     header.put('Content-Type', 'application/json');
+  //     HttpResponse response = HttpBuilder.httpCallOut(JSON.serialize(dto), header);
+  //     return HttpBuilder.buildResponse(response);
+  //   } catch (Exception ex) {
+  //     log?.error(ex);
+  //     return HttpBuilder.buildResponse(400, System.Label.Util_ThereIsSomeIssueOnTheApiCall, null);
+  //   }
+  // }
 
   /**
    * @description generate token for rpa connect

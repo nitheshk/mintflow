@@ -13,7 +13,7 @@ public with sharing class RpaProcessServiceTest {
     applicant.Application__c = acc.Id;
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
 
-    IdentificationDocument__c identity = TestData.createIdentity();
+    IdentificationDocument__c identity = TestData.createIdentity(null);
     identity.Applicant__c = applicant.Id;
     identity = (IdentificationDocument__c) DatabaseUtils.insertRecord(identity);
     applicant.mflow__IdentificationDocuments__r.addAll(new List<IdentificationDocument__c>{ identity });

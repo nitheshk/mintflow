@@ -31,17 +31,17 @@ global virtual with sharing class AuthenticationService extends AbstractService 
    * @author Digital Align Team | 10-29-2021
    * @return String
    **/
-  global String getAuthToken() {
-    if (String.isNotBlank(mintFlowAuthToken)) {
-      return mintFlowAuthToken;
-    }
-    HttpBuilder.setAPISetting(APINames.AWSAuth);
-    HttpBuilder.Response response = (HttpBuilder.Response) AuthenticationProvider.getInstance().generateToken(null);
-    if (response.statusCode == 200) {
-      return String.valueOf(response.data);
-    }
-    return null;
-  }
+  // global String getAuthToken() {
+  //   if (String.isNotBlank(mintFlowAuthToken)) {
+  //     return mintFlowAuthToken;
+  //   }
+  //   HttpBuilder.setAPISetting(APINames.AWSAuth);
+  //   HttpBuilder.Response response = (HttpBuilder.Response) AuthenticationProvider.getInstance().generateToken(null);
+  //   if (response.statusCode == 200) {
+  //     return String.valueOf(response.data);
+  //   }
+  //   return null;
+  // }
 
   /**
    * @description generate otp via sms or email
@@ -75,13 +75,13 @@ global virtual with sharing class AuthenticationService extends AbstractService 
         : HttpBuilder.getApiConstant('TwillioToPhoneNumber');
       params.put('toPhone', HttpBuilder.getApiConstant('Twillio_Country') + toPhone);
       params.put('applicantId', applicant.Id);
-      //NotificationService.getInstance().sendOTPMessage(params);
+      NotificationService.getInstance().sendOTPMessage(params);
     }
     //Email
     if (otpModeList.contains('EMAIL')) {
       applicant.IsEmailVerified__c = false;
       applicant.EmailOtp__c = String.valueOf(Math.round((Math.random() * (9000) + 1000)));
-      //CustomerEmailService.getInstance().sendEmailOTP(applicant);
+      CustomerEmailService.getInstance().sendEmailOTP(applicant);
     }
 
     ApplicantRepository.updateRecord(applicant);
@@ -98,11 +98,9 @@ global virtual with sharing class AuthenticationService extends AbstractService 
     Applicant__c applicant = ApplicantRepository.readApplicantWithApplication((Id) params.get('applicantId'));
     ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getInstance();
     try {
-      String otpMode = ApexRequest.getParams('otpMode') != null
-        ? (String) ApexRequest.getParams('otpMode')
-        : appConfig.AllowedOtpMode__c;
-
-      List<String> otpModeList = String.isNotBlank(otpMode) ? otpMode.split(';') : new List<String>();
+      List<String> otpModeList = String.isNotBlank(appConfig.AllowedOtpMode__c)
+        ? appConfig.AllowedOtpMode__c.split(';')
+        : new List<String>();
 
       if (otpModeList.isEmpty()) {
         throw new CustomException('Please verify the otp configuration');
@@ -146,23 +144,18 @@ global virtual with sharing class AuthenticationService extends AbstractService 
         applicant.IsEmailVerified__c = true;
       }
 
-      // Generate Token base on the OTP verified from configuration
-      List<String> otpConfiguredModeList = String.isNotBlank(appConfig.AllowedOtpMode__c)
-        ? appConfig.AllowedOtpMode__c.split(';')
-        : new List<String>();
-
       Boolean otpValidated = false;
-      if (otpConfiguredModeList.contains('SMS') && otpConfiguredModeList.contains('EMAIL')) {
+      if (otpModeList.contains('SMS') && otpModeList.contains('EMAIL')) {
         otpValidated = applicant.IsPhoneNumberVerified__c && applicant.IsEmailVerified__c;
         if (otpValidated) {
           applicant.SmsOtp__c = applicant.EmailOtp__c = '';
         }
-      } else if (otpConfiguredModeList.contains('SMS')) {
+      } else if (otpModeList.contains('SMS')) {
         otpValidated = applicant.IsPhoneNumberVerified__c;
         if (otpValidated) {
           applicant.SmsOtp__c = '';
         }
-      } else if (otpConfiguredModeList.contains('EMAIL')) {
+      } else if (otpModeList.contains('EMAIL')) {
         otpValidated = applicant.IsEmailVerified__c;
         if (otpValidated) {
           applicant.EmailOtp__c = '';

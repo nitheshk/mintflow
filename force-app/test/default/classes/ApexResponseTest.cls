@@ -33,4 +33,20 @@ public with sharing class ApexResponseTest {
     res = ApexResponse.exception(new customException('Test exception'));
     system.assertEquals(500, res.status, 'success');
   }
+
+  @istest
+  static void apexResponseRestContext() {
+    Application__c acc = makeAccountData();
+    RestContext.request = new RestRequest();
+    RestContext.response = new RestResponse();
+    ApexResponse res = ApexResponse.exception(new customException('Test exception'));
+    res.setStatus(200);
+    res.setEntity('test');
+    res.addHeader('key', 'value');
+    res.setData('test');
+    res.setData(new Account());
+    res.setDataAsStringfy('test');
+    res.setDataAsStringfy(new Account());
+    system.assertEquals(200, RestContext.response.statusCode, 'success');
+  }
 }

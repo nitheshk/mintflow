@@ -33,7 +33,6 @@ global virtual with sharing class EmploymentService extends AbstractService {
    **/
   global virtual String atomicAuthenticate(String applicantId, String employerId) {
     String body = AtomicFIProvider.getInstance().authenticate(applicantId, employerId);
-    Flow.finalize();
     return body;
   }
   /**

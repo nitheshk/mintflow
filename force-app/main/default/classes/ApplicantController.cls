@@ -67,7 +67,6 @@ global with sharing class ApplicantController extends AbstractController {
       return ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
-
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();
@@ -180,6 +179,7 @@ global with sharing class ApplicantController extends AbstractController {
       log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
+      Flow.finalize();
       Logger.persist();
     }
   }

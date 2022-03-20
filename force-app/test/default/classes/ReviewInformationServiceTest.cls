@@ -28,7 +28,7 @@ public with sharing class ReviewInformationServiceTest {
     finAcc.RecordTypeId = recTypef;
     finAcc = (FinancialAccount__c) DatabaseUtils.insertRecord(finAcc);
 
-    IdentificationDocument__c identity = TestData.createIdentity();
+    IdentificationDocument__c identity = TestData.createIdentity(null);
     identity.Applicant__c = applicant.Id;
     identity = (IdentificationDocument__c) DatabaseUtils.insertRecord(identity);
     applicant.mflow__IdentificationDocuments__r.addAll(new List<IdentificationDocument__c>{ identity });
