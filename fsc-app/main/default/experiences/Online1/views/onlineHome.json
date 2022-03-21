@@ -44,14 +44,6 @@
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
-                },
-                {
-                  "componentAttributes": {},
-                  "componentName": "mflow:productList",
-                  "id": "1a1bf3bc-1905-4be5-9722-254b016c9ea6",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
                 }
               ],
               "id": "ad9f8696-e201-4143-9b22-62ee82480f6f",
