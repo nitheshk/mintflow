@@ -127,4 +127,21 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     log?.fine('financialAccount Created');
     return financialAccount;
   }
+
+  /**
+   *  Only For Testing Purpose
+   *  Manual Approve Funding Data
+   **/
+  public static void testApproveFundingSubmission(String applicationNumber) {
+    Application__c application = (new BuildFundingWrapper()).readApplicationWithChild(applicationNumber);
+    String applicationJson =
+      '{"FinancialAccount":[{"FinancialAccountId":"' +
+      application.FinancialAccounts__r[0].Id +
+      '","Ownership":"Individual","AccountNumber":"34543","ProductCode":"","FinancialApplicationTransaction":{"TransactionStatus":"Paid","FinancialAccountTransactionId":"' +
+      application.FinancialAccounts__r[0].FinancialAccountTransactions__r[0].Id +
+      '"}}],"ExternalApplicationNumber":"","ExternalApplicationStatus":"Approved","MemberNumber":" 229217 ","Application":"' +
+      application.Id +
+      '"}';
+    application = (Application__c) ApplicationSubmissionService.getInstance().processFundingSubmission(applicationJson);
+  }
 }

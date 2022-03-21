@@ -11,16 +11,14 @@ FinancialAccountTransaction__c fst = new FinancialAccountTransaction__c(
   TransactionDate__c = Datetime.now()
 );
 
-FinancialAccount__c finacc = (FinancialAccount__c) SObjectConstructor.getInstance(
-    fs[0]
-  )
+FinancialAccount__c finacc = (FinancialAccount__c) SObjectConstructor.getInstance(fs[0])
   .addChildObject('mflow__FinancialAccountTransactions__r', fst)
   .build();
 
 fs = FinancialAccountService.getInstance()
-  .saveFinancialAccounts(
-    new List<FinancialAccount__c>{ finacc },
-    '0010p000013GlKCAA0'
-  );
+  .saveFinancialAccounts(new List<FinancialAccount__c>{ finacc }, '0010p000013GlKCAA0');
 system.debug('acc : ' + JSON.Serialize(fs));
 logger.persist();
+
+//Manually Approved Funding
+FinancialAccountService.testApproveFundingSubmission('App-00166');
