@@ -8,6 +8,10 @@
         <apexPage>Error</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+      <classAccesses>
+        <apexClass>ProductController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>FinancingController</apexClass>
         <enabled>true</enabled>

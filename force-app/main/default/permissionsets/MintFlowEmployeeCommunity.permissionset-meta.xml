@@ -16,6 +16,10 @@
         <apexClass>ApexResponse</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+       <classAccesses>
+        <apexClass>ProductController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>ApplicationController</apexClass>
         <enabled>true</enabled>
