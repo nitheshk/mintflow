@@ -54,7 +54,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF url(/sfsites/c/file-asset/p1fcuimage5?v=1) center center /cover",
+                "background": "background: #FFFFFF url(/sfsites/c/file-asset/p1fcuimage2?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(29, 31, 109, 0.3)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,
