@@ -10,10 +10,10 @@
       "mflow__ImageName__c": "credit-card-dog.jpg",
       "mflow__ImageURL__c": "Products/credit-card-dog.jpg",
       "mflow__InternalCode__c": "IC009",
-      "mflow__LongDescription__c": "The Cash Rewards Account offers all the b",
+      "mflow__LongDescription__c": "Best for users looking to earn cash back on everyday purchases. Receive $150 Bonus Cash Back after $1000 in qualified purchases within the first 90 days 0% APR* intro rate on purchases and balance transfers for 15 months after that, variable rates of 10.24% - 18.24% APR* apply",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
-      "mflow__ShortDescription__c": "The Cash Reward Account offers all the b",
+      "mflow__ShortDescription__c": "Best for users looking to earn cash back on everyday purchases",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
@@ -34,7 +34,7 @@
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Power Plus Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC006" },
@@ -51,7 +51,7 @@
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Preferred Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC004" },
@@ -68,7 +68,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Special Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC003" },
@@ -78,10 +78,10 @@
       "mflow__EndDate__c": "2026-11-05",
       "mflow__ExternalCode__c": "EC003",
       "mflow__InternalCode__c": "IC003",
-      "mflow__LongDescription__c": "The Regular Savings product is required",
+      "mflow__LongDescription__c": "The Regular Savings product is required for new accounts. This savings account establishes your membership and is your voting share of the credit union.",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
-      "mflow__ShortDescription__c": "The Regular Savings product is required",
+      "mflow__ShortDescription__c": "Open account with minimum deposit of $35",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
@@ -126,7 +126,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-002" },
@@ -143,7 +143,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Equipment & Vehicle Loans",
       "mflow__Type__c": "Business",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC002" },
@@ -160,7 +160,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Idaho Medical Savings Accounts",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-005" },
@@ -177,7 +177,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Business Non Profit",
       "mflow__Type__c": "Business",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC005" },
@@ -197,7 +197,7 @@
       "mflow__isActive__c": true,
       "mflow__ProductServices__r": {
         "totalSize": 2,
-        "done": true,
+        "done": false,
         "records": [
           {
             "attributes": { "type": "mflow__ProductService__c", "referenceId": "ProductServiceRef9_0" },
@@ -230,10 +230,10 @@
       "mflow__ImageName__c": "credit-card-explore.jpg",
       "mflow__ImageURL__c": "Products/credit-card-explore.jpg",
       "mflow__InternalCode__c": "IC008",
-      "mflow__LongDescription__c": "The Secured Visa Account offers all the b",
+      "mflow__LongDescription__c": "A Secured Visa credit card is the perfect way to establish credit or build good credit, whether you’re starting out or starting over. This card is secured by the available funds in your share savings account.",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
-      "mflow__ShortDescription__c": "The SecuredVisa Account offers all the b",
+      "mflow__ShortDescription__c": "Establish credit or build good credit",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
