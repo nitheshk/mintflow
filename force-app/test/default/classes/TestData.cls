@@ -267,6 +267,9 @@ public with sharing class TestData {
       .queryChild('mflow__FinancialAccounts__r')
       .addFields()
       .run()
+      .queryChild('mflow__CustomerInterests__r')
+      .addFields()
+      .run()
       .whereEq('Id', applicationId);
     return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }

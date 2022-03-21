@@ -5,6 +5,7 @@ public with sharing class FinancialAccountControllerTest {
     acc = (Application__c) DatabaseUtils.insertRecord(acc);
 
     List<FinancialProduct__c> products = TestData.createProduct();
+    products[0].InternalCode__c = 'IC001';
     products = (List<FinancialProduct__c>) DatabaseUtils.insertRecords(products);
 
     ProductService__c productService = TestData.makeProductService();
@@ -50,9 +51,12 @@ public with sharing class FinancialAccountControllerTest {
     ApexRequest request = new ApexRequest();
     request.applicationId = application.Id; //Application__c ID
     request.setData(JSON.serialize(application.FinancialAccounts__r));
+    ApexPages.currentPage().getParameters().put('pid', 'IC001');
+    ApexPages.StandardController sc = new ApexPages.StandardController(application);
     Test.startTest();
-    FinancialAccountController.saveFinancialAccounts(new ApexRequest());
+    FinancialAccountController.saveFinancialAccounts(request);
     FinancialAccountController.fetchReferralProducts(new ApexRequest());
+    FinancialAccountService.getInstance().createInitialFinancialAccount(application);
     Test.stopTest();
   }
 }

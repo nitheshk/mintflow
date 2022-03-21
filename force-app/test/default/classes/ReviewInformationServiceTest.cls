@@ -60,6 +60,17 @@ public with sharing class ReviewInformationServiceTest {
     try {
       ReviewInformationService.getInstance().reviewInformationSubmit(acc.Id);
       ReviewInformationService.getInstance().resubmitApplicationForReview(acc.Id);
+    } catch (Exception e) {
+    }
+    test.stopTest();
+  }
+  @istest
+  static void TestThree() {
+    makeApplicationConfiguration();
+    Application__c acc = makeApplicationData(ApplicationConstant.SUBMITTED_FOR_REVIEW);
+    acc = TestData.readApplicationWithChild(acc.Id);
+    test.startTest();
+    try {
       ReviewInformationService.getInstance().jointConsumerFlow(acc);
     } catch (Exception e) {
     }
