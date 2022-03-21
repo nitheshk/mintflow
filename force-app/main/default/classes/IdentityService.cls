@@ -128,7 +128,7 @@ global virtual with sharing class IdentityService extends AbstractService {
       String apiName = params.get('apiName').toString();
       Applicant__c applicant = IdentityRepository.readApplicantForIdentity((ID) applicantId);
 
-      if (ApplicationConfiguration__c.getInstance().SentiLink__c == false) {
+      if (SystemSetting__c.getInstance().SentiLink__c == false) {
         return applicant;
       }
       params.put('applicant', applicant);

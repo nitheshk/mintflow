@@ -8,7 +8,6 @@
       "mflow__OTPMaxAllowedAttempts__c": 5,
       "mflow__OTPExpirationTime__c": 5,
       "mflow__AllowedOtpMode__c": "SMS;EMAIL",
-      "mflow__SentiLink__c": true,
       "mflow__EmailLinkExpirationTime__c": 4,
       "mflow__SessionExpirationTime__c": 180,
       "mflow__CountyNames__c": "Oregon;Idaho;Washington",

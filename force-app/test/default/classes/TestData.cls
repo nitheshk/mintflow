@@ -11,7 +11,6 @@ public with sharing class TestData {
     appConfig.EmailLinkExpirationTime__c = 2;
     appConfig.OTPExpirationTime__c = 1;
     appConfig.OTPMaxAllowedAttempts__c = 7;
-    appConfig.SentiLink__c = true;
     appConfig.SessionExpirationTime__c = 2;
     appConfig.CountyNames__c = 'Oregaon;Idhaho;Washington';
     appConfig.PackageVersion__c = '1';
@@ -23,6 +22,7 @@ public with sharing class TestData {
     systemSetting.DebugLogs__c = true;
     systemSetting.Flow__c = true;
     systemSetting.LoggingLevel__c = 'Fine';
+    systemSetting.SentiLink__c = true;
     return systemSetting;
   }
 
