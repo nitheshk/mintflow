@@ -28,7 +28,7 @@ public with sharing class FinancialAccountServiceTest {
     applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
 
     acc.Applicants__r.addAll(new List<Applicant__c>{ applicant });
-    IdentificationDocument__c identity = TestData.createIdentity();
+    IdentificationDocument__c identity = TestData.createIdentity(null);
     identity.Applicant__c = applicant.Id;
     identity = (IdentificationDocument__c) DatabaseUtils.insertRecord(identity);
     applicant.mflow__IdentificationDocuments__r.addAll(new List<IdentificationDocument__c>{ identity });
