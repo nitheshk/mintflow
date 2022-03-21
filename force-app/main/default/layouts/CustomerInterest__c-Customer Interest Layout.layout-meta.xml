@@ -19,6 +19,10 @@
                 <behavior>Edit</behavior>
                 <field>InterestProduct__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Focus__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
