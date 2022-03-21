@@ -4,7 +4,7 @@
     <description>Product short description</description>
     <externalId>false</externalId>
     <label>Short Description</label>
-    <length>40</length>
+    <length>255</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
