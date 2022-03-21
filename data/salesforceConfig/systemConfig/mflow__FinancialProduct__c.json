@@ -8,7 +8,7 @@
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC009",
       "mflow__ImageName__c": "credit-card-dog.jpg",
-      "mflow__ImageURL__c": "Products/credit-card-dog.jpg",
+      "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC009",
       "mflow__LongDescription__c": "Best for users looking to earn cash back on everyday purchases. Receive $150 Bonus Cash Back after $1000 in qualified purchases within the first 90 days 0% APR* intro rate on purchases and balance transfers for 15 months after that, variable rates of 10.24% - 18.24% APR* apply",
       "mflow__MaxVersion__c": "1",
@@ -86,6 +86,8 @@
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__ImageName__c": "Regular_Savings.png",
+      "mflow__ImageURL__c": "Products/Regular_Savings.png",
       "mflow__ProductServices__r": {
         "totalSize": 2,
         "done": true,
@@ -194,7 +196,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__isActive__c": false,
       "mflow__ProductServices__r": {
         "totalSize": 2,
         "done": false,
