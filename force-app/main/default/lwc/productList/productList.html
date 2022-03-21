@@ -1,0 +1,17 @@
+<template>
+  <template if:true={products}>
+    <div class="content">
+      <lightning-layout horizontal-align="space">
+        <template for:each={products.data} for:item="product">
+          <div key={product.id} class="c-container slds-var-m-around_large">
+            <lightning-layout-item padding="around-large">
+              <div class="custom-box slds-var-m-around_large">
+                <c-product-card key={product.id} product={product}></c-product-card>
+              </div>
+            </lightning-layout-item>
+          </div>
+        </template>
+      </lightning-layout>
+    </div>
+  </template>
+</template>

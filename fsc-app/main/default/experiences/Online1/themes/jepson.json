@@ -54,7 +54,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF",
+                "background": "background: #FFFFFF url(/sfsites/c/file-asset/mflow__p1fcuimage4?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(0, 0, 0, 0.3)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,
@@ -66,7 +66,7 @@
                 "dropdownBorderColor": "#F0F0F0",
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
-                "headerHeight": 16,
+                "headerHeight": 50,
                 "linkActiveBorderColor": "",
                 "linkColor": "rgba(0, 0, 0, 0.8)",
                 "linkHoverColor": "rgba(0, 0, 0, 0.7)",
@@ -117,6 +117,17 @@
                   "type": "region"
                 },
                 {
+                  "components": [
+                    {
+                      "componentAttributes": {
+                        "richTextValue": "<h1 style=\"text-align:center;color:white;font-size:32px;\">\n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1FCU_Logo_white.png\" height=\"100\" width=\"100\" style=\"text-align:center;\"/>\n<br/>A Pacific Northwest Original Since 1938\n</h1>"
+                      },
+                      "componentName": "forceCommunity:htmlBlock",
+                      "id": "0542845a-7926-48a9-8df7-5a9661245a9d",
+                      "renditionMap": {},
+                      "type": "component"
+                    }
+                  ],
                   "id": "4c23b109-aa95-47b2-a85d-34c8e8cdd05b",
                   "regionName": "nav",
                   "type": "region"

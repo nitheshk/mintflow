@@ -87,6 +87,22 @@
                           "seedComponents": [],
                           "tabKey": "2",
                           "tabName": "Applicant 360"
+                        },
+                        {
+                          "UUID": "bbd03790-8f60-462c-ab81-5e1a2af7eae8",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "f69bf",
+                          "tabName": "Activity"
+                        },
+                        {
+                          "UUID": "ceb78313-6fc8-4769-97aa-3b89c39ee002",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "915af",
+                          "tabName": "Chatter"
                         }
                       ],
                       "useOverflowMenu": false
@@ -128,6 +144,49 @@
                       "id": "60b9efad-4393-4a65-9e4b-a25b1cd9a3e8",
                       "regionLabel": "Applicant 360",
                       "regionName": "2",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "recordId": "{!recordId}"
+                          },
+                          "componentName": "forceCommunity:activityPanel",
+                          "id": "99037503-c41f-4328-bc84-a7ac79695fd5",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "bbd03790-8f60-462c-ab81-5e1a2af7eae8",
+                      "regionLabel": "Activity",
+                      "regionName": "f69bf",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "canChangeSorting": true,
+                            "defaultFilter": "",
+                            "defaultSortOrderHomeFeed": "Relevance",
+                            "defaultSortOrderTopicsFeed": "Relevance",
+                            "feedDesign": "DEFAULT",
+                            "hasFeedSearch": true,
+                            "subjectId": "{!recordId}",
+                            "type": "Record"
+                          },
+                          "componentName": "forceCommunity:forceCommunityFeed",
+                          "id": "bf931b0f-53ed-455d-a034-61c8c43bc89e",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "ceb78313-6fc8-4769-97aa-3b89c39ee002",
+                      "regionLabel": "Chatter",
+                      "regionName": "915af",
                       "renditionMap": {},
                       "type": "region"
                     }
