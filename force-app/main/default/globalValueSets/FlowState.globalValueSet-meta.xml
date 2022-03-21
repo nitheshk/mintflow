@@ -79,7 +79,8 @@
         <fullName>Disclosure</fullName>
         <default>false</default>
         <label>Disclosure</label>
-    </customValue><customValue>
+    </customValue>
+    <customValue>
         <fullName>Complete</fullName>
         <default>false</default>
         <label>Complete</label>
@@ -118,6 +119,11 @@
         <fullName>EmailConfirmation</fullName>
         <default>false</default>
         <label>EmailConfirmation</label>
+    </customValue>
+    <customValue>
+        <fullName>Agreements</fullName>
+        <default>false</default>
+        <label>Agreements</label>
     </customValue>
     <description>UI Flow State Indicator</description>
     <masterLabel>FlowState</masterLabel>

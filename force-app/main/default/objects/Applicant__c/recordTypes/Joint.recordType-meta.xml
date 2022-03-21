@@ -58,6 +58,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Agreements</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>BranchPassword</fullName>
             <default>false</default>
         </values>
@@ -202,7 +206,6 @@
             <default>false</default>
         </values>
     </picklistValues>
-    
     <picklistValues>
         <picklist>KYCStatus__c</picklist>
         <values>

@@ -58,6 +58,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Agreements</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>BranchPassword</fullName>
             <default>false</default>
         </values>
