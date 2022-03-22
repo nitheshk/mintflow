@@ -1,0 +1,26 @@
+<template>
+  <template if:true={product}>
+    <div class="wsk-cp-product">
+      <div class="wsk-cp-img">
+        <img src="https://ik.imagekit.io/disczlxo8kv/P1FCU/get-started.jpg" alt="Product" class="img-responsive" />
+      </div>
+      <div class="wsk-cp-text">
+        <div class="category">
+          <span>{product.mflow__Category__c}</span>
+        </div>
+        <div class="title-product">
+          <h3>{product.Name}</h3>
+        </div>
+        <div class="description-prod">
+          <p>{product.mflow__LongDescription__c}</p>
+        </div>
+        <div class="card-footer">
+          <div class="wcf-left"><span class="price">1$ - $50</span></div>
+          <div class="wcf-right">
+            <a href="" class="buy-btn">Select</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+</template>

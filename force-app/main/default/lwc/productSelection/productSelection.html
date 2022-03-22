@@ -1,0 +1,15 @@
+<template>
+  <template if:true={productList}>
+    <lightning-card title="Product Selection Page" icon-name="standard:Account">
+      <div class="slds-var-m-around_medium">
+        <div class="slds-grid slds-wrap">
+          <template for:each={productList} for:item="product">
+            <div key={product.id} class="slds-col slds-size_1-of-4 slds-var-p-around_x-small">
+              <c-product-card key={product.id} product={product}></c-product-card>
+            </div>
+          </template>
+        </div>
+      </div>
+    </lightning-card>
+  </template>
+</template>

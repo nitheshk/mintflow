@@ -1,0 +1,17 @@
+@font-face {
+  /*
+        font family is used to give a name to the custom font,
+         you use this for referencing the custom font later
+    */
+  font-family: "mycustomfont";
+
+  /*
+        This is the location of the Custom Font, note, I have stored in a ZIP file
+     */
+  src: url("https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i") format("TrueType");
+}
+
+body {
+  font-family: "mycustomfont";
+  background: #ddd;
+}

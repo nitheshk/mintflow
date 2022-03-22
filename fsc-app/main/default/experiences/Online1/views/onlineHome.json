@@ -39,7 +39,7 @@
               "components": [
                 {
                   "componentAttributes": {},
-                  "componentName": "mflow:productList",
+                  "componentName": "mflow:productSelection",
                   "id": "cebc9202-4fa6-48c5-89e0-16d5b2d3deab",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},

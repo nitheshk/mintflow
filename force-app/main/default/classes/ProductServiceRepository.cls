@@ -82,4 +82,18 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description fetch all products
+   * @author Digital Align Team | 03-22-2022
+   * @return List<financialProduct__c>
+   **/
+  public static List<financialProduct__c> fetchProducts() {
+    return (List<financialProduct__c>) DatabaseUtils.getRecords(
+      Query.newInstance(financialProduct__c.SObjectType)
+        .addFields()
+        //.orderBy('mflow__Order__c')
+        .toString()
+    );
+  }
 }

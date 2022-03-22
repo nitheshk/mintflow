@@ -42,7 +42,7 @@
                 },
                 {
                   "componentAttributes": {},
-                  "componentName": "mflow:productList",
+                  "componentName": "mflow:productSelection",
                   "id": "116ea5e0-9dda-418f-92ba-d077ca668dd4",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
