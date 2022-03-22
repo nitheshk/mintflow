@@ -155,7 +155,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     for (Applicant__c oldApplicant : oldApplicants) {
       Applicant__c newApplicant = oldApplicant.clone(false, true, false, false);
       newApplicant.Application__c = newApplication.Id;
-      newApplicant.FlowState__c = 'Review';
+      newApplicant.FlowState__c = 'AddressVerification';
       newApplicant.FlowType__c = 'ApplicationFlow';
       newApplicant.Status__c = ApplicationConstant.IN_PROGRESS;
       //Primary Applicant

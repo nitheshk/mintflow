@@ -321,7 +321,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    **/
   global virtual void notifyProductInterest(Applicant__c applicant, Map<String, Object> interestedProductParams) {
     String productDetails = '<br/>';
-    String urlSuffix = '/membership/application/otp';
+    String urlSuffix = '/lending/credit-card/otp';
     for (String key : interestedProductParams.keySet()) {
       String link =
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
