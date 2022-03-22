@@ -54,7 +54,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF url(/sfsites/c/file-asset/p1fcuimage2?v=1) center center /cover",
+                "background": "background: #FFFFFF url(/sfsites/c/file-asset/mflow__p1fcuimage1?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(29, 31, 109, 0.3)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,
@@ -66,7 +66,7 @@
                 "dropdownBorderColor": "#F0F0F0",
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
-                "headerHeight": 50,
+                "headerHeight": 30,
                 "linkActiveBorderColor": "",
                 "linkColor": "rgba(0, 0, 0, 0.8)",
                 "linkHoverColor": "rgba(0, 0, 0, 0.7)",
@@ -118,6 +118,15 @@
                 },
                 {
                   "components": [
+                    {
+                      "componentAttributes": {
+                        "richTextValue": "<div class=\"container\" style=\"width:12%; float:right;\">\n    <div class=\"row\">\n      <div class=\"col-md-1\">\n            <div class=\"title-product\" style=\" background:#fff;padding:15px;border-radius:6px;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin:10px auto;\">\n                <h2 style=\"color: #18305d;text-align:center;\">Online Banking</h2>\n                <p style=\"color: #18305d;\">Use Online banking to login into your existing account.</p>\n                    <hr style=\"margin:15px !important;\"/>\n                <input type=\"button\" value=\"Secure Login >>\"  style=\"height: 35px !important;width:120px !important;background: #18305d !important;color: #FFFFFF !important; border-radius: 15px; transform: scale(1.05);margin-left:28%;\">\n             \n          \t</div>\n            </div>\n         </div> \n      <div class=\"row\">\n      <div class=\"col-md-1\">\n             <div class=\"title-product\" style=\" background:#fff;padding:15px;border-radius:6px;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin:10px auto;\">\n   \t\t\t\t <input type=\"text\" value=\"City,State or Zip\" style=\"float:left;height: 35px !important;margin-right:5px;\">\n                    <input type=\"button\" value=\"Find ATM\"  style=\"height: 35px !important;width:100px !important;background: #18305d !important;color: #FFFFFF !important; border-radius: 15px; transform: scale(1.05);\">\n          </div>\n          </div>\n    </div>\n</div>"
+                      },
+                      "componentName": "forceCommunity:htmlBlock",
+                      "id": "6aa08401-5a39-40f3-9693-6c2e7a67b665",
+                      "renditionMap": {},
+                      "type": "component"
+                    },
                     {
                       "componentAttributes": {
                         "richTextValue": "<h1 style=\"text-align:center;color:white;font-size:32px;\">\n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1FCU_Logo_white.png\" height=\"100\" width=\"100\" style=\"text-align:center;\"/>\n<br/>A Pacific Northwest Original Since 1938\n</h1>"
