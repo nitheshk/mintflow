@@ -93,6 +93,7 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
       Query.newInstance(financialProduct__c.SObjectType)
         .addFields()
         //.orderBy('mflow__Order__c')
+        .whereEq('mflow__isActive__c', true)
         .toString()
     );
   }

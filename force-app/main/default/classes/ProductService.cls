@@ -33,6 +33,10 @@ global virtual with sharing class ProductService extends AbstractService {
    * @return List<financialProduct__c>
    **/
   global virtual List<financialProduct__c> fetchProducts() {
-    return ProductServiceRepository.fetchProducts();
+    List<financialProduct__c> products = ProductServiceRepository.fetchProducts();
+    for (financialProduct__c product : products) {
+      product.mflow__ImageURL__c = SiteSetting__c.getInstance().mflow__OnlineContentUrl__c + product.mflow__ImageURL__c;
+    }
+    return products;
   }
 }

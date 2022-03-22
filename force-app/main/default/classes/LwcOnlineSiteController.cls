@@ -18,7 +18,7 @@ global with sharing class LwcOnlineSiteController extends AbstractController {
   @AuraEnabled(cacheable=true)
   global static ApexResponse productSelector(ApexRequest request) {
     try {
-      //validateRequest(request, true);
+      validateRequest(request, true);
       return ApexResponse.ok(ProductService.getInstance().fetchProducts());
     } catch (Exception ex) {
       log?.debug(ex.getMessage());
