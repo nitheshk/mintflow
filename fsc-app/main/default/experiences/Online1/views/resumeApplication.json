@@ -1,0 +1,70 @@
+{
+  "appPageId": "62bf51a0-121c-4952-8e6e-8f780a07e682",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "d13a289f-e208-4602-994a-9283d977a064",
+  "label": "resumeApplication",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "effd3b12-4961-4497-b9ce-3b7f6d2fe94a",
+              "columns": [
+                {
+                  "UUID": "77d53079-5ca5-4ad1-9ad2-2a2181baec97",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "12",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "effd3b12-4961-4497-b9ce-3b7f6d2fe94a",
+          "regions": [
+            {
+              "id": "77d53079-5ca5-4ad1-9ad2-2a2181baec97",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "ae73b02a-0709-4d1b-9129-7c489548958c",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "resumeApplication"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "125683b1-a165-461a-a3df-6b2454670ebb",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "20df8189-889d-4176-a338-fa211b7688e3",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Inner",
+  "type": "view",
+  "viewType": "custom-resumeapplication"
+}

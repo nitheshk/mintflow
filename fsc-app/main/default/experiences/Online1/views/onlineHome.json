@@ -55,17 +55,11 @@
             {
               "components": [
                 {
-                  "componentAttributes": {},
-                  "componentName": "mflow:startOnlineApplication",
-                  "id": "d9dabe30-4dc9-487a-9318-a0cd7e96a068",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {},
-                  "componentName": "mflow:customerResumeApplication",
-                  "id": "5459d845-17e4-4649-8fa0-683aa0cf0040",
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"container\" style=\"width:100%;\">\n   <h2 style=\"color: #18305d;text-align:center;\">What to do</h2>\n    <hr/>\n<input type=\"button\" value=\"Resume My Application\"  style=\"height: 45px !important;width:250px !important;background: #18305d !important;color: #FFFFFF !important; border-radius: 15px; transform: scale(1.05);margin-bottom:20px;margin-left:20%\">\n\n<input type=\"button\" value=\"Credit Card Calculator\"  style=\"height: 45px !important;width:250px !important;background: #18305d !important;color: #FFFFFF !important; border-radius: 15px; transform: scale(1.05);margin-bottom:20px;margin-left:20%\">\n\n<input type=\"button\" value=\"My Credit Score\"  style=\"height: 45px !important;width:250px !important;background: #18305d !important;color: #FFFFFF !important; border-radius: 15px; transform: scale(1.05);margin-bottom:20px;margin-left:20%\">\n       \n        </div>\n    </div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "8e05cb39-99a5-4526-be46-0435f3fbd5f7",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"

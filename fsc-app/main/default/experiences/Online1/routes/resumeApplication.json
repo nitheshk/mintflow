@@ -1,0 +1,11 @@
+{
+  "activeViewId": "d13a289f-e208-4602-994a-9283d977a064",
+  "appPageId": "62bf51a0-121c-4952-8e6e-8f780a07e682",
+  "configurationTags": [],
+  "id": "59673d5f-0eae-4ba9-a643-5429a25164b2",
+  "label": "resumeApplication",
+  "pageAccess": "UseParent",
+  "routeType": "custom-resumeapplication",
+  "type": "route",
+  "urlPrefix": "resumeapplication"
+}
