@@ -9,7 +9,7 @@
       "mflow__Flow__c": true,
       "mflow__LoggingLevel__c": "Fine",
       "mflow__SentiLink__c": true,
-      "EnableDefaultMembershipProduct__c": true
+      "mflow__EnableDefaultMembershipProduct__c": true
     }
   ]
 }
