@@ -17,7 +17,7 @@ body {
 }
 
 lightning-card {
-  --sds-c-card-color-background: #f3f0e7d8 40%;
+  --sds-c-card-color-background: rgb(224, 232, 240) 40%;
   --sds-c-card-color-border: #00000096;
 }
 
