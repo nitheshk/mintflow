@@ -70,7 +70,7 @@
 .product-category .category > span {
   padding: 12px 30px;
   border: 1px solid #313131;
-  background: #212121;
+  background: #31769c;
   color: #fff;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   border-radius: 27px;
@@ -136,25 +136,11 @@
   font-weight: bold;
 }
 
-a.buy-btn {
-  display: inline-block;
-  color: #212121;
-  text-align: center;
-  font-size: 18px;
-  width: 100px;
-  height: 35px;
-  line-height: 35px;
-  border-radius: 10%;
-  border: 1px solid #212121;
-  transition: all 0.2s ease-in-out;
-}
-a.buy-btn:hover,
-a.buy-btn:active,
-a.buy-btn:focus {
-  border-color: #ff9800;
-  background: #ff9800;
-  color: #fff;
-  text-decoration: none;
+.card-footer-right-btn {
+  --sds-c-button-brand-color-background: #18305d;
+  --sds-c-button-brand-color-background-active: #18305d;
+  --sds-c-button-brand-color-background-hover: #31769c;
+  --sds-c-button-radius-border: 2rem;
 }
 
 @media screen and (max-width: 991px) {
@@ -174,10 +160,5 @@ a.buy-btn:focus {
   }
   .product-card .product-category .category {
     margin-top: 0px;
-  }
-  a.buy-btn {
-    border-color: #ff9800;
-    background: #ff9800;
-    color: #fff;
   }
 }

@@ -54,7 +54,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF url(/sfsites/c/file-asset/mflow__p1fcuimage1?v=1) center center /cover",
+                "background": "background: #FFFFFF url(/sfsites/c/file-asset/mflow__p1fcu_online_header?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(29, 31, 109, 0.3)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,

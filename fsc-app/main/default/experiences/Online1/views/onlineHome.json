@@ -18,14 +18,14 @@
                   "UUID": "ad9f8696-e201-4143-9b22-62ee82480f6f",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "10",
+                  "columnWidth": "9",
                   "seedComponents": []
                 },
                 {
                   "UUID": "b653c46e-e144-4572-a88e-dfb4f8257500",
                   "columnKey": "aee52",
                   "columnName": "Column 2",
-                  "columnWidth": "2",
+                  "columnWidth": "3",
                   "seedComponents": []
                 }
               ]
