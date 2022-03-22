@@ -1,5 +1,4 @@
 import { LightningElement, track, wire } from "lwc";
-import utils from "c/generalUtils";
 import getProducts from "@salesforce/apex/LwcOnlineSiteController.productSelector";
 
 export default class ProductSelection extends LightningElement {
@@ -8,6 +7,11 @@ export default class ProductSelection extends LightningElement {
   @track productMap = new Map();
   @track selectedProductType = "All";
   @track productTypes = [];
+
+  /**
+   *
+   * @param {*} param0
+   */
   @wire(getProducts, { request: {} })
   products({ data, error }) {
     if (data?.status === 200) {
@@ -44,5 +48,16 @@ export default class ProductSelection extends LightningElement {
       });
     }
     this.selectedProductType = productType;
+  }
+
+  /**
+   *
+   * @param {*} event
+   */
+  handleProductSelection(event) {
+    const productCode = event.detail.productCode;
+    console.log("productCode:", productCode);
+    var url = window.location.origin + "/Online/OpenAccount?pid=" + productCode;
+    window.open(url, "_blank");
   }
 }

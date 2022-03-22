@@ -17,7 +17,14 @@
         <div class="card-footer">
           <div class="card-footer-left"><span class="price">1$ - $50</span></div>
           <div class="card-footer-right">
-            <a href="" class="buy-btn">Select</a>
+            <lightning-button
+              variant="brand"
+              label="Select"
+              title="Product Select"
+              onclick={handleProductSelectChange}
+              class="slds-var-m-left_medium slds-var-m-around_medium"
+              data-productcode={product.mflow__InternalCode__c}
+            ></lightning-button>
           </div>
         </div>
       </div>

@@ -19,7 +19,11 @@
         <div class="slds-grid slds-wrap">
           <template for:each={productsToShow} for:item="product">
             <div key={product.id} class="slds-col slds-size_1-of-4 slds-var-p-around_x-small">
-              <c-product-card key={product.id} product={product}></c-product-card>
+              <c-product-card
+                key={product.id}
+                product={product}
+                onproductselection={handleProductSelection}
+              ></c-product-card>
             </div>
           </template>
         </div>
