@@ -50,8 +50,10 @@
       "mflow__ShortDescription__c": "A perfect account for our value minded m",
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Preferred Debit Account",
+      "mflow__ImageName__c": "Preferred_debit.png",
+      "mflow__ImageURL__c": "Products/Preferred_debit.png",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC004" },
@@ -196,7 +198,9 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false,
+      "mflow__isActive__c": true,
+      "mflow__ImageName__c": "Prime_debit.png",
+      "mflow__ImageURL__c": "Products/Prime_debit.png",
       "mflow__ProductServices__r": {
         "totalSize": 2,
         "done": false,
