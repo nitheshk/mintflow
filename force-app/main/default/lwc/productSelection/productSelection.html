@@ -1,21 +1,19 @@
 <template>
   <template if:true={productsToShow}>
-    <lightning-card
-      ><lightning-button-group class="slds-var-p-left_large">
-        <template for:each={productTypes} for:item="productType">
-          <lightning-button
-            key={productType}
-            variant="brand"
-            label={productType}
-            title="Primary action"
-            onclick={handleProductTypeChange}
-            class="slds-var-m-left_small slds-var-m-around_medium product-type-btn"
-            data-type={productType}
-          ></lightning-button>
-        </template>
-      </lightning-button-group>
+    <lightning-card>
+      <template for:each={productTypes} for:item="productType">
+        <lightning-button
+          key={productType}
+          variant="brand"
+          label={productType}
+          title="Primary action"
+          onclick={handleProductTypeChange}
+          class="slds-var-m-left_small slds-var-m-around_medium product-type-btn"
+          data-type={productType}
+        ></lightning-button>
+      </template>
 
-      <div class="slds-var-m-around_medium">
+      <div class="slds-var-m-around_small">
         <div class="slds-grid slds-wrap">
           <template for:each={productsToShow} for:item="product">
             <div key={product.id} class="slds-col slds-size_1-of-4 slds-var-p-around_x-small">

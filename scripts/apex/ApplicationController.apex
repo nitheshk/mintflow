@@ -86,3 +86,6 @@ Logger.persist();
 
 // #9
 ApplicationSubmissionService.getInstance().notifyProductInterest('a036D000005vcmzQAA');
+
+//
+FinancialAccountService.testApproveFundingSubmission('App-00200');

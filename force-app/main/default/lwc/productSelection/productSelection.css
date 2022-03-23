@@ -21,7 +21,7 @@ lightning-card {
   --sds-c-card-color-border: #00000096;
 }
 
-lightning-card lightning-button-group {
+lightning-card .product-type-btn {
   --sds-c-button-brand-color-background: #18305d;
   --sds-c-button-brand-color-background-active: #18305d;
   --sds-c-button-brand-color-background-hover: #31769c;
