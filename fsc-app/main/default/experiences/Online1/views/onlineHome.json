@@ -42,7 +42,18 @@
                   "componentName": "mflow:productSelection",
                   "id": "cebc9202-4fa6-48c5-89e0-16d5b2d3deab",
                   "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
+                  "renditionMap": {
+                    "small": "361ccddb-758b-4ec3-8e69-9d800c8a9176"
+                  },
+                  "renditions": [
+                    {
+                      "id": "361ccddb-758b-4ec3-8e69-9d800c8a9176",
+                      "renditionValue": {
+                        "isVisible": true
+                      },
+                      "type": "renditionComponent"
+                    }
+                  ],
                   "type": "component"
                 }
               ],
@@ -56,12 +67,23 @@
               "components": [
                 {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"container\" style=\"width:100%;\">\n   <h2 style=\"color: #18305d;text-align:center;\">What to do</h2>\n    <hr/>\n    <div style=\"float:center;margin-bottom:50px;margin-left:50px;\">\n<a href =\"ApplicationServices\"  style=\"height: 100px !important;width:250px !important;background: #18305d !important;color: #FFFFFF !important; border-radius: 15px; transform: scale(1.05);padding:15px 75px;\">Resume My Application</a>\n</div>\n   \n     <div style=\"float:center;margin-bottom:50px;margin-left:50px;\">\n<a href =\"ApplicationServices\"  style=\"height: 50px !important;width:250px !important;background: #18305d !important;color: #FFFFFF !important; border-radius: 15px; transform: scale(1.05);padding:15px 75px;\">Credit Card Calculator</a>\n</div>\n       \n  <div style=\"float:center;margin-bottom:50px;margin-left:50px;\">\n<a href =\"ApplicationServices\"  style=\"height: 50px !important;width:250px !important;background: #18305d !important;color: #FFFFFF !important; border-radius: 15px; transform: scale(1.05);padding:15px 95px;\">My Credit Score</a>\n</div>\n<hr/>\n             <div  style=\"padding:15px;border-radius:6px;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\">\n   \t\t\t\t <input type=\"text\" value=\"City,State or Zip\" style=\"height: 35px !important; margin-left:50px !important;\">\n                    <input type=\"button\" value=\"Find ATM\"  style=\"height: 35px !important;width:100px !important;background: #18305d !important;color: #FFFFFF !important; border-radius: 15px; transform: scale(1.05);\">\n          </div>\n          </div>"
+                    "richTextValue": "<div class=\"slds-grid slds-wrap\">\n  <div class=\"slds-col slds-box slds-size_1-of-1 slds-align_absolute-center\">\n    <a href =\"ApplicationServices\"  class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">Resume My Application</a>\n  </div>\n  <div class=\"slds-col slds-box slds-size_1-of-1 slds-align_absolute-center\">\n   <a href =\"ApplicationServices\"  class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">Credit Card Calculator</a> \n  </div>\n  <div class=\"slds-col slds-box slds-size_1-of-1 slds-align_absolute-center\">\n   <a href =\"ApplicationServices\"  class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">My Credit Score</a>\n  </div>\n  <div class=\"slds-col slds-box slds-size_1-of-1 slds-align_absolute-center\">\n    <input type=\"text\" placeholder=\"City, State or Zip\"/><br>    \n    <button class=\"slds-button slds-button_neutral slds-p-left_large\" style=\"color:white;border-radius: 27px;background: #18305d;\">Find ATM</button>\n  </div>\n</div>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
                   "id": "8e05cb39-99a5-4526-be46-0435f3fbd5f7",
                   "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
+                  "renditionMap": {
+                    "small": "f3ffd4c3-0d9c-4bf3-bc4d-8e289a1d1023"
+                  },
+                  "renditions": [
+                    {
+                      "id": "f3ffd4c3-0d9c-4bf3-bc4d-8e289a1d1023",
+                      "renditionValue": {
+                        "isVisible": true
+                      },
+                      "type": "renditionComponent"
+                    }
+                  ],
                   "type": "component"
                 }
               ],
@@ -73,7 +95,18 @@
             }
           ],
           "renderPriority": "NEUTRAL",
-          "renditionMap": {},
+          "renditionMap": {
+            "small": "ab3f318d-19ca-4101-9df6-305fa6923cf6"
+          },
+          "renditions": [
+            {
+              "id": "ab3f318d-19ca-4101-9df6-305fa6923cf6",
+              "renditionValue": {
+                "isVisible": true
+              },
+              "type": "renditionComponent"
+            }
+          ],
           "type": "component"
         }
       ],
