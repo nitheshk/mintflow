@@ -92,8 +92,8 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
     return (List<financialProduct__c>) DatabaseUtils.getRecords(
       Query.newInstance(financialProduct__c.SObjectType)
         .addFields()
-        //.orderBy('mflow__Order__c')
         .whereEq('mflow__isActive__c', true)
+        .orderBy('mflow__Order__c')
         .toString()
     );
   }

@@ -385,7 +385,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialProduct__c.SortOrder__c</field>
+        <field>FinancialProduct__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

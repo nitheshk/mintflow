@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SortOrder__c</fullName>
-    <description>SortOrder which wil be used to display the order in which products will be displayed.</description>
+    <fullName>Order__c</fullName>
+    <description>Order which wil be used to display the order in which products will be displayed.</description>
     <externalId>false</externalId>
-    <label>Sort Order</label>
+    <label>Order</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
