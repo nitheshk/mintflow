@@ -102,20 +102,13 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @return FinancialAccount__c
    **/
   global virtual FinancialAccount__c createInitialFinancialAccount(Application__c application) {
-    String membershipAccountInternalCode = HttpBuilder.getApiConstant('MembershipAccountInternalCode');
-    String pid = PageUtils.getCurrentPageParameters('pid');
-
-    String productCode = String.isNotBlank(pid) ? pid : membershipAccountInternalCode;
-
-    if (
-      SystemSetting__c.getInstance().EnableDefaultMembershipProduct__c && productCode != membershipAccountInternalCode
-    ) {
-      productCode = membershipAccountInternalCode;
-    }
+    String productCode = String.isNotBlank(PageUtils.getCurrentPageParameters('pid'))
+      ? PageUtils.getCurrentPageParameters('pid')
+      : HttpBuilder.getApiConstant('MembershipAccountInternalCode');
 
     FinancialProduct__c selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(productCode);
     application.ApplicationType__c = selectedProduct.Type__c;
-    if (selectedProduct.InternalCode__c != membershipAccountInternalCode) {
+    if (selectedProduct.InternalCode__c != HttpBuilder.getApiConstant('MembershipAccountInternalCode')) {
       application.isMemberFlow__c = false;
     }
     // create financial account
@@ -129,25 +122,8 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
       FinancialAccount__c.SObjectType,
       selectedProduct.Category__c
     );
-
     FinancialAccountRepository.upsertRecord(financialAccount);
     FinancialAccountRepository.upsertRecord(application);
-
-    // Customer Intereset
-    productCode = String.isNotBlank(pid) ? pid : membershipAccountInternalCode;
-    if (
-      SystemSetting__c.getInstance().EnableDefaultMembershipProduct__c && productCode != membershipAccountInternalCode
-    ) {
-      selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(productCode);
-      CustomerInterest__c customerInterest = new CustomerInterest__c();
-      customerInterest.Application__c = application.Id;
-      customerInterest.Name = selectedProduct.Name;
-      customerInterest.InterestProduct__c = selectedProduct.id;
-      customerInterest.Focus__c = 'Initial Interest';
-      customerInterest.isSelected__c = true;
-      FinancialAccountRepository.upsertRecord(customerInterest);
-    }
-
     log?.fine('financialAccount Created');
     return financialAccount;
   }

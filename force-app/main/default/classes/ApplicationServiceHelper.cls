@@ -130,6 +130,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     newApplication.isMemberFlow__c = false;
     newApplication.FlowState__c = 'Review';
     newApplication.FlowType__c = 'ApplicationFlow';
+    newApplication.Source__c = 'Additional Product';
     newApplication.Version__c = ApplicationConfiguration__c.getInstance().PackageVersion__c;
     newApplication.IPAddress__c = ApplicationServiceHelper.getInstance().getIpAddress();
     newApplication = this.resolveBranchLocation(newApplication);
