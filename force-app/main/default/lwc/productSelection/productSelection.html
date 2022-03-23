@@ -13,19 +13,27 @@
         ></lightning-button>
       </template>
 
-      <div class="slds-var-m-around_small">
-        <div class="slds-grid slds-wrap">
-          <template for:each={productsToShow} for:item="product">
-            <div key={product.id} class="slds-col slds-size_1-of-4 slds-var-p-around_x-small">
-              <c-product-card
-                key={product.id}
-                product={product}
-                onproductselection={handleProductSelection}
-              ></c-product-card>
-            </div>
-          </template>
-        </div>
-      </div>
+      <lightning-layout multiple-rows horizontal-align="space" vertical-align="center">
+        <!-- <div class="slds-grid slds-wrap"> -->
+        <template for:each={productsToShow} for:item="product">
+          <!-- <div key={product.id} class="slds-col slds-size_1-of-4 slds-var-p-around_x-small"> -->
+          <lightning-layout-item
+            key={product.id}
+            padding="around-small"
+            size="12"
+            medium-device-size="3"
+            small-device-size="12"
+          >
+            <c-product-card
+              key={product.id}
+              product={product}
+              onproductselection={handleProductSelection}
+            ></c-product-card>
+          </lightning-layout-item>
+          <!-- </div> -->
+        </template>
+        <!-- </div> -->
+      </lightning-layout>
     </lightning-card>
   </template>
 </template>
