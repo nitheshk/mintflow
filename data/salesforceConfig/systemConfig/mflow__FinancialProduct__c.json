@@ -17,7 +17,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__SortOrder__c": 1
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC007" },
@@ -34,7 +35,8 @@
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Power Plus Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__SortOrder__c": 2
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC006" },
@@ -53,7 +55,8 @@
       "mflow__ImageName__c": "Preferred_debit.png",
       "mflow__ImageURL__c": "Products/Preferred_debit.png",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__SortOrder__c": 3
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC004" },
@@ -70,7 +73,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Special Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__SortOrder__c": 4
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC003" },
@@ -88,6 +92,7 @@
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__SortOrder__c": 1,
       "mflow__ImageName__c": "Regular_Savings.png",
       "mflow__ImageURL__c": "Products/Regular_Savings.png",
       "mflow__ProductServices__r": {
@@ -130,7 +135,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__SortOrder__c": 5
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-002" },
@@ -147,7 +153,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Equipment & Vehicle Loans",
       "mflow__Type__c": "Business",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__SortOrder__c": 6
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC002" },
@@ -164,7 +171,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Idaho Medical Savings Accounts",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__SortOrder__c": 7
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-005" },
@@ -181,7 +189,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Business Non Profit",
       "mflow__Type__c": "Business",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__SortOrder__c": 8
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC005" },
@@ -199,6 +208,7 @@
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__SortOrder__c": 9,
       "mflow__ImageName__c": "Prime_debit.png",
       "mflow__ImageURL__c": "Products/Prime_debit.png",
       "mflow__ProductServices__r": {
@@ -243,7 +253,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__SortOrder__c": 10
     }
   ]
 }
