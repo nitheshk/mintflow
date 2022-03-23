@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProductService__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>lookup to Product service</description>
+    <externalId>false</externalId>
+    <label>Product Service</label>
+    <referenceTo>ProductService__c</referenceTo>
+    <relationshipLabel>Product Features</relationshipLabel>
+    <relationshipName>ProductFeatures</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
