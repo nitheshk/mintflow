@@ -137,21 +137,18 @@
         <fields>NAME</fields>
         <fields>Channel__c</fields>
         <fields>EventIdentifier__c</fields>
-        <fields>FinancialProductCode__c</fields>
         <fields>FinancilProductCategory__c</fields>
         <fields>ApplicantType__c</fields>
         <relatedList>ConsentLineItem__c.FinancialProduct__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>FinancialProductCode__c</fields>
         <fields>ShowQuestions__c</fields>
         <relatedList>ProductService__c.FinancialProduct__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>EventIdentifier__c</fields>
-        <fields>FinancialProductCode__c</fields>
         <fields>ApplicantType__c</fields>
         <fields>Channel__c</fields>
         <fields>isActive__c</fields>
