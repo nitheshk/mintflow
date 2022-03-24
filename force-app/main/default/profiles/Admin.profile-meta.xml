@@ -94,6 +94,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>ProductFeature__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>ReferralProduct__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
