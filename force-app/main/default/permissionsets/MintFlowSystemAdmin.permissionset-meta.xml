@@ -1962,11 +1962,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>SurveyTemplate__c.FinancialProductCode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>SurveyTemplate__c.FinancialProduct__c</field>
         <readable>true</readable>

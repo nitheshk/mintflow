@@ -24,11 +24,11 @@ utils
         });
       }
 
-      if (item.mflow__FinancialProductCode__c) {
-        item.mflow__FinancialProduct__c = "@" + item.mflow__FinancialProductCode__c;
+      if (item.mflow__FinancialProduct__r?.mflow__InternalCode__c) {
+        item.mflow__FinancialProduct__c = "@" + item.mflow__FinancialProduct__r.mflow__InternalCode__c;
       }
       //read only field
-      delete item.mflow__FinancialProductCode__c;
+      delete item.mflow__FinancialProduct__r;
     });
     //   Script to update change for each config ==>
     utils.createFile(`${configPath}${objectName}.json`, JSON.stringify({ records: data })).catch((err) => {

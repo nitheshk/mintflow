@@ -37,10 +37,6 @@
                 <field>FinancialProduct__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FinancialProductCode__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FinancilProductCategory__c</field>
             </layoutItems>
