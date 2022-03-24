@@ -48,9 +48,6 @@ public with sharing class SurveyRepository extends DatabaseUtils {
       .addFields()
       .queryChild('mflow__FinancialAccounts__r')
       .addFields()
-      .queryLookup('mflow__FinancialProduct__r')
-      .addFields('mflow__InternalCode__c')
-      .run()
       .run()
       .addLimit(1)
       .whereEq('Id', applicationId);
