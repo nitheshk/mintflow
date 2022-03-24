@@ -1312,6 +1312,7 @@ global inherited sharing class Query {
     }
 
     Boolean hasMoreFilter = false;
+    this.grpOpen();
     for (Object filterObj : filters) {
       if (hasMoreFilter) {
         this.orCon();
@@ -1320,6 +1321,7 @@ global inherited sharing class Query {
       this.filter(filter, fs);
       hasMoreFilter = true;
     }
+    this.grpClose();
     return this;
   }
 

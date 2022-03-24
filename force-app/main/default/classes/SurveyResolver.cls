@@ -115,16 +115,27 @@ global virtual with sharing class SurveyResolver extends AbstractService {
     String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      List<Object> filters = new List<Object>();
+      //by product
       Map<String, Object> filterMap = new Map<String, Object>();
       filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
       filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
       filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
       filterMap.put('$mflow__Channel__c', 'INCLUDES');
       filterMap.put('mflow__FinancialProductCode__c', financialAccount.FinancialProduct__r.InternalCode__c);
-
+      filters.add(filterMap);
+      //by category
+      filterMap = new Map<String, Object>();
+      filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
+      filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
+      filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
+      filterMap.put('$mflow__Channel__c', 'INCLUDES');
+      filterMap.put('mflow__FinancilProductCategory__c', financialAccount.ProductCategory__c);
+      filterMap.put('$mflow__FinancilProductCategory__c', 'INCLUDES');
+      filters.add(filterMap);
       // fetch survey item by  custom filter
       List<SurveyTemplate__c> templates = SurveyRepository.fetchSurveyTemplateByFilters(
-        filterMap,
+        filters,
         'mflow__Filter',
         eventIdentifier
       );
