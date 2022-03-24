@@ -28,9 +28,15 @@ global virtual with sharing class IDScanServiceHelper extends AbstractService {
 
   global virtual HttpBuilder.Response ParseImageResponse(HttpResponse response) {
     Map<String, Object> idOldMap = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
-
+    system.debug('result =' + ((Map<String, Object>) idOldMap.get('ParseImageResult')));
     if ((string) ((Map<String, Object>) idOldMap.get('ParseImageResult')).get('ErrorMessage') != 'OK') {
       throw new CustomException(System.Label.Document_UnableToParseTheDl);
+    }
+    if (
+      !(Boolean) ((Map<String, Object>) ((Map<String, Object>) idOldMap.get('ParseImageResult')).get('ValidationCode'))
+        .get('IsValid')
+    ) {
+      throw new CustomException('Invalid Document');
     }
 
     Map<String, Object> result = (Map<String, Object>) ((Map<String, Object>) idOldMap.get('ParseImageResult'))
@@ -81,7 +87,7 @@ global virtual with sharing class IDScanServiceHelper extends AbstractService {
 
     applicant.FirstName__c = returnDTO.data.firstName;
     applicant.LastName__c = returnDTO.data.lastName;
-    applicant.Birthdate__c = date.valueOf(returnDTO.data.dob);
+    applicant.Birthdate__c = returnDTO.data.dob != null ? date.valueOf(returnDTO.data.dob) : null;
     applicant.IdentityVerificationStatus__c = 'Passed';
     identity.Height__c = returnDTO.data.height;
     identity.IssuedRegion__c = returnDTO.data.issuerRegion;
@@ -91,8 +97,8 @@ global virtual with sharing class IDScanServiceHelper extends AbstractService {
     identity.DocumentNumber__c = returnDTO.data.documentNumber;
     identity.IssuingCountry__c = returnDTO.data.issuerCountry;
     identity.Nationality__c = returnDTO.data.country;
-    identity.ExpirationDate__c = date.valueOf(returnDTO.data.expiry);
-    identity.IssueDate__c = date.valueOf(returnDTO.data.issued);
+    identity.ExpirationDate__c = returnDTO.data.expiry != null ? date.valueOf(returnDTO.data.expiry) : null;
+    identity.IssueDate__c = returnDTO.data.issued != null ? date.valueOf(returnDTO.data.issued) : null;
     idAddress.Street = returnDTO.data.address1;
     idAddress.City = returnDTO.data.city;
     idAddress.PostalCode = returnDTO.data.postalCode;
