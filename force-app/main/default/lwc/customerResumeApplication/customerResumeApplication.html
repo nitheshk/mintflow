@@ -1,167 +1,151 @@
 <template>
-  <template if:false={showResume}>
-    <div class="slds-col slds-size_1-of-1">
-      <div class="slds-float_right">
+  <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
+  <div class="card-style slds-float_right" style="width: 30%">
+    <lightning-card
+      class="slds-align_absolute-center"
+      icon-name="standard:user"
+      title="Complete an unfinished deposit account application, or check your application status."
+      variant="narrow"
+    >
+      <div class="slds-grid slds-wrap slds-var-m-around_small">
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+          <lightning-input
+            required
+            label="Last Name"
+            data-fieldname="mflow__LastName__c"
+            placeholder="Enter your last name"
+            pattern={alphanumValidation}
+            message-when-pattern-mismatch={alphanumValidationMessage}
+            field-level-help="Enter your last name"
+            maxlength="20"
+            value={applicantData.mflow__LastName__c}
+            onchange={handleChange}
+            class="validation slds-form-element__static"
+          ></lightning-input>
+        </div>
+
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+          <lightning-input
+            required
+            label="Last 4 digits of SSN"
+            data-fieldname="mflow__LastFourDigitsofSSN__c"
+            placeholder="Enter Last 4 digits of your SSN"
+            maxlength="4"
+            value={applicantData.mflow__LastFourDigitsofSSN__c}
+            onchange={handleChange}
+            class="validation slds-form-element__static"
+          ></lightning-input>
+        </div>
+
+        <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+          <lightning-input
+            required
+            label="Email"
+            data-fieldname="mflow__Email__c"
+            type="Email"
+            placeholder="example@company.com"
+            value={applicantData.mflow__Email__c}
+            onchange={handleChange}
+            class="validation slds-form-element__static"
+          ></lightning-input>
+        </div>
+      </div>
+      <div class="slds-var-p-around_medium" style="text-align: end">
         <lightning-button
           variant="brand"
-          label="Resume Application"
-          title="Resume Application"
-          onclick={showResumeFlow}
-          class="slds-var-m-left_x-small"
-          icon-name="utility:redo"
+          label="Submit"
+          title="Submit"
+          onclick={handleSubmit}
+          class="slds-var-m-left_medium slds-var-m-around_medium card-footer-right-btn"
+          icon-name="utility:save"
           icon-position="left"
         ></lightning-button>
+        <lightning-button
+          variant="brand"
+          label="Clear"
+          title="Clear"
+          onclick={handleCancel}
+          class="slds-var-m-left_medium slds-var-m-around_medium card-footer-right-btn"
+          icon-name="utility:close"
+          icon-position="right"
+        ></lightning-button>
       </div>
-    </div>
-  </template>
-  <template if:true={showResume}>
-    <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
-    <div class="slds-align_absolute-center slds-m-around_x-large card-style">
-      <lightning-card title="Resume from where you just left behind" icon-name="standard:user">
-        <div class="slds-var-m-around_medium">
-          <div class="slds-grid slds-wrap">
-            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
-              <lightning-input
-                required
-                data-fieldname="mflow__LastName__c"
-                label="Last Name"
-                placeholder="Last Name"
-                pattern={alphanumValidation}
-                message-when-pattern-mismatch={alphanumValidationMessage}
-                field-level-help="Enter Last Name"
-                maxlength="20"
-                value={applicantData.mflow__LastName__c}
-                onchange={handleChange}
-                class="validation"
-              ></lightning-input>
-            </div>
-
-            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
-              <lightning-input
-                required
-                data-fieldname="mflow__LastFourDigitsofSSN__c"
-                label="Last 4 digits of SSN"
-                placeholder="Last 4 digits of SSN"
-                maxlength="4"
-                value={applicantData.mflow__LastFourDigitsofSSN__c}
-                onchange={handleChange}
-                class="validation"
-              ></lightning-input>
-            </div>
-
-            <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
-              <lightning-input
-                required
-                data-fieldname="mflow__Email__c"
-                label="Email"
-                type="Email"
-                placeholder="example@company.com"
-                value={applicantData.mflow__Email__c}
-                onchange={handleChange}
-                class="validation"
-              ></lightning-input>
-            </div>
-          </div>
-          <div class="slds-var-p-around_medium" style="text-align: end">
-            <lightning-button-group>
-              <lightning-button
-                variant="brand"
-                label="Login"
-                title="Login"
-                onclick={handleSubmit}
-                class="slds-var-m-left_x-small"
-                icon-name="utility:save"
-                icon-position="left"
-              ></lightning-button>
-
-              <lightning-button
-                variant="brand"
-                label="Clear"
-                title="Clear"
-                onclick={handleCancel}
-                class="slds-var-m-left_x-small"
-                icon-name="utility:close"
-                icon-position="right"
-              ></lightning-button>
-            </lightning-button-group>
-          </div>
+      <hr />
+      <template if:true={applications}>
+        <div class="slds-form-element__static lgc-bg slds-align_absolute-center">
+          Search Results: {applicationCount} applications found.
         </div>
-      </lightning-card>
-    </div>
-
-    <template if:true={isAuthenticated}>
-      <template if:true={hasApplications}>
-        <div class="slds-m-top_medium slds-m-bottom_x-large">
-          <lightning-accordion>
+        <div class="slds-p-around_small">
+          <lightning-accordion class="slds-var-p-around_small">
             <template for:each={applications} for:item="app">
               <lightning-accordion-section name={app.Name} label={app.Name} key={app.Id}>
-                <div class="slds-p-around_medium">
-                  <ul class="slds-has-dividers_bottom-space">
-                    <li class="slds-item">
-                      <lightning-tile label="Application Status">
-                        <p class="slds-truncate" title={app.mflow__Status__c}>{app.mflow__Status__c}</p>
-                      </lightning-tile>
-                    </li>
-
-                    <template for:each={app.mflow__Applicants__r} for:item="applicant">
-                      <li class="slds-item" key={applicant.Id}>
-                        <lightning-tile label={applicant.mflow__ApplicantName__c} type="media">
-                          <lightning-avatar
-                            slot="media"
-                            fallback-icon-name="standard:person_account"
-                            alternative-text={applicant.mflow__ApplicantName__c}
-                          ></lightning-avatar>
-                          <div class="slds-col slds-size_1-of-1">
-                            <div class="slds-float_right">
-                              <template if:true={app.isPrimaryLoggedIn}>
-                                <lightning-button
-                                  data-fieldname={applicant.Id}
-                                  variant="brand"
-                                  label="Resume"
-                                  title="Resume"
-                                  onclick={handleResume}
-                                  class="slds-m-left_x-small"
-                                ></lightning-button>
-                              </template>
-                            </div>
-                          </div>
-                          <dl class="slds-dl_horizontal">
-                            <dt class="slds-dl_horizontal__label">
-                              <p class="slds-truncate" title="Applicant Type">Applicant Type :</p>
-                            </dt>
-                            <dd class="slds-dl_horizontal__detail slds-tile__meta">
-                              <p class="slds-truncate" title="Salesforce">{applicant.mflow__ApplicantType__c}</p>
-                            </dd>
-                            <dt class="slds-dl_horizontal__label">
-                              <p class="slds-truncate" title="Email">Email :</p>
-                            </dt>
-                            <dd class="slds-dl_horizontal__detail slds-tile__meta">
-                              <p class="slds-truncate" title={applicant.mflow__Email__c}>{applicant.mflow__Email__c}</p>
-                            </dd>
-                            <dt class="slds-dl_horizontal__label">
-                              <p class="slds-truncate" title="Email">Status :</p>
-                            </dt>
-                            <dd class="slds-dl_horizontal__detail slds-tile__meta">
-                              <p class="slds-truncate" title={applicant.mflow__Status__c}>
-                                {applicant.mflow__Status__c}
-                              </p>
-                            </dd>
-                          </dl>
-                        </lightning-tile>
-                      </li>
-                    </template>
-                  </ul>
+                <div class="slds-grid slds-wrap">
+                  <div class="slds-col">
+                    <lightning-formatted-text value="Application Status :" class="slds-form-element__label">
+                    </lightning-formatted-text>
+                    <p class="slds-truncate slds-form-element__static" title={app.mflow__Status__c}>
+                      {app.mflow__Status__c}
+                    </p>
+                  </div>
+                  <div class="slds-col slds-var-p-around_small">
+                    <lightning-formatted-text
+                      value="Created Date :"
+                      class="slds-form-element__label"
+                    ></lightning-formatted-text>
+                    <p class="slds-truncate slds-form-element__static">{app.CreatedDate}</p>
+                  </div>
                 </div>
+
+                <template for:each={app.mflow__Applicants__r} for:item="applicant">
+                  <li class="slds-item slds-form-element__label" key={applicant.Id}>
+                    <lightning-tile label={applicant.mflow__ApplicantName__c} type="media">
+                      <lightning-avatar
+                        slot="media"
+                        fallback-icon-name="standard:person_account"
+                        alternative-text={applicant.mflow__ApplicantName__c}
+                      ></lightning-avatar>
+                      <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-float_right">
+                          <template if:true={app.isPrimaryLoggedIn}>
+                            <lightning-button
+                              data-fieldname={applicant.Id}
+                              variant="brand"
+                              label="Resume"
+                              title="Resume"
+                              onclick={handleResume}
+                              class="slds-var-m-left_medium slds-var-m-around_medium card-footer-right-btn"
+                            ></lightning-button>
+                          </template>
+                        </div>
+                      </div>
+                      <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label">
+                          <p class="slds-truncate" title="Applicant Type">Applicant Type :</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                          <p class="slds-truncate" title="Salesforce">{applicant.mflow__ApplicantType__c}</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                          <p class="slds-truncate" title="Email">Email :</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                          <p class="slds-truncate" title={applicant.mflow__Email__c}>{applicant.mflow__Email__c}</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                          <p class="slds-truncate" title="Email">Status :</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                          <p class="slds-truncate" title={applicant.mflow__Status__c}>{applicant.mflow__Status__c}</p>
+                        </dd>
+                      </dl>
+                    </lightning-tile>
+                  </li></template
+                >
               </lightning-accordion-section>
             </template>
           </lightning-accordion>
         </div>
       </template>
-      <template if:false={hasApplications}>
-        <lightning-card>
-          <h2>Hurray! Application(s) are completed by you</h2>
-        </lightning-card>
-      </template>
-    </template>
-  </template>
+    </lightning-card>
+  </div>
 </template>

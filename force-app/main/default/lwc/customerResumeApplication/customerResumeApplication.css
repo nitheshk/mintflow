@@ -11,3 +11,23 @@
   display: flex;
   justify-content: end;
 }
+
+.card-footer-right-btn {
+  --sds-c-button-brand-color-background: #18305d;
+  --sds-c-button-brand-color-background-active: #18305d;
+  --sds-c-button-brand-color-background-hover: #31769c;
+  --sds-c-button-radius-border: 2rem;
+}
+
+.slds-form-element__static,
+.slds-hyphenate {
+  color: #3b4eb0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.slds-form-element__label,
+.slds-text-title {
+  color: #656565;
+  font-size: 15px;
+}
