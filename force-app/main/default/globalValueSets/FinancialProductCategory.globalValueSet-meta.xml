@@ -20,6 +20,16 @@
         <default>false</default>
         <label>Credit Card</label>
     </customValue>
+    <customValue>
+        <fullName>Money Market</fullName>
+        <default>false</default>
+        <label>Money Market</label>
+    </customValue>
+    <customValue>
+        <fullName>Certificate</fullName>
+        <default>false</default>
+        <label>Certificate</label>
+    </customValue>
     <description>Financial Product Category</description>
     <masterLabel>Financial Product Category</masterLabel>
     <sorted>false</sorted>
