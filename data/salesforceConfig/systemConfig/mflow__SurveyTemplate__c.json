@@ -258,6 +258,139 @@
     },
     {
       "attributes": { "type": "mflow__SurveyTemplate__c", "referenceId": "SurveyTemplateRef_2" },
+      "Name": "DealerApprovalSurvey",
+      "mflow__Channel__c": "Community",
+      "mflow__EventIdentifier__c": "DealerApprovalSurvey",
+      "mflow__Order__c": 2,
+      "mflow__isActive__c": true,
+      "mflow__SurveyQuestions__r": {
+        "totalSize": 8,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_0" },
+            "Name": "The dealership URL is:",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "The dealership URL is:",
+            "mflow__OptionType__c": "Text",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 1,
+            "mflow__QuestionCode__c": "Q1",
+            "mflow__Required__c": false,
+            "mflow__ShortDescription__c": "The dealership URL is:",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_1" },
+            "Name": "Is the dealer’s physical location listed on the website?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Is the dealer’s physical location listed on the website?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 2,
+            "mflow__QuestionCode__c": "Q2",
+            "mflow__QuestionNumber__c": 1,
+            "mflow__Required__c": false,
+            "mflow__ShortDescription__c": "Is the dealer’s physical location listed on the website?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_2" },
+            "Name": "Is contact information listed on the website?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Is contact information listed on the website?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 3,
+            "mflow__QuestionCode__c": "Q3",
+            "mflow__QuestionNumber__c": 2,
+            "mflow__Required__c": false,
+            "mflow__ShortDescription__c": "Is contact information listed on the website?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_3" },
+            "Name": "Does the dealer have inventory listed on the website?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Does the dealer have inventory listed on the website?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 4,
+            "mflow__QuestionCode__c": "Q4",
+            "mflow__QuestionNumber__c": 3,
+            "mflow__Required__c": false,
+            "mflow__ShortDescription__c": "Does the dealer have inventory listed on the website?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_4" },
+            "Name": "Does the web inventory match the list provided from the dealer?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Does the web inventory match the list provided from the dealer?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 5,
+            "mflow__QuestionCode__c": "Q5",
+            "mflow__QuestionNumber__c": 4,
+            "mflow__Required__c": false,
+            "mflow__ShortDescription__c": "Does the web inventory match the list provided from the dealer?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_5" },
+            "Name": "Does the website have a physical picture of the facility?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Does the website have a physical picture of the facility?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 6,
+            "mflow__QuestionCode__c": "Q6",
+            "mflow__QuestionNumber__c": 5,
+            "mflow__Required__c": false,
+            "mflow__ShortDescription__c": "Does the website have a physical picture of the facility?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_6" },
+            "Name": "Is the facility in good repair and shows pride of ownership?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Is the facility in good repair and shows pride of ownership?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 7,
+            "mflow__QuestionCode__c": "Q7",
+            "mflow__QuestionNumber__c": 7,
+            "mflow__Required__c": false,
+            "mflow__ShortDescription__c": "Is the facility in good repair and shows pride of ownership?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          },
+          {
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_7" },
+            "Name": "Do you recommend this dealer be contracted as a Credit Union authorized dealer?",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__LongDescription__c": "Do you recommend this dealer be contracted as a Credit Union authorized dealer?",
+            "mflow__OptionType__c": "CheckBox",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 8,
+            "mflow__QuestionCode__c": "Q8",
+            "mflow__QuestionNumber__c": 7,
+            "mflow__Required__c": false,
+            "mflow__ShortDescription__c": "Do you recommend this dealer be contracted as a Credit Union authorized dealer?",
+            "mflow__ShowQuestionNumber__c": false,
+            "mflow__hasChild__c": false
+          }
+        ]
+      }
+    },
+    {
+      "attributes": { "type": "mflow__SurveyTemplate__c", "referenceId": "SurveyTemplateRef_3" },
       "Name": "CheckingFlowQuestionaire",
       "mflow__ApplicantType__c": "Primary;Joint",
       "mflow__Channel__c": "Virtual",
@@ -270,7 +403,7 @@
         "done": true,
         "records": [
           {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_0" },
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_0" },
             "Name": "What is the intended ownership of this new checking?",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__LongDescription__c": "What is the intended ownership of this new checking?",
@@ -285,7 +418,7 @@
             "mflow__hasChild__c": false
           },
           {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_1" },
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_1" },
             "Name": "P1FCU has several overdraft solutions to choose from. The first is Overdraft Tra",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__LongDescription__c": "P1FCU has several overdraft solutions to choose from. The first is Overdraft Transfer. This service will automatically transfer funds into the debit account in the event of an overdraft. When funds are automatically transferred there will be a fee of $2. Would you like to set up OD transfer?",
@@ -300,7 +433,7 @@
             "mflow__hasChild__c": false
           },
           {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_2" },
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_2" },
             "Name": "Courtesy Pay is a discretionary service P1FCU provides to eligible account holde",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__LongDescription__c": "Courtesy Pay is a discretionary service P1FCU provides to eligible account holders to prevent transactions from being returned or declined. The amount of overdraft coverage will be determined by your account history and activity and is customized for each individual member. Would you like P1FCU to Strive to Pay Checks, ACH and Recurring Debit Card transactions in the event of an overdraft? Our standard overdraft fee of $25 per item would apply.",
@@ -315,7 +448,7 @@
             "mflow__hasChild__c": false
           },
           {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_3" },
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_3" },
             "Name": "Would you like P1FCU to Strive to Pay ATM and everyday debit card transactions i",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__LongDescription__c": "Would you like P1FCU to Strive to Pay ATM and everyday debit card transactions in the event of an overdraft? If you \"Opt In\" you are authorizing us to Strive to Pay that item, keeping in mind that the standard overdraft fee would apply. \r\nIf you \"Opt Out\" the transaction would be declined with no fee.  (Note* If a member chooses to decline a debit card this question is not asked. Additionally, if a member chooses to Opt In to this service an additional document must be signed at the time of",
@@ -330,11 +463,11 @@
             "mflow__hasChild__c": false
           },
           {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_4" },
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_4" },
             "Name": "This debit account comes with a debit card that will be mailed to you in 7-10 da",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
-            "mflow__LongDescription__c": "This debit account comes with a debit card that will be mailed to you in 7-10 days. What debit card design would you like? To view all of our designs, please click here",
-            "mflow__OptionType__c": "CheckBox",
+            "mflow__LongDescription__c": "This debit account comes with a debit card that will be mailed to you in 7-10 days. What debit card design would you like? To view all of our designs, please  <a href=\"https://www.p1fcu.org/mastercard-designs\">Click Here</a>. Design to be picked up from P1fcu Website  <a href=\"https://www.p1fcu.org/personal/debit-mastercard\">Link</a>.",
+            "mflow__OptionType__c": "Url",
             "mflow__Options__c": "[]",
             "mflow__Order__c": 5,
             "mflow__QuestionCode__c": "Question5",
@@ -345,7 +478,7 @@
             "mflow__hasChild__c": false
           },
           {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_5" },
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_5" },
             "Name": "Do you have any direct deposits or automatic ACH payments we can switch using Cl",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__LongDescription__c": "Do you have any direct deposits or automatic ACH payments we can switch using Click SWITCH?",
@@ -360,7 +493,7 @@
             "mflow__hasChild__c": false
           },
           {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_6" },
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_6" },
             "Name": "Would you like to set up “Save your Change” to round transactions to the nearest",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__LongDescription__c": "Would you like to set up “Save your Change” to round transactions to the nearest dollar and transfer to savings?",
@@ -375,7 +508,7 @@
             "mflow__hasChild__c": false
           },
           {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_7" },
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_7" },
             "Name": "If yes, what share would you like the change to transfer into?",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__LongDescription__c": "If yes, what share would you like the change to transfer into?",
@@ -393,7 +526,7 @@
       }
     },
     {
-      "attributes": { "type": "mflow__SurveyTemplate__c", "referenceId": "SurveyTemplateRef_3" },
+      "attributes": { "type": "mflow__SurveyTemplate__c", "referenceId": "SurveyTemplateRef_4" },
       "Name": "SavingFlowQuestionaire",
       "mflow__ApplicantType__c": "Primary;Joint",
       "mflow__Channel__c": "Virtual",
@@ -406,7 +539,7 @@
         "done": true,
         "records": [
           {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_0" },
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_4_0" },
             "Name": "What is the intended ownership of this new savings?",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
             "mflow__LongDescription__c": "What is the intended ownership of this new savings?",
