@@ -48,7 +48,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
 
     for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
       List<ProductService__c> services = ProductServiceRepository.fetchServicesByProduct(
-        financialAccount.FinancialProduct__r.Id
+        financialAccount.FinancialProduct__c
       );
       log?.debug(services);
 
