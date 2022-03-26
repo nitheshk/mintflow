@@ -19,11 +19,11 @@ utils
           delete item_c1.mflow__ConsentTemplate__c;
           item_c1.attributes.referenceId = "ConsentLineItemRef" + index + "_" + index_c1;
 
-          if (item_c1.mflow__FinancialProductCode__c) {
-            item_c1.mflow__FinancialProduct__c = "@" + item_c1.mflow__FinancialProductCode__c;
+          if (item_c1.mflow__FinancialProduct__r?.mflow__InternalCode__c) {
+            item_c1.mflow__FinancialProduct__c = "@" + item_c1.mflow__FinancialProduct__r.mflow__InternalCode__c;
           }
           //read only field
-          delete item_c1.mflow__FinancialProductCode__c;
+          delete item_c1.mflow__FinancialProduct__r;
         });
       }
     });

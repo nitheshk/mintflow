@@ -125,7 +125,6 @@ global virtual with sharing class SurveyResolver extends AbstractService {
       filterMap.put('mflow__FinancilProductCategory__c', financialAccount.ProductCategory__c);
       filterMap.put('$mflow__FinancilProductCategory__c', 'INCLUDES');
       filters.add(filterMap);
-      //by category
       filterMap = filterMap.Clone();
       filterMap.put('mflow__FinancialProduct__c', financialAccount.FinancialProduct__c);
       filters.add(filterMap);

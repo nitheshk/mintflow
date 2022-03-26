@@ -125,16 +125,22 @@ global virtual with sharing class ConsentResolver extends AbstractService {
     String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      List<Object> filters = new List<Object>();
       Map<String, Object> filterMap = new Map<String, Object>();
       filterMap.put('mflow__ApplicantType__c', ApexRequest.getApplicantType());
       filterMap.put('$mflow__ApplicantType__c', 'INCLUDES');
       filterMap.put('mflow__Channel__c', application.CreatedChannel__c);
       filterMap.put('$mflow__Channel__c', 'INCLUDES');
-      filterMap.put('mflow__FinancialProductCode__c', financialAccount.FinancialProduct__r.InternalCode__c);
+      filterMap.put('mflow__FinancilProductCategory__c', financialAccount.ProductCategory__c);
+      filterMap.put('$mflow__FinancilProductCategory__c', 'INCLUDES');
+      filters.add(filterMap);
+      filterMap = filterMap.Clone();
+      filterMap.put('mflow__FinancialProduct__c', financialAccount.FinancialProduct__c);
+      filters.add(filterMap);
 
       // fetch consent item by  custom filter
       List<ConsentLineItem__c> consentLineItems = ConsentRepository.fetchConsentByFilter(
-        filterMap,
+        filters,
         'mflow__Filter',
         eventIdentifier
       );
