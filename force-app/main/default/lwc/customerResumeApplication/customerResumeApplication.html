@@ -1,6 +1,6 @@
 <template>
   <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
-  <div class="card-style slds-float_center" style="width: 100%">
+  <div class="card-style" style="width: 100%">
     <lightning-card
       class="slds-align_absolute-center"
       icon-name="standard:user"
@@ -56,7 +56,7 @@
           label="Submit"
           title="Submit"
           onclick={handleSubmit}
-          class="slds-var-m-left_medium slds-var-m-around_medium card-footer-right-btn"
+          class="slds-var-m-around_small card-footer-right-btn"
           icon-name="utility:save"
           icon-position="left"
         ></lightning-button>
@@ -65,7 +65,7 @@
           label="Clear"
           title="Clear"
           onclick={handleCancel}
-          class="slds-var-m-left_medium slds-var-m-around_medium card-footer-right-btn"
+          class="slds-var-m-around_small card-footer-right-btn"
           icon-name="utility:close"
           icon-position="right"
         ></lightning-button>
@@ -96,51 +96,37 @@
                   </div>
                 </div>
 
-                <template for:each={app.mflow__Applicants__r} for:item="applicant">
-                  <li class="slds-item slds-form-element__label" key={applicant.Id}>
-                    <lightning-tile label={applicant.mflow__ApplicantName__c} type="media">
-                      <lightning-avatar
-                        slot="media"
-                        fallback-icon-name="standard:person_account"
-                        alternative-text={applicant.mflow__ApplicantName__c}
-                      ></lightning-avatar>
-                      <div class="slds-col slds-size_1-of-1">
-                        <div class="slds-float_right">
-                          <template if:true={app.isPrimaryLoggedIn}>
-                            <lightning-button
-                              data-fieldname={applicant.Id}
-                              variant="brand"
-                              label="Resume"
-                              title="Resume"
-                              onclick={handleResume}
-                              class="slds-var-m-left_medium slds-var-m-around_medium card-footer-right-btn"
-                            ></lightning-button>
-                          </template>
-                        </div>
-                      </div>
-                      <dl class="slds-dl_horizontal">
-                        <dt class="slds-dl_horizontal__label">
-                          <p class="slds-truncate" title="Applicant Type">Applicant Type :</p>
-                        </dt>
-                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
-                          <p class="slds-truncate" title="Salesforce">{applicant.mflow__ApplicantType__c}</p>
-                        </dd>
-                        <dt class="slds-dl_horizontal__label">
-                          <p class="slds-truncate" title="Email">Email :</p>
-                        </dt>
-                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
-                          <p class="slds-truncate" title={applicant.mflow__Email__c}>{applicant.mflow__Email__c}</p>
-                        </dd>
-                        <dt class="slds-dl_horizontal__label">
-                          <p class="slds-truncate" title="Email">Status :</p>
-                        </dt>
-                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
-                          <p class="slds-truncate" title={applicant.mflow__Status__c}>{applicant.mflow__Status__c}</p>
-                        </dd>
-                      </dl>
-                    </lightning-tile>
-                  </li></template
-                >
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>Applicant Name</th>
+                      <th>Applicant Type</th>
+                      <th>Email</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <template for:each={app.mflow__Applicants__r} for:item="applicant">
+                    <tbody key={applicant.id}>
+                      <tr class="active-row">
+                        <td>{applicant.mflow__ApplicantName__c}</td>
+                        <td>{applicant.mflow__ApplicantType__c}</td>
+                        <td>{applicant.mflow__Email__c}</td>
+                        <td>{applicant.mflow__Status__c}</td>
+                        <td>
+                          <lightning-button
+                            data-fieldname={applicant.Id}
+                            variant="brand"
+                            label="Resume"
+                            title="Resume"
+                            onclick={handleResume}
+                            class="slds-var-p-around_small card-footer-right-btn"
+                          ></lightning-button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </template>
+                </table>
               </lightning-accordion-section>
             </template>
           </lightning-accordion>

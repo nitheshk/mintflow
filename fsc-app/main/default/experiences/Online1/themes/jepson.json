@@ -246,6 +246,15 @@
           "type": "region"
         },
         {
+          "components": [
+            {
+              "componentAttributes": {},
+              "componentName": "mflow:resumeAppplication",
+              "id": "fdbbc3b1-c8f2-4195-a9b4-61e5438ab1fb",
+              "renditionMap": {},
+              "type": "component"
+            }
+          ],
           "id": "b7958cf0-907c-4b61-8657-c8e3add7a50c",
           "regionName": "themeFooter",
           "type": "region"
