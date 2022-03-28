@@ -53,6 +53,10 @@ public with sharing class ApplicationConstant {
   public static final String PERSONAL_INFO = 'PersonalInfo';
   public static final String FUNDING_FUNDING = 'Funding';
 
+  //Customer Interest Focus
+  public static final String FOCUS_INITIAL_INTEREST = 'Initial Interest';
+  public static final String FOCUS_REFERRAL = 'Referral';
+
   public static String CUSTOMER_SERVICES = '211B428E-B8B5-4EB9-973D-106F013C371F';
 
   // RPA to Salesforce Field Mapping

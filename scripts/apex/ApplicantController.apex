@@ -104,3 +104,14 @@ request.token = SecurityUtils.generateTokenForTesting(
 request.setHeader(new Map<String, Object>{ 'employmentId' => 'a0A6D000004wlxbUAA' });
 ApexResponse res = ApplicantController.validateAtomicFi(request);
 system.debug('Full Json : ' + res.data);
+
+//validateExistingCustomer
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  'a026D000004YV3OQAW',
+  'a006D000008AXZLQA4',
+  'Primary',
+  'ApplicationFlow'
+);
+ApexResponse res = ApplicantController.validateExistingCustomer(request);
+system.debug('Full Json : ' + res.data);

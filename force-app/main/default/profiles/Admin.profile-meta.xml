@@ -87,6 +87,9 @@
     <layoutAssignments>
         <layout>IdentificationDocument__c-mflow__Identification Document Layout</layout>
     </layoutAssignments>
+     <layoutAssignments>
+        <layout>Contact-mflow__Member Account Layout</layout>
+    </layoutAssignments>
 
     <!--tabVisibilities-->
     <tabVisibilities>

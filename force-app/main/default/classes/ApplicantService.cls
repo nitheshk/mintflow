@@ -176,4 +176,62 @@ global virtual with sharing class ApplicantService extends AbstractService {
     ApplicationRepository.upsertRecord(applicant);
     return applicant;
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 03-28-2022
+   * @param Id applicationId
+   * @return Application__c
+   **/
+  global virtual Application__c validateExistingCustomer(Id applicationId) {
+    Application__c application = ApplicantRepository.readApplicationWithChild(applicationId);
+    Applicant__c primaryApplicant = application.Applicants__r[0];
+
+    Contact existingContact = ApplicantRepository.fetchExistingContact(primaryApplicant);
+    String baseProductCode = HttpBuilder.getApiConstant('MembershipAccountInternalCode');
+    FinancialAccount__c primaryAccount = application.FinancialAccounts__r[0];
+
+    if (existingContact != null) {
+      primaryApplicant.contact__c = existingContact.Id;
+      primaryApplicant.IsExistingCustomer__c = true;
+      ApplicantRepository.upsertRecord(primaryApplicant);
+    }
+
+    if (primaryAccount.ProductCode__c == baseProductCode && existingContact != null) {
+      throw new CustomException('You already have Membership Account');
+    }
+
+    if (primaryAccount.ProductCode__c != baseProductCode && existingContact == null) {
+      FinancialProduct__c baseProduct = FinancialAccountRepository.readFinancialProductByInternalCode(baseProductCode);
+      FinancialProduct__c selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
+        primaryAccount.ProductCode__c
+      );
+
+      //Change to Base Product as Customer doesn't have regular saving account yet
+      primaryAccount.FinancialProduct__c = baseProduct.Id;
+      // Move selected product Customer Interest
+      CustomerInterest__c customerInterest = new CustomerInterest__c();
+      customerInterest.Application__c = applicationId;
+      customerInterest.Name = selectedProduct.Name;
+      customerInterest.InterestProduct__c = selectedProduct.id;
+      customerInterest.Focus__c = ApplicationConstant.FOCUS_INITIAL_INTEREST;
+      customerInterest.isSelected__c = true;
+      FinancialAccountRepository.upsertRecord(primaryAccount);
+      FinancialAccountRepository.upsertRecord(customerInterest);
+      FinancialAccountRepository.deleteRecords(application.CustomerInterests__r);
+
+      application.IsMemberFlow__c = true;
+      ApplicantRepository.upsertRecord(application);
+    } else if (primaryAccount.ProductCode__c != baseProductCode && existingContact != null) {
+      application.IsMemberFlow__c = false;
+      ApplicantRepository.upsertRecord(application);
+    }
+
+    if (ApexRequest.getApplicantType() == 'Primary') {
+      return ApplicationService.getInstance().readApplicationWithChild(applicationId);
+    } else if (ApexRequest.getApplicantType() == 'Joint') {
+      return ApplicationService.getInstance().readApplicationWithChild(applicationId, ApexRequest.getApplicantId());
+    }
+    return null;
+  }
 }

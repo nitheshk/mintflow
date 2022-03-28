@@ -135,4 +135,41 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  global static Application__c readApplicationWithChild(Id applicationId) {
+    Query qry = Query.newInstance(Application__c.SObjectType)
+      .addFields()
+      .queryChild('mflow__Applicants__r')
+      .addFields()
+      .addFields('RecordType.Name')
+      .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__CustomerInterests__r')
+      .addFields()
+      .whereEq('Focus__c', ApplicationConstant.FOCUS_INITIAL_INTEREST)
+      .run()
+      .queryChild('mflow__FinancialAccounts__r')
+      .addFields()
+      .whereEq('IsPrimary__c', true)
+      .run()
+      .whereEq('Id', applicationId);
+    return (Application__c) getRecord(qry.toString());
+  }
+
+  /**
+   * @description fetch existing contact based on the ssn
+   * @author Digital Align Team | 12-10-2021
+   * @param Applicant__c applicant
+   * @return Contact
+   **/
+  global static Contact fetchExistingContact(Applicant__c applicant) {
+    return (Contact) getRecord(
+      Query.newInstance(Contact.SObjectType)
+        .addFields()
+        .whereEq('mflow__SSN__c', applicant?.SSN__c)
+        .addLimit(1)
+        .toString()
+    );
+  }
 }
