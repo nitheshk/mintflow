@@ -115,6 +115,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     FinancialAccount__c financialAccount = new FinancialAccount__c();
     financialAccount.FinancialProduct__c = selectedProduct.Id;
     financialAccount.Ownership__c = 'Individual';
+    financialAccount.IsPrimary__c = true;
     financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
     financialAccount.Stage__c = 'Active';
     financialAccount.Application__c = application.Id;

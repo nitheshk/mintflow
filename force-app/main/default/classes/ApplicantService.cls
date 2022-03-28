@@ -166,6 +166,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
   global virtual Applicant__c createInitialPrimaryApplicant(Application__c application) {
     Applicant__c applicant = new Applicant__c();
     applicant.ApplicantType__c = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+    applicant.IsExistingCustomer__c = false;
     applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
       Applicant__c.SObjectType,
       ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE
