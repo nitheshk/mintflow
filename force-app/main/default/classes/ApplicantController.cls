@@ -262,20 +262,18 @@ global with sharing class ApplicantController extends AbstractController {
       Logger.persist();
     }
   }
-
   /**
-   * @description
-   * @author Digital Align Team | 03-28-2022
+   * @description Fetch Accounts For Transaction
+   * @author Digital Align Team | 12-29-2021
    * @param ApexRequest request
    * @return ApexResponse
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse validateExistingCustomer(ApexRequest request) {
+  global static ApexResponse verifyKYC(ApexRequest request) {
     try {
-      log?.fine('Inside validateExistingCustomer');
       validateRequest(request);
-      return ApexResponse.ok(ApplicantService.getInstance().validateExistingCustomer(ApexRequest.getApplicationId()));
+      return ApexResponse.ok(AlloyService.getInstance().verifyKYC(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -283,7 +281,7 @@ global with sharing class ApplicantController extends AbstractController {
       log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
-      log?.fine('Completed validateExistingCustomer');
+      Flow.finalize();
       Logger.persist();
     }
   }

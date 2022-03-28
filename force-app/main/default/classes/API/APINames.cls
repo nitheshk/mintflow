@@ -20,5 +20,6 @@ global enum APINames {
   PlaidRetrieveAuth,
   PlaidLinkToken,
   PlaidRetriveInstitue,
-  DueDiligence
+  DueDiligence,
+  AlloyKYC
 }
