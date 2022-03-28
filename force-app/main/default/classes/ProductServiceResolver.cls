@@ -57,6 +57,27 @@ global with sharing class ProductServiceResolver extends AbstractService {
     ProductServiceRepository.upsertRecords(financialAccountService);
     return financialAccountService;
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 03-25-2022
+   * @param String data
+   * @return List<object>
+   **/
+  global virtual List<object> fetchProductFeature(String data) {
+    Application__c application = ProductServiceRepository.readApplicationWithFA(ApexRequest.getApplicationId());
+    system.debug('application=' + application);
+
+    List<object> productFeatures = new List<Object>();
+    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
+      List<ProductFeature__c> features = ProductServiceRepository.fetchProductFeatureByProduct(
+        financialAccount.FinancialProduct__r.Id
+      );
+      productFeatures.add(features);
+    }
+    log?.debug(productFeatures);
+    return productFeatures;
+  }
   /**
    * @description  build survey object based on the template list
    * @author Digital Align Team | 01-05-2022

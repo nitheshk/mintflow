@@ -55,6 +55,23 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description fetch product features based on product Id
+   * @author Digital Align Team | 03-25-2022
+   * @param String productId
+   * @return List<ProductFeature__c>
+   **/
+  public static List<ProductFeature__c> fetchProductFeatureByProduct(string productId) {
+    return (List<ProductFeature__c>) getRecords(
+      Query.newInstance(ProductFeature__c.SObjectType)
+        .addFields()
+        .whereEq('mflow__isActive__c', true)
+        .andCon()
+        .whereEq('FinancialProduct__c', productId)
+        .toString()
+    );
+  }
   /**
    * @description fetch templates based on filters
    * @author Digital Align Team | 01-04-2022
