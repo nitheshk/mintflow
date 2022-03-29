@@ -30,6 +30,18 @@
     "files": ["mflow__ReferralProduct__c.json"]
   },
   {
+    "sobject": "mflow__ProductService__c",
+    "saveRefs": true,
+    "resolveRefs": true,
+    "files": ["mflow__ProductService__c.json"]
+  },
+  {
+    "sobject": "mflow__ProductFeature__c",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["mflow__ProductFeature__c.json"]
+  },
+  {
     "sobject": "mflow__SurveyTemplate__c",
     "saveRefs": false,
     "resolveRefs": true,

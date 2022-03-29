@@ -1,7 +1,7 @@
 const utils = require("../utils.js");
 let configPath = "data/salesforceConfig/systemConfig/";
 let scriptPath = "data/salesforceConfig/systemScript/";
-let objectName = "mflow__FinancialProduct__c";
+let objectName = "mflow__ProductService__c";
 
 let scriptToRun = `sfdx force:apex:execute  -f ${scriptPath}${objectName}.apex  --json `;
 utils
@@ -12,7 +12,12 @@ utils
     // <== Script to update change for each config
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
-      item.attributes.referenceId = item.mflow__InternalCode__c;
+      item.attributes.referenceId = item.mflow__ExternalId__c;
+      if (item.mflow__FinancialProduct__c) {
+        item.mflow__FinancialProduct__c = "@" + item.mflow__FinancialProduct__r.mflow__InternalCode__c;
+      }
+      delete item.mflow__FinancialProduct__r;
+      delete item.Name;
     });
     //   Script to update change for each config ==>
     utils.createFile(`${configPath}${objectName}.json`, JSON.stringify({ records: data })).catch((err) => {

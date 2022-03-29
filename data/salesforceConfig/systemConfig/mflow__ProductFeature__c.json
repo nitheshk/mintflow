@@ -1,0 +1,66 @@
+{
+  "records": [
+    {
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0" },
+      "Name": "Security",
+      "mflow__FinancialProduct__c": "@IC0019",
+      "mflow__Required__c": false,
+      "mflow__Topic__c": "Security",
+      "mflow__ImageType__c": "Relative",
+      "mflow__isActive__c": true,
+      "mflow__Order__c": 3,
+      "mflow__SubTopic__c": "Global security",
+      "mflow__DisplayContents__c": "<p>Local convenience, global security and a connected digital experience.</p><p><br></p><ul><li>Chip-and-PIN transaction authentication accepted worldwide.</li></ul><p><br></p><ul><li>Manage your account and monitor transactions anytime, anywhere with our free mobile app.</li></ul><p><br></p><ul><li>Shop safely and effortlessly with <a href=\"https://masterpass.com/\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">MasterPass®</a> or <a href=\"https://www2.firsttechfed.com/LP=45\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">Apple Pay</a> digital wallet programs.</li></ul><p><br></p>"
+    },
+    {
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef1" },
+      "Name": "Digital experience",
+      "mflow__FinancialProduct__c": "@IC0018",
+      "mflow__DisplayName__c": "Digital experience",
+      "mflow__Required__c": false,
+      "mflow__Topic__c": "Digital experience",
+      "mflow__ImageType__c": "Relative",
+      "mflow__isActive__c": true,
+      "mflow__Order__c": 2,
+      "mflow__SubTopic__c": "The digital experience",
+      "mflow__DisplayContents__c": "<p><span style=\"font-size: 14px;\">It&#39;s not all about the plastic. Discover online banking, a modern mobile experience and a digital wallet.</span> </p><p><br></p><p>Need to temporarily lock your card? Order a replacement card? Want to check your rewards balance and see if you have enough points for that trip to Palm Springs? Now you can do all that and more with the Manage Cards widget. You just need the First Tech mobile app or online banking. Also shop safely and effortlessly with Digital Wallet programs like Apple Pay, Samsung Pay, Google Pay.</p>"
+    },
+    {
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef2" },
+      "Name": "Features and rewards",
+      "mflow__FinancialProduct__c": "@IC0017",
+      "mflow__DisplayName__c": "Features and rewards",
+      "mflow__Required__c": false,
+      "mflow__Topic__c": "Features and rewards",
+      "mflow__ImageType__c": "Relative",
+      "mflow__isActive__c": true,
+      "mflow__Order__c": 1,
+      "mflow__SubTopic__c": "Features and rewards",
+      "mflow__DisplayContents__c": "<p>Features:</p><ul><li><a href=\"https://www.firsttechfed.com/Rates/Credit-Cards\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">As low as 8.25% APR - Learn More</a> , not to exceed 18.00%<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>No annual fee</li><li>Introductory 0.00% APR balance transfer for 12 billing cycles<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-1\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">1</a></li><li>Earn double Rewards Points on everyday purchases<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-3\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">3</a></li><li>Industry-leading Chip + PIN security</li></ul><p>Benefits:</p><ul><li>Earn 20,000 bonus Rewards Points when you spend $3,000 in the first 60 days<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>Earn 2 Rewards Points for every $1 spent on groceries, gas, electronics, medical, household goods and telecommunications<u style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</u> and 1 Reward Point for every $1 spent on all other purchases</li><li>Redeem Reward Points for travel, merchandise, events, experiences, gift cards and cash</li><li>No points maximum and your points never expire<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-4\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</a></li><li><a href=\"https://www.firsttechfed.com/Help/Cardholder-Benefits\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">View all cardholder benefits</a></li></ul><p><br></p>"
+    },
+    {
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef3" },
+      "Name": "Blazers Card",
+      "mflow__FinancialProduct__c": "@IC0010",
+      "mflow__DisplayName__c": "Blazers Card",
+      "mflow__Required__c": false,
+      "mflow__Topic__c": "Blazers Card",
+      "mflow__ImageType__c": "Relative",
+      "mflow__isActive__c": true,
+      "mflow__Order__c": 4,
+      "mflow__SubTopic__c": "Your wallet has a new MVP",
+      "mflow__DisplayContents__c": "<p>First Tech is proud to be the Official Credit Union of the Portland Trail Blazers.</p><p>We’re excited to offer a Portland Trail Blazers option for this card. You&#39;ll receive all the standard card perks, along with some Blazers exclusives:</p><p><br></p><p>Get great deals on tickets.</p><p><br></p><p>As a First Tech member, you’re eligible for discounted tickets to games, shows and performances at the Rose Quarter.</p><p><br></p><p>Score savings on gear.</p><p><br></p><p>Take 10% off everything at Rip City Clothing Co. in the Moda Center, all season long, when you use your First Tech credit or debit card.</p><p><br></p><p>Already have a credit card with First Tech?</p><p><br></p><ul><li>Current cardholders can replace their card with the Blazers Mastercard® design by visiting us at any of our locations, or by calling us at 855.855.8805.</li></ul>"
+    },
+    {
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4" },
+      "Name": "Debit Card",
+      "mflow__ProductService__c": "@PS002",
+      "mflow__DisplayName__c": "Debit Card",
+      "mflow__Required__c": false,
+      "mflow__ImageUrl__c": "Products/Prime_debit.png",
+      "mflow__ImageType__c": "Relative",
+      "mflow__isActive__c": true,
+      "mflow__Order__c": 1
+    }
+  ]
+}
