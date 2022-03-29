@@ -250,12 +250,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>FinancialAccountTransaction__c.mflow__Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>FinancialAccountTransaction__c.AccountNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinancialAccountTransaction__c.TransactionAccountType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialAccountTransaction__c.TransactionDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

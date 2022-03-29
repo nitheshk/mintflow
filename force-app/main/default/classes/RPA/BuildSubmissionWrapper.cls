@@ -51,6 +51,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
+    system.debug('financialAccounts =' + financialAccounts);
     return (Application__c) builder.build();
   }
 
@@ -60,7 +61,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
    * @param string applicationId
    * @return ApplicationSubmissionResponse
    **/
-  global virtual ApplicationSubmissionResponse obtainApplicationData(string applicationNumber) {
+  global virtual SubmissionDTO obtainApplicationData(string applicationNumber) {
     {
       log?.debug('Inside obtainApplicationData -> applicationNumber -> ' + applicationNumber);
 
@@ -68,8 +69,10 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       ApexRequest.setApplicationId(application.id);
       ApexRequest.setApplicationName(application.Name);
 
-      ApplicationSubmissionResponse mapper = new ApplicationSubmissionResponse();
-      ApplicationSubmissionResponse.Application mapperApplication = mapper.Application;
+      SubmissionDTO mapper = new SubmissionDTO();
+      SubmissionDTO.ApplicationData mapperApplication = mapper.Application;
+      // mapperApplication.Stage = application.mflow__Stage__c;
+      // mapperApplication.Status = application.Status__c;
       mapper.Application = mapperApplication;
       mapperApplication.ApplicationId = application.Id;
       mapperApplication.ApplicationNumber = application.Name;
@@ -80,6 +83,11 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       mapperApplication.CountyCode = application.CountyZipCode__c;
       mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
       mapperApplication.IsMemberFlow = application.isMemberFlow__c;
+      for (Applicant__c applicant : application.Applicants__r) {
+        if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+          mapperApplication.Password = applicant.Password__c;
+        }
+      }
       // mapperApplication.CreatedChannel = application.CreatedChannel__c;
       // mapperApplication.CustomerType = application.ApplicationType__c;
       // mapperApplication.FlowState = application.FlowState__c;
@@ -91,7 +99,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       // mapperApplication.SubStatus = application.Stage__c;
 
       //Map Finanical Accounts
-      mapperApplication = mapFinancialAcounts(mapperApplication, application);
+      mapperApplication = mapFinancialAccounts(mapperApplication, application);
 
       //applicants
       if (!CollectionUtils.isListEmpty(application.Applicants__r)) {
@@ -113,20 +121,20 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
   /**
    * @description
    * @author Digital Align Team | 03-11-2022
-   * @param ApplicationSubmissionResponse.Application mapperApplication
+   * @param SubmissionDTO.Application mapperApplication
    * @param Application__c application
-   * @return ApplicationSubmissionResponse.Application
+   * @return SubmissionDTO.Application
    **/
-  global virtual ApplicationSubmissionResponse.Application mapFinancialAcounts(
-    ApplicationSubmissionResponse.Application mapperApplication,
+  global virtual SubmissionDTO.ApplicationData mapFinancialAccounts(
+    SubmissionDTO.ApplicationData mapperApplication,
     Application__c application
   ) {
     if (CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
       return mapperApplication;
     }
-    mapperApplication.FinancialAccounts = new List<ApplicationSubmissionResponse.FinancialAccount>();
+    mapperApplication.FinancialAccounts = new List<SubmissionDTO.FinancialAccount>();
     for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
-      ApplicationSubmissionResponse.FinancialAccount mapperFinancialAccount = new ApplicationSubmissionResponse.FinancialAccount();
+      SubmissionDTO.FinancialAccount mapperFinancialAccount = new SubmissionDTO.FinancialAccount();
       mapperFinancialAccount.FinancialAccountId = financialAccount.Id;
       mapperFinancialAccount.FinancialProduct = financialAccount.ProductName__c;
       mapperFinancialAccount.FinancialProductType = financialAccount.ProductCategory__c;
@@ -134,6 +142,11 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       mapperFinancialAccount.InternalCode = financialAccount.FinancialProduct__r.InternalCode__c;
       mapperFinancialAccount.ExternalApplicationNumber = financialAccount.ExternalApplicationNumber__c;
       mapperFinancialAccount.Ownership = financialAccount.Ownership__c;
+      if (!CollectionUtils.isListEmpty(financialAccount.FinancialAccountTransactions__r)) {
+        mapperFinancialAccount.FinancialApplicationTransaction = mapFinancialAccountTranslation(
+          financialAccount.FinancialAccountTransactions__r
+        );
+      }
       mapperApplication.FinancialAccounts.add(mapperFinancialAccount);
     }
 
@@ -147,17 +160,17 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
   /**
    * @description
    * @author Digital Align Team | 03-11-2022
-   * @param ApplicationSubmissionResponse.Application mapperApplication
+   * @param SubmissionDTO.ApplicationData mapperApplication
    * @param List<applicant__c> applicantList
-   * @return ApplicationSubmissionResponse.Application
+   * @return SubmissionDTO.ApplicationData
    **/
-  global virtual ApplicationSubmissionResponse.Application mapApplicants(
-    ApplicationSubmissionResponse.Application mapperApplication,
+  global virtual SubmissionDTO.ApplicationData mapApplicants(
+    SubmissionDTO.ApplicationData mapperApplication,
     List<applicant__c> applicantList
   ) {
-    list<ApplicationSubmissionResponse.Applicant> mapperApplicantList = new List<ApplicationSubmissionResponse.Applicant>();
+    list<SubmissionDTO.Applicant> mapperApplicantList = new List<SubmissionDTO.Applicant>();
     for (applicant__c applicant : applicantList) {
-      ApplicationSubmissionResponse.Applicant mapperApplicant = new ApplicationSubmissionResponse.Applicant();
+      SubmissionDTO.Applicant mapperApplicant = new SubmissionDTO.Applicant();
       mapperApplicant.ApplicantId = applicant.Id;
       mapperApplicant.Application = applicant.Application__c;
       mapperApplicant.FirstName = applicant.FirstName__c;
@@ -203,6 +216,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       if (!CollectionUtils.isListEmpty(applicant.ContactPointAddresses__r)) {
         mapperApplicant.ContactPointAddresses.addAll(mapContactAddress(applicant.ContactPointAddresses__r));
       }
+
       mapperApplicantList.add(mapperApplicant);
     }
 
@@ -216,10 +230,10 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
    * @param List<Employment__c> employmentList
    * @return virtual
    **/
-  global virtual list<ApplicationSubmissionResponse.Employment> mapEmployments(List<Employment__c> employmentList) {
-    list<ApplicationSubmissionResponse.Employment> mapperEmploymentList = new List<ApplicationSubmissionResponse.Employment>();
+  global virtual list<SubmissionDTO.Employment> mapEmployments(List<Employment__c> employmentList) {
+    list<SubmissionDTO.Employment> mapperEmploymentList = new List<SubmissionDTO.Employment>();
     for (Employment__c employment : employmentList) {
-      ApplicationSubmissionResponse.Employment mapperEmployment = new ApplicationSubmissionResponse.Employment();
+      SubmissionDTO.Employment mapperEmployment = new SubmissionDTO.Employment();
       mapperEmployment.EmploymentId = employment.Id;
       mapperEmployment.EmploymentType = employment.EmploymentType__c;
       mapperEmployment.EmployerName = employment.Name;
@@ -245,12 +259,12 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
    * @param List<IdentificationDocument__c> identityList
    * @return virtual
    **/
-  global virtual list<ApplicationSubmissionResponse.IdentificationDocument> mapIdentities(
+  global virtual list<SubmissionDTO.IdentificationDocument> mapIdentities(
     List<IdentificationDocument__c> identityList
   ) {
-    list<ApplicationSubmissionResponse.IdentificationDocument> mapperIdentityList = new List<ApplicationSubmissionResponse.IdentificationDocument>();
+    list<SubmissionDTO.IdentificationDocument> mapperIdentityList = new List<SubmissionDTO.IdentificationDocument>();
     for (IdentificationDocument__c identity : identityList) {
-      ApplicationSubmissionResponse.IdentificationDocument mapperIdentity = new ApplicationSubmissionResponse.IdentificationDocument();
+      SubmissionDTO.IdentificationDocument mapperIdentity = new SubmissionDTO.IdentificationDocument();
       mapperIdentity.IdentificationDocumentId = identity.Id;
       mapperIdentity.IssuingCountry = identity.IssuingCountry__c;
       mapperIdentity.DocumentNumber = identity.DocumentNumber__c;
@@ -269,12 +283,12 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
    * @description
    * @author Digital Align | 12-22-2021
    * @param List<mflow__Survey__c> surveyList
-   * @return list<ApplicationSubmissionResponse.Survey>
+   * @return list<SubmissionDTO.Survey>
    **/
-  global virtual list<ApplicationSubmissionResponse.Survey> mapSurvey(List<mflow__Survey__c> surveyList) {
-    list<ApplicationSubmissionResponse.Survey> mapperSurveyList = new List<ApplicationSubmissionResponse.Survey>();
+  global virtual list<SubmissionDTO.Survey> mapSurvey(List<mflow__Survey__c> surveyList) {
+    list<SubmissionDTO.Survey> mapperSurveyList = new List<SubmissionDTO.Survey>();
     for (mflow__Survey__c survey : surveyList) {
-      ApplicationSubmissionResponse.Survey mapperSurvey = new ApplicationSubmissionResponse.Survey();
+      SubmissionDTO.Survey mapperSurvey = new SubmissionDTO.Survey();
       mapperSurvey.SurveyId = survey.Id;
       mapperSurvey.Answer = survey.mflow__Answer__c;
       mapperSurvey.LongDescription = survey.mflow__LongDescription__c;
@@ -290,12 +304,12 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
    * @param List<ContactPointAddress> contactAddressList
    * @return virtual
    **/
-  global virtual list<ApplicationSubmissionResponse.ContactPointAddress> mapContactAddress(
+  global virtual list<SubmissionDTO.ContactPointAddress> mapContactAddress(
     List<ContactPointAddress> contactAddressList
   ) {
-    list<ApplicationSubmissionResponse.ContactPointAddress> mapperContactAddressList = new List<ApplicationSubmissionResponse.ContactPointAddress>();
+    list<SubmissionDTO.ContactPointAddress> mapperContactAddressList = new List<SubmissionDTO.ContactPointAddress>();
     for (ContactPointAddress contactAddress : contactAddressList) {
-      ApplicationSubmissionResponse.ContactPointAddress mapperContactAddress = new ApplicationSubmissionResponse.ContactPointAddress();
+      SubmissionDTO.ContactPointAddress mapperContactAddress = new SubmissionDTO.ContactPointAddress();
       mapperContactAddress.ContactPointAddressId = contactAddress.Id;
       if (contactAddressList.size() == 1) {
         // Uploaded address will be current address
@@ -359,6 +373,33 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
     }
     log?.debug('fileDetails =' + JSON.serialize(fileDetails));
     return ApexResponse.OK(fileDetails).addHeader('Content-Type', 'application/json');
+  }
+  /**
+   * @description
+   * @author Digital Align | 01-10-2022
+   * @param FinancialAccountTransaction__c accountTransaction
+   * @return SubmissionDTO.FinancialAccountTransaction
+   **/
+  global virtual SubmissionDTO.FinancialAccountTransaction mapFinancialAccountTranslation(
+    FinancialAccountTransaction__c accountTransaction
+  ) {
+    SubmissionDTO.FinancialAccountTransaction mapperTransaction = new SubmissionDTO.FinancialAccountTransaction();
+    mapperTransaction.FinancialAccountTransactionId = accountTransaction?.Id;
+    mapperTransaction.AccountHolderName = accountTransaction?.mflow__AccountHolderName__c;
+    mapperTransaction.AccountNumber = accountTransaction?.mflow__AccountNumber__c;
+    mapperTransaction.Amount = accountTransaction?.mflow__Amount__c;
+    mapperTransaction.FinancialInstitute = accountTransaction?.mflow__FinancialInstitute__c;
+    mapperTransaction.RoutingNumber = accountTransaction?.mflow__RoutingNumber__c;
+    mapperTransaction.TransactionStatus = accountTransaction?.TransactionStatus__c;
+    mapperTransaction.InstitutionState = accountTransaction?.mflow__TransactionStateCode__c;
+    mapperTransaction.TransactionType = accountTransaction?.TransactionSubType__c;
+    mapperTransaction.TransactionAccountType = accountTransaction?.TransactionAccountType__c;
+    mapperTransaction.TransactionDate = date.newinstance(
+      accountTransaction.TransactionDate__c.year(),
+      accountTransaction.TransactionDate__c.month(),
+      accountTransaction.TransactionDate__c.day()
+    );
+    return mapperTransaction;
   }
 
   /**
