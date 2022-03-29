@@ -13,12 +13,12 @@
       "mflow__LongDescription__c": "Best for users looking to earn cash back on everyday purchases. Receive $150 Bonus Cash Back after $1000 in qualified purchases within the first 90 days 0% APR* intro rate on purchases and balance transfers for 15 months after that, variable rates of 10.24% - 18.24% APR* apply",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 1,
       "mflow__ShortDescription__c": "Best for users looking to earn cash back on everyday purchases",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 1
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC003" },
@@ -33,12 +33,12 @@
       "mflow__LongDescription__c": "The Regular Savings product is required for new accounts. This savings account establishes your membership and is your voting share of the credit union.",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 1,
       "mflow__ShortDescription__c": "Open account with minimum deposit of $35",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 1
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC007" },
@@ -51,12 +51,12 @@
       "mflow__LongDescription__c": "Our most robust checking account with the POWER of all of our great features PLUS dividends all for $7.99 per month!",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 2,
       "mflow__ShortDescription__c": "Our most robust checking account",
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Power Plus Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false,
-      "mflow__Order__c": 2
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC006" },
@@ -71,12 +71,12 @@
       "mflow__LongDescription__c": "A perfect account for our value minded members for only $4.99 per month. This account pays you in overwhelming benefits from cash back on debit card purchases, to cell phone protection, roadside assistance, local and national discounts and much more!",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 3,
       "mflow__ShortDescription__c": "A perfect account for our value minded m",
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Preferred Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 3
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC004" },
@@ -89,12 +89,12 @@
       "mflow__LongDescription__c": "Looking for a place to keep your mad mon",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 4,
       "mflow__ShortDescription__c": "Looking for a place to keep your mad mon",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Special Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false,
-      "mflow__Order__c": 4
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-004" },
@@ -107,12 +107,12 @@
       "mflow__LongDescription__c": "Infuse your business with working capita",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 5,
       "mflow__ShortDescription__c": "Infuse your business with working capita",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": false,
-      "mflow__Order__c": 5
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-002" },
@@ -125,12 +125,12 @@
       "mflow__LongDescription__c": "Expand your fleet or purchase new equipm",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 6,
       "mflow__ShortDescription__c": "Expand your fleet or purchase new equipm",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Equipment & Vehicle Loans",
       "mflow__Type__c": "Business",
-      "mflow__isActive__c": false,
-      "mflow__Order__c": 6
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC002" },
@@ -143,12 +143,12 @@
       "mflow__LongDescription__c": "An Idaho Medical Savings Account (MSA) a",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 7,
       "mflow__ShortDescription__c": "An Idaho Medical Savings Account (MSA) a",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Idaho Medical Savings Accounts",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false,
-      "mflow__Order__c": 7
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-005" },
@@ -161,12 +161,12 @@
       "mflow__LongDescription__c": "$0 Minimum Balance, $0 Check Writing Fee",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 8,
       "mflow__ShortDescription__c": "$0 Minimum Balance, $0 Check Writing Fee",
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Business Non Profit",
       "mflow__Type__c": "Business",
-      "mflow__isActive__c": false,
-      "mflow__Order__c": 8
+      "mflow__isActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC005" },
@@ -181,12 +181,12 @@
       "mflow__LongDescription__c": "The Prime Debit Account offers all the basics you expect from a checking account for $2.99 a Month. Find your pathway to free by adding eStatements. This account includes online billpay, mobile deposit, access to MobiMoney, direct deposit and a debit MasterCard.",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 9,
       "mflow__ShortDescription__c": "The Prime Debit Account offers all the basics you expect from a checking account for $2.99 a Month",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 9
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC008" },
@@ -201,12 +201,12 @@
       "mflow__LongDescription__c": "A Secured Visa credit card is the perfect way to establish credit or build good credit, whether you’re starting out or starting over. This card is secured by the available funds in your share savings account.",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 10,
       "mflow__ShortDescription__c": "Establish credit or build good credit",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 10
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0010" },
@@ -221,12 +221,12 @@
       "mflow__LongDescription__c": "Money Market Checking",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 12,
       "mflow__ShortDescription__c": "Money Market Checking",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Money Market Checking",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 12
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0011" },
@@ -241,12 +241,12 @@
       "mflow__LongDescription__c": "Money Market Savings",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 13,
       "mflow__ShortDescription__c": "Money Market Savings",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Money Market Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 13
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0012" },
@@ -261,12 +261,12 @@
       "mflow__LongDescription__c": "3 Month Certificate",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 14,
       "mflow__ShortDescription__c": "3 Month Certificate",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "3 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 14
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0013" },
@@ -281,12 +281,12 @@
       "mflow__LongDescription__c": "6 Month Certificate",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 15,
       "mflow__ShortDescription__c": "6 Month Certificate",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "6 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 15
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0014" },
@@ -301,16 +301,16 @@
       "mflow__LongDescription__c": "12 Month Certificate",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 16,
       "mflow__ShortDescription__c": "12 Month Certificate",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "12 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 16
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0015" },
-      "Name": "18 Month Certificate",
+      "Name": "12 Month Certificate",
       "mflow__Category__c": "Certificate",
       "mflow__DisplayLabel__c": "18 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
@@ -321,12 +321,12 @@
       "mflow__LongDescription__c": "18 Month Certificate",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 17,
       "mflow__ShortDescription__c": "18 Month Certificate",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "18 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 17
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0016" },
@@ -341,12 +341,12 @@
       "mflow__LongDescription__c": "24 Month Certificate",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 18,
       "mflow__ShortDescription__c": "24 Month Certificate",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "24 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 18
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0017" },
@@ -361,12 +361,12 @@
       "mflow__LongDescription__c": "36 Month Certificate",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 18,
       "mflow__ShortDescription__c": "36 Month Certificate",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "36 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 18
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0018" },
@@ -381,12 +381,12 @@
       "mflow__LongDescription__c": "48 Month Certificate",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 19,
       "mflow__ShortDescription__c": "48 Month Certificate",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "48 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 19
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0019" },
@@ -401,12 +401,52 @@
       "mflow__LongDescription__c": "60 Month Certificate",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 20,
       "mflow__ShortDescription__c": "60 Month Certificate",
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "60 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
-      "mflow__Order__c": 20
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0020" },
+      "Name": "Instant Access Savings",
+      "mflow__Category__c": "Savings",
+      "mflow__DisplayLabel__c": "Instant Access Savings",
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "EC0020",
+      "mflow__ImageName__c": "Regular_Savings.png",
+      "mflow__ImageURL__c": "Products/Regular_Savings.png",
+      "mflow__InternalCode__c": "IC0020",
+      "mflow__LongDescription__c": "Earn tiered dividends rates\r\nKeep your funds liquid\r\nStay connected to your money anytime, anywhere",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 21,
+      "mflow__ShortDescription__c": "Earn tiered dividends rates Keep your funds liquid Stay connected to your money anytime, anywhere",
+      "mflow__StartDate__c": "2021-11-05",
+      "mflow__SubCategory__c": "Instant Access Savings",
+      "mflow__Type__c": "Deposit",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0021" },
+      "Name": "Carefree Checking",
+      "mflow__Category__c": "Checking",
+      "mflow__DisplayLabel__c": "Carefree Checking",
+      "mflow__EndDate__c": "2027-02-24",
+      "mflow__ExternalCode__c": "EC0021",
+      "mflow__ImageName__c": "credit-card-dog.jpg",
+      "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
+      "mflow__InternalCode__c": "IC0021",
+      "mflow__LongDescription__c": "Manage your account anytime, anywhere1\r\nInstant, surcharge-free access to cash\r\nNo monthly account maintenance fees",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 22,
+      "mflow__ShortDescription__c": "Manage your account anytime, anywhere1 Instant, surcharge-free access to cash No monthly account maintenance fees",
+      "mflow__StartDate__c": "2022-02-24",
+      "mflow__SubCategory__c": "Carefree Checking",
+      "mflow__Type__c": "Deposit",
+      "mflow__isActive__c": true
     }
   ]
 }
