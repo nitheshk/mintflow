@@ -70,6 +70,6 @@ global virtual with sharing class EmploymentService extends AbstractService {
    **/
   global virtual Boolean validateAtomicFi(Map<String, Object> params) {
     Employment__c employment = EmploymentRepository.readEmployerbyId((String) params.get('employmentId'));
-    return employment?.VerificationStatus__c == 'Verified';
+    return employment?.VerificationStatus__c == 'Review';
   }
 }
