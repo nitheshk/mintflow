@@ -369,10 +369,10 @@ public with sharing class ApplicationControllerTest {
     system.assertEquals(500, res.status, 'success');
   }
 
-  //resubmitTheApplication
+  //resubmitApplication
   //Success for Primary Submitted
   @isTest
-  static void resubmitTheApplicationTest() {
+  static void resubmitApplicationTest() {
     makeApplicationConfiguration();
     PageReference testPage = Page.error;
     Test.setCurrentPage(testPage);
@@ -381,12 +381,12 @@ public with sharing class ApplicationControllerTest {
     Applicant__c applicant = createApplicantDataWithChild(application);
 
     //Exception
-    ApexResponse res = LwcCustomController.resubmitTheApplication(ApexRequest.getApplicationId());
+    ApexResponse res = LwcCustomController.resubmitApplication(ApexRequest.getApplicationId());
     system.assertEquals(500, res.status, 'success');
     //200 Primary
     Test.startTest();
     Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
-    res = LwcCustomController.resubmitTheApplication(ApexRequest.getApplicationId());
+    res = LwcCustomController.resubmitApplication(ApexRequest.getApplicationId());
     system.assertEquals(200, res.status, 'success');
     Test.stopTest();
   }

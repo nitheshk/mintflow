@@ -1,6 +1,6 @@
 import { LightningElement, track, api, wire } from "lwc";
 import utils from "c/generalUtils";
-import resubmitTheApplication from "@salesforce/apex/LwcCustomController.resubmitTheApplication";
+import resubmitApplication from "@salesforce/apex/LwcCustomController.resubmitApplication";
 
 export default class ResubmitApplication extends LightningElement {
   @track showSpinner = false;
@@ -9,7 +9,7 @@ export default class ResubmitApplication extends LightningElement {
   Resubmit() {
     this.showSpinner = true;
     this.disableButton = true;
-    resubmitTheApplication({
+    resubmitApplication({
       applicationId: this.recordId
     })
       .then((result) => {

@@ -116,26 +116,6 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
   }
 
   /**
-   * @description Read application with Applicants
-   * @author Digital Align Team | 11-15-2021
-   * @param Id applicationId
-   * @return Application__c
-   **/
-  global static Application__c readApplicationWithApplicants(Id applicationId) {
-    return (Application__c) DatabaseUtils.getRecord(
-      Query.newInstance(Application__c.SObjectType)
-        .addFields()
-        .queryChild('mflow__Applicants__r')
-        .addFields()
-        .addFields('RecordType.Name')
-        .orderBy('mflow__Order__c')
-        .run()
-        .whereEq('Id', applicationId)
-        .toString()
-    );
-  }
-
-  /**
    * @description Read Application For Funding Process
    * @author Digital Align Team | 03-15-2022
    * @param Id applicationId
@@ -151,6 +131,60 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
         .queryChild('mflow__Applicants__r')
         .addFields()
         .addFields('RecordType.Name')
+        .orderBy('mflow__Order__c')
+        .run()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
+
+  /**
+   * @description Read application with Applicants
+   * @author Digital Align Team | 11-15-2021
+   * @param Id applicationId
+   * @return Application__c
+   **/
+  global static Application__c readApplicationWithApplicants(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
+        .addFields()
+        .queryChild('mflow__FinancialAccounts__r')
+        .addFields()
+        .whereEq('IsPrimary__c', true)
+        .run()
+        .queryChild('mflow__Applicants__r')
+        .addFields()
+        .addFields('RecordType.Name')
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
+        .orCon()
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)
+        .orderBy('mflow__Order__c')
+        .run()
+        .whereEq('Id', applicationId)
+        .toString()
+    );
+  }
+
+  /**
+   * @description Read application with Applicants
+   * @author Digital Align Team | 11-15-2021
+   * @param Id applicationId
+   * @return Application__c
+   **/
+  global static Application__c readApplicationForSubmit(Id applicationId) {
+    return (Application__c) DatabaseUtils.getRecord(
+      Query.newInstance(Application__c.SObjectType)
+        .addFields()
+        .queryChild('mflow__FinancialAccounts__r')
+        .addFields()
+        .whereEq('IsPrimary__c', true)
+        .run()
+        .queryChild('mflow__Applicants__r')
+        .addFields()
+        .addFields('RecordType.Name')
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
+        .orCon()
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)
         .orderBy('mflow__Order__c')
         .run()
         .whereEq('Id', applicationId)
@@ -184,6 +218,21 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
         .run()
         .whereEq('Id', applicationId)
         .toString()
+    );
+  }
+
+  /**
+   * @description fetch existing contact based on the ssn and last name
+   * @author Digital Align Team | 12-10-2021
+   * @param String filter
+   * @return List<Contact>
+   **/
+  global static List<Contact> fetchExistingContacts(String filter) {
+    if (String.isBlank(filter)) {
+      return new List<Contact>();
+    }
+    return (List<Contact>) DatabaseUtils.getRecords(
+      Query.newInstance(Contact.SObjectType).addFields().whereCon(filter).addLimit(50).toString()
     );
   }
 }

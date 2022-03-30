@@ -57,11 +57,7 @@ public with sharing class ReviewInformationServiceTest {
     Application__c acc = makeApplicationData(ApplicationConstant.SUBMITTED_FOR_REVIEW);
     acc = TestData.readApplicationWithChild(acc.Id);
     test.startTest();
-    try {
-      ReviewInformationService.getInstance().reviewInformationSubmit(acc.Id);
-      ReviewInformationService.getInstance().resubmitApplicationForReview(acc.Id);
-    } catch (Exception e) {
-    }
+
     test.stopTest();
   }
   @istest

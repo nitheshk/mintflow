@@ -7,10 +7,6 @@
  **/
 @SuppressWarnings('PMD.VariableNamingConventions,PMD.AvoidGlobalModifier')
 global with sharing class SubmissionDTO {
-  global ApplicationData Application;
-  global SubmissionDTO() {
-    Application = new ApplicationData();
-  }
   /**
    * To Send contructed Data
    * Request By Rpa

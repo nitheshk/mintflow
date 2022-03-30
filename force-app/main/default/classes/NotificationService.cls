@@ -149,6 +149,16 @@ global virtual with sharing class NotificationService extends AbstractService {
           NotificationBuilder.getRegularGroupId('OnKycSuccess')
         );
       }
+      when 'onApplicationSubmitted' {
+        String chatterPost = 'Application Submitted Succesfully';
+        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
+        NotificationBuilder.bellNotification(
+          entityId,
+          title,
+          chatterPost,
+          NotificationBuilder.getRegularGroupId('OnKycSuccess')
+        );
+      }
       when 'onApplicationFailed' {
         String chatterPost = 'Application has failed to process, Please Review';
         NotificationBuilder.chatterMessagePost(entityId, chatterPost);

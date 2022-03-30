@@ -61,7 +61,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
    * @param string applicationId
    * @return ApplicationSubmissionResponse
    **/
-  global virtual SubmissionDTO obtainApplicationData(string applicationNumber) {
+  global virtual SubmissionDTO.ApplicationData obtainApplicationData(string applicationNumber) {
     {
       log?.debug('Inside obtainApplicationData -> applicationNumber -> ' + applicationNumber);
 
@@ -69,11 +69,9 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       ApexRequest.setApplicationId(application.id);
       ApexRequest.setApplicationName(application.Name);
 
-      SubmissionDTO mapper = new SubmissionDTO();
-      SubmissionDTO.ApplicationData mapperApplication = mapper.Application;
+      SubmissionDTO.ApplicationData mapperApplication = new SubmissionDTO.ApplicationData();
       // mapperApplication.Stage = application.mflow__Stage__c;
       // mapperApplication.Status = application.Status__c;
-      mapper.Application = mapperApplication;
       mapperApplication.ApplicationId = application.Id;
       mapperApplication.ApplicationNumber = application.Name;
       mapperApplication.BranchCode = application.BranchCode__c;
@@ -112,9 +110,9 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
         mapperApplication.Surveys.addAll(mapSurvey(application.Surveys__r));
       }
 
-      log?.info('obtainApplicationData -> ReturnMapper -> ' + Json.serialize(mapper));
+      log?.info('obtainApplicationData -> ReturnMapper -> ' + Json.serialize(mapperApplication));
       log?.debug('Completed obtainApplicationData -> applicationNumber -> ' + applicationNumber);
-      return mapper;
+      return mapperApplication;
     }
   }
 

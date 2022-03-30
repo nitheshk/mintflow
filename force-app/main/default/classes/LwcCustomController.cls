@@ -249,10 +249,10 @@ global with sharing class LwcCustomController extends AbstractController {
    * @return ApexResponse
    **/
   @AuraEnabled
-  global static ApexResponse resubmitTheApplication(string applicationId) {
+  global static ApexResponse resubmitApplication(string applicationId) {
     try {
-      log?.fine('Inside resubmitTheApplication applicationId =' + applicationId);
-      return ApexResponse.ok(ReviewInformationService.getInstance().resubmitApplicationForReview(applicationId));
+      log?.fine('Inside resubmitApplication applicationId =' + applicationId);
+      return ApexResponse.ok(SubmitApplicationService.getInstance().submitToCoreSystem(applicationId));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);
@@ -260,7 +260,7 @@ global with sharing class LwcCustomController extends AbstractController {
       log?.debug(ex.getMessage());
       return ApexResponse.fail(ex);
     } finally {
-      log?.fine('Complete resubmitTheApplication');
+      log?.fine('Complete resubmitApplication');
       Logger.persist();
     }
   }

@@ -81,7 +81,7 @@ public with sharing class LwcCustomServiceTest {
     makeApplicationConfiguration();
     test.startTest();
     try {
-      LwcCustomController.resubmitTheApplication(acc.Id);
+      LwcCustomController.resubmitApplication(acc.Id);
     } catch (Exception e) {
     }
     test.stopTest();

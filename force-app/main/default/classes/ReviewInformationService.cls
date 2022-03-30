@@ -189,33 +189,4 @@ global virtual with sharing class ReviewInformationService extends AbstractServi
     log?.info('Completed jointConsumerFlow');
     return ApplicationService.getInstance().readApplicationWithChild(application.Id, ApexRequest.getApplicantId());
   }
-  /**
-   * @description Primary Review Submit action
-   * @author Digital Align Team | 02-09-2022
-   * @param Application__c application
-   * @return Application__c
-   **/
-  global virtual Application__c resubmitApplicationForReview(Id applicationId) {
-    log?.info('Inside resubmitApplicationForReview');
-    Application__c application = ApplicationRepository.readApplicationWithApplicants(applicationId);
-    if (application.Applicants__r.isEmpty()) {
-      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
-    }
-
-    //Mark Application and applicants to submitted for review
-    for (Applicant__c applicant : application.Applicants__r) {
-      applicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-    }
-    application.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-
-    //Add application to Loan Queue
-    HttpBuilder.Response response = RpaProcessService.getInstance().scheduleApplication(application);
-    if (response.statusCode != 201) {
-      throw new CustomException('Failed to add to queue');
-    }
-    ApplicationRepository.upsertRecords(application.Applicants__r);
-    ApplicationRepository.upsertRecord(application);
-    log?.info('Completed resubmitApplicationForReview');
-    return ApplicationService.getInstance().readApplicationWithChild(application.Id);
-  }
 }
