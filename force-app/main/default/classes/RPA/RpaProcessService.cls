@@ -87,12 +87,9 @@ global virtual with sharing class RpaProcessService extends AbstractService {
     String suffixRestUrl = ApexUtils.obtainUrlSuffix(classUrlMapping);
     String precedingUri = suffixRestUrl.substringBefore('/');
     switch on precedingUri {
-      //RestContext.request.requestURI :/mflow/rpa/v1/updatememberdetails/
-      when 'updatememberdetails' {
-        this.updateMemberDetails();
-      }
-      when 'updatefundingdetails' {
-        this.updateFundingDetails();
+      //RestContext.request.requestURI :/mflow/rpa/v1/updateapplicationdata/
+      when 'updateapplicationdata' {
+        this.updateApplicationData();
       }
     }
   }
@@ -106,16 +103,13 @@ global virtual with sharing class RpaProcessService extends AbstractService {
     String suffixRestUrl = ApexUtils.obtainUrlSuffix(classUrlMapping);
     String precedingUri = suffixRestUrl.substringBefore('/');
     switch on precedingUri {
-      //RestContext.request.requestURI :/mflow/rpa/v1/obtainreviewapplicationdata/
+      //RestContext.request.requestURI :/mflow/rpa/v1/obtainapplicationdata/
       //STEP 2:
-      when 'obtainreviewapplicationdata' {
-        this.obtainReviewApplicationData();
+      when 'obtainapplicationdata' {
+        this.obtainApplicationData();
       }
       when 'obtainapplicationfiles' {
         this.obtainApplicationFiles();
-      }
-      when 'obtainfundingdata' {
-        this.obtainFundingData();
       }
     }
   }
@@ -185,7 +179,7 @@ global virtual with sharing class RpaProcessService extends AbstractService {
    * @description Step2: Fetch complete application data from review submit using applicationID
    * @author Digital Align | 11-30-2021
    **/
-  global virtual void obtainReviewApplicationData() {
+  global virtual void obtainApplicationData() {
     RestRequest restReq = RestContext.request;
     String applicationName = restReq.params.get('applicationName');
     SubmissionDTO.ApplicationData applicationResponse = BuildSubmissionWrapper.getInstance()
@@ -202,95 +196,16 @@ global virtual with sharing class RpaProcessService extends AbstractService {
    * To update the application with member details from external system
    * @example Request Json Looking Like below
    * Post Request
-   * Connected App : {{SfUrl}}/services/apexrest/mflow/rpa/v1/updatememberdetails
-   * Site Url : {{communityUrl}}/Online/services/apexrest/mflow/rpa/v1/updatememberdetails
-   * Request JSON: {
-    "ApplicationId": "0016D00000ZBuZTQA1",
-    "ApplicationNumber": "APP-001",
-    "ExternalApplicationNumber": 95455,
-    "ExternalApplicationStatus": "Fraud",
-    "IsExistingCustomer": true,
-    "Applicants": [
-        {
-            "ApplicantId": "a0b6D0000022j1cQAA",
-            "CustomerNumber": "34343",
-            "OverallDebitBureauResult": "Passed",
-            "CreditScore": 562,
-            "QualifiedScore": 762,
-            "CustomerScore": 563,
-            "HighRiskConsumer": "Passed",
-            "QualifiedDecision": "Passed",
-            "IdentityVerificationStatus": "Accept1",
-            "OFAC": "Failed",
-            "SSNValidation": "Available for Issuance",
-            "RunWithoutKIQ": "Accept",
-            "RunWithKIQ": "Accept"
-        }
-    ]
-    }
+   * Connected App : {{SfUrl}}/services/apexrest/mflow/rpa/v1/updateapplicationdata
+   * Site Url : {{communityUrl}}/Online/services/apexrest/mflow/rpa/v1/updateapplicationdata
+   * Request JSON:
    * @author Digital Align Team | 11-25-2021
    **/
-  global virtual void updateMemberDetails() {
-    log?.debug('Inside updateMemberDetails');
+  global virtual void updateApplicationData() {
+    log?.debug('Inside updateApplicationData');
     log?.debug('Request =' + RestContext.request.requestBody.toString());
-    Application__c application = (Application__c) KycReviewService.getInstance()
-      .processMembershipKYC(RestContext.request.requestBody.toString());
-    RestResponse response = RestContext.response;
-    String responseString = 'Application Status :' + application.Status__c;
-    response.responseBody = Blob.valueOf(responseString);
-    response.statusCode = 200;
-    response.addHeader('Content-Type', 'application/json');
-  }
-
-  /**
-   * @description
-   * Step4:
-   * Fetch all funding data submitted by customer using applicationID
-   * @author Digital Align | 11-30-2021
-   **/
-  global virtual void obtainFundingData() {
-    RestRequest restReq = RestContext.request;
-    String applicationName = restReq.params.get('applicationName');
-    FundingSubmissionResponse fundingResponse = BuildFundingWrapper.getInstance().obtainFundingData(applicationName);
-    RestResponse response = RestContext.response;
-    response.responseBody = Blob.valueOf(JSON.serialize(fundingResponse));
-    response.statusCode = 200;
-    response.addHeader('Content-Type', 'application/json');
-  }
-
-  /**
-   * @description
-   * Step5:
-   * Update Membership details returned from external application in salesforce
-   * @example Request Json Looking Like below
-   * Post Request
-   * Connected App : {{SfUrl}}/services/apexrest/mflow/rpa/v1/updatefundingdetails
-   * Site Url : {{communityUrl}}/Online/services/apexrest/mflow/rpa/v1/updatememberdetails
-   * Request JSON:  {
-    "FinancialAccount": [
-        {
-            "FinancialAccountId": "a0FN000000G781GMAR",
-            "Ownership": "Individual",
-            "AccountNumber": "34543",
-            "ProductCode": "",
-            "FinancialApplicationTransaction": {
-                "TransactionStatus": "Paid",
-                "FinancialAccountTransactionId": "a0EN000000JPrbuMAD"
-            }
-        }
-    ],
-    "ExternalApplicationNumber": "",
-    "ExternalApplicationStatus": "Approved",
-    "MemberNumber": " 229217 ",
-    "Application": "001N0000024vHDKIA2"
-    }
-   * @author Digital Align | 01-21-2022
-   **/
-  global virtual void updateFundingDetails() {
-    log?.debug('Inside updateFundingDetails');
-    log?.debug('requestBody =' + RestContext.request.requestBody.toString());
-    Application__c application = (Application__c) ApplicationSubmissionService.getInstance()
-      .processFundingSubmission(RestContext.request.requestBody.toString());
+    Application__c application = (Application__c) SubmitApplicationService.getInstance()
+      .updateSubmissionInfo(RestContext.request.requestBody.toString());
     RestResponse response = RestContext.response;
     String responseString = 'Application Status :' + application.Status__c;
     response.responseBody = Blob.valueOf(responseString);

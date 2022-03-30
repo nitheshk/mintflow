@@ -85,7 +85,7 @@ system.debug(AuthenticationService.getInstance().getAuthToken());
 Logger.persist();
 
 // #9
-ApplicationSubmissionService.getInstance().notifyProductInterest('a036D000005vcmzQAA');
+SubmitApplicationService.getInstance().notifyProductInterest('a036D000005vcmzQAA');
 
 //
 FinancialAccountService.testApproveFundingSubmission('App-00200');

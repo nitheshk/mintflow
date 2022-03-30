@@ -254,120 +254,120 @@ public with sharing class ApplicationControllerTest {
 
   //reviewInformationSubmit
   //Failure case when api is not working
-  @isTest
-  static void reviewInformationSubmitTest1() {
-    makeApplicationConfiguration();
-    PageReference testPage = Page.error;
-    Test.setCurrentPage(testPage);
-    testPage.getParameters().put('pid', 'IC001');
-    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
-    Applicant__c applicant = createApplicantDataWithChild(application);
-    String primaryToken = ApexRequest.getToken();
+  // @isTest
+  // static void reviewInformationSubmitTest1() {
+  //   makeApplicationConfiguration();
+  //   PageReference testPage = Page.error;
+  //   Test.setCurrentPage(testPage);
+  //   testPage.getParameters().put('pid', 'IC001');
+  //   Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+  //   Applicant__c applicant = createApplicantDataWithChild(application);
+  //   String primaryToken = ApexRequest.getToken();
 
-    // Joint Applicant
-    Applicant__c jointApplicant = TestData.createApplicant(application.Id);
-    jointApplicant.ApplicantType__c = 'Joint';
-    jointApplicant.recordTypeId = SObjectUtils.recordTypeIdByName(Applicant__c.SObjectType, 'Joint');
-    insert jointApplicant;
-    //200 Primary
-    ApexRequest request = new ApexRequest();
-    request.token = ApexRequest.getToken();
-    ApexResponse res = ApplicationController.reviewInformationSubmit(request);
-    system.assertEquals(200, res.status, 'success');
+  //   // Joint Applicant
+  //   Applicant__c jointApplicant = TestData.createApplicant(application.Id);
+  //   jointApplicant.ApplicantType__c = 'Joint';
+  //   jointApplicant.recordTypeId = SObjectUtils.recordTypeIdByName(Applicant__c.SObjectType, 'Joint');
+  //   insert jointApplicant;
+  //   //200 Primary
+  //   ApexRequest request = new ApexRequest();
+  //   request.token = ApexRequest.getToken();
+  //   ApexResponse res = ApplicationController.reviewInformationSubmit(request);
+  //   system.assertEquals(200, res.status, 'success');
 
-    //Joint
-    String jointToken = SecurityUtils.generateTokenForTesting(
-      application.Id,
-      jointApplicant.id,
-      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE,
-      ApplicationConstant.FLOW_TYPE_APPLICATION
-    );
+  //   //Joint
+  //   String jointToken = SecurityUtils.generateTokenForTesting(
+  //     application.Id,
+  //     jointApplicant.id,
+  //     ApplicationConstant.APPLICANT_JOINT_RECORDTYPE,
+  //     ApplicationConstant.FLOW_TYPE_APPLICATION
+  //   );
 
-    request = new ApexRequest();
-    request.token = jointToken;
-    res = ApplicationController.reviewInformationSubmit(request);
-    system.assertEquals(200, res.status, 'success');
+  //   request = new ApexRequest();
+  //   request.token = jointToken;
+  //   res = ApplicationController.reviewInformationSubmit(request);
+  //   system.assertEquals(200, res.status, 'success');
 
-    // Submit primary for Exception
-    application.Status__c = ApplicationConstant.IN_PROGRESS;
-    update application;
-    request = new ApexRequest();
-    request.token = primaryToken;
-    res = ApplicationController.reviewInformationSubmit(request);
-    system.assertEquals(200, res.status, 'success');
-  }
+  //   // Submit primary for Exception
+  //   application.Status__c = ApplicationConstant.IN_PROGRESS;
+  //   update application;
+  //   request = new ApexRequest();
+  //   request.token = primaryToken;
+  //   res = ApplicationController.reviewInformationSubmit(request);
+  //   system.assertEquals(200, res.status, 'success');
+  // }
 
   //reviewInformationSubmitTest2
   //Success for Primary Submitted
-  @isTest
-  static void reviewInformationSubmitTest2() {
-    makeApplicationConfiguration();
-    PageReference testPage = Page.error;
-    Test.setCurrentPage(testPage);
-    testPage.getParameters().put('pid', 'IC001');
-    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
-    Applicant__c applicant = createApplicantDataWithChild(application);
-    String primaryToken = ApexRequest.getToken();
+  // @isTest
+  // static void reviewInformationSubmitTest2() {
+  //   makeApplicationConfiguration();
+  //   PageReference testPage = Page.error;
+  //   Test.setCurrentPage(testPage);
+  //   testPage.getParameters().put('pid', 'IC001');
+  //   Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+  //   Applicant__c applicant = createApplicantDataWithChild(application);
+  //   String primaryToken = ApexRequest.getToken();
 
-    // Joint Applicant
-    Applicant__c jointApplicant = TestData.createApplicant(application.Id);
-    jointApplicant.ApplicantType__c = 'Joint';
-    jointApplicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-    jointApplicant.recordTypeId = SObjectUtils.recordTypeIdByName(Applicant__c.SObjectType, 'Joint');
-    insert jointApplicant;
-    //200 Primary
-    Test.startTest();
-    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
-    ApexRequest request = new ApexRequest();
-    request.token = ApexRequest.getToken();
-    ApexResponse res = ApplicationController.reviewInformationSubmit(request);
-    system.assertEquals(200, res.status, 'success');
-    Test.stopTest();
-  }
+  //   // Joint Applicant
+  //   Applicant__c jointApplicant = TestData.createApplicant(application.Id);
+  //   jointApplicant.ApplicantType__c = 'Joint';
+  //   jointApplicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+  //   jointApplicant.recordTypeId = SObjectUtils.recordTypeIdByName(Applicant__c.SObjectType, 'Joint');
+  //   insert jointApplicant;
+  //   //200 Primary
+  //   Test.startTest();
+  //   Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
+  //   ApexRequest request = new ApexRequest();
+  //   request.token = ApexRequest.getToken();
+  //   ApexResponse res = ApplicationController.reviewInformationSubmit(request);
+  //   system.assertEquals(200, res.status, 'success');
+  //   Test.stopTest();
+  // }
 
   //reviewInformationSubmitTest3
   //Success for Joint Submitted
-  @isTest
-  static void reviewInformationSubmitTest3() {
-    makeApplicationConfiguration();
-    PageReference testPage = Page.error;
-    Test.setCurrentPage(testPage);
-    testPage.getParameters().put('pid', 'IC001');
-    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
-    Applicant__c applicant = createApplicantDataWithChild(application);
-    String primaryToken = ApexRequest.getToken();
+  // @isTest
+  // static void reviewInformationSubmitTest3() {
+  //   makeApplicationConfiguration();
+  //   PageReference testPage = Page.error;
+  //   Test.setCurrentPage(testPage);
+  //   testPage.getParameters().put('pid', 'IC001');
+  //   Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+  //   Applicant__c applicant = createApplicantDataWithChild(application);
+  //   String primaryToken = ApexRequest.getToken();
 
-    // Joint Applicant
-    Applicant__c jointApplicant = TestData.createApplicant(application.Id);
-    jointApplicant.ApplicantType__c = 'Joint';
-    jointApplicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-    jointApplicant.recordTypeId = SObjectUtils.recordTypeIdByName(Applicant__c.SObjectType, 'Joint');
-    insert jointApplicant;
+  //   // Joint Applicant
+  //   Applicant__c jointApplicant = TestData.createApplicant(application.Id);
+  //   jointApplicant.ApplicantType__c = 'Joint';
+  //   jointApplicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+  //   jointApplicant.recordTypeId = SObjectUtils.recordTypeIdByName(Applicant__c.SObjectType, 'Joint');
+  //   insert jointApplicant;
 
-    applicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
-    update applicant;
-    String jointToken = SecurityUtils.generateTokenForTesting(
-      application.Id,
-      jointApplicant.id,
-      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE,
-      ApplicationConstant.FLOW_TYPE_APPLICATION
-    );
+  //   applicant.Status__c = ApplicationConstant.SUBMITTED_FOR_REVIEW;
+  //   update applicant;
+  //   String jointToken = SecurityUtils.generateTokenForTesting(
+  //     application.Id,
+  //     jointApplicant.id,
+  //     ApplicationConstant.APPLICANT_JOINT_RECORDTYPE,
+  //     ApplicationConstant.FLOW_TYPE_APPLICATION
+  //   );
 
-    //200 Joint
-    Test.startTest();
-    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
-    ApexRequest request = new ApexRequest();
-    request.token = jointToken;
-    ApexResponse res = ApplicationController.reviewInformationSubmit(request);
-    system.assertEquals(200, res.status, 'success');
-    Test.stopTest();
+  //   //200 Joint
+  //   Test.startTest();
+  //   Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
+  //   ApexRequest request = new ApexRequest();
+  //   request.token = jointToken;
+  //   ApexResponse res = ApplicationController.reviewInformationSubmit(request);
+  //   system.assertEquals(200, res.status, 'success');
+  //   Test.stopTest();
 
-    //500 Already Submitted
-    request = new ApexRequest();
-    request.token = jointToken;
-    res = ApplicationController.reviewInformationSubmit(request);
-    system.assertEquals(500, res.status, 'success');
-  }
+  //   //500 Already Submitted
+  //   request = new ApexRequest();
+  //   request.token = jointToken;
+  //   res = ApplicationController.reviewInformationSubmit(request);
+  //   system.assertEquals(500, res.status, 'success');
+  // }
 
   //resubmitApplication
   //Success for Primary Submitted
@@ -501,7 +501,7 @@ public with sharing class ApplicationControllerTest {
     //500 API Exception
     ApexRequest request = new ApexRequest();
     request.token = ApexRequest.getToken();
-    ApexResponse res = ApplicationController.submitApplication(request);
+    ApexResponse res = ApplicationController.submit(request);
     system.assertEquals(200, res.status, 'success');
 
     //200 //Primary
@@ -509,14 +509,14 @@ public with sharing class ApplicationControllerTest {
     Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
     request = new ApexRequest();
     request.token = ApexRequest.getToken();
-    res = ApplicationController.submitApplication(request);
+    res = ApplicationController.submit(request);
     system.assertEquals(200, res.status, 'success');
     Test.stopTest();
 
     //500
     request = new ApexRequest();
     request.token = 'InvalidToken';
-    res = ApplicationController.submitApplication(request);
+    res = ApplicationController.submit(request);
     system.assertEquals(500, res.status, 'success');
   }
 }

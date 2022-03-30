@@ -397,7 +397,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     // Work for Cusotmer Community plus user without owner assingment
     //individualAccount.OwnerId = UserUtils.getCurrentUser().CreatedById;
     individualAccount.UserAccountType__c = 'IndividualCustomer';
-    KycReviewRepository.upsertRecord(individualAccount);
+    SubmissionRepository.upsertRecord(individualAccount);
     return individualAccount;
   }
 
@@ -447,7 +447,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
    **/
   @future
   global static void notifyProductInterestAsync(Id applicationId) {
-    ApplicationSubmissionService.getInstance().notifyProductInterest(applicationId);
+    SubmitApplicationService.getInstance().notifyProductInterest(applicationId);
   }
 
   /**

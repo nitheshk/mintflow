@@ -236,107 +236,107 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    **/
   global virtual void updateKycDecision(Map<String, Object> params) {
     log?.fine('inside updateKycDecision');
-    id recordID = (Id) params.get('recordId');
-    String sobjectType = (String) params.get('objectApiName');
-    string status = (string) params.get('status');
-    string approvalType = (string) params.get('approvalType');
-    switch on sobjectType {
-      when 'mflow__Applicant__c' {
-        Applicant__c applicant = LwcCustomRepository.readApplicantById(recordID);
+    // id recordID = (Id) params.get('recordId');
+    // String sobjectType = (String) params.get('objectApiName');
+    // string status = (string) params.get('status');
+    // string approvalType = (string) params.get('approvalType');
+    // switch on sobjectType {
+    //   when 'mflow__Applicant__c' {
+    //     Applicant__c applicant = LwcCustomRepository.readApplicantById(recordID);
 
-        if (status == ApplicationConstant.KYC_PASSED) {
-          if (applicant.RecordType.Name == 'Primary') {
-            applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-            applicant.mflow__FlowType__c = 'FundingFlow';
-          }
-          applicant.mflow__Status__c = ApplicationConstant.IN_PROGRESS;
-          applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_PASSED;
-        } else if (status == ApplicationConstant.KYC_FAILED) {
-          applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
-          applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
-        }
-        LwcCustomRepository.upsertRecord(applicant);
-        NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onManualKycAction',
-            applicant.mflow__Application__c,
-            applicant.mflow__Application__r.Name,
-            'Updated - Kyc Status to : ' +
-            status +
-            ' of Applicant : ' +
-            applicant.ApplicantName__c
-          );
-      }
-      when 'mflow__Application__c' {
-        Application__c application = LwcCustomRepository.readApplicationWithApplicants(recordID);
-        ApexRequest.setApplicationId(application.Id);
-        ApexRequest.setApplicationName(application.Name);
+    //     if (status == ApplicationConstant.KYC_PASSED) {
+    //       if (applicant.RecordType.Name == 'Primary') {
+    //         applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+    //         applicant.mflow__FlowType__c = 'FundingFlow';
+    //       }
+    //       applicant.mflow__Status__c = ApplicationConstant.IN_PROGRESS;
+    //       applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+    //     } else if (status == ApplicationConstant.KYC_FAILED) {
+    //       applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
+    //       applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+    //     }
+    //     LwcCustomRepository.upsertRecord(applicant);
+    //     NotificationService.getInstance()
+    //       .dispatchKycNotification(
+    //         'onManualKycAction',
+    //         applicant.mflow__Application__c,
+    //         applicant.mflow__Application__r.Name,
+    //         'Updated - Kyc Status to : ' +
+    //         status +
+    //         ' of Applicant : ' +
+    //         applicant.ApplicantName__c
+    //       );
+    //   }
+    //   when 'mflow__Application__c' {
+    //     Application__c application = LwcCustomRepository.readApplicationWithApplicants(recordID);
+    //     ApexRequest.setApplicationId(application.Id);
+    //     ApexRequest.setApplicationName(application.Name);
 
-        if (approvalType == 'Application') {
-          if (status == ApplicationConstant.KYC_PASSED) {
-            application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-            application.Status__c = ApplicationConstant.IN_PROGRESS;
-            application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
-            application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
-          } else if (status == ApplicationConstant.KYC_FAILED) {
-            application.Status__c = ApplicationConstant.CANCELLED;
-            application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
-          }
-          LwcCustomRepository.upsertRecord(application);
-        } else if (approvalType == 'Application And Applicants') {
-          if (status == ApplicationConstant.KYC_PASSED) {
-            application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-            application.Status__c = ApplicationConstant.IN_PROGRESS;
-            application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
-            application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
-            for (Applicant__c applicant : application.Applicants__r) {
-              if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-                applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
-                applicant.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
-              }
-              applicant.mflow__Status__c = ApplicationConstant.IN_PROGRESS;
-              applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_PASSED;
-            }
-          } else if (status == ApplicationConstant.KYC_FAILED) {
-            application.Status__c = ApplicationConstant.CANCELLED;
-            application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
-            for (Applicant__c applicant : application.Applicants__r) {
-              applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
-              applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
-            }
-          }
-          LwcCustomRepository.upsertRecords(application.Applicants__r);
-          LwcCustomRepository.upsertRecord(application);
-        }
+    //     if (approvalType == 'Application') {
+    //       if (status == ApplicationConstant.KYC_PASSED) {
+    //         application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+    //         application.Status__c = ApplicationConstant.IN_PROGRESS;
+    //         application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
+    //         application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
+    //       } else if (status == ApplicationConstant.KYC_FAILED) {
+    //         application.Status__c = ApplicationConstant.CANCELLED;
+    //         application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
+    //       }
+    //       LwcCustomRepository.upsertRecord(application);
+    //     } else if (approvalType == 'Application And Applicants') {
+    //       if (status == ApplicationConstant.KYC_PASSED) {
+    //         application.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+    //         application.Status__c = ApplicationConstant.IN_PROGRESS;
+    //         application.KYCStatus__c = ApplicationConstant.KYC_PASSED;
+    //         application.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
+    //         for (Applicant__c applicant : application.Applicants__r) {
+    //           if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+    //             applicant.FlowState__c = ApplicationConstant.FUNDING_WELCOME;
+    //             applicant.mflow__FlowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
+    //           }
+    //           applicant.mflow__Status__c = ApplicationConstant.IN_PROGRESS;
+    //           applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_PASSED;
+    //         }
+    //       } else if (status == ApplicationConstant.KYC_FAILED) {
+    //         application.Status__c = ApplicationConstant.CANCELLED;
+    //         application.KYCStatus__c = ApplicationConstant.KYC_FAILED;
+    //         for (Applicant__c applicant : application.Applicants__r) {
+    //           applicant.mflow__Status__c = ApplicationConstant.CANCELLED;
+    //           applicant.mflow__KYCStatus__c = ApplicationConstant.KYC_FAILED;
+    //         }
+    //       }
+    //       LwcCustomRepository.upsertRecords(application.Applicants__r);
+    //       LwcCustomRepository.upsertRecord(application);
+    //     }
 
-        NotificationService.getInstance()
-          .dispatchKycNotification(
-            'onManualKycAction',
-            application.Id,
-            application.Name,
-            'Updated - Kyc Status to : ' +
-            status +
-            ' , Approval Type : ' +
-            approvalType
-          );
+    //     NotificationService.getInstance()
+    //       .dispatchKycNotification(
+    //         'onManualKycAction',
+    //         application.Id,
+    //         application.Name,
+    //         'Updated - Kyc Status to : ' +
+    //         status +
+    //         ' , Approval Type : ' +
+    //         approvalType
+    //       );
 
-        // Create membership account based on the KYC Approval
-        if (application.mflow__isMemberFlow__c && application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
-          try {
-            KycReviewService.getInstance().createMemberAccount(application);
-            application = KycReviewService.getInstance().updateFinancialAccount(application, null);
-            //Send Funding Email Link to primary
-            CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);
-          } catch (Exception ex) {
-            log?.error(ex);
-            throw ex;
-          }
-        }
-      }
-      when else {
-        throw new CustomException('Incorrect object type');
-      }
-    }
+    //     // Create membership account based on the KYC Approval
+    //     if (application.mflow__isMemberFlow__c && application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
+    //       try {
+    //         KycReviewService.getInstance().createMemberAccount(application);
+    //         application = KycReviewService.getInstance().updateFinancialAccount(application, null);
+    //         //Send Funding Email Link to primary
+    //         CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);
+    //       } catch (Exception ex) {
+    //         log?.error(ex);
+    //         throw ex;
+    //       }
+    //     }
+    //   }
+    //   when else {
+    //     throw new CustomException('Incorrect object type');
+    //   }
+    // }
     log?.fine('Completed updateKycDecision');
   }
 

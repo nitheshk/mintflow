@@ -132,32 +132,6 @@ global with sharing class ApplicationController extends AbstractController {
   }
 
   /**
-   * @description review information submit
-   * Send email to primary and joint applicant for start application
-   * @author Digital Align Team | 11-15-2021
-   * @param ApexRequest request
-   * @return ApexResponse
-   **/
-  @AuraEnabled
-  @RemoteAction
-  global static ApexResponse reviewInformationSubmit(ApexRequest request) {
-    try {
-      validateRequest(request);
-      return ApexResponse.ok(
-        ReviewInformationService.getInstance().reviewInformationSubmit(ApexRequest.getApplicationId())
-      );
-    } catch (CustomException ex) {
-      log?.debug(ex.getMessage());
-      return ApexResponse.exception(ex);
-    } catch (Exception ex) {
-      log?.debug(ex.getMessage());
-      return ApexResponse.fail(ex);
-    } finally {
-      Logger.persist();
-    }
-  }
-
-  /**
    * @description get new refreshed token
    * New token need to patch application/applicant respectvely
    * @author Digital Align Team | 11-18-2021
@@ -254,10 +228,33 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse submitApplication(ApexRequest request) {
+  global static ApexResponse submit(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(ApplicationSubmissionService.getInstance().submitApplication(request.data));
+      return ApexResponse.ok(SubmitApplicationService.getInstance().submit(request.data));
+    } catch (CustomException ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description final application submit
+   * @author Digital Align Team | 01-25-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse submitToCoreSystem(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(SubmitApplicationService.getInstance().submitToCoreSystem(ApexRequest.getApplicationId()));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);
