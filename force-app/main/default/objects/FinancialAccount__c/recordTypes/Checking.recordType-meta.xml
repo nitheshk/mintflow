@@ -44,6 +44,29 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Purpose__c</picklist>
+        <values>
+            <fullName>Cash Rewards</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Debt Consolidation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ITIN Cash rewards</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ITIN Increase Limit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Increased Limit</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Status__c</picklist>
         <values>
             <fullName>Abandoned</fullName>
