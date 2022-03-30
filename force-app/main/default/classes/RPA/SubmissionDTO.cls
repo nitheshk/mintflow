@@ -51,6 +51,9 @@ global with sharing class SubmissionDTO {
 
   global class FinancialAccount {
     global String FinancialAccountId;
+    global String Purpose;
+    global String Comments;
+    global Decimal CreditLimit;
     global String ExternalApplicationNumber;
     global String InternalCode;
     global String ExternalCode;

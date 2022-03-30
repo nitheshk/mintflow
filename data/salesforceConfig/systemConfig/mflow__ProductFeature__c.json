@@ -2,9 +2,21 @@
   "records": [
     {
       "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0" },
+      "Name": "Financial future",
+      "mflow__DisplayContents__c": "<h3><b>Get a jump-start on a sunnier tomorrow.</b></h3><p>Start with a few dollars or a fistful. Focus on one account or take a diversified approach. Whatever your saving style, we want to help you build up your balance, take aim at your goals, and prepare for life&#39;s rainy days and all its other twists and turns.</p><p><br></p><h4><b>Regular Savings</b></h4><ul><li>Open account with minimum deposit of $35.</li><li>Earn competitive interest.</li><li>Build up balance with direct deposit and payroll deductions.</li><li>Monitor and manage funds with free Online and Mobile Banking.</li><li>Open multiple accounts for specific savings goals. Name your accounts whatever.</li></ul><p>Start saving now. Opening an account is easy!</p>",
+      "mflow__DisplayName__c": "Financial future",
+      "mflow__FinancialProduct__c": "@IC003",
+      "mflow__Order__c": 11,
+      "mflow__Required__c": false,
+      "mflow__SubTopic__c": "Start with a few dollars or a fistful. F",
+      "mflow__Topic__c": "Regular Savings",
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef1" },
       "Name": "Security",
       "mflow__DisplayContents__c": "<p>Local convenience, global security and a connected digital experience.</p><p><br></p><ul><li>Chip-and-PIN transaction authentication accepted worldwide.</li></ul><p><br></p><ul><li>Manage your account and monitor transactions anytime, anywhere with our free mobile app.</li></ul><p><br></p><ul><li>Shop safely and effortlessly with <a href=\"https://masterpass.com/\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">MasterPass®</a> or <a href=\"https://www2.firsttechfed.com/LP=45\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">Apple Pay</a> digital wallet programs.</li></ul><p><br></p>",
-      "mflow__FinancialProduct__c": "@IC0019",
+      "mflow__FinancialProduct__c": "@IC009",
       "mflow__ImageType__c": "Relative",
       "mflow__Order__c": 3,
       "mflow__Required__c": false,
@@ -13,11 +25,11 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef1" },
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef2" },
       "Name": "Digital experience",
       "mflow__DisplayContents__c": "<p><span style=\"font-size: 14px;\">It&#39;s not all about the plastic. Discover online banking, a modern mobile experience and a digital wallet.</span> </p><p><br></p><p>Need to temporarily lock your card? Order a replacement card? Want to check your rewards balance and see if you have enough points for that trip to Palm Springs? Now you can do all that and more with the Manage Cards widget. You just need the First Tech mobile app or online banking. Also shop safely and effortlessly with Digital Wallet programs like Apple Pay, Samsung Pay, Google Pay.</p>",
       "mflow__DisplayName__c": "Digital experience",
-      "mflow__FinancialProduct__c": "@IC0018",
+      "mflow__FinancialProduct__c": "@IC009",
       "mflow__ImageType__c": "Relative",
       "mflow__Order__c": 2,
       "mflow__Required__c": false,
@@ -26,12 +38,12 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef2" },
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef3" },
       "Name": "Features and rewards",
       "mflow__Code__c": "PS008",
       "mflow__DisplayContents__c": "<p>Features:</p><ul><li><a href=\"https://www.firsttechfed.com/Rates/Credit-Cards\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">As low as 8.25% APR - Learn More</a> , not to exceed 18.00%<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>No annual fee</li><li>Introductory 0.00% APR balance transfer for 12 billing cycles<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-1\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">1</a></li><li>Earn double Rewards Points on everyday purchases<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-3\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">3</a></li><li>Industry-leading Chip + PIN security</li></ul><p>Benefits:</p><ul><li>Earn 20,000 bonus Rewards Points when you spend $3,000 in the first 60 days<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>Earn 2 Rewards Points for every $1 spent on groceries, gas, electronics, medical, household goods and telecommunications<u style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</u> and 1 Reward Point for every $1 spent on all other purchases</li><li>Redeem Reward Points for travel, merchandise, events, experiences, gift cards and cash</li><li>No points maximum and your points never expire<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-4\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</a></li><li><a href=\"https://www.firsttechfed.com/Help/Cardholder-Benefits\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">View all cardholder benefits</a></li></ul><p><br></p>",
       "mflow__DisplayName__c": "Features and rewards",
-      "mflow__FinancialProduct__c": "@IC0017",
+      "mflow__FinancialProduct__c": "@IC009",
       "mflow__ImageType__c": "Relative",
       "mflow__Order__c": 8,
       "mflow__Required__c": false,
@@ -40,11 +52,11 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef3" },
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4" },
       "Name": "Blazers Card",
       "mflow__DisplayContents__c": "<p>First Tech is proud to be the Official Credit Union of the Portland Trail Blazers.</p><p>We’re excited to offer a Portland Trail Blazers option for this card. You&#39;ll receive all the standard card perks, along with some Blazers exclusives:</p><p><br></p><p>Get great deals on tickets.</p><p><br></p><p>As a First Tech member, you’re eligible for discounted tickets to games, shows and performances at the Rose Quarter.</p><p><br></p><p>Score savings on gear.</p><p><br></p><p>Take 10% off everything at Rip City Clothing Co. in the Moda Center, all season long, when you use your First Tech credit or debit card.</p><p><br></p><p>Already have a credit card with First Tech?</p><p><br></p><ul><li>Current cardholders can replace their card with the Blazers Mastercard® design by visiting us at any of our locations, or by calling us at 855.855.8805.</li></ul>",
       "mflow__DisplayName__c": "Blazers Card",
-      "mflow__FinancialProduct__c": "@IC0010",
+      "mflow__FinancialProduct__c": "@IC009",
       "mflow__ImageType__c": "Relative",
       "mflow__Order__c": 4,
       "mflow__Required__c": false,
@@ -53,7 +65,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4" },
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5" },
       "Name": "Debit Card",
       "mflow__DisplayName__c": "Debit Card",
       "mflow__ImageType__c": "Relative",
@@ -64,7 +76,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5" },
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef6" },
       "Name": "Benefits",
       "mflow__Code__c": "PS009",
       "mflow__DisplayContents__c": "<h3>You&#39;ll benefit from:</h3><ul><li>No minimum balance requirements</li><li>No monthly account maintenance fees</li><li>Surcharge-free access at nearly 30,000 CO-OP network ATMs nationwide</li><li>Free checking</li></ul><p>Manage your money when and where you want</p><ul><li>Access your account online</li><li>Deposit checks and pay bills with our free Mobile App</li><li>Visit a branch at nearly 6,000 CO-OP shared branch locations</li></ul><p>Peace of mind</p><ul><li>Real-time fraud monitoring</li><li>Secure online access</li><li>Free overdraft transfers from savings or line of credit</li><li>Chip-and-PIN enabled debit card</li><li><br></li></ul><h3>Cardholder benefits:</h3><ul><li>Extended warranty</li><li>Satisfaction guarantee</li><li>Identity theft resolution services</li><li>And more (see Debit Mastercard tab)</li></ul><p><br></p>",
@@ -77,7 +89,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef6" },
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7" },
       "Name": "Debit Mastercard",
       "mflow__Code__c": "PS0010",
       "mflow__DisplayContents__c": "<ul><li>Benefits Overview Call 1.800.MASTERCARD (<a href=\"\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">1.800.627.8372</a>) for more information or for assistance with these benefits.</li><li>Mastercard Global Service™ provides 24 hour a day, seven day a week assistance with lost and stolen card reporting, emergency card replacement, emergency cash advance, as well as assistance with locating ATMs.</li><li>Mastercard Airport Concierge™ provides a Meet and Greet agent to assist with flight connections, plus at select airports, expedited security/immigration processing.</li><li>Extended Warranty doubles most manufacturer or U.S. store brand warranties for up to one additional year.</li><li>Satisfaction Guarantee covers most items purchased with your card if they are damaged or stolen within 90 days of the purchase date.</li><li>Identity Theft Protection assists you with credit bureau notification and credit card replacement and provides you with an ID Theft Affidavit should you become an identity theft victim.</li></ul>",
@@ -90,7 +102,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7" },
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8" },
       "Name": "Features",
       "mflow__Code__c": "PS006",
       "mflow__DisplayContents__c": "<p>This account fits those who:</p><ul><li>Keep more than $5,000 in savings</li><li>Want easy access to funds while earning higher dividends</li></ul><p><br></p>",
@@ -104,7 +116,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8" },
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9" },
       "Name": "Benefits",
       "mflow__Code__c": "PS007",
       "mflow__DisplayContents__c": "<h3>You&#39;ll benefit from:</h3><ul><li>Tiered dividends on larger balances</li><li>No monthly account maintenance fees</li><li>No early withdrawal fees</li><li>Surcharge-free access at nearly 30,000 CO-OP network ATMs nationwide</li></ul><p>Manage your money when and where you want:</p><ul><li>Withdraw funds at any time</li><li>Access your account online from our Mobile App</li><li>Deposit checks with our free Mobile App</li><li>Enter a branch at nearly 6,000 CO-OP shared branch locations</li></ul><h3>Peace of mind</h3><ul><li>Balances are insured to at least $250,000 by the NCUA</li><li>Secure online access</li><li>Automatic overdraft transfers for your First Tech checking account</li></ul><p><br></p>",
@@ -117,7 +129,7 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9" },
+      "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10" },
       "Name": "Features",
       "mflow__Code__c": "PS009",
       "mflow__DisplayContents__c": "<p>This account fits those who:</p><ul><li>Keep more than $5,000 in savings</li><li>Want easy access to funds while earning higher dividends</li></ul><p><br></p>",
