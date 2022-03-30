@@ -1,5 +1,5 @@
 @IsTest
-public with sharing class BuildApplicationWrapperTest {
+public with sharing class BuildSubmissionWrapperTest {
   private static Application__c makeApplicationData() {
     Application__c acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecord(acc);
@@ -36,8 +36,8 @@ public with sharing class BuildApplicationWrapperTest {
     mflow__Application__c application = makeApplicationData();
     application = [SELECT Id, Name FROM mflow__Application__c WHERE id = :application.id];
     Test.startTest();
-    BuildApplicationWrapper.getInstance().obtainApplicationData(application.Name);
-    BuildApplicationWrapper.getInstance().obtainApplicationFiles(application.Name);
+    BuildSubmissionWrapper.getInstance().obtainApplicationData(application.Name);
+    BuildSubmissionWrapper.getInstance().obtainApplicationFiles(application.Name);
     Test.stopTest();
   }
 }

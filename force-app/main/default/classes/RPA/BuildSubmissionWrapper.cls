@@ -134,6 +134,9 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
     for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
       SubmissionDTO.FinancialAccount mapperFinancialAccount = new SubmissionDTO.FinancialAccount();
       mapperFinancialAccount.FinancialAccountId = financialAccount.Id;
+      mapperFinancialAccount.Purpose = financialAccount.Purpose__c;
+      mapperFinancialAccount.Comments = financialAccount.Comments__c;
+      mapperFinancialAccount.CreditLimit = financialAccount.CreditLimit__c;
       mapperFinancialAccount.FinancialProduct = financialAccount.ProductName__c;
       mapperFinancialAccount.FinancialProductType = financialAccount.ProductCategory__c;
       mapperFinancialAccount.ExternalCode = financialAccount.FinancialProduct__r.ExternalCode__c;
