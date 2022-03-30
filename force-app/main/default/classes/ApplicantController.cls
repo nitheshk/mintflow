@@ -285,4 +285,29 @@ global with sharing class ApplicantController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 03-28-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse validateExistingCustomer(ApexRequest request) {
+    try {
+      log?.fine('Inside validateExistingCustomer');
+      validateRequest(request);
+      return ApexResponse.ok(ApplicantService.getInstance().validateExistingCustomer(ApexRequest.getApplicationId()));
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Completed validateExistingCustomer');
+      Logger.persist();
+    }
+  }
 }
