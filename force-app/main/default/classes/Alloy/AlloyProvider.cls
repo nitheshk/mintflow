@@ -33,7 +33,18 @@ global virtual with sharing class AlloyProvider extends AbstractService {
    * @return Applicant__c
    **/
 
-  public Applicant__c doIDVVerification(Applicant__c applicant, Map<String, Object> params) {
-    return null;
+  public Applicant__c doIDVVerification(Id applicantId) {
+    AlloyDTO.IDVRequest idvDTO = new AlloyDTO.IDVRequest();
+    Map<String, String> header = new Map<String, String>();
+    header.put('Alloy-Application-Version', HttpBuilder.getApiConstant(AlloyConstants.IDV_APPLICATION_VERSION));
+    Applicant__c applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
+    HttpBuilder.setAPISetting(APINames.AlloyKYC);
+    String idvRequestBody = AlloyServiceHelper.getinstance().buildIDVRequest(applicantObj);
+    system.debug(' Alloy KYC request :' + idvRequestBody);
+
+    HttpResponse response = HttpBuilder.httpCallOut(idvRequestBody, header);
+    system.debug(' Alloy KYC request :' + response.getBody());
+
+    return applicantObj;
   }
 }

@@ -6,6 +6,7 @@
  * @description
  **/
 public with sharing class AlloyConstants {
+  public static final String IDV_APPLICATION_VERSION = 'Alloy_Application_Version';
   public static final String DD_TYPE_IDA = 'IDA';
   public static final String DD_TYPE_IDV = 'IDV';
   public static final String DD_TYPE_FRAUD = 'FRAUD';

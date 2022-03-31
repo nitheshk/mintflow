@@ -268,12 +268,12 @@ global with sharing class ApplicantController extends AbstractController {
    * @param ApexRequest request
    * @return ApexResponse
    **/
-  @AuraEnabled
   @RemoteAction
   global static ApexResponse verifyKYC(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(AlloyService.getInstance().verifyKYC(ApexRequest.getParams()));
+      log?.fine('Inside Appliant KYC');
+      return ApexResponse.ok(AlloyService.getInstance().verifyKYC(request));
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -281,7 +281,7 @@ global with sharing class ApplicantController extends AbstractController {
       log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
-      Flow.finalize();
+      log?.fine('Completed Applicant KYC');
       Logger.persist();
     }
   }
@@ -307,7 +307,6 @@ global with sharing class ApplicantController extends AbstractController {
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Completed validateExistingCustomer');
-      Logger.persist();
     }
   }
 }

@@ -32,21 +32,16 @@ global virtual with sharing class AlloyService extends AbstractService {
    * @param Application__c application
    * @return Applicant__c
    **/
-  global List<Applicant__c> verifyKYC(Map<String, Object> params) {
+  global List<Applicant__c> verifyKYC(ApexRequest request) {
     AlloyProvider provider = new AlloyProvider();
     try {
       Flow.initialize(ApexRequest.getApplicationId());
       Flow.setFlow('Alloy KYC');
       Flow.setSubFlow(APINames.AlloyKYC.name(), ApexRequest.getApplicationId());
-      List<Applicant__c> applicants = (lIST<Applicant__c>) params.get('Applicants');
-      if (applicants.size() > 0) {
-        provider.doIDVVerification(applicants[0], params);
-        Flow.setSubFlowPassed('Passed'); //TODO: to change later
-      } else {
-        Flow.setSubFlowFailed('Failed'); //TODO: to change later
-        throw new customException('Unable to find any applicant for KYC');
-      }
-      return applicants;
+      Id applicantId = ApexRequest.getApplicantId();
+      provider.doIDVVerification(applicantId);
+      Flow.setSubFlowPassed('Passed'); //TODO: to change later
+      return null;
     } catch (exception ex) {
       throw new customException('Unable to do KYC for the applicant');
     }
