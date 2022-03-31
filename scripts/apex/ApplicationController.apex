@@ -88,4 +88,40 @@ Logger.persist();
 SubmitApplicationService.getInstance().notifyProductInterest('a036D000005vcmzQAA');
 
 //
-FinancialAccountService.testApproveFundingSubmission('App-00200');
+FinancialAccountService.testApproveFundingSubmission('App-00003');
+
+// Submit
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  'a026D000004YXdAQAW',
+  'a006D000008AYmEQAW',
+  'Primary',
+  'ApplicationFlow'
+);
+
+ApexResponse res = ApplicationController.readApplicationWithChild(request);
+// system.debug('Full Json : ' + res.data);
+ApexRequest request1 = new ApexRequest();
+request1.token = request.token;
+Request1.data = (String) res.data;
+res = ApplicationController.submit(request1);
+system.debug('Full Json : ' + res.data);
+
+// Submit to core system
+
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  'a026D000004YXdAQAW',
+  'a006D000008AYmEQAW',
+  'Primary',
+  'ApplicationFlow'
+);
+system.debug('token : ' + request.token);
+
+ApexRequest request = new ApexRequest();
+request.token = 'pyh8mYAVjrnj1iy5gF7JFK47w+KxidbycgQrn9aXie8sLejoTrFvguqFD0SWQlc21gLkIjJpc8IvIsxbYRA8GM+BrtUR426JvQJkDguFnlcy3jmQ9tR/vtCWGbW9zvoaUl4eFy4VS+3lBMhdoa1tgA==';
+ApexResponse res = ApplicationController.submitToCoreSystem(request);
+system.debug('Full Json : ' + res.data);
+
+// updateSubmissionInfo
+

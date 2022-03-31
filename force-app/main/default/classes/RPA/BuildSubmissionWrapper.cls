@@ -51,7 +51,6 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
     SObjectConstructor builder = SObjectConstructor.getInstance(application);
     builder.setChildObjects('mflow__Applicants__r', applicants);
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
-    system.debug('financialAccounts =' + financialAccounts);
     return (Application__c) builder.build();
   }
 

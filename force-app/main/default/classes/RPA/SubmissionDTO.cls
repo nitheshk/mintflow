@@ -192,7 +192,7 @@ global with sharing class SubmissionDTO {
     global String ApplicationId;
     global Boolean IsExistingCustomer;
     global List<FinancialAccountResult> FinancialAccounts;
-    global list<ApplicantResult> applicants;
+    global list<ApplicantResult> Applicants;
   }
 
   global class ApplicantResult {

@@ -86,13 +86,25 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
       }
     }
 
-    // ALl KYC is Approved
-    if (isKYCApproved) {
-      application.KycStatus__c = ApplicationConstant.KYC_PASSED;
-    }
     // ALL Applicant Submitted
-    if (isFlowCompleted) {
+    if (isFlowCompleted && isKYCApproved) {
       application.Status__c = ApplicationConstant.SUBMITTED;
+      application.KycStatus__c = ApplicationConstant.KYC_PASSED;
+      application.SubmittedDate__c = Datetime.now();
+      application.SubmittedBy__c = UserInfo.getUserId();
+
+      if (!CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
+        application.FinancialAccounts__r[0].Status__c = ApplicationConstant.SUBMITTED;
+      }
+
+      CustomerEmailService.getInstance()
+        .reviewInformationSubmitted(
+          new List<mflow__Applicant__c>{ primaryApplicant },
+          'PrimaryReviewInformationSubmitted'
+        );
+    } else if (isFlowCompleted && !isKYCApproved) {
+      application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+      application.KycStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
       application.SubmittedDate__c = Datetime.now();
       application.SubmittedBy__c = UserInfo.getUserId();
 
@@ -107,6 +119,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         );
     } else {
       if (ApexRequest.getApplicantType() == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+        application.Status__c = ApplicationConstant.SAVED;
         //1. send Email to Primary applicant with resume link
         CustomerEmailService.getInstance()
           .reviewInformationSubmitted(
@@ -185,9 +198,9 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     //chatter post on record level
     NotificationBuilder.chatterMessagePost(application.Id, 'Funding Response from meridian link  : ' + resultJson);
 
-    if (application.Status__c == ApplicationConstant.COMPLETED) {
-      throw new CustomException('Application has already completed');
-    }
+    // if (application.Status__c == ApplicationConstant.COMPLETED) {
+    //   throw new CustomException('Application has already completed');
+    // }
 
     // roll back whole transaction on failure
     Savepoint sp = Database.setSavepoint();
@@ -201,7 +214,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
 
       if (application.Status__c == ApplicationConstant.COMPLETED) {
         //Create Account and contact
-
+        this.createMemberAccount(application);
         //Send Funding Email Link to primary
         CustomerEmailService.getInstance().accountOpened(application);
         NotificationService.getInstance()
@@ -251,7 +264,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         application.MemberNumber__c = submissionResult.MemberNumber;
 
         Map<Id, Applicant__c> applicantMap = new Map<Id, Applicant__c>(application.Applicants__r);
-        for (SubmissionDTO.ApplicantResult applicantResult : submissionResult.applicants) {
+        for (SubmissionDTO.ApplicantResult applicantResult : submissionResult.Applicants) {
           Applicant__c applicant = applicantMap.get(applicantResult.ApplicantId);
           applicant.mflow__CustomerNumber__c = applicantResult.CustomerNumber;
           applicant.mflow__Status__c = ApplicationConstant.COMPLETED;
