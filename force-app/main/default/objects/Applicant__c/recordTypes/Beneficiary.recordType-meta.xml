@@ -145,6 +145,10 @@
             <fullName>WelcomeJoint</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>oow</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>FlowType__c</picklist>
@@ -402,10 +406,6 @@
         </values>
         <values>
             <fullName>Submitted</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>oow</fullName>
             <default>false</default>
         </values>
     </picklistValues>

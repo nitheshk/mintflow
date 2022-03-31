@@ -124,9 +124,5 @@
             <fullName>Submitted</fullName>
             <default>false</default>
         </values>
-        <values>
-            <fullName>oow</fullName>
-            <default>false</default>
-        </values>
     </picklistValues>
 </RecordType>

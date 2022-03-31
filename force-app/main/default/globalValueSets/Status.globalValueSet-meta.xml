@@ -70,11 +70,6 @@
         <default>false</default>
         <label>Funding in Progress</label>
     </customValue>
-    <customValue>
-        <fullName>oow</fullName>
-        <default>false</default>
-        <label>oow</label>
-    </customValue>
     <description>Status of application and applicants</description>
     <masterLabel>Status</masterLabel>
     <sorted>false</sorted>

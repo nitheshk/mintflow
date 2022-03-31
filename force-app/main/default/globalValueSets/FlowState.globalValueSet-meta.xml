@@ -125,6 +125,11 @@
         <default>false</default>
         <label>Agreements</label>
     </customValue>
+    <customValue>
+        <fullName>oow</fullName>
+        <default>false</default>
+        <label>oow</label>
+    </customValue>
     <description>UI Flow State Indicator</description>
     <masterLabel>FlowState</masterLabel>
     <sorted>false</sorted>
