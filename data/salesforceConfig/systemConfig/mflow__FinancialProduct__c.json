@@ -310,7 +310,7 @@
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0015" },
-      "Name": "12 Month Certificate",
+      "Name": "18 Month Certificate",
       "mflow__Category__c": "Certificate",
       "mflow__DisplayLabel__c": "18 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
