@@ -28,8 +28,8 @@ public with sharing class TestData {
 
   public static SiteSetting__c createSiteSetting() {
     SiteSetting__c siteSetting = new SiteSetting__c();
-    siteSetting.mflow__OnlineSiteUrl__c = 'https://sandbox-efficiency-enterprise-8306-d-17f6e971958.cs73.force.com/Online';
-    siteSetting.mflow__FinancialInstituteSiteUrl__c = 'https://sandbox-efficiency-enterprise-8306-d-17f6e971958.cs73.force.com/HomePageFI';
+    siteSetting.mflow__OnlineSiteUrl__c = 'https://sandbox-computing-customization-653--17f6883cb04.cs6.force.com/Online';
+    siteSetting.mflow__FinancialInstituteSiteUrl__c = 'https://sandbox-computing-customization-653--17f6883cb04.cs6.force.com/Online';
     siteSetting.mflow__OnlineAccountOpeningUrl__c = '/OpenAccount?pid=IC003#/home';
     siteSetting.mflow__OnlineContentUrl__c = 'https://ik.imagekit.io/disczlxo8kv/P1FCU/';
     insert siteSetting;
@@ -238,6 +238,7 @@ public with sharing class TestData {
     consentLine.Name = 'Consent Line Item';
     consentLine.EventIdentifier__c = 'event';
     consentLine.Order__c = 1;
+    consentLine.isActive__c = true;
     return consentLine;
   }
   public static mflow__SurveyTemplate__c createSurveyTemplates() {
