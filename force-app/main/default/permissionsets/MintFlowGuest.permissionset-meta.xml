@@ -465,6 +465,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>IdentificationDocument__c.IssuedStateCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>IdentificationDocument__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>

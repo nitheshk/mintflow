@@ -1812,6 +1812,11 @@
         <field>IdentificationDocument__c.PrimaryContentDocumentID__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IdentificationDocument__c.IssuedStateCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	    <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.SecondaryContentDocumentId__c</field>
