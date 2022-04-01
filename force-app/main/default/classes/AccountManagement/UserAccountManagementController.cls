@@ -16,7 +16,7 @@ global with sharing class UserAccountManagementController {
   @AuraEnabled
   global static ApexResponse createFinInstEmployeeAccount(Map<String, Object> params) {
     try {
-      return ApexResponse.ok(FinInstAccountService.getInstance().createFinInstEmployeeUserAccount(params));
+      return ApexResponse.ok(FinancialInstituteSiteService.getInstance().createFinInstEmployeeUserAccount(params));
     } catch (Exception ex) {
       return ApexResponse.exception(ex);
     } finally {
@@ -32,7 +32,7 @@ global with sharing class UserAccountManagementController {
   @AuraEnabled(cacheable=true)
   global static ApexResponse fetchFinancialInstituteAccount() {
     try {
-      Account finInstAcc = FinInstAccountService.getInstance().fetchFinancialInstituteAccount();
+      Account finInstAcc = FinancialInstituteSiteService.getInstance().fetchFinancialInstituteAccount();
       if (finInstAcc != null) {
         return ApexResponse.ok(finInstAcc);
       } else {
@@ -53,7 +53,7 @@ global with sharing class UserAccountManagementController {
   @AuraEnabled
   global static ApexResponse createFinancialInstituteAccount(Map<String, Object> params) {
     try {
-      return ApexResponse.ok(FinInstAccountService.getInstance().createFinancialInstituteAccount(params));
+      return ApexResponse.ok(FinancialInstituteSiteService.getInstance().createFinancialInstituteAccount(params));
     } catch (Exception ex) {
       return ApexResponse.exception(ex);
     }
