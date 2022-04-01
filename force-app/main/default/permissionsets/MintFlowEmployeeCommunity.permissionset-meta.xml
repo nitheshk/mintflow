@@ -84,10 +84,6 @@
         <apexClass>AtomicFIService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>UserAccountManagementController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <pageAccesses>
         <apexPage>Error</apexPage>
         <enabled>true</enabled>

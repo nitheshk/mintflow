@@ -76,10 +76,6 @@
         <apexClass>AtomicFIService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>UserAccountManagementController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>EmailNotificationSetting__mdt</name>

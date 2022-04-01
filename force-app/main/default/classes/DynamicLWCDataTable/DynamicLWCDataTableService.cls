@@ -208,7 +208,7 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
     if (acnt == null) {
       Profile profile = UtilsRepository.fetchProfileByName(profileName);
       if (userInfo.getProfileId().equals(profile.Id)) {
-        ApexResponse response = UserAccountManagementController.fetchFinancialInstituteAccount();
+        ApexResponse response = LWCFinancialInstituteSiteController.fetchFinancialInstituteAccount();
         acnt = (Account) response.data;
       } else {
         throw new CustomException(System.Label.FinInst_BusinessAccountHasNotSetup);

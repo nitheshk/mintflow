@@ -8,15 +8,42 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class LWCFinancialInstituteSiteController {
   private static logger log = logger.getInstance(ApplicantController.class);
+
   /**
-   * @description
+   * @description Create financial institue employee Account
    * @author Digital Align Team | 07-27-2021
    * @param Map<String Object> params
    * @return ApexResponse
    **/
   @AuraEnabled
   global static ApexResponse createFinInstEmployeeAccount(Map<String, Object> params) {
-    return UserAccountManagementController.createFinInstEmployeeAccount(params);
+    try {
+      return ApexResponse.ok(FinancialInstituteSiteService.getInstance().createEmployeeUserAccount(params));
+    } catch (Exception ex) {
+      return ApexResponse.exception(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description fetch financial institute account record
+   * @author Digital Align | 07-23-2021
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse fetchFinancialInstituteAccount() {
+    try {
+      Account finInstAcc = FinancialInstituteSiteService.getInstance().fetchFinancialInstituteAccount();
+      if (finInstAcc != null) {
+        return ApexResponse.ok(finInstAcc);
+      } else {
+        return ApexResponse.fail(finInstAcc);
+      }
+    } catch (Exception ex) {
+      System.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    }
   }
 
   /**
@@ -27,17 +54,11 @@ global with sharing class LWCFinancialInstituteSiteController {
    **/
   @AuraEnabled
   global static ApexResponse createFinancialInstituteAccount(Map<String, Object> params) {
-    return UserAccountManagementController.createFinancialInstituteAccount(params);
-  }
-
-  /**
-   * @description
-   * @author Digital Align | 07-23-2021
-   * @return ApexResponse
-   **/
-  @AuraEnabled(cacheable=true)
-  global static ApexResponse fetchFinancialInstituteAccount() {
-    return UserAccountManagementController.fetchFinancialInstituteAccount();
+    try {
+      return ApexResponse.ok(FinancialInstituteSiteService.getInstance().createFinancialInstituteAccount(params));
+    } catch (Exception ex) {
+      return ApexResponse.exception(ex);
+    }
   }
 
   /**
@@ -103,7 +124,7 @@ global with sharing class LWCFinancialInstituteSiteController {
   @AuraEnabled(cacheable=true)
   global static ApexResponse fetchPickListValues(Map<String, Object> params) {
     try {
-      return ApexResponse.ok(FinancialInstituteSiteService.getInstance().fetchPickListValues(params));
+      return ApexResponse.ok(LwcCustomService.getInstance().fetchPickListValues(params));
     } catch (Exception e) {
       throw new AuraHandledException(e.getMessage());
     }

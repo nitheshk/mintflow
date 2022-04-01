@@ -26,31 +26,6 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
     return serviceInstance;
   }
 
-  global virtual Map<String, Map<String, Object>> fetchPickListValues(Map<String, Object> params) {
-    Map<String, Map<String, Object>> result = new Map<String, Map<String, Object>>();
-
-    for (String sType : params.keySet()) {
-      List<String> fieldNames = (List<String>) JSON.deserialize(JSON.serialize(params.get(sType)), List<String>.class);
-      Schema.DescribeSObjectResult sObjectResult = Schema.getGlobalDescribe().get(sType).getDescribe();
-      result.put(sType, new Map<String, Object>());
-      for (String fieldName : fieldNames) {
-        List<Object> picklistValues = new List<Object>();
-        for (
-          Schema.PicklistEntry picklistEntry : sObjectResult.fields.getMap()
-            .get(fieldName)
-            .getDescribe()
-            .getPicklistValues()
-        ) {
-          picklistValues.add(
-            new Map<String, String>{ 'label' => picklistEntry.getLabel(), 'value' => picklistEntry.getValue() }
-          );
-        }
-        result.get(sType).put(fieldName, picklistValues);
-      }
-    }
-    return result;
-  }
-
   //************ FinInstSite Business Account Creation ****************/
 
   /**
@@ -90,7 +65,7 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
 
   //************ FinInstSite Employee Account Creation  ****************/
 
-  global virtual object createFinInstEmployeeUserAccount(Map<String, Object> params) {
+  global virtual object createEmployeeUserAccount(Map<String, Object> params) {
     Contact employeeContactObj = (Contact) JSON.deserialize(JSON.serialize(params.get('contact')), Contact.class);
     system.debug('employeeContactObj : ' + JSON.serialize(employeeContactObj));
 
@@ -106,11 +81,11 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
         throw new CustomException(System.Label.FinInst_BusinessAccountHasNotSetup);
       }
       //Process Contact
-      employeeContactObj = this.createFinInstEmployeeContact(employeeContactObj, businessAccountObj);
+      employeeContactObj = this.createEmployeeContact(employeeContactObj, businessAccountObj);
 
       system.debug('Contact Id : ' + employeeContactObj.id);
       //Create an user for Contact on approval
-      User userObj = this.createFinInstEmployeeUser(employeeContactObj, businessAccountObj);
+      User userObj = this.createEmployeeUser(employeeContactObj, businessAccountObj);
       //yet to done assigning permission set
       return userObj;
     } catch (Exception ex) {
@@ -125,11 +100,11 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
    * @param Contact employeeContactObj
    * @return Contact
    **/
-  global virtual Contact createFinInstEmployeeContact(Contact employeeContactObj, Account businessAccountObj) {
+  global virtual Contact createEmployeeContact(Contact employeeContactObj, Account businessAccountObj) {
     employeeContactObj.AccountId = businessAccountObj?.id;
     employeeContactObj.LeadSource = 'Partner Referral';
     employeeContactObj.UserContactType__c = FinancialInstituteConstants.FIN_INST_EMPLOYEE_CONTACT_TYPE;
-    UserAccountManagementRepository.upsertRecord(employeeContactObj);
+    FinancialInstituteSiteRepository.upsertRecord(employeeContactObj);
     return employeeContactObj;
   }
 
@@ -139,13 +114,13 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
    * @param Contact employeeContactObj
    * @return User
    **/
-  global virtual User createFinInstEmployeeUser(Contact employeeContactObj, Account businessAccountObj) {
+  global virtual User createEmployeeUser(Contact employeeContactObj, Account businessAccountObj) {
     User userObj = new User();
     Long currentTimeStamp = System.currentTimeMillis();
     //special use case
     userObj = UserUtils.assignProfileIdToUser(
       userObj,
-      UserAccountManagementRepository.readProfileByName(FinancialInstituteConstants.FIN_INST_EMPLOYEE_USER_PROFILE)?.Id
+      FinancialInstituteSiteRepository.readProfileByName(FinancialInstituteConstants.FIN_INST_EMPLOYEE_USER_PROFILE)?.Id
     );
     userObj.ContactId = employeeContactObj.Id;
     userObj.FirstName = employeeContactObj.FirstName;
@@ -162,7 +137,7 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
     userObj.LocaleSidKey = 'en_US';
     userObj.LanguageLocaleKey = 'en_US';
 
-    UserAccountManagementRepository.insertRecord(userObj);
+    FinancialInstituteSiteRepository.insertRecord(userObj);
     FinancialInstituteSiteService.assignCommunityPermissionSetAsync(userObj.Id);
     return userObj;
   }
@@ -187,7 +162,7 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
     //Permission Set Name need to move to customer setting
 
     // #Issue commmunity user  Does have access to createfor Lead
-    List<PermissionSet> permissionSetList = UserAccountManagementRepository.readPermissionSetByNames(
+    List<PermissionSet> permissionSetList = FinancialInstituteSiteRepository.readPermissionSetByNames(
       new List<String>{ FinancialInstituteConstants.FIN_INST_COMMUNITY_PEMRISSION_SET }
     );
 
@@ -195,7 +170,7 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
     for (PermissionSet ps : permissionSetList) {
       permissionSetAssignmentList.add(new PermissionSetAssignment(PermissionSetId = ps.Id, AssigneeId = userId));
     }
-    UserAccountManagementRepository.insertRecords(permissionSetAssignmentList);
+    FinancialInstituteSiteRepository.insertRecords(permissionSetAssignmentList);
     return permissionSetAssignmentList;
   }
 }

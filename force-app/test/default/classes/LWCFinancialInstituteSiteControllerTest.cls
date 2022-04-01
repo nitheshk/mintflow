@@ -1,5 +1,5 @@
 @IsTest
-public with sharing class UserAccountManagementControllerTest {
+public with sharing class LWCFinancialInstituteSiteControllerTest {
   private static Account makeAccountData() {
     Account acc = TestData.createAccountRecord();
     acc = (Account) DatabaseUtils.insertRecord(acc);
@@ -23,8 +23,8 @@ public with sharing class UserAccountManagementControllerTest {
     Account acc = makeAccountData();
     Map<String, Object> params = new Map<String, Object>{ 'account' => acc };
     Test.startTest();
-    ApexResponse result = UserAccountManagementController.createFinancialInstituteAccount(params);
-    ApexResponse result1 = UserAccountManagementController.createFinancialInstituteAccount(
+    ApexResponse result = LWCFinancialInstituteSiteController.createFinancialInstituteAccount(params);
+    ApexResponse result1 = LWCFinancialInstituteSiteController.createFinancialInstituteAccount(
       new Map<String, Object>{ 'Noaccount' => new Account() }
     );
     Test.stopTest();
@@ -34,7 +34,7 @@ public with sharing class UserAccountManagementControllerTest {
   private static void fetchFinancialInstituteAccountNullCheck() {
     ApplicationConfiguration__c appConfig = makeApplicationConfiguration();
     Test.startTest();
-    ApexResponse result1 = UserAccountManagementController.fetchFinancialInstituteAccount();
+    ApexResponse result1 = LWCFinancialInstituteSiteController.fetchFinancialInstituteAccount();
     system.debug(result1);
     Test.stopTest();
     //system.assertEquals(null, result1, 'Success');
@@ -44,9 +44,9 @@ public with sharing class UserAccountManagementControllerTest {
     makeApplicationConfiguration();
     Account acc = makeAccountData();
     Map<String, Object> params = new Map<String, Object>{ 'account' => acc };
-    UserAccountManagementController.createFinancialInstituteAccount(params);
+    LWCFinancialInstituteSiteController.createFinancialInstituteAccount(params);
     Test.startTest();
-    ApexResponse result1 = UserAccountManagementController.fetchFinancialInstituteAccount();
+    ApexResponse result1 = LWCFinancialInstituteSiteController.fetchFinancialInstituteAccount();
     system.debug('result1 =' + result1);
     Test.stopTest();
     //system.assertEquals(null, result1);
@@ -60,7 +60,7 @@ public with sharing class UserAccountManagementControllerTest {
     Contact con = makeContactData(null);
     Map<String, Object> params = new Map<String, Object>{ 'contact' => con };
     Test.startTest();
-    ApexResponse result = UserAccountManagementController.createFinInstEmployeeAccount(params);
+    ApexResponse result = LWCFinancialInstituteSiteController.createFinInstEmployeeAccount(params);
     Test.stopTest();
     //system.assertEquals(null, result1, 'Success');
   }
