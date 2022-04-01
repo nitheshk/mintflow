@@ -251,7 +251,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
    * @description
    * @author Digital Align Team | 01-27-2022
    * @param Application__c application
-   * @param FundingSubmissionResponse.submissionResult submissionResult
+   * @param SubmissionDTO.ApplicationResult submissionResult
    * @return Application__c
    **/
   global virtual Application__c updateApplicationResult(
@@ -310,7 +310,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
    * Used when kyc result is return from Server
    * @author Digital Align Team | 12-07-2021
    * @param Application__c application
-   * @param ApplicationSubmissionResponse.submissionResult submissionResult
+   * @param SubmissionDTO.ApplicationResult submissionResult
    * @return Application__c
    **/
   global virtual Application__c processExistingMember(

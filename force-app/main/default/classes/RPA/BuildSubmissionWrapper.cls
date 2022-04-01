@@ -58,7 +58,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
    * @description
    * @author Digital Align | 11-10-2021
    * @param string applicationId
-   * @return ApplicationSubmissionResponse
+   * @return SubmissionDTO.ApplicationData
    **/
   global virtual SubmissionDTO.ApplicationData obtainApplicationData(string applicationNumber) {
     {
