@@ -97,6 +97,7 @@ global virtual with sharing class IDScanServiceHelper extends AbstractService {
     identity.DocumentNumber__c = returnDTO.data.documentNumber;
     identity.IssuingCountry__c = returnDTO.data.issuerCountry;
     identity.Nationality__c = returnDTO.data.country;
+    identity.IssuedStateCode__c = returnDTO.data.issuerRegion;
     identity.ExpirationDate__c = returnDTO.data.expiry != null ? date.valueOf(returnDTO.data.expiry) : null;
     identity.IssueDate__c = returnDTO.data.issued != null ? date.valueOf(returnDTO.data.issued) : null;
     idAddress.Street = returnDTO.data.address1;
