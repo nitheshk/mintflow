@@ -270,20 +270,23 @@ global with sharing class ApplicantController extends AbstractController {
    **/
   @RemoteAction
   global static ApexResponse verifyKYC(ApexRequest request) {
-    try {
-      validateRequest(request);
-      log?.fine('Inside Appliant KYC');
-      return ApexResponse.ok(AlloyService.getInstance().verifyKYC(request));
-    } catch (CustomException ex) {
-      log?.error(ex);
-      return ApexResponse.exception(ex);
-    } catch (Exception ex) {
-      log?.error(ex);
-      return ApexResponse.fail(ex);
-    } finally {
-      log?.fine('Completed Applicant KYC');
-      Logger.persist();
-    }
+    if (SystemSetting__c.getOrgDefaults().mflow__KYCEvaluation__c) {
+      try {
+        validateRequest(request);
+        log?.fine('Inside Appliant KYC');
+        return ApexResponse.ok(AlloyService.getInstance().verifyKYC(ApexRequest.getApplicantId()));
+      } catch (CustomException ex) {
+        log?.error(ex);
+        return ApexResponse.exception(ex);
+      } catch (Exception ex) {
+        log?.error(ex);
+        return ApexResponse.fail(ex);
+      } finally {
+        log?.fine('Completed Applicant KYC');
+        Logger.persist();
+      }
+    } else
+      return null;
   }
 
   /**

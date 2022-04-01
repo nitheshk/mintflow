@@ -39,11 +39,12 @@ global virtual with sharing class AlloyProvider extends AbstractService {
     header.put('Alloy-Application-Version', HttpBuilder.getApiConstant(AlloyConstants.IDV_APPLICATION_VERSION));
     Applicant__c applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
     HttpBuilder.setAPISetting(APINames.AlloyKYC);
+    HttpBuilder.replaceEndpoint('{evaluation}', HttpBuilder.getApiConstant('AlloyEvaluationURL'));
     String idvRequestBody = AlloyServiceHelper.getinstance().buildIDVRequest(applicantObj);
-    system.debug(' Alloy KYC request :' + idvRequestBody);
+    log?.fine(' Alloy KYC request :' + idvRequestBody);
 
     HttpResponse response = HttpBuilder.httpCallOut(idvRequestBody, header);
-    system.debug(' Alloy KYC request :' + response.getBody());
+    log?.fine(' Alloy KYC response :' + response.getBody());
 
     return applicantObj;
   }

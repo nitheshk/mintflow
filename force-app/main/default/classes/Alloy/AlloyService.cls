@@ -32,13 +32,12 @@ global virtual with sharing class AlloyService extends AbstractService {
    * @param Application__c application
    * @return Applicant__c
    **/
-  global List<Applicant__c> verifyKYC(ApexRequest request) {
+  global List<Applicant__c> verifyKYC(Id applicantId) {
     AlloyProvider provider = new AlloyProvider();
     try {
       Flow.initialize(ApexRequest.getApplicationId());
       Flow.setFlow('Alloy KYC');
-      Flow.setSubFlow(APINames.AlloyKYC.name(), ApexRequest.getApplicationId());
-      Id applicantId = ApexRequest.getApplicantId();
+      Flow.setSubFlow(APINames.AlloyKYC.name(), ApexRequest.getApplicantId());
       provider.doIDVVerification(applicantId);
       Flow.setSubFlowPassed('Passed'); //TODO: to change later
       return null;

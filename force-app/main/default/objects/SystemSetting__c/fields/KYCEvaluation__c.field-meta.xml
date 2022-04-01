@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KYCEvaluation__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>KYC Evaluation to be done or not for the applicants</description>
+    <externalId>false</externalId>
+    <label>KYCEvaluation</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
