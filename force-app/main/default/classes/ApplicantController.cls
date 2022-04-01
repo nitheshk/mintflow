@@ -284,6 +284,7 @@ global with sharing class ApplicantController extends AbstractController {
       } finally {
         log?.fine('Completed Applicant KYC');
         Logger.persist();
+        flow.finalize();
       }
     } else
       return null;

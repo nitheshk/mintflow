@@ -33,7 +33,7 @@ global virtual with sharing class AlloyProvider extends AbstractService {
    * @return Applicant__c
    **/
 
-  public Applicant__c doIDVVerification(Id applicantId) {
+  public HttpResponse doIDVVerification(Id applicantId) {
     AlloyDTO.IDVRequest idvDTO = new AlloyDTO.IDVRequest();
     Map<String, String> header = new Map<String, String>();
     header.put('Alloy-Application-Version', HttpBuilder.getApiConstant(AlloyConstants.IDV_APPLICATION_VERSION));
@@ -46,6 +46,12 @@ global virtual with sharing class AlloyProvider extends AbstractService {
     HttpResponse response = HttpBuilder.httpCallOut(idvRequestBody, header);
     log?.fine(' Alloy KYC response :' + response.getBody());
 
-    return applicantObj;
+    return response;
+  }
+
+  public void saveApplicantVerification(Id applicantId, HttpResponse response) {
+    FileDTO fileObj = new FileDTO('AlloyResponse.json', Blob.valueof(response.getBody()), applicantId);
+    ContentVersion cnv = FileService.getInstance().createFile(fileObj);
+    System.debug('cnv Id::' + cnv.Id);
   }
 }
