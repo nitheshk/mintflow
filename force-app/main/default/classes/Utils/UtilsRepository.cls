@@ -67,4 +67,23 @@ global inherited sharing class UtilsRepository extends DatabaseUtils {
       Query.newInstance(Profile.SObjectType).addFields().whereEq('Name', profileName).addLimit(1).toString()
     );
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 04-02-2022
+   * @param Id userId
+   * @param String siteType
+   * @return Site
+   **/
+  global static Site fetchSite(Id userId, String siteType) {
+    return (Site) getRecord(
+      Query.newInstance(Site.SObjectType)
+        .addFields()
+        .whereEq('GuestUserId', userId)
+        .andCon()
+        .whereEq('SiteType', siteType)
+        .addLimit(1)
+        .toString()
+    );
+  }
 }

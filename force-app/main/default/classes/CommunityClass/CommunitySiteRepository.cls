@@ -5,7 +5,7 @@
  * @reference
  * @description
  **/
-global with sharing class FinancialInstituteSiteRepository extends DatabaseUtils {
+global with sharing class CommunitySiteRepository extends DatabaseUtils {
   /**
    * @description fetch account by account Id
    * @author Digital Align | 07-23-2021

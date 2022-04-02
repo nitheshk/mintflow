@@ -59,4 +59,13 @@ global inherited sharing class UserUtils {
   global static user assignProfileIdToUser(User userObj, ID profileId) {
     return SObjectWithoutSharing.assignProfileIdToUser(userObj, profileId);
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 04-02-2022
+   * @return Id
+   **/
+  global static Id getCurrentGuestDefaultOwnerId() {
+    return UtilsRepository.fetchSite(UserInfo.getUserId(), 'ChatterNetwork')?.GuestRecordDefaultOwnerId;
+  }
 }

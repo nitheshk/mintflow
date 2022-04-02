@@ -37,7 +37,7 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
     ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getOrgDefaults();
     String accountId = appConfig?.FinancialInstituteAccountId__c;
 
-    return (accountId == null) ? null : FinancialInstituteSiteRepository.fetchAccountById(accountId);
+    return (accountId == null) ? null : CommunitySiteRepository.fetchAccountById(accountId);
   }
 
   /**
@@ -53,12 +53,12 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
       throw new CustomException(System.Label.FinInst_AccountRecordRecordNotFound);
     }
 
-    accountRecord.UserAccountType__c = FinancialInstituteConstants.FIN_INST_ACOUNT_TYPE;
-    FinancialInstituteSiteRepository.upsertRecord(accountRecord);
+    accountRecord.UserAccountType__c = CommunityConstant.FIN_INST_ACOUNT_TYPE;
+    CommunitySiteRepository.upsertRecord(accountRecord);
     ApplicationConfiguration__c ap = ApplicationConfiguration__c.getOrgDefaults();
     if (ap.FinancialInstituteAccountId__c == null) {
       ap.FinancialInstituteAccountId__c = accountRecord.id;
-      FinancialInstituteSiteRepository.upsertRecord(ap);
+      CommunitySiteRepository.upsertRecord(ap);
     }
     return accountRecord;
   }
@@ -103,8 +103,8 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
   global virtual Contact createEmployeeContact(Contact employeeContactObj, Account businessAccountObj) {
     employeeContactObj.AccountId = businessAccountObj?.id;
     employeeContactObj.LeadSource = 'Partner Referral';
-    employeeContactObj.UserContactType__c = FinancialInstituteConstants.FIN_INST_EMPLOYEE_CONTACT_TYPE;
-    FinancialInstituteSiteRepository.upsertRecord(employeeContactObj);
+    employeeContactObj.UserContactType__c = CommunityConstant.FIN_INST_EMPLOYEE_CONTACT_TYPE;
+    CommunitySiteRepository.upsertRecord(employeeContactObj);
     return employeeContactObj;
   }
 
@@ -120,7 +120,7 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
     //special use case
     userObj = UserUtils.assignProfileIdToUser(
       userObj,
-      FinancialInstituteSiteRepository.readProfileByName(FinancialInstituteConstants.FIN_INST_EMPLOYEE_USER_PROFILE)?.Id
+      CommunitySiteRepository.readProfileByName(CommunityConstant.FIN_INST_EMPLOYEE_USER_PROFILE)?.Id
     );
     userObj.ContactId = employeeContactObj.Id;
     userObj.FirstName = employeeContactObj.FirstName;
@@ -137,7 +137,7 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
     userObj.LocaleSidKey = 'en_US';
     userObj.LanguageLocaleKey = 'en_US';
 
-    FinancialInstituteSiteRepository.insertRecord(userObj);
+    CommunitySiteRepository.insertRecord(userObj);
     FinancialInstituteSiteService.assignCommunityPermissionSetAsync(userObj.Id);
     return userObj;
   }
@@ -162,15 +162,15 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
     //Permission Set Name need to move to customer setting
 
     // #Issue commmunity user  Does have access to createfor Lead
-    List<PermissionSet> permissionSetList = FinancialInstituteSiteRepository.readPermissionSetByNames(
-      new List<String>{ FinancialInstituteConstants.FIN_INST_COMMUNITY_PEMRISSION_SET }
+    List<PermissionSet> permissionSetList = CommunitySiteRepository.readPermissionSetByNames(
+      new List<String>{ CommunityConstant.FIN_INST_COMMUNITY_PEMRISSION_SET }
     );
 
     List<PermissionSetAssignment> permissionSetAssignmentList = new List<PermissionSetAssignment>();
     for (PermissionSet ps : permissionSetList) {
       permissionSetAssignmentList.add(new PermissionSetAssignment(PermissionSetId = ps.Id, AssigneeId = userId));
     }
-    FinancialInstituteSiteRepository.insertRecords(permissionSetAssignmentList);
+    CommunitySiteRepository.insertRecords(permissionSetAssignmentList);
     return permissionSetAssignmentList;
   }
 }

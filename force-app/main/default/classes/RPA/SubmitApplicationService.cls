@@ -202,8 +202,6 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     //   throw new CustomException('Application has already completed');
     // }
 
-    // roll back whole transaction on failure
-    Savepoint sp = Database.setSavepoint();
     try {
       // Primary is Existing Customer
       if (submissionResult.IsExistingCustomer == true) {
@@ -240,7 +238,6 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
       NotificationService.getInstance()
         .generalExceptionNotification(ApexRequest.getApplicationId(), ApexRequest.getApplicationName(), ex);
       log?.error(ex);
-      Database.rollback(sp);
       throw ex;
     } finally {
       log?.fine('Completed updateSubmissionInfo');
@@ -391,6 +388,13 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
       }
     }
 
+    for (Applicant__c applicant : applicantToProcess.values()) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+        CusomterCommunitySiteService.getInstance().createCustomerCommunityUser(applicant.Contact__r);
+        break;
+      }
+    }
+
     SubmissionRepository.upsertRecords(contactToUpsert);
     SubmissionRepository.upsertRecords(application.Applicants__r);
     return application;
@@ -409,6 +413,11 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     // Added for customer community user license only
     // Work for Cusotmer Community plus user without owner assingment
     //individualAccount.OwnerId = UserUtils.getCurrentUser().CreatedById;
+    if (UserUtils.isGuestUser()) {
+      individualAccount.OwnerId = UserUtils.getCurrentGuestDefaultOwnerId();
+    } else {
+      individualAccount.OwnerId = UserInfo.getUserId();
+    }
     individualAccount.UserAccountType__c = 'IndividualCustomer';
     SubmissionRepository.upsertRecord(individualAccount);
     return individualAccount;

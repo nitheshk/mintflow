@@ -29,6 +29,29 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     return serviceInstance;
   }
 
+  public static final Map<String, String> PAY_CYCLE = new Map<String, String>{
+    'monthly' => 'Monthly',
+    'weekly' => 'Weekly',
+    'daily' => 'Daily',
+    'hourly' => 'Hourly'
+  };
+
+  public static final Map<String, String> INCOME_TYPE = new Map<String, String>{
+    'yearly' => 'Yearly',
+    'monthly' => 'Monthly',
+    'weekly' => 'Weekly',
+    'daily' => 'Semi Monthly',
+    'hourly' => 'Hourly'
+  };
+
+  public static final Map<String, String> EMPLOYEE_TYPE = new Map<String, String>{
+    'parttime' => 'Part Time',
+    'fulltime' => 'Full Time',
+    'weekly' => 'Weekly',
+    'daily' => 'Semi Monthly',
+    'hourly' => 'Hourly'
+  };
+
   /**
    * @description Creates a body json for the applicant to perfomr AtomicFI authentication
    * @author Digital Align Team | 11/11/2021
@@ -166,11 +189,9 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     employmentObj.mflow__EmploymentVerificationType__c = 'Auto';
     employmentObj.Position__c = atomicObj.data.outputs.jobTitle;
     employmentObj.AnnualIncome__c = atomicObj.data.outputs.annualIncome;
-    employmentObj.mflow__PayCycle__c = FinancialInstituteConstants.PAY_CYCLE.get(atomicObj.data.outputs.payCycle);
-    employmentObj.mflow__IncomeType__c = FinancialInstituteConstants.INCOME_TYPE.get(atomicObj.data.outputs.incomeType);
-    employmentObj.mflow__EmployeeType__c = FinancialInstituteConstants.EMPLOYEE_TYPE.get(
-      atomicObj.data.outputs.employeeType
-    );
+    employmentObj.mflow__PayCycle__c = PAY_CYCLE.get(atomicObj.data.outputs.payCycle);
+    employmentObj.mflow__IncomeType__c = INCOME_TYPE.get(atomicObj.data.outputs.incomeType);
+    employmentObj.mflow__EmployeeType__c = EMPLOYEE_TYPE.get(atomicObj.data.outputs.employeeType);
     employmentObj.mflow__VerificationStatus__c = 'Review';
 
     EmploymentRepository.UpsertRecord(employmentObj);
