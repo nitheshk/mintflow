@@ -77,85 +77,137 @@ export default class ManualKycDecision extends LightningElement {
 
   /**
    * updateApplicationKyc
+   * @returns
    */
-  updateApplicationKyc() {
-    this.showSpinner = true;
-    updateKycDecision({
-      params: {
-        recordId: this.recordId,
-        objectApiName: this.objectApiName,
-        status: this.collectedInfo.status
-      }
-    })
-      .then((result) => {
-        console.log("result" + JSON.stringify(result));
-        if (result.status === 200) {
-          let applicationData = JSON.parse(result.data);
-          utils.successMessage(this, "Kyc Status updated", "Success");
-          if (applicationData.mflow__Status__c === "Submitted") {
-            submitToCoreSystem({
-              request: {
-                applicationId: this.recordId
-              }
-            })
-              .then((result2) => {
-                if (result2.status === 200) {
-                  utils.successMessage(this, "Application Submitted", "Success");
-                } else {
-                  utils.errorMessage(this, result2.data, "Error");
-                }
-                this.showSpinner = false;
-                utils.refreshLwcPage();
-              })
-              .catch((error2) => {
-                console.log("error : " + JSON.stringify(error2));
-                this.showSpinner = false;
-                utils.refreshLwcPage();
-                utils.errorMessage(this, "Something went Wrong", "Error");
-              });
-          } else {
-            this.showSpinner = false;
-            utils.refreshLwcPage();
-          }
-        } else {
-          utils.errorMessage(this, result.data, "Error");
-          this.showSpinner = false;
-          utils.refreshLwcPage();
+  async updateApplicationKyc() {
+    try {
+      this.showSpinner = true;
+      let result = await updateKycDecision({
+        params: {
+          recordId: this.recordId,
+          objectApiName: this.objectApiName,
+          status: this.collectedInfo.status
         }
-      })
-      .catch((error) => {
-        console.log("error : " + JSON.stringify(error));
-        this.showSpinner = false;
-        utils.errorMessage(this, "Something went Wrong", "Error");
       });
+
+      if (result.status != 200) {
+        throw result.data;
+      }
+
+      utils.successMessage(this, "Kyc Status updated", "Success");
+      let applicationData = JSON.parse(result.data);
+
+      if (applicationData.mflow__Status__c != "Submitted") {
+        this.showSpinner = false;
+        utils.refreshLwcPage();
+        return;
+      }
+
+      let result2 = await submitToCoreSystem({
+        request: {
+          applicationId: this.recordId
+        }
+      });
+
+      if (result2.status === 200) {
+        utils.successMessage(this, "Application Submitted", "Success");
+        this.showSpinner = false;
+        utils.refreshLwcPage();
+      } else {
+        throw result2.data;
+      }
+    } catch (error) {
+      console.log("error : " + JSON.stringify(error));
+      if (error?.data) {
+        utils.errorMessage(this, error.data, "Error");
+      } else {
+        utils.errorMessage(this, "Something went Wrong", "Error");
+      }
+      this.showSpinner = false;
+      utils.refreshLwcPage();
+    }
   }
+
+  /**
+   * updateApplicationKyc
+   */
+  // async updateApplicationKyc() {
+  //   this.showSpinner = true;
+  //   updateKycDecision({
+  //     params: {
+  //       recordId: this.recordId,
+  //       objectApiName: this.objectApiName,
+  //       status: this.collectedInfo.status
+  //     }
+  //   })
+  //     .then((result) => {
+  //       console.log("result" + JSON.stringify(result));
+  //       if (result.status === 200) {
+  //         let applicationData = JSON.parse(result.data);
+  //         utils.successMessage(this, "Kyc Status updated", "Success");
+  //         if (applicationData.mflow__Status__c === "Submitted") {
+  //           submitToCoreSystem({
+  //             request: {
+  //               applicationId: this.recordId
+  //             }
+  //           })
+  //             .then((result2) => {
+  //               if (result2.status === 200) {
+  //                 utils.successMessage(this, "Application Submitted", "Success");
+  //               } else {
+  //                 utils.errorMessage(this, result2.data, "Error");
+  //               }
+  //               this.showSpinner = false;
+  //               utils.refreshLwcPage();
+  //             })
+  //             .catch((error2) => {
+  //               console.log("error : " + JSON.stringify(error2));
+  //               this.showSpinner = false;
+  //               utils.refreshLwcPage();
+  //               utils.errorMessage(this, "Something went Wrong", "Error");
+  //             });
+  //         } else {
+  //           this.showSpinner = false;
+  //           utils.refreshLwcPage();
+  //         }
+  //       } else {
+  //         utils.errorMessage(this, result.data, "Error");
+  //         this.showSpinner = false;
+  //         utils.refreshLwcPage();
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log("error : " + JSON.stringify(error));
+  //       this.showSpinner = false;
+  //       utils.errorMessage(this, "Something went Wrong", "Error");
+  //     });
+  // }
 
   /**
    * updateApplicantKyc
    */
-  updateApplicantKyc() {
-    this.showSpinner = true;
-    updateKycDecision({
-      params: {
-        recordId: this.recordId,
-        objectApiName: this.objectApiName,
-        status: this.collectedInfo.status
-      }
-    })
-      .then((result) => {
-        console.log("result" + JSON.stringify(result));
-        if (result.status === 200) {
-          utils.successMessage(this, "Status Updated", "Success");
-        } else {
-          utils.errorMessage(this, result.data, "Error");
+  async updateApplicantKyc() {
+    try {
+      this.showSpinner = true;
+      let result = await updateKycDecision({
+        params: {
+          recordId: this.recordId,
+          objectApiName: this.objectApiName,
+          status: this.collectedInfo.status
         }
-        this.showSpinner = false;
-        utils.refreshLwcPage();
-      })
-      .catch((error) => {
-        console.log("error : " + JSON.stringify(error));
-        this.showSpinner = false;
-        utils.errorMessage(this, "Something went Wrong", "Error");
       });
+
+      if (result.status === 200) {
+        utils.successMessage(this, "Status Updated", "Success");
+      } else {
+        utils.errorMessage(this, result.data, "Error");
+      }
+      this.showSpinner = false;
+      utils.refreshLwcPage();
+    } catch (error) {
+      console.log("error : " + JSON.stringify(error));
+      this.showSpinner = false;
+      utils.errorMessage(this, "Something went Wrong", "Error");
+    }
   }
 }
