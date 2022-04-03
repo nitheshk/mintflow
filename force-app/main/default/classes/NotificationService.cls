@@ -66,41 +66,6 @@ global virtual with sharing class NotificationService extends AbstractService {
    **/
   global virtual void dispatchKycNotification(String eventName, Id entityId, String title, String message) {
     switch on eventName {
-      when 'onExceptionKycReviewSubmit' {
-        String chatterPost =
-          'Excpetion on Submit To RPA Review Queue For Kyc Verification \n Error Occured : ' + message;
-        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
-
-        // Notification
-        NotificationBuilder.bellNotification(
-          entityId,
-          title,
-          'Exception on Submit Review Queue :' + title,
-          NotificationBuilder.getRegularGroupId('OnKycReview')
-        );
-      }
-      when 'onSuccessKycReviewSubmit' {
-        String chatterPost = 'Application Submitted for RPA review Queue';
-        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
-        // Notification
-        NotificationBuilder.bellNotification(
-          entityId,
-          title,
-          'Application Submitted for Review Queue :' + title,
-          NotificationBuilder.getRegularGroupId('OnKycSuccess')
-        );
-      }
-      when 'onExceptionKycProcess' {
-        String chatterPost = 'Exception on Processing Kyc Result : ' + message;
-        NotificationBuilder.chatterMessagePost(entityId, chatterPost);
-        // Notification
-        NotificationBuilder.bellNotification(
-          entityId,
-          title,
-          'Exception On :' + title,
-          NotificationBuilder.getRegularGroupId('OnKycReview')
-        );
-      }
       when 'onReviewKycProcess' {
         String chatterPost = 'KYC Process Under Review';
         NotificationBuilder.chatterMessagePost(entityId, chatterPost);

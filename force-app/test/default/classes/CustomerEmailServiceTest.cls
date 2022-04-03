@@ -119,30 +119,27 @@ public with sharing class CustomerEmailServiceTest {
     app.Applicants__r.addAll(makeApplicantList('Primary'));
     makeApplicationConfiguration();
     Test.startTest();
-    try {
-      NotificationService.getInstance()
-        .dispatchKycNotification('onExceptionKycReviewSubmit', applicant.Id, 'string', 'string');
-      NotificationService.getInstance()
-        .dispatchKycNotification('onSuccessKycReviewSubmit', applicant.Id, 'string', 'string');
-      NotificationService.getInstance()
-        .dispatchKycNotification('onExceptionKycProcess', applicant.Id, 'string', 'string');
-      NotificationService.getInstance().dispatchKycNotification('onReviewKycProcess', applicant.Id, 'string', 'string');
-      NotificationService.getInstance()
-        .dispatchKycNotification('onSuccessKycProcess', applicant.Id, 'string', 'string');
-      NotificationService.getInstance().dispatchKycNotification('onManualKycAction', applicant.Id, 'string', 'string');
 
-      NotificationService.getInstance()
-        .dispatchSubmitNotification('onApplicationCompleted', applicant.Id, 'string', 'string');
-      NotificationService.getInstance()
-        .dispatchSubmitNotification('onApplicationFailed', applicant.Id, 'string', 'string');
+    NotificationService.getInstance()
+      .dispatchKycNotification('onExceptionKycReviewSubmit', applicant.Id, 'string', 'string');
+    NotificationService.getInstance()
+      .dispatchKycNotification('onSuccessKycReviewSubmit', applicant.Id, 'string', 'string');
+    NotificationService.getInstance()
+      .dispatchKycNotification('onExceptionKycProcess', applicant.Id, 'string', 'string');
+    NotificationService.getInstance().dispatchKycNotification('onReviewKycProcess', applicant.Id, 'string', 'string');
+    NotificationService.getInstance().dispatchKycNotification('onSuccessKycProcess', applicant.Id, 'string', 'string');
+    NotificationService.getInstance().dispatchKycNotification('onManualKycAction', applicant.Id, 'string', 'string');
 
-      NotificationBuilder.chatterLinkMessagePost(applicant.Id, 'string', 'string');
-      NotificationBuilder.chatterContentDataPost(applicant.Id, 'string', makeFileDtos(applicant.Id)[0]);
-      NotificationBuilder nb = new NotificationBuilder();
-      NotificationBuilder.getInstance();
-    } catch (Exception e) {
-      System.assertEquals(e.getMessage(), 'email not sent');
-    }
+    NotificationService.getInstance()
+      .dispatchSubmitNotification('onApplicationCompleted', applicant.Id, 'string', 'string');
+    NotificationService.getInstance()
+      .dispatchSubmitNotification('onApplicationFailed', applicant.Id, 'string', 'string');
+
+    NotificationBuilder.chatterLinkMessagePost(applicant.Id, 'string', 'string');
+    NotificationBuilder.chatterContentDataPost(applicant.Id, 'string', makeFileDtos(applicant.Id)[0]);
+    NotificationBuilder nb = new NotificationBuilder();
+    NotificationBuilder.getInstance();
+
     Test.stopTest();
   }
 }

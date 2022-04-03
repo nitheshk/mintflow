@@ -71,6 +71,9 @@ global with sharing class Flow extends AbstractService {
   global static void finalize() {
     log?.fine('Before Logger Finalize');
     //upsert parent flows
+    if (flowMap.isEmpty()) {
+      return;
+    }
     CommonRepository.upsertRecords(flowMap.values());
     List<Flow__c> toUpsertFlows = new List<Flow__c>();
     for (Flow__c flow : flowMap.values()) {

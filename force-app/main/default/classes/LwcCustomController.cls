@@ -199,8 +199,8 @@ global with sharing class LwcCustomController extends AbstractController {
     try {
       log?.fine('Inside fetchPickListValues');
       return ApexResponse.ok(LwcCustomService.getInstance().fetchPickListValues(params));
-    } catch (Exception e) {
-      throw new AuraHandledException(e.getMessage());
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
     }
   }
 
@@ -215,8 +215,7 @@ global with sharing class LwcCustomController extends AbstractController {
     Savepoint sp = Database.setSavepoint();
     try {
       log?.fine('Inside updateKycDecision params =' + params);
-      LwcCustomService.getInstance().updateKycDecision(params);
-      return ApexResponse.ok();
+      return ApexResponse.ok(LwcCustomService.getInstance().updateKycDecision(params));
     } catch (Exception ex) {
       Database.rollback(sp);
       log?.error(ex);
