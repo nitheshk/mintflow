@@ -219,6 +219,14 @@ public with sharing class TestData {
     p.Type__c = 'Deposit';
     p.SubCategory__c = 'Regular Savings';
     products.add(p);
+    FinancialProduct__c p1 = new FinancialProduct__c();
+    p1.DisplayLabel__c = 'Product2';
+    p1.mflow__Category__c = 'Savings';
+    p1.InternalCode__c = 'IC003';
+    p1.ExternalCode__c = 'IC003';
+    p1.Type__c = 'Deposit';
+    p1.SubCategory__c = 'Regular Savings';
+    products.add(p1);
     return products;
   }
 

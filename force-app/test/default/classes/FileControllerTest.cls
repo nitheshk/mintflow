@@ -106,19 +106,6 @@ public with sharing class FileControllerTest {
     FileController.fetchContentVersionByEntityId(request);
   }
   @isTest
-  static void fetchContentVersionsByCDTest() {
-    makeApplicationConfiguration();
-    PageReference testPage = Page.error;
-    Test.setCurrentPage(testPage);
-    testPage.getParameters().put('pid', 'IC001');
-    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
-    Applicant__c applicant = createApplicantDataWithChild(application);
-    ContentVersion cv = makeContentVersion();
-    List<FileDTO> files = new List<FileDTO>();
-    files.add(new FileDTO('test.txt', blob.valueof('data'), applicant.Id, 'Employment', 'AtomicFIResponse'));
-    FileService.getInstance().fetchContentVersionsByCD(new List<Id>{ cv.contentDocumentId }, true);
-  }
-  @isTest
   static void fetchContentVersionsByCDTest2() {
     makeApplicationConfiguration();
     PageReference testPage = Page.error;

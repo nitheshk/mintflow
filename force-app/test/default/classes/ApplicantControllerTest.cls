@@ -3,6 +3,9 @@ public with sharing class ApplicantControllerTest {
   private static void makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
     insert appConfig;
+    TestData.createSiteSetting();
+    List<FinancialProduct__c> products = TestData.createProduct();
+    insert products;
   }
 
   private static Applicant__c createApplicantDataWithChild(Application__c Application) {
@@ -470,5 +473,41 @@ public with sharing class ApplicantControllerTest {
     request.currentPage = 'PersonalInfo';
     res = ApplicantController.saveApplicants(request);
     system.assertEquals(200, res.status, 'success');
+  }
+
+  @isTest
+  static void verifyKYCTest() {
+    makeApplicationConfiguration();
+    Application__c app = TestData.createApplication();
+    insert app;
+    Applicant__c applicant = createApplicantDataWithChild(app);
+    String token = SecurityUtils.generateTokenForTesting(
+      app.Id,
+      applicant.id,
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE,
+      ApplicationConstant.FLOW_TYPE_APPLICATION
+    );
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.token = token;
+    ApexResponse res = ApplicantController.verifyKYC(request);
+    // system.assertEquals(200, res.status, 'success');
+  }
+
+  @isTest
+  static void validateExistingCustomerTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicantController.validateExistingCustomer(request);
+    // system.assertEquals(200, res.status, 'success');
   }
 }

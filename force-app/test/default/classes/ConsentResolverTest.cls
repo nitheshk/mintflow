@@ -46,7 +46,7 @@ public with sharing class ConsentResolverTest {
     ApexResponse res = ApplicationController.fetchConsents(request);
     res = ApplicationController.fetchConsents(request);
     system.assertEquals(200, res.status, 'success');
-
+    res = ApplicationController.fetchConsents(request);
     // insert TestData.createConsentLineItem();
     // request = new ApexRequest();
     // request.token = ApexRequest.getToken();
