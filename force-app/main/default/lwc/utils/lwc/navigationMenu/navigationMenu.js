@@ -26,9 +26,10 @@ export default class NavigationMenu extends NavigationMixin(LightningElement) {
     const app = currentPageReference?.state?.app;
     if (currentPageReference?.state?.position) {
       this.currentPosition = currentPageReference?.state?.position;
-    } else {
-      this.currentPosition = 1;
     }
+    // else {
+    //   this.currentPosition = 1;
+    // }
     this.currentState = currentPageReference?.state;
     if (app === "commeditor") {
       this.publishedState = "Draft";
@@ -96,7 +97,8 @@ export default class NavigationMenu extends NavigationMixin(LightningElement) {
           actionName: "list"
         },
         state: {
-          filterName: defaultListViewId
+          filterName: defaultListViewId,
+          position: item.position
         }
       };
     } else if (type === "InternalLink") {
