@@ -18,14 +18,14 @@
                   "UUID": "9a9e94cc-79f4-40e6-8e9a-970f55d19948",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "2",
+                  "columnWidth": "1",
                   "seedComponents": []
                 },
                 {
                   "UUID": "0270cb61-f55a-4f89-8c10-2a5c930bc4ae",
                   "columnKey": "b62b4",
                   "columnName": "Column 2",
-                  "columnWidth": "7",
+                  "columnWidth": "8",
                   "seedComponents": []
                 },
                 {
@@ -46,7 +46,7 @@
               "components": [
                 {
                   "componentAttributes": {
-                    "hideMenuLabel": false,
+                    "hideMenuLabel": true,
                     "logoName": "",
                     "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"
@@ -226,24 +226,24 @@
                 },
                 {
                   "componentAttributes": {
-                    "filter": "Status__c='Revision in Progress' OR (Status__c='Submitted' And Stage__c='Exception')",
-                    "objectApiName": "mflow__Application__c",
-                    "recordId": "{!recordId}"
-                  },
-                  "componentName": "mflow:resubmitApplication",
-                  "id": "3aab7448-6b29-4d8c-b8bd-603c352dd9cd",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {
                     "filter": "mflow__KYCStatus__c!='Passed' And (mflow__Status__c!='Submitted' And mflow__Status__c!='Completed' )",
                     "objectApiName": "mflow__Application__c",
                     "recordId": "{!recordId}"
                   },
                   "componentName": "mflow:manualKycDecision",
                   "id": "e9d8b7b2-213b-42d4-9dd2-9ffae11348d6",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "filter": "(KYCStatus__c='Passed'  And Status__c='Revision in Progress') OR (Status__c='Submitted' And Stage__c='Exception')",
+                    "objectApiName": "mflow__Application__c",
+                    "recordId": "{!recordId}"
+                  },
+                  "componentName": "mflow:resubmitApplication",
+                  "id": "3aab7448-6b29-4d8c-b8bd-603c352dd9cd",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
