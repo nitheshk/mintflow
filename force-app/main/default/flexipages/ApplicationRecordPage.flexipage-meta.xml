@@ -245,6 +245,22 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>filter</name>
+                    <value
+          >mflow__KYCStatus__c!=&apos;Passed&apos; And (mflow__Status__c!=&apos;Submitted&apos; And mflow__Status__c!=&apos;Completed&apos; )</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>recordId</name>
+                </componentInstanceProperties>
+                <componentName>manualKycDecision</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>resumeAppplication</componentName>
                 <visibilityRule>
                     <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
@@ -273,32 +289,18 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>filter</name>
+                    <value
+          >Status__c=&apos;Revision in Progress&apos; OR (Status__c=&apos;Submitted&apos; And Stage__c=&apos;Exception&apos;)</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>recordId</name>
+                </componentInstanceProperties>
                 <componentName>resubmitApplication</componentName>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Status__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Revision in Progress</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>manualKycDecision</componentName>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.FlowType__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>ApplicationFlow</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.KYCStatus__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Passed</rightValue>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
