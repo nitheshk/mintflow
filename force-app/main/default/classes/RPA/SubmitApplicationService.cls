@@ -315,7 +315,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     SubmissionDTO.ApplicationResult submissionResult
   ) {
     log?.info('Inside processExistingMember');
-    application.isMemberFlow__c = false;
+    application.IsExistingCustomer__c = true;
     application.Status__c = ApplicationConstant.CANCELLED;
     application.mflow__Stage__c = ApplicationConstant.STAGE_EXISTING_CUSTOMER;
     application.mflow__FlowState__c = ApplicationConstant.FINAL_CONFIRMATION;

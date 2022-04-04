@@ -7,7 +7,7 @@
     <columns>OWNER.FIRST_NAME</columns>
     <columns>FlowState__c</columns>
     <columns>IsCountyEligible__c</columns>
-    <columns>isMemberFlow__c</columns>
+    <columns>IsExistingCustomer__c</columns>
     <columns>BranchName__c</columns>
     <columns>CREATEDBY_USER</columns>
     <columns>CREATED_DATE</columns>

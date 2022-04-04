@@ -127,7 +127,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     newApplication.Status__c = ApplicationConstant.IN_PROGRESS;
     newApplication.CreatedChannel__c = oldApplication.LastUsedChannel__c = ch;
     newApplication.ApplicationType__c = selectedProduct.Type__c;
-    newApplication.isMemberFlow__c = false;
+    newApplication.IsExistingCustomer__c = true;
     newApplication.FlowState__c = 'Review';
     newApplication.FlowType__c = 'ApplicationFlow';
     newApplication.Source__c = 'Additional Product';

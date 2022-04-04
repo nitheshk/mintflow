@@ -79,7 +79,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       mapperApplication.StateName = application.StateName__c;
       mapperApplication.CountyCode = application.CountyZipCode__c;
       mapperApplication.IsCountyEligible = application.IsCountyEligible__c;
-      mapperApplication.IsMemberFlow = application.isMemberFlow__c;
+      mapperApplication.IsMemberFlow = !application.IsExistingCustomer__c;
       for (Applicant__c applicant : application.Applicants__r) {
         if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
           mapperApplication.Password = applicant.Password__c;

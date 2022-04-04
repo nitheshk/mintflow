@@ -76,7 +76,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>isMemberFlow__c</field>
+                <field>IsExistingCustomer__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -220,10 +220,10 @@ global virtual with sharing class ApplicantService extends AbstractService {
       FinancialAccountRepository.upsertRecord(customerInterest);
       FinancialAccountRepository.deleteRecords(application.CustomerInterests__r);
 
-      application.IsMemberFlow__c = true;
+      application.IsExistingCustomer__c = false;
       ApplicantRepository.upsertRecord(application);
     } else if (primaryAccount.ProductCode__c != baseProductCode && existingContact != null) {
-      application.IsMemberFlow__c = false;
+      application.IsExistingCustomer__c = true;
       ApplicantRepository.upsertRecord(application);
     }
 

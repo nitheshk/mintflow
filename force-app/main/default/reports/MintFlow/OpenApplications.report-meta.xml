@@ -27,7 +27,7 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Application__c.isMemberFlow__c</field>
+        <field>Application__c.IsExistingCustomer__c</field>
     </columns>
     <columns>
         <field>Application__c.Stage__c</field>

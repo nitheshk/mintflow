@@ -38,7 +38,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>isMemberFlow__c</field>
+        <field>IsExistingCustomer__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

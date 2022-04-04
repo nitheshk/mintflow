@@ -109,7 +109,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     FinancialProduct__c selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(productCode);
     application.ApplicationType__c = selectedProduct.Type__c;
     if (selectedProduct.InternalCode__c != HttpBuilder.getApiConstant('MembershipAccountInternalCode')) {
-      application.isMemberFlow__c = false;
+      application.IsExistingCustomer__c = false;
     }
     // create financial account
     FinancialAccount__c financialAccount = new FinancialAccount__c();
