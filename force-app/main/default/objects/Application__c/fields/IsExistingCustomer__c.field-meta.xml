@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IsExistingCustomer__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>True if a flow is started by a Member</description>
+    <description>Is Existing customer Flow</description>
     <externalId>false</externalId>
-    <label>isMemberFlow</label>
+    <label>Is Existing Customer Flow</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
