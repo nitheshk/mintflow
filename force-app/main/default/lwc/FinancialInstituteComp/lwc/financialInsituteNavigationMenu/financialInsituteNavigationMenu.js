@@ -9,7 +9,6 @@ export default class FinancialInsituteNavigationMenu extends NavigationMixin(men
   @api hideMenuLabel = false;
   @track logoUrl;
   @track isEmployeePage;
-  @track isDealerPage;
   connectedCallback() {
     this.logoUrl = lwcResource + "/img/" + this.logoName;
   }

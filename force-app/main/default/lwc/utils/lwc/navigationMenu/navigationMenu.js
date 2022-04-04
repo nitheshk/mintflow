@@ -92,7 +92,8 @@ export default class NavigationMenu extends NavigationMixin(LightningElement) {
       pageReference = {
         type: "standard__objectPage",
         attributes: {
-          objectApiName: target
+          objectApiName: target,
+          actionName: "list"
         },
         state: {
           filterName: defaultListViewId
