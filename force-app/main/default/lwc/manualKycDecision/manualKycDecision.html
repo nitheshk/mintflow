@@ -1,59 +1,61 @@
 <template>
   <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
-  <template if:true={showApplicationTab}>
-    <lightning-card title="KYC Decision" icon-name="action:update_status">
-      <div if class="slds-var-m-around_medium">
-        <lightning-combobox
-          data-fieldname="status"
-          name="Status"
-          label="Status"
-          value={collectedInfo.status}
-          placeholder="Select status"
-          options={applicationStatus}
-          onchange={handleChange}
-          class="validation"
-          required
-        ></lightning-combobox>
-      </div>
-      <div class="slds-var-m-around_medium">
-        <lightning-button
-          variant="brand"
-          label="Submit"
-          title="Submit"
-          onclick={updateStatus}
-          class="slds-var-m-left_x-small"
-          icon-name="standard:work_order_item"
-          icon-position="right"
-        ></lightning-button>
-      </div>
-    </lightning-card>
-  </template>
-  <template if:true={showApplicantTab}>
-    <lightning-card title="KYC Decision" icon-name="action:update_status">
-      <div if class="slds-var-m-around_medium">
-        <lightning-combobox
-          data-fieldname="status"
-          name="Status"
-          label="Status"
-          value={collectedInfo.status}
-          placeholder="Select status"
-          options={applicantStatus}
-          onchange={handleChange}
-          class="validation"
-          required
-        ></lightning-combobox>
-      </div>
-      <div class="slds-var-m-around_medium">
-        <lightning-button
-          variant="brand"
-          label="Submit"
-          title="Submit"
-          onclick={updateStatus}
-          class="slds-var-m-left_x-small"
-          icon-name="standard:work_order_item"
-          icon-position="right"
-        ></lightning-button>
-      </div>
-    </lightning-card>
+  <template if:true={record}>
+    <template if:true={showApplicationTab}>
+      <lightning-card title="KYC Decision" icon-name="action:update_status">
+        <div if class="slds-var-m-around_medium">
+          <lightning-combobox
+            data-fieldname="status"
+            name="Status"
+            label="Status"
+            value={collectedInfo.status}
+            placeholder="Select status"
+            options={applicationStatus}
+            onchange={handleChange}
+            class="validation"
+            required
+          ></lightning-combobox>
+        </div>
+        <div class="slds-var-m-around_medium">
+          <lightning-button
+            variant="brand"
+            label="Submit"
+            title="Submit"
+            onclick={updateStatus}
+            class="slds-var-m-left_x-small"
+            icon-name="standard:work_order_item"
+            icon-position="right"
+          ></lightning-button>
+        </div>
+      </lightning-card>
+    </template>
+    <template if:true={showApplicantTab}>
+      <lightning-card title="KYC Decision" icon-name="action:update_status">
+        <div if class="slds-var-m-around_medium">
+          <lightning-combobox
+            data-fieldname="status"
+            name="Status"
+            label="Status"
+            value={collectedInfo.status}
+            placeholder="Select status"
+            options={applicantStatus}
+            onchange={handleChange}
+            class="validation"
+            required
+          ></lightning-combobox>
+        </div>
+        <div class="slds-var-m-around_medium">
+          <lightning-button
+            variant="brand"
+            label="Submit"
+            title="Submit"
+            onclick={updateStatus}
+            class="slds-var-m-left_x-small"
+            icon-name="standard:work_order_item"
+            icon-position="right"
+          ></lightning-button>
+        </div>
+      </lightning-card>
+    </template>
   </template>
 </template>

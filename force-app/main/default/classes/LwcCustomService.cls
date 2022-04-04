@@ -309,4 +309,21 @@ global virtual with sharing class LwcCustomService extends AbstractService {
     List<ContentVersion> fileList = FileService.getInstance().fetchContentVersionByEntityIds(relatedEntityIds, true);
     return fileList;
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 04-03-2022
+   * @param Map<String Object> params
+   * @return Object
+   **/
+  global virtual Object lwcRecordLevelVisibility(Map<String, Object> params) {
+    Id recordId = (Id) params.get('recordId');
+    String objectApiName = (String) params.get('objectApiName');
+    string filter = (string) params.get('filter');
+    SObject record = LwcCustomRepository.readSObjectById(recordId, objectApiName, filter);
+    if (record == null) {
+      throw new customException('No Record Found');
+    }
+    return record;
+  }
 }

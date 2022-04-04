@@ -17,6 +17,18 @@
         description="Automatically bind the page's object name to the component variable"
         default="{!objectApiName}"
       />
+          <property name="filter" type="String" default="" />
+        </targetConfig>
+         <targetConfig targets="lightning__RecordPage">
+            <property name="recordId" type="String" default="{!recordId}" />
+            <property
+        name="objectApiName"
+        type="String"
+        label="Object Name"
+        description="Automatically bind the page's object name to the component variable"
+        default="{!objectApiName}"
+      />
+      <property name="filter" type="String" default="" />
         </targetConfig>
   </targetConfigs>
   <masterLabel>Manual KYC Decision</masterLabel>

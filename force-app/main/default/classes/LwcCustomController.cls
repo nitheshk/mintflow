@@ -212,12 +212,10 @@ global with sharing class LwcCustomController extends AbstractController {
    **/
   @AuraEnabled
   global static ApexResponse updateKycDecision(Map<String, Object> params) {
-    Savepoint sp = Database.setSavepoint();
     try {
       log?.fine('Inside updateKycDecision params =' + params);
       return ApexResponse.ok(LwcCustomService.getInstance().updateKycDecision(params));
     } catch (Exception ex) {
-      Database.rollback(sp);
       log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
@@ -303,6 +301,23 @@ global with sharing class LwcCustomController extends AbstractController {
     } finally {
       log?.fine('Complete fetchOOWReportData');
       //Logger.persist();
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 04-03-2022
+   * @param Map<String Object> params
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  global static ApexResponse lwcRecordLevelVisibility(Map<String, Object> params) {
+    try {
+      return ApexResponse.ok(LwcCustomService.getInstance().lwcRecordLevelVisibility(params));
+    } catch (CustomException ex) {
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
     }
   }
 }

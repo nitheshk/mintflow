@@ -1,17 +1,21 @@
 import { LightningElement, api, wire, track } from "lwc";
 import utils from "c/generalUtils";
 import getPickListValues from "@salesforce/apex/LwcCustomController.fetchPickListValues";
+import lwcRecordLevelVisibility from "@salesforce/apex/LwcCustomController.lwcRecordLevelVisibility";
 import updateKycDecision from "@salesforce/apex/LwcCustomController.updateKycDecision";
 import submitToCoreSystem from "@salesforce/apex/ApplicationController.submitToCoreSystem";
+import { getRecord } from "lightning/uiRecordApi";
 export default class ManualKycDecision extends LightningElement {
   @api objectApiName;
   @api recordId;
+  @api filter;
   @track collectedInfo = {};
   @track applicationStatus = [];
   @track applicantStatus = [];
   @track showApplicationTab = false;
   @track showApplicantTab = false;
   @track showSpinner = false;
+  @track record;
 
   /**
    * Load Picklist value for components
@@ -26,17 +30,16 @@ export default class ManualKycDecision extends LightningElement {
   PickListValues({ data, error }) {
     if (data) {
       if (data.status === 200) {
-        this.applicationStatus = JSON.parse(data.data)?.mflow__Application__c.mflow__KYCStatus__c.filter(
-          (item) => item.value === "Passed" || item.value === "Failed"
-        );
-
-        this.applicantStatus = JSON.parse(data.data)?.mflow__Applicant__c.mflow__KYCStatus__c.filter(
-          (item) => item.value === "Passed" || item.value === "Failed"
-        );
         if (this.objectApiName === "mflow__Application__c") {
           this.showApplicationTab = true;
+          this.applicationStatus = JSON.parse(data.data)?.mflow__Application__c.mflow__KYCStatus__c.filter(
+            (item) => item.value === "Passed" || item.value === "Failed"
+          );
         } else if (this.objectApiName === "mflow__Applicant__c") {
           this.showApplicantTab = true;
+          this.applicantStatus = JSON.parse(data.data)?.mflow__Applicant__c.mflow__KYCStatus__c.filter(
+            (item) => item.value === "Passed" || item.value === "Failed"
+          );
         }
       } else {
         console.log("error " + JSON.stringify(data));
@@ -44,6 +47,29 @@ export default class ManualKycDecision extends LightningElement {
     } else if (error) {
       console.log("error : " + JSON.stringify(error));
       utils.errorMessage(this, error.body.message, "Error fetching record");
+    }
+  }
+
+  /**
+   * refresh the current record data
+   * @param {*} param0
+   */
+  @wire(getRecord, { recordId: "$recordId", fields: ["$objectApiName" + ".Id"] })
+  getCurrentRecord({ data, error }) {
+    if (data) {
+      lwcRecordLevelVisibility({
+        params: {
+          recordId: this.recordId,
+          objectApiName: this.objectApiName,
+          filter: this.filter
+        }
+      }).then((result) => {
+        if (result.status === 200) {
+          this.record = JSON.parse(result.data);
+        } else {
+          this.record = null;
+        }
+      });
     }
   }
 
@@ -127,61 +153,6 @@ export default class ManualKycDecision extends LightningElement {
       utils.refreshLwcPage();
     }
   }
-
-  /**
-   * updateApplicationKyc
-   */
-  // async updateApplicationKyc() {
-  //   this.showSpinner = true;
-  //   updateKycDecision({
-  //     params: {
-  //       recordId: this.recordId,
-  //       objectApiName: this.objectApiName,
-  //       status: this.collectedInfo.status
-  //     }
-  //   })
-  //     .then((result) => {
-  //       console.log("result" + JSON.stringify(result));
-  //       if (result.status === 200) {
-  //         let applicationData = JSON.parse(result.data);
-  //         utils.successMessage(this, "Kyc Status updated", "Success");
-  //         if (applicationData.mflow__Status__c === "Submitted") {
-  //           submitToCoreSystem({
-  //             request: {
-  //               applicationId: this.recordId
-  //             }
-  //           })
-  //             .then((result2) => {
-  //               if (result2.status === 200) {
-  //                 utils.successMessage(this, "Application Submitted", "Success");
-  //               } else {
-  //                 utils.errorMessage(this, result2.data, "Error");
-  //               }
-  //               this.showSpinner = false;
-  //               utils.refreshLwcPage();
-  //             })
-  //             .catch((error2) => {
-  //               console.log("error : " + JSON.stringify(error2));
-  //               this.showSpinner = false;
-  //               utils.refreshLwcPage();
-  //               utils.errorMessage(this, "Something went Wrong", "Error");
-  //             });
-  //         } else {
-  //           this.showSpinner = false;
-  //           utils.refreshLwcPage();
-  //         }
-  //       } else {
-  //         utils.errorMessage(this, result.data, "Error");
-  //         this.showSpinner = false;
-  //         utils.refreshLwcPage();
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log("error : " + JSON.stringify(error));
-  //       this.showSpinner = false;
-  //       utils.errorMessage(this, "Something went Wrong", "Error");
-  //     });
-  // }
 
   /**
    * updateApplicantKyc

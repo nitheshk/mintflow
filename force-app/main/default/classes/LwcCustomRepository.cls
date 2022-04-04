@@ -145,7 +145,6 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
   global static Application__c readApplicationWithApplicants(Id applicationId) {
     return (Application__c) DatabaseUtils.getRecord(
       Query.newInstance(Application__c.SObjectType)
-        //.addFieldSet('mflow__Application')
         .addFields()
         .queryChild('mflow__Applicants__r')
         .addFields()
@@ -179,5 +178,19 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
         .whereEq('Id', applicationId)
         .toString()
     );
+  }
+
+  /**
+   * @description Read applicant record
+   * @author Digital Align Team | 11-16-2021
+   * @param Id applicantId
+   * @return Applicant__c
+   **/
+  global static SObject readSObjectById(Id recordId, String sObjectName, String filter) {
+    Query qry = Query.newInstance(SObjectUtils.getSobjectType(sObjectName)).addFields().whereEq('Id', recordId);
+    if (String.isNotBlank(filter)) {
+      qry.andCon().grpOpen().whereCon(filter).grpClose();
+    }
+    return getRecord(qry.toString());
   }
 }

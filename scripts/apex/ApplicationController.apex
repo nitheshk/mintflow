@@ -125,3 +125,7 @@ system.debug('Full Json : ' + res.data);
 
 // updateSubmissionInfo
 
+LwcCustomRepository.readSObjectById('mflow__Application__c', 'a026D000004YXdAQAW', '');
+
+ApexResponse res = LwcCustomController.lwcRecordLevelVisibility('a026D000004YXdAQAW', 'mflow__Application__c', '');
+system.debug('Full Json : ' + res.data);
