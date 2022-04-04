@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <itemInstances>
@@ -245,10 +245,29 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>relatedFiles</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>filter</name>
-                    <value
-          >mflow__KYCStatus__c!=&apos;Passed&apos; And (mflow__Status__c!=&apos;Submitted&apos; And mflow__Status__c!=&apos;Completed&apos; )</value>
+                    <value>mflow__Status__c!=&apos;Submitted&apos; And  mflow__Status__c!=&apos;Completed&apos;</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectApiName</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>recordId</name>
+                </componentInstanceProperties>
+                <componentName>resumeAppplication</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>filter</name>
+                    <value>mflow__KYCStatus__c!=&apos;Passed&apos; And (mflow__Status__c!=&apos;Submitted&apos; And mflow__Status__c!=&apos;Completed&apos; )</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>objectApiName</name>
@@ -261,38 +280,9 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>resumeAppplication</componentName>
-                <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.Status__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Completed</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.Status__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Submit for Review</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.Status__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Submitted</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.Status__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Review In Progress</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>filter</name>
-                    <value
-          >Status__c=&apos;Revision in Progress&apos; OR (Status__c=&apos;Submitted&apos; And Stage__c=&apos;Exception&apos;)</value>
+                    <value>(KYCStatus__c=&apos;Passed&apos;  And Status__c=&apos;Revision in Progress&apos;) OR (Status__c=&apos;Submitted&apos; And Stage__c=&apos;Exception&apos;)</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>objectApiName</name>
@@ -301,11 +291,6 @@
                     <name>recordId</name>
                 </componentInstanceProperties>
                 <componentName>resubmitApplication</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>relatedFiles</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>

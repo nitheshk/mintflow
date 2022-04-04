@@ -238,7 +238,7 @@
                 },
                 {
                   "componentAttributes": {
-                    "filter": "(KYCStatus__c='Passed'  And Status__c='Revision in Progress') OR (Status__c='Submitted' And Stage__c='Exception')",
+                    "filter": "mflow__Status__c!='Submitted' And  mflow__Status__c!='Completed'",
                     "objectApiName": "mflow__Application__c",
                     "recordId": "{!recordId}"
                   },
@@ -250,6 +250,8 @@
                 },
                 {
                   "componentAttributes": {
+                    "filter": "mflow__Status__c!='Submitted' And  mflow__Status__c!='Completed'",
+                    "objectApiName": "mflow__Application__c",
                     "recordId": "{!recordId}"
                   },
                   "componentName": "mflow:resumeAppplication",
