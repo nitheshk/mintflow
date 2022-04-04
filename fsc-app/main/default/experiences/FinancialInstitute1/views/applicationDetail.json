@@ -226,6 +226,19 @@
                 },
                 {
                   "componentAttributes": {
+                    "filter": "Status__c='Revision in Progress' OR (Status__c='Submitted' And Stage__c='Exception')",
+                    "objectApiName": "mflow__Application__c",
+                    "recordId": "{!recordId}"
+                  },
+                  "componentName": "mflow:resubmitApplication",
+                  "id": "3aab7448-6b29-4d8c-b8bd-603c352dd9cd",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "filter": "mflow__KYCStatus__c!='Passed' And (mflow__Status__c!='Submitted' And mflow__Status__c!='Completed' )",
                     "objectApiName": "mflow__Application__c",
                     "recordId": "{!recordId}"
                   },
@@ -241,16 +254,6 @@
                   },
                   "componentName": "mflow:resumeAppplication",
                   "id": "4efe6235-2a27-4518-b5b2-55f189061fce",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {
-                    "recordId": "{!recordId}"
-                  },
-                  "componentName": "mflow:resubmitApplication",
-                  "id": "3aab7448-6b29-4d8c-b8bd-603c352dd9cd",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
