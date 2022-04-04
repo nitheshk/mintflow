@@ -63,8 +63,7 @@ public with sharing class LwcCustomServiceTest {
     LwcCustomController.updateConfigValues(params);
     LwcCustomController.readApplicationWithChild(application.Id);
     LwcCustomController.readApplicationWithApplicants(application.Id);
-    LwcCustomController.readApplicationForResume(application.Id);
-    LwcCustomController.resendFundingRequest(request);
+    //LwcCustomController.readApplicationForResume(application.Id);
     LwcCustomController.fetchFieldDetails(params);
     LwcCustomController.fetchFieldDetails(params);
     LwcCustomController.updateKycDecision(params);

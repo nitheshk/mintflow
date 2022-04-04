@@ -133,11 +133,18 @@ global virtual with sharing class LwcCustomService extends AbstractService {
 
   /**
    * @description  readApplicationForResume
-   * @author Digital Align Team | 01-19-2022
+   * @author Digital Align Team | 04-04-2022
+   * @param Map<String Object> params
    * @return Application__c
    **/
-  global virtual Application__c readApplicationForResume(String applicationId) {
-    return LwcCustomRepository.readApplicationForResume(applicationId);
+  global virtual Application__c readApplicationForResume(Map<String, Object> params) {
+    Id recordId = (Id) params.get('recordId');
+    string filter = (string) params.get('filter');
+    Application__c application = LwcCustomRepository.readApplicationForResume(recordId, filter);
+    if (application == null) {
+      throw new customException('No Record Found');
+    }
+    return application;
   }
   /**
    * @description send resume application email to list of applicants
@@ -153,19 +160,6 @@ global virtual with sharing class LwcCustomService extends AbstractService {
     for (Applicant__c applicant : applicants) {
       CustomerEmailService.getInstance().resumeApplication(applicant);
     }
-  }
-  /**
-   * @description send funding email from salesforce
-   * @author Digital Align | 12-10-2021
-   * @param string applicantIds
-   * @return virtual
-   **/
-  global virtual void resendFundingRequest(string applicantionId) {
-    Application__c application = LwcCustomRepository.readApplicationForResume(applicantionId);
-    if (application == null) {
-      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
-    }
-    CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);
   }
 
   /**

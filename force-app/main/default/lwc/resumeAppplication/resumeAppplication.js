@@ -1,54 +1,49 @@
 import { LightningElement, track, api, wire } from "lwc";
 import utils from "c/generalUtils";
-import fetchApplicants from "@salesforce/apex/LwcCustomController.readApplicationForResume";
+import { getRecord } from "lightning/uiRecordApi";
+import fetchApplication from "@salesforce/apex/LwcCustomController.readApplicationForResume";
 import sendResumeEmail from "@salesforce/apex/LwcCustomController.sendResumeApplicationEmail";
-import sendFundingEmail from "@salesforce/apex/LwcCustomController.resendFundingRequest";
 
 export default class ResumeAppplication extends LightningElement {
+  @api objectApiName;
   @api recordId;
-  @track application;
-
-  @track fundingFlow = false;
-  @track applicationFlow = false;
-
+  @api filter;
+  @track record;
   @track applicantNames;
-
   @track selectedApplicant = [];
   @track showSpinner = false;
-  @track disableButton = false;
 
   /**
-   * fetch applicants
+   * refresh the current record data
    * @param {*} param0
    */
-  @wire(fetchApplicants, {
-    applicationId: "$recordId"
-  })
-  fetchAllApplicants({ data, error }) {
+  @wire(getRecord, { recordId: "$recordId", fields: ["$objectApiName" + ".Id"] })
+  getCurrentRecord({ data, error }) {
     if (data) {
-      if (data.status === 200) {
-        this.application = JSON.parse(data.data);
-        if (this.application.mflow__FlowType__c === "ApplicationFlow") {
-          this.applicationFlow = true;
-        } else if (this.application.mflow__FlowType__c === "FundingFlow") {
-          this.fundingFlow = true;
+      fetchApplication({
+        params: {
+          recordId: this.recordId,
+          objectApiName: this.objectApiName,
+          filter: this.filter
         }
-        let applicantNames = [{ label: "All", value: "All" }];
-        let applicants = this.application.mflow__Applicants__r;
-        // eslint-disable-next-line guard-for-in
-        for (let key in applicants) {
-          applicantNames.push({
-            label: `${applicants[key].mflow__ApplicantName__c} (${applicants[key].RecordType.Name}) `,
-            value: applicants[key].Id
-          });
+      }).then((result) => {
+        if (result.status === 200) {
+          this.record = JSON.parse(result.data);
+
+          let applicantNames = [{ label: "All", value: "All" }];
+          let applicants = this.record.mflow__Applicants__r;
+          // eslint-disable-next-line guard-for-in
+          for (let key in applicants) {
+            applicantNames.push({
+              label: `${applicants[key].mflow__ApplicantName__c} (${applicants[key].RecordType.Name}) `,
+              value: applicants[key].Id
+            });
+          }
+          this.applicantNames = applicantNames;
+        } else {
+          this.record = null;
         }
-        this.applicantNames = applicantNames;
-      } else {
-        console.log("error" + JSON.stringify(error));
-      }
-    } else if (error) {
-      console.log("error : " + JSON.stringify(error));
-      utils.errorMessage(this, error.body.message, "Error");
+      });
     }
   }
 
@@ -83,7 +78,6 @@ export default class ResumeAppplication extends LightningElement {
   sendResumeEmail() {
     if (utils.checkAllValidations(this.template.querySelectorAll(".validation"))) {
       this.showSpinner = true;
-      this.disableButton = true;
       sendResumeEmail({
         request: {
           data: JSON.stringify(this.selectedApplicant)
@@ -93,37 +87,13 @@ export default class ResumeAppplication extends LightningElement {
           if (result.status === 200) {
             utils.successMessage(this, "Email sent to Applicant", "Success");
           }
-          this.disableButton = false;
+          this.showSpinner = false;
         })
         .catch((error) => {
-          this.disableButton = false;
+          this.showSpinner = false;
           console.log("error : " + JSON.stringify(error));
           utils.errorMessage(this, error.body.message, "Error");
         });
     }
-  }
-
-  /**
-   * sendFundingEmail
-   */
-  sendFundingEmail() {
-    this.showSpinner = true;
-    this.disableButton = true;
-    sendFundingEmail({
-      request: {
-        data: this.recordId
-      }
-    })
-      .then((result) => {
-        this.disableButton = false;
-        if (result.status === 200) {
-          utils.successMessage(this, "Email sent to Succesfully", "Success");
-        }
-      })
-      .catch((error) => {
-        this.disableButton = false;
-        console.log("error : " + JSON.stringify(error));
-        utils.errorMessage(this, error.body.message, "Error");
-      });
   }
 }

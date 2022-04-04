@@ -114,10 +114,10 @@ global with sharing class LwcCustomController extends AbstractController {
    * @param String applicationId
    * @return ApexResponse
    **/
-  @AuraEnabled(cacheable=true)
-  global static ApexResponse readApplicationForResume(String applicationId) {
+  @AuraEnabled
+  global static ApexResponse readApplicationForResume(Map<String, Object> params) {
     try {
-      return ApexResponse.ok(LwcCustomService.getInstance().readApplicationForResume(applicationId));
+      return ApexResponse.ok(LwcCustomService.getInstance().readApplicationForResume(params));
     } catch (Exception ex) {
       return ApexResponse.fail(ex);
     }
@@ -144,24 +144,6 @@ global with sharing class LwcCustomController extends AbstractController {
     }
   }
 
-  /**
-   * @description send funding email from salesforce
-   * @author Digital Align | 01-11-2022
-   * @param ApexRequest request
-   * @return ApexResponse
-   **/
-  @AuraEnabled
-  global static ApexResponse resendFundingRequest(ApexRequest request) {
-    try {
-      log?.fine('resendFundingRequest - applicantionId =' + request.data);
-      LwcCustomService.getInstance().resendFundingRequest(request.data);
-      return ApexResponse.ok();
-    } catch (Exception ex) {
-      return ApexResponse.fail(ex);
-    } finally {
-      Logger.persist();
-    }
-  }
   /**
    * @description get salesforce fieldDescription
    * @author Digital Align Team | 11-30-2021

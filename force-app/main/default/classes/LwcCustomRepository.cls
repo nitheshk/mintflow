@@ -157,27 +157,28 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
   }
 
   /**
-   * @description Read application with Applicants
-   * @author Digital Align Team | 01-19-2022
-   * @param Id applicationId
+   * @description  Read application with Applicants
+   * @author Digital Align Team | 04-04-2022
+   * @param Id recordId
+   * @param String filter
    * @return Application__c
    **/
-  global static Application__c readApplicationForResume(Id applicationId) {
-    return (Application__c) DatabaseUtils.getRecord(
-      Query.newInstance(Application__c.SObjectType)
-        //.addFieldSet('mflow__Application')
-        .addFields()
-        .queryChild('mflow__Applicants__r')
-        .addFields()
-        .addFields('RecordType.Name')
-        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
-        .orCon()
-        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)
-        .orderBy('mflow__Order__c')
-        .run()
-        .whereEq('Id', applicationId)
-        .toString()
-    );
+  global static Application__c readApplicationForResume(Id recordId, String filter) {
+    Query qry = Query.newInstance(Application__c.SObjectType)
+      .addFields()
+      .queryChild('mflow__Applicants__r')
+      .addFields()
+      .addFields('RecordType.Name')
+      .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
+      .orCon()
+      .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)
+      .orderBy('mflow__Order__c')
+      .run()
+      .whereEq('Id', recordId);
+    if (String.isNotBlank(filter)) {
+      qry.andCon().grpOpen().whereCon(filter).grpClose();
+    }
+    return (Application__c) getRecord(qry.toString());
   }
 
   /**
