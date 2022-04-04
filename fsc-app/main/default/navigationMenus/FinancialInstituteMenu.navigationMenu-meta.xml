@@ -11,23 +11,17 @@
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
+        <defaultListViewId>All</defaultListViewId>
         <label>Application;standard:work_plan</label>
         <position>2</position>
-        <publiclyAvailable>true</publiclyAvailable>
-        <target>/Applications</target>
-        <type>InternalLink</type>
-    </navigationMenuItem>
-    <!-- <navigationMenuItem>
-        <label>Applicants;standard:user</label>
-        <position>3</position>
         <publiclyAvailable>false</publiclyAvailable>
-        <target>/Applicants</target>
-        <type>InternalLink</type>
-    </navigationMenuItem> -->
+        <target>mflow__Application__c</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
     <navigationMenuItem>
         <label>Employees;standard:groups</label>
         <position>3</position>
-        <publiclyAvailable>true</publiclyAvailable>
+        <publiclyAvailable>false</publiclyAvailable>
         <target>/Employees</target>
         <type>InternalLink</type>
     </navigationMenuItem>
