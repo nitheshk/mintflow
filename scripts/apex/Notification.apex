@@ -18,74 +18,51 @@ String requestBody =
   'From=' +
   EncodingUtil.urlEncode('+14195185222', 'UTF-8') +
   '&To=' +
-  EncodingUtil.urlEncode(
-    HttpBuilder.getApiConstant('Twillio_Country') + toPhone,
-    'UTF-8'
-  ) +
+  EncodingUtil.urlEncode(HttpBuilder.getApiConstant('Twillio_Country') + toPhone, 'UTF-8') +
   '&Body=' +
   +EncodingUtil.urlEncode(messageText, 'UTF-8');
 System.debug(' The request body is ' + requestBody);
 
 Map<String, String> header = new Map<String, String>();
-header.put(
-  'X-Twilio-Client',
-  'salesforce-' + HttpBuilder.getApiConstant('Version')
-);
-header.put(
-  'User-Agent',
-  'twilio-salesforce-' + HttpBuilder.getApiConstant('Version')
-);
+header.put('X-Twilio-Client', 'salesforce-' + HttpBuilder.getApiConstant('Version'));
+header.put('User-Agent', 'twilio-salesforce-' + HttpBuilder.getApiConstant('Version'));
 header.put('Accept', 'application/json');
 header.put(
   'Authorization',
   'Basic ' +
   EncodingUtil.base64Encode(
-    Blob.valueOf(
-      HttpBuilder.getApiConstant('Twillio_Account') +
-      ':' +
-      HttpBuilder.getApiConstant('Twillio_Token')
-    )
+    Blob.valueOf(HttpBuilder.getApiConstant('Twillio_Account') + ':' + HttpBuilder.getApiConstant('Twillio_Token'))
   )
 );
 
 HttpBuilder.setAPISetting(APINames.TwillioMessaging);
-HttpBuilder.replaceEndpoint(
-  '{Twillio_Account}',
-  HttpBuilder.getApiConstant('Twillio_Account')
-);
+HttpBuilder.replaceEndpoint('{Twillio_Account}', HttpBuilder.getApiConstant('Twillio_Account'));
 HttpBuilder.replaceEndpoint('{Version}', HttpBuilder.getApiConstant('Version'));
 HttpResponse response = HttpBuilder.httpCallOut(requestBody, header);
 system.debug(response.getBody());
 
 //
-Map<String, Object> header = new Map<String, Object>{
-  'APIMapper' => APINames.TwillioMessaging
-};
+Map<String, Object> header = new Map<String, Object>{ 'APIMapper' => APINames.TwillioMessaging };
 NotificationService ns = new NotificationService();
 ns.sendOTPMessage(header);
 
 // #4
 
-String notificationTypeId = CommonRepository.readNotificationType(
-    'MintFlowNotification'
-  )
-  ?.Id;
+String notificationTypeId = CommonRepository.readNotificationType('MintFlowNotification')?.Id;
 Messaging.CustomNotification notification = new Messaging.CustomNotification();
 notification.setTitle('title');
 notification.setBody('body');
 notification.setSenderId(Userinfo.getUserId());
 notification.setNotificationTypeId(notificationTypeId);
 notification.setTargetId('a0bN000000EZR1WIAX');
-notification.send(
-  new Set<String>{ NotificationBuilder.getRegularGroupId('OnKycSuccess') }
-);
+notification.send(new Set<String>{ NotificationBuilder.getRegularGroupId('OnKycSuccess') });
 
 //
 
 Map<String, String> params = new Map<String, String>{
   'aplType' => 'Joint',
   'flw' => 'JointFlow',
-  'urlSuffix' => '/membership/joints/welcome',
+  'urlSuffix' => '/savings/joints/welcome',
   'aplId' => 'a0bN000000EZR1mIAH',
   'ch' => 'Virtual'
 };
@@ -93,7 +70,7 @@ Map<String, String> params = new Map<String, String>{
 Map<String, String> params = new Map<String, String>{
   'aplType' => 'Primary',
   'flw' => 'FundingFlow',
-  'urlSuffix' => '/membership/funding/welcome',
+  'urlSuffix' => '/savings/funding/welcome',
   'aplId' => 'a0bN000000EZR1gIAH',
   'ch' => 'Virtual'
 };
@@ -101,7 +78,7 @@ Map<String, String> params = new Map<String, String>{
 Map<String, String> params = new Map<String, String>{
   'aplType' => 'Primary',
   'flw' => 'ApplicationFlow',
-  'urlSuffix' => '/membership/application/otp',
+  'urlSuffix' => '/savings/application/otp',
   'aplId' => 'a0bN000000EZR2ZIAX',
   'ch' => 'Virtual'
 };
@@ -112,11 +89,7 @@ cipher.flw = params.get('flw');
 String urlSuffix = params.get('urlSuffix');
 cipher.appId = ApexRequest.getApplicationId();
 cipher.aplId = params.get('aplId');
-cipher.edt = Datetime.now()
-  .addHours(
-    (Integer) ApplicationConfiguration__c.getInstance()
-      .EmailLinkExpirationTime__c
-  );
+cipher.edt = Datetime.now().addHours((Integer) ApplicationConfiguration__c.getInstance().EmailLinkExpirationTime__c);
 cipher.ch = params.get('ch');
 
 String link =
