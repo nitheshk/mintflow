@@ -102,6 +102,8 @@ public with sharing class ApplicationControllerTest {
     Test.setCurrentPage(testPage);
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    SObjectConstructor constructor = SObjectConstructor.getInstance(application);
+    constructor.setChildObjects('mflow__Surveys__r', new List<Survey__c>{ new Survey__c() });
     Applicant__c applicant = createApplicantDataWithChild(application);
 
     //200

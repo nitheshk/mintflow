@@ -28,7 +28,7 @@ public with sharing class FileControllerTest {
 
     return (Applicant__c) construct.build();
   }
-
+  //makeContentVersion
   public static ContentVersion makeContentVersion() {
     ContentVersion cv = TestData.createContentVersion();
     cv = (ContentVersion) DatabaseUtils.insertRecord(cv);
@@ -50,6 +50,7 @@ public with sharing class FileControllerTest {
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
+    ContentVersion cv = makeContentVersion();
 
     //200
     Map<String, String> header = new Map<String, String>();
@@ -81,26 +82,53 @@ public with sharing class FileControllerTest {
     request.setData(Json.serialize('data'));
     request.setHeader(header);
     FileController.fetchContentVersionByCD(request);
+
+    header = new Map<String, String>();
+    header.put('contentVersionId', cv.Id);
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(header);
+    FileController.generatePublicUrl(request);
+
+    header = new Map<String, String>();
+    header.put('contentDocumentId', cv.Id);
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(header);
+    FileController.deleteContentVersion(request);
+
+    header = new Map<String, String>();
+    header.put('entityId', applicant.Id);
+    // header.put('ignoreVersionData', 'true');
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(header);
+    FileController.fetchContentVersionByEntityId(request);
   }
   @isTest
-  static void fileServiceTest() {
+  static void fetchContentVersionsByCDTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
-    List<FileDTO> fileDtos = makeFileDtos(applicant.Id);
-    test.startTest();
-    fileService.getInstance().createFiles(fileDtos);
-    fileService.getInstance().fetchContentVersionByFileType(applicant.Id, 'Address', 'Other', false);
-    fileService.getInstance().deleteContentVersionByEntityId(applicant.Id);
-    fileService.getInstance().deleteContentVersion(applicant.Id);
-
-    fileService.getInstance().fetchContentVersionsByIds(new List<Id>{ applicant.Id }, true);
-    fileService.getInstance().fetchContentVersionById(applicant.Id, true);
-    try {
-      fileService.getInstance().linkContentDocumentWithEntity(fileDtos);
-      fileService.getInstance().linkContentDocumentWithEntity(applicant.Id, new List<Id>{ applicant.Id });
-    } catch (Exception e) {
-    }
-    test.stopTest();
-    system.assertEquals(null, null, 'msg');
+    ContentVersion cv = makeContentVersion();
+    List<FileDTO> files = new List<FileDTO>();
+    files.add(new FileDTO('test.txt', blob.valueof('data'), applicant.Id, 'Employment', 'AtomicFIResponse'));
+    FileService.getInstance().fetchContentVersionsByCD(new List<Id>{ cv.contentDocumentId }, true);
+  }
+  @isTest
+  static void fetchContentVersionsByCDTest2() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    ContentVersion cv = makeContentVersion();
+    List<FileDTO> files = new List<FileDTO>();
+    files.add(new FileDTO('test.txt', blob.valueof('data'), applicant.Id, 'Employment', 'AtomicFIResponse'));
+    FileService.getInstance().fetchContentVersionByCD(cv.contentDocumentId, true);
   }
 }
