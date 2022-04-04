@@ -115,7 +115,7 @@
         <field>CustomerInterest__c.Application__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CustomerInterest__c.InterestProduct__c</field>
         <readable>true</readable>
@@ -175,7 +175,7 @@
         <field>ReferralProduct__c.Required__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountSource</field>
         <readable>true</readable>
@@ -250,12 +250,12 @@
         <field>Applicant__c.Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.OOWCorrectAnswers__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.OOWTotalQuestions__c</field>
         <readable>true</readable>
@@ -315,7 +315,7 @@
         <field>Applicant__c.IdentityVerificationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    
+
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsEmailVerified__c</field>
@@ -456,7 +456,7 @@
         <field>Applicant__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsEmploymentVerified__c</field>
         <readable>true</readable>
@@ -831,7 +831,7 @@
         <field>Contact.IdentityVerificationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   
+
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.IsEmailVerified__c</field>
@@ -951,7 +951,7 @@
         <editable>true</editable>
         <field>ContactPointAddress.mflow__HousingStatus__c</field>
         <readable>true</readable>
-	</fieldPermissions>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>ContactPointAddress.ActiveFromDate</field>
@@ -2361,7 +2361,7 @@
         <object>IdentificationDocument__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-  
+
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -2415,7 +2415,7 @@
         <apexPage>Error</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-  
+
     <recordTypeVisibilities>
         <recordType>Applicant__c.Beneficiary</recordType>
         <visible>true</visible>

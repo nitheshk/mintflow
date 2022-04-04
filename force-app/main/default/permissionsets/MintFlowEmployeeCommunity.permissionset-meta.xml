@@ -129,7 +129,7 @@
         <name>SiteSetting__c</name>
     </customSettingAccesses>
     <description>MintFlow Customer Community profile</description>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>FinancialAccountTransaction__c.AccountHolderName__c</field>
         <readable>true</readable>
@@ -169,7 +169,7 @@
         <field>FinancialAccountTransaction__c.TransactionStateCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Employment__c.EmployeeType__c</field>
         <readable>true</readable>
@@ -199,22 +199,21 @@
         <field>Applicant__c.OOWStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-       <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.QualifiedScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.OOWCorrectAnswers__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.OOWTotalQuestions__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.CustomerScore__c</field>
@@ -280,17 +279,17 @@
         <field>Contact.LastFourDigitSSN__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.SSNValidation__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.QualifiedScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.CreditScore__c</field>
         <readable>true</readable>
@@ -300,17 +299,17 @@
         <field>Contact.IdentityVerificationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.OFAC__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.QualifiedDecision__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.RunWithoutKIQ__c</field>
         <readable>true</readable>
@@ -320,12 +319,12 @@
         <field>Applicant__c.QualifiedDecision__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.RunWithoutKIQ__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.OFAC__c</field>
         <readable>true</readable>
@@ -340,7 +339,7 @@
         <field>CustomerInterest__c.Application__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CustomerInterest__c.InterestProduct__c</field>
         <readable>true</readable>
@@ -435,7 +434,7 @@
         <field>FinancialAccount__c.CreditLimit__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>FinancialAccount__c.ExternalApplicationNumber__c</field>
         <readable>true</readable>
@@ -605,22 +604,22 @@
         <field>ProductFeature__c.ImageType__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.Height__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	    <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.Weight__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	  <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.IssuedRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	  <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.Gender__c</field>
         <readable>true</readable>
@@ -645,12 +644,12 @@
         <field>Application__c.SessionToken__c</field>
         <readable>true</readable>
     </fieldPermissions>
-       <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Application__c.IsExistingCustomer__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Application__c.CreatedChannel__c</field>
         <readable>true</readable>
@@ -735,7 +734,7 @@
         <field>Application__c.StateName__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Application__c.CountyZipCode__c</field>
         <readable>true</readable>
@@ -825,7 +824,7 @@
         <field>Applicant__c.SessionExpireTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.Relationship__c</field>
         <readable>true</readable>
@@ -860,7 +859,6 @@
         <field>Applicant__c.FirstName__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsExistingCustomer__c</field>
@@ -896,7 +894,7 @@
         <field>Applicant__c.MiddleName__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.SmsOtp__c</field>
         <readable>true</readable>
@@ -921,7 +919,7 @@
         <field>Applicant__c.SentiLinkRemarks__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IsEmailVerified__c</field>
         <readable>true</readable>
@@ -941,37 +939,37 @@
         <field>Applicant__c.OtpAttempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	    <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.EmailOtp__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	   <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.FraudStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	    <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.IdentityVerificationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	    <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.CreditScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	  <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.KYCStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	   <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.SentiLinkFraudScore__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.mflow__IsEmploymentVerified__c</field>
         <readable>true</readable>
@@ -1077,26 +1075,25 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-            <editable>true</editable>
-            <field>Contact.FraudStatus__c</field>
-            <readable>true</readable>
-        </fieldPermissions>
-  
+        <editable>true</editable>
+        <field>Contact.FraudStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
-            <editable>true</editable>
-            <field>Contact.KYCStatus__c</field>
-            <readable>true</readable>
-        </fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.KYCStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
-            <editable>true</editable>
-            <field>Contact.SentiLinkFraudScore__c</field>
-            <readable>true</readable>
-        </fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.SentiLinkFraudScore__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
-            <editable>true</editable>
-            <field>Contact.SentiLinkStatus__c</field>
-            <readable>true</readable>
-        </fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.SentiLinkStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.MiddleName__c</field>
@@ -1121,7 +1118,7 @@
         <editable>true</editable>
         <field>ContactPointAddress.mflow__HousingStatus__c</field>
         <readable>true</readable>
-	</fieldPermissions>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>ContactPointAddress.YearsLivedAtCurrentAddress__c</field>
@@ -1131,7 +1128,7 @@
         <editable>true</editable>
         <field>ContactPointAddress.StateCode__c</field>
         <readable>true</readable>
-	</fieldPermissions>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>ContactPointAddress.MonthsLivedAtCurrentAddress__c</field>
@@ -1362,7 +1359,6 @@
         <field>ConsentTemplate__c.URL__c</field>
         <readable>true</readable>
     </fieldPermissions>
-
     <fieldPermissions>
         <editable>true</editable>
         <field>Diagnostic__c.ApplicationName__c</field>
@@ -1548,22 +1544,22 @@
         <field>Employment__c.Applicant__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Employment__c.PayCycle__c</field>
         <readable>true</readable>
     </fieldPermissions>
-<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Employment__c.IncomeType__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Employment__c.EmploymentVerificationType__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Employment__c.DocumentType__c</field>
         <readable>true</readable>
@@ -1578,7 +1574,7 @@
         <field>Employment__c.EmploymentType__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	   <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Employment__c.GrossMonthlySalary__c</field>
         <readable>true</readable>
@@ -1588,7 +1584,7 @@
         <field>Employment__c.PrimaryContentDocumentID__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Employment__c.PayGrade__c</field>
         <readable>true</readable>
@@ -1628,7 +1624,7 @@
         <field>Employment__c.StartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Employment__c.isDocumentGenerated__c </field>
         <readable>true</readable>
@@ -1803,7 +1799,7 @@
         <field>User.Channel__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.PrimaryContentDocumentID__c</field>
         <readable>true</readable>
@@ -1813,7 +1809,7 @@
         <field>IdentificationDocument__c.IssuedStateCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	    <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.SecondaryContentDocumentId__c</field>
         <readable>true</readable>
@@ -1898,7 +1894,6 @@
         <field>Flow__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-
     <fieldPermissions>
         <editable>true</editable>
         <field>Location.CloseDate</field>
@@ -1974,7 +1969,7 @@
         <field>SurveyQuestion__c.LongDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>SurveyQuestion__c.Required__c</field>
         <readable>true</readable>
@@ -2034,7 +2029,7 @@
         <field>SurveyTemplate__c.FinancilProductCategory__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>SurveyTemplate__c.EventIdentifier__c</field>
         <readable>true</readable>
