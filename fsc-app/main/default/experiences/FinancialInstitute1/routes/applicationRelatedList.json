@@ -5,7 +5,7 @@
   "id": "9ef9e0ab-5d34-4a1d-844f-66732554c08d",
   "label": "Application Related List",
   "objectApiName": "mflow__Application__c",
-  "routeType": "relatedlist-a03",
+  "routeType": "relatedlist-a02",
   "type": "route",
   "urlPrefix": "application"
 }

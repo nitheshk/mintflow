@@ -1,52 +1,275 @@
 {
   "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
-  "componentName": "siteforce:sldsOneColLayout",
-  "id": "3787e855-37b8-470d-a013-02c1dcc9c376",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "73dcd5e8-d474-4a14-8a9b-765fba4e72ed",
   "label": "Application Detail",
   "regions": [
-    {
-      "id": "a8bdb332-2f12-47c0-990b-7a9f10262a31",
-      "regionName": "header",
-      "type": "region"
-    },
     {
       "components": [
         {
           "componentAttributes": {
-            "recordId": "{!recordId}"
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "2c25f208-9f53-4b17-9c01-64adedd11702",
+              "columns": [
+                {
+                  "UUID": "9a9e94cc-79f4-40e6-8e9a-970f55d19948",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "0270cb61-f55a-4f89-8c10-2a5c930bc4ae",
+                  "columnKey": "b62b4",
+                  "columnName": "Column 2",
+                  "columnWidth": "7",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "13f6a653-6d6c-441c-b4fa-5faac6707404",
+                  "columnKey": "e2dd5",
+                  "columnName": "Column 3",
+                  "columnWidth": "3",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
           },
-          "componentName": "forceCommunity:recordHeadline",
-          "id": "c399c318-e7ac-43ed-8a8d-c492475c8e7d",
-          "renderPriority": "NEUTRAL",
-          "renditionMap": {},
-          "type": "component"
-        },
-        {
-          "componentAttributes": {
-            "detailsTabLabel": "Details",
-            "discussionsTabLabel": "Feed",
-            "recordId": "{!recordId}",
-            "relatedTabLabel": "Related",
-            "tab1Type": "details",
-            "tab2Type": "related",
-            "tab3Type": "chatter",
-            "tab4Type": "none",
-            "timelineTabLabel": "Activity"
-          },
-          "componentName": "forceCommunity:recordHomeTabs",
-          "id": "53357d0b-6e44-4516-a791-46b6d9874b5c",
+          "componentName": "forceCommunity:section",
+          "id": "2c25f208-9f53-4b17-9c01-64adedd11702",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "hideMenuLabel": false,
+                    "logoName": "",
+                    "menuName": "FinancialInstituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "mflow:financialInsituteNavigationMenu",
+                  "id": "35878dec-fe10-42c7-9c31-efd52a4de3af",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "9a9e94cc-79f4-40e6-8e9a-970f55d19948",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "tabsetConfig": {
+                      "UUID": "40b17b0a-0650-422f-bb51-16ca845f0ff7",
+                      "activeTab": "",
+                      "tabs": [
+                        {
+                          "UUID": "328091f2-8f24-4294-91c8-0bc483d3ac4e",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "1",
+                          "tabName": "Application"
+                        },
+                        {
+                          "UUID": "60b9efad-4393-4a65-9e4b-a25b1cd9a3e8",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "2",
+                          "tabName": "Applicant 360"
+                        },
+                        {
+                          "UUID": "bbd03790-8f60-462c-ab81-5e1a2af7eae8",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "f69bf",
+                          "tabName": "Activity"
+                        },
+                        {
+                          "UUID": "ceb78313-6fc8-4769-97aa-3b89c39ee002",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "915af",
+                          "tabName": "Chatter"
+                        }
+                      ],
+                      "useOverflowMenu": false
+                    }
+                  },
+                  "componentName": "forceCommunity:tabset",
+                  "id": "40b17b0a-0650-422f-bb51-16ca845f0ff7",
+                  "regions": [
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "recordId": "{!recordId}"
+                          },
+                          "componentName": "forceCommunity:lwcRecordDetail",
+                          "id": "a0a9ddfe-1b44-497b-bfae-10c3b650804c",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "328091f2-8f24-4294-91c8-0bc483d3ac4e",
+                      "regionLabel": "Application",
+                      "regionName": "1",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "recordId": "{!recordId}"
+                          },
+                          "componentName": "mflow:application360View",
+                          "id": "385e5c6a-9bfe-4854-bfe9-1e147fea7b75",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "60b9efad-4393-4a65-9e4b-a25b1cd9a3e8",
+                      "regionLabel": "Applicant 360",
+                      "regionName": "2",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "recordId": "{!recordId}"
+                          },
+                          "componentName": "forceCommunity:activityPanel",
+                          "id": "99037503-c41f-4328-bc84-a7ac79695fd5",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "bbd03790-8f60-462c-ab81-5e1a2af7eae8",
+                      "regionLabel": "Activity",
+                      "regionName": "f69bf",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "canChangeSorting": true,
+                            "defaultFilter": "",
+                            "defaultSortOrderHomeFeed": "Relevance",
+                            "defaultSortOrderTopicsFeed": "Relevance",
+                            "feedDesign": "DEFAULT",
+                            "hasFeedSearch": true,
+                            "subjectId": "{!recordId}",
+                            "type": "Record"
+                          },
+                          "componentName": "forceCommunity:forceCommunityFeed",
+                          "id": "bf931b0f-53ed-455d-a034-61c8c43bc89e",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "ceb78313-6fc8-4769-97aa-3b89c39ee002",
+                      "regionLabel": "Chatter",
+                      "regionName": "915af",
+                      "renditionMap": {},
+                      "type": "region"
+                    }
+                  ],
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "0270cb61-f55a-4f89-8c10-2a5c930bc4ae",
+              "regionLabel": "Column 2",
+              "regionName": "b62b4",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "relatedListApiName": "mflow__FinancialAccounts__r",
+                    "relatedListComponentOverride": "ADVGRID",
+                    "width": "MEDIUM"
+                  },
+                  "componentName": "forceCommunity:responsiveRelatedListSingle",
+                  "id": "7b9cb0c2-39e1-4ae3-8fab-fd8e96d20f0a",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {},
+                  "componentName": "mflow:relatedFiles",
+                  "id": "716f0190-4891-4487-b10b-434a70f09c44",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "objectApiName": "mflow__Application__c",
+                    "recordId": "{!recordId}"
+                  },
+                  "componentName": "mflow:manualKycDecision",
+                  "id": "e9d8b7b2-213b-42d4-9dd2-9ffae11348d6",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "recordId": "{!recordId}"
+                  },
+                  "componentName": "mflow:resumeAppplication",
+                  "id": "4efe6235-2a27-4518-b5b2-55f189061fce",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "recordId": "{!recordId}"
+                  },
+                  "componentName": "mflow:resubmitApplication",
+                  "id": "3aab7448-6b29-4d8c-b8bd-603c352dd9cd",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "13f6a653-6d6c-441c-b4fa-5faac6707404",
+              "regionLabel": "Column 3",
+              "regionName": "e2dd5",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
           "renderPriority": "NEUTRAL",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "0e383540-c29d-43ef-9ea7-93c4e47f0a8f",
+      "id": "23174596-c60c-42f7-9b41-a5b090225224",
       "regionName": "content",
-      "type": "region"
-    },
-    {
-      "id": "23ba9169-4740-4f5d-89bb-c13443027c80",
-      "regionName": "footer",
       "type": "region"
     },
     {
@@ -58,17 +281,17 @@
             "title": "{!Record._Object}: {!Record._Title}"
           },
           "componentName": "forceCommunity:seoAssistant",
-          "id": "ce6aa33a-efc8-47b5-9734-a24326d0d9e9",
+          "id": "252c2d34-e364-4fc4-bc7c-552b4affa20c",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "0d9a911c-fa74-45ee-ad15-0943d22519e0",
+      "id": "cc46de5d-ae66-4767-8ae6-dd72c9a35c1b",
       "regionName": "sfdcHiddenRegion",
       "type": "region"
     }
   ],
   "themeLayoutType": "Inner",
   "type": "view",
-  "viewType": "detail-a03"
+  "viewType": "detail-a02"
 }

@@ -1,51 +1,114 @@
 {
   "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
-  "componentName": "siteforce:sldsOneColLayout",
-  "id": "2b338937-d112-418b-a88b-2f13b834992b",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "1fa3aeee-0f2e-4f50-9e2a-feefcc01fdd8",
   "label": "Application List",
   "regions": [
-    {
-      "id": "8690c69c-e319-4ffb-9e7b-b83010b0f465",
-      "regionName": "header",
-      "type": "region"
-    },
     {
       "components": [
         {
           "componentAttributes": {
-            "enableInlineEdit": true,
-            "filterName": "{!filterId}",
-            "layout": "FULL",
-            "pageSize": 25,
-            "scope": "{!objectName}",
-            "showActionBar": true,
-            "showChartsPanel": true,
-            "showDisplay": "showall",
-            "showFilterPanel": true,
-            "showImageIcon": true,
-            "showManualRefreshButton": true,
-            "showObjectName": true,
-            "showPinnedList": true,
-            "showSearchBar": true
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "4a9bc1d5-ace0-49da-b652-75548fe6ef54",
+              "columns": [
+                {
+                  "UUID": "6c709f7e-fa23-4883-99c4-2812c1e618d6",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "2",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "98eac692-076c-43c3-946c-864a668a2349",
+                  "columnKey": "4570b",
+                  "columnName": "Column 2",
+                  "columnWidth": "10",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
           },
-          "componentName": "forceCommunity:objectHome",
-          "id": "7ac87884-9860-4c40-ba4c-6f9e6b11a959",
+          "componentName": "forceCommunity:section",
+          "id": "4a9bc1d5-ace0-49da-b652-75548fe6ef54",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "hideMenuLabel": false,
+                    "logoName": "",
+                    "menuName": "FinancialInstituteMenu",
+                    "sectionLabel": "Menu"
+                  },
+                  "componentName": "mflow:financialInsituteNavigationMenu",
+                  "id": "b1b17447-efa1-48c6-bc5a-641a6d89d0f2",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "6c709f7e-fa23-4883-99c4-2812c1e618d6",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {},
+                  "componentName": "mflow:startOnlineApplication",
+                  "id": "3ddf6195-f27c-4d97-aab1-88a102d8a779",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "enableInlineEdit": true,
+                    "filterName": "{!filterId}",
+                    "layout": "FULL",
+                    "pageSize": 25,
+                    "scope": "{!objectName}",
+                    "showActionBar": true,
+                    "showChartsPanel": true,
+                    "showDisplay": "showall",
+                    "showFilterPanel": true,
+                    "showImageIcon": true,
+                    "showManualRefreshButton": true,
+                    "showObjectName": true,
+                    "showPinnedList": true,
+                    "showSearchBar": true
+                  },
+                  "componentName": "forceCommunity:objectHome",
+                  "id": "d06dfc2d-c47f-4244-a40d-5d36a204f1ef",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "98eac692-076c-43c3-946c-864a668a2349",
+              "regionLabel": "Column 2",
+              "regionName": "4570b",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
           "renderPriority": "NEUTRAL",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "2d12aed2-7999-4ac4-a7ed-1fe0c7e2319a",
+      "id": "ad58f059-4dd6-4466-a1ae-08b317891c94",
       "regionName": "content",
-      "type": "region"
-    },
-    {
-      "id": "9d78b073-91ab-4dfe-b3fc-51c7bcb5e85e",
-      "regionName": "footer",
       "type": "region"
     }
   ],
-  "themeLayoutType": "Inner",
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
   "type": "view",
-  "viewType": "list-a03"
+  "viewType": "list-a02"
 }
