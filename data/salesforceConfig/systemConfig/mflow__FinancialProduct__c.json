@@ -33,7 +33,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Digital experience",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0_1" },
@@ -44,7 +45,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Global security",
             "mflow__Topic__c": "Security",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0_2" },
@@ -56,7 +58,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Your wallet has a new MVP",
             "mflow__Topic__c": "Blazers Card",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0_3" },
@@ -69,7 +72,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Features and rewards",
             "mflow__Topic__c": "Features and rewards",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -106,7 +110,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Start with a few dollars or a fistful. F",
             "mflow__Topic__c": "Regular Savings",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -513,7 +518,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Tiered dividends for larger balances",
             "mflow__Topic__c": "Features",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef21_1" },
@@ -525,7 +531,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits.",
             "mflow__Topic__c": "Benefits",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -576,7 +583,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits",
             "mflow__Topic__c": "Benefits",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef22_2" },
@@ -588,7 +596,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Debit Mastercard",
             "mflow__Topic__c": "Debit Mastercard",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
