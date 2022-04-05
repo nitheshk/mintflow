@@ -233,7 +233,7 @@
             "mflow__DisplayContents__c": "<p>This account fits those who:</p><ul><li>Keep more than $5,000 in savings</li><li>Want easy access to funds while earning higher dividends</li></ul><p><br></p>",
             "mflow__DisplayName__c": "Features",
             "mflow__ImageType__c": "Relative",
-            "mflow__Order__c": 9,
+            "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Carefree Checking",
             "mflow__Topic__c": "Features",
@@ -245,7 +245,7 @@
             "mflow__Code__c": "PS009",
             "mflow__DisplayContents__c": "<h3>You&#39;ll benefit from:</h3><ul><li>No minimum balance requirements</li><li>No monthly account maintenance fees</li><li>Surcharge-free access at nearly 30,000 CO-OP network ATMs nationwide</li><li>Free checking</li></ul><p>Manage your money when and where you want</p><ul><li>Access your account online</li><li>Deposit checks and pay bills with our free Mobile App</li><li>Visit a branch at nearly 6,000 CO-OP shared branch locations</li></ul><p>Peace of mind</p><ul><li>Real-time fraud monitoring</li><li>Secure online access</li><li>Free overdraft transfers from savings or line of credit</li><li>Chip-and-PIN enabled debit card</li><li><br></li></ul><h3>Cardholder benefits:</h3><ul><li>Extended warranty</li><li>Satisfaction guarantee</li><li>Identity theft resolution services</li><li>And more (see Debit Mastercard tab)</li></ul><p><br></p>",
             "mflow__DisplayName__c": "Benefits",
-            "mflow__Order__c": 9,
+            "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits",
             "mflow__Topic__c": "Benefits",
@@ -258,7 +258,7 @@
             "mflow__Code__c": "PS0010",
             "mflow__DisplayContents__c": "<ul><li>Benefits Overview Call 1.800.MASTERCARD (<a href=\"\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">1.800.627.8372</a>) for more information or for assistance with these benefits.</li><li>Mastercard Global Service™ provides 24 hour a day, seven day a week assistance with lost and stolen card reporting, emergency card replacement, emergency cash advance, as well as assistance with locating ATMs.</li><li>Mastercard Airport Concierge™ provides a Meet and Greet agent to assist with flight connections, plus at select airports, expedited security/immigration processing.</li><li>Extended Warranty doubles most manufacturer or U.S. store brand warranties for up to one additional year.</li><li>Satisfaction Guarantee covers most items purchased with your card if they are damaged or stolen within 90 days of the purchase date.</li><li>Identity Theft Protection assists you with credit bureau notification and credit card replacement and provides you with an ID Theft Affidavit should you become an identity theft victim.</li></ul>",
             "mflow__DisplayName__c": "Debit Mastercard",
-            "mflow__Order__c": 10,
+            "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Debit Mastercard",
             "mflow__Topic__c": "Debit Mastercard",
@@ -336,7 +336,37 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "6 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_0" },
+            "Name": "Feature -APY",
+            "mflow__Code__c": "APY",
+            "mflow__DisplayContents__c": "<p>APY: 0.20%</p>",
+            "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "0.20",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_1" },
+            "Name": "Feature -Min-Deposit",
+            "mflow__Code__c": "Min-Deposit",
+            "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
+            "mflow__DisplayName__c": "Min Deposit",
+            "mflow__Order__c": 6,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "500",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0014" },
@@ -356,7 +386,37 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "12 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_0" },
+            "Name": "Feature -APY",
+            "mflow__Code__c": "APY",
+            "mflow__DisplayContents__c": "<p>APY: 0.30%</p>",
+            "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "0.30",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_1" },
+            "Name": "Feature -Min-Deposit",
+            "mflow__Code__c": "Min-Deposit",
+            "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
+            "mflow__DisplayName__c": "Min Deposit",
+            "mflow__Order__c": 6,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "500",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0015" },
@@ -376,7 +436,37 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "18 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_0" },
+            "Name": "Feature -APY",
+            "mflow__Code__c": "APY",
+            "mflow__DisplayContents__c": "<p>APY: 0.50%</p>",
+            "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "0.50",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_1" },
+            "Name": "Feature -Min-Deposit",
+            "mflow__Code__c": "Min-Deposit",
+            "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
+            "mflow__DisplayName__c": "Min Deposit",
+            "mflow__Order__c": 6,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "500",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0016" },
@@ -396,7 +486,37 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "24 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_0" },
+            "Name": "Feature -APY",
+            "mflow__Code__c": "APY",
+            "mflow__DisplayContents__c": "<p>APY: 0.60%</p>",
+            "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "0.60",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_1" },
+            "Name": "Feature -Min-Deposit",
+            "mflow__Code__c": "Min-Deposit",
+            "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
+            "mflow__DisplayName__c": "Min Deposit",
+            "mflow__Order__c": 6,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "500",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0017" },
@@ -416,7 +536,37 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "36 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_0" },
+            "Name": "Feature -APY",
+            "mflow__Code__c": "APY",
+            "mflow__DisplayContents__c": "<p>APY: 0.65%</p>",
+            "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "0.65",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_1" },
+            "Name": "Feature -Min-Deposit",
+            "mflow__Code__c": "Min-Deposit",
+            "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
+            "mflow__DisplayName__c": "Min Deposit",
+            "mflow__Order__c": 6,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "500",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0018" },
@@ -436,7 +586,37 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "48 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef15_0" },
+            "Name": "Feature -APY",
+            "mflow__Code__c": "APY",
+            "mflow__DisplayContents__c": "<p>APY: 0.75%</p>",
+            "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "0.75",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef15_1" },
+            "Name": "Feature -Min-Deposit",
+            "mflow__Code__c": "Min-Deposit",
+            "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
+            "mflow__DisplayName__c": "Min Deposit",
+            "mflow__Order__c": 6,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "500",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0019" },
@@ -456,7 +636,37 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "60 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef16_0" },
+            "Name": "Feature -APY",
+            "mflow__Code__c": "APY",
+            "mflow__DisplayContents__c": "<p>APY: 0.80%</p>",
+            "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "0.80",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef16_1" },
+            "Name": "Feature -Min-Deposit",
+            "mflow__Code__c": "Min-Deposit",
+            "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
+            "mflow__DisplayName__c": "Min Deposit",
+            "mflow__Order__c": 6,
+            "mflow__Required__c": false,
+            "mflow__Value__c": "500",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC009" },
