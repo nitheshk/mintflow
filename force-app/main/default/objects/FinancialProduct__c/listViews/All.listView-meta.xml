@@ -8,6 +8,6 @@
     <columns>InternalCode__c</columns>
     <columns>ExternalCode__c</columns>
     <columns>isActive__c</columns>
-    <filterScope>Mine</filterScope>
+    <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>
