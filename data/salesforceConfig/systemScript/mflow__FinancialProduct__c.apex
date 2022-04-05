@@ -1,5 +1,10 @@
 String q = Query.newInstance(mflow__FinancialProduct__c.SObjectType)
   .addFields()
+  .queryChild('mflow__ProductFeatures__r')
+  .addFields()
+  .whereEq('mflow__ProductService__c', null)
+  .orderBy('mflow__Order__c')
+  .run()
   .orderBy('mflow__Order__c')
   .toString(true);
 List<mflow__FinancialProduct__c> sl = DatabaseUtils.getRecords(q);

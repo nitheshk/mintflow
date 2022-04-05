@@ -16,6 +16,16 @@ utils
       if (item.mflow__FinancialProduct__c) {
         item.mflow__FinancialProduct__c = "@" + item.mflow__FinancialProduct__r.mflow__InternalCode__c;
       }
+
+      if (item.mflow__ProductFeatures__r) {
+        item.mflow__ProductFeatures__r.records.forEach(function (item_c1, index_c1) {
+          utils.replaceUnwantedFields(item_c1);
+          item_c1.attributes.referenceId = "ProductFeatureRef" + index + "_" + index_c1;
+          //read only field
+          delete item_c1.mflow__ProductService__c;
+        });
+      }
+
       delete item.mflow__FinancialProduct__r;
       delete item.Name;
     });
