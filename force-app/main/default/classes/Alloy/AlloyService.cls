@@ -39,10 +39,10 @@ global virtual with sharing class AlloyService extends AbstractService {
       Flow.setFlow('Alloy KYC');
       Flow.setSubFlow(APINames.AlloyKYC.name(), ApexRequest.getApplicantId());
       HttpResponse response = provider.doIDVVerification(applicantId);
-
       if (response.getStatusCode() == 200 || response.getStatusCode() == 201) {
         Flow.setSubFlowPassed('Passed');
         provider.saveApplicantVerification(applicantId, response);
+        provider.ParseIDVReponse(applicantId, response);
       } else {
         Flow.setSubFlowPassed('Failed');
         throw new customException(

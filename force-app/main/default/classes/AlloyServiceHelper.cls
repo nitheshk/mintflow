@@ -57,14 +57,14 @@ global virtual with sharing class AlloyServiceHelper extends AbstractService {
     //mapiing of address
     idvDTO.address_line_1 = addresses.Street;
     idvDTO.address_city = addresses.City;
-    idvDTO.address_state = addresses.State;
+    idvDTO.address_state = identificationObj.IssuedStateCode__c;
     idvDTO.address_postal_code = addresses.PostalCode;
     idvDTO.address_country_code = 'US';
 
     isJointApplicant = applicant.mflow__ApplicantType__c.equalsignorecase('Primary') ? false : true;
     idvDTO.ip_address_v4 = ApplicationServiceHelper.getinstance().getIpAddress();
     idvDTO.document_license = identificationObj.DocumentNumber__c;
-    idvDTO.document_license_state = identificationObj.IssuedRegion__c;
+    idvDTO.document_license_state = identificationObj.IssuedStateCode__c;
     idvDTO.meta = new AlloyDTO.Meta(applicant.IsExistingCustomer__c, isJointApplicant);
 
     return AlloyDTO.generateRequest(idvDTO);
