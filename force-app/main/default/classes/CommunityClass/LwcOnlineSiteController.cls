@@ -19,7 +19,7 @@ global with sharing class LwcOnlineSiteController extends AbstractController {
   global static ApexResponse productSelector(ApexRequest request) {
     try {
       validateRequest(request, true);
-      return ApexResponse.ok(ProductService.getInstance().fetchProducts());
+      return ApexResponse.ok(ProductService.getInstance().productSelector());
     } catch (Exception ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.fail(ex);

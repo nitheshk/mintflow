@@ -14,8 +14,18 @@
         <div class="product-desc">
           <p>{product.mflow__LongDescription__c}</p>
         </div>
+
         <div class="card-footer">
-          <div class="card-footer-left"><span class="price">{product.mflow__Type__c}</span></div>
+          <div class="card-footer-left">
+            <template if:true={product.mflow__ProductFeatures__r}>
+              <template for:each={product.mflow__ProductFeatures__r} for:item="feature">
+                <span class="feature" key={feature.id}>{feature.mflow__DisplayContents__c}</span>
+              </template>
+            </template>
+            <template if:false={product.mflow__ProductFeatures__r}>
+              <span class="feature">{product.mflow__Type__c}</span>
+            </template>
+          </div>
           <div class="card-footer-right">
             <lightning-button
               variant="brand"
