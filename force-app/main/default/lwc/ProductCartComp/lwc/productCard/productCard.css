@@ -103,15 +103,20 @@
 }
 /* Truncate */
 .product-category .product-desc {
+  display: inline-block;
   text-align: center;
   width: 100%;
   height: 62px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   margin-bottom: 15px;
 }
+
+.product-category:hover .product-desc {
+  overflow: auto;
+}
+
 .card-footer {
   padding: 25px 0 5px;
   border-top: 1px solid #ddd;
