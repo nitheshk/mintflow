@@ -481,10 +481,21 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
    **/
   global virtual Application__c notifyProductInterest(Id applicationId) {
     log?.fine('Inside notifyProductInterest');
+
+    Map<String, String> routingMapping = new Map<String, String>{
+      'Savings' => 'savings',
+      'Checking' => 'checking',
+      'Loans' => 'loans',
+      'Credit Card' => 'credit-card',
+      'Money Market' => 'savings',
+      'Certificate' => 'certificate'
+    };
+
     Application__c application = SubmissionRepository.readApplicationForProductInterest(applicationId);
     if (!CollectionUtils.isListEmpty(application.mflow__CustomerInterests__r)) {
-      Map<String, Object> interestedProductParams = new Map<String, Object>();
+      list<Object> interestedProductList = new List<Object>();
       for (CustomerInterest__c customerInterest : application.mflow__CustomerInterests__r) {
+        Map<String, Object> interestedProductParams = new Map<String, Object>();
         Map<String, Object> params = new Map<String, Object>();
         params.put('app', application.Name);
         params.put('ch', application.CreatedChannel__c);
@@ -493,15 +504,21 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
           'edt',
           Datetime.now().addHours((Integer) ApplicationConfiguration__c.getInstance().ReferralUrlExpirationTime__c)
         );
+
+        interestedProductParams.put('displayName', customerInterest.InterestProduct__r.DisplayLabel__c);
+        interestedProductParams.put('cvmf', SecurityUtils.encryptUrl(JSON.serialize(params, true)));
         interestedProductParams.put(
-          customerInterest.InterestProduct__r.DisplayLabel__c,
-          SecurityUtils.encryptUrl(JSON.serialize(params, true))
+          'urlSuffix',
+          '/' +
+          routingMapping.get(customerInterest.InterestProduct__r.Category__c) +
+          '/flows/otp'
         );
+        interestedProductList.add(interestedProductParams);
       }
 
       for (Applicant__c applicant : application.Applicants__r) {
         if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-          CustomerEmailService.getInstance().notifyProductInterest(applicant, interestedProductParams);
+          CustomerEmailService.getInstance().notifyProductInterest(applicant, interestedProductList);
           break;
         }
       }

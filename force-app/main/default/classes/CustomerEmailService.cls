@@ -317,19 +317,26 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @description Send Url to applicat to complete account opening for interested products
    * @author Digital Align Team | 02-08-2022
    * @param Applicant__c applicant
-   * @param Map<String, Object> interestedProductParams
+   * @param List<Object> interestedProductList
    **/
-  global virtual void notifyProductInterest(Applicant__c applicant, Map<String, Object> interestedProductParams) {
+  global virtual void notifyProductInterest(Applicant__c applicant, List<Object> interestedProductList) {
     String productDetails = '<br/>';
-    String urlSuffix = '/lending/credit-card/otp';
-    for (String key : interestedProductParams.keySet()) {
+    for (Object interestedProduct : interestedProductList) {
+      Map<String, Object> interestedProductParams = (Map<String, Object>) interestedProduct;
+
       String link =
         SiteSetting__c.getInstance().OnlineSiteUrl__c +
         '/OpenAccount?cvmf=' +
-        interestedProductParams.get(key) +
+        interestedProductParams.get('cvmf') +
         '&vue=' +
-        EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
-      productDetails += '</i><b><a href="' + link + '" target="_blank">' + key + '</a></b></i><br/><br/>';
+        EncodingUtil.urlEncode((String) interestedProductParams.get('urlSuffix'), 'UTF-8');
+
+      productDetails +=
+        '</i><b><a href="' +
+        link +
+        '" target="_blank">' +
+        interestedProductParams.get('displayName') +
+        '</a></b></i><br/><br/>';
     }
     EmailNotificationBuilder.newInstance('StartSecondaryApplication', applicant.Id)
       .setToAddresses(applicant.Email__c)
