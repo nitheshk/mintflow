@@ -293,7 +293,7 @@
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_0" },
-            "Name": "Feature -APY",
+            "Name": "Feature-APY",
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "<p>APY: 0.10%</p>",
             "mflow__DisplayName__c": "Annual Percentage Yield",
@@ -305,7 +305,7 @@
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_1" },
-            "Name": "Feature -Min-Deposit",
+            "Name": "Feature-Min-Deposit",
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
             "mflow__DisplayName__c": "Min Deposit",
@@ -343,7 +343,7 @@
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_0" },
-            "Name": "Feature -APY",
+            "Name": "Feature-APY",
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "<p>APY: 0.20%</p>",
             "mflow__DisplayName__c": "Annual Percentage Yield",
@@ -355,7 +355,7 @@
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_1" },
-            "Name": "Feature -Min-Deposit",
+            "Name": "Feature-Min-Deposit",
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
             "mflow__DisplayName__c": "Min Deposit",
@@ -393,7 +393,7 @@
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_0" },
-            "Name": "Feature -APY",
+            "Name": "Feature-APY",
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "<p>APY: 0.30%</p>",
             "mflow__DisplayName__c": "Annual Percentage Yield",
@@ -405,7 +405,7 @@
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_1" },
-            "Name": "Feature -Min-Deposit",
+            "Name": "Feature-Min-Deposit",
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
             "mflow__DisplayName__c": "Min Deposit",
@@ -443,7 +443,7 @@
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_0" },
-            "Name": "Feature -APY",
+            "Name": "Feature-APY",
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "<p>APY: 0.50%</p>",
             "mflow__DisplayName__c": "Annual Percentage Yield",
@@ -455,7 +455,7 @@
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_1" },
-            "Name": "Feature -Min-Deposit",
+            "Name": "Feature-Min-Deposit",
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
             "mflow__DisplayName__c": "Min Deposit",
@@ -493,7 +493,7 @@
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_0" },
-            "Name": "Feature -APY",
+            "Name": "Feature-APY",
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "<p>APY: 0.60%</p>",
             "mflow__DisplayName__c": "Annual Percentage Yield",
@@ -505,7 +505,7 @@
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_1" },
-            "Name": "Feature -Min-Deposit",
+            "Name": "Feature-Min-Deposit",
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
             "mflow__DisplayName__c": "Min Deposit",
@@ -543,7 +543,7 @@
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_0" },
-            "Name": "Feature -APY",
+            "Name": "Feature-APY",
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "<p>APY: 0.65%</p>",
             "mflow__DisplayName__c": "Annual Percentage Yield",
@@ -555,7 +555,7 @@
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_1" },
-            "Name": "Feature -Min-Deposit",
+            "Name": "Feature-Min-Deposit",
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
             "mflow__DisplayName__c": "Min Deposit",
@@ -593,7 +593,7 @@
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef15_0" },
-            "Name": "Feature -APY",
+            "Name": "Feature-APY",
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "<p>APY: 0.75%</p>",
             "mflow__DisplayName__c": "Annual Percentage Yield",
@@ -605,7 +605,7 @@
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef15_1" },
-            "Name": "Feature -Min-Deposit",
+            "Name": "Feature-Min-Deposit",
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
             "mflow__DisplayName__c": "Min Deposit",
@@ -643,7 +643,7 @@
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef16_0" },
-            "Name": "Feature -APY",
+            "Name": "Feature-APY",
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "<p>APY: 0.80%</p>",
             "mflow__DisplayName__c": "Annual Percentage Yield",
@@ -655,7 +655,7 @@
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef16_1" },
-            "Name": "Feature -Min-Deposit",
+            "Name": "Feature-Min-Deposit",
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "<p>Min Deposit : $500</p>",
             "mflow__DisplayName__c": "Min Deposit",
