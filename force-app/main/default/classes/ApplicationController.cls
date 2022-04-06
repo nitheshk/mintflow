@@ -231,7 +231,8 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse submit(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(SubmitApplicationService.getInstance().submit(request.data));
+      Application__c application = SubmitApplicationService.getInstance().submit(request.data);
+      return ApexResponse.ok(ApplicationService.getInstance().updateFlowState(application));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);
