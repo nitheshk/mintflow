@@ -502,7 +502,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
           'urlSuffix',
           '/' +
           customerInterest.InterestProduct__r.Category__c.toLowerCase().replace(' ', '-') +
-          '/flows/otp'
+          '/sub-app/otp'
         );
         interestedProductList.add(interestedProductParams);
       }

@@ -62,7 +62,7 @@ notification.send(new Set<String>{ NotificationBuilder.getRegularGroupId('OnKycS
 Map<String, String> params = new Map<String, String>{
   'aplType' => 'Joint',
   'flw' => 'JointFlow',
-  'urlSuffix' => '/savings/joints/welcome',
+  'urlSuffix' => '/savings/joint-app/welcome',
   'aplId' => 'a0bN000000EZR1mIAH',
   'ch' => 'Virtual'
 };
@@ -78,7 +78,7 @@ Map<String, String> params = new Map<String, String>{
 Map<String, String> params = new Map<String, String>{
   'aplType' => 'Primary',
   'flw' => 'ApplicationFlow',
-  'urlSuffix' => '/savings/application/otp',
+  'urlSuffix' => '/savings/main-app/otp',
   'aplId' => 'a0bN000000EZR2ZIAX',
   'ch' => 'Virtual'
 };
