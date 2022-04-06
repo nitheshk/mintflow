@@ -482,15 +482,6 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
   global virtual Application__c notifyProductInterest(Id applicationId) {
     log?.fine('Inside notifyProductInterest');
 
-    Map<String, String> routingMapping = new Map<String, String>{
-      'Savings' => 'savings',
-      'Checking' => 'checking',
-      'Loans' => 'loans',
-      'Credit Card' => 'credit-card',
-      'Money Market' => 'savings',
-      'Certificate' => 'certificate'
-    };
-
     Application__c application = SubmissionRepository.readApplicationForProductInterest(applicationId);
     if (!CollectionUtils.isListEmpty(application.mflow__CustomerInterests__r)) {
       list<Object> interestedProductList = new List<Object>();
@@ -510,7 +501,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         interestedProductParams.put(
           'urlSuffix',
           '/' +
-          routingMapping.get(customerInterest.InterestProduct__r.Category__c) +
+          customerInterest.InterestProduct__r.Category__c.toLowerCase().replace(' ', '-') +
           '/flows/otp'
         );
         interestedProductList.add(interestedProductParams);
