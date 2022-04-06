@@ -42,7 +42,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     }
 
     //update kyc and status fields
-    this.validateSubmission(application);
+    application = this.validateSubmission(application);
 
     log?.fine('Completed reviewInformationSubmit');
     return application;
