@@ -123,7 +123,7 @@ request.token = 'pyh8mYAVjrnj1iy5gF7JFK47w+KxidbycgQrn9aXie8sLejoTrFvguqFD0SWQlc
 ApexResponse res = ApplicationController.submitToCoreSystem(request);
 system.debug('Full Json : ' + res.data);
 
-// updateSubmissionInfo
+// lwcRecordLevelVisibility
 
 LwcCustomRepository.readSObjectById('mflow__Application__c', 'a026D000004YXdAQAW', '');
 

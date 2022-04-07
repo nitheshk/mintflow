@@ -77,10 +77,10 @@ global with sharing class FinancialAccountController extends AbstractController 
    **/
   @AuraEnabled
   @RemoteAction
-  global static ApexResponse fetchProductFeature(ApexRequest request) {
+  global static ApexResponse fetchProductFeatures(ApexRequest request) {
     try {
       validateRequest(request);
-      return ApexResponse.ok(ProductServiceResolver.getInstance().fetchProductFeature(request.data));
+      return ApexResponse.ok(ProductService.getInstance().fetchProductFeatures(request.data));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);

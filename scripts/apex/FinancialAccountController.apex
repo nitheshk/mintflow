@@ -22,3 +22,15 @@ logger.persist();
 
 //Manually Approved Funding
 FinancialAccountService.testApproveFundingSubmission('App-00166');
+
+//fetchProductWithFeatures
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  'a026D000004YbyGQAS',
+  'a006D000008AcN5QAK',
+  'Primary',
+  'ApplicationFlow'
+);
+
+ApexResponse rs = FinancialAccountController.fetchProductFeatures(request);
+System.debug(rs.data);

@@ -39,4 +39,14 @@ global virtual with sharing class ProductService extends AbstractService {
     }
     return products;
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 03-25-2022
+   * @param String data
+   * @return List<financialProduct__c>
+   **/
+  global virtual List<financialProduct__c> fetchProductFeatures(String data) {
+    return ProductServiceRepository.fetchProductWithFeatures(ApexRequest.getApplicationId());
+  }
 }

@@ -57,22 +57,6 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
   }
 
   /**
-   * @description fetch product features based on product Id
-   * @author Digital Align Team | 03-25-2022
-   * @param String productId
-   * @return List<ProductFeature__c>
-   **/
-  public static List<ProductFeature__c> fetchProductFeatureByProduct(string productId) {
-    return (List<ProductFeature__c>) getRecords(
-      Query.newInstance(ProductFeature__c.SObjectType)
-        .addFields()
-        .whereEq('mflow__isActive__c', true)
-        .andCon()
-        .whereEq('FinancialProduct__c', productId)
-        .toString()
-    );
-  }
-  /**
    * @description fetch templates based on filters
    * @author Digital Align Team | 01-04-2022
    * @param List<FinancialAccount__c> financialAccounts
@@ -110,11 +94,41 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
         .addFields()
         .whereEq('mflow__ProductService__c', null)
         .andCon()
-        .whereEq('mflow__Type__c', 'Product Configuration')
+        .whereEq('mflow__Type__c', ApplicationConstant.PRODUCT_FEATURE_TYPE_PRODUCT_CONFIG)
         .orderBy('mflow__Order__c')
         .run()
         .whereEq('mflow__isActive__c', true)
         .orderBy('mflow__Order__c')
+        .toString()
+    );
+  }
+
+  /**
+   * @description fetch product features based on product Id
+   * @author Digital Align Team | 03-25-2022
+   * @param String productId
+   * @return List<financialProduct__c>
+   **/
+  public static List<financialProduct__c> fetchProductWithFeatures(Id applicationId) {
+    return (List<financialProduct__c>) getRecords(
+      Query.newInstance(financialProduct__c.SObjectType)
+        .addFields()
+        .queryChild('mflow__ProductFeatures__r')
+        .addFields()
+        .whereEq('mflow__ProductService__c', null)
+        .andCon()
+        .whereEq('mflow__Type__c', ApplicationConstant.PRODUCT_FEATURE_TYPE_PRODUCT_DESC)
+        .orderBy('mflow__Order__c')
+        .run()
+        .whereEq('mflow__isActive__c', true)
+        .andCon()
+        .whereIn(
+          'Id',
+          Query.newInstance(mflow__FinancialAccount__c.SObjectType)
+            .addFields('mflow__FinancialProduct__c')
+            .whereEq('mflow__Application__c', applicationId)
+            .toString()
+        )
         .toString()
     );
   }

@@ -56,14 +56,9 @@ public with sharing class ApplicationConstant {
   public static final String FOCUS_INITIAL_INTEREST = 'Initial Interest';
   public static final String FOCUS_REFERRAL = 'Referral';
 
-  public static String CUSTOMER_SERVICES = '211B428E-B8B5-4EB9-973D-106F013C371F';
+  // Product Feature
+  public static final String PRODUCT_FEATURE_TYPE_PRODUCT_DESC = 'Product Description';
+  public static final String PRODUCT_FEATURE_TYPE_PRODUCT_CONFIG = 'Product Configuration';
 
-  // RPA to Salesforce Field Mapping
-  /*  public Static final Map<String,String> STATUS_CONVERSION= new Map<String,String>{
-       'Passed' =>  'Passed' , 'PASSED' => 'Passed' ,
-       'Failed' => 'Failed' , 'FAILED' => 'Failed' ,
-       'Accept' => 'Accept' , 'ACCEPT' => 'Accept' ,
-       'Review' => 'Review' , 'REVIEW' => 'Review' ,
-       'Expired' =>'Expired' , 'EXPIRED'=> 'Expired'
-  };*/
+  public static String CUSTOMER_SERVICES = '211B428E-B8B5-4EB9-973D-106F013C371F';
 }

@@ -237,7 +237,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Carefree Checking",
             "mflow__Topic__c": "Features",
-            "mflow__isActive__c": true
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_1" },
