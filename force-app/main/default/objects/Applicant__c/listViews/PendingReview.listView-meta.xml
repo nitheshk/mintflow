@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>RevisionInProgress</fullName>
+    <fullName>PendingReview</fullName>
     <columns>NAME</columns>
-    <columns>Stage__c</columns>
-    <columns>Status__c</columns>
+    <columns>ApplicantType__c</columns>
+    <columns>CreditScore__c</columns>
     <columns>KYCStatus__c</columns>
-    <columns>OWNER.FIRST_NAME</columns>
+    <columns>Status__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Status__c</field>
         <operation>equals</operation>
-        <value>Submit for Review</value>
+        <value>Pending Review</value>
     </filters>
-    <label>Revision In Progress</label>
+    <label>Pending Review</label>
 </ListView>

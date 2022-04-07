@@ -67,7 +67,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
-            <value>Pending Review,Review In Progress,Submit for Review,Revision in Progress</value>
+            <value>Pending Review,Review In Progress,Submit for Review</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

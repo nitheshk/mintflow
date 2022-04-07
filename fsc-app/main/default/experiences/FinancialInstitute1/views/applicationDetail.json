@@ -238,7 +238,7 @@
                 },
                 {
                   "componentAttributes": {
-                    "filter": "(KYCStatus__c='Passed'  And Status__c='Revision in Progress') OR (Status__c='Submitted' And Stage__c='Exception')",
+                    "filter": "(KYCStatus__c='Passed'  And Status__c='Pending Review') OR (Status__c='Submitted' And Stage__c='Exception')",
                     "objectApiName": "mflow__Application__c",
                     "recordId": "{!recordId}"
                   },

@@ -25,7 +25,6 @@ public with sharing class ApplicationConstant {
   public static final String PENDING_REVIEW = 'Pending Review';
   public static final String SUBMITTED = 'Submitted';
   public static final String SUBMITTED_FOR_REVIEW = 'Submit for Review';
-  public static final String REVISION_IN_PROGRESS = 'Revision in Progress';
   public static final String FUNDING_IN_PROGRESS = 'Funding in Progress';
   public static final String REJECTED = 'Rejected';
   public static final String DRAFT = 'DRAFT';

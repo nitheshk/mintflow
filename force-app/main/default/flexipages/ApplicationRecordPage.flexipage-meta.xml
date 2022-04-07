@@ -284,7 +284,7 @@
                 <componentInstanceProperties>
                     <name>filter</name>
                     <value
-          >(KYCStatus__c=&apos;Passed&apos;  And Status__c=&apos;Revision in Progress&apos;) OR (Status__c=&apos;Submitted&apos; And Stage__c=&apos;Exception&apos;)</value>
+          >(KYCStatus__c=&apos;Passed&apos;  And Status__c=&apos;Pending Review&apos;) OR (Status__c=&apos;Submitted&apos; And Stage__c=&apos;Exception&apos;)</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>objectApiName</name>

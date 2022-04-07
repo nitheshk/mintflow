@@ -109,10 +109,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Revision in Progress</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Saved</fullName>
             <default>false</default>
         </values>

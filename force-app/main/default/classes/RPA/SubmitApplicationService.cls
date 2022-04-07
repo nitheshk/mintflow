@@ -103,7 +103,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
           'PrimaryReviewInformationSubmitted'
         );
     } else if (isFlowCompleted && !isKYCApproved) {
-      application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+      application.Status__c = ApplicationConstant.PENDING_REVIEW;
       application.KycStatus__c = ApplicationConstant.KYC_UNDER_REVIEW;
       application.SubmittedDate__c = Datetime.now();
       application.SubmittedBy__c = UserInfo.getUserId();
@@ -268,7 +268,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         }
       }
       when else {
-        application.Status__c = ApplicationConstant.REVISION_IN_PROGRESS;
+        application.Status__c = ApplicationConstant.PENDING_REVIEW;
         application.MemberNumber__c = submissionResult.MemberNumber;
       }
     }
