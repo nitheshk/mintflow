@@ -150,7 +150,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
     for (ReferralProduct__c referralProduct : referralProducts) {
       CustomerInterest__c customerInterest = new CustomerInterest__c();
       customerInterest.mflow__Application__c = applicationId;
-      customerInterest.Name = applicationId;
+      customerInterest.Name = referralProduct.CrossSellProduct__r.mflow__DisplayLabel__c;
       customerInterest.mflow__Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_REFERRAL;
       customerInterest.mflow__InterestProduct__c = referralProduct.CrossSellProduct__c;
       customerInterest.mflow__InterestProduct__r = referralProduct.CrossSellProduct__r;
