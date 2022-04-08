@@ -1,5 +1,31 @@
 @istest
 public with sharing class FinancialAccountControllerTest {
+  private static void makeApplicationConfiguration() {
+    ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
+    insert appConfig;
+    TestData.createSiteSetting();
+    List<FinancialProduct__c> products = TestData.createProduct();
+    insert products;
+  }
+  private static Applicant__c createApplicantDataWithChild(Application__c application) {
+    Applicant__c applicant = Application.Applicants__r[0];
+    SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
+
+    IdentificationDocument__c identity = TestData.createIdentity(applicant.Id);
+    insert identity;
+
+    Employment__c employment = TestData.createEmployment(applicant.Id);
+    insert employment;
+
+    ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
+    insert address;
+
+    construct.addChildObject('mflow__IdentificationDocuments__r', identity);
+    construct.addChildObject('mflow__Employments__r', employment);
+    construct.addChildObject('mflow__ContactPointAddresses__r', address);
+
+    return (Applicant__c) construct.build();
+  }
   private static Application__c makeApplicationData() {
     Application__c acc = TestData.createApplication();
     acc = (Application__c) DatabaseUtils.insertRecord(acc);
@@ -32,11 +58,9 @@ public with sharing class FinancialAccountControllerTest {
     mflow__Application__c application = makeApplicationData();
     ApexRequest request = new ApexRequest();
     request.applicationId = application.Id; //Application__c ID
-    Test.startTest();
     FinancialAccountController.fetchServices(request);
     FinancialAccountController.fetchServices(request);
-    FinancialAccountController.fetchReferralProducts(request);
-    Test.stopTest();
+    FinancialAccountController.fetchServices(null);
   }
   @IsTest
   private static void exceptionTest() {
@@ -47,16 +71,52 @@ public with sharing class FinancialAccountControllerTest {
   }
   @IsTest
   private static void saveFinancialAccountsTest() {
-    mflow__Application__c application = makeApplicationData();
     ApexRequest request = new ApexRequest();
+    ApexResponse res = new ApexResponse();
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //400
+    request.token = ApexRequest.getToken();
+    res = FinancialAccountController.saveFinancialAccounts(request);
+
+    //200
     request.applicationId = application.Id; //Application__c ID
     request.setData(JSON.serialize(application.FinancialAccounts__r));
     ApexPages.currentPage().getParameters().put('pid', 'IC001');
     ApexPages.StandardController sc = new ApexPages.StandardController(application);
-    Test.startTest();
-    FinancialAccountController.saveFinancialAccounts(request);
-    FinancialAccountController.fetchReferralProducts(new ApexRequest());
-    FinancialAccountService.getInstance().createInitialFinancialAccount(application);
-    Test.stopTest();
+    res = FinancialAccountController.saveFinancialAccounts(request);
+
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    res = FinancialAccountController.saveFinancialAccounts(null);
+  }
+  @IsTest
+  private static void fetchProductFeaturesTest() {
+    ApexRequest request = new ApexRequest();
+    ApexResponse res = new ApexResponse();
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
+    request.token = ApexRequest.getToken();
+    res = FinancialAccountController.fetchProductFeatures(request);
+    system.assertEquals(200, res.status, 'success');
+    //500
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    res = FinancialAccountController.fetchProductFeatures(request);
+    system.assertEquals(500, res.status, 'success');
+
+    request = new ApexRequest();
+    res = FinancialAccountController.fetchProductFeatures(null);
   }
 }
