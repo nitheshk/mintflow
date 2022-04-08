@@ -147,7 +147,7 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       .run()
       .queryChild('mflow__CustomerInterests__r')
       .addFields()
-      .whereEq('Focus__c', ApplicationConstant.FOCUS_INITIAL_INTEREST)
+      .whereEq('Focus__c', ApplicationConstant.CUSTOMER_INTEREST_FOCUS_INITIAL_INTEREST)
       .run()
       .queryChild('mflow__FinancialAccounts__r')
       .addFields()

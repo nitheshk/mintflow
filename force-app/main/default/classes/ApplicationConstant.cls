@@ -53,8 +53,8 @@ public with sharing class ApplicationConstant {
   public static final String FUNDING_FUNDING = 'Funding';
 
   //Customer Interest Focus
-  public static final String FOCUS_INITIAL_INTEREST = 'Initial Interest';
-  public static final String FOCUS_REFERRAL = 'Referral';
+  public static final String CUSTOMER_INTEREST_FOCUS_INITIAL_INTEREST = 'Initial Interest';
+  public static final String CUSTOMER_INTEREST_FOCUS_REFERRAL = 'Referral';
 
   // Product Feature
   public static final String PRODUCT_FEATURE_TYPE_PRODUCT_DESC = 'Product Description';

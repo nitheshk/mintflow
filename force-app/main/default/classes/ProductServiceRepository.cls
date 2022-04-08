@@ -30,8 +30,6 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
   public static Application__c readApplicationWithFA(Id applicationId) {
     Query qry = Query.newInstance(Application__c.SObjectType)
       .addFields()
-      .queryChild('mflow__CustomerInterests__r')
-      .run()
       .queryChild('mflow__FinancialAccounts__r')
       .addFields()
       .run()
@@ -57,17 +55,38 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
   }
 
   /**
-   * @description fetch templates based on filters
-   * @author Digital Align Team | 01-04-2022
-   * @param List<FinancialAccount__c> financialAccounts
-   * @return List<ProductService__c>
+   * @description Read Application For Referral
+   * @author Digital Align Team | 04-08-2022
+   * @param Id applicationId
+   * @return Application__c
+   **/
+  public static Application__c readApplicationForReferral(Id applicationId) {
+    Query qry = Query.newInstance(Application__c.SObjectType)
+      .addFields()
+      .queryChild('mflow__CustomerInterests__r')
+      .addFields()
+      .queryLookup('mflow__InterestProduct__r')
+      .addFields()
+      .run()
+      .run()
+      .queryChild('mflow__FinancialAccounts__r')
+      .addFields()
+      .run()
+      .addLimit(1)
+      .whereEq('Id', applicationId);
+    return (Application__c) getRecord(qry.toString());
+  }
+
+  /**
+   * @description  Fetch Referral Products
+   * @author Digital Align Team | 04-08-2022
+   * @param Set<Id> productIds
+   * @return List<ReferralProduct__c>
    **/
   public static List<ReferralProduct__c> fetchReferralProducts(Set<Id> productIds) {
     return (List<ReferralProduct__c>) getRecords(
       Query.newInstance(ReferralProduct__c.SObjectType)
-        .addFields(
-          'Name,mflow__Required__c,mflow__Order__c,mflow__FinancialProduct__c,mflow__CrossSellProduct__c,IsSelected__c'
-        )
+        .addFields()
         .queryLookup('mflow__CrossSellProduct__r')
         .addFields()
         .run()

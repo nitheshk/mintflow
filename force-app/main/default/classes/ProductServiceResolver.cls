@@ -50,7 +50,6 @@ global with sharing class ProductServiceResolver extends AbstractService {
       List<ProductService__c> services = ProductServiceRepository.fetchServicesByProduct(
         financialAccount.FinancialProduct__c
       );
-      log?.debug(services);
 
       financialAccountService.addAll(this.buildService(services, financialAccount.Id));
     }
@@ -92,16 +91,74 @@ global with sharing class ProductServiceResolver extends AbstractService {
    * @description fetch referral Product product for the product selected in the application
    * @author Digital Align Team | 04-03-2022
    * @param String data
-   * @return List<referralProducts>
+   * @return List<CustomerInterest__c>
    **/
-  global virtual List<ReferralProduct__c> fetchReferralProducts(String data) {
-    mflow__Application__c application = ProductServiceRepository.readApplicationWithFA(ApexRequest.getApplicationId());
-    ProductServiceRepository.deleteRecords(application.CustomerInterests__r);
-    Set<Id> productIds = new Set<Id>();
-    for (FinancialAccount__c fa : application.financialAccounts__r) {
-      productIds.add(fa.FinancialProduct__c);
+  global virtual List<CustomerInterest__c> fetchReferralProducts(String data) {
+    log?.fine('Inside fetchReferralProducts');
+    Id applicationId = ApexRequest.getApplicationId();
+    mflow__Application__c application = ProductServiceRepository.readApplicationForReferral(applicationId);
+
+    List<CustomerInterest__c> oldCustomerInterestInitial = new List<CustomerInterest__c>();
+    List<CustomerInterest__c> oldCustomerInterestReferral = new List<CustomerInterest__c>();
+    if (!application.mflow__CustomerInterests__r.isEmpty()) {
+      for (CustomerInterest__c customerInterest : application.mflow__CustomerInterests__r) {
+        if (CustomerInterest.mflow__Focus__c == 'Initial Interest') {
+          oldCustomerInterestInitial.add(CustomerInterest);
+        } else {
+          oldCustomerInterestReferral.add(CustomerInterest);
+        }
+      }
     }
-    List<ReferralProduct__c> referralProducts = ProductServiceRepository.fetchReferralProducts(productIds);
-    return referralProducts;
+
+    if (!oldCustomerInterestInitial.isEmpty()) {
+      return oldCustomerInterestInitial;
+    }
+
+    Set<Id> productIds = new Set<Id>();
+    for (FinancialAccount__c financialAccount : application.financialAccounts__r) {
+      productIds.add(financialAccount.FinancialProduct__c);
+    }
+
+    List<CustomerInterest__c> customerInterests = buildCustomerInterest(
+      ProductServiceRepository.fetchReferralProducts(productIds),
+      applicationId
+    );
+
+    Map<String, CustomerInterest__c> customerInterestMap = new Map<String, CustomerInterest__c>();
+    for (CustomerInterest__c customerInterest : customerInterests) {
+      customerInterestMap.put(customerInterest.mflow__InterestProduct__c, customerInterest);
+    }
+    for (CustomerInterest__c customerInterest : oldCustomerInterestReferral) {
+      customerInterestMap.put(customerInterest.mflow__InterestProduct__c, customerInterest);
+    }
+
+    return customerInterestMap.values();
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 04-08-2022
+   * @param List<ReferralProduct__c> referralProducts
+   * @param Id applicationId
+   * @return List<CustomerInterest__c>
+   **/
+  global virtual List<CustomerInterest__c> buildCustomerInterest(
+    List<ReferralProduct__c> referralProducts,
+    Id applicationId
+  ) {
+    List<CustomerInterest__c> customerInterests = new List<CustomerInterest__c>();
+    for (ReferralProduct__c referralProduct : referralProducts) {
+      CustomerInterest__c customerInterest = new CustomerInterest__c();
+      customerInterest.mflow__Application__c = applicationId;
+      customerInterest.Name = applicationId;
+      customerInterest.mflow__Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_REFERRAL;
+      customerInterest.mflow__InterestProduct__c = referralProduct.CrossSellProduct__c;
+      customerInterest.mflow__InterestProduct__r = referralProduct.CrossSellProduct__r;
+      customerInterest.mflow__isSelected__c = referralProduct.IsSelected__c;
+      customerInterest.mflow__Order__c = referralProduct.mflow__Order__c;
+      customerInterest.mflow__Required__c = referralProduct.mflow__Required__c;
+      customerInterests.add(customerInterest);
+    }
+    return customerInterests;
   }
 }

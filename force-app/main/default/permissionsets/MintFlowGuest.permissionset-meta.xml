@@ -115,7 +115,17 @@
     <description>MintFlow Site Guest profile</description>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomerInterest__c.Focus__c </field>
+        <field>CustomerInterest__c.Order__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomerInterest__c.Required__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomerInterest__c.Focus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
