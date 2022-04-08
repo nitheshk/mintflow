@@ -14,6 +14,9 @@ public with sharing class TestData {
     appConfig.SessionExpirationTime__c = 2;
     appConfig.CountyNames__c = 'Oregaon;Idhaho;Washington';
     appConfig.PackageVersion__c = '1';
+    appConfig.mflow__OOWAnswerPercent__c = 80;
+    appConfig.mflow__OOWPassThreshhold__c = 70;
+    appConfig.mflow__ReferralUrlExpirationTime__c = 72;
     return appConfig;
   }
 

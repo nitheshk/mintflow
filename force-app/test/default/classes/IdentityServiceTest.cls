@@ -156,8 +156,9 @@ public with sharing class IdentityServiceTest {
     Test.stopTest();
     System.assertEquals(null, null, 'msg');
   }
+  //---------------------------------------------customerDueDiligenceTest-----------------------------------
   @isTest
-  static void customerDueDiligenceTest() {
+  static void customerDueDiligenceTestOne() {
     makeApplicationConfiguration();
     ContentVersion cv = makeContentVersion();
     Applicant__c applicant = makeApplicantData();
@@ -165,14 +166,65 @@ public with sharing class IdentityServiceTest {
     request.applicantId = applicant.Id;
     request.applicationId = applicant.Application__c; //Application__c ID
     request.setHeader(new Map<String, Object>{ 'applicantId' => applicant.Id });
+    ApexResponse response = new ApexResponse();
     Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('DueDiligence', '200'));
     Test.startTest();
-
-    ApexResponse response = IdentityController.customerDueDiligence(request);
+    response = IdentityController.customerDueDiligence(request);
     request.setData(response.data);
     IdentityController.validateCustomerAnswers(request);
     Test.stopTest();
-    System.assertEquals(null, null, 'msg');
+  }
+  @isTest
+  static void customerDueDiligenceTestTwo() {
+    makeApplicationConfiguration();
+    ContentVersion cv = makeContentVersion();
+    Applicant__c applicant = makeApplicantData();
+    ApexRequest request = new ApexRequest();
+    request.applicantId = applicant.Id;
+    request.applicationId = applicant.Application__c; //Application__c ID
+    request.setHeader(new Map<String, Object>{ 'applicantId' => applicant.Id });
+    ApexResponse response = new ApexResponse();
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('DueDiligenceFail', '400'));
+    Test.startTest();
+    response = IdentityController.customerDueDiligence(request);
+    Test.stopTest();
+  }
+  @isTest
+  static void customerDueDiligenceTestThree() {
+    makeApplicationConfiguration();
+    ContentVersion cv = makeContentVersion();
+    Applicant__c applicant = makeApplicantData();
+    ApexRequest request = new ApexRequest();
+    request.applicantId = applicant.Id;
+    request.applicationId = applicant.Application__c; //Application__c ID
+    request.setHeader(new Map<String, Object>{ 'applicantId' => applicant.Id });
+    ApexResponse response = new ApexResponse();
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('DueDiligenceNullResponse', '200'));
+    Test.startTest();
+    response = IdentityController.customerDueDiligence(request);
+    Test.stopTest();
+  }
+  @isTest
+  static void validateCustomerAnswersOne() {
+    makeApplicationConfiguration();
+    Applicant__c applicant = makeApplicantData();
+    ApexRequest request = new ApexRequest();
+    request.applicantId = applicant.Id; //Application__c ID
+    request.setHeader(new Map<String, Object>{ 'applicantId' => '' });
+    ApexResponse response = new ApexResponse();
+    response = IdentityController.validateCustomerAnswers(request);
+    system.assertEquals(500, response.status, 'success');
+  }
+  @isTest
+  static void validateCustomerAnswersTwo() {
+    makeApplicationConfiguration();
+    Applicant__c applicant = makeApplicantData();
+    ApexRequest request = new ApexRequest();
+    request.applicantId = applicant.Id; //Application__c ID
+    request.applicationId = applicant.Application__c;
+    request.setHeader(new Map<String, Object>{ 'applicantId' => applicant.Id });
+    ApexResponse response = IdentityController.validateCustomerAnswers(request);
+    system.assertEquals(500, response.status, 'success');
   }
   @isTest
   static void verifyCountyUsingGoogleApi() {

@@ -24,6 +24,12 @@ global with sharing class IdentityServiceMock implements HttpCalloutMock {
       when 'DueDiligence' {
         DueDiligence(response);
       }
+      when 'DueDiligenceFail' {
+        DueDiligenceFail(response);
+      }
+      when 'DueDiligenceNullResponse' {
+        DueDiligenceNullResponse(response);
+      }
       when 'verifyCountyUsingGoogleApi' {
         verifyCountyUsingGoogleApi(response);
       }
@@ -40,6 +46,20 @@ global with sharing class IdentityServiceMock implements HttpCalloutMock {
       response.setBody(
         '{"results":[{"address_components":[{"long_name":"98013","short_name":"98013","types":["postal_code"]},{"long_name":"Burton","short_name":"Burton","types":["neighborhood","political"]},{"long_name":"Vashon","short_name":"Vashon","types":["locality","political"]},{"long_name":"King County","short_name":"King County","types":["administrative_area_level_2","political"]},{"long_name":"Washington","short_name":"WA","types":["administrative_area_level_1","political"]},{"long_name":"United States","short_name":"US","types":["country","political"]}],"formatted_address":"Vashon, WA 98013, USA","geometry":{"location":{"lat":47.39,"lng":-122.46},"location_type":"APPROXIMATE","viewport":{"northeast":{"lat":47.3975535,"lng":-122.4439926},"southwest":{"lat":47.3824455,"lng":-122.4760074}}},"place_id":"ChIJ_c_eFi1QkFQRKfcvxozLZWM","postcode_localities":["Burton","Vashon"],"types":["postal_code"]}],"status":"OK"}'
       );
+    }
+  }
+  private void DueDiligenceFail(HttpResponse response) {
+    if (value.equalsIgnoreCase('400')) {
+      response.setHeader('Content-Type', 'application/json');
+      response.setBody('[]');
+      response.setStatusCode(400);
+    }
+  }
+  private void DueDiligenceNullResponse(HttpResponse response) {
+    if (value.equalsIgnoreCase('200')) {
+      response.setHeader('Content-Type', 'application/json');
+      response.setBody('');
+      response.setStatusCode(200);
     }
   }
   private void DueDiligence(HttpResponse response) {
