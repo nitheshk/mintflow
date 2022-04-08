@@ -79,7 +79,9 @@ public with sharing class TestData {
       applicant.Application__c = applicationId;
     }
     applicant.FirstName__c = 'John';
+    applicant.mflow__Email__c = 'test.test@email.com';
     applicant.LastName__c = 'Doe';
+    applicant.SSN__c = '8990';
     applicant.EmailOtp__c = '4567';
     applicant.ApplicantType__c = 'Primary';
     applicant.CustomerNumber__c = '578784';
@@ -241,13 +243,36 @@ public with sharing class TestData {
     consent.Name = 'Consent Name';
     return consent;
   }
-  public static ConsentLineItem__c createConsentLineItem() {
+  public static List<mflow__ConsentTemplate__c> createConsentTemplate() {
+    List<mflow__ConsentTemplate__c> consentLines = new List<mflow__ConsentTemplate__c>();
+    mflow__ConsentTemplate__c consentTemplate = new mflow__ConsentTemplate__c();
+    consentTemplate.Name = 'Privacy Policy';
+    consentTemplate.mflow__Code__c = 'C0002';
+    consentTemplate.mflow__ConsentType__c = 'Disclosure';
+    consentTemplate.mflow__DocumentName__c = 'PrivacyPolicy_v1';
+    consentTemplate.mflow__DocumentType__c = 'Static';
+    consentTemplate.mflow__ExternalId__c = 'E0002';
+    consentTemplate.mflow__Language__c = 'English';
+    consentTemplate.mflow__LongDescipription__c = 'Privacy Policy';
+    consentTemplate.mflow__ShortDescription__c = 'Privacy Policy';
+    consentTemplate.mflow__VersionNumber__c = 'v1';
+    consentLines.add(consentTemplate);
+    return consentLines;
+  }
+  public static List<ConsentLineItem__c> createConsentLineItem() {
+    List<ConsentLineItem__c> consentLines = new List<ConsentLineItem__c>();
     ConsentLineItem__c consentLine = new ConsentLineItem__c();
-    consentLine.Name = 'Consent Line Item';
-    consentLine.EventIdentifier__c = 'event';
+    consentLine.Name = 'Privacy Policy';
+    consentLine.EventIdentifier__c = 'MemberAgreementPage';
     consentLine.Order__c = 1;
+    consentLine.mflow__ApplicantType__c = 'Primary;Joint';
+    consentLine.mflow__Channel__c = 'Virtual;Branch';
+    consentLine.mflow__ExternalId__c = 'CLI0002';
+    consentLine.mflow__IsSignatureRequired__c = false;
     consentLine.isActive__c = true;
-    return consentLine;
+
+    consentLines.add(consentLine);
+    return consentLines;
   }
   public static mflow__SurveyTemplate__c createSurveyTemplates() {
     mflow__SurveyTemplate__c survey = new mflow__SurveyTemplate__c();

@@ -7,6 +7,11 @@ public with sharing class ConsentResolverTest {
     TestData.createSiteSetting();
     List<FinancialProduct__c> products = TestData.createProduct();
     insert products;
+    List<mflow__ConsentTemplate__c> consentTemplates = TestData.createConsentTemplate();
+    insert consentTemplates;
+    List<ConsentLineItem__c> consentLineItem = TestData.createConsentLineItem();
+    consentLineItem[0].ConsentTemplate__r = consentTemplates[0];
+    insert consentLineItem;
   }
   //createApplicantDataWithChild
   private static Applicant__c createApplicantDataWithChild(Application__c application) {
@@ -41,25 +46,9 @@ public with sharing class ConsentResolverTest {
     //200
     ApexRequest request = new ApexRequest();
     request.token = ApexRequest.getToken();
-    ApexRequest.setApplicantType('Primary');
-    request.header = '{"eventIdentifier":"event" }';
+    request.header = '{"eventIdentifier":"MemberAgreementPage" }';
     ApexResponse res = ApplicationController.fetchConsents(request);
     res = ApplicationController.fetchConsents(request);
     system.assertEquals(200, res.status, 'success');
-    res = ApplicationController.fetchConsents(request);
-    // insert TestData.createConsentLineItem();
-    // request = new ApexRequest();
-    // request.token = ApexRequest.getToken();
-    // ApexRequest.setApplicantType('Primary');
-    // request.header = '{"eventIdentifier":"event" }';
-    // ApplicationController.fetchConsents(request);
-    // system.assertEquals(200, res.status, 'success');
-
-    // request = new ApexRequest();
-    // request.token = ApexRequest.getToken();
-    // ApexRequest.setApplicantType('Primary');
-    // request.header = '{"eventIdentifier":"event","filter":[Name] }';
-    // ApplicationController.fetchConsents(request);
-    // system.assertEquals(200, res.status, 'success');
   }
 }
