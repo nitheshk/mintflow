@@ -136,6 +136,12 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
     );
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-08-2022
+   * @param Id applicationId
+   * @return Application__c
+   **/
   global static Application__c readApplicationWithChild(Id applicationId) {
     Query qry = Query.newInstance(Application__c.SObjectType)
       .addFields()
