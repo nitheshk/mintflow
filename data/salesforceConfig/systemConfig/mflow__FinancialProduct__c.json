@@ -57,7 +57,8 @@
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Preferred Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC004" },
@@ -75,7 +76,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Special Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC002" },
@@ -93,7 +95,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Idaho Medical Savings Accounts",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0020" },
@@ -114,6 +117,7 @@
       "mflow__SubCategory__c": "Instant Access Savings",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -164,7 +168,8 @@
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Power Plus Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-005" },
@@ -182,7 +187,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Business Non Profit",
       "mflow__Type__c": "Business",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC005" },
@@ -202,7 +208,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0021" },
@@ -223,6 +230,7 @@
       "mflow__SubCategory__c": "Carefree Checking",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -280,7 +288,7 @@
       "mflow__ImageName__c": "credit-card-dog.jpg",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0012",
-      "mflow__LongDescription__c": "3 Month Certificate",
+      "mflow__LongDescription__c": "3 Month CDs are very short-term products and generally come with the lowest interest rates. Within the 3 month CD category on the rate table above, DepositAccounts also lists CDs with shorter terms such as 7 days. Usually, the shorter the CD’s time frame, the less it will pay in interest – however, financial institutions competing for customers will often break this trend in order to attract attention to the shorter term CD and open new accounts.",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
       "mflow__Order__c": 20,
@@ -289,12 +297,39 @@
       "mflow__SubCategory__c": "3 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
-        "totalSize": 2,
+        "totalSize": 4,
         "done": true,
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_0" },
+            "Name": "Key Takeaways",
+            "mflow__DisplayContents__c": "<ul><li>A certificate of deposit is defined as an investment vehicle that locks invested funds for a fixed tenure, and offers safer but lower rates of return as compared to stocks or bonds. They are mostly issued by banks and credit unions in exchange of an interest income.</li><li>The tenure of CDs ranges from couple of days, a month, six months, a year five years to ten years.</li><li>Interest rates offered could be fixed or floating and are usually paid monthly or semi-annually. Banks and credit unions adjust rates periodically as per changes in the Federal Reserve Rates.</li><li>They come at a low risk with some being insured by government bodies. There is also a lack of liquidity as any withdrawal before maturity usually calls for a penalty.</li><li>There are many types of CDs in the market with some being traditional type, liquid CD, jumbo type and broker CDs, etc.</li></ul>",
+            "mflow__DisplayName__c": "Key Takeaways",
+            "mflow__ImageType__c": "Relative",
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "The digital experience",
+            "mflow__Topic__c": "Key Takeaways",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_1" },
+            "Name": "CD Advantages",
+            "mflow__DisplayContents__c": "<ul><li>The risks are low with CDs as compared to other instruments such as stocks, bonds, etc. Being kept with banks, they are relatively safer from market fluctuations which stocks are prone to. Moreover, many have federal insurance coverage.</li><li>CDs offer better returns for the amount deposited than the traditional savings account.</li><li>Some online banks and institutions offer very high yielding products which an investor can explore to make better returns.</li><li>Post maturity, a depositor has the option to reinvest their funds using rollover options into a new CD.</li></ul>",
+            "mflow__DisplayName__c": "CD Advantages",
+            "mflow__ImageType__c": "Relative",
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "CD Advantages",
+            "mflow__Topic__c": "CD Advantages",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_2" },
             "Name": "Feature-APY",
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "APY: 0.10%",
@@ -306,7 +341,7 @@
             "mflow__Type__c": "Product Configuration"
           },
           {
-            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_1" },
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_3" },
             "Name": "Feature-Min-Deposit",
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "Min Deposit : $500",
@@ -339,6 +374,7 @@
       "mflow__SubCategory__c": "6 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -389,6 +425,7 @@
       "mflow__SubCategory__c": "12 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -439,6 +476,7 @@
       "mflow__SubCategory__c": "18 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -489,6 +527,7 @@
       "mflow__SubCategory__c": "24 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -539,6 +578,7 @@
       "mflow__SubCategory__c": "36 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -589,6 +629,7 @@
       "mflow__SubCategory__c": "48 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -639,6 +680,7 @@
       "mflow__SubCategory__c": "60 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -689,6 +731,7 @@
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -696,7 +739,7 @@
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef17_0" },
             "Name": "Digital experience",
-            "mflow__DisplayContents__c": "<p><span style=\"font-size: 14px;\">It&#39;s not all about the plastic. Discover online banking, a modern mobile experience and a digital wallet.</span> </p><p><br></p><p>Need to temporarily lock your card? Order a replacement card? Want to check your rewards balance and see if you have enough points for that trip to Palm Springs? Now you can do all that and more with the Manage Cards widget. You just need the First Tech mobile app or online banking. Also shop safely and effortlessly with Digital Wallet programs like Apple Pay, Samsung Pay, Google Pay.</p>",
+            "mflow__DisplayContents__c": "<p><b style=\"font-size: 16px;\"><i>It&#39;s not all about the plastic. Discover online banking, a modern mobile experience and a digital wallet. </i></b></p><p><br></p><p>Need to temporarily lock your card? Order a replacement card? Want to check your rewards balance and see if you have enough points for that trip to Palm Springs? Now you can do all that and more with the Manage Cards widget. You just need the First Tech mobile app or online banking. Also shop safely and effortlessly with Digital Wallet programs like Apple Pay, Samsung Pay, Google Pay.</p>",
             "mflow__DisplayName__c": "Digital experience",
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 2,
@@ -710,6 +753,7 @@
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef17_1" },
             "Name": "Security",
             "mflow__DisplayContents__c": "<p>Local convenience, global security and a connected digital experience.</p><p><br></p><ul><li>Chip-and-PIN transaction authentication accepted worldwide.</li></ul><p><br></p><ul><li>Manage your account and monitor transactions anytime, anywhere with our free mobile app.</li></ul><p><br></p><ul><li>Shop safely and effortlessly with <a href=\"https://masterpass.com/\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">MasterPass®</a> or <a href=\"https://www2.firsttechfed.com/LP=45\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">Apple Pay</a> digital wallet programs.</li></ul><p><br></p>",
+            "mflow__DisplayName__c": "Security",
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
@@ -766,7 +810,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0010" },
@@ -786,7 +831,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Money Market Checking",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0011" },
@@ -806,7 +852,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Money Market Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true
+      "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-004" },
@@ -824,7 +871,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__IsMembershipProduct__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-002" },
@@ -842,7 +890,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Equipment & Vehicle Loans",
       "mflow__Type__c": "Business",
-      "mflow__isActive__c": false
+      "mflow__isActive__c": false,
+      "mflow__IsMembershipProduct__c": false
     }
   ]
 }
