@@ -102,6 +102,23 @@ global virtual with sharing class ApplicationService extends AbstractService {
   }
 
   /**
+   * @description
+   * @author Digital Align Team | 04-11-2022
+   * @return Application__c
+   **/
+  global virtual Application__c readApplicationWithChild() {
+    Application__c application;
+    if (ApexRequest.getApplicantType() == 'Primary') {
+      application = this.readApplicationWithChild(ApexRequest.getApplicationId());
+    } else if (ApexRequest.getApplicantType() == 'Joint') {
+      application = this.readApplicationWithChild(ApexRequest.getApplicationId(), ApexRequest.getApplicantId());
+    } else {
+      throw new CustomException(System.Label.Applicant_ApplicantTypeNotFound);
+    }
+    return application;
+  }
+
+  /**
    * @description Read application by parameter passed
    * @author Digital Align Team | 10-21-2021
    * @param Map<String Object> params

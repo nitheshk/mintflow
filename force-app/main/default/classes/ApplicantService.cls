@@ -215,6 +215,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
       customerInterest.InterestProduct__c = selectedProduct.id;
       customerInterest.Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_INITIAL_INTEREST;
       customerInterest.isSelected__c = true;
+      customerInterest.mflow__Required__c = true;
       FinancialAccountRepository.upsertRecord(primaryAccount);
       FinancialAccountRepository.upsertRecord(customerInterest);
       FinancialAccountRepository.deleteRecords(application.CustomerInterests__r);

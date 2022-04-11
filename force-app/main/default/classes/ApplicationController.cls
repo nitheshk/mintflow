@@ -43,25 +43,8 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse readApplicationWithChild(ApexRequest request) {
     try {
       validateRequest(request);
-      Id applicationId;
-      if (String.isNotBlank(ApexRequest.getApplicationId())) {
-        applicationId = (Id) ApexRequest.getApplicationId();
-      } else {
-        applicationId = (Id) ApexRequest.getParams().get('applicationId');
-      }
-
       log?.debug('request' + request);
-      Application__c application;
-      if (ApexRequest.getApplicantType() == 'Primary') {
-        application = ApplicationService.getInstance().readApplicationWithChild(applicationId);
-      } else if (ApexRequest.getApplicantType() == 'Joint') {
-        application = ApplicationService.getInstance()
-          .readApplicationWithChild(applicationId, ApexRequest.getApplicantId());
-      } else {
-        throw new CustomException(System.Label.Applicant_ApplicantTypeNotFound);
-      }
-
-      return ApexResponse.ok(application);
+      return ApexResponse.ok(ApplicationService.getInstance().readApplicationWithChild());
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
