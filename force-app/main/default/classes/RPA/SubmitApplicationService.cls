@@ -37,14 +37,16 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     Application__c application = (Application__c) SObjectConstructor.deserialize(data, Application__c.class);
     application = ApplicationService.getInstance().saveApplication(application);
 
-    if (application.Status__c == ApplicationConstant.SUBMITTED) {
-      throw new CustomException('Application Already Submitted');
-    }
+    // if (application.Status__c == ApplicationConstant.SUBMITTED) {
+    //   throw new CustomException('Application Already Submitted');
+    // }
 
     //update kyc and status fields
     application = this.validateSubmission(application);
 
     log?.fine('Completed reviewInformationSubmit');
+    //testing purpose only
+    FinancialAccountService.testApproveFundingSubmission(application.Name);
     return application;
   }
 
@@ -85,7 +87,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         isFlowCompleted = false;
       }
     }
-
+    isKYCApproved = true;
     // ALL Applicant Submitted
     if (isFlowCompleted && isKYCApproved) {
       application.Status__c = ApplicationConstant.SUBMITTED;
