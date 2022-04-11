@@ -143,6 +143,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     financialAccount.Ownership__c = oldApplicants.size() > 1 ? 'Joint' : 'Individual';
     financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
     financialAccount.Stage__c = 'Active';
+    financialAccount.isPrimary__c = true;
     financialAccount.Application__c = newApplication.Id;
     financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
       FinancialAccount__c.SObjectType,
@@ -156,7 +157,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     for (Applicant__c oldApplicant : oldApplicants) {
       Applicant__c newApplicant = oldApplicant.clone(false, true, false, false);
       newApplicant.Application__c = newApplication.Id;
-      newApplicant.FlowState__c = 'AddressVerification';
+      newApplicant.FlowState__c = '';
       newApplicant.FlowType__c = 'ApplicationFlow';
       newApplicant.Status__c = ApplicationConstant.IN_PROGRESS;
       //Primary Applicant
