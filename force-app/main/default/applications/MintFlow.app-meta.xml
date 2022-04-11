@@ -104,22 +104,20 @@
     </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>Application__c</tabs>
-    <tabs>standard-Contact</tabs>
-    <tabs>Diagnostic__c</tabs>
-    <tabs>ApplicationConfiguration</tabs>
-    <tabs>Flow__c</tabs>
+    <tabs>Applicant__c</tabs>
     <tabs>FinancialAccount__c</tabs>
-    <tabs>ConsentLineItem__c</tabs>
-    <tabs>ConsentTemplate__c</tabs>
-    <tabs>SurveyTemplate__c</tabs>
-    <tabs>FinancialInstituteAccount</tabs>
-    <tabs>ProductService__c</tabs>
-    <tabs>FinancialAccountService__c</tabs>
-    <tabs>ReferralProduct__c</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-File</tabs>
+    <tabs>ApplicationConfiguration</tabs>
+    <tabs>Diagnostic__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
+        <mappings>
+            <tab>Applicant__c</tab>
+        </mappings>
         <mappings>
             <tab>ApplicationConfiguration</tab>
         </mappings>
@@ -127,40 +125,22 @@
             <tab>Application__c</tab>
         </mappings>
         <mappings>
-            <tab>ConsentLineItem__c</tab>
-        </mappings>
-        <mappings>
-            <tab>ConsentTemplate__c</tab>
-        </mappings>
-        <mappings>
             <tab>Diagnostic__c</tab>
-        </mappings>
-        <mappings>
-            <tab>FinancialAccountService__c</tab>
         </mappings>
         <mappings>
             <tab>FinancialAccount__c</tab>
         </mappings>
         <mappings>
-            <tab>FinancialInstituteAccount</tab>
-        </mappings>
-        <mappings>
-            <tab>Flow__c</tab>
-        </mappings>
-        <mappings>
-            <tab>ProductService__c</tab>
-        </mappings>
-        <mappings>
-            <tab>ReferralProduct__c</tab>
-        </mappings>
-        <mappings>
-            <tab>SurveyTemplate__c</tab>
+            <tab>standard-Account</tab>
         </mappings>
         <mappings>
             <tab>standard-Contact</tab>
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-File</tab>
         </mappings>
         <mappings>
             <tab>standard-home</tab>
