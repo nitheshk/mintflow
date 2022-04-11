@@ -102,15 +102,14 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @return FinancialAccount__c
    **/
   global virtual FinancialAccount__c createInitialFinancialAccount(Application__c application) {
-    String productCode = String.isNotBlank(PageUtils.getCurrentPageParameters('pid'))
-      ? PageUtils.getCurrentPageParameters('pid')
-      : HttpBuilder.getApiConstant('MembershipAccountInternalCode');
+    FinancialProduct__c baseProduct, selectedProduct = FinancialAccountRepository.readBaseProduct();
+    String pid = PageUtils.getCurrentPageParameters('pid');
 
-    FinancialProduct__c selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(productCode);
-    application.ApplicationType__c = selectedProduct.Type__c;
-    if (selectedProduct.InternalCode__c != HttpBuilder.getApiConstant('MembershipAccountInternalCode')) {
-      application.IsExistingCustomer__c = false;
+    if (String.isNotBlank(pid)) {
+      selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(pid);
     }
+
+    application.ApplicationType__c = selectedProduct.Type__c;
     // create financial account
     FinancialAccount__c financialAccount = new FinancialAccount__c();
     financialAccount.FinancialProduct__c = selectedProduct.Id;

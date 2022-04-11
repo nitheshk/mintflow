@@ -188,7 +188,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
     Applicant__c primaryApplicant = application.Applicants__r[0];
 
     Contact existingContact = ApplicantRepository.fetchExistingContact(primaryApplicant);
-    String baseProductCode = HttpBuilder.getApiConstant('MembershipAccountInternalCode');
+    FinancialProduct__c baseProduct = FinancialAccountRepository.readBaseProduct();
     FinancialAccount__c primaryAccount = application.FinancialAccounts__r[0];
 
     if (existingContact != null) {
@@ -197,12 +197,11 @@ global virtual with sharing class ApplicantService extends AbstractService {
       ApplicantRepository.upsertRecord(primaryApplicant);
     }
 
-    if (primaryAccount.ProductCode__c == baseProductCode && existingContact != null) {
+    if (primaryAccount.ProductCode__c == baseProduct.InternalCode__c && existingContact != null) {
       throw new CustomException('You already have Membership Account');
     }
 
-    if (primaryAccount.ProductCode__c != baseProductCode && existingContact == null) {
-      FinancialProduct__c baseProduct = FinancialAccountRepository.readFinancialProductByInternalCode(baseProductCode);
+    if (primaryAccount.ProductCode__c != baseProduct.InternalCode__c && existingContact == null) {
       FinancialProduct__c selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
         primaryAccount.ProductCode__c
       );
@@ -222,7 +221,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
 
       application.IsExistingCustomer__c = false;
       ApplicantRepository.upsertRecord(application);
-    } else if (primaryAccount.ProductCode__c != baseProductCode && existingContact != null) {
+    } else if (primaryAccount.ProductCode__c != baseProduct.InternalCode__c && existingContact != null) {
       application.IsExistingCustomer__c = true;
       ApplicantRepository.upsertRecord(application);
     }

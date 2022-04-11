@@ -43,4 +43,19 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description fetch base membership product
+   * @author Digital Align Team | 04-11-2022
+   * @return FinancialProduct__c
+   **/
+  global static FinancialProduct__c readBaseProduct() {
+    return (FinancialProduct__c) DatabaseUtils.getRecord(
+      Query.newInstance(FinancialProduct__c.SObjectType)
+        .addFields()
+        .whereEq('IsMembershipProduct__c', true)
+        .addLimit(1)
+        .toString()
+    );
+  }
 }
