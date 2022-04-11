@@ -102,6 +102,24 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>FinancialAccountRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
+        <recordType>FinancialAccount__c.CreditCard</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>FinancialAccountRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
+        <recordType>FinancialAccount__c.Certificate</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>Application__c</tabs>
     <tabs>Applicant__c</tabs>

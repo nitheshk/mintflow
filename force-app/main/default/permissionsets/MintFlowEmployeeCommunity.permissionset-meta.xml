@@ -2458,6 +2458,10 @@
         <recordType>FinancialAccount__c.CreditCard</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>FinancialAccount__c.Certificate</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <userPermissions>
         <enabled>true</enabled>
         <name>CreateCustomizeReports</name>

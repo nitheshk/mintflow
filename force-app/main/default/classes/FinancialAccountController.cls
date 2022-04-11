@@ -14,6 +14,29 @@ global with sharing class FinancialAccountController extends AbstractController 
   }
 
   /**
+   * @description  Read financial Accounts with child and product with child
+   * @author Digital Align Team | 04-11-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse readFinancialAccounts(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(FinancialAccountService.getInstance().readFinancialAccounts());
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
    * @description Save Financial Account
    * @author Digital Align Team | 01-10-2022
    * @param ApexRequest request

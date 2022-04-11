@@ -28,6 +28,27 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   }
 
   /**
+   * @description read financial Accounts with child and product with child
+   * @author Digital Align Team | 04-11-2022
+   * @return List<FinancialAccount__c>
+   **/
+  global virtual List<FinancialAccount__c> readFinancialAccounts() {
+    Id applicationId = ApexRequest.getApplicationId();
+
+    List<FinancialAccount__c> financialAccounts = FinancialAccountRepository.readFinancialAccountsByAppID(
+      applicationId
+    );
+    Map<Id, financialProduct__c> productsMap = new Map<Id, financialProduct__c>(
+      FinancialAccountRepository.fetchProductWithChildConfig(applicationId)
+    );
+
+    for (FinancialAccount__c financialAccount : financialAccounts) {
+      financialAccount.FinancialProduct__r = productsMap.get(financialAccount.FinancialProduct__c);
+    }
+    return financialAccounts;
+  }
+
+  /**
    * @description Read Financial Account with child record
    * @author Digital Align Team | 10-26-2021
    * @param List<FinancialAccount__c> financialAccounts
@@ -40,11 +61,11 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   /**
    * @description  Read Financial Account with child record by ids
    * @author Digital Align Team | 10-26-2021
-   * @param Set<Id> applicationIds
+   * @param Set<Id> financialAccountIds
    * @return List<FinancialAccount__c>
    **/
-  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(Set<Id> applicationIds) {
-    return FinancialAccountRepository.readFinancialAccountsWithChild(applicationIds);
+  global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(Set<Id> financialAccountIds) {
+    return FinancialAccountRepository.readFinancialAccountsWithChild(financialAccountIds);
   }
 
   /**

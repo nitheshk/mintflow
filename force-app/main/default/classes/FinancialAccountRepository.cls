@@ -29,6 +29,27 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
   }
 
   /**
+   * @description read Financial Accounts By Application Id
+   * @author Digital Align Team | 04-11-2022
+   * @param Id applicationId
+   * @return List<FinancialAccount__c>
+   **/
+  global static List<FinancialAccount__c> readFinancialAccountsByAppID(Id applicationId) {
+    return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
+      Query.newInstance(FinancialAccount__c.SObjectType)
+        .addFields()
+        .queryChild('mflow__FinancialAccountTransactions__r')
+        .addFields()
+        .run()
+        .queryChild('mflow__FinancialAccountServices__r')
+        .addFields()
+        .run()
+        .whereEq('mflow__Application__c', applicationId)
+        .toString()
+    );
+  }
+
+  /**
    * @description read financial product by Internal Code
    * @author Digital Align Team | 12-13-2021
    * @param String internalProductCode
@@ -55,6 +76,36 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .addFields()
         .whereEq('IsMembershipProduct__c', true)
         .addLimit(1)
+        .toString()
+    );
+  }
+
+  /**
+   * @description fetch product features based on product Id
+   * @author Digital Align Team | 03-25-2022
+   * @param String productId
+   * @return List<financialProduct__c>
+   **/
+  public static List<financialProduct__c> fetchProductWithChildConfig(Id applicationId) {
+    return (List<financialProduct__c>) getRecords(
+      Query.newInstance(financialProduct__c.SObjectType)
+        .addFields()
+        .queryChild('mflow__ProductFeatures__r')
+        .addFields()
+        .whereEq('mflow__ProductService__c', null)
+        .andCon()
+        .whereEq('mflow__Type__c', ApplicationConstant.PRODUCT_FEATURE_TYPE_PRODUCT_CONFIG)
+        .orderBy('mflow__Order__c')
+        .run()
+        .whereEq('mflow__isActive__c', true)
+        .andCon()
+        .whereIn(
+          'Id',
+          Query.newInstance(mflow__FinancialAccount__c.SObjectType)
+            .addFields('mflow__FinancialProduct__c')
+            .whereEq('mflow__Application__c', applicationId)
+            .toString()
+        )
         .toString()
     );
   }

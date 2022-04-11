@@ -34,3 +34,15 @@ request.token = SecurityUtils.generateTokenForTesting(
 
 ApexResponse rs = FinancialAccountController.fetchProductFeatures(request);
 System.debug(rs.data);
+
+///FinancialAccountController
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  'a026D000004YflcQAC',
+  'a006D000008AeOTQA0',
+  'Primary',
+  'ApplicationFlow'
+);
+
+ApexResponse rs = FinancialAccountController.readFinancialAccounts(request);
+System.debug(rs.data);
