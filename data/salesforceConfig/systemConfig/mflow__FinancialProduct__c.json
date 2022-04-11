@@ -19,6 +19,7 @@
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
+      "mflow__IsMembershipProduct__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
