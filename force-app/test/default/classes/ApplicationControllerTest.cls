@@ -521,4 +521,39 @@ public with sharing class ApplicationControllerTest {
     res = ApplicationController.submit(request);
     system.assertEquals(500, res.status, 'success');
   }
+  @isTest
+  static void submitToCoreSystemTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //500 API Exception
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = new ApexResponse();
+
+    res = ApplicationController.submitToCoreSystem(request);
+
+    application.status__c = ApplicationConstant.SUBMITTED;
+    upsert application;
+    res = ApplicationController.submitToCoreSystem(request);
+
+    //200 //Primary
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    res = ApplicationController.submitToCoreSystem(request);
+    // system.assertEquals(200, res.status, 'success');
+    Test.stopTest();
+
+    //500
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    res = ApplicationController.submitToCoreSystem(request);
+    system.assertEquals(500, res.status, 'success');
+  }
 }
