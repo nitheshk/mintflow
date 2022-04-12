@@ -37,16 +37,15 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     Application__c application = (Application__c) SObjectConstructor.deserialize(data, Application__c.class);
     application = ApplicationService.getInstance().saveApplication(application);
 
-    // if (application.Status__c == ApplicationConstant.SUBMITTED) {
-    //   throw new CustomException('Application Already Submitted');
-    // }
+    if (application.Status__c == ApplicationConstant.SUBMITTED) {
+      throw new CustomException('Application Already Submitted');
+    }
 
     //update kyc and status fields
     application = this.validateSubmission(application);
 
     log?.fine('Completed reviewInformationSubmit');
     //testing purpose only
-    FinancialAccountService.testApproveFundingSubmission(application.Name);
     return application;
   }
 
@@ -158,6 +157,9 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
   global virtual Application__c submitToCoreSystem(Id applicationId) {
     log?.fine('Inside submitToCoreSystem');
     Application__c application = SubmissionRepository.readApplicationForSubmit(applicationId);
+
+    //#pending Disbale to submit to rpa core
+    /*
     if (application.status__c != ApplicationConstant.SUBMITTED) {
       throw new CustomException('Application not completed yet');
     }
@@ -172,6 +174,10 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         .dispatchSubmitNotification('onApplicationFailed', application.Id, application.Name, response.status);
     }
     ApplicationRepository.upsertRecord(application);
+    */
+
+    FinancialAccountService.testApproveFundingSubmission(application.Name);
+
     log?.fine('Completed submitToCoreSystem');
     return application;
   }
@@ -198,7 +204,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     ApexRequest.setApplicationName(application.Name);
 
     //chatter post on record level
-    NotificationBuilder.chatterMessagePost(application.Id, 'Funding Response from meridian link  : ' + resultJson);
+    NotificationBuilder.chatterMessagePost(application.Id, 'Funding Response from core API  : ' + resultJson);
 
     // if (application.Status__c == ApplicationConstant.COMPLETED) {
     //   throw new CustomException('Application has already completed');

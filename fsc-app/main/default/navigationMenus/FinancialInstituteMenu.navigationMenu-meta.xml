@@ -11,23 +11,30 @@
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
+        <label>Product;standard:product_service_campaign</label>
+        <position>2</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/Product</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
         <defaultListViewId>All</defaultListViewId>
         <label>Application;standard:work_plan</label>
-        <position>2</position>
+        <position>3</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>mflow__Application__c</target>
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Employees;standard:groups</label>
-        <position>3</position>
+        <position>4</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>/Employees</target>
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Search;standard:search</label>
-        <position>4</position>
+        <position>5</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>/FinancialInstituteSearch</target>
         <type>InternalLink</type>

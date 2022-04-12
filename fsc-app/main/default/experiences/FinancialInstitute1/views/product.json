@@ -1,8 +1,8 @@
 {
   "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
   "componentName": "siteforce:dynamicLayout",
-  "id": "4e3ddedc-a2a1-4a73-8938-9297dc06df5d",
-  "label": "Overview",
+  "id": "e28945f2-c270-4795-9124-b9a84799971f",
+  "label": "Product",
   "regions": [
     {
       "components": [
@@ -12,18 +12,18 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "fb6ce365-717e-4d45-a57c-ea796fbe78c7",
+              "UUID": "a357d1c4-f406-4d1b-963d-e288f2f9349d",
               "columns": [
                 {
-                  "UUID": "9a764964-1a38-4bf6-ad95-193849c1c9d7",
+                  "UUID": "43e08892-38e2-4ed7-a2e3-0ddf190ab9e2",
                   "columnKey": "1",
                   "columnName": "Column 1",
                   "columnWidth": "2",
                   "seedComponents": []
                 },
                 {
-                  "UUID": "63ef8255-b074-43f8-9006-836970e7ca04",
-                  "columnKey": "2d95f",
+                  "UUID": "86fdaf61-ebcf-4579-9efb-8c2c05163bb1",
+                  "columnKey": "ea040",
                   "columnName": "Column 2",
                   "columnWidth": "10",
                   "seedComponents": []
@@ -33,33 +33,44 @@
             "sectionHeight": 300
           },
           "componentName": "forceCommunity:section",
-          "id": "fb6ce365-717e-4d45-a57c-ea796fbe78c7",
+          "id": "a357d1c4-f406-4d1b-963d-e288f2f9349d",
           "regions": [
             {
               "components": [
                 {
                   "componentAttributes": {
+                    "hideMenuLabel": false,
                     "logoName": "",
                     "menuName": "FinancialInstituteMenu",
                     "sectionLabel": "Menu"
                   },
                   "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "e16a42a2-16b2-43cc-9540-c4305104cee9",
+                  "id": "85d5f8a9-fecc-4369-b20d-4ae6299749c9",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 }
               ],
-              "id": "9a764964-1a38-4bf6-ad95-193849c1c9d7",
+              "id": "43e08892-38e2-4ed7-a2e3-0ddf190ab9e2",
               "regionLabel": "Column 1",
               "regionName": "1",
               "renditionMap": {},
               "type": "region"
             },
             {
-              "id": "63ef8255-b074-43f8-9006-836970e7ca04",
+              "components": [
+                {
+                  "componentAttributes": {},
+                  "componentName": "mflow:productSelection",
+                  "id": "f06ace5a-8d63-460e-89f2-ce46e60dc1a9",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "86fdaf61-ebcf-4579-9efb-8c2c05163bb1",
               "regionLabel": "Column 2",
-              "regionName": "2d95f",
+              "regionName": "ea040",
               "renditionMap": {},
               "type": "region"
             }
@@ -69,7 +80,7 @@
           "type": "component"
         }
       ],
-      "id": "e0ca6565-aece-4eba-8568-e3d62f2e5f6e",
+      "id": "e3a37137-03fb-40d6-9d2b-9849c8ec6ecd",
       "regionName": "content",
       "type": "region"
     },
@@ -79,20 +90,20 @@
           "componentAttributes": {
             "customHeadTags": "",
             "description": "",
-            "title": "Home"
+            "title": "Product"
           },
           "componentName": "forceCommunity:seoAssistant",
-          "id": "c907f53a-87c5-4d5b-8425-3751b142b263",
+          "id": "bf01fc83-d4cf-4528-92f6-0e88532be08c",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "48cf2f24-e709-4f8e-b037-c4c10a695e64",
+      "id": "a0cc2ae1-f0d4-4669-803b-e23e52f63540",
       "regionName": "sfdcHiddenRegion",
       "type": "region"
     }
   ],
   "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
   "type": "view",
-  "viewType": "home"
+  "viewType": "custom-product"
 }

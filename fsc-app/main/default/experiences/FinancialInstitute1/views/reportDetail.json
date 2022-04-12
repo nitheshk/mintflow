@@ -1,11 +1,11 @@
 {
   "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
-  "componentName": "siteforce:sldsOneColLayout",
-  "id": "6857bb4d-4f48-43c4-86a4-8be6ac15ad7d",
+  "componentName": "mflow:FIThemeRecordDetailPage",
+  "id": "f56395dc-de9b-4feb-a127-2dcdbcd554ed",
   "label": "Report Detail",
   "regions": [
     {
-      "id": "216c0622-4799-4aa7-a248-82a373937b3d",
+      "id": "78167dc2-252b-4619-b6e4-1fc058ca8b0a",
       "regionName": "header",
       "type": "region"
     },
@@ -16,18 +16,55 @@
             "recordId": "{!recordId}"
           },
           "componentName": "forceCommunity:reportPage",
-          "id": "552e642a-d370-4589-ae15-b60dcbf77cf8",
+          "id": "05d922f4-7cfd-47d8-9caa-3c5067ad3fc0",
           "renderPriority": "NEUTRAL",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "2954b9de-38f9-4226-ae3a-7e676dfb374f",
+      "id": "2468f060-1019-441a-b68a-fe49be09de71",
       "regionName": "content",
       "type": "region"
     },
     {
-      "id": "d844bbb1-77f6-44af-bfef-021e96d4ce09",
+      "components": [
+        {
+          "componentAttributes": {
+            "askCommunityLabel": "Ask a Question",
+            "buttonBgColor": "",
+            "buttonBgHoverColor": "",
+            "buttonBorderColor": "",
+            "buttonRadius": 0,
+            "buttonTextColor": "",
+            "buttonTextHoverColor": "",
+            "buttonTwoBgColor": "",
+            "buttonTwoBgHoverColor": "",
+            "buttonTwoBorderColor": "",
+            "buttonTwoRadius": 0,
+            "buttonTwoTextColor": "",
+            "buttonTwoTextHoverColor": "",
+            "confirmationMessage": "Got it!",
+            "contactSupportLabel": "Contact Support",
+            "followUpPromptLabel": "Can we close your question?",
+            "headerLabel": "Don't see what you're looking for?",
+            "isAskFollowPromptEnabled": true,
+            "isIncludeArticlesEnabled": false,
+            "isIncludeDiscussionsEnabled": true,
+            "isInitialSatisfactionPromptEnabled": true,
+            "isPublisherDeflectionEnabled": true,
+            "maxSuggestions": 5,
+            "satisfactionPromptLabel": "Did we help to answer your question?",
+            "showDetails": false,
+            "showTopics": true
+          },
+          "componentName": "siteforce:napiliFooter",
+          "id": "0e47a508-d6c5-44f0-b54d-d9c54064f7bc",
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "7e96755e-9c37-4f1e-ae6e-deb43fda54cf",
       "regionName": "footer",
       "type": "region"
     },
@@ -40,13 +77,88 @@
             "title": "{!Record._Object}: {!Record._Title}"
           },
           "componentName": "forceCommunity:seoAssistant",
-          "id": "303f19d4-3a46-4d57-8d1d-2dd13be9a2ea",
+          "id": "4c1dc17e-d6b2-4a1c-a3f5-73e1b0d9a2db",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "91a77ca4-3e3e-47c4-9318-aedcb9fb4aad",
+      "id": "17259179-d3bf-418e-b293-6028e7af4b24",
       "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    },
+    {
+      "id": "ad4a63e4-3259-42b9-bf94-ba4979331844",
+      "regionName": "page_header",
+      "type": "region"
+    },
+    {
+      "id": "e11ae23a-f942-40d8-a6aa-09bb422aca7c",
+      "regionName": "page_footer",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "hideMenuLabel": true,
+            "logoName": "",
+            "menuName": "FinancialInstituteMenu",
+            "sectionLabel": "Menu"
+          },
+          "componentName": "mflow:financialInsituteNavigationMenu",
+          "id": "a760af1c-a9d1-45a8-bcd0-501048c7ba93",
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "54cbbcfe-3fdc-4c44-90a6-4ee99285a020",
+      "regionName": "menu",
+      "type": "region"
+    },
+    {
+      "id": "e1c2701d-18dc-43ef-a407-a701e69352cd",
+      "regionName": "section1",
+      "type": "region"
+    },
+    {
+      "id": "b7ea0670-cd58-414f-a4ee-0e84e42c3c0a",
+      "regionName": "section2",
+      "type": "region"
+    },
+    {
+      "id": "e49de33e-0018-46d6-a712-dc716237d09d",
+      "regionName": "section3",
+      "type": "region"
+    },
+    {
+      "id": "74a3a533-5bc0-4889-8169-10eaf6ea9e71",
+      "regionName": "section4",
+      "type": "region"
+    },
+    {
+      "id": "005fab4b-7e8f-4151-800e-fffce66d4330",
+      "regionName": "section5",
+      "type": "region"
+    },
+    {
+      "id": "6f6cc641-0a58-4a50-8e8e-ad5bab9946ac",
+      "regionName": "section6",
+      "type": "region"
+    },
+    {
+      "id": "de373da9-d8ed-4223-aab3-6a050ec5f1b2",
+      "regionName": "section7",
+      "type": "region"
+    },
+    {
+      "id": "32d429c2-c999-403f-893b-544d6f343bc9",
+      "regionName": "section8",
+      "type": "region"
+    },
+    {
+      "id": "e897434b-63bd-4188-be73-af7ae25d01a4",
+      "regionName": "section9",
       "type": "region"
     }
   ],
