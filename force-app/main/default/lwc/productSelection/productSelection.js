@@ -1,5 +1,6 @@
 import { LightningElement, track, wire } from "lwc";
 import getProducts from "@salesforce/apex/LwcOnlineSiteController.productSelector";
+import startApplication from "@salesforce/apex/ApplicationController.startApplication";
 
 export default class ProductSelection extends LightningElement {
   allProducts;
@@ -56,8 +57,26 @@ export default class ProductSelection extends LightningElement {
    */
   handleProductSelection(event) {
     const productCode = event.detail.productCode;
-    console.log("productCode:", productCode);
-    var url = window.location.origin + "/Online/OpenAccount?pid=" + productCode;
-    window.open(url, "_blank");
+    // var url = window.location.origin + "/HomePageFI/OpenAccount?pid=" + productCode;
+    // window.open(url, "_blank");
+    startApplication({
+      request: {
+        header: JSON.stringify({
+          recordId: this.recordId,
+          sObjectName: this.objectApiName,
+          pid: event.detail.productCode
+        })
+      }
+    })
+      .then((result) => {
+        if (result.status === 200) {
+          let data = JSON.parse(result.data);
+          window.open(data.url, "_blank");
+        }
+      })
+      .catch((error) => {
+        console.log("Error : " + JSON.stringify(error));
+        utils.errorMessage(this, error.body.message, "Error");
+      });
   }
 }

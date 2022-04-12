@@ -50,10 +50,10 @@ global abstract with sharing class AbstractController {
       request?.setRequest();
       if (String.isBlank(ApexRequest.getToken()) && skipValidation) {
         return;
-      }
-      if (!Test.isRunningTest()) {
+      } else if (!Test.isRunningTest() && UserUtils.isGuestUser()) {
         //validate token;
-        //throw custom exception on any error
+        SecurityUtils.validateSession();
+      } else if (!UserUtils.isGuestUser() && String.isNotBlank(ApexRequest.getToken())) {
         SecurityUtils.validateSession();
       }
     } else {

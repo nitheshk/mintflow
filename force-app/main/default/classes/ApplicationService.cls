@@ -36,11 +36,26 @@ global virtual with sharing class ApplicationService extends AbstractService {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
     log?.fine('Inside startApplication -> params -> ' + JSON.serialize(params));
+    String pid = (String) params.get('pid');
+    User currentUser = UserUtils.getCurrentUser();
+    String baseUrl, suffixUrl;
+    if (
+      currentUser.Profile.Name == CommunityConstant.FIN_INST_EMPLOYEE_USER_PROFILE ||
+      currentUser.Profile.Name == CommunityConstant.CUSTOMER_COMMUNITY_USER_PROFILE
+    ) {
+      baseUrl = GenericUtils.fetchLoginURL();
+    } else if (UserUtils.isGuestUser()) {
+      baseUrl = SiteSetting__c.getInstance().OnlineSiteUrl__c;
+    } else {
+      baseUrl = GenericUtils.fetchLoginURL() + '/apex';
+    }
 
-    result.put(
-      'url',
-      SiteSetting__c.getInstance().OnlineSiteUrl__c + SiteSetting__c.getInstance().OnlineAccountOpeningUrl__c
-    );
+    if (String.isNotBlank(pid)) {
+      suffixUrl = '/OpenAccount?pid=' + pid + '#/home';
+    } else {
+      suffixUrl = SiteSetting__c.getInstance().OnlineAccountOpeningUrl__c;
+    }
+    result.put('url', baseUrl + suffixUrl);
     log?.info('startApplication -> Url -> ' + result.get('url'));
     return result;
   }

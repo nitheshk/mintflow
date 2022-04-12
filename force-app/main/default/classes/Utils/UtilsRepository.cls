@@ -14,7 +14,9 @@ global inherited sharing class UtilsRepository extends DatabaseUtils {
    * @return User
    **/
   global static User getUserById(Id userId) {
-    return (User) getRecord(Query.newInstance(User.SObjectType).addFields().queryById(userId));
+    return (User) getRecord(
+      Query.newInstance(User.SObjectType).addFields().addFields('Profile.Name').queryById(userId)
+    );
   }
 
   /**
