@@ -52,6 +52,546 @@
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
       "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef5" },
+      "Name": "3 Month Certificate - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0012",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef6" },
+      "Name": "3 Month Certificate - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0012",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef7" },
+      "Name": "3 Month Certificate - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0012",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef8" },
+      "Name": "3 Month Certificate - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0012",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef9" },
+      "Name": "3 Month Certificate - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0012",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef10" },
+      "Name": "6 Month Certificate - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0013",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef11" },
+      "Name": "6 Month Certificate - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0013",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef12" },
+      "Name": "6 Month Certificate - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0013",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef13" },
+      "Name": "6 Month Certificate - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0013",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef14" },
+      "Name": "6 Month Certificate - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0013",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef15" },
+      "Name": "12 Month Certificate - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0014",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef16" },
+      "Name": "12 Month Certificate - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0014",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef17" },
+      "Name": "12 Month Certificate - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0014",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef18" },
+      "Name": "12 Month Certificate - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0014",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef19" },
+      "Name": "12 Month Certificate - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0014",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef20" },
+      "Name": "18 Month Certificate - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0015",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef21" },
+      "Name": "18 Month Certificate - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0015",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef22" },
+      "Name": "18 Month Certificate - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0015",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef23" },
+      "Name": "18 Month Certificate - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0015",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef24" },
+      "Name": "18 Month Certificate - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0015",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef25" },
+      "Name": "24 Month Certificate - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0016",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef26" },
+      "Name": "24 Month Certificate - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0016",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef27" },
+      "Name": "24 Month Certificate - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0016",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef28" },
+      "Name": "24 Month Certificate - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0016",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef29" },
+      "Name": "24 Month Certificate - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0016",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef30" },
+      "Name": "36 Month Certificate - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0017",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef31" },
+      "Name": "36 Month Certificate - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0017",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef32" },
+      "Name": "36 Month Certificate - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0017",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef33" },
+      "Name": "36 Month Certificate - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0017",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef34" },
+      "Name": "36 Month Certificate - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0017",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef35" },
+      "Name": "48 Month Certificate - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0018",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef36" },
+      "Name": "48 Month Certificate - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0018",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef37" },
+      "Name": "48 Month Certificate - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0018",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef38" },
+      "Name": "48 Month Certificate - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0018",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef39" },
+      "Name": "48 Month Certificate - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0018",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef40" },
+      "Name": "60 Month Certificate - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0019",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef41" },
+      "Name": "60 Month Certificate - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0019",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef42" },
+      "Name": "60 Month Certificate - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0019",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef43" },
+      "Name": "60 Month Certificate - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0019",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef44" },
+      "Name": "60 Month Certificate - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0019",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef45" },
+      "Name": "Money Market Checking - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0010",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef46" },
+      "Name": "Money Market Checking - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0010",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef47" },
+      "Name": "Money Market Checking - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0010",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef48" },
+      "Name": "Money Market Checking - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0010",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef49" },
+      "Name": "Money Market Checking - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0010",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
+    },
+
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef50" },
+      "Name": "Money Market Savings - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@IC0011",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The cash reward Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef51" },
+      "Name": "Money Market Savings - Secured Visa",
+      "mflow__CrossSellProduct__c": "@IC008",
+      "mflow__FinancialProduct__c": "@IC0011",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Secured vis Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef52" },
+      "Name": "Money Market Savings - Prime Debit Account",
+      "mflow__CrossSellProduct__c": "@IC005",
+      "mflow__FinancialProduct__c": "@IC0011",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef53" },
+      "Name": "Money Market Savings - Power Plus Debit Account",
+      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__FinancialProduct__c": "@IC0011",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 3,
+      "mflow__Required__c": false
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef54" },
+      "Name": "Money Market Savings - Preferred Debit Account",
+      "mflow__CrossSellProduct__c": "@IC006",
+      "mflow__FinancialProduct__c": "@IC0011",
+      "mflow__IsActive__c": false,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false
     }
   ]
 }
