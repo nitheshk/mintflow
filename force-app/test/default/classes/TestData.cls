@@ -277,9 +277,30 @@ public with sharing class TestData {
     consentLines.add(consentLine);
     return consentLines;
   }
+  private static mflow__SurveyTemplate__c makeSurveyTemplate() {
+    mflow__SurveyTemplate__c surveyTemplate = TestData.createSurveyTemplates();
+    surveyTemplate.Order__c = 2;
+    mflow__SurveyTemplate__c surveyTemplate1 = TestData.createSurveyTemplates();
+    List<mflow__SurveyTemplate__c> surveyTemplates = new List<mflow__SurveyTemplate__c>{
+      surveyTemplate,
+      surveyTemplate1
+    };
+
+    surveyTemplates = (List<mflow__SurveyTemplate__c>) DatabaseUtils.insertRecords(surveyTemplates);
+
+    SurveyQuestion__c surveyQuestion = createSurveyQuestion();
+    surveyQuestion.mflow__SurveyTemplate__c = surveyTemplates[0].Id;
+    surveyQuestion = (SurveyQuestion__c) DatabaseUtils.insertRecord(surveyQuestion);
+    surveyTemplate.SurveyQuestions__r.addALl(new List<SurveyQuestion__c>{ surveyQuestion });
+    return surveyTemplate;
+  }
   public static mflow__SurveyTemplate__c createSurveyTemplates() {
     mflow__SurveyTemplate__c survey = new mflow__SurveyTemplate__c();
     survey.Name = 'survey Item';
+    survey.EventIdentifier__c = 'Survey';
+    survey.Order__c = 1;
+    survey.mflow__ApplicantType__c = 'Primary;Joint';
+    survey.mflow__Channel__c = 'Virtual;Branch';
     survey.Order__c = 1;
     return survey;
   }
