@@ -75,8 +75,14 @@ global virtual with sharing class ApplicationService extends AbstractService {
       application.CreatedChannel__c = (String) params.get('ch');
       application.LastUsedChannel__c = (String) params.get('ch');
     } else {
-      application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
-      application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
+      User currentUser = UserUtils.getCurrentUser();
+      if (String.isNotBlank(currentUser.Channel__c)) {
+        application.CreatedChannel__c = currentUser.Channel__c;
+        application.LastUsedChannel__c = currentUser.Channel__c;
+      } else {
+        application.CreatedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
+        application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
+      }
     }
     application.ApplicationType__c = 'Deposit'; //Also Decide in Financial Account Creation
     application.IsExistingCustomer__c = false; //Also Decide in Financial Account Creation
