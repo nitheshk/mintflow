@@ -1584,7 +1584,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialProduct__c.ImageName__c</field>
+        <field>FinancialProduct__c.ImageType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1825,6 +1825,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Location.VisitorAddressId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ProductFeature__c.Icon__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
