@@ -7,7 +7,6 @@
       "mflow__DisplayLabel__c": "Regular Savings",
       "mflow__EndDate__c": "2026-11-05",
       "mflow__ExternalCode__c": "EC003",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Regular_Savings.png",
       "mflow__InternalCode__c": "IC003",
       "mflow__LongDescription__c": "The Regular Savings product is required for new accounts. This savings account establishes your membership and is your voting share of the credit union.",
@@ -20,8 +19,9 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": true,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
-        "totalSize": 1,
+        "totalSize": 2,
         "done": true,
         "records": [
           {
@@ -29,13 +29,31 @@
             "Name": "Financial future",
             "mflow__DisplayContents__c": "<h3><b>Get a jump-start on a sunnier tomorrow.</b></h3><p>Start with a few dollars or a fistful. Focus on one account or take a diversified approach. Whatever your saving style, we want to help you build up your balance, take aim at your goals, and prepare for life&#39;s rainy days and all its other twists and turns.</p><p><br></p><h4><b>Regular Savings</b></h4><ul><li>Open account with minimum deposit of $35.</li><li>Earn competitive interest.</li><li>Build up balance with direct deposit and payroll deductions.</li><li>Monitor and manage funds with free Online and Mobile Banking.</li><li>Open multiple accounts for specific savings goals. Name your accounts whatever.</li></ul><p>Start saving now. Opening an account is easy!</p>",
             "mflow__DisplayName__c": "Financial future",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Regular_Savings.png",
             "mflow__Order__c": 11,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Start with a few dollars or a fistful.",
             "mflow__Topic__c": "Regular Savings",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0_1" },
+            "Name": "Regular Savings Description",
+            "mflow__Code__c": "REG",
+            "mflow__DisplayContents__c": "<p>Start with a few dollars or a fistful. Focus on one account or take a diversified approach. Whatever your saving style, we want to help you build up your balance, take aim at your goals, and prepare for life&#39;s rainy days and all its other twists and turns.</p><p><br></p><h4><b>Regular Savings</b></h4><ul><li>Open account with minimum deposit of $35.</li><li>Earn competitive interest.</li><li>Build up balance with direct deposit and payroll deductions.</li><li>Monitor and manage funds with free Online and Mobile Banking.</li><li>Open multiple accounts for specific savings goals. Name your accounts whatever.</li></ul><p>Start saving now. Opening an account is easy!</p>",
+            "mflow__DisplayName__c": "Regular Savings Description",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Regular_Savings.png",
+            "mflow__Order__c": 16,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Get a jump-start on a sunnier tomorrow.",
+            "mflow__Topic__c": "Take strong steps toward a more secure financial future.",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -47,7 +65,6 @@
       "mflow__DisplayLabel__c": "Preferred Debit Account",
       "mflow__EndDate__c": "2034-03-03",
       "mflow__ExternalCode__c": "EC006",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Preferred_debit.png",
       "mflow__InternalCode__c": "IC006",
       "mflow__LongDescription__c": "A perfect account for our value minded members for only $4.99 per month. This account pays you in overwhelming benefits from cash back on debit card purchases, to cell phone protection, roadside assistance, local and national discounts and much more!",
@@ -59,7 +76,45 @@
       "mflow__SubCategory__c": "Preferred Debit Account",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef1_0" },
+            "Name": "Preferred Debit Account Description",
+            "mflow__Code__c": "PRF",
+            "mflow__DisplayContents__c": "<p>Free debit card? Nationwide ATM network? Anytime Account Access? Each of our Debit Accounts come with all of the above. We believe in going above and beyond. So we&#39;ve created options that also pay dividends on deposits and feature insurance benefits, identity theft protection, and discounts on prescriptions and other products.</p><p><br></p><h4><b>All our accounts include:</b></h4><ul><li>Free <a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Debit Mastercard</a></li><li><a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">(Opens in a new Window)</a></li><li><br></li><li><a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">(Opens in a new Window)</a></li><li><br></li><li>Free Online Banking with electronic Bill Pay</li><li>Free Mobile Banking with <a href=\"https://www.p1fcu.org/mobile-deposit\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Mobile Deposit</a></li><li>No minimum balance requirements*</li><li>No check writing limits</li><li>Free <a href=\"https://www.p1fcu.org/mobimoney\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">MobiMoney</a> helps you reduce chances of fraud by controlling your debit card from our mobile app.</li><li><a href=\"https://www.p1fcu.org/cardswap\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">CardSwap</a> makes sure online retailers have your up-to-date info if your card is new or changes.</li><li><a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle </a>– a fast, safe, and easy way to send money to friends, family.</li></ul><h4><b>Preferred Debit Account</b></h4><p>Convenience, security and peace of mind. Good deals on products and cash back on debit card purchases. For just $4.99 per month, you can get all the 24/7 money management tools you need, plus tons of added benefits.</p>",
+            "mflow__DisplayName__c": "Preferred Debit Account Description",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 18,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
+            "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef1_1" },
+            "Name": "Anytime Account Access",
+            "mflow__Code__c": "AAA",
+            "mflow__DisplayContents__c": "<h3><b>Everybody talks about 24/7. We&#39;ve made it our business model.</b></h3><p><span style=\"font-size: 0.9375rem;\">Some days pass at a steady pace. Other times, you&#39;re moving full tilt from morning &#39;til midnight. When life has you on the go, it&#39;s nice to know that there&#39;s no real closing time at P1FCU. No matter the hour, you can tap into your accounts through Online, Mobile or Text banking or visit one of the thousands of ATMs in our extensive network.</span></p><p><span style=\"font-size: 0.9375rem;\"> </span></p><h4><b>Online Banking</b></h4><ul><li>Get up-to-the-minute account balances.</li><li>Transfer funds between accounts.</li><li>Monitor recent transactions.</li><li>Pay bills in minutes with electronic Bill Pay.</li><li>Access check images or electronic versions of your paper statements.</li><li>Use <a href=\"https://www.p1fcu.org/personal/money-manager\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Money Manager</a> to track spending patterns and build a better budget with a Preferred or Powerplus <a href=\"https://www.p1fcu.org/personal/debit-accounts\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Debit Account</a>.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor email alerts that let you know about low balances and other important account activity.</li><li>Order checks.</li></ul><h4><br></h4><h4><b>Mobile Banking</b></h4><ul><li>Download the free P1FCU app from Google Play or the App Store.</li><li>Check balances and transfer funds.</li><li>Deposit checks from anywhere with just a few clicks of your smartphone camera.</li><li>Link your P1FCU Debit Mastercard to your smartphone for one-tap payments.</li><li>Find an ATM or P1FCU branch.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor text alerts that let you know about low balances and other important account activity.</li></ul>",
+            "mflow__DisplayName__c": "Anytime Account Access",
+            "mflow__ImageType__c": "Relative",
+            "mflow__Order__c": 19,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
+            "mflow__Topic__c": "Anytime Account Access",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC004" },
@@ -106,7 +161,6 @@
       "mflow__DisplayLabel__c": "Instant Access Savings",
       "mflow__EndDate__c": "2026-11-05",
       "mflow__ExternalCode__c": "EC0020",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Regular_Savings.png",
       "mflow__InternalCode__c": "IC0020",
       "mflow__LongDescription__c": "Earn tiered dividends rates\r\nKeep your funds liquid\r\nStay connected to your money anytime, anywhere",
@@ -119,6 +173,7 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -130,13 +185,14 @@
             "mflow__DisplayContents__c": "<p>This account fits those who:</p><ul><li>Keep more than $5,000 in savings</li><li>Want easy access to funds while earning higher dividends</li></ul><p><br></p>",
             "mflow__DisplayName__c": "Features",
             "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Tiered dividends for larger balances",
             "mflow__Topic__c": "Features",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4_1" },
@@ -144,13 +200,14 @@
             "mflow__Code__c": "PS007",
             "mflow__DisplayContents__c": "<h3>You&#39;ll benefit from:</h3><ul><li>Tiered dividends on larger balances</li><li>No monthly account maintenance fees</li><li>No early withdrawal fees</li><li>Surcharge-free access at nearly 30,000 CO-OP network ATMs nationwide</li></ul><p>Manage your money when and where you want:</p><ul><li>Withdraw funds at any time</li><li>Access your account online from our Mobile App</li><li>Deposit checks with our free Mobile App</li><li>Enter a branch at nearly 6,000 CO-OP shared branch locations</li></ul><h3>Peace of mind</h3><ul><li>Balances are insured to at least $250,000 by the NCUA</li><li>Secure online access</li><li>Automatic overdraft transfers for your First Tech checking account</li></ul><p><br></p>",
             "mflow__DisplayName__c": "Benefits",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 7,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits.",
             "mflow__Topic__c": "Benefits",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -172,7 +229,44 @@
       "mflow__SubCategory__c": "Power Plus Debit Account",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": false,
-      "mflow__IsMembershipProduct__c": false
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_0" },
+            "Name": "PowerPlus Debit Account Description",
+            "mflow__Code__c": "PPD",
+            "mflow__DisplayContents__c": "<p>Free debit card? Nationwide ATM network? Anytime Account Access? Each of our Debit Accounts come with all of the above. We believe in going above and beyond. So we&#39;ve created options that also pay dividends on deposits and feature insurance benefits, identity theft protection, and discounts on prescriptions and other products.</p><p><br></p><h4><b>All our accounts include:</b></h4><ul><li>Free <a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Debit Mastercard</a></li><li><a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">(Opens in a new Window)</a></li><li><br></li><li><a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">(Opens in a new Window)</a></li><li><br></li><li>Free Online Banking with electronic Bill Pay</li><li>Free Mobile Banking with <a href=\"https://www.p1fcu.org/mobile-deposit\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Mobile Deposit</a></li><li>No minimum balance requirements*</li><li>No check writing limits</li><li>Free <a href=\"https://www.p1fcu.org/mobimoney\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">MobiMoney</a> helps you reduce chances of fraud by controlling your debit card from our mobile app.</li><li><a href=\"https://www.p1fcu.org/cardswap\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">CardSwap</a> makes sure online retailers have your up-to-date info if your card is new or changes.</li><li><a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle </a>– a fast, safe, and easy way to send money to friends, family.</li></ul><h4><b>PowerPlus Debit Account</b></h4><p>Looking for an extra income source? You can earn competitive dividends on your Debit Account deposits. Plus, you&#39;ll pay less for medication, get sweet deals at local merchants, qualify for free cell phone protection, and much more. All this costs just $7.99 a month, but the price drops to zero if you keep a minimum balance of $1,000.</p>",
+            "mflow__DisplayName__c": "PowerPlus Debit Account Description",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Preferred_debit.png",
+            "mflow__Order__c": 19,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
+            "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_1" },
+            "Name": "Anytime Account Access",
+            "mflow__Code__c": "AAA",
+            "mflow__DisplayContents__c": "<h3><b>Everybody talks about 24/7. We&#39;ve made it our business model.</b></h3><p><span style=\"font-size: 0.9375rem;\">Some days pass at a steady pace. Other times, you&#39;re moving full tilt from morning &#39;til midnight. When life has you on the go, it&#39;s nice to know that there&#39;s no real closing time at P1FCU. No matter the hour, you can tap into your accounts through Online, Mobile or Text banking or visit one of the thousands of ATMs in our extensive network.</span></p><p><span style=\"font-size: 0.9375rem;\"> </span></p><h4><b>Online Banking</b></h4><ul><li>Get up-to-the-minute account balances.</li><li>Transfer funds between accounts.</li><li>Monitor recent transactions.</li><li>Pay bills in minutes with electronic Bill Pay.</li><li>Access check images or electronic versions of your paper statements.</li><li>Use <a href=\"https://www.p1fcu.org/personal/money-manager\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Money Manager</a> to track spending patterns and build a better budget with a Preferred or Powerplus <a href=\"https://www.p1fcu.org/personal/debit-accounts\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Debit Account</a>.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor email alerts that let you know about low balances and other important account activity.</li><li>Order checks.</li></ul><h4><br></h4><h4><b>Mobile Banking</b></h4><ul><li>Download the free P1FCU app from Google Play or the App Store.</li><li>Check balances and transfer funds.</li><li>Deposit checks from anywhere with just a few clicks of your smartphone camera.</li><li>Link your P1FCU Debit Mastercard to your smartphone for one-tap payments.</li><li>Find an ATM or P1FCU branch.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor text alerts that let you know about low balances and other important account activity.</li></ul>",
+            "mflow__DisplayName__c": "Anytime Account Access",
+            "mflow__ImageType__c": "Relative",
+            "mflow__Order__c": 19,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
+            "mflow__Topic__c": "Anytime Account Access",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-005" },
@@ -200,7 +294,6 @@
       "mflow__DisplayLabel__c": "Prime Debit Account",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC005",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Prime_debit.png",
       "mflow__InternalCode__c": "IC005",
       "mflow__LongDescription__c": "The Prime Debit Account offers all the basics you expect from a checking account for $2.99 a Month. Find your pathway to free by adding eStatements. This account includes online billpay, mobile deposit, access to MobiMoney, direct deposit and a debit MasterCard.",
@@ -212,7 +305,45 @@
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_0" },
+            "Name": "Prime Debit Account Description",
+            "mflow__Code__c": "PRM",
+            "mflow__DisplayContents__c": "<p>Free debit card? Nationwide ATM network? Anytime Account Access? Each of our Debit Accounts come with all of the above. We believe in going above and beyond. So we&#39;ve created options that also pay dividends on deposits and feature insurance benefits, identity theft protection, and discounts on prescriptions and other products.</p><p><br></p><h4><b>All our accounts include:</b></h4><ul><li>Free <a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Debit Mastercard</a></li><li><a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">(Opens in a new Window)</a></li><li><br></li><li><a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">(Opens in a new Window)</a></li><li><br></li><li>Free Online Banking with electronic Bill Pay</li><li>Free Mobile Banking with <a href=\"https://www.p1fcu.org/mobile-deposit\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Mobile Deposit</a></li><li>No minimum balance requirements*</li><li>No check writing limits</li><li>Free <a href=\"https://www.p1fcu.org/mobimoney\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">MobiMoney</a> helps you reduce chances of fraud by controlling your debit card from our mobile app.</li><li><a href=\"https://www.p1fcu.org/cardswap\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">CardSwap</a> makes sure online retailers have your up-to-date info if your card is new or changes.</li><li><a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle </a>– a fast, safe, and easy way to send money to friends, family.</li></ul><h4><b>Prime Debit Account</b></h4><p>Our basic account offers a long list of standard features. And it&#39;s easy to avoid paying monthly fees. No monthly fee if enrolled in <a href=\"https://www.p1fcu.org/estatements\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">eStatements</a> ($2.99/month for paper statements).</p>",
+            "mflow__DisplayName__c": "Prime Debit Account Description",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Prime_debit.png",
+            "mflow__Order__c": 17,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
+            "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_1" },
+            "Name": "Anytime Account Access",
+            "mflow__Code__c": "AAA",
+            "mflow__DisplayContents__c": "<h3><b>Everybody talks about 24/7. We&#39;ve made it our business model.</b></h3><p><span style=\"font-size: 0.9375rem;\">Some days pass at a steady pace. Other times, you&#39;re moving full tilt from morning &#39;til midnight. When life has you on the go, it&#39;s nice to know that there&#39;s no real closing time at P1FCU. No matter the hour, you can tap into your accounts through Online, Mobile or Text banking or visit one of the thousands of ATMs in our extensive network.</span></p><p><span style=\"font-size: 0.9375rem;\"> </span></p><h4><b>Online Banking</b></h4><ul><li>Get up-to-the-minute account balances.</li><li>Transfer funds between accounts.</li><li>Monitor recent transactions.</li><li>Pay bills in minutes with electronic Bill Pay.</li><li>Access check images or electronic versions of your paper statements.</li><li>Use <a href=\"https://www.p1fcu.org/personal/money-manager\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Money Manager</a> to track spending patterns and build a better budget with a Preferred or Powerplus <a href=\"https://www.p1fcu.org/personal/debit-accounts\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Debit Account</a>.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor email alerts that let you know about low balances and other important account activity.</li><li>Order checks.</li></ul><h4><br></h4><h4><b>Mobile Banking</b></h4><ul><li>Download the free P1FCU app from Google Play or the App Store.</li><li>Check balances and transfer funds.</li><li>Deposit checks from anywhere with just a few clicks of your smartphone camera.</li><li>Link your P1FCU Debit Mastercard to your smartphone for one-tap payments.</li><li>Find an ATM or P1FCU branch.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor text alerts that let you know about low balances and other important account activity.</li></ul>",
+            "mflow__DisplayName__c": "Anytime Account Access",
+            "mflow__ImageType__c": "Relative",
+            "mflow__Order__c": 19,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
+            "mflow__Topic__c": "Anytime Account Access",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0021" },
@@ -221,7 +352,6 @@
       "mflow__DisplayLabel__c": "Carefree Checking",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0021",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0021",
       "mflow__LongDescription__c": "Manage your account anytime, anywhere1\r\nInstant, surcharge-free access to cash\r\nNo monthly account maintenance fees",
@@ -234,6 +364,7 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -245,13 +376,14 @@
             "mflow__DisplayContents__c": "<p>This account fits those who:</p><ul><li>Keep more than $5,000 in savings</li><li>Want easy access to funds while earning higher dividends</li></ul><p><br></p>",
             "mflow__DisplayName__c": "Features",
             "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Carefree Checking",
             "mflow__Topic__c": "Features",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_1" },
@@ -259,13 +391,14 @@
             "mflow__Code__c": "PS009",
             "mflow__DisplayContents__c": "<h3>You&#39;ll benefit from:</h3><ul><li>No minimum balance requirements</li><li>No monthly account maintenance fees</li><li>Surcharge-free access at nearly 30,000 CO-OP network ATMs nationwide</li><li>Free checking</li></ul><p>Manage your money when and where you want</p><ul><li>Access your account online</li><li>Deposit checks and pay bills with our free Mobile App</li><li>Visit a branch at nearly 6,000 CO-OP shared branch locations</li></ul><p>Peace of mind</p><ul><li>Real-time fraud monitoring</li><li>Secure online access</li><li>Free overdraft transfers from savings or line of credit</li><li>Chip-and-PIN enabled debit card</li><li><br></li></ul><h3>Cardholder benefits:</h3><ul><li>Extended warranty</li><li>Satisfaction guarantee</li><li>Identity theft resolution services</li><li>And more (see Debit Mastercard tab)</li></ul><p><br></p>",
             "mflow__DisplayName__c": "Benefits",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits",
             "mflow__Topic__c": "Benefits",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_2" },
@@ -273,13 +406,15 @@
             "mflow__Code__c": "PS0010",
             "mflow__DisplayContents__c": "<ul><li>Benefits Overview Call 1.800.MASTERCARD (<a href=\"\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">1.800.627.8372</a>) for more information or for assistance with these benefits.</li><li>Mastercard Global Service™ provides 24 hour a day, seven day a week assistance with lost and stolen card reporting, emergency card replacement, emergency cash advance, as well as assistance with locating ATMs.</li><li>Mastercard Airport Concierge™ provides a Meet and Greet agent to assist with flight connections, plus at select airports, expedited security/immigration processing.</li><li>Extended Warranty doubles most manufacturer or U.S. store brand warranties for up to one additional year.</li><li>Satisfaction Guarantee covers most items purchased with your card if they are damaged or stolen within 90 days of the purchase date.</li><li>Identity Theft Protection assists you with credit bureau notification and credit card replacement and provides you with an ID Theft Affidavit should you become an identity theft victim.</li></ul>",
             "mflow__DisplayName__c": "Debit Mastercard",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Preferred_debit.png",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Debit Mastercard",
             "mflow__Topic__c": "Debit Mastercard",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -291,7 +426,6 @@
       "mflow__DisplayLabel__c": "3 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0012",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0012",
       "mflow__LongDescription__c": "3 Month CDs are very short-term products and generally come with the lowest interest rates. Within the 3 month CD category on the rate table above, DepositAccounts also lists CDs with shorter terms such as 7 days. Usually, the shorter the CD’s time frame, the less it will pay in interest – however, financial institutions competing for customers will often break this trend in order to attract attention to the shorter term CD and open new accounts.",
@@ -304,26 +438,13 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
-        "totalSize": 4,
+        "totalSize": 5,
         "done": true,
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_0" },
-            "Name": "Key Takeaways",
-            "mflow__DisplayContents__c": "<ul><li>A certificate of deposit is defined as an investment vehicle that locks invested funds for a fixed tenure, and offers safer but lower rates of return as compared to stocks or bonds. They are mostly issued by banks and credit unions in exchange of an interest income.</li><li>The tenure of CDs ranges from couple of days, a month, six months, a year five years to ten years.</li><li>Interest rates offered could be fixed or floating and are usually paid monthly or semi-annually. Banks and credit unions adjust rates periodically as per changes in the Federal Reserve Rates.</li><li>They come at a low risk with some being insured by government bodies. There is also a lack of liquidity as any withdrawal before maturity usually calls for a penalty.</li><li>There are many types of CDs in the market with some being traditional type, liquid CD, jumbo type and broker CDs, etc.</li></ul>",
-            "mflow__DisplayName__c": "Key Takeaways",
-            "mflow__ImageType__c": "Relative",
-            "mflow__Order__c": 2,
-            "mflow__Required__c": false,
-            "mflow__SubTopic__c": "The digital experience",
-            "mflow__Topic__c": "Key Takeaways",
-            "mflow__Icon__c": "fa fa-certificate",
-            "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
-          },
-          {
-            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_1" },
             "Name": "CD Advantages",
             "mflow__DisplayContents__c": "<ul><li>The risks are low with CDs as compared to other instruments such as stocks, bonds, etc. Being kept with banks, they are relatively safer from market fluctuations which stocks are prone to. Moreover, many have federal insurance coverage.</li><li>CDs offer better returns for the amount deposited than the traditional savings account.</li><li>Some online banks and institutions offer very high yielding products which an investor can explore to make better returns.</li><li>Post maturity, a depositor has the option to reinvest their funds using rollover options into a new CD.</li></ul>",
             "mflow__DisplayName__c": "CD Advantages",
@@ -332,9 +453,24 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "CD Advantages",
             "mflow__Topic__c": "CD Advantages",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_1" },
+            "Name": "Key Takeaways",
+            "mflow__DisplayContents__c": "<ul><li>A certificate of deposit is defined as an investment vehicle that locks invested funds for a fixed tenure, and offers safer but lower rates of return as compared to stocks or bonds. They are mostly issued by banks and credit unions in exchange of an interest income.</li><li>The tenure of CDs ranges from couple of days, a month, six months, a year five years to ten years.</li><li>Interest rates offered could be fixed or floating and are usually paid monthly or semi-annually. Banks and credit unions adjust rates periodically as per changes in the Federal Reserve Rates.</li><li>They come at a low risk with some being insured by government bodies. There is also a lack of liquidity as any withdrawal before maturity usually calls for a penalty.</li><li>There are many types of CDs in the market with some being traditional type, liquid CD, jumbo type and broker CDs, etc.</li></ul>",
+            "mflow__DisplayName__c": "Key Takeaways",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "The digital experience",
+            "mflow__Topic__c": "Key Takeaways",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_2" },
@@ -342,11 +478,13 @@
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "APY: 0.10%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.10",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_3" },
@@ -354,11 +492,29 @@
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "Min Deposit : $500",
             "mflow__DisplayName__c": "Min Deposit",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_4" },
+            "Name": "Share Certificates",
+            "mflow__Code__c": "CRT",
+            "mflow__DisplayContents__c": "<p>Put your savings on a schedule that fits with your future needs and long-term goals. Our Share Certificates offer plenty of options, all of which pay higher interest than most traditional savings accounts.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Choose savings period ranging from three months to five years</li><li>Tiered rate system means that bigger balances can earn higher returns</li><li>Monitor growth through Online and Mobile banking</li><li>Safe, secure investment with deposits protected by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Share Certificates",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 12,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Share Certificates",
+            "mflow__Topic__c": "Share Certificates",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -370,7 +526,6 @@
       "mflow__DisplayLabel__c": "6 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0013",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0013",
       "mflow__LongDescription__c": "6 Month Certificate",
@@ -383,8 +538,9 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
-        "totalSize": 2,
+        "totalSize": 3,
         "done": true,
         "records": [
           {
@@ -393,11 +549,13 @@
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "APY: 0.20%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.20",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_1" },
@@ -405,11 +563,29 @@
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "Min Deposit : $500",
             "mflow__DisplayName__c": "Min Deposit",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_2" },
+            "Name": "Share Certificates",
+            "mflow__Code__c": "CRT",
+            "mflow__DisplayContents__c": "<p>Put your savings on a schedule that fits with your future needs and long-term goals. Our Share Certificates offer plenty of options, all of which pay higher interest than most traditional savings accounts.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Choose savings period ranging from three months to five years</li><li>Tiered rate system means that bigger balances can earn higher returns</li><li>Monitor growth through Online and Mobile banking</li><li>Safe, secure investment with deposits protected by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Share Certificates",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 12,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Share Certificates",
+            "mflow__Topic__c": "Share Certificates",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -421,7 +597,6 @@
       "mflow__DisplayLabel__c": "12 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0014",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0014",
       "mflow__LongDescription__c": "12 Month Certificate",
@@ -434,8 +609,9 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
-        "totalSize": 2,
+        "totalSize": 3,
         "done": true,
         "records": [
           {
@@ -444,11 +620,13 @@
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "APY: 0.30%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.30",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_1" },
@@ -456,23 +634,40 @@
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "Min Deposit : $500",
             "mflow__DisplayName__c": "Min Deposit",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_2" },
+            "Name": "Share Certificates",
+            "mflow__Code__c": "CRT",
+            "mflow__DisplayContents__c": "<p>Put your savings on a schedule that fits with your future needs and long-term goals. Our Share Certificates offer plenty of options, all of which pay higher interest than most traditional savings accounts.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Choose savings period ranging from three months to five years</li><li>Tiered rate system means that bigger balances can earn higher returns</li><li>Monitor growth through Online and Mobile banking</li><li>Safe, secure investment with deposits protected by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Share Certificates",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 12,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Share Certificates",
+            "mflow__Topic__c": "Share Certificates",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0015" },
-      "Name": "12 Month Certificate",
+      "Name": "18 Month Certificate",
       "mflow__Category__c": "Certificate",
       "mflow__DisplayLabel__c": "18 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0015",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0015",
       "mflow__LongDescription__c": "18 Month Certificate",
@@ -485,8 +680,9 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
-        "totalSize": 2,
+        "totalSize": 3,
         "done": true,
         "records": [
           {
@@ -495,11 +691,13 @@
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "APY: 0.50%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.50",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_1" },
@@ -507,11 +705,29 @@
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "Min Deposit : $500",
             "mflow__DisplayName__c": "Min Deposit",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_2" },
+            "Name": "Share Certificates",
+            "mflow__Code__c": "CRT",
+            "mflow__DisplayContents__c": "<p>Put your savings on a schedule that fits with your future needs and long-term goals. Our Share Certificates offer plenty of options, all of which pay higher interest than most traditional savings accounts.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Choose savings period ranging from three months to five years</li><li>Tiered rate system means that bigger balances can earn higher returns</li><li>Monitor growth through Online and Mobile banking</li><li>Safe, secure investment with deposits protected by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Share Certificates",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 12,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Share Certificates",
+            "mflow__Topic__c": "Share Certificates",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -523,7 +739,6 @@
       "mflow__DisplayLabel__c": "24 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0016",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0016",
       "mflow__LongDescription__c": "24 Month Certificate",
@@ -536,8 +751,9 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
-        "totalSize": 2,
+        "totalSize": 3,
         "done": true,
         "records": [
           {
@@ -546,11 +762,13 @@
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "APY: 0.60%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.60",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_1" },
@@ -558,11 +776,29 @@
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "Min Deposit : $500",
             "mflow__DisplayName__c": "Min Deposit",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_2" },
+            "Name": "Share Certificates",
+            "mflow__Code__c": "CRT",
+            "mflow__DisplayContents__c": "<p>Put your savings on a schedule that fits with your future needs and long-term goals. Our Share Certificates offer plenty of options, all of which pay higher interest than most traditional savings accounts.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Choose savings period ranging from three months to five years</li><li>Tiered rate system means that bigger balances can earn higher returns</li><li>Monitor growth through Online and Mobile banking</li><li>Safe, secure investment with deposits protected by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Share Certificates",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 12,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Share Certificates",
+            "mflow__Topic__c": "Share Certificates",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -574,7 +810,6 @@
       "mflow__DisplayLabel__c": "36 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0017",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0017",
       "mflow__LongDescription__c": "36 Month Certificate",
@@ -587,8 +822,9 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
-        "totalSize": 2,
+        "totalSize": 3,
         "done": true,
         "records": [
           {
@@ -597,11 +833,13 @@
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "APY: 0.65%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.65",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_1" },
@@ -609,11 +847,29 @@
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "Min Deposit : $500",
             "mflow__DisplayName__c": "Min Deposit",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_2" },
+            "Name": "Share Certificates",
+            "mflow__Code__c": "CRT",
+            "mflow__DisplayContents__c": "<p>Put your savings on a schedule that fits with your future needs and long-term goals. Our Share Certificates offer plenty of options, all of which pay higher interest than most traditional savings accounts.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Choose savings period ranging from three months to five years</li><li>Tiered rate system means that bigger balances can earn higher returns</li><li>Monitor growth through Online and Mobile banking</li><li>Safe, secure investment with deposits protected by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Share Certificates",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 12,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Share Certificates",
+            "mflow__Topic__c": "Share Certificates",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -625,7 +881,6 @@
       "mflow__DisplayLabel__c": "48 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0018",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0018",
       "mflow__LongDescription__c": "48 Month Certificate",
@@ -638,8 +893,9 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
-        "totalSize": 2,
+        "totalSize": 3,
         "done": true,
         "records": [
           {
@@ -648,11 +904,13 @@
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "APY: 0.75%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.75",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef15_1" },
@@ -660,11 +918,29 @@
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "Min Deposit : $500",
             "mflow__DisplayName__c": "Min Deposit",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef15_2" },
+            "Name": "Share Certificates",
+            "mflow__Code__c": "CRT",
+            "mflow__DisplayContents__c": "<p>Put your savings on a schedule that fits with your future needs and long-term goals. Our Share Certificates offer plenty of options, all of which pay higher interest than most traditional savings accounts.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Choose savings period ranging from three months to five years</li><li>Tiered rate system means that bigger balances can earn higher returns</li><li>Monitor growth through Online and Mobile banking</li><li>Safe, secure investment with deposits protected by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Share Certificates",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 12,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Share Certificates",
+            "mflow__Topic__c": "Share Certificates",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -676,7 +952,6 @@
       "mflow__DisplayLabel__c": "60 Month Certificate",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0019",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0019",
       "mflow__LongDescription__c": "60 Month Certificate",
@@ -689,8 +964,9 @@
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
-        "totalSize": 2,
+        "totalSize": 3,
         "done": true,
         "records": [
           {
@@ -699,11 +975,13 @@
             "mflow__Code__c": "APY",
             "mflow__DisplayContents__c": "APY: 0.80%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.80",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef16_1" },
@@ -711,11 +989,29 @@
             "mflow__Code__c": "Min-Deposit",
             "mflow__DisplayContents__c": "Min Deposit : $500",
             "mflow__DisplayName__c": "Min Deposit",
+            "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Configuration"
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef16_2" },
+            "Name": "Share Certificates",
+            "mflow__Code__c": "CRT",
+            "mflow__DisplayContents__c": "<p>Put your savings on a schedule that fits with your future needs and long-term goals. Our Share Certificates offer plenty of options, all of which pay higher interest than most traditional savings accounts.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Choose savings period ranging from three months to five years</li><li>Tiered rate system means that bigger balances can earn higher returns</li><li>Monitor growth through Online and Mobile banking</li><li>Safe, secure investment with deposits protected by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Share Certificates",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 12,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Share Certificates",
+            "mflow__Topic__c": "Share Certificates",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -727,7 +1023,6 @@
       "mflow__DisplayLabel__c": "Choice Rewards World Mastercard",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC009",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC009",
       "mflow__LongDescription__c": "Best for users looking to earn cash back on everyday purchases. Receive $150 Bonus Cash Back after $1000 in qualified purchases within the first 90 days 0% APR* intro rate on purchases and balance transfers for 15 months after that, variable rates of 10.24% - 18.24% APR* apply",
@@ -740,6 +1035,7 @@
       "mflow__Type__c": "Lending",
       "mflow__isActive__c": true,
       "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -754,9 +1050,9 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Digital experience",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef17_1" },
@@ -764,13 +1060,14 @@
             "mflow__DisplayContents__c": "<p>Local convenience, global security and a connected digital experience.</p><p><br></p><ul><li>Chip-and-PIN transaction authentication accepted worldwide.</li></ul><p><br></p><ul><li>Manage your account and monitor transactions anytime, anywhere with our free mobile app.</li></ul><p><br></p><ul><li>Shop safely and effortlessly with <a href=\"https://masterpass.com/\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">MasterPass®</a> or <a href=\"https://www2.firsttechfed.com/LP=45\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">Apple Pay</a> digital wallet programs.</li></ul><p><br></p>",
             "mflow__DisplayName__c": "Security",
             "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Regular_Savings.png",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Global security",
             "mflow__Topic__c": "Security",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef17_2" },
@@ -782,9 +1079,9 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Your wallet has a new MVP",
             "mflow__Topic__c": "Blazers Card",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef17_3" },
@@ -793,13 +1090,14 @@
             "mflow__DisplayContents__c": "<p>Features:</p><ul><li><a href=\"https://www.firsttechfed.com/Rates/Credit-Cards\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">As low as 8.25% APR - Learn More</a> , not to exceed 18.00%<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>No annual fee</li><li>Introductory 0.00% APR balance transfer for 12 billing cycles<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-1\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">1</a></li><li>Earn double Rewards Points on everyday purchases<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-3\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">3</a></li><li>Industry-leading Chip + PIN security</li></ul><p>Benefits:</p><ul><li>Earn 20,000 bonus Rewards Points when you spend $3,000 in the first 60 days<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>Earn 2 Rewards Points for every $1 spent on groceries, gas, electronics, medical, household goods and telecommunications<u style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</u> and 1 Reward Point for every $1 spent on all other purchases</li><li>Redeem Reward Points for travel, merchandise, events, experiences, gift cards and cash</li><li>No points maximum and your points never expire<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-4\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</a></li><li><a href=\"https://www.firsttechfed.com/Help/Cardholder-Benefits\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">View all cardholder benefits</a></li></ul><p><br></p>",
             "mflow__DisplayName__c": "Features and rewards",
             "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
             "mflow__Order__c": 8,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Features and rewards",
             "mflow__Topic__c": "Features and rewards",
-            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Description"
+            "mflow__Icon__c": "fa fa-certificate"
           }
         ]
       }
@@ -811,7 +1109,6 @@
       "mflow__DisplayLabel__c": "Secured Visa",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC008",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/credit-card-explore.jpg",
       "mflow__InternalCode__c": "IC008",
       "mflow__LongDescription__c": "A Secured Visa credit card is the perfect way to establish credit or build good credit, whether you’re starting out or starting over. This card is secured by the available funds in your share savings account.",
@@ -823,7 +1120,8 @@
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative"
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0010" },
@@ -832,7 +1130,6 @@
       "mflow__DisplayLabel__c": "Money Market Checking",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0010",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0010",
       "mflow__LongDescription__c": "Money Market Checking",
@@ -844,7 +1141,30 @@
       "mflow__SubCategory__c": "Money Market Checking",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
+      "mflow__ProductFeatures__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef19_0" },
+            "Name": "Money Market Checking",
+            "mflow__Code__c": "MMC",
+            "mflow__DisplayContents__c": "<p>Ready to branch out from from your traditional savings account? A Money Market is a secure option that rewards you with higher interest rates. Plus, you don&#39;t have to commit your money for long periods, as is the case with some other investments.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Earns higher interest than a traditional savings account</li><li>Tiered rate structure means that higher balance can earn higher returns</li><li>Immediate access funds with checks, Online and Digital Banking, and at P1FCU branches</li><li>Good choice for both everyday savers and seasoned investors looking to diversify their portfolios</li><li>Deposits are insured by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Money Market Checking",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 14,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Money Market Checking",
+            "mflow__Topic__c": "Money Market Checking",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0011" },
@@ -853,7 +1173,6 @@
       "mflow__DisplayLabel__c": "Money Market Savings",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0011",
-      "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0011",
       "mflow__LongDescription__c": "Money Market Savings",
@@ -865,7 +1184,30 @@
       "mflow__SubCategory__c": "Money Market Savings",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__ImageType__c": "Relative",
+      "mflow__ProductFeatures__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef20_0" },
+            "Name": "Money Market Savings",
+            "mflow__Code__c": "MMS",
+            "mflow__DisplayContents__c": "<p>Ready to branch out from from your traditional savings account? A Money Market is a secure option that rewards you with higher interest rates. Plus, you don&#39;t have to commit your money for long periods, as is the case with some other investments.</p><p><br></p><ul><li>$500 minimum to open account</li><li>Earns higher interest than a traditional savings account</li><li>Tiered rate structure means that higher balance can earn higher returns</li><li>Immediate access funds with checks, Online and Digital Banking, and at P1FCU branches</li><li>Good choice for both everyday savers and seasoned investors looking to diversify their portfolios</li><li>Deposits are insured by National Credit Union Administration</li></ul>",
+            "mflow__DisplayName__c": "Money Market Savings",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__Order__c": 13,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Money Market Savings",
+            "mflow__Topic__c": "Money Market Savings",
+            "mflow__Type__c": "Product Description",
+            "mflow__isActive__c": true,
+            "mflow__Icon__c": "fa fa-certificate"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IB-004" },
