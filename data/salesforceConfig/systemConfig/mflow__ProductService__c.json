@@ -3,60 +3,104 @@
     {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS003" },
       "mflow__Description__c": "Select debit card",
+      "mflow__ExternalId__c": "PS003",
       "mflow__FinancialProduct__c": "@IC005",
       "mflow__Order__c": 1,
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "Debit Card",
       "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true,
-      "mflow__ExternalId__c": "PS003"
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS007" },
+      "mflow__Description__c": "Select debit card",
+      "mflow__ExternalId__c": "PS007",
+      "mflow__FinancialProduct__c": "@IC007",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false,
+      "mflow__ServiceName__c": "Debit Card",
+      "mflow__ShowQuestions__c": true,
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS005" },
+      "mflow__Description__c": "Select debit card",
+      "mflow__ExternalId__c": "PS005",
+      "mflow__FinancialProduct__c": "@IC006",
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false,
+      "mflow__ServiceName__c": "Debit Card",
+      "mflow__ShowQuestions__c": true,
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS004" },
       "mflow__Description__c": "Overdraft service",
+      "mflow__ExternalId__c": "PS004",
       "mflow__FinancialProduct__c": "@IC005",
       "mflow__Order__c": 2,
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "Overdraft Transfer",
       "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true,
-      "mflow__ExternalId__c": "PS004"
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS006" },
+      "mflow__Description__c": "Overdraft service",
+      "mflow__ExternalId__c": "PS006",
+      "mflow__FinancialProduct__c": "@IC006",
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false,
+      "mflow__ServiceName__c": "Overdraft Transfer",
+      "mflow__ShowQuestions__c": true,
+      "mflow__isActive__c": true
+    },
+    {
+      "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS008" },
+      "mflow__Description__c": "Overdraft service",
+      "mflow__ExternalId__c": "PS008",
+      "mflow__FinancialProduct__c": "@IC007",
+      "mflow__Order__c": 2,
+      "mflow__Required__c": false,
+      "mflow__ServiceName__c": "Overdraft Transfer",
+      "mflow__ShowQuestions__c": true,
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS001" },
       "mflow__Description__c": "Select eStatments service",
+      "mflow__ExternalId__c": "PS001",
       "mflow__FinancialProduct__c": "@IC003",
       "mflow__Order__c": 3,
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "eStatment",
       "mflow__ShowQuestions__c": false,
-      "mflow__isActive__c": true,
-      "mflow__ExternalId__c": "PS001"
+      "mflow__isActive__c": true
     },
     {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS002" },
       "mflow__Description__c": "Online banking to ease your banking",
+      "mflow__ExternalId__c": "PS002",
       "mflow__FinancialProduct__c": "@IC003",
       "mflow__Order__c": 4,
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "Online Banking",
       "mflow__ShowQuestions__c": false,
       "mflow__isActive__c": true,
-      "mflow__ExternalId__c": "PS002",
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
         "records": [
           {
-            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef3_0" },
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_0" },
             "Name": "Debit Card",
             "mflow__DisplayName__c": "Debit Card",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Prime_debit.png",
             "mflow__Order__c": 1,
             "mflow__Required__c": false,
-            "mflow__isActive__c": true,
-            "mflow__Type__c": "Product Service Configuration"
+            "mflow__Type__c": "Product Service Configuration",
+            "mflow__isActive__c": true
           }
         ]
       }
