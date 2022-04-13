@@ -75,13 +75,18 @@ global virtual with sharing class AlloyProvider extends AbstractService {
    * @return void
    **/
   public void ParseIDVReponse(Id applicantId, HttpResponse response) {
+    Applicant__c applicantObj;
     String responseBody = response.getBody();
     AlloyDTO.IDVResponse idvDTO = AlloyDTO.parseIDVResponse(responseBody);
     system.debug('idvDTO::' + responseBody);
-    Applicant__c applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
-    if (idvDTO.summary.result.equalsignoreCase('success') && idvDTO.summary.outcome.equalsignorecase('Approved')) {
-      applicantObj.mflow__KYCStatus__c = 'Passed';
-    } else {
+    applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
+    try {
+      if (idvDTO.summary.result.equalsignoreCase('success') && idvDTO.summary.outcome.equalsignorecase('Approved')) {
+        applicantObj.mflow__KYCStatus__c = 'Passed';
+      } else {
+        applicantObj.mflow__KYCStatus__c = 'Under Review';
+      }
+    } catch (exception ex) {
       applicantObj.mflow__KYCStatus__c = 'Under Review';
     }
     ApplicantRepository.upsertRecord(applicantObj);

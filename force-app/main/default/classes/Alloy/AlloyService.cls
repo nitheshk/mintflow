@@ -32,7 +32,7 @@ global virtual with sharing class AlloyService extends AbstractService {
    * @param Application__c application
    * @return Applicant__c
    **/
-  global List<Applicant__c> verifyKYC(Id applicantId) {
+  global String verifyKYC(Id applicantId) {
     AlloyProvider provider = new AlloyProvider();
     try {
       Flow.initialize(ApexRequest.getApplicationId());
@@ -51,11 +51,10 @@ global virtual with sharing class AlloyService extends AbstractService {
           ' and message =' +
           response.getStatus()
         );
-        //TODO: to change later
       }
-      return null;
+      return 'KYC Verified successfully';
     } catch (exception ex) {
-      throw new customException('Unable to do KYC for the applicant');
+      throw new customException('There was sone error encountered to perform KYC of the applicant');
     }
   }
 }
