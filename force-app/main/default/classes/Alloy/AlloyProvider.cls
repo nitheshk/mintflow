@@ -35,16 +35,21 @@ global virtual with sharing class AlloyProvider extends AbstractService {
   public HttpResponse doIDVVerification(Id applicantId) {
     AlloyDTO.IDVRequest idvDTO = new AlloyDTO.IDVRequest();
     Map<String, String> header = new Map<String, String>();
-    header.put('Alloy-Application-Version', HttpBuilder.getApiConstant(AlloyConstants.IDV_APPLICATION_VERSION));
-    header.put('Content-Type', 'application/json');
-    Applicant__c applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
-    HttpBuilder.setAPISetting(APINames.AlloyKYC);
-    HttpBuilder.replaceEndpoint('{evaluation}', HttpBuilder.getApiConstant('AlloyEvaluationURL'));
-    String idvRequestBody = AlloyServiceHelper.getinstance().buildIDVRequest(applicantObj);
-    log?.fine(' Alloy KYC request :' + idvRequestBody);
-    HttpResponse response = HttpBuilder.httpCallOut(idvRequestBody, header);
-    log?.fine(' Alloy KYC response :' + response.getBody());
-
+    HttpResponse response;
+    try {
+      header.put('Alloy-Application-Version', HttpBuilder.getApiConstant(AlloyConstants.IDV_APPLICATION_VERSION));
+      header.put('Content-Type', 'application/json');
+      log?.fine(' Alloy KYC request for doverification' + applicantId);
+      Applicant__c applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
+      HttpBuilder.setAPISetting(APINames.AlloyKYC);
+      HttpBuilder.replaceEndpoint('{evaluation}', HttpBuilder.getApiConstant('AlloyEvaluationURL'));
+      String idvRequestBody = AlloyServiceHelper.getinstance().buildIDVRequest(applicantObj);
+      log?.fine(' Alloy KYC request :' + idvRequestBody);
+      response = HttpBuilder.httpCallOut(idvRequestBody, header);
+      log?.fine(' Alloy KYC response :' + response.getBody());
+    } catch (exception ex) {
+      system.debug('exceptopn:' + ex.getLineNumber() + '-' + ex.getMessage());
+    }
     return response;
   }
 
@@ -72,7 +77,7 @@ global virtual with sharing class AlloyProvider extends AbstractService {
   public void ParseIDVReponse(Id applicantId, HttpResponse response) {
     String responseBody = response.getBody();
     AlloyDTO.IDVResponse idvDTO = AlloyDTO.parseIDVResponse(responseBody);
-    system.debug('idvDTO::' + idvDTO);
+    system.debug('idvDTO::' + responseBody);
     Applicant__c applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
     if (idvDTO.summary.result.equalsignoreCase('success') && idvDTO.summary.outcome.equalsignorecase('Approved')) {
       applicantObj.mflow__KYCStatus__c = 'Passed';

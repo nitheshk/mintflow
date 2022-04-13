@@ -158,7 +158,9 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     String applicationJson =
       '{"FinancialAccounts":[{"FinancialAccountId":"' +
       application.FinancialAccounts__r[0].Id +
-      '","AccountNumber":"34543"}],"Applicants":[{"ApplicantId":"' +
+      '","AccountNumber":"34543","FinancialApplicationTransaction":{"TransactionStatus":"Paid","FinancialAccountTransactionId":"' +
+      application.FinancialAccounts__r[0].FinancialAccountTransactions__r[0].Id +
+      '"}}],"Applicants":[{"ApplicantId":"' +
       application.Applicants__r[0].Id +
       '","CustomerNumber":"456456"}],"ExternalApplicationNumber":"3434","ExternalApplicationStatus":"Approved","MemberNumber":" 229217 ","ApplicationId":"' +
       application.Id +
