@@ -30,4 +30,19 @@ global with sharing class AlloyRepository extends DatabaseUtils {
       .whereEq('Id', applicantId);
     return (Applicant__c) DatabaseUtils.getRecord(qry.toString());
   }
+  /*
+   * @description
+   * @param String developerName
+   * @return Document
+   **/
+  public static Document findDocumentByDeveloperName(String developerName) {
+    String q = Query.newInstance(Document.SObjectType)
+      .addFields()
+      .whereEq('DeveloperName', developerName)
+      .addLimit(1)
+      .run()
+      .toString();
+    List<Document> l = (List<Document>) DatabaseUtils.getRecords(q);
+    return l.isEmpty() ? null : l[0];
+  }
 }
