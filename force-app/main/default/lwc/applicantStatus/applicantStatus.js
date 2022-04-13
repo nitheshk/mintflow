@@ -38,4 +38,19 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
   handleIdentityVerifyClose() {
     this.openModal = false;
   }
+
+  handleKYCNavigate() {
+    var siteUrl =
+      "https://sandbox-force-inspiration-1364-dev-e-1801e294ebf.cs75.force.com/apex/AlloyKYCReport?id=" +
+      this.record.Id;
+    this[NavigationMixin.Navigate](
+      {
+        type: "standard__webPage",
+        attributes: {
+          url: siteUrl
+        }
+      },
+      true // Replaces the current page in your browser history with the URL
+    );
+  }
 }
