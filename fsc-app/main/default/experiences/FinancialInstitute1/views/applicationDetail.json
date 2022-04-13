@@ -103,6 +103,14 @@
                           "seedComponents": [],
                           "tabKey": "915af",
                           "tabName": "Chatter"
+                        },
+                        {
+                          "UUID": "ee90d82b-67bc-45b6-987f-e53989c279f7",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "6cd93",
+                          "tabName": "Related List"
                         }
                       ],
                       "useOverflowMenu": false
@@ -187,6 +195,25 @@
                       "id": "ceb78313-6fc8-4769-97aa-3b89c39ee002",
                       "regionLabel": "Chatter",
                       "regionName": "915af",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "recordId": "{!recordId}",
+                            "width": "MEDIUM"
+                          },
+                          "componentName": "forceCommunity:relatedRecords",
+                          "id": "39c576ac-bc38-4a3b-889b-a39141fe1886",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "ee90d82b-67bc-45b6-987f-e53989c279f7",
+                      "regionLabel": "Related List",
+                      "regionName": "6cd93",
                       "renditionMap": {},
                       "type": "region"
                     }
