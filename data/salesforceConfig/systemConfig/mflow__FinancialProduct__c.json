@@ -18,8 +18,8 @@
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": true,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -31,13 +31,13 @@
             "mflow__DisplayName__c": "Financial future",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Regular_Savings.png",
-            "mflow__Order__c": 11,
+            "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Start with a few dollars or a fistful.",
             "mflow__Topic__c": "Regular Savings",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-usd"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0_1" },
@@ -47,13 +47,13 @@
             "mflow__DisplayName__c": "Regular Savings Description",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Regular_Savings.png",
-            "mflow__Order__c": 16,
+            "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Get a jump-start on a sunnier tomorrow.",
             "mflow__Topic__c": "Take strong steps toward a more secure financial future.",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-life-ring"
           }
         ]
       }
@@ -76,8 +76,8 @@
       "mflow__SubCategory__c": "Preferred Debit Account",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -90,13 +90,13 @@
             "mflow__DisplayName__c": "Preferred Debit Account Description",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
-            "mflow__Order__c": 18,
+            "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
             "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-paper-plane"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef1_1" },
@@ -105,13 +105,13 @@
             "mflow__DisplayContents__c": "<h3><b>Everybody talks about 24/7. We&#39;ve made it our business model.</b></h3><p><span style=\"font-size: 0.9375rem;\">Some days pass at a steady pace. Other times, you&#39;re moving full tilt from morning &#39;til midnight. When life has you on the go, it&#39;s nice to know that there&#39;s no real closing time at P1FCU. No matter the hour, you can tap into your accounts through Online, Mobile or Text banking or visit one of the thousands of ATMs in our extensive network.</span></p><p><span style=\"font-size: 0.9375rem;\"> </span></p><h4><b>Online Banking</b></h4><ul><li>Get up-to-the-minute account balances.</li><li>Transfer funds between accounts.</li><li>Monitor recent transactions.</li><li>Pay bills in minutes with electronic Bill Pay.</li><li>Access check images or electronic versions of your paper statements.</li><li>Use <a href=\"https://www.p1fcu.org/personal/money-manager\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Money Manager</a> to track spending patterns and build a better budget with a Preferred or Powerplus <a href=\"https://www.p1fcu.org/personal/debit-accounts\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Debit Account</a>.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor email alerts that let you know about low balances and other important account activity.</li><li>Order checks.</li></ul><h4><br></h4><h4><b>Mobile Banking</b></h4><ul><li>Download the free P1FCU app from Google Play or the App Store.</li><li>Check balances and transfer funds.</li><li>Deposit checks from anywhere with just a few clicks of your smartphone camera.</li><li>Link your P1FCU Debit Mastercard to your smartphone for one-tap payments.</li><li>Find an ATM or P1FCU branch.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor text alerts that let you know about low balances and other important account activity.</li></ul>",
             "mflow__DisplayName__c": "Anytime Account Access",
             "mflow__ImageType__c": "Relative",
-            "mflow__Order__c": 19,
+            "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
             "mflow__Topic__c": "Anytime Account Access",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-unlock-alt"
           }
         ]
       }
@@ -158,21 +158,6 @@
         "done": true,
         "records": [
           {
-            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef3_0" },
-            "Name": "Feature-APY",
-            "mflow__Code__c": "APY",
-            "mflow__DisplayContents__c": "<p>APY: 0.05%</p>",
-            "mflow__DisplayName__c": "Annual Percentage Yield",
-            "mflow__ImageType__c": "Relative",
-            "mflow__ImageUrl__c": "Products/Regular_Savings.png",
-            "mflow__Order__c": 3,
-            "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.05",
-            "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
-          },
-          {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef3_1" },
             "Name": "Idaho Medical Savings Accounts description",
             "mflow__Code__c": "IHO",
@@ -180,12 +165,12 @@
             "mflow__DisplayName__c": "Idaho Medical Savings Accounts description",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Regular_Savings.png",
-            "mflow__Order__c": 20,
+            "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Idaho Medical Savings Accounts",
             "mflow__Topic__c": "Idaho Medical Savings Accounts",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -209,8 +194,8 @@
       "mflow__SubCategory__c": "Instant Access Savings",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -223,13 +208,13 @@
             "mflow__DisplayName__c": "Features",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
-            "mflow__Order__c": 6,
+            "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Tiered dividends for larger balances",
             "mflow__Topic__c": "Features",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-usd"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4_1" },
@@ -238,13 +223,13 @@
             "mflow__DisplayContents__c": "<h3>You&#39;ll benefit from:</h3><ul><li>Tiered dividends on larger balances</li><li>No monthly account maintenance fees</li><li>No early withdrawal fees</li><li>Surcharge-free access at nearly 30,000 CO-OP network ATMs nationwide</li></ul><p>Manage your money when and where you want:</p><ul><li>Withdraw funds at any time</li><li>Access your account online from our Mobile App</li><li>Deposit checks with our free Mobile App</li><li>Enter a branch at nearly 6,000 CO-OP shared branch locations</li></ul><h3>Peace of mind</h3><ul><li>Balances are insured to at least $250,000 by the NCUA</li><li>Secure online access</li><li>Automatic overdraft transfers for your First Tech checking account</li></ul><p><br></p>",
             "mflow__DisplayName__c": "Benefits",
             "mflow__ImageType__c": "Relative",
-            "mflow__Order__c": 7,
+            "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits.",
             "mflow__Topic__c": "Benefits",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-cog"
           }
         ]
       }
@@ -273,34 +258,34 @@
         "records": [
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_0" },
+            "Name": "Anytime Account Access",
+            "mflow__Code__c": "AAA",
+            "mflow__DisplayContents__c": "<h3><b>Everybody talks about 24/7. We&#39;ve made it our business model.</b></h3><p><span style=\"font-size: 0.9375rem;\">Some days pass at a steady pace. Other times, you&#39;re moving full tilt from morning &#39;til midnight. When life has you on the go, it&#39;s nice to know that there&#39;s no real closing time at P1FCU. No matter the hour, you can tap into your accounts through Online, Mobile or Text banking or visit one of the thousands of ATMs in our extensive network.</span></p><p><span style=\"font-size: 0.9375rem;\"> </span></p><h4><b>Online Banking</b></h4><ul><li>Get up-to-the-minute account balances.</li><li>Transfer funds between accounts.</li><li>Monitor recent transactions.</li><li>Pay bills in minutes with electronic Bill Pay.</li><li>Access check images or electronic versions of your paper statements.</li><li>Use <a href=\"https://www.p1fcu.org/personal/money-manager\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Money Manager</a> to track spending patterns and build a better budget with a Preferred or Powerplus <a href=\"https://www.p1fcu.org/personal/debit-accounts\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Debit Account</a>.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor email alerts that let you know about low balances and other important account activity.</li><li>Order checks.</li></ul><h4><br></h4><h4><b>Mobile Banking</b></h4><ul><li>Download the free P1FCU app from Google Play or the App Store.</li><li>Check balances and transfer funds.</li><li>Deposit checks from anywhere with just a few clicks of your smartphone camera.</li><li>Link your P1FCU Debit Mastercard to your smartphone for one-tap payments.</li><li>Find an ATM or P1FCU branch.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor text alerts that let you know about low balances and other important account activity.</li></ul>",
+            "mflow__DisplayName__c": "Anytime Account Access",
+            "mflow__ImageType__c": "Relative",
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
+            "mflow__Topic__c": "Anytime Account Access",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-unlock-alt"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_1" },
             "Name": "PowerPlus Debit Account Description",
             "mflow__Code__c": "PPD",
             "mflow__DisplayContents__c": "<p>Free debit card? Nationwide ATM network? Anytime Account Access? Each of our Debit Accounts come with all of the above. We believe in going above and beyond. So we&#39;ve created options that also pay dividends on deposits and feature insurance benefits, identity theft protection, and discounts on prescriptions and other products.</p><p><br></p><h4><b>All our accounts include:</b></h4><ul><li>Free <a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Debit Mastercard</a></li><li><a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">(Opens in a new Window)</a></li><li><br></li><li><a href=\"https://www.p1fcu.org/personal/debit-mastercard\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">(Opens in a new Window)</a></li><li><br></li><li>Free Online Banking with electronic Bill Pay</li><li>Free Mobile Banking with <a href=\"https://www.p1fcu.org/mobile-deposit\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Mobile Deposit</a></li><li>No minimum balance requirements*</li><li>No check writing limits</li><li>Free <a href=\"https://www.p1fcu.org/mobimoney\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">MobiMoney</a> helps you reduce chances of fraud by controlling your debit card from our mobile app.</li><li><a href=\"https://www.p1fcu.org/cardswap\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">CardSwap</a> makes sure online retailers have your up-to-date info if your card is new or changes.</li><li><a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle </a>– a fast, safe, and easy way to send money to friends, family.</li></ul><h4><b>PowerPlus Debit Account</b></h4><p>Looking for an extra income source? You can earn competitive dividends on your Debit Account deposits. Plus, you&#39;ll pay less for medication, get sweet deals at local merchants, qualify for free cell phone protection, and much more. All this costs just $7.99 a month, but the price drops to zero if you keep a minimum balance of $1,000.</p>",
             "mflow__DisplayName__c": "PowerPlus Debit Account Description",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Preferred_debit.png",
-            "mflow__Order__c": 19,
+            "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
             "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
-          },
-          {
-            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_1" },
-            "Name": "Anytime Account Access",
-            "mflow__Code__c": "AAA",
-            "mflow__DisplayContents__c": "<h3><b>Everybody talks about 24/7. We&#39;ve made it our business model.</b></h3><p><span style=\"font-size: 0.9375rem;\">Some days pass at a steady pace. Other times, you&#39;re moving full tilt from morning &#39;til midnight. When life has you on the go, it&#39;s nice to know that there&#39;s no real closing time at P1FCU. No matter the hour, you can tap into your accounts through Online, Mobile or Text banking or visit one of the thousands of ATMs in our extensive network.</span></p><p><span style=\"font-size: 0.9375rem;\"> </span></p><h4><b>Online Banking</b></h4><ul><li>Get up-to-the-minute account balances.</li><li>Transfer funds between accounts.</li><li>Monitor recent transactions.</li><li>Pay bills in minutes with electronic Bill Pay.</li><li>Access check images or electronic versions of your paper statements.</li><li>Use <a href=\"https://www.p1fcu.org/personal/money-manager\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Money Manager</a> to track spending patterns and build a better budget with a Preferred or Powerplus <a href=\"https://www.p1fcu.org/personal/debit-accounts\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Debit Account</a>.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor email alerts that let you know about low balances and other important account activity.</li><li>Order checks.</li></ul><h4><br></h4><h4><b>Mobile Banking</b></h4><ul><li>Download the free P1FCU app from Google Play or the App Store.</li><li>Check balances and transfer funds.</li><li>Deposit checks from anywhere with just a few clicks of your smartphone camera.</li><li>Link your P1FCU Debit Mastercard to your smartphone for one-tap payments.</li><li>Find an ATM or P1FCU branch.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor text alerts that let you know about low balances and other important account activity.</li></ul>",
-            "mflow__DisplayName__c": "Anytime Account Access",
-            "mflow__ImageType__c": "Relative",
-            "mflow__Order__c": 19,
-            "mflow__Required__c": false,
-            "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
-            "mflow__Topic__c": "Anytime Account Access",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Icon__c": "fa fa-usd"
           }
         ]
       }
@@ -342,8 +327,8 @@
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -356,13 +341,13 @@
             "mflow__DisplayName__c": "Prime Debit Account Description",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Prime_debit.png",
-            "mflow__Order__c": 17,
+            "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
             "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-usd"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_1" },
@@ -371,13 +356,13 @@
             "mflow__DisplayContents__c": "<h3><b>Everybody talks about 24/7. We&#39;ve made it our business model.</b></h3><p><span style=\"font-size: 0.9375rem;\">Some days pass at a steady pace. Other times, you&#39;re moving full tilt from morning &#39;til midnight. When life has you on the go, it&#39;s nice to know that there&#39;s no real closing time at P1FCU. No matter the hour, you can tap into your accounts through Online, Mobile or Text banking or visit one of the thousands of ATMs in our extensive network.</span></p><p><span style=\"font-size: 0.9375rem;\"> </span></p><h4><b>Online Banking</b></h4><ul><li>Get up-to-the-minute account balances.</li><li>Transfer funds between accounts.</li><li>Monitor recent transactions.</li><li>Pay bills in minutes with electronic Bill Pay.</li><li>Access check images or electronic versions of your paper statements.</li><li>Use <a href=\"https://www.p1fcu.org/personal/money-manager\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">P1FCU Money Manager</a> to track spending patterns and build a better budget with a Preferred or Powerplus <a href=\"https://www.p1fcu.org/personal/debit-accounts\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Debit Account</a>.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor email alerts that let you know about low balances and other important account activity.</li><li>Order checks.</li></ul><h4><br></h4><h4><b>Mobile Banking</b></h4><ul><li>Download the free P1FCU app from Google Play or the App Store.</li><li>Check balances and transfer funds.</li><li>Deposit checks from anywhere with just a few clicks of your smartphone camera.</li><li>Link your P1FCU Debit Mastercard to your smartphone for one-tap payments.</li><li>Find an ATM or P1FCU branch.</li><li>Transfer money fast, safe and easily to to friends, and family with <a href=\"https://www.p1fcu.org/personal/zelle\" target=\"_blank\" style=\"color: rgb(49, 118, 156);\">Zelle</a>. </li><li>Monitor text alerts that let you know about low balances and other important account activity.</li></ul>",
             "mflow__DisplayName__c": "Anytime Account Access",
             "mflow__ImageType__c": "Relative",
-            "mflow__Order__c": 19,
+            "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
             "mflow__Topic__c": "Anytime Account Access",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-cog"
           }
         ]
       }
@@ -400,8 +385,8 @@
       "mflow__SubCategory__c": "Carefree Checking",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -418,9 +403,9 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Carefree Checking",
             "mflow__Topic__c": "Features",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-cog"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_1" },
@@ -433,9 +418,9 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits",
             "mflow__Topic__c": "Benefits",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-gift"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_2" },
@@ -449,9 +434,9 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Debit Mastercard",
             "mflow__Topic__c": "Debit Mastercard",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-credit-card"
           }
         ]
       }
@@ -474,8 +459,8 @@
       "mflow__SubCategory__c": "3 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 5,
         "done": true,
@@ -490,8 +475,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "CD Advantages",
             "mflow__Topic__c": "CD Advantages",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -501,13 +486,13 @@
             "mflow__DisplayName__c": "Key Takeaways",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
-            "mflow__Order__c": 2,
+            "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Key Takeaways",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-gift"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_2" },
@@ -516,11 +501,11 @@
             "mflow__DisplayContents__c": "APY: 0.10%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__ImageType__c": "Relative",
-            "mflow__Order__c": 3,
+            "mflow__Order__c": 6,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.10",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -530,11 +515,11 @@
             "mflow__DisplayContents__c": "Min Deposit : $500",
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__ImageType__c": "Relative",
-            "mflow__Order__c": 6,
+            "mflow__Order__c": 8,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -545,12 +530,12 @@
             "mflow__DisplayName__c": "Share Certificates",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
-            "mflow__Order__c": 12,
+            "mflow__Order__c": 10,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -574,8 +559,8 @@
       "mflow__SubCategory__c": "6 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -589,9 +574,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.20",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -603,9 +588,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -620,8 +605,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -645,8 +630,8 @@
       "mflow__SubCategory__c": "12 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -660,9 +645,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.30",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -674,9 +659,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -691,8 +676,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -716,8 +701,8 @@
       "mflow__SubCategory__c": "18 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -731,9 +716,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.50",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -745,9 +730,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -762,8 +747,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -787,8 +772,8 @@
       "mflow__SubCategory__c": "24 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -802,9 +787,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.60",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -816,9 +801,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -833,8 +818,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -858,8 +843,8 @@
       "mflow__SubCategory__c": "36 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -873,9 +858,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.65",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -887,9 +872,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -904,8 +889,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -929,8 +914,8 @@
       "mflow__SubCategory__c": "48 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -944,9 +929,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.75",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -958,9 +943,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -975,8 +960,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -1000,8 +985,8 @@
       "mflow__SubCategory__c": "60 Month Certificate",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -1015,9 +1000,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.80",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -1029,9 +1014,9 @@
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
-            "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -1046,8 +1031,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -1071,8 +1056,8 @@
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -1083,12 +1068,13 @@
             "mflow__DisplayContents__c": "<p><b style=\"font-size: 16px;\"><i>It&#39;s not all about the plastic. Discover online banking, a modern mobile experience and a digital wallet. </i></b></p><p><br></p><p>Need to temporarily lock your card? Order a replacement card? Want to check your rewards balance and see if you have enough points for that trip to Palm Springs? Now you can do all that and more with the Manage Cards widget. You just need the First Tech mobile app or online banking. Also shop safely and effortlessly with Digital Wallet programs like Apple Pay, Samsung Pay, Google Pay.</p>",
             "mflow__DisplayName__c": "Digital experience",
             "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit-Card/Crt_Feature_4.png",
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Digital experience",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           },
           {
@@ -1097,14 +1083,14 @@
             "mflow__DisplayContents__c": "<p>Local convenience, global security and a connected digital experience.</p><p><br></p><ul><li>Chip-and-PIN transaction authentication accepted worldwide.</li></ul><p><br></p><ul><li>Manage your account and monitor transactions anytime, anywhere with our free mobile app.</li></ul><p><br></p><ul><li>Shop safely and effortlessly with <a href=\"https://masterpass.com/\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">MasterPass®</a> or <a href=\"https://www2.firsttechfed.com/LP=45\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">Apple Pay</a> digital wallet programs.</li></ul><p><br></p>",
             "mflow__DisplayName__c": "Security",
             "mflow__ImageType__c": "Relative",
-            "mflow__ImageUrl__c": "Products/Regular_Savings.png",
+            "mflow__ImageUrl__c": "/Products/Credit-Card/Crt_Feature_2",
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Global security",
             "mflow__Topic__c": "Security",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-eye"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef17_2" },
@@ -1112,13 +1098,14 @@
             "mflow__DisplayContents__c": "<p>First Tech is proud to be the Official Credit Union of the Portland Trail Blazers.</p><p>We’re excited to offer a Portland Trail Blazers option for this card. You&#39;ll receive all the standard card perks, along with some Blazers exclusives:</p><p><br></p><p>Get great deals on tickets.</p><p><br></p><p>As a First Tech member, you’re eligible for discounted tickets to games, shows and performances at the Rose Quarter.</p><p><br></p><p>Score savings on gear.</p><p><br></p><p>Take 10% off everything at Rip City Clothing Co. in the Moda Center, all season long, when you use your First Tech credit or debit card.</p><p><br></p><p>Already have a credit card with First Tech?</p><p><br></p><ul><li>Current cardholders can replace their card with the Blazers Mastercard® design by visiting us at any of our locations, or by calling us at 855.855.8805.</li></ul>",
             "mflow__DisplayName__c": "Blazers Card",
             "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "/Products/Credit-Card/Crt_Feature_3.JPG",
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Your wallet has a new MVP",
             "mflow__Topic__c": "Blazers Card",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-credit-card"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef17_3" },
@@ -1127,14 +1114,14 @@
             "mflow__DisplayContents__c": "<p>Features:</p><ul><li><a href=\"https://www.firsttechfed.com/Rates/Credit-Cards\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">As low as 8.25% APR - Learn More</a> , not to exceed 18.00%<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>No annual fee</li><li>Introductory 0.00% APR balance transfer for 12 billing cycles<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-1\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">1</a></li><li>Earn double Rewards Points on everyday purchases<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-3\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">3</a></li><li>Industry-leading Chip + PIN security</li></ul><p>Benefits:</p><ul><li>Earn 20,000 bonus Rewards Points when you spend $3,000 in the first 60 days<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>Earn 2 Rewards Points for every $1 spent on groceries, gas, electronics, medical, household goods and telecommunications<u style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</u> and 1 Reward Point for every $1 spent on all other purchases</li><li>Redeem Reward Points for travel, merchandise, events, experiences, gift cards and cash</li><li>No points maximum and your points never expire<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-4\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</a></li><li><a href=\"https://www.firsttechfed.com/Help/Cardholder-Benefits\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">View all cardholder benefits</a></li></ul><p><br></p>",
             "mflow__DisplayName__c": "Features and rewards",
             "mflow__ImageType__c": "Relative",
-            "mflow__ImageUrl__c": "Products/Credit_Card_Cash_rewards.png",
+            "mflow__ImageUrl__c": "/Products/Credit-Card/Crt_Feature_1.JPG",
             "mflow__Order__c": 8,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Features and rewards",
             "mflow__Topic__c": "Features and rewards",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
-            "mflow__Icon__c": "fa fa-certificate"
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-gift"
           }
         ]
       }
@@ -1157,8 +1144,75 @@
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
       "mflow__isActive__c": true,
+      "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
-      "mflow__ImageType__c": "Relative"
+      "mflow__ProductFeatures__r": {
+        "totalSize": 4,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef18_0" },
+            "Name": "Digital experience",
+            "mflow__DisplayContents__c": "<p><b style=\"font-size: 16px;\"><i>It&#39;s not all about the plastic. Discover online banking, a modern mobile experience and a digital wallet. </i></b></p><p><br></p><p>Need to temporarily lock your card? Order a replacement card? Want to check your rewards balance and see if you have enough points for that trip to Palm Springs? Now you can do all that and more with the Manage Cards widget. You just need the First Tech mobile app or online banking. Also shop safely and effortlessly with Digital Wallet programs like Apple Pay, Samsung Pay, Google Pay.</p>",
+            "mflow__DisplayName__c": "Digital experience",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Credit-Card/Crt_Feature_4.png",
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "The digital experience",
+            "mflow__Topic__c": "Digital experience",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-certificate"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef18_1" },
+            "Name": "Security",
+            "mflow__DisplayContents__c": "<p>Local convenience, global security and a connected digital experience.</p><p><br></p><ul><li>Chip-and-PIN transaction authentication accepted worldwide.</li></ul><p><br></p><ul><li>Manage your account and monitor transactions anytime, anywhere with our free mobile app.</li></ul><p><br></p><ul><li>Shop safely and effortlessly with <a href=\"https://masterpass.com/\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">MasterPass®</a> or <a href=\"https://www2.firsttechfed.com/LP=45\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">Apple Pay</a> digital wallet programs.</li></ul><p><br></p>",
+            "mflow__DisplayName__c": "Security",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "/Products/Credit-Card/Crt_Feature_2",
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Global security",
+            "mflow__Topic__c": "Security",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-eye"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef18_2" },
+            "Name": "Blazers Card",
+            "mflow__DisplayContents__c": "<p>First Tech is proud to be the Official Credit Union of the Portland Trail Blazers.</p><p>We’re excited to offer a Portland Trail Blazers option for this card. You&#39;ll receive all the standard card perks, along with some Blazers exclusives:</p><p><br></p><p>Get great deals on tickets.</p><p><br></p><p>As a First Tech member, you’re eligible for discounted tickets to games, shows and performances at the Rose Quarter.</p><p><br></p><p>Score savings on gear.</p><p><br></p><p>Take 10% off everything at Rip City Clothing Co. in the Moda Center, all season long, when you use your First Tech credit or debit card.</p><p><br></p><p>Already have a credit card with First Tech?</p><p><br></p><ul><li>Current cardholders can replace their card with the Blazers Mastercard® design by visiting us at any of our locations, or by calling us at 855.855.8805.</li></ul>",
+            "mflow__DisplayName__c": "Blazers Card",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "/Products/Credit-Card/Crt_Feature_3.JPG",
+            "mflow__Order__c": 4,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Your wallet has a new MVP",
+            "mflow__Topic__c": "Blazers Card",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-credit-card"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef18_3" },
+            "Name": "Features and rewards",
+            "mflow__Code__c": "PS008",
+            "mflow__DisplayContents__c": "<p>Features:</p><ul><li><a href=\"https://www.firsttechfed.com/Rates/Credit-Cards\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">As low as 8.25% APR - Learn More</a> , not to exceed 18.00%<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>No annual fee</li><li>Introductory 0.00% APR balance transfer for 12 billing cycles<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-1\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">1</a></li><li>Earn double Rewards Points on everyday purchases<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-3\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">3</a></li><li>Industry-leading Chip + PIN security</li></ul><p>Benefits:</p><ul><li>Earn 20,000 bonus Rewards Points when you spend $3,000 in the first 60 days<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-2\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">2</a></li><li>Earn 2 Rewards Points for every $1 spent on groceries, gas, electronics, medical, household goods and telecommunications<u style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</u> and 1 Reward Point for every $1 spent on all other purchases</li><li>Redeem Reward Points for travel, merchandise, events, experiences, gift cards and cash</li><li>No points maximum and your points never expire<a href=\"https://www.firsttechfed.com/borrow/credit-cards/choice-rewards#footnote-4\" target=\"_blank\" style=\"color: rgb(79, 79, 79); font-size: 16.5px;\">4</a></li><li><a href=\"https://www.firsttechfed.com/Help/Cardholder-Benefits\" target=\"_blank\" style=\"color: rgb(79, 79, 79);\">View all cardholder benefits</a></li></ul><p><br></p>",
+            "mflow__DisplayName__c": "Features and rewards",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "/Products/Credit-Card/Crt_Feature_1.JPG",
+            "mflow__Order__c": 8,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Features and rewards",
+            "mflow__Topic__c": "Features and rewards",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-gift"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0010" },
@@ -1178,8 +1232,8 @@
       "mflow__SubCategory__c": "Money Market Checking",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1196,8 +1250,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Money Market Checking",
             "mflow__Topic__c": "Money Market Checking",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
@@ -1221,8 +1275,8 @@
       "mflow__SubCategory__c": "Money Market Savings",
       "mflow__Type__c": "Deposit",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false,
       "mflow__ImageType__c": "Relative",
+      "mflow__IsMembershipProduct__c": false,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1239,8 +1293,8 @@
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Money Market Savings",
             "mflow__Topic__c": "Money Market Savings",
-            "mflow__Type__c": "Product Description",
             "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
             "mflow__Icon__c": "fa fa-certificate"
           }
         ]
