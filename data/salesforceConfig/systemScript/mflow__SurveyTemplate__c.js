@@ -9,8 +9,6 @@ utils
   .then((result) => {
     const data = utils.fetchRecords(result);
 
-    console.log(data);
-
     // <== Script to update change for each config
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
