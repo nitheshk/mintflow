@@ -156,7 +156,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Application</label>
     <nameField>
-        <displayFormat>App-{00000}</displayFormat>
+        <displayFormat>App{00000}</displayFormat>
         <label>Application Number</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
