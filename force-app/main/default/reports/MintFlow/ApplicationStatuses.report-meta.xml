@@ -69,7 +69,7 @@
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value
-      >,Pending Review,Approved,Cancelled,Submitted,Completed,Abandoned,In Progress,Draft,Review In Progress,Submit for Review,Saved,Rejected,Funding in Progress</value>
+      >,Pending Review,Approved,Cancelled,Submitted,Completed,Abandoned,In Progress,Draft,Review In Progress,Saved,Rejected,Funding in Progress</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

@@ -113,10 +113,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Submit for Review</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Submitted</fullName>
             <default>false</default>
         </values>

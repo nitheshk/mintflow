@@ -46,11 +46,6 @@
         <label>Review In Progress</label>
     </customValue>
     <customValue>
-        <fullName>Submit for Review</fullName>
-        <default>false</default>
-        <label>Submit for Review</label>
-    </customValue>
-    <customValue>
         <fullName>Saved</fullName>
         <default>false</default>
         <label>Saved</label>

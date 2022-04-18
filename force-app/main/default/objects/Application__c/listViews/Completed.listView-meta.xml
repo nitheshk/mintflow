@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SubmitForReview</fullName>
+    <fullName>Completed</fullName>
     <columns>NAME</columns>
     <columns>Stage__c</columns>
     <columns>Status__c</columns>
@@ -10,7 +10,7 @@
     <filters>
         <field>Status__c</field>
         <operation>equals</operation>
-        <value>Submit for Review</value>
+        <value>Completed</value>
     </filters>
-    <label>Submit For Review</label>
+    <label>Completed</label>
 </ListView>
