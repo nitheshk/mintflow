@@ -7,11 +7,7 @@ public with sharing class ConsentResolverTest {
     TestData.createSiteSetting();
     List<FinancialProduct__c> products = TestData.createProduct();
     insert products;
-    List<mflow__ConsentTemplate__c> consentTemplates = TestData.createConsentTemplate();
-    insert consentTemplates;
-    List<ConsentLineItem__c> consentLineItem = TestData.createConsentLineItem();
-    consentLineItem[0].ConsentTemplate__r = consentTemplates[0];
-    insert consentLineItem;
+    Testdata.createConsentLineItem();
   }
   //createApplicantDataWithChild
   private static Applicant__c createApplicantDataWithChild(Application__c application) {
@@ -50,5 +46,29 @@ public with sharing class ConsentResolverTest {
     ApexResponse res = ApplicationController.fetchConsents(request);
     res = ApplicationController.fetchConsents(request);
     system.assertEquals(200, res.status, 'success');
+  }
+  @IsTest
+  private static void generateConsentPdfTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
+    ApexRequest request = new ApexRequest();
+    ApexResponse res = new ApexResponse();
+    request.token = ApexRequest.getToken();
+    request.header = '{"eventIdentifier":"MemberAgreementPage" }';
+    res = ApplicationController.generateConsentPdf(request);
+
+    request = new ApexRequest();
+    res = ApplicationController.generateConsentPdf(request);
+
+    request = new ApexRequest();
+    request.token = 'invalid token';
+    res = ApplicationController.generateConsentPdf(request);
+    system.assertEquals(400, res.status, 'success');
   }
 }

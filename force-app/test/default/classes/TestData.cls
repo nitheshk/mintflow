@@ -246,23 +246,26 @@ public with sharing class TestData {
     consent.Name = 'Consent Name';
     return consent;
   }
-  public static List<mflow__ConsentTemplate__c> createConsentTemplate() {
-    List<mflow__ConsentTemplate__c> consentLines = new List<mflow__ConsentTemplate__c>();
+  public static mflow__ConsentTemplate__c createConsentTemplate(string docType) {
     mflow__ConsentTemplate__c consentTemplate = new mflow__ConsentTemplate__c();
     consentTemplate.Name = 'Privacy Policy';
     consentTemplate.mflow__Code__c = 'C0002';
     consentTemplate.mflow__ConsentType__c = 'Disclosure';
     consentTemplate.mflow__DocumentName__c = 'PrivacyPolicy_v1';
-    consentTemplate.mflow__DocumentType__c = 'Static';
+    consentTemplate.mflow__DocumentType__c = docType;
     consentTemplate.mflow__ExternalId__c = 'E0002';
     consentTemplate.mflow__Language__c = 'English';
     consentTemplate.mflow__LongDescipription__c = 'Privacy Policy';
     consentTemplate.mflow__ShortDescription__c = 'Privacy Policy';
     consentTemplate.mflow__VersionNumber__c = 'v1';
-    consentLines.add(consentTemplate);
-    return consentLines;
+    insert consentTemplate;
+    return consentTemplate;
   }
   public static List<ConsentLineItem__c> createConsentLineItem() {
+    mflow__ConsentTemplate__c consentTemplate = createConsentTemplate('Static');
+    // mflow__ConsentTemplate__c consentTemplate1 = createConsentTemplate('Visualforce');
+    // consentTemplate1.mflow__DocumentType__c = 'Visualforce';
+    // upsert consentTemplate1;
     List<ConsentLineItem__c> consentLines = new List<ConsentLineItem__c>();
     ConsentLineItem__c consentLine = new ConsentLineItem__c();
     consentLine.Name = 'Privacy Policy';
@@ -273,8 +276,9 @@ public with sharing class TestData {
     consentLine.mflow__ExternalId__c = 'CLI0002';
     consentLine.mflow__IsSignatureRequired__c = false;
     consentLine.isActive__c = true;
-
+    consentLine.ConsentTemplate__c = consentTemplate.id;
     consentLines.add(consentLine);
+    insert consentLines;
     return consentLines;
   }
   private static mflow__SurveyTemplate__c makeSurveyTemplate() {
