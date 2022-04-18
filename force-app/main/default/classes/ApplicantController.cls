@@ -313,4 +313,24 @@ global with sharing class ApplicantController extends AbstractController {
       log?.fine('Completed validateExistingCustomer');
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 03-28-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse getBaseURL(ApexRequest request) {
+    try {
+      log?.fine('Inside getBaseURL');
+      return ApexResponse.ok(AlloyService.getInstance().getBaseURL());
+    } catch (exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Completed getBaseURL');
+    }
+  }
 }

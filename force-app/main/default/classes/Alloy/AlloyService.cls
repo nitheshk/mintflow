@@ -57,4 +57,20 @@ global virtual with sharing class AlloyService extends AbstractService {
       throw new customException('There was sone error encountered to perform KYC of the applicant');
     }
   }
+
+  global string getBaseURL() {
+    String baseUrl;
+    User currentUser = UserUtils.getCurrentUser();
+    if (
+      currentUser.Profile.Name == CommunityConstant.FIN_INST_EMPLOYEE_USER_PROFILE ||
+      currentUser.Profile.Name == CommunityConstant.CUSTOMER_COMMUNITY_USER_PROFILE
+    ) {
+      baseUrl = GenericUtils.fetchLoginURL() + '/apex/AlloyKYCReport';
+    } else if (UserUtils.isGuestUser()) {
+      baseUrl = SiteSetting__c.getInstance().OnlineSiteUrl__c + '/apex/AlloyKYCReport';
+    } else {
+      baseUrl = GenericUtils.fetchLoginURL() + '/apex/AlloyKYCReport';
+    }
+    return baseUrl;
+  }
 }

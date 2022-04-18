@@ -1,5 +1,6 @@
-import { LightningElement, api, track } from "lwc";
+import { LightningElement, api, track, wire } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
+import getBaseUrl from "@salesforce/apex/ApplicantController.getBaseURL";
 
 export default class ApplicantStatus extends NavigationMixin(LightningElement) {
   @api record;
@@ -8,7 +9,9 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
   identityVerified = false;
   kycStatus = false;
   openModal = false;
+
   @track OOWText;
+
   renderedCallback() {
     if (this.record.mflow__IsPhoneNumberVerified__c != "Failed") {
       this.identityVerified = true;
@@ -40,17 +43,30 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
   }
 
   handleKYCNavigate() {
-    var siteUrl =
-      "https://sandbox-force-inspiration-1364-dev-e-1801e294ebf.cs75.force.com/apex/AlloyKYCReport?id=" +
-      this.record.Id;
-    this[NavigationMixin.Navigate](
-      {
-        type: "standard__webPage",
-        attributes: {
-          url: siteUrl
+    console.log("baseurl test");
+    var data;
+    getBaseUrl({
+      request: {}
+    })
+      .then((result) => {
+        if (result.status === 200) {
+          data = JSON.parse(result.data);
+          console.log("baseurl::" + JSON.stringify(data));
+          var siteUrl = data + "?id=" + this.record.Id;
+          this[NavigationMixin.Navigate](
+            {
+              type: "standard__webPage",
+              attributes: {
+                url: siteUrl
+              }
+            },
+            true
+          );
         }
-      },
-      true // Replaces the current page in your browser history with the URL
-    );
+      })
+      .catch((error) => {
+        console.log("Error : " + JSON.stringify(error));
+        utils.errorMessage(this, error.body.message, "Error");
+      });
   }
 }
