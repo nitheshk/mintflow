@@ -1,7 +1,9 @@
 /**
- * Copyright (c) 2019 Terafina Inc
- * @group  Controller
- * @description Service for getting dynamic document URLs
+ * Copyright (c) 2021 Digital Align
+ * @group Controller
+ * @author Digital Align Team
+ * @reference
+ * @description Used to display images on Email Templates
  **/
 public with sharing class DisplayImageController {
   public String imageName { get; set; }
