@@ -43,6 +43,10 @@
                 <behavior>Edit</behavior>
                 <field>VerificationStatus__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>EmploymentDurationMonths__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
