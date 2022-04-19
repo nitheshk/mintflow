@@ -344,6 +344,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.isAllDisclosuresSignedAndPrinted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Applicant__c.OOWCorrectAnswers__c</field>
         <readable>true</readable>
     </fieldPermissions>

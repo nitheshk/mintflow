@@ -231,6 +231,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.isAllDisclosuresSignedAndPrinted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Applicant__c.OOWStatus__c</field>
         <readable>true</readable>

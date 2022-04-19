@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>isAllDisclosuresSignedAndPrinted__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>True if all disclosures are signed by customer and printed. Used in branch channel.</description>
+    <externalId>false</externalId>
+    <label>Is all disclosures signed and printed?</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
