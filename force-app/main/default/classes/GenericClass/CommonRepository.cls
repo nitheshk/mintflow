@@ -49,4 +49,19 @@ global with sharing class CommonRepository extends DatabaseUtils {
       Query.newInstance(Group.SObjectType).addFields('DeveloperName').whereEq('Type', 'Regular').toString()
     );
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 04-19-2022
+   * @param List<String> skipApexClasses
+   * @return List<ApexClass>
+   **/
+  public static List<ApexClass> fetchApexClasses(List<String> skipApexClasses) {
+    String q = Query.newInstance(ApexClass.SObjectType)
+      .addFields('NamespacePrefix,Name')
+      .whereNotIn('Name', skipApexClasses)
+      .orderBy('Name')
+      .toString();
+    return (List<ApexClass>) getRecords(q);
+  }
 }

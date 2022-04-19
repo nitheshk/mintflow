@@ -9,8 +9,6 @@ public with sharing class Scheduler implements Schedulable {
   @TestVisible
   static final String THIS_CLASS = 'Scheduler';
   @TestVisible
-  static final String NAMESPACE_PREFIX = '';
-  @TestVisible
   static final String EXECUTION_ERROR_INACTIVE_OWNER = 'Inactive owner';
   @TestVisible
   static final String EXECUTION_ERROR_INVALID_CLASS = 'Invalid class';
@@ -19,41 +17,17 @@ public with sharing class Scheduler implements Schedulable {
   static final String ASYNC_JOB_COMPLETED_STATUSES = '~Completed~Failed~Aborted~';
 
   @AuraEnabled
-  public static List<Object> getClasses(String searchTerm) {
-    String newSearchTerm = '%' + String.escapeSingleQuotes(searchTerm) + '%';
+  public static List<Object> getClasses() {
+    List<Map<String, String>> apexClassList = new List<Map<String, String>>();
+    List<ApexClass> apexClasses = CommonRepository.fetchApexClasses(new List<String>{ THIS_CLASS });
 
-    List<Map<String, String>> classObjects = new List<Map<String, String>>();
-    Savepoint sp = Database.setSavepoint();
-    List<ApexClass> classes;
-    // List<ApexClass> classes = (List<ApexClass>) new Dao()
-    //   .getRecords(
-    //     'SELECT NamespacePrefix, Name ' +
-    //     'FROM ApexClass ' +
-    //     'WHERE ' +
-    //     'Name LIKE \'' +
-    //     newSearchTerm +
-    //     '\' ' +
-    //     'AND (NamespacePrefix != \'' +
-    //     NAMESPACE_PREFIX +
-    //     '\' ' +
-    //     'OR (NamespacePrefix = \'' +
-    //     NAMESPACE_PREFIX +
-    //     '\' ' +
-    //     'AND Name != \'' +
-    //     THIS_CLASS +
-    //     '\')) ' +
-    //     'ORDER BY Name'
-    //   );
-
-    for (ApexClass c : classes) {
-      String namespacePrefix = c.NamespacePrefix;
-      String name = c.Name;
+    for (ApexClass cls : apexClasses) {
+      String namespacePrefix = cls.NamespacePrefix;
+      String name = cls.Name;
       Map<String, String> batchableMap = new Map<String, String>();
-      Map<String, String> schedulableMap = new Map<String, String>();
-
       Type t;
       Object o;
-
+      system.debug('cls : ' + cls);
       if (Test.isRunningTest()) {
         t = BATCHABLE_TYPE;
       } else {
@@ -62,7 +36,7 @@ public with sharing class Scheduler implements Schedulable {
           // skip private class
           try {
             o = t.newInstance();
-          } catch (TypeException e) {
+          } catch (Exception e) {
             // skip class without no-arg constructor
           }
         }
@@ -70,39 +44,15 @@ public with sharing class Scheduler implements Schedulable {
 
       if (Test.isRunningTest() || o != null) {
         if (BATCHABLE_TYPE.isAssignableFrom(t)) {
-          populateClassMap('batchable', batchableMap, searchTerm, namespacePrefix, name);
-          classObjects.add(batchableMap);
+          String fullName = namespacePrefix == null ? name : namespacePrefix + '__' + name;
+          batchableMap.put('label', name);
+          batchableMap.put('value', fullName);
+          batchableMap.put('namespacePrefix', namespacePrefix);
+          apexClassList.add(batchableMap);
         }
-
-        // if (SCHEDULABLE_TYPE.isAssignableFrom(t)) {
-        //   populateClassMap('schedulable', schedulableMap, searchTerm, namespacePrefix, name);
-        //   classObjects.add(schedulableMap);
-        // }
       }
     }
-
-    Database.rollback(sp);
-    return classObjects;
-  }
-
-  static void populateClassMap(
-    String classType,
-    Map<String, String> m,
-    String searchTerm,
-    String namespacePrefix,
-    String name
-  ) {
-    String fullName = namespacePrefix == null ? name : namespacePrefix + '__' + name;
-    Integer searchTermLength = searchTerm.length();
-    Integer indexOfSearchTerm = fullName.indexOfIgnoreCase(searchTerm);
-
-    m.put(classType, 'true');
-    m.put('value', fullName);
-    m.put('fullName', fullName);
-    m.put('namespacePrefix', namespacePrefix);
-    m.put('pre', fullName.substring(0, indexOfSearchTerm));
-    m.put('mark', fullName.substring(indexOfSearchTerm, indexOfSearchTerm + searchTermLength));
-    m.put('post', fullName.substring(indexOfSearchTerm + searchTermLength));
+    return apexClassList;
   }
 
   @AuraEnabled

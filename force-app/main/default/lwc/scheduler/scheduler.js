@@ -14,6 +14,7 @@ import { showToast } from "c/generalUtils";
 
 import CLIENT_FORM_FACTOR from "@salesforce/client/formFactor";
 import schedule from "@salesforce/apex/Scheduler.schedule";
+import getClasses from "@salesforce/apex/Scheduler.getClasses";
 
 import ENTRY_OBJECT from "@salesforce/schema/SchedulomaticEntry__c";
 import NAME_FIELD from "@salesforce/schema/SchedulomaticEntry__c.Name";
@@ -67,13 +68,10 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
   rescheduleIntervalValid;
   codeValid;
   codeBlockFull;
+  searchOptions;
 
   get apexClassOptions() {
-    return [
-      { label: "BatchToInProgress", value: "BatchToInProgress" },
-      { label: "BatchToInProgress 1", value: "BatchToInProgress 2" },
-      { label: "BatchToInProgress 2", value: "BatchToInProgress 2" }
-    ];
+    return this.searchOptions;
   }
 
   connectedCallback() {
@@ -99,6 +97,8 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
     this.codeBlockFull = false;
     this.body = "";
     try {
+      this.searchOptions = await getClasses();
+
       let now = new Date();
       now.setMilliseconds(0);
       now.setSeconds(0);
