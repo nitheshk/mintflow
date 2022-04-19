@@ -8,6 +8,11 @@ public with sharing class IdentityServiceTest {
     List<FinancialProduct__c> products = TestData.createProduct();
     insert products;
   }
+  private static EligibleCounty__c makeCountyData() {
+    EligibleCounty__c county = TestData.createCounty();
+    county = (EligibleCounty__c) DatabaseUtils.insertRecord(county);
+    return county;
+  }
 
   public static ContentVersion makeContentVersion() {
     ContentVersion cv = TestData.createContentVersion();
@@ -34,7 +39,42 @@ public with sharing class IdentityServiceTest {
 
     return (Applicant__c) construct.build();
   }
+  @isTest
+  static void verifyCountyTestOne() {
+    makeCountyData();
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
 
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, String>{ 'zipcode' => '10001' });
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('GeocodingProvider', '200'));
+    Test.startTest();
+    ApexResponse response = IdentityController.verifyCounty(request);
+    Test.stopTest();
+    System.assertEquals(200, response.status, 'success');
+
+    request.token = 'Invalid token';
+    response = IdentityController.verifyCounty(request);
+    system.assertEquals(500, response.status, 'success');
+  }
+
+  @isTest
+  static void verifyCountyTestTwo() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    ApexRequest request = new ApexRequest();
+    ApexResponse response1 = IdentityController.verifyCounty(request);
+  }
   @isTest
   static void scanIdentityDocumentTestOne() {
     makeApplicationConfiguration();
@@ -44,101 +84,179 @@ public with sharing class IdentityServiceTest {
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
 
+    //500
     ContentVersion cv = makeContentVersion();
     cv = fileService.getInstance().fetchContentVersionById(cv.id, true);
     ApexRequest request = new ApexRequest();
     request.token = ApexRequest.getToken();
+    ApexResponse response = IdentityController.scanIdentityDocument(request);
+    system.assertEquals(500, response.status, 'success');
+
+    //200
     request.setHeader(new Map<String, Object>{ 'frontImageDocumentId' => cv.ContentDocumentId });
     Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('idScanAnalyzer', '200'));
     Test.startTest();
+    response = IdentityController.scanIdentityDocument(request);
+    Test.stopTest();
+  }
+  @isTest
+  static void IdentityVerifyTestOne() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, String>{ 'applicantId' => applicant.Id, 'apiName' => 'SentiLink' });
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('SentiLinkProvider', '200'));
+    Test.startTest();
+    ApexResponse response = IdentityController.identityVerify(request);
+    Test.stopTest();
+
+    request.token = 'Invalid token';
+    response = IdentityController.identityVerify(request);
+    system.assertEquals(500, response.status, 'success');
+  }
+
+  @isTest
+  static void scanIdentityDocumentTestTwo() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    ContentVersion cv = makeContentVersion();
+
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(
+      new Map<String, Object>{ 'contentDocumentId' => cv.ContentDocumentId, 'applicantId' => applicant.Id }
+    );
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('idScanAnalyzer', '200'));
+    Test.startTest();
     ApexResponse response = IdentityController.scanIdentityDocument(request);
+    IdentityController.generateUrlForIdentityUpload(request);
+    Test.stopTest();
+
+    request.token = 'Invalid token';
+    response = IdentityController.scanIdentityDocument(request);
+    system.assertEquals(500, response.status, 'success');
+  }
+  @isTest
+  static void customerDueDiligenceTestOne() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    ContentVersion cv = makeContentVersion();
+
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, Object>{ 'applicantId' => applicant.Id });
+    ApexResponse response = new ApexResponse();
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('DueDiligence', '200'));
+    Test.startTest();
+    response = IdentityController.customerDueDiligence(request);
+    request.setData(response.data);
+    IdentityController.validateCustomerAnswers(request);
+    Test.stopTest();
+  }
+  @isTest
+  static void customerDueDiligenceTestTwo() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    ContentVersion cv = makeContentVersion();
+
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, Object>{ 'applicantId' => applicant.Id });
+    ApexResponse response = new ApexResponse();
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('DueDiligenceFail', '400'));
+    Test.startTest();
+    response = IdentityController.customerDueDiligence(request);
+    Test.stopTest();
+
+    request.token = 'Invalid token';
+    response = IdentityController.customerDueDiligence(request);
+    system.assertEquals(500, response.status, 'success');
+  }
+  @isTest
+  static void customerDueDiligenceTestThree() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    ContentVersion cv = makeContentVersion();
+
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, Object>{ 'applicantId' => applicant.Id });
+    ApexResponse response = new ApexResponse();
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('DueDiligenceNullResponse', '200'));
+    Test.startTest();
+    response = IdentityController.customerDueDiligence(request);
+    Test.stopTest();
+  }
+  @isTest
+  static void validateCustomerAnswersOne() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    ContentVersion cv = makeContentVersion();
+
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, Object>{ 'applicantId' => '' });
+    ApexResponse response = new ApexResponse();
+    response = IdentityController.validateCustomerAnswers(request);
+    system.assertEquals(500, response.status, 'success');
+  }
+  @isTest
+  static void validateCustomerAnswersTwo() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    ContentVersion cv = makeContentVersion();
+
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, Object>{ 'applicantId' => applicant.Id });
+    ApexResponse response = IdentityController.validateCustomerAnswers(request);
+    system.assertEquals(500, response.status, 'success');
+  }
+  @isTest
+  static void verifyCountyUsingGoogleApi() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    Map<String, Object> params = new Map<String, Object>{ 'zipcode' => '98013' };
+    Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('verifyCountyUsingGoogleApi', '200'));
+    Test.startTest();
+    IdentityService.getInstance().verifyCountyUsingGoogleApi(params);
     Test.stopTest();
   }
 
-  // private static Application__c makeAccountData() {
-  //   Application__c acc = TestData.createApplication();
-  //   acc = (Application__c) DatabaseUtils.insertRecord(acc);
-  //   return acc;
-  // }
-  // private static EligibleCounty__c makeCountyData() {
-  //   EligibleCounty__c county = TestData.createCounty();
-  //   county = (EligibleCounty__c) DatabaseUtils.insertRecord(county);
-  //   return county;
-  // }
-  // private static ContactPointAddress makeContactPointAddress(Id applicantId) {
-  //   ContactPointAddress address = TestData.createContactPointAddress(null);
-  //   address.Applicant__c = applicantId;
-  //   address = (ContactPointAddress) DatabaseUtils.insertRecord(address);
-  //   return address;
-  // }
-
-  // public static ContentVersion makeContentVersion() {
-  //   ContentVersion cv = TestData.createContentVersion();
-  //   cv = (ContentVersion) DatabaseUtils.insertRecord(cv);
-  //   return cv;
-  // }
-  // private static Applicant__c makeApplicantData() {
-  //   Application__c acc = TestData.createApplication();
-  //   acc = (Application__c) DatabaseUtils.insertRecords(new List<Application__c>{ acc })[0];
-  //   Applicant__c applicant = TestData.createApplicant(acc.Id);
-  //   applicant.Email__c = 'test@mail.com';
-  //   applicant.SSN__c = '986584759';
-  //   applicant.Phone__c = '7894661236';
-  //   applicant.Birthdate__c = date.valueOf('1990-11-01');
-  //   applicant = (Applicant__c) DatabaseUtils.insertRecord(applicant);
-
-  //   IdentificationDocument__c identity = TestData.createIdentity(null);
-  //   identity.Applicant__c = applicant.Id;
-  //   identity = (IdentificationDocument__c) DatabaseUtils.insertRecord(identity);
-  //   applicant.mflow__IdentificationDocuments__r.addAll(new List<IdentificationDocument__c>{ identity });
-
-  //   Employment__c employment = TestData.createEmployment(null);
-  //   employment.Applicant__c = applicant.Id;
-  //   employment = (Employment__c) DatabaseUtils.insertRecord(employment);
-  //   applicant.mflow__Employments__r.addAll(new List<Employment__c>{ employment });
-
-  //   ContactPointAddress address = TestData.createContactPointAddress(null);
-  //   address.Applicant__c = applicant.Id;
-  //   address = (ContactPointAddress) DatabaseUtils.insertRecord(address);
-  //   applicant.mflow__ContactPointAddresses__r.addAll(new List<ContactPointAddress>{ address });
-  //   return applicant;
-  // }
-  // private static ApplicationConfiguration__c makeApplicationConfiguration() {
-  //   ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
-  //   appConfig = (ApplicationConfiguration__c) DatabaseUtils.insertRecord(appConfig);
-  //   return appConfig;
-  // }
-
-  //------------------------------TEST METHOD--------------------------------------------
-  // @isTest
-  // static void verifyCountyTestOne() {
-  //   makeCountyData();
-  //   Application__c acc = makeAccountData();
-  //   ApexRequest request = new ApexRequest();
-  //   request.applicationId = acc.Id;
-  //   request.setHeader(new Map<String, String>{ 'zipcode' => '10001' });
-  //   Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('GeocodingProvider', '200'));
-  //   Test.startTest();
-  //   ApexResponse response = IdentityController.verifyCounty(request);
-  //   Test.stopTest();
-  //   System.assertEquals(200, response.status, 'success');
-  // }
-  // @isTest
-  // static void verifyCountyTestTwo() {
-  //   Application__c acc = makeAccountData();
-  //   ApexRequest request = new ApexRequest();
-  //   request.applicationId = acc.Id;
-  //   Test.startTest();
-  //   try {
-  //     ApexResponse response1 = IdentityController.verifyCounty(request);
-  //     IdScanProvider.getInstance();
-  //   } catch (Exception e) {
-  //     System.assertEquals(null, null);
-  //   }
-  //   Test.stopTest();
-  // }
-
-  // //-----------------------------------------------------------------------------
   // @isTest
   // static void IdentityVerifyTestOne() {
   //   makeApplicationConfiguration();
@@ -179,39 +297,7 @@ public with sharing class IdentityServiceTest {
   //   Test.stopTest();
   // }
 
-  // //-----------------------------------------------------------------------
-  // @isTest
-  // static void scanIdentityDocumentTestOne() {
-  //   ContentVersion cv = makeContentVersion();
-  //   cv = fileService.getInstance().fetchContentVersionById(cv.id, true);
-  //   Applicant__c applicant = makeApplicantData();
-  //   ApexRequest request = new ApexRequest();
-  //   request.applicationId = applicant.Application__c; //Application__c ID
-  //   request.setHeader(new Map<String, Object>{ 'frontImageDocumentId' => cv.ContentDocumentId });
-  //   Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('idScanAnalyzer', '200'));
-  //   Test.startTest();
-  //   ApexResponse response = IdentityController.scanIdentityDocument(request);
-  //   Test.stopTest();
-  // }
-  // @isTest
-  // static void scanIdentityDocumentTestTwo() {
-  //   makeApplicationConfiguration();
-  //   ContentVersion cv = makeContentVersion();
-  //   Applicant__c applicant = makeApplicantData();
-  //   ApexRequest request = new ApexRequest();
-  //   request.applicantId = applicant.Id;
-  //   request.applicationId = applicant.Application__c; //Application__c ID
-  //   request.setHeader(
-  //     new Map<String, Object>{ 'contentDocumentId' => cv.ContentDocumentId, 'applicantId' => applicant.Id }
-  //   );
-  //   Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('idScanAnalyzer', '200'));
-  //   Test.startTest();
-  //   ApexResponse response = IdentityController.scanIdentityDocument(request);
-  //   IdentityController.generateUrlForIdentityUpload(request);
-  //   Test.stopTest();
-  //   System.assertEquals(null, null, 'msg');
-  // }
-  // //---------------------------------------------customerDueDiligenceTest-----------------------------------
+  //---------------------------------------------customerDueDiligenceTest-----------------------------------
   // @isTest
   // static void customerDueDiligenceTestOne() {
   //   makeApplicationConfiguration();
@@ -280,24 +366,5 @@ public with sharing class IdentityServiceTest {
   //   request.setHeader(new Map<String, Object>{ 'applicantId' => applicant.Id });
   //   ApexResponse response = IdentityController.validateCustomerAnswers(request);
   //   system.assertEquals(500, response.status, 'success');
-  // }
-  // @isTest
-  // static void verifyCountyUsingGoogleApi() {
-  //   makeApplicationConfiguration();
-  //   Map<String, Object> params = new Map<String, Object>{ 'zipcode' => '98013' };
-  //   Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('verifyCountyUsingGoogleApi', '200'));
-  //   Test.startTest();
-  //   IdentityService.getInstance().verifyCountyUsingGoogleApi(params);
-  //   Test.stopTest();
-  //   System.assertEquals(null, null, 'msg');
-  // }
-  // @isTest
-  // static void identityControllerTest() {
-  //   Test.startTest();
-  //   IdentityController.identityVerify(new ApexRequest());
-  //   IdentityController.verifyCounty(new ApexRequest());
-  //   IdentityController.scanIdentityDocument(new ApexRequest());
-  //   Test.stopTest();
-  //   System.assertEquals(null, null, 'msg');
   // }
 }

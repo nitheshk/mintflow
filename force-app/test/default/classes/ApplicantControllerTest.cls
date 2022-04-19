@@ -510,4 +510,19 @@ public with sharing class ApplicantControllerTest {
     ApexResponse res = ApplicantController.validateExistingCustomer(request);
     // system.assertEquals(200, res.status, 'success');
   }
+  @isTest
+  static void getBaseURLTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicantController.getBaseURL(request);
+    // system.assertEquals(200, res.status, 'success');
+  }
 }
