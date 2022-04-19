@@ -78,6 +78,10 @@ const refreshLwcPage = () => {
   eval("$A.get('e.force:refreshView').fire();");
 };
 
+const showToast = (caller, title, message, variant, mode) => {
+  caller.dispatchEvent(new ShowToastEvent({ title, message, variant, mode }));
+};
+
 export {
   customDispatchEvent,
   toastMessage,
@@ -85,5 +89,6 @@ export {
   errorMessage,
   infoMessage,
   checkAllValidations,
-  refreshLwcPage
+  refreshLwcPage,
+  showToast
 };
