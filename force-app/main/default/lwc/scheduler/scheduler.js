@@ -41,7 +41,7 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
   formFactor = CLIENT_FORM_FACTOR;
   label = labels;
 
-  TITLE = "Schedul-o-matic 9000";
+  TITLE = "Scheduler";
   MAX_CODE_LENGTH = 13000;
   SCHEDULED_JOBS_URL = "/lightning/setup/ScheduledJobs/home";
   APEX_JOBS_URL = "/lightning/setup/AsyncApexJobs/home";
@@ -98,7 +98,6 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
     this.codeValid = false;
     this.codeBlockFull = false;
     this.body = "";
-
     try {
       let now = new Date();
       now.setMilliseconds(0);
@@ -184,7 +183,7 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
   }
 
   handleClassSelected(event) {
-    this.selectedClass = event.target.options.find((opt) => opt.value === event.detail.value).value;
+    this.selectedClass.value = event.target.options.find((opt) => opt.value === event.detail.value).value;
     //this.isBatchable = this.selectedClass && this.selectedClass.batchable === "true";
     this.isBatchable = true;
   }

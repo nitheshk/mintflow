@@ -1,1 +1,67 @@
-h1 {}
+.card-title {
+  font-weight: var(--lwc-fontWeightBold);
+  margin: auto var(--lwc-spacingSmall);
+  white-space: pre-wrap;
+}
+
+.card-body {
+  padding: 0 var(--lwc-spacingSmall);
+}
+
+.noPermiso {
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+}
+
+h3 {
+  padding-top: var(--lwc-spacingSmall);
+}
+
+.formElement-startDateTime-mobile,
+.formElement-endDateTime-mobile,
+.formElement-dailyEndDate-mobile {
+  margin-bottom: var(--lwc-spacingSmall);
+}
+
+.flowWarning,
+.codeWarning,
+.codeRemaining,
+.formElement-startDateTime,
+.formElement-endDateTime,
+.formElement-daily {
+  margin-bottom: var(--lwc-spacingXxSmall);
+}
+
+.noFlows {
+  font-style: italic;
+  padding-top: var(--lwc-spacingSmall);
+}
+
+.codeWarning,
+.flowWarning {
+  padding-top: var(--lwc-spacingXxSmall);
+  color: #844800;
+  font-style: italic;
+}
+
+.codeBlockFull {
+  color: var(--lwc-colorTextError);
+}
+
+.codeRemaining {
+  font-style: italic;
+}
+
+.links {
+  margin-top: var(--lwc-spacingLarge);
+}
+
+.linkIcon {
+  padding-left: var(--lwc-spacingSmall);
+}
+
+.slds-card__footer {
+  padding-bottom: 0;
+  text-align: right;
+}

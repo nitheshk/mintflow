@@ -1,10 +1,3 @@
-/*
- * Copyright (c) 2020, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
-
 import Anonymous_code_job_prefix from "@salesforce/label/c.Anonymous_code_job_prefix";
 import Anonymous_code_warning from "@salesforce/label/c.Anonymous_code_warning";
 import Batch_size from "@salesforce/label/c.Batch_size";
@@ -58,8 +51,6 @@ export default {
   Main_choice_code,
   Main_choice_flow,
   Max_code_entered,
-  Missing_permission_set,
-  No_flows,
   Repeat_interval,
   Repeat_interval_underflow,
   Required_field,
