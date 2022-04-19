@@ -2565,6 +2565,14 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
+        <tab>Scheduler</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>SchedulomaticEntry__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Applicant__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>

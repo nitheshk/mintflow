@@ -12,8 +12,8 @@ import { createRecord } from "lightning/uiRecordApi";
 
 import { showToast } from "c/generalUtils";
 
-import init from "@salesforce/apex/Scheduler.init";
 import CLIENT_FORM_FACTOR from "@salesforce/client/formFactor";
+import schedule from "@salesforce/apex/Scheduler.schedule";
 
 import ENTRY_OBJECT from "@salesforce/schema/SchedulomaticEntry__c";
 import NAME_FIELD from "@salesforce/schema/SchedulomaticEntry__c.Name";
@@ -100,8 +100,6 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
     this.body = "";
 
     try {
-      this.data = await init();
-
       let now = new Date();
       now.setMilliseconds(0);
       now.setSeconds(0);
