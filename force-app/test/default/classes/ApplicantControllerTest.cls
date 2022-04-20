@@ -3,7 +3,8 @@ public with sharing class ApplicantControllerTest {
   private static void makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
     insert appConfig;
-    TestData.createSiteSetting();
+    SystemSetting__c systemSetting = TestData.createSystemSetting();
+    insert systemSetting;
     List<FinancialProduct__c> products = TestData.createProduct();
     insert products;
   }
@@ -489,10 +490,29 @@ public with sharing class ApplicantControllerTest {
     );
 
     //200
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('AlloyKYC', '201'));
     ApexRequest request = new ApexRequest();
     request.token = token;
+    ApexRequest.setApplicantId(applicant.Id);
     ApexResponse res = ApplicantController.verifyKYC(request);
-    // system.assertEquals(200, res.status, 'success');
+    Test.stopTest();
+  }
+
+  @isTest
+  static void verifyKYCTestTwo() {
+    makeApplicationConfiguration();
+    Application__c app = TestData.createApplication();
+    insert app;
+    Applicant__c applicant = createApplicantDataWithChild(app);
+
+    //200
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('AlloyKYCFailed', '400'));
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicantController.verifyKYC(request);
+    Test.stopTest();
   }
 
   @isTest

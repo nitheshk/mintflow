@@ -119,4 +119,30 @@ public with sharing class FinancialAccountControllerTest {
     request = new ApexRequest();
     res = FinancialAccountController.fetchProductFeatures(null);
   }
+  @IsTest
+  private static void readFinancialAccountsTest() {
+    ApexRequest request = new ApexRequest();
+    ApexResponse res = new ApexResponse();
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //400
+    request.token = ApexRequest.getToken();
+    res = FinancialAccountController.readFinancialAccounts(request);
+
+    //200
+    request.applicationId = application.Id; //Application__c ID
+    request.setData(JSON.serialize(application.FinancialAccounts__r));
+    ApexPages.currentPage().getParameters().put('pid', 'IC001');
+    ApexPages.StandardController sc = new ApexPages.StandardController(application);
+    res = FinancialAccountController.readFinancialAccounts(request);
+
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    res = FinancialAccountController.readFinancialAccounts(null);
+  }
 }

@@ -26,6 +26,7 @@ public with sharing class TestData {
     systemSetting.Flow__c = true;
     systemSetting.LoggingLevel__c = 'Fine';
     systemSetting.SentiLink__c = true;
+    systemSetting.mflow__KYCEvaluation__c = true;
     return systemSetting;
   }
 
@@ -88,6 +89,8 @@ public with sharing class TestData {
     applicant.EmailOtp__c = '4567';
     applicant.ApplicantType__c = 'Primary';
     applicant.CustomerNumber__c = '578784';
+    applicant.BirthDate__c = date.newinstance(1960, 2, 17);
+    applicant.Phone__c = '7879898988';
     return applicant;
   }
 
@@ -139,6 +142,7 @@ public with sharing class TestData {
     address.Country = 'USA';
     address.PostalCode = '10001';
     address.UsageType = 'Buying / Own With Mortgage';
+    address.AddressType = 'Primary';
     return address;
   }
 
