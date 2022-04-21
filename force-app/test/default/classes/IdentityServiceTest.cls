@@ -163,7 +163,9 @@ public with sharing class IdentityServiceTest {
     Test.setMock(HttpCalloutMock.class, new IdentityServiceMock('DueDiligence', '200'));
     Test.startTest();
     response = IdentityController.customerDueDiligence(request);
-    request.setData(response.data);
+    request.setData(
+      '[{"questionType":1,"answer":"3750 TAYLOR BV","answerCode":3},{"questionType":2,"answer":"502","answerCode":3},{"questionType":3,"answer":"Hendricks","answerCode":3},{"questionType":4,"answer":"40202","answerCode":3},{"questionType":5,"answer":"West Virginia","answerCode":3}]'
+    );
     IdentityController.validateCustomerAnswers(request);
     Test.stopTest();
   }

@@ -17,6 +17,7 @@ public with sharing class TestData {
     appConfig.mflow__OOWAnswerPercent__c = 80;
     appConfig.mflow__OOWPassThreshhold__c = 70;
     appConfig.mflow__ReferralUrlExpirationTime__c = 72;
+    appConfig.mflow__OOWTotalQuestionsToShow__c = 5;
     return appConfig;
   }
 
@@ -213,8 +214,12 @@ public with sharing class TestData {
     return finAcc;
   }
 
-  public static FinancialAccountTransaction__c createFinancialAccountTransaction() {
+  public static FinancialAccountTransaction__c createFinancialAccountTransaction(Id finAccId) {
     FinancialAccountTransaction__c finAccTran = new FinancialAccountTransaction__c();
+    if (String.isNotBlank(finAccId)) {
+      finAccTran.FinancialAccount__c = finAccId;
+    }
+    finAccTran.TransactionDate__c = DateTime.newInstance(2007, 6, 23, 3, 3, 3);
     return finAccTran;
   }
 
