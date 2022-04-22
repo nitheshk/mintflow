@@ -157,7 +157,6 @@ public with sharing class LwcCustomServiceTest {
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
-
     Map<String, String> params = new Map<String, String>();
     params.put('sObjectName', 'mflow__Applicant__c');
     ApexRequest request = new ApexRequest();
@@ -204,7 +203,12 @@ public with sharing class LwcCustomServiceTest {
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
-
+    Applicant__c jointApplicant = createApplicantDataWithChild(application);
+    jointApplicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
+      Applicant__c.SObjectType,
+      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+    );
+    upsert jointApplicant;
     //Applicant
     Map<String, Object> params = new Map<String, Object>();
     params.put('recordId', application.mflow__Applicants__r[0].Id);
@@ -241,6 +245,38 @@ public with sharing class LwcCustomServiceTest {
     System.assertEquals(400, res.status, 'success');
   }
   @istest
+  private static void updateKycDecisionTestTwo() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    applicant.KYCStatus__c = ApplicationConstant.KYC_FAILED;
+    upsert applicant;
+    // Applicant__c jointApplicant = createApplicantDataWithChild(application);
+    // jointApplicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
+    //   Applicant__c.SObjectType,
+    //   ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+    // );
+    // jointApplicant.KYCStatus__c = ApplicationConstant.KYC_FAILED;
+    // upsert jointApplicant;
+
+    Map<String, Object> params = new Map<String, Object>();
+    ApexRequest request = new ApexRequest();
+    params.put('recordId', application.Id);
+    params.put('objectApiName', 'mflow__Application__c');
+    params.put('status', 'Passed');
+    request.token = ApexRequest.getToken();
+    request.setData(JSON.serialize(new List<Id>{ application.Id }));
+    ApexResponse res = LwcCustomController.updateKycDecision(params);
+    System.assertEquals(200, res.status, 'success');
+
+    // params.put('status', ApplicationConstant.KYC_FAILED);
+    // res = LwcCustomController.updateKycDecision(params);
+    // System.assertEquals(200, res.status, 'success');
+  }
+  @istest
   private static void fetchRelatedFilesTest() {
     makeApplicationConfiguration();
     PageReference testPage = Page.error;
@@ -271,211 +307,64 @@ public with sharing class LwcCustomServiceTest {
     res = LwcCustomController.resubmitApplication(null);
     System.assertEquals(400, res.status, 'success');
   }
-  // request.setHeader(new Map<String, object>{ 'applicantIds' => application.mflow__Applicants__r });
-  // request.setData(new List<Id>{ application.Id });
-  // params.put('recordId', application.mflow__Applicants__r[0].Id);
-  // params.put('objectApiName', 'mflow__Applicant__c');
-  // params.put('status', 'Passed');
-  // params.put('approvalType', 'approvalType');
-  // // params.put(arg0, arg1);
-  // LwcCustomController.fetchFieldDetails(params);
-  // LwcCustomController.fetchFieldDetails(params);
-  // LwcCustomController.updateKycDecision(params);
+  @istest
+  private static void fetchOOWReportDataTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    // FinancialAccount__c finAcc = createFinancialAccountWithChild(application);
 
-  // @istest
-  // private static void readFlowsTestTwo() {
-  //   Application__c acc = TestData.createApplication();
-  //   Map<String, Object> params = new Map<String, Object>();
-  //   params.put('Lead', new List<string>{ 'LeadSource', 'Staus' });
-  //   params.put('sObjectName', 'Account');
-  //   params.put('fieldSetName', 'fieldSetName');
-  //   makeApplicationConfiguration();
-  //   test.startTest();
-  //   try {
-  //     LwcCustomController.resubmitApplication(acc.Id);
-  //   } catch (Exception e) {
-  //   }
-  //   test.stopTest();
-  // }
-  // @istest
-  // private static void readFlowsTestThree() {
-  //   Application__c acc = TestData.createApplication();
-  //   Map<String, Object> params = new Map<String, Object>();
-  //   params.put('Lead', new List<string>{ 'LeadSource', 'Staus' });
-  //   params.put('sObjectName', 'Account');
-  //   params.put('fieldSetName', 'fieldSetName');
-  //   makeApplicationConfiguration();
-  //   LwcCustomController.fetchRelatedFiles(JSON.serialize(new List<String>{ acc.Id }));
-  // }
-  // @istest
-  // private static void authorizeCustomerTest() {
-  //   Application__c acc = makeApplicationData();
-  //   acc = TestData.readApplicationWithChild(acc.Id);
-  //   Map<String, Object> params = new Map<String, Object>();
-  //   makeApplicationConfiguration();
-  //   ApexResponse res = new ApexResponse();
-  //   //400
-  //   params.put('applicant', new Applicant__c());
-  //   res = LwcCustomController.authorizeCustomer(params);
-  //   system.assertEquals(400, res.status, 'success');
-  //   //200
-  //   params.put('applicant', acc.mflow__Applicants__r[0]);
-  //   res = LwcCustomController.authorizeCustomer(params);
-  //   system.assertEquals(200, res.status, 'success');
+    ApexRequest request = new ApexRequest();
+    ApexResponse res = LwcCustomController.fetchOOWReportData(applicant.Id);
+    System.assertEquals(200, res.status, 'success');
 
-  //   params.remove('applicant');
-  //   res = LwcCustomController.authorizeCustomer(params);
-  // }
-  // @istest
-  // private static void lwcRecordLevelVisibilityTest() {
-  //   Application__c acc = makeApplicationData();
-  //   acc = TestData.readApplicationWithChild(acc.Id);
-  //   Map<String, Object> params = new Map<String, Object>();
-  //   makeApplicationConfiguration();
-  //   ApexResponse res = new ApexResponse();
-  //   //400
-  //   params.put('recordId', acc.mflow__Applicants__r[0].Id);
-  //   params.put('objectApiName', 'mflow__Applicant__c');
-  //   params.put('filter', 'filter');
-  //   res = LwcCustomController.lwcRecordLevelVisibility(params);
-  //   // system.assertEquals(400, res.status, 'success');
-  //   // //200
-  //   // params.put('applicant', acc.mflow__Applicants__r[0]);
-  //   // res = LwcCustomController.authorizeCustomer(params);
-  //   // system.assertEquals(200, res.status, 'success');
+    res = LwcCustomController.fetchOOWReportData(applicant.Id);
+    System.assertEquals(200, res.status, 'success');
+  }
+  @istest
+  private static void lwcRecordLevelVisibilityTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    // FinancialAccount__c finAcc = createFinancialAccountWithChild(application);
 
-  //   // params.remove('applicant');
-  //   // res = LwcCustomController.authorizeCustomer(params);
-  // }
-  // @istest
-  // private static void readFlowsTestFour() {
-  //   Application__c acc = TestData.createApplication();
-  //   Map<String, Object> params = new Map<String, Object>();
-  //   params.put('Lead', new List<string>{ 'LeadSource', 'Staus' });
-  //   params.put('sObjectName', 'Account');
-  //   params.put('fieldSetName', 'fieldSetName');
-  //   makeApplicationConfiguration();
-  //   test.startTest();
-  //   try {
-  //     LwcCustomController.fetchOOWReportData(acc.Id);
-  //   } catch (Exception e) {
-  //   }
-  //   test.stopTest();
-  // }
-  // @istest
-  // private static void readFlowsTestSix() {
-  //   Application__c acc = TestData.createApplication();
-  //   Map<String, string> params = new Map<String, string>();
-  //   params.put('sObjectName', 'Account');
-  //   params.put('fieldSetName', 'fieldSetName');
-  //   makeApplicationConfiguration();
-  //   test.startTest();
-  //   try {
-  //     LwcCustomController.fetchFieldDetails(params);
-  //   } catch (Exception e) {
-  //   }
-  //   test.stopTest();
-  // }
-  // @istest
-  // private static void readFlowsTestSeven() {
-  //   Application__c acc = TestData.createApplication();
-  //   acc = TestData.readApplicationWithChild(acc.Id);
-  //   Map<String, string> params = new Map<String, string>();
-  //   params.put('sObjectName', 'Account');
-  //   params.put('fieldSetName', 'fieldSetName');
-  //   makeApplicationConfiguration();
-  //   test.startTest();
-  //   try {
-  //     LwcCustomController.fetchFieldDetails(params);
-  //   } catch (Exception e) {
-  //   }
-  //   test.stopTest();
-  // }
-  // @istest
-  // private static void sendResumeApplicationEmailTest() {
-  //   Application__c application = makeApplicationData();
-  //   application = TestData.readApplicationWithChild(application.Id);
-  //   ApexRequest request = new ApexRequest();
-  //   Map<String, object> params = new Map<String, object>();
-  //   params.put('Lead', new List<string>{ 'LeadSource', 'Staus' });
-  //   params.put('sObjectName', 'mflow__Application__c');
-  //   params.put('fieldSetName', 'fieldSetName');
-  //   request.setHeader(new Map<String, object>{ 'applicantIds' => application.mflow__Applicants__r });
-  //   request.setData(new List<Id>{ application.mflow__Applicants__r[0].Id });
-  //   makeApplicationConfiguration();
+    Map<String, Object> params = new Map<String, Object>();
+    params = new Map<String, Object>();
+    params.put('recordId', application.Id);
+    params.put('objectApiName', 'mflow__Application__c');
+    params.put('status', 'Passed');
+    ApexRequest request = new ApexRequest();
+    ApexResponse res = LwcCustomController.lwcRecordLevelVisibility(params);
+    System.assertEquals(200, res.status, 'success');
 
-  //   ApexResponse res = LwcCustomController.sendResumeApplicationEmail(request);
-  //   //500
-  //   request = new ApexRequest();
-  //   request.token = 'invalidToken';
-  //   res = LwcCustomController.sendResumeApplicationEmail(request);
-  //   system.assertEquals(500, res.status, 'success');
-  // }
-  // @istest
-  // private static void TestEleven() {
-  //   Application__c application = makeApplicationData();
-  //   application = TestData.readApplicationWithChild(application.Id);
-  //   ApexRequest request = new ApexRequest();
-  //   Map<String, object> params = new Map<String, object>();
-  //   params.put('Lead', new List<string>{ 'LeadSource', 'Staus' });
-  //   params.put('sObjectName', 'mflow__Application__c');
-  //   params.put('fieldSetName', 'fieldSetName');
-  //   request.setHeader(new Map<String, object>{ 'applicantIds' => application.mflow__Applicants__r });
-  //   request.setData(new List<Id>{ application.mflow__Applicants__r[0].Id });
-  //   makeApplicationConfiguration();
-  //   LwcCustomController.fetchPickListValues(params);
-  // }
-  // @istest
-  // private static void TestNine() {
-  //   Application__c application = makeApplicationData();
-  //   application = TestData.readApplicationWithChild(application.Id);
-  //   ApexRequest request = new ApexRequest();
-  //   Map<String, object> params = new Map<String, object>();
-  //   params.put('Lead', new List<string>{ 'LeadSource', 'Staus' });
-  //   params.put('objectApiName', 'mflow__Application__c');
-  //   params.put('fieldSetName', 'fieldSetName');
-  //   params.put('approvalType', 'Application');
-  //   params.put('status', ApplicationConstant.KYC_PASSED);
-  //   params.put('recordId', application.Id);
-  //   request.setHeader(new Map<String, object>{ 'applicantIds' => application.mflow__Applicants__r });
-  //   request.setData(new List<Id>{ application.mflow__Applicants__r[0].Id });
-  //   makeApplicationConfiguration();
-  //   LwcCustomController.updateKycDecision(params);
-  //   params.put('approvalType', 'Application And Applicants');
-  //   params.put('status', ApplicationConstant.KYC_FAILED);
-  //   LwcCustomController.updateKycDecision(params);
-  // }
-  // @istest
-  // private static void TestTen() {
-  //   Application__c application = makeApplicationData();
-  //   application = TestData.readApplicationWithChild(application.Id);
-  //   ApexRequest request = new ApexRequest();
-  //   Map<String, object> params = new Map<String, object>();
-  //   params.put('Lead', new List<string>{ 'LeadSource', 'Staus' });
-  //   params.put('objectApiName', 'mflow__Application__c');
-  //   params.put('fieldSetName', 'fieldSetName');
-  //   params.put('approvalType', 'Application');
-  //   params.put('status', ApplicationConstant.KYC_FAILED);
-  //   params.put('recordId', application.Id);
-  //   request.setHeader(new Map<String, object>{ 'applicantIds' => application.mflow__Applicants__r });
-  //   request.setData(new List<Id>{ application.mflow__Applicants__r[0].Id });
-  //   makeApplicationConfiguration();
-  //   LwcCustomController.updateKycDecision(params);
-  //   params.put('approvalType', 'Application And Applicants');
-  //   params.put('status', ApplicationConstant.KYC_PASSED);
-  //   LwcCustomController.updateKycDecision(params);
-  // }
-  // @istest
-  // private static void TestTwelve() {
-  //   Application__c application = makeApplicationData();
-  //   application = TestData.readApplicationWithChild(application.Id);
-  //   ApexRequest request = new ApexRequest();
-  //   Map<String, object> params = new Map<String, object>();
-  //   params.put('filter', 'filter');
-  //   params.put('recordId', application.mflow__Applicants__r[0].Id);
-  //   request.setHeader(new Map<String, object>{ 'applicantIds' => application.mflow__Applicants__r });
-  //   request.setData(new List<Id>{ application.mflow__Applicants__r[0].Id });
-  //   makeApplicationConfiguration();
-  //   LwcCustomController.readApplicationForResume(params);
-  // }
+    params.put('recordId', null);
+    params.put('objectApiName', 'Account');
+    params.put('status', 'Passed');
+    res = LwcCustomController.lwcRecordLevelVisibility(params);
+    System.assertEquals(500, res.status, 'success');
+  }
+  @istest
+  private static void authorizeCustomerTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    Map<String, Object> params = new Map<String, Object>();
+    ApexResponse res = new ApexResponse();
+    //200
+    params.put('applicant', applicant);
+    res = LwcCustomController.authorizeCustomer(params);
+    system.assertEquals(200, res.status, 'success');
+
+    params.remove('applicant');
+    res = LwcCustomController.authorizeCustomer(params);
+  }
 }

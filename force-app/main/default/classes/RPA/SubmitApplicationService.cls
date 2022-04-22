@@ -86,7 +86,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         isFlowCompleted = false;
       }
     }
-    isKYCApproved = true;
+    // isKYCApproved = true;
     // ALL Applicant Submitted
     if (isFlowCompleted && isKYCApproved) {
       application.Status__c = ApplicationConstant.SUBMITTED;
