@@ -203,12 +203,6 @@ public with sharing class LwcCustomServiceTest {
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
-    Applicant__c jointApplicant = createApplicantDataWithChild(application);
-    jointApplicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
-      Applicant__c.SObjectType,
-      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-    );
-    upsert jointApplicant;
     //Applicant
     Map<String, Object> params = new Map<String, Object>();
     params.put('recordId', application.mflow__Applicants__r[0].Id);
@@ -229,6 +223,20 @@ public with sharing class LwcCustomServiceTest {
     params.put('recordId', application.Id);
     params.put('objectApiName', 'mflow__Application__c');
     params.put('status', 'Passed');
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setData(JSON.serialize(new List<Id>{ applicant.Id }));
+    res = LwcCustomController.updateKycDecision(params);
+    System.assertEquals(200, res.status, 'success');
+
+    //with jointapplicant
+    Applicant__c jointApplicant = new Applicant__c();
+    jointApplicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
+      Applicant__c.SObjectType,
+      ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+    );
+    jointApplicant.application__c = application.Id;
+    insert jointApplicant;
     request = new ApexRequest();
     request.token = ApexRequest.getToken();
     request.setData(JSON.serialize(new List<Id>{ applicant.Id }));
