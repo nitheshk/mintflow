@@ -16,6 +16,7 @@
     <testClassName>mflow.EmailNotificationBuilderTest</testClassName>
     <testClassName>mflow.FileControllerTest</testClassName>
     <testClassName>mflow.FinancialAccountControllerTest</testClassName>
+    <testClassName>mflow.FinancingControllerTest</testClassName>
     <testClassName>mflow.FlowTest</testClassName>
     <testClassName>mflow.GenericUtilsTest</testClassName>
     <testClassName>mflow.IdentityServiceMock</testClassName>
@@ -27,8 +28,10 @@
     <testClassName>mflow.MockAPIResponse</testClassName>
     <testClassName>mflow.OAuthProviderTest</testClassName>
     <testClassName>mflow.OnlineAccountControllerTest</testClassName>
+    <testClassName>mflow.OpenAccountControllerTest</testClassName>
     <testClassName>mflow.PageUtilsTest</testClassName>
     <testClassName>mflow.QueryTest</testClassName>
+    <testClassName>mflow.RpaProcessServiceTest</testClassName>
     <testClassName>mflow.RpaServiceMock</testClassName>
     <testClassName>mflow.SearchServiceTest</testClassName>
     <testClassName>mflow.SecurityUtilsTest</testClassName>

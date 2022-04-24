@@ -66,9 +66,7 @@ public with sharing class RpaProcessServiceTest {
     req.httpMethod = 'GET';
     RestContext.request = req;
     RestContext.response = res;
-    Test.startTest();
     RpaProcessService.doGet();
-    Test.stopTest();
   }
 
   @IsTest
@@ -114,6 +112,30 @@ public with sharing class RpaProcessServiceTest {
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
+
     RpaProcessService.getInstance().scheduleApplication(application);
+
+    // flowtype = application
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
+    RpaProcessService.getInstance().scheduleApplication(application);
+    test.stopTest();
+  }
+  @IsTest
+  private static void scheduleApplicationTestTwo() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    application.flowType__c = ApplicationConstant.FLOW_TYPE_FUNDING;
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    upsert application;
+
+    // flowtype = funding
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
+    RpaProcessService.getInstance().scheduleApplication(application);
+    test.stopTest();
   }
 }
