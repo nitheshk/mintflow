@@ -1,5 +1,5 @@
 @istest
-public with sharing class LwcCustomServiceTest {
+public with sharing class LwcCustomControllerTest {
   //makeApplicationConfiguration
   private static void makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();

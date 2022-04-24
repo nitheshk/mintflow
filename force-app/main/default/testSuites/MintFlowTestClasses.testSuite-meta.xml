@@ -5,12 +5,10 @@
     <testClassName>mflow.ApexUtilsTest</testClassName>
     <testClassName>mflow.ApplicantControllerTest</testClassName>
     <testClassName>mflow.ApplicationControllerTest</testClassName>
-    <testClassName>mflow.BuildSubmissionWrapperTest</testClassName>
     <testClassName>mflow.CollectionUtilsTest</testClassName>
     <testClassName>mflow.ConsentResolverTest</testClassName>
     <testClassName>mflow.CustomerAgreementControllerTest</testClassName>
     <testClassName>mflow.CustomerEmailServiceTest</testClassName>
-    <testClassName>mflow.CustomerPortalServiceTest</testClassName>
     <testClassName>mflow.DatabaseUtilsTest</testClassName>
     <testClassName>mflow.DateUtilsTest</testClassName>
     <testClassName>mflow.DisplayImageControllerTest</testClassName>
@@ -18,7 +16,6 @@
     <testClassName>mflow.EmailNotificationBuilderTest</testClassName>
     <testClassName>mflow.FileControllerTest</testClassName>
     <testClassName>mflow.FinancialAccountControllerTest</testClassName>
-    <testClassName>mflow.FinancialAccountServiceTest</testClassName>
     <testClassName>mflow.FlowTest</testClassName>
     <testClassName>mflow.GenericUtilsTest</testClassName>
     <testClassName>mflow.IdentityServiceMock</testClassName>

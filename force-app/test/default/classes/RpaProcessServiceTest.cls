@@ -1,5 +1,5 @@
 @IsTest
-public with sharing class BuildSubmissionWrapperTest {
+public with sharing class RpaProcessServiceTest {
   //makeApplicationConfiguration
   private static void makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();

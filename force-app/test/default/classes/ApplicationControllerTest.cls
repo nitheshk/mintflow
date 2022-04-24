@@ -553,7 +553,6 @@ public with sharing class ApplicationControllerTest {
     ApexRequest request = new ApexRequest();
     request.token = ApexRequest.getToken();
     ApexResponse res = new ApexResponse();
-
     res = ApplicationController.submitToCoreSystem(request);
 
     application.status__c = ApplicationConstant.SUBMITTED;
