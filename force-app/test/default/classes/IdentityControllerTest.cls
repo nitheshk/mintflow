@@ -1,5 +1,5 @@
 @isTest
-public with sharing class IdentityServiceTest {
+public with sharing class IdentityControllerTest {
   //makeApplicationConfiguration
   private static void makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();

@@ -19,9 +19,9 @@
     <testClassName>mflow.FlowTest</testClassName>
     <testClassName>mflow.GenericUtilsTest</testClassName>
     <testClassName>mflow.IdentityServiceMock</testClassName>
-    <testClassName>mflow.IdentityServiceTest</testClassName>
+    <testClassName>mflow.IdentityControllerTest</testClassName>
     <testClassName>mflow.LoggerTest</testClassName>
-    <testClassName>mflow.LwcCustomServiceTest</testClassName>
+    <testClassName>mflow.LwcCustomControllerTest</testClassName>
     <testClassName>mflow.LWCFinancialInstituteSiteControllerTest</testClassName>
     <testClassName>mflow.LwcOnlineSiteControllerTest</testClassName>
     <testClassName>mflow.MockAPIResponse</testClassName>

@@ -105,4 +105,15 @@ public with sharing class RpaProcessServiceTest {
     RestContext.request = req;
     RpaProcessService.doPost();
   }
+
+  @IsTest
+  private static void scheduleApplicationTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    RpaProcessService.getInstance().scheduleApplication(application);
+  }
 }
