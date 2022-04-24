@@ -109,7 +109,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     } catch (Exception ex) {
       flow.setSubFlowFailed(ex.getMessage());
       flow.setFlowFailed('Failed');
-      throw ex;
+      ex;
     }
   }
 

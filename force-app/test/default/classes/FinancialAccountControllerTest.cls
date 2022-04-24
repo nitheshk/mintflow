@@ -1,11 +1,19 @@
 @istest
 public with sharing class FinancialAccountControllerTest {
-  private static void makeApplicationConfiguration() {
+  private static ReferralProduct__c makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
     insert appConfig;
     TestData.createSiteSetting();
     List<FinancialProduct__c> products = TestData.createProduct();
     insert products;
+    ProductService__c productService = TestData.makeProductService();
+    productService.mflow__FinancialProduct__c = products[0].Id;
+    insert productService;
+    ReferralProduct__c referralProduct = testdata.makeReferralProduct();
+    referralProduct.mflow__FinancialProduct__c = products[0].Id;
+    referralProduct.mflow__CrossSellProduct__c = products[1].Id;
+    insert referralProduct;
+    return referralProduct;
   }
   private static Applicant__c createApplicantDataWithChild(Application__c application) {
     Applicant__c applicant = Application.Applicants__r[0];
@@ -34,10 +42,6 @@ public with sharing class FinancialAccountControllerTest {
     products[0].InternalCode__c = 'IC001';
     products = (List<FinancialProduct__c>) DatabaseUtils.insertRecords(products);
 
-    ProductService__c productService = TestData.makeProductService();
-    productService.mflow__FinancialProduct__c = products[0].Id;
-    productService = (ProductService__c) DatabaseUtils.insertRecord(productService);
-
     FinancialAccount__c finAcc = TestData.makeFinancialAccount();
     finAcc.mflow__FinancialProduct__c = products[0].Id;
     finAcc.mflow__Application__c = acc.Id;
@@ -55,19 +59,38 @@ public with sharing class FinancialAccountControllerTest {
   }
   @IsTest
   private static void fetchServicesTest() {
-    mflow__Application__c application = makeApplicationData();
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
     ApexRequest request = new ApexRequest();
-    request.applicationId = application.Id; //Application__c ID
+    request.token = ApexRequest.getToken();
     FinancialAccountController.fetchServices(request);
-    FinancialAccountController.fetchServices(request);
-    FinancialAccountController.fetchServices(null);
   }
+
   @IsTest
-  private static void exceptionTest() {
-    Test.startTest();
-    FinancialAccountController.fetchServices(new ApexRequest());
-    FinancialAccountController.fetchReferralProducts(new ApexRequest());
-    Test.stopTest();
+  private static void fetchReferralProductsTest() {
+    ReferralProduct__c rf = makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    FinancialAccountController.fetchReferralProducts(request);
+
+    // SObjectConstructor construct = SObjectConstructor.getInstance(application);
+    // CustomerInterest__c customerInsert = new CustomerInterest__c();
+    // customerInsert.Name = 'Prime Debit Account';
+    // customerInsert.mflow__InterestProduct__c = rf.Id;
+    // customerInsert.mflow__isSelected__c = false;
+    // construct.addChildObject('mflow__CustomerInterests__r', customerInsert);
+    // request = new ApexRequest();
+    // request.token = ApexRequest.getToken();
+    // FinancialAccountController.fetchReferralProducts(request);
   }
   @IsTest
   private static void saveFinancialAccountsTest() {

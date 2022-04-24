@@ -9,27 +9,25 @@ public with sharing class ApexResponseTest {
   static void apexResponseTestOne() {
     Application__c acc = makeAccountData();
     ApexResponse res = new ApexResponse();
-    ApexResponse.ok(acc);
-    ApexResponse.ok(acc);
-    ApexResponse.ok();
-    ApexResponse.fail(acc);
-    ApexResponse.fail();
-    res = ApexResponse.exception(acc);
-    system.assertEquals(500, res.status, 'success');
-  }
-  @istest
-  static void apexResponseTestTwo() {
-    Application__c acc = makeAccountData();
-    ApexResponse res = new ApexResponse();
-    res.setEntity(acc);
-    res.setData(acc);
-    system.assertEquals(null, res.status, 'success');
-  }
-  @istest
-  static void apexResponseTestThree() {
-    Application__c acc = makeAccountData();
-    ApexResponse res = new ApexResponse();
+
+    res = ApexResponse.ok(acc);
+    system.assertEquals(200, res.status, 'success');
+
+    res = ApexResponse.ok();
+    system.assertEquals(200, res.status, 'success');
+
+    res = ApexResponse.fail(acc);
+    system.assertEquals(400, res.status, 'success');
+
+    res = ApexResponse.fail();
+    system.assertEquals(400, res.status, 'success');
+
     ApexResponse.fail(new customException('Test exception'));
+    system.assertEquals(400, res.status, 'success');
+
+    res = ApexResponse.exception('string');
+    system.assertEquals(500, res.status, 'success');
+
     res = ApexResponse.exception(new customException('Test exception'));
     system.assertEquals(500, res.status, 'success');
   }
