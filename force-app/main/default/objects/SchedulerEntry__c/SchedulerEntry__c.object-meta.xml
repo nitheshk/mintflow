@@ -134,7 +134,7 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description
-  >A configuration record for a job scheduled by the Schedul-o-matic 9000. Entries must be owned by an active user for successful execution.</description>
+  >A configuration record for a job scheduled by the Scheduler. Entries must be owned by an active user for successful execution.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -145,13 +145,13 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Schedul-o-matic Entry</label>
+    <label>Scheduler Entry</label>
     <nameField>
-        <label>Schedul-o-matic Entry Name</label>
+        <label>Scheduler Entry Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Schedul-o-matic Entriess</pluralLabel>
+    <pluralLabel>Scheduler Entry</pluralLabel>
     <searchLayouts>
         <excludedStandardButtons>New</excludedStandardButtons>
     </searchLayouts>

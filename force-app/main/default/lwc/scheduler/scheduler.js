@@ -16,21 +16,21 @@ import CLIENT_FORM_FACTOR from "@salesforce/client/formFactor";
 import schedule from "@salesforce/apex/Scheduler.schedule";
 import getClasses from "@salesforce/apex/Scheduler.getClasses";
 
-import ENTRY_OBJECT from "@salesforce/schema/SchedulomaticEntry__c";
-import NAME_FIELD from "@salesforce/schema/SchedulomaticEntry__c.Name";
-import CODE_FIELD from "@salesforce/schema/SchedulomaticEntry__c.AnonymousCode__c";
-import BATCHSIZE_FIELD from "@salesforce/schema/SchedulomaticEntry__c.BatchSize__c";
-import CLASS_FIELD from "@salesforce/schema/SchedulomaticEntry__c.Class__c";
-import DAILYEND_FIELD from "@salesforce/schema/SchedulomaticEntry__c.DailyEnd__c";
-import DAILYSTART_FIELD from "@salesforce/schema/SchedulomaticEntry__c.DailyStartDateTime__c";
-import END_FIELD from "@salesforce/schema/SchedulomaticEntry__c.End__c";
-import FLOW_FIELD from "@salesforce/schema/SchedulomaticEntry__c.Flow__c";
-import ISBATCHABLE_FIELD from "@salesforce/schema/SchedulomaticEntry__c.IsBatchable__c";
-import ISDAILY_FIELD from "@salesforce/schema/SchedulomaticEntry__c.IsDaily__c";
-import ISSCHEDULABLE_FIELD from "@salesforce/schema/SchedulomaticEntry__c.IsSchedulable__c";
-import REPEAT_FIELD from "@salesforce/schema/SchedulomaticEntry__c.RepeatInterval__c";
-import RESCHEDULE_FIELD from "@salesforce/schema/SchedulomaticEntry__c.RescheduleInterval__c";
-import START_FIELD from "@salesforce/schema/SchedulomaticEntry__c.Start__c";
+import ENTRY_OBJECT from "@salesforce/schema/SchedulerEntry__c";
+import NAME_FIELD from "@salesforce/schema/SchedulerEntry__c.Name";
+import CODE_FIELD from "@salesforce/schema/SchedulerEntry__c.AnonymousCode__c";
+import BATCHSIZE_FIELD from "@salesforce/schema/SchedulerEntry__c.BatchSize__c";
+import CLASS_FIELD from "@salesforce/schema/SchedulerEntry__c.Class__c";
+import DAILYEND_FIELD from "@salesforce/schema/SchedulerEntry__c.DailyEnd__c";
+import DAILYSTART_FIELD from "@salesforce/schema/SchedulerEntry__c.DailyStartDateTime__c";
+import END_FIELD from "@salesforce/schema/SchedulerEntry__c.End__c";
+import FLOW_FIELD from "@salesforce/schema/SchedulerEntry__c.Flow__c";
+import ISBATCHABLE_FIELD from "@salesforce/schema/SchedulerEntry__c.IsBatchable__c";
+import ISDAILY_FIELD from "@salesforce/schema/SchedulerEntry__c.IsDaily__c";
+import ISSCHEDULABLE_FIELD from "@salesforce/schema/SchedulerEntry__c.IsSchedulable__c";
+import REPEAT_FIELD from "@salesforce/schema/SchedulerEntry__c.RepeatInterval__c";
+import RESCHEDULE_FIELD from "@salesforce/schema/SchedulerEntry__c.RescheduleInterval__c";
+import START_FIELD from "@salesforce/schema/SchedulerEntry__c.Start__c";
 
 import labels from "./labels";
 
@@ -98,7 +98,6 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
     this.body = "";
     try {
       this.searchOptions = await getClasses();
-
       let now = new Date();
       now.setMilliseconds(0);
       now.setSeconds(0);

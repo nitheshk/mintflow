@@ -2183,72 +2183,72 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.AnonymousCode__c</field>
+        <field>SchedulerEntry__c.AnonymousCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SchedulomaticEntry__c.AsyncApexJobId__c</field>
+        <field>SchedulerEntry__c.AsyncApexJobId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.BatchSize__c</field>
+        <field>SchedulerEntry__c.BatchSize__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.Class__c</field>
+        <field>SchedulerEntry__c.Class__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.DailyEnd__c</field>
+        <field>SchedulerEntry__c.DailyEnd__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.End__c</field>
+        <field>SchedulerEntry__c.End__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SchedulomaticEntry__c.ExecutionError__c</field>
+        <field>SchedulerEntry__c.ExecutionError__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.Flow__c</field>
+        <field>SchedulerEntry__c.Flow__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.IsBatchable__c</field>
+        <field>SchedulerEntry__c.IsBatchable__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.IsDaily__c</field>
+        <field>SchedulerEntry__c.IsDaily__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.IsSchedulable__c</field>
+        <field>SchedulerEntry__c.IsSchedulable__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SchedulomaticEntry__c.NumberOfExecutions__c</field>
+        <field>SchedulerEntry__c.NumberOfExecutions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.RepeatInterval__c</field>
+        <field>SchedulerEntry__c.RepeatInterval__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SchedulomaticEntry__c.RescheduleInterval__c</field>
+        <field>SchedulerEntry__c.RescheduleInterval__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
@@ -2313,7 +2313,7 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>SchedulomaticEntry__c</object>
+        <object>SchedulerEntry__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -2573,7 +2573,7 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>SchedulomaticEntry__c</tab>
+        <tab>SchedulerEntry__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

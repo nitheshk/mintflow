@@ -66,7 +66,7 @@ public with sharing class Scheduler implements Schedulable {
   Id entryId;
 
   @TestVisible
-  SchedulomaticEntry__c entry;
+  SchedulerEntry__c entry;
   Type classToExecute;
 
   @TestVisible
@@ -100,7 +100,7 @@ public with sharing class Scheduler implements Schedulable {
           Start__c,
           OwnerId,
           Owner.IsActive
-        FROM SchedulomaticEntry__c
+        FROM SchedulerEntry__c
         WHERE Id = :entryId
       ];
 
@@ -259,7 +259,7 @@ public with sharing class Scheduler implements Schedulable {
   }
 
   void updateEntry() {
-    update new SchedulomaticEntry__c(
+    update new SchedulerEntry__c(
       Id = entry.Id,
       AsyncApexJobId__c = entry.AsyncApexJobId__c,
       DailyStartDateTime__c = entry.DailyStartDateTime__c,
@@ -270,6 +270,6 @@ public with sharing class Scheduler implements Schedulable {
   }
 
   static void logExecutionError(Id entryId, String error) {
-    update new SchedulomaticEntry__c(Id = entryId, ExecutionError__c = error);
+    update new SchedulerEntry__c(Id = entryId, ExecutionError__c = error);
   }
 }
