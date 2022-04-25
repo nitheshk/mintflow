@@ -29,6 +29,11 @@ public with sharing class ApplicantControllerTest {
 
     return (Applicant__c) construct.build();
   }
+  private static void createExistingContact(string ssn) {
+    Contact con = testdata.createContact(null);
+    con.mflow__SSN__c = ssn;
+    upsert con;
+  }
 
   @isTest
   static void readApplicantTest() {
@@ -523,12 +528,23 @@ public with sharing class ApplicantControllerTest {
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
+    String token = SecurityUtils.generateTokenForTesting(
+      application.Id,
+      applicant.id,
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE,
+      ApplicationConstant.FLOW_TYPE_APPLICATION
+    );
 
     //200
     ApexRequest request = new ApexRequest();
-    request.token = ApexRequest.getToken();
+    request.token = token;
     ApexResponse res = ApplicantController.validateExistingCustomer(request);
     // system.assertEquals(200, res.status, 'success');
+
+    createExistingContact(applicant.SSN__c);
+    request = new ApexRequest();
+    request.token = token;
+    res = ApplicantController.validateExistingCustomer(request);
   }
   @isTest
   static void getBaseURLTest() {

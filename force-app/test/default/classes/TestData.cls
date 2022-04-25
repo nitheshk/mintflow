@@ -86,7 +86,7 @@ public with sharing class TestData {
     applicant.FirstName__c = 'John';
     applicant.mflow__Email__c = 'test.test@email.com';
     applicant.LastName__c = 'Doe';
-    applicant.SSN__c = '8990';
+    applicant.SSN__c = '967876567';
     applicant.EmailOtp__c = '4567';
     applicant.ApplicantType__c = 'Primary';
     applicant.CustomerNumber__c = '578784';
@@ -230,6 +230,7 @@ public with sharing class TestData {
     p.mflow__Category__c = 'Savings';
     p.InternalCode__c = 'IC001';
     p.ExternalCode__c = 'IC001';
+    p.IsMembershipProduct__c = true;
     p.Type__c = 'Deposit';
     p.SubCategory__c = 'Regular Savings';
     products.add(p);
