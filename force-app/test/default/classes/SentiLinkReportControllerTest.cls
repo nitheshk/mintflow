@@ -45,6 +45,7 @@ public with sharing class SentiLinkReportControllerTest {
     FileService.getInstance().fetchContentVersionByEntityId(applicant.Id, false);
     SentiLinkReportController sentilink = new SentiLinkReportController();
     sentilink.prefillFraudCheckDetail();
+    SentiLinkReportController.fetchReportDetail(applicant.Id);
     test.stopTest();
   }
 }
