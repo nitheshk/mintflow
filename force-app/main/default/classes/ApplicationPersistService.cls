@@ -279,6 +279,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       if (String.isNotBlank(applicantId)) {
         employment.Applicant__c = applicantId;
       }
+      employment.EmploymentDuration__c = 5;
     }
     ApplicantRepository.upsertRecords(employments);
     return employments;
