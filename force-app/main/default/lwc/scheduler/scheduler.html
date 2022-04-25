@@ -34,6 +34,16 @@
                   options={apexClassOptions}
                   onchange={handleClassSelected}
                 ></lightning-combobox>
+
+                <lightning-radio-group
+                  name="radioGroup"
+                  label="Type"
+                  options={apexSchedulerType}
+                  value="Scheduler"
+                  required
+                  type="radio"
+                  onchange={handleSchedulerChange}
+                ></lightning-radio-group>
               </template>
 
               <template if:true={isCode}>
@@ -150,6 +160,32 @@
                 ></lightning-input>
               </template>
 
+              <template if:false={showForm}>
+                <lightning-input
+                  type="text"
+                  label="Cron Expression"
+                  class="formElement-batchSize"
+                  autocomplete="off"
+                  onchange={handleCronChange}
+                  value={cronValue}
+                  required
+                  message-when-value-missing={label.Required_field}
+                ></lightning-input>
+
+                <lightning-input
+                  type="number"
+                  label={label.Batch_size}
+                  class="formElement-batchSize"
+                  autocomplete="off"
+                  min="1"
+                  max="2000"
+                  message-when-range-overflow={label.Batch_size_overflow}
+                  message-when-range-underflow={label.Batch_size_underflow}
+                  onchange={handleBatchSizeChange}
+                  value={batchSize}
+                ></lightning-input>
+              </template>
+
               <div if:true={onDesktop} class="links">
                 <p>
                   <a href={SCHEDULED_JOBS_URL} target="_blank">
@@ -181,6 +217,17 @@
 
     <template if:true={initSuccess}>
       <div if:true={showForm} class="slds-card__footer">
+        <lightning-button-menu
+          alternative-text={label.Schedule}
+          label={label.Schedule}
+          disabled={scheduleDisabled}
+          onselect={schedule}
+        >
+          <lightning-menu-item value="true" label={label.Confirm}></lightning-menu-item>
+        </lightning-button-menu>
+      </div>
+
+      <div if:false={showForm} class="slds-card__footer">
         <lightning-button-menu
           alternative-text={label.Schedule}
           label={label.Schedule}

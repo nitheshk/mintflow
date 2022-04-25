@@ -64,4 +64,19 @@ global with sharing class CommonRepository extends DatabaseUtils {
       .toString();
     return (List<ApexClass>) getRecords(q);
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param Id entryId
+   * @return SchedulerEntry__c
+   **/
+  public static SchedulerEntry__c readScheduledEntry(Id entryId) {
+    String q = Query.newInstance(SchedulerEntry__c.SObjectType)
+      .addFields()
+      .addFields('Owner.IsActive')
+      .whereEq('Id', entryId)
+      .toString();
+    return (SchedulerEntry__c) getRecord(q);
+  }
 }

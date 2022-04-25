@@ -81,34 +81,14 @@ public with sharing class Scheduler implements Schedulable {
   void start(Id jobId) {
     System.abortJob(jobId);
 
-    try {
-      this.entry = [
-        SELECT
-          Name,
-          AnonymousCode__c,
-          AsyncApexJobId__c,
-          BatchSize__c,
-          Class__c,
-          DailyEnd__c,
-          DailyStartDateTime__c,
-          End__c,
-          IsBatchable__c,
-          IsDaily__c,
-          NumberOfExecutions__c,
-          RepeatInterval__c,
-          RescheduleInterval__c,
-          Start__c,
-          OwnerId,
-          Owner.IsActive
-        FROM SchedulerEntry__c
-        WHERE Id = :entryId
-      ];
+    this.entry = CommonRepository.readScheduledEntry(entryId);
 
-      if (!this.entry.Owner.IsActive) {
-        logExecutionError(entryId, EXECUTION_ERROR_INACTIVE_OWNER);
-        return;
-      }
-    } catch (QueryException e) {
+    if (this.entry == null) {
+      return;
+    }
+
+    if (!this.entry.Owner.IsActive) {
+      logExecutionError(entryId, EXECUTION_ERROR_INACTIVE_OWNER);
       return;
     }
 

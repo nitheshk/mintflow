@@ -2251,6 +2251,11 @@
         <field>SchedulerEntry__c.RescheduleInterval__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SchedulerEntry__c.CronExpression__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>MintFlow System Admin</label>
     <objectPermissions>

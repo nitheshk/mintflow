@@ -31,6 +31,7 @@ import ISSCHEDULABLE_FIELD from "@salesforce/schema/SchedulerEntry__c.IsSchedula
 import REPEAT_FIELD from "@salesforce/schema/SchedulerEntry__c.RepeatInterval__c";
 import RESCHEDULE_FIELD from "@salesforce/schema/SchedulerEntry__c.RescheduleInterval__c";
 import START_FIELD from "@salesforce/schema/SchedulerEntry__c.Start__c";
+import CRON_EXPRESSION from "@salesforce/schema/SchedulerEntry__c.CronExpression__c";
 
 import labels from "./labels";
 
@@ -69,6 +70,8 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
   codeValid;
   codeBlockFull;
   searchOptions;
+  schedulerType;
+  cronValue;
 
   get apexClassOptions() {
     return this.searchOptions;
@@ -96,6 +99,8 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
     this.codeValid = false;
     this.codeBlockFull = false;
     this.body = "";
+    this.schedulerType = "Scheduler";
+    this.cronValue = "";
     try {
       this.searchOptions = await getClasses();
       let now = new Date();
@@ -118,6 +123,13 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
     ];
   }
 
+  get apexSchedulerType() {
+    return [
+      { label: "Scheduler", value: "Scheduler" },
+      { label: "Cron", value: "Cron" }
+    ];
+  }
+
   get isClass() {
     return this.mainOption === MAIN_OPTION_CLASS;
   }
@@ -127,7 +139,7 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
   }
 
   get showForm() {
-    return this.isClass || this.isCode;
+    return (this.isClass && this.schedulerType == "Scheduler") || this.isCode;
   }
 
   get onDesktop() {
@@ -175,6 +187,14 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
 
   get remainingCode() {
     return this.MAX_CODE_LENGTH - this.body.length;
+  }
+
+  handleSchedulerChange(event) {
+    this.schedulerType = event.detail.value;
+  }
+
+  handleCronChange(event) {
+    this.cronValue = event.detail.value;
   }
 
   handleMainOptionChange(event) {
@@ -285,6 +305,7 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
     fields[REPEAT_FIELD.fieldApiName] = this.showEndDateTime ? this.repeatInterval : null;
     fields[RESCHEDULE_FIELD.fieldApiName] = this.isClass && this.showBatchSize ? this.rescheduleInterval : null;
     fields[START_FIELD.fieldApiName] = this.startDateTime;
+    fields[CRON_EXPRESSION.fieldApiName] = this.cronValue;
 
     const recordInput = { apiName: ENTRY_OBJECT.objectApiName, fields };
     try {
