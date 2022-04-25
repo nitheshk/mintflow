@@ -1,38 +1,38 @@
-import Anonymous_code_job_prefix from "@salesforce/label/c.Anonymous_code_job_prefix";
-import Anonymous_code_warning from "@salesforce/label/c.Anonymous_code_warning";
-import Batch_size from "@salesforce/label/c.Batch_size";
-import Batch_size_overflow from "@salesforce/label/c.Batch_size_overflow";
-import Batch_size_underflow from "@salesforce/label/c.Batch_size_underflow";
-import Code_remaining from "@salesforce/label/c.Code_remaining";
-import Confirm from "@salesforce/label/c.Confirm";
-import Daily_end_date from "@salesforce/label/c.Daily_end_date";
-import End_date_time from "@salesforce/label/c.End_date_time";
-import Enter_code from "@salesforce/label/c.Enter_code";
-import Flow_retrieval_error from "@salesforce/label/c.Flow_retrieval_error";
-import Flow_warning from "@salesforce/label/c.Flow_warning";
-import Main_choice from "@salesforce/label/c.Main_choice";
-import Main_choice_class from "@salesforce/label/c.Main_choice_class";
-import Main_choice_code from "@salesforce/label/c.Main_choice_code";
-import Main_choice_flow from "@salesforce/label/c.Main_choice_flow";
-import Max_code_entered from "@salesforce/label/c.Max_code_entered";
-import Repeat_interval from "@salesforce/label/c.Repeat_interval";
-import Repeat_interval_underflow from "@salesforce/label/c.Repeat_interval_underflow";
-import Required_field from "@salesforce/label/c.Required_field";
-import Reschedule_interval from "@salesforce/label/c.Reschedule_interval";
-import Reschedule_interval_underflow from "@salesforce/label/c.Reschedule_interval_underflow";
-import Schedule from "@salesforce/label/c.Schedule";
-import Select_flow from "@salesforce/label/c.Select_flow";
-import Start_again_the_next_day from "@salesforce/label/c.Start_again_the_next_day";
-import Start_date_time from "@salesforce/label/c.Start_date_time";
-import Start_time_passed from "@salesforce/label/c.Start_time_passed";
-import Spinner_alt_text_loading from "@salesforce/label/c.Spinner_alt_text_loading";
-import Spinner_alt_text_scheduling from "@salesforce/label/c.Spinner_alt_text_scheduling";
-import Toast_success_message from "@salesforce/label/c.Toast_success_message";
-import Toast_success_title from "@salesforce/label/c.Toast_success_title";
-import View_Apex_jobs from "@salesforce/label/c.View_Apex_jobs";
-import View_scheduled_jobs from "@salesforce/label/c.View_scheduled_jobs";
-import View_records from "@salesforce/label/c.View_records";
-
+let Anonymous_code_job_prefix = "anonymous code";
+let Anonymous_code_warning = "Anonymous code runs in user mode. You can only do what you have permission to do!";
+let Batch_size = "What is the batch size? (leave blank to use the Salesforce default)";
+let Batch_size_overflow = "Batch size must be between 1 and 2000.";
+let Batch_size_underflow = "Batch size must be between 1 and 2000.";
+let Code_remaining = "Characters remaining";
+let Confirm = "Confirm";
+let Daily_end_date = "Until when? (leave blank to run in perpetuity)";
+let End_date_time = "Until when? (leave blank to run in perpetuity)";
+let Enter_code = "Enter your anonymous code";
+let Flow_retrieval_error = "There was an error retrieving flows.";
+let Flow_warning =
+  "You may not have permission to run all the listed flows. It is possible for System Adminstrator permissions to be removed from an individual flow.";
+let Main_choice = "What do you want to schedule?";
+let Main_choice_class = "A class";
+let Main_choice_code = "Anonymous code";
+let Main_choice_flow = "A flow";
+let Max_code_entered = "You have entered the maximum amount of code";
+let Repeat_interval = "How often (in minutes) would you like to repeat this job? (enter 0 to run once)";
+let Repeat_interval_underflow = "Repeat interval must be zero or greater.";
+let Required_field = "Complete this field.";
+let Reschedule_interval =
+  "How soon (in minutes) would you like to retry this job if the queue is full or if the batch job is not done executing?";
+let Reschedule_interval_underflow = "Reschedule interval must be a positive whole number.";
+let Schedule = "Schedule";
+let Select_flow = "What flow would you like to schedule?";
+let Start_again_the_next_day = "Run daily?";
+let Start_date_time = "When would you like the job to start?";
+let Start_time_passed = "Your start date &amp; time has passed!";
+let Spinner_alt_text_loading = "Loading...";
+let Spinner_alt_text_scheduling = "Scheduling...";
+let Toast_success_message = "Job scheduled successfully!";
+let Toast_success_title = "Success";
+let View_Apex_jobs = "View Apex jobs";
+let View_scheduled_jobs = "View Scheduled jobs";
 export default {
   Anonymous_code_job_prefix,
   Anonymous_code_warning,
@@ -66,6 +66,5 @@ export default {
   Toast_success_message,
   Toast_success_title,
   View_Apex_jobs,
-  View_scheduled_jobs,
-  View_records
+  View_scheduled_jobs
 };
