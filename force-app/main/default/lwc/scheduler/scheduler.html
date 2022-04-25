@@ -184,6 +184,19 @@
                   onchange={handleBatchSizeChange}
                   value={batchSize}
                 ></lightning-input>
+
+                <lightning-input
+                  type="number"
+                  label={label.Reschedule_interval}
+                  class="formElement-reschedule"
+                  autocomplete="off"
+                  min="1"
+                  message-when-range-underflow={Reschedule_interval_underflow}
+                  onchange={handleRescheduleIntervalChange}
+                  value={rescheduleInterval}
+                  message-when-value-missing={label.Required_field}
+                  required
+                ></lightning-input>
               </template>
 
               <div if:true={onDesktop} class="links">

@@ -15,7 +15,15 @@ public with sharing class Scheduler implements Schedulable {
   static final Type BATCHABLE_TYPE = Type.forName('Database.Batchable');
   static final Type SCHEDULABLE_TYPE = Type.forName('Schedulable');
   static final String ASYNC_JOB_COMPLETED_STATUSES = '~Completed~Failed~Aborted~';
+  private static Logger log = Logger.getInstance(Scheduler.class);
 
+  //#minor
+  //Know issue when batch job fail to schedule an cron expression config.. Old scheduler not terminate
+  /**
+   * @description get all batch class names
+   * @author Digital Align Team | 04-25-2022
+   * @return List<Object>
+   **/
   @AuraEnabled
   public static List<Object> getClasses() {
     List<Map<String, String>> apexClassList = new List<Map<String, String>>();
@@ -27,7 +35,6 @@ public with sharing class Scheduler implements Schedulable {
       Map<String, String> batchableMap = new Map<String, String>();
       Type t;
       Object o;
-      system.debug('cls : ' + cls);
       if (Test.isRunningTest()) {
         t = BATCHABLE_TYPE;
       } else {
@@ -38,6 +45,7 @@ public with sharing class Scheduler implements Schedulable {
             o = t.newInstance();
           } catch (Exception e) {
             // skip class without no-arg constructor
+            log?.fine('Class skipped : ' + name);
           }
         }
       }
@@ -55,16 +63,27 @@ public with sharing class Scheduler implements Schedulable {
     return apexClassList;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param String jobName
+   * @param Datetime startDatetime
+   * @param Id entryId
+   * @return String
+   **/
   @AuraEnabled
   public static String schedule(String jobName, Datetime startDatetime, Id entryId) {
-    return System.schedule(jobName, startDatetime.format('s m H d M \'?\' yyyy'), new Scheduler(entryId));
+    SchedulerEntry__c entry = CommonRepository.readScheduledEntry(entryId);
+    if (String.isNotBlank(entry?.CronExpression__c)) {
+      return System.schedule(jobName, entry.CronExpression__c, new Scheduler(entryId));
+    } else {
+      return System.schedule(jobName, startDatetime.format('s m H d M \'?\' yyyy'), new Scheduler(entryId));
+    }
   }
 
   static final Integer MAX_BATCH_JOBS = 99;
   static final Integer MAX_SCHEDULED_JOBS = 99;
-  static final String SCHEDULED_APEX_JOB_TYPE = '7';
   Id entryId;
-
   @TestVisible
   SchedulerEntry__c entry;
   Type classToExecute;
@@ -74,15 +93,26 @@ public with sharing class Scheduler implements Schedulable {
     this.entryId = entryId;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param SchedulableContext sc
+   **/
   public void execute(SchedulableContext sc) {
     start(sc.getTriggerId());
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param Id jobId
+   **/
   void start(Id jobId) {
-    System.abortJob(jobId);
-
     this.entry = CommonRepository.readScheduledEntry(entryId);
 
+    if (String.isBlank(entry?.CronExpression__c)) {
+      System.abortJob(jobId);
+    }
     if (this.entry == null) {
       return;
     }
@@ -118,7 +148,7 @@ public with sharing class Scheduler implements Schedulable {
       }
 
       if (String.isNotBlank(entry.Class__c) || String.isNotBlank(entry.AnonymousCode__c)) {
-        if (canStartMore()) {
+        if (canStartMore(entry)) {
           executeJob();
 
           if (isPositiveInteger(entry.RepeatInterval__c)) {
@@ -142,6 +172,11 @@ public with sharing class Scheduler implements Schedulable {
     }
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @return Boolean
+   **/
   @TestVisible
   Boolean isBeforeOrNoEndDateTime() {
     return null == entry.End__c ||
@@ -151,7 +186,13 @@ public with sharing class Scheduler implements Schedulable {
       System.now() < entry.DailyEnd__c));
   }
 
-  Boolean canStartMore() {
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param SchedulerEntry__c entry
+   * @return Boolean
+   **/
+  Boolean canStartMore(SchedulerEntry__c entry) {
     if (String.isNotBlank(entry.AnonymousCode__c)) {
       return true;
     }
@@ -167,6 +208,10 @@ public with sharing class Scheduler implements Schedulable {
     return [SELECT COUNT() FROM AsyncApexJob WHERE JobType = 'BatchApex' AND Status = 'Holding'] < MAX_BATCH_JOBS;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   **/
   void executeJob() {
     if (String.isNotBlank(entry.Class__c)) {
       executeBatch();
@@ -175,16 +220,32 @@ public with sharing class Scheduler implements Schedulable {
     }
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param Double value
+   * @return Boolean
+   **/
   @TestVisible
   Boolean isPositiveInteger(Double value) {
     return value != null && value > 0;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param Decimal value
+   * @return Boolean
+   **/
   @TestVisible
   Boolean isPositiveInteger(Decimal value) {
     return value != null && value > 0;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   **/
   void executeBatch() {
     if (!Test.isRunningTest()) {
       Object o = classToExecute.newInstance();
@@ -197,6 +258,11 @@ public with sharing class Scheduler implements Schedulable {
     }
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param String body
+   **/
   @TestVisible
   @future(callout=true)
   static void executeAnonymous(String body) {
@@ -204,6 +270,13 @@ public with sharing class Scheduler implements Schedulable {
     HttpResponse res = sendHttpRequest(path, UserInfo.getSessionId());
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param String path
+   * @param String sessionId
+   * @return HttpResponse
+   **/
   static HttpResponse sendHttpRequest(String path, String sessionId) {
     Double apiVersion = getApiVersion();
     Http h = new Http();
@@ -214,15 +287,28 @@ public with sharing class Scheduler implements Schedulable {
     return h.send(req);
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @return Double
+   **/
   static Double getApiVersion() {
     return [SELECT ApiVersion FROM ApexClass ORDER BY ApiVersion DESC LIMIT 1].ApiVersion;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   **/
   @TestVisible
   void incrementExecutions() {
     entry.NumberOfExecutions__c = entry.NumberOfExecutions__c == null ? 1 : entry.NumberOfExecutions__c + 1;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   **/
   @TestVisible
   void rescheduleForTomorrow() {
     if (entry.End__c != null) {
@@ -233,23 +319,39 @@ public with sharing class Scheduler implements Schedulable {
     reschedule();
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   **/
   void reschedule() {
     updateEntry();
     Scheduler.schedule(entry.Name, entry.Start__c, entry.Id);
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   **/
   void updateEntry() {
-    update new SchedulerEntry__c(
-      Id = entry.Id,
-      AsyncApexJobId__c = entry.AsyncApexJobId__c,
-      DailyStartDateTime__c = entry.DailyStartDateTime__c,
-      End__c = entry.End__c,
-      NumberOfExecutions__c = entry.NumberOfExecutions__c,
-      Start__c = entry.Start__c
+    CommonRepository.upsertRecord(
+      new SchedulerEntry__c(
+        Id = entry.Id,
+        AsyncApexJobId__c = entry.AsyncApexJobId__c,
+        DailyStartDateTime__c = entry.DailyStartDateTime__c,
+        End__c = entry.End__c,
+        NumberOfExecutions__c = entry.NumberOfExecutions__c,
+        Start__c = entry.Start__c
+      )
     );
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 04-25-2022
+   * @param Id entryId
+   * @param String error
+   **/
   static void logExecutionError(Id entryId, String error) {
-    update new SchedulerEntry__c(Id = entryId, ExecutionError__c = error);
+    CommonRepository.upsertRecord(new SchedulerEntry__c(Id = entryId, ExecutionError__c = error));
   }
 }
