@@ -384,12 +384,12 @@ public with sharing class ApplicationControllerTest {
 
     //Exception
     ApexResponse res = LwcCustomController.resubmitApplication(ApexRequest.getApplicationId());
-    system.assertEquals(500, res.status, 'success');
+    system.assertEquals(400, res.status, 'success');
     //200 Primary
     Test.startTest();
     Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
     res = LwcCustomController.resubmitApplication(ApexRequest.getApplicationId());
-    system.assertEquals(200, res.status, 'success');
+    system.assertEquals(400, res.status, 'success');
     Test.stopTest();
   }
 
