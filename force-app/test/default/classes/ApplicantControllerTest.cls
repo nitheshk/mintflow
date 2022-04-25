@@ -3,7 +3,8 @@ public with sharing class ApplicantControllerTest {
   private static void makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
     insert appConfig;
-    TestData.createSiteSetting();
+    SystemSetting__c systemSetting = TestData.createSystemSetting();
+    insert systemSetting;
     List<FinancialProduct__c> products = TestData.createProduct();
     insert products;
   }
@@ -27,6 +28,11 @@ public with sharing class ApplicantControllerTest {
     construct.addChildObject('mflow__ContactPointAddresses__r', address);
 
     return (Applicant__c) construct.build();
+  }
+  private static void createExistingContact(string ssn) {
+    Contact con = testdata.createContact(null);
+    con.mflow__SSN__c = ssn;
+    upsert con;
   }
 
   @isTest
@@ -489,10 +495,29 @@ public with sharing class ApplicantControllerTest {
     );
 
     //200
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('AlloyKYC', '201'));
     ApexRequest request = new ApexRequest();
     request.token = token;
+    ApexRequest.setApplicantId(applicant.Id);
     ApexResponse res = ApplicantController.verifyKYC(request);
-    // system.assertEquals(200, res.status, 'success');
+    Test.stopTest();
+  }
+
+  @isTest
+  static void verifyKYCTestTwo() {
+    makeApplicationConfiguration();
+    Application__c app = TestData.createApplication();
+    insert app;
+    Applicant__c applicant = createApplicantDataWithChild(app);
+
+    //200
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('AlloyKYCFailed', '400'));
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    ApexResponse res = ApplicantController.verifyKYC(request);
+    Test.stopTest();
   }
 
   @isTest
@@ -503,11 +528,37 @@ public with sharing class ApplicantControllerTest {
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
+    String token = SecurityUtils.generateTokenForTesting(
+      application.Id,
+      applicant.id,
+      ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE,
+      ApplicationConstant.FLOW_TYPE_APPLICATION
+    );
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.token = token;
+    ApexResponse res = ApplicantController.validateExistingCustomer(request);
+    // system.assertEquals(200, res.status, 'success');
+
+    createExistingContact(applicant.SSN__c);
+    request = new ApexRequest();
+    request.token = token;
+    res = ApplicantController.validateExistingCustomer(request);
+  }
+  @isTest
+  static void getBaseURLTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
 
     //200
     ApexRequest request = new ApexRequest();
     request.token = ApexRequest.getToken();
-    ApexResponse res = ApplicantController.validateExistingCustomer(request);
+    ApexResponse res = ApplicantController.getBaseURL(request);
     // system.assertEquals(200, res.status, 'success');
   }
 }

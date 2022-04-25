@@ -64,6 +64,7 @@ public with sharing class AlloyKYCReportController {
           res = (cvObj.VersionData).toString();
         }
       }
+      system.debug('res =' + res);
       Map<String, Object> response = (Map<String, Object>) JSON.deserializeUntyped(res);
       wrapper.additionalInfo.rawResponse = res;
       wrapper.additionalInfo.evaluationToken = response.get('evaluation_token') != null
@@ -137,11 +138,11 @@ public with sharing class AlloyKYCReportController {
         wrapper.matchedData.add(matchData);
       }
     }
-    //Socure DV matching data
+    //Socure 30 matching data
     if (response.get('formatted_responses') != null) {
       Map<String, Object> formattedResponses = (Map<String, Object>) response.get('formatted_responses');
-      if (formattedResponses.get('Socure DV') != null) {
-        Map<String, Object> socureDV = (Map<String, Object>) formattedResponses.get('Socure DV');
+      if (formattedResponses.get('Socure 30') != null) {
+        Map<String, Object> socureDV = (Map<String, Object>) formattedResponses.get('Socure 30');
 
         Map<String, Object> decision = socureDV.get('data') != null
           ? (Map<String, Object>) socureDV.get('data')
@@ -163,9 +164,9 @@ public with sharing class AlloyKYCReportController {
         matchData.fieldScore = String.valueOf(documentMatching.get('score'));
 
         if (documentMatching.get('matched') != null && Boolean.valueOf(documentMatching.get('matched'))) {
-          matchData.matchedService.add('Socure DV');
+          matchData.matchedService.add('Socure 30');
         } else {
-          matchData.unmatchedService.add('Socure DV');
+          matchData.unmatchedService.add('Socure 30');
         }
         wrapper.matchedData.add(matchData);
       }
@@ -380,8 +381,8 @@ public with sharing class AlloyKYCReportController {
         }
       }
 
-      if (formattedResponses.get('Socure DV') != null) {
-        Map<String, Object> socureDV = (Map<String, Object>) formattedResponses.get('Socure DV');
+      if (formattedResponses.get('Socure 30') != null) {
+        Map<String, Object> socureDV = (Map<String, Object>) formattedResponses.get('Socure 30');
         if (socureDV.get('data') != null) {
           Map<String, Object> data = (Map<String, Object>) socureDV.get('data');
           List<Object> codes = data.get('reason_codes') != null
@@ -450,7 +451,7 @@ public with sharing class AlloyKYCReportController {
   ) {
     Map<String, String> socureDVReasonCodes = new Map<String, String>();
     Map<String, Object> socureMapping = (Map<String, Object>) reasonCodeMapping.get('Socure 30');
-    wrapper.reasonCodes.put('Socure DV', socureDVReasonCodes);
+    wrapper.reasonCodes.put('Socure 30', socureDVReasonCodes);
     for (Object code : codes) {
       if (socureMapping.containsKey(String.valueOf(code))) {
         socureDVReasonCodes.put(String.valueOf(code), String.valueOf(socureMapping.get(String.valueOf(code))));

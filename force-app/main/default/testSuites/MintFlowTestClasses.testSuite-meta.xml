@@ -5,12 +5,10 @@
     <testClassName>mflow.ApexUtilsTest</testClassName>
     <testClassName>mflow.ApplicantControllerTest</testClassName>
     <testClassName>mflow.ApplicationControllerTest</testClassName>
-    <testClassName>mflow.BuildSubmissionWrapperTest</testClassName>
     <testClassName>mflow.CollectionUtilsTest</testClassName>
     <testClassName>mflow.ConsentResolverTest</testClassName>
     <testClassName>mflow.CustomerAgreementControllerTest</testClassName>
     <testClassName>mflow.CustomerEmailServiceTest</testClassName>
-    <testClassName>mflow.CustomerPortalServiceTest</testClassName>
     <testClassName>mflow.DatabaseUtilsTest</testClassName>
     <testClassName>mflow.DateUtilsTest</testClassName>
     <testClassName>mflow.DisplayImageControllerTest</testClassName>
@@ -18,26 +16,30 @@
     <testClassName>mflow.EmailNotificationBuilderTest</testClassName>
     <testClassName>mflow.FileControllerTest</testClassName>
     <testClassName>mflow.FinancialAccountControllerTest</testClassName>
-    <testClassName>mflow.FinancialAccountServiceTest</testClassName>
+    <testClassName>mflow.FinancingControllerTest</testClassName>
     <testClassName>mflow.FlowTest</testClassName>
     <testClassName>mflow.GenericUtilsTest</testClassName>
     <testClassName>mflow.IdentityServiceMock</testClassName>
-    <testClassName>mflow.IdentityServiceTest</testClassName>
+    <testClassName>mflow.IdentityControllerTest</testClassName>
     <testClassName>mflow.LoggerTest</testClassName>
-    <testClassName>mflow.LwcCustomServiceTest</testClassName>
+    <testClassName>mflow.LwcCustomControllerTest</testClassName>
     <testClassName>mflow.LWCFinancialInstituteSiteControllerTest</testClassName>
     <testClassName>mflow.LwcOnlineSiteControllerTest</testClassName>
     <testClassName>mflow.MockAPIResponse</testClassName>
     <testClassName>mflow.OAuthProviderTest</testClassName>
     <testClassName>mflow.OnlineAccountControllerTest</testClassName>
+    <testClassName>mflow.OpenAccountControllerTest</testClassName>
     <testClassName>mflow.PageUtilsTest</testClassName>
     <testClassName>mflow.QueryTest</testClassName>
+    <testClassName>mflow.RpaProcessServiceTest</testClassName>
     <testClassName>mflow.RpaServiceMock</testClassName>
     <testClassName>mflow.SearchServiceTest</testClassName>
     <testClassName>mflow.SecurityUtilsTest</testClassName>
     <testClassName>mflow.SentiLinkReportControllerTest</testClassName>
     <testClassName>mflow.SObjectConstructorTest</testClassName>
     <testClassName>mflow.SObjectWithoutSharingTest</testClassName>
+    <testClassName>mflow.AlloyKYCReportControllerTest</testClassName>
+    <testClassName>mflow.GenericMethodTest</testClassName>
     <testClassName>mflow.SObjectWithSharingTest</testClassName>
     <testClassName>mflow.SurveyResolverTest</testClassName>
     <testClassName>mflow.TestData</testClassName>

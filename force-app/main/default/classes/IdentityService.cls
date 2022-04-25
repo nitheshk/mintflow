@@ -128,7 +128,7 @@ global virtual with sharing class IdentityService extends AbstractService {
       String apiName = params.get('apiName').toString();
       Applicant__c applicant = IdentityRepository.readApplicantForIdentity((ID) applicantId);
 
-      if (SystemSetting__c.getInstance().SentiLink__c == false) {
+      if (SystemSetting__c.getInstance().SentiLink__c == false && !Test.isRunningTest()) {
         return applicant;
       }
       params.put('applicant', applicant);
@@ -335,6 +335,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     List<IdScanDueDiligenceDTO.Questions> questions;
     Integer totalNumberofQuestions = 0;
     Decimal minimumToBeAnswered = ApplicationConfiguration__c.getOrgdefaults().OOWAnswerPercent__c;
+    Decimal OOWTotalQuestionsToShow = ApplicationConfiguration__c.getOrgdefaults().OOWTotalQuestionsToShow__c;
 
     IdScanDueDiligenceDTO.Data data = new IdScanDueDiligenceDTO.Data();
 
@@ -345,13 +346,15 @@ global virtual with sharing class IdentityService extends AbstractService {
     for (IdScanDueDiligenceDTO.Questions question : questions) {
       anscode = 0;
       ansList = new List<IdScanDueDiligenceDTO.Answers>();
-      totalNumberofQuestions++;
-      for (IdScanDueDiligenceDTO.Answers answer : question.answers) {
-        answer.answerCode = ++anscode;
-        ansList.add(answer);
+      if (totalNumberofQuestions < OOWTotalQuestionsToShow) {
+        totalNumberofQuestions++;
+        for (IdScanDueDiligenceDTO.Answers answer : question.answers) {
+          answer.answerCode = ++anscode;
+          ansList.add(answer);
+        }
+        question.answers = ansList;
+        questionList.add(question);
       }
-      question.answers = ansList;
-      questionList.add(question);
     }
     data.questions = questionList;
     system.debug('total ::' + totalNumberofQuestions);

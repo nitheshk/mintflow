@@ -1,5 +1,5 @@
 @istest
-public with sharing class SentiLinkReportControllerTest {
+public with sharing class AlloyKYCReportControllerTest {
   public static ContentVersion makeContentVersion() {
     ContentVersion cv = TestData.createContentVersion();
     cv = (ContentVersion) DatabaseUtils.insertRecord(cv);
@@ -28,22 +28,21 @@ public with sharing class SentiLinkReportControllerTest {
     return applicant;
   }
   @istest
-  private static void SentiLinkReportControllerTest() {
+  public static void AlloyControllerTest() {
     Applicant__c applicant = makeApplicantData();
     ApexRequest request = new ApexRequest();
     request.applicationId = applicant.Application__c; //Application__c ID
     ContentVersion cvs = FileService.getInstance()
-      .createFile(new FileDTO('SentiLink.json', blob.valueof(TestData.getSentilinkData()), applicant.Id));
+      .createFile(new FileDTO('AlloyResponse.json', blob.valueof(TestData.getAlloyData()), applicant.Id));
 
-    PageReference SentiLinkReportPage = Page.SentiLinkReport;
-    Test.setCurrentPage(SentiLinkReportPage);
+    PageReference AlloyKYCReportPage = Page.AlloyKYCReport;
+    Test.setCurrentPage(AlloyKYCReportPage);
     // Put Id into the current page Parameters
-    ApexPages.currentPage().getParameters().put('id', cvs.contentDocumentId);
+    ApexPages.currentPage().getParameters().put('id', applicant.Id);
     ApexPages.StandardController sc = new ApexPages.StandardController(applicant);
     Test.startTest();
-    SentiLinkReportController sentilink = new SentiLinkReportController();
-    sentilink.prefillFraudCheckDetail();
-    SentiLinkReportController.fetchReportDetail(applicant.Id);
+    AlloyKYCReportController alloy = new AlloyKYCReportController();
+    alloy.prefillKYCDetail();
     test.stopTest();
   }
 }

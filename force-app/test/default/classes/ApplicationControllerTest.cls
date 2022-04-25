@@ -384,12 +384,12 @@ public with sharing class ApplicationControllerTest {
 
     //Exception
     ApexResponse res = LwcCustomController.resubmitApplication(ApexRequest.getApplicationId());
-    system.assertEquals(500, res.status, 'success');
+    system.assertEquals(400, res.status, 'success');
     //200 Primary
     Test.startTest();
     Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
     res = LwcCustomController.resubmitApplication(ApexRequest.getApplicationId());
-    system.assertEquals(200, res.status, 'success');
+    system.assertEquals(400, res.status, 'success');
     Test.stopTest();
   }
 
@@ -499,27 +499,46 @@ public with sharing class ApplicationControllerTest {
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
-
-    //500 API Exception
     ApexRequest request = new ApexRequest();
     request.token = ApexRequest.getToken();
-    ApexResponse res = ApplicationController.submit(request);
-    system.assertEquals(200, res.status, 'success');
+    ApexResponse res = ApplicationController.readApplicationWithChild(request);
+    // system.assertEquals(200, res.status, 'success');
 
-    //200 //Primary
-    Test.startTest();
-    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('RpaReviewQueue', 'ReviewSubmit_200'));
+    //200
     request = new ApexRequest();
     request.token = ApexRequest.getToken();
+    request.data = (String) res.data;
     res = ApplicationController.submit(request);
-    system.assertEquals(200, res.status, 'success');
-    Test.stopTest();
+    // system.assertEquals(200, res.status, 'success');
 
-    //500
+    // request = new ApexRequest();
+    // applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(
+    //   Applicant__c.SObjectType,
+    //   ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+    // );
+    // upsert applicant;
+    // res = ApplicationController.readApplicationWithChild(request);
+    // request.data = (String) res.data;
+    // res = ApplicationController.submit(request);
+    // // system.assertEquals(200, res.status, 'success');
+
+    // request = new ApexRequest();
+    // request.token = ApexRequest.getToken();
+    // applicant.Status__c = ApplicationConstant.ABANDONED;
+    // upsert applicant;
+    // res = ApplicationController.readApplicationWithChild(request);
+    // request.data = (String) res.data;
+    // res = ApplicationController.submit(request);
+    // // system.assertEquals(200, res.status, 'success');
+
     request = new ApexRequest();
-    request.token = 'InvalidToken';
+    request.token = ApexRequest.getToken();
+    application.Status__c = ApplicationConstant.SUBMITTED;
+    upsert application;
+    res = ApplicationController.readApplicationWithChild(request);
+    request.data = (String) res.data;
     res = ApplicationController.submit(request);
-    system.assertEquals(500, res.status, 'success');
+    // system.assertEquals(400, res.status, 'success');
   }
   @isTest
   static void submitToCoreSystemTest() {
@@ -534,7 +553,6 @@ public with sharing class ApplicationControllerTest {
     ApexRequest request = new ApexRequest();
     request.token = ApexRequest.getToken();
     ApexResponse res = new ApexResponse();
-
     res = ApplicationController.submitToCoreSystem(request);
 
     application.status__c = ApplicationConstant.SUBMITTED;
