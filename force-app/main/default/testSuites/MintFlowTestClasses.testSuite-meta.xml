@@ -38,6 +38,8 @@
     <testClassName>mflow.SentiLinkReportControllerTest</testClassName>
     <testClassName>mflow.SObjectConstructorTest</testClassName>
     <testClassName>mflow.SObjectWithoutSharingTest</testClassName>
+    <testClassName>mflow.AlloyKYCReportControllerTest</testClassName>
+    <testClassName>mflow.GenericMethodTest</testClassName>
     <testClassName>mflow.SObjectWithSharingTest</testClassName>
     <testClassName>mflow.SurveyResolverTest</testClassName>
     <testClassName>mflow.TestData</testClassName>
