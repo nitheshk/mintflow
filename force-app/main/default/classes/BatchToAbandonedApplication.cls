@@ -31,6 +31,8 @@ global class BatchToAbandonedApplication implements Database.batchable<sObject> 
       .whereLte('LastModifiedDate', DateTime.now().addMinutes(-60))
       .andCon()
       .whereLte('SessionExpireTime__c', DateTime.now())
+      .andCon()
+      .whereCon('CreatedDate >= LAST_N_DAYS:90')
       .run()
       .whereIn(
         'Id',
@@ -45,6 +47,8 @@ global class BatchToAbandonedApplication implements Database.batchable<sObject> 
           .whereLte('LastModifiedDate', DateTime.now().addMinutes(-60))
           .andCon()
           .whereLte('SessionExpireTime__c', DateTime.now())
+          .andCon()
+          .whereCon('CreatedDate >= LAST_N_DAYS:90')
           .andCon()
           .grpOpen()
           .whereEq('Application__r.Status__c', ApplicationConstant.IN_PROGRESS)
