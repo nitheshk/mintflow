@@ -1118,6 +1118,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Employment__c.EmploymentDurationYears__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Employment__c.AnnualIncome__c</field>
         <readable>true</readable>
     </fieldPermissions>
