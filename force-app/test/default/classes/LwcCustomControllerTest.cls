@@ -329,6 +329,9 @@ public with sharing class LwcCustomControllerTest {
     ApexResponse res = LwcCustomController.fetchOOWReportData(applicant.Id);
     System.assertEquals(200, res.status, 'success');
 
+    ContentVersion cvs = FileService.getInstance()
+      .createFile(new FileDTO('OOW Response.json', blob.valueof(testdata.getOOWData()), applicant.Id, 'KYC', 'IDScan'));
+
     res = LwcCustomController.fetchOOWReportData(applicant.Id);
     System.assertEquals(200, res.status, 'success');
   }
