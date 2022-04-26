@@ -166,6 +166,12 @@ global virtual with sharing class AuthenticationService extends AbstractService 
       if (String.isBlank(ApexRequest.getToken()) && otpValidated) {
         SecurityUtils.createSessionForApplicant(applicant);
         applicant.Status__c = ApplicationConstant.IN_PROGRESS;
+
+        if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+          ApplicantRepository.updateRecord(
+            new Application__c(id = applicant.Application__c, Status__c = ApplicationConstant.IN_PROGRESS)
+          );
+        }
       }
 
       ApplicantRepository.updateRecord(applicant);
