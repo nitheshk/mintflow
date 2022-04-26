@@ -500,6 +500,7 @@ public with sharing class ApplicantControllerTest {
     ApexRequest request = new ApexRequest();
     request.token = token;
     ApexRequest.setApplicantId(applicant.Id);
+    AlloyProvider.getInstance();
     ApexResponse res = ApplicantController.verifyKYC(request);
     Test.stopTest();
   }
