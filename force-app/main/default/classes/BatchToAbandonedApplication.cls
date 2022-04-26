@@ -7,7 +7,7 @@
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 global class BatchToAbandonedApplication implements Database.batchable<sObject> {
-  private Logger log = Logger.getInstance(BatchToDeleteApplication.class);
+  private Logger log = Logger.getInstance(BatchToAbandonedApplication.class);
   /**
    * @description
    * @author Digital Align Team | 04-26-2022
