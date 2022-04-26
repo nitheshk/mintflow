@@ -167,11 +167,9 @@ global virtual with sharing class AuthenticationService extends AbstractService 
         SecurityUtils.createSessionForApplicant(applicant);
         applicant.Status__c = ApplicationConstant.IN_PROGRESS;
 
-        if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-          ApplicantRepository.updateRecord(
-            new Application__c(id = applicant.Application__c, Status__c = ApplicationConstant.IN_PROGRESS)
-          );
-        }
+        ApplicantRepository.updateRecord(
+          new Application__c(id = applicant.Application__c, Status__c = ApplicationConstant.IN_PROGRESS)
+        );
       }
 
       ApplicantRepository.updateRecord(applicant);

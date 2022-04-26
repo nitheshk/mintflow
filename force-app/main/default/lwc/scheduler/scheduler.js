@@ -191,6 +191,9 @@ export default class Scheduler extends NavigationMixin(LightningElement) {
 
   handleSchedulerChange(event) {
     this.schedulerType = event.detail.value;
+    if (this.schedulerType == "Scheduler") {
+      this.cronValue = "";
+    }
   }
 
   handleCronChange(event) {
