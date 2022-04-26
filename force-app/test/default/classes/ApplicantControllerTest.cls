@@ -375,13 +375,17 @@ public with sharing class ApplicantControllerTest {
         new FileDTO('test.txt', blob.valueof('test'), applicant.Employments__r[0].Id, 'Employment', 'AtomicFIResponse')
       );
 
+    //200
     request = new ApexRequest();
     request.setHeader(
       new Map<String, object>{ 'applicantId' => applicant.Id, 'employerId' => applicant.Employments__r[0].Id }
     );
     request.token = token;
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('atomicFIResponse', '200'));
     res = ApplicantController.getAtomicResponse(request);
     system.assertEquals(200, res.status, 'success');
+    Test.stopTest();
 
     //exception case
     request = new ApexRequest();
@@ -414,6 +418,28 @@ public with sharing class ApplicantControllerTest {
     request.token = token;
     ApexResponse res = ApplicantController.generatePaySlipsW2(request);
     system.assertEquals(400, res.status, 'success');
+
+    //200
+    ContentVersion cvs = FileService.getInstance()
+      .createFile(
+        new FileDTO(
+          'AtomicFI Response.txt',
+          blob.valueof(TestData.getAtomiFiData()),
+          applicant.mflow__Employments__r[0].Id,
+          'Employment',
+          'AtomicFIResponse'
+        )
+      );
+    request = new ApexRequest();
+    request.setHeader(
+      new Map<String, object>{ 'applicantId' => applicant.Id, 'employerId' => applicant.Employments__r[0].Id }
+    );
+    request.token = token;
+    Test.startTest();
+    Test.setMock(HttpCalloutMock.class, new MockAPIResponse('atomicFIResponse', '200'));
+    res = ApplicantController.generatePaySlipsW2(request);
+    system.assertEquals(200, res.status, 'success');
+    Test.stopTest();
   }
 
   @isTest
