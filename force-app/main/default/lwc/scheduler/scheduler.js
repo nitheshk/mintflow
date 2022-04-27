@@ -13,8 +13,8 @@ import { createRecord } from "lightning/uiRecordApi";
 import { showToast } from "c/generalUtils";
 
 import CLIENT_FORM_FACTOR from "@salesforce/client/formFactor";
-import schedule from "@salesforce/apex/Scheduler.schedule";
-import getClasses from "@salesforce/apex/Scheduler.getClasses";
+import schedule from "@salesforce/apex/LwcCustomController.schedule";
+import getClasses from "@salesforce/apex/LwcCustomController.fetchClassesForSchedule";
 
 import ENTRY_OBJECT from "@salesforce/schema/SchedulerEntry__c";
 import NAME_FIELD from "@salesforce/schema/SchedulerEntry__c.Name";

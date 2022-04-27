@@ -302,4 +302,29 @@ global with sharing class LwcCustomController extends AbstractController {
       return ApexResponse.fail(ex);
     }
   }
+
+  //#minor
+  //Know issue when batch job fail to schedule an cron expression config.. Old scheduler not terminate
+  /**
+   * @description get all batch class names
+   * @author Digital Align Team | 04-25-2022
+   * @return List<Object>
+   **/
+  @AuraEnabled
+  public static List<Object> fetchClassesForSchedule() {
+    return Scheduler.fetchClassesForSchedule();
+  }
+
+  /**
+   * @description schedule a job
+   * @author Digital Align Team | 04-27-2022
+   * @param String jobName
+   * @param Datetime startDatetime
+   * @param Id entryId
+   * @return String
+   **/
+  @AuraEnabled
+  public static String schedule(String jobName, Datetime startDatetime, Id entryId) {
+    return Scheduler.schedule(jobName, startDatetime, entryId);
+  }
 }

@@ -5,6 +5,7 @@
  * @reference
  * @description
  **/
+@SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity,PMD.NcssMethodCount')
 public with sharing class Scheduler implements Schedulable {
   @TestVisible
   static final String THIS_CLASS = 'Scheduler';
@@ -24,8 +25,7 @@ public with sharing class Scheduler implements Schedulable {
    * @author Digital Align Team | 04-25-2022
    * @return List<Object>
    **/
-  @AuraEnabled
-  public static List<Object> getClasses() {
+  public static List<Object> fetchClassesForSchedule() {
     List<Map<String, String>> apexClassList = new List<Map<String, String>>();
     List<ApexClass> apexClasses = CommonRepository.fetchApexClasses(new List<String>{ THIS_CLASS });
 
@@ -71,7 +71,6 @@ public with sharing class Scheduler implements Schedulable {
    * @param Id entryId
    * @return String
    **/
-  @AuraEnabled
   public static String schedule(String jobName, Datetime startDatetime, Id entryId) {
     SchedulerEntry__c entry = CommonRepository.readScheduledEntry(entryId);
     if (String.isNotBlank(entry?.CronExpression__c)) {
