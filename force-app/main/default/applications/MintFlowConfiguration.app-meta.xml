@@ -25,6 +25,8 @@
     <tabs>ProductFeature__c</tabs>
     <tabs>ConsentTemplate__c</tabs>
     <tabs>SurveyTemplate__c</tabs>
+    <tabs>Scheduler</tabs>
+    <tabs>SchedulerEntry__c</tabs>
     <tabs>Flow__c</tabs>
     <tabs>EligibleCounty__c</tabs>
     <tabs>standard-report</tabs>
@@ -60,6 +62,12 @@
         </mappings>
         <mappings>
             <tab>ReferralProduct__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Scheduler</tab>
+        </mappings>
+        <mappings>
+            <tab>SchedulerEntry__c</tab>
         </mappings>
         <mappings>
             <tab>SurveyTemplate__c</tab>
