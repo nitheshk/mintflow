@@ -3,6 +3,11 @@
     <fullName>AddresslInformation</fullName>
     <description>All the fields related to Personal Information of applicant</description>
     <displayedFields>
+        <field>Id</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
         <field>AddressType</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>

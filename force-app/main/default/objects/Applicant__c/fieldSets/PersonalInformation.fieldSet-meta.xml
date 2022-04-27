@@ -3,6 +3,11 @@
     <fullName>PersonalInformation</fullName>
     <description>All the fields related to Personal Information of applicant</description>
     <displayedFields>
+        <field>Id</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
         <field>ApplicantName__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>

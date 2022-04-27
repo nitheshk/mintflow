@@ -2,7 +2,12 @@
 <FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IdentityInformation</fullName>
     <description>All the fields related to Identity Information of applicant</description>
-   <displayedFields>
+    <displayedFields>
+        <field>Id</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
         <field>DocumentNumber__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
@@ -12,48 +17,48 @@
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
+    <displayedFields>
         <field>IssueDate__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__IssuedRegion__c</field>
+    <displayedFields>
+        <field>IssuedRegion__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
+    <displayedFields>
         <field>IssuingCountry__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
+    <displayedFields>
         <field>ExpirationDate__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-     <displayedFields>
-        <field>mflow__Gender__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-     <displayedFields>
-        <field>mflow__Height__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-     <displayedFields>
-        <field>mflow__Nationality__c</field>
+    <displayedFields>
+        <field>Gender__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>mflow__Weight__c</field>
+        <field>Height__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>mflow__Order__c</field>
+        <field>Nationality__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>Weight__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>Order__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

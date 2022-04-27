@@ -1,4 +1,4 @@
-import { LightningElement, api, track, wire } from "lwc";
+import { LightningElement, api, track } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 import getBaseUrl from "@salesforce/apex/ApplicantController.getBaseURL";
 
@@ -34,10 +34,6 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
     }
   }
 
-  handleNavigate() {
-    this.openModal = true;
-  }
-
   handleIdentityVerifyClose() {
     this.openModal = false;
   }
@@ -52,7 +48,7 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
         if (result.status === 200) {
           data = JSON.parse(result.data);
           console.log("baseurl::" + JSON.stringify(data));
-          var siteUrl = data + "?id=" + this.record.Id;
+          var siteUrl = data + "/apex/AlloyKYCReport?id=" + this.record.Id;
           this[NavigationMixin.Navigate](
             {
               type: "standard__webPage",

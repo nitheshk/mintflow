@@ -4,13 +4,20 @@
     <div class="slds-grid slds-wrap">
       <template if:false={hideHeader}>
         <div class="slds-page-header slds-var-p-around_xx-small slds-col slds-size_1-of-1">
-          <h3>
-            <b> Personal Information </b>
-            [
-            <a onclick={showRelatedFiles} data-title="View related files">View Files</a>
-            ] &nbsp;
-            <a onclick={redirectRecords}> [Edit]</a>
-          </h3>
+          <lightning-button
+            label="Edit"
+            variant="brand"
+            value="Edit"
+            onclick={redirectRecords}
+            class="slds-var-m-around_medium"
+          ></lightning-button>
+          <lightning-button
+            label="View Related Files"
+            variant="brand"
+            value="View Related Files"
+            onclick={showRelatedFiles}
+            class="slds-var-m-around_medium"
+          ></lightning-button>
         </div>
       </template>
       <template for:each={personalResult} for:item="rKey">

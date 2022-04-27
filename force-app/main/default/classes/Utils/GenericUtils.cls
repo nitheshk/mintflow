@@ -359,4 +359,18 @@ global with sharing class GenericUtils {
     };
     return countryNameMap.get(countryCode.toUpperCase());
   }
+  /**
+   * @description to return the baseURL
+   * @author Digital Align Team | 03-08-2022
+   * @return string
+   **/
+  global static string getBaseURL() {
+    String baseUrl;
+    if (UserUtils.isGuestUser()) {
+      baseUrl = SiteSetting__c.getInstance().OnlineSiteUrl__c;
+    } else {
+      baseUrl = GenericUtils.fetchLoginURL();
+    }
+    return baseUrl;
+  }
 }

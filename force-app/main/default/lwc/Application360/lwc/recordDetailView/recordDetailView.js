@@ -3,15 +3,17 @@ import timezone from "@salesforce/i18n/timeZone";
 import { NavigationMixin } from "lightning/navigation";
 import { publish, MessageContext } from "lightning/messageService";
 import application360Details from "@salesforce/messageChannel/ViewRelatedFiles__c";
-
+import utils from "c/generalUtils";
 //controller
 import fetchFieldDetails from "@salesforce/apex/LwcCustomController.fetchFieldDetails";
+import getBaseUrl from "@salesforce/apex/ApplicantController.getBaseURL";
 
 export default class RecordDetailView extends NavigationMixin(LightningElement) {
   @api record;
   @api sObjectName;
   @api fieldSetName;
   @api titleName;
+  @track isemployment = false;
   @track showSpinner = false;
   @api hideHeader = false;
   @api hideNullValues = false;
@@ -24,6 +26,9 @@ export default class RecordDetailView extends NavigationMixin(LightningElement) 
     if (this.record && !this.dataLoaded) {
       //console.log("Child this.record ::: " + JSON.stringify(this.record));
       this.showSpinner = true;
+      if (this.sObjectName === "mflow__Employment__c") {
+        this.isemployment = true;
+      }
       fetchFieldDetails({
         params: {
           sObjectName: this.sObjectName,
@@ -33,7 +38,6 @@ export default class RecordDetailView extends NavigationMixin(LightningElement) 
         .then((data) => {
           //console.log("FiledNames result ::: " + JSON.stringify(data));
           let result = data.status === 200 ? JSON.parse(data.data) : [];
-
           if (Array.isArray(this.record)) {
             // eslint-disable-next-line guard-for-in
             for (let d in this.record) {
@@ -49,14 +53,16 @@ export default class RecordDetailView extends NavigationMixin(LightningElement) 
                       key: result[keyValue].value,
                       value: dt instanceof Date && !isNaN(dt) ? dt.toLocaleString("en-US", { timeZone: timezone }) : "",
                       apiname: result[keyValue].key,
-                      type: result[keyValue].type
+                      type: result[keyValue].type,
+                      isId: result[keyValue].key == "Id"
                     });
                   } else {
                     tempData.push({
                       key: result[keyValue].value,
                       value: this.record[d][result[keyValue].key],
                       apiname: result[keyValue].key,
-                      type: result[keyValue].type
+                      type: result[keyValue].type,
+                      isId: result[keyValue].key == "Id"
                     });
                   }
                 }
@@ -130,5 +136,33 @@ export default class RecordDetailView extends NavigationMixin(LightningElement) 
         actionName: "edit"
       }
     });
+  }
+
+  handleEmploymentReport(event) {
+    // console.log("baseurl test" + event.target.dataset.key);
+    let recordId = event.target.dataset.key;
+    let data;
+    getBaseUrl({
+      request: {}
+    })
+      .then((result) => {
+        if (result.status === 200) {
+          data = JSON.parse(result.data);
+          let siteUrl = data + "/apex/AtomicVerificationReport?id=" + recordId;
+          this[NavigationMixin.Navigate](
+            {
+              type: "standard__webPage",
+              attributes: {
+                url: siteUrl
+              }
+            },
+            true
+          );
+        }
+      })
+      .catch((error) => {
+        console.log("Error : " + JSON.stringify(error));
+        utils.errorMessage(this, error.body.message, "Error");
+      });
   }
 }

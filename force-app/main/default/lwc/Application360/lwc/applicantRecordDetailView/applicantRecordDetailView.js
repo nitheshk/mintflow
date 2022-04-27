@@ -49,14 +49,16 @@ export default class ApplicantRecordDetailView extends NavigationMixin(Lightning
                     key: result[keyValue].value,
                     value: dt instanceof Date && !isNaN(dt) ? dt.toLocaleString("en-US", { timeZone: timezone }) : "",
                     apiname: result[keyValue].key,
-                    type: result[keyValue].type
+                    type: result[keyValue].type,
+                    isId: result[keyValue].key == "Id"
                   });
                 } else {
                   tempData.push({
                     key: result[keyValue].value,
                     value: this.record[result[keyValue].key],
                     apiname: result[keyValue].key,
-                    type: result[keyValue].type
+                    type: result[keyValue].type,
+                    isId: result[keyValue].key == "Id"
                   });
                 }
               }

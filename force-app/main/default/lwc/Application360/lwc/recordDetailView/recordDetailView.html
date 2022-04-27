@@ -6,14 +6,46 @@
         <div class="slds-page-header slds-var-p-around_xx-small slds-col slds-size_1-of-1">
           <h3>
             <b> {titleName} </b>
-            [
-            <a onclick={showRelatedFiles} data-title="View related files">View Files</a>
-            ] &nbsp;
-            <a onclick={redirectRecords}>[Edit]</a>
           </h3>
         </div>
       </template>
       <template for:each={results} for:item="rKey">
+        <div key={rKey} align="right" class="slds-grid_align-end slds-var-p-around_medium">
+          <template for:each={rKey} for:item="keyValue">
+            <lightning-button
+              if:true={keyValue.isId}
+              key={keyValue.key}
+              data-key={keyValue.value}
+              label="Edit"
+              variant="brand"
+              value="Employment Report"
+              onclick={redirectRecords}
+              class="slds-var-m-around_medium"
+            ></lightning-button>
+            <lightning-button
+              if:true={keyValue.isId}
+              key={keyValue.key}
+              data-key={keyValue.value}
+              label="View Related Files"
+              variant="brand"
+              value="View Related Files"
+              onclick={showRelatedFiles}
+              class="slds-var-m-around_medium"
+            ></lightning-button>
+            <template if:true={isemployment}>
+              <lightning-button
+                key={keyValue.key}
+                if:true={keyValue.isId}
+                data-key={keyValue.value}
+                label="Employment Report"
+                variant="brand"
+                value="Employment Report"
+                onclick={handleEmploymentReport}
+                class="slds-var-m-around_medium"
+              ></lightning-button>
+            </template>
+          </template>
+        </div>
         <div
           key={rKey}
           class="slds-col slds-var-p-around_xx-small slds-border_left slds-border_right slds-border_bottom slds-border_top slds-size_1-of-1"
