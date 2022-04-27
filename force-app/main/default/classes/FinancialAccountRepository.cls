@@ -17,6 +17,9 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
     return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
       Query.newInstance(FinancialAccount__c.SObjectType)
         .addFields()
+        .queryLookUp('mflow__FinancialProduct__r')
+        .addFields('mflow__IsMembershipProduct__c')
+        .run()
         .queryChild('mflow__FinancialAccountTransactions__r')
         .addFields()
         .run()
@@ -38,6 +41,9 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
     return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
       Query.newInstance(FinancialAccount__c.SObjectType)
         .addFields()
+        .queryLookUp('mflow__FinancialProduct__r')
+        .addFields('mflow__IsMembershipProduct__c')
+        .run()
         .queryChild('mflow__FinancialAccountTransactions__r')
         .addFields()
         .run()
