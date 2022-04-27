@@ -4,7 +4,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-    <label>Funding Link On Kyc Approval</label>
+    <label>Funding Link</label>
     <protected>false</protected>
     <values>
         <field>BCCEmailAddress__c</field>
@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>EmailTemplateName__c</field>
-        <value xsi:type="xsd:string">FundingLinkOnKycApproval_EN</value>
+        <value xsi:type="xsd:string">FundingLink_EN</value>
     </values>
     <values>
         <field>OrgWideName__c</field>

@@ -46,3 +46,19 @@ request.token = SecurityUtils.generateTokenForTesting(
 
 ApexResponse rs = FinancialAccountController.readFinancialAccounts(request);
 System.debug(rs.data);
+
+//#4
+
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  'a021y000000fMvNAAU',
+  'a001y000000q4lDAAQ',
+  'Primary',
+  'ApplicationFlow'
+);
+System.debug('Token :' + request.token);
+
+ApexRequest request = new ApexRequest();
+request.token = 'pyh8mYAVjrnj1iy5gF7JFK47w+KxidbycgQrn9aXie+lhnDD6mYYq/uwqdyD/zcJHk3HD29SZW9alfzmHtq9FMB3jPJUm/88CZ+0WbZdTlX7i3Ak2+u6O090GNE5+2TEB+EHgheUDq3uzhwjgLSzvA==';
+ApexResponse res = FinancingController.generateUrlForFunding(request);
+system.debug('Full Json : ' + res.data);

@@ -1,9 +1,5 @@
 //
-system.debug(
-  EmailNotificationRepository.fetchEmailTemplateByDevName(
-    new Set<string>{ 'TestContact' }
-  )
-);
+system.debug(EmailNotificationRepository.fetchEmailTemplateByDevName(new Set<string>{ 'TestContact' }));
 //
 
 // #2 using email builder
@@ -14,9 +10,7 @@ String inviteUrl =
 EmailNotificationBuilder.newInstance('DealerInvitation', leadRecord.Id)
   .setToAddresses(leadRecord.Email)
   .setSubstitute(new Map<String, String>{ '{{url}}' => inviteUrl })
-  .setdocumentNames(
-    new List<String>{ 'MintflowLogo', 'DAContent1', 'MintflowLogo' }
-  );
+  .setdocumentNames(new List<String>{ 'MintflowLogo', 'DAContent1', 'MintflowLogo' });
 List<Messaging.SendEmailResult> result = EmailNotificationBuilder.sendEmail();
 if (result != null) {
   if (result[0].success) {
@@ -55,20 +49,10 @@ Messaging.SingleEmailMessage emailMessageTemp = Messaging.renderStoredEmailTempl
 message.setSubject(emailMessageTemp.getSubject());
 message.setPlainTextBody(emailMessageTemp.getPlainTextBody());
 message.setHtmlBody(emailMessageTemp.getHtmlBody());
-Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage>{
-  message
-};
+Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage>{ message };
 Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
 if (results[0].success) {
   System.debug('The email was sent successfully.');
 } else {
   System.debug('The email failed to send: ' + results[0].errors[0].message);
 }
-
-//#4
-ApexRequest request = new ApexRequest();
-Application__c application = ApplicationRepository.readApplicationForKYC(
-  '0016D00000aYc5zQAC'
-);
-CustomerEmailService.getInstance().fundingLinkOnKycApproval(application);
-Logger.persist();

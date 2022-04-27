@@ -56,7 +56,7 @@ public with sharing class CustomerEmailServiceTest {
     CustomerEmailService.getInstance().savedApplication(applicant);
     CustomerEmailService.getInstance().resumeApplication(applicant);
     CustomerEmailService.getInstance().notifyAboutEmploymentReport(applicant, 'Notify');
-    CustomerEmailService.getInstance().uploadIdentityDocument(applicant);
+    CustomerEmailService.getInstance().uploadIdentityDocument(applicant, 'link');
     // CustomerEmailService.getInstance().accountOpened(applicant, new FinancialAccount__c());
     CustomerEmailService.getInstance().primaryReviewInformationCompleted(applicant);
     Test.stopTest();
@@ -95,22 +95,7 @@ public with sharing class CustomerEmailServiceTest {
     }
     Test.stopTest();
   }
-  @IsTest
-  private static void validateProductEmails() {
-    Applicant__c applicant = makeApplicantData();
-    Application__c app = makeAccountData();
-    List<FinancialProduct__c> products = makeProducts();
-    app.Applicants__r.addAll(makeApplicantList('Primary'));
-    makeApplicationConfiguration();
-    Test.startTest();
-    try {
-      CustomerEmailService.getInstance().fundingLinkOnKycApproval(app);
-      //  CustomerEmailService.getInstance().startSecondaryApplication(applicant, products);
-    } catch (Exception e) {
-      System.assertEquals(e.getMessage(), 'email not sent');
-    }
-    Test.stopTest();
-  }
+
   @IsTest
   private static void NotificationTest() {
     Applicant__c applicant = makeApplicantData();

@@ -19,7 +19,7 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>IdentityUpload</apexPage>
+        <apexPage>CustomerAction</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 </Profile>

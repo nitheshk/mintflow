@@ -243,32 +243,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     builder.setSubstitute(new Map<String, String>{ '{AccountDetail}' => accountDetails });
     sendEmail();
   }
-  /**
-   * @description Notify Primary applicant that account is approved
-   * @author Digital Align | 12-15-2021
-   * @param Applicant__c applicant
-   * @return virtual
-   **/
-  global virtual void fundingLinkOnKycApproval(Application__c application) {
-    for (Applicant__c applicant : application.Applicants__r) {
-      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-        String link = generateUrl(
-          new Map<String, String>{
-            'aplType' => 'Primary',
-            'flw' => 'FundingFlow',
-            'urlSuffix' => '/savings/funding/welcome',
-            'aplId' => applicant.Id,
-            'ch' => 'Virtual'
-          }
-        );
-        EmailNotificationBuilder.newInstance('FundingLinkOnKycApproval', applicant.Id)
-          .setToAddresses(applicant.Email__c)
-          .setSubstitute(new Map<String, String>{ '{url}' => link });
-        break;
-      }
-    }
-    sendEmail();
-  }
+
   /**
    * @description Notify support team about incorrect employment information of an applicant
    * @author Digital Align | 12-15-2021
@@ -294,20 +269,20 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
    * @author Digital Align Team | 02-08-2022
    * @param Applicant__c applicant
    **/
-  global virtual void uploadIdentityDocument(Applicant__c applicant) {
-    String link = generateUrl(
-      new Map<String, String>{
-        'aplType' => ApexRequest.getApplicantType(),
-        'flw' => ApplicationConstant.FLOW_TYPE_IDENTITY_UPLOAD,
-        'urlSuffix' => '/savings/upload/document-upload',
-        'aplId' => applicant.Id,
-        'ch' => 'Virtual',
-        'pageName' => '/IdentityUpload',
-        'suffixType' => 'path'
-      }
-    );
-
+  global virtual void uploadIdentityDocument(Applicant__c applicant, String link) {
     EmailNotificationBuilder.newInstance('IdentityUploadDocument', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(new Map<String, String>{ '{url}' => link });
+    sendEmail();
+  }
+
+  /**
+   * @description Send Url to applicat to update funding detail
+   * @author Digital Align Team | 04-27-2022
+   * @param Applicant__c applicant
+   **/
+  global virtual void notifyToUpdateFunding(Applicant__c applicant, String link) {
+    EmailNotificationBuilder.newInstance('FundingLink', applicant.Id)
       .setToAddresses(applicant.Email__c)
       .setSubstitute(new Map<String, String>{ '{url}' => link });
     sendEmail();

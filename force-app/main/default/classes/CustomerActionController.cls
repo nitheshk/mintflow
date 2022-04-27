@@ -6,12 +6,12 @@
  * @description
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global with sharing class IdentityUploadController extends AbstractController {
+global with sharing class CustomerActionController extends AbstractController {
   private Application__c application { get; set; }
   global String initialData { get; set; }
 
-  global IdentityUploadController() {
-    super(IdentityUploadController.class);
+  global CustomerActionController() {
+    super(CustomerActionController.class);
     this.application = new Application__c();
   }
 
@@ -61,13 +61,11 @@ global with sharing class IdentityUploadController extends AbstractController {
       return null;
     } catch (CustomException ex) {
       log?.error(ex);
-      //PageUtils.addPageErrorMessage(ex.getMessage());
       PageReference error = Page.Error;
-      error.setRedirect(false);
+      error.getParameters().put('exception', ex.getMessage());
       return error;
     } catch (Exception ex) {
       log?.error(ex);
-      //PageUtils.addPageErrorMessage('Unknown Exception');
       PageReference error = Page.Error;
       error.setRedirect(false);
       return error;

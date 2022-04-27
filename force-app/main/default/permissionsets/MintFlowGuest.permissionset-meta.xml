@@ -69,7 +69,7 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IdentityUploadController</apexClass>
+        <apexClass>CustomerActionController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

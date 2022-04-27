@@ -130,6 +130,14 @@
     >Upload the Identity Document Using the Link {url} to process further on the application  {applicationNumber}</value>
     </labels>
     <labels>
+        <fullName>Funding_SmsBodyForFundingLink</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Process Funding for Branch Application</shortDescription>
+        <value>Start Funding Using the Link {url} to process further on the application  {applicationNumber}</value>
+    </labels>
+    <labels>
         <fullName>Otp_OtpHasExpired</fullName>
         <categories>Info</categories>
         <language>en_US</language>

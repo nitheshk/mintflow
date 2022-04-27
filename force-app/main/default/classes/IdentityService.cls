@@ -179,7 +179,7 @@ global virtual with sharing class IdentityService extends AbstractService {
           'urlSuffix' => '/savings/upload/document-upload',
           'aplId' => currentApplicant.Id,
           'ch' => 'Virtual',
-          'pageName' => '/IdentityUpload',
+          'pageName' => '/CustomerAction',
           'suffixType' => 'path'
         }
       );
@@ -196,7 +196,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     NotificationService.getInstance().sendOTPMessage(params);
 
     // Send Email
-    CustomerEmailService.getInstance().uploadIdentityDocument(currentApplicant);
+    CustomerEmailService.getInstance().uploadIdentityDocument(currentApplicant, link);
     return true;
   }
 

@@ -59,4 +59,29 @@ global with sharing class FinancingController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description generate Url For Funding
+   * @author Digital Align Team | 02-08-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse generateUrlForFunding(ApexRequest request) {
+    try {
+      log?.fine('Inside generateUrlForFunding');
+      validateRequest(request);
+      return ApexResponse.ok(FinancialAccountService.getInstance().generateUrlForFunding(ApexRequest.getApplicantId()));
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete generateUrlForFunding');
+      Logger.persist();
+    }
+  }
 }

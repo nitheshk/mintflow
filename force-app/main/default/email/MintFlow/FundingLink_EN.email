@@ -1,5 +1,5 @@
 <messaging:emailTemplate
-  subject="Congratulations! Your account has been approved."
+  subject="Fund your Account"
   recipientType="User"
   relatedToType="Applicant__c"
   renderUsingSystemContextWithoutSharing="True"
@@ -191,8 +191,8 @@
                     <p style="margin: 0">
                       <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
                       <br />
-                      We are excited  to let you know that  your application
-                      {!RelatedTo.Application__r.Name} has been approved. One last step to
+                      We are excited  to let you know that your application
+                      {!RelatedTo.Application__r.Name} has also most completed. One last step to
                       complete the process. Please
                       <a href="{url}" target="_blank">click here</a> to start
                       the funding process of your account.

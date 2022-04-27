@@ -1,5 +1,5 @@
 @istest
-public with sharing class IdentityUploadControllerTest {
+public with sharing class CustomerActionControllerTest {
   private static void makeApplicationConfiguration() {
     ApplicationConfiguration__c appConfig = TestData.createApplicationConfiguration();
     insert appConfig;
@@ -49,7 +49,7 @@ public with sharing class IdentityUploadControllerTest {
     cipher.ch = 'Virtual';
     String pageName = '/OpenAccount';
 
-    IdentityUploadController ic = new IdentityUploadController();
+    CustomerActionController ic = new CustomerActionController();
 
     testPage.getParameters().put('vmf', SecurityUtils.encryptUrl(JSON.serialize(cipher, true)));
     ic.initializeApplication();

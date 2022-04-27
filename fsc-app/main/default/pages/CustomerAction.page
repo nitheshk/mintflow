@@ -5,8 +5,8 @@
   docType="html-5.0"
   standardStylesheets="false"
   showheader="false"
-  Controller="mflow.IdentityUploadController"
-  extensions="mflow.ApplicationController,mflow.IdentityController,mflow.ApplicantController,mflow.FileController"
+  Controller="mflow.CustomerActionController"
+  extensions="mflow.ApplicationController,mflow.IdentityController,mflow.ApplicantController,mflow.FileController,mflow.FinancialAccountController"
   action="{!initializeApplication}"
 >
   <html lang="">
@@ -16,7 +16,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
       <link rel="icon" href="favicon.ico" />
-      <title>OnlineAccount</title>
+      <title>Customer Action</title>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" />
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />

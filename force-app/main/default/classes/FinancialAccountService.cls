@@ -167,4 +167,42 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
       '","IsExistingCustomer":false}';
     application = (Application__c) SubmitApplicationService.getInstance().updateSubmissionInfo(applicationJson);
   }
+
+  /**
+   * @description Generate Url to upload identity Document Via mobile device
+   * @author Digital Align Team | 02-08-2022
+   * @param Id applicantId
+   * @return Object
+   **/
+  global virtual Object generateUrlForFunding(Id applicantId) {
+    Applicant__c currentApplicant = IdentityRepository.readApplicantWithApplication(applicantId);
+
+    // Send SMS
+    String link = CustomerEmailService.getInstance()
+      .generateUrl(
+        new Map<String, String>{
+          'aplType' => ApexRequest.getApplicantType(),
+          'flw' => ApplicationConstant.FLOW_TYPE_PAYMENT,
+          'urlSuffix' => '/savings/main-app/funding',
+          'aplId' => currentApplicant.Id,
+          'ch' => 'Virtual',
+          'pageName' => '/CustomerAction',
+          'suffixType' => 'path'
+        }
+      );
+    Map<String, Object> params = new Map<String, Object>();
+    String messageBody = System.Label.Funding_SmsBodyForFundingLink.replace('{url}', link)
+      .replace('{applicationNumber}', currentApplicant.Application__r.Name);
+    params.put('messageText', messageBody);
+    String toPhone = String.isBlank(HttpBuilder.getApiConstant('TwillioToPhoneNumber'))
+      ? currentApplicant.Phone__c
+      : HttpBuilder.getApiConstant('TwillioToPhoneNumber');
+    params.put('toPhone', HttpBuilder.getApiConstant('Twillio_Country') + toPhone);
+    params.put('applicantId', currentApplicant.Id);
+    NotificationService.getInstance().sendOTPMessage(params);
+
+    // Send Email
+    CustomerEmailService.getInstance().notifyToUpdateFunding(currentApplicant, link);
+    return true;
+  }
 }

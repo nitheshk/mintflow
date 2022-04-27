@@ -4,9 +4,9 @@
     <available>true</available>
     <description>Notification to user about account approved.</description>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>Funding Link On Kyc Approval_EN</name>
+    <name>Funding Link - EN</name>
     <style>none</style>
-    <subject>Congratulations! Your account has been approved.</subject>
+    <subject>Fund your Account</subject>
     <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
