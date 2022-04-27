@@ -102,6 +102,17 @@ public with sharing class RpaProcessServiceTest {
     );
     RestContext.request = req;
     RpaProcessService.doPost();
+
+    //existing customer
+    req.requestBody = Blob.valueOf(
+      '{"ApplicationId":"' +
+      application.Id +
+      '","ApplicationNumber":"App-0084","ExternalApplicationNumber":"4099","ExternalApplicationStatus":"Approved","IsExistingCustomer":true,"Applicants":[{"ApplicantId":"' +
+      applicant.Id +
+      '","CustomerNumber":"","OverallDebitBureauResult":"","CreditScore":0,"QualifiedScore":0,"CustomerScore":0,"HighRiskConsumer":"","QualifiedDecision":"","IdentityVerificationStatus":"","OFAC":"","SSNValidation":"","RunWithKIQ":"","RunWithoutKIQ":""}]}'
+    );
+    RestContext.request = req;
+    RpaProcessService.doPost();
   }
 
   @IsTest
