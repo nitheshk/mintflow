@@ -44,7 +44,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     //update kyc and status fields
     application = this.validateSubmission(application);
 
-    log?.fine('Completed reviewInformationSubmit');
+    log?.fine('Completed submit');
     //testing purpose only
     return application;
   }
@@ -176,7 +176,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     ApplicationRepository.upsertRecord(application);
     */
 
-    FinancialAccountService.testApproveFundingSubmission(application.Name);
+    FinancialAccountService.getinstance().testApproveFundingSubmission(application.Name);
 
     log?.fine('Completed submitToCoreSystem');
     return application;
