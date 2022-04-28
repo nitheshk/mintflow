@@ -65,6 +65,12 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
 
   //************ FinInstSite Employee Account Creation  ****************/
 
+  /**
+   * @description create Employee User Account
+   * @author Digital Align Team | 04-28-2022
+   * @param Map<String Object> params
+   * @return object
+   **/
   global virtual object createEmployeeUserAccount(Map<String, Object> params) {
     Contact employeeContactObj = (Contact) JSON.deserialize(JSON.serialize(params.get('contact')), Contact.class);
     system.debug('employeeContactObj : ' + JSON.serialize(employeeContactObj));
@@ -82,8 +88,6 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
       }
       //Process Contact
       employeeContactObj = this.createEmployeeContact(employeeContactObj, businessAccountObj);
-
-      system.debug('Contact Id : ' + employeeContactObj.id);
       //Create an user for Contact on approval
       User userObj = this.createEmployeeUser(employeeContactObj, businessAccountObj);
       //yet to done assigning permission set
@@ -136,6 +140,7 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
     userObj.EmailEncodingKey = 'ISO-8859-1';
     userObj.LocaleSidKey = 'en_US';
     userObj.LanguageLocaleKey = 'en_US';
+    userObj.Channel__c = ApplicationConstant.CHANNEL_BRANCH;
 
     CommunitySiteRepository.insertRecord(userObj);
     FinancialInstituteSiteService.assignCommunityPermissionSetAsync(userObj.Id);
