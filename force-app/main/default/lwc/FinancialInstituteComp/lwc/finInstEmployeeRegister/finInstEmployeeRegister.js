@@ -24,6 +24,8 @@ export default class FinInstEmployeeRegister extends NavigationMixin(constants) 
           if (result.status === 200) {
             this.isEmployeeCreated = true;
             utils.successMessage(this, "Employee Registered", "Success");
+          } else if (result.status === 500) {
+            utils.successMessage(this, result.data, "Error");
           } else {
             utils.errorMessage(
               this,
