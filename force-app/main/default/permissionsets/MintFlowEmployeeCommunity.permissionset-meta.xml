@@ -334,6 +334,11 @@
         <field>Applicant__c.OFAC__c</field>
         <readable>true</readable>
     </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>Applicant__c.mflow__OOWStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>CustomerInterest__c.Order__c</field>
