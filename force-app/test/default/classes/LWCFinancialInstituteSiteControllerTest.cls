@@ -181,11 +181,15 @@ public with sharing class LWCFinancialInstituteSiteControllerTest {
     config.FinancialInstituteAccountId__c = acc.Id;
     config = (ApplicationConfiguration__c) DatabaseUtils.updateRecord(config);
     Contact con = makeContactData(null);
-    Map<String, Object> params = new Map<String, Object>{
-      'userContactType' => 'Employee',
-      'searchString' => 'Test',
-      'searchFilter' => new Map<String, string>()
-    };
+    Map<String, Object> params = new Map<String, Object>{ 'Account' => new List<String>{ 'Ownership' } };
+
+    //200
     ApexResponse result = LWCFinancialInstituteSiteController.fetchPickListValues(params);
+    system.assertEquals(200, result.status, 'Success');
+
+    //400
+    params = new Map<String, Object>{ 'Account' => new List<String>{ 'test' } };
+    result = LWCFinancialInstituteSiteController.fetchPickListValues(params);
+    system.assertEquals(500, result.status, 'Success');
   }
 }

@@ -218,7 +218,7 @@ global with sharing class LwcCustomController extends AbstractController {
       List<String> relatedEntityIds = (List<String>) JSON.deserialize(relatedIds, List<String>.class);
       return ApexResponse.ok(LwcCustomService.getInstance().fetchRelatedFiles(relatedEntityIds));
     } catch (Exception e) {
-      throw new AuraHandledException(e.getMessage());
+      return ApexResponse.fail(e);
     }
   }
   /**
@@ -260,7 +260,7 @@ global with sharing class LwcCustomController extends AbstractController {
         return ApexResponse.fail(applications);
       }
     } catch (Exception e) {
-      throw new AuraHandledException(e.getMessage());
+      return ApexResponse.fail(e);
     } finally {
       log?.fine('Complete authorizeCustomer');
       Logger.persist();

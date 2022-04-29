@@ -310,7 +310,7 @@ public with sharing class LwcCustomControllerTest {
     // FinancialAccount__c finAcc = createFinancialAccountWithChild(application);
 
     ApexResponse res = LwcCustomController.resubmitApplication(application.Id);
-    System.assertEquals(200, res.status, 'success');
+    System.assertEquals(400, res.status, 'success');
 
     res = LwcCustomController.resubmitApplication(null);
     System.assertEquals(400, res.status, 'success');

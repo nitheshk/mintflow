@@ -125,8 +125,8 @@ global with sharing class LWCFinancialInstituteSiteController {
   global static ApexResponse fetchPickListValues(Map<String, Object> params) {
     try {
       return ApexResponse.ok(LwcCustomService.getInstance().fetchPickListValues(params));
-    } catch (Exception e) {
-      throw new AuraHandledException(e.getMessage());
+    } catch (Exception ex) {
+      return ApexResponse.exception(ex);
     }
   }
 }
