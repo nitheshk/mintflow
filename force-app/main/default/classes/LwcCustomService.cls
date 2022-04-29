@@ -320,4 +320,32 @@ global virtual with sharing class LwcCustomService extends AbstractService {
     }
     return record;
   }
+
+  /**
+   * @description send resume application email to list of applicants
+   * @author Digital Align | 12-10-2021
+   * @param list<id> applicantIds
+   * @return virtual
+   **/
+  global virtual string generateResumeLink(list<id> applicantIds) {
+    List<Applicant__c> applicants = ApplicantRepository.readApplicantsById(applicantIds);
+    if (CollectionUtils.isListEmpty(applicants)) {
+      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
+    }
+    Map<String, String> params = new Map<String, String>();
+    for (Applicant__c applicant : applicants) {
+      if (applicant.ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+        params.put('flw', 'ApplicationFlow');
+        params.put('urlSuffix', '/savings/main-app/otp');
+        params.put('aplType', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
+      } else {
+        params.put('flw', 'JointFlow');
+        params.put('urlSuffix', '/savings/joint-app/otp');
+        params.put('aplType', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
+      }
+      params.put('aplId', applicant.Id);
+      params.put('ch', 'Virtual');
+    }
+    return CustomerEmailService.getInstance().generateUrl(params);
+  }
 }

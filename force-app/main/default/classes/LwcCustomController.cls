@@ -327,4 +327,25 @@ global with sharing class LwcCustomController extends AbstractController {
   public static String schedule(String jobName, Datetime startDatetime, Id entryId) {
     return Scheduler.schedule(jobName, startDatetime, entryId);
   }
+
+  /**
+   * @description send resume application email
+   * @author Digital Align | 12-10-2021
+   * @param string applicantIds
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  global static ApexResponse fetchResumeLink(ApexRequest request) {
+    try {
+      validateRequest(request, true);
+
+      list<id> applicantIds = (List<Id>) JSON.deserialize(request.data, List<Id>.class);
+      log?.debug('resume Link - ' + LwcCustomService.getInstance().generateResumeLink(applicantIds));
+      return ApexResponse.ok(LwcCustomService.getInstance().generateResumeLink(applicantIds));
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
 }

@@ -277,7 +277,7 @@
                 },
                 {
                   "componentAttributes": {
-                    "filter": "mflow__Status__c!='Submitted' And  mflow__Status__c!='Completed' And mflow__CreatedChannel__c='Virtual'",
+                    "filter": "mflow__Status__c!='Submitted' And  mflow__Status__c!='Completed'",
                     "objectApiName": "mflow__Application__c",
                     "recordId": "{!recordId}"
                   },

@@ -1,30 +1,62 @@
 <template>
-  <template if:true={record}>
-    <lightning-card title="Resume Application" icon-name="utility:email">
-      <div class="slds-var-m-around_medium">
-        <lightning-combobox
-          data-fieldname="applicants"
-          name="Applicants"
-          label="Applicants"
-          placeholder="Select applicants"
-          options={applicantNames}
-          onchange={handleChange}
-          class="validation"
-          required
-        ></lightning-combobox>
-      </div>
-      <div class="slds-var-m-around_medium">
-        <lightning-button
-          disabled={showSpinner}
-          variant="brand"
-          label="Submit"
-          title="Submit"
-          onclick={sendResumeEmail}
-          class="slds-var-m-left_x-small"
-          icon-name="utility:save"
-          icon-position="right"
-        ></lightning-button>
-      </div>
-    </lightning-card>
+  <template if:false={isBranch}>
+    <template if:true={record}>
+      <lightning-card title="Resume Application" icon-name="utility:email">
+        <div class="slds-var-m-around_medium">
+          <lightning-combobox
+            data-fieldname="applicants"
+            name="Applicants"
+            label="Applicants"
+            placeholder="Select applicants"
+            options={applicantNames}
+            onchange={handleChange}
+            class="validation"
+            required
+          ></lightning-combobox>
+        </div>
+        <div class="slds-var-m-around_medium">
+          <lightning-button
+            disabled={showSpinner}
+            variant="brand"
+            label="Submit"
+            title="Submit"
+            onclick={sendResumeEmail}
+            class="slds-var-m-left_x-small"
+            icon-name="utility:save"
+            icon-position="right"
+          ></lightning-button>
+        </div>
+      </lightning-card>
+    </template>
+  </template>
+  <template if:true={isBranch}>
+    <template if:true={record}>
+      <lightning-card title="Resume Application" icon-name="utility:email">
+        <div class="slds-var-m-around_medium">
+          <lightning-combobox
+            data-fieldname="applicants"
+            name="Applicants"
+            label="Applicants"
+            placeholder="Select applicants"
+            options={applicantNames}
+            onchange={handleChange}
+            class="validation"
+            required
+          ></lightning-combobox>
+        </div>
+        <div class="slds-var-m-around_medium">
+          <lightning-button
+            disabled={showSpinner}
+            variant="brand"
+            label="Submit"
+            title="Submit"
+            onclick={navigatetoResumeLink}
+            class="slds-var-m-left_x-small"
+            icon-name="utility:save"
+            icon-position="right"
+          ></lightning-button>
+        </div>
+      </lightning-card>
+    </template>
   </template>
 </template>

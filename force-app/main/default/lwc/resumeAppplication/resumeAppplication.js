@@ -3,8 +3,9 @@ import utils from "c/generalUtils";
 import { getRecord } from "lightning/uiRecordApi";
 import fetchApplication from "@salesforce/apex/LwcCustomController.readApplicationForResume";
 import sendResumeEmail from "@salesforce/apex/LwcCustomController.sendResumeApplicationEmail";
-
-export default class ResumeAppplication extends LightningElement {
+import getResumeLink from "@salesforce/apex/LwcCustomController.fetchResumeLink";
+import { NavigationMixin } from "lightning/navigation";
+export default class ResumeAppplication extends NavigationMixin(LightningElement) {
   @api objectApiName;
   @api recordId;
   @api filter;
@@ -12,6 +13,7 @@ export default class ResumeAppplication extends LightningElement {
   @track applicantNames;
   @track selectedApplicant = [];
   @track showSpinner = false;
+  @track isBranch = false;
 
   /**
    * refresh the current record data
@@ -29,8 +31,16 @@ export default class ResumeAppplication extends LightningElement {
       }).then((result) => {
         if (result.status === 200) {
           this.record = JSON.parse(result.data);
-
-          let applicantNames = [{ label: "All", value: "All" }];
+          console.log("branch first::" + this.isBranch);
+          this.getIsBranch();
+          console.log("branch::" + this.isBranch);
+          let applicantNames = [];
+          if (!this.isBranch) {
+            applicantNames.push({
+              label: "All",
+              value: "All"
+            });
+          }
           let applicants = this.record.mflow__Applicants__r;
           // eslint-disable-next-line guard-for-in
           for (let key in applicants) {
@@ -46,7 +56,9 @@ export default class ResumeAppplication extends LightningElement {
       });
     }
   }
-
+  getIsBranch() {
+    this.isBranch = this.record.mflow__CreatedChannel__c == "Branch";
+  }
   /**
    * Applicant Names Changed
    * @param {'*'} event
@@ -95,5 +107,29 @@ export default class ResumeAppplication extends LightningElement {
           utils.errorMessage(this, error.body.message, "Error");
         });
     }
+  }
+
+  navigatetoResumeLink() {
+    getResumeLink({ request: { data: JSON.stringify(this.selectedApplicant) } })
+      .then((result) => {
+        if (result.status === 200) {
+          console.log("resume link " + JSON.stringify(result.data));
+          this[NavigationMixin.Navigate](
+            {
+              type: "standard__webPage",
+              attributes: {
+                url: JSON.parse(result.data)
+              }
+            },
+            true
+          );
+        }
+        this.showSpinner = false;
+      })
+      .catch((error) => {
+        this.showSpinner = false;
+        console.log("error : " + JSON.stringify(error));
+        utils.errorMessage(this, error.body.message, "Error");
+      });
   }
 }
