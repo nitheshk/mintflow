@@ -297,9 +297,9 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    * @description fetch related files for given related ids
    * @author Digital Align | 12-21-2021
    * @param List<String> relatedEntityIds
-   * @return list<Object>
+   * @return list<ContentVersion>
    **/
-  global virtual list<Object> fetchRelatedFiles(List<String> relatedEntityIds) {
+  global virtual list<ContentVersion> fetchRelatedFiles(List<String> relatedEntityIds) {
     List<ContentVersion> fileList = FileService.getInstance().fetchContentVersionByEntityIds(relatedEntityIds, true);
     return fileList;
   }

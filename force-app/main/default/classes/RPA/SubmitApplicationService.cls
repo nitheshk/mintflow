@@ -287,9 +287,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
       if (String.isNotBlank(financialAccountResult.FinancialAccountId)) {
         FinancialAccount__c fa = new FinancialAccount__c(
           Id = financialAccountResult.FinancialAccountId,
-          //#pending
-          //AccountNumber__c = financialAccountResult.AccountNumber
-          AccountNumber__c = 'ACC000001232'
+          AccountNumber__c = financialAccountResult.AccountNumber
         );
         if (application.Status__c == ApplicationConstant.COMPLETED) {
           fa.Status__c = ApplicationConstant.COMPLETED;

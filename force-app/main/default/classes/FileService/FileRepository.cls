@@ -189,6 +189,7 @@ public with sharing class FileRepository extends DatabaseUtils {
         .addFields()
         .whereEq('Id', contentDistributionId)
         .addLimit(1)
+        .orderBy('CreatedDate', true)
         .toString(true)
     );
   }

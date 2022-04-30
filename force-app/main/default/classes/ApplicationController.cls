@@ -98,7 +98,7 @@ global with sharing class ApplicationController extends AbstractController {
       if (ApexRequest.getParams('recordId') != null) {
         recordIds.add((Id) ApexRequest.getParams('recordId'));
       } else if (ApexRequest.getParams('recordIds') != null) {
-        for (Object recordId : (List<Object>) ApexRequest.getParams().get('recordIds')) {
+        for (Object recordId : (List<Object>) ApexRequest.getParams('recordIds')) {
           recordIds.add(String.valueOf(recordId));
         }
       }

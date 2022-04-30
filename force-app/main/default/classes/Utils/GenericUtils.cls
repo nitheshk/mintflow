@@ -26,7 +26,7 @@ global with sharing class GenericUtils {
   @AuraEnabled(cacheable=true)
   global static String fetchLoginURL() {
     String baseURL = System.URL.getSalesforceBaseUrl().toExternalForm();
-    if (UtilsRepository.getUserById(UserInfo.getUserId()).ContactId != null) {
+    if (UserUtils.getCurrentUser().ContactId != null) {
       baseUrl = fetchExperienceURL();
     }
     return baseUrl;

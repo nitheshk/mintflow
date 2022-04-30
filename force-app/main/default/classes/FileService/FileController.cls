@@ -24,7 +24,6 @@ global with sharing class FileController extends AbstractController {
   @RemoteAction
   global static ApexResponse fetchContentVersionByEntityId(ApexRequest request) {
     try {
-      // Upsert dealer record
       log?.fine('Inside fetchContentVersionByEntityId');
       validateRequest(request);
       Id entityId = (Id) ApexRequest.getParams('entityId');
@@ -33,10 +32,42 @@ global with sharing class FileController extends AbstractController {
         : true;
       return ApexResponse.ok(FileService.getInstance().fetchContentVersionByEntityId(entityId, ignoreVersionData));
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log?.debug(ex.getMessage());
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete fetchContentVersionByEntityId');
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description fetch Content Version By Entity Ids
+   * @author Digital Align Team | 04-30-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse fetchContentVersionByEntityIds(ApexRequest request) {
+    try {
+      log?.fine('Inside fetchContentVersionByEntityIds');
+      validateRequest(request);
+      if (ApexRequest.getParams('entityIds') == null) {
+        return ApexResponse.ok(null);
+      }
+      List<Id> entityIds = new List<Id>();
+      for (Object recordId : (List<Object>) ApexRequest.getParams('entityIds')) {
+        entityIds.add(String.valueOf(recordId));
+      }
+      Boolean ignoreVersionData = ApexRequest.getParams('ignoreVersionData') != null
+        ? (Boolean) ApexRequest.getParams('ignoreVersionData')
+        : true;
+      return ApexResponse.ok(FileService.getInstance().fetchContentVersionByEntityIds(entityIds, ignoreVersionData));
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Complete fetchContentVersionByEntityIds');
       Logger.persist();
     }
   }
@@ -58,7 +89,7 @@ global with sharing class FileController extends AbstractController {
       FileService.getInstance().deleteContentVersion(contentDocumentId);
       return ApexResponse.ok(null);
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex.getMessage());
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete deleteContentVersion');
@@ -81,7 +112,7 @@ global with sharing class FileController extends AbstractController {
       Id contentVersionId = (Id) ApexRequest.getParams('contentVersionId');
       return ApexResponse.ok(FileService.getInstance().generatePublicUrl(contentVersionId));
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex.getMessage());
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete generatePublicUrl');
@@ -118,7 +149,7 @@ global with sharing class FileController extends AbstractController {
       }
       return ApexResponse.ok(FileService.getInstance().createFile(dto));
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex.getMessage());
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete createFile');
@@ -145,7 +176,7 @@ global with sharing class FileController extends AbstractController {
         : true;
       return ApexResponse.ok(FileService.getInstance().fetchContentVersionByCD(contentDocumentId, ignoreVersionData));
     } catch (Exception ex) {
-      System.debug(ex.getMessage());
+      log?.error(ex.getMessage());
       return ApexResponse.fail(ex);
     } finally {
       log?.fine('Complete fetchContentVersionByCD');

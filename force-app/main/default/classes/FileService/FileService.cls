@@ -320,7 +320,7 @@ global virtual with sharing class FileService extends AbstractService {
    * @return ContentDistribution
    **/
   global virtual ContentDistribution generatePublicUrl(Id contentVersionId) {
-    FileRepository.deleteRecords(FileRepository.fetchContentDistributionsById(contentVersionId));
+    //FileRepository.deleteRecords(FileRepository.fetchContentDistributionsById(contentVersionId));
 
     ContentVersion cv = FileRepository.fetchContentVersionById(contentVersionId, true);
     ContentDistribution cd = new ContentDistribution();
