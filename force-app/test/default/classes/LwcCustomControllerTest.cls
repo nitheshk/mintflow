@@ -284,21 +284,7 @@ public with sharing class LwcCustomControllerTest {
     // res = LwcCustomController.updateKycDecision(params);
     // System.assertEquals(200, res.status, 'success');
   }
-  @istest
-  private static void fetchRelatedFilesTest() {
-    makeApplicationConfiguration();
-    PageReference testPage = Page.error;
-    Test.setCurrentPage(testPage);
-    testPage.getParameters().put('pid', 'IC001');
-    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
-    Applicant__c applicant = createApplicantDataWithChild(application);
 
-    ApexResponse res = LwcCustomController.fetchRelatedFiles(JSON.serialize(new List<String>{ applicant.Id }));
-    System.assertEquals(200, res.status, 'success');
-
-    res = LwcCustomController.fetchRelatedFiles('string');
-    System.assertEquals(400, res.status, 'success');
-  }
   @istest
   private static void resubmitApplicationTest() {
     makeApplicationConfiguration();

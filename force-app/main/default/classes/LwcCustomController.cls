@@ -208,21 +208,6 @@ global with sharing class LwcCustomController extends AbstractController {
 
   /**
    * @description
-   * @author Digital Align | 12-16-2021
-   * @param Map<String Object> params
-   * @return ApexResponse
-   **/
-  @AuraEnabled(cacheable=true)
-  global static ApexResponse fetchRelatedFiles(string relatedIds) {
-    try {
-      List<String> relatedEntityIds = (List<String>) JSON.deserialize(relatedIds, List<String>.class);
-      return ApexResponse.ok(LwcCustomService.getInstance().fetchRelatedFiles(relatedEntityIds));
-    } catch (Exception e) {
-      return ApexResponse.fail(e);
-    }
-  }
-  /**
-   * @description
    * @author Digital Align | 02-09-2022
    * @param Map<String Object> params
    * @return ApexResponse

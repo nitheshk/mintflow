@@ -76,7 +76,6 @@ export default class FileExplorer extends NavigationMixin(LightningElement) {
   isLoading = false;
   @track openModal = false;
   @track iframeUrl;
-  @api modelPreview;
 
   connectedCallback() {
     if (this.recordId) {
@@ -138,7 +137,7 @@ export default class FileExplorer extends NavigationMixin(LightningElement) {
    * get content data
    */
   handleSync() {
-    console.log("this.recordIds:", JSON.stringify(this.recordIds));
+    //console.log("this.recordIds:", JSON.stringify(this.recordIds));
     this.isLoading = true;
     fetchContentVersionByEntityIds({
       request: {
@@ -148,7 +147,7 @@ export default class FileExplorer extends NavigationMixin(LightningElement) {
       }
     })
       .then((result) => {
-        console.log(" result :", result);
+        //console.log(" result :", result);
         if (result.status !== 200 || result.data == null) {
           return;
         }

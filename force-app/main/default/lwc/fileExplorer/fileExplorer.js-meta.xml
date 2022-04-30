@@ -31,7 +31,6 @@
             <property name="showFilters" type="Boolean" default="true" label="Show Filters?" />
        <property name="showDownload" type="Boolean" default="true" label="Show Download?" />
        <property name="showDelete" type="Boolean" default="true" label="Show Delete?" />
-       <property name="modelPreview" type="Boolean" default="false" label="Use Model Preview?" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
