@@ -86,7 +86,6 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         isFlowCompleted = false;
       }
     }
-    // isKYCApproved = true;
     // ALL Applicant Submitted
     if (isFlowCompleted && isKYCApproved) {
       application.Status__c = ApplicationConstant.SUBMITTED;
@@ -282,27 +281,28 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     }
 
     if (!CollectionUtils.isListEmpty(submissionResult?.FinancialAccounts)) {
-      SubmissionDTO.FinancialAccountResult financialAccountResult = submissionResult.FinancialAccounts[0];
-
-      if (String.isNotBlank(financialAccountResult.FinancialAccountId)) {
-        FinancialAccount__c fa = new FinancialAccount__c(
-          Id = financialAccountResult.FinancialAccountId,
-          AccountNumber__c = financialAccountResult.AccountNumber
-        );
+      Map<Id, FinancialAccount__c> finanicalAccounts = new Map<Id, FinancialAccount__c>(
+        application.FinancialAccounts__r
+      );
+      List<FinancialAccountTransaction__c> financialAccountTransactions = new List<FinancialAccountTransaction__c>();
+      for (SubmissionDTO.FinancialAccountResult financialAccountResult : submissionResult.FinancialAccounts) {
+        FinancialAccount__c fa = finanicalAccounts.get(financialAccountResult.FinancialAccountId);
+        fa.AccountNumber__c = financialAccountResult.AccountNumber;
         if (application.Status__c == ApplicationConstant.COMPLETED) {
           fa.Status__c = ApplicationConstant.COMPLETED;
         }
-        SubmissionRepository.upsertRecord(fa);
-      }
 
-      if (financialAccountResult?.FinancialApplicationTransaction?.FinancialAccountTransactionId != null) {
-        //FUNDED
-        FinancialAccountTransaction__c fat = new FinancialAccountTransaction__c(
-          Id = financialAccountResult.FinancialApplicationTransaction.FinancialAccountTransactionId,
-          TransactionStatus__c = 'Posted'
-        );
-        SubmissionRepository.upsertRecord(fat);
+        if (financialAccountResult?.FinancialApplicationTransaction?.FinancialAccountTransactionId != null) {
+          //FUNDED
+          FinancialAccountTransaction__c fat = new FinancialAccountTransaction__c(
+            Id = financialAccountResult.FinancialApplicationTransaction.FinancialAccountTransactionId,
+            TransactionStatus__c = 'Posted'
+          );
+          financialAccountTransactions.add(fat);
+        }
       }
+      SubmissionRepository.upsertRecords(application.FinancialAccounts__r);
+      SubmissionRepository.upsertRecords(financialAccountTransactions);
     }
 
     SubmissionRepository.upsertRecord(application);
