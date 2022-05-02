@@ -22,16 +22,6 @@
               onclick={redirectRecords}
               class="slds-var-m-around_medium"
             ></lightning-button>
-            <lightning-button
-              if:true={keyValue.isId}
-              key={keyValue.key}
-              data-key={keyValue.value}
-              label="View Related Files"
-              variant="brand"
-              value="View Related Files"
-              onclick={showRelatedFiles}
-              class="slds-var-m-around_medium"
-            ></lightning-button>
             <template if:true={isemployment}>
               <lightning-button
                 key={keyValue.key}
