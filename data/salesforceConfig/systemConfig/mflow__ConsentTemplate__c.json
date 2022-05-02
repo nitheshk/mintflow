@@ -317,6 +317,7 @@
             "mflow__Channel__c": "Virtual;Branch",
             "mflow__EventIdentifier__c": "MemberAgreementPage",
             "mflow__ExternalId__c": "CLI0003",
+            "mflow__FinancilProductCategory__c": "Savings;Checking;Money Market;Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 3,
             "mflow__isActive__c": true
