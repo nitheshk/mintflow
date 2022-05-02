@@ -37,11 +37,18 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     // #pending remove SMS OTP From Email
     EmailNotificationBuilder.newInstance('OTPVerificationEmail', applicant.Id)
       .setToAddresses(applicant.Email__c)
-      .setSubstitute(
+     /* .setSubstitute(
         new Map<String, String>{
           '{OTP}' => applicant.SmsOtp__c +
           ' ' +
           applicant.EmailOtp__c,
+          '{ExpireTime}' => expireTime
+        }
+      );
+      */
+      .setSubstitute(
+        new Map<String, String>{
+          '{OTP}' => applicant.EmailOtp__c,
           '{ExpireTime}' => expireTime
         }
       );

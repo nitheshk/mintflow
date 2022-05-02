@@ -75,13 +75,13 @@ global virtual with sharing class AuthenticationService extends AbstractService 
         : HttpBuilder.getApiConstant('TwillioToPhoneNumber');
       params.put('toPhone', HttpBuilder.getApiConstant('Twillio_Country') + toPhone);
       params.put('applicantId', applicant.Id);
-      //NotificationService.getInstance().sendOTPMessage(params);
+      NotificationService.getInstance().sendOTPMessage(params);
     }
     //Email
     if (otpModeList.contains('EMAIL')) {
       applicant.IsEmailVerified__c = false;
       applicant.EmailOtp__c = String.valueOf(Math.round((Math.random() * (9000) + 1000)));
-      //CustomerEmailService.getInstance().sendEmailOTP(applicant);
+      CustomerEmailService.getInstance().sendEmailOTP(applicant);
     }
 
     ApplicantRepository.updateRecord(applicant);

@@ -399,7 +399,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     for (Applicant__c applicant : applicantToProcess.values()) {
       if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         //#pending Disable till customer community license is present
-        //CustomerCommunitySiteService.getInstance().createCustomerCommunityUser(applicant.Contact__r);
+        CustomerCommunitySiteService.getInstance().createCustomerCommunityUser(applicant.Contact__r);
         break;
       }
     }
