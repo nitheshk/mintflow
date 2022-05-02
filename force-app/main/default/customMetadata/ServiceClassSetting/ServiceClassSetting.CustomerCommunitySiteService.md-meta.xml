@@ -4,11 +4,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-    <label>CusomterCommunitySiteService</label>
+    <label>CustomerCommunitySiteService</label>
     <protected>false</protected>
     <values>
         <field>ApexClassName__c</field>
-        <value xsi:type="xsd:string">CusomterCommunitySiteService</value>
+        <value xsi:type="xsd:string">CustomerCommunitySiteService</value>
     </values>
     <values>
         <field>ClassType__c</field>
@@ -20,6 +20,6 @@
     </values>
     <values>
         <field>Functionality__c</field>
-        <value xsi:type="xsd:string">CusomterCommunitySiteService layer</value>
+        <value xsi:type="xsd:string">CustomerCommunitySiteService layer</value>
     </values>
 </CustomMetadata>

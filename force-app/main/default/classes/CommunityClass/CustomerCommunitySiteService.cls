@@ -6,22 +6,22 @@
  * @description Application service
  **/
 @SuppressWarnings('PMD.AvoidGlobalModifier')
-global virtual with sharing class CusomterCommunitySiteService extends AbstractService {
+global virtual with sharing class CustomerCommunitySiteService extends AbstractService {
   @TestVisible
-  private static CusomterCommunitySiteService serviceInstance;
+  private static CustomerCommunitySiteService serviceInstance;
 
-  public CusomterCommunitySiteService() {
-    super(CusomterCommunitySiteService.class);
+  public CustomerCommunitySiteService() {
+    super(CustomerCommunitySiteService.class);
   }
 
   /**
-   * @description Provides a singleton instance of CusomterCommunitySiteService from which all other class methods can be accessed.
+   * @description Provides a singleton instance of CustomerCommunitySiteService from which all other class methods can be accessed.
    * @author Digital Align Team | 04/01/2022
    * @return Object  singleton
    **/
-  public static CusomterCommunitySiteService getInstance() {
+  public static CustomerCommunitySiteService getInstance() {
     if (serviceInstance == null) {
-      serviceInstance = (CusomterCommunitySiteService) getInstance(CusomterCommunitySiteService.class);
+      serviceInstance = (CustomerCommunitySiteService) getInstance(CustomerCommunitySiteService.class);
     }
     return serviceInstance;
   }
@@ -56,7 +56,7 @@ global virtual with sharing class CusomterCommunitySiteService extends AbstractS
     userObj.LanguageLocaleKey = 'en_US';
 
     CommunitySiteRepository.insertRecord(userObj);
-    CusomterCommunitySiteService.assignCommunityPermissionSetAsync(userObj.Id);
+    CustomerCommunitySiteService.assignCommunityPermissionSetAsync(userObj.Id);
     return userObj;
   }
 
@@ -67,7 +67,7 @@ global virtual with sharing class CusomterCommunitySiteService extends AbstractS
    **/
   @future
   global static void assignCommunityPermissionSetAsync(Id userId) {
-    CusomterCommunitySiteService.getInstance().assignCommunityPermissionSet(userId);
+    CustomerCommunitySiteService.getInstance().assignCommunityPermissionSet(userId);
   }
 
   /**
