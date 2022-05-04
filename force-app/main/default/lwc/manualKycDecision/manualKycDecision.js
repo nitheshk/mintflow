@@ -4,7 +4,7 @@ import getPickListValues from "@salesforce/apex/LwcCustomController.fetchPickLis
 import lwcRecordLevelVisibility from "@salesforce/apex/LwcCustomController.lwcRecordLevelVisibility";
 import updateKycDecision from "@salesforce/apex/LwcCustomController.updateKycDecision";
 import submitToCoreSystem from "@salesforce/apex/ApplicationController.submitToCoreSystem";
-import { getRecord } from "lightning/uiRecordApi";
+import { getRecord, getRecordNotifyChange } from "lightning/uiRecordApi";
 export default class ManualKycDecision extends LightningElement {
   @api objectApiName;
   @api recordId;
@@ -16,6 +16,19 @@ export default class ManualKycDecision extends LightningElement {
   @track showApplicantTab = false;
   @track showSpinner = false;
   @track record;
+
+  connectedCallback() {
+    this.init();
+  }
+
+  /**
+   * refresh the current record data
+   * @param {*} param0
+   */
+  @wire(getRecord, { recordId: "$recordId", fields: ["$objectApiName" + ".Id"] })
+  getCurrentRecord({ data, error }) {
+    this.init();
+  }
 
   /**
    * Load Picklist value for components
@@ -51,26 +64,25 @@ export default class ManualKycDecision extends LightningElement {
   }
 
   /**
-   * refresh the current record data
-   * @param {*} param0
+   * Initialize
    */
-  @wire(getRecord, { recordId: "$recordId", fields: ["$objectApiName" + ".Id"] })
-  getCurrentRecord({ data, error }) {
-    if (data) {
-      lwcRecordLevelVisibility({
-        params: {
-          recordId: this.recordId,
-          objectApiName: this.objectApiName,
-          filter: this.filter
-        }
-      }).then((result) => {
-        if (result.status === 200) {
-          this.record = JSON.parse(result.data);
-        } else {
-          this.record = null;
-        }
-      });
+  init() {
+    if (!this.recordId) {
+      return;
     }
+    lwcRecordLevelVisibility({
+      params: {
+        recordId: this.recordId,
+        objectApiName: this.objectApiName,
+        filter: this.filter
+      }
+    }).then((result) => {
+      if (result.status === 200) {
+        this.record = JSON.parse(result.data);
+      } else {
+        this.record = null;
+      }
+    });
   }
 
   /**
@@ -91,12 +103,14 @@ export default class ManualKycDecision extends LightningElement {
   /**
    * update kyc status of application and applicants
    */
-  updateStatus() {
+  async updateStatus() {
     if (utils.checkAllValidations(this.template.querySelectorAll(".validation"))) {
       if (this.objectApiName === "mflow__Application__c") {
-        return this.updateApplicationKyc();
+        await this.updateApplicationKyc();
+        this.init();
       } else if (this.objectApiName === "mflow__Applicant__c") {
-        return this.updateApplicantKyc();
+        await this.updateApplicantKyc();
+        this.init();
       }
     }
   }
