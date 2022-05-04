@@ -26,15 +26,23 @@
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <label>Employees;standard:groups</label>
+        <defaultListViewId>All</defaultListViewId>
+        <label>Applicants;standard:avatar</label>
         <position>4</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>mflow__Applicant__c</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Employees;standard:groups</label>
+        <position>5</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>/Employees</target>
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Search;standard:search</label>
-        <position>5</position>
+        <position>6</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>/FinancialInstituteSearch</target>
         <type>InternalLink</type>

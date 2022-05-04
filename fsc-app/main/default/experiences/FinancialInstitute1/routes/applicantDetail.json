@@ -1,0 +1,11 @@
+{
+  "activeViewId": "1fc2ee64-bfdf-4590-916b-6b1898f3b5a8",
+  "appPageId": "fd5847bd-bbd3-46e3-b3a6-eb07ac0f43ba",
+  "configurationTags": [],
+  "id": "cd1e8cae-cac1-4cac-a21e-9ae76ac35e51",
+  "label": "Applicant Detail",
+  "objectApiName": "mflow__Applicant__c",
+  "routeType": "detail-a00",
+  "type": "route",
+  "urlPrefix": "applicant"
+}
