@@ -13,7 +13,10 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
   @track applicantNames;
   @track selectedApplicant = [];
   @track showSpinner = false;
-  @track isBranch = false;
+
+  connectedCallback() {
+    this.init();
+  }
 
   /**
    * refresh the current record data
@@ -21,44 +24,53 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
    */
   @wire(getRecord, { recordId: "$recordId", fields: ["$objectApiName" + ".Id"] })
   getCurrentRecord({ data, error }) {
-    if (data) {
-      fetchApplication({
-        params: {
-          recordId: this.recordId,
-          objectApiName: this.objectApiName,
-          filter: this.filter
-        }
-      }).then((result) => {
-        if (result.status === 200) {
-          this.record = JSON.parse(result.data);
-          console.log("branch first::" + this.isBranch);
-          this.getIsBranch();
-          console.log("branch::" + this.isBranch);
-          let applicantNames = [];
-          if (!this.isBranch) {
-            applicantNames.push({
-              label: "All",
-              value: "All"
-            });
-          }
-          let applicants = this.record.mflow__Applicants__r;
-          // eslint-disable-next-line guard-for-in
-          for (let key in applicants) {
-            applicantNames.push({
-              label: `${applicants[key].mflow__ApplicantName__c} (${applicants[key].RecordType.Name}) `,
-              value: applicants[key].Id
-            });
-          }
-          this.applicantNames = applicantNames;
-        } else {
-          this.record = null;
-        }
-      });
+    this.init();
+  }
+
+  async init() {
+    if (!this.recordId) {
+      return;
     }
+
+    fetchApplication({
+      params: {
+        recordId: this.recordId,
+        objectApiName: this.objectApiName,
+        filter: this.filter
+      }
+    }).then((result) => {
+      if (result.status === 200) {
+        this.record = JSON.parse(result.data);
+        let applicantNames = [];
+        if (!this.isBranch) {
+          applicantNames.push({
+            label: "All",
+            value: "All"
+          });
+        }
+        let applicants = this.record.mflow__Applicants__r;
+        // eslint-disable-next-line guard-for-in
+        for (let key in applicants) {
+          applicantNames.push({
+            label: `${applicants[key].mflow__ApplicantName__c} (${applicants[key].RecordType.Name}) `,
+            value: applicants[key].Id
+          });
+        }
+        this.applicantNames = applicantNames;
+      } else {
+        this.record = null;
+      }
+    });
   }
-  getIsBranch() {
-    this.isBranch = this.record.mflow__CreatedChannel__c == "Branch";
+
+  get isBranch() {
+    return this.record?.mflow__CreatedChannel__c == "Branch";
   }
+
+  get submitBtnLabel() {
+    return this.isBranch ? "Resume Application" : "Send Email";
+  }
+
   /**
    * Applicant Names Changed
    * @param {'*'} event
@@ -81,6 +93,18 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
         .forEach((key) => {
           this.selectedApplicant.push(key.value);
         });
+    }
+  }
+
+  /**
+   *
+   * @param {*} event
+   */
+  handleSubmit() {
+    if (this.isBranch) {
+      this.navigateToResumeLink();
+    } else {
+      this.sendResumeEmail();
     }
   }
 
@@ -109,7 +133,10 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
     }
   }
 
-  navigatetoResumeLink() {
+  /**
+   * open resume link
+   */
+  navigateToResumeLink() {
     getResumeLink({ request: { data: JSON.stringify(this.selectedApplicant) } })
       .then((result) => {
         if (result.status === 200) {
