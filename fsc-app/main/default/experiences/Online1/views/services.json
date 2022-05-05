@@ -1,0 +1,152 @@
+{
+  "appPageId": "62bf51a0-121c-4952-8e6e-8f780a07e682",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "b668b50b-4443-4db7-8877-daf190339c9f",
+  "label": "Services",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "3241175c-70d6-470e-b00f-57454e271f25",
+              "columns": [
+                {
+                  "UUID": "ec65bb59-492e-4016-834f-a560691b27c2",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "12",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 32
+          },
+          "componentName": "forceCommunity:section",
+          "id": "3241175c-70d6-470e-b00f-57454e271f25",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-grid slds-wrap\">\n  <div class=\"slds-col slds-box slds-size_1-of-1 \">\n    <a href =\"Home\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Home</a>\n    <a href =\"Product\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Product</a>\n    <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Contact Us</a>\n  </div>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "e3577509-8a62-4be3-a165-287f819a3f9f",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "ec65bb59-492e-4016-834f-a560691b27c2",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        },
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "e67b5707-f0a5-44f1-bf9e-36a745f89b1c",
+              "columns": [
+                {
+                  "UUID": "6d570756-e2ea-4264-b7e5-4ab3c08ba108",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "9",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "71af864d-6da4-4fa4-ac3e-3755f60b4be1",
+                  "columnKey": "6197d",
+                  "columnName": "Column 2",
+                  "columnWidth": "3",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "e67b5707-f0a5-44f1-bf9e-36a745f89b1c",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {},
+                  "componentName": "mflow:customerResumeApplication",
+                  "id": "624906f7-1d4c-406c-8a93-36e6b48913a9",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "6d570756-e2ea-4264-b7e5-4ab3c08ba108",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #31769c\">\n      <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n        <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n            <h2 class=\"slds-text-heading_small\">Online Services</h2>\n        </div>\n        <div class=\"slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3\"></div>\n      </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n      Learn about our digital banking tools, common questions and what's new.\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">View All</a>\n    </div>\n</div>\n\n<br/>\n\n<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header slds-card__header\" style=\"color:white;background: #31769c\">\n      <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n        <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n            <h2 class=\"slds-text-heading_small\">Disclosures</h2>\n        </div>\n        <div class=\"slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3\"></div>\n      </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n      Find important disclosures about P1FCU and your membership here.\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">View All</a>\n    </div>\n</div>\n\n<br/>\n\n<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header slds-card__header\" style=\"color:white;background: #31769c\">\n      <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n        <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n            <h2 class=\"slds-text-heading_small\">FAQs</h2>\n        </div>\n        <div class=\"slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3\"></div>\n      </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n      Answers to your most frequently asked questions.\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">View All</a>\n    </div>\n</div>\n\n<br/>\n\n<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header slds-card__header\" style=\"color:white;background: #31769c\">\n      <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n        <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n            <h2 class=\"slds-text-heading_small\">Cardholder Benefits</h2>\n        </div>\n        <div class=\"slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3\"></div>\n      </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n      Explore all the benefits offered from Us.\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">View All</a>\n    </div>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "2f0058c2-6140-49ef-8f6e-d0363ff3660e",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "71af864d-6da4-4fa4-ac3e-3755f60b4be1",
+              "regionLabel": "Column 2",
+              "regionName": "6197d",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "a4751203-0c02-4190-b811-07a68172676b",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "Services"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "369b524a-2e5d-4df2-b296-c52668576de4",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "b331b2ac-404e-4462-8f1d-7f39aaa16a8b",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Inner",
+  "type": "view",
+  "viewType": "custom-services"
+}

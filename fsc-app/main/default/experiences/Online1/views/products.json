@@ -1,8 +1,8 @@
 {
   "appPageId": "62bf51a0-121c-4952-8e6e-8f780a07e682",
   "componentName": "siteforce:dynamicLayout",
-  "id": "3ffc8a36-9045-42ad-8247-0bc2baa6f146",
-  "label": "ApplicationServices",
+  "id": "ac8f4c5b-3524-421f-8502-60eff11c5fd8",
+  "label": "Products",
   "regions": [
     {
       "components": [
@@ -12,20 +12,13 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "ba899a6e-75d4-4a07-bae1-6e6ff23b3f6e",
+              "UUID": "3ace37da-09fa-43df-b670-81b1fe3526c8",
               "columns": [
                 {
-                  "UUID": "99f35f74-39a0-432d-9f25-f3aae9625e12",
+                  "UUID": "9b5a3e30-a240-413e-9b6c-d8665cad9903",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "6",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "63c56a06-f0d5-46ce-b26f-82c473b9fe49",
-                  "columnKey": "14872",
-                  "columnName": "Column 2",
-                  "columnWidth": "6",
+                  "columnWidth": "12",
                   "seedComponents": []
                 }
               ]
@@ -33,29 +26,32 @@
             "sectionHeight": 300
           },
           "componentName": "forceCommunity:section",
-          "id": "ba899a6e-75d4-4a07-bae1-6e6ff23b3f6e",
+          "id": "3ace37da-09fa-43df-b670-81b1fe3526c8",
           "regions": [
             {
               "components": [
                 {
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-grid slds-wrap\">\n  <div class=\"slds-col slds-box slds-size_1-of-1 \">\n    <a href =\"Home\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Home</a>\n     <a href =\"Services\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Services</a>\n    <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Contact Us</a>\n  </div>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "8f8cbd8d-2d73-4ac7-a056-1251acb99b7b",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
                   "componentAttributes": {},
-                  "componentName": "mflow:customerResumeApplication",
-                  "id": "3e158a36-6a45-40ab-96e9-bb20f366f035",
+                  "componentName": "mflow:productSelection",
+                  "id": "e52ec06e-861f-4c06-be39-d0b9c32beb6c",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 }
               ],
-              "id": "99f35f74-39a0-432d-9f25-f3aae9625e12",
+              "id": "9b5a3e30-a240-413e-9b6c-d8665cad9903",
               "regionLabel": "Column 1",
               "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
-            {
-              "id": "63c56a06-f0d5-46ce-b26f-82c473b9fe49",
-              "regionLabel": "Column 2",
-              "regionName": "14872",
               "renditionMap": {},
               "type": "region"
             }
@@ -65,7 +61,7 @@
           "type": "component"
         }
       ],
-      "id": "45d0d50c-4683-46f0-9f49-73f8be186b0c",
+      "id": "e4a50d88-a574-4fe1-975c-ad40f1d1747e",
       "regionName": "content",
       "type": "region"
     },
@@ -75,20 +71,20 @@
           "componentAttributes": {
             "customHeadTags": "",
             "description": "",
-            "title": "ApplicationServices"
+            "title": "Products"
           },
           "componentName": "forceCommunity:seoAssistant",
-          "id": "2495ced5-1bf2-45f3-8d5e-4a65237ad527",
+          "id": "69df91ba-cf33-462e-93c1-41e46f0a0662",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "37a230ec-9679-4ca1-a5ff-3e20fc1c29d7",
+      "id": "398c4e07-02c8-406e-9597-6954d04d8011",
       "regionName": "sfdcHiddenRegion",
       "type": "region"
     }
   ],
   "themeLayoutType": "Inner",
   "type": "view",
-  "viewType": "custom-applicationservices"
+  "viewType": "custom-products"
 }

@@ -12,62 +12,38 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "f681a1b8-f99a-4e18-bc5b-0508c4f5ef6e",
+              "UUID": "8150100d-e7bd-4c68-a101-b4b0bf2d3534",
               "columns": [
                 {
-                  "UUID": "53a972b2-5641-4a66-8f75-e1b2f634fc76",
+                  "UUID": "8673040f-f117-4bc7-8f7f-12bd2f89c631",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "9",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "d393f4b1-d780-46ca-8ae9-43f095d543af",
-                  "columnKey": "75dfb",
-                  "columnName": "Column 2",
-                  "columnWidth": "3",
+                  "columnWidth": "12",
                   "seedComponents": []
                 }
               ]
             },
-            "sectionHeight": 300
+            "sectionHeight": 32
           },
           "componentName": "forceCommunity:section",
-          "id": "f681a1b8-f99a-4e18-bc5b-0508c4f5ef6e",
+          "id": "8150100d-e7bd-4c68-a101-b4b0bf2d3534",
           "regions": [
             {
               "components": [
                 {
-                  "componentAttributes": {},
-                  "componentName": "mflow:productSelection",
-                  "id": "5771f90e-3f86-4d6a-9be8-94b22ed91857",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "53a972b2-5641-4a66-8f75-e1b2f634fc76",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
-            {
-              "components": [
-                {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"slds-grid slds-wrap\">\n  <div class=\"slds-col slds-box slds-size_1-of-1 slds-align_absolute-center\">\n    <a href =\"applicationservices\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">Resume My Application</a>\n  </div>\n  <div class=\"slds-col slds-box slds-size_1-of-1 slds-align_absolute-center\">\n   <a href =\"applicationservices\"  class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">Credit Card Calculator</a> \n  </div>\n  <div class=\"slds-col slds-box slds-size_1-of-1 slds-align_absolute-center\">\n   <a href =\"applicationservices\"  class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">My Credit Score</a>\n  </div>\n  <div class=\"slds-col slds-box slds-size_1-of-1 slds-align_absolute-center\">\n    <input type=\"text\" placeholder=\"City, State or Zip\"/><br>    \n    <button class=\"slds-button slds-button_neutral slds-p-left_large\" style=\"color:white;border-radius: 27px;background: #18305d;\">Find ATM</button>\n  </div>\n</div>"
+                    "richTextValue": "<div class=\"slds-grid slds-wrap\">\n  <div class=\"slds-col slds-box slds-size_1-of-1 \">\n    <a href =\"Services\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Services</a>\n    <a href =\"Products\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Products</a>\n    <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Contact Us</a>\n  </div>\n</div>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
-                  "id": "31374530-31cb-472a-a35d-b5a630383ea7",
+                  "id": "dd02693b-a2f2-4cc1-970c-f21917847676",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 }
               ],
-              "id": "d393f4b1-d780-46ca-8ae9-43f095d543af",
-              "regionLabel": "Column 2",
-              "regionName": "75dfb",
+              "id": "8673040f-f117-4bc7-8f7f-12bd2f89c631",
+              "regionLabel": "Column 1",
+              "regionName": "1",
               "renditionMap": {},
               "type": "region"
             }

@@ -120,19 +120,21 @@
                   "components": [
                     {
                       "componentAttributes": {
-                        "richTextValue": "<div class=\"slds-float_right\">\n    <div class=\"slds-grid slds-wrap\">\n        <div class=\"slds-col slds-box slds-size_1-of-1 slds-align_absolute-center\" style=\"background:white;display:block;\">\n            <h2 style=\"color: #18305d;text-align:center;display:block\">Online Banking</h2>\n            <p style=\"color: #18305d;display:block\" class=\"slds-border_bottom\">Use Online banking to login into your existing account.</p>\n            <p class=\"slds-float_right slds-p-top_x-large\"><a href =\"login\"  class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">Secure Login</a></p>\n        </div>\n    </div>\n</div>"
+                        "richTextValue": "<h1 style=\"text-align:center;color:white;font-size:32px;\">\n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1FCU_Logo_white.png\" height=\"80\" width=\"100\" style=\"text-align:center;\"/>\n<br/>A Pacific Northwest Original Since 1938\n</h1>"
                       },
                       "componentName": "forceCommunity:htmlBlock",
-                      "id": "6aa08401-5a39-40f3-9693-6c2e7a67b665",
+                      "id": "0542845a-7926-48a9-8df7-5a9661245a9d",
                       "renditionMap": {},
                       "type": "component"
                     },
                     {
                       "componentAttributes": {
-                        "richTextValue": "<h1 style=\"text-align:center;color:white;font-size:32px;\">\n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1FCU_Logo_white.png\" height=\"80\" width=\"100\" style=\"text-align:center;\"/>\n<br/>A Pacific Northwest Original Since 1938\n</h1>"
+                        "navAlignment": "left",
+                        "navItemThreshold": 8,
+                        "navigationMenuEditorRefresh": ""
                       },
-                      "componentName": "forceCommunity:htmlBlock",
-                      "id": "0542845a-7926-48a9-8df7-5a9661245a9d",
+                      "componentName": "forceCommunity:themeNav",
+                      "id": "d14ceb30-f1a2-4adc-bf57-57241b9697d1",
                       "renditionMap": {},
                       "type": "component"
                     }
@@ -246,15 +248,6 @@
           "type": "region"
         },
         {
-          "components": [
-            {
-              "componentAttributes": {},
-              "componentName": "mflow:resumeAppplication",
-              "id": "fdbbc3b1-c8f2-4195-a9b4-61e5438ab1fb",
-              "renditionMap": {},
-              "type": "component"
-            }
-          ],
           "id": "b7958cf0-907c-4b61-8657-c8e3add7a50c",
           "regionName": "themeFooter",
           "type": "region"
