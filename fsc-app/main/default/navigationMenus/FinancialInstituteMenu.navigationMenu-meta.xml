@@ -18,7 +18,7 @@
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <defaultListViewId>All</defaultListViewId>
+        <defaultListViewId>mflow__All</defaultListViewId>
         <label>Application;standard:work_plan</label>
         <position>3</position>
         <publiclyAvailable>false</publiclyAvailable>
@@ -26,7 +26,7 @@
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <defaultListViewId>All</defaultListViewId>
+        <defaultListViewId>mflow__All</defaultListViewId>
         <label>Applicants;standard:avatar</label>
         <position>4</position>
         <publiclyAvailable>false</publiclyAvailable>

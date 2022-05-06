@@ -18,7 +18,7 @@ public with sharing class TestData {
     appConfig.mflow__OOWPassThreshhold__c = 70;
     appConfig.mflow__ReferralUrlExpirationTime__c = 72;
     appConfig.mflow__OOWTotalQuestionsToShow__c = 5;
-    appConfig.UiStaticResourceName__c = 'MintFlow';
+    appConfig.UiStaticResourceName__c = 'LWCResource';
     return appConfig;
   }
 

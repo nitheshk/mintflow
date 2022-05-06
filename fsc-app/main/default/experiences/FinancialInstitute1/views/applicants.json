@@ -93,7 +93,7 @@
                         {
                           "componentAttributes": {
                             "enableInlineEdit": true,
-                            "filterName": "All",
+                            "filterName": "mflow__All",
                             "layout": "FULL",
                             "pageSize": 50,
                             "scope": "mflow__Applicant__c",
