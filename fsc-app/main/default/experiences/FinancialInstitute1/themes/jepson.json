@@ -1,6 +1,6 @@
 {
   "activeBrandingSetId": "b99ab5db-892d-48a4-b6fd-c93c4e0a1ab7",
-  "customCSS": "@font-face {\n    font-family: 'poppins';\n        src: url('/sfsites/c/resource/LWCResource/font/Poppins/Poppins-Medium.ttf') format('truetype');\n}\n\n@font-face {\n    font-family: 'poppins-bold';\n        src: url('/sfsites/c/resource/LWCResource/font/Poppins/Poppins-Bold.ttf') format('truetype');\n}\n\nbody .forceCommunitySection .cb-section_column:first-child {\n    padding: 0;\n}\nbody, html {\n    min-height: 100vh;\n   \toverflow: auto;\n}\n\n.slds-form-element__label, .slds-text-title {\n \tcolor: #656565;\n   \tfont-size: 15px;\n }\n\n .slds-text-title > b { \n\tfont-weight: normal;\n}\n\n.slds-page-header > h3 { \n\t font-size: 16px;\n}\n\n.slds-form-element__static, .slds-hyphenate { \n    color: #3B4EB0;\n\tfont-size: 17px; \n \tfont-weight: 600;\n}\n\n.slds-button_brand {\nbackground-color: #18305d;\n\tborder: none;\n\tborder-radius: 25px;\n\tfont-size: 16px;\n\tpadding: 6px 20px 6px 20px;\n}\n\n.slds-button_brand:hover {\n\tbackground-color: #18305d;\n\ttransform: scale(1.05);\n\ttransition: opacity .2s cubic-bezier(.4,0,.6,1);\n}\n\n.slds-input {\n    background: #F8F8F8;\n    border: 1px solid rgb(233, 233, 233);\n    border-radius: 4px;\n    color: #000;\n    font-size: 16px;\n    font-weight: 700;\n    padding: 9px;\n}",
+  "customCSS": "@font-face {\n    font-family: 'poppins';\n        src: url('/sfsites/c/resource/LWCResource/font/Poppins/Poppins-Medium.ttf') format('truetype');\n}\n\n@font-face {\n    font-family: 'poppins-bold';\n        src: url('/sfsites/c/resource/LWCResource/font/Poppins/Poppins-Bold.ttf') format('truetype');\n}\n\n.forceCommunitySection .cb-section_column {\n    padding: 0;\n}\n\nbody, html {\n    min-height: 100vh;\n   \toverflow: auto;\n}\n\n.slds-form-element__label, .slds-text-title {\n \tcolor: #656565;\n   \tfont-size: 15px;\n }\n\n .slds-text-title > b { \n\tfont-weight: normal;\n}\n\n.slds-page-header > h3 { \n\t font-size: 16px;\n}\n\n.slds-form-element__static, .slds-hyphenate { \n    color: #3B4EB0;\n\tfont-size: 17px; \n \tfont-weight: 600;\n}\n\n.slds-button_brand {\nbackground-color: #18305d;\n\tborder: none;\n\tborder-radius: 25px;\n\tfont-size: 16px;\n\tpadding: 6px 20px 6px 20px;\n}\n\n.slds-button_brand:hover {\n\tbackground-color: #18305d;\n\ttransform: scale(1.05);\n\ttransition: opacity .2s cubic-bezier(.4,0,.6,1);\n}\n\n.slds-input {\n    background: #F8F8F8;\n    border: 1px solid rgb(233, 233, 233);\n    border-radius: 4px;\n    color: #000;\n    font-size: 16px;\n    font-weight: 700;\n    padding: 9px;\n}",
   "developerName": "jepson",
   "id": "27094691-1246-42bd-9ee3-18ef442f6416",
   "label": "Jepson",
@@ -297,9 +297,9 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: rgba(236,246,254,0.51) url(/sfsites/c/file-asset/mflow__p1fcuimage?v=1) center center /cover",
+                "background": "background: rgba(255,255,255,0.51)",
                 "backgroundOverlayColor": "rgba(29, 31, 109, 0.3)",
-                "borderBottomColor": "rgba(0, 0, 0, 0.5)",
+                "borderBottomColor": "rgba(17, 30, 50, 0.5)",
                 "centerAlignLogo": false,
                 "collapseNavMenu": false,
                 "containHeader": false,
@@ -309,13 +309,13 @@
                 "dropdownBorderColor": "#F0F0F0",
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
-                "headerHeight": 25,
+                "headerHeight": 32,
                 "linkActiveBorderColor": "",
                 "linkColor": "rgba(0, 0, 0, 0.8)",
                 "linkHoverColor": "rgba(0, 0, 0, 0.7)",
                 "linkTextShadowColor": "rgba(255, 255, 255, 0)",
-                "logoWidth": 82,
-                "searchStyle": "expanded",
+                "logoWidth": 164,
+                "searchStyle": "collapsed",
                 "showAppLauncher": false,
                 "showNavMenuOnLeft": true,
                 "showNotifications": true,
@@ -329,6 +329,7 @@
                   "components": [
                     {
                       "componentAttributes": {
+                        "accountManagementLabel": "Account Management",
                         "buttonBackgroundColor": "inherit",
                         "buttonBackgroundHoverColor": "inherit",
                         "buttonBorderColor": "transparent",
@@ -336,11 +337,24 @@
                         "buttonText": "Log in",
                         "buttonTextColor": "#fff",
                         "buttonTextHoverColor": "#0099de",
-                        "customizableUserProfileMenuEditor": "FinancialInstituteProfileMenu",
-                        "menuStyleSettings": ""
+                        "communityBuilderLabel": "Experience Builder",
+                        "communitySetupLabel": "Salesforce Setup",
+                        "contactSupportLabel": "Contact Support",
+                        "filterName": "MyCases",
+                        "homeLabel": "Home",
+                        "logoutLabel": "Logout",
+                        "menuStyle": "iconOnly",
+                        "messagesLabel": "Messages",
+                        "myAccountLabel": "My Account",
+                        "showAccountManagement": true,
+                        "showContactSupport": true,
+                        "showMessages": true,
+                        "showUserSettings": true,
+                        "userSettingsLabel": "My Settings",
+                        "viewProfileLabel": "My Profile"
                       },
-                      "componentName": "forceCommunity:customizableUserProfileMenu",
-                      "id": "2f33ffd5-0376-49ba-b47d-99121caa343e",
+                      "componentName": "forceCommunity:themeProfileMenu",
+                      "id": "9d68ba07-a38e-41d5-81f6-f580658cdfdd",
                       "renditionMap": {},
                       "type": "component"
                     }
@@ -377,17 +391,6 @@
                   "type": "region"
                 },
                 {
-                  "components": [
-                    {
-                      "componentAttributes": {
-                        "richTextValue": "<h1 style=\"text-align:center;color:white;font-size:32px;\">\n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1FCU_Logo_white.png\" height=\"100\" width=\"100\" style=\"text-align:center;\"/>\n<br/>A Pacific Northwest Original Since 1938\n</h1>"
-                      },
-                      "componentName": "forceCommunity:htmlBlock",
-                      "id": "a6853c02-86a9-45fb-b117-6eec8e24b36d",
-                      "renditionMap": {},
-                      "type": "component"
-                    }
-                  ],
                   "id": "5bc7f048-d53c-483c-a5b0-5189543c44cf",
                   "regionName": "nav",
                   "type": "region"
