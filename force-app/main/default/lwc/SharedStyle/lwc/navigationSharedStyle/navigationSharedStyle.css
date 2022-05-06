@@ -37,6 +37,7 @@
   padding: var(--lwc-spacingMedium) var(--lwc-spacingMedium);
   border-radius: var(--lwc-borderRadiusLarge);
 }
+
 .nav-bar ul li:hover {
   cursor: pointer;
   background: #18305d;

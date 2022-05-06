@@ -1,3 +1,20 @@
 .THIS menu {
   min-height: 100vh;
 }
+
+/* @media screen and (min-width: 0px) and (max-width: 400px) {
+  .mflowFIThemeLayoutWithMenuBar #largeScreenMenu {
+    display: none;
+  }
+  .mflowFIThemeLayoutWithMenuBar #smallScreenMenu {
+    display: block;
+  }
+}
+@media screen and (min-width: 401px) and (max-width: 1024px) {
+  .mflowFIThemeLayoutWithMenuBar #largeScreenMenu {
+    display: none;
+  }
+  .mflowFIThemeLayoutWithMenuBar #smallScreenMenu {
+    display: block;
+  }
+} */
