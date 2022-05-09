@@ -17,45 +17,28 @@
   color: white;
 }
 
-.buttonBase {
-  --sds-c-button-text-color: #3b4eb0;
-}
-
-.buttonBase:hover {
-  --sds-c-button-outline-brand-color-border-hover: white;
-  --sds-c-button-outline-brand-color-background-hover: white;
-  --sds-c-button-text-color-hover: green;
-}
-
 .nav-bar {
   display: block;
 }
 
 .nav-bar ul li {
   display: block;
-  width: 100%;
-  padding: var(--lwc-spacingMedium) var(--lwc-spacingMedium);
-  border-radius: var(--lwc-borderRadiusLarge);
+  padding: 10px 0;
+  margin: 0 15px;
 }
 
 .nav-bar ul li:hover {
   cursor: pointer;
-  background: #18305d;
-  color: white;
-  border-radius: 25px;
+  border-bottom: 3px solid #18305d;
 }
 
 .nav-bar ul li:hover > .icon-style {
-  --sds-c-icon-color-foreground: #ffffff;
+  --sds-c-icon-color-foreground: #18305d;
   --sds-c-icon-color-background: none;
 }
 
 .active-nav {
-  background: #18305d;
-  color: white;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  border-radius: 25px !important;
+  border-bottom: 3px solid #18305d;
 }
 
 .icon-style {
@@ -64,6 +47,6 @@
 }
 
 .icon-active-style {
-  --sds-c-icon-color-foreground: #ffffff;
+  --sds-c-icon-color-foreground: #18305d;
   --sds-c-icon-color-background: none;
 }

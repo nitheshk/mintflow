@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar slds-p-around_medium slds-border_bottom">
-    <ul class="slds-list_horizontal slds-text-align_center">
+    <ul class="slds-list_horizontal">
       <template for:each={menuItems} for:item="item">
         <template if:true={item.isActive}>
           <li key={item.position} data-item={item.position} onclick={hanldleNavigation} class="active-nav">
