@@ -3,6 +3,7 @@
   <aura:attribute name="page_footer" type="Aura.Component[]" />
   <aura:attribute name="content" type="Aura.Component[]" />
   <aura:attribute name="menu" type="Aura.Component[]" />
+  <aura:attribute name="sideMenu" type="Aura.Component[]" />
   <aura:attribute name="section1" type="Aura.Component[]" />
   <aura:attribute name="section2" type="Aura.Component[]" />
   <aura:attribute name="section3" type="Aura.Component[]" />
@@ -14,9 +15,9 @@
   <aura:attribute name="section9" type="Aura.Component[]" />
 
   <div class="section slds-grid slds-wrap">
-    <div class="slds-col slds-size_1-of-1">{!v.page_header}</div>
     <div class="slds-col slds-size_1-of-1">{!v.menu}</div>
-    <!-- <div class="slds-col slds-size_2-of-12 slds-show_large">{!v.menu}</div> -->
+    <div class="slds-col slds-size_1-of-1">{!v.page_header}</div>
+    <div class="slds-col slds-size_2-of-12 slds-show_large">{!v.sideMenu}</div>
     <div class="slds-col slds-size_10-of-12">
       <div class="slds-col slds-size_1-of-1">{!v.section1}</div>
       <div class="slds-grid slds-wrap">
