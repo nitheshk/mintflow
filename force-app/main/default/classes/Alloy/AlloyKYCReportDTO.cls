@@ -17,7 +17,7 @@ public with sharing class AlloyKYCReportDTO {
       this.contentDocumentId = contentDocumentId;
       this.title = title;
       this.documentType = documentType;
-      this.reportUrl = '/apex/AlloyKYCReport?id=' + contentDocumentId;
+      this.reportUrl = '/apex/mflow__AlloyKYCReport?id=' + contentDocumentId;
       this.createDate = createDate.format('MM/dd/yyyy hh:mm:ss a', UserInfo.getTimeZone().getID());
     }
   }

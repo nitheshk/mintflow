@@ -35,7 +35,7 @@ public with sharing class AlloyKYCReportControllerTest {
     ContentVersion cvs = FileService.getInstance()
       .createFile(new FileDTO('AlloyResponse.json', blob.valueof(TestData.getAlloyData()), applicant.Id));
 
-    PageReference AlloyKYCReportPage = Page.AlloyKYCReport;
+    PageReference AlloyKYCReportPage = Page.mflow__AlloyKYCReport;
     Test.setCurrentPage(AlloyKYCReportPage);
     // Put Id into the current page Parameters
     ApexPages.currentPage().getParameters().put('id', applicant.Id);

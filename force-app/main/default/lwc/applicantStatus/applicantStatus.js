@@ -48,7 +48,7 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
         if (result.status === 200) {
           data = JSON.parse(result.data);
           console.log("baseurl::" + JSON.stringify(data));
-          var siteUrl = data + "/apex/AlloyKYCReport?id=" + this.record.Id;
+          var siteUrl = data + "/apex/mflow__AlloyKYCReport?id=" + this.record.Id;
           this[NavigationMixin.Navigate](
             {
               type: "standard__webPage",
