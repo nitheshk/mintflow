@@ -32,7 +32,7 @@
               "components": [
                 {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"slds-grid slds-wrap\">\n  <div class=\"slds-col slds-box slds-size_1-of-1 \">\n    <a href =\"Home\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Home</a>\n     <a href =\"Services\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Services</a>\n    <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Contact Us</a>\n  </div>\n</div>"
+                    "richTextValue": "<div class=\"slds-grid slds-wrap\" style=\"float:right;\">\n  <div class=\"slds-col slds-box slds-size_1-of-1 \">\n     <a href =\"Services\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Services</a>\n    <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Contact Us</a>\n  </div>\n</div>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
                   "id": "8f8cbd8d-2d73-4ac7-a056-1251acb99b7b",

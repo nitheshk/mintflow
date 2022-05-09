@@ -3,4 +3,25 @@
     <container>Online</container>
     <containerType>Network</containerType>
     <label>OnlineMenu</label>
+    <navigationMenuItem>
+        <label>Products</label>
+        <position>1</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/Online/s/Products</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Services</label>
+        <position>2</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/Online/s/Services</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Contact Us</label>
+        <position>3</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
 </NavigationMenu>

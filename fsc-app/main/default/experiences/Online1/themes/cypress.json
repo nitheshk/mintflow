@@ -1,35 +1,35 @@
 {
-  "activeBrandingSetId": "0127b6f8-4db1-4878-80be-b67a00e524b9",
+  "activeBrandingSetId": "f073eab7-5c20-4a53-add3-b86ff02d0ed4",
   "customCSS": "",
-  "developerName": "jepson",
-  "id": "e73e5432-8eb2-4642-87a4-cd626ddc7328",
-  "label": "Jepson",
+  "developerName": "cypress",
+  "id": "4d2dd4f1-2acf-43dd-a984-3280c7b9a945",
+  "label": "Cypress",
   "layouts": {
-    "Home": "10629bb3-d398-4d83-bd54-769b85e61396",
-    "Inner": "a9de8e21-facf-4d25-ac49-107b39f5a8b4",
-    "Login": "5a69fee1-73e0-47ac-a00a-deb22dcd1c3c",
-    "ServiceNotAvailable": "8a303b3e-dbce-4747-8f83-0b244ec873a3"
+    "Home": "7561412f-d304-4ded-9346-24b3df75b8cd",
+    "Inner": "f824d8ff-e891-4b28-a7ee-abfd4950453f",
+    "Login": "a0719b28-af28-411f-b718-15e1f9fbe806",
+    "ServiceNotAvailable": "e78b0087-4a63-493d-9258-9878b0c951aa"
   },
   "type": "theme",
   "views": [
     {
       "componentAttributes": {},
       "componentName": "salesforceIdentity:loginBody2",
-      "id": "5a69fee1-73e0-47ac-a00a-deb22dcd1c3c",
+      "id": "a0719b28-af28-411f-b718-15e1f9fbe806",
       "label": "Login",
       "regions": [
         {
-          "id": "bf5ee10e-e564-48a0-a369-c33d761f69e7",
+          "id": "35d3749f-1348-4f01-a697-05fcdc5506f8",
           "regionName": "header",
           "type": "region"
         },
         {
-          "id": "8ff1bb7d-d794-45c5-953a-d83b40782e6a",
+          "id": "01562e29-1e4f-43f9-afc9-c3447f0c78b5",
           "regionName": "content",
           "type": "region"
         },
         {
-          "id": "d2e1e22a-d4e6-4491-9402-825b23e60e7c",
+          "id": "717e058d-95ab-4570-b3d8-3a53821578fd",
           "regionName": "footer",
           "type": "region"
         }
@@ -47,32 +47,32 @@
         "showHero": false
       },
       "componentName": "siteforce:themeLayoutStarter",
-      "id": "a9de8e21-facf-4d25-ac49-107b39f5a8b4",
+      "id": "f824d8ff-e891-4b28-a7ee-abfd4950453f",
       "label": "Default",
       "regions": [
         {
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF",
+                "background": "background: rgb(255,255,255)",
                 "backgroundOverlayColor": "rgba(0, 0, 0, 0.3)",
-                "borderBottomColor": "rgba(0, 0, 0, 0.5)",
-                "centerAlignLogo": false,
-                "collapseNavMenu": false,
+                "borderBottomColor": "rgba(33, 33, 33, 0.15)",
+                "centerAlignLogo": true,
+                "collapseNavMenu": true,
                 "containHeader": true,
                 "containHeaderWidth": 1440,
-                "dropdownBackgroundColor": "#FFFFFF",
+                "dropdownBackgroundColor": "rgb(255, 255, 255)",
                 "dropdownBackgroundHoverColor": "",
-                "dropdownBorderColor": "#F0F0F0",
+                "dropdownBorderColor": "rgb(240, 240, 240)",
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
-                "headerHeight": 16,
+                "headerHeight": 30,
                 "linkActiveBorderColor": "",
                 "linkColor": "rgba(0, 0, 0, 0.8)",
                 "linkHoverColor": "rgba(0, 0, 0, 0.7)",
                 "linkTextShadowColor": "rgba(255, 255, 255, 0)",
-                "logoWidth": 150,
-                "searchStyle": "expanded",
+                "logoWidth": 115,
+                "searchStyle": "collapsed",
                 "showAppLauncher": false,
                 "showNavMenuOnLeft": true,
                 "showNotifications": true,
@@ -80,7 +80,7 @@
                 "showSearch": true
               },
               "componentName": "forceCommunity:themeHeaderCompact",
-              "id": "ae9d56f8-1f6a-4434-bdd5-22ace3886886",
+              "id": "08a0abcb-99a3-4348-9999-8ddf8f506000",
               "regions": [
                 {
                   "components": [
@@ -89,7 +89,7 @@
                         "buttonBackgroundColor": "",
                         "buttonBackgroundHoverColor": "",
                         "buttonBorderColor": "rgba(0, 0, 0, 0)",
-                        "buttonBorderRadius": 15,
+                        "buttonBorderRadius": 4,
                         "buttonText": "Log in",
                         "buttonTextColor": "",
                         "buttonTextHoverColor": "",
@@ -97,12 +97,12 @@
                         "menuStyleSettings": "{\"selectedMenuStyleSetting\":\"iconOnly\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
                       },
                       "componentName": "forceCommunity:customizableUserProfileMenu",
-                      "id": "3a59075e-9b27-46f6-9f61-4750d0b7290a",
+                      "id": "19538cc1-8253-44e8-9852-53985d468752",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "36d6d066-4c55-46cf-b07c-9d566edf7761",
+                  "id": "2910d2c8-dafb-4de1-bf4a-87fa3510cf33",
                   "regionName": "themeHeaderProfileMenu",
                   "type": "region"
                 },
@@ -110,10 +110,10 @@
                   "components": [
                     {
                       "componentAttributes": {
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "rgb(255, 255, 255)",
                         "borderColor": "rgba(0, 0, 0, 0.8)",
-                        "borderRadius": 20,
-                        "borderStyle": "outline",
+                        "borderRadius": 4,
+                        "borderStyle": "bottomborder",
                         "buttonColor": "",
                         "buttonHoverColor": "",
                         "crossObjectTypeaheadApiNames": "",
@@ -126,12 +126,12 @@
                         "useTypeahead": true
                       },
                       "componentName": "forceCommunity:themeSearch",
-                      "id": "ad05522c-e41b-4451-ab06-751778c1b183",
+                      "id": "70e02d9b-56f1-4f13-b4a1-48b5f77c3caa",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "945276be-8639-4933-8acd-d736215a0915",
+                  "id": "8f03f8c1-4eb1-4f7a-a200-1d28c46acd2d",
                   "regionName": "search",
                   "type": "region"
                 },
@@ -141,20 +141,20 @@
                       "componentAttributes": {
                         "navAlignment": "left",
                         "navItemThreshold": 4,
-                        "navigationMenuEditorRefresh": "OnlineMenu"
+                        "navigationMenuEditorRefresh": ""
                       },
                       "componentName": "forceCommunity:themeNav",
-                      "id": "1625d5bd-23de-4041-b1d2-3435928a58e4",
+                      "id": "16e1bc1a-2eba-4e58-bcbf-fec986254659",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "53279089-31d4-4532-a7ea-d521bffecb4e",
+                  "id": "55c89ef8-1987-4ea0-957a-02894ea66216",
                   "regionName": "nav",
                   "type": "region"
                 },
                 {
-                  "id": "f22adaf3-c9a9-410c-97d4-a54505aa8424",
+                  "id": "4de18893-daed-456f-85b6-ef85b22d060e",
                   "regionName": "cartIcon",
                   "type": "region"
                 }
@@ -163,7 +163,7 @@
               "type": "component"
             }
           ],
-          "id": "e161b501-809d-4713-874c-b02c1e85ae5c",
+          "id": "e0d7e90a-313e-4218-8ae9-e1dc8f5c9fb0",
           "regionName": "themeHeader",
           "type": "region"
         },
@@ -171,66 +171,66 @@
           "components": [
             {
               "componentAttributes": {
-                "bgImage": "background: #FFFFFF url(/sfsites/assets/themes/jepson-background.jpg) top center /cover",
-                "bgOverlayColor": "rgba(255, 255, 255, 0.20)",
-                "captionText": "Our Mission",
-                "captionTextColor": "rgba(0, 0, 0, 0.8)",
-                "captionTextShadowColor": "rgba(0, 0, 0, 0)",
-                "contentAlignment": "right",
-                "contentWidth": 45,
+                "bgImage": "background: rgb(0,0,0) url(/sfsites/assets/themes/cypress-background.jpg) top center /cover",
+                "bgOverlayColor": "rgba(0, 0, 0, 0.35)",
+                "captionText": "Limited time offer",
+                "captionTextColor": "rgb(255, 255, 255)",
+                "captionTextShadowColor": "rgba(0, 0, 0, 0.5)",
+                "contentAlignment": "center",
+                "contentWidth": 60,
                 "ctaBtnOneBgColor": "",
                 "ctaBtnOneBgHoverColor": "",
-                "ctaBtnOneBorderColor": "rgba(10, 50, 198, 0)",
+                "ctaBtnOneBorderColor": "rgba(0, 0, 0, 0)",
                 "ctaBtnOneOpenNewTab": false,
-                "ctaBtnOneText": "Our Projects",
+                "ctaBtnOneText": "Learn More",
                 "ctaBtnOneTextColor": "",
                 "ctaBtnOneTextHoverColor": "",
                 "ctaBtnOneUrl": "",
-                "ctaBtnRadius": 25,
+                "ctaBtnRadius": 4,
                 "ctaBtnTwoBgColor": "rgba(255, 255, 255, 0)",
-                "ctaBtnTwoBgHoverColor": "rgba(255, 255, 255, 0.9)",
-                "ctaBtnTwoBorderColor": "rgba(0, 0, 0, 0.8)",
+                "ctaBtnTwoBgHoverColor": "rgb(255, 255, 255)",
+                "ctaBtnTwoBorderColor": "rgb(255, 255, 255)",
                 "ctaBtnTwoOpenNewTab": false,
-                "ctaBtnTwoText": "Contact Us",
-                "ctaBtnTwoTextColor": "rgba(0, 0, 0, 0.8)",
+                "ctaBtnTwoText": "Secondary",
+                "ctaBtnTwoTextColor": "rgb(255, 255, 255)",
                 "ctaBtnTwoTextHoverColor": "rgba(0, 0, 0, 0.8)",
                 "ctaBtnTwoUrl": "",
                 "ctaShowBtnOne": true,
-                "ctaShowBtnTwo": true,
+                "ctaShowBtnTwo": false,
                 "fixedHeroWidth": true,
-                "heroHeight": 162,
+                "heroHeight": 140,
                 "heroWidth": 1440,
                 "showCaption": true,
-                "showSubtitle": true,
+                "showSubtitle": false,
                 "showTitle": true,
-                "subtitleText": "We specialize in the construction of unique and exclusive properties.  We deliver outstanding quality and design for leading architects and private clients around the world.",
-                "subtitleTextColor": "rgba(0, 0, 0, 0.8)",
-                "subtitleTextShadowColor": "rgba(0, 0, 0, 0)",
-                "titleText": "Your Dream Home",
-                "titleTextColor": "rgba(0, 0, 0, 0.8)",
-                "titleTextShadowColor": "rgba(0, 0, 0, 0)",
+                "subtitleText": "Subtitle Content",
+                "subtitleTextColor": "rgb(255, 255, 255)",
+                "subtitleTextShadowColor": "rgba(0, 0, 0, 0.5)",
+                "titleText": "Collect bonus rewards.",
+                "titleTextColor": "rgb(255, 255, 255)",
+                "titleTextShadowColor": "rgba(0, 0, 0, 0.5)",
                 "type": "callToAction"
               },
               "componentName": "forceCommunity:themeHeroStarter",
-              "id": "5101e1c4-0d69-4b22-a537-a7076c96d19c",
+              "id": "a9d9f73c-e26a-4c18-9faf-c3166e411223",
               "regions": [
                 {
                   "components": [
                     {
                       "componentAttributes": {
-                        "backgroundColor": "#FFFFFF",
-                        "borderColor": "rgba(0, 0, 0, 0)",
-                        "borderRadius": 25,
+                        "backgroundColor": "rgb(255, 255, 255)",
+                        "borderColor": "rgba(0, 0, 0, 0.5)",
+                        "borderRadius": 4,
                         "borderStyle": "outline",
                         "buttonColor": "",
                         "buttonHoverColor": "",
                         "crossObjectTypeaheadApiNames": "",
-                        "iconColor": "#FFFFFF",
+                        "iconColor": "rgb(255, 255, 255)",
                         "placeholderText": "Ask a question...",
                         "placeholderTextColor": "rgba(0, 0, 0, 0.6)",
-                        "publicDropdownBackgroundColor": "#FFFFFF",
+                        "publicDropdownBackgroundColor": "rgb(255, 255, 255)",
                         "publicDropdownBackgroundHoverColor": "",
-                        "publicDropdownBorderColor": "#F0F0F0",
+                        "publicDropdownBorderColor": "rgb(240, 240, 240)",
                         "publicDropdownTextColor": "",
                         "publicDropdownTextHoverColor": "",
                         "showSearchButton": true,
@@ -239,12 +239,12 @@
                         "useTypeahead": true
                       },
                       "componentName": "forceCommunity:themeSearchHero",
-                      "id": "974f2f58-45be-44c7-b611-5e1d4d18004d",
+                      "id": "05f7eb71-22b2-4f43-85bd-aefa62c03e5c",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "14287ace-0185-4126-b3c1-3211877067ca",
+                  "id": "a8438305-4c63-4435-b18b-be3bedc9ec23",
                   "regionName": "search",
                   "type": "region"
                 }
@@ -253,12 +253,12 @@
               "type": "component"
             }
           ],
-          "id": "05373dea-74cd-4845-8b47-ca3ba87808e2",
+          "id": "e82edf7b-904c-4cbf-a939-db726a5ae0ec",
           "regionName": "themeHero",
           "type": "region"
         },
         {
-          "id": "8e45d96d-4f40-4597-bbd3-b877f0267870",
+          "id": "dfe963b5-8965-49fb-8eaf-c41c6776da15",
           "regionName": "themeFooter",
           "type": "region"
         }
@@ -268,40 +268,40 @@
     {
       "componentAttributes": {
         "fixedPageWidth": 1440,
-        "headerBgColor": "rgba(255, 255, 255, 0.8)",
+        "headerBgColor": "rgba(28, 22, 28, 0.9)",
         "isHeaderPinned": false,
-        "isHeroUnderHeader": true,
+        "isHeroUnderHeader": false,
         "isPageWidthFixed": true,
         "showHeader": true,
         "showHero": true
       },
       "componentName": "siteforce:themeLayoutStarter",
-      "id": "10629bb3-d398-4d83-bd54-769b85e61396",
+      "id": "7561412f-d304-4ded-9346-24b3df75b8cd",
       "label": "Home",
       "regions": [
         {
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF",
+                "background": "background: rgb(255,255,255)",
                 "backgroundOverlayColor": "rgba(0, 0, 0, 0.3)",
-                "borderBottomColor": "rgba(0, 0, 0, 0.5)",
-                "centerAlignLogo": false,
-                "collapseNavMenu": false,
+                "borderBottomColor": "rgba(33, 33, 33, 0.15)",
+                "centerAlignLogo": true,
+                "collapseNavMenu": true,
                 "containHeader": true,
                 "containHeaderWidth": 1440,
-                "dropdownBackgroundColor": "#FFFFFF",
+                "dropdownBackgroundColor": "rgb(255, 255, 255)",
                 "dropdownBackgroundHoverColor": "",
-                "dropdownBorderColor": "#F0F0F0",
+                "dropdownBorderColor": "rgb(240, 240, 240)",
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
-                "headerHeight": 16,
+                "headerHeight": 30,
                 "linkActiveBorderColor": "",
                 "linkColor": "rgba(0, 0, 0, 0.8)",
                 "linkHoverColor": "rgba(0, 0, 0, 0.7)",
                 "linkTextShadowColor": "rgba(255, 255, 255, 0)",
-                "logoWidth": 150,
-                "searchStyle": "expanded",
+                "logoWidth": 115,
+                "searchStyle": "collapsed",
                 "showAppLauncher": false,
                 "showNavMenuOnLeft": true,
                 "showNotifications": true,
@@ -309,7 +309,7 @@
                 "showSearch": true
               },
               "componentName": "forceCommunity:themeHeaderCompact",
-              "id": "8b9e3747-3189-4bac-8928-72f0e5b02ec4",
+              "id": "3a66f17c-62ca-438d-814c-682824cb5ede",
               "regions": [
                 {
                   "components": [
@@ -318,7 +318,7 @@
                         "buttonBackgroundColor": "",
                         "buttonBackgroundHoverColor": "",
                         "buttonBorderColor": "rgba(0, 0, 0, 0)",
-                        "buttonBorderRadius": 15,
+                        "buttonBorderRadius": 4,
                         "buttonText": "Log in",
                         "buttonTextColor": "",
                         "buttonTextHoverColor": "",
@@ -326,12 +326,12 @@
                         "menuStyleSettings": "{\"selectedMenuStyleSetting\":\"iconOnly\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
                       },
                       "componentName": "forceCommunity:customizableUserProfileMenu",
-                      "id": "c488cd69-a49d-49e0-8528-f55b7afd35ef",
+                      "id": "d526ee5d-f61a-4e84-8a44-2014db6493ab",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "634f1248-150c-4fe8-8ea3-12e6384b9f3b",
+                  "id": "1b48ab45-53cf-4d6f-a8af-2aeff6e4e2d3",
                   "regionName": "themeHeaderProfileMenu",
                   "type": "region"
                 },
@@ -339,18 +339,13 @@
                   "components": [
                     {
                       "componentAttributes": {
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "rgb(255, 255, 255)",
                         "borderColor": "rgba(0, 0, 0, 0.8)",
-                        "borderRadius": 20,
-                        "borderStyle": "outline",
+                        "borderRadius": 4,
+                        "borderStyle": "bottomborder",
                         "buttonColor": "",
                         "buttonHoverColor": "",
-                        "crossObjectTypeaheadApiNames": [
-                          {
-                            "isPublic": true,
-                            "name": "FeedItem"
-                          }
-                        ],
+                        "crossObjectTypeaheadApiNames": "",
                         "iconColor": "rgba(0, 0, 0, 0.8)",
                         "placeholderText": "Search...",
                         "placeholderTextColor": "rgba(0, 0, 0, 0.6)",
@@ -360,12 +355,12 @@
                         "useTypeahead": true
                       },
                       "componentName": "forceCommunity:themeSearch",
-                      "id": "1b94357e-ee9a-4e5b-b9a9-da259390ca75",
+                      "id": "69e9eacc-92a8-49a7-801e-9ac9836a411a",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "13d48d36-7c6b-4d89-8060-5c98718a7b1c",
+                  "id": "19bb080f-7c6b-426f-b467-2575f98cf648",
                   "regionName": "search",
                   "type": "region"
                 },
@@ -374,21 +369,21 @@
                     {
                       "componentAttributes": {
                         "navAlignment": "left",
-                        "navItemThreshold": 8,
-                        "navigationMenuEditorRefresh": "OnlineMenu"
+                        "navItemThreshold": 4,
+                        "navigationMenuEditorRefresh": ""
                       },
                       "componentName": "forceCommunity:themeNav",
-                      "id": "3166a693-73c9-4bd8-b4cb-c5e18112857a",
+                      "id": "61e14055-a6ab-4b36-a34d-cb0f6ca2e9db",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "442f8ab5-e38e-4898-9e60-3652cf00cf04",
+                  "id": "3546fe15-ee12-4b3b-b0b2-fc5ba23ea8f2",
                   "regionName": "nav",
                   "type": "region"
                 },
                 {
-                  "id": "f9514467-7121-4c67-8221-974d8e14cf90",
+                  "id": "0eac206a-6557-4c9c-9c39-faa653f0e843",
                   "regionName": "cartIcon",
                   "type": "region"
                 }
@@ -397,7 +392,7 @@
               "type": "component"
             }
           ],
-          "id": "aa24578c-9751-4cae-82ed-664bdd473243",
+          "id": "0afc8c2a-1ae5-48dd-9a48-10e09d8b4eaf",
           "regionName": "themeHeader",
           "type": "region"
         },
@@ -405,66 +400,66 @@
           "components": [
             {
               "componentAttributes": {
-                "bgImage": "background: #FFFFFF url(/sfsites/c/file-asset/mflow__p1fcu_online_header?v=1) top center /cover",
-                "bgOverlayColor": "rgba(46, 22, 200, 0.2)",
-                "captionText": "",
-                "captionTextColor": "rgba(0, 0, 0, 0.8)",
-                "captionTextShadowColor": "rgba(0, 0, 0, 0)",
-                "contentAlignment": "right",
-                "contentWidth": 79,
+                "bgImage": "background: rgb(0,0,0) url(/sfsites/c/file-asset/mflow__p1fcu_online_header?v=1) top center /cover",
+                "bgOverlayColor": "rgba(0, 0, 0, 0.35)",
+                "captionText": "Limited time offer",
+                "captionTextColor": "rgb(255, 255, 255)",
+                "captionTextShadowColor": "rgba(0, 0, 0, 0.5)",
+                "contentAlignment": "center",
+                "contentWidth": 60,
                 "ctaBtnOneBgColor": "",
                 "ctaBtnOneBgHoverColor": "",
-                "ctaBtnOneBorderColor": "rgba(10, 50, 198, 0)",
+                "ctaBtnOneBorderColor": "rgba(0, 0, 0, 0)",
                 "ctaBtnOneOpenNewTab": false,
-                "ctaBtnOneText": "Products",
+                "ctaBtnOneText": "Learn More",
                 "ctaBtnOneTextColor": "",
                 "ctaBtnOneTextHoverColor": "",
-                "ctaBtnOneUrl": "/Online/s/Products",
-                "ctaBtnRadius": 25,
+                "ctaBtnOneUrl": "",
+                "ctaBtnRadius": 4,
                 "ctaBtnTwoBgColor": "rgba(255, 255, 255, 0)",
-                "ctaBtnTwoBgHoverColor": "rgba(255, 255, 255, 0.9)",
-                "ctaBtnTwoBorderColor": "rgba(0, 0, 0, 0.8)",
+                "ctaBtnTwoBgHoverColor": "rgb(255, 255, 255)",
+                "ctaBtnTwoBorderColor": "rgb(255, 255, 255)",
                 "ctaBtnTwoOpenNewTab": false,
-                "ctaBtnTwoText": "Services",
-                "ctaBtnTwoTextColor": "rgba(0, 0, 0, 0.8)",
+                "ctaBtnTwoText": "Secondary",
+                "ctaBtnTwoTextColor": "rgb(255, 255, 255)",
                 "ctaBtnTwoTextHoverColor": "rgba(0, 0, 0, 0.8)",
-                "ctaBtnTwoUrl": "/Online/s/Services",
+                "ctaBtnTwoUrl": "",
                 "ctaShowBtnOne": true,
-                "ctaShowBtnTwo": true,
+                "ctaShowBtnTwo": false,
                 "fixedHeroWidth": true,
-                "heroHeight": 162,
+                "heroHeight": 140,
                 "heroWidth": 1440,
                 "showCaption": true,
-                "showSubtitle": true,
+                "showSubtitle": false,
                 "showTitle": true,
-                "subtitleText": "Born in North Idaho, P1FCU is a credit union that put roots down to help our members succeed. Over 80 years later, we have stayed true to our ideals of working hard and giving back to our friends and neighbors. We have grown to provide services throughout the Pacific Northwest. Stronger together. We are P1FCU, a Pacific Northwest Original since 1938.",
-                "subtitleTextColor": "rgba(0, 0, 0, 0.8)",
-                "subtitleTextShadowColor": "rgba(0, 0, 0, 0)",
-                "titleText": "A Pacific Northwest Original Since 1938",
-                "titleTextColor": "rgba(0, 0, 0, 0.8)",
-                "titleTextShadowColor": "rgba(0, 0, 0, 0)",
+                "subtitleText": "Subtitle Content",
+                "subtitleTextColor": "rgb(255, 255, 255)",
+                "subtitleTextShadowColor": "rgba(0, 0, 0, 0.5)",
+                "titleText": "Collect bonus rewards.",
+                "titleTextColor": "rgb(255, 255, 255)",
+                "titleTextShadowColor": "rgba(0, 0, 0, 0.5)",
                 "type": "callToAction"
               },
               "componentName": "forceCommunity:themeHeroStarter",
-              "id": "6627686c-6361-418c-b81d-86626d381a1a",
+              "id": "183d594c-f29b-49f8-8f70-996dcaba118d",
               "regions": [
                 {
                   "components": [
                     {
                       "componentAttributes": {
-                        "backgroundColor": "#FFFFFF",
-                        "borderColor": "rgba(0, 0, 0, 0)",
-                        "borderRadius": 25,
+                        "backgroundColor": "rgb(255, 255, 255)",
+                        "borderColor": "rgba(0, 0, 0, 0.5)",
+                        "borderRadius": 4,
                         "borderStyle": "outline",
                         "buttonColor": "",
                         "buttonHoverColor": "",
                         "crossObjectTypeaheadApiNames": "",
-                        "iconColor": "#FFFFFF",
+                        "iconColor": "rgb(255, 255, 255)",
                         "placeholderText": "Ask a question...",
                         "placeholderTextColor": "rgba(0, 0, 0, 0.6)",
-                        "publicDropdownBackgroundColor": "#FFFFFF",
+                        "publicDropdownBackgroundColor": "rgb(255, 255, 255)",
                         "publicDropdownBackgroundHoverColor": "",
-                        "publicDropdownBorderColor": "#F0F0F0",
+                        "publicDropdownBorderColor": "rgb(240, 240, 240)",
                         "publicDropdownTextColor": "",
                         "publicDropdownTextHoverColor": "",
                         "showSearchButton": true,
@@ -473,12 +468,12 @@
                         "useTypeahead": true
                       },
                       "componentName": "forceCommunity:themeSearchHero",
-                      "id": "001999a4-58cc-4c3f-a54f-bb2c4773420f",
+                      "id": "961303c3-20fa-4601-a335-1423b82a2881",
                       "renditionMap": {},
                       "type": "component"
                     }
                   ],
-                  "id": "006ecca2-48dc-4179-bcfe-1f5b532e5ba0",
+                  "id": "55a1643e-3979-471b-9feb-eec1bc5b0cb9",
                   "regionName": "search",
                   "type": "region"
                 }
@@ -487,12 +482,12 @@
               "type": "component"
             }
           ],
-          "id": "77aaf990-812d-4237-90be-544b6020b1d8",
+          "id": "d41cc4bc-3d9f-4be4-9abd-01a0db422042",
           "regionName": "themeHero",
           "type": "region"
         },
         {
-          "id": "3904ef24-4d9d-4bc8-86cf-e77c25571cdb",
+          "id": "8c966f1f-2b75-4d94-b7cf-4c2a6e753f37",
           "regionName": "themeFooter",
           "type": "region"
         }
@@ -510,16 +505,16 @@
         "showHero": true
       },
       "componentName": "siteforce:themeLayoutStarter",
-      "id": "8a303b3e-dbce-4747-8f83-0b244ec873a3",
+      "id": "e78b0087-4a63-493d-9258-9878b0c951aa",
       "label": "ServiceNotAvailable",
       "regions": [
         {
-          "id": "78f73fa5-c0b5-41fc-a24d-ed5f5d075a91",
+          "id": "a93aa07a-7e61-473e-9130-5fe1d37fc16d",
           "regionName": "themeHeader",
           "type": "region"
         },
         {
-          "id": "41cb6ccb-2156-45ae-bf39-4d4c1a149e97",
+          "id": "98610e09-63a2-4d7c-a848-7e1da94d144b",
           "regionName": "themeFooter",
           "type": "region"
         }
