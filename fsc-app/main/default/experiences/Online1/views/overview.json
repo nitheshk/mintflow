@@ -35,19 +35,24 @@
                     "config": {
                       "collectionLayoutDefinition": {
                         "attributes": {
-                          "contentIndicatorSpacing": "none",
-                          "limitItems": 5,
-                          "pauseButtonPlacement": "left",
-                          "progressionPace": 5,
-                          "shouldAutoScroll": false,
-                          "showPauseButton": true,
-                          "showProgressArrows": true,
-                          "showProgressIndicator": true,
-                          "slidesToShow": 3,
+                          "collectionTitle": "",
+                          "collectionTitleHeadingTag": "h2",
+                          "columns": "3",
+                          "rows": 2,
+                          "showCollectionTitle": true,
+                          "showViewMoreButton": true,
                           "spacing": "medium",
-                          "transitionSpeed": 600
+                          "viewMoreButtonBackgroundColor": "",
+                          "viewMoreButtonBackgroundColorHover": "",
+                          "viewMoreButtonBorderColor": "",
+                          "viewMoreButtonBorderColorHover": "",
+                          "viewMoreButtonLabel": "View More Items",
+                          "viewMoreButtonPlacement": "center",
+                          "viewMoreButtonRadius": 4,
+                          "viewMoreButtonTextColor": "",
+                          "viewMoreButtonTextColorHover": ""
                         },
-                        "componentName": "forceCommunity:dynamicCollectionCarouselMultiSlide"
+                        "componentName": "forceCommunity:dynamicCollectionGrid"
                       },
                       "dataProviderDefinition": {
                         "attributes": {
@@ -64,11 +69,11 @@
                           "backgroundPosition": "center center",
                           "backgroundSize": "contain",
                           "borderColor": "",
-                          "componentBorderStyles": "",
+                          "componentBorderStyles": "{\"borderTopLeftRadius\":{\"value\":\"8\"},\"borderTopRightRadius\":{\"value\":\"8\"},\"borderBottomRightRadius\":{\"value\":\"8\"},\"borderBottomLeftRadius\":{\"value\":\"8\"},\"borderStyle\":\"groove\"}",
                           "componentHoverEffect": "none",
-                          "componentPadding": "none",
+                          "componentPadding": "medium",
                           "contentBackgroundColor": "#ffffff",
-                          "contentOffset": "0",
+                          "contentOffset": "20",
                           "contentOffsetBackgroundColor": "#ffffff",
                           "contentOffsetPadding": "medium",
                           "contentPosition": "center",
@@ -124,7 +129,7 @@
                           "subTitle": "{!CurrentItem.body}",
                           "subTitleFontSize": "regular",
                           "subTitleTextColor": "",
-                          "textAlignment": "left",
+                          "textAlignment": "center",
                           "timeFormat": "none",
                           "timeZoneDisplay": "short",
                           "timeZoneOptions": "none",

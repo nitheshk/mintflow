@@ -20,7 +20,7 @@
     <navigationMenuItem>
         <label>Contact Us</label>
         <position>3</position>
-        <publiclyAvailable>false</publiclyAvailable>
+        <publiclyAvailable>true</publiclyAvailable>
         <target>/</target>
         <type>InternalLink</type>
     </navigationMenuItem>

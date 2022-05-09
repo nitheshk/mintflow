@@ -271,7 +271,7 @@
         "headerBgColor": "rgba(255, 255, 255, 0.8)",
         "isHeaderPinned": false,
         "isHeroUnderHeader": true,
-        "isPageWidthFixed": true,
+        "isPageWidthFixed": false,
         "showHeader": true,
         "showHero": true
       },
@@ -374,7 +374,7 @@
                     {
                       "componentAttributes": {
                         "navAlignment": "left",
-                        "navItemThreshold": 8,
+                        "navItemThreshold": 9,
                         "navigationMenuEditorRefresh": "OnlineMenu"
                       },
                       "componentName": "forceCommunity:themeNav",
@@ -492,6 +492,17 @@
           "type": "region"
         },
         {
+          "components": [
+            {
+              "componentAttributes": {
+                "richTextValue": "<div style=\"background-color: #18305d;color:white;\" >\n    <p>\n        <br/>\n<div style=\"background-color: #18305d;color:white;margin:20px;\">        \n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1fcu-logo-white.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1652090149161\" height=\"50px;\" width=\"100px;\"/>\n      \n<img src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/co_op_sharedbranch.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1652091055109\" height=\"50px;\" width=\"50px;\"/> © 2022 P1FCU \n    </div>\n   <div style=\"background-color: #18305d;color:white; text-align: center;\" >     \n        <table style=\"background-color: #18305d;color:white; text-align: center;margin:20px\" >\n            <th >Company</th>\n            <th> Resources</th>\n            <th >Legal</th>\n            <tr style=\"background-color: #18305d;color:white; text-align: center;\">\n                <td>\n                    208-746-8900\n                </td>\n                <td >\n                    <a href=\"https://www.p1fcu.org/calculators\" style=\"background-color: #18305d;color:white; text-align: center;\">Calculators</a>\n                </td>\n                <td >\n                      <a href=\"https://www.p1fcu.org/disclosures\" style=\"background-color: #18305d;color:white; text-align: center;\">Disclosures</a>\n                </td>\n            </tr>\n    </table>\n    </div>\n    </p>\n<br/>\n<br/>\n\n</div>"
+              },
+              "componentName": "forceCommunity:htmlBlock",
+              "id": "d654eccf-4d80-4fd7-92d2-aa9564a12fe6",
+              "renditionMap": {},
+              "type": "component"
+            }
+          ],
           "id": "3904ef24-4d9d-4bc8-86cf-e77c25571cdb",
           "regionName": "themeFooter",
           "type": "region"
