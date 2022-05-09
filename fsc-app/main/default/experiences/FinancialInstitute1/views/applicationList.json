@@ -23,21 +23,13 @@
                 }
               ]
             },
-            "sectionHeight": 300
+            "sectionHeight": 400
           },
           "componentName": "forceCommunity:section",
           "id": "4a9bc1d5-ace0-49da-b652-75548fe6ef54",
           "regions": [
             {
               "components": [
-                {
-                  "componentAttributes": {},
-                  "componentName": "mflow:startOnlineApplication",
-                  "id": "3ddf6195-f27c-4d97-aab1-88a102d8a779",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
                 {
                   "componentAttributes": {
                     "enableInlineEdit": true,
