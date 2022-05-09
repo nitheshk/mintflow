@@ -118,5 +118,15 @@ As an Administrator, you can set the execution policy by typing this into your P
   }
 ```
 
-4. Issue Java stepup
+4. Issue Java setup
    `https://developer.salesforce.com/tools/vscode/en/getting-started/java-setup`
+
+5. SFDX CLI update warning Issue
+
+   CLI update warning output lead to breaking in script
+
+   ```
+   Goto --> C:\Users\{{CurrentWindowsLoggedInUser}}\AppData\Local\sfdx
+
+   Update version File and Change Version to Required Version (7.132.0)
+   ```
