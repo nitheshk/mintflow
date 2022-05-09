@@ -10,26 +10,6 @@
       "type": "region"
     },
     {
-      "components": [
-        {
-          "componentAttributes": {
-            "detailsTabLabel": "Details",
-            "discussionsTabLabel": "Feed",
-            "recordId": "{!recordId}",
-            "relatedTabLabel": "Related",
-            "tab1Type": "details",
-            "tab2Type": "none",
-            "tab3Type": "related",
-            "tab4Type": "none",
-            "timelineTabLabel": "Activity"
-          },
-          "componentName": "forceCommunity:recordHomeTabs",
-          "id": "7d997b07-2a11-47fb-960f-94543fc22774",
-          "renderPriority": "NEUTRAL",
-          "renditionMap": {},
-          "type": "component"
-        }
-      ],
       "id": "7cef4921-3a00-4fcc-8073-15947b1e1e3a",
       "regionName": "content",
       "type": "region"
@@ -68,21 +48,6 @@
       "type": "region"
     },
     {
-      "components": [
-        {
-          "componentAttributes": {
-            "hideMenuLabel": true,
-            "logoName": "",
-            "menuName": "FinancialInstituteMenu",
-            "sectionLabel": "Menu"
-          },
-          "componentName": "mflow:financialInsituteNavigationMenu",
-          "id": "ec33cfe2-aa14-430c-a432-6a4adb338d5c",
-          "renderPriority": "NEUTRAL",
-          "renditionMap": {},
-          "type": "component"
-        }
-      ],
       "id": "fac58e21-93bd-49e6-b608-bd8c4d11b9bc",
       "regionName": "menu",
       "type": "region"
@@ -95,6 +60,24 @@
           },
           "componentName": "forceCommunity:recordHeadline",
           "id": "65c9db86-c87a-47b9-9974-a627321407ce",
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        },
+        {
+          "componentAttributes": {
+            "detailsTabLabel": "Details",
+            "discussionsTabLabel": "Feed",
+            "recordId": "{!recordId}",
+            "relatedTabLabel": "Related",
+            "tab1Type": "details",
+            "tab2Type": "none",
+            "tab3Type": "related",
+            "tab4Type": "none",
+            "timelineTabLabel": "Activity"
+          },
+          "componentName": "forceCommunity:recordHomeTabs",
+          "id": "7d997b07-2a11-47fb-960f-94543fc22774",
           "renderPriority": "NEUTRAL",
           "renditionMap": {},
           "type": "component"

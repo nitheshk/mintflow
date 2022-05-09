@@ -17,8 +17,8 @@
   <div class="section slds-grid slds-wrap">
     <div class="slds-col slds-size_1-of-1">{!v.menu}</div>
     <div class="slds-col slds-size_1-of-1">{!v.page_header}</div>
-    <div class="slds-col slds-size_2-of-12 slds-show_large">{!v.sideMenu}</div>
-    <div class="slds-col slds-size_10-of-12">
+    <div class="slds-col slds-size_1-of-1">{!v.sideMenu}</div>
+    <div class="slds-col slds-size_1-of-1">
       <div class="slds-col slds-size_1-of-1">{!v.section1}</div>
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size_4-of-12">{!v.section2}</div>

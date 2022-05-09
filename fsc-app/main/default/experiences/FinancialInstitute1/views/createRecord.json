@@ -5,6 +5,21 @@
   "label": "Create Record",
   "regions": [
     {
+      "components": [
+        {
+          "componentAttributes": {
+            "hideMenuLabel": false,
+            "logoName": "",
+            "menuName": "FinancialInstituteMenu",
+            "sectionLabel": "Menu"
+          },
+          "componentName": "mflow:financialInsituteNavigationMenu",
+          "id": "e3d3a7fa-11a2-482f-a7f8-df30c4a2d011",
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
       "id": "515b8e4c-5861-40c9-80e6-9a69c690c330",
       "regionName": "header",
       "type": "region"
@@ -32,7 +47,7 @@
       "type": "region"
     }
   ],
-  "themeLayoutType": "Inner",
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
   "type": "view",
   "viewType": "createrecord"
 }

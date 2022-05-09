@@ -20,9 +20,10 @@
           <lightning-layout-item
             key={product.id}
             padding="around-small"
-            size="4"
-            medium-device-size="4"
-            small-device-size="12"
+            size={defaulSize}
+            small-device-size={mediumDeviceSize}
+            medium-device-size={smallDeviceSize}
+            large-device-size={largeDeviceSize}
           >
             <c-product-card
               key={product.id}

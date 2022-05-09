@@ -18,21 +18,14 @@
                   "UUID": "c05a4876-e3a7-4c58-9f67-df5e3611686f",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "1",
+                  "columnWidth": "7",
                   "seedComponents": []
                 },
                 {
                   "UUID": "b63edea4-2715-480f-9a7b-21d1cf92cc53",
                   "columnKey": "d0c90",
                   "columnName": "Column 2",
-                  "columnWidth": "7",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "dccc11db-3ec9-429e-b30a-eab7029a0d5d",
-                  "columnKey": "ee0af",
-                  "columnName": "Column 3",
-                  "columnWidth": "4",
+                  "columnWidth": "5",
                   "seedComponents": []
                 }
               ]
@@ -42,28 +35,6 @@
           "componentName": "forceCommunity:section",
           "id": "fc45cfd9-f784-4287-a301-76810d7031ff",
           "regions": [
-            {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "hideMenuLabel": true,
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
-                  },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "acc6adea-177c-42d8-88b6-c4d15ff18c97",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "c05a4876-e3a7-4c58-9f67-df5e3611686f",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
             {
               "components": [
                 {
@@ -180,9 +151,9 @@
                   "type": "component"
                 }
               ],
-              "id": "b63edea4-2715-480f-9a7b-21d1cf92cc53",
-              "regionLabel": "Column 2",
-              "regionName": "d0c90",
+              "id": "c05a4876-e3a7-4c58-9f67-df5e3611686f",
+              "regionLabel": "Column 1",
+              "regionName": "1",
               "renditionMap": {},
               "type": "region"
             },
@@ -212,9 +183,9 @@
                   "type": "component"
                 }
               ],
-              "id": "dccc11db-3ec9-429e-b30a-eab7029a0d5d",
-              "regionLabel": "Column 3",
-              "regionName": "ee0af",
+              "id": "b63edea4-2715-480f-9a7b-21d1cf92cc53",
+              "regionLabel": "Column 2",
+              "regionName": "d0c90",
               "renditionMap": {},
               "type": "region"
             }
@@ -247,7 +218,7 @@
       "type": "region"
     }
   ],
-  "themeLayoutType": "Inner",
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
   "type": "view",
   "viewType": "detail-a00"
 }

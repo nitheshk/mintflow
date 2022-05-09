@@ -54,7 +54,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF",
+                "background": "background: #FFFFFF url(/sfsites/c/file-asset/mflow__p1fcu_online_header?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(0, 0, 0, 0.3)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,
@@ -66,7 +66,7 @@
                 "dropdownBorderColor": "#F0F0F0",
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
-                "headerHeight": 16,
+                "headerHeight": 30,
                 "linkActiveBorderColor": "",
                 "linkColor": "rgba(0, 0, 0, 0.8)",
                 "linkHoverColor": "rgba(0, 0, 0, 0.7)",
@@ -297,7 +297,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: rgba(255,255,255,0.51)",
+                "background": "background: rgba(255,255,255,0.51) url(/sfsites/c/file-asset/mflow__hero_1?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(29, 31, 109, 0.3)",
                 "borderBottomColor": "rgba(17, 30, 50, 0.5)",
                 "centerAlignLogo": false,
@@ -309,7 +309,7 @@
                 "dropdownBorderColor": "#F0F0F0",
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
-                "headerHeight": 32,
+                "headerHeight": 30,
                 "linkActiveBorderColor": "",
                 "linkColor": "rgba(0, 0, 0, 0.8)",
                 "linkHoverColor": "rgba(0, 0, 0, 0.7)",
@@ -401,6 +401,18 @@
                   "type": "region"
                 }
               ],
+              "renditionMap": {},
+              "type": "component"
+            },
+            {
+              "componentAttributes": {
+                "hideMenuLabel": false,
+                "logoName": "",
+                "menuName": "FinancialInstituteMenu",
+                "sectionLabel": "Menu"
+              },
+              "componentName": "mflow:financialInsituteNavigationMenu",
+              "id": "df2213eb-4ce8-4436-b7e8-519772af8c85",
               "renditionMap": {},
               "type": "component"
             }
@@ -500,6 +512,17 @@
           "type": "region"
         },
         {
+          "components": [
+            {
+              "componentAttributes": {
+                "richTextValue": "<div style=\"background-color: #18305d; color: white\">\n    <div class=\"slds-grid slds-gutters  slds-p-around_large \">\n        <div class=\"slds-col slds-size_1-of-1 \">     \n\n            <div class=\"slds-grid slds-gutters\">\n                <div class=\"slds-col slds-p-horizontal_medium\">\n                    <h3 class=\"slds-p-around_small\"><i class=\"fa fa-lg fa-user\" ></i> Personal</h3>\n                    <div class=\"slds-p-around_small\">\n                        <p>Savings Accounts</p>\n                        <p>Loans</p>\n                        <p>Home Loans</p>\n                        <p>Investment Services</p></div>\n                </div>\n                <div class=\"slds-col slds-p-horizontal_medium\">\n                    <h3 class=\"slds-p-around_small\"><i class=\"fa fa-lg fa-building\" ></i> Business</h3>\n                    <div class=\"slds-p-around_small\">\n                        <p>Checking Accounts</p>\n                        <p>Savings Accounts</p>\n                        <p>Loans</p>\n                        <p>Business Services Team</p>\n                        <p>Merchant Services</p></div>\n                </div>\n                <div class=\"slds-col slds-p-horizontal_medium\">\n                    <h3 class=\"slds-p-around_small\"><i class=\"fa fa-lg fa-location-arrow\"></i> About</h3>  \n                    <div class=\"slds-p-around_small\">\n                        <p>Company</p>\n                        <p>Team</p>\n                        <p>Legacy </p>\n                        <br/>\n                        <p> <i class=\"fa fa-lg fa-facebook-official\"></i>\n                            <i class=\"fa fa-lg fa-twitter\" ></i>\n                            <i class=\"fa fa-lg fa-instagram\" ></i> \n                            <i class=\"fa fa-lg fa-envelope\" ></i> </p>\n                    </div>\n                </div>\n                <div class=\"slds-col slds-p-horizontal_medium\">\n                    <h3 class=\"slds-p-around_small\"><i class=\"fa fa-lg fa-gavel\"></i> Legal</h3>  \n                    <div class=\"slds-p-around_small\">\n                        <p><a\n                              href=\"https://www.p1fcu.org/disclosures\"\n                              style=\"background-color: #18305d; color: white; text-align: center\"\n                              >Privancy Policy</a\n                            > </p>\n                        <p><a\n                              href=\"https://www.p1fcu.org/disclosures\"\n                              style=\"background-color: #18305d; color: white; text-align: center\"\n                              >Term of Use</a\n                            > </p>\n                        <p><a\n                              href=\"https://www.p1fcu.org/disclosures\"\n                              style=\"background-color: #18305d; color: white; text-align: center\"\n                              >Disclosures</a\n                            > </p> </div>\n                </div>                \n                <div class=\"slds-col slds-p-horizontal_medium\">                    \n                    <p> <i class=\"fa fa-lg fa-map-marker slds-p-around_small\" > P1FCU, PO Box 897, Lewiston, ID 83501 </i> </p>                \n                    <p> <i class=\"fa fa-lg fa-phone slds-p-around_small\" > Phone: (208) 746-8900 , Toll-Free: (800) 843-7128 </i> </p>    \n                    <p> <i class=\"fa fa-lg fa-envelope slds-p-around_small\" > support@p2fcu.org </i> </p>    \n                </div>\n            </div>      \n        </div>\n\n    </div>\n    <div class=\"slds-col sldx-box slds-size_1-of-1\" style=\"text-align: center; border-top: 5px solid white;\">\n        <div style=\"background-color: #18305d; color: white;\">\n            <img\n                 src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/p1fcu-logo-white.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1652090149161\"\n                 height=\"50px;\"\n                 width=\"100px;\"\n                 />\n            <img\n                 src=\"https://ik.imagekit.io/disczlxo8kv/P1FCU/co_op_sharedbranch.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1652091055109\"\n                 height=\"50px;\"\n                 width=\"50px;\"\n                 />\n            © 2022 P1FCU All rights reserved.\n        </div>\n    </div>\n</div>"
+              },
+              "componentName": "forceCommunity:htmlBlock",
+              "id": "fe0adef1-2acd-4683-a5b9-5e94469e2009",
+              "renditionMap": {},
+              "type": "component"
+            }
+          ],
           "id": "794fde7a-f180-4468-8c64-28fe6458ae8a",
           "regionName": "themeFooter",
           "type": "region"

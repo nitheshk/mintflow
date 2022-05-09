@@ -12,54 +12,26 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "fb6ce365-717e-4d45-a57c-ea796fbe78c7",
+              "UUID": "52b380ba-c6cf-480b-aa79-2109f35c4655",
               "columns": [
                 {
-                  "UUID": "9a764964-1a38-4bf6-ad95-193849c1c9d7",
+                  "UUID": "37b94bd7-828c-4674-8ec4-0b2e3eb6cfcf",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "2",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "63ef8255-b074-43f8-9006-836970e7ca04",
-                  "columnKey": "2d95f",
-                  "columnName": "Column 2",
-                  "columnWidth": "10",
+                  "columnWidth": "12",
                   "seedComponents": []
                 }
               ]
             },
-            "sectionHeight": 300
+            "sectionHeight": 32
           },
           "componentName": "forceCommunity:section",
-          "id": "fb6ce365-717e-4d45-a57c-ea796fbe78c7",
+          "id": "52b380ba-c6cf-480b-aa79-2109f35c4655",
           "regions": [
             {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
-                  },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "e16a42a2-16b2-43cc-9540-c4305104cee9",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "9a764964-1a38-4bf6-ad95-193849c1c9d7",
+              "id": "37b94bd7-828c-4674-8ec4-0b2e3eb6cfcf",
               "regionLabel": "Column 1",
               "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
-            {
-              "id": "63ef8255-b074-43f8-9006-836970e7ca04",
-              "regionLabel": "Column 2",
-              "regionName": "2d95f",
               "renditionMap": {},
               "type": "region"
             }

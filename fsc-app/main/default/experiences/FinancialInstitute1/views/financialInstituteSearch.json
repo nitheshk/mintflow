@@ -12,20 +12,13 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "c8d94707-ac8a-4cff-ac9c-4a4d4ea51b98",
+              "UUID": "f016ed4c-bb8b-4e7f-8890-46ac181815a3",
               "columns": [
                 {
-                  "UUID": "3460bc3c-ff40-4e8a-b62f-9a1cbff7dd7e",
+                  "UUID": "4044d821-ede5-43f9-ba53-19b951f79831",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "2",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "39d81b4f-4367-4408-811d-b58e48542ecf",
-                  "columnKey": "3bdb3",
-                  "columnName": "Column 2",
-                  "columnWidth": "10",
+                  "columnWidth": "12",
                   "seedComponents": []
                 }
               ]
@@ -33,29 +26,8 @@
             "sectionHeight": 300
           },
           "componentName": "forceCommunity:section",
-          "id": "c8d94707-ac8a-4cff-ac9c-4a4d4ea51b98",
+          "id": "f016ed4c-bb8b-4e7f-8890-46ac181815a3",
           "regions": [
-            {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
-                  },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "caca4370-fc54-4c49-a22f-07516b573ecb",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "3460bc3c-ff40-4e8a-b62f-9a1cbff7dd7e",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
             {
               "components": [
                 {
@@ -65,20 +37,20 @@
                       "activeTab": "",
                       "tabs": [
                         {
-                          "UUID": "f63d1b33-fdae-4e87-926d-103c889b2f33",
-                          "allowGuestUser": false,
-                          "locked": false,
-                          "seedComponents": [],
-                          "tabKey": "2",
-                          "tabName": "Search Member"
-                        },
-                        {
                           "UUID": "8a2c3e0e-4541-47c4-b3bc-a9a0d4ea10f4",
                           "allowGuestUser": false,
                           "locked": false,
                           "seedComponents": [],
                           "tabKey": "79d08",
                           "tabName": "Search Applications"
+                        },
+                        {
+                          "UUID": "f63d1b33-fdae-4e87-926d-103c889b2f33",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "2",
+                          "tabName": "Search Member"
                         }
                       ],
                       "useOverflowMenu": false
@@ -87,22 +59,6 @@
                   "componentName": "forceCommunity:tabset",
                   "id": "c7796573-79d2-4383-aafa-70c3ff471b6b",
                   "regions": [
-                    {
-                      "components": [
-                        {
-                          "componentAttributes": {},
-                          "componentName": "mflow:applicantSearch",
-                          "id": "f6b5bfb2-e4aa-4cb9-8364-1b97bcc1c761",
-                          "renditionMap": {},
-                          "type": "component"
-                        }
-                      ],
-                      "id": "f63d1b33-fdae-4e87-926d-103c889b2f33",
-                      "regionLabel": "Search Member",
-                      "regionName": "2",
-                      "renditionMap": {},
-                      "type": "region"
-                    },
                     {
                       "components": [
                         {
@@ -118,6 +74,22 @@
                       "regionName": "79d08",
                       "renditionMap": {},
                       "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {},
+                          "componentName": "mflow:applicantSearch",
+                          "id": "f6b5bfb2-e4aa-4cb9-8364-1b97bcc1c761",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "f63d1b33-fdae-4e87-926d-103c889b2f33",
+                      "regionLabel": "Search Member",
+                      "regionName": "2",
+                      "renditionMap": {},
+                      "type": "region"
                     }
                   ],
                   "renderPriority": "NEUTRAL",
@@ -125,9 +97,9 @@
                   "type": "component"
                 }
               ],
-              "id": "39d81b4f-4367-4408-811d-b58e48542ecf",
-              "regionLabel": "Column 2",
-              "regionName": "3bdb3",
+              "id": "4044d821-ede5-43f9-ba53-19b951f79831",
+              "regionLabel": "Column 1",
+              "regionName": "1",
               "renditionMap": {},
               "type": "region"
             }

@@ -18,14 +18,7 @@
                   "UUID": "193bfa6a-b289-4195-9c2f-2d939a5677b6",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "2",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "87c47b68-5786-41b3-8c41-b3fb7fdfd0f8",
-                  "columnKey": "6cdce",
-                  "columnName": "Column 2",
-                  "columnWidth": "10",
+                  "columnWidth": "12",
                   "seedComponents": []
                 }
               ]
@@ -35,28 +28,6 @@
           "componentName": "forceCommunity:section",
           "id": "9e889494-7745-434a-8f1d-3941f7861be8",
           "regions": [
-            {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "hideMenuLabel": false,
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
-                  },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "818b958f-5a41-44da-8ccd-9d8a202107b4",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "193bfa6a-b289-4195-9c2f-2d939a5677b6",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
             {
               "components": [
                 {
@@ -156,9 +127,9 @@
                   "type": "component"
                 }
               ],
-              "id": "87c47b68-5786-41b3-8c41-b3fb7fdfd0f8",
-              "regionLabel": "Column 2",
-              "regionName": "6cdce",
+              "id": "193bfa6a-b289-4195-9c2f-2d939a5677b6",
+              "regionLabel": "Column 1",
+              "regionName": "1",
               "renditionMap": {},
               "type": "region"
             }
@@ -173,7 +144,7 @@
       "type": "region"
     }
   ],
-  "themeLayoutType": "Inner",
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
   "type": "view",
   "viewType": "list-a00"
 }

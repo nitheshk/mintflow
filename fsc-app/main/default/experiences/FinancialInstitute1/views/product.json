@@ -12,20 +12,13 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "a357d1c4-f406-4d1b-963d-e288f2f9349d",
+              "UUID": "81935261-9bb1-4684-8dad-4034991b99b8",
               "columns": [
                 {
-                  "UUID": "43e08892-38e2-4ed7-a2e3-0ddf190ab9e2",
+                  "UUID": "b1d081b0-efb0-49f7-a5af-9ebce7590822",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "2",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "86fdaf61-ebcf-4579-9efb-8c2c05163bb1",
-                  "columnKey": "ea040",
-                  "columnName": "Column 2",
-                  "columnWidth": "10",
+                  "columnWidth": "12",
                   "seedComponents": []
                 }
               ]
@@ -33,34 +26,16 @@
             "sectionHeight": 300
           },
           "componentName": "forceCommunity:section",
-          "id": "a357d1c4-f406-4d1b-963d-e288f2f9349d",
+          "id": "81935261-9bb1-4684-8dad-4034991b99b8",
           "regions": [
             {
               "components": [
                 {
                   "componentAttributes": {
-                    "hideMenuLabel": false,
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
+                    "defaulSize": "12",
+                    "mediumDeviceSize": "4",
+                    "smallDeviceSize": "4"
                   },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "85d5f8a9-fecc-4369-b20d-4ae6299749c9",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "43e08892-38e2-4ed7-a2e3-0ddf190ab9e2",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
-            {
-              "components": [
-                {
-                  "componentAttributes": {},
                   "componentName": "mflow:productSelection",
                   "id": "f06ace5a-8d63-460e-89f2-ce46e60dc1a9",
                   "renderPriority": "NEUTRAL",
@@ -68,9 +43,9 @@
                   "type": "component"
                 }
               ],
-              "id": "86fdaf61-ebcf-4579-9efb-8c2c05163bb1",
-              "regionLabel": "Column 2",
-              "regionName": "ea040",
+              "id": "b1d081b0-efb0-49f7-a5af-9ebce7590822",
+              "regionLabel": "Column 1",
+              "regionName": "1",
               "renditionMap": {},
               "type": "region"
             }

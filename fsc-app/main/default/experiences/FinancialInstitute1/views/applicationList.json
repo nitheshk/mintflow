@@ -18,14 +18,7 @@
                   "UUID": "6c709f7e-fa23-4883-99c4-2812c1e618d6",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "2",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "98eac692-076c-43c3-946c-864a668a2349",
-                  "columnKey": "4570b",
-                  "columnName": "Column 2",
-                  "columnWidth": "10",
+                  "columnWidth": 12,
                   "seedComponents": []
                 }
               ]
@@ -35,28 +28,6 @@
           "componentName": "forceCommunity:section",
           "id": "4a9bc1d5-ace0-49da-b652-75548fe6ef54",
           "regions": [
-            {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "hideMenuLabel": false,
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
-                  },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "b1b17447-efa1-48c6-bc5a-641a6d89d0f2",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "6c709f7e-fa23-4883-99c4-2812c1e618d6",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
             {
               "components": [
                 {
@@ -91,9 +62,9 @@
                   "type": "component"
                 }
               ],
-              "id": "98eac692-076c-43c3-946c-864a668a2349",
-              "regionLabel": "Column 2",
-              "regionName": "4570b",
+              "id": "6c709f7e-fa23-4883-99c4-2812c1e618d6",
+              "regionLabel": "Column 1",
+              "regionName": "1",
               "renditionMap": {},
               "type": "region"
             }

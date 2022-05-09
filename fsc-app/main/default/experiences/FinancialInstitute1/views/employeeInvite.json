@@ -18,21 +18,14 @@
                   "UUID": "602037c0-47b3-4b04-ae5f-22435c125da3",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "2",
+                  "columnWidth": "8",
                   "seedComponents": []
                 },
                 {
                   "UUID": "e17c0b21-d9a3-4f9d-8975-87bcd61f578e",
                   "columnKey": "05d53",
                   "columnName": "Column 2",
-                  "columnWidth": "8",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "ba651a89-c308-405b-8d19-fb8dbcbae103",
-                  "columnKey": "15e34",
-                  "columnName": "Column 3",
-                  "columnWidth": "2",
+                  "columnWidth": "4",
                   "seedComponents": []
                 }
               ]
@@ -45,13 +38,9 @@
             {
               "components": [
                 {
-                  "componentAttributes": {
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
-                  },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "d66eeff0-8e93-41fc-b0c0-551db2f39f1d",
+                  "componentAttributes": {},
+                  "componentName": "mflow:finInstEmployeeRegister",
+                  "id": "48c2edcc-6c80-489e-a72b-93d2bb875564",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
@@ -66,9 +55,11 @@
             {
               "components": [
                 {
-                  "componentAttributes": {},
-                  "componentName": "mflow:finInstEmployeeRegister",
-                  "id": "48c2edcc-6c80-489e-a72b-93d2bb875564",
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #31769c\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n                <h2 class=\"slds-text-heading_small\">Total Employees</h2>\n            </div>\n            <div class=\"slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3\"></div>\n        </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n        <p>Total : 223 </p>\n        <p>Online : 101 </p>\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">View All</a>\n    </div>\n</div>\n\n<br/>\n\n\n<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #31769c\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n                <h2 class=\"slds-text-heading_small\">Member Service Center</h2>\n            </div>\n            <div class=\"slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3\"></div>\n        </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n        <div class=\"\">\n            <p class=\"slds-box\">                 \n                Phone: (208) 746-8900           \n            </p>\n            <p class=\"slds-box\">    \n                Toll-Free: (800) 843-7128\n            </p>\n            <p class=\"slds-box\">    \n                Hours: Monday-Thursday 8:00 AM – 5:30 PM, Friday 8:00 AM - 6:00 PM, Saturday 9:00 AM – 3:00 PM\n            </p>\n            <p class=\"slds-box\">    \n                Mailing Address: P1FCU, PO Box 897, Lewiston, ID 83501\n            </p>\n            <p class=\"slds-box\">    \n                CO-OP Shared Branch Call Center: (888) 837-6500 \n            </p>\n            <p class=\"slds-box\">    \n                Automated Teller System: (800) 628-8277 or (208) 746-3300\n            </p>\n        </div>\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">View All</a>\n    </div>\n</div>\n\n<br/>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "bc954a17-48f5-4649-b9b2-d947998c8e0b",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
@@ -77,13 +68,6 @@
               "id": "e17c0b21-d9a3-4f9d-8975-87bcd61f578e",
               "regionLabel": "Column 2",
               "regionName": "05d53",
-              "renditionMap": {},
-              "type": "region"
-            },
-            {
-              "id": "ba651a89-c308-405b-8d19-fb8dbcbae103",
-              "regionLabel": "Column 3",
-              "regionName": "15e34",
               "renditionMap": {},
               "type": "region"
             }

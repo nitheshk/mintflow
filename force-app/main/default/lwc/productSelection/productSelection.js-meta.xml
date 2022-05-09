@@ -4,29 +4,39 @@
 	<masterLabel>Product selection</masterLabel>
 	<description>Product selection</description>
 	<targets>
-		<target>lightning__AppPage</target>
-		<target>lightning__HomePage</target>
-		<target>lightning__RecordPage</target>
 		<target>lightningCommunity__Page</target>
 		<target>lightningCommunity__Default</target>
 	</targets>
 	<targetConfigs>
-		<targetConfig targets="lightning__AppPage">
-			<supportedFormFactors>
-				<supportedFormFactor type="Small" />
-				<supportedFormFactor type="Large" />
-			</supportedFormFactors>
-		</targetConfig>
-		<targetConfig targets="lightning__HomePage">
-			<supportedFormFactors>
-				<supportedFormFactor type="Large" />
-			</supportedFormFactors>
-		</targetConfig>
-		<targetConfig targets="lightning__RecordPage">
-			<supportedFormFactors>
-				<supportedFormFactor type="Small" />
-				<supportedFormFactor type="Large" />
-			</supportedFormFactors>
-		</targetConfig>
-	</targetConfigs>
+		  <targetConfig targets="lightningCommunity__Default">
+            <property
+        name="defaulSize"
+        type="String"
+        default="12"
+        label="Defaul Size"
+        description="Defaul Size For Cards"
+      />
+            <property
+        name="smallDeviceSize"
+        type="String"
+        default="6"
+        label="Small Device Size"
+        description="Small Device Size For Cards"
+      />
+            <property
+        name="mediumDeviceSize"
+        type="String"
+        default="4"
+        label="Medium Device Size"
+        description="Medium Device Size For Cards"
+      />
+	   <property
+        name="largeDeviceSize"
+        type="String"
+        default="3"
+        label="Large Device Size"
+        description="Large Device Size For Cards"
+      />
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

@@ -12,20 +12,13 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "a47333af-bab3-428f-ba39-a81f1c4ebdc9",
+              "UUID": "9fb71f84-c8f7-4b0c-86a5-747eb021b864",
               "columns": [
                 {
-                  "UUID": "09271ddd-0c66-45cb-9793-a3f78351138b",
+                  "UUID": "2cc49961-d269-4602-85d2-50a522fa80a0",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "2",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "b3740d8b-52ed-424a-8585-ada4ea7009b7",
-                  "columnKey": "75d38",
-                  "columnName": "Column 2",
-                  "columnWidth": "10",
+                  "columnWidth": "12",
                   "seedComponents": []
                 }
               ]
@@ -33,29 +26,8 @@
             "sectionHeight": 300
           },
           "componentName": "forceCommunity:section",
-          "id": "a47333af-bab3-428f-ba39-a81f1c4ebdc9",
+          "id": "9fb71f84-c8f7-4b0c-86a5-747eb021b864",
           "regions": [
-            {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
-                  },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "a8f6c021-4d74-4314-9772-f141a30e8503",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "09271ddd-0c66-45cb-9793-a3f78351138b",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
             {
               "components": [
                 {
@@ -81,9 +53,9 @@
                   "type": "component"
                 }
               ],
-              "id": "b3740d8b-52ed-424a-8585-ada4ea7009b7",
-              "regionLabel": "Column 2",
-              "regionName": "75d38",
+              "id": "2cc49961-d269-4602-85d2-50a522fa80a0",
+              "regionLabel": "Column 1",
+              "regionName": "1",
               "renditionMap": {},
               "type": "region"
             }

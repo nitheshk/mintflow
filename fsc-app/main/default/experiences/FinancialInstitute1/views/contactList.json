@@ -5,6 +5,21 @@
   "label": "Contact List",
   "regions": [
     {
+      "components": [
+        {
+          "componentAttributes": {
+            "hideMenuLabel": false,
+            "logoName": "",
+            "menuName": "FinancialInstituteMenu",
+            "sectionLabel": "Menu"
+          },
+          "componentName": "mflow:financialInsituteNavigationMenu",
+          "id": "3ef35a8b-c836-4975-90fe-17c9c977c883",
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
       "id": "77dc9a51-6c22-4467-8008-3bbacb733190",
       "regionName": "header",
       "type": "region"
@@ -45,7 +60,7 @@
       "type": "region"
     }
   ],
-  "themeLayoutType": "Inner",
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
   "type": "view",
   "viewType": "list-003"
 }

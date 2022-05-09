@@ -1,8 +1,12 @@
-import { LightningElement, track, wire } from "lwc";
+import { LightningElement, track, wire, api } from "lwc";
 import getProducts from "@salesforce/apex/LwcOnlineSiteController.productSelector";
 import startApplication from "@salesforce/apex/ApplicationController.startApplication";
 
 export default class ProductSelection extends LightningElement {
+  @api defaulSize;
+  @api smallDeviceSize;
+  @api mediumDeviceSize;
+  @api largeDeviceSize;
   allProducts;
   @track productsToShow;
   @track productMap = new Map();

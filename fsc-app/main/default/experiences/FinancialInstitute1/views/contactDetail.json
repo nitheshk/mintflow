@@ -12,27 +12,54 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
+              "UUID": "e7d41c00-d5b8-4bfe-89e5-11e77d175cf4",
+              "columns": [
+                {
+                  "UUID": "65d54353-f8d9-4ba1-a576-c40487952934",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "12",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 32
+          },
+          "componentName": "forceCommunity:section",
+          "id": "e7d41c00-d5b8-4bfe-89e5-11e77d175cf4",
+          "regions": [
+            {
+              "id": "65d54353-f8d9-4ba1-a576-c40487952934",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        },
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
               "UUID": "1972d54c-a86f-4bec-bc12-d90f547e3efb",
               "columns": [
                 {
                   "UUID": "9579e437-a641-4ff8-8524-dc2b17e9c212",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "1",
+                  "columnWidth": "7",
                   "seedComponents": []
                 },
                 {
                   "UUID": "b7c9be2c-a504-40ad-a528-1061ac183783",
                   "columnKey": "7f855",
                   "columnName": "Column 2",
-                  "columnWidth": "7",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "73755555-4092-43b9-8570-b6e9f2a0c2f7",
-                  "columnKey": "6c72f",
-                  "columnName": "Column 3",
-                  "columnWidth": "4",
+                  "columnWidth": "5",
                   "seedComponents": []
                 }
               ]
@@ -42,28 +69,6 @@
           "componentName": "forceCommunity:section",
           "id": "1972d54c-a86f-4bec-bc12-d90f547e3efb",
           "regions": [
-            {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "hideMenuLabel": true,
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
-                  },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "601102df-ddc2-4abb-8d52-1172ad9c2e8c",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "9579e437-a641-4ff8-8524-dc2b17e9c212",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
             {
               "components": [
                 {
@@ -191,9 +196,9 @@
                   "type": "component"
                 }
               ],
-              "id": "b7c9be2c-a504-40ad-a528-1061ac183783",
-              "regionLabel": "Column 2",
-              "regionName": "7f855",
+              "id": "9579e437-a641-4ff8-8524-dc2b17e9c212",
+              "regionLabel": "Column 1",
+              "regionName": "1",
               "renditionMap": {},
               "type": "region"
             },
@@ -211,9 +216,9 @@
                   "type": "component"
                 }
               ],
-              "id": "73755555-4092-43b9-8570-b6e9f2a0c2f7",
-              "regionLabel": "Column 3",
-              "regionName": "6c72f",
+              "id": "b7c9be2c-a504-40ad-a528-1061ac183783",
+              "regionLabel": "Column 2",
+              "regionName": "7f855",
               "renditionMap": {},
               "type": "region"
             }
