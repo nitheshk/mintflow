@@ -32,6 +32,7 @@
               "components": [
                 {
                   "componentAttributes": {
+                    "backgroudColor": "#7e9ecf 40%",
                     "defaulSize": "12",
                     "largeDeviceSize": "3",
                     "mediumDeviceSize": "6",
