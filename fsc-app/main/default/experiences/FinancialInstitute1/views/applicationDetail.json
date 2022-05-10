@@ -12,55 +12,6 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "8bb89c09-f515-45f2-9800-f125069c02c6",
-              "columns": [
-                {
-                  "UUID": "d2c99e84-2bd7-421b-b5b0-802c5b1553b1",
-                  "columnKey": "1",
-                  "columnName": "Column 1",
-                  "columnWidth": "12",
-                  "seedComponents": []
-                }
-              ]
-            },
-            "sectionHeight": 32
-          },
-          "componentName": "forceCommunity:section",
-          "id": "8bb89c09-f515-45f2-9800-f125069c02c6",
-          "regions": [
-            {
-              "components": [
-                {
-                  "componentAttributes": {
-                    "hideMenuLabel": false,
-                    "logoName": "",
-                    "menuName": "FinancialInstituteMenu",
-                    "sectionLabel": "Menu"
-                  },
-                  "componentName": "mflow:financialInsituteNavigationMenu",
-                  "id": "35878dec-fe10-42c7-9c31-efd52a4de3af",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                }
-              ],
-              "id": "d2c99e84-2bd7-421b-b5b0-802c5b1553b1",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            }
-          ],
-          "renderPriority": "NEUTRAL",
-          "renditionMap": {},
-          "type": "component"
-        },
-        {
-          "componentAttributes": {
-            "background": "background: rgba(0,0,0,0)",
-            "backgroundOverlay": "rgba(0,0,0,0.5)",
-            "contentAreaWidth": 100,
-            "sectionConfig": {
               "UUID": "2c25f208-9f53-4b17-9c01-64adedd11702",
               "columns": [
                 {
