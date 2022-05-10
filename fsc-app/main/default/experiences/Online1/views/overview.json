@@ -8,7 +8,7 @@
       "components": [
         {
           "componentAttributes": {
-            "background": "background: rgba(0,0,0,0)",
+            "background": "background: rgb(247,248,248)",
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
@@ -155,6 +155,134 @@
                 }
               ],
               "id": "8673040f-f117-4bc7-8f7f-12bd2f89c631",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        },
+        {
+          "componentAttributes": {
+            "background": "background: rgb(236,243,247)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "7a8a1d30-e82c-4c5b-98df-f8af1e65b05f",
+              "columns": [
+                {
+                  "UUID": "d9760193-0baf-4990-be48-e67c4114f519",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "12",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "7a8a1d30-e82c-4c5b-98df-f8af1e65b05f",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "config": {
+                      "contentItemContentKey": "MC3S6Y5CGKPZF5NOPYICVUS7L654",
+                      "layoutDefinition": {
+                        "attributes": {
+                          "additionalLinks": "{}",
+                          "backgroundPosition": "center center",
+                          "backgroundSize": "cover",
+                          "bannerAspectRatio": "16:9",
+                          "bannerHeight": 450,
+                          "bannerSubTitleTextColor": "#ffffff",
+                          "bannerTitleTextColor": "rgb(250, 252, 254)",
+                          "callToActionButtonBackgroundColor": "",
+                          "callToActionButtonBackgroundColorHover": "",
+                          "callToActionButtonBorderColor": "",
+                          "callToActionButtonBorderColorHover": "",
+                          "callToActionButtonBorderStyles": "",
+                          "callToActionButtonTextColor": "",
+                          "callToActionButtonTextColorHover": "",
+                          "callToActionLabel": "View",
+                          "componentHoverEffect": "none",
+                          "contentWidth": 80,
+                          "dateFormat": "none",
+                          "datetime": "",
+                          "datetimeFontSize": "regular",
+                          "datetimeTextColor": "#ffffff",
+                          "datetimeTextDecoration": "",
+                          "defaultLinksOverrides": "{}",
+                          "displayDayOfWeek": false,
+                          "eyebrowFontSize": "regular",
+                          "eyebrowHighlightColor": "",
+                          "eyebrowText": "",
+                          "eyebrowTextColor": "#ffffff",
+                          "eyebrowTextDecoration": "",
+                          "flagAlignment": "top left",
+                          "flagBackgroundColor": "rgb(24, 48, 93)",
+                          "flagBorderColor": "#ffffff",
+                          "flagBorderStyles": "{\"borderTopLeftRadius\":{\"value\":\"0\"},\"borderTopRightRadius\":{\"value\":\"0\"},\"borderBottomRightRadius\":{\"value\":\"0\"},\"borderBottomLeftRadius\":{\"value\":\"0\"}}",
+                          "flagRotation": -30,
+                          "flagSpacing": "medium",
+                          "flagText": "{!CurrentItem.title}",
+                          "flagTextColor": "#ffffff",
+                          "flagTextDecoration": "",
+                          "hideTextElementsForVideo": false,
+                          "imageAltText": "",
+                          "imageUrl": "{!CurrentItem.bannerImage.url}",
+                          "metadata1HighlightColor": "",
+                          "metadata1Text": "",
+                          "metadata2HighlightColor": "",
+                          "metadata2Text": "",
+                          "metadataFontSize": "regular",
+                          "metadataTextColor": "#ffffff",
+                          "metadataTextDecoration": "",
+                          "overlayBackgroundColor": "rgba(0, 0, 0, 0.4)",
+                          "showButton": false,
+                          "showCaption": true,
+                          "showDateTime": false,
+                          "showEyebrow": true,
+                          "showEyebrowHighlight": false,
+                          "showFlag": true,
+                          "showMetadata1": false,
+                          "showMetadata1Highlight": false,
+                          "showMetadata2": false,
+                          "showMetadata2Highlight": false,
+                          "showTitle": true,
+                          "showTitleHighlight": false,
+                          "subTitle": "{!CurrentItem.body}",
+                          "subTitleFontSize": "regular",
+                          "textAlignment": "center center",
+                          "timeFormat": "none",
+                          "timeZoneDisplay": "short",
+                          "timeZoneOptions": "none",
+                          "title": "{!CurrentItem.title}",
+                          "titleFontSize": "large",
+                          "titleHeadingTag": "h1",
+                          "titleHighlightColor": "",
+                          "titleTextDecoration": "{\"bold\":true,\"italic\":false}",
+                          "useAspectRatio": false,
+                          "videoUrl": ""
+                        },
+                        "componentName": "forceCommunity:bannerLayout"
+                      },
+                      "schemaVersion": "V2.0"
+                    }
+                  },
+                  "componentName": "forceCommunity:managedContent",
+                  "id": "46451d18-d4cf-405b-a9ea-9aa4fc7c90f8",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "d9760193-0baf-4990-be48-e67c4114f519",
               "regionLabel": "Column 1",
               "regionName": "1",
               "renditionMap": {},
