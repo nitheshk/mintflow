@@ -33,8 +33,9 @@
                 {
                   "componentAttributes": {
                     "defaulSize": "12",
-                    "mediumDeviceSize": "4",
-                    "smallDeviceSize": "4"
+                    "largeDeviceSize": "3",
+                    "mediumDeviceSize": "6",
+                    "smallDeviceSize": "6"
                   },
                   "componentName": "mflow:productSelection",
                   "id": "f06ace5a-8d63-460e-89f2-ce46e60dc1a9",

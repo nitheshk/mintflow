@@ -18,7 +18,14 @@
                   "UUID": "2cc49961-d269-4602-85d2-50a522fa80a0",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "12",
+                  "columnWidth": "10",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "54498f50-3e5f-4dff-a6b4-a5d7e942b56c",
+                  "columnKey": "2d0f1",
+                  "columnName": "Column 2",
+                  "columnWidth": "2",
                   "seedComponents": []
                 }
               ]
@@ -32,7 +39,7 @@
               "components": [
                 {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"slds-page-header\">\n  <div class=\"slds-page-header__row\">\n    <div class=\"slds-page-header__col-title\">\n      <div class=\"slds-media\">\n        <div class=\"slds-media__figure\">\n          <span class=\"slds-icon_container slds-icon-standard-opportunity\" title=\"opportunity\">                       \n          </span>\n        </div>\n        <div class=\"slds-media__body\">\n          <div class=\"slds-page-header__name\">\n            <div class=\"slds-page-header__name-title\">\n              <h1>\n                <span style=\"color:#3b4eb0;\" class=\"slds-page-header__title slds-truncate\" title=\"All Employees\">All Employees</span>\n              </h1>\n            </div>\n          </div>\n          <p class=\"slds-page-header__name-meta\"></p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+                    "richTextValue": "<div class=\"slds-page-header\">\n  <div class=\"slds-page-header__row\">\n    <div class=\"slds-page-header__col-title\">\n      <div class=\"slds-media\">\n        <div class=\"slds-media__figure\">\n          <span class=\"slds-icon_container slds-icon-standard-opportunity\" title=\"opportunity\">                       \n          </span>\n        </div>\n        <div class=\"slds-media__body\">\n          <div class=\"slds-page-header__name\">\n            <div class=\"slds-page-header__name-title\">\n              <h1>\n                <span style=\"color:#18305d;\" class=\"slds-page-header__title slds-truncate\" title=\"All Employees\">All Employees</span>\n              </h1>\n            </div>\n          </div>\n          <p class=\"slds-page-header__name-meta\"></p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
                   "id": "6b43dd54-5fd2-4617-b6bd-c004c65d48e2",
@@ -56,6 +63,25 @@
               "id": "2cc49961-d269-4602-85d2-50a522fa80a0",
               "regionLabel": "Column 1",
               "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #18305d\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n                <h2 class=\"slds-text-heading_small\">Send Invite</h2>\n            </div>\n            <div class=\"slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3\"></div>\n        </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n        <p>Invite New Employee</p>\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"/HomePageFI/s/EmployeeInvite\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">Invite</a>\n    </div>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "04c78a3e-bdae-4ee4-bba9-8dab30f37a6a",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "54498f50-3e5f-4dff-a6b4-a5d7e942b56c",
+              "regionLabel": "Column 2",
+              "regionName": "2d0f1",
               "renditionMap": {},
               "type": "region"
             }
