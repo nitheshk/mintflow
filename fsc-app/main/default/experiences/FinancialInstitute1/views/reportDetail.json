@@ -10,18 +10,6 @@
       "type": "region"
     },
     {
-      "components": [
-        {
-          "componentAttributes": {
-            "recordId": "{!recordId}"
-          },
-          "componentName": "forceCommunity:reportPage",
-          "id": "05d922f4-7cfd-47d8-9caa-3c5067ad3fc0",
-          "renderPriority": "NEUTRAL",
-          "renditionMap": {},
-          "type": "component"
-        }
-      ],
       "id": "2468f060-1019-441a-b68a-fe49be09de71",
       "regionName": "content",
       "type": "region"
@@ -97,21 +85,6 @@
       "type": "region"
     },
     {
-      "components": [
-        {
-          "componentAttributes": {
-            "hideMenuLabel": true,
-            "logoName": "",
-            "menuName": "FinancialInstituteMenu",
-            "sectionLabel": "Menu"
-          },
-          "componentName": "mflow:financialInsituteNavigationMenu",
-          "id": "a760af1c-a9d1-45a8-bcd0-501048c7ba93",
-          "renderPriority": "NEUTRAL",
-          "renditionMap": {},
-          "type": "component"
-        }
-      ],
       "id": "54cbbcfe-3fdc-4c44-90a6-4ee99285a020",
       "regionName": "menu",
       "type": "region"
@@ -160,9 +133,31 @@
       "id": "e897434b-63bd-4188-be73-af7ae25d01a4",
       "regionName": "section9",
       "type": "region"
+    },
+    {
+      "id": "e566b931-7d23-42f2-b3b4-0dfb6e7b1279",
+      "regionName": "sideMenu",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "recordId": "{!recordId}"
+          },
+          "componentName": "forceCommunity:reportPage",
+          "id": "05d922f4-7cfd-47d8-9caa-3c5067ad3fc0",
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "0c5f2ab6-a8e1-471e-b70f-4ef6c2942355",
+      "regionName": "main",
+      "type": "region"
     }
   ],
-  "themeLayoutType": "Inner",
+  "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
   "type": "view",
   "viewType": "detail-00O"
 }
