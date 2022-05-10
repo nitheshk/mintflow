@@ -9,6 +9,10 @@
             <access>VIEWER</access>
             <name>FinancialInstitute</name>
         </network>
+        <network>
+            <access>VIEWER</access>
+            <name>Online</name>
+        </network>
         <workspace>
             <access>INFERRED</access>
             <isManagingWorkspace>true</isManagingWorkspace>

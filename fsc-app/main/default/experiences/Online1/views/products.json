@@ -23,7 +23,7 @@
                 }
               ]
             },
-            "sectionHeight": 300
+            "sectionHeight": 32
           },
           "componentName": "forceCommunity:section",
           "id": "3ace37da-09fa-43df-b670-81b1fe3526c8",
@@ -32,18 +32,14 @@
               "components": [
                 {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"slds-grid slds-wrap\" style=\"float:right;\">\n  <div class=\"slds-col slds-box slds-size_1-of-1 \">\n     <a href =\"Services\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Services</a>\n    <a href =\"ContactUs\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #31769c;text-decoration:none\">Contact Us</a>\n  </div>\n</div>"
+                    "backgroudColor": "rgb(224, 232, 240) 40%",
+                    "defaulSize": "12",
+                    "largeDeviceSize": "3",
+                    "mediumDeviceSize": "4",
+                    "smallDeviceSize": "6"
                   },
-                  "componentName": "forceCommunity:htmlBlock",
-                  "id": "8f8cbd8d-2d73-4ac7-a056-1251acb99b7b",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {},
                   "componentName": "mflow:productSelection",
-                  "id": "e52ec06e-861f-4c06-be39-d0b9c32beb6c",
+                  "id": "6772169a-bc10-496a-836b-15d14e11e2f2",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"

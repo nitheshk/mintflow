@@ -21,7 +21,7 @@
         <label>Contact Us</label>
         <position>3</position>
         <publiclyAvailable>true</publiclyAvailable>
-        <target>/</target>
+        <target>/ContactUs</target>
         <type>InternalLink</type>
     </navigationMenuItem>
 </NavigationMenu>

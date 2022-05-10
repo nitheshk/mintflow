@@ -1,8 +1,8 @@
 {
   "appPageId": "62bf51a0-121c-4952-8e6e-8f780a07e682",
   "componentName": "siteforce:dynamicLayout",
-  "id": "27a97c22-d1f0-4268-b4a2-08e0cb7e60d5",
-  "label": "News Detail",
+  "id": "81b6261c-e98e-40b4-9b45-dc2640c67eaa",
+  "label": "ContactUs",
   "regions": [
     {
       "components": [
@@ -12,10 +12,10 @@
             "backgroundOverlay": "rgba(0,0,0,0.5)",
             "contentAreaWidth": 100,
             "sectionConfig": {
-              "UUID": "f78e9f7b-c676-4bd9-a753-863ffbc21837",
+              "UUID": "c24bd82f-3ce7-4de5-bd30-9a1a1177ae8a",
               "columns": [
                 {
-                  "UUID": "20421d31-ddb2-41fb-85fe-f002c30b1da8",
+                  "UUID": "cd51edd4-8a4a-4c92-8820-c8357ac2b314",
                   "columnKey": "1",
                   "columnName": "Column 1",
                   "columnWidth": "12",
@@ -23,13 +23,13 @@
                 }
               ]
             },
-            "sectionHeight": 300
+            "sectionHeight": 32
           },
           "componentName": "forceCommunity:section",
-          "id": "f78e9f7b-c676-4bd9-a753-863ffbc21837",
+          "id": "c24bd82f-3ce7-4de5-bd30-9a1a1177ae8a",
           "regions": [
             {
-              "id": "20421d31-ddb2-41fb-85fe-f002c30b1da8",
+              "id": "cd51edd4-8a4a-4c92-8820-c8357ac2b314",
               "regionLabel": "Column 1",
               "regionName": "1",
               "renditionMap": {},
@@ -41,7 +41,7 @@
           "type": "component"
         }
       ],
-      "id": "9300dd97-97ff-4666-8353-81c87a8bc86d",
+      "id": "3db39775-b658-466f-a76e-d46d5a6bd7fa",
       "regionName": "content",
       "type": "region"
     },
@@ -51,20 +51,20 @@
           "componentAttributes": {
             "customHeadTags": "",
             "description": "",
-            "title": "{!Content.contentTypeLabel}.{!Content.title}"
+            "title": "ContactUs"
           },
           "componentName": "forceCommunity:seoAssistant",
-          "id": "e63bdd36-4f7f-4aa1-bec3-2d397f94e318",
+          "id": "7baf0af6-8a2e-479c-8976-ffb033b27a1c",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "62c16461-07e6-429b-8622-14111af35a45",
+      "id": "d29a0d98-ad4b-4a8e-a568-bfb3eaa5e9a3",
       "regionName": "sfdcHiddenRegion",
       "type": "region"
     }
   ],
   "themeLayoutType": "Inner",
   "type": "view",
-  "viewType": "managed-content-news"
+  "viewType": "custom-contact-us"
 }

@@ -11,7 +11,7 @@
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <label>Product;standard:product_service_campaign</label>
+        <label>Products;standard:product_service_campaign</label>
         <position>2</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>/Product</target>
@@ -19,7 +19,7 @@
     </navigationMenuItem>
     <navigationMenuItem>
         <defaultListViewId>mflow__All</defaultListViewId>
-        <label>Application;standard:work_plan</label>
+        <label>Applications;standard:work_plan</label>
         <position>3</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>mflow__Application__c</target>
