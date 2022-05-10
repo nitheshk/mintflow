@@ -37,6 +37,13 @@
         label="Large Device Size"
         description="Large Device Size For Cards"
       />
+      <property
+        name="backgroudColor"
+        type="String"
+        default="rgb(224, 232, 240) 40%"
+        label="Backgroud Color of layout"
+        description="Backgroud Color of layout"
+      />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

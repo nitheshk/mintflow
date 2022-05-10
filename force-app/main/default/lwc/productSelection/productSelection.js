@@ -7,6 +7,7 @@ export default class ProductSelection extends LightningElement {
   @api smallDeviceSize;
   @api mediumDeviceSize;
   @api largeDeviceSize;
+  @api backgroudColor;
   allProducts;
   @track productsToShow;
   @track productMap = new Map();
@@ -32,6 +33,22 @@ export default class ProductSelection extends LightningElement {
     } else if (error) {
       console.log("error : " + JSON.stringify(error));
     }
+  }
+
+  /**
+   * Rendered Callback
+   */
+  renderedCallback() {
+    this.setComponentStyle();
+  }
+
+  /**
+   * set Component Style
+   */
+  setComponentStyle() {
+    this.template
+      .querySelector("lightning-card")
+      ?.style?.setProperty("--sds-c-card-color-background", this.backgroudColor);
   }
 
   /**
