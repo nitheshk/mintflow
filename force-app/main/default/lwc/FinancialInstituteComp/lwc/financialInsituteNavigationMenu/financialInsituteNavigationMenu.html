@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-bar slds-p-around_medium slds-border_bottom">
+  <div class="nav-bar slds-var-p-around_medium slds-border_bottom">
     <ul class="slds-list_horizontal">
       <template for:each={menuItems} for:item="item">
         <template if:true={item.isActive}>
@@ -35,26 +35,4 @@
       </template>
     </ul>
   </div>
-
-  <template if:true={isEmployeePage}>
-    <div class="slds-var-p-around_medium invite-card">
-      <div class="slds-var-p-around_small">
-        <h1>Send Invite</h1>
-        <br />
-        <p>Invite New Employee</p>
-      </div>
-      <div class="slds-var-p-around_small">
-        <lightning-button
-          variant="brand-outline"
-          label="Invite"
-          title="Invite"
-          onclick={navigateToInvite}
-          class="buttonBase"
-          icon-name="utility:forward"
-          icon-position="right"
-          data-fieldname="EmployeeInvite"
-        ></lightning-button>
-      </div>
-    </div>
-  </template>
 </template>

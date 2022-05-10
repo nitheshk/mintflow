@@ -85,6 +85,7 @@ export default class NavigationMenu extends NavigationMixin(LightningElement) {
       return element.position == event.target.dataset.item;
     });
     let item = items[0];
+    this.currentPosition = item.position;
 
     const { type, target, defaultListViewId } = item;
 
@@ -121,6 +122,15 @@ export default class NavigationMenu extends NavigationMixin(LightningElement) {
     event.preventDefault();
 
     if (pageReference) {
+      this.menuItems.forEach((element) => {
+        if (element.position == item.position) {
+          element.isActive = true;
+        } else {
+          element.isActive = false;
+        }
+      });
+      this.menuItems = JSON.parse(JSON.stringify(this.menuItems));
+
       this[NavigationMixin.Navigate](pageReference);
     } else {
       console.log(`Navigation menu type "${this.item.type}" not implemented for item ${JSON.stringify(item)}`);
