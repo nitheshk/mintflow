@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>EndPoint__c</field>
-        <value xsi:type="xsd:string">callout:mflow__Plaid/auth/get</value>
+        <value xsi:type="xsd:string">callout:Plaid/auth/get</value>
     </values>
     <values>
         <field>Method__c</field>

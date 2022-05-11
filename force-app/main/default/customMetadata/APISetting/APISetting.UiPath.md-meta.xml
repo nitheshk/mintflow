@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>EndPoint__c</field>
-        <value xsi:type="xsd:string">callout:mflow__UiPathToken/identity_/connect/token</value>
+        <value xsi:type="xsd:string">callout:UiPathToken/identity_/connect/token</value>
     </values>
     <values>
         <field>Method__c</field>

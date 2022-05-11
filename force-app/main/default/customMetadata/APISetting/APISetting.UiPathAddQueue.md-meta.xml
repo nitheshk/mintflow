@@ -10,7 +10,7 @@
         <field>EndPoint__c</field>
         <value
       xsi:type="xsd:string"
-    >callout:mflow__UiPath/digtalalign/Production/orchestrator_/odata/Queues/UiPathODataSvc.AddQueueItem</value>
+    >callout:UiPath/digtalalign/Production/orchestrator_/odata/Queues/UiPathODataSvc.AddQueueItem</value>
     </values>
     <values>
         <field>Method__c</field>
