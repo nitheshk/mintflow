@@ -297,7 +297,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: rgba(255,255,255,0.51) url(/sfsites/c/file-asset/mflow__hero_1?v=1) center center /cover",
+                "background": "background: rgba(255,255,255,0.51) url(/sfsites/c/file-asset/p1fcu_online_header?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(29, 31, 109, 0.3)",
                 "borderBottomColor": "rgba(17, 30, 50, 0.5)",
                 "centerAlignLogo": false,
