@@ -27,11 +27,20 @@ export default class ValidationFormatUtils extends LightningElement {
 
   //Financial Institute Employee creation
   birthdateValidationMessage = "Person should be 18 years or older";
-  get currentDate() {
+
+  get todayDate() {
     var today = new Date(); // current date
     var dd = String(today.getDate()).padStart(2, "0");
     var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    var yyyy = today.getFullYear() - 18; // -18 years
-    return mm + "/" + dd + "/" + yyyy;
+    var yyyy = today.getFullYear(); // -18 years
+    return yyyy + "/" + mm + "/" + dd;
+  }
+
+  get maxBirthdate18YearBack() {
+    var today = new Date(); // current date
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear() - 18;
+    return yyyy + "/" + mm + "/" + dd;
   }
 }

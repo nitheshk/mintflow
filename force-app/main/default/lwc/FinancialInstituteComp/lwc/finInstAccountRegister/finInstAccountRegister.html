@@ -106,14 +106,15 @@
         </div>
         <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-small">
           <lightning-input
-            pattern={numericValidation}
-            message-when-pattern-mismatch="Please enter valid year"
-            data-fieldname="YearStarted"
-            label="Year Started"
-            value={accountRecord.YearStarted}
-            maxlength="4"
-            placeholder="YYYY"
+            data-fieldname="mflow__CompanyStarted__c"
+            type="date"
+            value={accountRecord.mflow__CompanyStarted__c}
+            name="CompanyStarted"
+            label="Company Started"
+            max={todayDate}
+            min="1900-01-01"
             onchange={handleChange}
+            placeholder="Company Started"
             class="validation"
           ></lightning-input>
         </div>

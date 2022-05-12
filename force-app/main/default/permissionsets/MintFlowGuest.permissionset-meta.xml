@@ -784,7 +784,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.YearStarted</field>
+        <field>Account.CompanyStarted__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
