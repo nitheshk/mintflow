@@ -10,7 +10,7 @@
   "NK2": {
     "scratchOrgName": "mflow",
     "devhubUserName": "nithesh.k@digitalalign.devhub2.com",
-    "devhubOrgName": "devhub",
+    "devhubOrgName": "devhub2",
     "devhubClientId": "3MVG9fe4g9fhX0E6DLxg.Nir3zQRdt0_I0QCe5HEKQ1RdIeKCPQvrQ7J8RsHUPFuhbko4INytrcEZ3K.5JvXx",
     "devhubInstanceUrl": "https://login.salesforce.com",
     "jwtkeyfile": "jwt/server.key"
@@ -18,7 +18,7 @@
   "NK3": {
     "scratchOrgName": "mflow",
     "devhubUserName": "nithesh.k@digitalalign.devhub3.com",
-    "devhubOrgName": "devhub",
+    "devhubOrgName": "devhub3",
     "devhubClientId": "3MVG9fe4g9fhX0E48nPzgwNmTpzMWJFpO_gzRFLGDVWJQ_eGycqbGslthktjPiKaTwm6weNWMMQS8t0EXR3jc",
     "devhubInstanceUrl": "https://login.salesforce.com",
     "jwtkeyfile": "jwt/server.key"
@@ -34,7 +34,7 @@
   "puneeth": {
     "scratchOrgName": "mflow",
     "devhubUserName": "puneeth.kumar@digitalalign.devhub1.com",
-    "devhubOrgName": "devhub",
+    "devhubOrgName": "devhub1",
     "devhubClientId": "3MVG9fe4g9fhX0E505zX5WfveYUC2Iyoh4LUaOg5CI6BzR2s7ieOhNLZA1rumu50SMFC9f18gx45sdzPyO3wK",
     "devhubInstanceUrl": "https://login.salesforce.com",
     "jwtkeyfile": "jwt/server.key"

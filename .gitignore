@@ -68,7 +68,6 @@ Trial Customer Portal User.profile
 *PasswordPolicy*
 
 # Site
-fsc-app/main/default/sites/OnlineBanking.site-meta.xml
 communityLinks.json
 p1fcu-olbui/package-lock.json
 .idea/*
