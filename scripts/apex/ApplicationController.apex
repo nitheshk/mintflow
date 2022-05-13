@@ -129,3 +129,17 @@ LwcCustomRepository.readSObjectById('mflow__Application__c', 'a026D000004YXdAQAW
 
 ApexResponse res = LwcCustomController.lwcRecordLevelVisibility('a026D000004YXdAQAW', 'mflow__Application__c', '');
 system.debug('Full Json : ' + res.data);
+
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  'a020w000007QHSmAAO',
+  'a000w000005T6iuAAC',
+  'Primary',
+  'ApplicationFlow'
+);
+system.debug('request.token : ' + request.token);
+
+ApexRequest request = new ApexRequest();
+request.token = 'pyh8mYAVjrnj1iy5gF7JFK47w+KxidbycgQrn9aXie/ArSB06JG99ZdH+5tFuradttrJoCx29SBc9k9nUtsp+cy4exlpzsyUwF5CMM4qptI4kQsKr27C5MeqGnRJ4D8tvEquza8khYoKW+fb8lWgMQ==';
+ApexResponse res = ApplicationController.saveState(request);
+system.debug('Full Json : ' + res.data);
