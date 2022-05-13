@@ -45,6 +45,7 @@ global with sharing class ApplicationController extends AbstractController {
       validateRequest(request);
       log?.debug('request' + request);
       return ApexResponse.ok(ApplicationService.getInstance().readApplicationWithChild());
+
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -294,4 +295,29 @@ global with sharing class ApplicationController extends AbstractController {
       Logger.persist();
     }
   }
+
+  
+  /**
+   * @description Change flow state for each applicant
+   * @author Digital Align Team | 02-07-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse saveState(ApexRequest request) {
+    try {
+      validateRequest(request);
+      log?.debug('request' + request);
+      return ApexResponse.ok(ApplicationService.getInstance().saveState());
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }  
 }

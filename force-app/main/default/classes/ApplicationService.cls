@@ -410,4 +410,14 @@ global virtual with sharing class ApplicationService extends AbstractService {
     log?.fine('Exit StartReferralApplication');
     return vmf;
   }
+
+    /**
+   * @description to save state information across
+   * @author Digital Align Team | 09-29-2021
+   * @return String
+   **/
+  global virtual Application__c saveState() {
+    Application__c application = this.readApplicationWithChild();
+    return (mflow__Application__c) this.updateFlowState(application);
+  }
 }
