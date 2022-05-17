@@ -21,7 +21,7 @@ global with sharing class ApexRequest {
   global String applicantType { get; set; }
   @AuraEnabled
   global String currentPage { get; set; }
-  @AuraEnabled
+  @AuraEnabled  @deprecated
   global String nextPage { get; set; }
   @AuraEnabled
   global String header { get; set; }

@@ -1,0 +1,84 @@
+{
+  "appPageId": "62bf51a0-121c-4952-8e6e-8f780a07e682",
+  "componentName": "siteforce:dynamicLayout",
+  "id": "35391b4e-19ae-4b42-b5df-e064f72d5cb3",
+  "label": "CustomerApplications",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "55add45c-32e3-4710-b390-35746845d1fe",
+              "columns": [
+                {
+                  "UUID": "973523b8-dcc4-487a-9b01-09ee1d37e293",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "12",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "55add45c-32e3-4710-b390-35746845d1fe",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "filterString": "Id in (select mflow__application__c from mflow__applicant__c where mflow__ApplicantType__c='Primary' AND mflow__contact__c='$userContactId')",
+                    "metadataName": "CustomerApplications",
+                    "sortString": "Name"
+                  },
+                  "componentName": "mflow:dynamicDataTable",
+                  "id": "bfe17a3f-2307-40f1-9ccf-3a5647a44e26",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "973523b8-dcc4-487a-9b01-09ee1d37e293",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "bc1af163-899e-4f23-8933-82c1081dce37",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "description": "",
+            "title": "CustomerApplications"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "3f4d20dc-8115-4b8e-ae37-8efceeeca6ec",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "d5d7fd34-556c-4109-91ed-38352fdc7337",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Inner",
+  "type": "view",
+  "viewType": "custom-customerapplications"
+}

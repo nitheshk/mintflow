@@ -51,7 +51,6 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
       if (String.isnotEmpty(MetaDataName)) {
         QuerySortString = SortString;
         QueryFilterString = FilterString;
-
         List<DynamicDataTable__mdt> dynamicDataList = DynamicLWCDataTableRepository.getTableDetails(
           MetaDataName,
           FilterString,
@@ -143,6 +142,7 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
   global virtual string getTableData(Integer offset, Integer limitSize) {
     String queryString = generateQuery(offset, limitSize);
     queryString = replaceQueryValues(queryString);
+    System.debug('queryString:' + queryString);
     List<SObject> dataList = DatabaseUtils.getRecords(queryString);
     System.debug('dataList:' + dataList);
     String returnData = '';
@@ -181,14 +181,16 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
    * @return Object  DynamicLWCDataTableResponse
    **/
   private static String replaceQueryValues(String queryString) {
-    String replacedQueryString = queryString;
     if (queryString.Contains('$accountId')) {
       String acntId = getLoggedinUserAccountId();
-      replacedQueryString = queryString.replace('$accountId', acntId);
+      queryString = queryString.replace('$accountId', acntId);
     }
-
-    return replacedQueryString;
+  if(queryString.Contains('$userContactId')){
+      queryString=queryString.replace('$userContactId', userutils.getCurrentUser().ContactId); 
+    }
+    return queryString;
   }
+
   public static String check(String value) {
     if (value == null) {
       return '';

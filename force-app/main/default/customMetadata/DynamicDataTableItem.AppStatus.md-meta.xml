@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>AppStatus</label>
+    <protected>false</protected>
+    <values>
+        <field>CellAttributes__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>DisplayOrder__c</field>
+        <value xsi:type="xsd:double">4.0</value>
+    </values>
+    <values>
+        <field>DynamicDataTable__c</field>
+        <value xsi:type="xsd:string">CustomerApplications</value>
+    </values>
+    <values>
+        <field>FieldName__c</field>
+        <value xsi:type="xsd:string">mflow__Status__c</value>
+    </values>
+    <values>
+        <field>ParentObjectAPI__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>TextAttributes__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Type__c</field>
+        <value xsi:type="xsd:string">text</value>
+    </values>
+</CustomMetadata>
