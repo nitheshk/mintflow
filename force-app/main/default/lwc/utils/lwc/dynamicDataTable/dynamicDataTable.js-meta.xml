@@ -7,12 +7,10 @@
         <target>lightning__AppPage</target>
         <target>lightning__RecordPage</target>
         <target>lightning__HomePage</target>
-        <target>lightningCommunity__Default</target>
-         <target>lightning__FlowScreen</target>
-          
+        <target>lightningCommunity__Default</target> 
         </targets>
     <targetConfigs>
-        <targetConfig targets="lightningCommunity__Default,lightning__FlowScreen">
+        <targetConfig targets="lightningCommunity__Default">
             <property label="MetadataName" name="metadataName" type="String" />
             <property label="Filters" name="filterString" type="String" />
             <property label="Sort By" name="sortString" type="String" />
