@@ -208,6 +208,10 @@ global virtual with sharing class ApplicantService extends AbstractService {
 
       //Change to Base Product as Customer doesn't have regular saving account yet
       primaryAccount.FinancialProduct__c = baseProduct.Id;
+      primaryAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
+        FinancialAccount__c.SObjectType,
+        baseProduct.Category__c
+      );
       // Move selected product Customer Interest
       CustomerInterest__c customerInterest = new CustomerInterest__c();
       customerInterest.Application__c = applicationId;

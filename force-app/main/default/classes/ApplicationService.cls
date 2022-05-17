@@ -332,6 +332,16 @@ global virtual with sharing class ApplicationService extends AbstractService {
   }
 
   /**
+   * @description to save state information across
+   * @author Digital Align Team | 09-29-2021
+   * @return String
+   **/
+  global virtual Application__c saveState() {
+    Application__c application = this.readApplicationWithChild();
+    return (mflow__Application__c) this.updateFlowState(application);
+  }
+
+  /**
    * @description
    * @author Digital Align Team | 02-04-2022
    * @param Object entity
@@ -409,15 +419,5 @@ global virtual with sharing class ApplicationService extends AbstractService {
     String vmf = SecurityUtils.encryptBase64(JSON.serialize(cipher, true));
     log?.fine('Exit StartReferralApplication');
     return vmf;
-  }
-
-    /**
-   * @description to save state information across
-   * @author Digital Align Team | 09-29-2021
-   * @return String
-   **/
-  global virtual Application__c saveState() {
-    Application__c application = this.readApplicationWithChild();
-    return (mflow__Application__c) this.updateFlowState(application);
   }
 }

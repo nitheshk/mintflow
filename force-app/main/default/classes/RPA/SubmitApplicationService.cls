@@ -219,7 +219,8 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
 
       if (application.Status__c == ApplicationConstant.COMPLETED) {
         //Create Account and contact
-        this.createMemberAccount(application);
+        // #pending to uncomment
+        //this.createMemberAccount(application);
         //Send Funding Email Link to primary
         CustomerEmailService.getInstance().accountOpened(application);
         NotificationService.getInstance()
