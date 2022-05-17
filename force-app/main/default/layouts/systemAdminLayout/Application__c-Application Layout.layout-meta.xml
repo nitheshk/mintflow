@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
@@ -12,28 +12,12 @@
         <label>Application Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Name</field>
+                <behavior>Edit</behavior>
+                <field>Source__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SubmittedDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SubmittedBy__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CreatedChannel__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>LastUsedChannel__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CountyZipCode__c</field>
+                <field>ApplicationType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -41,7 +25,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Source__c</field>
+                <field>SubmittedBy__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -50,13 +34,26 @@
                 <field>MemberNumber__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>BranchCode__c</field>
+                <behavior>Readonly</behavior>
+                <field>Name</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>BranchName__c</field>
+                <field>IsExistingCustomer__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SubmittedDate__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Eligibility</label>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CountyName__c</field>
@@ -64,6 +61,43 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>StateName__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CountyZipCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsCountyEligible__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Branch and Channel</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BranchCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CreatedChannel__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BranchName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>LastUsedChannel__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -76,22 +110,18 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IsExistingCustomer__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FlowState__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FlowType__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IsCountyEligible__c</field>
+                <field>Stage__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Status__c</field>
@@ -99,10 +129,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>KYCStatus__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Stage__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -122,8 +148,8 @@
                 <field>Version__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ApplicationType__c</field>
+                <behavior>Readonly</behavior>
+                <field>LastModifiedById</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -131,36 +157,21 @@
                 <behavior>Edit</behavior>
                 <field>SessionToken__c</field>
             </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
-        <editHeading>true</editHeading>
-        <label>System Information</label>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>CreatedById</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>LastModifiedById</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsTopToBottom</style>
+        <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns />
-        <layoutColumns />
-        <layoutColumns />
+        <layoutColumns/>
+        <layoutColumns/>
+        <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
@@ -210,7 +221,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h6D0000021L4w</masterLabel>
+        <masterLabel>00h0w000001LytU</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
