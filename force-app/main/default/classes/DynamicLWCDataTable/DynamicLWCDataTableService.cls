@@ -185,8 +185,8 @@ global virtual with sharing class DynamicLWCDataTableService extends AbstractSer
       String acntId = getLoggedinUserAccountId();
       queryString = queryString.replace('$accountId', acntId);
     }
-  if(queryString.Contains('$userContactId')){
-      queryString=queryString.replace('$userContactId', userutils.getCurrentUser().ContactId); 
+    if (queryString.Contains('$userContactId')) {
+      queryString = queryString.replace('$userContactId', userutils.getCurrentUser().ContactId);
     }
     return queryString;
   }

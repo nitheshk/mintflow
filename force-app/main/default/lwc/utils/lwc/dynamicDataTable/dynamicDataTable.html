@@ -4,11 +4,9 @@
     <c-spinner-utils visible={showSpinner} size="large"></c-spinner-utils>
     <template if:true={isRendered}>
       <template if:true={isHeadingExists}>
-     <div style="color:#18305d; ">
-      <p class="slds-text-heading_medium slds-var-p-around_medium">
-      {heading}
-      </p>
-     </div>
+        <div style="color: #18305d">
+          <p class="slds-text-heading_medium slds-var-p-around_medium">{heading}</p>
+        </div>
       </template>
       <lightning-card>
         <div class="slds-m-around_medium">

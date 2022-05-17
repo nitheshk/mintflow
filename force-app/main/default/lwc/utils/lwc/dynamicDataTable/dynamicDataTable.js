@@ -10,7 +10,7 @@ export default class DynamicDataTable extends NavigationMixin(LightningElement) 
   @api sortString;
   @api accountId;
   @api heading;
-  @track isHeadingExists=false;
+  @track isHeadingExists = false;
   @track showSpinner = true;
   @track isRendered = false;
   @track data = null; //data to be display in the table
@@ -24,8 +24,8 @@ export default class DynamicDataTable extends NavigationMixin(LightningElement) 
 
   connectedCallback() {
     this.showTableData();
-    if(this.heading!=null){
-      this.isHeadingExists =true;
+    if (this.heading != null) {
+      this.isHeadingExists = true;
     }
   }
 

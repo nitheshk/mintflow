@@ -45,7 +45,6 @@ global with sharing class ApplicationController extends AbstractController {
       validateRequest(request);
       log?.debug('request' + request);
       return ApexResponse.ok(ApplicationService.getInstance().readApplicationWithChild());
-
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -296,7 +295,6 @@ global with sharing class ApplicationController extends AbstractController {
     }
   }
 
-  
   /**
    * @description Change flow state for each applicant
    * @author Digital Align Team | 02-07-2022
@@ -319,5 +317,5 @@ global with sharing class ApplicationController extends AbstractController {
     } finally {
       Logger.persist();
     }
-  }  
+  }
 }
