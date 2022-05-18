@@ -12,18 +12,6 @@
         <members>*</members>
         <name>ExperienceBundle</name>
     </types>
-    <types>
-        <members>*</members>
-        <name>NavigationMenu</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Network</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>NetworkBranding</name>
-    </types>
     <!--
 	<types>
 		<members>p1FCU_Logo_white</members>

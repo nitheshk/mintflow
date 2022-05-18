@@ -55,7 +55,7 @@
             {
               "componentAttributes": {
                 "background": "background: #FFFFFF url(/sfsites/c/file-asset/mflow__p1fcu_online_header?v=1) center center /cover",
-                "backgroundOverlayColor": "rgba(0, 0, 0, 0.3)",
+                "backgroundOverlayColor": "rgba(46, 22, 200, 0.2)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,
                 "collapseNavMenu": false,
