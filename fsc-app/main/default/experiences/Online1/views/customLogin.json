@@ -9,7 +9,7 @@
         {
           "componentAttributes": {
             "background": "background: rgba(10,66,231,0) url(/sfsites/picasso/core/external/salesforceIdentity/images/background.jpg?v=1) center center /cover",
-            "backgroundOverlay": "rgba(46, 22, 200, 0.2)",
+            "backgroundOverlay": "rgba(24, 48, 93, 0.5)",
             "contentAreaWidth": 30,
             "sectionConfig": {
               "UUID": "7b4cc115-7de1-4e4e-b61a-93dc7d0baf0e",
