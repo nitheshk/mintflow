@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>55.0</apiVersion>
+    <apiVersion>51.0</apiVersion>
     <description>Flow for Displaying User Information</description>
     <interviewLabel>Welcome {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Welcome</label>
@@ -33,7 +33,8 @@
         <allowPause>true</allowPause>
         <fields>
             <name>UserInfo</name>
-            <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;span style=&quot;color: rgb(94, 74, 240); font-size: 20px;&quot;&gt;Welcome {!$User.FirstName} {!$User.LastName}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText
+      >&lt;p style=&quot;text-align: right;&quot;&gt;&lt;span style=&quot;color: rgb(94, 74, 240); font-size: 20px;&quot;&gt;Welcome {!$User.FirstName} {!$User.LastName}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
