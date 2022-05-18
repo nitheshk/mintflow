@@ -8,6 +8,16 @@
             <criterionValue>
                 <entityField>UserType</entityField>
                 <entityType>User</entityType>
+                <fieldValue>Standard</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <entityField>UserType</entityField>
+                <entityType>User</entityType>
                 <fieldValue>CspLitePortal</fieldValue>
             </criterionValue>
             <operator>Equal</operator>
