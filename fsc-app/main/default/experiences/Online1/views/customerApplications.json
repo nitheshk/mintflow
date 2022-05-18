@@ -33,6 +33,7 @@
                 {
                   "componentAttributes": {
                     "filterString": "Id in (select mflow__application__c from mflow__applicant__c where mflow__ApplicantType__c='Primary' AND mflow__contact__c='$userContactId')",
+                    "heading": "My Applications",
                     "metadataName": "CustomerApplications",
                     "sortString": "Name"
                   },

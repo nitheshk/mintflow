@@ -334,7 +334,7 @@
                         "buttonTextColor": "",
                         "buttonTextHoverColor": "",
                         "customizableUserProfileMenuEditor": "OnlineProfileMenu",
-                        "menuStyleSettings": "{\"selectedMenuStyleSetting\":\"iconOnly\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
+                        "menuStyleSettings": "{\"selectedMenuStyleSetting\":\"iconAndName\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":true,\"selectedTextOrientationSetting\":\"right\"}"
                       },
                       "componentName": "forceCommunity:customizableUserProfileMenu",
                       "id": "c488cd69-a49d-49e0-8528-f55b7afd35ef",

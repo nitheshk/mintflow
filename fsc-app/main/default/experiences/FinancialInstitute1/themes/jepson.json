@@ -406,6 +406,17 @@
             },
             {
               "componentAttributes": {
+                "flowArguments": "",
+                "flowLayout": "oneColumn",
+                "flowName": "mflow__Welcome"
+              },
+              "componentName": "forceCommunity:flowCommunity",
+              "id": "5380be83-5862-4fcc-accf-184eeaaae78b",
+              "renditionMap": {},
+              "type": "component"
+            },
+            {
+              "componentAttributes": {
                 "hideMenuLabel": false,
                 "logoName": "",
                 "menuName": "FinancialInstituteMenu",
