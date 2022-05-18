@@ -1,0 +1,17 @@
+{
+  "componentVariants": [
+    {
+      "id": "3a8d3f74-64dd-41aa-9942-accf98338c10",
+      "propertyOverrides": {
+        "componentAttributes": {
+          "navigationMenuEditorRefresh": "OnlineLoggedInMenu"
+        }
+      },
+      "targetId": "1625d5bd-23de-4041-b1d2-3435928a58e4",
+      "type": "componentVariant"
+    }
+  ],
+  "developerName": "Default_Theme_Navigation_Menu_Component_Properties",
+  "id": "0d11c747-1705-4460-be55-7802f86d4499",
+  "type": "experienceVariation"
+}

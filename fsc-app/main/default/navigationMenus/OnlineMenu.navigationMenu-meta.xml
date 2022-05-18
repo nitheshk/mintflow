@@ -4,29 +4,22 @@
     <containerType>Network</containerType>
     <label>OnlineMenu</label>
     <navigationMenuItem>
-        <label>Applications</label>
-        <position>1</position>
-        <publiclyAvailable>false</publiclyAvailable>
-        <target>/customerapplications</target>
-        <type>InternalLink</type>
-    </navigationMenuItem>
-    <navigationMenuItem>
         <label>Products</label>
-        <position>2</position>
+        <position>1</position>
         <publiclyAvailable>true</publiclyAvailable>
         <target>/Products</target>
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Services</label>
-        <position>3</position>
+        <position>2</position>
         <publiclyAvailable>true</publiclyAvailable>
         <target>/Services</target>
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Contact Us</label>
-        <position>4</position>
+        <position>3</position>
         <publiclyAvailable>true</publiclyAvailable>
         <target>/ContactUs</target>
         <type>InternalLink</type>

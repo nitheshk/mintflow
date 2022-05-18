@@ -16,4 +16,18 @@
     </criteria>
     <formulaFilterType>AllCriteriaMatch</formulaFilterType>
     <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>10629bb3-d398-4d83-bd54-769b85e61396$#$3166a693-73c9-4bd8-b4cb-c5e18112857a</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Home_Theme_Navigation_Menu_Component_Properties</targetValue>
+        </target>
+        <target>
+            <groupName>a9de8e21-facf-4d25-ac49-107b39f5a8b4$#$1625d5bd-23de-4041-b1d2-3435928a58e4</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Default_Theme_Navigation_Menu_Component_Properties</targetValue>
+        </target>
+    </targets>
 </Audience>
