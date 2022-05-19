@@ -18,14 +18,7 @@
                   "UUID": "8673040f-f117-4bc7-8f7f-12bd2f89c631",
                   "columnKey": "1",
                   "columnName": "Column 1",
-                  "columnWidth": "9",
-                  "seedComponents": []
-                },
-                {
-                  "UUID": "51381f14-6096-47c1-8578-edffeee7b709",
-                  "columnKey": "69735",
-                  "columnName": "Column 2",
-                  "columnWidth": "3",
+                  "columnWidth": "12",
                   "seedComponents": []
                 }
               ]
@@ -64,7 +57,7 @@
                       "dataProviderDefinition": {
                         "attributes": {
                           "dataProviderInfo": {
-                            "apiName": "Online_HomePage"
+                            "apiName": "OnlineHomePage"
                           },
                           "dataProviderType": "NamedCollection"
                         },
@@ -164,13 +157,6 @@
               "id": "8673040f-f117-4bc7-8f7f-12bd2f89c631",
               "regionLabel": "Column 1",
               "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            },
-            {
-              "id": "51381f14-6096-47c1-8578-edffeee7b709",
-              "regionLabel": "Column 2",
-              "regionName": "69735",
               "renditionMap": {},
               "type": "region"
             }
