@@ -1,21 +1,21 @@
 {
   "appPageId": "baf411f3-97e7-4f23-884c-eb1656ee2f4b",
   "componentName": "siteforce:dynamicLayout",
-  "id": "6a4a9617-6478-4ce0-ac80-4a18c4a89041",
-  "label": "Forgot Password",
+  "id": "11f623e7-cdff-47ac-b58f-19c4c4be5276",
+  "label": "CustomLogin",
   "regions": [
     {
       "components": [
         {
           "componentAttributes": {
-            "background": "background: rgba(0,0,0,0) url(/sfsites/c/file-asset/mflow__TemplateBlue?v=1) center center /cover",
-            "backgroundOverlay": "rgba(39, 78, 116, 0.72)",
+            "background": "background: rgba(234,246,248,0.69) url(/sfsites/c/file-asset/mflow__TemplateBlue?v=1) center center /cover",
+            "backgroundOverlay": "rgba(39, 78, 116, 0.5)",
             "contentAreaWidth": 35,
             "sectionConfig": {
-              "UUID": "8540959e-3425-4b2d-b0c4-c50e50b18c5e",
+              "UUID": "0ac3a5c4-35e7-4d1c-8188-2a67229c5083",
               "columns": [
                 {
-                  "UUID": "6c9e4652-280f-4af6-94b1-88346b542951",
+                  "UUID": "6f813909-083f-4c1f-bf32-b79f20d04824",
                   "columnKey": "1",
                   "columnName": "Column 1",
                   "columnWidth": "12",
@@ -23,31 +23,46 @@
                 }
               ]
             },
-            "sectionHeight": 300
+            "sectionHeight": 400
           },
           "componentName": "forceCommunity:section",
-          "id": "8540959e-3425-4b2d-b0c4-c50e50b18c5e",
+          "id": "0ac3a5c4-35e7-4d1c-8188-2a67229c5083",
           "regions": [
             {
               "components": [
                 {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #18305d\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n                <h2 class=\"slds-text-heading_small\">Password Reset</h2>\n            </div>\n        </div>\n    </div>\n</div>"
+                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #18305d\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n                <h2 class=\"slds-text-heading_small\">Login </h2>\n            </div>\n        </div>\n    </div>   \n</div>\n<br>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
-                  "id": "5877ae19-09ee-4506-85b8-1287d3721ad6",
+                  "id": "3bdddc25-0482-405b-8f36-9e8e0b99f508",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 },
                 {
                   "componentAttributes": {
-                    "checkEmailUrl": "./CheckPasswordResetEmail",
-                    "submitButtonLabel": "Reset Password",
+                    "forgotPasswordLabel": "Forgot your password?",
+                    "forgotPasswordUrl": "/ForgotPassword",
+                    "loginButtonLabel": "Log in",
+                    "passwordLabel": "Password",
+                    "selfRegisterLabel": "Not a member?",
+                    "selfRegisterUrl": "/SelfRegister",
+                    "startUrl": "",
                     "usernameLabel": "Username"
                   },
-                  "componentName": "salesforceIdentity:forgotPassword2",
-                  "id": "ef3b1e62-5ece-4a5f-91c6-8838897b04f6",
+                  "componentName": "salesforceIdentity:loginForm2",
+                  "id": "31bc71e0-8852-43b3-8936-21dbc2b03973",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<br>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "fefb682b-a3b1-46ce-96dc-8e7dec718d97",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
@@ -57,13 +72,13 @@
                     "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #18305d\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center\">\n                <h2 class=\"slds-text-heading_small\">Mobile Banking</h2>\n            </div>\n        </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n        <h6> Our mobile banking application allows you to check balances, transfer funds, view transactions and check messages from anywhere, anytime. It’s fast, free and available to all of our online banking users. With this app you can do the following: </h6>\n        <br>\n        <ul>\n            <li><b> Check balances 24/7</b></li>\n            <li><b> View pending transactions</b></li>\n            <li><b> Create, approve, cancel or view funds transfers</b></li>\n            <li><b> View transaction history</b></li>\n            <li><b> Send and receive secure messages</b></li>\n            <li><b> Access branch hours and location information</b></li> \n            <li><b> Deposit checks using the camera on your device</b></li>\n        </ul>\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"https://play.google.com/store/apps/details?id=com.potlatchno1federalcreditunion5057.mobile&hl=en_IN&gl=US\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">Download App</a>\n    </div>\n</div>\n\n<br/>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
-                  "id": "6d6af27a-8114-4777-9c78-e6c7b680699a",
+                  "id": "9f62f25b-f19d-4bec-a03b-6e3759a0e369",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 }
               ],
-              "id": "6c9e4652-280f-4af6-94b1-88346b542951",
+              "id": "6f813909-083f-4c1f-bf32-b79f20d04824",
               "regionLabel": "Column 1",
               "regionName": "1",
               "renditionMap": {},
@@ -75,7 +90,7 @@
           "type": "component"
         }
       ],
-      "id": "eb1655a7-91f5-4345-875b-f3faea228a59",
+      "id": "2435213c-c6dd-4a9b-b8bc-5a28e2da30b1",
       "regionName": "content",
       "type": "region"
     },
@@ -88,17 +103,17 @@
             "title": ""
           },
           "componentName": "forceCommunity:seoAssistant",
-          "id": "9b3f5483-4965-4aa6-8f6d-ba0000615577",
+          "id": "7ce852f6-91aa-422d-a9c8-8710eb67c5b1",
           "renditionMap": {},
           "type": "component"
         }
       ],
-      "id": "13a016ff-f4c0-49c3-a9ec-4b13e7a45167",
+      "id": "c745c017-06b4-4556-a72b-8d40a2331966",
       "regionName": "sfdcHiddenRegion",
       "type": "region"
     }
   ],
   "themeLayoutType": "YSea1Hh3fVW4IZS1sioLoXnPWtuNhp",
   "type": "view",
-  "viewType": "forgot-password"
+  "viewType": "login-home"
 }

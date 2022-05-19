@@ -9,8 +9,8 @@
         {
           "componentAttributes": {
             "background": "background: rgba(0,0,0,0)",
-            "backgroundOverlay": "rgba(0,0,0,0.5)",
-            "contentAreaWidth": 100,
+            "backgroundOverlay": "rgba(39, 78, 116, 0.72)",
+            "contentAreaWidth": 60,
             "sectionConfig": {
               "UUID": "c24bd82f-3ce7-4de5-bd30-9a1a1177ae8a",
               "columns": [
@@ -29,6 +29,18 @@
           "id": "c24bd82f-3ce7-4de5-bd30-9a1a1177ae8a",
           "regions": [
             {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div style=\"height: 40vw;background-image:url('https://ik.imagekit.io/disczlxo8kv/MintFlow/PortalImage/ContactUs.JPG'); background-size: 100% 100% \" >\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "830f4737-e0c6-4dc6-9282-f1ae634beba0",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
               "id": "cd51edd4-8a4a-4c92-8820-c8357ac2b314",
               "regionLabel": "Column 1",
               "regionName": "1",
@@ -38,51 +50,6 @@
           ],
           "renderPriority": "NEUTRAL",
           "renditionMap": {},
-          "type": "component"
-        },
-        {
-          "componentAttributes": {
-            "background": "background: rgba(0,0,0,0)",
-            "backgroundOverlay": "rgba(0,0,0,0.5)",
-            "contentAreaWidth": 100,
-            "sectionConfig": {
-              "UUID": "669466ad-8362-4e5e-ba68-42dc218bf4e7",
-              "columns": [
-                {
-                  "UUID": "d0333356-f008-4e3a-9b79-60f935f0dc77",
-                  "columnKey": "1",
-                  "columnName": "Column 1",
-                  "columnWidth": "12",
-                  "seedComponents": []
-                }
-              ]
-            },
-            "sectionHeight": 200
-          },
-          "componentName": "forceCommunity:section",
-          "id": "669466ad-8362-4e5e-ba68-42dc218bf4e7",
-          "regions": [
-            {
-              "id": "d0333356-f008-4e3a-9b79-60f935f0dc77",
-              "regionLabel": "Column 1",
-              "regionName": "1",
-              "renditionMap": {},
-              "type": "region"
-            }
-          ],
-          "renderPriority": "NEUTRAL",
-          "renditionMap": {
-            "small": "262c2796-3d97-488e-b5d2-becfcb0f4d5b"
-          },
-          "renditions": [
-            {
-              "id": "262c2796-3d97-488e-b5d2-becfcb0f4d5b",
-              "renditionValue": {
-                "isVisible": false
-              },
-              "type": "renditionComponent"
-            }
-          ],
           "type": "component"
         }
       ],

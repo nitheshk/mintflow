@@ -131,6 +131,11 @@
       "id": "5c492734-932c-4dfe-af9d-a930f6a3e5c9",
       "regionName": "sideMenu",
       "type": "region"
+    },
+    {
+      "id": "9392e0a0-c99f-458b-a9a2-c042a3f61ce2",
+      "regionName": "main",
+      "type": "region"
     }
   ],
   "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",

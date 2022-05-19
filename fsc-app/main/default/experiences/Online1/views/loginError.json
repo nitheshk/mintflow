@@ -8,8 +8,8 @@
       "components": [
         {
           "componentAttributes": {
-            "background": "background: rgba(10,66,231,0) url(/sfsites/picasso/core/external/salesforceIdentity/images/background.jpg?v=1) center center /cover",
-            "backgroundOverlay": "rgba(24, 48, 93, 0.5)",
+            "background": "background: rgba(10,66,231,0) url(/sfsites/c/file-asset/mflow__TemplateBlue?v=1) center center /cover",
+            "backgroundOverlay": "rgba(39, 78, 116, 0.72)",
             "contentAreaWidth": 35,
             "sectionConfig": {
               "UUID": "19bc5be2-439d-4f32-988c-ae542ac32b2f",
@@ -32,7 +32,7 @@
               "components": [
                 {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header\" style=\"color:white;background: #18305d\">\n        <h2 class=\"slds-text-heading_small\">Invalid Page</h2>\n    </div>\n</div>\n<div style=\"height: 20vw\"></div>"
+                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header slds-align_absolute-center\" style=\"color:white;background: #18305d\">\n        <h2 class=\"slds-text-heading_small\">Invalid Page</h2>\n    </div>\n</div>\n<div style=\"height: 20vw\"></div>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
                   "id": "37318f3d-931e-4db5-97d6-f3fd8e7f831f",

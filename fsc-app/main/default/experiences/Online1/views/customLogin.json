@@ -8,9 +8,9 @@
       "components": [
         {
           "componentAttributes": {
-            "background": "background: rgba(10,66,231,0) url(/sfsites/picasso/core/external/salesforceIdentity/images/background.jpg?v=1) center center /cover",
-            "backgroundOverlay": "rgba(24, 48, 93, 0.5)",
-            "contentAreaWidth": 30,
+            "background": "background: rgba(10,66,231,0) url(/sfsites/c/file-asset/mflow__TemplateBlue?v=1) center center /cover",
+            "backgroundOverlay": "rgba(39, 78, 116, 0.72)",
+            "contentAreaWidth": 35,
             "sectionConfig": {
               "UUID": "7b4cc115-7de1-4e4e-b61a-93dc7d0baf0e",
               "columns": [
@@ -23,7 +23,7 @@
                 }
               ]
             },
-            "sectionHeight": 300
+            "sectionHeight": 400
           },
           "componentName": "forceCommunity:section",
           "id": "7b4cc115-7de1-4e4e-b61a-93dc7d0baf0e",
@@ -32,20 +32,10 @@
               "components": [
                 {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #18305d\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n                <h2 class=\"slds-text-heading_small\">Already Member ?</h2>\n            </div>\n        </div>\n    </div>\n   \n</div>"
+                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #18305d\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3\">\n                <h2 class=\"slds-text-heading_small\">Already Member ?</h2>\n            </div>\n        </div>\n    </div>\n</div>\n<br>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
                   "id": "bc20e823-fcf1-4162-a0ec-8a02418e46ee",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {
-                    "richTextValue": "<br>"
-                  },
-                  "componentName": "forceCommunity:htmlBlock",
-                  "id": "edaba7a4-9d41-47ec-abd9-ed2508523d0c",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
@@ -69,32 +59,20 @@
                 },
                 {
                   "componentAttributes": {
-                    "headerText": "",
-                    "showHeader": false,
-                    "useCommunityDomainSso": false
-                  },
-                  "componentName": "salesforceIdentity:socialLogin2",
-                  "id": "34724d5c-435c-4ad4-977b-8674f66b4664",
-                  "renderPriority": "NEUTRAL",
-                  "renditionMap": {},
-                  "type": "component"
-                },
-                {
-                  "componentAttributes": {
                     "richTextValue": "<br>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
-                  "id": "0769dab9-c270-4604-9eb1-d352ac452874",
+                  "id": "f44fb19d-41c3-45dc-aa4b-3184b0235da7",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"
                 },
                 {
                   "componentAttributes": {
-                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #18305d\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center\">\n                <h2 class=\"slds-text-heading_small\">How to Become a Credit Union Member</h2>\n            </div>\n        </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n        <h6> Opening an account at a credit union can be intimidating to some, primarily because credit unions use different terminology. When “eligibility” and “membership” come up,\n            people think the process is going to be complicated—but it’s easy to open an account. To do so, complete three steps</h6>\n\t\t<br>\n        <ul>\n        <li><b>Meet the eligibility requirement (this is usually easier than it sounds)</b></li>\n        <li><b>Make a small deposit (often $5 to $25) to become a member-owner.12</b></li>\n        <li><b>Start using your account</b></li>\n        </ul>\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"/Online/s/Products\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">Become Member</a>\n    </div>\n</div>\n\n<br/>"
+                    "richTextValue": "<div class=\"slds-card\">\n    <div class=\"slds-grid slds-page-header  slds-card__header\" style=\"color:white;background: #18305d\">\n        <div class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n            <div class=\"slds-grid slds-grid_vertical-align-center\">\n                <h2 class=\"slds-text-heading_small\">How to Become a Credit Union Member</h2>\n            </div>\n        </div>\n    </div>\n    <div class=\"slds-card__body slds-card__body_inner\">\n        <h6> Opening an account at a credit union can be intimidating to some, primarily because credit unions use different terminology. When “eligibility” and “membership” come up,\n            people think the process is going to be complicated—but it’s easy to open an account. To do so, complete three steps</h6>\n\t\t<br>\n        <ul>\n        <li><b>Meet the eligibility requirement (this is usually easier than it sounds)</b></li>\n        <li><b>Make a small deposit (often $5 to $25) to become a member-owner</b></li>\n        <li><b>Start using your account</b></li>\n        </ul>\n    </div>\n    <div class=\"slds-card__footer slds-align_absolute-center\">      \n        <a href =\"/Online/s/Products\" class=\"slds-button slds-button_neutral \" style=\"color:white;border-radius: 27px;background: #18305d;text-decoration:none\">Become Member</a>\n    </div>\n</div>\n\n<br/>"
                   },
                   "componentName": "forceCommunity:htmlBlock",
-                  "id": "5bc36b98-feb1-4079-83ed-c4b172c06489",
+                  "id": "65805239-b89a-48e0-8a81-e914fbbc937e",
                   "renderPriority": "NEUTRAL",
                   "renditionMap": {},
                   "type": "component"

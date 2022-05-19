@@ -50,6 +50,7 @@
                 {
                   "componentAttributes": {
                     "filterString": "Profile.Name='MFlowEmployeeCommunity'",
+                    "heading": "",
                     "metadataName": "FIEmployees",
                     "sortString": "Name"
                   },
