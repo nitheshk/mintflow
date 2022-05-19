@@ -333,4 +333,18 @@ global with sharing class LwcCustomController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description get User Information
+   * @author Digital Align | 12-10-2021
+   * @return String
+   **/
+  @AuraEnabled
+  global static String getUserInfo() {
+    try {
+      return UserUtils.getCurrentUser().Profile.Name;
+    } catch (Exception ex) {
+      return 'Failed to  fetch userInfo';
+    }
+  }
 }

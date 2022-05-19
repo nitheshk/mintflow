@@ -259,4 +259,12 @@
         <shortDescription>Issue on the API call</shortDescription>
         <value>There is some issue on the API call</value>
     </labels>
+    <labels>
+        <fullName>customerProfile</fullName>
+        <categories>Info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CustomerProfile</shortDescription>
+        <value>MFlowCustomerCommunityLogin</value>
+    </labels>
 </CustomLabels>

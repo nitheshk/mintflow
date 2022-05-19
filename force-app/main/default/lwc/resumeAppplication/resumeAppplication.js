@@ -5,6 +5,9 @@ import fetchApplication from "@salesforce/apex/LwcCustomController.readApplicati
 import sendResumeEmail from "@salesforce/apex/LwcCustomController.sendResumeApplicationEmail";
 import getResumeLink from "@salesforce/apex/LwcCustomController.fetchResumeLink";
 import { NavigationMixin } from "lightning/navigation";
+import userProfile from "@salesforce/apex/LwcCustomController.getUserInfo";
+import customerProfile from "@salesforce/label/c.CustomerProfile";
+
 export default class ResumeAppplication extends NavigationMixin(LightningElement) {
   @api objectApiName;
   @api recordId;
@@ -13,7 +16,10 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
   @track applicantNames;
   @track selectedApplicant = [];
   @track showSpinner = false;
-
+  @track userData;
+  label = {
+    customerProfile
+  };
   connectedCallback() {
     this.init();
   }
@@ -31,6 +37,7 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
     if (!this.recordId) {
       return;
     }
+    this.userData = await userProfile();
 
     fetchApplication({
       params: {
@@ -68,7 +75,11 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
   }
 
   get submitBtnLabel() {
-    return this.isBranch ? "Resume Application" : "Send Email";
+    if (this.userData === this.label.customerProfile) {
+      return "Resume Application";
+    } else {
+      return this.isBranch ? "Resume Application" : "Send Email";
+    }
   }
 
   /**
@@ -98,10 +109,12 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
 
   /**
    *
-   * @param {*} event
+   *  send resume link or email
    */
   handleSubmit() {
-    if (this.isBranch) {
+    if (this.userData === this.label.customerProfile) {
+      this.navigateToResumeLink();
+    } else if (this.isBranch) {
       this.navigateToResumeLink();
     } else {
       this.sendResumeEmail();
