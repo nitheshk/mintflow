@@ -67,7 +67,7 @@
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
                 "headerHeight": 20,
-                "linkActiveBorderColor": "",
+                "linkActiveBorderColor": "rgb(255, 255, 255)",
                 "linkColor": "rgba(247, 238, 238, 0.8)",
                 "linkHoverColor": "rgba(0, 54, 248, 0.99)",
                 "linkTextShadowColor": "rgba(255, 255, 255, 0)",
@@ -294,8 +294,8 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: rgba(255,255,255,0)",
-                "backgroundOverlayColor": "rgba(46, 22, 200, 0.2)",
+                "background": "background: rgba(255,255,255,0) url(/sfsites/c/file-asset/mflow__OnlineHeader?v=1) center center /cover",
+                "backgroundOverlayColor": "rgba(24, 48, 93, 0.49)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,
                 "collapseNavMenu": false,
@@ -307,8 +307,8 @@
                 "dropdownTextColor": "",
                 "dropdownTextHoverColor": "",
                 "headerHeight": 20,
-                "linkActiveBorderColor": "",
-                "linkColor": "rgba(2, 2, 2, 0.8)",
+                "linkActiveBorderColor": "rgb(255, 255, 255)",
+                "linkColor": "rgba(255, 255, 255, 0.8)",
                 "linkHoverColor": "rgba(12, 37, 240, 0.7)",
                 "linkTextShadowColor": "rgba(245, 0, 0, 0)",
                 "logoWidth": 100,
