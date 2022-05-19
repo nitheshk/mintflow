@@ -321,7 +321,7 @@
                 "showNavMenuOnLeft": true,
                 "showNotifications": true,
                 "showProfileMenu": true,
-                "showSearch": false
+                "showSearch": true
               },
               "componentName": "forceCommunity:themeHeaderCompact",
               "id": "f39d27f0-106d-401b-b236-5a78b911e485",
@@ -368,21 +368,23 @@
                   "components": [
                     {
                       "componentAttributes": {
-                        "contineActionLabel": "Ask the community",
-                        "continueLabel": "Don’t see it?",
+                        "backgroundColor": "#fff",
+                        "borderColor": "transparent",
+                        "borderRadius": 5,
+                        "borderStyle": "outline",
+                        "buttonColor": "rgba(255,255,255,1)",
+                        "buttonHoverColor": "rgba(0,0,0,0.2)",
                         "crossObjectTypeaheadApiNames": "",
-                        "disableCrossObjectRelevance": false,
-                        "enableAutocomplete": true,
-                        "maxNumberOfResults": 6,
-                        "placeholder": "Search...",
-                        "questionResultsFirst": false,
-                        "showContinueAction": true,
-                        "showDetails": false,
-                        "showTopics": true,
-                        "signInActionLabel": "Sign in to ask the community"
+                        "iconColor": "#000",
+                        "placeholderText": "Search...",
+                        "placeholderTextColor": "#000",
+                        "showSearchButton": false,
+                        "textColor": "#000",
+                        "typeaheadResultMax": 6,
+                        "useTypeahead": true
                       },
-                      "componentName": "forceCommunity:searchBox",
-                      "id": "020d54cd-a9f0-4bac-9478-c34883371173",
+                      "componentName": "forceCommunity:themeSearch",
+                      "id": "b7f3de3f-04ea-47f4-865e-01380fa4b6f2",
                       "renditionMap": {},
                       "type": "component"
                     }
