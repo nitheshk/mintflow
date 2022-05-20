@@ -18,6 +18,7 @@
     <tabs>standard-home</tabs>
     <tabs>FinancialInstituteAccount</tabs>
     <tabs>ApplicationConfiguration</tabs>
+    <tabs>LeadConfiguration__c</tabs>
     <tabs>Diagnostic__c</tabs>
     <tabs>FinancialProduct__c</tabs>
     <tabs>ReferralProduct__c</tabs>
@@ -53,6 +54,9 @@
         </mappings>
         <mappings>
             <tab>Flow__c</tab>
+        </mappings>
+        <mappings>
+            <tab>LeadConfiguration__c</tab>
         </mappings>
         <mappings>
             <tab>ProductFeature__c</tab>
