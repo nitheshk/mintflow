@@ -20,6 +20,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": true,
+      "mflow__Weightage__c": 1,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -1064,6 +1065,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__Weightage__c": 3,
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -1223,7 +1225,7 @@
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0010" },
       "Name": "Money Market Checking",
-      "mflow__Category__c": "Money Market",
+      "mflow__Category__c": "Checking",
       "mflow__DisplayLabel__c": "Money Market Checking",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0010",
@@ -1240,6 +1242,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__Weightage__c": 1.2,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1266,7 +1269,7 @@
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC0011" },
       "Name": "Money Market Savings",
-      "mflow__Category__c": "Money Market",
+      "mflow__Category__c": "Savings",
       "mflow__DisplayLabel__c": "Money Market Savings",
       "mflow__EndDate__c": "2027-02-24",
       "mflow__ExternalCode__c": "EC0011",
@@ -1283,6 +1286,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__Weightage__c": 1.2,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,

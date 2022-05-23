@@ -48,6 +48,12 @@
     "files": ["mflow__ConsentTemplate__c.json"]
   },
   {
+    "sobject": "mflow__LeadConfiguration__c",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["mflow__LeadConfiguration__c.json"]
+  },
+  {
     "sobject": "mflow__EligibleCounty__c",
     "saveRefs": false,
     "resolveRefs": true,

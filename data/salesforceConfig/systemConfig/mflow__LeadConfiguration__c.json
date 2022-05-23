@@ -1,0 +1,18 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_0"
+      },
+      "Name": "LC-001",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 2,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "Savings",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "PersonalInfo"
+    }
+  ]
+}
