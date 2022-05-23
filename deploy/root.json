@@ -11,10 +11,16 @@
 
   "ui": {
     "MintFlow": {
-      "uiDistFolder": "p1fcu-olbui/dist/",
+      "uiDistFolder": "p1fcu-olbui/sales/dist/",
       "staticResourceFolder": "./fsc-app/main/default/staticresources/",
       "staticResourceName": "MintFlow.zip",
-      "UIFolder": "p1fcu-olbui"
+      "UIFolder": "p1fcu-olbui/sales"
+    },
+    "OnlinePortal": {
+      "uiDistFolder": "p1fcu-olbui/online-portal/dist/",
+      "staticResourceFolder": "./fsc-app/main/default/staticresources/",
+      "staticResourceName": "OnlinePortal.zip",
+      "UIFolder": "p1fcu-olbui/online-portal"
     }
   },
 

@@ -41,6 +41,35 @@ gulp.task("buildStaticResource_MintFlow", (finish) => {
   }
 });
 
+//npmRunBuild_OnlinePortal
+gulp.task("npmRunBuild_OnlinePortal", function (finish) {
+  let scriptToRun = `npm run  --prefix ${config.ui.OnlinePortal.UIFolder} build`;
+  console.log("Script To Run - " + scriptToRun);
+  utils.runCommand(scriptToRun).then((result) => {
+    console.log(result);
+    finish();
+  });
+});
+
+//buildStaticResource_OnlinePortal
+gulp.task("buildStaticResource_OnlinePortal", (finish) => {
+  if (fs.existsSync(config.ui.OnlinePortal.uiDistFolder)) {
+    let dist = config.ui.OnlinePortal.uiDistFolder;
+    let staticResourcePath = config.ui.OnlinePortal.staticResourceFolder + config.ui.OnlinePortal.staticResourceName;
+
+    zipFolder(dist, staticResourcePath, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Static resource has created");
+        finish();
+      }
+    });
+  } else {
+    console.log("Unable to find the Dist Folder");
+  }
+});
+
 //setup devhub
 gulp.task("setupDevHub", function (finish) {
   let scriptToRun = "";
@@ -312,12 +341,14 @@ gulp.task("sfdxCacheClear", function (finish) {
 });
 
 gulp.task("buildUI_MintFlow", gulp.series("npmRunBuild_MintFlow", "buildStaticResource_MintFlow"));
+gulp.task("buildUI_OnlinePortal", gulp.series("npmRunBuild_OnlinePortal", "buildStaticResource_OnlinePortal"));
 
 gulp.task(
   "newScratchOrg",
   gulp.series(
     "readConfig",
     "buildUI_MintFlow",
+    "buildUI_OnlinePortal",
     "setupDevHub",
     "deleteScratchOrg",
     "createScratchOrg",

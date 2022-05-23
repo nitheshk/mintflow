@@ -19,8 +19,9 @@
 
 ## Prerequisite Steps
 
-Step 1. set git user.email `git config --global user.email "youremailaddress@digitalalign.com"`
-Step 2. Install the dependencies by run the below commands for first time for one system
+#### Step 1. set git user.email `git config --global user.email "youremailaddress@digitalalign.com"`
+
+#### Step 2. Install the dependencies by run the below commands for first time for one system
 
 `npm install`
 
@@ -32,7 +33,13 @@ Step 2. Install the dependencies by run the below commands for first time for on
 
 `npm install sfdx-cli`
 
-Step 3. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format with create connected app on previous step
+#### For UI Deployment and Development
+
+`npm --prefix p1fcu-olbui/sales install`
+
+`npm --prefix p1fcu-olbui/online-portal install`
+
+#### Step 3. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format with create connected app on previous step
 
 ```
 {

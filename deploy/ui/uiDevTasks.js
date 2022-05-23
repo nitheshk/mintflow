@@ -28,6 +28,8 @@ gulp.task("gitSetupSubmodule", function (finish) {
   });
 });
 
+// ******************** Sales *****************//
+
 //npmRunBuild_MintFlow
 gulp.task("npmRunBuild_MintFlow", function (finish) {
   let scriptToRun = `npm run  --prefix ${config.ui.MintFlow.UIFolder} build`;
@@ -66,6 +68,49 @@ gulp.task("pushStaticResource_MintFlow", function (finish) {
   });
 });
 
+// ******************** Sales *****************//
+
+// ******************** Online POrtal *****************//
+
+gulp.task("npmRunBuild_OnlinePortal", function (finish) {
+  let scriptToRun = `npm run  --prefix ${config.ui.OnlinePortal.UIFolder} build`;
+  console.log("Script To Run - " + scriptToRun);
+  utils.runCommand(scriptToRun).then((result) => {
+    console.log(result);
+    finish();
+  });
+});
+
+//buildStaticResource_OnlinePortal
+gulp.task("buildStaticResource_OnlinePortal", (finish) => {
+  if (fs.existsSync(config.ui.OnlinePortal.uiDistFolder)) {
+    let dist = config.ui.OnlinePortal.uiDistFolder;
+    let staticResourcePath = config.ui.OnlinePortal.staticResourceFolder + config.ui.OnlinePortal.staticResourceName;
+
+    zipFolder(dist, staticResourcePath, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Static resource has created");
+        finish();
+      }
+    });
+  } else {
+    console.log("Unable to find the Dist Folder");
+  }
+});
+
+gulp.task("pushStaticResource_OnlinePortal", function (finish) {
+  let scriptToRun = `sfdx force:source:deploy -p ${config.ui.OnlinePortal.staticResourceFolder}${config.ui.OnlinePortal.staticResourceName}`;
+  console.log("Script To Run - " + scriptToRun);
+  utils.runCommand(scriptToRun).then((result) => {
+    console.log(result);
+    finish();
+  });
+});
+
+// ******************** Online POrtal *****************//
+
 gulp.task(
   "buildUI_MintFlow",
   gulp.series(
@@ -74,4 +119,9 @@ gulp.task(
     "buildStaticResource_MintFlow",
     "pushStaticResource_MintFlow"
   )
+);
+
+gulp.task(
+  "buildUI_OnlinePortal",
+  gulp.series("npmRunBuild_OnlinePortal", "buildStaticResource_OnlinePortal", "pushStaticResource_OnlinePortal")
 );
