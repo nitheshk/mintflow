@@ -129,6 +129,41 @@
         <name>SiteSetting__c</name>
     </customSettingAccesses>
     <description>MintFlow Customer Community profile</description>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>LeadConfiguration__c.Filter__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>LeadConfiguration__c.LeadScore__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>LeadConfiguration__c.MaxValue__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>LeadConfiguration__c.MinValue__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>LeadConfiguration__c.ProductCategory__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>LeadConfiguration__c.Type__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>LeadConfiguration__c.Value__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinancialAccountTransaction__c.AccountHolderName__c</field>
@@ -2156,6 +2191,15 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>MintFlow Employee Community</label>
+      <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>LeadConfiguration__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>

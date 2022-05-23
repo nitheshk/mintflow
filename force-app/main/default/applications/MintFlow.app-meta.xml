@@ -20,15 +20,6 @@
         <content>ApplicantRecordPage</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Applicant__c</pageOrSobjectType>
-        <recordType>Applicant__c.Beneficiary</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
         <recordType>Applicant__c.EmergencyContact</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
@@ -120,6 +111,15 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Applicant__c</pageOrSobjectType>
+        <recordType>Applicant__c.Beneficiary</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>Application__c</tabs>
     <tabs>Applicant__c</tabs>
@@ -131,6 +131,7 @@
     <tabs>Diagnostic__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
+    <tabs>LeadConfiguration__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
@@ -147,6 +148,9 @@
         </mappings>
         <mappings>
             <tab>FinancialAccount__c</tab>
+        </mappings>
+        <mappings>
+            <tab>LeadConfiguration__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Account</tab>
