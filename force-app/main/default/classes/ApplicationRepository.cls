@@ -174,4 +174,18 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .whereNeq('RecordType.Name', ApplicationConstant.APPLICANT_FAMILY_MEMBER_RECORDTYPE);
     return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
   }
+
+  global static List<LeadConfiguration__c> fetchLeadConfiguration(Map<String, String> filterValue) {
+    Query qry = Query.newInstance(LeadConfiguration__c.SObjectType)
+      .addFields()
+      .whereEq('Type__c', filterValue.get('Type'));
+    if (filterValue.get('Value') != null) {
+      qry.andCon().whereEq('Value__c', filterValue.get('Value'));
+    }
+    if (filterValue.containsKey('Category')) {
+      qry.andCon().whereEq('ProductCategory__c', filterValue.get('Category'));
+    }
+    system.debug('query::' + qry.tostring());
+    return (List<LeadConfiguration__c>) DatabaseUtils.getRecords(qry.toString());
+  }
 }

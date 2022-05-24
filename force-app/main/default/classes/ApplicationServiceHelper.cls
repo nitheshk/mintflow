@@ -200,4 +200,84 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     return newApplication;
   }
+
+  public Map<String, Object> calculateLeadScore(Application__c application) {
+    Map<String, Object> mapData = new Map<String, Object>();
+    Map<String, String> mapFilter = new Map<String, String>();
+    String productId;
+
+    List<financialProduct__c> products = ProductServiceRepository.fetchProductWithFeatures(application.Id);
+    try {
+      if (products != null && products.size() > 0) {
+        //Calcuate Lead Score based on product and State weightage;
+        mapFilter.put('Type', 'State');
+        mapFilter.put('Category', products[0].Category__c);
+        mapFilter.put('Value', application.mflow__FlowState__c);
+        mapData = calculateLeadBasedonState(mapfilter, mapData, products[0]);
+
+        //Calculate the lead score based on eligibility
+        mapFilter = new Map<String, String>();
+        mapFilter.put('Type', 'Eligibility');
+        mapFilter.put('Value', application.IsCountyEligible__c ? 'True' : 'False');
+        mapData = calculateLeadBasedonEligibility(mapfilter, mapData);
+        //Calculate the lead score based on KYC
+        mapFilter = new Map<String, String>();
+        mapFilter.put('Type', 'KYC');
+        mapFilter.put('Value', application.mflow__KYCStatus__c == 'Passed' ? 'True' : 'False');
+        System.debug('  mapData filter kyc::' + mapFilter);
+        mapData = calculateLeadBasedonKYC(mapfilter, mapData);
+
+        System.debug('  mapData Final::' + mapData);
+      }
+    } catch (exception ex) {
+      system.debug(' exception at : ' + ex.getLineNumber() + ex.getMessage());
+    }
+
+    return null;
+  }
+
+  public Map<String, Object> calculateLeadBasedonState(
+    Map<String, String> mapFilter,
+    Map<String, Object> mapData,
+    financialProduct__c product
+  ) {
+    Decimal weightage;
+    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
+    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
+    if (leadConfigList != null && leadConfigList.size() > 0) {
+      weightage = leadConfigList[0].Weightage__c * product.Weightage__c;
+      mapData.put(
+        'Product : ' +
+        product.Name +
+        ', Completion State  : ' +
+        mapFilter.get('Value') +
+        ', State Score  ',
+        weightage
+      );
+    }
+    return mapData;
+  }
+
+  public Map<String, Object> calculateLeadBasedonEligibility(
+    Map<String, String> mapFilter,
+    Map<String, Object> mapData
+  ) {
+    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
+    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
+    if (leadConfigList.size() > 0) {
+      mapData.put('Eligibility Score', (Object) (leadConfigList[0].Weightage__c));
+    }
+    return mapdata;
+  }
+
+  public Map<String, object> calculateLeadBasedonKYC(Map<String, String> mapFilter, Map<String, Object> mapData) {
+    system.debug('leadConfigList::');
+    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
+    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
+    if (leadConfigList.size() > 0) {
+      system.debug('leadConfigList::' + leadConfigList);
+      mapData.put('KYC Score', (Object) (leadConfigList[0].Weightage__c));
+    }
+    return mapdata;
+  }
 }
