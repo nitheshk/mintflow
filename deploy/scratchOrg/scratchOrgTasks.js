@@ -348,7 +348,7 @@ gulp.task(
   gulp.series(
     "readConfig",
     "buildUI_MintFlow",
-    "buildUI_OnlinePortal",
+    //"buildUI_OnlinePortal",
     "setupDevHub",
     "deleteScratchOrg",
     "createScratchOrg",

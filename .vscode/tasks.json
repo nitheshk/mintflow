@@ -146,10 +146,22 @@
       "problemMatcher": []
     },
     {
-      "label": "UI 3: Build Static Resource for Sales",
+      "label": "UI 3: Build Static Resource for MintFlow",
       "type": "shell",
       "command": "gulp",
       "args": ["buildUI_MintFlow"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "UI 3: Build Static Resource for Sales",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["buildUI_Sales"],
       "group": "build",
       "presentation": {
         "reveal": "always",

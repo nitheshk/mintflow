@@ -11,6 +11,12 @@
 
   "ui": {
     "MintFlow": {
+      "uiDistFolder": "p1fcu-olbui/dist/",
+      "staticResourceFolder": "./fsc-app/main/default/staticresources/",
+      "staticResourceName": "MintFlow.zip",
+      "UIFolder": "p1fcu-olbui"
+    },
+    "Sales": {
       "uiDistFolder": "p1fcu-olbui/sales/dist/",
       "staticResourceFolder": "./fsc-app/main/default/staticresources/",
       "staticResourceName": "MintFlow.zip",

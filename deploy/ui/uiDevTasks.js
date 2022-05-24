@@ -70,6 +70,48 @@ gulp.task("pushStaticResource_MintFlow", function (finish) {
 
 // ******************** Sales *****************//
 
+// ******************** Sales *****************//
+
+//npmRunBuild_Sales
+gulp.task("npmRunBuild_Sales", function (finish) {
+  let scriptToRun = `npm run  --prefix ${config.ui.Sales.UIFolder} build`;
+  console.log("Script To Run - " + scriptToRun);
+  utils.runCommand(scriptToRun).then((result) => {
+    console.log(result);
+    finish();
+  });
+});
+
+//buildStaticResource_Sales
+gulp.task("buildStaticResource_Sales", (finish) => {
+  if (fs.existsSync(config.ui.Sales.uiDistFolder)) {
+    let dist = config.ui.Sales.uiDistFolder;
+    let staticResourcePath = config.ui.Sales.staticResourceFolder + config.ui.Sales.staticResourceName;
+
+    zipFolder(dist, staticResourcePath, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Static resource has created");
+        finish();
+      }
+    });
+  } else {
+    console.log("Unable to find the Dist Folder");
+  }
+});
+
+gulp.task("pushStaticResource_Sales", function (finish) {
+  let scriptToRun = `sfdx force:source:deploy -p ${config.ui.Sales.staticResourceFolder}${config.ui.Sales.staticResourceName}`;
+  console.log("Script To Run - " + scriptToRun);
+  utils.runCommand(scriptToRun).then((result) => {
+    console.log(result);
+    finish();
+  });
+});
+
+// ******************** Sales *****************//
+
 // ******************** Online POrtal *****************//
 
 gulp.task("npmRunBuild_OnlinePortal", function (finish) {
@@ -120,6 +162,8 @@ gulp.task(
     "pushStaticResource_MintFlow"
   )
 );
+
+gulp.task("buildUI_Sales", gulp.series("npmRunBuild_Sales", "buildStaticResource_Sales", "pushStaticResource_Sales"));
 
 gulp.task(
   "buildUI_OnlinePortal",
