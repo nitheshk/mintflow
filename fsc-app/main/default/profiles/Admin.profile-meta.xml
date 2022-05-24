@@ -22,4 +22,8 @@
         <apexPage>CustomerAction</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <pageAccesses>
+        <apexPage>OnlinePortal</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
 </Profile>
