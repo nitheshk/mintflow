@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Address Proof</fullName>
+        <default>false</default>
+        <label>Address Proof</label>
+    </customValue>
+    <customValue>
+        <fullName>AtomicFI</fullName>
+        <default>false</default>
+        <label>AtomicFI</label>
+    </customValue>
+    <customValue>
+        <fullName>AtomicFIResponse</fullName>
+        <default>false</default>
+        <label>AtomicFIResponse</label>
+    </customValue>
+    <customValue>
+        <fullName>Drivers License</fullName>
+        <default>false</default>
+        <label>Drivers License</label>
+    </customValue>
+    <customValue>
+        <fullName>Foreign Passport</fullName>
+        <default>false</default>
+        <label>Foreign Passport</label>
+    </customValue>
+    <customValue>
+        <fullName>IDScan</fullName>
+        <default>false</default>
+        <label>IDScan</label>
+    </customValue>
+    <customValue>
+        <fullName>Military Id</fullName>
+        <default>false</default>
+        <label>Military Id</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>PayStubs</fullName>
+        <default>false</default>
+        <label>PayStubs</label>
+    </customValue>
+    <customValue>
+        <fullName>School Id</fullName>
+        <default>false</default>
+        <label>School Id</label>
+    </customValue>
+    <customValue>
+        <fullName>SentiLink</fullName>
+        <default>false</default>
+        <label>SentiLink</label>
+    </customValue>
+    <customValue>
+        <fullName>Signature</fullName>
+        <default>false</default>
+        <label>Signature</label>
+    </customValue>
+    <customValue>
+        <fullName>Social Security Card</fullName>
+        <default>false</default>
+        <label>Social Security Card</label>
+    </customValue>
+    <customValue>
+        <fullName>State Id Card</fullName>
+        <default>false</default>
+        <label>State Id Card</label>
+    </customValue>
+    <customValue>
+        <fullName>Tribal Id</fullName>
+        <default>false</default>
+        <label>Tribal Id</label>
+    </customValue>
+    <customValue>
+        <fullName>US Passport</fullName>
+        <default>false</default>
+        <label>US Passport</label>
+    </customValue>
+    <customValue>
+        <fullName>W8 Forms</fullName>
+        <default>false</default>
+        <label>W8 Forms</label>
+    </customValue>
+    <customValue>
+        <fullName>W9 Forms</fullName>
+        <default>false</default>
+        <label>W9 Forms</label>
+    </customValue>
+    <masterLabel>Document Request Sub Type</masterLabel>
+    <sorted>true</sorted>
+</GlobalValueSet>

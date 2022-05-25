@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Address</fullName>
+        <default>false</default>
+        <label>Address</label>
+    </customValue>
+    <customValue>
+        <fullName>Agreement</fullName>
+        <default>false</default>
+        <label>Agreement</label>
+    </customValue>
+    <customValue>
+        <fullName>Asset</fullName>
+        <default>false</default>
+        <label>Asset</label>
+    </customValue>
+    <customValue>
+        <fullName>Employment</fullName>
+        <default>false</default>
+        <label>Employment</label>
+    </customValue>
+    <customValue>
+        <fullName>Financial</fullName>
+        <default>false</default>
+        <label>Financial</label>
+    </customValue>
+    <customValue>
+        <fullName>Identity</fullName>
+        <default>false</default>
+        <label>Identity</label>
+    </customValue>
+    <customValue>
+        <fullName>Income</fullName>
+        <default>false</default>
+        <label>Income</label>
+    </customValue>
+    <customValue>
+        <fullName>KYC</fullName>
+        <default>false</default>
+        <label>KYC</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Tax</fullName>
+        <default>false</default>
+        <label>Tax</label>
+    </customValue>
+    <description>Document Request Type</description>
+    <masterLabel>Document Request Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

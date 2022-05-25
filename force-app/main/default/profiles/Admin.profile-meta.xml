@@ -90,6 +90,9 @@
      <layoutAssignments>
         <layout>Contact-mflow__Member Account Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>DocumentRequest__c-Document Request Layout</layout>
+    </layoutAssignments>
 
     <!--tabVisibilities-->
     <tabVisibilities>
