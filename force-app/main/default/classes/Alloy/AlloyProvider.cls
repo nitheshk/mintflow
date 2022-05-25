@@ -39,6 +39,7 @@ global virtual with sharing class AlloyProvider extends AbstractService {
     try {
       header.put('Alloy-Application-Version', HttpBuilder.getApiConstant(AlloyConstants.IDV_APPLICATION_VERSION));
       header.put('Content-Type', 'application/json');
+      header.put('Alloy-Application-Version', HttpBuilder.getApiConstant('Alloy_Application_Version'));
       log?.fine(' Alloy KYC request for doverification' + applicantId);
       Applicant__c applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
       HttpBuilder.setAPISetting(APINames.AlloyKYC);
@@ -64,7 +65,6 @@ global virtual with sharing class AlloyProvider extends AbstractService {
   public void saveApplicantVerification(Id applicantId, HttpResponse response) {
     FileDTO fileObj = new FileDTO('AlloyResponse.json', Blob.valueof(response.getBody()), applicantId);
     ContentVersion cnv = FileService.getInstance().createFile(fileObj);
-    System.debug('cnv Id::' + cnv.Id);
   }
 
   /**
@@ -89,6 +89,11 @@ global virtual with sharing class AlloyProvider extends AbstractService {
     } catch (exception ex) {
       applicantObj.mflow__KYCStatus__c = 'Under Review';
     }
+    //log?.fine(' Applicant Credit Score :' + idvDTO.formatted_responses.qualifie.data.qualifile_1.Score);
+    System.debug('kyc value::' + idvDTO.formatted_responses);
+
+    applicantObj.CreditScore__c = idvDTO.formatted_responses.qualifile.data.qualifile.score;
+
     ApplicantRepository.upsertRecord(applicantObj);
   }
 }

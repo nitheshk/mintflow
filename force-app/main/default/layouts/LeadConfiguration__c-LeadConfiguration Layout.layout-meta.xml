@@ -24,7 +24,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>LeadScore__c</field>
+                <field>Weightage__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

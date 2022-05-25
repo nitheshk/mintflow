@@ -70,6 +70,76 @@
       "mflow__ProductCategory__c": "",
       "mflow__Type__c": "KYC",
       "mflow__Value__c": "False"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_5"
+      },
+      "Name": "LC-006",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 10,
+      "mflow__MaxValue__c": 1000,
+      "mflow__MinValue__c": 901,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "KYCLeadScore",
+      "mflow__Value__c": "False"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_6"
+      },
+      "Name": "LC-007",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 8,
+      "mflow__MaxValue__c": 900,
+      "mflow__MinValue__c": 801,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "KYCLeadScore",
+      "mflow__Value__c": "False"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_7"
+      },
+      "Name": "LC-008",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 5,
+      "mflow__MaxValue__c": 800,
+      "mflow__MinValue__c": 501,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "KYCLeadScore",
+      "mflow__Value__c": "False"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_8"
+      },
+      "Name": "LC-009",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 3,
+      "mflow__MaxValue__c": 500,
+      "mflow__MinValue__c": 301,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "KYCLeadScore",
+      "mflow__Value__c": "False"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_9"
+      },
+      "Name": "LC-010",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 1,
+      "mflow__MaxValue__c": 300,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "KYCLeadScore",
+      "mflow__Value__c": "False"
     }
   ]
 }

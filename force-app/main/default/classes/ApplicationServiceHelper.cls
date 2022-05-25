@@ -227,6 +227,10 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         System.debug('  mapData filter kyc::' + mapFilter);
         mapData = calculateLeadBasedonKYC(mapfilter, mapData);
 
+        mapFilter = new Map<String, String>();
+        mapFilter.put('Type', 'KYCLeadScore');
+        mapData = calculateLeadBasedonKYCScore(mapfilter, mapData, application);
+
         System.debug('  mapData Final::' + mapData);
       }
     } catch (exception ex) {
@@ -271,12 +275,36 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
   }
 
   public Map<String, object> calculateLeadBasedonKYC(Map<String, String> mapFilter, Map<String, Object> mapData) {
-    system.debug('leadConfigList::');
     List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
     if (leadConfigList.size() > 0) {
-      system.debug('leadConfigList::' + leadConfigList);
       mapData.put('KYC Score', (Object) (leadConfigList[0].Weightage__c));
+    }
+    return mapdata;
+  }
+
+  public Map<String, object> calculateLeadBasedonKYCScore(
+    Map<String, String> mapFilter,
+    Map<String, Object> mapData,
+    Application__c application
+  ) {
+    Decimal creditScore, leadScore, totalLeadScore, calculatedLeadScore = 0;
+    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
+    List<applicant__c> applicants = application.applicants__r;
+    Integer totalApplicants = applicants.size();
+    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
+    for (applicant__c applicant : applicants) {
+      creditScore = applicant.CreditScore__c;
+      for (LeadConfiguration__c leadConfig : leadConfigList) {
+        if (creditScore >= leadConfig.MinValue__c && creditScore <= leadConfig.MaxValue__c) {
+          leadScore = leadConfig.Weightage__c;
+          totalLeadScore = totalLeadScore + leadScore;
+        }
+      }
+    }
+    calculatedLeadScore = totalLeadScore / totalApplicants;
+    if (leadConfigList.size() > 0) {
+      mapData.put('KYC Lead Score', (Object) (calculatedLeadScore));
     }
     return mapdata;
   }

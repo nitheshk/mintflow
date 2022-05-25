@@ -53,9 +53,23 @@ public with sharing class AlloyDTO extends AbstractDTO {
     //public Object champion_challenger_id;
     public Summary summary;
     public Matching matching;
-    public Diligence diligence;
     //public Object audit_archive;
-    public RawResponse raw_responses;
+    public FormattedResponses formatted_responses;
+  }
+
+  public class FormattedResponses {
+    public QualiFile qualifile;
+  }
+
+  public class QualiFile {
+    public Data data;
+  }
+
+  public class Data {
+    public SubQualiFile qualifile;
+  }
+  public class SubQualiFile {
+    public Integer score;
   }
 
   public class Error {
@@ -94,32 +108,6 @@ public with sharing class AlloyDTO extends AbstractDTO {
   public class MatchingItems {
     public Double score;
     public List<String> matched;
-  }
-
-  public class Diligence {
-    public Fraud fraud;
-  }
-
-  public class Fraud {
-    public Double average_score;
-    public Double score;
-    public Sources sources;
-  }
-
-  public class Sources {
-    public Source Iovation;
-    public Source QualiFile;
-  }
-
-  public class Source {
-    public Double normalized_score;
-    public Integer raw_score;
-    public String attribute;
-  }
-
-  //Raw response
-  public class RawResponse {
-    public List<RawQualiFile> QualiFile;
   }
 
   public class RawQualiFile {
