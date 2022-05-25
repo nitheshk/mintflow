@@ -194,6 +194,11 @@
         <field>LeadConfiguration__c.Value__c </field>
         <readable>true</readable>
     </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialProduct__c.Weightage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>FinancialAccountTransaction__c.AccountHolderName__c</field>
