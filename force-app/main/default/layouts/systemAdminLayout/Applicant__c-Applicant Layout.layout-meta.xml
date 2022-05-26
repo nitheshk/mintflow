@@ -44,11 +44,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OOWStatus__c</field>
+                <field>OOWVerified__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>isAllDisclosuresSignedAndPrinted__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOWStatus__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

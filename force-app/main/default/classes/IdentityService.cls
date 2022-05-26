@@ -371,7 +371,8 @@ global virtual with sharing class IdentityService extends AbstractService {
     Integer questionCode;
     String correctAnswer;
     String customerAnswer;
-    Integer totalQuestions, countofCorrectAnswers;
+    Integer countofCorrectAnswers;
+    Decimal totalQuestions;
     List<IdScanDueDiligenceDTO.Questions> questionSet;
     IdScanDueDiligenceDTO.FinalScores finalScores = new IdScanDueDiligenceDTO.FinalScores();
     IdScanDueDiligenceDTO.FinalResult finalResults = new IdScanDueDiligenceDTO.FinalResult();
@@ -404,11 +405,10 @@ global virtual with sharing class IdentityService extends AbstractService {
 
         // Loop through answers fr=irst
         countofCorrectAnswers = 0;
-        totalQuestions = 0;
+        totalQuestions = appConfig.mflow__OOWTotalQuestionsToShow__c;
         for (IdScanDueDiligenceDTO.Questions questionId : questionSet) {
           //to loop through each question from the main collection of questions
           questionCode = questionId.questionType;
-          totalQuestions++;
           for (IdScanDueDiligenceDTO.Answers answerId : questionId.answers) {
             if (answerId.isCorrect) {
               //store the correct answer for that question.
@@ -425,14 +425,15 @@ global virtual with sharing class IdentityService extends AbstractService {
         Applicant__c applicant = ApplicantRepository.readApplicantById(applicantId);
         applicant.mflow__OOWCorrectAnswers__c = countofCorrectAnswers;
         applicant.mflow__OOWTotalQuestions__c = totalQuestions;
-        applicant.mflow__OOWStatus__c = true;
-        ApplicantRepository.upsertRecord(applicant);
-        Decimal totalResult = (decimal) countofCorrectAnswers * 100 / (decimal) totalQuestions;
+        applicant.mflow__OOWVerified__c = true;
 
-        finalResults.result = totalResult >= passThreshold ? 'Pass' : 'Fail';
+        Decimal totalResult = (decimal) countofCorrectAnswers * 100 / (decimal) totalQuestions;
+        finalResults.result = totalResult >= passThreshold ? 'Passed' : 'Failed';
+        applicant.OOwStatus__c = totalResult >= passThreshold ? 'Passed' : 'Failed';
         finalResults.scorePercent = totalResult;
         finalScores.results = finalResults;
         log?.debug(' Result is ' + finalResults.result + ' with % as ' + finalResults.scorePercent);
+        ApplicantRepository.upsertRecord(applicant);
 
         return finalScores;
       } else

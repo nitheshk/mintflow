@@ -140,6 +140,34 @@
       "mflow__ProductCategory__c": "",
       "mflow__Type__c": "KYCLeadScore",
       "mflow__Value__c": "False"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_10"
+      },
+      "Name": "LC-011",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 5,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "OOW",
+      "mflow__Value__c": "Failed"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_11"
+      },
+      "Name": "LC-012",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 10,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "OOW",
+      "mflow__Value__c": "Passed"
     }
   ]
 }

@@ -17,8 +17,8 @@
     <navType>Console</navType>
     <tabs>standard-home</tabs>
     <tabs>FinancialInstituteAccount</tabs>
-    <tabs>ApplicationConfiguration</tabs>
     <tabs>LeadConfiguration__c</tabs>
+    <tabs>ApplicationConfiguration</tabs>
     <tabs>Diagnostic__c</tabs>
     <tabs>FinancialProduct__c</tabs>
     <tabs>ReferralProduct__c</tabs>

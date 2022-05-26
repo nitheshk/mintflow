@@ -288,23 +288,60 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     Map<String, Object> mapData,
     Application__c application
   ) {
-    Decimal creditScore, leadScore, totalLeadScore, calculatedLeadScore = 0;
+    Decimal creditScore = 0,
+      leadScore = 0,
+      calculatedLeadScore = 0,
+      totalScore = 0,
+      totalOOWScore = 0,
+      calculatedOOWScores = 0;
     List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
     List<applicant__c> applicants = application.applicants__r;
-    Integer totalApplicants = applicants.size();
+    Integer totalApplicants = 0;
+
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
     for (applicant__c applicant : applicants) {
-      creditScore = applicant.CreditScore__c;
-      for (LeadConfiguration__c leadConfig : leadConfigList) {
-        if (creditScore >= leadConfig.MinValue__c && creditScore <= leadConfig.MaxValue__c) {
-          leadScore = leadConfig.Weightage__c;
-          totalLeadScore = totalLeadScore + leadScore;
+      if (!applicant.mflow__ApplicantType__c.equalsignorecase('Emergency Contact')) {
+        creditScore = applicant.CreditScore__c;
+        for (LeadConfiguration__c leadConfig : leadConfigList) {
+          if (
+            leadConfig.Type__c == 'KYCLeadScore' &&
+            creditScore >= leadConfig.MinValue__c &&
+            creditScore <= leadConfig.MaxValue__c
+          ) {
+            leadScore = leadConfig.Weightage__c;
+            totalApplicants++;
+            totalScore = totalScore + leadScore;
+          }
         }
       }
     }
-    calculatedLeadScore = totalLeadScore / totalApplicants;
+    //OOW calculations
+    mapFilter = new Map<String, String>();
+    mapFilter.put('Type', 'OOW');
+
+    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
+    for (applicant__c applicant : applicants) {
+      if (!applicant.mflow__ApplicantType__c.equalsignorecase('Emergency Contact')) {
+        creditScore = applicant.CreditScore__c;
+        for (LeadConfiguration__c leadConfig : leadConfigList) {
+          if (leadConfig.Type__c == 'OOW' && applicant.OOWVerified__c) {
+            if (leadConfig.Value__c == 'Passed' && applicant.mflow__OOWStatus__c == 'Passed') {
+              totalOOWScore = totalOOWScore + leadConfig.Weightage__c;
+            }
+            if (leadConfig.Value__c == 'Failed' && applicant.mflow__OOWStatus__c == 'Failed') {
+              totalOOWScore = totalOOWScore + leadConfig.Weightage__c;
+            }
+          }
+        }
+      }
+    }
+
+    calculatedLeadScore = totalScore / totalApplicants;
+    calculatedOOWScores = totalOOWScore / totalApplicants;
+
     if (leadConfigList.size() > 0) {
       mapData.put('KYC Lead Score', (Object) (calculatedLeadScore));
+      mapData.put('OOW Lead Score', (Object) (calculatedOOWScores));
     }
     return mapdata;
   }
