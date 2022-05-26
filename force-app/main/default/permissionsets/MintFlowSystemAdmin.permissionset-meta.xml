@@ -141,6 +141,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>LeadConfiguration__c.Weightage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>LeadConfiguration__c.Filter__c </field>
         <readable>true</readable>
     </fieldPermissions>

@@ -166,6 +166,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>LeadConfiguration__c.Weightage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>LeadConfiguration__c.LeadScore__c </field>
         <readable>true</readable>
     </fieldPermissions>
