@@ -1,27 +1,50 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>mflow__Application__c.CreateDocumentRequest</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>FeedItem.ContentPost</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Edit</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>FeedItem.ContentNote</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Global.LogACall</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>PrintableView</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>collapsed</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsConfiguration</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsInNative</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>hideChatterActions</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>numVisibleActions</name>
-                    <value>3</value>
+                    <value>5</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
             </componentInstance>
@@ -262,7 +285,8 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>filter</name>
-                    <value>mflow__KYCStatus__c!=&apos;Passed&apos; And (mflow__Status__c!=&apos;Submitted&apos; And mflow__Status__c!=&apos;Completed&apos; )</value>
+                    <value
+          >mflow__KYCStatus__c!=&apos;Passed&apos; And (mflow__Status__c!=&apos;Submitted&apos; And mflow__Status__c!=&apos;Completed&apos; )</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>objectApiName</name>
@@ -277,7 +301,8 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>filter</name>
-                    <value>(KYCStatus__c=&apos;Passed&apos;  And Status__c=&apos;Pending Review&apos;) OR (Status__c=&apos;Submitted&apos; And Stage__c=&apos;Exception&apos;)</value>
+                    <value
+          >(KYCStatus__c=&apos;Passed&apos;  And Status__c=&apos;Pending Review&apos;) OR (Status__c=&apos;Submitted&apos; And Stage__c=&apos;Exception&apos;)</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>objectApiName</name>

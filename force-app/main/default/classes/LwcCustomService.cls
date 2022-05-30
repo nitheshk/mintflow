@@ -337,4 +337,34 @@ global virtual with sharing class LwcCustomService extends AbstractService {
     }
     return CustomerEmailService.getInstance().generateUrl(params);
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 05-26-2022
+   * @param Id applicationId
+   * @return List<Map<String, String>>
+   **/
+  global virtual List<Map<String, String>> fetchApplicantNames(Id applicationId) {
+    List<Map<String, String>> applicantNames = new List<Map<String, String>>();
+    for (Applicant__c applicant : LwcCustomRepository.readApplicationWithApplicants(applicationId)?.Applicants__r) {
+      if (
+        applicant.recordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE ||
+        applicant.RecordType.Name == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
+      ) {
+        applicantNames.add(new Map<String, String>{ 'label' => applicant.ApplicantName__c, 'value' => applicant.Id });
+      }
+    }
+    return applicantNames;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 05-30-2022
+   * @param DocumentRequest__c documentRequest
+   * @return DocumentRequest__c
+   **/
+  global virtual DocumentRequest__c createDocumentRequest(DocumentRequest__c documentRequest) {
+    LwcCustomRepository.insertRecord(documentRequest);
+    return documentRequest;
+  }
 }

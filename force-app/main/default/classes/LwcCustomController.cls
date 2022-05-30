@@ -347,4 +347,40 @@ global with sharing class LwcCustomController extends AbstractController {
       return 'Failed to  fetch userInfo';
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 05-26-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled(cacheable=true)
+  global static ApexResponse fetchApplicantNames(String applicationId) {
+    try {
+      //validateRequest(request, true);
+      return ApexResponse.ok(LwcCustomService.getInstance().fetchApplicantNames(applicationId));
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 05-30-2022
+   * @param String documentRequestObj
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  global static ApexResponse createDocumentRequest(DocumentRequest__c documentRequestObj) {
+    try {
+      log?.fine('inside createDocumentRequest');
+      return ApexResponse.ok(LwcCustomService.getInstance().createDocumentRequest(documentRequestObj));
+    } catch (Exception ex) {
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
 }

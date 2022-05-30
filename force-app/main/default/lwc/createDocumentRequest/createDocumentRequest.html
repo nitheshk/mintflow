@@ -1,0 +1,68 @@
+<template>
+  <lightning-record-edit-form
+    object-api-name={documentRequestObj.type}
+    onsubmit={handleSubmit}
+    layout-type="Full"
+    columns="2"
+  >
+    <lightning-card title="Create Document Request" icon-name="standard:user">
+      <div class="slds-card__body slds-var-p-top_medium">
+        <lightning-messages></lightning-messages>
+        <lightning-layout multiple-rows="true" class="slds-border_top slds-var-p-top_medium">
+          <lightning-layout-item size="6">
+            <lightning-input-field
+              class="slds-form-element_stacked"
+              field-name={documentRequestObj.fields.Name__c}
+              required
+            >
+            </lightning-input-field>
+          </lightning-layout-item>
+
+          <lightning-layout-item size="6">
+            <lightning-input-field class="slds-form-element_stacked" field-name={documentRequestObj.fields.Required__c}>
+            </lightning-input-field>
+          </lightning-layout-item>
+
+          <lightning-layout-item size="6">
+            <lightning-input-field
+              class="slds-form-element_stacked"
+              field-name={documentRequestObj.fields.DocumentType__c}
+            >
+            </lightning-input-field>
+          </lightning-layout-item>
+
+          <lightning-layout-item size="6">
+            <lightning-input-field class="slds-form-element_stacked" field-name={documentRequestObj.fields.Comments__c}>
+            </lightning-input-field>
+          </lightning-layout-item>
+
+          <lightning-layout-item size="6" class="slds-form-element_stacked slds-var-p-top_medium">
+            <lightning-combobox
+              name="Applicant Name"
+              class="slds-form-element_stacked slds-var-p-top_medium"
+              label="Select the applicant name"
+              value={selectedApplicant}
+              placeholder="Select the applicant name"
+              options={applicantNames}
+              onchange={selectApplicantHandler}
+              message-when-value-missing="Select the applicant name"
+              required
+            >
+            </lightning-combobox>
+          </lightning-layout-item>
+        </lightning-layout>
+      </div>
+      <footer class="slds-card__footer">
+        <lightning-button
+          type="submit"
+          class="slds-var-m-left_x-small"
+          variant="brand"
+          label="Submit"
+          disabled={disabled}
+        >
+        </lightning-button>
+        <lightning-button type="button" label="Cancel" onclick={handleCancel} disabled={disabled}> </lightning-button>
+      </footer>
+    </lightning-card>
+  </lightning-record-edit-form>
+</template>
