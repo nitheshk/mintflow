@@ -365,6 +365,8 @@ global virtual with sharing class LwcCustomService extends AbstractService {
    **/
   global virtual DocumentRequest__c createDocumentRequest(DocumentRequest__c documentRequest) {
     LwcCustomRepository.insertRecord(documentRequest);
+    Applicant__c applicant = LwcCustomRepository.readApplicantById(documentRequest.Applicant__c);
+    CustomerEmailService.getInstance().documentRequestInitiated(applicant, documentRequest);
     return documentRequest;
   }
 }

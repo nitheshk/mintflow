@@ -1,0 +1,393 @@
+<messaging:emailTemplate
+  subject="Requesting for new documentation submission"
+  recipientType="User"
+  relatedToType="Applicant__c"
+  renderUsingSystemContextWithoutSharing="True"
+>
+  <messaging:htmlEmailBody>
+    <html>
+      <head>
+        <title></title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <style type="text/css">
+          /* CLIENT-SPECIFIC STYLES */
+          body,
+          table,
+          td,
+          a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+          }
+
+          table,
+          td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+          }
+
+          img {
+            -ms-interpolation-mode: bicubic;
+          }
+
+          /* RESET STYLES */
+          img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+          }
+
+          table {
+            border-collapse: collapse !important;
+          }
+
+          body {
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+          }
+
+          /* iOS BLUE LINKS */
+          a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+          }
+
+          /* MOBILE STYLES */
+          @media screen and (max-width: 600px) {
+            h1 {
+              font-size: 32px !important;
+              line-height: 32px !important;
+            }
+          }
+
+          /* ANDROID CENTER FIX */
+          div[style*="margin: 16px 0;"] {
+            margin: 0 !important;
+          }
+        </style>
+      </head>
+
+      <body
+        style="
+          background-color: #f4f4f4;
+          margin: 0 !important;
+          padding: 0 !important;
+        "
+      >
+        <!-- HIDDEN PREHEADER TEXT -->
+        <div
+          style="
+            display: none;
+            font-size: 1px;
+            color: #fefefe;
+            line-height: 1px;
+            font-family: 'Poppins', sans-serif;
+            max-height: 0px;
+            max-width: 0px;
+            opacity: 0;
+            overflow: hidden;
+          "
+        >
+          We're thrilled to have you here! Get ready to dive into your new
+          account.
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <!-- LOGO -->
+          <tr>
+            <td bgcolor="#FFA73B" align="center">
+              <table
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                width="100%"
+                style="max-width: 600px"
+              >
+                <tr>
+                  <td
+                    align="center"
+                    valign="top"
+                    style="padding: 40px 10px 40px 10px"
+                  ></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td
+              bgcolor="#FFA73B"
+              align="center"
+              style="padding: 0px 10px 0px 10px"
+            >
+              <table
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                width="100%"
+                style="max-width: 600px"
+              >
+                <tr>
+                  <td
+                    bgcolor="#ffffff"
+                    align="center"
+                    valign="top"
+                    style="
+                      padding: 40px 20px 20px 20px;
+                      border-radius: 4px 4px 0px 0px;
+                      color: #111111;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 48px;
+                      font-weight: 400;
+                      letter-spacing: 4px;
+                      line-height: 48px;
+                    "
+                  >
+                    <c:DisplayImage name="MintflowLogo"></c:DisplayImage>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td
+              bgcolor="#f4f4f4"
+              align="center"
+              style="padding: 0px 10px 0px 10px"
+            >
+              <table
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                width="100%"
+                style="max-width: 600px"
+              >
+                <tr>
+                  <td
+                    bgcolor="#ffffff"
+                    align="left"
+                    style="
+                      padding: 20px 30px 40px 30px;
+                      color: #666666;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 18px;
+                      font-weight: 400;
+                      line-height: 25px;
+                    "
+                  >
+                    <p style="margin: 0">
+                      <h5>Hi {!RelatedTo.FirstName__c} {!RelatedTo.LastName__c},</h5>
+                      <br />
+                        <br />
+                      We just need a little more information, so we can finish processing your request.
+                      Login into portal (<a href="{url}" target="_blank">Click Here</a> ) to upload the requested documentation.
+
+                      <p>
+                        <span style="text-align:justify">For Address verification following documentation are valid</span>
+                        <ul>
+                          <li>Voter Registration Card</li>
+                          <li>Vehicle Registration</li>
+                          <li>Utility Bill (electric, cable, water)</li>
+                          <li>Driver’s License</li>
+                          <li>State ID card</li>
+                          <li>Pay Stub</li>
+                        </ul>
+                      </p>
+
+                      <p>
+                        <span style="text-align:justify">For Social Security Number verification following documentation are valid</span>
+                        <ul>
+                          <li>Social Security Card</li>
+                          <li>Most recent W2</li>
+                          <li>Most recent U.S. Tax Return</li>
+                          <br/>
+                        </ul>
+                      </p>
+
+                       <p>
+                        <span style="text-align:justify">For Date of Birth verification following documentation are valid</span>
+                        <ul>
+                          <li>Birth Certificate</li>
+                          <li>US Passport</li>
+                          <li>US Travel VISA</li>
+                        </ul>
+                      </p>
+
+                      <p>
+                        <span style="text-align:justify">For Identity verification following documentation are valid</span>
+                        <ul>
+                          <li>Driver’s License</li>
+                          <li>State Issued Photo ID</li>
+                          <li>US Passport</li>
+                        </ul>
+                      </p>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    bgcolor="#ffffff"
+                    align="left"
+                    style="
+                      padding: 20px 30px 40px 30px;
+                      color: #666666;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 18px;
+                      font-weight: 400;
+                      line-height: 25px;
+                    "
+                  >
+                    <p style="margin: 0">
+                      Thank you for your interest in Mintflow.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    bgcolor="#ffffff"
+                    align="left"
+                    style="
+                      padding: 0px 30px 20px 30px;
+                      color: #666666;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 18px;
+                      font-weight: 400;
+                      line-height: 25px;
+                    "
+                  >
+                   <p>
+                      <br/>
+                      If you have any questions, please email us at   <a
+                        href="mailto:support@digitalalign.com"
+                        style="color: #ffa73b"
+                        >support@digitalalign.com</a> or visit our FAQs page. 
+                        <br/>If preferred, you can chat with an agent during our operating hours.
+                      </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    bgcolor="#ffffff"
+                    align="left"
+                    style="
+                      padding: 0px 30px 40px 30px;
+                      border-radius: 0px 0px 4px 4px;
+                      color: #666666;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 18px;
+                      font-weight: 400;
+                      line-height: 25px;
+                    "
+                  >
+                    <p style="margin: 0">Cheers,<br />MintFlow Team</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td
+              bgcolor="#f4f4f4"
+              align="center"
+              style="padding: 30px 10px 0px 10px"
+            >
+              <table
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                width="100%"
+                style="max-width: 600px"
+              >
+                <tr>
+                  <td
+                    bgcolor="#FFECD1"
+                    align="center"
+                    style="
+                      padding: 30px 30px 30px 30px;
+                      border-radius: 4px 4px 4px 4px;
+                      color: #666666;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 18px;
+                      font-weight: 400;
+                      line-height: 25px;
+                    "
+                  >
+                    <h2
+                      style="
+                        font-size: 20px;
+                        font-weight: 400;
+                        color: #111111;
+                        margin: 0;
+                      "
+                    >
+                      Need more help?
+                    </h2>
+                    <p style="margin: 0">
+                      <a href="#" target="_blank" style="color: #ffa73b"
+                        >We&rsquo;re here to help you out</a
+                      >
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td
+              bgcolor="#f4f4f4"
+              align="center"
+              style="padding: 0px 10px 0px 10px"
+            >
+              <table
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                width="100%"
+                style="max-width: 600px"
+              >
+                <tr>
+                  <td
+                    bgcolor="#f4f4f4"
+                    align="left"
+                    style="
+                      padding: 0px 30px 30px 30px;
+                      color: #666666;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 14px;
+                      font-weight: 400;
+                      line-height: 18px;
+                    "
+                  >
+                    <br />
+                    <p style="margin: 0">
+                      If these emails get annoying, please feel free to
+                      <a
+                        href="#"
+                        target="_blank"
+                        style="color: #111111; font-weight: 700"
+                        >unsubscribe</a
+                      >.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </body>
+    </html>
+  </messaging:htmlEmailBody>
+</messaging:emailTemplate>

@@ -5,8 +5,6 @@ import getApplicantNames from "@salesforce/apex/LwcCustomController.fetchApplica
 import create from "@salesforce/apex/LwcCustomController.createDocumentRequest";
 
 import documentRequestSobject from "@salesforce/schema/DocumentRequest__c";
-import applicant from "@salesforce/schema/DocumentRequest__c.Applicant__c";
-import application from "@salesforce/schema/DocumentRequest__c.Application__c";
 import comments from "@salesforce/schema/DocumentRequest__c.Comments__c";
 import documentType from "@salesforce/schema/DocumentRequest__c.DocumentType__c";
 import name from "@salesforce/schema/DocumentRequest__c.Name__c";

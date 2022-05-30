@@ -369,7 +369,7 @@ global with sharing class LwcCustomController extends AbstractController {
   /**
    * @description
    * @author Digital Align Team | 05-30-2022
-   * @param String documentRequestObj
+   * @param DocumentRequest__c documentRequestObj
    * @return ApexResponse
    **/
   @AuraEnabled

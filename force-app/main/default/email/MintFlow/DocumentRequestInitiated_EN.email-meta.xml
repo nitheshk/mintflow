@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <available>true</available>
+    <description>Requesting for new documentation submission</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Document Request Initiated - EN</name>
+    <style>none</style>
+    <subject>Requesting for new documentation submission</subject>
+    <type>visualforce</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

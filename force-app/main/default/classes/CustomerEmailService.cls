@@ -322,6 +322,18 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   }
 
   /**
+   * @description Send Email to upload document
+   * @author Digital Align Team | 05-30-2022
+   * @param Applicant__c applicant
+   **/
+  global virtual void documentRequestInitiated(Applicant__c applicant, DocumentRequest__c documentRequest) {
+    EmailNotificationBuilder.newInstance('DocumentRequestInitiated', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(new Map<String, String>{ '{url}' => SiteSetting__c.getInstance().OnlineSiteUrl__c });
+    sendEmail();
+  }
+
+  /**
    * @description
    * Method to send email
    * @author Digital Align | 11-12-2021
