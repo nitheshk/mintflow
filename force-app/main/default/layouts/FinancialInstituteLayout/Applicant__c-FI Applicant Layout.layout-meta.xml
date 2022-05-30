@@ -223,6 +223,14 @@
         <relatedList>Consent__c.Applicant__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>Application__c</fields>
+        <fields>DocumentType__c</fields>
+        <fields>DocumentSubType__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>DocumentRequest__c.Applicant__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -231,7 +239,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hN0000002gshy</masterLabel>
+        <masterLabel>00h6D000000SE5x</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

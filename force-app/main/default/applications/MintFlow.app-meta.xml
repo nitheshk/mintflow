@@ -69,6 +69,14 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
+        <content>DocumentRequestRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>DocumentRequest__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
         <content>FinancialAccountRecordPage</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>FinancialAccount__c</pageOrSobjectType>
