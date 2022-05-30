@@ -364,4 +364,31 @@ public with sharing class LwcCustomControllerTest {
     params.remove('applicant');
     res = LwcCustomController.authorizeCustomer(params);
   }
+
+  /**
+   * createDocumentRequestTest
+   */
+  @istest
+  private static void createDocumentRequestTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = application.Applicants__r[0];
+
+    DocumentRequest__c docReq = TestData.createDocumentRequest(application, applicant);
+    ApexResponse res = LwcCustomController.createDocumentRequest(docReq);
+    System.assertEquals(200, res.status, 'success');
+
+    res = LwcCustomController.fetchApplicantNames(application.Id);
+    System.assertEquals(200, res.status, 'success');
+
+    //Testing Exception case
+    res = LwcCustomController.createDocumentRequest(docReq);
+    System.assertEquals(400, res.status, 'success');
+
+    res = LwcCustomController.fetchApplicantNames('abcd');
+    System.assertEquals(400, res.status, 'success');
+  }
 }
