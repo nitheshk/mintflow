@@ -25,13 +25,11 @@
 
 `npm install`
 
-`sfdx update`
-
 `npm install --global gulp-cli` ( ERROR AND ISSUE : gulp : The term 'gulp' is not recognized, follow last section )
 
-`npm install --global sfdx-cli` or `npm install -g sfdx-cli@7.132.0` (Specified Version)
+`npm install -g sfdx-cli@7.132.0` (Specified Version - Optional `sfdx update`)
 
-`npm install sfdx-cli`
+`npm install sfdx-cli@7.132.0`
 
 #### For UI Deployment and Development
 

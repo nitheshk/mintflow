@@ -145,7 +145,7 @@ gulp.task("createScratchOrg", function (finish) {
       utils
         .runCommand(scriptToRun)
         .then((orgResult) => {
-          console.log("Result :" + orgResult);
+          //console.log("Result :" + orgResult);
           utils.createFile(config.scratchOrg.scratchOrgjson, orgResult).catch((err) => {
             console.log("errr :" + JSON.stringify(errr));
           });
@@ -348,7 +348,7 @@ gulp.task(
   gulp.series(
     "readConfig",
     "buildUI_MintFlow",
-    //"buildUI_OnlinePortal",
+    "buildUI_OnlinePortal",
     "setupDevHub",
     "deleteScratchOrg",
     "createScratchOrg",
