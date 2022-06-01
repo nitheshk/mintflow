@@ -12,25 +12,39 @@
             <colSpan>6</colSpan>
             <columnIndex>0</columnIndex>
             <dashboardComponent>
-                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <chartAxisRange>Auto</chartAxisRange>
-                <componentType>Bar</componentType>
+                <chartSummary>
+                    <axisBinding>y</axisBinding>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Donut</componentType>
+                <decimalPrecision>0</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <drillEnabled>false</drillEnabled>
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
-                <groupingSortProperties />
-                <header>Application Strengths</header>
-                <report>MintFlow/ApplicationStrengths</report>
+                <groupingColumn>BucketField_76393201</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortColumn>RowCount</sortColumn>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Application Lead Score</header>
+                <legendPosition>Right</legendPosition>
+                <maxValuesDisplayed>6</maxValuesDisplayed>
+                <report>MintFlow/ApplicationLeadScore</report>
                 <showPercentage>false</showPercentage>
-                <showPicturesOnCharts>false</showPicturesOnCharts>
-                <showValues>false</showValues>
+                <showTotal>true</showTotal>
+                <showValues>true</showValues>
                 <sortBy>RowLabelAscending</sortBy>
-                <useReportChart>true</useReportChart>
+                <useReportChart>false</useReportChart>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
-            <rowSpan>10</rowSpan>
+            <rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
             <colSpan>6</colSpan>
@@ -69,15 +83,15 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingSortProperties />
-                <header>Financial Account Opened</header>
-                <report>MintFlow/FinancialAccountOpened</report>
+                <header>Application Strengths</header>
+                <report>MintFlow/ApplicationStrengths</report>
                 <showPercentage>false</showPercentage>
                 <showPicturesOnCharts>false</showPicturesOnCharts>
                 <showValues>false</showValues>
                 <sortBy>RowLabelAscending</sortBy>
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
-            <rowIndex>10</rowIndex>
+            <rowIndex>8</rowIndex>
             <rowSpan>10</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
@@ -103,6 +117,30 @@
             </dashboardComponent>
             <rowIndex>10</rowIndex>
             <rowSpan>9</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <componentType>Bar</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <groupingSortProperties />
+                <header>Financial Account Opened</header>
+                <report>MintFlow/FinancialAccountOpened</report>
+                <showPercentage>false</showPercentage>
+                <showPicturesOnCharts>false</showPicturesOnCharts>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <useReportChart>true</useReportChart>
+            </dashboardComponent>
+            <rowIndex>18</rowIndex>
+            <rowSpan>10</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
             <colSpan>6</colSpan>
@@ -162,7 +200,7 @@
                 <sortBy>RowLabelAscending</sortBy>
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
-            <rowIndex>20</rowIndex>
+            <rowIndex>28</rowIndex>
             <rowSpan>9</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
@@ -222,7 +260,7 @@
                 <sortBy>RowLabelAscending</sortBy>
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
-            <rowIndex>29</rowIndex>
+            <rowIndex>37</rowIndex>
             <rowSpan>9</rowSpan>
         </dashboardGridComponents>
         <numberOfColumns>12</numberOfColumns>
@@ -230,7 +268,7 @@
     </dashboardGridLayout>
     <dashboardType>SpecifiedUser</dashboardType>
     <isGridLayout>true</isGridLayout>
-    <runningUser>test-frg74jdusgcw@example.com</runningUser>
+    <runningUser>test-m8gyabgnlvwz@example.com</runningUser>
     <textColor>#000000</textColor>
     <title>Financial Institute Board</title>
     <titleColor>#000000</titleColor>
