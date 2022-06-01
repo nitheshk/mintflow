@@ -278,21 +278,9 @@ global with sharing class ApplicationController extends AbstractController {
    **/
   @AuraEnabled
   @RemoteAction
+  @deprecated
   global static ApexResponse preserveApplication(ApexRequest request) {
-    try {
-      validateRequest(request);
-      Application__c application = (Application__c) SObjectConstructor.deserialize(request.data, Application__c.class);
-      application = ApplicationService.getInstance().preserveApplication(application);
-      return ApexResponse.ok(ApplicationService.getInstance().updateFlowState(application));
-    } catch (CustomException ex) {
-      log?.error(ex);
-      return ApexResponse.exception(ex);
-    } catch (Exception ex) {
-      log?.error(ex);
-      return ApexResponse.fail(ex);
-    } finally {
-      Logger.persist();
-    }
+    return saveApplication(request);
   }
 
   /**

@@ -87,7 +87,6 @@ global with sharing class LWCFinancialInstituteSiteController {
   public static ApexResponse retrieveApplicants(Map<String, Object> params) {
     try {
       log?.debug('retrieve Member ::' + params);
-
       return ApexResponse.ok(SearchService.getInstance().retrieveApplicants(params));
     } catch (Exception ex) {
       System.debug(ex.getMessage());

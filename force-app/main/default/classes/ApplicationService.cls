@@ -284,30 +284,8 @@ global virtual with sharing class ApplicationService extends AbstractService {
    * @param Application__c application
    * @return Application__c
    **/
+  @deprecated
   global virtual Application__c preserveApplication(Application__c application) {
-    //current applicant
-    Applicant__c currentApplicant;
-    if (ApexRequest.getApplicantType() == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-      application.Status__c = ApplicationConstant.SAVED;
-      for (Applicant__c applicant : application.Applicants__r) {
-        if (applicant.ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-          currentApplicant = applicant;
-          applicant.mflow__Status__c = ApplicationConstant.SAVED;
-          break;
-        }
-      }
-    } else if (ApexRequest.getApplicantType() == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE) {
-      for (Applicant__c applicant : application.Applicants__r) {
-        if (applicant.ApplicantType__c.Contains(ApplicationConstant.APPLICANT_JOINT_RECORDTYPE)) {
-          currentApplicant = applicant;
-          applicant.mflow__Status__c = ApplicationConstant.SAVED;
-          break;
-        }
-      }
-    }
-    application = this.saveApplication(application);
-    //send saved email to resume
-    CustomerEmailService.getInstance().savedApplication(currentApplicant);
     return application;
   }
 
