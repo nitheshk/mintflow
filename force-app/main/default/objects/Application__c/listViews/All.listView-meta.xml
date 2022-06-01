@@ -3,6 +3,7 @@
     <fullName>All</fullName>
     <columns>NAME</columns>
     <columns>Status__c</columns>
+    <columns>LeadScore__c</columns>
     <columns>CreatedChannel__c</columns>
     <columns>OWNER.FIRST_NAME</columns>
     <columns>FlowState__c</columns>

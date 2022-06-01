@@ -4,6 +4,8 @@
     <columns>NAME</columns>
     <columns>Stage__c</columns>
     <columns>Status__c</columns>
+    <columns>LeadScore__c</columns>
+    <columns>CREATED_DATE</columns>
     <columns>KYCStatus__c</columns>
     <columns>OWNER.FIRST_NAME</columns>
     <filterScope>Everything</filterScope>

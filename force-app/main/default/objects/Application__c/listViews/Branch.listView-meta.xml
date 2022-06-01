@@ -1,7 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Branch</fullName>
     <columns>NAME</columns>
+    <columns>ApplicationType__c</columns>
+    <columns>BranchName__c</columns>
+    <columns>BranchCode__c</columns>
+    <columns>Status__c</columns>
+    <columns>LeadScore__c</columns>
+    <columns>Stage__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>FlowState__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>CreatedChannel__c</field>
