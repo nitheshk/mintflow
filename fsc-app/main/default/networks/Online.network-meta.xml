@@ -35,7 +35,7 @@
   <networkPageOverrides>
     <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
     <forgotPasswordPageOverrideSetting>Designer</forgotPasswordPageOverrideSetting>
-    <homePageOverrideSetting>Designer</homePageOverrideSetting>
+    <homePageOverrideSetting>VisualForce</homePageOverrideSetting>
     <loginPageOverrideSetting>Designer</loginPageOverrideSetting>
     <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
   </networkPageOverrides>
