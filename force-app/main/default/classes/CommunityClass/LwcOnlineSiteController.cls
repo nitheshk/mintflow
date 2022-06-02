@@ -20,6 +20,7 @@ global with sharing class LwcOnlineSiteController extends AbstractController {
    * @return ApexResponse
    **/
   @AuraEnabled(cacheable=true)
+  @RemoteAction
   global static ApexResponse productSelector(ApexRequest request) {
     try {
       validateRequest(request, true);
