@@ -1,2 +1,7 @@
-<apex:page id="OpenAccount" controller="mflow.OpenAccountController" action="{!initOpenAccount}" title="OpenAccount">
+<apex:page
+  id="OpenAccount"
+  controller="mflow.OnlineAccountController"
+  action="{!initializeOpenAccount}"
+  title="OpenAccount"
+>
 </apex:page>

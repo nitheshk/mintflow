@@ -24,11 +24,9 @@
     <testClassName>mflow.LoggerTest</testClassName>
     <testClassName>mflow.LwcCustomControllerTest</testClassName>
     <testClassName>mflow.LWCFinancialInstituteSiteControllerTest</testClassName>
-    <testClassName>mflow.LwcOnlineSiteControllerTest</testClassName>
     <testClassName>mflow.MockAPIResponse</testClassName>
     <testClassName>mflow.OAuthProviderTest</testClassName>
     <testClassName>mflow.OnlineAccountControllerTest</testClassName>
-    <testClassName>mflow.OpenAccountControllerTest</testClassName>
     <testClassName>mflow.PageUtilsTest</testClassName>
     <testClassName>mflow.QueryTest</testClassName>
     <testClassName>mflow.RpaProcessServiceTest</testClassName>

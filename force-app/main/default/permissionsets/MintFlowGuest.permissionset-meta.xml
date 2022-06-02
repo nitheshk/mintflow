@@ -17,10 +17,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>LwcOnlineSiteController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>FinancingController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -42,10 +38,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>LwcCustomController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>OpenAccountController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

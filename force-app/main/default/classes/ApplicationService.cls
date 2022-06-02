@@ -317,10 +317,10 @@ global virtual with sharing class ApplicationService extends AbstractService {
   global virtual Application__c saveState() {
     Application__c application = this.readApplicationWithChild();
     //code to update the lead score of the application ::TODO
-    Map<String, Object> mapData = helper.calculateLeadScore(application);
-    application.LeadScore__c = (Decimal) mapData.get('LeadScore');
-    return null;
-    // return (mflow__Application__c) this.updateFlowState(application);
+    //Map<String, Object> mapData = helper.calculateLeadScore(application);
+    //application.LeadScore__c = (Decimal) mapData.get('LeadScore');
+    //return application;
+    return (mflow__Application__c) this.updateFlowState(application);
   }
 
   /**

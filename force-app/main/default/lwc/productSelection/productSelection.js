@@ -1,5 +1,5 @@
 import { LightningElement, track, wire, api } from "lwc";
-import getProducts from "@salesforce/apex/LwcOnlineSiteController.productSelector";
+import getProducts from "@salesforce/apex/OnlinePortalController.productSelector";
 import startApplication from "@salesforce/apex/ApplicationController.startApplication";
 
 export default class ProductSelection extends LightningElement {

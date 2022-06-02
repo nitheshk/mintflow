@@ -5,9 +5,9 @@
   docType="html-5.0"
   standardStylesheets="false"
   showheader="false"
-  Controller="mflow.OnlinePortalController"
-  extensions="mflow.ApplicationController,mflow.IdentityController,mflow.ApplicantController,mflow.FinancialAccountController,mflow.FileController,mflow.FinancingController,mflow.LwcOnlineSiteController"
-  action="{!initializeApplication}"
+  Controller="mflow.OnlineAccountController"
+  extensions="mflow.ApplicationController,mflow.ApplicantController,mflow.FileController,mflow.OnlinePortalController"
+  action="{!initializeOnlinePortal}"
 >
   <html lang="">
     <head>
