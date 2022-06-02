@@ -6,7 +6,7 @@
   standardStylesheets="false"
   showheader="false"
   Controller="mflow.OnlineAccountController"
-  extensions="mflow.ApplicationController,mflow.IdentityController,mflow.ApplicantController,mflow.FinancialAccountController,mflow.FileController,mflow.FinancingController"
+  extensions="mflow.ApplicationController,mflow.IdentityController,mflow.ApplicantController,mflow.FinancialAccountController,mflow.FileController,mflow.FinancingController,mflow.LwcOnlineSiteController"
   action="{!initializeApplication}"
 >
   <html lang="">

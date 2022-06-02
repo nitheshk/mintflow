@@ -9,6 +9,10 @@
 global with sharing class LwcOnlineSiteController extends AbstractController {
   private static logger log = logger.getInstance(LwcOnlineSiteController.class);
 
+  global LwcOnlineSiteController(AbstractController controller) {
+    super(LwcOnlineSiteController.class);
+  }
+
   /**
    * @description  product Selector to show all product in online page
    * @author Digital Align Team | 03-22-2022
