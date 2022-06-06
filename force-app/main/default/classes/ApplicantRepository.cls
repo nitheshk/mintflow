@@ -142,7 +142,7 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
    * @param Id applicationId
    * @return Application__c
    **/
-  global static Application__c readApplicationWithChild(Id applicationId) {
+  global static Application__c readApplicationWithPrimary(Id applicationId) {
     Query qry = Query.newInstance(Application__c.SObjectType)
       .addFields()
       .queryChild('mflow__Applicants__r')

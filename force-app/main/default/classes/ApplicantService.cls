@@ -184,7 +184,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
    * @return Application__c
    **/
   global virtual Application__c validateExistingCustomer(Id applicationId) {
-    Application__c application = ApplicantRepository.readApplicationWithChild(applicationId);
+    Application__c application = ApplicantRepository.readApplicationWithPrimary(applicationId);
     Applicant__c primaryApplicant = application.Applicants__r[0];
 
     Contact existingContact = ApplicantRepository.fetchExistingContact(primaryApplicant);
