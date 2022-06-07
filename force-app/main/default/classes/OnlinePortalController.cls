@@ -29,8 +29,31 @@ global with sharing class OnlinePortalController extends AbstractController {
       validateRequest(request, true);
       return ApexResponse.ok(ProductService.getInstance().productSelector());
     } catch (Exception ex) {
-      log?.debug(ex.getMessage());
+      log?.error(ex);
       return ApexResponse.fail(ex);
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-06-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @RemoteAction
+  global static ApexResponse onlinePortalAuthenticate(ApexRequest request) {
+    try {
+      validateRequest(request, true);
+      return ApexResponse.ok(AuthenticationService.getInstance().onlinePortalAuthenticate(ApexRequest.getParams()));
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Finished onlinePortalAuthenticate');
+      Logger.persist();
     }
   }
 }

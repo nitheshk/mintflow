@@ -194,7 +194,7 @@
 
                       Here's the login information you requested. This will be used to verify your email address.
 
-                     <p>Your One-Time Password (OTP) is {OTP} . Please note that this OTP will only be valid for {ExpireTime}. </p>
+                     <p>Your One-Time Password (OTP) is {OTP} . Please note that this OTP will only be valid for {ExpireTime} Min. </p>
 
                       <p>
                       In order to keep your account safe, please do not share this OTP with anyone.

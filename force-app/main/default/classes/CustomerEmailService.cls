@@ -51,6 +51,20 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   }
 
   /**
+   * @description send otp for online portal login
+   * @author Digital Align Team | 06-07-2022
+   * @param Applicant__c applicant
+   * @param SessionManagement__c session
+   **/
+  global virtual void onlinePortalLoginEmailOtp(Applicant__c applicant, SessionManagement__c session) {
+    String expireTime = String.valueOf((Integer) ApplicationConfiguration__c.getOrgDefaults().OTPExpirationTime__c);
+    EmailNotificationBuilder.newInstance('OTPVerificationEmail', applicant.Id)
+      .setToAddresses(applicant.Email__c)
+      .setSubstitute(new Map<String, String>{ '{OTP}' => session.EmailOtp__c, '{ExpireTime}' => expireTime });
+    sendEmail();
+  }
+
+  /**
    * @description Notification to family member on reference
    * @author Digital Align Team | 11-10-2021
    * @param List<Applicant__c> applicants

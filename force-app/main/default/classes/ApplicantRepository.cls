@@ -178,4 +178,25 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-06-2022
+   * @param map<String Object> params
+   * @return mflow__Applicant__c
+   **/
+  global static mflow__Applicant__c fetchExistingApplicant(map<String, Object> params) {
+    return (mflow__Applicant__c) getRecord(
+      Query.newInstance(mflow__Applicant__c.SObjectType)
+        .addFields()
+        .whereEq('mflow__LastName__c', params.get('lastName'))
+        .andCon()
+        .whereEq('mflow__SSN__c', params.get('ssn'))
+        .andCon()
+        .whereEq('mflow__Email__c', params.get('email'))
+        .orderBy('CreatedDate', true)
+        .addLimit(1)
+        .toString()
+    );
+  }
 }

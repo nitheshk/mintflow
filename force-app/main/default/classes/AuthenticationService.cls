@@ -180,4 +180,29 @@ global virtual with sharing class AuthenticationService extends AbstractService 
       throw ex;
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-06-2022
+   * @param Map<String Object> params
+   * @return object
+   **/
+  global virtual object onlinePortalAuthenticate(Map<String, Object> params) {
+    Applicant__c applicant = ApplicantRepository.fetchExistingApplicant(params);
+
+    if (applicant == null) {
+      throw new CustomException('No Applicant Found');
+    }
+
+    mflow__SessionManagement__c session = new mflow__SessionManagement__c();
+    session.mflow__Applicant__c = applicant.id;
+    session.mflow__OtpExpireTime__c = Datetime.now()
+      .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().OTPExpirationTime__c);
+    session.mflow__OtpAttempts__c = 0;
+    session.mflow__EmailOtp__c = String.valueOf(Math.round((Math.random() * (9000) + 1000)));
+    ApplicantRepository.insertRecord(session);
+    //Email Notification
+    CustomerEmailService.getInstance().onlinePortalLoginEmailOtp(applicant, session);
+    return session.Id;
+  }
 }
