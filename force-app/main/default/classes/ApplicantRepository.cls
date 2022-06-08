@@ -194,8 +194,30 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
         .whereEq('mflow__SSN__c', params.get('ssn'))
         .andCon()
         .whereEq('mflow__Email__c', params.get('email'))
+        .andCon()
+        .whereEq('mflow__IsEmailVerified__c', true)
+        .andCon()
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
         .orderBy('CreatedDate', true)
         .addLimit(1)
+        .toString()
+    );
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-07-2022
+   * @param Id sessionId
+   * @return mflow__SessionManagement__c
+   **/
+  global static mflow__SessionManagement__c fetchSession(Id sessionId) {
+    return (mflow__SessionManagement__c) getRecord(
+      Query.newInstance(mflow__SessionManagement__c.SObjectType)
+        .addFields()
+        .queryLookup('mflow__Applicant__r')
+        .addFields()
+        .run()
+        .whereEq('Id', sessionId)
         .toString()
     );
   }

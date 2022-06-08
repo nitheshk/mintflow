@@ -2357,6 +2357,11 @@
         <field>SessionManagement__c.SmsOtp__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SessionManagement__c.SessionExpireTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>MintFlow System Admin</label>
     <objectPermissions>
@@ -2593,7 +2598,6 @@
         <object>IdentificationDocument__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>

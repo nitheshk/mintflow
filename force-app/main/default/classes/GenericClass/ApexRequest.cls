@@ -14,6 +14,8 @@ global with sharing class ApexRequest {
   @AuraEnabled
   global String applicantId { get; set; }
   @AuraEnabled
+  global String sessionId { get; set; }
+  @AuraEnabled
   global String token { get; set; }
   @AuraEnabled // Possible Values : ApplicationFlow , JointFlow , FundingFlow
   global String flowType { get; set; }
@@ -21,9 +23,6 @@ global with sharing class ApexRequest {
   global String applicantType { get; set; }
   @AuraEnabled
   global String currentPage { get; set; }
-  @AuraEnabled
-  @deprecated
-  global String nextPage { get; set; }
   @AuraEnabled
   global String header { get; set; }
   @AuraEnabled
@@ -49,7 +48,6 @@ global with sharing class ApexRequest {
     request.currentPage = this.currentPage;
     request.applicantType = this.applicantType;
     request.flowType = this.flowType;
-    request.nextPage = this.nextPage;
     request.applicantId = this.applicantId;
     if (String.isNotBlank(this.header)) {
       request.params = (Map<String, Object>) Json.deserializeUntyped(this.header);
@@ -119,6 +117,15 @@ global with sharing class ApexRequest {
   }
 
   /**
+   * @description  get session id
+   * @author Digital Align Team | 06-08-2022
+   * @return String
+   **/
+  global static String getSessionId() {
+    return ApexRequest.request?.sessionId;
+  }
+
+  /**
    * @description get application flow type
    * @author Digital Align Team | 11-19-2021
    * @return String
@@ -174,7 +181,7 @@ global with sharing class ApexRequest {
   }
 
   /**
-   * @description set session application name
+   * @description set session applicant Id
    * @author Digital Align Team | 11-17-2021
    * @param String applicantId
    * @return ApexRequest
@@ -182,6 +189,19 @@ global with sharing class ApexRequest {
   global static ApexRequest setApplicantId(String applicantId) {
     if (ApexRequest.request != null && String.isNotBlank(applicantId)) {
       ApexRequest.request.applicantId = applicantId;
+    }
+    return ApexRequest.request;
+  }
+
+  /**
+   * @description set session Id
+   * @author Digital Align Team | 11-17-2021
+   * @param String sessionId
+   * @return ApexRequest
+   **/
+  global static ApexRequest setSessionId(String sessionId) {
+    if (ApexRequest.request != null && String.isNotBlank(sessionId)) {
+      ApexRequest.request.sessionId = sessionId;
     }
     return ApexRequest.request;
   }

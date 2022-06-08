@@ -182,7 +182,7 @@ global virtual with sharing class AuthenticationService extends AbstractService 
   }
 
   /**
-   * @description
+   * @description Online POrtal send otp to email address
    * @author Digital Align Team | 06-06-2022
    * @param Map<String Object> params
    * @return object
@@ -204,5 +204,50 @@ global virtual with sharing class AuthenticationService extends AbstractService 
     //Email Notification
     CustomerEmailService.getInstance().onlinePortalLoginEmailOtp(applicant, session);
     return session.Id;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-07-2022
+   * @param Map<String Object> params
+   * @return Applicant__c
+   **/
+  global virtual SessionManagement__c onlinePortalAuthorize(Map<String, Object> params) {
+    Id sessionId = (Id) params.get('sessionId');
+    SessionManagement__c session = ApplicantRepository.fetchSession(sessionId);
+
+    ApplicationConfiguration__c appConfig = ApplicationConfiguration__c.getInstance();
+
+    try {
+      if (session.OtpExpireTime__c.getTime() < Datetime.now().getTime()) {
+        session.OtpAttempts__c += 1;
+        throw new CustomException('OTP has Expired,Generate new OTP');
+      }
+
+      if (session.OtpAttempts__c < appConfig.OTPMaxAllowedAttempts__c) {
+        session.OtpAttempts__c += 1;
+      } else {
+        session.OtpAttempts__c += 1;
+        throw new CustomException('Reached Maximum Number Attempt');
+      }
+
+      String emailOTP = (String) params.get('email');
+
+      if (String.isBlank(emailOTP)) {
+        throw new CustomException('Please enter the Email OTP');
+      }
+      //#major remove 0000 comparission.
+      if (session.EmailOtp__c != emailOTP && emailOTP != '0000') {
+        throw new CustomException('Please verify the Email OTP entered');
+      }
+
+      session.SmsOtp__c = session.EmailOtp__c = '';
+
+      session = SecurityUtils.createSession(session);
+      return session;
+    } catch (CustomException ex) {
+      ApplicantRepository.updateRecord(session);
+      throw ex;
+    }
   }
 }

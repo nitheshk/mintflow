@@ -212,8 +212,9 @@ global inherited sharing class SecurityUtils {
     global String ch { get; set; }
     global Datetime edt { get; set; } //Exipre DateTime
     // flow type
-    // Possible Values : ApplicationFlow , JointFlow , FundingFlow
+    // Possible Values : ApplicationFlow , JointFlow , FundingFlow , OnlinePortal
     global String flw { get; set; } //flow type
+    global String sId { get; set; } //Session Id used for online portal token generation
   }
 
   /**
@@ -267,6 +268,34 @@ global inherited sharing class SecurityUtils {
   }
 
   /**
+   * @description  create session for online portal
+   * @author Digital Align Team | 06-08-2022
+   * @param SessionManagement__c session
+   * @return SessionManagement__c
+   **/
+  global static SessionManagement__c createSession(SessionManagement__c session) {
+    SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+    cipher.aplId = session.Applicant__r.Id;
+    cipher.aplType = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+    cipher.flw = ApplicationConstant.FLOW_TYPE_ONLINE_PORTAL;
+    cipher.sId = session?.Id;
+
+    session.SessionToken__c = SecurityUtils.encryptBase64(JSON.serialize(cipher, true));
+    session.sessionExpireTime__c = Datetime.now()
+      .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().SessionExpirationTime__c);
+
+    UtilsRepository.upsertRecord(session);
+
+    ApexRequest.setToken(session.SessionToken__c);
+    ApexRequest.setApplicantType(cipher.aplType);
+    ApexRequest.setSessionId(cipher.sId);
+    ApexRequest.setApplicantId(cipher.aplId);
+
+    log?.fine('Session Token :' + ApexRequest.getToken());
+    return session;
+  }
+
+  /**
    * @description validate session
    * @author Digital Align Team | 11-17-2021
    * @return Boolean
@@ -275,18 +304,36 @@ global inherited sharing class SecurityUtils {
     ApexRequest request = ApexRequest.getRequest();
     log?.debug('Token to Validate : ' + request.token);
     SecurityUtils.CipherDTO cipher = extractToken(request.token);
-    // if (String.isNotBlank(cipher.edt) && cipher.edt < Datetime.now()) {
-    //   throw new CustomException(System.Label.Session_SessionHasExpired);
-    // }
-    switch on cipher.aplType {
-      when 'Primary', 'Joint' {
-        validateSessionForApplicant(cipher, request);
-      }
-      when else {
-        throw new CustomException(System.Label.Flow_FlowTypeIsNotMentioned);
-      }
+
+    if (String.isNotBlank(cipher.sId)) {
+      validateSession(cipher, request);
+    } else {
+      validateSessionForApplicant(cipher, request);
     }
+
     log?.fine('Session Validated');
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-08-2022
+   * @param SecurityUtils.CipherDTO cipher
+   * @param ApexRequest request
+   **/
+  private static void validateSession(SecurityUtils.CipherDTO cipher, ApexRequest request) {
+    SessionManagement__c session = ApplicantRepository.fetchSession((Id) cipher.sId);
+
+    if (session.SessionToken__c != request.token) {
+      throw new CustomException(System.Label.Session_TokenDoesNotMatch);
+    }
+    if (session.sessionExpireTime__c < Datetime.now()) {
+      throw new CustomException(System.Label.Session_SessionHasExpired);
+    }
+
+    ApexRequest.setApplicantId(cipher.aplId);
+    ApexRequest.setApplicantType(cipher.aplType);
+    ApexRequest.setFlowType(cipher.flw);
+    ApexRequest.setSessionId(cipher.sId);
   }
 
   /**
