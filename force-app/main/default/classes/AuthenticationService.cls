@@ -203,7 +203,8 @@ global virtual with sharing class AuthenticationService extends AbstractService 
     ApplicantRepository.insertRecord(session);
     //Email Notification
     CustomerEmailService.getInstance().onlinePortalLoginEmailOtp(applicant, session);
-    return session.Id;
+    session.mflow__EmailOtp__c = '';
+    return session;
   }
 
   /**
