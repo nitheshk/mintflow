@@ -79,4 +79,27 @@ global with sharing class OnlinePortalController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-08-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @RemoteAction
+  global static ApexResponse fetchMyApplication(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(CustomerPortalService.getInstance().fetchMyApplication());
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Finished fetchMyApplication');
+      Logger.persist();
+    }
+  }
 }

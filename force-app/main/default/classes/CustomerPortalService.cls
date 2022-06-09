@@ -29,7 +29,7 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
    * @description
    * @author Digital Align Team | 02-14-2022
    * @param map<string object> params
-   * @return virtual
+   * @return List<Application__c>
    **/
   global virtual List<Application__c> authorize(map<string, object> params) {
     Applicant__c applicant = (Applicant__c) JSON.deserialize(
@@ -43,5 +43,15 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
     );
     log?.debug('Applications =' + applications);
     return applications;
+  }
+
+  /**
+   * @description Fetch application by logged in applicant
+   * @author Digital Align Team | 06-09-2022
+   * @return List<Application__c>
+   **/
+  global virtual List<Application__c> fetchMyApplication() {
+    Applicant__c applicant = ApplicantRepository.fetchSession(ApexRequest.getSessionId())?.mflow__Applicant__r;
+    return CustomerPortalRepository.readMyApplication(applicant);
   }
 }

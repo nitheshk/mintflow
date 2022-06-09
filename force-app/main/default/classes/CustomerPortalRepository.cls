@@ -44,4 +44,37 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
         .toString(true)
     );
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-09-2022
+   * @param Applicant__c applicant
+   * @return List<Application__c>
+   **/
+  global static List<Application__c> readMyApplication(Applicant__c applicant) {
+    return (List<Application__c>) DatabaseUtils.getRecords(
+      Query.newInstance(Application__c.SObjectType)
+        .addFields(
+          'mflow__CreatedChannel__c,mflow__Status__c,mflow__FlowState__c,mflow__ApplicationType__c,Name,CreatedDate,LastModifiedDate'
+        )
+        .whereIn(
+          'Id',
+          Query.newInstance(Applicant__c.SObjectType)
+            .addFields('mflow__Application__c')
+            .whereEq('mflow__SSN__c', applicant.mflow__SSN__c)
+            .AndCon()
+            .whereEq('mflow__Email__c', applicant.mflow__Email__c)
+            .AndCon()
+            .whereEq('mflow__LastName__c', applicant.mflow__LastName__c)
+            .andCon()
+            .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
+            .andCon()
+            .whereEq('mflow__IsEmailVerified__c', true)
+            .toString()
+        )
+        .orderBy('CreatedDate', true)
+        .addLimit(2000)
+        .toString(true)
+    );
+  }
 }
