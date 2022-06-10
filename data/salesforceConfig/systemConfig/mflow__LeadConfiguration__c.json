@@ -3,38 +3,247 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_0"
+        "referenceId": "LeadConfigurationRef_1"
       },
       "Name": "LC-001",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 2,
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
-      "mflow__ProductCategory__c": "Savings",
+      "mflow__ProductCategory__c": "",
       "mflow__Type__c": "State",
       "mflow__Value__c": "PersonalInfo"
-    },
-
-    {
-      "attributes": {
-        "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_1"
-      },
-      "Name": "LC-002",
-      "mflow__Filter__c": "",
-      "mflow__Weightage__c": 10,
-      "mflow__MaxValue__c": 0,
-      "mflow__MinValue__c": 0,
-      "mflow__ProductCategory__c": "",
-      "mflow__Type__c": "Eligibility",
-      "mflow__Value__c": "True"
     },
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
         "referenceId": "LeadConfigurationRef_2"
       },
+      "Name": "LC-002",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 1,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "Eligibility"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_3"
+      },
       "Name": "LC-003",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 1,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "FamilyConnect"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_4"
+      },
+      "Name": "LC-004",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 2,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "OtpVerification"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_5"
+      },
+      "Name": "LC-005",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 2,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "IdentityVerification"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_6"
+      },
+      "Name": "LC-006",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 2,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "DocumentUpload"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_7"
+      },
+      "Name": "LC-007",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 3,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "AddressVerification"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_8"
+      },
+      "Name": "LC-008",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 4,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "EmploymentReview"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_9"
+      },
+      "Name": "LC-009",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 5,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "Questionary"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_10"
+      },
+      "Name": "LC-010",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 5,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "Disclosure"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_11"
+      },
+      "Name": "LC-011",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 7,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "Funding"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_12"
+      },
+      "Name": "LC-012",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 6,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "EmploymentReview"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_13"
+      },
+      "Name": "LC-013",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 8,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "Agreement"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_14"
+      },
+      "Name": "LC-014",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 9,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "Congratulation"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "15"
+      },
+      "Name": "LC-015",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 8,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "BranchPassword"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_16"
+      },
+      "Name": "LC-016",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 10,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "State",
+      "mflow__Value__c": "Complete"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_17"
+      },
+      "Name": "LC-017",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 10,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "Eligibility",
+      "mflow__Value__c": "True"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_18"
+      },
+      "Name": "LC-018",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 5,
       "mflow__MaxValue__c": 0,
@@ -46,9 +255,9 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_3"
+        "referenceId": "LeadConfigurationRef_19"
       },
-      "Name": "LC-004",
+      "Name": "LC-019",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 10,
       "mflow__MaxValue__c": 0,
@@ -60,9 +269,9 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_4"
+        "referenceId": "LeadConfigurationRef_20"
       },
-      "Name": "LC-005",
+      "Name": "LC-020",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 5,
       "mflow__MaxValue__c": 0,
@@ -74,9 +283,9 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_5"
+        "referenceId": "LeadConfigurationRef_21"
       },
-      "Name": "LC-006",
+      "Name": "LC-021",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 10,
       "mflow__MaxValue__c": 1000,
@@ -88,9 +297,9 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_6"
+        "referenceId": "LeadConfigurationRef_22"
       },
-      "Name": "LC-007",
+      "Name": "LC-022",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 8,
       "mflow__MaxValue__c": 900,
@@ -102,9 +311,9 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_7"
+        "referenceId": "LeadConfigurationRef_23"
       },
-      "Name": "LC-008",
+      "Name": "LC-023",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 5,
       "mflow__MaxValue__c": 800,
@@ -116,9 +325,9 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_8"
+        "referenceId": "LeadConfigurationRef_24"
       },
-      "Name": "LC-009",
+      "Name": "LC-024",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 3,
       "mflow__MaxValue__c": 500,
@@ -130,9 +339,9 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_9"
+        "referenceId": "LeadConfigurationRef_25"
       },
-      "Name": "LC-010",
+      "Name": "LC-025",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 1,
       "mflow__MaxValue__c": 300,
@@ -144,9 +353,9 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_10"
+        "referenceId": "LeadConfigurationRef_26"
       },
-      "Name": "LC-011",
+      "Name": "LC-026",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 5,
       "mflow__MaxValue__c": 0,
@@ -158,9 +367,9 @@
     {
       "attributes": {
         "type": "mflow__LeadConfiguration__c",
-        "referenceId": "LeadConfigurationRef_11"
+        "referenceId": "LeadConfigurationRef_27"
       },
-      "Name": "LC-012",
+      "Name": "LC-027",
       "mflow__Filter__c": "",
       "mflow__Weightage__c": 10,
       "mflow__MaxValue__c": 0,
@@ -168,6 +377,34 @@
       "mflow__ProductCategory__c": "",
       "mflow__Type__c": "OOW",
       "mflow__Value__c": "Passed"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_28"
+      },
+      "Name": "LC-028",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 10,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "Employment",
+      "mflow__Value__c": "True"
+    },
+    {
+      "attributes": {
+        "type": "mflow__LeadConfiguration__c",
+        "referenceId": "LeadConfigurationRef_29"
+      },
+      "Name": "LC-029",
+      "mflow__Filter__c": "",
+      "mflow__Weightage__c": 5,
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__ProductCategory__c": "",
+      "mflow__Type__c": "Employment",
+      "mflow__Value__c": "False"
     }
   ]
 }

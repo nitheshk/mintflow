@@ -132,14 +132,22 @@ system.debug('Full Json : ' + res.data);
 
 ApexRequest request = new ApexRequest();
 request.token = SecurityUtils.generateTokenForTesting(
-  'a020w000007QHSmAAO',
-  'a000w000005T6iuAAC',
+  'a021y000007gCd8AAE',
+  'a001y000005gaxIAAQ',
   'Primary',
   'ApplicationFlow'
 );
 system.debug('request.token : ' + request.token);
 
 ApexRequest request = new ApexRequest();
-request.token = 'pyh8mYAVjrnj1iy5gF7JFK47w+KxidbycgQrn9aXie/ArSB06JG99ZdH+5tFuradttrJoCx29SBc9k9nUtsp+cy4exlpzsyUwF5CMM4qptI4kQsKr27C5MeqGnRJ4D8tvEquza8khYoKW+fb8lWgMQ==';
+request.token = 'pyh8mYAVjrnj1iy5gF7JFK47w+KxidbycgQrn9aXie+GuHBOf+9zZI2Fmkmv84pnfTPdfTNbIGTitx8o+L6H+bjBDbiKGzrdU3dPEU2ShndLrDZwOZafhTkv0LXdeFTtQQwHKYbyLeQUrMC85GORZA==';
 ApexResponse res = ApplicationController.saveState(request);
 system.debug('Full Json : ' + res.data);
+
+List<financialProduct__c> products = ProductServiceRepository.fetchProductWithFeatures('a021y000007fzwCAAQ');
+system.debug('Full Json : ' + products);
+
+List<mflow__CustomerInterest__c> interests = ApplicationRepository.readCustomerInterestbyApplication(
+  'a021y000007g9ZaAAI'
+);
+system.debug('app: ' + interests);

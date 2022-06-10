@@ -317,12 +317,13 @@ global virtual with sharing class ApplicationService extends AbstractService {
   global virtual Application__c saveState() {
     Application__c application = this.readApplicationWithChild();
     //code to update the lead score of the application ::TODO
-    //Map<String, Object> mapData = helper.calculateLeadScore(application);
-    //application.LeadScore__c = (Decimal) mapData.get('LeadScore');
-    //return application;
-    return (mflow__Application__c) this.updateFlowState(application);
+    application.LeadScore__c = helper.calculateLeadScore(application);
+    if (application.LeadScore__c != null && application.LeadScore__c > 0) {
+      upsert application;
+    }
+    return application;
+    //return (mflow__Application__c) this.updateFlowState(application);
   }
-
   /**
    * @description
    * @author Digital Align Team | 02-04-2022

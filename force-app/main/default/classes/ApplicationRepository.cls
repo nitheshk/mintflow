@@ -175,6 +175,11 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
     return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
   }
 
+  /**
+   * @description To get Lead configuration information
+   * @author Digital Align Team | 10-26-2021
+   * @param Map<String,String>
+   **/
   global static List<LeadConfiguration__c> fetchLeadConfiguration(Map<String, String> filterValue) {
     Query qry = Query.newInstance(LeadConfiguration__c.SObjectType)
       .addFields()
@@ -185,7 +190,20 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
     if (filterValue.containsKey('Category')) {
       qry.andCon().whereEq('ProductCategory__c', filterValue.get('Category'));
     }
-    system.debug('query::' + qry.tostring());
-    return (List<LeadConfiguration__c>) DatabaseUtils.getRecords(qry.toString());
+    return (List<LeadConfiguration__c>) DatabaseUtils.getRecords(qry.toString(true));
+  }
+
+  /**
+   * @description To get Customer Interest of an application
+   * @author Digital Align Team | 10-26-2021
+   * @param Id
+   **/
+  global static List<mflow__CustomerInterest__c> readCustomerInterestbyApplication(Id applicationId) {
+    Query qry = Query.newInstance(mflow__CustomerInterest__c.SObjectType)
+      .addFields()
+      .queryLookup('mflow__Application__r')
+      .run()
+      .whereEq('mflow__Application__c', applicationId);
+    return (List<mflow__CustomerInterest__c>) DatabaseUtils.getRecords(qry.toString());
   }
 }

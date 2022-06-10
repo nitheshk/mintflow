@@ -201,43 +201,50 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return newApplication;
   }
 
-  public Map<String, Object> calculateLeadScore(Application__c application) {
+  public Decimal calculateLeadScore(Application__c application) {
     Map<String, Object> mapData = new Map<String, Object>();
     Map<String, String> mapFilter = new Map<String, String>();
     String productId;
+    Decimal LeadScore;
 
     List<financialProduct__c> products = ProductServiceRepository.fetchProductWithFeatures(application.Id);
     try {
       if (products != null && products.size() > 0) {
         //Calcuate Lead Score based on product and State weightage;
         mapFilter.put('Type', 'State');
-        mapFilter.put('Category', products[0].Category__c);
         mapFilter.put('Value', application.mflow__FlowState__c);
         mapData = calculateLeadBasedonState(mapfilter, mapData, products[0]);
+        if (mapData.containsKey('Product State') && (Decimal) mapData.get('Product State') > 0) {
+          //Calculate the lead score based on eligibility
+          mapFilter = new Map<String, String>();
+          mapFilter.put('Type', 'Eligibility');
+          mapFilter.put('Value', application.IsCountyEligible__c ? 'True' : 'False');
+          mapData = calculateLeadBasedonEligibility(mapfilter, mapData);
+          //Calculate the lead score based on KYC
+          mapFilter = new Map<String, String>();
+          mapFilter.put('Type', 'KYC');
+          mapFilter.put('Value', application.mflow__KYCStatus__c == 'Passed' ? 'True' : 'False');
+          mapData = calculateLeadBasedonKYC(mapfilter, mapData);
 
-        //Calculate the lead score based on eligibility
-        mapFilter = new Map<String, String>();
-        mapFilter.put('Type', 'Eligibility');
-        mapFilter.put('Value', application.IsCountyEligible__c ? 'True' : 'False');
-        mapData = calculateLeadBasedonEligibility(mapfilter, mapData);
-        //Calculate the lead score based on KYC
-        mapFilter = new Map<String, String>();
-        mapFilter.put('Type', 'KYC');
-        mapFilter.put('Value', application.mflow__KYCStatus__c == 'Passed' ? 'True' : 'False');
-        System.debug('  mapData filter kyc::' + mapFilter);
-        mapData = calculateLeadBasedonKYC(mapfilter, mapData);
+          mapFilter = new Map<String, String>();
+          mapFilter.put('Type', 'KYCLeadScore');
+          mapData = calculateLeadBasedonKYCScore(mapfilter, mapData, application);
 
-        mapFilter = new Map<String, String>();
-        mapFilter.put('Type', 'KYCLeadScore');
-        mapData = calculateLeadBasedonKYCScore(mapfilter, mapData, application);
+          mapFilter = new Map<String, String>();
+          mapfilter.put('Type', 'Employment');
+          mapData = calculateLeadBasedonEmployment(mapfilter, mapData, application);
+          System.debug(' calculateLeadBasedonEmployment');
 
-        System.debug('  mapData Final::' + mapData);
+          mapData = calculateLeadBasedonCustomerInterest(mapData, application);
+
+          LeadScore = calculateTotalLeadScore(mapData);
+        }
       }
     } catch (exception ex) {
       system.debug(' exception at : ' + ex.getLineNumber() + ex.getMessage());
     }
 
-    return null;
+    return LeadScore;
   }
 
   public Map<String, Object> calculateLeadBasedonState(
@@ -248,21 +255,19 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     Decimal weightage;
     List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
+    system.debug('product leadConfigList' + leadConfigList);
+    system.debug('product filter' + mapFilter);
+
     if (leadConfigList != null && leadConfigList.size() > 0) {
       weightage = leadConfigList[0].Weightage__c * product.Weightage__c;
-      mapData.put(
-        'Product : ' +
-        product.Name +
-        ', Completion State  : ' +
-        mapFilter.get('Value') +
-        ', State Score  ',
-        weightage
-      );
+      system.debug('product based map' + weightage);
+
+      mapData.put('Product State', weightage);
     }
     return mapData;
   }
 
-  public Map<String, Object> calculateLeadBasedonEligibility(
+  private Map<String, Object> calculateLeadBasedonEligibility(
     Map<String, String> mapFilter,
     Map<String, Object> mapData
   ) {
@@ -274,16 +279,16 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return mapdata;
   }
 
-  public Map<String, object> calculateLeadBasedonKYC(Map<String, String> mapFilter, Map<String, Object> mapData) {
+  private Map<String, object> calculateLeadBasedonKYC(Map<String, String> mapFilter, Map<String, Object> mapData) {
     List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
     if (leadConfigList.size() > 0) {
-      mapData.put('KYC Score', (Object) (leadConfigList[0].Weightage__c));
+      mapData.put('KYC Status Score', (Object) (leadConfigList[0].Weightage__c));
     }
     return mapdata;
   }
 
-  public Map<String, object> calculateLeadBasedonKYCScore(
+  private Map<String, object> calculateLeadBasedonKYCScore(
     Map<String, String> mapFilter,
     Map<String, Object> mapData,
     Application__c application
@@ -340,9 +345,83 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     calculatedOOWScores = totalOOWScore / totalApplicants;
 
     if (leadConfigList.size() > 0) {
-      mapData.put('KYC Lead Score', (Object) (calculatedLeadScore));
-      mapData.put('OOW Lead Score', (Object) (calculatedOOWScores));
+      mapData.put('KYC Score', (Object) (calculatedLeadScore));
+      mapData.put('OOW Score', (Object) (calculatedOOWScores));
     }
     return mapdata;
+  }
+
+  private Map<String, Object> calculateLeadBasedonEmployment(
+    Map<String, String> mapFilter,
+    Map<String, Object> mapData,
+    Application__c application
+  ) {
+    Decimal creditScore = 0,
+      leadScore = 0,
+      calculatedLeadScore = 0,
+      totalScore = 0,
+      totalOOWScore = 0,
+      calculatedOOWScores = 0;
+    Boolean employmentVerified = false;
+    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
+    List<applicant__c> applicants = application.applicants__r;
+    Integer totalApplicants = 0;
+
+    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
+    for (applicant__c applicant : applicants) {
+      if (!applicant.mflow__ApplicantType__c.equalsignorecase('Emergency Contact')) {
+        employmentVerified = applicant.mflow__IsEmploymentVerified__c;
+        system.debug('employmentVerified::' + employmentVerified);
+        for (LeadConfiguration__c leadConfig : leadConfigList) {
+          if (
+            leadConfig.Type__c == 'Employment' &&
+            leadConfig.Value__c == String.valueof(applicant.mflow__IsEmploymentVerified__c)
+          ) {
+            system.debug('leadConfig.Value__c ' + leadConfig.Value__c);
+            leadScore = leadConfig.Weightage__c;
+            totalApplicants++;
+            totalScore = totalScore + leadScore;
+          }
+        }
+      }
+    }
+    calculatedLeadScore = totalScore / totalApplicants;
+    system.debug('calculatedLeadScore' + calculatedLeadScore);
+    mapData.put('Employment', (Object) (calculatedLeadScore));
+    return mapData;
+  }
+
+  public Map<String, Object> calculateLeadBasedonCustomerInterest(
+    Map<String, Object> mapData,
+    Application__c application
+  ) {
+    List<mflow__CustomerInterest__c> customerInterests = ApplicationRepository.readCustomerInterestbyApplication(
+      application.Id
+    );
+    if (customerInterests.size() > 0) {
+      mapData.put('Customer Interest', (object) 10);
+    } else {
+      mapData.put('Customer Interest', (object) 5);
+    }
+    system.debug('mapdata::' + mapData);
+    return mapData;
+  }
+
+  private static Decimal calculateTotalLeadScore(Map<String, Object> mapData) {
+    // final mapData {Customer Interest=10, Eligibility Score=10, Employment=5, KYC Score=5, KYC Status Score=10, OOW Score=5, Product State=10}
+    Decimal totalLeadScore = 0;
+    totalLeadScore =
+      totalLeadScore + (mapData.containsKey('Customer Interest') ? (decimal) mapData.get('Customer Interest') : 0.00);
+    totalLeadScore =
+      totalLeadScore + (mapData.containsKey('Eligibility Score') ? (Decimal) mapData.get('Eligibility Score') : 0.00);
+    totalLeadScore = totalLeadScore + (mapData.containsKey('Employment') ? (Decimal) mapData.get('Employment') : 0.00);
+    totalLeadScore = totalLeadScore + (mapData.containsKey('KYC Score') ? (Decimal) mapData.get('KYC Score') : 0.00);
+
+    totalLeadScore =
+      totalLeadScore + (mapData.containsKey('KYC Status Score') ? (Decimal) mapData.get('KYC Status Score') : 0.00);
+    totalLeadScore =
+      totalLeadScore + (mapData.containsKey('Product State') ? (Decimal) mapData.get('Product State') : 0.00);
+
+    return totalLeadScore;
   }
 }
