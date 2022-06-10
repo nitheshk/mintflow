@@ -56,7 +56,7 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
                 url: siteUrl
               }
             },
-            true
+            false
           );
         }
       })
@@ -65,6 +65,7 @@ export default class ApplicantStatus extends NavigationMixin(LightningElement) {
         utils.errorMessage(this, error.body.message, "Error");
       });
   }
+
   handleNavigate() {
     this.openModal = true;
   }
