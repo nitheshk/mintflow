@@ -77,4 +77,75 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
         .toString(true)
     );
   }
+
+  /**
+   * @description Read Application with child record
+   * Applicants contains only ids
+   * Financial Application__c contains only Ids
+   * @author Digital Align Team | 06-10-2022
+   * @param Id applicationId
+   * @return Application__c
+   **/
+  global static Application__c readApplicationWithChild(Id applicationId) {
+    Query qry = Query.newInstance(Application__c.SObjectType)
+      .addFields()
+      .queryChild('mflow__Applicants__r')
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__FinancialAccounts__r')
+      .run()
+      .whereEq('Id', applicationId);
+    return (Application__c) DatabaseUtils.getRecord(qry.toString());
+  }
+
+  /**
+   * @description read allapplicant with child record
+   * @author Digital Align Team | 06-10-2022
+   * @param Set<Id> applicantIds
+   **/
+  global static List<Applicant__c> readApplicantsWithChild(Set<Id> applicantIds) {
+    Query qry = Query.newInstance(Applicant__c.SObjectType)
+      .addFields()
+      .addFields('RecordType.Name')
+      .removeFields('mflow__SessionToken__c')
+      .queryChild('mflow__IdentificationDocuments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__ContactPointAddresses__r')
+      .addFields()
+      .removeFields('Address')
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__Employments__r')
+      .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .whereIn('Id', applicantIds);
+    return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
+  }
+
+  /**
+   * @description read financial account with child by ids
+   * @author Digital Align Team | 06-10-2022
+   * @param Set<Id> financialAccountIds
+   * @return List<FinancialAccount__c>
+   **/
+  global static List<FinancialAccount__c> readFinancialAccountsWithChild(Set<Id> financialAccountIds) {
+    return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
+      Query.newInstance(FinancialAccount__c.SObjectType)
+        .addFields()
+        .queryLookUp('mflow__FinancialProduct__r')
+        .addFields()
+        .run()
+        .queryChild('mflow__FinancialAccountTransactions__r')
+        .addFields()
+        .run()
+        .queryChild('mflow__FinancialAccountServices__r')
+        .addFields()
+        .run()
+        .whereIn('Id', financialAccountIds)
+        .toString()
+    );
+  }
 }

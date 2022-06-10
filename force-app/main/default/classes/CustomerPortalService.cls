@@ -54,4 +54,25 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
     Applicant__c applicant = ApplicantRepository.fetchSession(ApexRequest.getSessionId())?.mflow__Applicant__r;
     return CustomerPortalRepository.readMyApplication(applicant);
   }
+
+  /**
+   * @description read application with child record
+   * @author Digital Align Team | 06-10-2022
+   * @return Application__c
+   **/
+  global virtual Application__c readApplicationWithChild(Map<String, Object> params) {
+    Id applicationId = (Id) params.get('applicationId');
+    Application__c application = CustomerPortalRepository.readApplicationWithChild(applicationId);
+    List<Applicant__c> applicants = CustomerPortalRepository.readApplicantsWithChild(
+      new Map<Id, SObject>(application.Applicants__r).keySet()
+    );
+    List<FinancialAccount__c> financialAccounts = CustomerPortalRepository.readFinancialAccountsWithChild(
+      new Map<Id, SObject>(application.mflow__FinancialAccounts__r).keySet()
+    );
+    //Combine result into single application object
+    SObjectConstructor builder = SObjectConstructor.getInstance(application);
+    builder.setChildObjects('mflow__Applicants__r', applicants);
+    builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
+    return (Application__c) builder.build();
+  }
 }
