@@ -110,7 +110,7 @@ global with sharing class OnlinePortalController extends AbstractController {
    * @return ApexResponse
    **/
   @RemoteAction
-  global static ApexResponse readApplication(ApexRequest request) {
+  global static ApexResponse readApplicationWithChild(ApexRequest request) {
     try {
       validateRequest(request);
       return ApexResponse.ok(CustomerPortalService.getInstance().readApplicationWithChild(ApexRequest.getParams()));
