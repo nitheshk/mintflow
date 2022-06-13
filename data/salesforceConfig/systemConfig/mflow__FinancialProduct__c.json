@@ -62,7 +62,7 @@
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "IC006" },
       "Name": "Preferred Debit Account",
-      "mflow__Category__c": "Savings",
+      "mflow__Category__c": "Checking",
       "mflow__DisplayLabel__c": "Preferred Debit Account",
       "mflow__EndDate__c": "2034-03-03",
       "mflow__ExternalCode__c": "EC006",
