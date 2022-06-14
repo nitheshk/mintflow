@@ -129,6 +129,14 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Name__c</fields>
+        <fields>Applicant__c</fields>
+        <fields>DocumentType__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>DocumentRequest__c.Application__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>ApplicantName__c</fields>
         <fields>ApplicantType__c</fields>
         <fields>Birthdate__c</fields>
@@ -158,7 +166,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0w000001Lytw</masterLabel>
+        <masterLabel>00h1y000001ZyIq</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
