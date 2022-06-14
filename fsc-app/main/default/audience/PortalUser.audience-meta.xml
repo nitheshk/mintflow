@@ -8,7 +8,7 @@
             <criterionValue>
                 <entityField>UserType</entityField>
                 <entityType>User</entityType>
-                <fieldValue>Standard</fieldValue>
+                <fieldValue>CspLitePortal</fieldValue>
             </criterionValue>
             <operator>Equal</operator>
             <type>FieldBased</type>
@@ -18,7 +18,7 @@
             <criterionValue>
                 <entityField>UserType</entityField>
                 <entityType>User</entityType>
-                <fieldValue>CspLitePortal</fieldValue>
+                <fieldValue>Standard</fieldValue>
             </criterionValue>
             <operator>Equal</operator>
             <type>FieldBased</type>

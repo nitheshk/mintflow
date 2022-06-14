@@ -81,6 +81,14 @@
                           "seedComponents": [],
                           "tabKey": "915af",
                           "tabName": "Chatter"
+                        },
+                        {
+                          "UUID": "90be8a82-9e56-451e-bbe0-139534927e44",
+                          "allowGuestUser": false,
+                          "locked": false,
+                          "seedComponents": [],
+                          "tabKey": "b7f88",
+                          "tabName": "Document Request"
                         }
                       ],
                       "useOverflowMenu": false
@@ -165,6 +173,24 @@
                       "id": "ceb78313-6fc8-4769-97aa-3b89c39ee002",
                       "regionLabel": "Chatter",
                       "regionName": "915af",
+                      "renditionMap": {},
+                      "type": "region"
+                    },
+                    {
+                      "components": [
+                        {
+                          "componentAttributes": {
+                            "recordId": "{!recordId}"
+                          },
+                          "componentName": "mflow:createDocumentRequest",
+                          "id": "5ab2de35-9ac4-405a-beb2-183cc16da42e",
+                          "renditionMap": {},
+                          "type": "component"
+                        }
+                      ],
+                      "id": "90be8a82-9e56-451e-bbe0-139534927e44",
+                      "regionLabel": "Document Request",
+                      "regionName": "b7f88",
                       "renditionMap": {},
                       "type": "region"
                     }

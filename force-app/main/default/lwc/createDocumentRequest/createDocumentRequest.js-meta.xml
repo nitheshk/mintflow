@@ -12,6 +12,12 @@
         <targetConfig targets="lightning__RecordAction">
             <actionType>ScreenAction</actionType>
         </targetConfig>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="recordId" type="String" default="{!recordId}" />
+        </targetConfig>
+         <targetConfig targets="lightning__RecordPage">
+            <property name="recordId" type="String" default="{!recordId}" />
+        </targetConfig>
     </targetConfigs>
   <masterLabel>Create Document Request</masterLabel>
 </LightningComponentBundle>
