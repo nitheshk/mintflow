@@ -94,6 +94,9 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
       .run()
       .queryChild('mflow__FinancialAccounts__r')
       .run()
+      .queryChild('mflow__DocumentRequests__r')
+      .addFields()
+      .run()
       .whereEq('Id', applicationId);
     return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
