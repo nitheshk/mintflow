@@ -319,10 +319,10 @@ global virtual with sharing class ApplicationService extends AbstractService {
     //code to update the lead score of the application ::TODO
     application.LeadScore__c = helper.calculateLeadScore(application);
     if (application.LeadScore__c != null && application.LeadScore__c > 0) {
-      upsert application;
+      ApplicationRepository.upsertRecord(application);
     }
-    return application;
-    //return (mflow__Application__c) this.updateFlowState(application);
+    //return application;
+    return (mflow__Application__c) this.updateFlowState(application);
   }
   /**
    * @description

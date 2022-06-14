@@ -619,7 +619,7 @@
                           </h2>
                         </div>
 
-                        <div class="slds-col slds-p-around_medium slds-size_1-of-1">
+                        <!-- <div class="slds-col slds-p-around_medium slds-size_1-of-1">
                           <div class="slds-grid slds-wrap">
                             <apex:repeat var="key" value="{!wrapper.otherData.values}">
                               <div class="slds-col slds-size_4-of-12">
@@ -627,7 +627,7 @@
                               </div>
                             </apex:repeat>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -752,7 +752,7 @@
           var x = document.getElementById("rawResponse");
           document.getElementById("rawTextArea").textContent = JSON.stringify({!wrapper.additionalInfo.rawResponse}, null, '\t');
         x.style.display = "block";
-        }
+          }
 
         function hideRawResponse() {
           var x = document.getElementById("rawResponse");

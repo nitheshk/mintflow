@@ -1,6 +1,11 @@
 // #1 calling read method
 ApexRequest request = new ApexRequest();
-request.token = SecurityUtils.generateTokenForTesting('0010p000011CgKjAAK', '', 'Primary', 'ApplicationFlow');
+request.token = SecurityUtils.generateTokenForTesting(
+  'a021y000007gKxxAAE',
+  'a001y000005gcpWAAQ',
+  'Primary',
+  'ApplicationFlow'
+);
 //request.applicationId = '0010p000010fl06AAA';
 ApexResponse res = ApplicationController.readApplicationWithChild(request);
 system.debug('Full Json : ' + res.data);
