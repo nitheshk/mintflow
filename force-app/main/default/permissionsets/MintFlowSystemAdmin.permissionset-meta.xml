@@ -2710,6 +2710,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>LeadConfiguration__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Applicant__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
