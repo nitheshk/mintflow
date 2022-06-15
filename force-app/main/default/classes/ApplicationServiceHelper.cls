@@ -269,13 +269,9 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     Decimal weightage;
     List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
-    system.debug('product leadConfigList' + leadConfigList);
-    system.debug('product filter' + mapFilter);
 
     if (leadConfigList != null && leadConfigList.size() > 0) {
       weightage = leadConfigList[0].Weightage__c * product.Weightage__c;
-      system.debug('product based map' + weightage);
-
       mapData.put('Product State', weightage);
     }
     return mapData;
@@ -341,7 +337,10 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
     for (applicant__c applicant : applicants) {
-      if (!applicant.mflow__ApplicantType__c.equalsignorecase('Emergency Contact')) {
+      if (
+        applicant.mflow__ApplicantType__c.equalsignorecase('Joint') ||
+        applicant.mflow__ApplicantType__c.equalsignorecase('Primary')
+      ) {
         creditScore = applicant.CreditScore__c;
         for (LeadConfiguration__c leadConfig : leadConfigList) {
           if (
@@ -359,10 +358,13 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     //OOW calculations
     mapFilter = new Map<String, String>();
     mapFilter.put('Type', 'OOW');
-
+    totalApplicants = 0;
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
     for (applicant__c applicant : applicants) {
-      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+      if (
+        applicant.mflow__ApplicantType__c.equalsignorecase('Joint') ||
+        applicant.mflow__ApplicantType__c.equalsignorecase('Primary')
+      ) {
         creditScore = applicant.CreditScore__c;
         for (LeadConfiguration__c leadConfig : leadConfigList) {
           if (leadConfig.Type__c == 'OOW' && applicant.OOWVerified__c) {
@@ -372,17 +374,20 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
             if (leadConfig.Value__c == 'Failed' && applicant.mflow__OOWStatus__c == 'Failed') {
               totalOOWScore = totalOOWScore + leadConfig.Weightage__c;
             }
+            totalApplicants++;
           }
         }
       }
     }
 
-    calculatedLeadScore = totalScore / totalApplicants;
-    calculatedOOWScores = totalOOWScore / totalApplicants;
+    if (totalApplicants > 0) {
+      calculatedLeadScore = totalScore / totalApplicants;
+      calculatedOOWScores = totalOOWScore / totalApplicants;
 
-    if (leadConfigList.size() > 0) {
-      mapData.put('KYC Score', (Object) (calculatedLeadScore));
-      mapData.put('OOW Score', (Object) (calculatedOOWScores));
+      if (leadConfigList.size() > 0) {
+        mapData.put('KYC Score', (Object) (calculatedLeadScore));
+        mapData.put('OOW Score', (Object) (calculatedOOWScores));
+      }
     }
     return mapdata;
   }
@@ -430,7 +435,6 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
       }
     }
     calculatedLeadScore = totalScore / totalApplicants;
-    system.debug('calculatedLeadScore' + calculatedLeadScore);
     mapData.put('Employment', (Object) (calculatedLeadScore));
     return mapData;
   }
