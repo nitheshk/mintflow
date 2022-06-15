@@ -156,3 +156,16 @@ List<mflow__CustomerInterest__c> interests = ApplicationRepository.readCustomerI
   'a021y000007g9ZaAAI'
 );
 system.debug('app: ' + interests);
+
+// #3 lead score
+ 
+ 
+ApexRequest request = new ApexRequest();
+request.token = SecurityUtils.generateTokenForTesting(
+  'a021y000007gNZtAAM',
+  'a001y000005gdM2AAI',
+  'Primary',
+  'ApplicationFlow'
+);
+ApexResponse res = ApplicationController.saveState(request);
+system.debug('Full Json : ' + res.data);

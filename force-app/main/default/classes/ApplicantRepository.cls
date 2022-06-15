@@ -16,6 +16,7 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
     Query qry = Query.newInstance(Applicant__c.SObjectType)
       .addFields()
       .removeFields('mflow__SessionToken__c')
+      .addFields('RecordType.Name')
       .queryChild('mflow__IdentificationDocuments__r')
       .addFields()
       .orderBy('mflow__Order__c')
@@ -41,6 +42,7 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
   global static Applicant__c readApplicantWithChild(Id applicantId) {
     Query qry = Query.newInstance(Applicant__c.SObjectType)
       .addFields()
+      .addFields('RecordType.Name')
       .queryChild('mflow__IdentificationDocuments__r')
       .addFields()
       .orderBy('mflow__Order__c')

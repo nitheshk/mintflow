@@ -201,6 +201,12 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return newApplication;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 06-15-2022
+   * @param Application__c application
+   * @return Decimal
+   **/
   public Decimal calculateLeadScore(Application__c application) {
     Map<String, Object> mapData = new Map<String, Object>();
     Map<String, String> mapFilter = new Map<String, String>();
@@ -247,6 +253,14 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return LeadScore;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 06-15-2022
+   * @param Map<String String> mapFilter
+   * @param Map<String Object> mapData
+   * @param financialProduct__c product
+   * @return Map<String, Object>
+   **/
   public Map<String, Object> calculateLeadBasedonState(
     Map<String, String> mapFilter,
     Map<String, Object> mapData,
@@ -267,6 +281,13 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return mapData;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 06-15-2022
+   * @param Map<String String> mapFilter
+   * @param Map<String Object> mapData
+   * @return Map<String, Object>
+   **/
   private Map<String, Object> calculateLeadBasedonEligibility(
     Map<String, String> mapFilter,
     Map<String, Object> mapData
@@ -279,6 +300,13 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return mapdata;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 06-15-2022
+   * @param Map<String String> mapFilter
+   * @param Map<String Object> mapData
+   * @return Map<String, object>
+   **/
   private Map<String, object> calculateLeadBasedonKYC(Map<String, String> mapFilter, Map<String, Object> mapData) {
     List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
@@ -288,6 +316,14 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return mapdata;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 06-15-2022
+   * @param Map<String String> mapFilter
+   * @param Map<String Object> mapData
+   * @param Application__c application
+   * @return Map<String, object>
+   **/
   private Map<String, object> calculateLeadBasedonKYCScore(
     Map<String, String> mapFilter,
     Map<String, Object> mapData,
@@ -326,7 +362,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
     for (applicant__c applicant : applicants) {
-      if (!applicant.mflow__ApplicantType__c.equalsignorecase('Emergency Contact')) {
+      if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         creditScore = applicant.CreditScore__c;
         for (LeadConfiguration__c leadConfig : leadConfigList) {
           if (leadConfig.Type__c == 'OOW' && applicant.OOWVerified__c) {
@@ -351,6 +387,14 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return mapdata;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 06-15-2022
+   * @param Map<String String> mapFilter
+   * @param Map<String Object> mapData
+   * @param Application__c application
+   * @return Map<String, Object>
+   **/
   private Map<String, Object> calculateLeadBasedonEmployment(
     Map<String, String> mapFilter,
     Map<String, Object> mapData,
@@ -407,6 +451,12 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return mapData;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 06-15-2022
+   * @param Map<String Object> mapData
+   * @return Decimal
+   **/
   private static Decimal calculateTotalLeadScore(Map<String, Object> mapData) {
     // final mapData {Customer Interest=10, Eligibility Score=10, Employment=5, KYC Score=5, KYC Status Score=10, OOW Score=5, Product State=10}
     Decimal totalLeadScore = 0;
