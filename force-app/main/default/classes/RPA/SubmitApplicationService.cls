@@ -219,8 +219,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
 
       if (application.Status__c == ApplicationConstant.COMPLETED) {
         //Create Account and contact
-        // #pending to uncomment
-        //this.createMemberAccount(application);
+        this.createMemberAccount(application);
         //Send Funding Email Link to primary
         CustomerEmailService.getInstance().accountOpened(application);
         NotificationService.getInstance()
@@ -400,7 +399,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     for (Applicant__c applicant : applicantToProcess.values()) {
       if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         //#pending Disable till customer community license is present
-        CustomerCommunitySiteService.getInstance().createCustomerCommunityUser(applicant.Contact__r);
+        //CustomerCommunitySiteService.getInstance().createCustomerCommunityUser(applicant.Contact__r);
         break;
       }
     }
