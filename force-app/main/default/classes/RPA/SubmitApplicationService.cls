@@ -37,7 +37,10 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     Application__c application = (Application__c) SObjectConstructor.deserialize(data, Application__c.class);
     application = ApplicationService.getInstance().saveApplication(application);
 
-    if (application.Status__c == ApplicationConstant.SUBMITTED) {
+    if (
+      application.Status__c == ApplicationConstant.SUBMITTED ||
+      application.Status__c == ApplicationConstant.COMPLETED
+    ) {
       throw new CustomException('Application Already Submitted');
     }
 

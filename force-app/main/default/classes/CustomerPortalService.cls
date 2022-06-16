@@ -75,4 +75,46 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
     builder.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
     return (Application__c) builder.build();
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-16-2022
+   * @param Map<String Object> params
+   * @return Object
+   **/
+  global virtual Object resumeApplication(Map<String, Object> params) {
+    Id applicationId = (Id) params.get('applicationId');
+    Id applicantId = (Id) params.get('applicantId');
+    String resumeType = (String) params.get('resumeType');
+    Applicant__c applicant;
+    if (String.isNotBlank(applicationId) && String.isBlank(applicantId)) {
+      applicant = CustomerPortalRepository.readPrimaryApplicant(applicationId);
+    } else if (String.isNotBlank(applicationId) && String.isNotBlank(applicantId)) {
+      applicant = CustomerPortalRepository.readApplicantById(applicationId, applicantId);
+    }
+
+    if (applicant == null) {
+      throw new CustomException(System.Label.Applicant_ApplicantNotFound);
+    }
+
+    if (resumeType == 'Url') {
+      Map<String, String> paramsEncrypt = new Map<String, String>();
+      if (applicant.ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+        paramsEncrypt.put('flw', 'ApplicationFlow');
+        paramsEncrypt.put('urlSuffix', '/savings/main-app/otp');
+        paramsEncrypt.put('aplType', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
+      } else {
+        paramsEncrypt.put('flw', 'JointFlow');
+        paramsEncrypt.put('urlSuffix', '/savings/joint-app/otp');
+        paramsEncrypt.put('aplType', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
+      }
+      paramsEncrypt.put('appId', applicant.application__c);
+      paramsEncrypt.put('aplId', applicant.Id);
+      paramsEncrypt.put('ch', 'Virtual');
+      return CustomerEmailService.getInstance().generateUrl(paramsEncrypt);
+    } else if (resumeType == 'Email') {
+      CustomerEmailService.getInstance().resumeApplication(applicant);
+    }
+    return null;
+  }
 }

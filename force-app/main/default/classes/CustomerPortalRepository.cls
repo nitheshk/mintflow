@@ -151,4 +151,41 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-16-2022
+   * @param Id applicationId
+   * @return Applicant__c
+   **/
+  global static Applicant__c readPrimaryApplicant(Id applicationId) {
+    return (Applicant__c) DatabaseUtils.getRecord(
+      Query.newInstance(Applicant__c.SObjectType)
+        .addFields()
+        .addFields('RecordType.Name')
+        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
+        .andCon()
+        .whereEq('Application__c', applicationId)
+        .toString()
+    );
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-16-2022
+   * @param Id applicationId
+   * @param Id applicantId
+   * @return Applicant__c
+   **/
+  global static Applicant__c readApplicantById(Id applicationId, Id applicantId) {
+    return (Applicant__c) DatabaseUtils.getRecord(
+      Query.newInstance(Applicant__c.SObjectType)
+        .addFields()
+        .addFields('RecordType.Name')
+        .whereEq('Application__c', applicationId)
+        .andCon()
+        .whereEq('Id', applicantId)
+        .toString()
+    );
+  }
 }

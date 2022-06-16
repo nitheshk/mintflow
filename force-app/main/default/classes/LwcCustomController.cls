@@ -325,7 +325,7 @@ global with sharing class LwcCustomController extends AbstractController {
       validateRequest(request, true);
 
       list<id> applicantIds = (List<Id>) JSON.deserialize(request.data, List<Id>.class);
-      log?.debug('resume Link - ' + LwcCustomService.getInstance().generateResumeLink(applicantIds));
+      //log?.debug('resume Link - ' + LwcCustomService.getInstance().generateResumeLink(applicantIds));
       return ApexResponse.ok(LwcCustomService.getInstance().generateResumeLink(applicantIds));
     } catch (Exception ex) {
       return ApexResponse.fail(ex);
