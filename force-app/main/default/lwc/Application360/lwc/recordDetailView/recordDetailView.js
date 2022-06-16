@@ -148,7 +148,7 @@ export default class RecordDetailView extends NavigationMixin(LightningElement) 
       .then((result) => {
         if (result.status === 200) {
           data = JSON.parse(result.data);
-          let siteUrl = data + "/apex/AtomicVerificationReport?id=" + recordId;
+          let siteUrl = data + "/apex/mflow__AtomicVerificationReport?id=" + recordId;
           this[NavigationMixin.Navigate](
             {
               type: "standard__webPage",

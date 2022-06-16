@@ -362,8 +362,8 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
     for (applicant__c applicant : applicants) {
       if (
-        applicant.mflow__ApplicantType__c.equalsignorecase('Joint') ||
-        applicant.mflow__ApplicantType__c.equalsignorecase('Primary')
+        applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE ||
+        applicant.RecordType.Name == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
       ) {
         creditScore = applicant.CreditScore__c;
         for (LeadConfiguration__c leadConfig : leadConfigList) {

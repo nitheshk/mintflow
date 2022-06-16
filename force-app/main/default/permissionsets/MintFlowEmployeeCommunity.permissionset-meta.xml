@@ -81,6 +81,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <pageAccesses>
+        <apexPage>AlloyKYCReport</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Error</apexPage>
         <enabled>true</enabled>
     </pageAccesses>

@@ -1,6 +1,6 @@
 const fs = require("fs");
 const message = fs.readFileSync(".git/COMMIT_EDITMSG", "utf8").trim();
-let result = message.match(/^DMFLOW-(\d+):/g);
+let result = message.match(/^POD-(\d+):/g);
 console.log("Git Commit Message : " + message);
 if (result) {
   console.log("[POLICY] : Git Pre-Commit Message Format Passed - " + result);
