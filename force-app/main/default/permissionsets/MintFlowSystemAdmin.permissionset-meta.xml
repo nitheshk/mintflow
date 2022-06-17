@@ -362,11 +362,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.CustomerScore__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Applicant__c.EmailOtp__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -393,11 +388,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.FraudStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.HighRiskConsumer__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -499,11 +489,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.RunWithoutKIQ__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Applicant__c.SSNValidation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -863,11 +848,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.CustomerScore__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Contact.Department</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -923,11 +903,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.HighRiskConsumer__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Contact.HomePhone</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -936,7 +911,6 @@
         <field>Contact.IdentityVerificationStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.IsEmailVerified__c</field>
@@ -1025,11 +999,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.RunWithoutKIQ__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.SSNValidation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -13,11 +13,6 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>SSNValidation__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
         <field>Status__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
@@ -138,11 +133,6 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>CustomerScore__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
         <field>Email__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
@@ -164,11 +154,6 @@
     </displayedFields>
     <displayedFields>
         <field>FraudStatus__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>HighRiskConsumer__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

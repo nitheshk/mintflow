@@ -33,11 +33,6 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>SSNValidation__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
         <field>OOWStatus__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>

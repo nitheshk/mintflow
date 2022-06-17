@@ -181,21 +181,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>HighRiskConsumer__c</picklist>
-        <values>
-            <fullName>Accept</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Failed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Passed</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>IdentityVerificationStatus__c</picklist>
         <values>
             <fullName>Accept</fullName>

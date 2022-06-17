@@ -156,10 +156,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SSNValidation__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>OverallDebitBureauResult__c</field>
             </layoutItems>
             <layoutItems>

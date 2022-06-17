@@ -458,10 +458,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     memberContact.RunWithoutKIQ__c = applicant.RunWithoutKIQ__c;
     memberContact.IdentityVerificationStatus__c = applicant.IdentityVerificationStatus__c;
     memberContact.Birthdate = applicant.Birthdate__c;
-    memberContact.SSNValidation__c = applicant.SSNValidation__c;
     memberContact.CreditScore__c = applicant.CreditScore__c;
-    memberContact.CustomerScore__c = applicant.CustomerScore__c;
-    memberContact.HighRiskConsumer__c = applicant.HighRiskConsumer__c;
     memberContact.OFAC__c = applicant.OFAC__c;
     memberContact.OverallDebitBureauResult__c = applicant.OverallDebitBureauResult__c;
     memberContact.QualifiedDecision__c = applicant.QualifiedDecision__c;

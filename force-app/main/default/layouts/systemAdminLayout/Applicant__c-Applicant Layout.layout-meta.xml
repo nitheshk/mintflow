@@ -184,14 +184,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>HighRiskConsumer__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CustomerScore__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FraudStatus__c</field>
             </layoutItems>
             <layoutItems>
@@ -201,10 +193,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OFAC__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SSNValidation__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
