@@ -114,6 +114,7 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
       return CustomerEmailService.getInstance().generateUrl(paramsEncrypt);
     } else if (resumeType == 'Email') {
       CustomerEmailService.getInstance().resumeApplication(applicant);
+      return 'Email Sent Successfully';
     }
     return null;
   }
