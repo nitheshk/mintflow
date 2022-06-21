@@ -144,8 +144,10 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
     }
     ContentVersion cv = FileService.getInstance().createFile(dto);
 
+    // Change status of the document Request after upload the document
     String parentId = (Id) ApexRequest.getParams('parentID');
-
+    DocumentRequest__c docReq = new DocumentRequest__c(id = parentId, Status__c = 'Review');
+    CustomerPortalRepository.upsertRecord(docReq);
     return cv;
   }
 }
