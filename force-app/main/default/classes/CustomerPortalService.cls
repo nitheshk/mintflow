@@ -46,7 +46,7 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
   }
 
   /**
-   * @description Fetch application by logged in applicant
+   * @description Fetch application by logged in applicant used for cusotmer portal
    * @author Digital Align Team | 06-09-2022
    * @return List<Application__c>
    **/
@@ -56,7 +56,7 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
   }
 
   /**
-   * @description read application with child record
+   * @description read application with child record used for customer portal
    * @author Digital Align Team | 06-10-2022
    * @return Application__c
    **/
@@ -77,7 +77,10 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
   }
 
   /**
-   * @description
+   * @description resume application for customer portal , After login into portal customer get option to resume the application
+   * Resume Type can be 'Email' or 'Url'
+   * When applicantId is Empty, Primary applicant is fetched using application ID,
+   * Otherwise Based on the applicant Id Email or Url will generated
    * @author Digital Align Team | 06-16-2022
    * @param Map<String Object> params
    * @return Object
@@ -117,5 +120,32 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
       return 'Email Sent Successfully';
     }
     return null;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-21-2022
+   * @param ApexRequest request
+   * @return virtual
+   **/
+  global virtual ContentVersion uploadDocument(ApexRequest request) {
+    FileDTO dto = new FileDTO(
+      (String) ApexRequest.getParams('title'),
+      EncodingUtil.base64Decode((String) JSON.deserialize(request.data, String.class)),
+      (Id) ApexRequest.getParams('parentID'),
+      (String) ApexRequest.getParams('fileType'),
+      (String) ApexRequest.getParams('fileSubType')
+    );
+    if (ApexRequest.getParams('shareType') != null) {
+      dto.shareType = FileDTO.FileShareType.valueOf((String) ApexRequest.getParams('shareType'));
+    }
+    if (ApexRequest.getParams('visibility') != null) {
+      dto.visibility = FileDTO.FileVisibility.valueOf((String) ApexRequest.getParams('visibility'));
+    }
+    ContentVersion cv = FileService.getInstance().createFile(dto);
+
+    String parentId = (Id) ApexRequest.getParams('parentID');
+
+    return cv;
   }
 }

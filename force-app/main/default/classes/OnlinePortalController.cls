@@ -142,4 +142,24 @@ global with sharing class OnlinePortalController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-21-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @RemoteAction
+  global static ApexResponse uploadDocument(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(CustomerPortalService.getInstance().uploadDocument(request));
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Finished uploadDocument');
+      Logger.persist();
+    }
+  }
 }
