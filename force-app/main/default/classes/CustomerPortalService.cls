@@ -148,6 +148,8 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
     String parentId = (Id) ApexRequest.getParams('parentID');
     DocumentRequest__c docReq = new DocumentRequest__c(id = parentId, Status__c = 'Review');
     CustomerPortalRepository.upsertRecord(docReq);
+
+    //#pending  update to bank employee on Document Upload
     return cv;
   }
 }
