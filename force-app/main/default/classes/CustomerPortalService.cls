@@ -152,4 +152,17 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
     //#pending  update to bank employee on Document Upload
     return cv;
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-21-2022
+   * @param ID applicationId
+   * @return List<ContentVersion>
+   **/
+  global virtual List<ContentVersion> fetchAllDocumentRequestFiles(ID applicationId) {
+    Map<Id, DocumentRequest__c> documentRequestMap = new Map<Id, DocumentRequest__c>(
+      CustomerPortalRepository.readAllDocumentRequest(applicationId)
+    );
+    return FileService.getInstance().fetchContentVersionByEntityIds(new List<Id>(documentRequestMap?.keyset()), true);
+  }
 }

@@ -162,4 +162,25 @@ global with sharing class OnlinePortalController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description  fetch All Document Request Files for cusotmer portal
+   * @author Digital Align Team | 06-21-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @RemoteAction
+  global static ApexResponse fetchAllDocumentRequestFiles(ApexRequest request) {
+    try {
+      validateRequest(request);
+      Id applicationId = (Id) ApexRequest.getParams('applicationId');
+      return ApexResponse.ok(CustomerPortalService.getInstance().fetchAllDocumentRequestFiles(applicationId));
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Finished uploadDocument');
+      Logger.persist();
+    }
+  }
 }

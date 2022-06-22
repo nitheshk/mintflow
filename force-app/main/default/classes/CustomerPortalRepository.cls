@@ -188,4 +188,15 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-21-2022
+   * @param Id applicationId
+   * @return List<DocumentRequest__c>
+   **/
+  global static List<DocumentRequest__c> readAllDocumentRequest(Id applicationId) {
+    Query qry = Query.newInstance(DocumentRequest__c.SObjectType).addFields().whereEq('Application__c', applicationId);
+    return (List<DocumentRequest__c>) DatabaseUtils.getRecords(qry.toString());
+  }
 }
