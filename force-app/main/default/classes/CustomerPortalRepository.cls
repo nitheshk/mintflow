@@ -208,7 +208,7 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
    **/
   global static List<ContentDistribution> readAllContentDistribution(set<Id> contentVersionIds) {
     Query qry = Query.newInstance(ContentDistribution.SObjectType)
-      .addFields()
+      .addFields('ContentVersionId,DistributionPublicUrl,PdfDownloadUrl,ContentDownloadUrl')
       .whereIn('ContentVersionId', contentVersionIds);
     return (List<ContentDistribution>) DatabaseUtils.getRecords(qry.toString());
   }

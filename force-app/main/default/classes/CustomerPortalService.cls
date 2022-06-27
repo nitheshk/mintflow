@@ -192,6 +192,9 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
 
     for (ContentVersion cv : contentVersionList) {
       contentDistribution cd = contentDistributionMap.get(cv.Id);
+      if (cd == null) {
+        continue;
+      }
       Map<String, Object> fileDetail = new Map<String, Object>();
       fileDetail.put('ContentDocumentId', cv.ContentDocumentId);
       fileDetail.put('VersionNumber', cv.VersionNumber);
