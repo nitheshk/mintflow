@@ -142,12 +142,23 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
     if (ApexRequest.getParams('visibility') != null) {
       dto.visibility = FileDTO.FileVisibility.valueOf((String) ApexRequest.getParams('visibility'));
     }
+    //create a file in salesforce
     ContentVersion cv = FileService.getInstance().createFile(dto);
 
     // Change status of the document Request after upload the document
     String parentId = (Id) ApexRequest.getParams('parentID');
     DocumentRequest__c docReq = new DocumentRequest__c(id = parentId, Status__c = 'Review');
     CustomerPortalRepository.upsertRecord(docReq);
+
+    EventBus.publish(
+      new List<AfterCommitEvent__e>{
+        new AfterCommitEvent__e(
+          mflow__EventType__c = 'CreateContentDistribution',
+          mflow__ShortValue__c = cv.Id,
+          mflow__LongValue__c = cv.Title
+        )
+      }
+    );
 
     //#pending  update to bank employee on Document Upload
     return cv;
@@ -157,12 +168,48 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
    * @description
    * @author Digital Align Team | 06-21-2022
    * @param ID applicationId
-   * @return List<ContentVersion>
+   * @return Object
    **/
-  global virtual List<ContentVersion> fetchAllDocumentRequestFiles(ID applicationId) {
+  global virtual Object fetchAllDocumentRequestFiles(ID applicationId) {
+    List<Map<String, Object>> fileDetails = new List<Map<String, Object>>();
+
     Map<Id, DocumentRequest__c> documentRequestMap = new Map<Id, DocumentRequest__c>(
       CustomerPortalRepository.readAllDocumentRequest(applicationId)
     );
-    return FileService.getInstance().fetchContentVersionByEntityIds(new List<Id>(documentRequestMap?.keyset()), true);
+
+    List<ContentVersion> contentVersionList = FileService.getInstance()
+      .fetchContentVersionByEntityIds(new List<Id>(documentRequestMap?.keyset()), true);
+
+    // Map Content distribution nased on the content version
+    Map<Id, ContentDistribution> contentDistributionMap = new Map<Id, ContentDistribution>();
+    for (
+      ContentDistribution cd : CustomerPortalRepository.readAllContentDistribution(
+        (new Map<Id, ContentVersion>(contentVersionList)).keySet()
+      )
+    ) {
+      contentDistributionMap.put(cd.ContentVersionId, cd);
+    }
+
+    for (ContentVersion cv : contentVersionList) {
+      contentDistribution cd = contentDistributionMap.get(cv.Id);
+      Map<String, Object> fileDetail = new Map<String, Object>();
+      fileDetail.put('ContentDocumentId', cv.ContentDocumentId);
+      fileDetail.put('VersionNumber', cv.VersionNumber);
+      fileDetail.put('Title', cv.Title);
+      fileDetail.put('PathOnClient', cv.PathOnClient);
+      fileDetail.put('FileType', cv.FileType);
+      fileDetail.put('ContentSize', cv.ContentSize);
+      fileDetail.put('FileExtension', cv.FileExtension);
+      fileDetail.put('mflow__ContentSubType__c', cv.mflow__ContentSubType__c);
+      fileDetail.put('mflow__ContentType__c', cv.mflow__ContentType__c);
+      fileDetail.put('CreatedDate', cv.CreatedDate);
+      fileDetail.put('LastModifiedDate', cv.LastModifiedDate);
+      fileDetail.put('DistributionPublicUrl', cd?.DistributionPublicUrl);
+      fileDetail.put('PdfDownloadUrl', cd?.PdfDownloadUrl);
+      fileDetail.put('ContentDownloadUrl', cd?.ContentDownloadUrl);
+      fileDetails.add(fileDetail);
+    }
+
+    return fileDetails;
   }
 }

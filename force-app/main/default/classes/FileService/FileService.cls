@@ -315,6 +315,8 @@ global virtual with sharing class FileService extends AbstractService {
 
   /**
    * @description generate public url for file
+   * This function doesn't work for guest user as Profile doesn't allow to create content distribution
+   * This can be resolve alternative by using platform event, Running into system mode.
    * @author Digital Align Team | 09-13-2021
    * @param Id contentVersionId
    * @return ContentDistribution
