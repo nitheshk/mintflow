@@ -467,6 +467,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 5,
         "done": true,
@@ -568,6 +569,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -639,6 +641,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -710,6 +713,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -781,6 +785,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -852,6 +857,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -923,6 +929,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -994,6 +1001,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,

@@ -535,6 +535,11 @@
     </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
+        <field>FinancialProduct__c.AllowedtoGroup__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
         <field>FinancialProduct__c.Weightage__c</field>
         <readable>true</readable>
     </fieldPermissions>
