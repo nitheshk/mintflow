@@ -32,9 +32,8 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
    * @param Id applicationId
    * @return Application__c
    **/
-  global virtual Application__c submit(String data) {
+  global virtual Application__c submit(Application__c application) {
     log?.fine('Inside submit');
-    Application__c application = (Application__c) SObjectConstructor.deserialize(data, Application__c.class);
     application = ApplicationService.getInstance().saveApplication(application);
 
     if (
@@ -45,7 +44,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     }
 
     //update kyc and status fields
-    application = this.validateSubmission(application);
+    application = this.processSubmit(application);
 
     log?.fine('Completed submit');
     //testing purpose only
@@ -58,7 +57,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
    * @param Application__c application
    * @return Application__c
    **/
-  global virtual Application__c validateSubmission(Application__c application) {
+  global virtual Application__c processSubmit(Application__c application) {
     application = SubmissionRepository.readApplicationForSubmit(application.Id);
 
     Applicant__c primaryApplicant;
@@ -146,7 +145,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     ApplicationRepository.upsertRecords(application.Applicants__r);
     ApplicationRepository.upsertRecords(application.FinancialAccounts__r);
     ApplicationRepository.upsertRecord(application);
-    log?.info('Completed validateSubmission');
+    log?.info('Completed processSubmit');
     return application;
   }
 
@@ -204,9 +203,6 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     Application__c application = SubmissionRepository.readApplicationForSubmit(submissionResult.ApplicationId);
     ApexRequest.setApplicationId(application.Id);
     ApexRequest.setApplicationName(application.Name);
-
-    //chatter post on record level
-    NotificationBuilder.chatterMessagePost(application.Id, 'Funding Response from core API  : ' + resultJson);
 
     // if (application.Status__c == ApplicationConstant.COMPLETED) {
     //   throw new CustomException('Application has already completed');
@@ -365,6 +361,9 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     Map<Id, Applicant__c> applicantToProcess = new Map<Id, Applicant__c>();
 
     for (Applicant__c applicant : application.Applicants__r) {
+      if (applicant.RecordType.Name != ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+        continue;
+      }
       applicantToProcess.put(applicant.Id, applicant);
       if (String.isNotBlank(filter)) {
         filter += ' OR ';
@@ -383,27 +382,24 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
 
     List<Contact> contactToUpsert = new List<Contact>();
     for (Applicant__c applicant : applicantToProcess.values()) {
+      Contact memberContact;
       if (ssnVsContact.containsKey(applicant.SSN__c)) {
-        Contact memberContact = this.mapApplicantWithContact(applicant, ssnVsContact.get(applicant.SSN__c));
+        memberContact = this.mapApplicantWithContact(applicant, ssnVsContact.get(applicant.SSN__c));
         applicant.Contact__c = memberContact.Id;
         applicant.Contact__r = memberContact;
         contactToUpsert.add(memberContact);
       } else {
         Account memberAccount = this.createAccount(applicant);
-        Contact memberContact = new Contact(AccountId = memberAccount.Id);
+        memberContact = new Contact(AccountId = memberAccount.Id);
         memberContact = this.mapApplicantWithContact(applicant, memberContact);
         SubmissionRepository.upsertRecord(memberContact);
         applicant.Contact__c = memberContact.Id;
         applicant.Contact__r = memberContact;
         contactToUpsert.add(memberContact);
       }
-    }
 
-    for (Applicant__c applicant : applicantToProcess.values()) {
       if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-        //#pending Disable till customer community license is present
-        //CustomerCommunitySiteService.getInstance().createCustomerCommunityUser(applicant.Contact__r);
-        break;
+        memberContact.memberNumber__c = application.MemberNumber__c;
       }
     }
 
@@ -496,7 +492,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
       for (CustomerInterest__c customerInterest : application.mflow__CustomerInterests__r) {
         Map<String, Object> interestedProductParams = new Map<String, Object>();
         Map<String, Object> params = new Map<String, Object>();
-        params.put('app', application.Name);
+        params.put('appId', application.Id);
         params.put('ch', application.CreatedChannel__c);
         params.put('pid', customerInterest.InterestProduct__r.InternalCode__c);
         params.put(

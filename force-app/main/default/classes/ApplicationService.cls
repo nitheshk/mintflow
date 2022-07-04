@@ -35,16 +35,47 @@ global virtual with sharing class ApplicationService extends AbstractService {
   global Object startApplication(Map<String, Object> params) {
     // start an application
     Map<String, Object> result = new Map<String, Object>();
-    log?.fine('Inside startApplication -> params -> ' + JSON.serialize(params));
+    //log?.fine('Inside startApplication -> params -> ' + JSON.serialize(params));
     String pid = (String) params.get('pid');
+    String baseUrl;
+    String suffixUrl;
+
+    if (ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_ONLINE_PORTAL) {
+      // Existing Customer flow
+
+      Applicant__c applicant = ApplicantRepository.readApplicantById(ApexRequest.getApplicantId());
+      contact memberContact = ApplicationRepository.readMemberContact(applicant.LastName__c, applicant.SSN__c);
+      Application__c application = ApplicationRepository.fetchLastSubmittedApplication(memberContact?.Id);
+      if (application != null) {
+        params.put('applicationIdToClone', application.Id);
+        application = ApplicationServiceHelper.getInstance().cloneExistingApplication(params);
+
+        SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+        cipher.aplType = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+        cipher.flw = ApplicationConstant.FLOW_TYPE_APPLICATION;
+        cipher.appId = ApexRequest.getApplicationId();
+        cipher.aplId = ApexRequest.getApplicantId();
+        cipher.edt = Datetime.now().addMinutes(10);
+        cipher.ch = application.CreatedChannel__c;
+        String urlSuffix = '/savings/main-app/otp';
+        String link =
+          SiteSetting__c.getInstance().OnlineSiteUrl__c +
+          '/OpenAccount' +
+          '?vmf=' +
+          SecurityUtils.encryptUrl(JSON.serialize(cipher, true));
+        link += '&vue=' + EncodingUtil.urlEncode(urlSuffix, 'UTF-8');
+        result.put('url', link);
+        return result;
+      }
+    }
+
     User currentUser = UserUtils.getCurrentUser();
-    String baseUrl, suffixUrl;
     if (
       currentUser.Profile.Name == CommunityConstant.FIN_INST_EMPLOYEE_USER_PROFILE ||
-      currentUser.Profile.Name == CommunityConstant.CUSTOMER_COMMUNITY_USER_PROFILE
+      currentUser.Profile.Name == CommunityConstant.CUSTOMER_COMMUNITY_USER_PROFILE ||
+      UserUtils.isGuestUser()
     ) {
-      baseUrl = GenericUtils.fetchLoginURL();
-    } else if (UserUtils.isGuestUser()) {
+      //baseUrl = GenericUtils.fetchLoginURL();
       baseUrl = SiteSetting__c.getInstance().OnlineSiteUrl__c;
     } else {
       baseUrl = GenericUtils.fetchLoginURL() + '/apex';
@@ -86,7 +117,9 @@ global virtual with sharing class ApplicationService extends AbstractService {
     }
     application.ApplicationType__c = 'Deposit'; //Also Decide in Financial Account Creation
     application.IsExistingCustomer__c = false; //Also Decide in Financial Account Creation
-    application.Source__c = 'Online';
+    if (UserUtils.isGuestUser()) {
+      application.Source__c = 'Online';
+    }
     application.FlowState__c = ApplicationConstant.GET_STARTED;
     application.FlowType__c = ApplicationConstant.FLOW_TYPE_APPLICATION;
     application.Version__c = ApplicationConfiguration__c.getInstance().PackageVersion__c;
@@ -279,17 +312,6 @@ global virtual with sharing class ApplicationService extends AbstractService {
   }
 
   /**
-   * @description preserve Application
-   * @author Digital Align Team | 02-07-2022
-   * @param Application__c application
-   * @return Application__c
-   **/
-  @deprecated
-  global virtual Application__c preserveApplication(Application__c application) {
-    return application;
-  }
-
-  /**
    * @description  delete object by Id
    * @author Digital Align Team | 11-10-2021
    * @param Id recordId
@@ -316,9 +338,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
    **/
   global virtual Application__c saveState() {
     Application__c application = this.readApplicationWithChild();
-
     application = (mflow__Application__c) this.updateFlowState(application);
-
     //code to update the lead score of the application ::TODO
     application.LeadScore__c = helper.calculateLeadScore(application);
     log?.debug(' Lead Score : ' + application.LeadScore__c);
@@ -339,29 +359,39 @@ global virtual with sharing class ApplicationService extends AbstractService {
       if (String.isBlank(ApexRequest.getRequest().currentPage)) {
         return entity;
       }
-      if (entity instanceof Application__c) {
-        Application__c application = (Application__c) entity;
-        if (application.Applicants__r != null) {
-          return helper.updateFlowState(application, application.Applicants__r);
-        } else {
-          return helper.updateFlowState(application, new List<Applicant__c>());
+      Application__c application = (Application__c) entity;
+      List<Applicant__c> applicants = application.Applicants__r == null
+        ? new List<Applicant__c>()
+        : application.Applicants__r;
+
+      if (ApexRequest.getApplicantType() == 'Primary') {
+        for (Applicant__c applicant : applicants) {
+          if (applicant.mflow__ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
+            applicant.FlowState__c = ApexRequest.getRequest().currentPage;
+            applicant.FlowType__c = ApexRequest.getFlowType();
+            applicant.sessionExpireTime__c = Datetime.now()
+              .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().SessionExpirationTime__c);
+            ApplicationRepository.UpsertRecord(applicant);
+            break;
+          }
         }
-      } else if (entity instanceof List<Applicant__c>) {
-        List<Applicant__c> applicants = (List<Applicant__c>) entity;
-        Application__c application = new Application__c(Id = Apexrequest.getApplicationId());
-        return helper.updateFlowState(application, applicants);
-      } else if (entity instanceof Applicant__c) {
-        Applicant__c applicant = (Applicant__c) entity;
-        Application__c application = new Application__c(Id = Apexrequest.getApplicationId());
-        return helper.updateFlowState(application, new List<Applicant__c>{ applicant });
-      } else if (entity instanceof List<FinancialAccount__c>) {
-        //List<FinancialAccount__c> finAccounts = (List<FinancialAccount__c>) entity;
-        Application__c application = ApplicationRepository.readApplicationWithPrimary(ApexRequest.getApplicationId());
-        return helper.updateFlowState(application, application.Applicants__r);
+        application.FlowState__c = ApexRequest.getRequest().currentPage;
+        application.FlowType__c = ApexRequest.getFlowType();
+        ApplicationRepository.UpsertRecord(application);
+      } else if (ApexRequest.getApplicantType() == 'Joint') {
+        for (Applicant__c applicant : applicants) {
+          if (applicant.Id == ApexRequest.getApplicantId()) {
+            applicant.FlowState__c = ApexRequest.getRequest().currentPage;
+            applicant.FlowType__c = ApexRequest.getFlowType();
+            applicant.sessionExpireTime__c = Datetime.now()
+              .addMinutes((Integer) ApplicationConfiguration__c.getOrgDefaults().SessionExpirationTime__c);
+            ApplicationRepository.UpsertRecord(applicant);
+            break;
+          }
+        }
       }
     } catch (Exception ex) {
       log?.error(ex);
-      log?.error('Exception Has Ignored');
     }
     return entity;
   }
@@ -387,7 +417,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     Application__c application;
     Savepoint sp = Database.setSavepoint();
     try {
-      application = ApplicationServiceHelper.getInstance().cloneApplicationRecord(params);
+      application = ApplicationServiceHelper.getInstance().cloneReferralApplication(params);
     } catch (Exception ex) {
       log?.error(ex);
       Database.rollback(sp);
