@@ -72,6 +72,21 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
   }
 
   /**
+   * @description Returnmultiple products based on multiple internal codes
+   * @author Digital Align Team | 12-13-2021
+   * @param String internalProductCodes
+   * @return List<FinancialProduct__c>
+   **/
+  global static List<FinancialProduct__c> readFinancialProductsByMultipleCodes(List<String> internalProductCodes) {
+    return (List<FinancialProduct__c>) DatabaseUtils.getRecords(
+      Query.newInstance(FinancialProduct__c.SObjectType)
+        .addFields()
+        .whereIn('InternalCode__c', internalProductCodes)
+        .toString()
+    );
+  }
+
+  /**
    * @description fetch base membership product
    * @author Digital Align Team | 04-11-2022
    * @return FinancialProduct__c
