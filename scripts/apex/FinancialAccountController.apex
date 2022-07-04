@@ -62,3 +62,6 @@ ApexRequest request = new ApexRequest();
 request.token = 'pyh8mYAVjrnj1iy5gF7JFK47w+KxidbycgQrn9aXie+lhnDD6mYYq/uwqdyD/zcJHk3HD29SZW9alfzmHtq9FMB3jPJUm/88CZ+0WbZdTlX7i3Ak2+u6O090GNE5+2TEB+EHgheUDq3uzhwjgLSzvA==';
 ApexResponse res = FinancingController.generateUrlForFunding(request);
 system.debug('Full Json : ' + res.data);
+
+List<FinancialProduct__c> products = FinancialAccountRepository.readFinancialProductsByMultipleCodes('IC002,IC0012');
+system.debug('products : ' + products);

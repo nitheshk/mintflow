@@ -122,31 +122,42 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @param Application__c application
    * @return FinancialAccount__c
    **/
-  global virtual FinancialAccount__c createInitialFinancialAccount(Application__c application) {
-    FinancialProduct__c baseProduct, selectedProduct = FinancialAccountRepository.readBaseProduct();
+  global virtual List<FinancialAccount__c> createInitialFinancialAccount(Application__c application) {
+    FinancialProduct__c baseProduct = FinancialAccountRepository.readBaseProduct();
     String pid = PageUtils.getCurrentPageParameters('pid');
+    List<FinancialProduct__c> selectedProduct;
+    List<FinancialAccount__c> finAccountsList = new List<FinancialAccount__c>();
 
+    List<String> productCodes = pid.split(',');
     if (String.isNotBlank(pid)) {
-      selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(pid);
+      selectedProduct = FinancialAccountRepository.readFinancialProductsByMultipleCodes(productCodes);
+    }
+    Integer prdIndex = 0;
+    if (selectedProduct != null && selectedProduct.size() > 0) {
+      application.ApplicationType__c = selectedProduct[0].Type__c; // to set first item type to the application
+      for (FinancialProduct__c productItem : selectedProduct) {
+        FinancialAccount__c financialAccount = new FinancialAccount__c();
+        financialAccount.FinancialProduct__c = productItem.Id;
+        financialAccount.Ownership__c = 'Individual';
+        if (prdIndex == 0) {
+          financialAccount.IsPrimary__c = true;
+        }
+        financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
+        financialAccount.Stage__c = 'Active';
+        financialAccount.Application__c = application.Id;
+        financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
+          FinancialAccount__c.SObjectType,
+          productItem.Category__c
+        );
+        finAccountsList.add(financialAccount);
+        prdIndex++;
+      }
     }
 
-    application.ApplicationType__c = selectedProduct.Type__c;
-    // create financial account
-    FinancialAccount__c financialAccount = new FinancialAccount__c();
-    financialAccount.FinancialProduct__c = selectedProduct.Id;
-    financialAccount.Ownership__c = 'Individual';
-    financialAccount.IsPrimary__c = true;
-    financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
-    financialAccount.Stage__c = 'Active';
-    financialAccount.Application__c = application.Id;
-    financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
-      FinancialAccount__c.SObjectType,
-      selectedProduct.Category__c
-    );
-    FinancialAccountRepository.upsertRecord(financialAccount);
+    FinancialAccountRepository.upsertRecords(finAccountsList);
     FinancialAccountRepository.upsertRecord(application);
     log?.fine('financialAccount Created');
-    return financialAccount;
+    return finAccountsList;
   }
 
   /**
