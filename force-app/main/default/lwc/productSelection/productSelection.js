@@ -9,10 +9,14 @@ export default class ProductSelection extends LightningElement {
   @api largeDeviceSize;
   @api backgroudColor;
   allProducts;
+  @track itemSelected;
+  @track productSelected = [];
   @track productsToShow;
   @track productMap = new Map();
   @track selectedProductType = "All";
   @track productTypes = [];
+  @track productFilteredList = [];
+  @track productClonedList = [];
 
   /**
    *
@@ -78,26 +82,38 @@ export default class ProductSelection extends LightningElement {
    */
   handleProductSelection(event) {
     const productCode = event.detail.productCode;
-    // var url = window.location.origin + "/HomePageFI/OpenAccount?pid=" + productCode;
-    // window.open(url, "_blank");
-    startApplication({
-      request: {
-        header: JSON.stringify({
-          recordId: this.recordId,
-          sObjectName: this.objectApiName,
-          pid: event.detail.productCode
-        })
-      }
-    })
-      .then((result) => {
-        if (result.status === 200) {
-          let data = JSON.parse(result.data);
-          window.open(data.url, "_blank");
+    const category = event.detail.productCategory;
+    this.productFilteredList.push(productCode);
+
+    if (category != "Certificate") {
+      startApplication({
+        request: {
+          header: JSON.stringify({
+            recordId: this.recordId,
+            sObjectName: this.objectApiName,
+            pid: event.detail.productCode
+          })
         }
       })
-      .catch((error) => {
-        console.log("Error : " + JSON.stringify(error));
-        utils.errorMessage(this, error.body.message, "Error");
+        .then((result) => {
+          if (result.status === 200) {
+            let data = JSON.parse(result.data);
+            window.open(data.url, "_blank");
+          }
+        })
+        .catch((error) => {
+          console.log("Error : " + JSON.stringify(error));
+          utils.errorMessage(this, error.body.message, "Error");
+        });
+    } else {
+      this.productFilteredList.forEach((element) => {
+        this.productSelected = this.allProducts?.filter((product) => {
+          return product.mflow__InternalCode__c === element;
+        });
       });
+      this.productSelected.forEach((element) => {
+        this.productClonedList.push(element);
+      });
+    }
   }
 }

@@ -14,6 +14,32 @@
       </template>
 
       <lightning-layout multiple-rows horizontal-align="space" vertical-align="center">
+        <template if:true={productClonedList}>
+          <div class="card-custom-title">Selected Product</div>
+          <lightning-card class="outer-card" height="506">
+            <template for:each={productClonedList} for:item="item">
+              <lightning-layout-item
+                key={item.id}
+                padding="around-small"
+                size={defaultsi8ze}
+                small-device-size={smallDeviceSize}
+                medium-device-size={mediumDeviceSize}
+                large-device-size={largeDeviceSize}
+              >
+                <div class="card-color">
+                  <div class="product-category">
+                    <div class="product-titile">
+                      <img src={item.mflow__ImageURL__c} height="50" width="100" />
+                    </div>
+                    <p class="sub-category font-weight-bold">{item.mflow__DisplayLabel__c }</p>
+                  </div>
+                </div>
+              </lightning-layout-item>
+            </template>
+          </lightning-card>
+        </template>
+      </lightning-layout>
+      <lightning-layout multiple-rows horizontal-align="space" vertical-align="center">
         <!-- <div class="slds-grid slds-wrap"> -->
         <template for:each={productsToShow} for:item="product">
           <!-- <div key={product.id} class="slds-col slds-size_1-of-4 slds-var-p-around_x-small"> -->
