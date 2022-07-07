@@ -4,7 +4,6 @@
          you use this for referencing the custom font later
     */
   font-family: "mycustomfont";
-
   /*
         This is the location of the Custom Font, note, I have stored in a ZIP file
      */
@@ -12,8 +11,8 @@
 }
 .card-custom-title {
   position: absolute;
-  top: -28px;
-  left: 10px;
+  top: 82px;
+  left: 9px;
   background: green;
   padding: 3px 10px;
   text-transform: uppercase;
@@ -21,26 +20,12 @@
   color: white;
   font-weight: bold;
 }
-.position-relative {
-  position: relative;
-}
-
-.card-color {
-  background: antiquewhite;
-}
-.category-section {
-  position: relative;
-}
-.categorybtn {
-  position: absolute;
-  bottom: -20px;
-  border-radius: 24px;
-  border: 1px solid black !important;
-}
 .sub-category {
   font-size: 16px !important;
 }
-
+.border-right {
+  border-right: 1px dotted white;
+}
 .outer-card {
   background: #31769c;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,

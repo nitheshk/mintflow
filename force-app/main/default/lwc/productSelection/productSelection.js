@@ -16,8 +16,8 @@ export default class ProductSelection extends LightningElement {
   @track selectedProductType = "All";
   @track productTypes = [];
   @track productFilteredList = [];
-  @track productClonedList = [];
-
+  @track productSelectedList = [];
+  productLabel = "Apply";
   /**
    *
    * @param {*} param0
@@ -111,9 +111,38 @@ export default class ProductSelection extends LightningElement {
           return product.mflow__InternalCode__c === element;
         });
       });
+      // to add to the list if only not present already on selected product
       this.productSelected.forEach((element) => {
-        this.productClonedList.push(element);
+        if (this.productSelectedList.indexOf(element) < 0) {
+          this.productSelectedList.push(element);
+        }
       });
     }
+  }
+  handleCerificateProductSelection(event) {
+    let productCodes = "";
+    this.productSelectedList.forEach((element) => {
+      productCodes = productCodes.concat(element.mflow__InternalCode__c, ",");
+    });
+    productCodes = productCodes.slice(0, -1); // to remove the last , form the product codes collection
+    startApplication({
+      request: {
+        header: JSON.stringify({
+          recordId: this.recordId,
+          sObjectName: this.objectApiName,
+          pid: productCodes
+        })
+      }
+    })
+      .then((result) => {
+        if (result.status === 200) {
+          let data = JSON.parse(result.data);
+          window.open(data.url, "_blank");
+        }
+      })
+      .catch((error) => {
+        console.log("Error : " + JSON.stringify(error));
+        utils.errorMessage(this, error.body.message, "Error");
+      });
   }
 }

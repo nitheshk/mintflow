@@ -12,33 +12,38 @@
           data-type={productType}
         ></lightning-button>
       </template>
-
-      <lightning-layout multiple-rows horizontal-align="space" vertical-align="center">
-        <template if:true={productClonedList}>
-          <div class="card-custom-title">Selected Product</div>
-          <lightning-card class="outer-card" height="506">
-            <template for:each={productClonedList} for:item="item">
-              <lightning-layout-item
-                key={item.id}
-                padding="around-small"
-                size={defaultsi8ze}
-                small-device-size={smallDeviceSize}
-                medium-device-size={mediumDeviceSize}
-                large-device-size={largeDeviceSize}
-              >
-                <div class="card-color">
-                  <div class="product-category">
-                    <div class="product-titile">
-                      <img src={item.mflow__ImageURL__c} height="50" width="100" />
-                    </div>
-                    <p class="sub-category font-weight-bold">{item.mflow__DisplayLabel__c }</p>
-                  </div>
-                </div>
-              </lightning-layout-item>
-            </template>
-          </lightning-card>
-        </template>
-      </lightning-layout>
+      <template if:true={productSelectedList}>
+        <div
+          class="outer-card slds-box slds-p-around_none slds-m-top_x-large slds-m-bottom_medium slds-m-horizontal_medium"
+        >
+          <lightning-layout>
+            <div class="card-custom-title">Selected Product</div>
+            <lightning-layout-item
+              for:each={productSelectedList}
+              for:item="item"
+              key={item.id}
+              size="2"
+              padding="around-medium"
+            >
+              <lightning-layout class="slds-align_absolute-center border-right">
+                <lightning-layout-item size="4">
+                  <img src={item.mflow__ImageURL__c} alt="Product" class="img-responsive" />
+                </lightning-layout-item>
+                <lightning-layout-item size="8" class="slds-p-left_small">
+                  <p class="sub-category font-weight-bold">{item.mflow__DisplayLabel__c }</p>
+                </lightning-layout-item>
+              </lightning-layout>
+            </lightning-layout-item>
+            <lightning-button
+              variant="brand"
+              label={productLabel}
+              title="Apply"
+              onclick={handleCerificateProductSelection}
+              class="slds-var-m-left_medium slds-var-m-around_medium card-footer-right-btn"
+            ></lightning-button>
+          </lightning-layout>
+        </div>
+      </template>
       <lightning-layout multiple-rows horizontal-align="space" vertical-align="center">
         <!-- <div class="slds-grid slds-wrap"> -->
         <template for:each={productsToShow} for:item="product">
