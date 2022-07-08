@@ -9,6 +9,10 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>LWCFinancialInstituteSiteController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>OnlinePortalController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
