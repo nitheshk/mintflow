@@ -1,6 +1,7 @@
 import { LightningElement, track, wire, api } from "lwc";
 import getProducts from "@salesforce/apex/OnlinePortalController.productSelector";
 import startApplication from "@salesforce/apex/ApplicationController.startApplication";
+import fetchConfigValues from "@salesforce/apex/LwcCustomController.fetchConfigValues";
 
 export default class ProductSelection extends LightningElement {
   @api defaulSize;
@@ -18,10 +19,27 @@ export default class ProductSelection extends LightningElement {
   @track productSelectedList = [];
   productLabel = "Apply";
   @track showSelectedProduct = false;
+  @track maxProductSelected;
+  @track appSettings;
   /**
    *
    * @param {*} param0
    */
+  @wire(fetchConfigValues)
+  applicationRecord({ data, error }) {
+    if (data) {
+      console.log("data:", JSON.stringify(data));
+      if (data.status === 200) {
+        this.configData = JSON.parse(data.data);
+        this.maxProductSelected = this.configData.mflow__MaxNumberofProductSelected__c;
+      }
+      this.showSpinner = false;
+    } else if (error) {
+      console.log("error fetchConfigValues: " + error.body.message);
+      this.showSpinner = false;
+    }
+  }
+
   @wire(getProducts, { request: {} })
   products({ data, error }) {
     if (data?.status === 200) {
@@ -84,11 +102,12 @@ export default class ProductSelection extends LightningElement {
    * @param {*} event
    */
   handleProductSelection(event) {
-    console.log("productSelectedList" + this.productSelectedList.length);
     const productCode = event.detail.productCode;
     const category = event.detail.productCategory;
-    this.productFilteredList.push(productCode);
 
+    if (this.productSelectedList.length < this.maxProductSelected) {
+      this.productFilteredList.push(productCode);
+    }
     if (category != "Certificate") {
       startApplication({
         request: {
