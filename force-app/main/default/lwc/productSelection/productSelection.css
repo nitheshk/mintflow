@@ -4,26 +4,32 @@
          you use this for referencing the custom font later
     */
   font-family: "mycustomfont";
-
   /*
         This is the location of the Custom Font, note, I have stored in a ZIP file
      */
   src: url("https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i") format("TrueType");
 }
-
-body {
-  font-family: "mycustomfont";
-  background: #ddd;
+.card-custom-title {
+  position: absolute;
+  top: 82px;
+  left: 9px;
+  background: green;
+  padding: 3px 10px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
 }
-
-lightning-card {
-  --sds-c-card-color-background: rgb(224, 232, 240) 40%;
-  --sds-c-card-color-border: #00000096;
+.sub-category {
+  font-size: 16px !important;
 }
-
-lightning-card .product-type-btn {
-  --sds-c-button-brand-color-background: #18305d;
-  --sds-c-button-brand-color-background-active: #18305d;
-  --sds-c-button-brand-color-background-hover: #31769c;
-  --sds-c-button-radius-border: 2rem;
+.border-right {
+  border-right: 1px dotted white;
+}
+.outer-card {
+  background: #31769c;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
+  border: 1px solid white;
+  color: white;
 }

@@ -420,6 +420,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contact.MemberNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Contact.IsEmailVerified__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -531,6 +536,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialProduct__c.AllowedtoGroup__c</field>
         <readable>true</readable>
     </fieldPermissions>
      <fieldPermissions>
@@ -2243,6 +2253,15 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>MintFlowGuest</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>AfterCommitEvent__e</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>

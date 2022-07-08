@@ -14,7 +14,6 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
     'LastReferencedDate',
     'CreatedById',
     'LastActivityDate',
-    'mflow__DeleteRecord__c',
     'SystemModstamp',
     'LastModifiedById',
     'OwnerId'

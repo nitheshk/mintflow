@@ -119,31 +119,31 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
    * @param Id applicationId
    * @return Application__c
    **/
-  global static Application__c readApplicationWithPrimary(Id applicationId) {
-    return (Application__c) DatabaseUtils.getRecord(
-      Query.newInstance(Application__c.SObjectType)
-        .addFields()
-        .queryChild('mflow__Applicants__r')
-        .addFields()
-        .addFields('RecordType.Name')
-        .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
-        .run()
-        .whereEq('Id', applicationId)
-        .toString()
-    );
-  }
+  // global static Application__c readApplicationWithPrimary(Id applicationId) {
+  //   return (Application__c) DatabaseUtils.getRecord(
+  //     Query.newInstance(Application__c.SObjectType)
+  //       .addFields()
+  //       .queryChild('mflow__Applicants__r')
+  //       .addFields()
+  //       .addFields('RecordType.Name')
+  //       .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
+  //       .run()
+  //       .whereEq('Id', applicationId)
+  //       .toString()
+  //   );
+  // }
   /**
    * @description Read Application with child record
    * Applicants contains only ids
    * Financial Account contains only Ids
    * @author Digital Align Team | 10-26-2021
-   * @param String applicationId
+   * @param Id applicationId
    * @return Application__c
    **/
-  global static Application__c readApplicationToClone(String applicationName) {
+  global static Application__c readApplicationToClone(Id applicationId) {
     Query qry = Query.newInstance(Application__c.SObjectType)
       .addFieldSet('mflow__CloneApplication')
-      .whereEq('Name', applicationName);
+      .whereEq('Id', applicationId);
     return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
 
@@ -172,6 +172,34 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .whereEq('Application__c', applicationId)
       .andCon()
       .whereNeq('RecordType.Name', ApplicationConstant.APPLICANT_FAMILY_MEMBER_RECORDTYPE);
+    return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
+  }
+
+  /**
+   * @description read  applicant with child record
+   * @author Digital Align Team | 10-26-2021
+   * @param Applicant__c applicantId
+   **/
+  global static List<Applicant__c> readPrimaryApplicantsToClone(Id applicationId) {
+    Query qry = Query.newInstance(Applicant__c.SObjectType)
+      .addFieldSet('mflow__CloneApplicant')
+      .addFields('RecordType.Name')
+      .queryChild('mflow__IdentificationDocuments__r')
+      .addFieldSet('mflow__CloneIdentification')
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__ContactPointAddresses__r')
+      .addFieldSet('mflow__CloneAddress')
+      .removeFields('Address')
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__Employments__r')
+      .addFieldSet('mflow__CloneEmployment')
+      .orderBy('mflow__Order__c')
+      .run()
+      .whereEq('Application__c', applicationId)
+      .andCon()
+      .whereeq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
     return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
   }
 
@@ -205,5 +233,51 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .run()
       .whereEq('mflow__Application__c', applicationId);
     return (List<mflow__CustomerInterest__c>) DatabaseUtils.getRecords(qry.toString());
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-29-2022
+   * @param String lastName
+   * @param String ssn
+   * @return Contact
+   **/
+  global static Contact readMemberContact(String lastName, String ssn) {
+    Query qry = Query.newInstance(Contact.SObjectType)
+      .addFields()
+      .whereEq('LastName', lastName)
+      .andCon()
+      .whereEq('SSN__c', ssn)
+      .andCon()
+      .whereNeq('MemberNumber__c', null)
+      .addLimit(1)
+      .orderBy('CreatedDate', true);
+    return (Contact) DatabaseUtils.getRecord(qry.toString());
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-30-2022
+   * @param Id ContactId
+   * @return Application__c
+   **/
+  global static Application__c fetchLastSubmittedApplication(Id contactId) {
+    Query qry = Query.newInstance(Application__c.SObjectType)
+      .addFields()
+      .whereIn(
+        'Id',
+        Query.newInstance(Applicant__c.SObjectType)
+          .addFields('mflow__Application__c')
+          .whereEq('mflow__Contact__c', contactId)
+          .andCon()
+          .whereEq('mflow__Status__c', ApplicationConstant.COMPLETED)
+          .toString()
+      )
+      .andCon()
+      .whereEq('mflow__Status__c', ApplicationConstant.COMPLETED)
+      .orderBy('CreatedDate', true)
+      .addLimit(1);
+
+    return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
 }

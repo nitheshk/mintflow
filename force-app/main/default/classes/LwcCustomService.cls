@@ -283,7 +283,7 @@ global virtual with sharing class LwcCustomService extends AbstractService {
         LwcCustomRepository.upsertRecord(application);
 
         if (application.KYCStatus__c == ApplicationConstant.KYC_PASSED) {
-          return SubmitApplicationService.getInstance().validateSubmission(application);
+          return SubmitApplicationService.getInstance().processSubmit(application);
         }
         return application;
       }

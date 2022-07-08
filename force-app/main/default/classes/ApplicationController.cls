@@ -214,7 +214,8 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse submit(ApexRequest request) {
     try {
       validateRequest(request);
-      Application__c application = SubmitApplicationService.getInstance().submit(request.data);
+      Application__c application = (Application__c) SObjectConstructor.deserialize(request.data, Application__c.class);
+      application = SubmitApplicationService.getInstance().submit(application);
       return ApexResponse.ok(ApplicationService.getInstance().updateFlowState(application));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
@@ -268,19 +269,6 @@ global with sharing class ApplicationController extends AbstractController {
     } finally {
       Logger.persist();
     }
-  }
-
-  /**
-   * @description Change Application Status to Saved
-   * @author Digital Align Team | 02-07-2022
-   * @param ApexRequest request
-   * @return ApexResponse
-   **/
-  @AuraEnabled
-  @RemoteAction
-  @deprecated
-  global static ApexResponse preserveApplication(ApexRequest request) {
-    return saveApplication(request);
   }
 
   /**

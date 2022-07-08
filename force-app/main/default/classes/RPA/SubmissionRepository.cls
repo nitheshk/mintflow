@@ -182,7 +182,13 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
       return new List<Contact>();
     }
     return (List<Contact>) DatabaseUtils.getRecords(
-      Query.newInstance(Contact.SObjectType).addFields().whereCon(filter).addLimit(50).toString()
+      Query.newInstance(Contact.SObjectType)
+        .addFields()
+        .whereCon(filter)
+        .andCon()
+        .whereNeq('MemberNumber__c', null)
+        .addLimit(50)
+        .toString()
     );
   }
 }

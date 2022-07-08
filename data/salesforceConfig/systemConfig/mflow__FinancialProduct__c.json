@@ -467,6 +467,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 5,
         "done": true,
@@ -529,6 +530,7 @@
             "mflow__Type__c": "Product Configuration",
             "mflow__Icon__c": "fa fa-certificate"
           },
+
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_4" },
             "Name": "Share Certificates",
@@ -568,6 +570,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -576,7 +579,7 @@
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_0" },
             "Name": "Feature-APY",
             "mflow__Code__c": "APY",
-            "mflow__DisplayContents__c": "APY: 0.20%",
+            "mflow__DisplayContents__c": "APY: 0.30%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
@@ -639,6 +642,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -647,7 +651,7 @@
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_0" },
             "Name": "Feature-APY",
             "mflow__Code__c": "APY",
-            "mflow__DisplayContents__c": "APY: 0.30%",
+            "mflow__DisplayContents__c": "APY: 0.50%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
@@ -710,6 +714,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -718,7 +723,7 @@
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_0" },
             "Name": "Feature-APY",
             "mflow__Code__c": "APY",
-            "mflow__DisplayContents__c": "APY: 0.50%",
+            "mflow__DisplayContents__c": "APY: 0.60%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
@@ -781,6 +786,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -789,7 +795,7 @@
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_0" },
             "Name": "Feature-APY",
             "mflow__Code__c": "APY",
-            "mflow__DisplayContents__c": "APY: 0.60%",
+            "mflow__DisplayContents__c": "APY: 0.65%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
@@ -852,6 +858,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -860,7 +867,7 @@
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_0" },
             "Name": "Feature-APY",
             "mflow__Code__c": "APY",
-            "mflow__DisplayContents__c": "APY: 0.65%",
+            "mflow__DisplayContents__c": "APY: 0.70%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,
@@ -923,6 +930,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -994,6 +1002,7 @@
       "mflow__isActive__c": true,
       "mflow__ImageType__c": "Relative",
       "mflow__IsMembershipProduct__c": false,
+      "mflow__AllowedtoGroup__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -1002,7 +1011,7 @@
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef16_0" },
             "Name": "Feature-APY",
             "mflow__Code__c": "APY",
-            "mflow__DisplayContents__c": "APY: 0.80%",
+            "mflow__DisplayContents__c": "APY: 0.85%",
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__ImageType__c": "Relative",
             "mflow__Order__c": 3,

@@ -84,6 +84,11 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>appplicationFlow</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>relatedListComponentOverride</name>
                     <value>NONE</value>

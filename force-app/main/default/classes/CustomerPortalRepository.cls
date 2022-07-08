@@ -199,4 +199,17 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
     Query qry = Query.newInstance(DocumentRequest__c.SObjectType).addFields().whereEq('Application__c', applicationId);
     return (List<DocumentRequest__c>) DatabaseUtils.getRecords(qry.toString());
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 06-27-2022
+   * @param set<Id> contentVersionIds
+   * @return List<ContentDistribution>
+   **/
+  global static List<ContentDistribution> readAllContentDistribution(set<Id> contentVersionIds) {
+    Query qry = Query.newInstance(ContentDistribution.SObjectType)
+      .addFields('ContentVersionId,DistributionPublicUrl,PdfDownloadUrl,ContentDownloadUrl')
+      .whereIn('ContentVersionId', contentVersionIds);
+    return (List<ContentDistribution>) DatabaseUtils.getRecords(qry.toString());
+  }
 }

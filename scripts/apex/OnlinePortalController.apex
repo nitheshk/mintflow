@@ -37,3 +37,10 @@ request.setHeader(
 );
 ApexResponse res = OnlinePortalController.resumeApplication(request);
 system.debug('Full Json : ' + res);
+
+//
+
+system.debug(
+  'Full Json : ' +
+  json.serialize(CustomerPortalService.getInstance().fetchAllDocumentRequestFiles('a02N000000MvBUqIAN'))
+);
