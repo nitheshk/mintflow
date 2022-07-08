@@ -25,6 +25,7 @@
 }
 .border-right {
   border-right: 1px dotted white;
+  position: relative;
 }
 .outer-card {
   background: #31769c;
@@ -32,4 +33,10 @@
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
   border: 1px solid white;
   color: white;
+}
+
+.close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

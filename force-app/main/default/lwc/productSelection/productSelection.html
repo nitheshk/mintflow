@@ -12,7 +12,7 @@
           data-type={productType}
         ></lightning-button>
       </template>
-      <template if:true={productSelectedList}>
+      <template if:true={showSelectedProduct}>
         <div
           class="outer-card slds-box slds-p-around_none slds-m-top_x-large slds-m-bottom_medium slds-m-horizontal_medium"
         >
@@ -29,6 +29,15 @@
                 <lightning-layout-item size="4">
                   <img src={item.mflow__ImageURL__c} alt="Product" class="img-responsive" />
                 </lightning-layout-item>
+                <lightning-button-icon
+                  icon-name="action:delete"
+                  variant="border-filled"
+                  alternative-text="Delete"
+                  class="close-icon slds-var-m-around_xxx-small slds-align_absolute-center"
+                  title="Delete"
+                  onclick={handleProductRenove}
+                  data-productcode={item.mflow__InternalCode__c}
+                ></lightning-button-icon>
                 <lightning-layout-item size="8" class="slds-p-left_small">
                   <p class="sub-category font-weight-bold">{item.mflow__DisplayLabel__c }</p>
                 </lightning-layout-item>

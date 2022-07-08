@@ -9,15 +9,15 @@ export default class ProductSelection extends LightningElement {
   @api largeDeviceSize;
   @api backgroudColor;
   allProducts;
-  @track itemSelected;
   @track productSelected = [];
   @track productsToShow;
-  @track productMap = new Map();
+
   @track selectedProductType = "All";
   @track productTypes = [];
   @track productFilteredList = [];
   @track productSelectedList = [];
   productLabel = "Apply";
+  @track showSelectedProduct = false;
   /**
    *
    * @param {*} param0
@@ -44,6 +44,9 @@ export default class ProductSelection extends LightningElement {
    */
   renderedCallback() {
     this.setComponentStyle();
+    if (this.productSelectedList.length > 0) {
+      this.showSelectedProduct = true;
+    }
   }
 
   /**
@@ -81,6 +84,7 @@ export default class ProductSelection extends LightningElement {
    * @param {*} event
    */
   handleProductSelection(event) {
+    console.log("productSelectedList" + this.productSelectedList.length);
     const productCode = event.detail.productCode;
     const category = event.detail.productCategory;
     this.productFilteredList.push(productCode);
@@ -117,9 +121,11 @@ export default class ProductSelection extends LightningElement {
           this.productSelectedList.push(element);
         }
       });
+      this.showSelectedProduct = this.showProductSelection();
     }
   }
-  handleCerificateProductSelection(event) {
+
+  handleCerificateProductSelection() {
     let productCodes = "";
     this.productSelectedList.forEach((element) => {
       productCodes = productCodes.concat(element.mflow__InternalCode__c, ",");
@@ -144,5 +150,29 @@ export default class ProductSelection extends LightningElement {
         console.log("Error : " + JSON.stringify(error));
         utils.errorMessage(this, error.body.message, "Error");
       });
+  }
+
+  handleProductRenove(event) {
+    let target = event.target;
+    let productCode = target.dataset.productcode;
+    let filteredProductList = [];
+    filteredProductList = this.arrayRemove(this.productSelectedList, productCode);
+    this.productSelectedList = filteredProductList;
+    this.showSelectedProduct = this.showProductSelection();
+  }
+
+  arrayRemove(arr, value) {
+    let removedProductList = [];
+    arr.forEach((product) => {
+      if (product.mflow__InternalCode__c != value) {
+        removedProductList.push(product);
+      }
+    });
+    return removedProductList;
+  }
+  showProductSelection() {
+    if (this.productSelectedList.length > 0) {
+      return true;
+    } else return false;
   }
 }
