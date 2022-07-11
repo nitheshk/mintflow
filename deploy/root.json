@@ -39,7 +39,7 @@
 
   "communities": {
     "links": "communityLinks.json",
-    "publishCommnitiesNames": ["Online", "FinancialInstitute"]
+    "publishCommnitiesNames": ["FinancialInstitute"]
   },
 
   "dependentPackage": {

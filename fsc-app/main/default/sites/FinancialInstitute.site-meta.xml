@@ -26,6 +26,6 @@
     <siteGuestRecordDefaultOwner>test-eyvnkrulex8n@example.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
     <subdomain>mintflow-developer-edition</subdomain>
-    <urlPathPrefix>HomePageFI</urlPathPrefix>
+    <urlPathPrefix>mintflow</urlPathPrefix>
     <guestProfile>FinancialInstitute Profile</guestProfile>
 </CustomSite>

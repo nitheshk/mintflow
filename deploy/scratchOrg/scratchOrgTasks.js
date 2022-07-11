@@ -230,11 +230,17 @@ gulp.task("publishCommunities", function (finish) {
         });
     });
 
-  Promise.all([publish(0), publish(1)])
+  Promise.all([publish(0)])
     .then((results) => {
       results.forEach((element) => {
         communityLinks.push(element);
       });
+
+      let onlineCommunityLink = { ...communityLinks[0] };
+      onlineCommunityLink.name = "OnlinePortal";
+      onlineCommunityLink.name = "OnlinePortal";
+      onlineCommunityLink.url = onlineCommunityLink.url + "/OnlinePortal";
+      communityLinks.push(onlineCommunityLink);
 
       // create community links and update data plan
       utils
@@ -242,11 +248,9 @@ gulp.task("publishCommunities", function (finish) {
         .then(() => {
           let applicationConfiguration = require("../../data/salesforceConfig/systemConfig/mflow__SiteSetting__c.json");
           communityLinks.forEach((link) => {
-            if (link.name === "Online") {
-              applicationConfiguration.records[0].mflow__OnlineSiteUrl__c = link.url;
-            }
             if (link.name === "FinancialInstitute") {
               applicationConfiguration.records[0].mflow__FinancialInstituteSiteUrl__c = link.url;
+              applicationConfiguration.records[0].mflow__OnlineSiteUrl__c = link.url;
             }
           });
           // update site urls
@@ -260,19 +264,24 @@ gulp.task("publishCommunities", function (finish) {
             });
 
           // update community logout url
-
-          fs.readFile("./fsc-app/main/default/networks/Online.network-meta.xml", "utf-8", function (err, data) {
-            if (err) console.log(err);
-            xml2js.parseString(data, function (err, result) {
+          fs.readFile(
+            "./fsc-app/main/default/networks/FinancialInstitute.network-meta.xml",
+            "utf-8",
+            function (err, data) {
               if (err) console.log(err);
-              result.Network.logoutUrl = applicationConfiguration.records[0].mflow__OnlineSiteUrl__c;
-              var builder = new xml2js.Builder();
-              var xml = builder.buildObject(result);
-              utils.createFile("./fsc-app/main/default/networks/Online.network-meta.xml", xml).catch((err) => {
-                console.log("errr :" + JSON.stringify(errr));
+              xml2js.parseString(data, function (err, result) {
+                if (err) console.log(err);
+                result.Network.logoutUrl = applicationConfiguration.records[0].mflow__OnlineSiteUrl__c;
+                var builder = new xml2js.Builder();
+                var xml = builder.buildObject(result);
+                utils
+                  .createFile("./fsc-app/main/default/networks/FinancialInstitute.network-meta.xml", xml)
+                  .catch((err) => {
+                    console.log("errr :" + JSON.stringify(errr));
+                  });
               });
-            });
-          });
+            }
+          );
 
           finish();
         })

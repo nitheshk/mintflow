@@ -2,68 +2,49 @@ updateAdminPermissionSet();
 updateGuestPermissionSet();
 updateRoleToCurrentUser();
 
+/*
+ * updateGuestPermissionSet
+ */
 public static void updateGuestPermissionSet() {
-  List<PermissionSet> permissionSetList = [
-    SELECT Id
-    FROM PermissionSet
-    WHERE Name = 'MintFlowGuest'
-  ];
+  List<PermissionSet> permissionSetList = [SELECT Id FROM PermissionSet WHERE Name = 'MintFlowGuest'];
 
-  List<User> siteUser = [
-    SELECT id, Name
-    FROM User
-    WHERE Profile.Name = 'Online Profile'
-  ];
+  List<User> siteUser = [SELECT id, Name FROM User WHERE Profile.Name = 'FinancialInstitute Profile'];
 
-  delete [
-    SELECT Id
-    FROM PermissionSetAssignment
-    WHERE AssigneeId = :siteUser AND PermissionSetId = :permissionSetList
-  ];
+  delete [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId = :siteUser AND PermissionSetId = :permissionSetList];
 
   List<PermissionSetAssignment> permissionSetAssignmentList = new List<PermissionSetAssignment>();
   for (User u : siteUser) {
     for (PermissionSet ps : permissionSetList) {
-      permissionSetAssignmentList.add(
-        new PermissionSetAssignment(PermissionSetId = ps.Id, AssigneeId = u.Id)
-      );
+      permissionSetAssignmentList.add(new PermissionSetAssignment(PermissionSetId = ps.Id, AssigneeId = u.Id));
     }
   }
 
   insert permissionSetAssignmentList;
 }
 
+/*
+ * updateAdminPermissionSet
+ */
 public static void updateAdminPermissionSet() {
-  List<PermissionSet> permissionSetList = [
-    SELECT Id
-    FROM PermissionSet
-    WHERE Name = 'MintFlowSystemAdmin'
-  ];
+  List<PermissionSet> permissionSetList = [SELECT Id FROM PermissionSet WHERE Name = 'MintFlowSystemAdmin'];
 
-  List<User> siteUser = [
-    SELECT id, Name
-    FROM User
-    WHERE Profile.Name = 'System Administrator'
-  ];
+  List<User> siteUser = [SELECT id, Name FROM User WHERE Profile.Name = 'System Administrator'];
 
-  delete [
-    SELECT Id
-    FROM PermissionSetAssignment
-    WHERE AssigneeId = :siteUser AND PermissionSetId = :permissionSetList
-  ];
+  delete [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId = :siteUser AND PermissionSetId = :permissionSetList];
 
   List<PermissionSetAssignment> permissionSetAssignmentList = new List<PermissionSetAssignment>();
   for (User u : siteUser) {
     for (PermissionSet ps : permissionSetList) {
-      permissionSetAssignmentList.add(
-        new PermissionSetAssignment(PermissionSetId = ps.Id, AssigneeId = u.Id)
-      );
+      permissionSetAssignmentList.add(new PermissionSetAssignment(PermissionSetId = ps.Id, AssigneeId = u.Id));
     }
   }
 
   insert permissionSetAssignmentList;
 }
 
+/*
+ * updateRoleToCurrentUser
+ */
 public static void updateRoleToCurrentUser() {
   UserRole r;
   try {
