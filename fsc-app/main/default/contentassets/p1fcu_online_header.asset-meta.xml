@@ -3,17 +3,10 @@
     <isVisibleByExternalUsers>true</isVisibleByExternalUsers>
     <language>en_US</language>
     <masterLabel>p1fcu_online_header</masterLabel>
-    <originNetwork>Online</originNetwork>
     <relationships>
-        <network>
+        <organization>
             <access>VIEWER</access>
-            <name>Online</name>
-        </network>
-        <workspace>
-            <access>INFERRED</access>
-            <isManagingWorkspace>true</isManagingWorkspace>
-            <name>sfdc_asset_company_assets</name>
-        </workspace>
+        </organization>
     </relationships>
     <versions>
         <version>
