@@ -21,7 +21,14 @@
 
 #### Step 1. set git user.email `git config --global user.email "youremailaddress@digitalalign.com"`
 
-#### Step 2. Install the dependencies by run the below commands for first time for one system
+### Step 2: pulling submodule
+
+Step 2.1 : `git clone --recursive git@github.com:DigitalAlignInc/p1fcu-olbui.git`
+Step 2.2 : Select develop branch in p1fcu-olbui
+Step 2:3 : run npn install in p1fcu-olbui git folder
+Step 2.4 : [Optional] Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks for Process`
+
+#### Step 3. Install the dependencies by run the below commands for first time for one system
 
 `npm install`
 
@@ -31,13 +38,13 @@
 
 `npm install sfdx-cli@7.132.0`
 
-#### For UI Deployment and Development
+#### Step 4: For UI Deployment and Development
 
 `npm --prefix p1fcu-olbui/sales install`
 
 `npm --prefix p1fcu-olbui/online-portal install`
 
-#### Step 3. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format with create connected app on previous step
+#### Step 5. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format with create connected app on previous step
 
 ```
 {
@@ -49,13 +56,6 @@
   "jwtkeyfile": "jwt/server.key"
 }
 ```
-
-### Step 2: pulling submodule
-
-Step 2.1 : `git clone --recursive git@github.com:DigitalAlignInc/p1fcu-olbui.git`
-Step 2.2 : Select develop branch in p1fcu-olbui
-Step 2:3 : run npn install in p1fcu-olbui git folder
-Step 2.4 : [Optional] Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks for Process`
 
 ## Step 3. Create Scratch Org
 
