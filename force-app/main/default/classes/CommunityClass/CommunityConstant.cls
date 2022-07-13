@@ -15,8 +15,6 @@ global with sharing class CommunityConstant {
   public static final String FIN_INST_EMPLOYEE_USER_PROFILE = System.Label.Profile_FinancialInstitute;
   //deafult MintFlowEmployeeCommunity
   public static final String FIN_INST_COMMUNITY_PEMRISSION_SET = System.Label.PermissionSet_FinancialInstitute;
-
-  /** Customer Community */
-  public static final String CUSTOMER_COMMUNITY_USER_PROFILE = 'MFlowCustomerCommunityLogin';
-  public static final String CUSTOMER_COMMUNITY_PEMRISSION_SET = 'MintFlowGuest';
+  // default MintFlowGuest
+  public static final String CUSTOMER_COMMUNITY_PEMRISSION_SET = System.Label.PermissionSet_GuestUser;
 }
