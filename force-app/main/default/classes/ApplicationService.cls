@@ -70,11 +70,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     }
 
     User currentUser = UserUtils.getCurrentUser();
-    if (
-      currentUser.Profile.Name == CommunityConstant.FIN_INST_EMPLOYEE_USER_PROFILE ||
-      currentUser.Profile.Name == CommunityConstant.CUSTOMER_COMMUNITY_USER_PROFILE ||
-      UserUtils.isGuestUser()
-    ) {
+    if (currentUser.Profile.Name == CommunityConstant.FIN_INST_EMPLOYEE_USER_PROFILE || UserUtils.isGuestUser()) {
       //baseUrl = GenericUtils.fetchLoginURL();
       baseUrl = SiteSetting__c.getInstance().OnlineSiteUrl__c;
     } else {
