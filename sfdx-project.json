@@ -2,9 +2,10 @@
   "packageDirectories": [
     {
       "path": "force-app",
-      "package": "mflowdemo3",
+      "package": "MFlowBetaV1",
       "versionName": "Version 1.0",
       "versionNumber": "1.0.0.NEXT",
+      "ancestorVersion": "HIGHEST",
       "versionDescription": "Connected Devhuv : nithesh.k@digitalalign.devhub1.com , Managed package with namespace",
       "default": true
     },
@@ -21,9 +22,7 @@
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "51.0",
   "packageAliases": {
-    "mflowdemo3": "0Ho5g000000TNiFCAW",
-    "mflowdemo3@1.0.0-28": "04t5g000000ENfRAAW",
-    "mflowdemo3@1.0.0-29": "04t5g000000ENfqAAG",
-    "mflowdemo3@1.0.0-30": "04t5g000000ENgFAAW"
+    "MFlowBetaV1": "0Ho5g000000TNmHCAW",
+    "MFlowBetaV1@1.0.0-1": "04t5g000000EOrHAAW"
   }
 }
