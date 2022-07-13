@@ -335,20 +335,6 @@ global with sharing class LwcCustomController extends AbstractController {
   }
 
   /**
-   * @description get User Information
-   * @author Digital Align | 12-10-2021
-   * @return String
-   **/
-  @AuraEnabled
-  global static String getUserInfo() {
-    try {
-      return UserUtils.getCurrentUser().Profile.Name;
-    } catch (Exception ex) {
-      return 'Failed to  fetch userInfo';
-    }
-  }
-
-  /**
    * @description
    * @author Digital Align Team | 05-26-2022
    * @param ApexRequest request

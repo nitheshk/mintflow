@@ -5,7 +5,6 @@ import fetchApplication from "@salesforce/apex/LwcCustomController.readApplicati
 import sendResumeEmail from "@salesforce/apex/LwcCustomController.sendResumeApplicationEmail";
 import getResumeLink from "@salesforce/apex/LwcCustomController.fetchResumeLink";
 import { NavigationMixin } from "lightning/navigation";
-import userProfile from "@salesforce/apex/LwcCustomController.getUserInfo";
 
 export default class ResumeAppplication extends NavigationMixin(LightningElement) {
   @api objectApiName;
@@ -15,7 +14,6 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
   @track applicantNames;
   @track selectedApplicant = [];
   @track showSpinner = false;
-  @track userData;
 
   connectedCallback() {
     this.init();
@@ -34,7 +32,7 @@ export default class ResumeAppplication extends NavigationMixin(LightningElement
     if (!this.recordId) {
       return;
     }
-    this.userData = await userProfile();
+    //this.userData = await userProfile();
 
     fetchApplication({
       params: {
