@@ -323,6 +323,12 @@ global virtual with sharing class IdentityService extends AbstractService {
     return customer;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 07-13-2022
+   * @param Id applicantId
+   * @param String response
+   **/
   global virtual void createFiles(Id applicantId, String response) {
     List<FileDTO> files = new List<FileDTO>();
     FileDTO fileObj = new FileDTO('OOW Response.json', blob.valueof(response), applicantId, 'KYC', 'IDScan');
@@ -331,6 +337,12 @@ global virtual with sharing class IdentityService extends AbstractService {
     log?.debug('contents ::' + contents);
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 07-13-2022
+   * @param IdScanDueDiligenceDTO.Response response
+   * @return IdScanDueDiligenceDTO.Data
+   **/
   private IdScanDueDiligenceDTO.Data parseResponse(IdScanDueDiligenceDTO.Response response) {
     List<IdScanDueDiligenceDTO.Questions> questions;
     Integer totalNumberofQuestions = 0;
@@ -364,6 +376,13 @@ global virtual with sharing class IdentityService extends AbstractService {
     return data;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 07-13-2022
+   * @param Map<string Object> params
+   * @param String jsonRequest
+   * @return IdScanDueDiligenceDTO.FinalScores
+   **/
   global virtual IdScanDueDiligenceDTO.FinalScores validateCustomerAnswers(
     Map<string, Object> params,
     String jsonRequest
@@ -443,6 +462,12 @@ global virtual with sharing class IdentityService extends AbstractService {
     }
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 07-13-2022
+   * @param String applicantId
+   * @return IdScanWrapper.ServiceData
+   **/
   global virtual IdScanWrapper.ServiceData fetchOOWReportData(String applicantId) {
     String textValue;
 
