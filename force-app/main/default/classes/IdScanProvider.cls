@@ -146,7 +146,7 @@ global virtual with sharing class IdScanProvider extends AbstractService {
    * @param IdScanDTO.Response returnDTO
    * @return Applicant__c
    **/
-  global virtual Applicant__c mapIdentityResponse(Applicant__c applicant, IdScanDTO.Response returnDTO) {
+  private Applicant__c mapIdentityResponse(Applicant__c applicant, IdScanDTO.Response returnDTO) {
     IdentificationDocument__c identity = new IdentificationDocument__c();
     ContactPointAddress idAddress = new ContactPointAddress();
 
@@ -185,7 +185,7 @@ global virtual with sharing class IdScanProvider extends AbstractService {
    * @param IdScanDTO.Response returnDTO
    * @return string
    **/
-  global string mapDocumentTypeValue(string value) {
+  private string mapDocumentTypeValue(string value) {
     if (value != null) {
       switch on value {
         when 'DL' {
@@ -212,7 +212,7 @@ global virtual with sharing class IdScanProvider extends AbstractService {
    * @param String  zipcode
    * @return Object
    **/
-  public static Object fetchCountyByZipcode(String zipcode) {
+  global virtual Object fetchCountyByZipcode(String zipcode) {
     Map<String, Object> result = new Map<String, Object>();
     Map<String, Object> matchingResult = new Map<String, Object>();
     EligibleCounty__c county = IdentityRepository.fetchCountyByZipcode(zipcode);
@@ -237,7 +237,13 @@ global virtual with sharing class IdScanProvider extends AbstractService {
    * @return Object
    **/
 
-  public static Object verifyCountyUsingGoogleApi(Map<string, Object> params) {
+  /**
+   * @description
+   * @author Digital Align Team | 07-13-2022
+   * @param Map<string Object> params
+   * @return Object
+   **/
+  global virtual Object verifyCountyUsingGoogleApi(Map<string, Object> params) {
     String eligibleCountyNames = ApplicationConfiguration__c.getInstance().CountyNames__c;
     List<String> eligibleCountyNameList = String.isNotBlank(eligibleCountyNames)
       ? eligibleCountyNames.split(';')

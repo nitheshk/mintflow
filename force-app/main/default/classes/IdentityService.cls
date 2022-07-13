@@ -49,7 +49,7 @@ global virtual with sharing class IdentityService extends AbstractService {
       if (string.isBlank(zipcode)) {
         throw new CustomException(System.Label.Identity_ZipcodeValueNotSet);
       }
-      Object result = IdScanProvider.fetchCountyByZipcode(zipcode);
+      Object result = IdScanProvider.getInstance().fetchCountyByZipcode(zipcode);
       return result;
     } catch (Exception ex) {
       log?.error(ex);
@@ -69,7 +69,7 @@ global virtual with sharing class IdentityService extends AbstractService {
     Flow.setFlow('EligibilityFlow');
     Flow.setSubFlow(APINames.Geocoding.name());
     try {
-      Object result = IdScanProvider.verifyCountyUsingGoogleApi(params);
+      Object result = IdScanProvider.getInstance().verifyCountyUsingGoogleApi(params);
       return result;
     } catch (Exception ex) {
       log?.error(ex);
