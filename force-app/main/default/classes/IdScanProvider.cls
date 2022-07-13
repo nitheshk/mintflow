@@ -236,13 +236,6 @@ global virtual with sharing class IdScanProvider extends AbstractService {
    * @param String  zipcode
    * @return Object
    **/
-
-  /**
-   * @description
-   * @author Digital Align Team | 07-13-2022
-   * @param Map<string Object> params
-   * @return Object
-   **/
   global virtual Object verifyCountyUsingGoogleApi(Map<string, Object> params) {
     String eligibleCountyNames = ApplicationConfiguration__c.getInstance().CountyNames__c;
     List<String> eligibleCountyNameList = String.isNotBlank(eligibleCountyNames)
