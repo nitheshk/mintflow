@@ -1,35 +1,43 @@
 <template>
   <lightning-card title="Status">
     <div class="slds-grid slds-wrap">
-      <div class="slds-col slds-size_1-of-4">
+      <div class="slds-col slds-size_4-of-12">
         <lightning-input
           type="toggle"
           label="Phone Verified"
           class="slds-var-m-around_medium"
+          message-toggle-active=""
+          message-toggle-inactive=""
           checked={record.mflow__IsPhoneNumberVerified__c}
         ></lightning-input>
       </div>
-      <div class="slds-col slds-size_1-of-4">
+      <div class="slds-col slds-size_4-of-12">
         <lightning-input
           type="toggle"
           label="Email Verified"
           class="slds-var-m-around_medium"
+          message-toggle-active=""
+          message-toggle-inactive=""
           checked={record.mflow__IsEmailVerified__c}
         ></lightning-input>
       </div>
-      <div class="slds-col slds-size_1-of-4">
+      <div class="slds-col slds-size_4-of-12">
         <lightning-input
           type="toggle"
           label="Identity Verified"
           class="slds-var-m-around_medium"
+          message-toggle-active=""
+          message-toggle-inactive=""
           checked={identityVerified}
         ></lightning-input>
       </div>
-      <div class="slds-col slds-size_1-of-4">
+      <div class="slds-col slds-size_4-of-12 slds-var-p-horizontal_medium slds-var-p-top_medium">
         <lightning-input
           type="toggle"
           label="OOW Answered"
-          class="slds-var-m-around_medium"
+          class=""
+          message-toggle-active=""
+          message-toggle-inactive=""
           checked={record.mflow__OOWStatus__c}
         ></lightning-input>
         <lightning-icon
@@ -37,31 +45,33 @@
           alternative-text="Information!"
           title="Information variant small"
           size="small"
-          class="slds-var-m-around_medium"
+          class="slds-var-p-right_small slds-var-p-top_small"
         ></lightning-icon>
         <lightning-formatted-text value={OOWText}></lightning-formatted-text>
       </div>
-    </div>
-    <div class="slds-grid slds-wrap">
-      <div class="slds-col slds-size_1-of-4">
+      <div class="slds-col slds-size_4-of-12">
         <lightning-input
           type="toggle"
           label="Employment Verified"
           class="slds-var-m-around_medium"
+          message-toggle-active=""
+          message-toggle-inactive=""
           checked={record.mflow__VerificationStatus__c}
         ></lightning-input>
       </div>
-      <div class="slds-col slds-size_1-of-4">
+      <div class="slds-col slds-size_4-of-12">
         <lightning-input
           type="toggle"
           label="KYC Verified"
+          message-toggle-active=""
+          message-toggle-inactive=""
           class="slds-var-m-around_medium"
           checked={kycStatus}
         ></lightning-input>
       </div>
     </div>
   </lightning-card>
-  <lightning-card title="Reports">
+  <lightning-card title="Reports" class="slds-var-m-top_large">
     <div class="slds-grid slds-wrap">
       <div class="slds-col slds-size_1-of-3">
         <lightning-button

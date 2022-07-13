@@ -25,25 +25,6 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
     }
     return serviceInstance;
   }
-  /**
-   * @description
-   * @author Digital Align Team | 02-14-2022
-   * @param map<string object> params
-   * @return List<Application__c>
-   **/
-  global virtual List<Application__c> authorize(map<string, object> params) {
-    Applicant__c applicant = (Applicant__c) JSON.deserialize(
-      JSON.serialize(params.get('applicant')),
-      Applicant__c.class
-    );
-    List<Application__c> applications = CustomerPortalRepository.fetchApplicationByApplicantDetails(
-      applicant.mflow__LastFourDigitsofSSN__c,
-      applicant.mflow__Email__c,
-      applicant.mflow__LastName__c
-    );
-    log?.debug('Applications =' + applications);
-    return applications;
-  }
 
   /**
    * @description Fetch application by logged in applicant used for cusotmer portal

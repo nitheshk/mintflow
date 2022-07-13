@@ -228,29 +228,6 @@ global with sharing class LwcCustomController extends AbstractController {
       Logger.persist();
     }
   }
-  /**
-   * @description
-   * @author Digital Align | 02-11-2022
-   * @param Map<String Object> params
-   * @return ApexResponse
-   **/
-  @AuraEnabled
-  global static ApexResponse authorizeCustomer(map<string, object> params) {
-    try {
-      log?.fine('Inside authorizeCustomer params =' + params);
-      List<Application__c> applications = CustomerPortalService.getInstance().authorize(params);
-      if (!applications.isEmpty()) {
-        return ApexResponse.ok(applications);
-      } else {
-        return ApexResponse.fail(applications);
-      }
-    } catch (Exception e) {
-      return ApexResponse.fail(e);
-    } finally {
-      log?.fine('Complete authorizeCustomer');
-      Logger.persist();
-    }
-  }
 
   /**
    * @description to get the data of OOW report of the applicant
@@ -331,20 +308,6 @@ global with sharing class LwcCustomController extends AbstractController {
       return ApexResponse.fail(ex);
     } finally {
       Logger.persist();
-    }
-  }
-
-  /**
-   * @description get User Information
-   * @author Digital Align | 12-10-2021
-   * @return String
-   **/
-  @AuraEnabled
-  global static String getUserInfo() {
-    try {
-      return UserUtils.getCurrentUser().Profile.Name;
-    } catch (Exception ex) {
-      return 'Failed to  fetch userInfo';
     }
   }
 

@@ -260,11 +260,27 @@
         <value>There is some issue on the API call</value>
     </labels>
     <labels>
-        <fullName>customerProfile</fullName>
-        <categories>Info</categories>
+        <fullName>PermissionSet_FinancialInstitute</fullName>
+        <categories>PermissionSet</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>CustomerProfile</shortDescription>
-        <value>MFlowCustomerCommunityLogin</value>
+        <shortDescription>MintFlowEmployeeCommunity</shortDescription>
+        <value>MintFlowEmployeeCommunity</value>
+    </labels>
+    <labels>
+        <fullName>PermissionSet_GuestUser</fullName>
+        <categories>PermissionSet</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>MintFlowGuest</shortDescription>
+        <value>MintFlowGuest</value>
+    </labels>
+    <labels>
+        <fullName>Profile_FinancialInstitute</fullName>
+        <categories>Profile</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>MFlowEmployeeCommunity</shortDescription>
+        <value>MFlowEmployeeCommunity</value>
     </labels>
 </CustomLabels>

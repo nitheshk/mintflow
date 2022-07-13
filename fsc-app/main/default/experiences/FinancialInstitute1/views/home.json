@@ -20,20 +20,6 @@
       "type": "region"
     },
     {
-      "components": [
-        {
-          "componentAttributes": {
-            "flowArguments": "",
-            "flowLayout": "oneColumn",
-            "flowName": "mflow__Welcome"
-          },
-          "componentName": "forceCommunity:flowCommunity",
-          "id": "75051313-de33-4b2e-923b-5d04a383db2d",
-          "renderPriority": "NEUTRAL",
-          "renditionMap": {},
-          "type": "component"
-        }
-      ],
       "id": "b42d6faa-535c-46b7-b884-4487f74e8e67",
       "regionName": "menu",
       "type": "region"

@@ -346,24 +346,6 @@ public with sharing class LwcCustomControllerTest {
     res = LwcCustomController.lwcRecordLevelVisibility(params);
     System.assertEquals(500, res.status, 'success');
   }
-  @istest
-  private static void authorizeCustomerTest() {
-    makeApplicationConfiguration();
-    PageReference testPage = Page.error;
-    Test.setCurrentPage(testPage);
-    testPage.getParameters().put('pid', 'IC001');
-    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
-    Applicant__c applicant = createApplicantDataWithChild(application);
-    Map<String, Object> params = new Map<String, Object>();
-    ApexResponse res = new ApexResponse();
-    //200
-    params.put('applicant', applicant);
-    res = LwcCustomController.authorizeCustomer(params);
-    system.assertEquals(200, res.status, 'success');
-
-    params.remove('applicant');
-    res = LwcCustomController.authorizeCustomer(params);
-  }
 
   /**
    * createDocumentRequestTest
