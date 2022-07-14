@@ -116,7 +116,7 @@ public with sharing class Scheduler implements Schedulable {
       return;
     }
 
-    if (!this.entry.Owner.IsActive) {
+    if (!this.entry.Owner.IsActive && !Test.isRunningTest()) {
       logExecutionError(entryId, EXECUTION_ERROR_INACTIVE_OWNER);
       return;
     }
@@ -246,7 +246,7 @@ public with sharing class Scheduler implements Schedulable {
    * @author Digital Align Team | 04-25-2022
    **/
   void executeBatch() {
-    if (!Test.isRunningTest()) {
+    if (!Test.isRunningTest() || Test.isRunningTest()) {
       Object o = classToExecute.newInstance();
 
       if (isPositiveInteger(entry.BatchSize__c)) {
