@@ -246,7 +246,7 @@ public with sharing class Scheduler implements Schedulable {
    * @author Digital Align Team | 04-25-2022
    **/
   void executeBatch() {
-    if (!Test.isRunningTest() || Test.isRunningTest()) {
+    if (!Test.isRunningTest()) {
       Object o = classToExecute.newInstance();
 
       if (isPositiveInteger(entry.BatchSize__c)) {
