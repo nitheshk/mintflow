@@ -273,7 +273,7 @@ global with sharing class LwcCustomController extends AbstractController {
    * @return List<Object>
    **/
   @AuraEnabled
-  public static List<Object> fetchClassesForSchedule() {
+  global static List<Object> fetchClassesForSchedule() {
     return Scheduler.fetchClassesForSchedule();
   }
 
@@ -286,7 +286,7 @@ global with sharing class LwcCustomController extends AbstractController {
    * @return String
    **/
   @AuraEnabled
-  public static String schedule(String jobName, Datetime startDatetime, Id entryId) {
+  global static String schedule(String jobName, Datetime startDatetime, Id entryId) {
     return Scheduler.schedule(jobName, startDatetime, entryId);
   }
 
