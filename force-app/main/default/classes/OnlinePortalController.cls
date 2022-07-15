@@ -91,9 +91,6 @@ global with sharing class OnlinePortalController extends AbstractController {
     try {
       validateRequest(request);
       return ApexResponse.ok(CustomerPortalService.getInstance().fetchMyApplication());
-    } catch (CustomException ex) {
-      log?.error(ex);
-      return ApexResponse.exception(ex);
     } catch (Exception ex) {
       log?.error(ex);
       return ApexResponse.fail(ex);
