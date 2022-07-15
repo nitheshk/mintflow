@@ -1,11 +1,6 @@
 @istest
 public with sharing class ApplicationControllerTest {
   /** Below Method has seperate Test classes */
-  /**
-   * fetchConsents
-   * fetchSurvey
-   * generateConsentPdf
-   */
 
   //makeApplicationConfiguration
   private static void makeApplicationConfiguration() {
