@@ -20,26 +20,6 @@ global inherited sharing class UtilsRepository extends DatabaseUtils {
   }
 
   /**
-   * @description For Community user, get ownerid of current user
-   * @author Digital Align Team | 07-15-2021
-   * @param Id id
-   * @return Id
-   **/
-  global static Id getUserAccountOwnerId(Id id) {
-    User userObj = (User) getRecord(
-      Query.newInstance(User.SObjectType)
-        .addFields()
-        .queryLookup('Contact')
-        .queryLookup('Account')
-        .addFields('OwnerId')
-        .run()
-        .run()
-        .queryById(id)
-    );
-    return userObj?.Contact?.Account?.OwnerId;
-  }
-
-  /**
    * @description get Community user account detail by user id
    * @author Digital Align Team | 07-23-2021
    * @param Id userId
