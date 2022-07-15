@@ -26,4 +26,9 @@
         <default>false</default>
         <label>Current</label>
     </standardValue>
+    <standardValue>
+        <fullName>Mailing</fullName>
+        <default>false</default>
+        <label>Mailing</label>
+    </standardValue>
 </StandardValueSet>
