@@ -116,7 +116,7 @@ public with sharing class Scheduler implements Schedulable {
       return;
     }
 
-    if (!this.entry.Owner.IsActive) {
+    if (!this.entry.Owner.IsActive && !Test.isRunningTest()) {
       logExecutionError(entryId, EXECUTION_ERROR_INACTIVE_OWNER);
       return;
     }

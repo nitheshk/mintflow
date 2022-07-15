@@ -373,4 +373,12 @@ public with sharing class LwcCustomControllerTest {
     res = LwcCustomController.fetchApplicantNames('abcd');
     System.assertEquals(400, res.status, 'success');
   }
+
+  @isTest
+  private static void fetchClassesForSchedule() {
+    Test.startTest();
+    List<Object> classNames = LwcCustomController.fetchClassesForSchedule();
+    System.assertEquals(false, classNames.isEmpty(), 'success');
+    Test.stopTest();
+  }
 }
