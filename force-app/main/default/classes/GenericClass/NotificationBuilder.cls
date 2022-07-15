@@ -100,7 +100,7 @@ global virtual with sharing class NotificationBuilder extends AbstractService {
       post.Body = body;
       post.NetworkScope = 'AllNetworks';
       post.Visibility = 'AllUsers';
-      NotificationRepository.upsertRecord(post);
+      CommonRepository.upsertRecord(post);
     } catch (Exception ex) {
       log?.error(ex);
     }
@@ -121,7 +121,7 @@ global virtual with sharing class NotificationBuilder extends AbstractService {
       post.LinkUrl = linkUrl;
       post.NetworkScope = 'AllNetworks';
       post.Visibility = 'AllUsers';
-      NotificationRepository.upsertRecord(post);
+      CommonRepository.upsertRecord(post);
     } catch (Exception ex) {
       log?.error(ex);
     }
@@ -144,7 +144,7 @@ global virtual with sharing class NotificationBuilder extends AbstractService {
       post.RelatedRecordId = cv.Id;
       post.NetworkScope = 'AllNetworks';
       post.Visibility = 'AllUsers';
-      NotificationRepository.upsertRecord(post);
+      CommonRepository.upsertRecord(post);
     } catch (Exception ex) {
       log?.error(ex);
     }
