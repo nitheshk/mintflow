@@ -19,9 +19,6 @@
                             <value>FeedItem.ContentNote</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Global.LogACall</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>PrintableView</value>
                         </valueListItems>
                     </valueList>
