@@ -8,15 +8,13 @@
         <type>Flexipage</type>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
     </actionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>mflow__ApplicantRecordPage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>mflow__Applicant__c</pageOrSobjectType>
-        <recordType>mflow__Applicant__c.mflow__Beneficiary</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
+    <defaultLandingTab>mflow__Application__c</defaultLandingTab>
+    <description>Build client trust with collaboration and productivity tools for teams</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>MintFlow</label>
+    <navType>Console</navType>
     <profileActionOverrides>
         <actionName>View</actionName>
         <content>mflow__ApplicantRecordPage</content>
@@ -71,6 +69,14 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
+        <content>mflow__DocumentRequestRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>mflow__DocumentRequest__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
         <content>mflow__FinancialAccountRecordPage</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>mflow__FinancialAccount__c</pageOrSobjectType>
@@ -113,13 +119,15 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
-    <defaultLandingTab>mflow__Application__c</defaultLandingTab>
-    <description>Build client trust with collaboration and productivity tools for teams</description>
-    <formFactors>Large</formFactors>
-    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
-    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>MintFlow</label>
-    <navType>Console</navType>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>mflow__ApplicantRecordPage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>mflow__Applicant__c</pageOrSobjectType>
+        <recordType>mflow__Applicant__c.mflow__Beneficiary</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>mflow__Application__c</tabs>
     <tabs>mflow__Applicant__c</tabs>
@@ -131,6 +139,7 @@
     <tabs>mflow__Diagnostic__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
+    <tabs>mflow__LeadConfiguration__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
@@ -147,6 +156,9 @@
         </mappings>
         <mappings>
             <tab>mflow__FinancialAccount__c</tab>
+        </mappings>
+        <mappings>
+            <tab>mflow__LeadConfiguration__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Account</tab>

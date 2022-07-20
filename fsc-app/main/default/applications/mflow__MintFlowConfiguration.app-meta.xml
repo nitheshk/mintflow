@@ -17,6 +17,7 @@
     <navType>Console</navType>
     <tabs>standard-home</tabs>
     <tabs>mflow__FinancialInstituteAccount</tabs>
+    <tabs>mflow__LeadConfiguration__c</tabs>
     <tabs>mflow__ApplicationConfiguration</tabs>
     <tabs>mflow__Diagnostic__c</tabs>
     <tabs>mflow__FinancialProduct__c</tabs>
@@ -53,6 +54,9 @@
         </mappings>
         <mappings>
             <tab>mflow__Flow__c</tab>
+        </mappings>
+        <mappings>
+            <tab>mflow__LeadConfiguration__c</tab>
         </mappings>
         <mappings>
             <tab>mflow__ProductFeature__c</tab>
