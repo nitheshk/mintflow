@@ -321,13 +321,23 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
         interestedProductParams.get('cvmf') +
         '&vue=' +
         EncodingUtil.urlEncode((String) interestedProductParams.get('urlSuffix'), 'UTF-8');
-
-      productDetails +=
-        '</i><b><a href="' +
-        link +
-        '" target="_blank">' +
-        interestedProductParams.get('displayName') +
-        '</a></b></i><br/><br/>';
+      if (interestedProductParams.containsKey('Certificates')) {
+        productDetails +=
+          '<b><br/>' +
+          interestedProductParams.get('Certificates') +
+          '</i><br/><a href="' +
+          link +
+          '" target="_blank">' +
+          interestedProductParams.get('displayName') +
+          '</a></b></i><br/><br/>';
+      } else {
+        productDetails +=
+          '</i><b><a href="' +
+          link +
+          '" target="_blank">' +
+          interestedProductParams.get('displayName') +
+          '</a></b></i><br/><br/>';
+      }
     }
     EmailNotificationBuilder.newInstance('StartSecondaryApplication', applicant.Id)
       .setToAddresses(applicant.Email__c)

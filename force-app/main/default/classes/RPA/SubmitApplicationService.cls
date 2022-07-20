@@ -489,26 +489,69 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
     Application__c application = SubmissionRepository.readApplicationForProductInterest(applicationId);
     if (!CollectionUtils.isListEmpty(application.mflow__CustomerInterests__r)) {
       list<Object> interestedProductList = new List<Object>();
+      List<String> productId = new List<String>();
+      List<String> productNames = new List<String>();
+      String products;
+      String pid;
+      boolean iscertificateProduct = false;
       for (CustomerInterest__c customerInterest : application.mflow__CustomerInterests__r) {
-        Map<String, Object> interestedProductParams = new Map<String, Object>();
-        Map<String, Object> params = new Map<String, Object>();
+        if (customerInterest.InterestProduct__r.Category__c == 'Certificate') {
+          iscertificateProduct = true;
+          break;
+        }
+      }
+      //in case of Certificate product
+      Map<String, Object> interestedProductParams = new Map<String, Object>();
+      Map<String, Object> params = new Map<String, Object>();
+
+      if (iscertificateProduct) {
         params.put('appId', application.Id);
         params.put('ch', application.CreatedChannel__c);
-        params.put('pid', customerInterest.InterestProduct__r.InternalCode__c);
         params.put(
           'edt',
           Datetime.now().addHours((Integer) ApplicationConfiguration__c.getInstance().ReferralUrlExpirationTime__c)
         );
-
-        interestedProductParams.put('displayName', customerInterest.InterestProduct__r.DisplayLabel__c);
+        for (CustomerInterest__c customerInterest : application.mflow__CustomerInterests__r) {
+          productId.add(customerInterest.InterestProduct__r.InternalCode__c);
+          productNames.add(customerInterest.Name);
+        }
+        products = String.join(productNames, ',');
+        pid = String.join(productId, ',');
+        params.put('pid', pid);
+        interestedProductParams.put('Certificates', productNames);
+        interestedProductParams.put('displayName', 'Click here to fund certificates');
         interestedProductParams.put('cvmf', SecurityUtils.encryptUrl(JSON.serialize(params, true)));
+        //interestedProductParams.put('cvmf', JSON.serialize(params, true));
         interestedProductParams.put(
           'urlSuffix',
           '/' +
-          customerInterest.InterestProduct__r.Category__c.toLowerCase().replace(' ', '-') +
+          application.mflow__CustomerInterests__r[0].InterestProduct__r.Category__c.toLowerCase().replace(' ', '-') +
           '/sub-app/otp'
         );
+
         interestedProductList.add(interestedProductParams);
+      } else {
+        for (CustomerInterest__c customerInterest : application.mflow__CustomerInterests__r) {
+          interestedProductParams = new Map<String, Object>();
+          params = new Map<String, Object>();
+          params.put('appId', application.Id);
+          params.put('ch', application.CreatedChannel__c);
+          params.put('pid', customerInterest.InterestProduct__r.InternalCode__c);
+          params.put(
+            'edt',
+            Datetime.now().addHours((Integer) ApplicationConfiguration__c.getInstance().ReferralUrlExpirationTime__c)
+          );
+          interestedProductParams.put('displayName', customerInterest.InterestProduct__r.DisplayLabel__c);
+          interestedProductParams.put('cvmf', SecurityUtils.encryptUrl(JSON.serialize(params, true)));
+          interestedProductParams.put(
+            'urlSuffix',
+            '/' +
+            customerInterest.InterestProduct__r.Category__c.toLowerCase().replace(' ', '-') +
+            '/sub-app/otp'
+          );
+
+          interestedProductList.add(interestedProductParams);
+        }
       }
 
       for (Applicant__c applicant : application.Applicants__r) {
@@ -518,6 +561,7 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         }
       }
     }
+
     log?.fine('Completed notifyProductInterest');
     return application;
   }
