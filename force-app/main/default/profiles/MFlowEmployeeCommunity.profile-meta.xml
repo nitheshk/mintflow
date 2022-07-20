@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-    <custom>true</custom>
-    <!--layoutAssignments-->
+    <custom>true</custom>    <!--layoutAssignments-->
     <layoutAssignments>
         <layout>FinancialAccountTransaction__c-mflow__Financial Account Transaction Layout</layout>
     </layoutAssignments>
-     <layoutAssignments>
+    <layoutAssignments>
         <layout>Flow__c-mflow__Flow Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -22,36 +21,36 @@
     <layoutAssignments>
         <layout>mflow__Application__c-mflow__FI Application Layout</layout>
     </layoutAssignments>
-     <layoutAssignments>
+    <layoutAssignments>
         <layout>mflow__Applicant__c-FI Applicant Layout</layout>
-           <recordType>mflow__Applicant__c.Beneficiary</recordType>
+        <recordType>mflow__Applicant__c.Beneficiary</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>mflow__Applicant__c-FI Applicant Layout</layout>
-           <recordType>mflow__Applicant__c.EmergencyContact</recordType>
+        <recordType>mflow__Applicant__c.EmergencyContact</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>mflow__Applicant__c-FI Applicant Layout</layout>
-           <recordType>mflow__Applicant__c.FamilyMember</recordType>
+        <recordType>mflow__Applicant__c.FamilyMember</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>mflow__Applicant__c-FI Applicant Layout</layout>
-           <recordType>mflow__Applicant__c.Joint</recordType>
+        <recordType>mflow__Applicant__c.Joint</recordType>
     </layoutAssignments>
- <layoutAssignments>
+    <layoutAssignments>
         <layout>mflow__Applicant__c-FI Applicant Layout</layout>
-           <recordType>mflow__Applicant__c.Primary</recordType>
+        <recordType>mflow__Applicant__c.Primary</recordType>
     </layoutAssignments>
-     <layoutAssignments>
+    <layoutAssignments>
         <layout>mflow__IdentificationDocument__c-FI Identification Document Layout</layout>
     </layoutAssignments>
-     <layoutAssignments>
+    <layoutAssignments>
         <layout>mflow__Employment__c-FI Employment Layout</layout>
     </layoutAssignments>
-     <layoutAssignments>
+    <layoutAssignments>
         <layout>ContactPointAddress-FI Contact Point Address Layout</layout>
     </layoutAssignments>
-  <userLicense>Customer Community Plus Login</userLicense>
+    <userLicense>Customer Community Plus</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>ActivitiesAccess</name>
