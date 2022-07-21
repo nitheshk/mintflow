@@ -361,10 +361,10 @@ gulp.task(
     "setupDevHub",
     "deleteScratchOrg",
     "createScratchOrg",
-    "defaultToScratch",
-    "pushToscratch",
-    "updatePermissionSet",
-    "publishCommunities",
-    "systemConfigImport"
+    "defaultToScratch"
+    // "pushToscratch",
+    // "updatePermissionSet",
+    // "publishCommunities",
+    // "systemConfigImport"
   )
 );
