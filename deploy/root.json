@@ -1,12 +1,14 @@
 {
-  "defaultDevhub": "prod",
-  "defaultDevHubFile": "./deploy/devhubKey.json",
-
-  "scratchOrg": {
-    "devhubCredential": "./deploy/devhub.json",
-    "scratchOrgName": "mflow",
-    "durationDays": "20",
-    "scratchOrgjson": "./deploy/scratchOrg/scratchOrgDetail.json"
+  "sandboxes": {
+    "dev": {
+      "sandboxOrgName": "testorg",
+      "sandboxUserName": "nithesh.k@digitalalign.com.testorg",
+      "sandboxClientId": "3MVG9Eroh42Z9.iUmrfwnWRNt9RbvwwGA8l1g7ggcIVSuVKx.6wc5TKV4ATSWV7fVLGtxlhfMEU803ZojW9ov",
+      "sandboxInstanceUrl": "https://test.salesforce.com",
+      "jwtkeyfile": "jwt/server.key",
+      "rootFolder": "./fsc-app",
+      "sourceConvert": "da-src"
+    }
   },
 
   "ui": {
@@ -43,11 +45,9 @@
   },
 
   "dependentPackage": {
-    "DigitalAlignUtilities": "04t5g000000DgdzAAC",
-    "FinancialServiceCloud": "04t1E000001Ir0Q",
-    "FinancialServiceCloudExt": "04t1E000001Iql5"
+    "MFlowBetaV1": "04t5g000000EOxBAAW"
   },
 
-  "namespace": "",
+  "namespace": "mflow",
   "projectScratchDef": "./config/project-scratch-def.json"
 }

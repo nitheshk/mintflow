@@ -5,7 +5,6 @@
       "package": "MFlowBetaV1",
       "versionName": "Version 1.0.1",
       "versionNumber": "1.1.0.NEXT",
-      "ancestorVersion": "1.0.0.3",
       "versionDescription": "Connected Devhuv : nithesh.k@digitalalign.devhub1.com , Managed package with namespace",
       "default": true
     },
@@ -18,7 +17,7 @@
       "default": false
     }
   ],
-  "namespace": "mflow",
+  "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "51.0",
   "packageAliases": {
