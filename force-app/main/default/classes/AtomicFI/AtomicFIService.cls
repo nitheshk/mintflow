@@ -197,33 +197,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
 
     EmploymentRepository.UpsertRecord(employmentObj);
     log?.debug('Employment Verified Status :' + employmentObj.mflow__VerificationStatus__c);
-    //Call a platform event and register this employer id created for the UI to pick it up
-    publishEmployment(atomicObj.user.identifier, employmentObj.id);
     return employmentObj.Id;
-  }
-
-  /**
-   * @description publish employment event
-   * @author Digital Align Team | 01-05-2022
-   * @param String applicantId
-   * @param String employmentId
-   **/
-  private void publishEmployment(String applicantId, String employmentId) {
-    List<AtomicFI_Employer__e> events = new List<AtomicFI_Employer__e>();
-    AtomicFI_Employer__e atomicFI = new AtomicFI_Employer__e();
-    atomicFI.ApplicantId__c = applicantId;
-    atomicFI.EmployerId__c = employmentId;
-    events.add(atomicFI);
-    List<Database.SaveResult> results = EventBus.publish(events);
-    for (Database.SaveResult sr : results) {
-      if (sr.isSuccess()) {
-        log?.debug('publised event successfully');
-      } else {
-        for (Database.Error err : sr.getErrors()) {
-          log?.error('Error returned: ' + err.getStatusCode() + ' - ' + err.getMessage());
-        }
-      }
-    }
   }
 
   /**
