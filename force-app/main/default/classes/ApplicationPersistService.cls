@@ -335,15 +335,30 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     List<AssetAndLiability__c> assetAndLiabilities,
     Id applicantId
   ) {
+    //properties
+    List<Property__c> properties = new List<Property__c>();
+    for (AssetAndLiability__c assetAndLiability : assetAndLiabilities) {
+      if (assetAndLiability?.Property__r != null) {
+        properties.add(assetAndLiability.Property__r);
+      }
+    }
+    if (!CollectionUtils.isListEmpty(properties)) {
+      ApplicationRepository.upsertRecords(properties);
+    }
+
+    //Asset and liabilities
     for (AssetAndLiability__c assetAndLiability : assetAndLiabilities) {
       if (String.isNotBlank(applicantId)) {
         AssetAndLiability.Applicant__c = applicantId;
       }
+      if (assetAndLiability?.Property__r != null) {
+        assetAndLiability.Property__c = assetAndLiability?.Property__r.Id;
+      }
     }
     ApplicationRepository.upsertRecords(assetAndLiabilities);
 
+    //liabilities and  property belongs to asset
     List<AssetAndLiability__c> liabilities = new List<AssetAndLiability__c>();
-
     for (AssetAndLiability__c assetAndLiability : assetAndLiabilities) {
       if (!CollectionUtils.isListEmpty(assetAndLiability?.Liabilities__r)) {
         for (AssetAndLiability__c liability : assetAndLiability.Liabilities__r) {
@@ -352,8 +367,9 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         }
       }
     }
-
-    ApplicationRepository.upsertRecords(liabilities);
+    if (!CollectionUtils.isListEmpty(liabilities)) {
+      ApplicationRepository.upsertRecords(liabilities);
+    }
 
     return assetAndLiabilities;
   }
