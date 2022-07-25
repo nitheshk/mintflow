@@ -102,7 +102,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicant(applicant, applicationId);
     }
-    ApplicantRepository.upsertRecords(applicants);
+    ApplicationRepository.upsertRecords(applicants);
 
     // if (ApexRequest.getParams().containsKey('ApexSkipApplicantsChild')) {
     //   return applicants;
@@ -223,6 +223,10 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       this.saveConsents(applicant.ApplicantConsents__r, applicant.Id);
     }
 
+    if (!CollectionUtils.isListEmpty(applicant?.AssetAndLiabilities__r)) {
+      this.saveAssetAndLiabilities(applicant.AssetAndLiabilities__r, applicant.Id);
+    }
+
     return applicant;
   }
 
@@ -242,7 +246,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         identityDoc.Applicant__c = applicantId;
       }
     }
-    ApplicantRepository.upsertRecords(identityDocuments);
+    ApplicationRepository.upsertRecords(identityDocuments);
     return identityDocuments;
   }
 
@@ -263,7 +267,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       } // updating state = state full name in trigger(before insert before update)
       cpa.Name = String.isNotBlank(cpa.Street) ? cpa.Street?.left(255) : 'N/A';
     }
-    ApplicantRepository.upsertRecords(addresses);
+    ApplicationRepository.upsertRecords(addresses);
     return addresses;
   }
 
@@ -280,7 +284,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         employment.Applicant__c = applicantId;
       }
     }
-    ApplicantRepository.upsertRecords(employments);
+    ApplicationRepository.upsertRecords(employments);
     return employments;
   }
 
@@ -298,7 +302,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       }
       survey.Application__c = ApexRequest.getApplicationId();
     }
-    ApplicantRepository.upsertRecords(surveys);
+    ApplicationRepository.upsertRecords(surveys);
     return surveys;
   }
 
@@ -316,10 +320,43 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       }
       consent.Application__c = ApexRequest.getApplicationId();
     }
-    ConsentRepository.upsertRecords(consents);
+    ApplicationRepository.upsertRecords(consents);
     return consents;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 07-25-2022
+   * @param List<AssetAndLiability__c> consents
+   * @param Id applicantId
+   * @return List<AssetAndLiability__c>
+   **/
+  global virtual List<AssetAndLiability__c> saveAssetAndLiabilities(
+    List<AssetAndLiability__c> assetAndLiabilities,
+    Id applicantId
+  ) {
+    for (AssetAndLiability__c assetAndLiability : assetAndLiabilities) {
+      if (String.isNotBlank(applicantId)) {
+        AssetAndLiability.Applicant__c = applicantId;
+      }
+    }
+    ApplicationRepository.upsertRecords(assetAndLiabilities);
+
+    List<AssetAndLiability__c> liabilities = new List<AssetAndLiability__c>();
+
+    for (AssetAndLiability__c assetAndLiability : assetAndLiabilities) {
+      if (!CollectionUtils.isListEmpty(assetAndLiability?.Liabilities__r)) {
+        for (AssetAndLiability__c liability : assetAndLiability.Liabilities__r) {
+          liability.Asset__c = assetAndLiability.Id;
+          liabilities.add(liability);
+        }
+      }
+    }
+
+    ApplicationRepository.upsertRecords(liabilities);
+
+    return assetAndLiabilities;
+  }
   /**
    * @description  delete object by Id
    * @author Digital Align Team | 11-10-2021
@@ -470,7 +507,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         financialAccountTransaction.TransactionStatus__c = 'Pending';
       }
     }
-    ApplicantRepository.upsertRecords(financialAccountTransactions);
+    ApplicationRepository.upsertRecords(financialAccountTransactions);
     return financialAccountTransactions;
   }
   /**
@@ -489,7 +526,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         financialAccountService.FinancialAccount__c = financialAccountId;
       }
     }
-    ApplicantRepository.upsertRecords(financialAccountServices);
+    ApplicationRepository.upsertRecords(financialAccountServices);
     return financialAccountServices;
   }
   /**
@@ -508,7 +545,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         customerInterest.Application__c = applicationId;
       }
     }
-    ApplicantRepository.upsertRecords(customerInterests);
+    ApplicationRepository.upsertRecords(customerInterests);
     return customerInterests;
   }
 }
