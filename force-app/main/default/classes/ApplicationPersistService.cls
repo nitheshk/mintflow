@@ -330,9 +330,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         properties.add(assetAndLiability.Property__r);
       }
     }
-    if (!CollectionUtils.isListEmpty(properties)) {
-      ApplicationRepository.upsertRecords(properties);
-    }
+    ApplicationRepository.upsertRecords(properties);
 
     //Asset and liabilities
     for (AssetAndLiability__c assetAndLiability : assetAndLiabilities) {
@@ -355,9 +353,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         }
       }
     }
-    if (!CollectionUtils.isListEmpty(liabilities)) {
-      ApplicationRepository.upsertRecords(liabilities);
-    }
+    ApplicationRepository.upsertRecords(liabilities);
 
     return assetAndLiabilities;
   }
@@ -470,6 +466,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     List<FinancialAccountTransaction__c> financialAccountTransactions = new List<FinancialAccountTransaction__c>();
     List<FinancialAccountService__c> financialAccountServices = new List<FinancialAccountService__c>();
     List<Property__c> properties = new List<Property__c>();
+    Set<Property__c> propertywithLiabilities = new Set<Property__c>();
 
     for (FinancialAccount__c financialAccount : financialAccounts) {
       // save financial transaction history
@@ -502,6 +499,11 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         for (Property__c property : financialAccount.Properties__r) {
           property.FinancialAccount__c = financialAccount.Id;
           properties.add(property);
+
+          //property has liablities associated
+          if (!collectionUtils.isListEmpty(property?.AssetAndLiabilities__r)) {
+            propertywithLiabilities.add(property);
+          }
         }
         //ApplicationRepository.upsertRecords(properties);
         listToUpdate.addAll(properties);
@@ -511,16 +513,10 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
     // Save Property liability
     listToUpdate = new List<SObject>();
-    for (FinancialAccount__c financialAccount : financialAccounts) {
-      if (!collectionUtils.isListEmpty(financialAccount?.Properties__r)) {
-        for (Property__c property : financialAccount.Properties__r) {
-          if (!collectionUtils.isListEmpty(property?.AssetAndLiabilities__r)) {
-            for (AssetAndLiability__c assetAndLiability : property?.AssetAndLiabilities__r) {
-              assetAndLiability.Property__c = property.Id;
-              listToUpdate.add(assetAndLiability);
-            }
-          }
-        }
+    for (Property__c property : propertywithLiabilities) {
+      for (AssetAndLiability__c liability : property?.AssetAndLiabilities__r) {
+        liability.Property__c = property.Id;
+        listToUpdate.add(liability);
       }
     }
     ApplicationRepository.upsertRecords(listToUpdate);
@@ -550,6 +546,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     ApplicationRepository.upsertRecords(financialAccountTransactions);
     return financialAccountTransactions;
   }
+
   /**
    * @description save financial Account Services
    * @author Digital Align Team | 01-10-2022
