@@ -106,16 +106,6 @@ global virtual with sharing class ApplicantService extends AbstractService {
   }
 
   /**
-   * @description before saving Applicant
-   * @author Digital Align Team | 11-09-2021
-   * @param Applicant__c applicant
-   * @return virtual
-   **/
-  global virtual Applicant__c beforeSaveApplicant(Applicant__c applicant) {
-    return applicant;
-  }
-
-  /**
    * @description save applicant with child record
    * @author Digital Align Team | 10-27-2021
    * @param Applicant__c applicant
@@ -123,38 +113,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
    * @return Applicant__c
    **/
   global virtual Applicant__c saveApplicant(Applicant__c applicant, String applicationId) {
-    applicant = beforeSaveApplicant(applicant);
-    Savepoint sp = Database.setSavepoint();
-    try {
-      applicant = ApplicationPersistService.getInstance().saveApplicant(applicant, applicationId);
-      ApplicantRepository.upsertRecord(applicant);
-
-      if (!ApexRequest.getParams().containsKey('ApexSkipApplicantChild')) {
-        applicant = ApplicationPersistService.getInstance().saveApplicantChild(applicant);
-      }
-    } catch (Exception ex) {
-      log?.error(ex);
-      Database.rollback(sp);
-      throw ex;
-    }
-    return afterSaveApplicant(applicant);
-  }
-  /**
-   * @description  after saving applicant
-   * @author Digital Align Team | 11-09-2021
-   * @param Applicant__c applicant
-   * @return virtual
-   **/
-  global virtual Applicant__c afterSaveApplicant(Applicant__c applicant) {
-    String currentPage = ApexRequest.getRequest().currentPage;
-    switch on currentPage {
-      when 'PersonalInfo' {
-        if (ApexRequest.getApplicantType() == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-          helper.notifyFamilyConnectReference(ApexRequest.getApplicationId());
-        }
-      }
-    }
-    return applicant;
+    return this.saveApplicants(new List<Applicant__c>{ applicant }, applicationId)[0];
   }
 
   /**

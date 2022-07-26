@@ -107,10 +107,9 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     // if (ApexRequest.getParams().containsKey('ApexSkipApplicantsChild')) {
     //   return applicants;
     // }
-    //save child of applicants
-    for (Applicant__c applicant : applicants) {
-      applicant = saveApplicantChild(applicant);
-    }
+    //save applicants childs
+    applicants = saveApplicantChilds(applicants);
+
     log?.fine('Finish save applicants');
     return applicants;
   }
@@ -123,15 +122,14 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @return Applicant__c
    **/
   global virtual Applicant__c saveApplicant(Applicant__c applicant, String applicationId) {
+    //Set Application ID
     if (String.isNotBlank(applicationId)) {
-      //Set Application ID
       applicant.Application__c = applicationId;
     }
 
     if (String.isNotBlank(ApexRequest.getFlowType())) {
       applicant.FlowType__c = ApexRequest.getFlowType();
     }
-
     //Set Applicant Record Type
     String recordTypeName = this.obtainApplicantRecordTypeName(applicant);
     applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(Applicant__c.SObjectType, recordTypeName);
@@ -149,13 +147,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         applicant.Status__c = ApplicationConstant.IN_PROGRESS;
       }
     }
-
-    // When Save Applicant called from UI, THat stand for Application is progress
-    // To make sure after Saved Application, if they process further , status if application need to changed to in progress
-    // if (String.isNotBlank(ApexRequest.getToken())) {
-    //   applicant.Status__c = ApplicationConstant.IN_PROGRESS;
-    // }
-
     return applicant;
   }
 
@@ -185,49 +176,46 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         }
       }
     }
-    log?.debug('recordTypeName : ' + recordTypeName);
     return recordTypeName;
   }
 
   /**
-   * @description
+   * @description save applicants childs
    * @author Digital Align Team | 10-26-2021
-   * @param Applicant__c applicant
-   * @return Applicant__c
+   * @param List<Applicant__c>  applicants
+   * @return List<Applicant__c>
    **/
-  global virtual Applicant__c saveApplicantChild(Applicant__c applicant) {
+  global virtual List<Applicant__c> saveApplicantChilds(List<Applicant__c> applicants) {
     //Do upsert in one short
-    //List<SObject> listToUpdate = new List<SObject>();
-
-    // upsert Identification document
-    if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
-      saveIdentificationDocuments(applicant?.IdentificationDocuments__r, applicant.Id);
+    List<SObject> listToUpdate = new List<SObject>();
+    for (Applicant__c applicant : applicants) {
+      // upsert Identification document
+      if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
+        listToUpdate.addAll(saveIdentificationDocuments(applicant?.IdentificationDocuments__r, applicant.Id));
+      }
+      // upsert contact point address
+      if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
+        listToUpdate.addAll(saveContactPointAddresses(applicant?.ContactPointAddresses__r, applicant.Id));
+      }
+      // upsert employment
+      if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
+        listToUpdate.addAll(this.saveEmployments(applicant?.Employments__r, applicant.Id));
+      }
+      // upsert Surveys
+      if (!CollectionUtils.isListEmpty(applicant?.Surveys__r)) {
+        listToUpdate.addAll(this.saveSurveys(applicant?.Surveys__r, applicant.Id));
+      }
+      //Save Disclosure
+      if (!CollectionUtils.isListEmpty(applicant?.ApplicantConsents__r)) {
+        listToUpdate.addAll(this.saveConsents(applicant.ApplicantConsents__r, applicant.Id));
+      }
+      // upsert AssetAndLiabilities
+      if (!CollectionUtils.isListEmpty(applicant?.AssetAndLiabilities__r)) {
+        this.saveAssetAndLiabilities(applicant.AssetAndLiabilities__r, applicant.Id);
+      }
     }
-
-    // upsert contact point address
-    if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
-      saveContactPointAddresses(applicant?.ContactPointAddresses__r, applicant.Id);
-    }
-
-    // upsert employment
-    if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
-      this.saveEmployments(applicant?.Employments__r, applicant.Id);
-    }
-
-    if (!CollectionUtils.isListEmpty(applicant?.Surveys__r)) {
-      this.saveSurveys(applicant?.Surveys__r, applicant.Id);
-    }
-
-    //Save Disclosure
-    if (!CollectionUtils.isListEmpty(applicant?.ApplicantConsents__r)) {
-      this.saveConsents(applicant.ApplicantConsents__r, applicant.Id);
-    }
-
-    if (!CollectionUtils.isListEmpty(applicant?.AssetAndLiabilities__r)) {
-      this.saveAssetAndLiabilities(applicant.AssetAndLiabilities__r, applicant.Id);
-    }
-
-    return applicant;
+    ApplicationRepository.upsertRecords(listToUpdate);
+    return applicants;
   }
 
   /**
@@ -246,7 +234,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         identityDoc.Applicant__c = applicantId;
       }
     }
-    ApplicationRepository.upsertRecords(identityDocuments);
+    // ApplicationRepository.upsertRecords(identityDocuments);
     return identityDocuments;
   }
 
@@ -267,7 +255,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       } // updating state = state full name in trigger(before insert before update)
       cpa.Name = String.isNotBlank(cpa.Street) ? cpa.Street?.left(255) : 'N/A';
     }
-    ApplicationRepository.upsertRecords(addresses);
+    //ApplicationRepository.upsertRecords(addresses);
     return addresses;
   }
 
@@ -284,7 +272,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         employment.Applicant__c = applicantId;
       }
     }
-    ApplicationRepository.upsertRecords(employments);
+    //ApplicationRepository.upsertRecords(employments);
     return employments;
   }
 
@@ -302,7 +290,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       }
       survey.Application__c = ApexRequest.getApplicationId();
     }
-    ApplicationRepository.upsertRecords(surveys);
+    //ApplicationRepository.upsertRecords(surveys);
     return surveys;
   }
 
@@ -320,7 +308,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       }
       consent.Application__c = ApexRequest.getApplicationId();
     }
-    ApplicationRepository.upsertRecords(consents);
+    //ApplicationRepository.upsertRecords(consents);
     return consents;
   }
 
