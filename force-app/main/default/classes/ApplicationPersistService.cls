@@ -48,9 +48,9 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
 
     //save financial accounts
-    if (!CollectionUtils.isListEmpty(application.mflow__FinancialAccounts__r)) {
+    if (!CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
       List<FinancialAccount__c> financialAccounts = saveFinancialAccounts(
-        application.mflow__FinancialAccounts__r,
+        application.FinancialAccounts__r,
         application.Id
       );
       constructor.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
@@ -388,8 +388,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         if (!application.Applicants__r.isEmpty()) {
           this.deleteApplicants(new Map<Id, SObject>(application.Applicants__r).keySet());
         }
-        if (!application.mflow__FinancialAccounts__r.isEmpty()) {
-          recordsToDelete.addAll(application.mflow__FinancialAccounts__r);
+        if (!application.FinancialAccounts__r.isEmpty()) {
+          recordsToDelete.addAll(application.FinancialAccounts__r);
         }
         recordsToDelete.add(application);
         ApplicationRepository.deleteRecords(recordsToDelete);
@@ -457,50 +457,67 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
     //update value for financialAccount here
     for (FinancialAccount__c financialAccount : financialAccounts) {
-      financialAccount = this.saveFinancialAccount(financialAccount, applicationId);
+      if (String.isNotBlank(applicationId)) {
+        //Set Application ID
+        financialAccount.Application__c = applicationId;
+      }
     }
     FinancialAccountRepository.upsertRecords(financialAccounts);
 
     //save child of FinancialAccounts
-    for (FinancialAccount__c financialAccount : financialAccounts) {
-      financialAccount = this.saveFinancialAccountChild(financialAccount);
-    }
+    financialAccounts = this.saveFinancialAccountChilds(financialAccounts);
+
     log?.fine('Finish save FinancialAccounts');
     return financialAccounts;
   }
 
   /**
-   * @description  save financial account
-   * @author Digital Align Team | 01-10-2022
-   * @param FinancialAccount__c financialAccount
-   * @param String applicationId
-   * @return FinancialAccount__c
+   * @description Save Financial Account Children
+   * @author Digital Align Team | 07-26-2022
+   * @param List<FinancialAccount__c> financialAccounts
+   * @return List<FinancialAccount__c>
    **/
-  global virtual FinancialAccount__c saveFinancialAccount(FinancialAccount__c financialAccount, String applicationId) {
-    if (String.isNotBlank(applicationId)) {
-      //Set Application ID
-      financialAccount.Application__c = applicationId;
-    }
-    // #pending financialAccount record type mapping pending
-    return financialAccount;
-  }
+  global virtual List<FinancialAccount__c> saveFinancialAccountChilds(List<FinancialAccount__c> financialAccounts) {
+    //save FinancialAccountTransactions
+    List<FinancialAccountTransaction__c> financialAccountTransactions = new List<FinancialAccountTransaction__c>();
+    List<FinancialAccountService__c> financialAccountServices = new List<FinancialAccountService__c>();
+    List<Property__c> properties = new List<Property__c>();
 
-  /**
-   * @description Save Financial Account Child
-   * @author Digital Align Team | 01-10-2022
-   * @param FinancialAccount__c financialAccount
-   * @return FinancialAccount__c
-   **/
-  global virtual FinancialAccount__c saveFinancialAccountChild(FinancialAccount__c financialAccount) {
-    if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountTransactions__r)) {
-      this.saveFinancialAccountTransactions(financialAccount.FinancialAccountTransactions__r, financialAccount.Id);
+    for (FinancialAccount__c financialAccount : financialAccounts) {
+      // save financial transaction history
+      if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountTransactions__r)) {
+        for (
+          FinancialAccountTransaction__c financialAccountTransaction : financialAccount.FinancialAccountTransactions__r
+        ) {
+          financialAccountTransaction.FinancialAccount__c = financialAccount.Id;
+          if (String.isBlank(financialAccountTransaction.TransactionStatus__c)) {
+            financialAccountTransaction.TransactionStatus__c = 'Pending';
+          }
+          financialAccountTransactions.add(financialAccountTransaction);
+        }
+        ApplicationRepository.upsertRecords(financialAccountTransactions);
+      }
+
+      // Save ProductServices
+      if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountServices__r)) {
+        for (FinancialAccountService__c financialAccountService : financialAccount.FinancialAccountServices__r) {
+          financialAccountService.FinancialAccount__c = financialAccount.Id;
+          financialAccountServices.add(financialAccountService);
+        }
+        ApplicationRepository.upsertRecords(financialAccountServices);
+      }
+
+      // Save properties
+      if (!collectionUtils.isListEmpty(financialAccount?.Properties__r)) {
+        for (Property__c property : financialAccount.Properties__r) {
+          property.FinancialAccount__c = financialAccount.Id;
+          properties.add(property);
+        }
+        ApplicationRepository.upsertRecords(properties);
+      }
     }
 
-    // Save ProductServices
-    if (!collectionUtils.isListEmpty(financialAccount?.mflow__FinancialAccountServices__r)) {
-      this.saveFinancialAccountServices(financialAccount.mflow__FinancialAccountServices__r, financialAccount.Id);
-    }
-    return financialAccount;
+    return financialAccounts;
   }
 
   /**
@@ -516,7 +533,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   ) {
     for (FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions) {
       if (String.isNotBlank(financialAccountId)) {
-        financialAccountTransaction.mflow__FinancialAccount__c = financialAccountId;
+        financialAccountTransaction.FinancialAccount__c = financialAccountId;
       }
 
       if (String.isBlank(financialAccountTransaction.TransactionStatus__c)) {
@@ -529,15 +546,15 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description save financial Account Services
    * @author Digital Align Team | 01-10-2022
-   * @param List<mflow__FinancialAccountService__c> financialAccountTransactions
+   * @param List<FinancialAccountService__c> financialAccountTransactions
    * @param Id financialAccountId
-   * @return  List<mflow__FinancialAccountService__c>
+   * @return  List<FinancialAccountService__c>
    **/
-  global virtual List<mflow__FinancialAccountService__c> saveFinancialAccountServices(
-    List<mflow__FinancialAccountService__c> financialAccountServices,
+  global virtual List<FinancialAccountService__c> saveFinancialAccountServices(
+    List<FinancialAccountService__c> financialAccountServices,
     Id financialAccountId
   ) {
-    for (mflow__FinancialAccountService__c financialAccountService : financialAccountServices) {
+    for (FinancialAccountService__c financialAccountService : financialAccountServices) {
       if (String.isNotBlank(financialAccountId) && String.isNotBlank(financialAccountService.FinancialAccount__c)) {
         financialAccountService.FinancialAccount__c = financialAccountId;
       }
