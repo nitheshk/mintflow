@@ -466,7 +466,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @return List<FinancialAccount__c>
    **/
   global virtual List<FinancialAccount__c> saveFinancialAccountChilds(List<FinancialAccount__c> financialAccounts) {
-    //save FinancialAccountTransactions
+    List<SObject> listToUpdate = new List<SObject>();
     List<FinancialAccountTransaction__c> financialAccountTransactions = new List<FinancialAccountTransaction__c>();
     List<FinancialAccountService__c> financialAccountServices = new List<FinancialAccountService__c>();
     List<Property__c> properties = new List<Property__c>();
@@ -483,7 +483,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
           }
           financialAccountTransactions.add(financialAccountTransaction);
         }
-        ApplicationRepository.upsertRecords(financialAccountTransactions);
+        //ApplicationRepository.upsertRecords(financialAccountTransactions);
+        listToUpdate.addAll(financialAccountTransactions);
       }
 
       // Save ProductServices
@@ -492,7 +493,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
           financialAccountService.FinancialAccount__c = financialAccount.Id;
           financialAccountServices.add(financialAccountService);
         }
-        ApplicationRepository.upsertRecords(financialAccountServices);
+        //ApplicationRepository.upsertRecords(financialAccountServices);
+        listToUpdate.addAll(financialAccountServices);
       }
 
       // Save properties
@@ -501,10 +503,27 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
           property.FinancialAccount__c = financialAccount.Id;
           properties.add(property);
         }
-        ApplicationRepository.upsertRecords(properties);
+        //ApplicationRepository.upsertRecords(properties);
+        listToUpdate.addAll(properties);
       }
     }
+    ApplicationRepository.upsertRecords(listToUpdate);
 
+    // Save Property liability
+    listToUpdate = new List<SObject>();
+    for (FinancialAccount__c financialAccount : financialAccounts) {
+      if (!collectionUtils.isListEmpty(financialAccount?.Properties__r)) {
+        for (Property__c property : financialAccount.Properties__r) {
+          if (!collectionUtils.isListEmpty(property?.AssetAndLiabilities__r)) {
+            for (AssetAndLiability__c assetAndLiability : property?.AssetAndLiabilities__r) {
+              assetAndLiability.Property__c = property.Id;
+              listToUpdate.add(assetAndLiability);
+            }
+          }
+        }
+      }
+    }
+    ApplicationRepository.upsertRecords(listToUpdate);
     return financialAccounts;
   }
 
