@@ -1358,13 +1358,13 @@
       "mflow__IsMembershipProduct__c": false
     },
     {
-      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "HL-001" },
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "HL001" },
       "Name": "HELOC",
-      "mflow__Category__c": "HELOC",
+      "mflow__Category__c": "Consumer Loan",
       "mflow__DisplayLabel__c": "HELOC",
       "mflow__EndDate__c": "2026-11-05",
-      "mflow__ExternalCode__c": "HL-001",
-      "mflow__InternalCode__c": "HL-001",
+      "mflow__ExternalCode__c": "HL001",
+      "mflow__InternalCode__c": "HL001",
       "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
       "mflow__ImageType__c": "Relative",
       "mflow__LongDescription__c": "A variable-rate line of credit based on your home value that you can continually borrow from and pay back over a set time frame.",
@@ -1376,7 +1376,28 @@
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
       "mflow__isActive__c": true,
-      "mflow__IsMembershipProduct__c": false
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRefH_1" },
+            "Name": "Financial future",
+            "mflow__DisplayContents__c": "<h3><b>Get a jump-start on a sunnier tomorrow.</b></h3><p>Start with a few dollars or a fistful. Focus on one account or take a diversified approach. Whatever your saving style, we want to help you build up your balance, take aim at your goals, and prepare for life&#39;s rainy days and all its other twists and turns.</p><p><br></p><h4><b>Regular Savings</b></h4><ul><li>Open account with minimum deposit of $35.</li><li>Earn competitive interest.</li><li>Build up balance with direct deposit and payroll deductions.</li><li>Monitor and manage funds with free Online and Mobile Banking.</li><li>Open multiple accounts for specific savings goals. Name your accounts whatever.</li></ul><p>Start saving now. Opening an account is easy!</p>",
+            "mflow__DisplayName__c": "Financial future",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Start with a few dollars or a fistful.",
+            "mflow__Topic__c": "HELOC",
+            "mflow__isActive__c": true,
+            "mflow__Type__c": "Product Description",
+            "mflow__Icon__c": "fa fa-usd"
+          }
+        ]
+      }
     }
   ]
 }

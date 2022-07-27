@@ -11,9 +11,9 @@
         <label>Checking</label>
     </customValue>
     <customValue>
-        <fullName>Loans</fullName>
+        <fullName>Mortgage</fullName>
         <default>false</default>
-        <label>Loans</label>
+        <label>Mortgage</label>
     </customValue>
     <customValue>
         <fullName>Credit Card</fullName>
@@ -29,6 +29,21 @@
         <fullName>Certificate</fullName>
         <default>false</default>
         <label>Certificate</label>
+    </customValue>
+    <customValue>
+        <fullName>Personal Loan</fullName>
+        <default>false</default>
+        <label>Personal Loan</label>
+    </customValue>
+    <customValue>
+        <fullName>Vehicle Loan</fullName>
+        <default>false</default>
+        <label>Vehicle Loan</label>
+    </customValue>
+    <customValue>
+        <fullName>Consumer Loan</fullName>
+        <default>false</default>
+        <label>Consumer Loan</label>
     </customValue>
     <description>Financial Product Category</description>
     <masterLabel>Financial Product Category</masterLabel>
