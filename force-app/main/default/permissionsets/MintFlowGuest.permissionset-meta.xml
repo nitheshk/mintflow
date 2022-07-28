@@ -2302,6 +2302,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Property__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>AssetAndLiability__c.Applicant__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2313,6 +2318,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>AssetAndLiability__c.Property__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AssetAndLiability__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>

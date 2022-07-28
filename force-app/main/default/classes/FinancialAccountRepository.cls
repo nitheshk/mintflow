@@ -26,7 +26,27 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .queryChild('mflow__FinancialAccountServices__r')
         .addFields()
         .run()
+        .queryChild('mflow__Properties__r')
+        .run()
         .whereIn('Id', financialAccountIds)
+        .toString()
+    );
+  }
+
+  /**
+   * @description read property with child
+   * @author Digital Align Team | 07-28-2022
+   * @param Set<Id> propertyIds
+   * @return List<Property__c>
+   **/
+  global static List<Property__c> readPropertiesWithChild(List<Property__c> properties) {
+    return (List<Property__c>) DatabaseUtils.getRecords(
+      Query.newInstance(Property__c.SObjectType)
+        .addFields()
+        .queryChild('mflow__AssetAndLiabilities__r')
+        .addFields()
+        .run()
+        .whereIn('Id', properties)
         .toString()
     );
   }

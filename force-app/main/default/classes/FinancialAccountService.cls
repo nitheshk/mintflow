@@ -65,7 +65,22 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @return List<FinancialAccount__c>
    **/
   global virtual List<FinancialAccount__c> readFinancialAccountsWithChild(Set<Id> financialAccountIds) {
-    return FinancialAccountRepository.readFinancialAccountsWithChild(financialAccountIds);
+    List<FinancialAccount__c> financialAccounts = FinancialAccountRepository.readFinancialAccountsWithChild(
+      financialAccountIds
+    );
+
+    for (Integer i = 0; i < financialAccounts.size(); i++) {
+      if (!financialAccounts[i].Properties__r.isEmpty()) {
+        SObjectConstructor builder = SObjectConstructor.getInstance(financialAccounts[i]);
+        builder.setChildObjects(
+          'mflow__Properties__r',
+          FinancialAccountRepository.readPropertiesWithChild(financialAccounts[i].Properties__r)
+        );
+        financialAccounts[i] = (FinancialAccount__c) builder.build();
+      }
+    }
+
+    return financialAccounts;
   }
 
   /**
