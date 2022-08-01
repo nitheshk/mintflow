@@ -54,7 +54,7 @@ global inherited sharing class UtilsRepository extends DatabaseUtils {
    * @description
    * @author Digital Align Team | 04-02-2022
    * @param Id userId
-   * @param String siteType
+   * @param String siteType -> ChatterNetworkPicasso, Siteforce
    * @return Site
    **/
   global static Site fetchSite(Id userId, String siteType) {
