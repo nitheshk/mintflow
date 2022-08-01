@@ -19,6 +19,9 @@ public with sharing class TestData {
     appConfig.mflow__ReferralUrlExpirationTime__c = 72;
     appConfig.mflow__OOWTotalQuestionsToShow__c = 5;
     appConfig.UiStaticResourceName__c = 'LWCResource';
+    appConfig.SupportTeamEmail__c = 'support@digitalalign.com';
+    appConfig.SupportedFileTypes__c = 'pdf;jpg';
+    appConfig.MaxNumberofProductSelected__c = 4;
     return appConfig;
   }
 
@@ -38,6 +41,7 @@ public with sharing class TestData {
     siteSetting.mflow__FinancialInstituteSiteUrl__c = 'https://sandbox-computing-customization-653--17f6883cb04.cs6.force.com/Online';
     siteSetting.mflow__OnlineAccountOpeningUrl__c = '/OpenAccount?pid=IC003#/home';
     siteSetting.mflow__OnlineContentUrl__c = 'https://ik.imagekit.io/disczlxo8kv/P1FCU/';
+    siteSetting.mflow__OnlineSiteUrlPathPrefix__c = 'mintflow';
     insert siteSetting;
     return siteSetting;
   }
@@ -164,6 +168,21 @@ public with sharing class TestData {
     survey.mflow__Order__c = 1;
     survey.mflow__ShortDescription__c = 'CAT';
     return survey;
+  }
+
+  public static Property__c createProperty(FinancialAccount__c FinancialAccount) {
+    Property__c property = new Property__c(mflow__FinancialAccount__c = FinancialAccount?.Id, Name = 'PropertyName');
+    return property;
+  }
+
+  public static AssetAndLiability__c createAsset(Applicant__c applicant, Property__c property) {
+    AssetAndLiability__c assetObj = new AssetAndLiability__c(Name = 'AssetName', mflow__Property__c = property?.id);
+    return assetObj;
+  }
+
+  public static AssetAndLiability__c createLiablity(AssetAndLiability__c assetObj) {
+    AssetAndLiability__c liabiltyObj = new AssetAndLiability__c(Name = 'LiabilityObj', mflow__Asset__c = assetObj?.id);
+    return liabiltyObj;
   }
 
   public static ContentVersion createContentVersion() {

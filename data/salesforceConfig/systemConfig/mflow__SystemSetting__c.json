@@ -8,7 +8,8 @@
       "mflow__DebugLogs__c": true,
       "mflow__Flow__c": true,
       "mflow__LoggingLevel__c": "Fine",
-      "mflow__SentiLink__c": true
+      "mflow__SentiLink__c": true,
+      "mflow__KYCEvaluation__c": true
     }
   ]
 }
