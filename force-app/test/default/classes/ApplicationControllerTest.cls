@@ -24,9 +24,13 @@ public with sharing class ApplicationControllerTest {
     ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
     insert address;
 
+    Survey__c survey = TestData.createSurvey(applicant);
+    insert survey;
+
     construct.addChildObject('mflow__IdentificationDocuments__r', identity);
     construct.addChildObject('mflow__Employments__r', employment);
     construct.addChildObject('mflow__ContactPointAddresses__r', address);
+    construct.addChildObject('mflow__Surveys__r', survey);
 
     return (Applicant__c) construct.build();
   }
@@ -45,6 +49,23 @@ public with sharing class ApplicationControllerTest {
     insert liabiltyObj;
 
     return applicant;
+  }
+
+  //createLoanAssests
+  private static Application__c createFinancialAccountChild(Application__c application) {
+    FinancialAccount__c financialAccount = application.FinancialAccounts__r[0];
+
+    FinancialAccountTransaction__c financialAccountTransaction = TestData.createFinancialAccountTransaction(
+      financialAccount
+    );
+    insert financialAccountTransaction;
+
+    mflow__FinancialAccountService__c financialAccountService = TestData.createFinancialAccountService(
+      financialAccount
+    );
+    insert financialAccountService;
+
+    return application;
   }
 
   //startApplicationTest
@@ -113,9 +134,9 @@ public with sharing class ApplicationControllerTest {
     Test.setCurrentPage(testPage);
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
-    SObjectConstructor constructor = SObjectConstructor.getInstance(application);
-    constructor.setChildObjects('mflow__Surveys__r', new List<Survey__c>{ new Survey__c() });
     Applicant__c applicant = createApplicantDataWithChild(application);
+    createLoanAssests(application, applicant);
+    createFinancialAccountChild(application);
 
     //200
     ApexRequest request = new ApexRequest();
@@ -537,5 +558,11 @@ public with sharing class ApplicationControllerTest {
     request.currentPage = ApplicationConstant.PERSONAL_INFO;
     ApexResponse res = ApplicationController.saveState(request);
     system.assertEquals(200, res.status, 'success');
+
+    //500
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    res = ApplicationController.saveState(request);
+    system.assertEquals(500, res.status, 'success');
   }
 }

@@ -161,8 +161,8 @@ public with sharing class TestData {
     return county;
   }
 
-  public static mflow__Survey__c createSurvey() {
-    mflow__Survey__c survey = new mflow__Survey__c();
+  public static mflow__Survey__c createSurvey(Applicant__c applicant) {
+    mflow__Survey__c survey = new mflow__Survey__c(Applicant__c = applicant?.Id);
     survey.mflow__Answer__c = 'Answer';
     survey.mflow__LongDescription__c = 'Long descr';
     survey.mflow__Order__c = 1;
@@ -170,19 +170,41 @@ public with sharing class TestData {
     return survey;
   }
 
-  public static Property__c createProperty(FinancialAccount__c FinancialAccount) {
-    Property__c property = new Property__c(mflow__FinancialAccount__c = FinancialAccount?.Id, Name = 'PropertyName');
+  public static Property__c createProperty(FinancialAccount__c financialAccount) {
+    Property__c property = new Property__c(mflow__FinancialAccount__c = financialAccount?.Id, Name = 'PropertyName');
     return property;
   }
 
   public static AssetAndLiability__c createAsset(Applicant__c applicant, Property__c property) {
-    AssetAndLiability__c assetObj = new AssetAndLiability__c(Name = 'AssetName', mflow__Property__c = property?.id);
+    AssetAndLiability__c assetObj = new AssetAndLiability__c(
+      Name = 'AssetName',
+      mflow__Property__c = property?.id,
+      Applicant__c = applicant?.id
+    );
     return assetObj;
   }
 
   public static AssetAndLiability__c createLiablity(AssetAndLiability__c assetObj) {
     AssetAndLiability__c liabiltyObj = new AssetAndLiability__c(Name = 'LiabilityObj', mflow__Asset__c = assetObj?.id);
     return liabiltyObj;
+  }
+
+  public static FinancialAccountTransaction__c createFinancialAccountTransaction(FinancialAccount__c financialAccount) {
+    FinancialAccountTransaction__c financialAccountTransaction = new FinancialAccountTransaction__c();
+    financialAccountTransaction.mflow__FinancialAccount__c = financialAccount?.id;
+    financialAccountTransaction.mflow__FinancialInstitute__c = 'FinInst';
+    financialAccountTransaction.mflow__Amount__c = 30;
+    financialAccountTransaction.mflow__AccountHolderName__c = 'HodlerName';
+    return financialAccountTransaction;
+  }
+
+  public static mflow__FinancialAccountService__c createFinancialAccountService(FinancialAccount__c financialAccount) {
+    mflow__FinancialAccountService__c financialAccountService = new mflow__FinancialAccountService__c();
+    financialAccountService.mflow__FinancialAccount__c = financialAccount?.id;
+    financialAccountService.Description__c = 'FinInst';
+    financialAccountService.ServiceName__c = 'OnlineBanking';
+    financialAccountService.isSelected__c = false;
+    return financialAccountService;
   }
 
   public static ContentVersion createContentVersion() {

@@ -524,49 +524,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   }
 
   /**
-   * @description save financial transaction history
-   * @author Digital Align Team | 01-10-2022
-   * @param List<FinancialAccountTransaction__c> financialAccountTransactions
-   * @param Id financialAccountId
-   * @return  List<FinancialAccountTransaction__c>
-   **/
-  global virtual List<FinancialAccountTransaction__c> saveFinancialAccountTransactions(
-    List<FinancialAccountTransaction__c> financialAccountTransactions,
-    Id financialAccountId
-  ) {
-    for (FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions) {
-      if (String.isNotBlank(financialAccountId)) {
-        financialAccountTransaction.FinancialAccount__c = financialAccountId;
-      }
-
-      if (String.isBlank(financialAccountTransaction.TransactionStatus__c)) {
-        financialAccountTransaction.TransactionStatus__c = 'Pending';
-      }
-    }
-    ApplicationRepository.upsertRecords(financialAccountTransactions);
-    return financialAccountTransactions;
-  }
-
-  /**
-   * @description save financial Account Services
-   * @author Digital Align Team | 01-10-2022
-   * @param List<FinancialAccountService__c> financialAccountTransactions
-   * @param Id financialAccountId
-   * @return  List<FinancialAccountService__c>
-   **/
-  global virtual List<FinancialAccountService__c> saveFinancialAccountServices(
-    List<FinancialAccountService__c> financialAccountServices,
-    Id financialAccountId
-  ) {
-    for (FinancialAccountService__c financialAccountService : financialAccountServices) {
-      if (String.isNotBlank(financialAccountId) && String.isNotBlank(financialAccountService.FinancialAccount__c)) {
-        financialAccountService.FinancialAccount__c = financialAccountId;
-      }
-    }
-    ApplicationRepository.upsertRecords(financialAccountServices);
-    return financialAccountServices;
-  }
-  /**
    * @description Save Customer Interest
    * @author Digital Align Team | 04-03-2022
    * @param List<CustomerInterest__c> customerInterests
