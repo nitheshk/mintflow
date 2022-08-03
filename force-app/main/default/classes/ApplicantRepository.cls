@@ -30,8 +30,33 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       .addFields()
       .orderBy('mflow__Order__c')
       .run()
+      .queryChild('mflow__AssetAndLiabilities__r')
+      .orderBy('mflow__Order__c')
+      .run()
       .whereIn('Id', applicantIds);
     return (List<Applicant__c>) DatabaseUtils.getRecords(qry.toString());
+  }
+
+  /**
+   * @description Read Asset And Liability With Child
+   * @author Digital Align Team | 07-28-2022
+   * @param List<AssetAndLiability__c> assetAndLiabilities
+   * @return List<AssetAndLiability__c>
+   **/
+  global static List<AssetAndLiability__c> readAssetAndLiabilityWithChild(
+    List<AssetAndLiability__c> assetAndLiabilities
+  ) {
+    return (List<AssetAndLiability__c>) DatabaseUtils.getRecords(
+      Query.newInstance(AssetAndLiability__c.SObjectType)
+        .addFields()
+        .queryChild('mflow__Liabilities__r')
+        .orderBy('mflow__Order__c')
+        .addFields()
+        .run()
+        .whereIn('Id', assetAndLiabilities)
+        .orderBy('mflow__Order__c')
+        .toString()
+    );
   }
 
   /**
@@ -54,6 +79,9 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       .run()
       .queryChild('mflow__Employments__r')
       .addFields()
+      .orderBy('mflow__Order__c')
+      .run()
+      .queryChild('mflow__AssetAndLiabilities__r')
       .orderBy('mflow__Order__c')
       .run()
       .whereEq('Id', applicantId);

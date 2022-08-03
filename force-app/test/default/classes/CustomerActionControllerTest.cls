@@ -49,9 +49,8 @@ public with sharing class CustomerActionControllerTest {
     cipher.ch = 'Virtual';
     String pageName = '/OpenAccount';
 
-    CustomerActionController ic = new CustomerActionController();
-
     testPage.getParameters().put('vmf', SecurityUtils.encryptUrl(JSON.serialize(cipher, true)));
+    CustomerActionController ic = new CustomerActionController();
     ic.initializeApplication();
 
     // //Joint applicant

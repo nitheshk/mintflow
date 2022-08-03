@@ -24,11 +24,48 @@ public with sharing class ApplicationControllerTest {
     ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
     insert address;
 
+    Survey__c survey = TestData.createSurvey(applicant);
+    insert survey;
+
     construct.addChildObject('mflow__IdentificationDocuments__r', identity);
     construct.addChildObject('mflow__Employments__r', employment);
     construct.addChildObject('mflow__ContactPointAddresses__r', address);
+    construct.addChildObject('mflow__Surveys__r', survey);
 
     return (Applicant__c) construct.build();
+  }
+
+  //createLoanAssests
+  private static Applicant__c createLoanAssests(Application__c application, Applicant__c applicant) {
+    FinancialAccount__c financialAccount = application.FinancialAccounts__r[0];
+
+    Property__c property = TestData.createProperty(financialAccount);
+    insert property;
+
+    AssetAndLiability__c assetObj = TestData.createAsset(applicant, property);
+    insert assetObj;
+
+    AssetAndLiability__c liabiltyObj = TestData.createLiablity(assetObj);
+    insert liabiltyObj;
+
+    return applicant;
+  }
+
+  //createLoanAssests
+  private static Application__c createFinancialAccountChild(Application__c application) {
+    FinancialAccount__c financialAccount = application.FinancialAccounts__r[0];
+
+    FinancialAccountTransaction__c financialAccountTransaction = TestData.createFinancialAccountTransaction(
+      financialAccount
+    );
+    insert financialAccountTransaction;
+
+    mflow__FinancialAccountService__c financialAccountService = TestData.createFinancialAccountService(
+      financialAccount
+    );
+    insert financialAccountService;
+
+    return application;
   }
 
   //startApplicationTest
@@ -97,9 +134,9 @@ public with sharing class ApplicationControllerTest {
     Test.setCurrentPage(testPage);
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
-    SObjectConstructor constructor = SObjectConstructor.getInstance(application);
-    constructor.setChildObjects('mflow__Surveys__r', new List<Survey__c>{ new Survey__c() });
     Applicant__c applicant = createApplicantDataWithChild(application);
+    createLoanAssests(application, applicant);
+    createFinancialAccountChild(application);
 
     //200
     ApexRequest request = new ApexRequest();
@@ -503,6 +540,29 @@ public with sharing class ApplicationControllerTest {
     request = new ApexRequest();
     request.token = 'InvalidToken';
     res = ApplicationController.submitToCoreSystem(request);
+    system.assertEquals(500, res.status, 'success');
+  }
+
+  @isTest
+  static void saveStateTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    //200
+    ApexRequest request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.currentPage = ApplicationConstant.PERSONAL_INFO;
+    ApexResponse res = ApplicationController.saveState(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //500
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    res = ApplicationController.saveState(request);
     system.assertEquals(500, res.status, 'success');
   }
 }

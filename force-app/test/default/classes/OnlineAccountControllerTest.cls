@@ -29,7 +29,7 @@ public with sharing class OnlineAccountControllerTest {
   }
 
   @isTest
-  static void initializeApplicationTest() {
+  static void initializeOpenAccountTest() {
     makeApplicationConfiguration();
     PageReference testPage = Page.error;
     Test.setCurrentPage(testPage);
@@ -41,59 +41,97 @@ public with sharing class OnlineAccountControllerTest {
     request.token = ApexRequest.getToken();
 
     SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
-    cipher.aplType = 'Primary';
-    cipher.flw = 'Joint';
+    cipher.aplType = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+    cipher.flw = ApplicationConstant.FLOW_TYPE_APPLICATION;
     String urlSuffix = 'urlSuffix';
     cipher.appId = application.Id;
     cipher.aplId = applicant.Id;
     cipher.edt = Datetime.now()
       .addHours((Integer) ApplicationConfiguration__c.getInstance().EmailLinkExpirationTime__c);
-    cipher.ch = 'Virtual';
+    cipher.ch = ApplicationConstant.CHANNEL_VIRTUAL;
     String pageName = '/OpenAccount';
 
+    testPage.getParameters().put('vmf', SecurityUtils.encryptUrl(JSON.serialize(cipher, true)));
     OnlineAccountController oc = new OnlineAccountController();
 
-    testPage.getParameters().put('vmf', SecurityUtils.encryptUrl(JSON.serialize(cipher, true)));
+    //Success
+    PageReference pg = oc.initializeOpenAccount();
+    system.assertNotEquals(null, pg, 'success case');
+
+    // exception
+    testPage.getParameters().put('cvmf', SecurityUtils.encryptBase64(JSON.serialize(cipher, true)));
+    pg = oc.initializeOpenAccount();
+    system.assertNotEquals(null, pg, 'exception case');
+  }
+
+  @isTest
+  static void initializeApplicationTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+
+    SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
+    cipher.aplType = ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE;
+    cipher.flw = ApplicationConstant.FLOW_TYPE_APPLICATION;
+    String urlSuffix = 'urlSuffix';
+    cipher.appId = application.Id;
+    cipher.aplId = applicant.Id;
+    cipher.edt = Datetime.now()
+      .addHours((Integer) ApplicationConfiguration__c.getInstance().EmailLinkExpirationTime__c);
+    cipher.ch = ApplicationConstant.CHANNEL_VIRTUAL;
+
+    Test.startTest();
+    OnlineAccountController oc = new OnlineAccountController();
+    //testPage.getParameters().put('vmf', SecurityUtils.encryptUrl(JSON.serialize(cipher, true)));
     oc.initializeApplication();
 
-    //Joint applicant
-    ApexRequest.setApplicantType('Joint');
-    oc.initializeApplication();
+    if (PageUtils.getCookie('token') != null) {
+      PageUtils.setCookie(new Cookie('token', null, null, -1, false));
+    }
+    testPage.getParameters().put('vmf', SecurityUtils.encryptBase64(JSON.serialize(cipher, true)));
 
+    PageReference pg = oc.initializeApplication();
+    system.assertNotEquals(null, pg, 'success case');
+
+    Test.stopTest();
+  }
+
+  @isTest
+  static void createApplicationTest() {
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+
+    Test.startTest();
+    OnlineAccountController oc = new OnlineAccountController();
+    PageReference pg = oc.initializeApplication();
+    system.assertNotEquals(null, pg, 'success case');
+    Test.stopTest();
     oc.getStaticUrl();
   }
 
   @isTest
-  static void initializeApplicationTestTwo() {
+  static void initializeApplicationTestOne() {
     OnlineAccountController oc = new OnlineAccountController();
-    oc.initializeApplication();
+    PageReference pg = oc.initializeApplication();
+    system.assertNotEquals(null, pg, 'success case');
   }
+
   @isTest
-  static void initializeApplicationTestThree() {
-    ApexRequest request = new ApexRequest();
-    OnlineAccountController oc = new OnlineAccountController();
-    oc.initializeApplication();
-  }
-  @isTest
-  static void initializeApplicationFour() {
+  static void initializeOnlinePortalTest() {
     makeApplicationConfiguration();
     PageReference testPage = Page.error;
     Test.setCurrentPage(testPage);
 
-    ApexRequest request = new ApexRequest();
-
-    SecurityUtils.CipherDTO cipher = new SecurityUtils.CipherDTO();
-    cipher.aplType = 'Primary';
-    cipher.flw = 'Joint';
-    String urlSuffix = 'urlSuffix';
-    cipher.edt = Datetime.now()
-      .addHours((Integer) ApplicationConfiguration__c.getInstance().EmailLinkExpirationTime__c);
-    cipher.ch = 'Virtual';
-    String pageName = '/OpenAccount';
-
+    Test.startTest();
     OnlineAccountController oc = new OnlineAccountController();
-    testPage.getParameters().put('vmf', SecurityUtils.encryptUrl(JSON.serialize(cipher, true)));
-    oc.initializeApplication();
+    PageReference pg = oc.initializeOnlinePortal();
+    system.assertEquals(null, pg, 'success case');
+    Test.stopTest();
   }
 
   @istest
@@ -121,6 +159,7 @@ public with sharing class OnlineAccountControllerTest {
     request = new ApexRequest();
     request.token = ApexRequest.getToken();
 
-    oc.initializeOpenAccount();
+    PageReference pg = oc.initializeOpenAccount();
+    system.assertNotEquals(null, pg, 'success case');
   }
 }

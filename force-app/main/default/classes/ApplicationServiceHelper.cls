@@ -288,7 +288,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     Map<String, Object> mapData = new Map<String, Object>();
     Map<String, String> mapFilter = new Map<String, String>();
     String productId;
-    Decimal LeadScore;
+    Decimal leadScore;
 
     List<financialProduct__c> products = ProductServiceRepository.fetchProductWithFeatures(application.Id);
     try {
@@ -320,14 +320,14 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
           mapData = calculateLeadBasedonCustomerInterest(mapData, application);
 
-          LeadScore = calculateTotalLeadScore(mapData);
+          leadScore = calculateTotalLeadScore(mapData);
         }
       }
     } catch (exception ex) {
       system.debug(' exception at : ' + ex.getLineNumber() + ex.getMessage());
     }
 
-    return LeadScore;
+    return leadScore;
   }
 
   /**
@@ -338,7 +338,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
    * @param financialProduct__c product
    * @return Map<String, Object>
    **/
-  public Map<String, Object> calculateLeadBasedonState(
+  private Map<String, Object> calculateLeadBasedonState(
     Map<String, String> mapFilter,
     Map<String, Object> mapData,
     financialProduct__c product
@@ -516,7 +516,14 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     return mapData;
   }
 
-  public Map<String, Object> calculateLeadBasedonCustomerInterest(
+  /**
+   * @description
+   * @author Digital Align Team | 08-02-2022
+   * @param Map<String Object> mapData
+   * @param Application__c application
+   * @return Map<String, Object>
+   **/
+  private Map<String, Object> calculateLeadBasedonCustomerInterest(
     Map<String, Object> mapData,
     Application__c application
   ) {
@@ -538,7 +545,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
    * @param Map<String Object> mapData
    * @return Decimal
    **/
-  private static Decimal calculateTotalLeadScore(Map<String, Object> mapData) {
+  private Decimal calculateTotalLeadScore(Map<String, Object> mapData) {
     // final mapData {Customer Interest=10, Eligibility Score=10, Employment=5, KYC Score=5, KYC Status Score=10, OOW Score=5, Product State=10}
     Decimal totalLeadScore = 0;
     totalLeadScore =

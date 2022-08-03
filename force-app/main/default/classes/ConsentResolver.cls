@@ -213,7 +213,7 @@ global virtual with sharing class ConsentResolver extends AbstractService {
       } else if (consentLineItem.ConsentTemplate__r.DocumentType__c == 'Visualforce') {
         //#pending Logic is pending to add
         consent.URL__c =
-          SiteSetting__c.getInstance().mflow__OnlineSiteUrl__c +
+          SiteSetting__c.getInstance().OnlineSiteUrl__c +
           '/' +
           consentLineItem.ConsentTemplate__r.URL__c?.replace('{applicationId}', ApexRequest.getApplicationId());
         //consent.URL__c = consent.URL__c?.replace('{applicantId}',ApexRequest.getApplicationId());
@@ -293,9 +293,14 @@ global virtual with sharing class ConsentResolver extends AbstractService {
     if (CollectionUtils.isListEmpty(consents)) {
       return consents;
     }
+
+    String onlineSiteUrlPathPrefix = '/' + SiteSetting__c.getInstance().OnlineSiteUrlPathPrefix__c;
+
     for (Consent__c consent : consents) {
-      if (consent.mflow__ConsentTemplate__r.mflow__DocumentType__c == 'Visualforce') {
-        Pagereference consentPdf = new Pagereference('/apex' + consent.mflow__URL__c?.substringAfterLast('/Online'));
+      if (consent.ConsentTemplate__r.DocumentType__c == 'Visualforce') {
+        Pagereference consentPdf = new Pagereference(
+          '/apex' + consent.URL__c?.substringAfterLast(onlineSiteUrlPathPrefix)
+        );
         Blob body;
         if (Test.isRunningTest()) {
           body = Blob.valueOf('TestFile');

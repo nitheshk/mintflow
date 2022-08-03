@@ -28,24 +28,6 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
   }
 
   /**
-   * @description Read Application with child record using application Name
-   * Applicants contains only ids
-   * Financial Account contains only Ids
-   * @author Digital Align | 12-01-2021
-   * @param string applicationNumber
-   * @return Application__c
-   **/
-  global static Application__c readApplicationByApplicationNumber(String applicationNumber) {
-    return (Application__c) DatabaseUtils.getRecord(
-      Query.newInstance(Application__c.SObjectType)
-        .addFields()
-        .removeFields('mflow__SessionToken__c')
-        .whereEq('Name', applicationNumber)
-        .toString()
-    );
-  }
-
-  /**
    * @description Read Application child with specified application Id And applicant Id
    * @author Digital Align Team | 11-19-2021
    * @param Id applicationId
@@ -64,21 +46,6 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .run()
       .whereEq('Id', applicationId);
     return (Application__c) DatabaseUtils.getRecord(qry.toString());
-  }
-
-  /**
-   * @description Read Application for session token verification
-   * @author Digital Align Team | 11-17-2021
-   * @param Id applicationId
-   * @return Application__c
-   **/
-  global static Application__c readApplicationForToken(Id applicationId) {
-    return (Application__c) DatabaseUtils.getRecord(
-      Query.newInstance(Application__c.SObjectType)
-        .addFields('SessionToken__c,Name')
-        .whereEq('Id', applicationId)
-        .toString()
-    );
   }
 
   /**
