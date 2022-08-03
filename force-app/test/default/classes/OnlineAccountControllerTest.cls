@@ -94,7 +94,7 @@ public with sharing class OnlineAccountControllerTest {
     testPage.getParameters().put('vmf', SecurityUtils.encryptBase64(JSON.serialize(cipher, true)));
 
     PageReference pg = oc.initializeApplication();
-    system.assertNotEquals(null, pg, 'success case');
+    system.assertEquals(null, pg, 'success case');
 
     Test.stopTest();
   }
@@ -109,7 +109,7 @@ public with sharing class OnlineAccountControllerTest {
     Test.startTest();
     OnlineAccountController oc = new OnlineAccountController();
     PageReference pg = oc.initializeApplication();
-    system.assertNotEquals(null, pg, 'success case');
+    system.assertEquals(null, pg, 'success case');
     Test.stopTest();
     oc.getStaticUrl();
   }
