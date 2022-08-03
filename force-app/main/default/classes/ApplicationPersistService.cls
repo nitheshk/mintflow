@@ -48,9 +48,9 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
 
     //save financial accounts
-    if (!CollectionUtils.isListEmpty(application.mflow__FinancialAccounts__r)) {
+    if (!CollectionUtils.isListEmpty(application.FinancialAccounts__r)) {
       List<FinancialAccount__c> financialAccounts = saveFinancialAccounts(
-        application.mflow__FinancialAccounts__r,
+        application.FinancialAccounts__r,
         application.Id
       );
       constructor.setChildObjects('mflow__FinancialAccounts__r', financialAccounts);
@@ -102,15 +102,14 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     for (Applicant__c applicant : applicants) {
       applicant = saveApplicant(applicant, applicationId);
     }
-    ApplicantRepository.upsertRecords(applicants);
+    ApplicationRepository.upsertRecords(applicants);
 
     // if (ApexRequest.getParams().containsKey('ApexSkipApplicantsChild')) {
     //   return applicants;
     // }
-    //save child of applicants
-    for (Applicant__c applicant : applicants) {
-      applicant = saveApplicantChild(applicant);
-    }
+    //save applicants childs
+    applicants = saveApplicantChilds(applicants);
+
     log?.fine('Finish save applicants');
     return applicants;
   }
@@ -123,15 +122,14 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    * @return Applicant__c
    **/
   global virtual Applicant__c saveApplicant(Applicant__c applicant, String applicationId) {
+    //Set Application ID
     if (String.isNotBlank(applicationId)) {
-      //Set Application ID
       applicant.Application__c = applicationId;
     }
 
     if (String.isNotBlank(ApexRequest.getFlowType())) {
       applicant.FlowType__c = ApexRequest.getFlowType();
     }
-
     //Set Applicant Record Type
     String recordTypeName = this.obtainApplicantRecordTypeName(applicant);
     applicant.RecordTypeId = SObjectUtils.recordTypeIdByName(Applicant__c.SObjectType, recordTypeName);
@@ -149,13 +147,6 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         applicant.Status__c = ApplicationConstant.IN_PROGRESS;
       }
     }
-
-    // When Save Applicant called from UI, THat stand for Application is progress
-    // To make sure after Saved Application, if they process further , status if application need to changed to in progress
-    // if (String.isNotBlank(ApexRequest.getToken())) {
-    //   applicant.Status__c = ApplicationConstant.IN_PROGRESS;
-    // }
-
     return applicant;
   }
 
@@ -185,45 +176,46 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         }
       }
     }
-    log?.debug('recordTypeName : ' + recordTypeName);
     return recordTypeName;
   }
 
   /**
-   * @description
+   * @description save applicants childs
    * @author Digital Align Team | 10-26-2021
-   * @param Applicant__c applicant
-   * @return Applicant__c
+   * @param List<Applicant__c>  applicants
+   * @return List<Applicant__c>
    **/
-  global virtual Applicant__c saveApplicantChild(Applicant__c applicant) {
+  global virtual List<Applicant__c> saveApplicantChilds(List<Applicant__c> applicants) {
     //Do upsert in one short
-    //List<SObject> listToUpdate = new List<SObject>();
-
-    // upsert Identification document
-    if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
-      saveIdentificationDocuments(applicant?.IdentificationDocuments__r, applicant.Id);
+    List<SObject> listToUpdate = new List<SObject>();
+    for (Applicant__c applicant : applicants) {
+      // upsert Identification document
+      if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
+        listToUpdate.addAll(saveIdentificationDocuments(applicant?.IdentificationDocuments__r, applicant.Id));
+      }
+      // upsert contact point address
+      if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
+        listToUpdate.addAll(saveContactPointAddresses(applicant?.ContactPointAddresses__r, applicant.Id));
+      }
+      // upsert employment
+      if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
+        listToUpdate.addAll(this.saveEmployments(applicant?.Employments__r, applicant.Id));
+      }
+      // upsert Surveys
+      if (!CollectionUtils.isListEmpty(applicant?.Surveys__r)) {
+        listToUpdate.addAll(this.saveSurveys(applicant?.Surveys__r, applicant.Id));
+      }
+      //Save Disclosure
+      if (!CollectionUtils.isListEmpty(applicant?.ApplicantConsents__r)) {
+        listToUpdate.addAll(this.saveConsents(applicant.ApplicantConsents__r, applicant.Id));
+      }
+      // upsert AssetAndLiabilities
+      if (!CollectionUtils.isListEmpty(applicant?.AssetAndLiabilities__r)) {
+        this.saveAssetAndLiabilities(applicant.AssetAndLiabilities__r, applicant.Id);
+      }
     }
-
-    // upsert contact point address
-    if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
-      saveContactPointAddresses(applicant?.ContactPointAddresses__r, applicant.Id);
-    }
-
-    // upsert employment
-    if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
-      this.saveEmployments(applicant?.Employments__r, applicant.Id);
-    }
-
-    if (!CollectionUtils.isListEmpty(applicant?.Surveys__r)) {
-      this.saveSurveys(applicant?.Surveys__r, applicant.Id);
-    }
-
-    //Save Disclosure
-    if (!CollectionUtils.isListEmpty(applicant?.ApplicantConsents__r)) {
-      this.saveConsents(applicant.ApplicantConsents__r, applicant.Id);
-    }
-
-    return applicant;
+    ApplicationRepository.upsertRecords(listToUpdate);
+    return applicants;
   }
 
   /**
@@ -242,7 +234,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         identityDoc.Applicant__c = applicantId;
       }
     }
-    ApplicantRepository.upsertRecords(identityDocuments);
+    // ApplicationRepository.upsertRecords(identityDocuments);
     return identityDocuments;
   }
 
@@ -263,7 +255,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       } // updating state = state full name in trigger(before insert before update)
       cpa.Name = String.isNotBlank(cpa.Street) ? cpa.Street?.left(255) : 'N/A';
     }
-    ApplicantRepository.upsertRecords(addresses);
+    //ApplicationRepository.upsertRecords(addresses);
     return addresses;
   }
 
@@ -280,7 +272,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         employment.Applicant__c = applicantId;
       }
     }
-    ApplicantRepository.upsertRecords(employments);
+    //ApplicationRepository.upsertRecords(employments);
     return employments;
   }
 
@@ -298,7 +290,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       }
       survey.Application__c = ApexRequest.getApplicationId();
     }
-    ApplicantRepository.upsertRecords(surveys);
+    //ApplicationRepository.upsertRecords(surveys);
     return surveys;
   }
 
@@ -316,10 +308,55 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       }
       consent.Application__c = ApexRequest.getApplicationId();
     }
-    ConsentRepository.upsertRecords(consents);
+    //ApplicationRepository.upsertRecords(consents);
     return consents;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 07-25-2022
+   * @param List<AssetAndLiability__c> consents
+   * @param Id applicantId
+   * @return List<AssetAndLiability__c>
+   **/
+  global virtual List<AssetAndLiability__c> saveAssetAndLiabilities(
+    List<AssetAndLiability__c> assetAndLiabilities,
+    Id applicantId
+  ) {
+    //properties
+    List<Property__c> properties = new List<Property__c>();
+    for (AssetAndLiability__c assetAndLiability : assetAndLiabilities) {
+      if (assetAndLiability?.Property__r != null) {
+        properties.add(assetAndLiability.Property__r);
+      }
+    }
+    ApplicationRepository.upsertRecords(properties);
+
+    //Asset and liabilities
+    for (AssetAndLiability__c assetAndLiability : assetAndLiabilities) {
+      if (String.isNotBlank(applicantId)) {
+        AssetAndLiability.Applicant__c = applicantId;
+      }
+      if (assetAndLiability?.Property__r != null) {
+        assetAndLiability.Property__c = assetAndLiability?.Property__r.Id;
+      }
+    }
+    ApplicationRepository.upsertRecords(assetAndLiabilities);
+
+    //liabilities and  property belongs to asset
+    List<AssetAndLiability__c> liabilities = new List<AssetAndLiability__c>();
+    for (AssetAndLiability__c assetAndLiability : assetAndLiabilities) {
+      if (!CollectionUtils.isListEmpty(assetAndLiability?.Liabilities__r)) {
+        for (AssetAndLiability__c liability : assetAndLiability.Liabilities__r) {
+          liability.Asset__c = assetAndLiability.Id;
+          liabilities.add(liability);
+        }
+      }
+    }
+    ApplicationRepository.upsertRecords(liabilities);
+
+    return assetAndLiabilities;
+  }
   /**
    * @description  delete object by Id
    * @author Digital Align Team | 11-10-2021
@@ -335,8 +372,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         if (!application.Applicants__r.isEmpty()) {
           this.deleteApplicants(new Map<Id, SObject>(application.Applicants__r).keySet());
         }
-        if (!application.mflow__FinancialAccounts__r.isEmpty()) {
-          recordsToDelete.addAll(application.mflow__FinancialAccounts__r);
+        if (!application.FinancialAccounts__r.isEmpty()) {
+          recordsToDelete.addAll(application.FinancialAccounts__r);
         }
         recordsToDelete.add(application);
         ApplicationRepository.deleteRecords(recordsToDelete);
@@ -404,94 +441,88 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
     //update value for financialAccount here
     for (FinancialAccount__c financialAccount : financialAccounts) {
-      financialAccount = this.saveFinancialAccount(financialAccount, applicationId);
+      if (String.isNotBlank(applicationId)) {
+        //Set Application ID
+        financialAccount.Application__c = applicationId;
+      }
     }
     FinancialAccountRepository.upsertRecords(financialAccounts);
 
     //save child of FinancialAccounts
-    for (FinancialAccount__c financialAccount : financialAccounts) {
-      financialAccount = this.saveFinancialAccountChild(financialAccount);
-    }
+    financialAccounts = this.saveFinancialAccountChilds(financialAccounts);
+
     log?.fine('Finish save FinancialAccounts');
     return financialAccounts;
   }
 
   /**
-   * @description  save financial account
-   * @author Digital Align Team | 01-10-2022
-   * @param FinancialAccount__c financialAccount
-   * @param String applicationId
-   * @return FinancialAccount__c
+   * @description Save Financial Account Children
+   * @author Digital Align Team | 07-26-2022
+   * @param List<FinancialAccount__c> financialAccounts
+   * @return List<FinancialAccount__c>
    **/
-  global virtual FinancialAccount__c saveFinancialAccount(FinancialAccount__c financialAccount, String applicationId) {
-    if (String.isNotBlank(applicationId)) {
-      //Set Application ID
-      financialAccount.Application__c = applicationId;
-    }
-    // #pending financialAccount record type mapping pending
-    return financialAccount;
-  }
+  global virtual List<FinancialAccount__c> saveFinancialAccountChilds(List<FinancialAccount__c> financialAccounts) {
+    List<SObject> listToUpdate = new List<SObject>();
+    List<FinancialAccountTransaction__c> financialAccountTransactions = new List<FinancialAccountTransaction__c>();
+    List<FinancialAccountService__c> financialAccountServices = new List<FinancialAccountService__c>();
+    List<Property__c> properties = new List<Property__c>();
+    Set<Property__c> propertywithLiabilities = new Set<Property__c>();
 
-  /**
-   * @description Save Financial Account Child
-   * @author Digital Align Team | 01-10-2022
-   * @param FinancialAccount__c financialAccount
-   * @return FinancialAccount__c
-   **/
-  global virtual FinancialAccount__c saveFinancialAccountChild(FinancialAccount__c financialAccount) {
-    if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountTransactions__r)) {
-      this.saveFinancialAccountTransactions(financialAccount.FinancialAccountTransactions__r, financialAccount.Id);
-    }
-
-    // Save ProductServices
-    if (!collectionUtils.isListEmpty(financialAccount?.mflow__FinancialAccountServices__r)) {
-      this.saveFinancialAccountServices(financialAccount.mflow__FinancialAccountServices__r, financialAccount.Id);
-    }
-    return financialAccount;
-  }
-
-  /**
-   * @description save financial transaction history
-   * @author Digital Align Team | 01-10-2022
-   * @param List<FinancialAccountTransaction__c> financialAccountTransactions
-   * @param Id financialAccountId
-   * @return  List<FinancialAccountTransaction__c>
-   **/
-  global virtual List<FinancialAccountTransaction__c> saveFinancialAccountTransactions(
-    List<FinancialAccountTransaction__c> financialAccountTransactions,
-    Id financialAccountId
-  ) {
-    for (FinancialAccountTransaction__c financialAccountTransaction : financialAccountTransactions) {
-      if (String.isNotBlank(financialAccountId)) {
-        financialAccountTransaction.mflow__FinancialAccount__c = financialAccountId;
+    for (FinancialAccount__c financialAccount : financialAccounts) {
+      // save financial transaction history
+      if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountTransactions__r)) {
+        for (
+          FinancialAccountTransaction__c financialAccountTransaction : financialAccount.FinancialAccountTransactions__r
+        ) {
+          financialAccountTransaction.FinancialAccount__c = financialAccount.Id;
+          if (String.isBlank(financialAccountTransaction.TransactionStatus__c)) {
+            financialAccountTransaction.TransactionStatus__c = 'Pending';
+          }
+          financialAccountTransactions.add(financialAccountTransaction);
+        }
+        //ApplicationRepository.upsertRecords(financialAccountTransactions);
+        listToUpdate.addAll(financialAccountTransactions);
       }
 
-      if (String.isBlank(financialAccountTransaction.TransactionStatus__c)) {
-        financialAccountTransaction.TransactionStatus__c = 'Pending';
+      // Save ProductServices
+      if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountServices__r)) {
+        for (FinancialAccountService__c financialAccountService : financialAccount.FinancialAccountServices__r) {
+          financialAccountService.FinancialAccount__c = financialAccount.Id;
+          financialAccountServices.add(financialAccountService);
+        }
+        //ApplicationRepository.upsertRecords(financialAccountServices);
+        listToUpdate.addAll(financialAccountServices);
+      }
+
+      // Save properties
+      if (!collectionUtils.isListEmpty(financialAccount?.Properties__r)) {
+        for (Property__c property : financialAccount.Properties__r) {
+          property.FinancialAccount__c = financialAccount.Id;
+          properties.add(property);
+
+          //property has liablities associated
+          if (!collectionUtils.isListEmpty(property?.AssetAndLiabilities__r)) {
+            propertywithLiabilities.add(property);
+          }
+        }
+        //ApplicationRepository.upsertRecords(properties);
+        listToUpdate.addAll(properties);
       }
     }
-    ApplicantRepository.upsertRecords(financialAccountTransactions);
-    return financialAccountTransactions;
-  }
-  /**
-   * @description save financial Account Services
-   * @author Digital Align Team | 01-10-2022
-   * @param List<mflow__FinancialAccountService__c> financialAccountTransactions
-   * @param Id financialAccountId
-   * @return  List<mflow__FinancialAccountService__c>
-   **/
-  global virtual List<mflow__FinancialAccountService__c> saveFinancialAccountServices(
-    List<mflow__FinancialAccountService__c> financialAccountServices,
-    Id financialAccountId
-  ) {
-    for (mflow__FinancialAccountService__c financialAccountService : financialAccountServices) {
-      if (String.isNotBlank(financialAccountId) && String.isNotBlank(financialAccountService.FinancialAccount__c)) {
-        financialAccountService.FinancialAccount__c = financialAccountId;
+    ApplicationRepository.upsertRecords(listToUpdate);
+
+    // Save Property liability
+    listToUpdate = new List<SObject>();
+    for (Property__c property : propertywithLiabilities) {
+      for (AssetAndLiability__c liability : property?.AssetAndLiabilities__r) {
+        liability.Property__c = property.Id;
+        listToUpdate.add(liability);
       }
     }
-    ApplicantRepository.upsertRecords(financialAccountServices);
-    return financialAccountServices;
+    ApplicationRepository.upsertRecords(listToUpdate);
+    return financialAccounts;
   }
+
   /**
    * @description Save Customer Interest
    * @author Digital Align Team | 04-03-2022
@@ -508,7 +539,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
         customerInterest.Application__c = applicationId;
       }
     }
-    ApplicantRepository.upsertRecords(customerInterests);
+    ApplicationRepository.upsertRecords(customerInterests);
     return customerInterests;
   }
 }

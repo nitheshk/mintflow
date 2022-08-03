@@ -42,7 +42,19 @@ global virtual with sharing class ApplicantService extends AbstractService {
    * @param Set<Id> applicantIds
    **/
   global virtual List<Applicant__c> readApplicantsWithChild(Set<Id> applicantIds) {
-    return ApplicantRepository.readApplicantsWithChild(applicantIds);
+    List<Applicant__c> applicants = ApplicantRepository.readApplicantsWithChild(applicantIds);
+
+    for (Integer i = 0; i < applicants.size(); i++) {
+      if (!applicants[i].AssetAndLiabilities__r.isEmpty()) {
+        SObjectConstructor builder = SObjectConstructor.getInstance(applicants[i]);
+        builder.setChildObjects(
+          'mflow__AssetAndLiabilities__r',
+          ApplicantRepository.readAssetAndLiabilityWithChild(applicants[i].AssetAndLiabilities__r)
+        );
+        applicants[i] = (Applicant__c) builder.build();
+      }
+    }
+    return applicants;
   }
 
   /**
@@ -51,7 +63,17 @@ global virtual with sharing class ApplicantService extends AbstractService {
    * @param String applicantId
    **/
   global virtual Applicant__c readApplicantWithChild(Id applicantId) {
-    return ApplicantRepository.readApplicantWithChild(applicantId);
+    Applicant__c applicant = ApplicantRepository.readApplicantWithChild(applicantId);
+
+    if (!applicant.AssetAndLiabilities__r.isEmpty()) {
+      SObjectConstructor builder = SObjectConstructor.getInstance(applicant);
+      builder.setChildObjects(
+        'mflow__AssetAndLiabilities__r',
+        ApplicantRepository.readAssetAndLiabilityWithChild(applicant.AssetAndLiabilities__r)
+      );
+      applicant = (Applicant__c) builder.build();
+    }
+    return applicant;
   }
 
   /**
@@ -106,16 +128,6 @@ global virtual with sharing class ApplicantService extends AbstractService {
   }
 
   /**
-   * @description before saving Applicant
-   * @author Digital Align Team | 11-09-2021
-   * @param Applicant__c applicant
-   * @return virtual
-   **/
-  global virtual Applicant__c beforeSaveApplicant(Applicant__c applicant) {
-    return applicant;
-  }
-
-  /**
    * @description save applicant with child record
    * @author Digital Align Team | 10-27-2021
    * @param Applicant__c applicant
@@ -123,38 +135,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
    * @return Applicant__c
    **/
   global virtual Applicant__c saveApplicant(Applicant__c applicant, String applicationId) {
-    applicant = beforeSaveApplicant(applicant);
-    Savepoint sp = Database.setSavepoint();
-    try {
-      applicant = ApplicationPersistService.getInstance().saveApplicant(applicant, applicationId);
-      ApplicantRepository.upsertRecord(applicant);
-
-      if (!ApexRequest.getParams().containsKey('ApexSkipApplicantChild')) {
-        applicant = ApplicationPersistService.getInstance().saveApplicantChild(applicant);
-      }
-    } catch (Exception ex) {
-      log?.error(ex);
-      Database.rollback(sp);
-      throw ex;
-    }
-    return afterSaveApplicant(applicant);
-  }
-  /**
-   * @description  after saving applicant
-   * @author Digital Align Team | 11-09-2021
-   * @param Applicant__c applicant
-   * @return virtual
-   **/
-  global virtual Applicant__c afterSaveApplicant(Applicant__c applicant) {
-    String currentPage = ApexRequest.getRequest().currentPage;
-    switch on currentPage {
-      when 'PersonalInfo' {
-        if (ApexRequest.getApplicantType() == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
-          helper.notifyFamilyConnectReference(ApexRequest.getApplicationId());
-        }
-      }
-    }
-    return applicant;
+    return this.saveApplicants(new List<Applicant__c>{ applicant }, applicationId)[0];
   }
 
   /**

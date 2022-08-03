@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MixedUseProperty__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >If you will occupy the property, will you set aside space within the property to operate your own business?</description>
+    <externalId>false</externalId>
+    <label>Operate your own business?</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
