@@ -170,20 +170,21 @@ global virtual with sharing class ApplicantService extends AbstractService {
 
     Contact existingContact = ApplicantRepository.fetchExistingContact(primaryApplicant);
     FinancialProduct__c baseProduct = FinancialAccountRepository.readBaseProduct();
+    FinancialAccount__c primaryAccount = application.FinancialAccounts__r[0];
 
-    FinancialAccount__c primaryAccount = new FinancialAccount__c();
     List<FinancialAccount__c> financialAccounts = application.FinancialAccounts__r;
+    FinancialAccount__c financialAccount = new FinancialAccount__c();
     List<CustomerInterest__c> customerIntList = new List<CustomerInterest__c>();
     List<FinancialAccount__c> financialAccounttoDelete = new List<FinancialAccount__c>();
 
     Map<String, FinancialProduct__c> productMap = new Map<String, FinancialProduct__c>();
     List<String> productCodes = new List<String>();
+    Boolean baseProductExists = false;
 
     try {
       for (FinancialAccount__c customerAccount : financialAccounts) {
         productCodes.add(customerAccount.ProductCode__c);
       }
-
       List<FinancialProduct__c> selectedProducts = FinancialAccountRepository.readFinancialProductsByMultipleCodes(
         productCodes
       );
@@ -203,28 +204,28 @@ global virtual with sharing class ApplicantService extends AbstractService {
           customerInterest.Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_INITIAL_INTEREST;
           customerInterest.isSelected__c = true;
           customerInterest.mflow__Required__c = true;
-
           customerIntList.add(customerInterest);
           financialAccounttoDelete.add(finAccount);
 
           application.IsExistingCustomer__c = false;
         } else if (primaryAccount.ProductCode__c != baseProduct.InternalCode__c && existingContact != null) {
           application.IsExistingCustomer__c = true;
+        } else {
+          baseProductExists = true; // to verify if regular savings exists or not
         }
       }
-
-      FinancialAccount__c financialAccount = new FinancialAccount__c();
-      financialAccount.FinancialProduct__c = baseProduct.Id;
-      financialAccount.Ownership__c = 'Individual';
-      financialAccount.IsPrimary__c = true;
-      financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
-      financialAccount.Stage__c = 'Active';
-      financialAccount.Application__c = application.Id;
-      financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
-        FinancialAccount__c.SObjectType,
-        baseProduct.Category__c
-      );
-
+      if (!baseProductExists) {
+        financialAccount.FinancialProduct__c = baseProduct.Id;
+        financialAccount.Ownership__c = 'Individual';
+        financialAccount.IsPrimary__c = true;
+        financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
+        financialAccount.Stage__c = 'Active';
+        financialAccount.Application__c = application.Id;
+        financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
+          FinancialAccount__c.SObjectType,
+          baseProduct.Category__c
+        );
+      }
       if (existingContact != null) {
         primaryApplicant.contact__c = existingContact.Id;
         primaryApplicant.IsExistingCustomer__c = true;
@@ -234,7 +235,9 @@ global virtual with sharing class ApplicantService extends AbstractService {
       FinancialAccountRepository.upsertRecords(customerIntList);
       FinancialAccountRepository.deleteRecords(financialAccounttoDelete);
       ApplicantRepository.upsertRecord(application);
-      FinancialAccountRepository.upsertRecord(financialAccount);
+      if (financialAccount != null) {
+        FinancialAccountRepository.upsertRecord(financialAccount);
+      }
     } catch (exception ex) {
       system.debug('eror at ' + ex.getmessage() + ex.getLineNumber());
     }
