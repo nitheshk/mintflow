@@ -43,5 +43,5 @@ force-app/main/default/layouts/systemAdminLayout/PersonAccount-Person Account La
 force-app/main/default/authproviders/UiPath.authprovider-meta.xml
 force-app/main/default/testSuites
 
-fsc-app
+#fsc-app
 fsc-app/main/default/sharingRules

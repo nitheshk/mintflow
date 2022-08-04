@@ -111,24 +111,9 @@ gulp.task("installPackage", function (finish) {
   });
 });
 
-//convertToSource
-gulp.task("convertToSource", function (finish) {
-  let scriptToRun = ` sfdx force:source:convert -r ${config.sandboxes.dev.rootFolder} -d ${config.sandboxes.dev.sourceConvert} --wait 20 `;
-  console.log("Script To Run - " + scriptToRun);
-  utils
-    .runCommand(scriptToRun)
-    .then((result) => {
-      console.log("Result :" + result);
-      finish();
-    })
-    .catch((err) => {
-      console.log(err.stdout);
-    });
-});
-
-//deployToSandbox
-gulp.task("deployToSandbox", function (finish) {
-  let scriptToRun = ` sfdx force:mdapi:deploy -d ${config.sandboxes.dev.sourceConvert}  -w 10000 -c --targetusername  ${config.sandboxes.dev.sandboxOrgName}`;
+//pushToSandbox
+gulp.task("pushToSandbox", function (finish) {
+  let scriptToRun = ` sfdx force:source:deploy -p ${config.sandboxes.dev.rootFolder}  -w 10000 --targetusername  ${config.sandboxes.dev.sandboxOrgName} `;
   console.log("Script To Run - " + scriptToRun);
   utils
     .runCommand(scriptToRun)
@@ -283,8 +268,7 @@ gulp.task(
     "authorizeSandbox",
     "defaultToSandbox",
     "installPackage",
-    "convertToSource",
-    "deployToSandbox",
+    "pushToSandbox",
     "updatePermissionSet",
     "publishCommunities",
     "systemConfigImport"
@@ -292,15 +276,13 @@ gulp.task(
 );
 
 gulp.task(
-  "deployToSandbox",
+  "deployToSandboxWithoutRefresh",
   gulp.series(
     "readConfig",
     "buildUI_MintFlow",
     "buildUI_OnlinePortal",
     "authorizeSandbox",
-    "defaultToSandbox",
-    "convertToSource",
-    "deployToSandbox",
+    "pushToSandbox",
     "publishCommunities"
   )
 );
@@ -313,8 +295,7 @@ gulp.task(
     "buildUI_OnlinePortal",
     "authorizeSandbox",
     "defaultToSandbox",
-    "convertToSource",
-    "deployToSandbox",
+    "pushToSandbox",
     "publishCommunities",
     "systemConfigImport"
   )

@@ -65,21 +65,25 @@ Use **Cntr + Shift + B** and Select `SFDX: create new scratch org`
 
 Following command are executed in squence
 
-> Step 2.1 `gulp setupDevHub`
+> Step 2.1 `gulp buildUI_MintFlow`
 
-> Step 2.2 `gulp deleteScratchOrg`
+> Step 2.2 `gulp buildUI_OnlinePortal`
 
-> Step 2.3 `gulp createScratchOrg`
+> Step 2.3 `gulp authorizeSandbox`
 
-> Step 2.4 `gulp defaultToScratch`
+> Step 2.4 `gulp defaultToSandbox`
 
-> Step 2.5 `gulp pushToscratch`
+> Step 2.5 `gulp installPackage`
 
-> Step 2.6 `gulp updatePermissionSet`
+> Step 2.6 `gulp convertToSource`
 
-> Step 2.7 `gulp publishCommunities`
+> Step 2.7 `gulp pushToSandbox`
 
-> Step 2.8 `gulp systemConfigImport`
+> Step 2.8 `gulp updatePermissionSet`
+
+> Step 2.9 `gulp publishCommunities`
+
+> Step 2.10 `gulp systemConfigImport`
 
 if any step fails in between, fix the error and continue executing next step
 
