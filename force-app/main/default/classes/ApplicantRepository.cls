@@ -49,6 +49,9 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
     return (List<AssetAndLiability__c>) DatabaseUtils.getRecords(
       Query.newInstance(AssetAndLiability__c.SObjectType)
         .addFields()
+        .queryLookup('mflow__Property__r')
+        .addFields()
+        .run()
         .queryChild('mflow__Liabilities__r')
         .orderBy('mflow__Order__c')
         .addFields()
