@@ -2331,7 +2331,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Property__c.YearPurchased__c</field>
+        <field>Property__c.mflow__YearPurchased__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
