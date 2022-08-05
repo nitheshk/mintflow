@@ -2447,11 +2447,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AssetAndLiability__c.AccountType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>AssetAndLiability__c.Applicant__c</field>
         <readable>true</readable>
     </fieldPermissions>

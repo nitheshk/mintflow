@@ -2281,11 +2281,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Property__c.Address__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Property__c.AnnualPropertyTax__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2354,11 +2349,7 @@
         <field>AssetAndLiability__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>AssetAndLiability__c.AccountType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    
     <fieldPermissions>
         <editable>true</editable>
         <field>AssetAndLiability__c.Applicant__c</field>
