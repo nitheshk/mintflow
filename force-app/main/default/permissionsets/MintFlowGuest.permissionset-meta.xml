@@ -2342,14 +2342,30 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Property__c.FinancialAccount__c</field>
+        <field>Property__c.City__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>Property__c.Street__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>Property__c.State__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>Property__c.ZipCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Property__c.Address__c</field>
+        <field>Property__c.FinancialAccount__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    
     <fieldPermissions>
         <editable>true</editable>
         <field>Property__c.AnnualPropertyTax__c</field>
@@ -2377,12 +2393,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Property__c.mflow__PropertyValue__c</field>
+        <field>Property__c.PropertyValue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Property__c.mflow__Year_Purchased__c</field>
+        <field>Property__c.YearPurchased__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

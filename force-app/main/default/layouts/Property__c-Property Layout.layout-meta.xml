@@ -25,21 +25,25 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Street__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>State__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>MixedUseProperty__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Address__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Ocuupancy__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Year_Purchased__c</field>
+                <field>YearPurchased__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -48,6 +52,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ManufacturedHome__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>City__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ZipCode__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
