@@ -2390,6 +2390,16 @@
         <field>Property__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>AssetAndLiability__c.MarketValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>AssetAndLiability__c.SubType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>AssetAndLiability__c.Applicant__c</field>
