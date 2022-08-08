@@ -34,7 +34,6 @@ global with sharing class ProductServiceResolver extends AbstractService {
    **/
   global virtual List<FinancialAccountService__c> fetchServices(String data) {
     Application__c application = ProductServiceRepository.readApplicationWithFA(ApexRequest.getApplicationId());
-    log?.debug('application=' + application);
 
     List<FinancialAccountService__c> financialAccountService = new List<FinancialAccountService__c>();
 

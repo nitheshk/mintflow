@@ -463,14 +463,12 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    **/
   global virtual List<FinancialAccount__c> saveFinancialAccountChilds(List<FinancialAccount__c> financialAccounts) {
     List<SObject> listToUpdate = new List<SObject>();
-    List<FinancialAccountTransaction__c> financialAccountTransactions = new List<FinancialAccountTransaction__c>();
-    List<FinancialAccountService__c> financialAccountServices = new List<FinancialAccountService__c>();
-    List<Property__c> properties = new List<Property__c>();
     Set<Property__c> propertywithLiabilities = new Set<Property__c>();
 
     for (FinancialAccount__c financialAccount : financialAccounts) {
       // save financial transaction history
       if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountTransactions__r)) {
+        List<FinancialAccountTransaction__c> financialAccountTransactions = new List<FinancialAccountTransaction__c>();
         for (
           FinancialAccountTransaction__c financialAccountTransaction : financialAccount.FinancialAccountTransactions__r
         ) {
@@ -486,6 +484,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
       // Save ProductServices
       if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountServices__r)) {
+        List<FinancialAccountService__c> financialAccountServices = new List<FinancialAccountService__c>();
         for (FinancialAccountService__c financialAccountService : financialAccount.FinancialAccountServices__r) {
           financialAccountService.FinancialAccount__c = financialAccount.Id;
           financialAccountServices.add(financialAccountService);
@@ -496,6 +495,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
       // Save properties
       if (!collectionUtils.isListEmpty(financialAccount?.Properties__r)) {
+        List<Property__c> properties = new List<Property__c>();
         for (Property__c property : financialAccount.Properties__r) {
           property.FinancialAccount__c = financialAccount.Id;
           properties.add(property);
