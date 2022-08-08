@@ -167,86 +167,58 @@ global virtual with sharing class ApplicantService extends AbstractService {
   global virtual Application__c validateExistingCustomer(Id applicationId) {
     Application__c application = ApplicantRepository.readApplicationWithPrimary(applicationId);
     Applicant__c primaryApplicant = application.Applicants__r[0];
-
     Contact existingContact = ApplicantRepository.fetchExistingContact(primaryApplicant);
     FinancialProduct__c baseProduct = FinancialAccountRepository.readBaseProduct();
-    FinancialAccount__c primaryAccount = application.FinancialAccounts__r[0];
 
-    List<FinancialAccount__c> financialAccounts = application.FinancialAccounts__r;
-    FinancialAccount__c financialAccount = new FinancialAccount__c();
-    List<CustomerInterest__c> customerIntList = new List<CustomerInterest__c>();
-    List<FinancialAccount__c> financialAccounttoDelete = new List<FinancialAccount__c>();
-
-    Map<String, FinancialProduct__c> productMap = new Map<String, FinancialProduct__c>();
-    List<String> productCodes = new List<String>();
-    Boolean baseProductExists = false;
-
+    Savepoint sp = Database.setSavepoint();
     try {
-      for (FinancialAccount__c customerAccount : financialAccounts) {
-        productCodes.add(customerAccount.ProductCode__c);
+      Boolean hasBaseProduct = false;
+      for (FinancialAccount__c fainancialAccount : application.FinancialAccounts__r) {
+        if (fainancialAccount.ProductCode__c == baseProduct.InternalCode__c) {
+          hasBaseProduct = true;
+        }
       }
-      List<FinancialProduct__c> selectedProducts = FinancialAccountRepository.readFinancialProductsByMultipleCodes(
-        productCodes
-      );
 
-      for (FinancialProduct__c product : selectedProducts) {
-        productMap.put(product.Id, product);
-      }
-      if (primaryAccount.ProductCode__c == baseProduct.InternalCode__c && existingContact != null) {
+      if (hasBaseProduct && existingContact != null) {
         throw new CustomException('You already have Membership Account');
       }
-      for (FinancialAccount__c finAccount : financialAccounts) {
-        if (primaryAccount.ProductCode__c != baseProduct.InternalCode__c && existingContact == null) {
+
+      if (!hasBaseProduct && existingContact == null) {
+        List<CustomerInterest__c> customerInterestList = new List<CustomerInterest__c>();
+        application.IsExistingCustomer__c = false;
+        for (FinancialAccount__c fainancialAccount : application.FinancialAccounts__r) {
           CustomerInterest__c customerInterest = new CustomerInterest__c();
-          customerInterest.Application__c = applicationId;
-          customerInterest.Name = productMap.get(finAccount.FinancialProduct__c).Name;
-          customerInterest.InterestProduct__c = finAccount.FinancialProduct__c;
+          customerInterest.Application__c = application.Id;
+          customerInterest.Name = fainancialAccount.FinancialProduct__r.Name;
+          customerInterest.InterestProduct__c = fainancialAccount.FinancialProduct__c;
           customerInterest.Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_INITIAL_INTEREST;
           customerInterest.isSelected__c = true;
           customerInterest.mflow__Required__c = true;
-          customerIntList.add(customerInterest);
-          financialAccounttoDelete.add(finAccount);
-
-          application.IsExistingCustomer__c = false;
-        } else if (primaryAccount.ProductCode__c != baseProduct.InternalCode__c && existingContact != null) {
-          application.IsExistingCustomer__c = true;
-        } else {
-          baseProductExists = true; // to verify if regular savings exists or not
+          customerInterestList.add(customerInterest);
         }
-      }
-      if (!baseProductExists) {
-        financialAccount.FinancialProduct__c = baseProduct.Id;
-        financialAccount.Ownership__c = 'Individual';
-        financialAccount.IsPrimary__c = true;
-        financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
-        financialAccount.Stage__c = 'Active';
-        financialAccount.Application__c = application.Id;
-        financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
-          FinancialAccount__c.SObjectType,
-          baseProduct.Category__c
-        );
-      }
-      if (existingContact != null) {
+        FinancialAccountRepository.upsertRecords(customerInterestList);
+        FinancialAccountRepository.deleteRecords(application.FinancialAccounts__r);
+        // create base product
+        FinancialAccountService.getInstance().createInitialFinancialAccount(application);
+      } else if (!hasBaseProduct && existingContact != null) {
+        application.IsExistingCustomer__c = true;
+        ApplicantRepository.upsertRecord(application);
+
         primaryApplicant.contact__c = existingContact.Id;
         primaryApplicant.IsExistingCustomer__c = true;
         ApplicantRepository.upsertRecord(primaryApplicant);
       }
-
-      FinancialAccountRepository.upsertRecords(customerIntList);
-      FinancialAccountRepository.deleteRecords(financialAccounttoDelete);
-      ApplicantRepository.upsertRecord(application);
-      if (financialAccount != null) {
-        FinancialAccountRepository.upsertRecord(financialAccount);
-      }
     } catch (exception ex) {
-      system.debug('eror at ' + ex.getmessage() + ex.getLineNumber());
+      Database.rollback(sp);
+      throw ex;
     }
 
     if (ApexRequest.getApplicantType() == 'Primary') {
       return ApplicationService.getInstance().readApplicationWithChild(applicationId);
     } else if (ApexRequest.getApplicantType() == 'Joint') {
       return ApplicationService.getInstance().readApplicationWithChild(applicationId, ApexRequest.getApplicantId());
-    } else
+    } else {
       return null;
+    }
   }
 }

@@ -190,6 +190,9 @@ global with sharing class ApplicantRepository extends DatabaseUtils {
       .run()
       .queryChild('mflow__FinancialAccounts__r')
       .addFields()
+      .queryLookUp('mflow__FinancialProduct__r')
+      .addFields()
+      .run()
       //.whereEq('IsPrimary__c', true)
       .run()
       .whereEq('Id', applicationId);
