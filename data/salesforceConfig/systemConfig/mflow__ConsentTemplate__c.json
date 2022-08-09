@@ -599,6 +599,39 @@
           }
         ]
       }
+    },
+    {
+      "attributes": { "type": "mflow__ConsentTemplate__c", "referenceId": "ConsentTemplateRef19" },
+      "Name": "Home Equity Line of Credit (HELOC) Membership Agreement",
+      "mflow__Code__c": "C00022",
+      "mflow__ConsentType__c": "Disclosure",
+      "mflow__DocumentName__c": "mflow__CustomerAgreement",
+      "mflow__DocumentType__c": "Visualforce",
+      "mflow__ExternalId__c": "E00022",
+      "mflow__Language__c": "English",
+      "mflow__LongDescipription__c": "Home Equity Line of Credit (HELOC) Membership Agreement",
+      "mflow__ShortDescription__c": "Home Equity Line of Credit (HELOC) Membership Agreement",
+      "mflow__URL__c": "mflow__CustomerAgreement?id={applicationId}",
+      "mflow__VersionNumber__c": "v1",
+      "mflow__ConsentLineItems__r": {
+        "totalSize": 1,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ConsentLineItem__c", "referenceId": "ConsentLineItemRef19_0" },
+            "Name": "Home Equity Line of Credit (HELOC) Membership Agreement",
+            "mflow__ApplicantType__c": "Primary",
+            "mflow__Channel__c": "Virtual;Branch",
+            "mflow__EventIdentifier__c": "MemberAgreementPage",
+            "mflow__ExternalId__c": "CLI00019",
+            "mflow__FinancialProduct__c": "@HL001",
+            "mflow__FinancilProductCategory__c": "Mortgage",
+            "mflow__IsSignatureRequired__c": false,
+            "mflow__Order__c": 19,
+            "mflow__isActive__c": true
+          }
+        ]
+      }
     }
   ]
 }
