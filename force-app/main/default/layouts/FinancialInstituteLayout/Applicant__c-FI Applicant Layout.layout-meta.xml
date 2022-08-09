@@ -225,7 +225,15 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>DemographicCollectedThrough__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Gender__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>GenderCollectedOnVisual__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -238,6 +246,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>EthnicityOtherHispanicOrLatino__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>EthnicityCollectedOnVisual__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -260,6 +272,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>RaceOtherPacificIslander__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RaceCollectedOnVisual__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -372,7 +388,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0p000001jOYD</masterLabel>
+        <masterLabel>00h0p000001jOYk</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
