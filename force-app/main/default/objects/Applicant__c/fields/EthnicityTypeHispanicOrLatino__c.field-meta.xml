@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EthnicityTypeHispanicOrLatino__c</fullName>
+    <description
+  >Hispanic refers to individuals who are Spanish-speaking or have a background in a Spanish-speaking country. Latino refers to those who are from or have a background in a Latin American country</description>
+    <externalId>false</externalId>
+    <label>Ethnicity Type Hispanic Or Latino</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Mexican</fullName>
+                <default>false</default>
+                <label>Mexican</label>
+            </value>
+            <value>
+                <fullName>Puerto Rican</fullName>
+                <default>false</default>
+                <label>Puerto Rican</label>
+            </value>
+            <value>
+                <fullName>Cuban</fullName>
+                <default>false</default>
+                <label>Cuban</label>
+            </value>
+            <value>
+                <fullName>Other Hispanic or Latino</fullName>
+                <default>false</default>
+                <label>Other Hispanic or Latino</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>
