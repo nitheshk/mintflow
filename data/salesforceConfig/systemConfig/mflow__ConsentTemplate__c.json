@@ -157,7 +157,7 @@
             "mflow__EventIdentifier__c": "MemberAgreementPage",
             "mflow__ExternalId__c": "CLI00015",
             "mflow__FinancialProduct__c": "@IC0010",
-            "mflow__FinancilProductCategory__c": "Money Market",
+            "mflow__FinancilProductCategory__c": "Checking",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 15,
             "mflow__isActive__c": true
@@ -317,7 +317,7 @@
             "mflow__Channel__c": "Virtual;Branch",
             "mflow__EventIdentifier__c": "MemberAgreementPage",
             "mflow__ExternalId__c": "CLI0003",
-            "mflow__FinancilProductCategory__c": "Savings;Checking;Money Market;Certificate",
+            "mflow__FinancilProductCategory__c": "Savings;Checking;Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 3,
             "mflow__isActive__c": true
@@ -592,7 +592,7 @@
             "mflow__EventIdentifier__c": "MemberAgreementPage",
             "mflow__ExternalId__c": "CLI00014",
             "mflow__FinancialProduct__c": "@IC0011",
-            "mflow__FinancilProductCategory__c": "Money Market",
+            "mflow__FinancilProductCategory__c": "Savings",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 14,
             "mflow__isActive__c": true
