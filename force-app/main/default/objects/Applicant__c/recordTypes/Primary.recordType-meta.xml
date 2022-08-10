@@ -59,7 +59,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>DemographicCollectedMedia__c</picklist>
+        <picklist>DemographicCollectedThrough__c</picklist>
         <values>
             <fullName>Email or Internet</fullName>
             <default>false</default>
