@@ -130,7 +130,7 @@ public with sharing class TestData {
     employment.Position__c = 'Lead';
     employment.Duration__c = 3;
     employment.DocumentType__c = 'Payslip';
-    employment.BranchofService__c = 'Air Force';
+    employment.BranchOfService__c = 'Air Force';
     employment.EnlistmentDate__c = null;
     return employment;
   }

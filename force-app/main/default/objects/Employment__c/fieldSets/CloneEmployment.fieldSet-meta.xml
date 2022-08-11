@@ -8,7 +8,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>BranchofService__c</field>
+        <field>BranchOfService__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
@@ -108,7 +108,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>isDocumentGenerated__c</field>
+        <field>IsDocumentGenerated__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

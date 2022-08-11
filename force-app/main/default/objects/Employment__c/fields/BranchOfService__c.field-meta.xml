@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>BranchofService__c</fullName>
+    <fullName>BranchOfService__c</fullName>
     <description>Capture branch for military type</description>
     <externalId>false</externalId>
     <label>Branch of Service</label>

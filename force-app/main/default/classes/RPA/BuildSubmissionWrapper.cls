@@ -247,7 +247,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       mapperEmployment.Position = employment.Position__c;
       mapperEmployment.EmploymentDuration = employment.Duration__c;
       mapperEmployment.DocumentType = employment.DocumentType__c;
-      mapperEmployment.BranchofService = employment.BranchofService__c;
+      mapperEmployment.BranchofService = employment.BranchOfService__c;
       mapperEmployment.EnlistmentDate = employment.EnlistmentDate__c;
       mapperEmploymentList.add(mapperEmployment);
     }

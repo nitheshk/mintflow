@@ -225,7 +225,7 @@ global with sharing class ApplicantController extends AbstractController {
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       ID employerId = (Id) ApexRequest.getParams('employerId');
       Employment__c employmentObj = EmploymentService.getInstance().readEmployerbyId(employerId);
-      if (employmentObj != null && employmentObj.isDocumentGenerated__c == false) {
+      if (employmentObj != null && employmentObj.IsDocumentGenerated__c == false) {
         return ApexResponse.ok(EmploymentService.getInstance().generatePaySlipsW2(applicantId, employerId));
       } else {
         return ApexResponse.ok('The files are already generated, so skipping ');

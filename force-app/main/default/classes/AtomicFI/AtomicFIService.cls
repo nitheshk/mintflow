@@ -224,7 +224,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     Applicant__c applicant = ApplicantRepository.readApplicantById(applicantId);
     try {
       if (employmentObj != null) {
-        employmentObj.isDocumentGenerated__c = true;
+        employmentObj.IsDocumentGenerated__c = true;
         employmentObj.mflow__VerificationStatus__c = 'Verified';
         EmploymentRepository.UpsertRecord(employmentObj);
         log?.debug('Document Generated: True');

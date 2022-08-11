@@ -1287,7 +1287,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.BranchofService__c</field>
+        <field>Employment__c.BranchOfService__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1382,7 +1382,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.isDocumentGenerated__c</field>
+        <field>Employment__c.IsDocumentGenerated__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
