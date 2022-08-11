@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>EmploymentDuration__c</fullName>
-    <description>Employment duration in years.</description>
+    <fullName>DurationYears__c</fullName>
+    <description>Years of employmengt duration</description>
     <externalId>false</externalId>
-    <label>Employment Duration</label>
+    <label>Duration years</label>
     <precision>2</precision>
     <required>false</required>
     <scale>0</scale>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Number</type>
     <unique>false</unique>

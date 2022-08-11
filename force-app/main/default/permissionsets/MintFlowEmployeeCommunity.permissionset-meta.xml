@@ -251,7 +251,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.EmploymentStatus__c</field>
+        <field>Employment__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -606,12 +606,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.EmploymentDurationMonths__c</field>
+        <field>Employment__c.PhoneNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.EmploymentDurationYears__c</field>
+        <field>Employment__c.DurationMonths__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Employment__c.DurationYears__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1706,7 +1711,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.EmploymentVerificationType__c</field>
+        <field>Employment__c.VerificationType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1716,12 +1721,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.EmploymentDuration__c</field>
+        <field>Employment__c.Duration__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.EmploymentType__c</field>
+        <field>Employment__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1746,12 +1751,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.EmployerAddress__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Employment__c.EmploymentStatus__c</field>
+        <field>Employment__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

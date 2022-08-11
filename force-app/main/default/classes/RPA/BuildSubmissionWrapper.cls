@@ -235,9 +235,9 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
     for (Employment__c employment : employmentList) {
       SubmissionDTO.Employment mapperEmployment = new SubmissionDTO.Employment();
       mapperEmployment.EmploymentId = employment.Id;
-      mapperEmployment.EmploymentType = employment.EmploymentType__c;
+      mapperEmployment.EmploymentType = employment.Type__c;
       mapperEmployment.EmployerName = employment.Name;
-      mapperEmployment.EmploymentStatus = getStatusMapping('EmploymentStatus__c', employment.EmploymentStatus__c);
+      mapperEmployment.EmploymentStatus = getStatusMapping('Status__c', employment.Status__c);
       mapperEmployment.GrossMonthlySalary = employment.GrossMonthlySalary__c;
       mapperEmployment.Name = employment.Name;
       mapperEmployment.IncomeType = employment.IncomeType__c;
@@ -245,7 +245,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       mapperEmployment.Order = employment.Order__c;
       mapperEmployment.PayGrade = employment.PayGrade__c;
       mapperEmployment.Position = employment.Position__c;
-      mapperEmployment.EmploymentDuration = employment.EmploymentDuration__c;
+      mapperEmployment.EmploymentDuration = employment.Duration__c;
       mapperEmployment.DocumentType = employment.DocumentType__c;
       mapperEmployment.BranchofService = employment.BranchofService__c;
       mapperEmployment.EnlistmentDate = employment.EnlistmentDate__c;
@@ -422,7 +422,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
           })
           .get(value);
       }
-      when 'EmploymentStatus__c' {
+      when 'Status__c' {
         return (new Map<String, String>{
             'Employed' => 'Employed',
             'Self Employed' => 'Self Employed',

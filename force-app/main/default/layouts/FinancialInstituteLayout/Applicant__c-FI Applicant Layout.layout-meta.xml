@@ -350,7 +350,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>EmploymentStatus__c</fields>
+        <fields>Status__c</fields>
         <fields>EmployeeType__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>Employment__c.Applicant__c</relatedList>

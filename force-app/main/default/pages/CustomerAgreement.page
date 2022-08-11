@@ -187,7 +187,7 @@
           </apex:repeat>
 
           <apex:repeat var="employmentVar" value="{!applicantVar.Employments__r}">
-            <h3 style="background: #f5f6f8">{!employmentVar.EmploymentType__c} Employment Details</h3>
+            <h3 style="background: #f5f6f8">{!employmentVar.Type__c} Employment Details</h3>
             <table class="table" width="100% ">
               <tr style="height: 20px">
                 <td width="50% ">
@@ -196,7 +196,7 @@
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Employment Status : "></apex:outputText>
-                  <apex:outputText value="{!employmentVar.EmploymentStatus__c}"></apex:outputText>
+                  <apex:outputText value="{!employmentVar.Status__c}"></apex:outputText>
                 </td>
               </tr>
               <tr style="height: 20px">
@@ -216,7 +216,7 @@
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Employment Duration : "></apex:outputText>
-                  <apex:outputText value="{!employmentVar.EmploymentDuration__c}"></apex:outputText>
+                  <apex:outputText value="{!employmentVar.Duration__c}"></apex:outputText>
                 </td>
               </tr>
             </table>

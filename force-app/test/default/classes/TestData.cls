@@ -119,8 +119,8 @@ public with sharing class TestData {
     if (String.isNotBlank(applicantId)) {
       employment.applicant__c = applicantId;
     }
-    employment.EmploymentType__c = 'Current';
-    employment.EmploymentStatus__c = null;
+    employment.Type__c = 'Current';
+    employment.Status__c = null;
     employment.GrossMonthlySalary__c = 900;
     employment.EmployerName__c = 'Name';
     employment.IncomeType__c = 'Monthly';
@@ -128,7 +128,7 @@ public with sharing class TestData {
     employment.Order__c = 1;
     employment.PayGrade__c = 'GS12';
     employment.Position__c = 'Lead';
-    employment.EmploymentDuration__c = 3;
+    employment.Duration__c = 3;
     employment.DocumentType__c = 'Payslip';
     employment.BranchofService__c = 'Air Force';
     employment.EnlistmentDate__c = null;
