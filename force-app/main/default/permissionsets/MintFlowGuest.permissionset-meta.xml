@@ -410,7 +410,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.EmployeeType__c</field>
+        <field>Employment__c.JobType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

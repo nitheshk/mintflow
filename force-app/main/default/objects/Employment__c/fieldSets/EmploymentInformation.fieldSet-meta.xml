@@ -28,7 +28,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>EmployeeType__c</field>
+        <field>JobType__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
