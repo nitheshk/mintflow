@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>DurationYears__c</fullName>
-    <description>Years of employmengt duration</description>
+    <fullName>DurationInMonths__c</fullName>
+    <description>Months of employmengt duration</description>
     <externalId>false</externalId>
-    <label>Duration years</label>
+    <label>Employment Duration Months</label>
     <precision>2</precision>
     <required>false</required>
     <scale>0</scale>

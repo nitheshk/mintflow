@@ -41,7 +41,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DurationMonths__c</field>
+                <field>DurationInMonths__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -79,7 +79,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DurationYears__c</field>
+                <field>DurationInYears__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

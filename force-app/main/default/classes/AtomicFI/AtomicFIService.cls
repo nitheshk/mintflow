@@ -44,7 +44,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     'hourly' => 'Hourly'
   };
 
-  public static final Map<String, String> EMPLOYEE_TYPE = new Map<String, String>{
+  public static final Map<String, String> JOB_TYPE = new Map<String, String>{
     'parttime' => 'Part Time',
     'fulltime' => 'Full Time',
     'weekly' => 'Weekly',
@@ -192,7 +192,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     employmentObj.AnnualIncome__c = atomicObj.data.outputs.annualIncome;
     employmentObj.mflow__PayCycle__c = PAY_CYCLE.get(atomicObj.data.outputs.payCycle);
     employmentObj.mflow__IncomeType__c = INCOME_TYPE.get(atomicObj.data.outputs.incomeType);
-    employmentObj.mflow__EmployeeType__c = EMPLOYEE_TYPE.get(atomicObj.data.outputs.employeeType);
+    employmentObj.mflow__EmployeeType__c = JOB_TYPE.get(atomicObj.data.outputs.employeeType);
     employmentObj.mflow__VerificationStatus__c = 'Review';
 
     EmploymentRepository.UpsertRecord(employmentObj);

@@ -1267,12 +1267,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.DurationMonths__c</field>
+        <field>Employment__c.DurationInMonths__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Employment__c.DurationYears__c</field>
+        <field>Employment__c.DurationInYears__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
