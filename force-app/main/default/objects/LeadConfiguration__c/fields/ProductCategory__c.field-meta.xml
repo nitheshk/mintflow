@@ -31,6 +31,11 @@
                 <default>false</default>
                 <label>Vehicle Loan</label>
             </value>
+            <value>
+                <fullName>Consumer Loan</fullName>
+                <default>false</default>
+                <label>Consumer Loan</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
