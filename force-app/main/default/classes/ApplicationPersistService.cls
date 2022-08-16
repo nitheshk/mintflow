@@ -201,6 +201,10 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
         listToUpdate.addAll(this.saveEmployments(applicant?.Employments__r, applicant.Id));
       }
+      // upsert Incomes
+      if (!CollectionUtils.isListEmpty(applicant?.Incomes__r)) {
+        listToUpdate.addAll(this.saveIncomes(applicant?.Incomes__r, applicant.Id));
+      }
       // upsert Surveys
       if (!CollectionUtils.isListEmpty(applicant?.Surveys__r)) {
         listToUpdate.addAll(this.saveSurveys(applicant?.Surveys__r, applicant.Id));
@@ -274,6 +278,24 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
     //ApplicationRepository.upsertRecords(employments);
     return employments;
+  }
+
+  /**
+   * @description  Save addtional income details of an applicant
+   * @author Digital Align Team | 08-12-2022
+   * @param List<Income__c> incomes
+   * @param Id applicantId
+   * @return List<Income__c>
+   **/
+  global virtual List<Income__c> saveIncomes(List<Income__c> incomes, Id applicantId) {
+    for (Income__c income : incomes) {
+      if (String.isNotBlank(applicantId)) {
+        income.Applicant__c = applicantId;
+      }
+      income.Name = income.Source__c?.left(80);
+    }
+    //ApplicationRepository.upsertRecords(incomes);
+    return incomes;
   }
 
   /**
