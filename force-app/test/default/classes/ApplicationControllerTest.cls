@@ -21,6 +21,9 @@ public with sharing class ApplicationControllerTest {
     Employment__c employment = TestData.createEmployment(applicant.Id);
     insert employment;
 
+    Income__c income = TestData.createIncome(applicant.Id);
+    insert income;
+
     ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
     insert address;
 

@@ -135,6 +135,18 @@ public with sharing class TestData {
     return employment;
   }
 
+  public static Income__c createIncome(Id applicantId) {
+    Income__c income = new Income__c();
+    if (String.isNotBlank(applicantId)) {
+      income.applicant__c = applicantId;
+    }
+    income.Name = 'Other';
+    income.MonthlyIncome__c = 100;
+    income.OtherSource__c = 'Other';
+    income.Source__c = 'Other';
+    return income;
+  }
+
   public static ContactPointAddress createContactPointAddress(Id applicantId) {
     ContactPointAddress address = new ContactPointAddress();
     if (String.isNotBlank(applicantId)) {
