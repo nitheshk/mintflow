@@ -406,11 +406,20 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       when 'mflow__Applicant__c' {
         this.deleteApplicants(new Set<Id>{ recordId });
       }
-      when 'IdentificationDocument__c' {
+      when 'mflow__IdentificationDocument__c' {
         FileService.getInstance().deleteContentVersionByEntityId(recordId);
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'mflow__Employment__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'mflow__Income__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'mflow__Property__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'mflow__AssetAndLiability__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'ContactPointAddress' {
@@ -438,6 +447,15 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       }
       if (!applicant.Employments__r.isEmpty()) {
         recordsToDelete.addAll(applicant.Employments__r);
+      }
+      if (!applicant.Incomes__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.Incomes__r);
+      }
+      if (!applicant.AssetAndLiabilities__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.AssetAndLiabilities__r);
+      }
+      if (!applicant.Surveys__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.Surveys__r);
       }
       recordsToDelete.add(applicant);
     }
