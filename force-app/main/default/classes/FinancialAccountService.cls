@@ -141,8 +141,8 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     List<FinancialProduct__c> selectedProducts = new List<FinancialProduct__c>();
     List<FinancialAccount__c> financialAccountList = new List<FinancialAccount__c>();
     String pid = PageUtils.getCurrentPageParameters('pid');
-    List<String> productCodes = pid.split(',');
     if (String.isNotBlank(pid)) {
+      List<String> productCodes = pid?.split(',');
       selectedProducts = FinancialAccountRepository.readFinancialProductsByMultipleCodes(productCodes);
     } else {
       selectedProducts.add(FinancialAccountRepository.readBaseProduct());
