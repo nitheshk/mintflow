@@ -287,6 +287,7 @@ public with sharing class TestData {
     p.IsMembershipProduct__c = true;
     p.Type__c = 'Deposit';
     p.SubCategory__c = 'Regular Savings';
+    p.Weightage__c = 10;
     products.add(p);
     FinancialProduct__c p1 = new FinancialProduct__c();
     p1.DisplayLabel__c = 'Product2';
@@ -295,6 +296,7 @@ public with sharing class TestData {
     p1.ExternalCode__c = 'IC003';
     p1.Type__c = 'Deposit';
     p1.SubCategory__c = 'Regular Savings';
+    p.Weightage__c = 8;
     products.add(p1);
     return products;
   }
@@ -414,6 +416,56 @@ public with sharing class TestData {
     docReq.mflow__Name__c = 'Test';
     docReq.mflow__Status__c = 'New';
     return docReq;
+  }
+
+  public static List<LeadConfiguration__c> createLeadConfiguration() {
+    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
+
+    LeadConfiguration__c leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'State';
+    leadConfig.Value__c = 'PersonalInfo';
+    leadConfig.Weightage__c = 10;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'State';
+    leadConfig.Value__c = 'Funding';
+    leadConfig.Weightage__c = 10;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'Eligibility';
+    leadConfig.Value__c = 'False';
+    leadConfig.Weightage__c = 10;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'KYC';
+    leadConfig.Value__c = 'False';
+    leadConfig.Weightage__c = 10;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'OOW';
+    leadConfig.Value__c = 'Failed';
+    leadConfig.Weightage__c = 5;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'KYCLeadScore';
+    leadConfig.MinValue__c = 901;
+    leadConfig.MaxValue__c = 1000;
+
+    leadConfig.Value__c = 'Failed';
+    leadConfig.Weightage__c = 5;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'Employment';
+    leadConfig.Value__c = 'False';
+    leadConfig.Weightage__c = 5;
+    leadConfigList.add(leadConfig);
+    return leadConfigList;
   }
 
   public static string getOOWData() {
