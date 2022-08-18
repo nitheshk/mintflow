@@ -9,7 +9,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0005"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef1" },
@@ -20,7 +21,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0001"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef2" },
@@ -31,7 +33,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0002"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef3" },
@@ -41,7 +44,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0004"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef4" },
@@ -51,9 +55,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0003"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef5" },
       "Name": "3 Month Certificate - Cash Rewards",
@@ -63,7 +67,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0041"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef6" },
@@ -74,7 +79,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0037"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef7" },
@@ -85,7 +91,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0038"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef8" },
@@ -95,7 +102,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0040"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef9" },
@@ -105,9 +113,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0039"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef10" },
       "Name": "6 Month Certificate - Cash Rewards",
@@ -117,7 +125,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0026"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef11" },
@@ -128,7 +137,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0022"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef12" },
@@ -139,7 +149,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0023"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef13" },
@@ -149,7 +160,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0025"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef14" },
@@ -159,9 +171,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0024"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef15" },
       "Name": "12 Month Certificate - Cash Rewards",
@@ -171,7 +183,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0056"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef16" },
@@ -182,7 +195,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0052"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef17" },
@@ -193,7 +207,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0053"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef18" },
@@ -203,7 +218,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0055"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef19" },
@@ -213,9 +229,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0054"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef20" },
       "Name": "18 Month Certificate - Cash Rewards",
@@ -225,7 +241,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0051"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef21" },
@@ -236,7 +253,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0047"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef22" },
@@ -247,7 +265,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0048"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef23" },
@@ -257,7 +276,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0050"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef24" },
@@ -267,9 +287,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0049"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef25" },
       "Name": "24 Month Certificate - Cash Rewards",
@@ -279,7 +299,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0046"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef26" },
@@ -290,7 +311,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0042"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef27" },
@@ -301,7 +323,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0043"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef28" },
@@ -311,7 +334,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0045"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef29" },
@@ -321,9 +345,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0044"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef30" },
       "Name": "36 Month Certificate - Cash Rewards",
@@ -333,7 +357,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0036"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef31" },
@@ -344,7 +369,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0032"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef32" },
@@ -355,7 +381,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0033"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef33" },
@@ -365,7 +392,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0035"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef34" },
@@ -375,9 +403,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0034"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef35" },
       "Name": "48 Month Certificate - Cash Rewards",
@@ -387,7 +415,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0031"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef36" },
@@ -398,7 +427,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0027"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef37" },
@@ -409,7 +439,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0028"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef38" },
@@ -419,7 +450,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0030"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef39" },
@@ -429,9 +461,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0029"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef40" },
       "Name": "60 Month Certificate - Cash Rewards",
@@ -441,7 +473,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0021"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef41" },
@@ -452,7 +485,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0017"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef42" },
@@ -463,7 +497,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0018"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef43" },
@@ -473,7 +508,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0020"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef44" },
@@ -483,9 +519,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0019"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef45" },
       "Name": "Money Market Checking - Cash Rewards",
@@ -495,7 +531,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0015"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef46" },
@@ -506,7 +543,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0011"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef47" },
@@ -517,7 +555,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0012"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef48" },
@@ -527,7 +566,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0014"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef49" },
@@ -537,9 +577,9 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0013"
     },
-
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef50" },
       "Name": "Money Market Savings - Cash Rewards",
@@ -549,7 +589,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The cash reward Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0010"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef51" },
@@ -560,7 +601,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Secured vis Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0006"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef52" },
@@ -571,7 +613,8 @@
       "mflow__IsSelected__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the b",
       "mflow__Order__c": 1,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0007"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef53" },
@@ -581,7 +624,8 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 3,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0009"
     },
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef54" },
@@ -591,7 +635,30 @@
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
       "mflow__Order__c": 2,
-      "mflow__Required__c": false
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0008"
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef55" },
+      "Name": "Money Market Checking",
+      "mflow__CrossSellProduct__c": "@IC0010",
+      "mflow__FinancialProduct__c": "@HL001",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0016"
+    },
+    {
+      "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef56" },
+      "Name": "Money Market Savings - Cash Rewards",
+      "mflow__CrossSellProduct__c": "@IC009",
+      "mflow__FinancialProduct__c": "@HL001",
+      "mflow__IsActive__c": true,
+      "mflow__IsSelected__c": false,
+      "mflow__Order__c": 1,
+      "mflow__Required__c": false,
+      "mflow__ExternalId__c": "RP0017"
     }
   ]
 }
