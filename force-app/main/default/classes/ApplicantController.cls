@@ -274,7 +274,7 @@ global with sharing class ApplicantController extends AbstractController {
       try {
         validateRequest(request);
         log?.fine('Inside Appliant KYC');
-        return ApexResponse.ok(AlloyService.getInstance().verifyKYC(ApexRequest.getApplicantId()));
+        return ApexResponse.ok(ApplicantService.getInstance().verifyKYC(ApexRequest.getApplicantId()));
       } catch (CustomException ex) {
         log?.error(ex);
         return ApexResponse.exception(ex);
