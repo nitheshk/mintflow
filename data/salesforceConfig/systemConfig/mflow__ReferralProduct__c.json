@@ -39,7 +39,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef3" },
       "Name": "Regular Savings - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC003",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -97,7 +97,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef8" },
       "Name": "3 Month Certificate - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0012",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -155,7 +155,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef13" },
       "Name": "6 Month Certificate - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0013",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -213,7 +213,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef18" },
       "Name": "12 Month Certificate - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0014",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -271,7 +271,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef23" },
       "Name": "18 Month Certificate - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0015",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -329,7 +329,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef28" },
       "Name": "24 Month Certificate - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0016",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -387,7 +387,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef33" },
       "Name": "36 Month Certificate - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0017",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -445,7 +445,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef38" },
       "Name": "48 Month Certificate - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0018",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -503,7 +503,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef43" },
       "Name": "60 Month Certificate - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0019",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -561,7 +561,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef48" },
       "Name": "Money Market Checking - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0010",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,
@@ -619,7 +619,7 @@
     {
       "attributes": { "type": "mflow__ReferralProduct__c", "referenceId": "ReferralProductRef53" },
       "Name": "Money Market Savings - Power Plus Debit Account",
-      "mflow__CrossSellProduct__c": "@IC007",
+      "mflow__CrossSellProduct__c": "@IC0021",
       "mflow__FinancialProduct__c": "@IC0011",
       "mflow__IsActive__c": false,
       "mflow__IsSelected__c": false,

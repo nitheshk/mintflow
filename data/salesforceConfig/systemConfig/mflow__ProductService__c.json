@@ -12,17 +12,6 @@
       "mflow__isActive__c": true
     },
     {
-      "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS007" },
-      "mflow__Description__c": "Select debit card",
-      "mflow__ExternalId__c": "PS007",
-      "mflow__FinancialProduct__c": "@IC007",
-      "mflow__Order__c": 1,
-      "mflow__Required__c": false,
-      "mflow__ServiceName__c": "Debit Card",
-      "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true
-    },
-    {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS005" },
       "mflow__Description__c": "Select debit card",
       "mflow__ExternalId__c": "PS005",
@@ -49,17 +38,6 @@
       "mflow__Description__c": "Overdraft service",
       "mflow__ExternalId__c": "PS006",
       "mflow__FinancialProduct__c": "@IC006",
-      "mflow__Order__c": 2,
-      "mflow__Required__c": false,
-      "mflow__ServiceName__c": "Overdraft Transfer",
-      "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true
-    },
-    {
-      "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS008" },
-      "mflow__Description__c": "Overdraft service",
-      "mflow__ExternalId__c": "PS008",
-      "mflow__FinancialProduct__c": "@IC007",
       "mflow__Order__c": 2,
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "Overdraft Transfer",
