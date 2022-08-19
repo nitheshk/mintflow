@@ -159,6 +159,39 @@ global virtual with sharing class ApplicantService extends AbstractService {
   }
 
   /**
+   * @description to verify KYC of the applicant using alloy provider
+   * @author Digital Align Team | 03-08-2022
+   * @param Application__c application
+   * @return Applicant__c
+   **/
+  global String verifyKYC(Id applicantId) {
+    AlloyProvider provider = new AlloyProvider();
+    try {
+      Flow.initialize(ApexRequest.getApplicationId());
+      Flow.setFlow('Alloy KYC');
+      Flow.setSubFlow(APINames.AlloyKYC.name(), ApexRequest.getApplicantId());
+      HttpResponse response = provider.doIDVVerification(applicantId);
+      if (response.getStatusCode() == 200 || response.getStatusCode() == 201) {
+        Flow.setSubFlowPassed('Passed');
+        provider.saveApplicantVerification(applicantId, response);
+        provider.ParseIDVReponse(applicantId, response);
+      } else {
+        Flow.setSubFlowPassed('Failed');
+        throw new customException(
+          'KYC API returned some error with Status Code:' +
+          response.getStatusCode() +
+          ' and message =' +
+          response.getStatus()
+        );
+      }
+      return 'KYC Verified successfully';
+    } catch (exception ex) {
+      log?.debug(ex);
+      throw new customException('There was sone error encountered to perform KYC of the applicant');
+    }
+  }
+
+  /**
    * @description
    * @author Digital Align Team | 03-28-2022
    * @param Id applicationId
