@@ -180,7 +180,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
   global virtual Application__c cloneExistingApplication(Map<String, Object> params) {
     String applicationId = (String) params.get('applicationIdToClone');
     String internalProductCode = (string) params.get('pid');
-    system.debug('product code::' + internalProductCode);
+    log?.debug('Product Code::' + internalProductCode);
     String ch = (string) params.get('ch');
 
     Application__c oldApplication = ApplicationRepository.readApplicationToClone(applicationId);
@@ -316,7 +316,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
           mapFilter = new Map<String, String>();
           mapfilter.put('Type', 'Employment');
           mapData = calculateLeadBasedonEmployment(mapfilter, mapData, application);
-          System.debug(' calculateLeadBasedonEmployment');
+          log?.debug(' calculateLeadBasedonEmployment');
 
           mapData = calculateLeadBasedonCustomerInterest(mapData, application);
 
@@ -324,7 +324,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         }
       }
     } catch (exception ex) {
-      system.debug(' exception at : ' + ex.getLineNumber() + ex.getMessage());
+      log?.error(ex);
     }
 
     return leadScore;
@@ -497,13 +497,11 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     for (applicant__c applicant : applicants) {
       if (!applicant.mflow__ApplicantType__c.equalsignorecase('Emergency Contact')) {
         employmentVerified = applicant.mflow__IsEmploymentVerified__c;
-        system.debug('employmentVerified::' + employmentVerified);
         for (LeadConfiguration__c leadConfig : leadConfigList) {
           if (
             leadConfig.Type__c == 'Employment' &&
             leadConfig.Value__c == String.valueof(applicant.mflow__IsEmploymentVerified__c)
           ) {
-            system.debug('leadConfig.Value__c ' + leadConfig.Value__c);
             leadScore = leadConfig.Weightage__c;
             totalApplicants++;
             totalScore = totalScore + leadScore;
@@ -535,7 +533,6 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     } else {
       mapData.put('Customer Interest', (object) 5);
     }
-    system.debug('mapdata::' + mapData);
     return mapData;
   }
 

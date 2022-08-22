@@ -175,7 +175,6 @@ global virtual with sharing class AtomicFIService extends AbstractService {
    * @return  List<AtomicFIDTO.Address>
    **/
   global virtual String mapApplicantEmployment(AtomicFIDTO atomicObj) {
-    system.debug(json.serialize(atomicObj));
     Employment__c employmentObj = new Employment__c();
     employmentObj.Id = atomicObj.user.identifier;
     //method to fetch application and applicant id based on employer id ::TODO

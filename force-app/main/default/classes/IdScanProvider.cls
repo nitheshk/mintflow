@@ -93,7 +93,6 @@ global virtual with sharing class IdScanProvider extends AbstractService {
    **/
   global virtual HttpBuilder.Response ParseImageResponse(HttpResponse response) {
     Map<String, Object> idOldMap = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
-    system.debug('result =' + ((Map<String, Object>) idOldMap.get('ParseImageResult')));
     if ((string) ((Map<String, Object>) idOldMap.get('ParseImageResult')).get('ErrorMessage') != 'OK') {
       throw new CustomException(System.Label.Document_UnableToParseTheDl);
     }
@@ -126,7 +125,6 @@ global virtual with sharing class IdScanProvider extends AbstractService {
     newMap.put('state', result.get('IssuedBy'));
     newMap.put('Country', GenericUtils.fetchCountryFromCountryCode((string) result.get('CountryCode')));
     newMap.put('nationality', result.get('CountryCode'));
-    system.debug('newMap =' + newMap);
     IdScanDTO.Response returnDTO = (IdScanDTO.Response) JSON.deserialize(
       JSON.serialize(new Map<String, Object>{ 'Data' => newMap, 'status' => response.getStatusCode() }),
       IdScanDTO.Response.class

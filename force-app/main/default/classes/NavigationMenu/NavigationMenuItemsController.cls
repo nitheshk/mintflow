@@ -45,7 +45,6 @@ global with sharing class NavigationMenuItemsController {
         .toString()
     );
 
-    system.debug('navMenu : ' + navMenu.size());
     return navMenu;
   }
 }
