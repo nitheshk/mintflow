@@ -5,7 +5,7 @@
  * @reference
  * @description Application service
  **/
-@SuppressWarnings('PMD.AvoidGlobalModifier')
+@SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity')
 global virtual with sharing class ApplicantService extends AbstractService {
   @TestVisible
   private static ApplicantService serviceInstance;
@@ -164,30 +164,21 @@ global virtual with sharing class ApplicantService extends AbstractService {
    * @param Application__c application
    * @return Applicant__c
    **/
-  global String verifyKYC(Id applicantId) {
-    AlloyProvider provider = new AlloyProvider();
+  global virtual Object verifyKYC(Id applicantId) {
+    Flow.initialize(ApexRequest.getApplicationId());
     try {
-      Flow.initialize(ApexRequest.getApplicationId());
       Flow.setFlow('Alloy KYC');
-      Flow.setSubFlow(APINames.AlloyKYC.name(), ApexRequest.getApplicantId());
-      HttpResponse response = provider.doIDVVerification(applicantId);
-      if (response.getStatusCode() == 200 || response.getStatusCode() == 201) {
-        Flow.setSubFlowPassed('Passed');
-        provider.saveApplicantVerification(applicantId, response);
-        provider.ParseIDVReponse(applicantId, response);
-      } else {
-        Flow.setSubFlowPassed('Failed');
-        throw new customException(
-          'KYC API returned some error with Status Code:' +
-          response.getStatusCode() +
-          ' and message =' +
-          response.getStatus()
-        );
+      if (!SystemSetting__c.getOrgDefaults().mflow__KYCEvaluation__c) {
+        flow.setFlowPassed('KYC verification has been skipped by system');
+        return 'KYC verification has been skipped by system';
       }
-      return 'KYC Verified successfully';
+      Applicant__c applicant = AlloyProvider.getInstance().doIDVVerification(applicantId);
+      flow.setFlowPassed('KYC Verified successfully');
+      return applicant;
     } catch (exception ex) {
-      log?.debug(ex);
-      throw new customException('There was sone error encountered to perform KYC of the applicant');
+      Flow.setFlowFailed(ex.getMessage());
+      log?.error(ex);
+      throw ex;
     }
   }
 

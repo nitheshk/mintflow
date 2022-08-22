@@ -10,6 +10,23 @@ global virtual with sharing class AlloyProvider extends AbstractService {
   @TestVisible
   private static AlloyProvider serviceInstance;
 
+  //ALLOY Constant
+  public static final String ALLOY_STATUS_ACCEPT = 'Approved';
+  public static final String ALLOY_STATUS_REVIEW = 'Manual Review';
+  public static final String ALLOY_STATUS_DECLINE = 'Denied';
+  //Internal KYC Status
+  public static final String KYC_STATUS_PASSED = 'Passed';
+  public static final String KYC_STATUS_UNDER_REVIEW = 'Under Review';
+  public static final String KYC_STATUS_FAILED = 'Failed';
+
+  public static final Map<String, String> IDV_STATUS_MAPPING = new Map<String, String>{
+    ALLOY_STATUS_ACCEPT => KYC_STATUS_PASSED,
+    ALLOY_STATUS_REVIEW => KYC_STATUS_UNDER_REVIEW,
+    ALLOY_STATUS_DECLINE => KYC_STATUS_FAILED,
+    '' => KYC_STATUS_UNDER_REVIEW,
+    null => KYC_STATUS_UNDER_REVIEW
+  };
+
   public AlloyProvider() {
     super(AlloyProvider.class);
   }
@@ -28,41 +45,61 @@ global virtual with sharing class AlloyProvider extends AbstractService {
 
   /**
    * @description verify IDV for an applicant
-   * @param Applicant__c applicants
+   * @param Applicant__c applicant
    * @param Id applicantId
    * @return HttpResponse
    **/
-  public HttpResponse doIDVVerification(Id applicantId) {
-    AlloyDTO.IDVRequest idvDTO = new AlloyDTO.IDVRequest();
-    Map<String, String> header = new Map<String, String>();
-    HttpResponse response;
+  global virtual Applicant__c doIDVVerification(Id applicantId) {
     try {
+      Applicant__c applicant = AlloyRepository.readApplicantWithChild(applicantId);
+      if (applicant == null) {
+        throw new customException(System.Label.Applicant_InvalidApplicantId);
+      }
+      Flow.setSubFlow(APINames.AlloyKYC, ApexRequest.getApplicantId());
+      HttpBuilder.setAPISetting(APINames.AlloyKYC);
+      // Build Request
+      String requestBody = this.buildIDVRequest(applicant);
+      Flow.setSubFlowRequest(requestBody);
+      HttpBuilder.replaceEndpoint('{evaluation}', HttpBuilder.getApiConstant('AlloyEvaluationURL'));
+      //set http header
+      Map<String, String> header = new Map<String, String>();
       header.put('Alloy-Application-Version', HttpBuilder.getApiConstant(AlloyConstants.IDV_APPLICATION_VERSION));
       header.put('Content-Type', 'application/json');
       header.put('Alloy-Application-Version', HttpBuilder.getApiConstant('Alloy_Application_Version'));
-      log?.fine(' Alloy KYC request for doverification' + applicantId);
-      Applicant__c applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
-      HttpBuilder.setAPISetting(APINames.AlloyKYC);
-      HttpBuilder.replaceEndpoint('{evaluation}', HttpBuilder.getApiConstant('AlloyEvaluationURL'));
-      String idvRequestBody = this.buildIDVRequest(applicantObj);
-      log?.fine(' Alloy KYC request :' + idvRequestBody);
-      response = HttpBuilder.httpCallOut(idvRequestBody, header);
-      log?.fine(' Alloy KYC response :' + response.getBody());
-    } catch (exception ex) {
-      system.debug('exceptopn:' + ex.getLineNumber() + '-' + ex.getMessage());
+      HttpResponse response = HttpBuilder.httpCallOut(requestBody, header);
+      Flow.setSubFlowResponse(response.getBody());
+
+      // Save the Result into file
+      try {
+        FileService.getInstance()
+          .createFile(new FileDTO('AlloyResponse.json', Blob.valueof(response.getBody()), applicantId, 'KYC', 'Alloy'));
+      } catch (Exception ex) {
+        log?.error(ex);
+      }
+
+      /// parse the response
+      if (response.getStatusCode() == 200 || response.getStatusCode() == 201) {
+        Flow.setSubFlowPassed('Passed');
+        return this.ParseIDVReponse(applicant, response);
+      } else {
+        String msg = 'KYC  Status Code :' + response.getStatusCode() + ' , Message : ' + response.getStatus();
+        Flow.setSubFlowFailed(msg);
+        throw new customException(msg);
+      }
+    } catch (Exception ex) {
+      log?.error(ex);
+      throw ex;
     }
-    return response;
   }
 
   /**
-   * @description
+   * @description construct dto for  alloy request
    * @author Digital Align Team | 08-19-2022
    * @param Applicant__c applicant
    * @return String
    **/
-  public String buildIDVRequest(Applicant__c applicant) {
+  global virtual String buildIDVRequest(Applicant__c applicant) {
     AlloyDTO.IDVRequest idvDTO = new AlloyDTO.IDVRequest();
-    Boolean isJointApplicant;
     mflow__IdentificationDocument__c identificationObj = applicant.mflow__IdentificationDocuments__r.isEmpty()
       ? new mflow__IdentificationDocument__c()
       : applicant.mflow__IdentificationDocuments__r[0];
@@ -71,11 +108,6 @@ global virtual with sharing class AlloyProvider extends AbstractService {
       ? new ContactPointAddress()
       : applicant.mflow__ContactPointAddresses__r[0];
 
-    for (ContactPointAddress add : applicant.mflow__ContactPointAddresses__r) {
-      if (add.AddressType.equalsignorecase('Primary')) {
-        addresses = add;
-      }
-    }
     idvDTO.name_first = applicant.FirstName__c;
     idvDTO.name_last = applicant.LastName__c;
     idvDTO.document_ssn = applicant.SSN__c;
@@ -87,63 +119,27 @@ global virtual with sharing class AlloyProvider extends AbstractService {
       String.valueOf(applicant.BirthDate__c.day()).leftpad(2, '0');
     idvDTO.phone_number = applicant.Phone__c;
     idvDTO.email_address = applicant.Email__c;
-
     //mapiing of address
     idvDTO.address_line_1 = addresses.Street;
     idvDTO.address_city = addresses.City;
     idvDTO.address_state = identificationObj.IssuedStateCode__c;
     idvDTO.address_postal_code = addresses.PostalCode;
     idvDTO.address_country_code = 'US';
-
-    isJointApplicant = applicant.mflow__ApplicantType__c.equalsignorecase('Primary') ? false : true;
-    idvDTO.ip_address_v4 = ApplicationServiceHelper.getinstance().getIpAddress();
     idvDTO.document_license = identificationObj.DocumentNumber__c;
     idvDTO.document_license_state = identificationObj.IssuedStateCode__c;
-    idvDTO.meta = new AlloyDTO.Meta(applicant.IsExistingCustomer__c, isJointApplicant);
-
     return AlloyDTO.generateRequest(idvDTO);
   }
 
   /**
-   * @description Save KYC alloy response against the applicant
-   * @param Applicant__c applicants
-   * @param Id applicantId
-   * @param HttpResponse response
-   * @return void
-   **/
-
-  public void saveApplicantVerification(Id applicantId, HttpResponse response) {
-    FileDTO fileObj = new FileDTO('AlloyResponse.json', Blob.valueof(response.getBody()), applicantId);
-    ContentVersion cnv = FileService.getInstance().createFile(fileObj);
-  }
-
-  /**
    * @description To parse the response and check the status and update
-   * @param Applicant__c applicants
-   * @param Id applicantId
+   * @param Applicant__c applicant
    * @param HttpResponse response
-   * @return void
+   * @return Applicant__c
    **/
-  public void ParseIDVReponse(Id applicantId, HttpResponse response) {
-    Applicant__c applicantObj;
-    String responseBody = response.getBody();
-    AlloyDTO.IDVResponse idvDTO = AlloyDTO.parseIDVResponse(responseBody);
-    system.debug('idvDTO::' + responseBody);
-    applicantObj = AlloyRepository.readApplicantWithChild(applicantId);
-    try {
-      if (idvDTO.summary.result.equalsignoreCase('success') && idvDTO.summary.outcome.equalsignorecase('Approved')) {
-        applicantObj.mflow__KYCStatus__c = 'Passed';
-      } else {
-        applicantObj.mflow__KYCStatus__c = 'Under Review';
-      }
-    } catch (exception ex) {
-      applicantObj.mflow__KYCStatus__c = 'Under Review';
-    }
-    //log?.fine(' Applicant Credit Score :' + idvDTO.formatted_responses.qualifie.data.qualifile_1.Score);
-    System.debug('kyc value::' + idvDTO.formatted_responses);
-
-    applicantObj.CreditScore__c = idvDTO.formatted_responses.qualifile.data.qualifile.score;
-
-    ApplicantRepository.upsertRecord(applicantObj);
+  public Applicant__c parseIDVReponse(Applicant__c applicant, HttpResponse response) {
+    AlloyDTO.IDVResponse idvDTO = AlloyDTO.parseIDVResponse(response.getBody());
+    applicant.mflow__KYCStatus__c = IDV_STATUS_MAPPING.get(idvDTO?.summary?.outcome);
+    applicant.CreditScore__c = idvDTO.formatted_responses?.QualiFile?.data?.qualifile?.score;
+    return (Applicant__c) ApplicantRepository.upsertRecord(applicant);
   }
 }
