@@ -115,6 +115,11 @@
     <description>MintFlow Site Guest profile</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Applicant__c.CreditScore__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>AssetAndLiability__c.AccountType__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -192,7 +197,7 @@
         <editable>true</editable>
         <field>DocumentRequest__c.Applicant__c</field>
         <readable>true</readable>
-    </fieldPermissions>  
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>DocumentRequest__c.Application__c</field>

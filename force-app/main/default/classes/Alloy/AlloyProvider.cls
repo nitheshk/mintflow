@@ -122,9 +122,10 @@ global virtual with sharing class AlloyProvider extends AbstractService {
     //mapiing of address
     idvDTO.address_line_1 = addresses.Street;
     idvDTO.address_city = addresses.City;
-    idvDTO.address_state = identificationObj.IssuedStateCode__c;
+    idvDTO.address_state = addresses.StateCode__c;
     idvDTO.address_postal_code = addresses.PostalCode;
     idvDTO.address_country_code = 'US';
+    //idvDTO.ip_address_v4 = ApplicationServiceHelper.getinstance().getIpAddress();
     idvDTO.document_license = identificationObj.DocumentNumber__c;
     idvDTO.document_license_state = identificationObj.IssuedStateCode__c;
     return AlloyDTO.generateRequest(idvDTO);
@@ -140,6 +141,13 @@ global virtual with sharing class AlloyProvider extends AbstractService {
     AlloyDTO.IDVResponse idvDTO = AlloyDTO.parseIDVResponse(response.getBody());
     applicant.mflow__KYCStatus__c = IDV_STATUS_MAPPING.get(idvDTO?.summary?.outcome);
     applicant.CreditScore__c = idvDTO.formatted_responses?.QualiFile?.data?.qualifile?.score;
+    log?.debug(idvDTO.formatted_responses?.QualiFile);
+    log?.debug(idvDTO.formatted_responses?.QualiFile?.data);
+    log?.debug(idvDTO.formatted_responses?.QualiFile?.data?.qualifile);
+    log?.debug(idvDTO.formatted_responses?.QualiFile?.data?.qualifile?.score);
+
+    log?.debug(applicant.CreditScore__c);
+    applicant.CreditScore__c = 10;
     return (Applicant__c) ApplicantRepository.upsertRecord(applicant);
   }
 }
