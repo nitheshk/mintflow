@@ -10,12 +10,7 @@ public with sharing class ApplicationControllerTest {
     List<FinancialProduct__c> products = TestData.createProduct();
     insert products;
   }
-  //makeLeadConfigutation
-  private static void makeLeadConfigutation() {
-    List<LeadConfiguration__c> leadConfigs = TestData.createLeadConfiguration();
-    insert leadConfigs;
-  }
-
+  //createApplicantDataWithChild
   private static Applicant__c createApplicantDataWithChild(Application__c application) {
     Applicant__c applicant = Application.Applicants__r[0];
     SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
@@ -554,18 +549,11 @@ public with sharing class ApplicationControllerTest {
   @isTest
   static void saveStateTest() {
     makeApplicationConfiguration();
-    makeLeadConfigutation();
-
     PageReference testPage = Page.error;
     Test.setCurrentPage(testPage);
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
-    applicant.OOWVerified__c = true;
-    applicant.OOWStatus__c = 'Failed';
-    applicant.IsEmploymentVerified__c = false;
-    applicant.CreditScore__c = 950;
-    update applicant;
 
     //200
     ApexRequest request = new ApexRequest();
