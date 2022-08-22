@@ -141,13 +141,6 @@ global virtual with sharing class AlloyProvider extends AbstractService {
     AlloyDTO.IDVResponse idvDTO = AlloyDTO.parseIDVResponse(response.getBody());
     applicant.mflow__KYCStatus__c = IDV_STATUS_MAPPING.get(idvDTO?.summary?.outcome);
     applicant.CreditScore__c = idvDTO.formatted_responses?.QualiFile?.data?.qualifile?.score;
-    log?.debug(idvDTO.formatted_responses?.QualiFile);
-    log?.debug(idvDTO.formatted_responses?.QualiFile?.data);
-    log?.debug(idvDTO.formatted_responses?.QualiFile?.data?.qualifile);
-    log?.debug(idvDTO.formatted_responses?.QualiFile?.data?.qualifile?.score);
-
-    log?.debug(applicant.CreditScore__c);
-    applicant.CreditScore__c = 10;
     return (Applicant__c) ApplicantRepository.upsertRecord(applicant);
   }
 }
