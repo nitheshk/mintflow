@@ -21,7 +21,7 @@
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
       "mflow__Weightage__c": 1,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -39,7 +39,7 @@
             "mflow__SubTopic__c": "Start with a few dollars or a fistful.",
             "mflow__Topic__c": "Regular Savings",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0_1" },
@@ -55,7 +55,7 @@
             "mflow__SubTopic__c": "Get a jump-start on a sunnier tomorrow.",
             "mflow__Topic__c": "Take strong steps toward a more secure financial future.",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -80,7 +80,7 @@
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Preferred Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -99,7 +99,7 @@
             "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
             "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef1_1" },
@@ -115,7 +115,7 @@
             "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
             "mflow__Topic__c": "Anytime Account Access",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -140,7 +140,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Instant Access Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -159,7 +159,7 @@
             "mflow__SubTopic__c": "Tiered dividends for larger balances",
             "mflow__Topic__c": "Features",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef2_1" },
@@ -175,7 +175,7 @@
             "mflow__SubTopic__c": "Reap the benefits.",
             "mflow__Topic__c": "Benefits",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -200,7 +200,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -219,7 +219,7 @@
             "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
             "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef3_1" },
@@ -235,7 +235,7 @@
             "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
             "mflow__Topic__c": "Anytime Account Access",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -260,7 +260,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Carefree Checking",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -279,7 +279,7 @@
             "mflow__SubTopic__c": "Carefree Checking",
             "mflow__Topic__c": "Features",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4_1" },
@@ -295,7 +295,7 @@
             "mflow__SubTopic__c": "Reap the benefits",
             "mflow__Topic__c": "Benefits",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4_2" },
@@ -311,7 +311,7 @@
             "mflow__SubTopic__c": "Debit Mastercard",
             "mflow__Topic__c": "Debit Mastercard",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -336,7 +336,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "3 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 5,
         "done": true,
@@ -354,7 +354,7 @@
             "mflow__SubTopic__c": "CD Advantages",
             "mflow__Topic__c": "CD Advantages",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_1" },
@@ -369,7 +369,7 @@
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Key Takeaways",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_2" },
@@ -383,7 +383,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.10",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_3" },
@@ -397,7 +397,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_4" },
@@ -413,7 +413,7 @@
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -438,7 +438,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "6 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -455,7 +455,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.20",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef6_1" },
@@ -469,7 +469,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef6_2" },
@@ -485,7 +485,7 @@
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -510,7 +510,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "12 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -527,7 +527,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.30",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_1" },
@@ -541,7 +541,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_2" },
@@ -557,7 +557,7 @@
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -582,7 +582,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "18 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -599,7 +599,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.50",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_1" },
@@ -613,7 +613,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_2" },
@@ -629,7 +629,7 @@
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -654,7 +654,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "24 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -671,7 +671,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.60",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_1" },
@@ -685,7 +685,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_2" },
@@ -701,7 +701,7 @@
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -726,7 +726,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "36 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -743,7 +743,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.65",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_1" },
@@ -757,7 +757,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_2" },
@@ -773,7 +773,7 @@
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -798,7 +798,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "48 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -815,7 +815,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.75",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_1" },
@@ -829,7 +829,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_2" },
@@ -845,7 +845,7 @@
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -870,7 +870,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "60 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -887,7 +887,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "0.80",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_1" },
@@ -901,7 +901,7 @@
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
             "mflow__Value__c": "500",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_2" },
@@ -917,7 +917,7 @@
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -943,7 +943,7 @@
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
       "mflow__Weightage__c": 3,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -961,7 +961,7 @@
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Digital experience",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_1" },
@@ -976,7 +976,7 @@
             "mflow__SubTopic__c": "Global security",
             "mflow__Topic__c": "Security",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_2" },
@@ -991,7 +991,7 @@
             "mflow__SubTopic__c": "Your wallet has a new MVP",
             "mflow__Topic__c": "Blazers Card",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_3" },
@@ -1007,7 +1007,7 @@
             "mflow__SubTopic__c": "Features and rewards",
             "mflow__Topic__c": "Features and rewards",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -1032,7 +1032,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -1050,7 +1050,7 @@
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Digital experience",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_1" },
@@ -1065,7 +1065,7 @@
             "mflow__SubTopic__c": "Global security",
             "mflow__Topic__c": "Security",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_2" },
@@ -1080,7 +1080,7 @@
             "mflow__SubTopic__c": "Your wallet has a new MVP",
             "mflow__Topic__c": "Blazers Card",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_3" },
@@ -1096,7 +1096,7 @@
             "mflow__SubTopic__c": "Features and rewards",
             "mflow__Topic__c": "Features and rewards",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -1122,7 +1122,7 @@
       "mflow__SubCategory__c": "Money Market Checking",
       "mflow__Type__c": "Deposit",
       "mflow__Weightage__c": 1.2,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1141,7 +1141,7 @@
             "mflow__SubTopic__c": "Money Market Checking",
             "mflow__Topic__c": "Money Market Checking",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -1167,7 +1167,7 @@
       "mflow__SubCategory__c": "Money Market Savings",
       "mflow__Type__c": "Deposit",
       "mflow__Weightage__c": 1.2,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1186,7 +1186,7 @@
             "mflow__SubTopic__c": "Money Market Savings",
             "mflow__Topic__c": "Money Market Savings",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -1210,7 +1210,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "New Vehicle",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": false
+      "mflow__IsActive__c": false
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "HL001" },
@@ -1232,7 +1232,7 @@
       "mflow__StartDate__c": "2022-08-11",
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -1250,7 +1250,7 @@
             "mflow__SubTopic__c": "Interest Rate Discounts up to 0.50%",
             "mflow__Topic__c": "Interest Rate",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef18_1" },
@@ -1265,7 +1265,7 @@
             "mflow__SubTopic__c": "An Easy and Flexible Experience",
             "mflow__Topic__c": "Experience",
             "mflow__Type__c": "Product Description",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }

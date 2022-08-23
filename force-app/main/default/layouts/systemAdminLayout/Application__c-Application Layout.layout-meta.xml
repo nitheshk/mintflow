@@ -217,7 +217,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>InterestProduct__c</fields>
-        <fields>isSelected__c</fields>
+        <fields>IsSelected__c</fields>
         <relatedList>CustomerInterest__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>

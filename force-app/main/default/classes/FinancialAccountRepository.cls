@@ -138,7 +138,7 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .whereEq('mflow__Type__c', ApplicationConstant.PRODUCT_FEATURE_TYPE_PRODUCT_CONFIG)
         .orderBy('mflow__Order__c')
         .run()
-        .whereEq('mflow__isActive__c', true)
+        .whereEq('mflow__IsActive__c', true)
         .andCon()
         .whereIn(
           'Id',

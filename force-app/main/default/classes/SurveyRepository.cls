@@ -25,7 +25,7 @@ public with sharing class SurveyRepository extends DatabaseUtils {
       .addFields()
       .orderBy('mflow__Order__c')
       .run()
-      .whereEq('mflow__isActive__c', true)
+      .whereEq('mflow__IsActive__c', true)
       .andCon()
       .whereEq('mflow__EventIdentifier__c', eventIdentifier);
     if (filter != null) {

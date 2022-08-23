@@ -1285,8 +1285,8 @@ global inherited sharing class Query {
    * @author Digital Align Team | 12-21-2021
    * @param String filters
    * @return Query
-   * @example String jsonString = '[{"Name":"Test12","$Name":"!=", "mflow__test2__c":["test3","test4"],"$mflow__test2__c":"INCLUDES", "mflow__EventIdentifier__c":"","mflow__isActive__c":true,"mflow__test1__c":43, "mflow__Product__c":""},
-   *  {"Name":"Test1","mflow__EventIdentifier__c":"","mflow__isActive__c":true}]';
+   * @example String jsonString = '[{"Name":"Test12","$Name":"!=", "mflow__test2__c":["test3","test4"],"$mflow__test2__c":"INCLUDES", "mflow__EventIdentifier__c":"","mflow__IsActive__c":true,"mflow__test1__c":43, "mflow__Product__c":""},
+   *  {"Name":"Test1","mflow__EventIdentifier__c":"","mflow__IsActive__c":true}]';
    * List<Object> filters = (List<Object>) JSON.deserializeUntyped(jsonString);
    * List<ConsentLineItem__c> items = (List<ConsentLineItem__c>) EmailNotificationRepository.getRecords(
    *   Query.newInstance(ConsentLineItem__c.SObjectType)

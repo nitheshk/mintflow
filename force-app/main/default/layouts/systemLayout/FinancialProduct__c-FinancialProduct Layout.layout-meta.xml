@@ -116,7 +116,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>isActive__c</field>
+                <field>IsActive__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -133,7 +133,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>isActive__c</fields>
+        <fields>IsActive__c</fields>
         <fields>DisplayName__c</fields>
         <fields>Value__c</fields>
         <fields>Code__c</fields>
@@ -170,7 +170,7 @@
         <fields>EventIdentifier__c</fields>
         <fields>ApplicantType__c</fields>
         <fields>Channel__c</fields>
-        <fields>isActive__c</fields>
+        <fields>IsActive__c</fields>
         <relatedList>SurveyTemplate__c.FinancialProduct__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

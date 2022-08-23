@@ -48,7 +48,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>isAllDisclosuresSignedAndPrinted__c</field>
+                <field>IsAllDisclosuresSignedAndPrinted__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

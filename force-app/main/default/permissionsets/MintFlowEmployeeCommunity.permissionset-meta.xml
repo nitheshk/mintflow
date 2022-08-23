@@ -431,7 +431,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.isAllDisclosuresSignedAndPrinted__c</field>
+        <field>Applicant__c.IsAllDisclosuresSignedAndPrinted__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -581,7 +581,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CustomerInterest__c.isSelected__c</field>
+        <field>CustomerInterest__c.IsSelected__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -596,7 +596,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ReferralProduct__c.isActive__c</field>
+        <field>ReferralProduct__c.IsActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -796,7 +796,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialProduct__c.isActive__c</field>
+        <field>FinancialProduct__c.IsActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -866,7 +866,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ProductFeature__c.isActive__c</field>
+        <field>ProductFeature__c.IsActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1571,7 +1571,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ConsentLineItem__c.isActive__c</field>
+        <field>ConsentLineItem__c.IsActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1706,7 +1706,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ProductService__c.isActive__c</field>
+        <field>ProductService__c.IsActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1746,7 +1746,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialAccountService__c.isSelected__c</field>
+        <field>FinancialAccountService__c.IsSelected__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2286,7 +2286,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SurveyTemplate__c.isActive__c</field>
+        <field>SurveyTemplate__c.IsActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

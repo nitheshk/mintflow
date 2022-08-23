@@ -7,7 +7,7 @@
       "mflow__Channel__c": "Virtual",
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
       "mflow__Order__c": 1,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__SurveyQuestions__r": {
         "totalSize": 11,
         "done": true,
@@ -25,7 +25,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Will there be ACH Activity on the account to exceed $2,000 per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": true
+            "mflow__HasChild__c": true
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_1" },
@@ -42,7 +42,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how many ACH transactions per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_2" },
@@ -59,7 +59,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how much in ACH transactions per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_3" },
@@ -74,7 +74,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Will there be Wire activity on the account in excess of $2,000 per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": true
+            "mflow__HasChild__c": true
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_4" },
@@ -91,7 +91,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how many Wire transactions per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_5" },
@@ -108,7 +108,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how much in Wire activity per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_6" },
@@ -123,7 +123,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Do you plan to have cash transactions to your account in excess of $2,000 per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": true
+            "mflow__HasChild__c": true
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_7" },
@@ -140,7 +140,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how many Cash transactions per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_8" },
@@ -157,7 +157,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Approximately how much Cash do you anticipate per month",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_9" },
@@ -172,7 +172,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "The Taxpayer Identification Number shown above (TIN) is my correct taxpayer identification number",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_0_10" },
@@ -187,7 +187,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Has the IRS notified you that you are subject to backup withholding because you have failed to report all interest or dividends on your tax return",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           }
         ]
       }
@@ -199,7 +199,7 @@
       "mflow__Channel__c": "Virtual",
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
       "mflow__Order__c": 1,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__SurveyQuestions__r": {
         "totalSize": 3,
         "done": true,
@@ -217,7 +217,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "What brought you to P1FCU?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": true
+            "mflow__HasChild__c": true
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_1_1" },
@@ -234,7 +234,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Uncovered Opportunity?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_1_2" },
@@ -251,7 +251,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Other",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           }
         ]
       }
@@ -264,7 +264,7 @@
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
       "mflow__FinancilProductCategory__c": "Checking",
       "mflow__Order__c": 4,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__SurveyQuestions__r": {
         "totalSize": 8,
         "done": true,
@@ -282,7 +282,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "What is the intended ownership of this new checking?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_1" },
@@ -297,7 +297,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "P1FCU has several overdraft solutions to choose from. The first is Overdraft Transfer. This service will automatically transfer funds into the debit account in the event of an overdraft. When funds are automatically transferred there will be a fee of $2.",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_2" },
@@ -312,7 +312,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Courtesy Pay is a discretionary service P1FCU provides to eligible account holders to prevent transactions from being returned or declined. The amount of overdraft coverage will be determined by your account history and activity and is customized for each",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_3" },
@@ -327,7 +327,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Would you like P1FCU to Strive to Pay ATM and everyday debit card transactions in the event of an overdraft? - If you \"Opt In\" you are authorizing us to Strive to Pay that item, keeping in mind that the standard overdraft fee would apply.   If you \"Opt Ou",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_4" },
@@ -342,7 +342,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "This debit account comes with a debit card that will be mailed to you in 7-10 days. What debit card design would you like? To view all of our designs, please click here",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_5" },
@@ -357,7 +357,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Do you have any direct deposits or automatic ACH payments we can switch using Click SWITCH?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_6" },
@@ -372,7 +372,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Would you like to set up “Save your Change” to round transactions to the nearest dollar and transfer to savings?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_2_7" },
@@ -387,7 +387,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "If yes, what share would you like the change to transfer into?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           }
         ]
       }
@@ -400,7 +400,7 @@
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
       "mflow__FinancilProductCategory__c": "Consumer Loan",
       "mflow__Order__c": 5,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__SurveyQuestions__r": {
         "totalSize": 21,
         "done": true,
@@ -418,7 +418,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "About this Property and Your Money for this Loan",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_1" },
@@ -433,7 +433,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Will you occupy the property as your primary residence?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": true
+            "mflow__HasChild__c": true
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_2" },
@@ -449,7 +449,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Have you had an ownership interest in another property in the last three years?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": true
+            "mflow__HasChild__c": true
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_3" },
@@ -465,7 +465,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "What type of property did you own: primary residence (PR), FHA secondary residence (SR), second home (SH),  or investment property (IP)?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_4" },
@@ -481,7 +481,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "How did you hold title to the property: by yourself (S), jointly with yourspouse (SP), or jointly with another person (O)?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_5" },
@@ -496,7 +496,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "If this is a Purchase Transaction: Do you have a family relationship or business affiliation with the seller of the property?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_6" },
@@ -511,7 +511,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Are you borrowing any money for this real estate transaction (e.g., money for your closing costs or down payment) or  obtaining any money from another party, such as the seller or realtor, that you have not disclosed on this loan application?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": true
+            "mflow__HasChild__c": true
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_7" },
@@ -527,7 +527,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "what is the amount of this money?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_8" },
@@ -542,7 +542,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Have you or will you be applying for a mortgage loan on another property (not the property securing this loan) on or  before closing this transaction that is not disclosed on this loan application?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_9" },
@@ -557,7 +557,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Have you or will you be applying for any new credit (e.g., installmentloan, credit card, etc.) on or before closing thisloan that  is not disclosed on this application?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_10" },
@@ -572,7 +572,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Will this property be subject to a lien that could take priority over the first mortgage lien, such as a clean energy lien paid  through your property taxes (e.g., the Property Assessed Clean Energy Program)?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_11" },
@@ -587,7 +587,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "About Your Finances",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_12" },
@@ -602,7 +602,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Are you a co-signer or guarantor on any debt or loan that is not disclosed on this application?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_13" },
@@ -617,7 +617,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Are there any outstanding judgments against you?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_14" },
@@ -632,7 +632,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Are you currently delinquent or in default on a Federal debt?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_15" },
@@ -647,7 +647,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Are you a party to a lawsuit in which you potentially have any personal financial liability?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_16" },
@@ -662,7 +662,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Have you conveyed title to any property in lieu of foreclosure in the past 7 years?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_17" },
@@ -677,7 +677,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Within the past 7 years, have you completed a pre-foreclosure sale or short sale, whereby the property was sold to a  third party and the Lender agreed to accept less than the outstanding mortgage balance due?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_18" },
@@ -692,7 +692,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Have you had property foreclosed upon in the last 7 years?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_19" },
@@ -707,7 +707,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Have you declared bankruptcy within the past 7 years?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": true
+            "mflow__HasChild__c": true
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_3_20" },
@@ -723,7 +723,7 @@
             "mflow__Required__c": false,
             "mflow__ShortDescription__c": "Identify the type(s) of bankruptcy: (Chapter7/11/12/13)",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           }
         ]
       }
@@ -736,7 +736,7 @@
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
       "mflow__FinancilProductCategory__c": "Savings",
       "mflow__Order__c": 57,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__SurveyQuestions__r": {
         "totalSize": 1,
         "done": true,
@@ -754,7 +754,7 @@
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "What is the intended ownership of this new savings?",
             "mflow__ShowQuestionNumber__c": false,
-            "mflow__hasChild__c": false
+            "mflow__HasChild__c": false
           }
         ]
       }

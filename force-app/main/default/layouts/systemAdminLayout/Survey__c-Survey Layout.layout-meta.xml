@@ -46,7 +46,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>hasChild__c</field>
+                <field>HasChild__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

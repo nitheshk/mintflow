@@ -215,7 +215,7 @@ public with sharing class TestData {
     financialAccountService.mflow__FinancialAccount__c = financialAccount?.id;
     financialAccountService.Description__c = 'FinInst';
     financialAccountService.ServiceName__c = 'OnlineBanking';
-    financialAccountService.isSelected__c = false;
+    financialAccountService.IsSelected__c = false;
     return financialAccountService;
   }
 
@@ -303,7 +303,7 @@ public with sharing class TestData {
 
   public static ProductService__c makeProductService() {
     ProductService__c productService = new ProductService__c();
-    productService.mflow__isActive__c = true;
+    productService.mflow__IsActive__c = true;
     productService.mflow__ServiceName__c = 'Product Service';
     return productService;
   }
@@ -350,7 +350,7 @@ public with sharing class TestData {
     consentLine.mflow__Channel__c = 'Virtual;Branch';
     consentLine.mflow__ExternalId__c = 'CLI0002';
     consentLine.mflow__IsSignatureRequired__c = false;
-    consentLine.isActive__c = true;
+    consentLine.IsActive__c = true;
     consentLine.ConsentTemplate__c = consentTemplate.id;
     consentLines.add(consentLine);
     insert consentLines;

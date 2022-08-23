@@ -7,7 +7,7 @@
     <columns>Type__c</columns>
     <columns>InternalCode__c</columns>
     <columns>ExternalCode__c</columns>
-    <columns>isActive__c</columns>
+    <columns>IsActive__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

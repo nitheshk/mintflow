@@ -216,7 +216,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
           customerInterest.Name = fainancialAccount.FinancialProduct__r.Name;
           customerInterest.InterestProduct__c = fainancialAccount.FinancialProduct__c;
           customerInterest.Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_INITIAL_INTEREST;
-          customerInterest.isSelected__c = true;
+          customerInterest.IsSelected__c = true;
           customerInterest.mflow__Required__c = true;
           customerInterestList.add(customerInterest);
         }
