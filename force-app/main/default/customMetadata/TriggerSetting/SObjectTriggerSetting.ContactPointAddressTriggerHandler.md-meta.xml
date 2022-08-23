@@ -4,7 +4,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-    <label>ContactPointAddressTriggerHandler</label>
+    <label>AddressTriggerHandler</label>
     <protected>false</protected>
     <values>
         <field>Description__c</field>
@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>ObjectAPIName__c</field>
-        <value xsi:type="xsd:string">ContactPointAddress</value>
+        <value xsi:type="xsd:string">Address__c</value>
     </values>
     <values>
         <field>Order__c</field>
@@ -28,6 +28,6 @@
     </values>
     <values>
         <field>TriggerHandlerName__c</field>
-        <value xsi:type="xsd:string">ContactPointAddressTriggerHandler</value>
+        <value xsi:type="xsd:string">AddressTriggerHandler</value>
     </values>
 </CustomMetadata>

@@ -336,7 +336,7 @@
         <fields>StateCode__c</fields>
         <fields>ADDRESS.ZIP</fields>
         <fields>ADDRESS.COUNTRY</fields>
-        <relatedList>ContactPointAddress.Applicant__c</relatedList>
+        <relatedList>Address__c.Applicant__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
