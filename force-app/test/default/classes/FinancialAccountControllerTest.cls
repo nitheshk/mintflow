@@ -86,7 +86,7 @@ public with sharing class FinancialAccountControllerTest {
     // CustomerInterest__c customerInsert = new CustomerInterest__c();
     // customerInsert.Name = 'Prime Debit Account';
     // customerInsert.mflow__InterestProduct__c = rf.Id;
-    // customerInsert.mflow__isSelected__c = false;
+    // customerInsert.mflow__IsSelected__c = false;
     // construct.addChildObject('mflow__CustomerInterests__r', customerInsert);
     // request = new ApexRequest();
     // request.token = ApexRequest.getToken();

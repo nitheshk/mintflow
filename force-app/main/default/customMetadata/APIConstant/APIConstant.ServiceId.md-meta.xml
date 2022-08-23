@@ -19,7 +19,7 @@
         <value xsi:type="xsd:string">211B428E-B8B5-4EB9-973D-106F013C371F</value>
     </values>
     <values>
-        <field>isActive__c</field>
+        <field>IsActive__c</field>
         <value xsi:type="xsd:boolean">true</value>
     </values>
 </CustomMetadata>

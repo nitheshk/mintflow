@@ -369,7 +369,6 @@ global virtual with sharing class IdentityService extends AbstractService {
       }
     }
     data.questions = questionList;
-    system.debug('total ::' + totalNumberofQuestions);
     data.minimumQuestionToAnswer = (Integer) (totalNumberofQuestions * (minimumToBeAnswered / 100));
 
     log?.debug(JSON.serialize(questionList));
@@ -569,7 +568,6 @@ global virtual with sharing class IdentityService extends AbstractService {
       dataList.add(data);
 
       servicedata.data = dataList;
-      System.debug(' servicedata' + servicedata);
       return servicedata;
     } else {
       return null;

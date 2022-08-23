@@ -54,7 +54,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>isActive__c</field>
+                <field>IsActive__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -100,7 +100,7 @@
         <fields>MasterLabel</fields>
         <fields>DeveloperName</fields>
         <fields>NamespacePrefix</fields>
-        <fields>isActive__c</fields>
+        <fields>IsActive__c</fields>
         <fields>Value__c</fields>
         <relatedList>APIConstant__mdt.APISetting__c</relatedList>
     </relatedLists>

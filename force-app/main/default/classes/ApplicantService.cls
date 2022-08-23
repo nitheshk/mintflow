@@ -5,7 +5,7 @@
  * @reference
  * @description Application service
  **/
-@SuppressWarnings('PMD.AvoidGlobalModifier')
+@SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity')
 global virtual with sharing class ApplicantService extends AbstractService {
   @TestVisible
   private static ApplicantService serviceInstance;
@@ -159,6 +159,30 @@ global virtual with sharing class ApplicantService extends AbstractService {
   }
 
   /**
+   * @description to verify KYC of the applicant using alloy provider
+   * @author Digital Align Team | 03-08-2022
+   * @param Application__c application
+   * @return Applicant__c
+   **/
+  global virtual Object verifyKYC(Id applicantId) {
+    Flow.initialize(ApexRequest.getApplicationId());
+    try {
+      Flow.setFlow('Alloy KYC');
+      if (!SystemSetting__c.getOrgDefaults().mflow__KYCEvaluation__c) {
+        flow.setFlowPassed('KYC verification has been skipped by system');
+        return 'KYC verification has been skipped by system';
+      }
+      Applicant__c applicant = AlloyProvider.getInstance().doIDVVerification(applicantId);
+      flow.setFlowPassed('KYC Verified successfully');
+      return applicant;
+    } catch (exception ex) {
+      Flow.setFlowFailed(ex.getMessage());
+      log?.error(ex);
+      throw ex;
+    }
+  }
+
+  /**
    * @description
    * @author Digital Align Team | 03-28-2022
    * @param Id applicationId
@@ -192,7 +216,7 @@ global virtual with sharing class ApplicantService extends AbstractService {
           customerInterest.Name = fainancialAccount.FinancialProduct__r.Name;
           customerInterest.InterestProduct__c = fainancialAccount.FinancialProduct__c;
           customerInterest.Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_INITIAL_INTEREST;
-          customerInterest.isSelected__c = true;
+          customerInterest.IsSelected__c = true;
           customerInterest.mflow__Required__c = true;
           customerInterestList.add(customerInterest);
         }

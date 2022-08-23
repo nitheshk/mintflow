@@ -9,18 +9,7 @@
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "Debit Card",
       "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true
-    },
-    {
-      "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS007" },
-      "mflow__Description__c": "Select debit card",
-      "mflow__ExternalId__c": "PS007",
-      "mflow__FinancialProduct__c": "@IC007",
-      "mflow__Order__c": 1,
-      "mflow__Required__c": false,
-      "mflow__ServiceName__c": "Debit Card",
-      "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true
+      "mflow__IsActive__c": true
     },
     {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS005" },
@@ -31,7 +20,7 @@
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "Debit Card",
       "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true
+      "mflow__IsActive__c": true
     },
     {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS004" },
@@ -42,7 +31,7 @@
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "Overdraft Transfer",
       "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true
+      "mflow__IsActive__c": true
     },
     {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS006" },
@@ -53,18 +42,7 @@
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "Overdraft Transfer",
       "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true
-    },
-    {
-      "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS008" },
-      "mflow__Description__c": "Overdraft service",
-      "mflow__ExternalId__c": "PS008",
-      "mflow__FinancialProduct__c": "@IC007",
-      "mflow__Order__c": 2,
-      "mflow__Required__c": false,
-      "mflow__ServiceName__c": "Overdraft Transfer",
-      "mflow__ShowQuestions__c": true,
-      "mflow__isActive__c": true
+      "mflow__IsActive__c": true
     },
     {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS001" },
@@ -75,7 +53,7 @@
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "eStatment",
       "mflow__ShowQuestions__c": false,
-      "mflow__isActive__c": true
+      "mflow__IsActive__c": true
     },
     {
       "attributes": { "type": "mflow__ProductService__c", "referenceId": "PS002" },
@@ -86,7 +64,7 @@
       "mflow__Required__c": false,
       "mflow__ServiceName__c": "Online Banking",
       "mflow__ShowQuestions__c": false,
-      "mflow__isActive__c": true,
+      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -100,7 +78,7 @@
             "mflow__Order__c": 1,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Service Configuration",
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }

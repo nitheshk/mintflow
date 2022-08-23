@@ -169,7 +169,7 @@ global virtual with sharing class SurveyResolver extends AbstractService {
         surveyObj.LongDescription__c = item.LongDescription__c;
         surveyObj.ShowQuestionNumber__c = item.ShowQuestionNumber__c;
         surveyObj.Condition__c = item.Condition__c;
-        surveyObj.hasChild__c = item.hasChild__c;
+        surveyObj.HasChild__c = item.HasChild__c;
         surveyObj.CustomStyle__c = item.CustomStyle__c;
         surveyObj.Order__c = item.Order__c;
         surveyObj.Options__c = item.Options__c;
@@ -177,9 +177,9 @@ global virtual with sharing class SurveyResolver extends AbstractService {
         surveyObj.Name = item.Name;
         surveyObj.TemplateName__c = surveyTemplate.Name;
         if (String.isBlank(item.ParentQuestionCode__c)) {
-          surveyObj.isDisplayed__c = true;
+          surveyObj.IsDisplayed__c = true;
         } else {
-          surveyObj.isDisplayed__c = false;
+          surveyObj.IsDisplayed__c = false;
         }
         surveyList.add(surveyObj);
       }

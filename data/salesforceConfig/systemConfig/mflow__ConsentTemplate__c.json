@@ -28,7 +28,7 @@
             "mflow__FinancilProductCategory__c": "Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 6,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -61,7 +61,7 @@
             "mflow__FinancilProductCategory__c": "Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 13,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -94,7 +94,7 @@
             "mflow__FinancilProductCategory__c": "Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 9,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -127,7 +127,7 @@
             "mflow__FinancilProductCategory__c": "Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 12,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -160,7 +160,7 @@
             "mflow__FinancilProductCategory__c": "Checking",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 15,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -193,7 +193,7 @@
             "mflow__FinancilProductCategory__c": "Savings",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 17,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -226,7 +226,7 @@
             "mflow__FinancilProductCategory__c": "Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 10,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -259,7 +259,7 @@
             "mflow__FinancilProductCategory__c": "Savings",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 18,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -289,7 +289,7 @@
             "mflow__ExternalId__c": "CLI0002",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 2,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -320,7 +320,7 @@
             "mflow__FinancilProductCategory__c": "Savings;Checking;Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 3,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -352,7 +352,7 @@
             "mflow__FinancilProductCategory__c": "Checking",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 4,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -385,7 +385,7 @@
             "mflow__FinancilProductCategory__c": "Savings",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 5,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -430,7 +430,7 @@
             "mflow__ExternalId__c": "CLI0001",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 1,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -463,7 +463,7 @@
             "mflow__FinancilProductCategory__c": "Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 7,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -496,7 +496,7 @@
             "mflow__FinancilProductCategory__c": "Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 8,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -529,40 +529,7 @@
             "mflow__FinancilProductCategory__c": "Certificate",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 11,
-            "mflow__isActive__c": true
-          }
-        ]
-      }
-    },
-    {
-      "attributes": { "type": "mflow__ConsentTemplate__c", "referenceId": "ConsentTemplateRef17" },
-      "Name": "Power Plus Debit Account Agreement",
-      "mflow__Code__c": "C00021",
-      "mflow__ConsentType__c": "Disclosure",
-      "mflow__DocumentName__c": "mflow__CustomerAgreement",
-      "mflow__DocumentType__c": "Visualforce",
-      "mflow__ExternalId__c": "E00021",
-      "mflow__Language__c": "English",
-      "mflow__LongDescipription__c": "Power Plus Debit Account Agreement",
-      "mflow__ShortDescription__c": "Power Plus Debit Account Agreement",
-      "mflow__URL__c": "mflow__CustomerAgreement?id={applicationId}",
-      "mflow__VersionNumber__c": "v1",
-      "mflow__ConsentLineItems__r": {
-        "totalSize": 1,
-        "done": true,
-        "records": [
-          {
-            "attributes": { "type": "mflow__ConsentLineItem__c", "referenceId": "ConsentLineItemRef17_0" },
-            "Name": "Power Plus Debit Account Agreement",
-            "mflow__ApplicantType__c": "Primary",
-            "mflow__Channel__c": "Virtual;Branch",
-            "mflow__EventIdentifier__c": "MemberAgreementPage",
-            "mflow__ExternalId__c": "CLI00016",
-            "mflow__FinancialProduct__c": "@IC007",
-            "mflow__FinancilProductCategory__c": "Savings",
-            "mflow__IsSignatureRequired__c": false,
-            "mflow__Order__c": 16,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -595,7 +562,7 @@
             "mflow__FinancilProductCategory__c": "Savings",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 14,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }
@@ -628,7 +595,7 @@
             "mflow__FinancilProductCategory__c": "Mortgage",
             "mflow__IsSignatureRequired__c": false,
             "mflow__Order__c": 19,
-            "mflow__isActive__c": true
+            "mflow__IsActive__c": true
           }
         ]
       }

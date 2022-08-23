@@ -81,7 +81,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
       finProductServiceObj.Required__c = productService.Required__c;
       finProductServiceObj.ServiceName__c = productService.ServiceName__c;
       finProductServiceObj.ShowQuestions__c = productService.ShowQuestions__c;
-      finProductServiceObj.isSelected__c = false;
+      finProductServiceObj.IsSelected__c = false;
       serviceList.add(finProductServiceObj);
     }
     return serviceList;
@@ -153,7 +153,7 @@ global with sharing class ProductServiceResolver extends AbstractService {
       customerInterest.mflow__Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_REFERRAL;
       customerInterest.mflow__InterestProduct__c = referralProduct.CrossSellProduct__c;
       customerInterest.mflow__InterestProduct__r = referralProduct.CrossSellProduct__r;
-      customerInterest.mflow__isSelected__c = referralProduct.IsSelected__c;
+      customerInterest.mflow__IsSelected__c = referralProduct.IsSelected__c;
       customerInterest.mflow__Order__c = referralProduct.mflow__Order__c;
       customerInterest.mflow__Required__c = referralProduct.mflow__Required__c;
       customerInterests.add(customerInterest);

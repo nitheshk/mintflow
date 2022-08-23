@@ -3,7 +3,7 @@
     <fullName>All</fullName>
     <columns>NAME</columns>
     <columns>ServiceName__c</columns>
-    <columns>isSelected__c</columns>
+    <columns>IsSelected__c</columns>
     <columns>Description__c</columns>
     <columns>FinancialAccount__c</columns>
     <filterScope>Everything</filterScope>

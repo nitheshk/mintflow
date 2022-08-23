@@ -6,7 +6,7 @@
     <externalId>false</externalId>
     <label>Financial Product</label>
     <referenceTo>FinancialProduct__c</referenceTo>
-    <relationshipLabel>Financial Products</relationshipLabel>
+    <relationshipLabel>Referral Products</relationshipLabel>
     <relationshipName>FinancialProducts</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
