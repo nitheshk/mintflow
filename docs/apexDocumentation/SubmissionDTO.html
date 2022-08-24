@@ -582,24 +582,41 @@
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="SentiLinkReportWrapper">
-              <span>SentiLinkReportWrapper</span>
+            <h2 class="class-title top-level-type" id="SubmissionDTO">
+              <span>SubmissionDTO</span>
             </h2>
             <div class="class-container">
 
               <div class="class-description">
-                Copyright (c) 2021 Digital Align
+                Copyright (c) 2021 Digital Align Application Response Mapper class to sum up application data
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
-              <div class="class-annotations">@SuppressWarnings('PMD.ExcessivePublicCount')</div>
+
               <div class="class-signature">
-                public with sharing class SentiLinkReportWrapper
+                global with sharing class SubmissionDTO
               </div><br />Digital Align Team @reference
             </div>
-            <div class="subsection properties SentiLinkReportWrapper">
-              <h3 class="subsection-title properties">SentiLinkReportWrapper Properties</h3>
+          </div>
+
+          <div class="section">
+
+            <h2 class="class-title " id="SubmissionDTO.Applicant">
+              <span>SubmissionDTO.Applicant</span>
+            </h2>
+            <div class="class-container">
+
+              <div class="class-subtitle">
+                Signature
+              </div>
+
+              <div class="class-signature">
+                global class Applicant
+              </div>
+            </div>
+            <div class="subsection properties SubmissionDTO_Applicant">
+              <h3 class="subsection-title properties">SubmissionDTO.Applicant Properties</h3>
               <table class="attributes-table properties">
 
                 <tr>
@@ -608,41 +625,201 @@
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>attributes</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ApplicantId</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Attributes attributes
+                      global String ApplicantId
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>generalInfo</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ApplicantName</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public GeneralInfo generalInfo
+                      global String ApplicantName
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>identity</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ApplicantNumber</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Identity identity
+                      global String ApplicantNumber
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>scores</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ApplicantType</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public List&lt;ScoresInfo&gt; scores
+                      global String ApplicantType
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Application</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Application
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Birthdate</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Date Birthdate
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ContactPointAddresses</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global List&lt;ContactPointAddress&gt; ContactPointAddresses
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>CustomerNumber</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String CustomerNumber
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Email</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Email
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Employments</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global List&lt;Employment&gt; Employments
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FirstName</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String FirstName
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IdentificationDocuments</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global List&lt;IdentificationDocument&gt; IdentificationDocuments
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IsExistingCustomer</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Boolean IsExistingCustomer
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>LastName</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String LastName
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>MiddleName</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String MiddleName
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Order</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal Order
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Phone</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Phone
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Relationship</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Relationship
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>SSN</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String SSN
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Surveys</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global List&lt;Survey&gt; Surveys
                     </div>
                   </td>
 
@@ -651,26 +828,26 @@
               </table>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">SentiLinkReportWrapper Constructors</h3>
+              <h3 class="subsection-title methods">SubmissionDTO.Applicant Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
-                  <li class="method public">
-                    <a class="methods-toc__entry " href="#SentiLinkReportWrapper.SentiLinkReportWrapper">
-                      SentiLinkReportWrapper ()
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#SubmissionDTO.Applicant.Applicant">
+                      Applicant ()
                     </a>
 
                   </li>
                 </ul>
-                <div class="method public">
-                  <h4 class="method-title " id="SentiLinkReportWrapper.SentiLinkReportWrapper">
-                    <span>SentiLinkReportWrapper()</span>
+                <div class="method global">
+                  <h4 class="method-title " id="SubmissionDTO.Applicant.Applicant">
+                    <span>Applicant()</span>
                   </h4>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public SentiLinkReportWrapper()
+                    global Applicant()
                   </div>
                 </div>
               </div>
@@ -679,8 +856,8 @@
 
           <div class="section">
 
-            <h2 class="class-title " id="SentiLinkReportWrapper.Addresses">
-              <span>SentiLinkReportWrapper.Addresses</span>
+            <h2 class="class-title " id="SubmissionDTO.ApplicantResult">
+              <span>SubmissionDTO.ApplicantResult</span>
             </h2>
             <div class="class-container">
 
@@ -689,11 +866,11 @@
               </div>
 
               <div class="class-signature">
-                public class Addresses
+                global class ApplicantResult
               </div>
             </div>
-            <div class="subsection properties SentiLinkReportWrapper_Addresses">
-              <h3 class="subsection-title properties">SentiLinkReportWrapper.Addresses Properties</h3>
+            <div class="subsection properties SubmissionDTO_ApplicantResult">
+              <h3 class="subsection-title properties">SubmissionDTO.ApplicantResult Properties</h3>
               <table class="attributes-table properties">
 
                 <tr>
@@ -702,21 +879,21 @@
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>completeAddress</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ApplicantId</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String completeAddress
+                      global String ApplicantId
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>firstReported</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>CustomerNumber</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public string firstReported
+                      global String CustomerNumber
                     </div>
                   </td>
 
@@ -728,21 +905,24 @@
 
           <div class="section">
 
-            <h2 class="class-title " id="SentiLinkReportWrapper.Attributes">
-              <span>SentiLinkReportWrapper.Attributes</span>
+            <h2 class="class-title " id="SubmissionDTO.ApplicationData">
+              <span>SubmissionDTO.ApplicationData</span>
             </h2>
             <div class="class-container">
 
+              <div class="class-description">
+                To Send contructed Data Request By Rpa
+              </div>
               <div class="class-subtitle">
                 Signature
               </div>
 
               <div class="class-signature">
-                public class Attributes
+                global class ApplicationData
               </div>
             </div>
-            <div class="subsection properties SentiLinkReportWrapper_Attributes">
-              <h3 class="subsection-title properties">SentiLinkReportWrapper.Attributes Properties</h3>
+            <div class="subsection properties SubmissionDTO_ApplicationData">
+              <h3 class="subsection-title properties">SubmissionDTO.ApplicationData Properties</h3>
               <table class="attributes-table properties">
 
                 <tr>
@@ -751,71 +931,161 @@
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>name_dob_shared_count</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Applicants</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Integer name_dob_shared_count
+                      global List&lt;Applicant&gt; Applicants
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>name_ssn_synthetic_address</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ApplicationId</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Boolean name_ssn_synthetic_address
+                      global String ApplicationId
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>ssn_bogus</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ApplicationNumber</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Boolean ssn_bogus
+                      global String ApplicationNumber
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>ssn_history_longer_months</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>BranchCode</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Integer ssn_history_longer_months
+                      global String BranchCode
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>ssn_issuance_dob_mismatch</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>BranchName</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Boolean ssn_issuance_dob_mismatch
+                      global String BranchName
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>ssn_issued_before_dob</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>CountyCode</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Boolean ssn_issued_before_dob
+                      global String CountyCode
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>ssn_shared_count</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>CountyName</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Integer ssn_shared_count
+                      global String CountyName
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ExternalApplicationNumber</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global string ExternalApplicationNumber
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialAccounts</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global List&lt;FinancialAccount&gt; FinancialAccounts
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialProduct</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global string FinancialProduct
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialProductType</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global string FinancialProductType
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IsCountyEligible</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Boolean IsCountyEligible
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IsMemberFlow</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Boolean IsMemberFlow
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Password</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Password
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>StateName</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String StateName
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Surveys</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global List&lt;Survey&gt; Surveys
                     </div>
                   </td>
 
@@ -824,26 +1094,26 @@
               </table>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">SentiLinkReportWrapper.Attributes Constructors</h3>
+              <h3 class="subsection-title methods">SubmissionDTO.ApplicationData Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
-                  <li class="method public">
-                    <a class="methods-toc__entry " href="#SentiLinkReportWrapper.Attributes.Attributes">
-                      Attributes ()
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#SubmissionDTO.ApplicationData.ApplicationData">
+                      ApplicationData ()
                     </a>
 
                   </li>
                 </ul>
-                <div class="method public">
-                  <h4 class="method-title " id="SentiLinkReportWrapper.Attributes.Attributes">
-                    <span>Attributes()</span>
+                <div class="method global">
+                  <h4 class="method-title " id="SubmissionDTO.ApplicationData.ApplicationData">
+                    <span>ApplicationData()</span>
                   </h4>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public Attributes()
+                    global ApplicationData()
                   </div>
                 </div>
               </div>
@@ -852,21 +1122,24 @@
 
           <div class="section">
 
-            <h2 class="class-title " id="SentiLinkReportWrapper.Emails">
-              <span>SentiLinkReportWrapper.Emails</span>
+            <h2 class="class-title " id="SubmissionDTO.ApplicationResult">
+              <span>SubmissionDTO.ApplicationResult</span>
             </h2>
             <div class="class-container">
 
+              <div class="class-description">
+                Application Submission Result Recieved from RPA
+              </div>
               <div class="class-subtitle">
                 Signature
               </div>
 
               <div class="class-signature">
-                public class Emails
+                global class ApplicationResult
               </div>
             </div>
-            <div class="subsection properties SentiLinkReportWrapper_Emails">
-              <h3 class="subsection-title properties">SentiLinkReportWrapper.Emails Properties</h3>
+            <div class="subsection properties SubmissionDTO_ApplicationResult">
+              <h3 class="subsection-title properties">SubmissionDTO.ApplicationResult Properties</h3>
               <table class="attributes-table properties">
 
                 <tr>
@@ -875,51 +1148,71 @@
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>email</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Applicants</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String email
+                      global list&lt;ApplicantResult&gt; Applicants
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>first_reported</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ApplicationId</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String first_reported
+                      global String ApplicationId
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>format_verified</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ExternalApplicationNumber</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Boolean format_verified
+                      global String ExternalApplicationNumber
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>is_valid</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ExternalApplicationStatus</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Boolean is_valid
+                      global String ExternalApplicationStatus
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>last_reported</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialAccounts</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String last_reported
+                      global List&lt;FinancialAccountResult&gt; FinancialAccounts
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IsExistingCustomer</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Boolean IsExistingCustomer
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>MemberNumber</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String MemberNumber
                     </div>
                   </td>
 
@@ -931,8 +1224,8 @@
 
           <div class="section">
 
-            <h2 class="class-title " id="SentiLinkReportWrapper.GeneralInfo">
-              <span>SentiLinkReportWrapper.GeneralInfo</span>
+            <h2 class="class-title " id="SubmissionDTO.ContactPointAddress">
+              <span>SubmissionDTO.ContactPointAddress</span>
             </h2>
             <div class="class-container">
 
@@ -941,11 +1234,11 @@
               </div>
 
               <div class="class-signature">
-                public class GeneralInfo
+                global class ContactPointAddress
               </div>
             </div>
-            <div class="subsection properties SentiLinkReportWrapper_GeneralInfo">
-              <h3 class="subsection-title properties">SentiLinkReportWrapper.GeneralInfo Properties</h3>
+            <div class="subsection properties SubmissionDTO_ContactPointAddress">
+              <h3 class="subsection-title properties">SubmissionDTO.ContactPointAddress Properties</h3>
               <table class="attributes-table properties">
 
                 <tr>
@@ -954,41 +1247,439 @@
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>applicationId</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>AddressType</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String applicationId
+                      global String AddressType
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>rawResponse</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>City</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String rawResponse
+                      global String City
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>timestamp</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ContactPointAddressId</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String timestamp
+                      global String ContactPointAddressId
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>transactionId</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Country</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String transactionId
+                      global String Country
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IsPrimary</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Boolean IsPrimary
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>OccupancyDuration</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal OccupancyDuration
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>OccupancyStatus</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String OccupancyStatus
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Order</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal Order
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>PostalCode</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String PostalCode
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>State</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String State
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>StateCode</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String StateCode
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Street</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Street
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="section">
+
+            <h2 class="class-title " id="SubmissionDTO.Employment">
+              <span>SubmissionDTO.Employment</span>
+            </h2>
+            <div class="class-container">
+
+              <div class="class-subtitle">
+                Signature
+              </div>
+
+              <div class="class-signature">
+                global class Employment
+              </div>
+            </div>
+            <div class="subsection properties SubmissionDTO_Employment">
+              <h3 class="subsection-title properties">SubmissionDTO.Employment Properties</h3>
+              <table class="attributes-table properties">
+
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>BranchofService</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global string BranchofService
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>DocumentType</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String DocumentType
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>EmployerName</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String EmployerName
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>EmploymentDuration</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal EmploymentDuration
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>EmploymentId</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String EmploymentId
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>EmploymentStatus</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String EmploymentStatus
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>EmploymentType</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String EmploymentType
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>EnlistmentDate</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Date EnlistmentDate
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>GrossMonthlySalary</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Double GrossMonthlySalary
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IncomeType</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String IncomeType
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Name</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Name
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Order</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal Order
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>PayCycle</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String PayCycle
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>PayGrade</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String PayGrade
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Position</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Position
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="section">
+
+            <h2 class="class-title " id="SubmissionDTO.FinancialAccount">
+              <span>SubmissionDTO.FinancialAccount</span>
+            </h2>
+            <div class="class-container">
+
+              <div class="class-subtitle">
+                Signature
+              </div>
+
+              <div class="class-signature">
+                global class FinancialAccount
+              </div>
+            </div>
+            <div class="subsection properties SubmissionDTO_FinancialAccount">
+              <h3 class="subsection-title properties">SubmissionDTO.FinancialAccount Properties</h3>
+              <table class="attributes-table properties">
+
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Comments</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Comments
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>CreditLimit</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal CreditLimit
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ExternalApplicationNumber</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String ExternalApplicationNumber
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ExternalCode</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String ExternalCode
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialAccountId</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String FinancialAccountId
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialApplicationTransaction</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global FinancialAccountTransaction FinancialApplicationTransaction
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialProduct</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String FinancialProduct
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialProductType</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String FinancialProductType
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>InternalCode</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String InternalCode
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Ownership</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Ownership
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Purpose</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Purpose
                     </div>
                   </td>
 
@@ -997,26 +1688,26 @@
               </table>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">SentiLinkReportWrapper.GeneralInfo Constructors</h3>
+              <h3 class="subsection-title methods">SubmissionDTO.FinancialAccount Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
-                  <li class="method public">
-                    <a class="methods-toc__entry " href="#SentiLinkReportWrapper.GeneralInfo.GeneralInfo">
-                      GeneralInfo ()
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#SubmissionDTO.FinancialAccount.FinancialAccount">
+                      FinancialAccount ()
                     </a>
 
                   </li>
                 </ul>
-                <div class="method public">
-                  <h4 class="method-title " id="SentiLinkReportWrapper.GeneralInfo.GeneralInfo">
-                    <span>GeneralInfo()</span>
+                <div class="method global">
+                  <h4 class="method-title " id="SubmissionDTO.FinancialAccount.FinancialAccount">
+                    <span>FinancialAccount()</span>
                   </h4>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public GeneralInfo()
+                    global FinancialAccount()
                   </div>
                 </div>
               </div>
@@ -1025,8 +1716,8 @@
 
           <div class="section">
 
-            <h2 class="class-title " id="SentiLinkReportWrapper.Identity">
-              <span>SentiLinkReportWrapper.Identity</span>
+            <h2 class="class-title " id="SubmissionDTO.FinancialAccountResult">
+              <span>SubmissionDTO.FinancialAccountResult</span>
             </h2>
             <div class="class-container">
 
@@ -1035,11 +1726,11 @@
               </div>
 
               <div class="class-signature">
-                public class Identity
+                global class FinancialAccountResult
               </div>
             </div>
-            <div class="subsection properties SentiLinkReportWrapper_Identity">
-              <h3 class="subsection-title properties">SentiLinkReportWrapper.Identity Properties</h3>
+            <div class="subsection properties SubmissionDTO_FinancialAccountResult">
+              <h3 class="subsection-title properties">SubmissionDTO.FinancialAccountResult Properties</h3>
               <table class="attributes-table properties">
 
                 <tr>
@@ -1048,31 +1739,31 @@
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>addresses</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>AccountNumber</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public List&lt;Addresses&gt; addresses
+                      global String AccountNumber
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>emails</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialAccountId</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public List&lt;Emails&gt; emails
+                      global String FinancialAccountId
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>phones</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialApplicationTransaction</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public List&lt;Phones&gt; phones
+                      global FinancialTransactionResult FinancialApplicationTransaction
                     </div>
                   </td>
 
@@ -1084,8 +1775,8 @@
 
           <div class="section">
 
-            <h2 class="class-title " id="SentiLinkReportWrapper.Phones">
-              <span>SentiLinkReportWrapper.Phones</span>
+            <h2 class="class-title " id="SubmissionDTO.FinancialAccountTransaction">
+              <span>SubmissionDTO.FinancialAccountTransaction</span>
             </h2>
             <div class="class-container">
 
@@ -1094,11 +1785,11 @@
               </div>
 
               <div class="class-signature">
-                public class Phones
+                global class FinancialAccountTransaction
               </div>
             </div>
-            <div class="subsection properties SentiLinkReportWrapper_Phones">
-              <h3 class="subsection-title properties">SentiLinkReportWrapper.Phones Properties</h3>
+            <div class="subsection properties SubmissionDTO_FinancialAccountTransaction">
+              <h3 class="subsection-title properties">SubmissionDTO.FinancialAccountTransaction Properties</h3>
               <table class="attributes-table properties">
 
                 <tr>
@@ -1107,51 +1798,111 @@
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>first_reported</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>AccountHolderName</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String first_reported
+                      global String AccountHolderName
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>isValidLength</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>AccountNumber</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Boolean isValidLength
+                      global String AccountNumber
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>last_reported</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Amount</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String last_reported
+                      global Decimal Amount
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>phone</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialAccountTransactionId</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String phone
+                      global String FinancialAccountTransactionId
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>phone_type</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialInstitute</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String phone_type
+                      global String FinancialInstitute
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>InstitutionState</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global string InstitutionState
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>RoutingNumber</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String RoutingNumber
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>TransactionAccountType</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String TransactionAccountType
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>TransactionDate</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Date TransactionDate
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>TransactionStatus</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String TransactionStatus
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>TransactionType</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String TransactionType
                     </div>
                   </td>
 
@@ -1163,8 +1914,8 @@
 
           <div class="section">
 
-            <h2 class="class-title " id="SentiLinkReportWrapper.ReasonCodes">
-              <span>SentiLinkReportWrapper.ReasonCodes</span>
+            <h2 class="class-title " id="SubmissionDTO.FinancialTransactionResult">
+              <span>SubmissionDTO.FinancialTransactionResult</span>
             </h2>
             <div class="class-container">
 
@@ -1173,11 +1924,11 @@
               </div>
 
               <div class="class-signature">
-                public class ReasonCodes
+                global class FinancialTransactionResult
               </div>
             </div>
-            <div class="subsection properties SentiLinkReportWrapper_ReasonCodes">
-              <h3 class="subsection-title properties">SentiLinkReportWrapper.ReasonCodes Properties</h3>
+            <div class="subsection properties SubmissionDTO_FinancialTransactionResult">
+              <h3 class="subsection-title properties">SubmissionDTO.FinancialTransactionResult Properties</h3>
               <table class="attributes-table properties">
 
                 <tr>
@@ -1186,79 +1937,34 @@
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>code</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>FinancialAccountTransactionId</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String code
+                      global String FinancialAccountTransactionId
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>direction</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>TransactionStatus</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String direction
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>explanation</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      public String explanation
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>rank</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      public Integer rank
+                      global String TransactionStatus
                     </div>
                   </td>
 
 
                 </tr>
               </table>
-            </div>
-            <div class="subsection methods">
-              <h3 class="subsection-title methods">SentiLinkReportWrapper.ReasonCodes Constructors</h3>
-              <div class="methods-container">
-                <ul class="methods-toc">
-                  <li class="method public">
-                    <a class="methods-toc__entry " href="#SentiLinkReportWrapper.ReasonCodes.ReasonCodes">
-                      ReasonCodes ()
-                    </a>
-
-                  </li>
-                </ul>
-                <div class="method public">
-                  <h4 class="method-title " id="SentiLinkReportWrapper.ReasonCodes.ReasonCodes">
-                    <span>ReasonCodes()</span>
-                  </h4>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    public ReasonCodes()
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
           <div class="section">
 
-            <h2 class="class-title " id="SentiLinkReportWrapper.ScoresInfo">
-              <span>SentiLinkReportWrapper.ScoresInfo</span>
+            <h2 class="class-title " id="SubmissionDTO.IdentificationDocument">
+              <span>SubmissionDTO.IdentificationDocument</span>
             </h2>
             <div class="class-container">
 
@@ -1267,11 +1973,11 @@
               </div>
 
               <div class="class-signature">
-                public class ScoresInfo
+                global class IdentificationDocument
               </div>
             </div>
-            <div class="subsection properties SentiLinkReportWrapper_ScoresInfo">
-              <h3 class="subsection-title properties">SentiLinkReportWrapper.ScoresInfo Properties</h3>
+            <div class="subsection properties SubmissionDTO_IdentificationDocument">
+              <h3 class="subsection-title properties">SubmissionDTO.IdentificationDocument Properties</h3>
               <table class="attributes-table properties">
 
                 <tr>
@@ -1280,41 +1986,81 @@
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>name</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>DocumentNumber</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String name
+                      global String DocumentNumber
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>reasonCodes</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>DocumentType</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public List&lt;ReasonCodes&gt; reasonCodes
+                      global String DocumentType
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>score</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ExpirationDate</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public Integer score
+                      global Date ExpirationDate
                     </div>
                   </td>
 
 
                 </tr>
-                <tr class="property public">
-                  <td class="attribute-name"><span>version</span></td>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IdentificationDocumentId</span></td>
                   <td>
                     <div class="attribute-signature">
-                      public String version
+                      global String IdentificationDocumentId
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IssueDate</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Date IssueDate
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IssuedRegion</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String IssuedRegion
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IssuingCountry</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String IssuingCountry
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Order</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal Order
                     </div>
                   </td>
 
@@ -1322,30 +2068,84 @@
                 </tr>
               </table>
             </div>
-            <div class="subsection methods">
-              <h3 class="subsection-title methods">SentiLinkReportWrapper.ScoresInfo Constructors</h3>
-              <div class="methods-container">
-                <ul class="methods-toc">
-                  <li class="method public">
-                    <a class="methods-toc__entry " href="#SentiLinkReportWrapper.ScoresInfo.ScoresInfo">
-                      ScoresInfo ()
-                    </a>
+          </div>
 
-                  </li>
-                </ul>
-                <div class="method public">
-                  <h4 class="method-title " id="SentiLinkReportWrapper.ScoresInfo.ScoresInfo">
-                    <span>ScoresInfo()</span>
-                  </h4>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
+          <div class="section">
 
-                  <div class="method-signature">
-                    public ScoresInfo()
-                  </div>
-                </div>
+            <h2 class="class-title " id="SubmissionDTO.Survey">
+              <span>SubmissionDTO.Survey</span>
+            </h2>
+            <div class="class-container">
+
+              <div class="class-subtitle">
+                Signature
               </div>
+
+              <div class="class-signature">
+                global class Survey
+              </div>
+            </div>
+            <div class="subsection properties SubmissionDTO_Survey">
+              <h3 class="subsection-title properties">SubmissionDTO.Survey Properties</h3>
+              <table class="attributes-table properties">
+
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Answer</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Answer
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>LongDescription</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String LongDescription
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Order</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal Order
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>ShortDescription</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String ShortDescription
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>SurveyId</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String SurveyId
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
             </div>
           </div>
 

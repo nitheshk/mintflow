@@ -580,52 +580,242 @@
       <tr>
         <td class="doc-page">
 
-          <h2 class="class-title top-level-type" id="CrudType">
-            <span>CrudType</span>
-          </h2>
-          <div class="class-container">
+          <div class="section">
 
-            <div class="class-description">
-              Copyright (c) 2021 Digital Align
-            </div>
-            <div class="class-subtitle">
-              Signature
-            </div>
+            <h2 class="class-title top-level-type" id="ProductServiceResolver">
+              <span>ProductServiceResolver</span>
+            </h2>
+            <div class="class-container">
 
-            <div class="class-signature">
-              global enum CrudType
+              <div class="class-description">
+                Copyright (c) 2021 Digital Align
+              </div>
+              <div class="class-subtitle">
+                Signature
+              </div>
+              <div class="class-annotations">@SuppressWarnings('PMD.AvoidGlobalModifier')</div>
+              <div class="class-signature">
+                global with sharing class ProductServiceResolver extends AbstractService
+              </div><br />Digital Align Team @reference
             </div>
-            <table class="attributes-table">
-              <tr>
-                <th>Values</th>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  CREATABLE
-                </td>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  READABLE
-                </td>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  UPDATABLE
-                </td>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  UPSERTABLE
-                </td>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  DELETEABLE
-                </td>
-              </tr>
-            </table><br />Digital Align Team @reference
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">ProductServiceResolver Constructors</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#ProductServiceResolver.ProductServiceResolver">
+                      ProductServiceResolver ()
+                    </a>
+
+                  </li>
+                </ul>
+                <div class="method public">
+                  <h4 class="method-title " id="ProductServiceResolver.ProductServiceResolver">
+                    <span>ProductServiceResolver()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public ProductServiceResolver()
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">ProductServiceResolver Methods</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ProductServiceResolver.buildCustomerInterest">
+                      buildCustomerInterest (referralProducts, applicationId)
+                    </a>
+
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ProductServiceResolver.buildService">
+                      buildService (productServices, financialAccountId)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      build survey object based on the template list
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ProductServiceResolver.fetchReferralProducts">
+                      fetchReferralProducts (data)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      fetch referral Product product for the product selected in the application
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ProductServiceResolver.fetchServices">
+                      fetchServices (data)
+                    </a>
+
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#ProductServiceResolver.getInstance">
+                      getInstance ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Provides a singleton instance of ProductServiceResolver from which all other class methods can be accessed.
+                    </div>
+                  </li>
+                </ul>
+                <div class="method global">
+                  <h4 class="method-title " id="ProductServiceResolver.buildCustomerInterest">
+                    <span>buildCustomerInterest(referralProducts, applicationId)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual List&lt;CustomerInterest__c&gt; buildCustomerInterest( List&lt;ReferralProduct__c&gt; referralProducts, Id applicationId )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">List&lt;ReferralProduct__c&gt;</div>
+                  <div class="param-description">referralProducts</div>
+                  <div class="param-name">Id</div>
+                  <div class="param-description">applicationId</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    List&lt;CustomerInterest__c&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 04-08-2022
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ProductServiceResolver.buildService">
+                    <span>buildService(productServices, financialAccountId)</span>
+                  </h4>
+                  <div class="method-description">
+                    build survey object based on the template list
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual List&lt;FinancialAccountService__c&gt; buildService( List&lt;ProductService__c&gt; productServices, Id financialAccountId )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">List&lt;ProductService__c&gt;</div>
+                  <div class="param-description">productServices</div>
+                  <div class="param-name">Id</div>
+                  <div class="param-description">financialAccountId</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    List&lt;FinancialAccountService__c&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 01-05-2022
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ProductServiceResolver.fetchReferralProducts">
+                    <span>fetchReferralProducts(data)</span>
+                  </h4>
+                  <div class="method-description">
+                    fetch referral Product product for the product selected in the application
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual List&lt;CustomerInterest__c&gt; fetchReferralProducts(String data)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">data</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    List&lt;CustomerInterest__c&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 04-03-2022
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ProductServiceResolver.fetchServices">
+                    <span>fetchServices(data)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual List&lt;FinancialAccountService__c&gt; fetchServices(String data)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">data</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    List&lt;FinancialAccountService__c&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 01-05-2022
+                  </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="ProductServiceResolver.getInstance">
+                    <span>getInstance()</span>
+                  </h4>
+                  <div class="method-description">
+                    Provides a singleton instance of ProductServiceResolver from which all other class methods can be accessed.
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static ProductServiceResolver getInstance()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Object singleton
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 07-22-2021
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
         </td>
       </tr>
       <tr>

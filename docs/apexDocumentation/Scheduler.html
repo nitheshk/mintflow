@@ -580,52 +580,194 @@
       <tr>
         <td class="doc-page">
 
-          <h2 class="class-title top-level-type" id="CrudType">
-            <span>CrudType</span>
-          </h2>
-          <div class="class-container">
+          <div class="section">
 
-            <div class="class-description">
-              Copyright (c) 2021 Digital Align
-            </div>
-            <div class="class-subtitle">
-              Signature
-            </div>
+            <h2 class="class-title top-level-type" id="Scheduler">
+              <span>Scheduler</span>
+            </h2>
+            <div class="class-container">
 
-            <div class="class-signature">
-              global enum CrudType
+              <div class="class-description">
+                Copyright (c) 2021 Digital Align
+              </div>
+              <div class="class-subtitle">
+                Signature
+              </div>
+
+              <div class="class-signature">
+                public with sharing class Scheduler implements Schedulable
+              </div><br />Digital Align Team @reference
             </div>
-            <table class="attributes-table">
-              <tr>
-                <th>Values</th>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  CREATABLE
-                </td>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  READABLE
-                </td>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  UPDATABLE
-                </td>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  UPSERTABLE
-                </td>
-              </tr>
-              <tr>
-                <td class="enum-values">
-                  DELETEABLE
-                </td>
-              </tr>
-            </table><br />Digital Align Team @reference
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">Scheduler Constructors</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#Scheduler.Scheduler">
+                      Scheduler (entryId)
+                    </a>
+
+                  </li>
+                </ul>
+                <div class="method private">
+                  <h4 class="method-title " id="Scheduler.Scheduler">
+                    <span>Scheduler(entryId)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@TestVisible</div>
+                  <div class="method-signature">
+                    Scheduler(Id entryId)
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">Scheduler Methods</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#Scheduler.execute">
+                      execute (sc)
+                    </a>
+
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#Scheduler.fetchClassesForSchedule">
+                      fetchClassesForSchedule ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      get all batch class names
+                    </div>
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#Scheduler.schedule">
+                      schedule (jobName, startDatetime, entryId)
+                    </a>
+
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#Scheduler.System.schedule">
+                      System.schedule (Scheduler(entryId)
+                    </a>
+
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#Scheduler.System.schedule_1">
+                      System.schedule ()
+                    </a>
+
+                  </li>
+                </ul>
+                <div class="method public">
+                  <h4 class="method-title " id="Scheduler.execute">
+                    <span>execute(sc)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public void execute(SchedulableContext sc)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">SchedulableContext</div>
+                  <div class="param-description">sc</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 04-25-2022
+                  </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="Scheduler.fetchClassesForSchedule">
+                    <span>fetchClassesForSchedule()</span>
+                  </h4>
+                  <div class="method-description">
+                    get all batch class names
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static List&lt;Object&gt; fetchClassesForSchedule()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    List&lt;Object&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 04-25-2022
+                  </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="Scheduler.schedule">
+                    <span>schedule(jobName, startDatetime, entryId)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static String schedule(String jobName, Datetime startDatetime, Id entryId)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">String</div>
+                  <div class="param-description">jobName</div>
+                  <div class="param-name">Datetime</div>
+                  <div class="param-description">startDatetime</div>
+                  <div class="param-name">Id</div>
+                  <div class="param-description">entryId</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    String
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 04-25-2022
+                  </div>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="Scheduler.System.schedule">
+                    <span>System.schedule(Scheduler(entryId)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    return System.schedule(jobName, entry.CronExpression__c, new Scheduler(entryId))
+                  </div>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="Scheduler.System.schedule_1">
+                    <span>System.schedule()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    return System.schedule(jobName, startDatetime.format(&#39;s m H d M \&#39;?\&#39; yyyy&#39;), new Scheduler(entryId))
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
         </td>
       </tr>
       <tr>
