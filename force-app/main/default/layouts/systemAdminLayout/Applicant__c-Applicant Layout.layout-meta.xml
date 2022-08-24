@@ -329,13 +329,13 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>Name</fields>
-        <fields>IsPrimary</fields>
-        <fields>ADDRESS.STREET</fields>
-        <fields>ADDRESS.STATE</fields>
-        <fields>StateCode__c</fields>
-        <fields>ADDRESS.ZIP</fields>
-        <fields>ADDRESS.COUNTRY</fields>
+        <fields>NAME</fields>
+        <fields>IsPrimary__c</fields>
+        <fields>Street__c</fields>
+        <fields>City__c</fields>
+        <fields>State__c</fields>
+        <fields>PostalCode__c</fields>
+        <fields>Country__c</fields>
         <relatedList>Address__c.Applicant__c</relatedList>
     </relatedLists>
     <relatedLists>
