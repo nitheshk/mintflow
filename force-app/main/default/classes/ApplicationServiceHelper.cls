@@ -348,13 +348,17 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     Map<String, Object> mapData,
     financialProduct__c product
   ) {
-    Decimal weightage;
-    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
-    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
+    try {
+      Decimal weightage;
+      List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
+      leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
 
-    if (leadConfigList != null && leadConfigList.size() > 0) {
-      weightage = leadConfigList[0].Weightage__c * product.Weightage__c;
-      mapData.put('Product State', weightage);
+      if (!CollectionUtils.isListEmpty(leadConfigList)) {
+        weightage = leadConfigList[0].Weightage__c * product.Weightage__c;
+        mapData.put('Product State', weightage);
+      }
+    } catch (Exception ex) {
+      log?.error(ex);
     }
     return mapData;
   }
