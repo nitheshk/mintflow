@@ -37,10 +37,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ActiveFromDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>UsageType__c</field>
             </layoutItems>
         </layoutColumns>
@@ -72,10 +68,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>YearsLivedAtCurrentAddress__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ActiveToDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -354,13 +354,12 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
       leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
 
       if (!CollectionUtils.isListEmpty(leadConfigList)) {
-        weightage = leadConfigList[0].Weightage__c * product.Weightage__c;
+        weightage = leadConfigList[0].Weightage__c * products[0].Weightage__c;
         mapData.put('Product State', weightage);
       }
     } catch (Exception ex) {
       log?.error(ex);
     }
-    mapData.put('Product State', weightage);
     return mapData;
   }
 
