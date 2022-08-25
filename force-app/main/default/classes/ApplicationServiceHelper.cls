@@ -353,10 +353,12 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
       List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
       leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
 
-      if (!CollectionUtils.isListEmpty(leadConfigList)) {
-        weightage = leadConfigList[0].Weightage__c * products[0].Weightage__c;
-        mapData.put('Product State', weightage);
+      for (financialProduct__c product : products) {
+        if (leadConfigList != null && leadConfigList.size() > 0) {
+          weightage = weightage + leadConfigList[0].Weightage__c * product.Weightage__c;
+        }
       }
+      mapData.put('Product State', weightage);
     } catch (Exception ex) {
       log?.error(ex);
     }
