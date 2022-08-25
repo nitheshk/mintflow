@@ -19,7 +19,7 @@ public with sharing class IdentityRepository extends DatabaseUtils {
         .queryChild('mflow__Addresses__r')
         .addFields()
         //.removeFields('Address')
-        .whereEq('IsPrimary', true)
+        .whereEq('mflow__IsPrimary__c', true)
         .orderBy('mflow__Order__c')
         .run()
         .whereEq('Id', applicantId)

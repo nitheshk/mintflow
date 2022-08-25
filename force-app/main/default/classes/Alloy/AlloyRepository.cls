@@ -22,7 +22,7 @@ global with sharing class AlloyRepository extends DatabaseUtils {
       .queryChild('mflow__Addresses__r')
       .addFields()
       //.removeFields('Address')
-      .whereEq('IsPrimary', true)
+      .whereEq('mflow__IsPrimary__c', true)
       .addLimit(1)
       .run()
       .whereEq('Id', applicantId);
