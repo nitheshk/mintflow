@@ -127,7 +127,6 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
         .addFields()
         .queryChild('mflow__FinancialAccounts__r')
         .addFields()
-        .whereEq('IsPrimary__c', true)
         .run()
         .queryChild('mflow__Applicants__r')
         .addFields()
