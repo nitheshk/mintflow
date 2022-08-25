@@ -48,7 +48,7 @@
         <layout>mflow__Employment__c-FI Employment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>ContactPointAddress-FI Contact Point Address Layout</layout>
+        <layout>Address__c-FI Address Layout</layout>
     </layoutAssignments>
     <userLicense>Customer Community Plus</userLicense>
     <userPermissions>
