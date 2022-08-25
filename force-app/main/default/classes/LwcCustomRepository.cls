@@ -85,7 +85,7 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
         .addFields()
         .addFields('CreatedBy.Name,LastModifiedBy.Name')
         .removeFields(removeFields)
-        .removeFields('Address')
+        //.removeFields('Address')
         .orderBy('mflow__Order__c')
         .run()
         .queryChild('mflow__Employments__r')

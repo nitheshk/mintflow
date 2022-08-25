@@ -103,14 +103,14 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     AtomicFIDTO.address address;
     List<AtomicFIDTO.address> addresses = new List<AtomicFIDTO.address>();
 
-    for (Address__c contactadd : applicantAddress) {
+    for (Address__c addressObj : applicantAddress) {
       address = new AtomicFIDTO.address();
-      // Address applicantadd = contactadd.Address;
-      address.line1 = contactadd.Street__c;
-      address.city = contactadd.City__c;
-      address.state = contactadd.state__c;
-      address.zipcode = contactadd.PostalCode__c;
-      address.country = contactadd.Country__c;
+      // Address applicantadd = addressObj.Address;
+      address.line1 = addressObj.Street__c;
+      address.city = addressObj.City__c;
+      address.state = addressObj.state__c;
+      address.zipcode = addressObj.PostalCode__c;
+      address.country = addressObj.Country__c;
       addresses.add(address);
     }
     return addresses;

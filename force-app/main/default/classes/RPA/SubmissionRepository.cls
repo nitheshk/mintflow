@@ -100,7 +100,7 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
       .run()
       .queryChild('mflow__Addresses__r')
       .addFields()
-      .removeFields('Address')
+      //.removeFields('Address')
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__Employments__r')

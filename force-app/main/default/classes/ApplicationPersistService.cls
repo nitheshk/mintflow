@@ -419,7 +419,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       when 'mflow__AssetAndLiability__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
-      when 'mflow__Address' {
+      when 'mflow__Address__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
     }
