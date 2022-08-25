@@ -24,6 +24,9 @@
     },
     "languageSettings": {
       "enableTranslationWorkbench": true
+    },
+    "orgPreferenceSettings": {
+      "consentManagementEnabled": true
     }
   }
 }
