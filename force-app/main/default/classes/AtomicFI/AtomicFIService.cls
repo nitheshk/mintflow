@@ -89,7 +89,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     atomObj.names = names;
     atomObj.applicantId = applicant.Id;
 
-    atomObj.addresses = mapApplicantAddress(applicant.ContactPointAddresses__r);
+    atomObj.addresses = mapApplicantAddress(applicant.Addresses__r);
 
     return atomObj;
   }
@@ -99,18 +99,18 @@ global virtual with sharing class AtomicFIService extends AbstractService {
    * @author Digital Align Team | 11/11/2021
    * @return  List<AtomicFIDTO.Address>
    **/
-  global virtual List<AtomicFIDTO.Address> mapApplicantAddress(List<ContactPointAddress> applicantAddress) {
+  global virtual List<AtomicFIDTO.Address> mapApplicantAddress(List<Address__c> applicantAddress) {
     AtomicFIDTO.address address;
     List<AtomicFIDTO.address> addresses = new List<AtomicFIDTO.address>();
 
-    for (ContactPointAddress contactadd : applicantAddress) {
+    for (Address__c contactadd : applicantAddress) {
       address = new AtomicFIDTO.address();
       // Address applicantadd = contactadd.Address;
-      address.line1 = contactadd.Street;
-      address.city = contactadd.City;
-      address.state = contactadd.state;
-      address.zipcode = contactadd.PostalCode;
-      address.country = contactadd.Country;
+      address.line1 = contactadd.Street__c;
+      address.city = contactadd.City__c;
+      address.state = contactadd.state__c;
+      address.zipcode = contactadd.PostalCode__c;
+      address.country = contactadd.Country__c;
       addresses.add(address);
     }
     return addresses;

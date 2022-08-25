@@ -104,12 +104,12 @@ global with sharing class SubmissionDTO {
     // global String SentiLinkStatus;
     global String SSN;
     global List<IdentificationDocument> IdentificationDocuments;
-    global List<ContactPointAddress> ContactPointAddresses;
+    global List<Address> Addresses;
     global List<Employment> Employments;
     global List<Survey> Surveys;
     global Applicant() {
       Employments = new List<Employment>();
-      ContactPointAddresses = new List<ContactPointAddress>();
+      Addresses = new List<Address>();
       IdentificationDocuments = new List<IdentificationDocument>();
       Surveys = new List<Survey>();
     }
@@ -130,8 +130,8 @@ global with sharing class SubmissionDTO {
     // global string TemplateName;
   }
 
-  global class ContactPointAddress {
-    global String ContactPointAddressId;
+  global class Address {
+    global String AddressId;
     global String PostalCode;
     global String Street;
     global String City;

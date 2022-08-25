@@ -16,7 +16,7 @@ public with sharing class IdentityRepository extends DatabaseUtils {
     return (Applicant__c) DatabaseUtils.getRecord(
       Query.newInstance(Applicant__c.SObjectType)
         .addFields()
-        .queryChild('mflow__ContactPointAddresses__r')
+        .queryChild('mflow__Addresses__r')
         .addFields()
         .removeFields('Address')
         .whereEq('IsPrimary', true)
@@ -74,7 +74,7 @@ public with sharing class IdentityRepository extends DatabaseUtils {
         .queryChild('mflow__IdentificationDocuments__r')
         .addFields()
         .run()
-        .queryChild('mflow__ContactPointAddresses__r')
+        .queryChild('mflow__Addresses__r')
         .addFields()
         .removeFields('Address')
         .orderBy('mflow__Order__c')

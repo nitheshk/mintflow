@@ -213,8 +213,8 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       }
 
       //Map ContatcPointAddress Data
-      if (!CollectionUtils.isListEmpty(applicant.ContactPointAddresses__r)) {
-        mapperApplicant.ContactPointAddresses.addAll(mapContactAddress(applicant.ContactPointAddresses__r));
+      if (!CollectionUtils.isListEmpty(applicant.Addresses__r)) {
+        mapperApplicant.Addresses.addAll(mapContactAddress(applicant.Addresses__r));
       }
 
       mapperApplicantList.add(mapperApplicant);
@@ -301,31 +301,29 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
   /**
    * @description
    * @author Digital Align | 11-10-2021
-   * @param List<ContactPointAddress> contactAddressList
+   * @param List<Address__c> contactAddressList
    * @return virtual
    **/
-  global virtual list<SubmissionDTO.ContactPointAddress> mapContactAddress(
-    List<ContactPointAddress> contactAddressList
-  ) {
-    list<SubmissionDTO.ContactPointAddress> mapperContactAddressList = new List<SubmissionDTO.ContactPointAddress>();
-    for (ContactPointAddress contactAddress : contactAddressList) {
-      SubmissionDTO.ContactPointAddress mapperContactAddress = new SubmissionDTO.ContactPointAddress();
-      mapperContactAddress.ContactPointAddressId = contactAddress.Id;
+  global virtual list<SubmissionDTO.Address> mapContactAddress(List<Address__c> contactAddressList) {
+    list<SubmissionDTO.Address> mapperContactAddressList = new List<SubmissionDTO.Address>();
+    for (Address__c contactAddress : contactAddressList) {
+      SubmissionDTO.Address mapperContactAddress = new SubmissionDTO.Address();
+      mapperContactAddress.AddressId = contactAddress.Id;
       if (contactAddressList.size() == 1) {
         // Uploaded address will be current address
         mapperContactAddress.AddressType = 'Current';
       } else {
-        mapperContactAddress.AddressType = contactAddress.AddressType;
+        mapperContactAddress.AddressType = contactAddress.AddressType__c;
       }
-      mapperContactAddress.City = contactAddress.City;
-      mapperContactAddress.Country = contactAddress.Country;
-      mapperContactAddress.IsPrimary = contactAddress.IsPrimary;
-      mapperContactAddress.PostalCode = contactAddress.PostalCode;
-      mapperContactAddress.State = contactAddress.State;
+      mapperContactAddress.City = contactAddress.City__c;
+      mapperContactAddress.Country = contactAddress.Country__c;
+      mapperContactAddress.IsPrimary = contactAddress.IsPrimary__c;
+      mapperContactAddress.PostalCode = contactAddress.PostalCode__c;
+      mapperContactAddress.State = contactAddress.State__c;
       mapperContactAddress.StateCode = contactAddress.StateCode__c;
-      mapperContactAddress.Street = contactAddress.Street;
+      mapperContactAddress.Street = contactAddress.Street__c;
       mapperContactAddress.Order = contactAddress.Order__c;
-      mapperContactAddress.OccupancyStatus = getStatusMapping('UsageType', contactAddress.UsageType);
+      mapperContactAddress.OccupancyStatus = getStatusMapping('UsageType', contactAddress.UsageType__c);
       mapperContactAddress.OccupancyDuration = contactAddress.OccupancyDuration__c;
       mapperContactAddressList.add(mapperContactAddress);
     }

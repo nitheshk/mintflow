@@ -76,7 +76,7 @@ global with sharing class CustomerPortalRepository extends DatabaseUtils {
       .addFields()
       .orderBy('mflow__Order__c')
       .run()
-      .queryChild('mflow__ContactPointAddresses__r')
+      .queryChild('mflow__Addresses__r')
       .addFields()
       .removeFields('Address')
       .orderBy('mflow__Order__c')

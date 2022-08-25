@@ -143,7 +143,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     List<IdentificationDocument__c> newIdentityDocs = new List<IdentificationDocument__c>();
     List<Employment__c> newEmployments = new List<Employment__c>();
-    List<ContactPointAddress> newAddreses = new List<ContactPointAddress>();
+    List<Address__c> newAddreses = new List<Address__c>();
     for (Applicant__c newApplicant : newApplicants) {
       //Identification Document
       for (IdentificationDocument__c oldIdentityDoc : newApplicant.IdentificationDocuments__r) {
@@ -158,8 +158,8 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         newEmployments.add(newEmployment);
       }
       // //Contact Point Address
-      for (ContactPointAddress oldAddress : newApplicant.ContactPointAddresses__r) {
-        ContactPointAddress newAddress = oldAddress.clone(false, true, false, false);
+      for (Address__c oldAddress : newApplicant.Addresses__r) {
+        Address__c newAddress = oldAddress.clone(false, true, false, false);
         newAddress.Applicant__c = newApplicant.Id;
         newAddreses.add(newAddress);
       }
@@ -255,7 +255,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     List<IdentificationDocument__c> newIdentityDocs = new List<IdentificationDocument__c>();
     List<Employment__c> newEmployments = new List<Employment__c>();
-    List<ContactPointAddress> newAddreses = new List<ContactPointAddress>();
+    List<Address__c> newAddreses = new List<Address__c>();
     for (Applicant__c newApplicant : newApplicants) {
       //Identification Document
       for (IdentificationDocument__c oldIdentityDoc : newApplicant.IdentificationDocuments__r) {
@@ -270,8 +270,8 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         newEmployments.add(newEmployment);
       }
       // //Contact Point Address
-      for (ContactPointAddress oldAddress : newApplicant.ContactPointAddresses__r) {
-        ContactPointAddress newAddress = oldAddress.clone(false, true, false, false);
+      for (Address__c oldAddress : newApplicant.Addresses__r) {
+        Address__c newAddress = oldAddress.clone(false, true, false, false);
         newAddress.Applicant__c = newApplicant.Id;
         newAddreses.add(newAddress);
       }
@@ -301,7 +301,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         //Calcuate Lead Score based on product and State weightage;
         mapFilter.put('Type', 'State');
         mapFilter.put('Value', application.mflow__FlowState__c);
-        mapData = calculateLeadBasedonState(mapfilter, mapData, products[0]);
+        mapData = calculateLeadBasedonState(mapfilter, mapData, products);
         if (mapData.containsKey('Product State') && (Decimal) mapData.get('Product State') > 0) {
           //Calculate the lead score based on eligibility
           mapFilter = new Map<String, String>();
@@ -346,7 +346,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
   private Map<String, Object> calculateLeadBasedonState(
     Map<String, String> mapFilter,
     Map<String, Object> mapData,
-    financialProduct__c product
+    List<financialProduct__c> products
   ) {
     try {
       Decimal weightage;
@@ -360,6 +360,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     } catch (Exception ex) {
       log?.error(ex);
     }
+    mapData.put('Product State', weightage);
     return mapData;
   }
 

@@ -274,8 +274,8 @@ global virtual with sharing class IdentityService extends AbstractService {
     if (applicant != null && applicant.mflow__IdentificationDocuments__r.size() > 0) {
       customer = mapIdentity(applicant.mflow__IdentificationDocuments__r[0], customer);
     }
-    if (applicant != null && applicant.mflow__ContactPointAddresses__r.size() > 0) {
-      customer = mapAddress(applicant.mflow__ContactPointAddresses__r, customer);
+    if (applicant != null && applicant.mflow__Addresses__r.size() > 0) {
+      customer = mapAddress(applicant.mflow__Addresses__r, customer);
     }
     return customer;
   }
@@ -302,22 +302,22 @@ global virtual with sharing class IdentityService extends AbstractService {
   /**
    * @description map address  data to the DTO
    * @author Digital Align Team | 02-08-2022
-   * @param List<ContactPointAddress> addresses
+   * @param List<Address__c> addresses
    *  @param IdScanDueDiligenceDTO.Request customer
    * @return Object
    **/
 
   global virtual IdScanDueDiligenceDTO.Request mapAddress(
-    List<ContactPointAddress> addresses,
+    List<Address__c> addresses,
     IdScanDueDiligenceDTO.Request customer
   ) {
     log?.debug('address ::' + addresses);
-    for (ContactPointAddress idAddress : addresses) {
-      if (idAddress.IsPrimary) {
-        customer.address = idAddress.Street;
-        customer.city = idAddress.City;
-        customer.zip = idAddress.PostalCode;
-        customer.state = idAddress.mflow__StateCode__c;
+    for (Address__c idAddress : addresses) {
+      if (idAddress.IsPrimary__c) {
+        customer.address = idAddress.Street__c;
+        customer.city = idAddress.City__c;
+        customer.zip = idAddress.PostalCode__c;
+        customer.state = idAddress.StateCode__c;
       }
     }
     return customer;

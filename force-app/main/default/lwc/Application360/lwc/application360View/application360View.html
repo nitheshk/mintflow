@@ -31,17 +31,17 @@
                   title-name="Applicant Details"
                 ></c-applicant-record-detail-view>
               </lightning-tab>
-              <template if:true={data.mflow__ContactPointAddresses__r}>
+              <template if:true={data.mflow__Addresses__r}>
                 <lightning-tab
                   label="Addresses"
-                  data-objectname="mflow__ContactPointAddresses__r"
+                  data-objectname="mflow__Addresses__r"
                   data-recordid={data.Id}
                   onactive={handleActive}
                 >
                   <c-record-detail-view
                     key={data.Id}
-                    record={data.mflow__ContactPointAddresses__r}
-                    s-object-name="ContactPointAddress"
+                    record={data.mflow__Addresses__r}
+                    s-object-name="Address__c"
                     title-name="Contact Point Addresses"
                     field-set-name="mflow__AddressInformation"
                     hide-null-values="true"

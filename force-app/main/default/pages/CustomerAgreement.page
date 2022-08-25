@@ -158,24 +158,24 @@
             </table>
           </apex:repeat>
 
-          <apex:repeat var="addressVar" value="{!applicantVar.ContactPointAddresses__r}">
-            <h3 style="background: #f5f6f8">{!addressVar.AddressType} Address</h3>
+          <apex:repeat var="addressVar" value="{!applicantVar.Addresses__r}">
+            <h3 style="background: #f5f6f8">{!addressVar.AddressType__c} Address</h3>
             <table class="table" width="100% ">
               <tr style="height: 20px">
                 <td width="50% ">
                   <apex:outputText value=""></apex:outputText>
-                  <apex:outputText value="{!addressVar.Street}"></apex:outputText>
+                  <apex:outputText value="{!addressVar.Street__c}"></apex:outputText>
                 </td>
                 <td width="50% ">
                   <apex:outputText value="Occupancy Status : "></apex:outputText>
-                  <apex:outputText value="{!addressVar.UsageType}"></apex:outputText>
+                  <apex:outputText value="{!addressVar.UsageType__c}"></apex:outputText>
                 </td>
               </tr>
               <tr style="height: 20px">
                 <td width="50% ">
                   <apex:outputText value=""></apex:outputText>
                   <apex:outputText
-                    value="{!addressVar.City}, {!addressVar.State}, {!addressVar.Country}, {!addressVar.PostalCode}"
+                    value="{!addressVar.City__c}, {!addressVar.State__c}, {!addressVar.Country__c}, {!addressVar.PostalCode__c}"
                   ></apex:outputText>
                 </td>
                 <td width="50% ">

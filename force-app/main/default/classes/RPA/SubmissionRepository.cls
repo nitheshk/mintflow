@@ -98,7 +98,7 @@ global virtual inherited sharing class SubmissionRepository extends DatabaseUtil
       .addFields()
       .orderBy('mflow__Order__c')
       .run()
-      .queryChild('mflow__ContactPointAddresses__r')
+      .queryChild('mflow__Addresses__r')
       .addFields()
       .removeFields('Address')
       .orderBy('mflow__Order__c')
