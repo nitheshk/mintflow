@@ -76,41 +76,7 @@
                 <default>false</default>
                 <label>Cash Value of Life Insurance</label>
             </value>
-            <value>
-                <fullName>Proceeds from Real Estate</fullName>
-                <default>false</default>
-                <label>Proceeds from Real Estate</label>
-            </value>
-            <value>
-                <fullName>Property to be sold on or</fullName>
-                <default>false</default>
-                <label>Property to be sold on or</label>
-            </value>
-            <value>
-                <fullName>before closing</fullName>
-                <default>false</default>
-                <label>before closing</label>
-            </value>
-            <value>
-                <fullName>Proceeds from Sale of</fullName>
-                <default>false</default>
-                <label>Proceeds from Sale of</label>
-            </value>
-            <value>
-                <fullName>Non-Real Estate Asset</fullName>
-                <default>false</default>
-                <label>Non-Real Estate Asset</label>
-            </value>
-            <value>
-                <fullName>Secured Borrowed Funds</fullName>
-                <default>false</default>
-                <label>Secured Borrowed Funds</label>
-            </value>
-            <value>
-                <fullName>Unsecured Borrowed Funds</fullName>
-                <default>false</default>
-                <label>Unsecured Borrowed Funds</label>
-            </value>
+            <!-- Liability Account Type-->
             <value>
                 <fullName>Revolving</fullName>
                 <default>false</default>
@@ -122,39 +88,14 @@
                 <label>Installment</label>
             </value>
             <value>
-                <fullName>Open 30</fullName>
+                <fullName>Open 30-Day</fullName>
                 <default>false</default>
-                <label>Open 30</label>
+                <label>Open 30-Day</label>
             </value>
             <value>
                 <fullName>Lease</fullName>
                 <default>false</default>
                 <label>Lease</label>
-            </value>
-            <value>
-                <fullName>Alimony</fullName>
-                <default>false</default>
-                <label>Alimony</label>
-            </value>
-            <value>
-                <fullName>Child Support</fullName>
-                <default>false</default>
-                <label>Child Support</label>
-            </value>
-            <value>
-                <fullName>Separate Maintenance</fullName>
-                <default>false</default>
-                <label>Separate Maintenance</label>
-            </value>
-            <value>
-                <fullName>Job Related Expenses</fullName>
-                <default>false</default>
-                <label>Job Related Expenses</label>
-            </value>
-            <value>
-                <fullName>Other</fullName>
-                <default>false</default>
-                <label>Other</label>
             </value>
         </valueSetDefinition>
     </valueSet>

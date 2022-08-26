@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>MortgageType__c</fullName>
+    <fullName>OtherLiabilitiesOrExpenses__c</fullName>
+    <description>Other Liabilities Or Expenses</description>
     <externalId>false</externalId>
-    <label>MortgageType</label>
+    <label>Other Liabilities Or Expenses</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -11,24 +12,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>FHA</fullName>
+                <fullName>Alimony</fullName>
                 <default>false</default>
-                <label>FHA</label>
+                <label>Alimony</label>
             </value>
             <value>
-                <fullName>VA</fullName>
+                <fullName>Child Support</fullName>
                 <default>false</default>
-                <label>VA</label>
+                <label>Child Support</label>
             </value>
             <value>
-                <fullName>Conventional</fullName>
+                <fullName>Separate Maintenance</fullName>
                 <default>false</default>
-                <label>Conventional</label>
+                <label>Separate Maintenance</label>
             </value>
             <value>
-                <fullName>USDA-RD</fullName>
+                <fullName>Job Related Expenses</fullName>
                 <default>false</default>
-                <label>USDA-RD</label>
+                <label>Job Related Expenses</label>
             </value>
             <value>
                 <fullName>Other</fullName>

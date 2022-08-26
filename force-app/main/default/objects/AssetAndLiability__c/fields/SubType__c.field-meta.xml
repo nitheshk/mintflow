@@ -27,6 +27,11 @@
                 <label>Other Accounts</label>
             </value>
             <value>
+                <fullName>Other Assets</fullName>
+                <default>false</default>
+                <label>Other Assets</label>
+            </value>
+            <value>
                 <fullName>Other Credits</fullName>
                 <default>false</default>
                 <label>Other Credits</label>
