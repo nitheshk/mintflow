@@ -104,9 +104,9 @@ global virtual with sharing class AlloyProvider extends AbstractService {
       ? new mflow__IdentificationDocument__c()
       : applicant.mflow__IdentificationDocuments__r[0];
 
-    ContactPointAddress addresses = applicant.mflow__ContactPointAddresses__r.isEmpty()
-      ? new ContactPointAddress()
-      : applicant.mflow__ContactPointAddresses__r[0];
+    Address__c addresses = applicant.mflow__Addresses__r.isEmpty()
+      ? new Address__c()
+      : applicant.mflow__Addresses__r[0];
 
     idvDTO.name_first = applicant.FirstName__c;
     idvDTO.name_last = applicant.LastName__c;
@@ -120,10 +120,10 @@ global virtual with sharing class AlloyProvider extends AbstractService {
     idvDTO.phone_number = applicant.Phone__c;
     idvDTO.email_address = applicant.Email__c;
     //mapiing of address
-    idvDTO.address_line_1 = addresses.Street;
-    idvDTO.address_city = addresses.City;
+    idvDTO.address_line_1 = addresses.Street__c;
+    idvDTO.address_city = addresses.City__c;
     idvDTO.address_state = addresses.StateCode__c;
-    idvDTO.address_postal_code = addresses.PostalCode;
+    idvDTO.address_postal_code = addresses.PostalCode__c;
     idvDTO.address_country_code = 'US';
     //idvDTO.ip_address_v4 = ApplicationServiceHelper.getinstance().getIpAddress();
     idvDTO.document_license = identificationObj.DocumentNumber__c;

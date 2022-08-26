@@ -171,67 +171,6 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
   }
 
   /**
-   *  Only For Testing Purpose
-   *  Manual Approve Funding Data
-   **/
-  public void testApproveFundingSubmission(String applicationNumber) {
-    Application__c application = (new BuildSubmissionWrapper()).readApplicationWithChild(applicationNumber);
-
-    Map<String, Object> resultMap = new Map<String, Object>();
-    resultMap.put('ExternalApplicationNumber', String.valueOf(Integer.valueof((Math.random() * 100000))));
-    resultMap.put('ExternalApplicationStatus', 'Approved');
-    resultMap.put('MemberNumber', String.valueOf(Integer.valueof((Math.random() * 10000000))));
-    resultMap.put('ApplicationId', application.Id);
-    resultMap.put('IsExistingCustomer', false);
-
-    List<Object> applicants = new List<Object>();
-    for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name != ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE &&
-        applicant.RecordType.Name != ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-      ) {
-        continue;
-      }
-      applicants.add(
-        new Map<String, Object>{
-          'ApplicantId' => applicant.Id,
-          'CustomerNumber' => String.valueOf(Integer.valueof((Math.random() * 10000000)))
-        }
-      );
-    }
-    resultMap.put('Applicants', applicants);
-
-    List<Object> financialAccounts = new List<Object>();
-    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
-      if (financialAccount.FinancialAccountTransactions__r.isEmpty()) {
-        financialAccounts.add(
-          new Map<String, Object>{
-            'FinancialAccountId' => financialAccount.Id,
-            'AccountNumber' => String.valueOf(Integer.valueof((Math.random() * 1000000000)))
-          }
-        );
-      } else {
-        financialAccounts.add(
-          new Map<String, Object>{
-            'FinancialAccountId' => financialAccount.Id,
-            'AccountNumber' => String.valueOf(Integer.valueof((Math.random() * 1000000000))),
-            'FinancialApplicationTransaction' => new Map<String, Object>{
-              'FinancialAccountTransactionId' => financialAccount.FinancialAccountTransactions__r[0].Id,
-              'TransactionStatus' => 'Paid'
-            }
-          }
-        );
-      }
-    }
-    resultMap.put('FinancialAccounts', financialAccounts);
-
-    log?.debug('resultMap : ' + Json.serialize(resultMap));
-
-    application = (Application__c) SubmitApplicationService.getInstance()
-      .updateSubmissionInfo(Json.serialize(resultMap));
-  }
-
-  /**
    * @description Generate Url to upload identity Document Via mobile device
    * @author Digital Align Team | 02-08-2022
    * @param Id applicantId

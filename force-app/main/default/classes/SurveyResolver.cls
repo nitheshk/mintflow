@@ -39,6 +39,7 @@ global virtual with sharing class SurveyResolver extends AbstractService {
     String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     surveys = SurveyRepository.readExistingSurvey(eventIdentifier);
+
     if (!surveys.isEmpty()) {
       return surveys;
     }
@@ -67,6 +68,8 @@ global virtual with sharing class SurveyResolver extends AbstractService {
    * @return List<Survey__c>
    **/
   global virtual List<Survey__c> resolveSurveys(Application__c application, List<Object> filters) {
+    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
+
     if (!CollectionUtils.isListEmpty(filters)) {
       for (Object filter : filters) {
         Map<String, Object> filterMap = (Map<String, Object>) filter;
@@ -84,8 +87,6 @@ global virtual with sharing class SurveyResolver extends AbstractService {
       filterMap.put('$mflow__Channel__c', 'INCLUDES');
       filters.add(filterMap);
     }
-
-    String eventIdentifier = String.valueOf(ApexRequest.getParams('eventIdentifier'));
 
     // fetch survey item by  custom filter
     List<SurveyTemplate__c> templates = SurveyRepository.fetchSurveyTemplateByFilters(
@@ -153,15 +154,22 @@ global virtual with sharing class SurveyResolver extends AbstractService {
     for (SurveyTemplate__c surveyTemplate : surveyTemplates) {
       for (SurveyQuestion__c item : surveyTemplate.SurveyQuestions__r) {
         Survey__c surveyObj = new Survey__c();
-        if (ApexRequest.getParams('applicantId') != null) {
-          surveyObj.Applicant__c = (Id) ApexRequest.getParams('applicantId');
+        surveyObj.Application__c = ApexRequest.getApplicationId();
+        if (ApexRequest.getApplicantId() != null) {
+          //surveyObj.Applicant__c = (Id) ApexRequest.getParams('applicantId');
+          surveyObj.Applicant__c = ApexRequest.getApplicantId();
         }
         if (String.isNotBlank(financialAccountId)) {
           surveyObj.FinancialAccount__c = financialAccountId;
         }
+
         surveyObj.EventIdentifier__c = surveyTemplate.EventIdentifier__c;
-        surveyObj.Answer__c = null;
         surveyObj.OptionType__c = item.OptionType__c;
+        if (item.OptionType__c == 'CheckBox') {
+          surveyObj.Answer__c = 'No';
+        } else {
+          surveyObj.Answer__c = null;
+        }
         surveyObj.ParentQuestionCode__c = item.ParentQuestionCode__c;
         surveyObj.QuestionCode__c = item.QuestionCode__c;
         surveyObj.QuestionNumber__c = item.QuestionNumber__c;

@@ -193,9 +193,9 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
         listToUpdate.addAll(saveIdentificationDocuments(applicant?.IdentificationDocuments__r, applicant.Id));
       }
-      // upsert contact point address
-      if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
-        listToUpdate.addAll(saveContactPointAddresses(applicant?.ContactPointAddresses__r, applicant.Id));
+      // upsert address
+      if (!CollectionUtils.isListEmpty(applicant?.Addresses__r)) {
+        listToUpdate.addAll(saveAddresses(applicant?.Addresses__r, applicant.Id));
       }
       // upsert employment
       if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
@@ -245,19 +245,16 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description save Contact Point Addresses
    * @author Digital Align Team | 11-09-2021
-   * @param List<ContactPointAddress> addresses
+   * @param List<Address__c> addresses
    * @param Id applicantId
-   * @return List<ContactPointAddress>
+   * @return List<Address__c>
    **/
-  global virtual List<ContactPointAddress> saveContactPointAddresses(
-    List<ContactPointAddress> addresses,
-    Id applicantId
-  ) {
-    for (ContactPointAddress cpa : addresses) {
+  global virtual List<Address__c> saveAddresses(List<Address__c> addresses, Id applicantId) {
+    for (Address__c cpa : addresses) {
       if (String.isNotBlank(applicantId)) {
         cpa.Applicant__c = applicantId;
       } // updating state = state full name in trigger(before insert before update)
-      cpa.Name = String.isNotBlank(cpa.Street) ? cpa.Street?.left(255) : 'N/A';
+      cpa.Name = String.isNotBlank(cpa.Street__c) ? cpa.Street__c?.left(255) : 'N/A';
     }
     //ApplicationRepository.upsertRecords(addresses);
     return addresses;
@@ -422,7 +419,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       when 'mflow__AssetAndLiability__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
-      when 'ContactPointAddress' {
+      when 'mflow__Address__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
     }
@@ -442,8 +439,8 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       if (!applicant.IdentificationDocuments__r.isEmpty()) {
         recordsToDelete.addAll(applicant.IdentificationDocuments__r);
       }
-      if (!applicant.ContactPointAddresses__r.isEmpty()) {
-        recordsToDelete.addAll(applicant.ContactPointAddresses__r);
+      if (!applicant.Addresses__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.Addresses__r);
       }
       if (!applicant.Employments__r.isEmpty()) {
         recordsToDelete.addAll(applicant.Employments__r);

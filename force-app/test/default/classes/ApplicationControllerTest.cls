@@ -29,7 +29,7 @@ public with sharing class ApplicationControllerTest {
     Income__c income = TestData.createIncome(applicant.Id);
     insert income;
 
-    ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
+    Address__c address = TestData.createAddress(applicant.Id);
     insert address;
 
     Survey__c survey = TestData.createSurvey(applicant);
@@ -37,7 +37,7 @@ public with sharing class ApplicationControllerTest {
 
     construct.addChildObject('mflow__IdentificationDocuments__r', identity);
     construct.addChildObject('mflow__Employments__r', employment);
-    construct.addChildObject('mflow__ContactPointAddresses__r', address);
+    construct.addChildObject('mflow__Addresses__r', address);
     construct.addChildObject('mflow__Surveys__r', survey);
 
     return (Applicant__c) construct.build();
@@ -190,13 +190,7 @@ public with sharing class ApplicationControllerTest {
     system.assertEquals(200, res.status, 'success');
     //200
     ApplicationService.getInstance().updateFlowState(application);
-    ApplicationService.getInstance().updateFlowState(application.Applicants__r);
-    ApplicationService.getInstance().updateFlowState(applicant);
-    ApplicationService.getInstance().updateFlowState(application.FinancialAccounts__r);
-
     ApexRequest.setApplicantType(ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
-    ApplicationService.getInstance().updateFlowState(applicant);
-
     //Exception
     ApexRequest.getRequest().currentPage = 'InvalidPage';
     ApplicationService.getInstance().updateFlowState(applicant);
@@ -235,7 +229,7 @@ public with sharing class ApplicationControllerTest {
     //200
     request = new ApexRequest();
     request.token = ApexRequest.getToken();
-    request.setHeader(new Map<String, object>{ 'recordId' => applicant.ContactPointAddresses__r[0].Id });
+    request.setHeader(new Map<String, object>{ 'recordId' => applicant.Addresses__r[0].Id });
     res = ApplicationController.deleteEntity(request);
     system.assertEquals(200, res.status, 'success');
 

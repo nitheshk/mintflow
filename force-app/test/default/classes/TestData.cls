@@ -147,20 +147,20 @@ public with sharing class TestData {
     return income;
   }
 
-  public static ContactPointAddress createContactPointAddress(Id applicantId) {
-    ContactPointAddress address = new ContactPointAddress();
+  public static Address__c createAddress(Id applicantId) {
+    Address__c address = new Address__c();
     if (String.isNotBlank(applicantId)) {
       address.applicant__c = applicantId;
     }
     address.Name = 'Add-001';
-    address.IsPrimary = true;
-    address.Street = 'street one';
-    address.City = 'CA';
-    address.State = 'CA';
-    address.Country = 'USA';
-    address.PostalCode = '10001';
-    address.UsageType = 'Buying / Own With Mortgage';
-    address.AddressType = 'Primary';
+    address.IsPrimary__c = true;
+    address.Street__c = 'street one';
+    address.City__c = 'CA';
+    address.State__c = 'CA';
+    address.Country__c = 'USA';
+    address.PostalCode__c = '10001';
+    address.UsageType__c = 'Buying / Own With Mortgage';
+    address.AddressType__c = 'Primary';
     return address;
   }
 

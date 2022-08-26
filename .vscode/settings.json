@@ -58,12 +58,8 @@
     {
       "path": "${workspaceFolder}/force-app/main/default/classes"
     },
-
     {
       "path": "${workspaceFolder}/force-app/main/default/classes/AbstractClass"
-    },
-    {
-      "path": "${workspaceFolder}/force-app/main/default/classes/AccountManagement"
     },
     {
       "path": "${workspaceFolder}/force-app/main/default/classes/API"
@@ -110,6 +106,9 @@
   "apexdox.engine.scope": ["global", "public", "webService"],
   "apexdox.engine.subtitle": "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.digitalalign.com/\">Transforming Financial Services</a>",
   "apexdox.engine.title": "Online Banking Documentation",
+  "apexdox.docblock.alignItems": true,
+  "apexdox.docblock.omitDescriptionTag": false,
+  "apexdox.docblock.spacious": true,
   "apexdox.engine.assets": [
     "${workspaceFolder}/docs/docImages/logo.png",
     "${workspaceFolder}/docs/docImages/icon.png",

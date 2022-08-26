@@ -1,8 +1,8 @@
 /**
- * Copyright (c) Digital Align 2021
- * @reference https://github.com/4an70m/apex-query-builder
- * @reference https://github.com/jpmonette/q
- * @reference https://github.com/apex-enterprise-patterns/fflib-apex-common
+ * Copyright (c) Digital Align 2021 <br />
+ * @reference https://github.com/4an70m/apex-query-builder <br />
+ * @reference https://github.com/jpmonette/q <br />
+ * @reference https://github.com/apex-enterprise-patterns/fflib-apex-common <br />
  * @description Soql/Sosl builder for salesforce SObjects
  * @group Utils
  */
@@ -1275,17 +1275,18 @@ global inherited sharing class Query {
   }
 
   /**
-   * @description  soql based on the custom filter
-   * Pass filter tag in ApexRequest header
-   * By default all the field are compare with equal sign
-   * To override logical operator, Prefix $ same filename and pass logic operator
-   * Supported logically operator are =, != , < ,> ,<= ,>= , LIKE , INCLUDES
-   * INCLUDES Work for MultiPicklist Fields only
-   * Filter Array of objects are consider as OR Operator and Inside Object all Fields are consider as AND operator
+   * @description  soql based on the custom filter <br />
+   * Pass filter tag in ApexRequest header  <br />
+   * By default all the field are compare with equal sign <br />
+   * To override logical operator, Prefix $ same filename and pass logic operator <br />
+   * Supported logically operator are =, != , < ,> ,<= ,>= , LIKE , INCLUDES <br />
+   * INCLUDES Work for MultiPicklist Fields only <br />
+   * Filter Array of objects are consider as OR Operator and Inside Object all Fields are consider as AND operator <br />
    * @author Digital Align Team | 12-21-2021
    * @param String filters
    * @return Query
-   * @example String jsonString = '[{"Name":"Test12","$Name":"!=", "mflow__test2__c":["test3","test4"],"$mflow__test2__c":"INCLUDES", "mflow__EventIdentifier__c":"","mflow__IsActive__c":true,"mflow__test1__c":43, "mflow__Product__c":""},
+   * @example String jsonString = '[{"Name":"Test12","$Name":"!=", "mflow__test2__c":["test3","test4"],
+   * "$mflow__test2__c":"INCLUDES", "mflow__EventIdentifier__c":"","mflow__IsActive__c":true,"mflow__test1__c":43, "mflow__Product__c":""},
    *  {"Name":"Test1","mflow__EventIdentifier__c":"","mflow__IsActive__c":true}]';
    * List<Object> filters = (List<Object>) JSON.deserializeUntyped(jsonString);
    * List<ConsentLineItem__c> items = (List<ConsentLineItem__c>) EmailNotificationRepository.getRecords(

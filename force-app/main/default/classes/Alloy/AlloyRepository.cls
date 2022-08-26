@@ -19,10 +19,10 @@ global with sharing class AlloyRepository extends DatabaseUtils {
       .addFields()
       .addLimit(1)
       .run()
-      .queryChild('mflow__ContactPointAddresses__r')
+      .queryChild('mflow__Addresses__r')
       .addFields()
-      .removeFields('Address')
-      .whereEq('IsPrimary', true)
+      //.removeFields('Address')
+      .whereEq('mflow__IsPrimary__c', true)
       .addLimit(1)
       .run()
       .whereEq('Id', applicantId);

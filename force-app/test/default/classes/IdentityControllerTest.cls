@@ -30,12 +30,12 @@ public with sharing class IdentityControllerTest {
     Employment__c employment = TestData.createEmployment(applicant.Id);
     insert employment;
 
-    ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
+    Address__c address = TestData.createAddress(applicant.Id);
     insert address;
 
     construct.addChildObject('mflow__IdentificationDocuments__r', identity);
     construct.addChildObject('mflow__Employments__r', employment);
-    construct.addChildObject('mflow__ContactPointAddresses__r', address);
+    construct.addChildObject('mflow__Addresses__r', address);
 
     return (Applicant__c) construct.build();
   }
@@ -265,7 +265,7 @@ public with sharing class IdentityControllerTest {
   // static void IdentityVerifyTestOne() {
   //   makeApplicationConfiguration();
   //   Applicant__c applicant = makeApplicantData();
-  //   makeContactPointAddress(applicant.Id);
+  //   makeAddress(applicant.Id);
   //   ApexRequest request = new ApexRequest();
   //   request.applicationId = applicant.Application__c; //Application__c ID
   //   request.setHeader(new Map<String, String>{ 'applicantId' => applicant.Id, 'apiName' => 'SentiLink' });
@@ -278,7 +278,7 @@ public with sharing class IdentityControllerTest {
   // static void IdentityVerifyTestTwo() {
   //   makeApplicationConfiguration();
   //   Applicant__c applicant = makeApplicantData();
-  //   makeContactPointAddress(applicant.Id);
+  //   makeAddress(applicant.Id);
   //   ApexRequest request = new ApexRequest();
   //   request.applicationId = applicant.Application__c; //Application__c ID
   //   request.setHeader(new Map<String, String>{ 'applicantId' => applicant.Id, 'apiName' => 'SentiLinkIdCompletion' });
@@ -291,7 +291,7 @@ public with sharing class IdentityControllerTest {
   // static void IdentityVerifyTestThree() {
   //   makeApplicationConfiguration();
   //   Applicant__c applicant = makeApplicantData();
-  //   makeContactPointAddress(applicant.Id);
+  //   makeAddress(applicant.Id);
   //   ApexRequest request = new ApexRequest();
   //   request.applicationId = applicant.Application__c; //Application__c ID
   //   request.setHeader(new Map<String, String>{ 'applicantId' => applicant.Id, 'apiName' => 'SentiLinkkk' });

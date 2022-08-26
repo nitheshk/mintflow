@@ -146,6 +146,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>DemographicInfo</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Disclosure</fullName>
             <default>false</default>
         </values>
