@@ -538,7 +538,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
           properties.add(property);
 
           //property has liablities associated
-          if (!collectionUtils.isListEmpty(property?.AssetAndLiabilities__r)) {
+          if (!collectionUtils.isListEmpty(property?.Liabilities__r)) {
             propertywithLiabilities.add(property);
           }
         }
@@ -551,7 +551,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     // Save Property liability
     listToUpdate = new List<SObject>();
     for (Property__c property : propertywithLiabilities) {
-      for (AssetAndLiability__c liability : property?.AssetAndLiabilities__r) {
+      for (AssetAndLiability__c liability : property?.Liabilities__r) {
         liability.Property__c = property.Id;
         listToUpdate.add(liability);
       }
