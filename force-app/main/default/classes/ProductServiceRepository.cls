@@ -47,7 +47,7 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
     return (List<ProductService__c>) getRecords(
       Query.newInstance(ProductService__c.SObjectType)
         .addFields()
-        .whereEq('mflow__isActive__c', true)
+        .whereEq('mflow__IsActive__c', true)
         .andCon()
         .whereEq('FinancialProduct__c', productId)
         .toString()
@@ -90,7 +90,7 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
         .queryLookup('mflow__CrossSellProduct__r')
         .addFields()
         .run()
-        .whereEq('mflow__isActive__c', true)
+        .whereEq('mflow__IsActive__c', true)
         .andCon()
         .whereIn('FinancialProduct__c', productIds)
         .andCon()
@@ -116,7 +116,7 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
         .whereEq('mflow__Type__c', ApplicationConstant.PRODUCT_FEATURE_TYPE_PRODUCT_CONFIG)
         .orderBy('mflow__Order__c')
         .run()
-        .whereEq('mflow__isActive__c', true)
+        .whereEq('mflow__IsActive__c', true)
         .orderBy('mflow__Order__c')
         .toString()
     );
@@ -139,7 +139,7 @@ public with sharing class ProductServiceRepository extends DatabaseUtils {
         .whereEq('mflow__Type__c', ApplicationConstant.PRODUCT_FEATURE_TYPE_PRODUCT_DESC)
         .orderBy('mflow__Order__c')
         .run()
-        .whereEq('mflow__isActive__c', true)
+        .whereEq('mflow__IsActive__c', true)
         .andCon()
         .whereIn(
           'Id',

@@ -4,7 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <description>related product</description>
     <externalId>false</externalId>
-    <label>FinancialProduct</label>
+    <label>Financial Product</label>
     <referenceTo>FinancialProduct__c</referenceTo>
     <relationshipLabel>Financial Accounts</relationshipLabel>
     <relationshipName>FinancialAccounts</relationshipName>

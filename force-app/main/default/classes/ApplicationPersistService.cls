@@ -193,13 +193,17 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       if (!CollectionUtils.isListEmpty(applicant?.IdentificationDocuments__r)) {
         listToUpdate.addAll(saveIdentificationDocuments(applicant?.IdentificationDocuments__r, applicant.Id));
       }
-      // upsert contact point address
-      if (!CollectionUtils.isListEmpty(applicant?.ContactPointAddresses__r)) {
-        listToUpdate.addAll(saveContactPointAddresses(applicant?.ContactPointAddresses__r, applicant.Id));
+      // upsert address
+      if (!CollectionUtils.isListEmpty(applicant?.Addresses__r)) {
+        listToUpdate.addAll(saveAddresses(applicant?.Addresses__r, applicant.Id));
       }
       // upsert employment
       if (!CollectionUtils.isListEmpty(applicant?.Employments__r)) {
         listToUpdate.addAll(this.saveEmployments(applicant?.Employments__r, applicant.Id));
+      }
+      // upsert Incomes
+      if (!CollectionUtils.isListEmpty(applicant?.Incomes__r)) {
+        listToUpdate.addAll(this.saveIncomes(applicant?.Incomes__r, applicant.Id));
       }
       // upsert Surveys
       if (!CollectionUtils.isListEmpty(applicant?.Surveys__r)) {
@@ -241,19 +245,16 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
   /**
    * @description save Contact Point Addresses
    * @author Digital Align Team | 11-09-2021
-   * @param List<ContactPointAddress> addresses
+   * @param List<Address__c> addresses
    * @param Id applicantId
-   * @return List<ContactPointAddress>
+   * @return List<Address__c>
    **/
-  global virtual List<ContactPointAddress> saveContactPointAddresses(
-    List<ContactPointAddress> addresses,
-    Id applicantId
-  ) {
-    for (ContactPointAddress cpa : addresses) {
+  global virtual List<Address__c> saveAddresses(List<Address__c> addresses, Id applicantId) {
+    for (Address__c cpa : addresses) {
       if (String.isNotBlank(applicantId)) {
         cpa.Applicant__c = applicantId;
       } // updating state = state full name in trigger(before insert before update)
-      cpa.Name = String.isNotBlank(cpa.Street) ? cpa.Street?.left(255) : 'N/A';
+      cpa.Name = String.isNotBlank(cpa.Street__c) ? cpa.Street__c?.left(255) : 'N/A';
     }
     //ApplicationRepository.upsertRecords(addresses);
     return addresses;
@@ -274,6 +275,24 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     }
     //ApplicationRepository.upsertRecords(employments);
     return employments;
+  }
+
+  /**
+   * @description  Save addtional income details of an applicant
+   * @author Digital Align Team | 08-12-2022
+   * @param List<Income__c> incomes
+   * @param Id applicantId
+   * @return List<Income__c>
+   **/
+  global virtual List<Income__c> saveIncomes(List<Income__c> incomes, Id applicantId) {
+    for (Income__c income : incomes) {
+      if (String.isNotBlank(applicantId)) {
+        income.Applicant__c = applicantId;
+      }
+      income.Name = income.Source__c?.left(80);
+    }
+    //ApplicationRepository.upsertRecords(incomes);
+    return incomes;
   }
 
   /**
@@ -384,14 +403,23 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       when 'mflow__Applicant__c' {
         this.deleteApplicants(new Set<Id>{ recordId });
       }
-      when 'IdentificationDocument__c' {
+      when 'mflow__IdentificationDocument__c' {
         FileService.getInstance().deleteContentVersionByEntityId(recordId);
         ApplicationRepository.deleteRecord(recordId, true);
       }
       when 'mflow__Employment__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
-      when 'ContactPointAddress' {
+      when 'mflow__Income__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'mflow__Property__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'mflow__AssetAndLiability__c' {
+        ApplicationRepository.deleteRecord(recordId, true);
+      }
+      when 'mflow__Address__c' {
         ApplicationRepository.deleteRecord(recordId, true);
       }
     }
@@ -411,11 +439,20 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
       if (!applicant.IdentificationDocuments__r.isEmpty()) {
         recordsToDelete.addAll(applicant.IdentificationDocuments__r);
       }
-      if (!applicant.ContactPointAddresses__r.isEmpty()) {
-        recordsToDelete.addAll(applicant.ContactPointAddresses__r);
+      if (!applicant.Addresses__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.Addresses__r);
       }
       if (!applicant.Employments__r.isEmpty()) {
         recordsToDelete.addAll(applicant.Employments__r);
+      }
+      if (!applicant.Incomes__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.Incomes__r);
+      }
+      if (!applicant.AssetAndLiabilities__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.AssetAndLiabilities__r);
+      }
+      if (!applicant.Surveys__r.isEmpty()) {
+        recordsToDelete.addAll(applicant.Surveys__r);
       }
       recordsToDelete.add(applicant);
     }
@@ -463,14 +500,12 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
    **/
   global virtual List<FinancialAccount__c> saveFinancialAccountChilds(List<FinancialAccount__c> financialAccounts) {
     List<SObject> listToUpdate = new List<SObject>();
-    List<FinancialAccountTransaction__c> financialAccountTransactions = new List<FinancialAccountTransaction__c>();
-    List<FinancialAccountService__c> financialAccountServices = new List<FinancialAccountService__c>();
-    List<Property__c> properties = new List<Property__c>();
     Set<Property__c> propertywithLiabilities = new Set<Property__c>();
 
     for (FinancialAccount__c financialAccount : financialAccounts) {
       // save financial transaction history
       if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountTransactions__r)) {
+        List<FinancialAccountTransaction__c> financialAccountTransactions = new List<FinancialAccountTransaction__c>();
         for (
           FinancialAccountTransaction__c financialAccountTransaction : financialAccount.FinancialAccountTransactions__r
         ) {
@@ -486,6 +521,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
       // Save ProductServices
       if (!collectionUtils.isListEmpty(financialAccount?.FinancialAccountServices__r)) {
+        List<FinancialAccountService__c> financialAccountServices = new List<FinancialAccountService__c>();
         for (FinancialAccountService__c financialAccountService : financialAccount.FinancialAccountServices__r) {
           financialAccountService.FinancialAccount__c = financialAccount.Id;
           financialAccountServices.add(financialAccountService);
@@ -496,12 +532,13 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
 
       // Save properties
       if (!collectionUtils.isListEmpty(financialAccount?.Properties__r)) {
+        List<Property__c> properties = new List<Property__c>();
         for (Property__c property : financialAccount.Properties__r) {
           property.FinancialAccount__c = financialAccount.Id;
           properties.add(property);
 
           //property has liablities associated
-          if (!collectionUtils.isListEmpty(property?.AssetAndLiabilities__r)) {
+          if (!collectionUtils.isListEmpty(property?.Liabilities__r)) {
             propertywithLiabilities.add(property);
           }
         }
@@ -514,7 +551,7 @@ global virtual with sharing class ApplicationPersistService extends AbstractServ
     // Save Property liability
     listToUpdate = new List<SObject>();
     for (Property__c property : propertywithLiabilities) {
-      for (AssetAndLiability__c liability : property?.AssetAndLiabilities__r) {
+      for (AssetAndLiability__c liability : property?.Liabilities__r) {
         liability.Property__c = property.Id;
         listToUpdate.add(liability);
       }

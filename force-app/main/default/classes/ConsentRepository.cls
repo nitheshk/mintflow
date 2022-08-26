@@ -23,7 +23,7 @@ public with sharing class ConsentRepository extends DatabaseUtils {
       .queryLookup('mflow__ConsentTemplate__r')
       .addFields()
       .run()
-      .whereEq('mflow__isActive__c', true)
+      .whereEq('mflow__IsActive__c', true)
       .andCon()
       .whereNotNull('mflow__ConsentTemplate__c')
       .andCon()

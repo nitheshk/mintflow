@@ -40,19 +40,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OOWTotalQuestions__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>OOWVerified__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>isAllDisclosuresSignedAndPrinted__c</field>
+                <field>OOWStatus__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OOWStatus__c</field>
+                <field>IsAllDisclosuresSignedAndPrinted__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -67,6 +63,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ApplicantType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MaritalStatus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Citizenship__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -87,6 +91,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Birthdate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOWTotalQuestions__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -109,10 +117,6 @@
                 <behavior>Edit</behavior>
                 <field>IsPhoneNumberVerified__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IsEmailVerified__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -122,6 +126,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OTPExpireTime__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsEmailVerified__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -138,6 +146,14 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>FlowState__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FlowType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>RunWithKIQ__c</field>
             </layoutItems>
             <layoutItems>
@@ -150,18 +166,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SentiLinkStatus__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SentiLinkRemarks__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SentiLinkFraudScore__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>CreditScore__c</field>
             </layoutItems>
             <layoutItems>
@@ -171,14 +175,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>QualifiedScore__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FlowState__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FlowType__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -206,6 +202,18 @@
                 <behavior>Edit</behavior>
                 <field>Password__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SentiLinkStatus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SentiLinkRemarks__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SentiLinkFraudScore__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -213,9 +221,63 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Verification Information</label>
-        <layoutColumns />
-        <layoutColumns />
+        <label>Demographic Information of Borrower</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DemographicCollectedThrough__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Gender__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>GenderCollectedOnVisual__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Ethnicity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>EthnicityTypeHispanicOrLatino__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>EthnicityOtherHispanicOrLatino__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>EthnicityCollectedOnVisual__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Race__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RaceTypeAsian__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RaceOtherAsian__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RaceTypeNativeHawaiianOrPacificIslander__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RaceOtherPacificIslander__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RaceCollectedOnVisual__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -267,14 +329,15 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>Name</fields>
-        <fields>IsPrimary</fields>
-        <fields>ADDRESS.STREET</fields>
-        <fields>ADDRESS.STATE</fields>
-        <fields>StateCode__c</fields>
-        <fields>ADDRESS.ZIP</fields>
-        <fields>ADDRESS.COUNTRY</fields>
-        <relatedList>ContactPointAddress.Applicant__c</relatedList>
+        <fields>NAME</fields>
+        <fields>AddressType__c</fields>
+        <fields>Street__c</fields>
+        <fields>City__c</fields>
+        <fields>State__c</fields>
+         <fields>PostalCode__c</fields>
+        <fields>UsageType__c</fields>
+        <fields>IsPrimary__c</fields>
+        <relatedList>Address__c.Applicant__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -288,8 +351,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>EmploymentStatus__c</fields>
-        <fields>EmployeeType__c</fields>
+        <fields>Status__c</fields>
+        <fields>JobType__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>Employment__c.Applicant__c</relatedList>
         <sortField>CREATED_DATE</sortField>
@@ -298,6 +361,10 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>AssetAndLiability__c.Applicant__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Income__c.Applicant__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -326,7 +393,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0p000001pQvA</masterLabel>
+        <masterLabel>00h1y0000028ynT</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

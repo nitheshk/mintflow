@@ -81,25 +81,6 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
   }
 
   /**
-   * @description Read Application With Primary
-   * @author Digital Align Team | 02-04-2022
-   * @param Id applicationId
-   * @return Application__c
-   **/
-  // global static Application__c readApplicationWithPrimary(Id applicationId) {
-  //   return (Application__c) DatabaseUtils.getRecord(
-  //     Query.newInstance(Application__c.SObjectType)
-  //       .addFields()
-  //       .queryChild('mflow__Applicants__r')
-  //       .addFields()
-  //       .addFields('RecordType.Name')
-  //       .whereEq('RecordType.Name', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE)
-  //       .run()
-  //       .whereEq('Id', applicationId)
-  //       .toString()
-  //   );
-  // }
-  /**
    * @description Read Application with child record
    * Applicants contains only ids
    * Financial Account contains only Ids
@@ -127,9 +108,9 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .addFieldSet('mflow__CloneIdentification')
       .orderBy('mflow__Order__c')
       .run()
-      .queryChild('mflow__ContactPointAddresses__r')
+      .queryChild('mflow__Addresses__r')
       .addFieldSet('mflow__CloneAddress')
-      .removeFields('Address')
+      //.removeFields('Address')
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__Employments__r')
@@ -155,9 +136,9 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
       .addFieldSet('mflow__CloneIdentification')
       .orderBy('mflow__Order__c')
       .run()
-      .queryChild('mflow__ContactPointAddresses__r')
+      .queryChild('mflow__Addresses__r')
       .addFieldSet('mflow__CloneAddress')
-      .removeFields('Address')
+      //.removeFields('Address')
       .orderBy('mflow__Order__c')
       .run()
       .queryChild('mflow__Employments__r')

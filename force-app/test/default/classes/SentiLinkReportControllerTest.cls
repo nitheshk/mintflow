@@ -5,10 +5,10 @@ public with sharing class SentiLinkReportControllerTest {
     cv = (ContentVersion) DatabaseUtils.insertRecord(cv);
     return cv;
   }
-  private static ContactPointAddress makeContactPointAddress(Id applicantId) {
-    ContactPointAddress address = TestData.createContactPointAddress(null);
+  private static Address__c makeAddress(Id applicantId) {
+    Address__c address = TestData.createAddress(null);
     address.Applicant__c = applicantId;
-    address = (ContactPointAddress) DatabaseUtils.insertRecord(address);
+    address = (Address__c) DatabaseUtils.insertRecord(address);
     return address;
   }
   private static ApplicationConfiguration__c makeApplicationConfiguration() {

@@ -4,7 +4,7 @@
     <defaultValue>false</defaultValue>
     <description>True if customer email is verified</description>
     <externalId>false</externalId>
-    <label>IsEmailVerified</label>
+    <label>Is Email Verified</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>

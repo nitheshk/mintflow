@@ -25,7 +25,7 @@ public with sharing class SurveyRepository extends DatabaseUtils {
       .addFields()
       .orderBy('mflow__Order__c')
       .run()
-      .whereEq('mflow__isActive__c', true)
+      .whereEq('mflow__IsActive__c', true)
       .andCon()
       .whereEq('mflow__EventIdentifier__c', eventIdentifier);
     if (filter != null) {
@@ -65,11 +65,10 @@ public with sharing class SurveyRepository extends DatabaseUtils {
       .addFields()
       .whereEq('mflow__EventIdentifier__c', eventIdentifier)
       .andCon()
-      .whereEq('mflow__Application__c', ApexRequest.getApplicationId());
-    if (ApexRequest.getParams('applicantId') != null) {
-      query.andCon().whereEq('mflow__Applicant__c', ApexRequest.getParams('applicantId'));
-    }
-    query.orderBy('mflow__Order__c');
+      .whereEq('mflow__Application__c', ApexRequest.getApplicationId())
+      .andCon()
+      .whereEq('mflow__Applicant__c', ApexRequest.getApplicantId())
+      .orderBy('mflow__Order__c');
     return (List<Survey__c>) getRecords(query.toString(true));
   }
 }

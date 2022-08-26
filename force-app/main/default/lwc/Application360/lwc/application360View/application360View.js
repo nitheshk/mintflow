@@ -43,7 +43,7 @@ export default class Application360View extends LightningElement {
         }
         break;
       case "mflow__IdentificationDocuments__r":
-      case "mflow__ContactPointAddresses__r":
+      case "mflow__Addresses__r":
       case "mflow__Employments__r":
         {
           let applicant = this.record?.mflow__Applicants__r?.filter(

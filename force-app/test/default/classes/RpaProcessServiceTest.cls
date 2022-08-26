@@ -19,12 +19,12 @@ public with sharing class RpaProcessServiceTest {
     Employment__c employment = TestData.createEmployment(applicant.Id);
     insert employment;
 
-    ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
+    Address__c address = TestData.createAddress(applicant.Id);
     insert address;
 
     construct.addChildObject('mflow__IdentificationDocuments__r', identity);
     construct.addChildObject('mflow__Employments__r', employment);
-    construct.addChildObject('mflow__ContactPointAddresses__r', address);
+    construct.addChildObject('mflow__Addresses__r', address);
 
     return (Applicant__c) construct.build();
   }

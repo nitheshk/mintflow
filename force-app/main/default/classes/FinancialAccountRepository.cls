@@ -43,7 +43,7 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
     return (List<Property__c>) DatabaseUtils.getRecords(
       Query.newInstance(Property__c.SObjectType)
         .addFields()
-        .queryChild('mflow__AssetAndLiabilities__r')
+        .queryChild('mflow__Liabilities__r')
         .addFields()
         .run()
         .whereIn('Id', properties)
@@ -138,7 +138,7 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .whereEq('mflow__Type__c', ApplicationConstant.PRODUCT_FEATURE_TYPE_PRODUCT_CONFIG)
         .orderBy('mflow__Order__c')
         .run()
-        .whereEq('mflow__isActive__c', true)
+        .whereEq('mflow__IsActive__c', true)
         .andCon()
         .whereIn(
           'Id',

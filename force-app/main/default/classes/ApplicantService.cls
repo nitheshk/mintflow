@@ -5,7 +5,7 @@
  * @reference
  * @description Application service
  **/
-@SuppressWarnings('PMD.AvoidGlobalModifier')
+@SuppressWarnings('PMD.AvoidGlobalModifier,PMD.CognitiveComplexity')
 global virtual with sharing class ApplicantService extends AbstractService {
   @TestVisible
   private static ApplicantService serviceInstance;
@@ -159,6 +159,30 @@ global virtual with sharing class ApplicantService extends AbstractService {
   }
 
   /**
+   * @description to verify KYC of the applicant using alloy provider
+   * @author Digital Align Team | 03-08-2022
+   * @param Application__c application
+   * @return Applicant__c
+   **/
+  global virtual Object verifyKYC(Id applicantId) {
+    Flow.initialize(ApexRequest.getApplicationId());
+    try {
+      Flow.setFlow('Alloy KYC');
+      if (!SystemSetting__c.getOrgDefaults().mflow__KYCEvaluation__c) {
+        flow.setFlowPassed('KYC verification has been skipped by system');
+        return 'KYC verification has been skipped by system';
+      }
+      Applicant__c applicant = AlloyProvider.getInstance().doIDVVerification(applicantId);
+      flow.setFlowPassed('KYC Verified successfully');
+      return applicant;
+    } catch (exception ex) {
+      Flow.setFlowFailed(ex.getMessage());
+      log?.error(ex);
+      throw ex;
+    }
+  }
+
+  /**
    * @description
    * @author Digital Align Team | 03-28-2022
    * @param Id applicationId
@@ -167,83 +191,58 @@ global virtual with sharing class ApplicantService extends AbstractService {
   global virtual Application__c validateExistingCustomer(Id applicationId) {
     Application__c application = ApplicantRepository.readApplicationWithPrimary(applicationId);
     Applicant__c primaryApplicant = application.Applicants__r[0];
-
     Contact existingContact = ApplicantRepository.fetchExistingContact(primaryApplicant);
     FinancialProduct__c baseProduct = FinancialAccountRepository.readBaseProduct();
 
-    FinancialAccount__c primaryAccount = new FinancialAccount__c();
-    List<FinancialAccount__c> financialAccounts = application.FinancialAccounts__r;
-    List<CustomerInterest__c> customerIntList = new List<CustomerInterest__c>();
-    List<FinancialAccount__c> financialAccounttoDelete = new List<FinancialAccount__c>();
-
-    Map<String, FinancialProduct__c> productMap = new Map<String, FinancialProduct__c>();
-    List<String> productCodes = new List<String>();
-
+    Savepoint sp = Database.setSavepoint();
     try {
-      for (FinancialAccount__c customerAccount : financialAccounts) {
-        productCodes.add(customerAccount.ProductCode__c);
-      }
-
-      List<FinancialProduct__c> selectedProducts = FinancialAccountRepository.readFinancialProductsByMultipleCodes(
-        productCodes
-      );
-
-      for (FinancialProduct__c product : selectedProducts) {
-        productMap.put(product.Id, product);
-      }
-      if (primaryAccount.ProductCode__c == baseProduct.InternalCode__c && existingContact != null) {
-        throw new CustomException('You already have Membership Account');
-      }
-      for (FinancialAccount__c finAccount : financialAccounts) {
-        if (primaryAccount.ProductCode__c != baseProduct.InternalCode__c && existingContact == null) {
-          CustomerInterest__c customerInterest = new CustomerInterest__c();
-          customerInterest.Application__c = applicationId;
-          customerInterest.Name = productMap.get(finAccount.FinancialProduct__c).Name;
-          customerInterest.InterestProduct__c = finAccount.FinancialProduct__c;
-          customerInterest.Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_INITIAL_INTEREST;
-          customerInterest.isSelected__c = true;
-          customerInterest.mflow__Required__c = true;
-
-          customerIntList.add(customerInterest);
-          financialAccounttoDelete.add(finAccount);
-
-          application.IsExistingCustomer__c = false;
-        } else if (primaryAccount.ProductCode__c != baseProduct.InternalCode__c && existingContact != null) {
-          application.IsExistingCustomer__c = true;
+      Boolean hasBaseProduct = false;
+      for (FinancialAccount__c fainancialAccount : application.FinancialAccounts__r) {
+        if (fainancialAccount.ProductCode__c == baseProduct.InternalCode__c) {
+          hasBaseProduct = true;
         }
       }
 
-      FinancialAccount__c financialAccount = new FinancialAccount__c();
-      financialAccount.FinancialProduct__c = baseProduct.Id;
-      financialAccount.Ownership__c = 'Individual';
-      financialAccount.IsPrimary__c = true;
-      financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
-      financialAccount.Stage__c = 'Active';
-      financialAccount.Application__c = application.Id;
-      financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
-        FinancialAccount__c.SObjectType,
-        baseProduct.Category__c
-      );
+      if (hasBaseProduct && existingContact != null) {
+        throw new CustomException('You already have Membership Account');
+      }
 
-      if (existingContact != null) {
+      if (!hasBaseProduct && existingContact == null) {
+        List<CustomerInterest__c> customerInterestList = new List<CustomerInterest__c>();
+        application.IsExistingCustomer__c = false;
+        for (FinancialAccount__c fainancialAccount : application.FinancialAccounts__r) {
+          CustomerInterest__c customerInterest = new CustomerInterest__c();
+          customerInterest.Application__c = application.Id;
+          customerInterest.Name = fainancialAccount.FinancialProduct__r.Name;
+          customerInterest.InterestProduct__c = fainancialAccount.FinancialProduct__c;
+          customerInterest.Focus__c = ApplicationConstant.CUSTOMER_INTEREST_FOCUS_INITIAL_INTEREST;
+          customerInterest.IsSelected__c = true;
+          customerInterest.mflow__Required__c = true;
+          customerInterestList.add(customerInterest);
+        }
+        FinancialAccountRepository.upsertRecords(customerInterestList);
+        FinancialAccountRepository.deleteRecords(application.FinancialAccounts__r);
+        // create base product
+        FinancialAccountService.getInstance().createInitialFinancialAccount(application);
+      } else if (!hasBaseProduct && existingContact != null) {
+        application.IsExistingCustomer__c = true;
+        ApplicantRepository.upsertRecord(application);
+
         primaryApplicant.contact__c = existingContact.Id;
         primaryApplicant.IsExistingCustomer__c = true;
         ApplicantRepository.upsertRecord(primaryApplicant);
       }
-
-      FinancialAccountRepository.upsertRecords(customerIntList);
-      FinancialAccountRepository.deleteRecords(financialAccounttoDelete);
-      ApplicantRepository.upsertRecord(application);
-      FinancialAccountRepository.upsertRecord(financialAccount);
     } catch (exception ex) {
-      system.debug('eror at ' + ex.getmessage() + ex.getLineNumber());
+      Database.rollback(sp);
+      throw ex;
     }
 
     if (ApexRequest.getApplicantType() == 'Primary') {
       return ApplicationService.getInstance().readApplicationWithChild(applicationId);
     } else if (ApexRequest.getApplicantType() == 'Joint') {
       return ApplicationService.getInstance().readApplicationWithChild(applicationId, ApexRequest.getApplicantId());
-    } else
+    } else {
       return null;
+    }
   }
 }

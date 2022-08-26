@@ -3,10 +3,20 @@
     <isVisibleByExternalUsers>true</isVisibleByExternalUsers>
     <language>en_US</language>
     <masterLabel>logo</masterLabel>
+    <originNetwork>FinancialInstitute</originNetwork>
     <relationships>
         <organization>
             <access>VIEWER</access>
         </organization>
+        <network>
+            <access>VIEWER</access>
+            <name>FinancialInstitute</name>
+        </network>
+        <workspace>
+            <access>INFERRED</access>
+            <isManagingWorkspace>true</isManagingWorkspace>
+            <name>sfdc_asset_company_assets</name>
+        </workspace>
     </relationships>
     <versions>
         <version>

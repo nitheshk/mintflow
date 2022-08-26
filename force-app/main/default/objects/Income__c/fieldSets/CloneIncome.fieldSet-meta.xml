@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CloneIncome</fullName>
+    <description>Clone Income</description>
+    <displayedFields>
+        <field>MonthlyIncome__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>Name</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>Order__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>Source__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>OtherSource__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <label>Clone Income</label>
+</FieldSet>

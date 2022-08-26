@@ -156,7 +156,7 @@
     <externalSharingModel>Read</externalSharingModel>
     <label>Financial Product</label>
     <nameField>
-        <label>FinancialProduct Name</label>
+        <label>Financial Product Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Financial Products</pluralLabel>

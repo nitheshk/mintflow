@@ -64,7 +64,6 @@ global virtual with sharing class ConsentResolver extends AbstractService {
       consents = this.sort(consents);
       ConsentRepository.upsertRecords(consents);
     }
-
     return consents;
   }
 

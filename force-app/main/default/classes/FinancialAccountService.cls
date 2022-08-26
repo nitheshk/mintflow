@@ -138,102 +138,36 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @return FinancialAccount__c
    **/
   global virtual List<FinancialAccount__c> createInitialFinancialAccount(Application__c application) {
-    FinancialProduct__c baseProduct = FinancialAccountRepository.readBaseProduct();
+    List<FinancialProduct__c> selectedProducts = new List<FinancialProduct__c>();
+    List<FinancialAccount__c> financialAccountList = new List<FinancialAccount__c>();
     String pid = PageUtils.getCurrentPageParameters('pid');
-    List<FinancialProduct__c> selectedProduct;
-    List<FinancialAccount__c> finAccountsList = new List<FinancialAccount__c>();
-
-    List<String> productCodes = pid.split(',');
     if (String.isNotBlank(pid)) {
-      selectedProduct = FinancialAccountRepository.readFinancialProductsByMultipleCodes(productCodes);
-    }
-    Integer prdIndex = 0;
-    if (selectedProduct != null && selectedProduct.size() > 0) {
-      application.ApplicationType__c = selectedProduct[0].Type__c; // to set first item type to the application
-      for (FinancialProduct__c productItem : selectedProduct) {
-        FinancialAccount__c financialAccount = new FinancialAccount__c();
-        financialAccount.FinancialProduct__c = productItem.Id;
-        financialAccount.Ownership__c = 'Individual';
-        if (prdIndex == 0) {
-          financialAccount.IsPrimary__c = true;
-        }
-        financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
-        financialAccount.Stage__c = 'Active';
-        financialAccount.Application__c = application.Id;
-        financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
-          FinancialAccount__c.SObjectType,
-          productItem.Category__c
-        );
-        finAccountsList.add(financialAccount);
-        prdIndex++;
-      }
+      List<String> productCodes = pid?.split(',');
+      selectedProducts = FinancialAccountRepository.readFinancialProductsByMultipleCodes(productCodes);
+    } else {
+      selectedProducts.add(FinancialAccountRepository.readBaseProduct());
     }
 
-    FinancialAccountRepository.upsertRecords(finAccountsList);
+    for (FinancialProduct__c selectedProduct : selectedProducts) {
+      FinancialAccount__c financialAccount = new FinancialAccount__c();
+      financialAccount.FinancialProduct__c = selectedProduct.Id;
+      financialAccount.Ownership__c = 'Individual';
+      financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
+      financialAccount.Stage__c = 'Active';
+      financialAccount.Application__c = application.Id;
+      financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
+        FinancialAccount__c.SObjectType,
+        selectedProduct.Category__c
+      );
+      financialAccountList.add(financialAccount);
+    }
+    application.ApplicationType__c = selectedProducts[0].Type__c;
+    financialAccountList[0].IsPrimary__c = true;
+
+    FinancialAccountRepository.upsertRecords(financialAccountList);
     FinancialAccountRepository.upsertRecord(application);
     log?.fine('financialAccount Created');
-    return finAccountsList;
-  }
-
-  /**
-   *  Only For Testing Purpose
-   *  Manual Approve Funding Data
-   **/
-  public void testApproveFundingSubmission(String applicationNumber) {
-    Application__c application = (new BuildSubmissionWrapper()).readApplicationWithChild(applicationNumber);
-
-    Map<String, Object> resultMap = new Map<String, Object>();
-    resultMap.put('ExternalApplicationNumber', String.valueOf(Integer.valueof((Math.random() * 100000))));
-    resultMap.put('ExternalApplicationStatus', 'Approved');
-    resultMap.put('MemberNumber', String.valueOf(Integer.valueof((Math.random() * 10000000))));
-    resultMap.put('ApplicationId', application.Id);
-    resultMap.put('IsExistingCustomer', false);
-
-    List<Object> applicants = new List<Object>();
-    for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name != ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE &&
-        applicant.RecordType.Name != ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-      ) {
-        continue;
-      }
-      applicants.add(
-        new Map<String, Object>{
-          'ApplicantId' => applicant.Id,
-          'CustomerNumber' => String.valueOf(Integer.valueof((Math.random() * 10000000)))
-        }
-      );
-    }
-    resultMap.put('Applicants', applicants);
-
-    List<Object> financialAccounts = new List<Object>();
-    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
-      if (financialAccount.FinancialAccountTransactions__r.isEmpty()) {
-        financialAccounts.add(
-          new Map<String, Object>{
-            'FinancialAccountId' => financialAccount.Id,
-            'AccountNumber' => String.valueOf(Integer.valueof((Math.random() * 1000000000)))
-          }
-        );
-      } else {
-        financialAccounts.add(
-          new Map<String, Object>{
-            'FinancialAccountId' => financialAccount.Id,
-            'AccountNumber' => String.valueOf(Integer.valueof((Math.random() * 1000000000))),
-            'FinancialApplicationTransaction' => new Map<String, Object>{
-              'FinancialAccountTransactionId' => financialAccount.FinancialAccountTransactions__r[0].Id,
-              'TransactionStatus' => 'Paid'
-            }
-          }
-        );
-      }
-    }
-    resultMap.put('FinancialAccounts', financialAccounts);
-
-    log?.debug('resultMap : ' + Json.serialize(resultMap));
-
-    application = (Application__c) SubmitApplicationService.getInstance()
-      .updateSubmissionInfo(Json.serialize(resultMap));
+    return financialAccountList;
   }
 
   /**

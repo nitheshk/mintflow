@@ -282,7 +282,7 @@ global with sharing class ApplicationController extends AbstractController {
   global static ApexResponse saveState(ApexRequest request) {
     try {
       validateRequest(request);
-      log?.debug('request' + request);
+      log?.debug('Inside saveState');
       return ApexResponse.ok(ApplicationService.getInstance().saveState());
     } catch (CustomException ex) {
       log?.error(ex);
@@ -291,6 +291,7 @@ global with sharing class ApplicationController extends AbstractController {
       log?.error(ex);
       return ApexResponse.fail(ex);
     } finally {
+      log?.debug('Completed saveState');
       Logger.persist();
     }
   }

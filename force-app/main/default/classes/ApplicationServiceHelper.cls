@@ -143,7 +143,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     List<IdentificationDocument__c> newIdentityDocs = new List<IdentificationDocument__c>();
     List<Employment__c> newEmployments = new List<Employment__c>();
-    List<ContactPointAddress> newAddreses = new List<ContactPointAddress>();
+    List<Address__c> newAddreses = new List<Address__c>();
     for (Applicant__c newApplicant : newApplicants) {
       //Identification Document
       for (IdentificationDocument__c oldIdentityDoc : newApplicant.IdentificationDocuments__r) {
@@ -158,8 +158,8 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         newEmployments.add(newEmployment);
       }
       // //Contact Point Address
-      for (ContactPointAddress oldAddress : newApplicant.ContactPointAddresses__r) {
-        ContactPointAddress newAddress = oldAddress.clone(false, true, false, false);
+      for (Address__c oldAddress : newApplicant.Addresses__r) {
+        Address__c newAddress = oldAddress.clone(false, true, false, false);
         newAddress.Applicant__c = newApplicant.Id;
         newAddreses.add(newAddress);
       }
@@ -179,17 +179,18 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
    **/
   global virtual Application__c cloneExistingApplication(Map<String, Object> params) {
     String applicationId = (String) params.get('applicationIdToClone');
-    String internalProductCode = (string) params.get('pid');
-    system.debug('product code::' + internalProductCode);
+    String pid = (string) params.get('pid');
     String ch = (string) params.get('ch');
+    log?.debug('Product Code::' + pid);
 
+    List<String> productCodes = String.isNotBlank(pid) ? pid?.split(',') : new List<String>();
     Application__c oldApplication = ApplicationRepository.readApplicationToClone(applicationId);
     List<Applicant__c> oldApplicants = ApplicationRepository.readPrimaryApplicantsToClone(oldApplication.Id);
-    FinancialProduct__c selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
-      internalProductCode
+    List<FinancialProduct__c> selectedProducts = FinancialAccountRepository.readFinancialProductsByMultipleCodes(
+      productCodes
     );
 
-    if (oldApplication == null || selectedProduct == null) {
+    if (oldApplication == null || selectedProducts.isEmpty()) {
       throw new CustomException('Something went wrong! Check application number and product');
     }
 
@@ -200,7 +201,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     newApplication.CreatedChannel__c = oldApplication.LastUsedChannel__c = String.isNotBlank(ch)
       ? ch
       : ApplicationConstant.CHANNEL_VIRTUAL;
-    newApplication.ApplicationType__c = selectedProduct.Type__c;
+    newApplication.ApplicationType__c = selectedProducts[0].Type__c;
     newApplication.IsExistingCustomer__c = true;
     newApplication.FlowState__c = ApplicationConstant.PERSONAL_INFO;
     newApplication.FlowType__c = 'ApplicationFlow';
@@ -212,18 +213,22 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     ApexRequest.setApplicationId(newApplication.Id);
     //Financial Account
-    FinancialAccount__c financialAccount = new FinancialAccount__c();
-    financialAccount.FinancialProduct__c = selectedProduct.Id;
-    financialAccount.Ownership__c = oldApplicants.size() > 1 ? 'Joint' : 'Individual';
-    financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
-    financialAccount.Stage__c = 'Active';
-    financialAccount.isPrimary__c = true;
-    financialAccount.Application__c = newApplication.Id;
-    financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
-      FinancialAccount__c.SObjectType,
-      selectedProduct.Category__c
-    );
-    FinancialAccountRepository.upsertRecord(financialAccount);
+    List<FinancialAccount__c> financialAccountList = new List<FinancialAccount__c>();
+    for (FinancialProduct__c selectedProduct : selectedProducts) {
+      FinancialAccount__c financialAccount = new FinancialAccount__c();
+      financialAccount.FinancialProduct__c = selectedProduct.Id;
+      financialAccount.Ownership__c = oldApplicants.size() > 1 ? 'Joint' : 'Individual';
+      financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
+      financialAccount.Stage__c = 'Active';
+      financialAccount.Application__c = newApplication.Id;
+      financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
+        FinancialAccount__c.SObjectType,
+        selectedProduct.Category__c
+      );
+      financialAccountList.add(financialAccount);
+    }
+    financialAccountList[0].IsPrimary__c = true;
+    ApplicationRepository.upsertRecords(financialAccountList);
 
     //Applicants
     List<Applicant__c> newApplicants = new List<Applicant__c>();
@@ -250,7 +255,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     List<IdentificationDocument__c> newIdentityDocs = new List<IdentificationDocument__c>();
     List<Employment__c> newEmployments = new List<Employment__c>();
-    List<ContactPointAddress> newAddreses = new List<ContactPointAddress>();
+    List<Address__c> newAddreses = new List<Address__c>();
     for (Applicant__c newApplicant : newApplicants) {
       //Identification Document
       for (IdentificationDocument__c oldIdentityDoc : newApplicant.IdentificationDocuments__r) {
@@ -265,8 +270,8 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         newEmployments.add(newEmployment);
       }
       // //Contact Point Address
-      for (ContactPointAddress oldAddress : newApplicant.ContactPointAddresses__r) {
-        ContactPointAddress newAddress = oldAddress.clone(false, true, false, false);
+      for (Address__c oldAddress : newApplicant.Addresses__r) {
+        Address__c newAddress = oldAddress.clone(false, true, false, false);
         newAddress.Applicant__c = newApplicant.Id;
         newAddreses.add(newAddress);
       }
@@ -296,7 +301,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         //Calcuate Lead Score based on product and State weightage;
         mapFilter.put('Type', 'State');
         mapFilter.put('Value', application.mflow__FlowState__c);
-        mapData = calculateLeadBasedonState(mapfilter, mapData, products[0]);
+        mapData = calculateLeadBasedonState(mapfilter, mapData, products);
         if (mapData.containsKey('Product State') && (Decimal) mapData.get('Product State') > 0) {
           //Calculate the lead score based on eligibility
           mapFilter = new Map<String, String>();
@@ -316,7 +321,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
           mapFilter = new Map<String, String>();
           mapfilter.put('Type', 'Employment');
           mapData = calculateLeadBasedonEmployment(mapfilter, mapData, application);
-          System.debug(' calculateLeadBasedonEmployment');
+          log?.debug(' calculateLeadBasedonEmployment');
 
           mapData = calculateLeadBasedonCustomerInterest(mapData, application);
 
@@ -324,7 +329,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         }
       }
     } catch (exception ex) {
-      system.debug(' exception at : ' + ex.getLineNumber() + ex.getMessage());
+      log?.error(ex);
     }
 
     return leadScore;
@@ -341,15 +346,21 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
   private Map<String, Object> calculateLeadBasedonState(
     Map<String, String> mapFilter,
     Map<String, Object> mapData,
-    financialProduct__c product
+    List<financialProduct__c> products
   ) {
-    Decimal weightage;
-    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
-    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
+    try {
+      Decimal weightage;
+      List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
+      leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
 
-    if (leadConfigList != null && leadConfigList.size() > 0) {
-      weightage = leadConfigList[0].Weightage__c * product.Weightage__c;
+      for (financialProduct__c product : products) {
+        if (leadConfigList != null && leadConfigList.size() > 0) {
+          weightage = weightage + leadConfigList[0].Weightage__c * product.Weightage__c;
+        }
+      }
       mapData.put('Product State', weightage);
+    } catch (Exception ex) {
+      log?.error(ex);
     }
     return mapData;
   }
@@ -497,13 +508,11 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     for (applicant__c applicant : applicants) {
       if (!applicant.mflow__ApplicantType__c.equalsignorecase('Emergency Contact')) {
         employmentVerified = applicant.mflow__IsEmploymentVerified__c;
-        system.debug('employmentVerified::' + employmentVerified);
         for (LeadConfiguration__c leadConfig : leadConfigList) {
           if (
             leadConfig.Type__c == 'Employment' &&
             leadConfig.Value__c == String.valueof(applicant.mflow__IsEmploymentVerified__c)
           ) {
-            system.debug('leadConfig.Value__c ' + leadConfig.Value__c);
             leadScore = leadConfig.Weightage__c;
             totalApplicants++;
             totalScore = totalScore + leadScore;
@@ -535,7 +544,6 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     } else {
       mapData.put('Customer Interest', (object) 5);
     }
-    system.debug('mapdata::' + mapData);
     return mapData;
   }
 

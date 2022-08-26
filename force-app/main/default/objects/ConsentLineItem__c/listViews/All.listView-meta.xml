@@ -5,7 +5,7 @@
     <columns>ConsentTemplate__c</columns>
     <columns>EventIdentifier__c</columns>
     <columns>FinancialProduct__c</columns>
-    <columns>isActive__c</columns>
+    <columns>IsActive__c</columns>
     <columns>Order__c</columns>
     <columns>FinancilProductCategory__c</columns>
     <columns>Channel__c</columns>

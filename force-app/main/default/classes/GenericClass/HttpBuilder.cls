@@ -28,11 +28,11 @@ global with sharing class HttpBuilder {
   }
 
   global static Boolean isActiveApiSetting(Object apiName) {
-    return APISetting__mdt.getInstance(String.valueOf(apiName))?.isActive__c;
+    return APISetting__mdt.getInstance(String.valueOf(apiName))?.IsActive__c;
   }
 
   global static Boolean isActiveApiSetting() {
-    return apiSetting.isActive__c;
+    return apiSetting.IsActive__c;
   }
 
   global static APISetting__mdt replaceEndpoint(String oldValue, String newValue) {
@@ -47,7 +47,7 @@ global with sharing class HttpBuilder {
    **/
   global static String getApiConstant(String developerName) {
     APIConstant__mdt apiConstant = APIConstant__mdt.getInstance(developerName);
-    if (apiConstant.isActive__c) {
+    if (apiConstant.IsActive__c) {
       return apiconstant.Value__c;
     }
     return null;

@@ -213,8 +213,8 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       }
 
       //Map ContatcPointAddress Data
-      if (!CollectionUtils.isListEmpty(applicant.ContactPointAddresses__r)) {
-        mapperApplicant.ContactPointAddresses.addAll(mapContactAddress(applicant.ContactPointAddresses__r));
+      if (!CollectionUtils.isListEmpty(applicant.Addresses__r)) {
+        mapperApplicant.Addresses.addAll(mapAddresses(applicant.Addresses__r));
       }
 
       mapperApplicantList.add(mapperApplicant);
@@ -235,9 +235,9 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
     for (Employment__c employment : employmentList) {
       SubmissionDTO.Employment mapperEmployment = new SubmissionDTO.Employment();
       mapperEmployment.EmploymentId = employment.Id;
-      mapperEmployment.EmploymentType = employment.EmploymentType__c;
+      mapperEmployment.EmploymentType = employment.Type__c;
       mapperEmployment.EmployerName = employment.Name;
-      mapperEmployment.EmploymentStatus = getStatusMapping('EmploymentStatus__c', employment.EmploymentStatus__c);
+      mapperEmployment.EmploymentStatus = getStatusMapping('Status__c', employment.Status__c);
       mapperEmployment.GrossMonthlySalary = employment.GrossMonthlySalary__c;
       mapperEmployment.Name = employment.Name;
       mapperEmployment.IncomeType = employment.IncomeType__c;
@@ -245,9 +245,9 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
       mapperEmployment.Order = employment.Order__c;
       mapperEmployment.PayGrade = employment.PayGrade__c;
       mapperEmployment.Position = employment.Position__c;
-      mapperEmployment.EmploymentDuration = employment.EmploymentDuration__c;
+      mapperEmployment.EmploymentDuration = employment.Duration__c;
       mapperEmployment.DocumentType = employment.DocumentType__c;
-      mapperEmployment.BranchofService = employment.BranchofService__c;
+      mapperEmployment.BranchofService = employment.BranchOfService__c;
       mapperEmployment.EnlistmentDate = employment.EnlistmentDate__c;
       mapperEmploymentList.add(mapperEmployment);
     }
@@ -301,35 +301,33 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
   /**
    * @description
    * @author Digital Align | 11-10-2021
-   * @param List<ContactPointAddress> contactAddressList
+   * @param List<Address__c> addressList
    * @return virtual
    **/
-  global virtual list<SubmissionDTO.ContactPointAddress> mapContactAddress(
-    List<ContactPointAddress> contactAddressList
-  ) {
-    list<SubmissionDTO.ContactPointAddress> mapperContactAddressList = new List<SubmissionDTO.ContactPointAddress>();
-    for (ContactPointAddress contactAddress : contactAddressList) {
-      SubmissionDTO.ContactPointAddress mapperContactAddress = new SubmissionDTO.ContactPointAddress();
-      mapperContactAddress.ContactPointAddressId = contactAddress.Id;
-      if (contactAddressList.size() == 1) {
+  global virtual list<SubmissionDTO.Address> mapAddresses(List<Address__c> addressList) {
+    list<SubmissionDTO.Address> mapperAddressList = new List<SubmissionDTO.Address>();
+    for (Address__c addressObj : addressList) {
+      SubmissionDTO.Address mapperAddress = new SubmissionDTO.Address();
+      mapperAddress.AddressId = addressObj.Id;
+      if (addressList.size() == 1) {
         // Uploaded address will be current address
-        mapperContactAddress.AddressType = 'Current';
+        mapperAddress.AddressType = 'Current';
       } else {
-        mapperContactAddress.AddressType = contactAddress.AddressType;
+        mapperAddress.AddressType = addressObj.AddressType__c;
       }
-      mapperContactAddress.City = contactAddress.City;
-      mapperContactAddress.Country = contactAddress.Country;
-      mapperContactAddress.IsPrimary = contactAddress.IsPrimary;
-      mapperContactAddress.PostalCode = contactAddress.PostalCode;
-      mapperContactAddress.State = contactAddress.State;
-      mapperContactAddress.StateCode = contactAddress.StateCode__c;
-      mapperContactAddress.Street = contactAddress.Street;
-      mapperContactAddress.Order = contactAddress.Order__c;
-      mapperContactAddress.OccupancyStatus = getStatusMapping('UsageType', contactAddress.UsageType);
-      mapperContactAddress.OccupancyDuration = contactAddress.OccupancyDuration__c;
-      mapperContactAddressList.add(mapperContactAddress);
+      mapperAddress.City = addressObj.City__c;
+      mapperAddress.Country = addressObj.Country__c;
+      mapperAddress.IsPrimary = addressObj.IsPrimary__c;
+      mapperAddress.PostalCode = addressObj.PostalCode__c;
+      mapperAddress.State = addressObj.State__c;
+      mapperAddress.StateCode = addressObj.StateCode__c;
+      mapperAddress.Street = addressObj.Street__c;
+      mapperAddress.Order = addressObj.Order__c;
+      mapperAddress.OccupancyStatus = getStatusMapping('UsageType', addressObj.UsageType__c);
+      mapperAddress.OccupancyDuration = addressObj.OccupancyDuration__c;
+      mapperAddressList.add(mapperAddress);
     }
-    return mapperContactAddressList;
+    return mapperAddressList;
   }
 
   /**
@@ -422,7 +420,7 @@ global virtual with sharing class BuildSubmissionWrapper extends AbstractService
           })
           .get(value);
       }
-      when 'EmploymentStatus__c' {
+      when 'Status__c' {
         return (new Map<String, String>{
             'Employed' => 'Employed',
             'Self Employed' => 'Self Employed',

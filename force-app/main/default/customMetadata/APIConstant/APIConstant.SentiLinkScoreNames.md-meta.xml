@@ -21,7 +21,7 @@
     >sentilink_abuse_score,sentilink_first_party_synthetic_score,sentilink_third_party_synthetic_score,sentilink_id_theft_score</value>
     </values>
     <values>
-        <field>isActive__c</field>
+        <field>IsActive__c</field>
         <value xsi:type="xsd:boolean">true</value>
     </values>
 </CustomMetadata>

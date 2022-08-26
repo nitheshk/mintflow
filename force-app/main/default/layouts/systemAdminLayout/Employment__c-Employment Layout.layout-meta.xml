@@ -13,11 +13,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmploymentType__c</field>
+                <field>Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmployeeType__c</field>
+                <field>JobType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -43,6 +43,34 @@
                 <behavior>Edit</behavior>
                 <field>PayCycle__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BasePay__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Overtime__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Bonus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Commission__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OtherPay__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OwnershipShareType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OwnershipShareValue__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -51,11 +79,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmploymentVerificationType__c</field>
+                <field>VerificationType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmploymentStatus__c</field>
+                <field>Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -71,15 +99,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmploymentDuration__c</field>
+                <field>Duration__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmploymentDurationYears__c</field>
+                <field>DurationInYears__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>EmploymentDurationMonths__c</field>
+                <field>DurationInMonths__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

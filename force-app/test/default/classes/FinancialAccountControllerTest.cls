@@ -25,12 +25,12 @@ public with sharing class FinancialAccountControllerTest {
     Employment__c employment = TestData.createEmployment(applicant.Id);
     insert employment;
 
-    ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
+    Address__c address = TestData.createAddress(applicant.Id);
     insert address;
 
     construct.addChildObject('mflow__IdentificationDocuments__r', identity);
     construct.addChildObject('mflow__Employments__r', employment);
-    construct.addChildObject('mflow__ContactPointAddresses__r', address);
+    construct.addChildObject('mflow__Addresses__r', address);
 
     return (Applicant__c) construct.build();
   }
@@ -86,7 +86,7 @@ public with sharing class FinancialAccountControllerTest {
     // CustomerInterest__c customerInsert = new CustomerInterest__c();
     // customerInsert.Name = 'Prime Debit Account';
     // customerInsert.mflow__InterestProduct__c = rf.Id;
-    // customerInsert.mflow__isSelected__c = false;
+    // customerInsert.mflow__IsSelected__c = false;
     // construct.addChildObject('mflow__CustomerInterests__r', customerInsert);
     // request = new ApexRequest();
     // request.token = ApexRequest.getToken();

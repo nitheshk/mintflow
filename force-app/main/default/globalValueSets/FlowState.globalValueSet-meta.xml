@@ -130,6 +130,11 @@
         <default>false</default>
         <label>oow</label>
     </customValue>
+    <customValue>
+        <fullName>DemographicInfo</fullName>
+        <default>false</default>
+        <label>DemographicInfo</label>
+    </customValue>
     <description>UI Flow State Indicator</description>
     <masterLabel>FlowState</masterLabel>
     <sorted>false</sorted>

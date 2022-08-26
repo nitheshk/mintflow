@@ -93,7 +93,6 @@ global virtual with sharing class IdScanProvider extends AbstractService {
    **/
   global virtual HttpBuilder.Response ParseImageResponse(HttpResponse response) {
     Map<String, Object> idOldMap = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
-    system.debug('result =' + ((Map<String, Object>) idOldMap.get('ParseImageResult')));
     if ((string) ((Map<String, Object>) idOldMap.get('ParseImageResult')).get('ErrorMessage') != 'OK') {
       throw new CustomException(System.Label.Document_UnableToParseTheDl);
     }
@@ -126,7 +125,6 @@ global virtual with sharing class IdScanProvider extends AbstractService {
     newMap.put('state', result.get('IssuedBy'));
     newMap.put('Country', GenericUtils.fetchCountryFromCountryCode((string) result.get('CountryCode')));
     newMap.put('nationality', result.get('CountryCode'));
-    system.debug('newMap =' + newMap);
     IdScanDTO.Response returnDTO = (IdScanDTO.Response) JSON.deserialize(
       JSON.serialize(new Map<String, Object>{ 'Data' => newMap, 'status' => response.getStatusCode() }),
       IdScanDTO.Response.class
@@ -148,7 +146,7 @@ global virtual with sharing class IdScanProvider extends AbstractService {
    **/
   private Applicant__c mapIdentityResponse(Applicant__c applicant, IdScanDTO.Response returnDTO) {
     IdentificationDocument__c identity = new IdentificationDocument__c();
-    ContactPointAddress idAddress = new ContactPointAddress();
+    Address__c idAddress = new Address__c();
 
     applicant.FirstName__c = returnDTO.data.firstName;
     applicant.LastName__c = returnDTO.data.lastName;
@@ -165,14 +163,14 @@ global virtual with sharing class IdScanProvider extends AbstractService {
     identity.IssuedStateCode__c = returnDTO.data.issuerRegion;
     identity.ExpirationDate__c = returnDTO.data.expiry != null ? date.valueOf(returnDTO.data.expiry) : null;
     identity.IssueDate__c = returnDTO.data.issued != null ? date.valueOf(returnDTO.data.issued) : null;
-    idAddress.Street = returnDTO.data.address1;
-    idAddress.City = returnDTO.data.city;
-    idAddress.PostalCode = returnDTO.data.postalCode;
+    idAddress.Street__c = returnDTO.data.address1;
+    idAddress.City__c = returnDTO.data.city;
+    idAddress.PostalCode__c = returnDTO.data.postalCode;
     idAddress.StateCode__c = returnDTO.data.state;
-    idAddress.Country = returnDTO.data.country;
+    idAddress.Country__c = returnDTO.data.country;
 
     SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
-    construct.setChildObjects('mflow__ContactPointAddresses__r', new List<ContactPointAddress>{ idAddress });
+    construct.setChildObjects('mflow__Addresses__r', new List<Address__c>{ idAddress });
     construct.setChildObjects('mflow__IdentificationDocuments__r', new List<IdentificationDocument__c>{ identity });
     applicant = (Applicant__c) construct.build();
     return applicant;

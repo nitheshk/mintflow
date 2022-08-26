@@ -73,7 +73,6 @@ global virtual with sharing class FinancialInstituteSiteService extends Abstract
    **/
   global virtual object createEmployeeUserAccount(Map<String, Object> params) {
     Contact employeeContactObj = (Contact) JSON.deserialize(JSON.serialize(params.get('contact')), Contact.class);
-    system.debug('employeeContactObj : ' + JSON.serialize(employeeContactObj));
 
     if (employeeContactObj == null) {
       throw new CustomException(System.Label.FinInst_ContactRecordNotFound);

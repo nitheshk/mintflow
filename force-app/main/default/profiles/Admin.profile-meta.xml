@@ -27,7 +27,7 @@
         <layout>Survey__c-mflow__Survey Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Address-mflow__Address Layout</layout>
+        <layout>Address__c-mflow__Address Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ContentVersion-mflow__Content Version Layout</layout>

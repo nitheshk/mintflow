@@ -5,7 +5,7 @@
  * @reference
  * @description PlaidTokenDTO
  **/
-@SuppressWarnings('PMD.fieldnamingconventions')
+@SuppressWarnings('PMD.VariableNamingConventions,PMD.ExcessivePublicCount')
 public with sharing class AlloyDTO extends AbstractDTO {
   public class IDVRequest {
     public String name_first;
@@ -29,12 +29,6 @@ public with sharing class AlloyDTO extends AbstractDTO {
   }
 
   public class Meta {
-    public Boolean existing_customer;
-    public Boolean is_joint;
-    public Meta(Boolean existingCustomer, Boolean isJoint) {
-      this.existing_customer = existingCustomer;
-      this.is_joint = isJoint;
-    }
   }
 
   public static String generateRequest(Object requestObj) {
@@ -58,7 +52,7 @@ public with sharing class AlloyDTO extends AbstractDTO {
   }
 
   public class FormattedResponses {
-    public QualiFile qualifile;
+    public QualiFile QualiFile;
   }
 
   public class QualiFile {

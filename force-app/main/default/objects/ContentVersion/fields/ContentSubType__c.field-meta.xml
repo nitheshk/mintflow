@@ -102,6 +102,11 @@
                 <default>false</default>
                 <label>IDScan</label>
             </value>
+            <value>
+                <fullName>Alloy</fullName>
+                <default>false</default>
+                <label>Alloy</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
