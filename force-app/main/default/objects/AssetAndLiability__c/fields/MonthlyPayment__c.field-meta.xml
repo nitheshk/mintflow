@@ -3,7 +3,7 @@
     <fullName>MonthlyPayment__c</fullName>
     <description>Month Payment against the property</description>
     <externalId>false</externalId>
-    <label>MonthlyPayment</label>
+    <label>Monthly Payment</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

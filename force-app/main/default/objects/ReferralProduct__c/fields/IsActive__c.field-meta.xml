@@ -4,7 +4,7 @@
     <defaultValue>true</defaultValue>
     <description>true if active</description>
     <externalId>false</externalId>
-    <label>IsActive</label>
+    <label>Is Active</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

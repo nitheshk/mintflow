@@ -3,7 +3,7 @@
     <fullName>UsageType__c</fullName>
     <description>Usage type of the address</description>
     <externalId>false</externalId>
-    <label>UsageType</label>
+    <label>Usage Type</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>

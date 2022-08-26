@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>LoanDrawnAmount__c</fullName>
-    <description>Loan amount to be drawn</description>
+    <fullName>CreditorName__c</fullName>
+    <description>Creditor Name of Mortgage</description>
     <externalId>false</externalId>
-    <label>Loan Drawn Amount</label>
-    <precision>18</precision>
+    <label>Creditor Name of Mortgage</label>
+    <length>100</length>
     <required>false</required>
-    <scale>2</scale>
     <trackTrending>false</trackTrending>
-    <type>Currency</type>
+    <type>Text</type>
+    <unique>false</unique>
 </CustomField>

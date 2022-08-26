@@ -3,7 +3,7 @@
     <fullName>AccountType__c</fullName>
     <description>Account Type of asset and liability</description>
     <externalId>false</externalId>
-    <label>AccountType</label>
+    <label>Account Type</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -52,9 +52,9 @@
                 <label>Bonds</label>
             </value>
             <value>
-                <fullName>Retirement (e.g., 401k, IRA)</fullName>
+                <fullName>Retirement</fullName>
                 <default>false</default>
-                <label>Retirement (e.g., 401k, IRA)</label>
+                <label>Retirement</label>
             </value>
             <value>
                 <fullName>Bridge Loan Proceeds</fullName>
@@ -77,41 +77,6 @@
                 <label>Cash Value of Life Insurance</label>
             </value>
             <value>
-                <fullName>Proceeds from Real Estate</fullName>
-                <default>false</default>
-                <label>Proceeds from Real Estate</label>
-            </value>
-            <value>
-                <fullName>Property to be sold on or</fullName>
-                <default>false</default>
-                <label>Property to be sold on or</label>
-            </value>
-            <value>
-                <fullName>before closing</fullName>
-                <default>false</default>
-                <label>before closing</label>
-            </value>
-            <value>
-                <fullName>Proceeds from Sale of</fullName>
-                <default>false</default>
-                <label>Proceeds from Sale of</label>
-            </value>
-            <value>
-                <fullName>Non-Real Estate Asset</fullName>
-                <default>false</default>
-                <label>Non-Real Estate Asset</label>
-            </value>
-            <value>
-                <fullName>Secured Borrowed Funds</fullName>
-                <default>false</default>
-                <label>Secured Borrowed Funds</label>
-            </value>
-            <value>
-                <fullName>Unsecured Borrowed Funds</fullName>
-                <default>false</default>
-                <label>Unsecured Borrowed Funds</label>
-            </value>
-            <value>
                 <fullName>Revolving</fullName>
                 <default>false</default>
                 <label>Revolving</label>
@@ -122,34 +87,14 @@
                 <label>Installment</label>
             </value>
             <value>
-                <fullName>Open 30</fullName>
+                <fullName>Open 30-Day</fullName>
                 <default>false</default>
-                <label>Open 30</label>
+                <label>Open 30-Day</label>
             </value>
             <value>
                 <fullName>Lease</fullName>
                 <default>false</default>
                 <label>Lease</label>
-            </value>
-            <value>
-                <fullName>Alimony</fullName>
-                <default>false</default>
-                <label>Alimony</label>
-            </value>
-            <value>
-                <fullName>Child Support</fullName>
-                <default>false</default>
-                <label>Child Support</label>
-            </value>
-            <value>
-                <fullName>Separate Maintenance</fullName>
-                <default>false</default>
-                <label>Separate Maintenance</label>
-            </value>
-            <value>
-                <fullName>Job Related Expenses</fullName>
-                <default>false</default>
-                <label>Job Related Expenses</label>
             </value>
             <value>
                 <fullName>Other</fullName>

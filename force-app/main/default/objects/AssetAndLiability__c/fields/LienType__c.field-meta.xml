@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>LienType__c</fullName>
     <externalId>false</externalId>
-    <label>LienType</label>
+    <label>Lien Type</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>

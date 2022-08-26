@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>HousingStatus__c</fullName>
+    <fullName>PropertyUnits__c</fullName>
+    <description>Property Units</description>
     <externalId>false</externalId>
-    <label>Housing Status</label>
+    <label>Property Units</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -11,29 +12,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Owns Free and Clear</fullName>
+                <label>Single-Family</label>
                 <default>false</default>
-                <label>Owns Free and Clear</label>
+                <fullName>SingleFamily</fullName>
             </value>
             <value>
-                <fullName>Mortgage</fullName>
+                <label>Multi-Family</label>
                 <default>false</default>
-                <label>Mortgage</label>
+                <fullName>MultiFamily</fullName>
             </value>
             <value>
-                <fullName>Rents</fullName>
+                <label>Condominium</label>
                 <default>false</default>
-                <label>Rents</label>
+                <fullName>Condominium</fullName>
             </value>
             <value>
-                <fullName>Lives with Parents</fullName>
+                <label>Townhouse</label>
                 <default>false</default>
-                <label>Lives with Parents</label>
-            </value>
-            <value>
-                <fullName>Other</fullName>
-                <default>false</default>
-                <label>Other</label>
+                <fullName>Townhouse</fullName>
             </value>
         </valueSetDefinition>
     </valueSet>

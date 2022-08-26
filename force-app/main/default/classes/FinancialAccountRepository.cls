@@ -43,7 +43,7 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
     return (List<Property__c>) DatabaseUtils.getRecords(
       Query.newInstance(Property__c.SObjectType)
         .addFields()
-        .queryChild('mflow__AssetAndLiabilities__r')
+        .queryChild('mflow__Liabilities__r')
         .addFields()
         .run()
         .whereIn('Id', properties)

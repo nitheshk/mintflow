@@ -27,9 +27,14 @@
                 <label>Other Accounts</label>
             </value>
             <value>
-                <fullName>Credits</fullName>
+                <fullName>Other Assets</fullName>
                 <default>false</default>
-                <label>Credits</label>
+                <label>Other Assets</label>
+            </value>
+            <value>
+                <fullName>Other Credits</fullName>
+                <default>false</default>
+                <label>Other Credits</label>
             </value>
             <value>
                 <fullName>Credit Cards</fullName>
@@ -55,6 +60,12 @@
                 <fullName>Expenses</fullName>
                 <default>false</default>
                 <label>Expenses</label>
+            </value>
+            <value>
+                <fullName>Credits</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Credits</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssetOrCreditType__c</fullName>
+    <description>Asset Or Credit Type</description>
+    <externalId>false</externalId>
+    <label>Asset Or Credit Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Proceeds from Real Estate Property to be sold on or before closing</fullName>
+                <default>true</default>
+                <label>Proceeds from Real Estate Property to be sold on or before closing</label>
+            </value>
+            <value>
+                <fullName>Proceeds from Sale of Non-Real Estate Asset</fullName>
+                <default>false</default>
+                <label>Proceeds from Sale of Non-Real Estate Asset</label>
+            </value>
+            <value>
+                <fullName>Secured Borrowed Funds</fullName>
+                <default>false</default>
+                <label>Secured Borrowed Funds</label>
+            </value>
+            <value>
+                <fullName>Unsecured Borrowed Funds</fullName>
+                <default>false</default>
+                <label>Unsecured Borrowed Funds</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Earnest Money</fullName>
+                <default>false</default>
+                <label>Earnest Money</label>
+            </value>
+            <value>
+                <fullName>Employer Assistance</fullName>
+                <default>false</default>
+                <label>Employer Assistance</label>
+            </value>
+            <value>
+                <fullName>Lot Equity</fullName>
+                <default>false</default>
+                <label>Lot Equity</label>
+            </value>
+            <value>
+                <fullName>Relocation Funds</fullName>
+                <default>false</default>
+                <label>Relocation Funds</label>
+            </value>
+            <value>
+                <fullName>Rent Credit</fullName>
+                <default>false</default>
+                <label>Rent Credit</label>
+            </value>
+            <value>
+                <fullName>Sweat Equity</fullName>
+                <default>false</default>
+                <label>Sweat Equity</label>
+            </value>
+            <value>
+                <fullName>Trade Equity</fullName>
+                <default>false</default>
+                <label>Trade Equity</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
