@@ -27,9 +27,9 @@
                 <label>Other Accounts</label>
             </value>
             <value>
-                <fullName>Credits</fullName>
+                <fullName>Other Credits</fullName>
                 <default>false</default>
-                <label>Credits</label>
+                <label>Other Credits</label>
             </value>
             <value>
                 <fullName>Credit Cards</fullName>

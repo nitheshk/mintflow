@@ -54,7 +54,7 @@
             <value>
                 <fullName>Retirement</fullName>
                 <default>false</default>
-                <label>Retirement (e.g., 401k, IRA)</label>
+                <label>Retirement</label>
             </value>
             <value>
                 <fullName>Bridge Loan Proceeds</fullName>
