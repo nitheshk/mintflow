@@ -2,6 +2,15 @@
   "sandboxes": {
     "dev": {
       "sandboxOrgName": "mflowdev",
+      "sandboxUserName": "nithesh.k@digitalalign.com.testorg",
+      "sandboxClientId": "3MVG9Eroh42Z9.iUmrfwnWRNt9RbvwwGA8l1g7ggcIVSuVKx.6wc5TKV4ATSWV7fVLGtxlhfMEU803ZojW9ov",
+      "sandboxInstanceUrl": "https://test.salesforce.com",
+      "jwtkeyfile": "jwt/server.key",
+      "rootFolder": "./fsc-app",
+      "sourceConvert": "da-src"
+    },
+    "mdev": {
+      "sandboxOrgName": "mflowdev",
       "sandboxUserName": "lakshmip@digitalalign.com.mflowdev",
       "sandboxClientId": "3MVG9IeKOu9pMLcLW3SXGbQjzVN0izA8oRkd0ibwPcHoaZvpI1ZjIWCaBIBqAFpgKLBHg.ImpslSGcDvF5MLp",
       "sandboxInstanceUrl": "https://test.salesforce.com",
@@ -45,7 +54,7 @@
   },
 
   "dependentPackage": {
-    "MFlowBetaV1": "04t5g000000EP3OAAW"
+    "MFlowBetaV2": "04t5g000000ESsyAAG"
   },
 
   "namespace": "mflow",
