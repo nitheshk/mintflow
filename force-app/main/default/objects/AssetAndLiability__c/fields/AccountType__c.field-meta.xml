@@ -97,88 +97,9 @@
                 <label>Lease</label>
             </value>
             <value>
-                <fullName>Alimony</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Alimony</label>
-            </value>
-            <value>
-                <fullName>Child Support</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Child Support</label>
-            </value>
-            <value>
-                <fullName>Job Related Expenses</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Job Related Expenses</label>
-            </value>
-            <value>
-                <fullName>Non-Real Estate Asset</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Non-Real Estate Asset</label>
-            </value>
-            <value>
-                <fullName>Open 30</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Open 30</label>
-            </value>
-            <value>
                 <fullName>Other</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Other</label>
-            </value>
-            <value>
-                <fullName>Proceeds from Real Estate</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Proceeds from Real Estate</label>
-            </value>
-            <value>
-                <fullName>Proceeds from Sale of</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Proceeds from Sale of</label>
-            </value>
-            <value>
-                <fullName>Property to be sold on or</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Property to be sold on or</label>
-            </value>
-            <value>
-                <fullName>Retirement (e.g., 401k, IRA)</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Retirement (e.g., 401k, IRA)</label>
-            </value>
-            <value>
-                <fullName>Secured Borrowed Funds</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Secured Borrowed Funds</label>
-            </value>
-            <value>
-                <fullName>Separate Maintenance</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Separate Maintenance</label>
-            </value>
-            <value>
-                <fullName>Unsecured Borrowed Funds</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Unsecured Borrowed Funds</label>
-            </value>
-            <value>
-                <fullName>before closing</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>before closing</label>
             </value>
         </valueSetDefinition>
     </valueSet>
