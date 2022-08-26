@@ -2495,22 +2495,32 @@
         <field>SessionManagement__c.SessionExpireTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Property__c.PropertyUnits__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Property__c.HasMortgage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Property__c.City__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Property__c.Street__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Property__c.State__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Property__c.ZipCode__c</field>
         <readable>true</readable>
@@ -2558,6 +2568,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Property__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AssetAndLiability__c.CreditorName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

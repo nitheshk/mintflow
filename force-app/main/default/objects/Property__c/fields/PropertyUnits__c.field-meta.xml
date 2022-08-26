@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PropertyUnits__c</fullName>
+    <description>Property Units</description>
+    <externalId>false</externalId>
+    <label>Property Units</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <label>Single-Family</label>
+                <default>false</default>
+                <fullName>SingleFamily</fullName>
+            </value>
+            <value>
+                <label>Multi-Family</label>
+                <default>false</default>
+                <fullName>MultiFamily</fullName>
+            </value>
+            <value>
+                <label>Condominium</label>
+                <default>false</default>
+                <fullName>Condominium</fullName>
+            </value>
+            <value>
+                <label>Townhouse</label>
+                <default>false</default>
+                <fullName>Townhouse</fullName>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

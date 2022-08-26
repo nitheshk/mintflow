@@ -2416,6 +2416,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Property__c.PropertyUnits__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Property__c.HasMortgage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Property__c.Street__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2482,6 +2492,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Property__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AssetAndLiability__c.CreditorName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
