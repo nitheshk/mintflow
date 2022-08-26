@@ -4,7 +4,7 @@
     <defaultValue>false</defaultValue>
     <description>true if signature is required</description>
     <externalId>false</externalId>
-    <label>IsSignatureRequired</label>
+    <label>Is Signature Required</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

@@ -157,7 +157,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Lead Configuration</label>
     <nameField>
-        <label>LeadConfiguration Name</label>
+        <label>Lead Configuration Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>

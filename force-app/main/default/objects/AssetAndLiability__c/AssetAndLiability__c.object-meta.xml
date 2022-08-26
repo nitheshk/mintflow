@@ -156,7 +156,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Asset And Liability</label>
     <nameField>
-        <label>AssetAndLiability Name</label>
+        <label>Asset And Liability Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Asset And Liabilities</pluralLabel>

@@ -3,7 +3,7 @@
     <fullName>FinancialInstitutionName__c</fullName>
     <description>Financial Institution Name or Creditor Name for the property</description>
     <externalId>false</externalId>
-    <label>FinancialInstitutionName</label>
+    <label>Financial Institution Name</label>
     <length>100</length>
     <required>false</required>
     <trackTrending>false</trackTrending>

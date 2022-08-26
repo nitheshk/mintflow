@@ -3,7 +3,7 @@
     <fullName>LoanDrawnAmount__c</fullName>
     <description>Loan amount to be drawn</description>
     <externalId>false</externalId>
-    <label>LoanDrawnAmount</label>
+    <label>Loan Drawn Amount</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

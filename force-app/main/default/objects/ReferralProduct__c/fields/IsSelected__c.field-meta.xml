@@ -4,7 +4,7 @@
     <defaultValue>false</defaultValue>
     <description>True if service is selected by customer</description>
     <externalId>false</externalId>
-    <label>IsSelected</label>
+    <label>Is Selected</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

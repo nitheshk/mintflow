@@ -5,7 +5,7 @@
     <description>Flag to check if employment verification documents are generated successfully.</description>
     <externalId>false</externalId>
     <inlineHelpText>Flag to check if employment verification documents are generated successfully.</inlineHelpText>
-    <label>isDocumentGenerated</label>
+    <label>Is Document Generated</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

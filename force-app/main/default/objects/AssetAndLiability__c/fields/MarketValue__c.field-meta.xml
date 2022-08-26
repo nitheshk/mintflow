@@ -3,7 +3,7 @@
     <fullName>MarketValue__c</fullName>
     <description>Market value of the asset or liability</description>
     <externalId>false</externalId>
-    <label>MarketValue</label>
+    <label>Market Value</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

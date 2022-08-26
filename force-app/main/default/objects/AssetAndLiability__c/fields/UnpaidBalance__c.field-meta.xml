@@ -3,7 +3,7 @@
     <fullName>UnpaidBalance__c</fullName>
     <description>Unpaid balance of the mortgage</description>
     <externalId>false</externalId>
-    <label>UnpaidBalance</label>
+    <label>Unpaid Balance</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

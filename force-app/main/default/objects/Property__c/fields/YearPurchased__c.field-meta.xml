@@ -3,7 +3,7 @@
     <fullName>YearPurchased__c</fullName>
     <description>Year purchased of the property</description>
     <externalId>false</externalId>
-    <label>YearPurchased</label>
+    <label>Year Purchased</label>
     <precision>4</precision>
     <required>false</required>
     <scale>0</scale>

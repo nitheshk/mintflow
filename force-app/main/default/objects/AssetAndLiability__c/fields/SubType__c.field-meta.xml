@@ -61,6 +61,12 @@
                 <default>false</default>
                 <label>Expenses</label>
             </value>
+            <value>
+                <fullName>Credits</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Credits</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
