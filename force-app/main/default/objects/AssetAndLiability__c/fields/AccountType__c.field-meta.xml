@@ -52,7 +52,7 @@
                 <label>Bonds</label>
             </value>
             <value>
-                <fullName>Retirement (e.g., 401k, IRA)</fullName>
+                <fullName>Retirement</fullName>
                 <default>false</default>
                 <label>Retirement (e.g., 401k, IRA)</label>
             </value>
