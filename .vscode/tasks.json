@@ -62,10 +62,34 @@
       "problemMatcher": []
     },
     {
-      "label": "sfdx : Create New Scratch Org",
+      "label": "sfdx : Setup New Sandbox",
       "type": "shell",
       "command": "gulp",
-      "args": ["newScratchOrg"],
+      "args": ["setupNewSandbox"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sfdx : Deploy To Sandbox Without Refresh",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["deployToSandboxWithoutRefresh"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sfdx : Deploy To Sandbox With Refresh",
+      "type": "shell",
+      "command": "gulp",
+      "args": ["deployToSandboxWithRefresh"],
       "group": "build",
       "presentation": {
         "reveal": "always",

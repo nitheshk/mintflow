@@ -5,9 +5,11 @@ var xml2js = require("xml2js");
 var zipFolder = require("zip-folder");
 
 let config = require("../root.json");
+let sandboxConfig;
 //Reading configuration
 gulp.task("readConfig", function (finish) {
   console.log("Reading Configuration : " + JSON.stringify(config));
+  sandboxConfig = config.sandboxes[config.sandboxes.sandboxToDeploy];
   finish();
 });
 
@@ -71,11 +73,7 @@ gulp.task("buildStaticResource_OnlinePortal", (finish) => {
 
 //setup authorizeSandbox
 gulp.task("authorizeSandbox", function (finish) {
-  let scriptToRun = "";
-
-  let sandboxConfig = config.sandboxes.dev;
-
-  scriptToRun =
+  let scriptToRun =
     ` sfdx force:auth:jwt:grant --clientid ${sandboxConfig.sandboxClientId}` +
     ` --username ${sandboxConfig.sandboxUserName} --instanceurl ${sandboxConfig.sandboxInstanceUrl}` +
     ` --jwtkeyfile ${sandboxConfig.jwtkeyfile} --setalias ${sandboxConfig.sandboxOrgName}`;
@@ -89,7 +87,7 @@ gulp.task("authorizeSandbox", function (finish) {
 
 //defaultToSandbox
 gulp.task("defaultToSandbox", function (finish) {
-  let scriptToRun = ` sfdx force:config:set defaultusername=${config.sandboxes.dev.sandboxOrgName}`;
+  let scriptToRun = ` sfdx force:config:set defaultusername=${sandboxConfig.sandboxOrgName}`;
   console.log("Script To Run - " + scriptToRun);
   utils.runCommand(scriptToRun).then((result) => {
     console.log("Result :" + result);
@@ -102,7 +100,7 @@ gulp.task("installPackage", function (finish) {
   let scriptToRun =
     ` sfdx force:package:install --wait 10 --publishwait 10 ` +
     ` --package ${config.dependentPackage.MFlowBetaV2}  ` + //--installationkey Utilities@V1.0
-    ` --noprompt --targetusername ${config.sandboxes.dev.sandboxOrgName} --securitytype AllUsers --upgradetype Mixed `;
+    ` --noprompt --targetusername ${sandboxConfig.sandboxOrgName} --securitytype AllUsers --upgradetype Mixed `;
 
   console.log("Script To Run - " + scriptToRun);
   utils.runCommand(scriptToRun).then((result) => {
@@ -113,7 +111,7 @@ gulp.task("installPackage", function (finish) {
 
 //pushToSandbox
 gulp.task("pushToSandbox", function (finish) {
-  let scriptToRun = ` sfdx force:source:deploy -p ${config.sandboxes.dev.rootFolder}  -w 10000 --targetusername  ${config.sandboxes.dev.sandboxOrgName} `;
+  let scriptToRun = ` sfdx force:source:deploy -p ${sandboxConfig.rootFolder}  -w 10000 --targetusername  ${sandboxConfig.sandboxOrgName} `;
   console.log("Script To Run - " + scriptToRun);
   utils
     .runCommand(scriptToRun)
@@ -149,7 +147,7 @@ gulp.task("publishCommunities", function (finish) {
 
   const publish = (index) =>
     new Promise((resolve, reject) => {
-      let scriptToRun = `sfdx force:community:publish --name ${config.communities.publishCommnitiesNames[index]} --targetusername  ${config.sandboxes.dev.sandboxOrgName} --json`;
+      let scriptToRun = `sfdx force:community:publish --name ${config.communities.publishCommnitiesNames[index]} --targetusername  ${sandboxConfig.sandboxOrgName} --json`;
       console.log("Script To Run - " + scriptToRun);
       utils
         .runCommand(scriptToRun)
@@ -169,7 +167,6 @@ gulp.task("publishCommunities", function (finish) {
       });
 
       let onlineCommunityLink = { ...communityLinks[0] };
-      onlineCommunityLink.name = "OnlinePortal";
       onlineCommunityLink.name = "OnlinePortal";
       onlineCommunityLink.url = onlineCommunityLink.url + "/OnlinePortal";
       communityLinks.push(onlineCommunityLink);

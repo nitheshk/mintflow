@@ -1,7 +1,8 @@
 {
   "sandboxes": {
-    "dev": {
-      "sandboxOrgName": "mflowdev",
+    "sandboxToDeploy": "mflowqa",
+    "testorg": {
+      "sandboxOrgName": "testorg",
       "sandboxUserName": "nithesh.k@digitalalign.com.testorg",
       "sandboxClientId": "3MVG9Eroh42Z9.iUmrfwnWRNt9RbvwwGA8l1g7ggcIVSuVKx.6wc5TKV4ATSWV7fVLGtxlhfMEU803ZojW9ov",
       "sandboxInstanceUrl": "https://test.salesforce.com",
@@ -9,10 +10,19 @@
       "rootFolder": "./fsc-app",
       "sourceConvert": "da-src"
     },
-    "mdev": {
+    "mflowdev": {
       "sandboxOrgName": "mflowdev",
       "sandboxUserName": "lakshmip@digitalalign.com.mflowdev",
-      "sandboxClientId": "3MVG9IeKOu9pMLcLW3SXGbQjzVN0izA8oRkd0ibwPcHoaZvpI1ZjIWCaBIBqAFpgKLBHg.ImpslSGcDvF5MLp",
+      "sandboxClientId": "3MVG9oZtFCVWuSwOvwwAVjUooDa9DeAdAPpRAecdwrzBMfbS2bD_9OfSnclDxLLyWaXLzmwY.NW4p4ZTZ70E1",
+      "sandboxInstanceUrl": "https://test.salesforce.com",
+      "jwtkeyfile": "jwt/server.key",
+      "rootFolder": "./fsc-app",
+      "sourceConvert": "da-src"
+    },
+    "mflowqa": {
+      "sandboxOrgName": "mflowqa",
+      "sandboxUserName": "lakshmip@digitalalign.com.mflowqa",
+      "sandboxClientId": "3MVG9oZtFCVWuSwOvwwAVjUooDbA2ACsN2tFZpRphzVmgyw9fIFi0OkO0hpKUdsDuRQ3eJXiv9d2Fk7ghSSKS",
       "sandboxInstanceUrl": "https://test.salesforce.com",
       "jwtkeyfile": "jwt/server.key",
       "rootFolder": "./fsc-app",
