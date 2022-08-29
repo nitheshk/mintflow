@@ -82,6 +82,40 @@
                   ></c-record-detail-view>
                 </lightning-tab>
               </template>
+              <template if:true={data.mflow__Assets__r}>
+                <lightning-tab
+                  label="Asset"
+                  data-objectname="mflow__Assets__r"
+                  data-recordid={data.Id}
+                  onactive={handleActive}
+                >
+                  <c-record-detail-view
+                    key={data.Id}
+                    record={data.mflow__Assets__r}
+                    s-object-name="mflow__AssetAndLiability__c"
+                    field-set-name="mflow__AssetInformation"
+                    title-name="Asset Details"
+                    hide-null-values="true"
+                  ></c-record-detail-view>
+                </lightning-tab>
+              </template>
+              <template if:true={data.mflow__Liabilities__r}>
+                <lightning-tab
+                  label="Liability"
+                  data-objectname="mflow__Liabilities__r"
+                  data-recordid={data.Id}
+                  onactive={handleActive}
+                >
+                  <c-record-detail-view
+                    key={data.Id}
+                    record={data.mflow__Liabilities__r}
+                    s-object-name="mflow__AssetAndLiability__c"
+                    field-set-name="mflow__LiabilityInformation"
+                    title-name="Liability Details"
+                    hide-null-values="true"
+                  ></c-record-detail-view>
+                </lightning-tab>
+              </template>
               <lightning-tab label="Status and Report" data-recordid={data.Id} onactive={handleActive}>
                 <c-applicant-status
                   key={data.Id}
