@@ -2416,6 +2416,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Property__c.ManufacturedHome__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Property__c.PropertyUnits__c</field>
         <readable>true</readable>
     </fieldPermissions>
