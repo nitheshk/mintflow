@@ -69,7 +69,7 @@
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
       "mflow__Type__c": "State",
-      "mflow__Value__c": "EmploymentReview",
+      "mflow__Value__c": "Employment",
       "mflow__Weightage__c": 4
     },
     {
@@ -99,15 +99,7 @@
       "mflow__Value__c": "Funding",
       "mflow__Weightage__c": 7
     },
-    {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_11" },
-      "Name": "LC-012",
-      "mflow__MaxValue__c": 0,
-      "mflow__MinValue__c": 0,
-      "mflow__Type__c": "State",
-      "mflow__Value__c": "EmploymentReview",
-      "mflow__Weightage__c": 6
-    },
+
     {
       "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_12" },
       "Name": "LC-013",

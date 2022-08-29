@@ -293,15 +293,17 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     Map<String, Object> mapData = new Map<String, Object>();
     Map<String, String> mapFilter = new Map<String, String>();
     String productId;
-    Decimal leadScore;
 
     List<financialProduct__c> products = ProductServiceRepository.fetchProductWithFeatures(application.Id);
+    System.debug('products::' + products);
     try {
       if (products != null && products.size() > 0) {
         //Calcuate Lead Score based on product and State weightage;
         mapFilter.put('Type', 'State');
         mapFilter.put('Value', application.mflow__FlowState__c);
         mapData = calculateLeadBasedonState(mapfilter, mapData, products);
+        system.debug('mapData::' + mapData);
+
         if (mapData.containsKey('Product State') && (Decimal) mapData.get('Product State') > 0) {
           //Calculate the lead score based on eligibility
           mapFilter = new Map<String, String>();
@@ -321,11 +323,12 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
           mapFilter = new Map<String, String>();
           mapfilter.put('Type', 'Employment');
           mapData = calculateLeadBasedonEmployment(mapfilter, mapData, application);
-          log?.debug(' calculateLeadBasedonEmployment');
-
           mapData = calculateLeadBasedonCustomerInterest(mapData, application);
-
-          leadScore = calculateTotalLeadScore(mapData);
+          if (application.LeadScore__c > 0) {
+            return application.LeadScore__c + calculateTotalLeadScore(mapData);
+          } else {
+            return calculateTotalLeadScore(mapData);
+          }
         }
       }
     } catch (exception ex) {
@@ -349,10 +352,9 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     List<financialProduct__c> products
   ) {
     try {
-      Decimal weightage;
+      Decimal weightage = 0.00;
       List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
       leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
-
       for (financialProduct__c product : products) {
         if (leadConfigList != null && leadConfigList.size() > 0) {
           weightage = weightage + leadConfigList[0].Weightage__c * product.Weightage__c;
