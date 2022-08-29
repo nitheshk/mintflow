@@ -293,6 +293,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     Map<String, Object> mapData = new Map<String, Object>();
     Map<String, String> mapFilter = new Map<String, String>();
     String productId;
+    Decimal leadScore = 0.00;
 
     List<financialProduct__c> products = ProductServiceRepository.fetchProductWithFeatures(application.Id);
     System.debug('products::' + products);
@@ -325,16 +326,15 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
           mapData = calculateLeadBasedonEmployment(mapfilter, mapData, application);
           mapData = calculateLeadBasedonCustomerInterest(mapData, application);
           if (application.LeadScore__c > 0) {
-            return application.LeadScore__c + calculateTotalLeadScore(mapData);
+            leadscore = (Decimal) application.LeadScore__c + calculateTotalLeadScore(mapData);
           } else {
-            return calculateTotalLeadScore(mapData);
+            leadscore = calculateTotalLeadScore(mapData);
           }
         }
       }
     } catch (exception ex) {
       log?.error(ex);
     }
-
     return leadScore;
   }
 
