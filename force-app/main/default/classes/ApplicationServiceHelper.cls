@@ -325,11 +325,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
           mapfilter.put('Type', 'Employment');
           mapData = calculateLeadBasedonEmployment(mapfilter, mapData, application);
           mapData = calculateLeadBasedonCustomerInterest(mapData, application);
-          if (application.LeadScore__c > 0) {
-            leadscore = (Decimal) application.LeadScore__c + calculateTotalLeadScore(mapData);
-          } else {
-            leadscore = calculateTotalLeadScore(mapData);
-          }
+          leadscore = calculateTotalLeadScore(mapData);
         }
       }
     } catch (exception ex) {
