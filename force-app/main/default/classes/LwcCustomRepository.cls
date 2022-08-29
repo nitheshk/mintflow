@@ -94,6 +94,12 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
         .removeFields(removeFields)
         .orderBy('mflow__Order__c')
         .run()
+        .queryChild('mflow__AssetAndLiabilities__r')
+        .addFields()
+        .addFields('CreatedBy.Name,LastModifiedBy.Name')
+        .removeFields(removeFields)
+        .orderBy('mflow__Order__c')
+        .run()
         .whereIn('Id', applicantIds)
         .toString()
     );
