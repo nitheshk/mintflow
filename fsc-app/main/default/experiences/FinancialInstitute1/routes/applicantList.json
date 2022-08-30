@@ -5,7 +5,7 @@
   "id": "54cbab96-26bf-40e9-91a2-c2ec06a9d463",
   "label": "Applicant List",
   "objectApiName": "mflow__Applicant__c",
-  "routeType": "list-a00",
+  "routeType": "list-a01",
   "type": "route",
   "urlPrefix": "applicant"
 }

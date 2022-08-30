@@ -115,8 +115,10 @@ global with sharing class LwcCustomRepository extends DatabaseUtils {
     return (List<FinancialAccount__c>) DatabaseUtils.getRecords(
       Query.newInstance(FinancialAccount__c.SObjectType)
         .addFields()
+        .queryChild('mflow__Properties__r')
+        .addFields()
+        .run()
         .addFields('CreatedBy.Name,LastModifiedBy.Name')
-        .removeFields(removeFields)
         .whereIn('Id', financialAccountIds)
         .toString()
     );
