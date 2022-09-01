@@ -433,8 +433,8 @@
               <li title="SubmitApplicationService" id="item-SubmitApplicationService" class="nav-item class global" onclick="goToLocation('SubmitApplicationService.html');">
                 <a tabindex="1" href="javascript:void(0)">SubmitApplicationService</a>
               </li>
-              <li title="ContactPointAddressTriggerHandler" id="item-ContactPointAddressTriggerHandler" class="nav-item class public" onclick="goToLocation('ContactPointAddressTriggerHandler.html');">
-                <a tabindex="1" href="javascript:void(0)">ContactPointAddressTriggerHandler</a>
+              <li title="AddressTriggerHandler" id="item-AddressTriggerHandler" class="nav-item class public" onclick="goToLocation('AddressTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">AddressTriggerHandler</a>
               </li>
             </ul>
           </details>
@@ -655,6 +655,15 @@
                     </div>
                   </li>
                   <li class="method global">
+                    <a class="methods-toc__entry " href="#ApplicationPersistService.saveAddresses">
+                      saveAddresses (addresses, applicantId)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      save Contact Point Addresses
+                    </div>
+                  </li>
+                  <li class="method global">
                     <a class="methods-toc__entry " href="#ApplicationPersistService.saveApplicant">
                       saveApplicant (applicant, applicationId)
                     </a>
@@ -697,15 +706,6 @@
 
                     <div class="methods-toc__description">
                       Save consent details
-                    </div>
-                  </li>
-                  <li class="method global">
-                    <a class="methods-toc__entry " href="#ApplicationPersistService.saveContactPointAddresses">
-                      saveContactPointAddresses (addresses, applicantId)
-                    </a>
-
-                    <div class="methods-toc__description">
-                      save Contact Point Addresses
                     </div>
                   </li>
                   <li class="method global">
@@ -857,6 +857,38 @@
                   </div>
                   <div class="method-subtitle-description">
                     Digital Align Team | 07-27-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApplicationPersistService.saveAddresses">
+                    <span>saveAddresses(addresses, applicantId)</span>
+                  </h4>
+                  <div class="method-description">
+                    save Contact Point Addresses
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual List&lt;Address__c&gt; saveAddresses(List&lt;Address__c&gt; addresses, Id applicantId)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">List&lt;Address__c&gt;</div>
+                  <div class="param-description">addresses</div>
+                  <div class="param-name">Id</div>
+                  <div class="param-description">applicantId</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    List&lt;Address__c&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 11-09-2021
                   </div>
                 </div>
                 <div class="method global">
@@ -1036,38 +1068,6 @@
                   </div>
                   <div class="method-subtitle-description">
                     Digital Align Team | 12-27-2021
-                  </div>
-                </div>
-                <div class="method global">
-                  <h4 class="method-title " id="ApplicationPersistService.saveContactPointAddresses">
-                    <span>saveContactPointAddresses(addresses, applicantId)</span>
-                  </h4>
-                  <div class="method-description">
-                    save Contact Point Addresses
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    global virtual List&lt;ContactPointAddress&gt; saveContactPointAddresses( List&lt;ContactPointAddress&gt; addresses, Id applicantId )
-                  </div>
-                  <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">List&lt;ContactPointAddress&gt;</div>
-                  <div class="param-description">addresses</div>
-                  <div class="param-name">Id</div>
-                  <div class="param-description">applicantId</div>
-                  <div class="method-subtitle">
-                    Returns
-                  </div>
-                  <div class="method-subtitle-description">
-                    List&lt;ContactPointAddress&gt;
-                  </div>
-                  <div class="method-subtitle">
-                    Author
-                  </div>
-                  <div class="method-subtitle-description">
-                    Digital Align Team | 11-09-2021
                   </div>
                 </div>
                 <div class="method global">

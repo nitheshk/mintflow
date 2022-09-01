@@ -433,8 +433,8 @@
               <li title="SubmitApplicationService" id="item-SubmitApplicationService" class="nav-item class global" onclick="goToLocation('SubmitApplicationService.html');">
                 <a tabindex="1" href="javascript:void(0)">SubmitApplicationService</a>
               </li>
-              <li title="ContactPointAddressTriggerHandler" id="item-ContactPointAddressTriggerHandler" class="nav-item class public" onclick="goToLocation('ContactPointAddressTriggerHandler.html');">
-                <a tabindex="1" href="javascript:void(0)">ContactPointAddressTriggerHandler</a>
+              <li title="AddressTriggerHandler" id="item-AddressTriggerHandler" class="nav-item class public" onclick="goToLocation('AddressTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">AddressTriggerHandler</a>
               </li>
             </ul>
           </details>
@@ -602,6 +602,155 @@
 
           <div class="section">
 
+            <h2 class="class-title " id="SubmissionDTO.Address">
+              <span>SubmissionDTO.Address</span>
+            </h2>
+            <div class="class-container">
+
+              <div class="class-subtitle">
+                Signature
+              </div>
+
+              <div class="class-signature">
+                global class Address
+              </div>
+            </div>
+            <div class="subsection properties SubmissionDTO_Address">
+              <h3 class="subsection-title properties">SubmissionDTO.Address Properties</h3>
+              <table class="attributes-table properties">
+
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>AddressId</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String AddressId
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>AddressType</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String AddressType
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>City</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String City
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Country</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Country
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>IsPrimary</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Boolean IsPrimary
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>OccupancyDuration</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal OccupancyDuration
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>OccupancyStatus</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String OccupancyStatus
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Order</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global Decimal Order
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>PostalCode</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String PostalCode
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>State</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String State
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>StateCode</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String StateCode
+                    </div>
+                  </td>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Street</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global String Street
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="section">
+
             <h2 class="class-title " id="SubmissionDTO.Applicant">
               <span>SubmissionDTO.Applicant</span>
             </h2>
@@ -622,6 +771,16 @@
                 <tr>
                   <th>Name</th>
                   <th>Signature</th>
+
+
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name"><span>Addresses</span></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global List&lt;Address&gt; Addresses
+                    </div>
+                  </td>
 
 
                 </tr>
@@ -680,16 +839,6 @@
                   <td>
                     <div class="attribute-signature">
                       global Date Birthdate
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>ContactPointAddresses</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global List&lt;ContactPointAddress&gt; ContactPointAddresses
                     </div>
                   </td>
 
@@ -1213,155 +1362,6 @@
                   <td>
                     <div class="attribute-signature">
                       global String MemberNumber
-                    </div>
-                  </td>
-
-
-                </tr>
-              </table>
-            </div>
-          </div>
-
-          <div class="section">
-
-            <h2 class="class-title " id="SubmissionDTO.ContactPointAddress">
-              <span>SubmissionDTO.ContactPointAddress</span>
-            </h2>
-            <div class="class-container">
-
-              <div class="class-subtitle">
-                Signature
-              </div>
-
-              <div class="class-signature">
-                global class ContactPointAddress
-              </div>
-            </div>
-            <div class="subsection properties SubmissionDTO_ContactPointAddress">
-              <h3 class="subsection-title properties">SubmissionDTO.ContactPointAddress Properties</h3>
-              <table class="attributes-table properties">
-
-                <tr>
-                  <th>Name</th>
-                  <th>Signature</th>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>AddressType</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global String AddressType
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>City</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global String City
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>ContactPointAddressId</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global String ContactPointAddressId
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>Country</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global String Country
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>IsPrimary</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global Boolean IsPrimary
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>OccupancyDuration</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global Decimal OccupancyDuration
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>OccupancyStatus</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global String OccupancyStatus
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>Order</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global Decimal Order
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>PostalCode</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global String PostalCode
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>State</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global String State
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>StateCode</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global String StateCode
-                    </div>
-                  </td>
-
-
-                </tr>
-                <tr class="property global">
-                  <td class="attribute-name"><span>Street</span></td>
-                  <td>
-                    <div class="attribute-signature">
-                      global String Street
                     </div>
                   </td>
 

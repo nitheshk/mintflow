@@ -433,8 +433,8 @@
               <li title="SubmitApplicationService" id="item-SubmitApplicationService" class="nav-item class global" onclick="goToLocation('SubmitApplicationService.html');">
                 <a tabindex="1" href="javascript:void(0)">SubmitApplicationService</a>
               </li>
-              <li title="ContactPointAddressTriggerHandler" id="item-ContactPointAddressTriggerHandler" class="nav-item class public" onclick="goToLocation('ContactPointAddressTriggerHandler.html');">
-                <a tabindex="1" href="javascript:void(0)">ContactPointAddressTriggerHandler</a>
+              <li title="AddressTriggerHandler" id="item-AddressTriggerHandler" class="nav-item class public" onclick="goToLocation('AddressTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">AddressTriggerHandler</a>
               </li>
             </ul>
           </details>
@@ -643,14 +643,14 @@
 
                   </li>
                   <li class="method global">
-                    <a class="methods-toc__entry " href="#BuildSubmissionWrapper.mapApplicants">
-                      mapApplicants (mapperApplication, applicantList)
+                    <a class="methods-toc__entry " href="#BuildSubmissionWrapper.mapAddresses">
+                      mapAddresses (addressList)
                     </a>
 
                   </li>
                   <li class="method global">
-                    <a class="methods-toc__entry " href="#BuildSubmissionWrapper.mapContactAddress">
-                      mapContactAddress (contactAddressList)
+                    <a class="methods-toc__entry " href="#BuildSubmissionWrapper.mapApplicants">
+                      mapApplicants (mapperApplication, applicantList)
                     </a>
 
                   </li>
@@ -766,6 +766,33 @@
                   </div>
                 </div>
                 <div class="method global">
+                  <h4 class="method-title " id="BuildSubmissionWrapper.mapAddresses">
+                    <span>mapAddresses(addressList)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global virtual list&lt;SubmissionDTO.Address&gt; mapAddresses(List&lt;Address__c&gt; addressList)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">List&lt;Address__c&gt;</div>
+                  <div class="param-description">addressList</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    virtual
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align | 11-10-2021
+                  </div>
+                </div>
+                <div class="method global">
                   <h4 class="method-title " id="BuildSubmissionWrapper.mapApplicants">
                     <span>mapApplicants(mapperApplication, applicantList)</span>
                   </h4>
@@ -792,33 +819,6 @@
                   </div>
                   <div class="method-subtitle-description">
                     Digital Align Team | 03-11-2022
-                  </div>
-                </div>
-                <div class="method global">
-                  <h4 class="method-title " id="BuildSubmissionWrapper.mapContactAddress">
-                    <span>mapContactAddress(contactAddressList)</span>
-                  </h4>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    global virtual list&lt;SubmissionDTO.ContactPointAddress&gt; mapContactAddress( List&lt;ContactPointAddress&gt; contactAddressList )
-                  </div>
-                  <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">List&lt;ContactPointAddress&gt;</div>
-                  <div class="param-description">contactAddressList</div>
-                  <div class="method-subtitle">
-                    Returns
-                  </div>
-                  <div class="method-subtitle-description">
-                    virtual
-                  </div>
-                  <div class="method-subtitle">
-                    Author
-                  </div>
-                  <div class="method-subtitle-description">
-                    Digital Align | 11-10-2021
                   </div>
                 </div>
                 <div class="method global">
