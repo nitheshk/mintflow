@@ -2547,7 +2547,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Property__c.Ocuupancy__c</field>
+        <field>Property__c.Occupancy__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

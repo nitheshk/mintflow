@@ -25,7 +25,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Ocuupancy__c</field>
+                <field>Occupancy__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
