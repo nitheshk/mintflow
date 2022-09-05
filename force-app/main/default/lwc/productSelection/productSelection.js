@@ -31,7 +31,7 @@ export default class ProductSelection extends LightningElement {
       console.log("data:", JSON.stringify(data));
       if (data.status === 200) {
         this.configData = JSON.parse(data.data);
-        this.maxProductSelected = this.configData.mflow__MaxNumberofProductSelected__c;
+        this.maxProductSelected = this.configData.mflow__MaxNumberOfProductSelected__c;
       }
       this.showSpinner = false;
     } else if (error) {

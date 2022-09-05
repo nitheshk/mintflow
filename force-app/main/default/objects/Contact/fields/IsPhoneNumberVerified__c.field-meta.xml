@@ -4,7 +4,7 @@
     <defaultValue>false</defaultValue>
     <description>True if customer phone number is verified</description>
     <externalId>false</externalId>
-    <label>IsPhoneNumberVerified</label>
+    <label>Is Phone Number Verified</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

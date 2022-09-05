@@ -21,7 +21,7 @@ public with sharing class TestData {
     appConfig.UiStaticResourceName__c = 'LWCResource';
     appConfig.SupportTeamEmail__c = 'support@digitalalign.com';
     appConfig.SupportedFileTypes__c = 'pdf;jpg';
-    appConfig.MaxNumberofProductSelected__c = 4;
+    appConfig.MaxNumberOfProductSelected__c = 4;
     return appConfig;
   }
 

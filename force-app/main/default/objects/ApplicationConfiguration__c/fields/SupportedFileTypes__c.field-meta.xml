@@ -3,7 +3,7 @@
     <fullName>SupportedFileTypes__c</fullName>
     <description>Supported file extension names</description>
     <externalId>false</externalId>
-    <label>SupportedFileTypes</label>
+    <label>Supported File Types</label>
     <length>40</length>
     <required>false</required>
     <trackTrending>false</trackTrending>

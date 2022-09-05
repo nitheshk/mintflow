@@ -3,7 +3,7 @@
     <fullName>SubType__c</fullName>
     <description>Type of asset and iability</description>
     <externalId>false</externalId>
-    <label>SubType</label>
+    <label>Sub Type</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
