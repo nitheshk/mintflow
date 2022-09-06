@@ -111,8 +111,8 @@ global virtual with sharing class ApplicationService extends AbstractService {
         application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
       }
     }
-    application.ApplicationType__c = 'Deposit'; //Also Decide in Financial Account Creation
-    application.IsExistingCustomer__c = false; //Also Decide in Financial Account Creation
+
+    application.IsExistingCustomer__c = false; //Also Decided in Financial Account Creation
     if (UserUtils.isGuestUser()) {
       application.Source__c = 'Online';
     }

@@ -162,6 +162,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
       financialAccountList.add(financialAccount);
     }
     application.ApplicationType__c = selectedProducts[0].Type__c;
+    application.UiRouting__c = selectedProducts[0].UiRouting__c;
     financialAccountList[0].IsPrimary__c = true;
 
     FinancialAccountRepository.upsertRecords(financialAccountList);
