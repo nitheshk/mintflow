@@ -45,11 +45,31 @@
     <picklistValues>
         <picklist>Purpose__c</picklist>
         <values>
+            <fullName>Auto%2FRV Repairs</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Cash Rewards</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Debt Consolidation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entertainment%2FVacation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Family Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Home improvement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Household Goods</fullName>
             <default>false</default>
         </values>
         <values>
@@ -62,6 +82,22 @@
         </values>
         <values>
             <fullName>Increased Limit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medical%2FDental Expenses</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refinance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taxes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
