@@ -22,7 +22,7 @@
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
       "mflow__Weightage__c": 1,
-      "mflow__Routing__c": "savings",
+      "mflow__UiRouting__c": "savings",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -82,7 +82,7 @@
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Preferred Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "checking",
+      "mflow__UiRouting__c": "checking",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -143,7 +143,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Instant Access Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "savings",
+      "mflow__UiRouting__c": "savings",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -204,7 +204,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "checking",
+      "mflow__UiRouting__c": "checking",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -265,7 +265,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Carefree Checking",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "checking",
+      "mflow__UiRouting__c": "checking",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -342,7 +342,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "3 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "certificate",
+      "mflow__UiRouting__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 5,
         "done": true,
@@ -445,7 +445,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "6 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "certificate",
+      "mflow__UiRouting__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -518,7 +518,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "12 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "certificate",
+      "mflow__UiRouting__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -591,7 +591,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "18 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "certificate",
+      "mflow__UiRouting__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -664,7 +664,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "24 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "certificate",
+      "mflow__UiRouting__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -737,7 +737,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "36 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "certificate",
+      "mflow__UiRouting__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -810,7 +810,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "48 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "certificate",
+      "mflow__UiRouting__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -883,7 +883,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "60 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__Routing__c": "certificate",
+      "mflow__UiRouting__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -957,7 +957,7 @@
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
       "mflow__Weightage__c": 3,
-      "mflow__Routing__c": "credite-card",
+      "mflow__UiRouting__c": "credite-card",
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -1047,7 +1047,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
-      "mflow__Routing__c": "credite-card",
+      "mflow__UiRouting__c": "credite-card",
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -1138,7 +1138,7 @@
       "mflow__SubCategory__c": "Money Market Checking",
       "mflow__Type__c": "Deposit",
       "mflow__Weightage__c": 1.2,
-      "mflow__Routing__c": "checking",
+      "mflow__UiRouting__c": "checking",
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1184,7 +1184,7 @@
       "mflow__SubCategory__c": "Money Market Savings",
       "mflow__Type__c": "Deposit",
       "mflow__Weightage__c": 1.2,
-      "mflow__Routing__c": "savings",
+      "mflow__UiRouting__c": "savings",
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1228,7 +1228,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "New Vehicle",
       "mflow__Type__c": "Lending",
-      "mflow__Routing__c": "consumer-loan"
+      "mflow__UiRouting__c": "consumer-loan"
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "HL001" },
@@ -1251,7 +1251,7 @@
       "mflow__StartDate__c": "2022-08-11",
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
-      "mflow__Routing__c": "consumer-loan",
+      "mflow__UiRouting__c": "consumer-loan",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
