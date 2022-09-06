@@ -957,7 +957,7 @@
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
       "mflow__Weightage__c": 3,
-      "mflow__UiRouting__c": "credite-card",
+      "mflow__UiRouting__c": "creditCard",
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -1047,7 +1047,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
-      "mflow__UiRouting__c": "credite-card",
+      "mflow__UiRouting__c": "creditCard",
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -1228,7 +1228,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "New Vehicle",
       "mflow__Type__c": "Lending",
-      "mflow__UiRouting__c": "consumer-loan"
+      "mflow__UiRouting__c": "personalLoan"
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "HL001" },
@@ -1251,7 +1251,7 @@
       "mflow__StartDate__c": "2022-08-11",
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
-      "mflow__UiRouting__c": "consumer-loan",
+      "mflow__UiRouting__c": "heloc",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,

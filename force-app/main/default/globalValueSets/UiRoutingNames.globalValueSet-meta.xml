@@ -16,14 +16,19 @@
         <label>certificate</label>
     </customValue>
     <customValue>
-        <fullName>consumer-loan</fullName>
+        <fullName>heloc</fullName>
         <default>false</default>
-        <label>consumer-loan</label>
+        <label>heloc</label>
     </customValue>
     <customValue>
-        <fullName>credite-card</fullName>
+        <fullName>personalLoan</fullName>
         <default>false</default>
-        <label>credite-card</label>
+        <label>personalLoan</label>
+    </customValue>
+    <customValue>
+        <fullName>creditCard</fullName>
+        <default>false</default>
+        <label>creditCard</label>
     </customValue>
     <masterLabel>UiRoutingNames</masterLabel>
     <sorted>false</sorted>
