@@ -23,6 +23,10 @@
                 <behavior>Edit</behavior>
                 <field>ParentApplication__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UiRouting__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
