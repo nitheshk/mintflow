@@ -226,7 +226,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialProduct__c.Routing__c</field>
+        <field>FinancialProduct__c.UiRouting__c</field>
         <readable>true</readable>
     </fieldPermissions>
      <fieldPermissions>

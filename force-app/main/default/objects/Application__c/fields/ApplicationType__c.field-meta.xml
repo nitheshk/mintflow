@@ -17,9 +17,9 @@
                 <label>Deposit</label>
             </value>
             <value>
-                <fullName>SMB</fullName>
+                <fullName>Business</fullName>
                 <default>false</default>
-                <label>SMB</label>
+                <label>Business</label>
             </value>
             <value>
                 <fullName>Lending</fullName>
