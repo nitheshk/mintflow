@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>savings</fullName>
+        <default>false</default>
+        <label>savings</label>
+    </customValue>
+    <customValue>
+        <fullName>checking</fullName>
+        <default>false</default>
+        <label>checking</label>
+    </customValue>
+    <customValue>
+        <fullName>certificate</fullName>
+        <default>false</default>
+        <label>certificate</label>
+    </customValue>
+    <customValue>
+        <fullName>consumer-loan</fullName>
+        <default>false</default>
+        <label>consumer-loan</label>
+    </customValue>
+    <customValue>
+        <fullName>credite-card</fullName>
+        <default>false</default>
+        <label>credite-card</label>
+    </customValue>
+    <masterLabel>UiRoutingNames</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
