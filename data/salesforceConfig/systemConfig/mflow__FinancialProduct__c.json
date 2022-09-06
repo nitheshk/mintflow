@@ -11,6 +11,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Regular_Savings.png",
       "mflow__InternalCode__c": "IC003",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": true,
       "mflow__LongDescription__c": "The Regular Savings product is required for new accounts. This savings account establishes your membership and is your voting share of the credit union.",
       "mflow__MaxVersion__c": "1",
@@ -21,7 +22,7 @@
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
       "mflow__Weightage__c": 1,
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "savings",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -34,12 +35,12 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Start with a few dollars or a fistful.",
             "mflow__Topic__c": "Regular Savings",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0_1" },
@@ -50,12 +51,12 @@
             "mflow__Icon__c": "fa fa-life-ring",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Get a jump-start on a sunnier tomorrow.",
             "mflow__Topic__c": "Take strong steps toward a more secure financial future.",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -71,6 +72,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Preferred_debit.png",
       "mflow__InternalCode__c": "IC006",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "A perfect account for our value minded members for only $4.99 per month. This account pays you in overwhelming benefits from cash back on debit card purchases, to cell phone protection, roadside assistance, local and national discounts and much more!",
       "mflow__MaxVersion__c": "1",
@@ -80,7 +82,7 @@
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Preferred Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "checking",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -94,12 +96,12 @@
             "mflow__Icon__c": "fa fa-paper-plane",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
             "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef1_1" },
@@ -110,12 +112,12 @@
             "mflow__Icon__c": "fa fa-unlock-alt",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_8.jfif",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
             "mflow__Topic__c": "Anytime Account Access",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -131,6 +133,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Regular_Savings.png",
       "mflow__InternalCode__c": "IC0020",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Earn tiered dividends rates\r\nKeep your funds liquid\r\nStay connected to your money anytime, anywhere",
       "mflow__MaxVersion__c": "1",
@@ -140,7 +143,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Instant Access Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "savings",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -154,12 +157,12 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_8.jfif",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Tiered dividends for larger balances",
             "mflow__Topic__c": "Features",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef2_1" },
@@ -170,12 +173,12 @@
             "mflow__Icon__c": "fa fa-cog",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits.",
             "mflow__Topic__c": "Benefits",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -191,6 +194,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Prime_debit.png",
       "mflow__InternalCode__c": "IC005",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the basics you expect from a checking account for $2.99 a Month. Find your pathway to free by adding eStatements. This account includes online billpay, mobile deposit, access to MobiMoney, direct deposit and a debit MasterCard.",
       "mflow__MaxVersion__c": "1",
@@ -200,7 +204,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "checking",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -214,12 +218,12 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_2.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
             "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef3_1" },
@@ -230,12 +234,12 @@
             "mflow__Icon__c": "fa fa-cog",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_8.jfif",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
             "mflow__Topic__c": "Anytime Account Access",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -251,6 +255,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0021",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Manage your account anytime, anywhere1\r\nInstant, surcharge-free access to cash\r\nNo monthly account maintenance fees",
       "mflow__MaxVersion__c": "1",
@@ -260,7 +265,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Carefree Checking",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "checking",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -274,12 +279,12 @@
             "mflow__Icon__c": "fa fa-cog",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_10.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Carefree Checking",
             "mflow__Topic__c": "Features",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4_1" },
@@ -290,12 +295,12 @@
             "mflow__Icon__c": "fa fa-gift",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits",
             "mflow__Topic__c": "Benefits",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4_2" },
@@ -306,12 +311,12 @@
             "mflow__Icon__c": "fa fa-credit-card",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_4.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Debit Mastercard",
             "mflow__Topic__c": "Debit Mastercard",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -327,6 +332,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0012",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "3 Month CDs are very short-term products and generally come with the lowest interest rates. Within the 3 month CD category on the rate table above, DepositAccounts also lists CDs with shorter terms such as 7 days. Usually, the shorter the CD’s time frame, the less it will pay in interest – however, financial institutions competing for customers will often break this trend in order to attract attention to the shorter term CD and open new accounts.",
       "mflow__MaxVersion__c": "1",
@@ -336,7 +342,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "3 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 5,
         "done": true,
@@ -349,12 +355,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_3.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "CD Advantages",
             "mflow__Topic__c": "CD Advantages",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_1" },
@@ -364,12 +370,12 @@
             "mflow__Icon__c": "fa fa-gift",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Key Takeaways",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_2" },
@@ -379,11 +385,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.10",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.10"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_3" },
@@ -393,11 +399,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 8,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_4" },
@@ -408,12 +414,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_9.jfif",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 10,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -429,6 +435,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0013",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "6 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -438,7 +445,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "6 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -451,11 +458,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.20",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.20"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef6_1" },
@@ -465,11 +472,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef6_2" },
@@ -480,12 +487,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -501,6 +508,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0014",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "12 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -510,7 +518,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "12 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -523,11 +531,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.30",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.30"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_1" },
@@ -537,11 +545,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_2" },
@@ -552,12 +560,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -573,6 +581,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0015",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "18 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -582,7 +591,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "18 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -595,11 +604,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.50",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.50"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_1" },
@@ -609,11 +618,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_2" },
@@ -624,12 +633,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -645,6 +654,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0016",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "24 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -654,7 +664,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "24 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -667,11 +677,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.60",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.60"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_1" },
@@ -681,11 +691,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_2" },
@@ -696,12 +706,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -717,6 +727,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0017",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "36 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -726,7 +737,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "36 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -739,11 +750,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.65",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.65"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_1" },
@@ -753,11 +764,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_2" },
@@ -768,12 +779,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -789,6 +800,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0018",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "48 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -798,7 +810,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "48 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -811,11 +823,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.75",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.75"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_1" },
@@ -825,11 +837,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_2" },
@@ -840,12 +852,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -861,6 +873,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0019",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "60 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -870,7 +883,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "60 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "certificate",
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -883,11 +896,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.80",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.80"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_1" },
@@ -897,11 +910,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_2" },
@@ -912,12 +925,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -933,6 +946,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC009",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Best for users looking to earn cash back on everyday purchases. Receive $150 Bonus Cash Back after $1000 in qualified purchases within the first 90 days 0% APR* intro rate on purchases and balance transfers for 15 months after that, variable rates of 10.24% - 18.24% APR* apply",
       "mflow__MaxVersion__c": "1",
@@ -943,7 +957,7 @@
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
       "mflow__Weightage__c": 3,
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "credite-card",
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -956,12 +970,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_4.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Digital experience",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_1" },
@@ -971,12 +985,12 @@
             "mflow__Icon__c": "fa fa-eye",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_5.JPG",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Global security",
             "mflow__Topic__c": "Security",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_2" },
@@ -986,12 +1000,12 @@
             "mflow__Icon__c": "fa fa-credit-card",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "/Products/Features/Feature_3.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Your wallet has a new MVP",
             "mflow__Topic__c": "Blazers Card",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_3" },
@@ -1002,12 +1016,12 @@
             "mflow__Icon__c": "fa fa-gift",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "/Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 8,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Features and rewards",
             "mflow__Topic__c": "Features and rewards",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -1023,6 +1037,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/credit-card-explore.jpg",
       "mflow__InternalCode__c": "IC008",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "A Secured Visa credit card is the perfect way to establish credit or build good credit, whether you’re starting out or starting over. This card is secured by the available funds in your share savings account.",
       "mflow__MaxVersion__c": "1",
@@ -1032,7 +1047,7 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "credite-card",
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -1045,12 +1060,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_4.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Digital experience",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_1" },
@@ -1060,12 +1075,12 @@
             "mflow__Icon__c": "fa fa-eye",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_5.JPG",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Global security",
             "mflow__Topic__c": "Security",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_2" },
@@ -1075,12 +1090,12 @@
             "mflow__Icon__c": "fa fa-credit-card",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "/Products/Features/Feature_3.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Your wallet has a new MVP",
             "mflow__Topic__c": "Blazers Card",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_3" },
@@ -1091,12 +1106,12 @@
             "mflow__Icon__c": "fa fa-gift",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "/Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 8,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Features and rewards",
             "mflow__Topic__c": "Features and rewards",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -1112,6 +1127,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0010",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Money Market Checking",
       "mflow__MaxVersion__c": "1",
@@ -1122,7 +1138,7 @@
       "mflow__SubCategory__c": "Money Market Checking",
       "mflow__Type__c": "Deposit",
       "mflow__Weightage__c": 1.2,
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "checking",
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1136,12 +1152,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 14,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Money Market Checking",
             "mflow__Topic__c": "Money Market Checking",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -1157,6 +1173,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0011",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Money Market Savings",
       "mflow__MaxVersion__c": "1",
@@ -1167,7 +1184,7 @@
       "mflow__SubCategory__c": "Money Market Savings",
       "mflow__Type__c": "Deposit",
       "mflow__Weightage__c": 1.2,
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "savings",
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1181,12 +1198,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 13,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Money Market Savings",
             "mflow__Topic__c": "Money Market Savings",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -1201,6 +1218,7 @@
       "mflow__ExternalCode__c": "EB-002",
       "mflow__ImageType__c": "Relative",
       "mflow__InternalCode__c": "IB-002",
+      "mflow__IsActive__c": false,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Expand your fleet or purchase new equipment",
       "mflow__MaxVersion__c": "1",
@@ -1210,7 +1228,7 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "New Vehicle",
       "mflow__Type__c": "Lending",
-      "mflow__IsActive__c": false
+      "mflow__Routing__c": "consumer-loan"
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "HL001" },
@@ -1223,6 +1241,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
       "mflow__InternalCode__c": "HL001",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "A variable-rate line of credit based on your home value that you can continually borrow from and pay back over a set time frame.",
       "mflow__MaxVersion__c": "1",
@@ -1232,7 +1251,7 @@
       "mflow__StartDate__c": "2022-08-11",
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
-      "mflow__IsActive__c": true,
+      "mflow__Routing__c": "consumer-loan",
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -1245,12 +1264,12 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Interest Rate Discounts up to 0.50%",
             "mflow__Topic__c": "Interest Rate",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef18_1" },
@@ -1260,12 +1279,12 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "An Easy and Flexible Experience",
             "mflow__Topic__c": "Experience",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
