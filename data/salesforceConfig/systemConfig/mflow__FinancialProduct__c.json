@@ -1288,6 +1288,125 @@
           }
         ]
       }
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "PL001" },
+      "Name": "Personal Loan",
+      "mflow__AllowedtoGroup__c": false,
+      "mflow__Category__c": "Consumer Loan",
+      "mflow__DisplayLabel__c": "Personal Loan",
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "PL001",
+      "mflow__ImageType__c": "Relative",
+      "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
+      "mflow__InternalCode__c": "PL001",
+      "mflow__IsActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__LongDescription__c": "Why get a personal loan from MIntflow?\r\nLow, fixed rates ,\r\nNo application fees, origination fees or prepayment penalties,\r\nNo payments for up to 45 days 3,\r\nDebtSafe® Optional payment protection.",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 50,
+      "mflow__ShortDescription__c": "Lock in a low fixed rate with a personal loan",
+      "mflow__StartDate__c": "2022-08-11",
+      "mflow__SubCategory__c": "Personal Loan",
+      "mflow__Type__c": "Lending",
+      "mflow__UiRouting__c": "personalLoan",
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef19_0" },
+            "Name": "Feature",
+            "mflow__DisplayContents__c": "<p>A personal loans is a loan for a set amount of money that is repaid with interest through fixed monthly payments. Personal loans can be used for a variety of reasons such as consolidating higher interest loans or credit card debt, paying for events like weddings or funerals, paying for unexpected emergency purchases or even vacations.4 Personal loans can offer an alternative to credit cards by a fixed rate and predictable monthly payment.</p><p><br></p><ul><li>Borrow from $500 to $50,000</li><li>Fast online application</li><li>Fixed rate and fixed monthly payment</li><li>Flexible repayment terms from 2 to 7 years</li><li>Visit the rates page for complete rate information and loan costs</li></ul>",
+            "mflow__DisplayName__c": "Feature",
+            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "What is a personal loan?",
+            "mflow__Topic__c": "Feature",
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef19_1" },
+            "Name": "Benefits",
+            "mflow__DisplayContents__c": "<h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">As low as 7.49% APR</strong></h3><p><span style=\"font-family: verdana; font-size: 16px;\">If you’re a MintFlow customer, you may borrow at least $1,000 up to $50,000. Not a </span><span style=\"font-family: verdana; font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);\">MintFlow </span><span style=\"font-family: verdana; font-size: 16px;\">customer? You may be able to borrow up to $25,000.</span></p><p><strong style=\"font-family: verdana;\">If approved, you’ll pay the same amount every month for a term of 12 to 84 months (maximum 60 months for non-customers), with a fixed annual percentage rate (APR), ranging from 7.49% to 19.99% APR</strong></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">Quick funds for all your needs</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">You can use a personal loan for any purchase or product.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">This one-time funding can help cover vacations, home renovations, medical bills </span></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">No hidden costs or fees</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">When you take out a personal loan, you’ll pay no origination fees and there is no prepayment penalty.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">You&#39;re always free to make loan payments in advance, in part or in full.</span></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">No collateral required</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">A personal loan is unsecured, meaning you don’t need to put up your house or car as collateral.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">This may be a good option if you lack equity or don’t qualify for a home equity loan or line</span><span style=\"font-family: verdana; font-size: 16px;\">.</span></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">No home inspection or appraisals</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">A personal loan doesn’t require your home as collateral.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">You could get a loan for your project within hours.</span></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">Easy application process</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">Get quick access to funds with our easy and secure online application process.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">Applying for a personal loan only takes a few minutes and is issued based on your creditworthiness.</span></p>",
+            "mflow__DisplayName__c": "Benefits",
+            "mflow__Icon__c": "fa fa-fighter-jet",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Personal loan details and benefits",
+            "mflow__Topic__c": "Personal loan details and benefits",
+            "mflow__Type__c": "Product Description"
+          }
+        ]
+      }
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "PL002" },
+      "Name": "Savings Secured Loans",
+      "mflow__AllowedtoGroup__c": false,
+      "mflow__Category__c": "Consumer Loan",
+      "mflow__DisplayLabel__c": "Savings Secured Loans",
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "PL002",
+      "mflow__ImageType__c": "Relative",
+      "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
+      "mflow__InternalCode__c": "PL002",
+      "mflow__IsActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__LongDescription__c": "A Mintflow Share Loan allows you to use the cash you have to build the credit profile you want.\r\n\r\nAs low as 3.00% APR - Learn More plus Savings rate",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 55,
+      "mflow__ShortDescription__c": "Lock in a low fixed rate with a Savings Secured Loans",
+      "mflow__StartDate__c": "2022-08-11",
+      "mflow__SubCategory__c": "Savings Secured Loans",
+      "mflow__Type__c": "Lending",
+      "mflow__Weightage__c": 1,
+      "mflow__UiRouting__c": "personalLoan",
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef20_0" },
+            "Name": "Feature",
+            "mflow__DisplayContents__c": "<p><strong>A great loan for those who:</strong></p><ul><li>Want to build or re-build their credit profile</li><li>Want to hold on to your cash</li><li>Have a Mintflow savings account</li><li>Want a fixed monthly payment</li><li>Want to borrow between $500-$500,000 to pay off debt or fund a tech innovation</li></ul><p><br></p><p><strong>What you&#39;ll get:</strong></p><ul><li>Fixed-rate</li><li>Fixed-term loan</li></ul>",
+            "mflow__DisplayName__c": "Feature",
+            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Savings Secured Loans",
+            "mflow__Topic__c": "Feature",
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef20_1" },
+            "Name": "Benefits",
+            "mflow__DisplayContents__c": "<p><strong>Flexible financing options</strong></p><ul><li>Borrow as little as $500</li><li>Loan terms up to 96 months</li></ul><p><br></p><p><strong>Quick and easy loan application</strong></p><ul><li>Online loan application</li><li>Digital document delivery</li><li>Fast loan decision</li></ul><p><br></p><p><strong>More money in your pocket</strong></p><ul><li>No pre-payment penalty</li><li>No application or origination fee</li><li>No annual fee</li></ul>",
+            "mflow__DisplayName__c": "Benefits",
+            "mflow__Icon__c": "fa fa-fighter-jet",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Reap the benefits",
+            "mflow__Topic__c": "Benefits",
+            "mflow__Type__c": "Product Description"
+          }
+        ]
+      }
     }
   ]
 }
