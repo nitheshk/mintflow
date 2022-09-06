@@ -30,6 +30,10 @@
                 <behavior>Edit</behavior>
                 <field>AllowedtoGroup__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Routing__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -47,7 +51,7 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SubCategory__c</field>
-            </layoutItems>  
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

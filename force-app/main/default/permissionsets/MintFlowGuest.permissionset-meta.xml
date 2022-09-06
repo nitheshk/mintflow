@@ -703,7 +703,12 @@
         <field>IdentificationDocument__c.Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialProduct__c.Routing__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>FinancialProduct__c.AllowedtoGroup__c</field>
         <readable>true</readable>
