@@ -199,7 +199,7 @@
       "mflow__ApplicantType__c": "Primary",
       "mflow__Channel__c": "Virtual",
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
-      "mflow__FinancilProductCategory__c": "Savings;Checking;Credit Card;Money Market;Certificate;Consumer Loan",
+      "mflow__FinancilProductCategory__c": "Savings;Checking;Credit Card;Money Market;Certificate",
       "mflow__IsActive__c": true,
       "mflow__Order__c": 1,
       "mflow__SurveyQuestions__r": {
