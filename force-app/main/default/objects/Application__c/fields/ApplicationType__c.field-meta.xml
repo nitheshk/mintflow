@@ -9,28 +9,7 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <valueSetDefinition>
-            <sorted>false</sorted>
-            <value>
-                <fullName>Deposit</fullName>
-                <default>false</default>
-                <label>Deposit</label>
-            </value>
-            <value>
-                <fullName>Business</fullName>
-                <default>false</default>
-                <label>Business</label>
-            </value>
-            <value>
-                <fullName>Lending</fullName>
-                <default>false</default>
-                <label>Lending</label>
-            </value>
-            <value>
-                <fullName>Mortgage</fullName>
-                <default>false</default>
-                <label>Mortgage</label>
-            </value>
-        </valueSetDefinition>
+        <restricted>true</restricted>
+        <valueSetName>ProductType</valueSetName>
     </valueSet>
 </CustomField>
