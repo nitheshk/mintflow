@@ -1682,11 +1682,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialAccountService__c.ShowQuestions__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>ProductService__c.IsActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1723,11 +1718,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ProductService__c.Required__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>ProductService__c.ShowQuestions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

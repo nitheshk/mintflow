@@ -166,7 +166,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>ShowQuestions__c</fields>
         <relatedList>ProductService__c.FinancialProduct__c</relatedList>
     </relatedLists>
     <relatedLists>
