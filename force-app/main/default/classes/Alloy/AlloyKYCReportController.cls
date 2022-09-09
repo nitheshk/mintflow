@@ -5,17 +5,13 @@
  * @reference
  * @description Application service
  **/
+@SuppressWarnings('PMD.CognitiveComplexity,PMD.AvoidDeeplyNestedIfStmts,PMD.NcssMethodCount')
 public with sharing class AlloyKYCReportController {
   // use in lwc component
+  /*
   @AuraEnabled(cacheable=true)
-  /**
-   * @descriptionchange kyc status to cancel
-   * @param String applicantId
-   * @param String status
-   * @return Boolean
-   */
   public static list<AlloyKYCReportDTO.KYCJsonDTO> fetchReportDetail(String applicantId) {
-    /* List<AlloyKYCReportDTO.KYCJsonDTO> results = new List<AlloyKYCReportDTO.KYCJsonDTO>();
+     List<AlloyKYCReportDTO.KYCJsonDTO> results = new List<AlloyKYCReportDTO.KYCJsonDTO>();
     try {
       List<String> contentDocumentIds = new List<String>();
       for (ContentDocumentLink contentDocumentLinkObj : AlloyServiceRepository.findAllByParticipant(applicantId)) {
@@ -34,9 +30,10 @@ public with sharing class AlloyKYCReportController {
       }
     } catch (Exception ex) {
       results = new List<AlloyKYCReportDTO.KYCJsonDTO>();
-    }*/
+    }
     return null; //results;
   }
+  */
 
   // Used in the report display
 
@@ -55,16 +52,19 @@ public with sharing class AlloyKYCReportController {
    * @return void
    */
   public void prefillKYCDetail() {
-    ContentVersion cv;
     String res;
     try {
-      List<ContentVersion> cvList = FileService.getinstance().fetchContentVersionByEntityId(applicantId, false);
-      for (ContentVersion cvObj : cvList) {
-        if (cvObj.Title.equalsignorecase('AlloyResponse.json')) {
-          res = (cvObj.VersionData).toString();
-        }
+      List<Id> contentDocumentIds = new List<Id>();
+      for (ContentDocumentLink cdl : FileRepository.fetchContentDocumentLinks(applicantId)) {
+        contentDocumentIds.add(cdl.ContentDocumentId);
       }
-      system.debug('res =' + res);
+      ContentVersion cv = AlloyRepository.fetchAlloyKycJson(contentDocumentIds);
+      if (cv != null) {
+        res = (cv.VersionData).toString();
+      } else {
+        return;
+      }
+
       Map<String, Object> response = (Map<String, Object>) JSON.deserializeUntyped(res);
       wrapper.additionalInfo.rawResponse = res;
       wrapper.additionalInfo.evaluationToken = response.get('evaluation_token') != null
@@ -97,10 +97,17 @@ public with sharing class AlloyKYCReportController {
 
       showResult = true;
     } catch (Exception ex) {
-    } finally {
+      system.debug('Exception : ' + ex.getStackTraceString());
     }
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 09-09-2022
+   * @param AlloyKYCReportDTO wrapper
+   * @param Map<String Object> response
+   * @return AlloyKYCReportDTO
+   **/
   private AlloyKYCReportDTO prefillMatchingData(AlloyKYCReportDTO wrapper, Map<String, Object> response) {
     Map<String, Object> formattedObj = response.get('formatted') != null
       ? (Map<String, Object>) response.get('formatted')
@@ -398,6 +405,11 @@ public with sharing class AlloyKYCReportController {
     return wrapper;
   }
 
+  /**
+   * @description
+   * @author Digital Align Team | 09-09-2022
+   * @return Map<String, Object>
+   **/
   private Map<String, Object> getReasonCode() {
     Map<String, Object> reasonCoderesponse;
     if (Test.isRunningTest()) {
