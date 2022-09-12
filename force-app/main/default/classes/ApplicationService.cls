@@ -336,7 +336,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     Application__c application = this.readApplicationWithChild();
     application = (mflow__Application__c) this.updateFlowState(application);
     //code to update the lead score of the application ::TODO
-    application.LeadScore__c = helper.calculateLeadScore(application);
+    application = LeadScoreResolver.getInstance().calculateLeadScore(application);
     log?.debug(' Lead Score : ' + application.LeadScore__c);
     if (application.LeadScore__c != null && application.LeadScore__c > 0) {
       ApplicationRepository.upsertRecord(application);
