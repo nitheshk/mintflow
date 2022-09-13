@@ -421,7 +421,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Applicant__c.Citizenship__c</field>
+        <field>Applicant__c.CitizenshipStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
