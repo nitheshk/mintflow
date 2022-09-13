@@ -4,7 +4,7 @@
     <description>Parent Object name for fetching the field</description>
     <externalId>false</externalId>
     <fieldManageability>SubscriberControlled</fieldManageability>
-    <label>ParentObjectAPI</label>
+    <label>Parent Object API</label>
     <length>255</length>
     <required>false</required>
     <type>Text</type>

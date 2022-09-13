@@ -80,7 +80,6 @@ global with sharing class ProductServiceResolver extends AbstractService {
       finProductServiceObj.Design__c = productService.Design__c;
       finProductServiceObj.Required__c = productService.Required__c;
       finProductServiceObj.ServiceName__c = productService.ServiceName__c;
-      finProductServiceObj.ShowQuestions__c = productService.ShowQuestions__c;
       finProductServiceObj.IsSelected__c = false;
       serviceList.add(finProductServiceObj);
     }

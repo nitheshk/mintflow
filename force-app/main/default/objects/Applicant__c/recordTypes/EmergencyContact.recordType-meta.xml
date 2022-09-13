@@ -130,6 +130,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>AssetAndLiability</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>BranchPassword</fullName>
             <default>false</default>
         </values>
@@ -199,6 +203,10 @@
         </values>
         <values>
             <fullName>PersonalInfo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Property</fullName>
             <default>false</default>
         </values>
         <values>

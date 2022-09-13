@@ -228,4 +228,27 @@ global inherited sharing class ApplicationRepository extends DatabaseUtils {
 
     return (Application__c) DatabaseUtils.getRecord(qry.toString());
   }
+
+  /**
+   * @description fetch product features based on product Id
+   * @author Digital Align Team | 03-25-2022
+   * @param String productId
+   * @return List<financialProduct__c>
+   **/
+  public static List<financialProduct__c> fetchProductsByAppId(Id applicationId) {
+    return (List<financialProduct__c>) getRecords(
+      Query.newInstance(financialProduct__c.SObjectType)
+        .addFields()
+        .whereEq('mflow__IsActive__c', true)
+        .andCon()
+        .whereIn(
+          'Id',
+          Query.newInstance(mflow__FinancialAccount__c.SObjectType)
+            .addFields('mflow__FinancialProduct__c')
+            .whereEq('mflow__Application__c', applicationId)
+            .toString()
+        )
+        .toString()
+    );
+  }
 }

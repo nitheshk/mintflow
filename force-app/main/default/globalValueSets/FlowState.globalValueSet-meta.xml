@@ -135,6 +135,16 @@
         <default>false</default>
         <label>DemographicInfo</label>
     </customValue>
+    <customValue>
+        <fullName>AssetAndLiability</fullName>
+        <default>false</default>
+        <label>AssetAndLiability</label>
+    </customValue>
+    <customValue>
+        <fullName>Property</fullName>
+        <default>false</default>
+        <label>Property</label>
+    </customValue>
     <description>UI Flow State Indicator</description>
     <masterLabel>FlowState</masterLabel>
     <sorted>false</sorted>

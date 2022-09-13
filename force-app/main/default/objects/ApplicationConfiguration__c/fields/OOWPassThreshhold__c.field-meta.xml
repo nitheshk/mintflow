@@ -3,7 +3,7 @@
     <fullName>OOWPassThreshhold__c</fullName>
     <description>Pass percentage threshhold</description>
     <externalId>false</externalId>
-    <label>OOWPassThreshhold</label>
+    <label>OOW Pass Threshhold</label>
     <precision>3</precision>
     <required>false</required>
     <scale>0</scale>

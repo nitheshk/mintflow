@@ -70,7 +70,7 @@ global with sharing class ApplicationController extends AbstractController {
       log?.debug('params : ' + ApexRequest.request.params);
       Application__c application = (Application__c) SObjectConstructor.deserialize(request.data, Application__c.class);
       application = ApplicationService.getInstance().saveApplication(application);
-      return ApexResponse.ok(ApplicationService.getInstance().updateFlowState(application));
+      return ApexResponse.ok(application);
     } catch (CustomException ex) {
       log?.error(ex);
       return ApexResponse.exception(ex);
@@ -216,7 +216,7 @@ global with sharing class ApplicationController extends AbstractController {
       validateRequest(request);
       Application__c application = (Application__c) SObjectConstructor.deserialize(request.data, Application__c.class);
       application = SubmitApplicationService.getInstance().submit(application);
-      return ApexResponse.ok(ApplicationService.getInstance().updateFlowState(application));
+      return ApexResponse.ok(application);
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);

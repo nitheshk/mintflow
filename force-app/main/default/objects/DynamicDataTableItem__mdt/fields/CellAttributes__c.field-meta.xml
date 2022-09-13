@@ -4,7 +4,7 @@
     <description>CellAttributes of the data column</description>
     <externalId>false</externalId>
     <fieldManageability>SubscriberControlled</fieldManageability>
-    <label>CellAttributes</label>
+    <label>Cell Attributes</label>
     <length>255</length>
     <required>false</required>
     <type>Text</type>

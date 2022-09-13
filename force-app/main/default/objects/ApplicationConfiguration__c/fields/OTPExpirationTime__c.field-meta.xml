@@ -3,7 +3,7 @@
     <fullName>OTPExpirationTime__c</fullName>
     <description>OTP Expiration Time</description>
     <externalId>false</externalId>
-    <label>OTPExpirationTime</label>
+    <label>OTP Expiration Time</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Number</type>

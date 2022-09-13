@@ -334,7 +334,7 @@
         <fields>Street__c</fields>
         <fields>City__c</fields>
         <fields>State__c</fields>
-         <fields>PostalCode__c</fields>
+        <fields>PostalCode__c</fields>
         <fields>UsageType__c</fields>
         <fields>IsPrimary__c</fields>
         <relatedList>Address__c.Applicant__c</relatedList>
@@ -360,7 +360,16 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Type__c</fields>
+        <fields>SubType__c</fields>
+        <fields>AccountType__c</fields>
+        <fields>AssetOrCreditType__c</fields>
+        <fields>Asset__c</fields>
+        <fields>Property__c</fields>
+        <fields>Order__c</fields>
         <relatedList>AssetAndLiability__c.Applicant__c</relatedList>
+        <sortField>Order__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -393,7 +402,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1y0000028ynT</masterLabel>
+        <masterLabel>00h0p000001xbqn</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

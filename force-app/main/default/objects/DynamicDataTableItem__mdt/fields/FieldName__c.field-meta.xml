@@ -4,7 +4,7 @@
     <description>The field Name on which data needs to be queried</description>
     <externalId>false</externalId>
     <fieldManageability>SubscriberControlled</fieldManageability>
-    <label>FieldName</label>
+    <label>Field Name</label>
     <length>100</length>
     <required>false</required>
     <type>Text</type>

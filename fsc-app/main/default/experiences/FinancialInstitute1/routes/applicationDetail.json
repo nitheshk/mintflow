@@ -5,7 +5,7 @@
   "id": "7680aa31-ae4b-4cdc-9679-fd467766f807",
   "label": "Application Detail",
   "objectApiName": "mflow__Application__c",
-  "routeType": "detail-a02",
+  "routeType": "detail-a03",
   "type": "route",
   "urlPrefix": "application"
 }

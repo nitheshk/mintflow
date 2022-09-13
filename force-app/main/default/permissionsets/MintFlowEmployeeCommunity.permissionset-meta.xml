@@ -661,6 +661,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>FinancialAccount__c.Term__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialAccount__c.OtherPurpose__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>FinancialAccount__c.Purpose__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -717,6 +727,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialProduct__c.UiRouting__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -892,6 +907,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IdentificationDocument__c.Gender__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Application__c.UiRouting__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1731,11 +1751,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialAccountService__c.ShowQuestions__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>ProductService__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1762,11 +1777,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ProductService__c.Required__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>ProductService__c.ShowQuestions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2416,6 +2426,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Property__c.ManufacturedHome__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Property__c.PropertyUnits__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2466,7 +2481,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Property__c.Ocuupancy__c</field>
+        <field>Property__c.Occupancy__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

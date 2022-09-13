@@ -25,8 +25,8 @@
     "languageSettings": {
       "enableTranslationWorkbench": true
     },
-    "orgPreferenceSettings": {
-      "consentManagementEnabled": false
+    "partyDataModelSettings": {
+      "enableConsentManagement": false
     }
   }
 }

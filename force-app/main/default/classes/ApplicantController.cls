@@ -58,9 +58,6 @@ global with sharing class ApplicantController extends AbstractController {
       );
 
       applicants = ApplicantService.getInstance().saveApplicants(applicants, ApexRequest.getApplicationId());
-
-      ApplicationService.getInstance().updateFlowState(applicants);
-
       return ApexResponse.ok(ApplicantService.getInstance().readApplicantsWithChild(applicants));
     } catch (CustomException ex) {
       log?.error(ex);

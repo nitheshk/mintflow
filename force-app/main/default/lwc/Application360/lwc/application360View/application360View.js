@@ -25,6 +25,21 @@ export default class Application360View extends LightningElement {
       //console.log("result.data   : " + result.data);
       if (result.data.status === 200) {
         this.record = JSON.parse(result.data.data);
+        this.record.mflow__Applicants__r.forEach((applicant) => {
+          console.log(JSON.stringify("json" + applicant.mflow__AssetAndLiabilities__r));
+          if(applicant.mflow__AssetAndLiabilities__r!=null){
+            applicant.mflow__Assets__r = applicant.mflow__AssetAndLiabilities__r.filter(function (AssetorLiability) {
+            return AssetorLiability.mflow__Type__c == "Asset";
+          });
+        }
+        if(applicant.mflow__AssetAndLiabilities__r!=null){   
+            applicant.mflow__Liabilities__r = applicant.mflow__AssetAndLiabilities__r.filter(function (AssetorLiability) {
+            return AssetorLiability.mflow__Type__c == "Liability";
+          });
+        }
+        });
+    
+        applicant.mflow__AssetAndLiabilities__r = null;
         //console.log("record ::: " + JSON.stringify(this.record));
       }
     } else if (result.error) {

@@ -224,6 +224,11 @@
         <field>ReferralProduct__c.CrossSellProduct__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialProduct__c.UiRouting__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
         <field>FinancialProduct__c.AllowedtoGroup__c</field>
@@ -412,6 +417,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Applicant__c.ApplicantType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Application__c.UiRouting__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1517,11 +1527,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FinancialAccountService__c.ShowQuestions__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FinancialAccountService__c.IsSelected__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1613,6 +1618,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FinancialAccountTransaction__c.WaiverReason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialAccount__c.Term__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FinancialAccount__c.OtherPurpose__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2137,11 +2152,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ProductService__c.ShowQuestions__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>ProductService__c.IsActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2497,6 +2507,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Property__c.ManufacturedHome__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Property__c.PropertyUnits__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2542,7 +2557,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Property__c.Ocuupancy__c</field>
+        <field>Property__c.Occupancy__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
