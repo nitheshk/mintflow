@@ -29,7 +29,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>CitizenshipStatus__c</picklist>
+        <picklist>Citizenship__c</picklist>
         <values>
             <fullName>Non-Permanent Resident Alien</fullName>
             <default>false</default>

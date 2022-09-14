@@ -70,7 +70,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CitizenshipStatus__c</field>
+                <field>Citizenship__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

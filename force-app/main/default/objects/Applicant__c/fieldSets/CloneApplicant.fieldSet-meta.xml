@@ -73,7 +73,7 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
-        <field>CitizenshipStatus__c</field>
+        <field>Citizenship__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
