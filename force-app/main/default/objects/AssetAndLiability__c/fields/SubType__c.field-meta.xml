@@ -62,6 +62,11 @@
                 <label>Expenses</label>
             </value>
             <value>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+                <label>Real Estate</label>
+            </value>
+            <value>
                 <fullName>Credits</fullName>
                 <default>false</default>
                 <isActive>false</isActive>
