@@ -30,6 +30,16 @@
         <default>false</default>
         <label>creditCard</label>
     </customValue>
+    <customValue>
+        <fullName>homePurchase</fullName>
+        <default>false</default>
+        <label>homePurchase</label>
+    </customValue>
+    <customValue>
+        <fullName>refinance</fullName>
+        <default>false</default>
+        <label>refinance</label>
+    </customValue>
     <masterLabel>UiRoutingNames</masterLabel>
     <sorted>false</sorted>
 </GlobalValueSet>

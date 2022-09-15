@@ -1423,6 +1423,126 @@
           }
         ]
       }
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "MG001" },
+      "Name": "Buy a Home",
+      "mflow__AllowedtoGroup__c": false,
+      "mflow__Category__c": "Mortgage",
+      "mflow__DisplayLabel__c": "Buy a Home",
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "MG001",
+      "mflow__ImageType__c": "Relative",
+      "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
+      "mflow__InternalCode__c": "MG001",
+      "mflow__IsActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__LongDescription__c": "Whether you're a first-time buyer or a homeowner looking for a new property, finding the right mortgage is one of the biggest financial decisions in your life. We're here to help you with home buying tips and resources to guide you along the way.",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 60,
+      "mflow__ShortDescription__c": "Find the loan that feels like home",
+      "mflow__StartDate__c": "2022-08-11",
+      "mflow__SubCategory__c": "Buy a Home",
+      "mflow__Type__c": "Lending",
+      "mflow__UiRouting__c": "homePurchase",
+      "mflow__Weightage__c": 2.6,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef21_0" },
+            "Name": "Fixed Rate Loans",
+            "mflow__DisplayContents__c": "<p>Fixed-rate home loans are the most common type of mortgage. With fixed-rate home loans, you&#39;ll maintain the same payment and interest rate throughout the life of the loan. That means you’ll never worry about rising interest rates or a changing economy when it comes to your home loan. If you have a home picked out and signed a contract, please click the Submit Application box below. If you want to see how much you qualify for submit a request for Pre-Qualification.</p><p>It’s perfect if you plan on staying in your home for at least five years.</p><ul><li>Easy application process</li><li>No pre-payment penalty</li></ul>",
+            "mflow__DisplayName__c": "Fixed Rate Loans",
+            "mflow__Icon__c": "fa fa-usd",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 1,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Interest Rate Discounts up to 0.50%",
+            "mflow__Topic__c": "Fixed-rate home loans",
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef21_1" },
+            "Name": "ARM",
+            "mflow__DisplayContents__c": "<p>An Adjustable Rate Mortgage (ARM) helps you qualify for more home thanks to lower payments during the first three to ten years of the loan. After that, the rate adjusts, which could change the monthly payment. If you have a home picked out and signed a contract, please click the Submit Application box below. If you want to see how much you qualify for submit a request for Pre-Qualification.</p><p>ARMs are ideal if you plan on being in your home for a short period of time. Because ARMs are subject to rate adjustments later on, the initial interest rate is typically set lower than on a standard fixed-rate loan. This can benefit you with a lower payment that reduces your monthly housing costs.</p><ul><li>Fixed interest rate for 5, 7 or 10 years</li><li>Rate adjusts annually thereafter</li><li>Easy application process</li></ul>",
+            "mflow__DisplayName__c": "ARM",
+            "mflow__Icon__c": "fa fa-usd",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Adjustable rate mortgage (ARM)",
+            "mflow__Topic__c": "ARM",
+            "mflow__Type__c": "Product Description"
+          }
+        ]
+      }
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "MG002" },
+      "Name": "Refinance",
+      "mflow__AllowedtoGroup__c": false,
+      "mflow__Category__c": "Mortgage",
+      "mflow__DisplayLabel__c": "Refinance",
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "MG002",
+      "mflow__ImageType__c": "Relative",
+      "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
+      "mflow__InternalCode__c": "MG002",
+      "mflow__IsActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__LongDescription__c": "Maybe it’s been a few years since you closed on your mortgage. Chances are good that a lot has changed since then. With the rapid increase in property values in many regions, it might be a good time to consider refinancing your home loan.",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 65,
+      "mflow__ShortDescription__c": "Our mortgage loan officers can help lower your monthly payments, consolidate your debt, access your equity and more",
+      "mflow__StartDate__c": "2022-08-11",
+      "mflow__SubCategory__c": "Refinance",
+      "mflow__Type__c": "Lending",
+      "mflow__UiRouting__c": "refinance",
+      "mflow__Weightage__c": 2.6,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef22_0" },
+            "Name": "Fixed Rate Loans",
+            "mflow__DisplayContents__c": "<p>Fixed-rate home loans are the most common type of mortgage. With fixed-rate home loans, you&#39;ll maintain the same payment and interest rate throughout the life of the loan. That means you’ll never worry about rising interest rates or a changing economy when it comes to your home loan. If you have a home picked out and signed a contract, please click the Submit Application box below. If you want to see how much you qualify for submit a request for Pre-Qualification.</p><p>It’s perfect if you plan on staying in your home for at least five years.</p><ul><li>Easy application process</li><li>No pre-payment penalty</li></ul>",
+            "mflow__DisplayName__c": "Fixed Rate Loans",
+            "mflow__Icon__c": "fa fa-usd",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 1,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Interest Rate Discounts up to 0.50%",
+            "mflow__Topic__c": "Fixed-rate home loans",
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef22_1" },
+            "Name": "ARM",
+            "mflow__DisplayContents__c": "<p>An Adjustable Rate Mortgage (ARM) helps you qualify for more home thanks to lower payments during the first three to ten years of the loan. After that, the rate adjusts, which could change the monthly payment. If you have a home picked out and signed a contract, please click the Submit Application box below. If you want to see how much you qualify for submit a request for Pre-Qualification.</p><p>ARMs are ideal if you plan on being in your home for a short period of time. Because ARMs are subject to rate adjustments later on, the initial interest rate is typically set lower than on a standard fixed-rate loan. This can benefit you with a lower payment that reduces your monthly housing costs.</p><ul><li>Fixed interest rate for 5, 7 or 10 years</li><li>Rate adjusts annually thereafter</li><li>Easy application process</li></ul>",
+            "mflow__DisplayName__c": "ARM",
+            "mflow__Icon__c": "fa fa-usd",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Adjustable rate mortgage (ARM)",
+            "mflow__Topic__c": "ARM",
+            "mflow__Type__c": "Product Description"
+          }
+        ]
+      }
     }
   ]
 }
