@@ -585,9 +585,10 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
         //interestedProductParams.put('cvmf', JSON.serialize(params, true));
         interestedProductParams.put(
           'urlSuffix',
-          '/' +
-          application.mflow__CustomerInterests__r[0].InterestProduct__r.Category__c.toLowerCase().replace(' ', '-') +
-          '/sub-app/otp'
+          //'/' +
+          //application.mflow__CustomerInterests__r[0].InterestProduct__r.Category__c.toLowerCase().replace(' ', '-') +
+
+          '/other/resume/otp'
         );
 
         interestedProductList.add(interestedProductParams);
@@ -606,9 +607,9 @@ global virtual with sharing class SubmitApplicationService extends AbstractServi
           interestedProductParams.put('cvmf', SecurityUtils.encryptUrl(JSON.serialize(params, true)));
           interestedProductParams.put(
             'urlSuffix',
-            '/' +
-            customerInterest.InterestProduct__r.Category__c.toLowerCase().replace(' ', '-') +
-            '/sub-app/otp'
+            //'/' +
+            //customerInterest.InterestProduct__r.Category__c.toLowerCase().replace(' ', '-') +
+            '/other/resume/otp'
           );
 
           interestedProductList.add(interestedProductParams);

@@ -186,7 +186,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
         new Map<String, String>{
           'aplType' => ApexRequest.getApplicantType(),
           'flw' => ApplicationConstant.FLOW_TYPE_PAYMENT,
-          'urlSuffix' => '/savings/main-app/funding',
+          'urlSuffix' => '/other/funding/funding',
           'aplId' => currentApplicant.Id,
           'ch' => 'Virtual',
           'pageName' => '/CustomerAction',

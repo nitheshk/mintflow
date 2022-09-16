@@ -134,11 +134,11 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     Map<String, String> params = new Map<String, String>();
     if (applicant.ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
       params.put('flw', 'ApplicationFlow');
-      params.put('urlSuffix', '/savings/main-app/otp');
+      params.put('urlSuffix', '/other/resume/otp');
       params.put('aplType', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
     } else {
       params.put('flw', 'JointFlow');
-      params.put('urlSuffix', '/savings/joint-app/otp');
+      params.put('urlSuffix', '/other/resume/otp');
       params.put('aplType', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
     }
     params.put('aplId', applicant.Id);
@@ -157,11 +157,11 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   global virtual void savedApplication(Applicant__c applicant) {
     Map<String, String> params = new Map<String, String>();
     if (ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_APPLICATION) {
-      params.put('urlSuffix', '/savings/main-app/otp');
+      params.put('urlSuffix', '/other/resume/otp');
     } else if (ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_FUNDING) {
       params.put('urlSuffix', '/savings/funding/welcome');
     } else {
-      params.put('urlSuffix', '/savings/joint-app/otp');
+      params.put('urlSuffix', '/other/resume/otp');
     }
 
     params.put('flw', ApexRequest.getFlowType());
@@ -192,7 +192,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
             new Map<String, String>{
               'aplType' => 'Primary',
               'flw' => 'ApplicationFlow',
-              'urlSuffix' => '/savings/main-app/otp',
+              'urlSuffix' => '/other/resume/otp',
               'aplId' => applicant.Id,
               'ch' => 'Virtual'
             }

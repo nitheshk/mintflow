@@ -57,7 +57,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
         cipher.aplId = ApexRequest.getApplicantId();
         cipher.edt = Datetime.now().addMinutes(10);
         cipher.ch = application.CreatedChannel__c;
-        String urlSuffix = '/savings/main-app/otp';
+        String urlSuffix = '/other/resume/otp';
         String link =
           SiteSetting__c.getInstance().OnlineSiteUrl__c +
           '/OpenAccount' +

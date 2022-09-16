@@ -78,7 +78,7 @@ Map<String, String> params = new Map<String, String>{
 Map<String, String> params = new Map<String, String>{
   'aplType' => 'Primary',
   'flw' => 'ApplicationFlow',
-  'urlSuffix' => '/savings/main-app/otp',
+  'urlSuffix' => '/other/resume/otp',
   'aplId' => 'a0bN000000EZR2ZIAX',
   'ch' => 'Virtual'
 };
