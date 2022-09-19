@@ -158,8 +158,6 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
     Map<String, String> params = new Map<String, String>();
     if (ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_APPLICATION) {
       params.put('urlSuffix', '/other/resume/otp');
-    } else if (ApexRequest.getFlowType() == ApplicationConstant.FLOW_TYPE_FUNDING) {
-      params.put('urlSuffix', '/savings/funding/welcome');
     } else {
       params.put('urlSuffix', '/other/resume/otp');
     }
@@ -203,7 +201,7 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
             new Map<String, String>{
               'aplType' => 'Joint',
               'flw' => 'JointFlow',
-              'urlSuffix' => '/savings/joint-app/welcome',
+              'urlSuffix' => '/other/resume/otp',
               'aplId' => applicant.Id,
               'ch' => 'Virtual'
             }

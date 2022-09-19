@@ -176,7 +176,7 @@ global virtual with sharing class IdentityService extends AbstractService {
         new Map<String, String>{
           'aplType' => ApexRequest.getApplicantType(),
           'flw' => ApplicationConstant.FLOW_TYPE_IDENTITY_UPLOAD,
-          'urlSuffix' => '/savings/upload/document-upload',
+          'urlSuffix' => 'other/upload/document-upload',
           'aplId' => currentApplicant.Id,
           'ch' => 'Virtual',
           'pageName' => '/CustomerAction',
