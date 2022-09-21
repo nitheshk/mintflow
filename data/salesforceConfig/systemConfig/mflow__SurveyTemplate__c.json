@@ -247,7 +247,7 @@
             "mflow__LongDescription__c": "Other",
             "mflow__OptionType__c": "TextField",
             "mflow__Options__c": "[]",
-            "mflow__Order__c": 401,
+            "mflow__Order__c": 402,
             "mflow__ParentQuestionCode__c": "General20",
             "mflow__QuestionCode__c": "General22",
             "mflow__QuestionNumber__c": 22,
@@ -385,7 +385,7 @@
       "mflow__ApplicantType__c": "Primary;Joint",
       "mflow__Channel__c": "Virtual",
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
-      "mflow__FinancilProductCategory__c": "Mortgage;Consumer Loan",
+      "mflow__FinancilProductCategory__c": "Mortgage;Vehicle Loan;Consumer Loan",
       "mflow__IsActive__c": true,
       "mflow__Order__c": 5,
       "mflow__SurveyQuestions__r": {
