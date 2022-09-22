@@ -82,6 +82,21 @@
                 <default>false</default>
                 <label>Other</label>
             </value>
+            <value>
+                <fullName>Dealer Purchase</fullName>
+                <default>false</default>
+                <label>Dealer Purchase</label>
+            </value>
+            <value>
+                <fullName>Lease Buyout</fullName>
+                <default>false</default>
+                <label>Lease Buyout</label>
+            </value>
+            <value>
+                <fullName>Private Party</fullName>
+                <default>false</default>
+                <label>Private Party</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
