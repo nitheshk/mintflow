@@ -445,7 +445,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
       if (country.Type__c != 'Country') {
         continue;
       }
-      countryNamesList.add(new Map<String, String>{ 'name' => country.Name, 'value' => country.Label__c });
+      countryNamesList.add(new Map<String, String>{ 'name' => country.Name, 'value' => country.code__c });
     }
     return countryNamesList;
   }

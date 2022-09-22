@@ -168,3 +168,7 @@ request.token = SecurityUtils.generateTokenForTesting(
 );
 ApexResponse res = ApplicationController.saveState(request);
 system.debug('Full Json : ' + res.data);
+
+ApexRequest request = new ApexRequest();
+ApexResponse res = ApplicationController.fetchCountryList(request);
+system.debug('Full Json : ' + res);
