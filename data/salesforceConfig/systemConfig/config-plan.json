@@ -56,7 +56,7 @@
   {
     "sobject": "mflow__EligibleCounty__c",
     "saveRefs": false,
-    "resolveRefs": true,
+    "resolveRefs": false,
     "files": [
       "mflow__EligibleCounty__c_0.json",
       "mflow__EligibleCounty__c_1.json",
@@ -65,5 +65,11 @@
       "mflow__EligibleCounty__c_4.json",
       "mflow__EligibleCounty__c_5.json"
     ]
+  },
+  {
+    "sobject": "mflow__CountryAndStateNames__c",
+    "saveRefs": false,
+    "resolveRefs": false,
+    "files": ["mflow__CountryAndStateNames__c_0.json", "mflow__CountryAndStateNames__c_1.json"]
   }
 ]

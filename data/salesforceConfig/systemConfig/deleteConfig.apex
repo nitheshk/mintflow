@@ -10,3 +10,4 @@ delete [SELECT id FROM mflow__ConsentLineItem__c LIMIT 1000];
 delete [SELECT id FROM mflow__ConsentTemplate__c LIMIT 1000];
 delete [SELECT id FROM mflow__EligibleCounty__c LIMIT 1000];
 delete [SELECT id FROM mflow__LeadConfiguration__c LIMIT 1000];
+delete [SELECT id FROM mflow__CountryAndStateNames__c LIMIT 1000];
