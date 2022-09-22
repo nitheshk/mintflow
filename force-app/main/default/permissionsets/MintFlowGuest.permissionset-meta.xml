@@ -112,6 +112,10 @@
         <enabled>true</enabled>
         <name>SiteSetting__c</name>
     </customSettingAccesses>
+    <customSettingAccesses>
+        <enabled>true</enabled>
+        <name>CountryAndStateNames__c</name>
+    </customSettingAccesses>
     <description>MintFlow Site Guest profile</description>
     <fieldPermissions>
         <editable>true</editable>

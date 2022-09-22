@@ -106,6 +106,10 @@
     </customSettingAccesses>
     <customSettingAccesses>
         <enabled>true</enabled>
+        <name>CountryAndStateNames__c</name>
+    </customSettingAccesses>
+    <customSettingAccesses>
+        <enabled>true</enabled>
         <name>SystemSetting__c</name>
     </customSettingAccesses>
     <description>MintFlow System Admin profile</description>
