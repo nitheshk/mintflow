@@ -432,4 +432,21 @@ global virtual with sharing class ApplicationService extends AbstractService {
     log?.fine('Exit StartReferralApplication');
     return vmf;
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-22-2022
+   * @return virtual
+   **/
+  global virtual Object fetchCountryList() {
+    List<Object> countryNamesList = new List<Object>();
+    Map<String, CountryAndStateNames__c> countryNames = CountryAndStateNames__c.getAll();
+    for (CountryAndStateNames__c country : countryNames.Values()) {
+      if (country.Type__c != 'Country') {
+        continue;
+      }
+      countryNamesList.add(new Map<String, String>{ 'name' => country.Name, 'value' => country.Label__c });
+    }
+    return countryNamesList;
+  }
 }

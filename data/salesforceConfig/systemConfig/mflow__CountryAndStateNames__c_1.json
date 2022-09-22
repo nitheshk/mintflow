@@ -5,7 +5,6 @@
       "Name": "French Southern Territories",
       "mflow__Code__c": "TF",
       "mflow__Label__c": "French Southern Territories",
-      "mflow__Name__c": "French Southern Territories",
       "mflow__Type__c": "Country"
     },
     {
@@ -13,7 +12,6 @@
       "Name": "Gabon",
       "mflow__Code__c": "GA",
       "mflow__Label__c": "Gabon",
-      "mflow__Name__c": "Gabon",
       "mflow__Type__c": "Country"
     },
     {
@@ -21,7 +19,6 @@
       "Name": "Lithuania",
       "mflow__Code__c": "LT",
       "mflow__Label__c": "Lithuania",
-      "mflow__Name__c": "Lithuania",
       "mflow__Type__c": "Country"
     },
     {
@@ -29,7 +26,6 @@
       "Name": "Bangladesh",
       "mflow__Code__c": "BD",
       "mflow__Label__c": "Bangladesh",
-      "mflow__Name__c": "Bangladesh",
       "mflow__Type__c": "Country"
     },
     {
@@ -37,7 +33,6 @@
       "Name": "Gambia",
       "mflow__Code__c": "GM",
       "mflow__Label__c": "Gambia",
-      "mflow__Name__c": "Gambia",
       "mflow__Type__c": "Country"
     },
     {
@@ -45,7 +40,6 @@
       "Name": "Gibraltar",
       "mflow__Code__c": "GI",
       "mflow__Label__c": "Gibraltar",
-      "mflow__Name__c": "Gibraltar",
       "mflow__Type__c": "Country"
     },
     {
@@ -53,7 +47,6 @@
       "Name": "Greece",
       "mflow__Code__c": "GR",
       "mflow__Label__c": "Greece",
-      "mflow__Name__c": "Greece",
       "mflow__Type__c": "Country"
     },
     {
@@ -61,7 +54,6 @@
       "Name": "Georgia",
       "mflow__Code__c": "GE",
       "mflow__Label__c": "Georgia",
-      "mflow__Name__c": "Georgia",
       "mflow__Type__c": "Country"
     },
     {
@@ -69,7 +61,6 @@
       "Name": "Greenland",
       "mflow__Code__c": "GL",
       "mflow__Label__c": "Greenland",
-      "mflow__Name__c": "Greenland",
       "mflow__Type__c": "Country"
     },
     {
@@ -77,7 +68,6 @@
       "Name": "Germany",
       "mflow__Code__c": "DE",
       "mflow__Label__c": "Germany",
-      "mflow__Name__c": "Germany",
       "mflow__Type__c": "Country"
     },
     {
@@ -85,7 +75,6 @@
       "Name": "Thailand",
       "mflow__Code__c": "TH",
       "mflow__Label__c": "Thailand",
-      "mflow__Name__c": "Thailand",
       "mflow__Type__c": "Country"
     },
     {
@@ -93,7 +82,6 @@
       "Name": "Ghana",
       "mflow__Code__c": "GH",
       "mflow__Label__c": "Ghana",
-      "mflow__Name__c": "Ghana",
       "mflow__Type__c": "Country"
     },
     {
@@ -101,7 +89,6 @@
       "Name": "Togo",
       "mflow__Code__c": "TG",
       "mflow__Label__c": "Togo",
-      "mflow__Name__c": "Togo",
       "mflow__Type__c": "Country"
     },
     {
@@ -109,7 +96,6 @@
       "Name": "Tokelau",
       "mflow__Code__c": "TK",
       "mflow__Label__c": "Tokelau",
-      "mflow__Name__c": "Tokelau",
       "mflow__Type__c": "Country"
     },
     {
@@ -117,7 +103,6 @@
       "Name": "Democratic Republic of the Congo",
       "mflow__Code__c": "CD",
       "mflow__Label__c": "Democratic Republic of the Congo",
-      "mflow__Name__c": "Democratic Republic of the Congo",
       "mflow__Type__c": "Country"
     },
     {
@@ -125,7 +110,6 @@
       "Name": "Madagascar",
       "mflow__Code__c": "MG",
       "mflow__Label__c": "Madagascar",
-      "mflow__Name__c": "Madagascar",
       "mflow__Type__c": "Country"
     },
     {
@@ -133,7 +117,6 @@
       "Name": "Luxembourg",
       "mflow__Code__c": "LU",
       "mflow__Label__c": "Luxembourg",
-      "mflow__Name__c": "Luxembourg",
       "mflow__Type__c": "Country"
     },
     {
@@ -141,7 +124,6 @@
       "Name": "Malawi",
       "mflow__Code__c": "MW",
       "mflow__Label__c": "Malawi",
-      "mflow__Name__c": "Malawi",
       "mflow__Type__c": "Country"
     },
     {
@@ -149,7 +131,6 @@
       "Name": "Macao",
       "mflow__Code__c": "MO",
       "mflow__Label__c": "Macao",
-      "mflow__Name__c": "Macao",
       "mflow__Type__c": "Country"
     },
     {
@@ -157,7 +138,6 @@
       "Name": "Malaysia",
       "mflow__Code__c": "MY",
       "mflow__Label__c": "Malaysia",
-      "mflow__Name__c": "Malaysia",
       "mflow__Type__c": "Country"
     },
     {
@@ -165,7 +145,6 @@
       "Name": "Macedonia",
       "mflow__Code__c": "MK",
       "mflow__Label__c": "Macedonia",
-      "mflow__Name__c": "Macedonia",
       "mflow__Type__c": "Country"
     },
     {
@@ -173,7 +152,6 @@
       "Name": "Maldives",
       "mflow__Code__c": "MV",
       "mflow__Label__c": "Maldives",
-      "mflow__Name__c": "Maldives",
       "mflow__Type__c": "Country"
     },
     {
@@ -181,7 +159,6 @@
       "Name": "Mali",
       "mflow__Code__c": "ML",
       "mflow__Label__c": "Mali",
-      "mflow__Name__c": "Mali",
       "mflow__Type__c": "Country"
     },
     {
@@ -189,7 +166,6 @@
       "Name": "Turkmenistan",
       "mflow__Code__c": "TM",
       "mflow__Label__c": "Turkmenistan",
-      "mflow__Name__c": "Turkmenistan",
       "mflow__Type__c": "Country"
     },
     {
@@ -197,7 +173,6 @@
       "Name": "Tonga",
       "mflow__Code__c": "TO",
       "mflow__Label__c": "Tonga",
-      "mflow__Name__c": "Tonga",
       "mflow__Type__c": "Country"
     },
     {
@@ -205,7 +180,6 @@
       "Name": "Turks and Caicos Islands",
       "mflow__Code__c": "TC",
       "mflow__Label__c": "Turks and Caicos Islands",
-      "mflow__Name__c": "Turks and Caicos Islands",
       "mflow__Type__c": "Country"
     },
     {
@@ -213,7 +187,6 @@
       "Name": "Trinidad and Tobago",
       "mflow__Code__c": "TT",
       "mflow__Label__c": "Trinidad and Tobago",
-      "mflow__Name__c": "Trinidad and Tobago",
       "mflow__Type__c": "Country"
     },
     {
@@ -221,7 +194,6 @@
       "Name": "Tuvalu",
       "mflow__Code__c": "TV",
       "mflow__Label__c": "Tuvalu",
-      "mflow__Name__c": "Tuvalu",
       "mflow__Type__c": "Country"
     },
     {
@@ -229,7 +201,6 @@
       "Name": "Tunisia",
       "mflow__Code__c": "TN",
       "mflow__Label__c": "Tunisia",
-      "mflow__Name__c": "Tunisia",
       "mflow__Type__c": "Country"
     },
     {
@@ -237,7 +208,6 @@
       "Name": "Grenada",
       "mflow__Code__c": "GD",
       "mflow__Label__c": "Grenada",
-      "mflow__Name__c": "Grenada",
       "mflow__Type__c": "Country"
     },
     {
@@ -245,7 +215,6 @@
       "Name": "Turkey",
       "mflow__Code__c": "TR",
       "mflow__Label__c": "Turkey",
-      "mflow__Name__c": "Turkey",
       "mflow__Type__c": "Country"
     },
     {
@@ -253,7 +222,6 @@
       "Name": "Guadeloupe",
       "mflow__Code__c": "GP",
       "mflow__Label__c": "Guadeloupe",
-      "mflow__Name__c": "Guadeloupe",
       "mflow__Type__c": "Country"
     },
     {
@@ -261,7 +229,6 @@
       "Name": "Guam",
       "mflow__Code__c": "GU",
       "mflow__Label__c": "Guam",
-      "mflow__Name__c": "Guam",
       "mflow__Type__c": "Country"
     },
     {
@@ -269,7 +236,6 @@
       "Name": "Malta",
       "mflow__Code__c": "MT",
       "mflow__Label__c": "Malta",
-      "mflow__Name__c": "Malta",
       "mflow__Type__c": "Country"
     },
     {
@@ -277,7 +243,6 @@
       "Name": "Marshall Islands",
       "mflow__Code__c": "MH",
       "mflow__Label__c": "Marshall Islands",
-      "mflow__Name__c": "Marshall Islands",
       "mflow__Type__c": "Country"
     },
     {
@@ -285,7 +250,6 @@
       "Name": "Denmark",
       "mflow__Code__c": "DK",
       "mflow__Label__c": "Denmark",
-      "mflow__Name__c": "Denmark",
       "mflow__Type__c": "Country"
     },
     {
@@ -293,7 +257,6 @@
       "Name": "Djibouti",
       "mflow__Code__c": "DJ",
       "mflow__Label__c": "Djibouti",
-      "mflow__Name__c": "Djibouti",
       "mflow__Type__c": "Country"
     },
     {
@@ -301,7 +264,6 @@
       "Name": "Guatemala",
       "mflow__Code__c": "GT",
       "mflow__Label__c": "Guatemala",
-      "mflow__Name__c": "Guatemala",
       "mflow__Type__c": "Country"
     },
     {
@@ -309,7 +271,6 @@
       "Name": "Guinea",
       "mflow__Code__c": "GN",
       "mflow__Label__c": "Guinea",
-      "mflow__Name__c": "Guinea",
       "mflow__Type__c": "Country"
     },
     {
@@ -317,7 +278,6 @@
       "Name": "Guinea-Bissau",
       "mflow__Code__c": "GW",
       "mflow__Label__c": "Guinea-Bissau",
-      "mflow__Name__c": "Guinea-Bissau",
       "mflow__Type__c": "Country"
     },
     {
@@ -325,7 +285,6 @@
       "Name": "Guernsey",
       "mflow__Code__c": "GG",
       "mflow__Label__c": "Guernsey",
-      "mflow__Name__c": "Guernsey",
       "mflow__Type__c": "Country"
     },
     {
@@ -333,7 +292,6 @@
       "Name": "Guyana",
       "mflow__Code__c": "GY",
       "mflow__Label__c": "Guyana",
-      "mflow__Name__c": "Guyana",
       "mflow__Type__c": "Country"
     },
     {
@@ -341,7 +299,6 @@
       "Name": "Haiti",
       "mflow__Code__c": "HT",
       "mflow__Label__c": "Haiti",
-      "mflow__Name__c": "Haiti",
       "mflow__Type__c": "Country"
     },
     {
@@ -349,7 +306,6 @@
       "Name": "Heard Island and McDonald Islands",
       "mflow__Code__c": "HM",
       "mflow__Label__c": "Heard Island and McDonald Islands",
-      "mflow__Name__c": "Heard Island and McDonald Islands",
       "mflow__Type__c": "Country"
     },
     {
@@ -357,7 +313,6 @@
       "Name": "U.S. Virgin Islands",
       "mflow__Code__c": "VI",
       "mflow__Label__c": "U.S. Virgin Islands",
-      "mflow__Name__c": "U.S. Virgin Islands",
       "mflow__Type__c": "Country"
     },
     {
@@ -365,7 +320,6 @@
       "Name": "Uganda",
       "mflow__Code__c": "UG",
       "mflow__Label__c": "Uganda",
-      "mflow__Name__c": "Uganda",
       "mflow__Type__c": "Country"
     },
     {
@@ -373,7 +327,6 @@
       "Name": "Ukraine",
       "mflow__Code__c": "UA",
       "mflow__Label__c": "Ukraine",
-      "mflow__Name__c": "Ukraine",
       "mflow__Type__c": "Country"
     },
     {
@@ -381,7 +334,6 @@
       "Name": "United Arab Emirates",
       "mflow__Code__c": "AE",
       "mflow__Label__c": "United Arab Emirates",
-      "mflow__Name__c": "United Arab Emirates",
       "mflow__Type__c": "Country"
     },
     {
@@ -389,7 +341,6 @@
       "Name": "United Kingdom",
       "mflow__Code__c": "GB",
       "mflow__Label__c": "United Kingdom",
-      "mflow__Name__c": "United Kingdom",
       "mflow__Type__c": "Country"
     },
     {
@@ -397,7 +348,6 @@
       "Name": "United States",
       "mflow__Code__c": "US",
       "mflow__Label__c": "United States",
-      "mflow__Name__c": "United States",
       "mflow__Type__c": "Country"
     }
   ]

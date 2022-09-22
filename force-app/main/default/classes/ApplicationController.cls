@@ -295,4 +295,26 @@ global with sharing class ApplicationController extends AbstractController {
       Logger.persist();
     }
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-22-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse fetchCountryList(ApexRequest request) {
+    try {
+      //validateRequest(request);
+      log?.debug('Inside fetchCountryList');
+      return ApexResponse.ok(ApplicationService.getInstance().fetchCountryList());
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.debug('Completed fetchCountryList');
+      Logger.persist();
+    }
+  }
 }
