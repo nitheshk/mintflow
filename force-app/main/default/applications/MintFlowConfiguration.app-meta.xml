@@ -29,6 +29,7 @@
     <tabs>Scheduler</tabs>
     <tabs>SchedulerEntry__c</tabs>
     <tabs>EligibleCounty__c</tabs>
+    <tabs>VehicleSpecification__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
@@ -71,6 +72,9 @@
         </mappings>
         <mappings>
             <tab>SurveyTemplate__c</tab>
+        </mappings>
+        <mappings>
+            <tab>VehicleSpecification__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>

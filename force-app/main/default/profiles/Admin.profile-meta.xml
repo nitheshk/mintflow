@@ -155,6 +155,10 @@
         <tab>FinancialAccountService__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>VehicleSpecification__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
 
     <!--applicationVisibilities-->
     <!-- <applicationVisibilities>

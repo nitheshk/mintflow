@@ -29,6 +29,7 @@
     <tabs>mflow__SchedulerEntry__c</tabs>
     <tabs>mflow__Flow__c</tabs>
     <tabs>mflow__EligibleCounty__c</tabs>
+    <tabs>mflow__VehicleSpecification__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
@@ -71,6 +72,9 @@
         </mappings>
         <mappings>
             <tab>mflow__SurveyTemplate__c</tab>
+        </mappings>
+        <mappings>
+            <tab>mflow__VehicleSpecification__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>
