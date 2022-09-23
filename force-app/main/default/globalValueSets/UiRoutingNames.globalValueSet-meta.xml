@@ -31,9 +31,9 @@
         <label>creditCard</label>
     </customValue>
     <customValue>
-        <fullName>homePurchase</fullName>
+        <fullName>purchase</fullName>
         <default>false</default>
-        <label>homePurchase</label>
+        <label>purchase</label>
     </customValue>
     <customValue>
         <fullName>refinance</fullName>

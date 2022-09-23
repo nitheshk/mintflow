@@ -4,6 +4,7 @@
     <columns>NAME</columns>
     <columns>Category__c</columns>
     <columns>SubCategory__c</columns>
+    <columns>UiRouting__c</columns>
     <columns>Type__c</columns>
     <columns>InternalCode__c</columns>
     <columns>ExternalCode__c</columns>
