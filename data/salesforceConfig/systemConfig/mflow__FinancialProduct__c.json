@@ -1445,7 +1445,7 @@
       "mflow__StartDate__c": "2022-08-11",
       "mflow__SubCategory__c": "Buy a Home",
       "mflow__Type__c": "Lending",
-      "mflow__UiRouting__c": "homePurchase",
+      "mflow__UiRouting__c": "purchase",
       "mflow__Weightage__c": 2.6,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,

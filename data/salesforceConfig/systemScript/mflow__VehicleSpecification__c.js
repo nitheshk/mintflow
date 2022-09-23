@@ -1,7 +1,7 @@
 const utils = require("../utils.js");
 let configPath = "data/salesforceConfig/systemConfig/";
 let scriptPath = "data/salesforceConfig/systemScript/";
-let objectName = "mflow__SystemSetting__c";
+let objectName = "mflow__VehicleSpecification__c";
 
 let scriptToRun = `sfdx force:apex:execute  -f ${scriptPath}${objectName}.apex  --json `;
 utils
@@ -12,8 +12,8 @@ utils
     // <==  update change
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
-      delete item.Name;
-      item.attributes.referenceId = "SystemSettingRef_" + index;
+      //delete item.Name;
+      item.attributes.referenceId = "VehicleSpecificationRef_" + index;
     });
     //   update change ==>
     utils.createFile(`${configPath}${objectName}.json`, JSON.stringify({ records: data })).catch((err) => {

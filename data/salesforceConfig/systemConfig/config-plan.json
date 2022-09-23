@@ -71,5 +71,11 @@
     "saveRefs": false,
     "resolveRefs": false,
     "files": ["mflow__CountryAndStateNames__c_0.json", "mflow__CountryAndStateNames__c_1.json"]
+  },
+  {
+    "sobject": "mflow__VehicleSpecification__c",
+    "saveRefs": false,
+    "resolveRefs": false,
+    "files": ["mflow__VehicleSpecification__c.json"]
   }
 ]

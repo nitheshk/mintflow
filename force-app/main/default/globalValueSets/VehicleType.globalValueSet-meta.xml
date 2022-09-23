@@ -46,6 +46,11 @@
         <label>Camper van</label>
     </customValue>
     <customValue>
+        <fullName>Car</fullName>
+        <default>false</default>
+        <label>Car</label>
+    </customValue>
+    <customValue>
         <fullName>Caravan</fullName>
         <default>false</default>
         <label>Caravan</label>
