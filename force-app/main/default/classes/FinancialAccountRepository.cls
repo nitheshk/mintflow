@@ -150,4 +150,55 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .toString()
     );
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-26-2022
+   * @param String searchType
+   * @param Integer year
+   * @param String make
+   * @param String model
+   * @return List<VehicleSpecification__c>
+   **/
+  public static Object readVehicleDetails(String searchType, Integer year, String make, String model, String vin) {
+    switch on searchType {
+      when 'Vin' {
+        return getRecords(
+          Query.newInstance(VehicleSpecification__c.SObjectType)
+            .addFields()
+            .whereEq('mflow__Vin__c', vin)
+            .addLimit(1)
+            .toString()
+        );
+      }
+      when 'Make' {
+        return getRecords(
+          Query.newInstance(VehicleSpecification__c.SObjectType).addFields().whereEq('mflow__Year__c', year).toString()
+        );
+      }
+      when 'Model' {
+        return getRecords(
+          Query.newInstance(VehicleSpecification__c.SObjectType)
+            .addFields()
+            .whereEq('mflow__Year__c', year)
+            .andCon()
+            .whereEq('mflow__MakeCode__c', make)
+            .toString()
+        );
+      }
+      when 'SubModel' {
+        return getRecords(
+          Query.newInstance(VehicleSpecification__c.SObjectType)
+            .addFields()
+            .whereEq('mflow__Year__c', year)
+            .andCon()
+            .whereEq('mflow__MakeCode__c', make)
+            .andCon()
+            .whereEq('mflow__ModelCode__c', model)
+            .toString()
+        );
+      }
+    }
+    return null;
+  }
 }
