@@ -160,7 +160,13 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
    * @param String model
    * @return List<VehicleSpecification__c>
    **/
-  public static Object readVehicleDetails(String searchType, Integer year, String make, String model, String vin) {
+  public static List<VehicleSpecification__c> readVehicleDetails(
+    String searchType,
+    Integer year,
+    String make,
+    String model,
+    String vin
+  ) {
     switch on searchType {
       when 'Vin' {
         return getRecords(

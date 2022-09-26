@@ -253,15 +253,6 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
         }
         return specList;
       }
-      when 'Year' {
-        return (List<AggregateResult>) FinancialAccountRepository.readVehicleDetails(
-          searchType,
-          year,
-          make,
-          model,
-          vin
-        );
-      }
       when 'Make' {
         Set<String> makeCode = new Set<String>();
         for (
