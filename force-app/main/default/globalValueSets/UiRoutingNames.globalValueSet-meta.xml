@@ -25,6 +25,11 @@
         <default>false</default>
         <label>personalLoan</label>
     </customValue>
+     <customValue>
+        <fullName>vehicleLoan</fullName>
+        <default>false</default>
+        <label>vehicleLoan</label>
+    </customValue>
     <customValue>
         <fullName>creditCard</fullName>
         <default>false</default>
