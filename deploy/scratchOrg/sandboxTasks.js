@@ -73,6 +73,7 @@ gulp.task("buildStaticResource_OnlinePortal", (finish) => {
 
 //setup authorizeSandbox
 gulp.task("authorizeSandbox", function (finish) {
+  sandboxConfig = config.sandboxes[config.sandboxes.sandboxToDeploy];
   let scriptToRun =
     ` sfdx force:auth:jwt:grant --clientid ${sandboxConfig.sandboxClientId}` +
     ` --username ${sandboxConfig.sandboxUserName} --instanceurl ${sandboxConfig.sandboxInstanceUrl}` +
@@ -87,6 +88,7 @@ gulp.task("authorizeSandbox", function (finish) {
 
 //defaultToSandbox
 gulp.task("defaultToSandbox", function (finish) {
+  sandboxConfig = config.sandboxes[config.sandboxes.sandboxToDeploy];
   let scriptToRun = ` sfdx force:config:set defaultusername=${sandboxConfig.sandboxOrgName}`;
   console.log("Script To Run - " + scriptToRun);
   utils.runCommand(scriptToRun).then((result) => {
@@ -97,6 +99,7 @@ gulp.task("defaultToSandbox", function (finish) {
 
 //installPackage
 gulp.task("installPackage", function (finish) {
+  sandboxConfig = config.sandboxes[config.sandboxes.sandboxToDeploy];
   let scriptToRun =
     ` sfdx force:package:install --wait 10 --publishwait 10 ` +
     ` --package ${config.dependentPackage.MFlowPackage}  ` + //--installationkey Utilities@V1.0
@@ -111,6 +114,7 @@ gulp.task("installPackage", function (finish) {
 
 //pushToSandbox
 gulp.task("pushToSandbox", function (finish) {
+  sandboxConfig = config.sandboxes[config.sandboxes.sandboxToDeploy];
   let scriptToRun = ` sfdx force:source:deploy -p ${sandboxConfig.rootFolder}  -w 10000 --targetusername  ${sandboxConfig.sandboxOrgName} `;
   console.log("Script To Run - " + scriptToRun);
   utils
@@ -126,6 +130,7 @@ gulp.task("pushToSandbox", function (finish) {
 
 //Update Permission Set
 gulp.task("updatePermissionSet", function (finish) {
+  sandboxConfig = config.sandboxes[config.sandboxes.sandboxToDeploy];
   let scriptToRun = `sfdx force:apex:execute  -f ${config.permission.permissionSet.permissionSet1}`;
   console.log("Script To Run - " + scriptToRun);
 
@@ -143,6 +148,7 @@ gulp.task("updatePermissionSet", function (finish) {
 
 //publishCommunities
 gulp.task("publishCommunities", function (finish) {
+  sandboxConfig = config.sandboxes[config.sandboxes.sandboxToDeploy];
   let communityLinks = [];
 
   const publish = (index) =>
@@ -226,6 +232,7 @@ gulp.task("publishCommunities", function (finish) {
 
 //System config Import
 gulp.task("systemConfigImport", function (finish) {
+  sandboxConfig = config.sandboxes[config.sandboxes.sandboxToDeploy];
   let scriptToRun = `sfdx force:apex:execute  -f ${config.dataImport.systemConfig.deleteConfigFile}`;
   console.log("Script To Run - " + scriptToRun);
 
