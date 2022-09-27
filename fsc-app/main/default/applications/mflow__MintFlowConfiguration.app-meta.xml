@@ -24,10 +24,10 @@
     <tabs>mflow__ProductService__c</tabs>
     <tabs>mflow__ProductFeature__c</tabs>
     <tabs>mflow__ConsentTemplate__c</tabs>
+    <tabs>mflow__LeadConfiguration__c</tabs>
     <tabs>mflow__SurveyTemplate__c</tabs>
     <tabs>mflow__Scheduler</tabs>
     <tabs>mflow__SchedulerEntry__c</tabs>
-    <tabs>mflow__Flow__c</tabs>
     <tabs>mflow__EligibleCounty__c</tabs>
     <tabs>mflow__VehicleSpecification__c</tabs>
     <tabs>standard-report</tabs>
@@ -53,7 +53,7 @@
             <tab>mflow__FinancialProduct__c</tab>
         </mappings>
         <mappings>
-            <tab>mflow__Flow__c</tab>
+            <tab>mflow__LeadConfiguration__c</tab>
         </mappings>
         <mappings>
             <tab>mflow__ProductFeature__c</tab>
