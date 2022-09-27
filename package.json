@@ -35,7 +35,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git pull && lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {

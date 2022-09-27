@@ -99,7 +99,7 @@ gulp.task("defaultToSandbox", function (finish) {
 gulp.task("installPackage", function (finish) {
   let scriptToRun =
     ` sfdx force:package:install --wait 10 --publishwait 10 ` +
-    ` --package ${config.dependentPackage.MFlowBetaV2}  ` + //--installationkey Utilities@V1.0
+    ` --package ${config.dependentPackage.MFlowPackage}  ` + //--installationkey Utilities@V1.0
     ` --noprompt --targetusername ${sandboxConfig.sandboxOrgName} --securitytype AllUsers --upgradetype Mixed `;
 
   console.log("Script To Run - " + scriptToRun);
