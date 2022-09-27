@@ -13,7 +13,7 @@ utils
     data.forEach(function (item, index) {
       utils.replaceUnwantedFields(item);
       delete item.Name;
-      item.attributes.referenceId = "ApplicationConfigurationRef_" + index;
+      item.attributes.referenceId = "SystemSettingRef_" + index;
     });
     //   update change ==>
     utils.createFile(`${configPath}${objectName}.json`, JSON.stringify({ records: data })).catch((err) => {

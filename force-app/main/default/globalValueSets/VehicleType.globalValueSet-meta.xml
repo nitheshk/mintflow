@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Aerial tramway</fullName>
+        <default>false</default>
+        <label>Aerial tramway</label>
+    </customValue>
+    <customValue>
+        <fullName>Airplane/Aircraft</fullName>
+        <default>false</default>
+        <label>Airplane/Aircraft</label>
+    </customValue>
+    <customValue>
+        <fullName>Ambulance</fullName>
+        <default>false</default>
+        <label>Ambulance</label>
+    </customValue>
+    <customValue>
+        <fullName>Baby carriage (US)/ Pram (UK)</fullName>
+        <default>false</default>
+        <label>Baby carriage (US)/ Pram (UK)</label>
+    </customValue>
+    <customValue>
+        <fullName>Bicycle</fullName>
+        <default>false</default>
+        <label>Bicycle</label>
+    </customValue>
+    <customValue>
+        <fullName>Boat</fullName>
+        <default>false</default>
+        <label>Boat</label>
+    </customValue>
+    <customValue>
+        <fullName>Bulldozer</fullName>
+        <default>false</default>
+        <label>Bulldozer</label>
+    </customValue>
+    <customValue>
+        <fullName>Bus</fullName>
+        <default>false</default>
+        <label>Bus</label>
+    </customValue>
+    <customValue>
+        <fullName>Camper van</fullName>
+        <default>false</default>
+        <label>Camper van</label>
+    </customValue>
+    <customValue>
+        <fullName>Car</fullName>
+        <default>false</default>
+        <label>Car</label>
+    </customValue>
+    <customValue>
+        <fullName>Caravan</fullName>
+        <default>false</default>
+        <label>Caravan</label>
+    </customValue>
+    <customValue>
+        <fullName>Carriage</fullName>
+        <default>false</default>
+        <label>Carriage</label>
+    </customValue>
+    <customValue>
+        <fullName>Cement mixer</fullName>
+        <default>false</default>
+        <label>Cement mixer</label>
+    </customValue>
+    <customValue>
+        <fullName>Crane</fullName>
+        <default>false</default>
+        <label>Crane</label>
+    </customValue>
+    <customValue>
+        <fullName>Delivery van</fullName>
+        <default>false</default>
+        <label>Delivery van</label>
+    </customValue>
+    <customValue>
+        <fullName>Dump truck</fullName>
+        <default>false</default>
+        <label>Dump truck</label>
+    </customValue>
+    <customValue>
+        <fullName>Fire engine</fullName>
+        <default>false</default>
+        <label>Fire engine</label>
+    </customValue>
+    <customValue>
+        <fullName>Forklift</fullName>
+        <default>false</default>
+        <label>Forklift</label>
+    </customValue>
+    <customValue>
+        <fullName>Helicopter</fullName>
+        <default>false</default>
+        <label>Helicopter</label>
+    </customValue>
+    <customValue>
+        <fullName>Hot-air balloon</fullName>
+        <default>false</default>
+        <label>Hot-air balloon</label>
+    </customValue>
+    <customValue>
+        <fullName>Moped</fullName>
+        <default>false</default>
+        <label>Moped</label>
+    </customValue>
+    <customValue>
+        <fullName>Motorcycle</fullName>
+        <default>false</default>
+        <label>Motorcycle</label>
+    </customValue>
+    <customValue>
+        <fullName>Mountain bike</fullName>
+        <default>false</default>
+        <label>Mountain bike</label>
+    </customValue>
+    <customValue>
+        <fullName>Police car</fullName>
+        <default>false</default>
+        <label>Police car</label>
+    </customValue>
+    <customValue>
+        <fullName>Rowboat</fullName>
+        <default>false</default>
+        <label>Rowboat</label>
+    </customValue>
+    <customValue>
+        <fullName>Scooter</fullName>
+        <default>false</default>
+        <label>Scooter</label>
+    </customValue>
+    <customValue>
+        <fullName>Skateboard</fullName>
+        <default>false</default>
+        <label>Skateboard</label>
+    </customValue>
+    <customValue>
+        <fullName>Subway</fullName>
+        <default>false</default>
+        <label>Subway</label>
+    </customValue>
+    <customValue>
+        <fullName>Taxi/cab</fullName>
+        <default>false</default>
+        <label>Taxi/cab</label>
+    </customValue>
+    <customValue>
+        <fullName>Tractor</fullName>
+        <default>false</default>
+        <label>Tractor</label>
+    </customValue>
+    <customValue>
+        <fullName>Train</fullName>
+        <default>false</default>
+        <label>Train</label>
+    </customValue>
+    <customValue>
+        <fullName>Tram (UK)/ Streetcar (US)</fullName>
+        <default>false</default>
+        <label>Tram (UK)/ Streetcar (US)</label>
+    </customValue>
+    <customValue>
+        <fullName>Truck</fullName>
+        <default>false</default>
+        <label>Truck</label>
+    </customValue>
+    <customValue>
+        <fullName>Van</fullName>
+        <default>false</default>
+        <label>Van</label>
+    </customValue>
+    <masterLabel>Vehicle Type</masterLabel>
+    <sorted>true</sorted>
+</GlobalValueSet>

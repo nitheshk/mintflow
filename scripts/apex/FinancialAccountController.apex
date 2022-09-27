@@ -65,3 +65,27 @@ system.debug('Full Json : ' + res.data);
 
 List<FinancialProduct__c> products = FinancialAccountRepository.readFinancialProductsByMultipleCodes('IC002,IC0012');
 system.debug('products : ' + products);
+
+// #5  vehicle search
+
+system.debug(
+  FinancialAccountService.getInstance()
+    .fetchVehicleDetails(new Map<String, Object>{ 'searchType' => 'Vin', 'vin' => '565516' })
+);
+
+system.debug(
+  FinancialAccountService.getInstance()
+    .fetchVehicleDetails(new Map<String, Object>{ 'searchType' => 'Make', 'year' => '2013' })
+);
+
+system.debug(
+  FinancialAccountService.getInstance()
+    .fetchVehicleDetails(new Map<String, Object>{ 'searchType' => 'Model', 'year' => '2013', 'make' => '77' })
+);
+
+system.debug(
+  FinancialAccountService.getInstance()
+    .fetchVehicleDetails(
+      new Map<String, Object>{ 'searchType' => 'SubModel', 'year' => '2013', 'make' => '77', 'model' => '254' }
+    )
+);

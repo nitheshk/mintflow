@@ -3,7 +3,7 @@
     <fullName>OOWAnswerPercent__c</fullName>
     <description>Number of answer to be given by the customer</description>
     <externalId>false</externalId>
-    <label>OOWNumberofAnswer</label>
+    <label>OOW Number Of Answer</label>
     <precision>3</precision>
     <required>false</required>
     <scale>0</scale>

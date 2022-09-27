@@ -21,60 +21,6 @@
                 <default>false</default>
                 <label>Liability</label>
             </value>
-            <value>
-                <fullName>Bank Accounts</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Bank Accounts</label>
-            </value>
-            <value>
-                <fullName>Credit Cards</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Credit Cards</label>
-            </value>
-            <value>
-                <fullName>Credits</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Credits</label>
-            </value>
-            <value>
-                <fullName>Expenses</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Expenses</label>
-            </value>
-            <value>
-                <fullName>Leases</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Leases</label>
-            </value>
-            <value>
-                <fullName>Other Accounts</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Other Accounts</label>
-            </value>
-            <value>
-                <fullName>Other Debts</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Other Debts</label>
-            </value>
-            <value>
-                <fullName>Other Liabilities</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Other Liabilities</label>
-            </value>
-            <value>
-                <fullName>Retirement</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Retirement</label>
-            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

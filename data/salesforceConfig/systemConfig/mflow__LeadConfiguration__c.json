@@ -69,7 +69,7 @@
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
       "mflow__Type__c": "State",
-      "mflow__Value__c": "EmploymentReview",
+      "mflow__Value__c": "Employment",
       "mflow__Weightage__c": 4
     },
     {
@@ -101,15 +101,6 @@
     },
     {
       "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_11" },
-      "Name": "LC-012",
-      "mflow__MaxValue__c": 0,
-      "mflow__MinValue__c": 0,
-      "mflow__Type__c": "State",
-      "mflow__Value__c": "EmploymentReview",
-      "mflow__Weightage__c": 6
-    },
-    {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_12" },
       "Name": "LC-013",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -118,7 +109,7 @@
       "mflow__Weightage__c": 8
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_13" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_12" },
       "Name": "LC-014",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -127,7 +118,7 @@
       "mflow__Weightage__c": 9
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_14" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_13" },
       "Name": "LC-015",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -136,7 +127,7 @@
       "mflow__Weightage__c": 8
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_15" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_14" },
       "Name": "LC-016",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -145,7 +136,7 @@
       "mflow__Weightage__c": 10
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_16" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_15" },
       "Name": "LC-017",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -154,7 +145,7 @@
       "mflow__Weightage__c": 10
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_17" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_16" },
       "Name": "LC-018",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -163,70 +154,65 @@
       "mflow__Weightage__c": 5
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_18" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_17" },
       "Name": "LC-019",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
       "mflow__Type__c": "KYC",
-      "mflow__Value__c": "True",
+      "mflow__Value__c": "Passed",
       "mflow__Weightage__c": 10
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_19" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_18" },
       "Name": "LC-020",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
       "mflow__Type__c": "KYC",
-      "mflow__Value__c": "False",
-      "mflow__Weightage__c": 5
+      "mflow__Value__c": "Failed",
+      "mflow__Weightage__c": 2
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_20" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_19" },
       "Name": "LC-021",
       "mflow__MaxValue__c": 1000,
       "mflow__MinValue__c": 901,
       "mflow__Type__c": "KYCLeadScore",
-      "mflow__Value__c": "False",
       "mflow__Weightage__c": 10
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_21" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_20" },
       "Name": "LC-022",
       "mflow__MaxValue__c": 900,
       "mflow__MinValue__c": 801,
       "mflow__Type__c": "KYCLeadScore",
-      "mflow__Value__c": "False",
       "mflow__Weightage__c": 8
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_22" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_21" },
       "Name": "LC-023",
       "mflow__MaxValue__c": 800,
       "mflow__MinValue__c": 501,
       "mflow__Type__c": "KYCLeadScore",
-      "mflow__Value__c": "False",
       "mflow__Weightage__c": 5
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_23" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_22" },
       "Name": "LC-024",
       "mflow__MaxValue__c": 500,
       "mflow__MinValue__c": 301,
       "mflow__Type__c": "KYCLeadScore",
-      "mflow__Value__c": "False",
       "mflow__Weightage__c": 3
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_24" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_23" },
       "Name": "LC-025",
       "mflow__MaxValue__c": 300,
       "mflow__MinValue__c": 0,
       "mflow__Type__c": "KYCLeadScore",
-      "mflow__Value__c": "False",
       "mflow__Weightage__c": 1
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_25" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_24" },
       "Name": "LC-026",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -235,7 +221,7 @@
       "mflow__Weightage__c": 5
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_26" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_25" },
       "Name": "LC-027",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -244,7 +230,7 @@
       "mflow__Weightage__c": 10
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_27" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_26" },
       "Name": "LC-028",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -253,7 +239,7 @@
       "mflow__Weightage__c": 10
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_28" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_27" },
       "Name": "LC-029",
       "mflow__MaxValue__c": 0,
       "mflow__MinValue__c": 0,
@@ -262,7 +248,7 @@
       "mflow__Weightage__c": 5
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_29" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_28" },
       "Name": "LC-030",
       "mflow__ProductCategory__c": "Consumer Loan",
       "mflow__Type__c": "State",
@@ -270,12 +256,21 @@
       "mflow__Weightage__c": 6
     },
     {
-      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_30" },
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_29" },
       "Name": "LC-031",
       "mflow__ProductCategory__c": "Consumer Loan",
       "mflow__Type__c": "State",
       "mflow__Value__c": "AssetAndLiability",
       "mflow__Weightage__c": 7
+    },
+    {
+      "attributes": { "type": "mflow__LeadConfiguration__c", "referenceId": "LeadConfigurationRef_30" },
+      "Name": "LC-020",
+      "mflow__MaxValue__c": 0,
+      "mflow__MinValue__c": 0,
+      "mflow__Type__c": "KYC",
+      "mflow__Value__c": "Review",
+      "mflow__Weightage__c": 5
     }
   ]
 }

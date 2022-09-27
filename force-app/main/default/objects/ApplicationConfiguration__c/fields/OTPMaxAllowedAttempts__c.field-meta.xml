@@ -3,7 +3,7 @@
     <fullName>OTPMaxAllowedAttempts__c</fullName>
     <description>Max attempts allowed for OTP verification</description>
     <externalId>false</externalId>
-    <label>OTPMaxAllwedAttempts</label>
+    <label>OTP Max Allwed Attempts</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Number</type>

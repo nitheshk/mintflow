@@ -1,101 +1,91 @@
 <!-- sldsValidatorIgnore -->
 <template>
   <template if:true={record}>
-    <!--  <lightning-tabset variant="scoped" active-tab-value="Applicant">
-      <lightning-tab label="Application Details" value="Application"
-        ><c-record-detail-view
-          record={record}
-          s-object-name="mflow__Application__c"
-          title-name="Application Details"
-          hide-null-values="true"
-        ></c-record-detail-view>
-      </lightning-tab> -->
-
-    <template if:true={record.mflow__Applicants__r}>
-      <!-- <lightning-tab label="Applicant Details" value="Applicant"> -->
+    <lightning-tabset variant="scoped" active-tab-value="Applicant">
       <lightning-tabset variant="scoped">
-        <template for:each={record.mflow__Applicants__r} for:item="data">
-          <lightning-tab key={data.Id} label={data.mflow__ApplicantName__c}>
-            <lightning-tabset variant="scoped">
-              <lightning-tab
-                label="Detail"
-                key={data.Id}
-                data-objectname="mflow__Applicant__c"
-                data-recordid={data.Id}
-                onactive={handleActive}
-              >
-                <c-applicant-record-detail-view
-                  key={data.Id}
-                  record={data}
-                  s-object-name="mflow__Applicant__c"
-                  title-name="Applicant Details"
-                ></c-applicant-record-detail-view>
-              </lightning-tab>
-              <template if:true={data.mflow__Addresses__r}>
-                <lightning-tab
-                  label="Addresses"
-                  data-objectname="mflow__Addresses__r"
-                  data-recordid={data.Id}
-                  onactive={handleActive}
-                >
-                  <c-record-detail-view
-                    key={data.Id}
-                    record={data.mflow__Addresses__r}
-                    s-object-name="mflow__Address__c"
-                    title-name="Address"
-                    field-set-name="mflow__AddressInformation"
-                    hide-null-values="true"
-                  ></c-record-detail-view>
-                </lightning-tab>
+        <lightning-tab label="Application Details" value="Application">
+          <c-record-detail-view record={record} s-object-name="mflow__Application__c" title-name="Application Details"
+            hide-null-values="true"></c-record-detail-view>
+        </lightning-tab>
+        <template if:true={record.mflow__FinancialAccounts__r}>
+          <template for:each={record.mflow__FinancialAccounts__r} for:item="product">
+            <lightning-tab key={product.Id} label={product.mflow__ProductName__c}>
+              <c-record-detail-view key={product.Id} record={product} s-object-name="mflow__FinancialAccount__C"
+                field-set-name="mflow__FinancialAccount" title-name="Product Details" hide-null-values="true">
+              </c-record-detail-view>
+              <template if:true={product.mflow__Properties__r}>
+                <template for:each={product.mflow__Properties__r} for:item="property">
+                  <c-record-detail-view key={property.Id} record={property} s-object-name="mflow__Property__c"
+                    field-set-name="mflow__PropertyInformation" title-name="Property Details" hide-null-values="true">
+                  </c-record-detail-view>
+                </template>
               </template>
-              <template if:true={data.mflow__IdentificationDocuments__r}>
-                <lightning-tab
-                  label="Identification"
-                  data-objectname="mflow__IdentificationDocuments__r"
-                  data-recordid={data.Id}
-                  onactive={handleActive}
-                >
-                  <c-record-detail-view
-                    key={data.Id}
-                    record={data.mflow__IdentificationDocuments__r}
-                    s-object-name="mflow__IdentificationDocument__c"
-                    field-set-name="mflow__IdentityInformation"
-                    title-name="Identification Details"
-                    hide-null-values="true"
-                  ></c-record-detail-view>
+            </lightning-tab>
+          </template>
+        </template>
+
+        <template if:true={record.mflow__Applicants__r}>
+          <!-- <lightning-tab label="Applicant Details" value="Applicant"> -->
+          <!-- <lightning-tabset variant="scoped">-->
+          <template for:each={record.mflow__Applicants__r} for:item="data">
+            <lightning-tab key={data.Id} label={data.mflow__ApplicantName__c}>
+              <lightning-tabset variant="scoped">
+                <lightning-tab label="Detail" key={data.Id} data-objectname="mflow__Applicant__c"
+                  data-recordid={data.Id} onactive={handleActive}>
+                  <c-applicant-record-detail-view key={data.Id} record={data} s-object-name="mflow__Applicant__c"
+                    title-name="Applicant Details"></c-applicant-record-detail-view>
                 </lightning-tab>
-              </template>
-              <template if:true={data.mflow__Employments__r}>
-                <lightning-tab
-                  label="Employment"
-                  data-objectname="mflow__Employments__r"
-                  data-recordid={data.Id}
-                  onactive={handleActive}
-                >
-                  <c-record-detail-view
-                    key={data.Id}
-                    record={data.mflow__Employments__r}
-                    s-object-name="mflow__Employment__c"
-                    field-set-name="mflow__EmploymentInformation"
-                    title-name="Employee Details"
-                    hide-null-values="true"
-                  ></c-record-detail-view>
+                <template if:true={data.mflow__Addresses__r}>
+                  <lightning-tab label="Addresses" data-objectname="mflow__Addresses__r" data-recordid={data.Id}
+                    onactive={handleActive}>
+                    <c-record-detail-view key={data.Id} record={data.mflow__Addresses__r}
+                      s-object-name="mflow__Address__c" title-name="Address" field-set-name="mflow__AddressInformation"
+                      hide-null-values="true"></c-record-detail-view>
+                  </lightning-tab>
+                </template>
+                <template if:true={data.mflow__IdentificationDocuments__r}>
+                  <lightning-tab label="Identification" data-objectname="mflow__IdentificationDocuments__r"
+                    data-recordid={data.Id} onactive={handleActive}>
+                    <c-record-detail-view key={data.Id} record={data.mflow__IdentificationDocuments__r}
+                      s-object-name="mflow__IdentificationDocument__c" field-set-name="mflow__IdentityInformation"
+                      title-name="Identification Details" hide-null-values="true"></c-record-detail-view>
+                  </lightning-tab>
+                </template>
+                <template if:true={data.mflow__Employments__r}>
+                  <lightning-tab label="Employment" data-objectname="mflow__Employments__r" data-recordid={data.Id}
+                    onactive={handleActive}>
+                    <c-record-detail-view key={data.Id} record={data.mflow__Employments__r}
+                      s-object-name="mflow__Employment__c" field-set-name="mflow__EmploymentInformation"
+                      title-name="Employee Details" hide-null-values="true"></c-record-detail-view>
+                  </lightning-tab>
+                </template>
+                <template if:true={data.mflow__Assets__r}>
+                  <lightning-tab label="Asset" data-objectname="mflow__Assets__r" data-recordid={data.Id}
+                    onactive={handleActive}>
+                    <c-record-detail-view key={data.Id} record={data.mflow__Assets__r}
+                      s-object-name="mflow__AssetAndLiability__c" field-set-name="mflow__AssetInformation"
+                      title-name="Asset Details" hide-null-values="true"></c-record-detail-view>
+                  </lightning-tab>
+                </template>
+                <template if:true={data.mflow__Liabilities__r}>
+                  <lightning-tab label="Liability" data-objectname="mflow__Liabilities__r" data-recordid={data.Id}
+                    onactive={handleActive}>
+                    <c-record-detail-view key={data.Id} record={data.mflow__Liabilities__r}
+                      s-object-name="mflow__AssetAndLiability__c" field-set-name="mflow__LiabilityInformation"
+                      title-name="Liability Details" hide-null-values="true"></c-record-detail-view>
+                  </lightning-tab>
+                </template>
+                <lightning-tab label="Status and Report" data-recordid={data.Id} onactive={handleActive}>
+                  <c-applicant-status key={data.Id} record={data} s-object-name="mflow__Applicant__c"
+                    title-name="Applicant Details"></c-applicant-status>
                 </lightning-tab>
-              </template>
-              <lightning-tab label="Status and Report" data-recordid={data.Id} onactive={handleActive}>
-                <c-applicant-status
-                  key={data.Id}
-                  record={data}
-                  s-object-name="mflow__Applicant__c"
-                  title-name="Applicant Details"
-                ></c-applicant-status>
-              </lightning-tab>
-            </lightning-tabset>
-          </lightning-tab>
+              </lightning-tabset>
+            </lightning-tab>
+          </template>
+          <!--</lightning-tabset>-->
+          <!-- </lightning-tab> -->
         </template>
       </lightning-tabset>
-      <!-- </lightning-tab> -->
-    </template>
-    <!--  </lightning-tabset> -->
+    </lightning-tabset>
   </template>
 </template>

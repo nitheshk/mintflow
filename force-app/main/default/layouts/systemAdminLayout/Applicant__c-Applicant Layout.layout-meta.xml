@@ -12,6 +12,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>CustomerNumber__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>ApplicantName__c</field>
             </layoutItems>
             <layoutItems>
@@ -36,19 +40,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OOWCorrectAnswers__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OOWVerified__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OOWStatus__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IsAllDisclosuresSignedAndPrinted__c</field>
+                <field>Birthdate__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -82,19 +74,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CustomerNumber__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Relationship__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Birthdate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OOWTotalQuestions__c</field>
+                <field>CountryOfCitizenship__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -116,6 +100,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsPhoneNumberVerified__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Password__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsAllDisclosuresSignedAndPrinted__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -176,19 +168,39 @@
                 <behavior>Edit</behavior>
                 <field>QualifiedScore__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>QualifiedDecision__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FraudStatus__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsEmploymentVerified__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IdentityVerificationStatus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOWVerified__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOWStatus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOWTotalQuestions__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOWCorrectAnswers__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>QualifiedDecision__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -197,10 +209,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OverallDebitBureauResult__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Password__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -334,7 +342,7 @@
         <fields>Street__c</fields>
         <fields>City__c</fields>
         <fields>State__c</fields>
-         <fields>PostalCode__c</fields>
+        <fields>PostalCode__c</fields>
         <fields>UsageType__c</fields>
         <fields>IsPrimary__c</fields>
         <relatedList>Address__c.Applicant__c</relatedList>
@@ -360,7 +368,16 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Type__c</fields>
+        <fields>SubType__c</fields>
+        <fields>AccountType__c</fields>
+        <fields>AssetOrCreditType__c</fields>
+        <fields>Asset__c</fields>
+        <fields>Property__c</fields>
+        <fields>Order__c</fields>
         <relatedList>AssetAndLiability__c.Applicant__c</relatedList>
+        <sortField>Order__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -393,7 +410,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1y0000028ynT</masterLabel>
+        <masterLabel>00h6D000002sxaY</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -7,3 +7,4 @@ require("./mflow__ReferralProduct__c");
 require("./mflow__SiteSetting__c");
 require("./mflow__SurveyTemplate__c");
 require("./mflow__SystemSetting__c");
+require("./mflow__CountryAndStateNames__c");

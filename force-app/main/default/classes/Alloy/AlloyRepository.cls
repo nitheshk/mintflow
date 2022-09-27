@@ -43,4 +43,26 @@ global with sharing class AlloyRepository extends DatabaseUtils {
     List<Document> l = (List<Document>) DatabaseUtils.getRecords(q);
     return l.isEmpty() ? null : l[0];
   }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-09-2022
+   * @param List<Id> contentDocumentIds
+   * @return ContentVersion
+   **/
+  public static ContentVersion fetchAlloyKycJson(List<Id> contentDocumentIds) {
+    return (ContentVersion) DatabaseUtils.getRecord(
+      Query.newInstance(ContentVersion.SObjectType)
+        .addFields()
+        .whereIn('ContentDocumentId', contentDocumentIds)
+        .andCon()
+        .whereEq('ContentType__c', 'KYC')
+        .andCon()
+        .whereEq('ContentSubType__c', 'Alloy')
+        .andCon()
+        .whereEq('Title', 'AlloyResponse.json')
+        .addLimit(1)
+        .toString()
+    );
+  }
 }

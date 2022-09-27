@@ -4,7 +4,7 @@
     <description>Display Order of the columns</description>
     <externalId>false</externalId>
     <fieldManageability>SubscriberControlled</fieldManageability>
-    <label>DisplayOrder</label>
+    <label>Display Order</label>
     <precision>2</precision>
     <required>false</required>
     <scale>0</scale>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>MaxNumberofProductSelected__c</fullName>
-    <description>This defines how many number of product can be selected in the product selection page</description>
+    <fullName>VehicleYear__c</fullName>
+    <description>Vehicle year of manufacturing</description>
     <externalId>false</externalId>
-    <label>MaxNumberofProductSelected</label>
-    <precision>2</precision>
+    <label>Vehicle Year</label>
+    <precision>4</precision>
     <required>false</required>
     <scale>0</scale>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Number</type>
     <unique>false</unique>

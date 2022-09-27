@@ -19,7 +19,7 @@
       "mflow__OOWPassThreshhold__c": 60,
       "mflow__ReferralUrlExpirationTime__c": 72,
       "mflow__OOWTotalQuestionsToShow__c": 5,
-      "mflow__MaxNumberofProductSelected__c": 4
+      "mflow__MaxNumberOfProductSelected__c": 4
     }
   ]
 }

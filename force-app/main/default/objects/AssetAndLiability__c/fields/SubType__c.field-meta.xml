@@ -3,7 +3,7 @@
     <fullName>SubType__c</fullName>
     <description>Type of asset and iability</description>
     <externalId>false</externalId>
-    <label>SubType</label>
+    <label>Sub Type</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -60,6 +60,11 @@
                 <fullName>Expenses</fullName>
                 <default>false</default>
                 <label>Expenses</label>
+            </value>
+            <value>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+                <label>Real Estate</label>
             </value>
             <value>
                 <fullName>Credits</fullName>

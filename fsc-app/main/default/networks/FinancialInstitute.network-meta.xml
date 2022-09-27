@@ -49,5 +49,5 @@
   </tabs>
   <urlPathPrefix>mintflow</urlPathPrefix>
   <welcomeTemplate>mflow__MintFlow/mflow__FinancialInstituteWelcomeEmail_EN</welcomeTemplate>
-  <logoutUrl>https://momentum-customer-8536-dev-ed.my.site.com/mintflow</logoutUrl>
+  <logoutUrl>https://fun-java-4910-dev-ed.my.site.com/mintflow</logoutUrl>
 </Network>

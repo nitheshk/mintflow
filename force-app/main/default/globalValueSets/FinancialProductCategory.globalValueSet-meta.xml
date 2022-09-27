@@ -31,11 +31,6 @@
         <label>Certificate</label>
     </customValue>
     <customValue>
-        <fullName>Personal Loan</fullName>
-        <default>false</default>
-        <label>Personal Loan</label>
-    </customValue>
-    <customValue>
         <fullName>Vehicle Loan</fullName>
         <default>false</default>
         <label>Vehicle Loan</label>

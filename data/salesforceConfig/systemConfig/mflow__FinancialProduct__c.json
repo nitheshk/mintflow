@@ -11,6 +11,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Regular_Savings.png",
       "mflow__InternalCode__c": "IC003",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": true,
       "mflow__LongDescription__c": "The Regular Savings product is required for new accounts. This savings account establishes your membership and is your voting share of the credit union.",
       "mflow__MaxVersion__c": "1",
@@ -20,8 +21,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Regular Savings",
       "mflow__Type__c": "Deposit",
+      "mflow__UiRouting__c": "savings",
       "mflow__Weightage__c": 1,
-      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -34,12 +35,12 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Start with a few dollars or a fistful.",
             "mflow__Topic__c": "Regular Savings",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef0_1" },
@@ -50,12 +51,12 @@
             "mflow__Icon__c": "fa fa-life-ring",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Get a jump-start on a sunnier tomorrow.",
             "mflow__Topic__c": "Take strong steps toward a more secure financial future.",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -71,6 +72,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Preferred_debit.png",
       "mflow__InternalCode__c": "IC006",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "A perfect account for our value minded members for only $4.99 per month. This account pays you in overwhelming benefits from cash back on debit card purchases, to cell phone protection, roadside assistance, local and national discounts and much more!",
       "mflow__MaxVersion__c": "1",
@@ -80,7 +82,8 @@
       "mflow__StartDate__c": "2022-03-04",
       "mflow__SubCategory__c": "Preferred Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "checking",
+      "mflow__Weightage__c": 1.4,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -94,12 +97,12 @@
             "mflow__Icon__c": "fa fa-paper-plane",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
             "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef1_1" },
@@ -110,12 +113,12 @@
             "mflow__Icon__c": "fa fa-unlock-alt",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_8.jfif",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
             "mflow__Topic__c": "Anytime Account Access",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -131,6 +134,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Regular_Savings.png",
       "mflow__InternalCode__c": "IC0020",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Earn tiered dividends rates\r\nKeep your funds liquid\r\nStay connected to your money anytime, anywhere",
       "mflow__MaxVersion__c": "1",
@@ -140,7 +144,8 @@
       "mflow__StartDate__c": "2021-11-05",
       "mflow__SubCategory__c": "Instant Access Savings",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "savings",
+      "mflow__Weightage__c": 1.1,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -154,12 +159,12 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_8.jfif",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Tiered dividends for larger balances",
             "mflow__Topic__c": "Features",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef2_1" },
@@ -170,12 +175,12 @@
             "mflow__Icon__c": "fa fa-cog",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits.",
             "mflow__Topic__c": "Benefits",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -191,6 +196,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Prime_debit.png",
       "mflow__InternalCode__c": "IC005",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "The Prime Debit Account offers all the basics you expect from a checking account for $2.99 a Month. Find your pathway to free by adding eStatements. This account includes online billpay, mobile deposit, access to MobiMoney, direct deposit and a debit MasterCard.",
       "mflow__MaxVersion__c": "1",
@@ -200,7 +206,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Prime Debit Account",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "checking",
+      "mflow__Weightage__c": 1.4,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -214,12 +221,12 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_2.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Keep it simple or choose an account with extra benefits.",
             "mflow__Topic__c": "Everything you need for easier money management. And lots more.",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef3_1" },
@@ -230,12 +237,12 @@
             "mflow__Icon__c": "fa fa-cog",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_8.jfif",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Manage your money whenever you have a free moment.",
             "mflow__Topic__c": "Anytime Account Access",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -251,6 +258,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0021",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Manage your account anytime, anywhere1\r\nInstant, surcharge-free access to cash\r\nNo monthly account maintenance fees",
       "mflow__MaxVersion__c": "1",
@@ -260,7 +268,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Carefree Checking",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "checking",
+      "mflow__Weightage__c": 1.4,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -274,12 +283,12 @@
             "mflow__Icon__c": "fa fa-cog",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_10.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Carefree Checking",
             "mflow__Topic__c": "Features",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4_1" },
@@ -290,12 +299,12 @@
             "mflow__Icon__c": "fa fa-gift",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Reap the benefits",
             "mflow__Topic__c": "Benefits",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef4_2" },
@@ -306,12 +315,12 @@
             "mflow__Icon__c": "fa fa-credit-card",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_4.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Debit Mastercard",
             "mflow__Topic__c": "Debit Mastercard",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -327,6 +336,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0012",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "3 Month CDs are very short-term products and generally come with the lowest interest rates. Within the 3 month CD category on the rate table above, DepositAccounts also lists CDs with shorter terms such as 7 days. Usually, the shorter the CD’s time frame, the less it will pay in interest – however, financial institutions competing for customers will often break this trend in order to attract attention to the shorter term CD and open new accounts.",
       "mflow__MaxVersion__c": "1",
@@ -336,7 +346,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "3 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "certificate",
+      "mflow__Weightage__c": 1.6,
       "mflow__ProductFeatures__r": {
         "totalSize": 5,
         "done": true,
@@ -349,12 +360,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_3.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "CD Advantages",
             "mflow__Topic__c": "CD Advantages",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_1" },
@@ -364,12 +375,12 @@
             "mflow__Icon__c": "fa fa-gift",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Key Takeaways",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_2" },
@@ -379,11 +390,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.10",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.10"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_3" },
@@ -393,11 +404,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 8,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef5_4" },
@@ -408,12 +419,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_9.jfif",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 10,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -429,6 +440,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0013",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "6 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -438,7 +450,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "6 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "certificate",
+      "mflow__Weightage__c": 1.65,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -451,11 +464,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.20",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.20"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef6_1" },
@@ -465,11 +478,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef6_2" },
@@ -480,12 +493,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -501,6 +514,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0014",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "12 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -510,7 +524,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "12 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "certificate",
+      "mflow__Weightage__c": 1.75,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -523,11 +538,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.30",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.30"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_1" },
@@ -537,11 +552,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef7_2" },
@@ -552,12 +567,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -573,6 +588,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0015",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "18 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -582,7 +598,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "18 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "certificate",
+      "mflow__Weightage__c": 1.85,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -595,11 +612,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.50",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.50"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_1" },
@@ -609,11 +626,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef8_2" },
@@ -624,12 +641,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -645,6 +662,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0016",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "24 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -654,7 +672,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "24 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "certificate",
+      "mflow__Weightage__c": 1.95,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -667,11 +686,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.60",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.60"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_1" },
@@ -681,11 +700,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef9_2" },
@@ -696,12 +715,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -717,6 +736,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0017",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "36 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -726,7 +746,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "36 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "certificate",
+      "mflow__Weightage__c": 2.05,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -739,11 +760,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.65",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.65"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_1" },
@@ -753,11 +774,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef10_2" },
@@ -768,12 +789,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -789,6 +810,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0018",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "48 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -798,7 +820,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "48 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "certificate",
+      "mflow__Weightage__c": 2.2,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -811,11 +834,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.75",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.75"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_1" },
@@ -825,11 +848,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef11_2" },
@@ -840,12 +863,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -861,6 +884,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0019",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "60 Month Certificate",
       "mflow__MaxVersion__c": "1",
@@ -870,7 +894,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "60 Month Certificate",
       "mflow__Type__c": "Deposit",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "certificate",
+      "mflow__Weightage__c": 2.4,
       "mflow__ProductFeatures__r": {
         "totalSize": 3,
         "done": true,
@@ -883,11 +908,11 @@
             "mflow__DisplayName__c": "Annual Percentage Yield",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "0.80",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "0.80"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_1" },
@@ -897,11 +922,11 @@
             "mflow__DisplayName__c": "Min Deposit",
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 6,
             "mflow__Required__c": false,
             "mflow__Type__c": "Product Configuration",
-            "mflow__Value__c": "500",
-            "mflow__IsActive__c": true
+            "mflow__Value__c": "500"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef12_2" },
@@ -912,12 +937,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 12,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Share Certificates",
             "mflow__Topic__c": "Share Certificates",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -933,6 +958,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC009",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Best for users looking to earn cash back on everyday purchases. Receive $150 Bonus Cash Back after $1000 in qualified purchases within the first 90 days 0% APR* intro rate on purchases and balance transfers for 15 months after that, variable rates of 10.24% - 18.24% APR* apply",
       "mflow__MaxVersion__c": "1",
@@ -942,8 +968,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Cash Rewards",
       "mflow__Type__c": "Lending",
-      "mflow__Weightage__c": 3,
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "creditCard",
+      "mflow__Weightage__c": 2.4,
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -956,12 +982,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_4.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Digital experience",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_1" },
@@ -971,12 +997,12 @@
             "mflow__Icon__c": "fa fa-eye",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_5.JPG",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Global security",
             "mflow__Topic__c": "Security",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_2" },
@@ -986,12 +1012,12 @@
             "mflow__Icon__c": "fa fa-credit-card",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "/Products/Features/Feature_3.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Your wallet has a new MVP",
             "mflow__Topic__c": "Blazers Card",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef13_3" },
@@ -1002,12 +1028,12 @@
             "mflow__Icon__c": "fa fa-gift",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "/Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 8,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Features and rewards",
             "mflow__Topic__c": "Features and rewards",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -1023,6 +1049,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/credit-card-explore.jpg",
       "mflow__InternalCode__c": "IC008",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "A Secured Visa credit card is the perfect way to establish credit or build good credit, whether you’re starting out or starting over. This card is secured by the available funds in your share savings account.",
       "mflow__MaxVersion__c": "1",
@@ -1032,7 +1059,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Secured Visa",
       "mflow__Type__c": "Lending",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "creditCard",
+      "mflow__Weightage__c": 2.4,
       "mflow__ProductFeatures__r": {
         "totalSize": 4,
         "done": true,
@@ -1045,12 +1073,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_4.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "The digital experience",
             "mflow__Topic__c": "Digital experience",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_1" },
@@ -1060,12 +1088,12 @@
             "mflow__Icon__c": "fa fa-eye",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_5.JPG",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Global security",
             "mflow__Topic__c": "Security",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_2" },
@@ -1075,12 +1103,12 @@
             "mflow__Icon__c": "fa fa-credit-card",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "/Products/Features/Feature_3.png",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 4,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Your wallet has a new MVP",
             "mflow__Topic__c": "Blazers Card",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef14_3" },
@@ -1091,12 +1119,12 @@
             "mflow__Icon__c": "fa fa-gift",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "/Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 8,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Features and rewards",
             "mflow__Topic__c": "Features and rewards",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -1112,6 +1140,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0010",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Money Market Checking",
       "mflow__MaxVersion__c": "1",
@@ -1121,8 +1150,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Money Market Checking",
       "mflow__Type__c": "Deposit",
-      "mflow__Weightage__c": 1.2,
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "checking",
+      "mflow__Weightage__c": 1.4,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1136,12 +1165,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 14,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Money Market Checking",
             "mflow__Topic__c": "Money Market Checking",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -1157,6 +1186,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "Products/Credit_Card_Cash_rewards.png",
       "mflow__InternalCode__c": "IC0011",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "Money Market Savings",
       "mflow__MaxVersion__c": "1",
@@ -1166,8 +1196,8 @@
       "mflow__StartDate__c": "2022-02-24",
       "mflow__SubCategory__c": "Money Market Savings",
       "mflow__Type__c": "Deposit",
+      "mflow__UiRouting__c": "savings",
       "mflow__Weightage__c": 1.2,
-      "mflow__IsActive__c": true,
       "mflow__ProductFeatures__r": {
         "totalSize": 1,
         "done": true,
@@ -1181,12 +1211,12 @@
             "mflow__Icon__c": "fa fa-certificate",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_7.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 13,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Money Market Savings",
             "mflow__Topic__c": "Money Market Savings",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           }
         ]
       }
@@ -1196,21 +1226,60 @@
       "Name": "Equipment & Vehicle Loans",
       "mflow__AllowedtoGroup__c": false,
       "mflow__Category__c": "Vehicle Loan",
-      "mflow__DisplayLabel__c": "New Vehicle",
+      "mflow__DisplayLabel__c": "Vehicle Loan",
       "mflow__EndDate__c": "2026-11-05",
       "mflow__ExternalCode__c": "EB-002",
       "mflow__ImageType__c": "Relative",
+      "mflow__ImageURL__c": "Products/Preferred_debit.png",
       "mflow__InternalCode__c": "IB-002",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
-      "mflow__LongDescription__c": "Expand your fleet or purchase new equipment",
+      "mflow__LongDescription__c": "Great rates come standard.\r\nGet a personalized rate in 30 seconds or less for a 12-60 month term.",
       "mflow__MaxVersion__c": "1",
       "mflow__MinVersion__c": "1",
       "mflow__Order__c": 46,
-      "mflow__ShortDescription__c": "Expand your fleet or purchase new equipment",
+      "mflow__ShortDescription__c": "Rev up for that new ride",
       "mflow__StartDate__c": "2021-11-05",
-      "mflow__SubCategory__c": "New Vehicle",
+      "mflow__SubCategory__c": "Vehicle Loan",
       "mflow__Type__c": "Lending",
-      "mflow__IsActive__c": false
+      "mflow__UiRouting__c": "vehicleLoan",
+      "mflow__Weightage__c": 2.6,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef17_0" },
+            "Name": "Feature",
+            "mflow__DisplayContents__c": "<p>Thinking about purchasing a new or recent model vehicle? We offer fixed-rate, fixed-term new auto loans for current and previous model year vehicles. On top of competitive rates and 84 month financing, we also offer no pre-payment penalty fees on our new auto loans.</p><p>A great loan for those who:</p><ul><li>Love that new car smell</li><li>Are buying a current or previous model year car</li><li>Want to finance up to 84 months</li></ul><p>Great benefits:</p><ul><li>Fixed-rate</li><li>Fixed-term loan</li><li>No payment for up to 90 days</li></ul>",
+            "mflow__DisplayName__c": "Feature",
+            "mflow__Icon__c": "fa fa-cog",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "New auto loans.",
+            "mflow__Topic__c": "Feature",
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef17_1" },
+            "Name": "Benefits",
+            "mflow__DisplayContents__c": "<p>Quick and easy loan process</p><ul><li>Online loan application</li><li>Digital document delivery</li><li>Fast loan decision</li></ul><p>Secure, anytime, anywhere account access</p><ul><li>Free mobile app</li><li>Free online banking</li></ul><p>More money in your pocket</p><ul><li>No pre-payment penalty</li><li>No application or origination fees</li><li>No annual fee</li></ul>",
+            "mflow__DisplayName__c": "Benefits",
+            "mflow__Icon__c": "fa fa-gift",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 4,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Reap the benefits",
+            "mflow__Topic__c": "Benefits",
+            "mflow__Type__c": "Product Description"
+          }
+        ]
+      }
     },
     {
       "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "HL001" },
@@ -1223,6 +1292,7 @@
       "mflow__ImageType__c": "Relative",
       "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
       "mflow__InternalCode__c": "HL001",
+      "mflow__IsActive__c": true,
       "mflow__IsMembershipProduct__c": false,
       "mflow__LongDescription__c": "A variable-rate line of credit based on your home value that you can continually borrow from and pay back over a set time frame.",
       "mflow__MaxVersion__c": "1",
@@ -1232,7 +1302,8 @@
       "mflow__StartDate__c": "2022-08-11",
       "mflow__SubCategory__c": "Working Capital Loans",
       "mflow__Type__c": "Lending",
-      "mflow__IsActive__c": true,
+      "mflow__UiRouting__c": "heloc",
+      "mflow__Weightage__c": 2.6,
       "mflow__ProductFeatures__r": {
         "totalSize": 2,
         "done": true,
@@ -1245,12 +1316,12 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 2,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "Interest Rate Discounts up to 0.50%",
             "mflow__Topic__c": "Interest Rate",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
           },
           {
             "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef18_1" },
@@ -1260,12 +1331,252 @@
             "mflow__Icon__c": "fa fa-usd",
             "mflow__ImageType__c": "Relative",
             "mflow__ImageUrl__c": "Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
             "mflow__Order__c": 3,
             "mflow__Required__c": false,
             "mflow__SubTopic__c": "An Easy and Flexible Experience",
             "mflow__Topic__c": "Experience",
-            "mflow__Type__c": "Product Description",
-            "mflow__IsActive__c": true
+            "mflow__Type__c": "Product Description"
+          }
+        ]
+      }
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "PL001" },
+      "Name": "Personal Loan",
+      "mflow__AllowedtoGroup__c": false,
+      "mflow__Category__c": "Consumer Loan",
+      "mflow__DisplayLabel__c": "Personal Loan",
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "PL001",
+      "mflow__ImageType__c": "Relative",
+      "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
+      "mflow__InternalCode__c": "PL001",
+      "mflow__IsActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__LongDescription__c": "Why get a personal loan from MIntflow?\r\nLow, fixed rates ,\r\nNo application fees, origination fees or prepayment penalties,\r\nNo payments for up to 45 days 3,\r\nDebtSafe® Optional payment protection.",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 50,
+      "mflow__ShortDescription__c": "Lock in a low fixed rate with a personal loan",
+      "mflow__StartDate__c": "2022-08-11",
+      "mflow__SubCategory__c": "Personal Loan",
+      "mflow__Type__c": "Lending",
+      "mflow__UiRouting__c": "personalLoan",
+      "mflow__Weightage__c": 2.6,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef19_0" },
+            "Name": "Feature",
+            "mflow__DisplayContents__c": "<p>A personal loans is a loan for a set amount of money that is repaid with interest through fixed monthly payments. Personal loans can be used for a variety of reasons such as consolidating higher interest loans or credit card debt, paying for events like weddings or funerals, paying for unexpected emergency purchases or even vacations.4 Personal loans can offer an alternative to credit cards by a fixed rate and predictable monthly payment.</p><p><br></p><ul><li>Borrow from $500 to $50,000</li><li>Fast online application</li><li>Fixed rate and fixed monthly payment</li><li>Flexible repayment terms from 2 to 7 years</li><li>Visit the rates page for complete rate information and loan costs</li></ul>",
+            "mflow__DisplayName__c": "Feature",
+            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "What is a personal loan?",
+            "mflow__Topic__c": "Feature",
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef19_1" },
+            "Name": "Benefits",
+            "mflow__DisplayContents__c": "<h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">As low as 7.49% APR</strong></h3><p><span style=\"font-family: verdana; font-size: 16px;\">If you’re a MintFlow customer, you may borrow at least $1,000 up to $50,000. Not a </span><span style=\"font-family: verdana; font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);\">MintFlow </span><span style=\"font-family: verdana; font-size: 16px;\">customer? You may be able to borrow up to $25,000.</span></p><p><strong style=\"font-family: verdana;\">If approved, you’ll pay the same amount every month for a term of 12 to 84 months (maximum 60 months for non-customers), with a fixed annual percentage rate (APR), ranging from 7.49% to 19.99% APR</strong></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">Quick funds for all your needs</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">You can use a personal loan for any purchase or product.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">This one-time funding can help cover vacations, home renovations, medical bills </span></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">No hidden costs or fees</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">When you take out a personal loan, you’ll pay no origination fees and there is no prepayment penalty.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">You&#39;re always free to make loan payments in advance, in part or in full.</span></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">No collateral required</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">A personal loan is unsecured, meaning you don’t need to put up your house or car as collateral.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">This may be a good option if you lack equity or don’t qualify for a home equity loan or line</span><span style=\"font-family: verdana; font-size: 16px;\">.</span></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">No home inspection or appraisals</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">A personal loan doesn’t require your home as collateral.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">You could get a loan for your project within hours.</span></p><p><br></p><h3><strong style=\"font-family: verdana; font-size: 16px; color: rgb(44, 44, 44);\">Easy application process</strong></h3><p><span style=\"font-family: verdana; font-size: 12px;\">Get quick access to funds with our easy and secure online application process.</span></p><p><span style=\"font-family: verdana; font-size: 12px;\">Applying for a personal loan only takes a few minutes and is issued based on your creditworthiness.</span></p>",
+            "mflow__DisplayName__c": "Benefits",
+            "mflow__Icon__c": "fa fa-fighter-jet",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Personal loan details and benefits",
+            "mflow__Topic__c": "Personal loan details and benefits",
+            "mflow__Type__c": "Product Description"
+          }
+        ]
+      }
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "PL002" },
+      "Name": "Savings Secured Loans",
+      "mflow__AllowedtoGroup__c": false,
+      "mflow__Category__c": "Consumer Loan",
+      "mflow__DisplayLabel__c": "Savings Secured Loans",
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "PL002",
+      "mflow__ImageType__c": "Relative",
+      "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
+      "mflow__InternalCode__c": "PL002",
+      "mflow__IsActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__LongDescription__c": "A Mintflow Share Loan allows you to use the cash you have to build the credit profile you want.\r\n\r\nAs low as 3.00% APR - Learn More plus Savings rate",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 55,
+      "mflow__ShortDescription__c": "Lock in a low fixed rate with a Savings Secured Loans",
+      "mflow__StartDate__c": "2022-08-11",
+      "mflow__SubCategory__c": "Savings Secured Loans",
+      "mflow__Type__c": "Lending",
+      "mflow__UiRouting__c": "personalLoan",
+      "mflow__Weightage__c": 2.6,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef20_0" },
+            "Name": "Feature",
+            "mflow__DisplayContents__c": "<p><strong>A great loan for those who:</strong></p><ul><li>Want to build or re-build their credit profile</li><li>Want to hold on to your cash</li><li>Have a Mintflow savings account</li><li>Want a fixed monthly payment</li><li>Want to borrow between $500-$500,000 to pay off debt or fund a tech innovation</li></ul><p><br></p><p><strong>What you&#39;ll get:</strong></p><ul><li>Fixed-rate</li><li>Fixed-term loan</li></ul>",
+            "mflow__DisplayName__c": "Feature",
+            "mflow__Icon__c": "fa fa-certificate",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Savings Secured Loans",
+            "mflow__Topic__c": "Feature",
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef20_1" },
+            "Name": "Benefits",
+            "mflow__DisplayContents__c": "<p><strong>Flexible financing options</strong></p><ul><li>Borrow as little as $500</li><li>Loan terms up to 96 months</li></ul><p><br></p><p><strong>Quick and easy loan application</strong></p><ul><li>Online loan application</li><li>Digital document delivery</li><li>Fast loan decision</li></ul><p><br></p><p><strong>More money in your pocket</strong></p><ul><li>No pre-payment penalty</li><li>No application or origination fee</li><li>No annual fee</li></ul>",
+            "mflow__DisplayName__c": "Benefits",
+            "mflow__Icon__c": "fa fa-fighter-jet",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_6.webp",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 3,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Reap the benefits",
+            "mflow__Topic__c": "Benefits",
+            "mflow__Type__c": "Product Description"
+          }
+        ]
+      }
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "MG001" },
+      "Name": "Buy a Home",
+      "mflow__AllowedtoGroup__c": false,
+      "mflow__Category__c": "Mortgage",
+      "mflow__DisplayLabel__c": "Buy a Home",
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "MG001",
+      "mflow__ImageType__c": "Relative",
+      "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
+      "mflow__InternalCode__c": "MG001",
+      "mflow__IsActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__LongDescription__c": "Whether you're a first-time buyer or a homeowner looking for a new property, finding the right mortgage is one of the biggest financial decisions in your life. We're here to help you with home buying tips and resources to guide you along the way.",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 60,
+      "mflow__ShortDescription__c": "Find the loan that feels like home",
+      "mflow__StartDate__c": "2022-08-11",
+      "mflow__SubCategory__c": "Buy a Home",
+      "mflow__Type__c": "Lending",
+      "mflow__UiRouting__c": "purchase",
+      "mflow__Weightage__c": 2.6,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef21_0" },
+            "Name": "Fixed Rate Loans",
+            "mflow__DisplayContents__c": "<p>Fixed-rate home loans are the most common type of mortgage. With fixed-rate home loans, you&#39;ll maintain the same payment and interest rate throughout the life of the loan. That means you’ll never worry about rising interest rates or a changing economy when it comes to your home loan. If you have a home picked out and signed a contract, please click the Submit Application box below. If you want to see how much you qualify for submit a request for Pre-Qualification.</p><p>It’s perfect if you plan on staying in your home for at least five years.</p><ul><li>Easy application process</li><li>No pre-payment penalty</li></ul>",
+            "mflow__DisplayName__c": "Fixed Rate Loans",
+            "mflow__Icon__c": "fa fa-usd",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 1,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Interest Rate Discounts up to 0.50%",
+            "mflow__Topic__c": "Fixed-rate home loans",
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef21_1" },
+            "Name": "ARM",
+            "mflow__DisplayContents__c": "<p>An Adjustable Rate Mortgage (ARM) helps you qualify for more home thanks to lower payments during the first three to ten years of the loan. After that, the rate adjusts, which could change the monthly payment. If you have a home picked out and signed a contract, please click the Submit Application box below. If you want to see how much you qualify for submit a request for Pre-Qualification.</p><p>ARMs are ideal if you plan on being in your home for a short period of time. Because ARMs are subject to rate adjustments later on, the initial interest rate is typically set lower than on a standard fixed-rate loan. This can benefit you with a lower payment that reduces your monthly housing costs.</p><ul><li>Fixed interest rate for 5, 7 or 10 years</li><li>Rate adjusts annually thereafter</li><li>Easy application process</li></ul>",
+            "mflow__DisplayName__c": "ARM",
+            "mflow__Icon__c": "fa fa-usd",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Adjustable rate mortgage (ARM)",
+            "mflow__Topic__c": "ARM",
+            "mflow__Type__c": "Product Description"
+          }
+        ]
+      }
+    },
+    {
+      "attributes": { "type": "mflow__FinancialProduct__c", "referenceId": "MG002" },
+      "Name": "Refinance",
+      "mflow__AllowedtoGroup__c": false,
+      "mflow__Category__c": "Mortgage",
+      "mflow__DisplayLabel__c": "Refinance",
+      "mflow__EndDate__c": "2026-11-05",
+      "mflow__ExternalCode__c": "MG002",
+      "mflow__ImageType__c": "Relative",
+      "mflow__ImageURL__c": "/Products/credit-card-explore.jpg",
+      "mflow__InternalCode__c": "MG002",
+      "mflow__IsActive__c": true,
+      "mflow__IsMembershipProduct__c": false,
+      "mflow__LongDescription__c": "Maybe it’s been a few years since you closed on your mortgage. Chances are good that a lot has changed since then. With the rapid increase in property values in many regions, it might be a good time to consider refinancing your home loan.",
+      "mflow__MaxVersion__c": "1",
+      "mflow__MinVersion__c": "1",
+      "mflow__Order__c": 65,
+      "mflow__ShortDescription__c": "Our mortgage loan officers can help lower your monthly payments, consolidate your debt, access your equity and more",
+      "mflow__StartDate__c": "2022-08-11",
+      "mflow__SubCategory__c": "Refinance",
+      "mflow__Type__c": "Lending",
+      "mflow__UiRouting__c": "refinance",
+      "mflow__Weightage__c": 2.6,
+      "mflow__ProductFeatures__r": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef22_0" },
+            "Name": "Fixed Rate Loans",
+            "mflow__DisplayContents__c": "<p>Fixed-rate home loans are the most common type of mortgage. With fixed-rate home loans, you&#39;ll maintain the same payment and interest rate throughout the life of the loan. That means you’ll never worry about rising interest rates or a changing economy when it comes to your home loan. If you have a home picked out and signed a contract, please click the Submit Application box below. If you want to see how much you qualify for submit a request for Pre-Qualification.</p><p>It’s perfect if you plan on staying in your home for at least five years.</p><ul><li>Easy application process</li><li>No pre-payment penalty</li></ul>",
+            "mflow__DisplayName__c": "Fixed Rate Loans",
+            "mflow__Icon__c": "fa fa-usd",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 1,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Interest Rate Discounts up to 0.50%",
+            "mflow__Topic__c": "Fixed-rate home loans",
+            "mflow__Type__c": "Product Description"
+          },
+          {
+            "attributes": { "type": "mflow__ProductFeature__c", "referenceId": "ProductFeatureRef22_1" },
+            "Name": "ARM",
+            "mflow__DisplayContents__c": "<p>An Adjustable Rate Mortgage (ARM) helps you qualify for more home thanks to lower payments during the first three to ten years of the loan. After that, the rate adjusts, which could change the monthly payment. If you have a home picked out and signed a contract, please click the Submit Application box below. If you want to see how much you qualify for submit a request for Pre-Qualification.</p><p>ARMs are ideal if you plan on being in your home for a short period of time. Because ARMs are subject to rate adjustments later on, the initial interest rate is typically set lower than on a standard fixed-rate loan. This can benefit you with a lower payment that reduces your monthly housing costs.</p><ul><li>Fixed interest rate for 5, 7 or 10 years</li><li>Rate adjusts annually thereafter</li><li>Easy application process</li></ul>",
+            "mflow__DisplayName__c": "ARM",
+            "mflow__Icon__c": "fa fa-usd",
+            "mflow__ImageType__c": "Relative",
+            "mflow__ImageUrl__c": "Products/Features/Feature_11.jpg",
+            "mflow__IsActive__c": true,
+            "mflow__Order__c": 2,
+            "mflow__Required__c": false,
+            "mflow__SubTopic__c": "Adjustable rate mortgage (ARM)",
+            "mflow__Topic__c": "ARM",
+            "mflow__Type__c": "Product Description"
           }
         ]
       }

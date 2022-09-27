@@ -21,7 +21,7 @@ public with sharing class TestData {
     appConfig.UiStaticResourceName__c = 'LWCResource';
     appConfig.SupportTeamEmail__c = 'support@digitalalign.com';
     appConfig.SupportedFileTypes__c = 'pdf;jpg';
-    appConfig.MaxNumberofProductSelected__c = 4;
+    appConfig.MaxNumberOfProductSelected__c = 4;
     return appConfig;
   }
 
@@ -466,6 +466,22 @@ public with sharing class TestData {
     leadConfig.Weightage__c = 5;
     leadConfigList.add(leadConfig);
     return leadConfigList;
+  }
+
+  public static mflow__VehicleSpecification__c createVehicleSpecification() {
+    mflow__VehicleSpecification__c vs = new mflow__VehicleSpecification__c();
+    vs.Name = 'TOYOTA Venza Wagon 4D XLE AWD I4';
+    vs.mflow__MakeCode__c = '77';
+    vs.mflow__Make__c = 'TOYOTA';
+    vs.mflow__ModelCode__c = '254';
+    vs.mflow__Model__c = 'Venza';
+    vs.mflow__SubModelCode__c = '1174265';
+    vs.mflow__SubModel__c = 'Wagon 4D XLE AWD I4';
+    vs.mflow__Year__c = 2013;
+    vs.mflow__Type__c = 'Car';
+    vs.mflow__Vin__c = '565516';
+    insert vs;
+    return vs;
   }
 
   public static string getOOWData() {

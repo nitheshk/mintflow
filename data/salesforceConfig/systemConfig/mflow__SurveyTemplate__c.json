@@ -21,7 +21,7 @@
             "mflow__LongDescription__c": "Will there be ACH Activity on the account to exceed $2,000 per month",
             "mflow__OptionType__c": "CheckBox",
             "mflow__Options__c": "[]",
-            "mflow__Order__c": 1,
+            "mflow__Order__c": 2,
             "mflow__QuestionCode__c": "FeebbackQn1",
             "mflow__QuestionNumber__c": 1,
             "mflow__Required__c": true,
@@ -199,7 +199,7 @@
       "mflow__ApplicantType__c": "Primary",
       "mflow__Channel__c": "Virtual",
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
-      "mflow__FinancilProductCategory__c": "Savings;Checking;Credit Card;Money Market;Certificate;Consumer Loan",
+      "mflow__FinancilProductCategory__c": "Savings;Checking;Credit Card;Money Market;Certificate",
       "mflow__IsActive__c": true,
       "mflow__Order__c": 1,
       "mflow__SurveyQuestions__r": {
@@ -223,23 +223,6 @@
           },
           {
             "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_1_1" },
-            "Name": "Other",
-            "mflow__Condition__c": "q.General20==\"Other (Please fill in the box)\"",
-            "mflow__CustomStyle__c": "slds-var-p-around_small",
-            "mflow__HasChild__c": false,
-            "mflow__LongDescription__c": "Other",
-            "mflow__OptionType__c": "TextField",
-            "mflow__Options__c": "[]",
-            "mflow__Order__c": 401,
-            "mflow__ParentQuestionCode__c": "General20",
-            "mflow__QuestionCode__c": "General22",
-            "mflow__QuestionNumber__c": 22,
-            "mflow__Required__c": true,
-            "mflow__ShortDescription__c": "Other",
-            "mflow__ShowQuestionNumber__c": false
-          },
-          {
-            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_1_2" },
             "Name": "Uncovered Opportunity?",
             "mflow__Condition__c": "q.General20==\"P1FCU Employee\"",
             "mflow__CustomStyle__c": "slds-var-p-around_small",
@@ -253,6 +236,23 @@
             "mflow__QuestionNumber__c": 21,
             "mflow__Required__c": true,
             "mflow__ShortDescription__c": "Uncovered Opportunity?",
+            "mflow__ShowQuestionNumber__c": false
+          },
+          {
+            "attributes": { "type": "mflow__SurveyQuestion__c", "referenceId": "SurveyQuestionRef_1_2" },
+            "Name": "Other",
+            "mflow__Condition__c": "q.General20==\"Other (Please fill in the box)\"",
+            "mflow__CustomStyle__c": "slds-var-p-around_small",
+            "mflow__HasChild__c": false,
+            "mflow__LongDescription__c": "Other",
+            "mflow__OptionType__c": "TextField",
+            "mflow__Options__c": "[]",
+            "mflow__Order__c": 402,
+            "mflow__ParentQuestionCode__c": "General20",
+            "mflow__QuestionCode__c": "General22",
+            "mflow__QuestionNumber__c": 22,
+            "mflow__Required__c": true,
+            "mflow__ShortDescription__c": "Other",
             "mflow__ShowQuestionNumber__c": false
           }
         ]
@@ -381,11 +381,11 @@
     },
     {
       "attributes": { "type": "mflow__SurveyTemplate__c", "referenceId": "SurveyTemplateRef_3" },
-      "Name": "HelocFlowQuestionaire",
+      "Name": "Heloc and Mortgage Flow Questionaire",
       "mflow__ApplicantType__c": "Primary;Joint",
       "mflow__Channel__c": "Virtual",
       "mflow__EventIdentifier__c": "CustomerFlowQuestionaire",
-      "mflow__FinancilProductCategory__c": "Consumer Loan",
+      "mflow__FinancilProductCategory__c": "Mortgage;Vehicle Loan;Consumer Loan",
       "mflow__IsActive__c": true,
       "mflow__Order__c": 5,
       "mflow__SurveyQuestions__r": {

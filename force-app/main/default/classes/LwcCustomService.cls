@@ -325,11 +325,11 @@ global virtual with sharing class LwcCustomService extends AbstractService {
     for (Applicant__c applicant : applicants) {
       if (applicant.ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         params.put('flw', 'ApplicationFlow');
-        params.put('urlSuffix', '/savings/main-app/otp');
+        params.put('urlSuffix', '/other/resume/otp');
         params.put('aplType', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
       } else {
         params.put('flw', 'JointFlow');
-        params.put('urlSuffix', '/savings/joint-app/otp');
+        params.put('urlSuffix', '/other/resume/otp');
         params.put('aplType', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
       }
       params.put('aplId', applicant.Id);

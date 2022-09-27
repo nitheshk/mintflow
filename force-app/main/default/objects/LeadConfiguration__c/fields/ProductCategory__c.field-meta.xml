@@ -9,33 +9,6 @@
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetDefinition>
-            <sorted>false</sorted>
-            <value>
-                <fullName>Checking</fullName>
-                <default>false</default>
-                <label>Checking</label>
-            </value>
-            <value>
-                <fullName>Savings</fullName>
-                <default>false</default>
-                <label>Savings</label>
-            </value>
-            <value>
-                <fullName>Certificates</fullName>
-                <default>false</default>
-                <label>Certificates</label>
-            </value>
-            <value>
-                <fullName>Vehicle Loan</fullName>
-                <default>false</default>
-                <label>Vehicle Loan</label>
-            </value>
-            <value>
-                <fullName>Consumer Loan</fullName>
-                <default>false</default>
-                <label>Consumer Loan</label>
-            </value>
-        </valueSetDefinition>
+        <valueSetName>FinancialProductCategory</valueSetName>
     </valueSet>
 </CustomField>

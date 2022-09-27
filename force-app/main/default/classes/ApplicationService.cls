@@ -57,7 +57,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
         cipher.aplId = ApexRequest.getApplicantId();
         cipher.edt = Datetime.now().addMinutes(10);
         cipher.ch = application.CreatedChannel__c;
-        String urlSuffix = '/savings/main-app/otp';
+        String urlSuffix = '/other/resume/otp';
         String link =
           SiteSetting__c.getInstance().OnlineSiteUrl__c +
           '/OpenAccount' +
@@ -111,8 +111,8 @@ global virtual with sharing class ApplicationService extends AbstractService {
         application.LastUsedChannel__c = ApplicationConstant.CHANNEL_VIRTUAL;
       }
     }
-    application.ApplicationType__c = 'Deposit'; //Also Decide in Financial Account Creation
-    application.IsExistingCustomer__c = false; //Also Decide in Financial Account Creation
+
+    application.IsExistingCustomer__c = false; //Also Decided in Financial Account Creation
     if (UserUtils.isGuestUser()) {
       application.Source__c = 'Online';
     }
@@ -336,7 +336,7 @@ global virtual with sharing class ApplicationService extends AbstractService {
     Application__c application = this.readApplicationWithChild();
     application = (mflow__Application__c) this.updateFlowState(application);
     //code to update the lead score of the application ::TODO
-    application.LeadScore__c = helper.calculateLeadScore(application);
+    application = LeadScoreResolver.getInstance().calculateLeadScore(application);
     log?.debug(' Lead Score : ' + application.LeadScore__c);
     if (application.LeadScore__c != null && application.LeadScore__c > 0) {
       ApplicationRepository.upsertRecord(application);
@@ -431,5 +431,22 @@ global virtual with sharing class ApplicationService extends AbstractService {
     String vmf = SecurityUtils.encryptBase64(JSON.serialize(cipher, true));
     log?.fine('Exit StartReferralApplication');
     return vmf;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-22-2022
+   * @return virtual
+   **/
+  global virtual Object fetchCountryList() {
+    List<Object> countryNamesList = new List<Object>();
+    Map<String, CountryAndStateNames__c> countryNames = CountryAndStateNames__c.getAll();
+    for (CountryAndStateNames__c country : countryNames.Values()) {
+      if (country.Type__c != 'Country') {
+        continue;
+      }
+      countryNamesList.add(new Map<String, String>{ 'name' => country.Name, 'value' => country.code__c });
+    }
+    return countryNamesList;
   }
 }

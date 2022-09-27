@@ -168,4 +168,60 @@ public with sharing class FinancialAccountControllerTest {
     request.token = 'InvalidToken';
     res = FinancialAccountController.readFinancialAccounts(null);
   }
+
+  @IsTest
+  private static void fetchVehicleDetailsTest() {
+    ApexRequest request = new ApexRequest();
+    ApexResponse res = new ApexResponse();
+    makeApplicationConfiguration();
+    PageReference testPage = Page.error;
+    Test.setCurrentPage(testPage);
+    testPage.getParameters().put('pid', 'IC001');
+    Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
+    Applicant__c applicant = createApplicantDataWithChild(application);
+    TestData.createVehicleSpecification();
+    Test.startTest();
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'searchType' => 'Vin', 'vin' => '565516' });
+    res = FinancialAccountController.fetchVehicleDetails(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'searchType' => 'Make', 'year' => '2013' });
+    res = FinancialAccountController.fetchVehicleDetails(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'searchType' => 'Model', 'year' => '2013', 'make' => '77' });
+    res = FinancialAccountController.fetchVehicleDetails(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(
+      new Map<String, object>{ 'searchType' => 'SubModel', 'year' => '2013', 'make' => '77', 'model' => '254' }
+    );
+    res = FinancialAccountController.fetchVehicleDetails(request);
+    system.assertEquals(200, res.status, 'success');
+
+    //200
+    request = new ApexRequest();
+    request.token = ApexRequest.getToken();
+    request.setHeader(new Map<String, object>{ 'searchType' => 'Failure' });
+    res = FinancialAccountController.fetchVehicleDetails(request);
+    system.assertEquals(200, res.status, 'success');
+    //400
+    request = new ApexRequest();
+    request.token = 'InvalidToken';
+    res = FinancialAccountController.fetchVehicleDetails(request);
+    system.assertEquals(500, res.status, 'success');
+    Test.stopTest();
+  }
 }

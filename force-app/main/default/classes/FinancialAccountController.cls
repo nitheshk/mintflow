@@ -47,7 +47,6 @@ global with sharing class FinancialAccountController extends AbstractController 
   global static ApexResponse saveFinancialAccounts(ApexRequest request) {
     try {
       validateRequest(request);
-      log?.debug('params : ' + ApexRequest.request.params);
       List<FinancialAccount__c> financialAccounts = (List<FinancialAccount__c>) SObjectConstructor.deserialize(
         request.data,
         List<FinancialAccount__c>.class
@@ -124,6 +123,29 @@ global with sharing class FinancialAccountController extends AbstractController 
     try {
       validateRequest(request);
       return ApexResponse.ok(ProductServiceResolver.getInstance().fetchReferralProducts(request.data));
+    } catch (CustomException ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.debug(ex.getMessage());
+      return ApexResponse.fail(ex);
+    } finally {
+      Logger.persist();
+    }
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-23-2022
+   * @param ApexRequest request
+   * @return ApexResponse
+   **/
+  @AuraEnabled
+  @RemoteAction
+  global static ApexResponse fetchVehicleDetails(ApexRequest request) {
+    try {
+      validateRequest(request);
+      return ApexResponse.ok(FinancialAccountService.getInstance().fetchVehicleDetails(ApexRequest.getParams()));
     } catch (CustomException ex) {
       log?.debug(ex.getMessage());
       return ApexResponse.exception(ex);

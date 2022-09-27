@@ -51,20 +51,12 @@
                       "activeTab": "",
                       "tabs": [
                         {
-                          "UUID": "328091f2-8f24-4294-91c8-0bc483d3ac4e",
-                          "allowGuestUser": false,
-                          "locked": false,
-                          "seedComponents": [],
-                          "tabKey": "1",
-                          "tabName": "Application"
-                        },
-                        {
                           "UUID": "60b9efad-4393-4a65-9e4b-a25b1cd9a3e8",
                           "allowGuestUser": false,
                           "locked": false,
                           "seedComponents": [],
                           "tabKey": "2",
-                          "tabName": "Applicant 360"
+                          "tabName": "Application 360"
                         },
                         {
                           "UUID": "bbd03790-8f60-462c-ab81-5e1a2af7eae8",
@@ -103,24 +95,6 @@
                           "componentAttributes": {
                             "recordId": "{!recordId}"
                           },
-                          "componentName": "forceCommunity:lwcRecordDetail",
-                          "id": "a0a9ddfe-1b44-497b-bfae-10c3b650804c",
-                          "renditionMap": {},
-                          "type": "component"
-                        }
-                      ],
-                      "id": "328091f2-8f24-4294-91c8-0bc483d3ac4e",
-                      "regionLabel": "Application",
-                      "regionName": "1",
-                      "renditionMap": {},
-                      "type": "region"
-                    },
-                    {
-                      "components": [
-                        {
-                          "componentAttributes": {
-                            "recordId": "{!recordId}"
-                          },
                           "componentName": "mflow:application360View",
                           "id": "385e5c6a-9bfe-4854-bfe9-1e147fea7b75",
                           "renditionMap": {},
@@ -128,7 +102,7 @@
                         }
                       ],
                       "id": "60b9efad-4393-4a65-9e4b-a25b1cd9a3e8",
-                      "regionLabel": "Applicant 360",
+                      "regionLabel": "Application 360",
                       "regionName": "2",
                       "renditionMap": {},
                       "type": "region"
@@ -320,5 +294,5 @@
   ],
   "themeLayoutType": "coh7vMQER0KjKsZbC2QhJHtKBZs4lT",
   "type": "view",
-  "viewType": "detail-a02"
+  "viewType": "detail-a03"
 }

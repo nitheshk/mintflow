@@ -162,6 +162,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
       financialAccountList.add(financialAccount);
     }
     application.ApplicationType__c = selectedProducts[0].Type__c;
+    application.UiRouting__c = selectedProducts[0].UiRouting__c;
     financialAccountList[0].IsPrimary__c = true;
 
     FinancialAccountRepository.upsertRecords(financialAccountList);
@@ -185,7 +186,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
         new Map<String, String>{
           'aplType' => ApexRequest.getApplicantType(),
           'flw' => ApplicationConstant.FLOW_TYPE_PAYMENT,
-          'urlSuffix' => '/savings/main-app/funding',
+          'urlSuffix' => '/other/funding/funding',
           'aplId' => currentApplicant.Id,
           'ch' => 'Virtual',
           'pageName' => '/CustomerAction',
@@ -206,5 +207,108 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     // Send Email
     CustomerEmailService.getInstance().notifyToUpdateFunding(currentApplicant, link);
     return true;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-23-2022
+   * @param Map<String object> params
+   * @return Object
+   **/
+  global virtual Object fetchVehicleDetails(Map<String, object> params) {
+    log?.debug('Inside fetchVehicleDetails');
+
+    List<object> matchedData = new List<object>();
+    String searchType = params.get('searchType') != null ? (String) params.get('searchType') : '';
+    String vin = params.get('vin') != null ? (String) params.get('vin') : '';
+    Integer year = params.get('year') != null ? Integer.valueOf(params.get('year')) : null;
+    String make = params.get('make') != null ? (String) params.get('make') : '';
+    String model = params.get('model') != null ? (String) params.get('model') : '';
+    List<Object> specList = new List<Object>();
+
+    switch on searchType {
+      when 'Vin' {
+        for (
+          VehicleSpecification__c vehicleSpec : (List<VehicleSpecification__c>) FinancialAccountRepository.readVehicleDetails(
+            searchType,
+            year,
+            make,
+            model,
+            vin
+          )
+        ) {
+          specList.add(
+            new Map<String, String>{
+              'yearName' => String.valueof(vehicleSpec.Year__c),
+              'yearValue' => String.valueof(vehicleSpec.Year__c),
+              'makeName' => vehicleSpec.Make__c,
+              'makeValue' => vehicleSpec.MakeCode__c,
+              'modelName' => vehicleSpec.Model__c,
+              'modelValue' => vehicleSpec.ModelCode__c,
+              'submodelName' => vehicleSpec.SubModel__c,
+              'submodelValue' => vehicleSpec.SubModelCode__c
+            }
+          );
+          break;
+        }
+        return specList;
+      }
+      when 'Make' {
+        Set<String> makeCode = new Set<String>();
+        for (
+          VehicleSpecification__c vehicleSpec : (List<VehicleSpecification__c>) FinancialAccountRepository.readVehicleDetails(
+            searchType,
+            year,
+            make,
+            model,
+            vin
+          )
+        ) {
+          if (makeCode.add(vehicleSpec.MakeCode__c)) {
+            specList.add(new Map<String, String>{ 'name' => vehicleSpec.Make__c, 'value' => vehicleSpec.MakeCode__c });
+          }
+        }
+        return specList;
+      }
+      when 'Model' {
+        Set<String> modelCode = new Set<String>();
+        for (
+          VehicleSpecification__c vehicleSpec : (List<VehicleSpecification__c>) FinancialAccountRepository.readVehicleDetails(
+            searchType,
+            year,
+            make,
+            model,
+            vin
+          )
+        ) {
+          if (modelCode.add(vehicleSpec.ModelCode__c)) {
+            specList.add(
+              new Map<String, String>{ 'name' => vehicleSpec.Model__c, 'value' => vehicleSpec.ModelCode__c }
+            );
+          }
+        }
+        return specList;
+      }
+      when 'SubModel' {
+        Set<String> submodelCode = new Set<String>();
+        for (
+          VehicleSpecification__c vehicleSpec : (List<VehicleSpecification__c>) FinancialAccountRepository.readVehicleDetails(
+            searchType,
+            year,
+            make,
+            model,
+            vin
+          )
+        ) {
+          if (submodelCode.add(vehicleSpec.SubModelCode__c)) {
+            specList.add(
+              new Map<String, String>{ 'name' => vehicleSpec.SubModel__c, 'value' => vehicleSpec.SubModelCode__c }
+            );
+          }
+        }
+        return specList;
+      }
+    }
+    return null;
   }
 }
