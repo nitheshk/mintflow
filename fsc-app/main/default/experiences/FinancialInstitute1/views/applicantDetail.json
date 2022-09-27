@@ -62,14 +62,6 @@
                           "tabName": "Detail"
                         },
                         {
-                          "UUID": "f911fe76-1da6-4135-adc7-c0942d52927f",
-                          "allowGuestUser": false,
-                          "locked": false,
-                          "seedComponents": [],
-                          "tabKey": "3",
-                          "tabName": "Activity"
-                        },
-                        {
                           "UUID": "1a91436f-d83d-4fcb-80c0-ff31c7d0c816",
                           "allowGuestUser": false,
                           "locked": false,
@@ -99,24 +91,6 @@
                       "id": "8c2e9f3b-99b0-49cb-8154-c29828c51ea0",
                       "regionLabel": "Detail",
                       "regionName": "1",
-                      "renditionMap": {},
-                      "type": "region"
-                    },
-                    {
-                      "components": [
-                        {
-                          "componentAttributes": {
-                            "recordId": "{!recordId}"
-                          },
-                          "componentName": "forceCommunity:activityPanel",
-                          "id": "091413df-d28a-497c-84ba-11919af103f8",
-                          "renditionMap": {},
-                          "type": "component"
-                        }
-                      ],
-                      "id": "f911fe76-1da6-4135-adc7-c0942d52927f",
-                      "regionLabel": "Activity",
-                      "regionName": "3",
                       "renditionMap": {},
                       "type": "region"
                     },
