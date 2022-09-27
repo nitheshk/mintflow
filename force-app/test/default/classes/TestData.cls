@@ -21,7 +21,7 @@ public with sharing class TestData {
     appConfig.UiStaticResourceName__c = 'LWCResource';
     appConfig.SupportTeamEmail__c = 'support@digitalalign.com';
     appConfig.SupportedFileTypes__c = 'pdf;jpg';
-    appConfig.MaxNumberofProductSelected__c = 4;
+    appConfig.MaxNumberOfProductSelected__c = 4;
     return appConfig;
   }
 
@@ -119,8 +119,8 @@ public with sharing class TestData {
     if (String.isNotBlank(applicantId)) {
       employment.applicant__c = applicantId;
     }
-    employment.EmploymentType__c = 'Current';
-    employment.EmploymentStatus__c = null;
+    employment.Type__c = 'Current';
+    employment.Status__c = null;
     employment.GrossMonthlySalary__c = 900;
     employment.EmployerName__c = 'Name';
     employment.IncomeType__c = 'Monthly';
@@ -128,27 +128,39 @@ public with sharing class TestData {
     employment.Order__c = 1;
     employment.PayGrade__c = 'GS12';
     employment.Position__c = 'Lead';
-    employment.EmploymentDuration__c = 3;
+    employment.Duration__c = 3;
     employment.DocumentType__c = 'Payslip';
-    employment.BranchofService__c = 'Air Force';
+    employment.BranchOfService__c = 'Air Force';
     employment.EnlistmentDate__c = null;
     return employment;
   }
 
-  public static ContactPointAddress createContactPointAddress(Id applicantId) {
-    ContactPointAddress address = new ContactPointAddress();
+  public static Income__c createIncome(Id applicantId) {
+    Income__c income = new Income__c();
+    if (String.isNotBlank(applicantId)) {
+      income.applicant__c = applicantId;
+    }
+    income.Name = 'Other';
+    income.MonthlyIncome__c = 100;
+    income.OtherSource__c = 'Other';
+    income.Source__c = 'Other';
+    return income;
+  }
+
+  public static Address__c createAddress(Id applicantId) {
+    Address__c address = new Address__c();
     if (String.isNotBlank(applicantId)) {
       address.applicant__c = applicantId;
     }
     address.Name = 'Add-001';
-    address.IsPrimary = true;
-    address.Street = 'street one';
-    address.City = 'CA';
-    address.State = 'CA';
-    address.Country = 'USA';
-    address.PostalCode = '10001';
-    address.UsageType = 'Buying / Own With Mortgage';
-    address.AddressType = 'Primary';
+    address.IsPrimary__c = true;
+    address.Street__c = 'street one';
+    address.City__c = 'CA';
+    address.State__c = 'CA';
+    address.Country__c = 'USA';
+    address.PostalCode__c = '10001';
+    address.UsageType__c = 'Buying / Own With Mortgage';
+    address.AddressType__c = 'Primary';
     return address;
   }
 
@@ -203,7 +215,7 @@ public with sharing class TestData {
     financialAccountService.mflow__FinancialAccount__c = financialAccount?.id;
     financialAccountService.Description__c = 'FinInst';
     financialAccountService.ServiceName__c = 'OnlineBanking';
-    financialAccountService.isSelected__c = false;
+    financialAccountService.IsSelected__c = false;
     return financialAccountService;
   }
 
@@ -275,6 +287,7 @@ public with sharing class TestData {
     p.IsMembershipProduct__c = true;
     p.Type__c = 'Deposit';
     p.SubCategory__c = 'Regular Savings';
+    p.Weightage__c = 10;
     products.add(p);
     FinancialProduct__c p1 = new FinancialProduct__c();
     p1.DisplayLabel__c = 'Product2';
@@ -283,13 +296,14 @@ public with sharing class TestData {
     p1.ExternalCode__c = 'IC003';
     p1.Type__c = 'Deposit';
     p1.SubCategory__c = 'Regular Savings';
+    p.Weightage__c = 8;
     products.add(p1);
     return products;
   }
 
   public static ProductService__c makeProductService() {
     ProductService__c productService = new ProductService__c();
-    productService.mflow__isActive__c = true;
+    productService.mflow__IsActive__c = true;
     productService.mflow__ServiceName__c = 'Product Service';
     return productService;
   }
@@ -336,7 +350,7 @@ public with sharing class TestData {
     consentLine.mflow__Channel__c = 'Virtual;Branch';
     consentLine.mflow__ExternalId__c = 'CLI0002';
     consentLine.mflow__IsSignatureRequired__c = false;
-    consentLine.isActive__c = true;
+    consentLine.IsActive__c = true;
     consentLine.ConsentTemplate__c = consentTemplate.id;
     consentLines.add(consentLine);
     insert consentLines;
@@ -402,6 +416,72 @@ public with sharing class TestData {
     docReq.mflow__Name__c = 'Test';
     docReq.mflow__Status__c = 'New';
     return docReq;
+  }
+
+  public static List<LeadConfiguration__c> createLeadConfiguration() {
+    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
+
+    LeadConfiguration__c leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'State';
+    leadConfig.Value__c = 'PersonalInfo';
+    leadConfig.Weightage__c = 10;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'State';
+    leadConfig.Value__c = 'Funding';
+    leadConfig.Weightage__c = 10;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'Eligibility';
+    leadConfig.Value__c = 'False';
+    leadConfig.Weightage__c = 10;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'KYC';
+    leadConfig.Value__c = 'False';
+    leadConfig.Weightage__c = 10;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'OOW';
+    leadConfig.Value__c = 'Failed';
+    leadConfig.Weightage__c = 5;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'KYCLeadScore';
+    leadConfig.MinValue__c = 901;
+    leadConfig.MaxValue__c = 1000;
+
+    leadConfig.Value__c = 'Failed';
+    leadConfig.Weightage__c = 5;
+    leadConfigList.add(leadConfig);
+
+    leadConfig = new LeadConfiguration__c();
+    leadConfig.Type__c = 'Employment';
+    leadConfig.Value__c = 'False';
+    leadConfig.Weightage__c = 5;
+    leadConfigList.add(leadConfig);
+    return leadConfigList;
+  }
+
+  public static mflow__VehicleSpecification__c createVehicleSpecification() {
+    mflow__VehicleSpecification__c vs = new mflow__VehicleSpecification__c();
+    vs.Name = 'TOYOTA Venza Wagon 4D XLE AWD I4';
+    vs.mflow__MakeCode__c = '77';
+    vs.mflow__Make__c = 'TOYOTA';
+    vs.mflow__ModelCode__c = '254';
+    vs.mflow__Model__c = 'Venza';
+    vs.mflow__SubModelCode__c = '1174265';
+    vs.mflow__SubModel__c = 'Wagon 4D XLE AWD I4';
+    vs.mflow__Year__c = 2013;
+    vs.mflow__Type__c = 'Car';
+    vs.mflow__Vin__c = '565516';
+    insert vs;
+    return vs;
   }
 
   public static string getOOWData() {

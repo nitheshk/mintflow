@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source__c</fullName>
+    <description>Income Source of an applicant</description>
+    <externalId>false</externalId>
+    <label>Source</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Alimony</fullName>
+                <default>false</default>
+                <label>Alimony</label>
+            </value>
+            <value>
+                <fullName>Automobile Allowance</fullName>
+                <default>false</default>
+                <label>Automobile Allowance</label>
+            </value>
+            <value>
+                <fullName>Boarder Income</fullName>
+                <default>false</default>
+                <label>Boarder Income</label>
+            </value>
+            <value>
+                <fullName>Capital Gains</fullName>
+                <default>false</default>
+                <label>Capital Gains</label>
+            </value>
+            <value>
+                <fullName>Child Support</fullName>
+                <default>false</default>
+                <label>Child Support</label>
+            </value>
+            <value>
+                <fullName>Disability</fullName>
+                <default>false</default>
+                <label>Disability</label>
+            </value>
+            <value>
+                <fullName>Foster Care</fullName>
+                <default>false</default>
+                <label>Foster Care</label>
+            </value>
+            <value>
+                <fullName>Housing or Parsonage</fullName>
+                <default>false</default>
+                <label>Housing or Parsonage</label>
+            </value>
+            <value>
+                <fullName>Interest and Dividends</fullName>
+                <default>false</default>
+                <label>Interest and Dividends</label>
+            </value>
+            <value>
+                <fullName>Mortgage Credit Certificate</fullName>
+                <default>false</default>
+                <label>Mortgage Credit Certificate</label>
+            </value>
+            <value>
+                <fullName>Mortgage Differential</fullName>
+                <default>false</default>
+                <label>Mortgage Differential</label>
+            </value>
+            <value>
+                <fullName>Payments</fullName>
+                <default>false</default>
+                <label>Payments</label>
+            </value>
+            <value>
+                <fullName>Notes Receivable</fullName>
+                <default>false</default>
+                <label>Notes Receivable</label>
+            </value>
+            <value>
+                <fullName>Public Assistance</fullName>
+                <default>false</default>
+                <label>Public Assistance</label>
+            </value>
+            <value>
+                <fullName>Retirement</fullName>
+                <default>false</default>
+                <label>Retirement</label>
+            </value>
+            <value>
+                <fullName>Royalty Payments</fullName>
+                <default>false</default>
+                <label>Royalty Payments</label>
+            </value>
+            <value>
+                <fullName>Separate Maintenance</fullName>
+                <default>false</default>
+                <label>Separate Maintenance</label>
+            </value>
+            <value>
+                <fullName>Social Security</fullName>
+                <default>false</default>
+                <label>Social Security</label>
+            </value>
+            <value>
+                <fullName>Trust</fullName>
+                <default>false</default>
+                <label>Trust</label>
+            </value>
+            <value>
+                <fullName>Unemployment</fullName>
+                <default>false</default>
+                <label>Unemployment</label>
+            </value>
+            <value>
+                <fullName>Benefits</fullName>
+                <default>false</default>
+                <label>Benefits</label>
+            </value>
+            <value>
+                <fullName>VA Compensation</fullName>
+                <default>false</default>
+                <label>VA Compensation</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -3,7 +3,7 @@
     <fullName>FinancialInstituteAccountId__c</fullName>
     <description>Acount ID of Financial Institute</description>
     <externalId>false</externalId>
-    <label>FinancialInstituteAccountId</label>
+    <label>Financial Institute Account Id</label>
     <length>40</length>
     <required>false</required>
     <trackTrending>false</trackTrending>

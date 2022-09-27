@@ -8,23 +8,6 @@
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetDefinition>
-            <sorted>false</sorted>
-            <value>
-                <fullName>Business</fullName>
-                <default>false</default>
-                <label>Business</label>
-            </value>
-            <value>
-                <fullName>Deposit</fullName>
-                <default>false</default>
-                <label>Deposit</label>
-            </value>
-            <value>
-                <fullName>Lending</fullName>
-                <default>false</default>
-                <label>Lending</label>
-            </value>
-        </valueSetDefinition>
+        <valueSetName>ProductType</valueSetName>
     </valueSet>
 </CustomField>

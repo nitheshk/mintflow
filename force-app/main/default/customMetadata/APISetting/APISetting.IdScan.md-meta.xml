@@ -19,7 +19,7 @@
         <value xsi:type="xsd:double">120000.0</value>
     </values>
     <values>
-        <field>isActive__c</field>
+        <field>IsActive__c</field>
         <value xsi:type="xsd:boolean">true</value>
     </values>
 </CustomMetadata>

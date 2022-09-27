@@ -58,9 +58,6 @@ global with sharing class ApplicantController extends AbstractController {
       );
 
       applicants = ApplicantService.getInstance().saveApplicants(applicants, ApexRequest.getApplicationId());
-
-      ApplicationService.getInstance().updateFlowState(applicants);
-
       return ApexResponse.ok(ApplicantService.getInstance().readApplicantsWithChild(applicants));
     } catch (CustomException ex) {
       log?.error(ex);
@@ -85,11 +82,7 @@ global with sharing class ApplicantController extends AbstractController {
     try {
       validateRequest(request);
       Applicant__c applicant = (Applicant__c) SObjectConstructor.deserialize(request.data, Applicant__c.class);
-
       applicant = ApplicantService.getInstance().saveApplicant(applicant, ApexRequest.getApplicationId());
-
-      ApplicationService.getInstance().updateFlowState(applicant);
-
       return ApexResponse.ok(applicant);
     } catch (CustomException ex) {
       log?.error(ex);
@@ -225,7 +218,7 @@ global with sharing class ApplicantController extends AbstractController {
       ID applicantId = (Id) ApexRequest.getParams('applicantId');
       ID employerId = (Id) ApexRequest.getParams('employerId');
       Employment__c employmentObj = EmploymentService.getInstance().readEmployerbyId(employerId);
-      if (employmentObj != null && employmentObj.isDocumentGenerated__c == false) {
+      if (employmentObj != null && employmentObj.IsDocumentGenerated__c == false) {
         return ApexResponse.ok(EmploymentService.getInstance().generatePaySlipsW2(applicantId, employerId));
       } else {
         return ApexResponse.ok('The files are already generated, so skipping ');
@@ -270,24 +263,21 @@ global with sharing class ApplicantController extends AbstractController {
    **/
   @RemoteAction
   global static ApexResponse verifyKYC(ApexRequest request) {
-    if (SystemSetting__c.getOrgDefaults().mflow__KYCEvaluation__c) {
-      try {
-        validateRequest(request);
-        log?.fine('Inside Appliant KYC');
-        return ApexResponse.ok(AlloyService.getInstance().verifyKYC(ApexRequest.getApplicantId()));
-      } catch (CustomException ex) {
-        log?.error(ex);
-        return ApexResponse.exception(ex);
-      } catch (Exception ex) {
-        log?.error(ex);
-        return ApexResponse.fail(ex);
-      } finally {
-        log?.fine('Completed Applicant KYC');
-        Logger.persist();
-        flow.finalize();
-      }
-    } else
-      return null;
+    try {
+      validateRequest(request);
+      log?.fine('Inside Appliant KYC');
+      return ApexResponse.ok(ApplicantService.getInstance().verifyKYC(ApexRequest.getApplicantId()));
+    } catch (CustomException ex) {
+      log?.error(ex);
+      return ApexResponse.exception(ex);
+    } catch (Exception ex) {
+      log?.error(ex);
+      return ApexResponse.fail(ex);
+    } finally {
+      log?.fine('Completed Applicant KYC');
+      Logger.persist();
+      flow.finalize();
+    }
   }
 
   /**

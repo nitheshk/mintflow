@@ -37,6 +37,20 @@
           <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
             Home
           </a>
+          <details id="BatchJob" class="group-name">
+            <summary id="header-BatchJob" class="nav-header">
+              <span>BatchJob</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="BatchToAbandonedApplication" id="item-BatchToAbandonedApplication" class="nav-item class global" onclick="goToLocation('BatchToAbandonedApplication.html');">
+                <a tabindex="1" href="javascript:void(0)">BatchToAbandonedApplication</a>
+              </li>
+              <li title="BatchToDeleteApplication" id="item-BatchToDeleteApplication" class="nav-item class global" onclick="goToLocation('BatchToDeleteApplication.html');">
+                <a tabindex="1" href="javascript:void(0)">BatchToDeleteApplication</a>
+              </li>
+            </ul>
+          </details>
           <details id="Builder" class="group-name">
             <summary id="header-Builder" class="nav-header">
               <span>Builder</span>
@@ -63,8 +77,8 @@
               <li title="SentiLinkProvider" id="item-SentiLinkProvider" class="nav-item class global" onclick="goToLocation('SentiLinkProvider.html');">
                 <a tabindex="1" href="javascript:void(0)">SentiLinkProvider</a>
               </li>
-              <li title="FinancialInstituteConstants" id="item-FinancialInstituteConstants" class="nav-item class global" onclick="goToLocation('FinancialInstituteConstants.html');">
-                <a tabindex="1" href="javascript:void(0)">FinancialInstituteConstants</a>
+              <li title="CommunityConstant" id="item-CommunityConstant" class="nav-item class global" onclick="goToLocation('CommunityConstant.html');">
+                <a tabindex="1" href="javascript:void(0)">CommunityConstant</a>
               </li>
             </ul>
           </details>
@@ -80,7 +94,10 @@
               <li title="ApplicationController" id="item-ApplicationController" class="nav-item class global" onclick="goToLocation('ApplicationController.html');">
                 <a tabindex="1" href="javascript:void(0)">ApplicationController</a>
               </li>
-              <li title="CustomerAgreementController" id="item-CustomerAgreementController" class="nav-item class public" onclick="goToLocation('CustomerAgreementController.html');">
+              <li title="CustomerActionController" id="item-CustomerActionController" class="nav-item class global" onclick="goToLocation('CustomerActionController.html');">
+                <a tabindex="1" href="javascript:void(0)">CustomerActionController</a>
+              </li>
+              <li title="CustomerAgreementController" id="item-CustomerAgreementController" class="nav-item class global" onclick="goToLocation('CustomerAgreementController.html');">
                 <a tabindex="1" href="javascript:void(0)">CustomerAgreementController</a>
               </li>
               <li title="FinancialAccountController" id="item-FinancialAccountController" class="nav-item class global" onclick="goToLocation('FinancialAccountController.html');">
@@ -98,20 +115,14 @@
               <li title="OnlineAccountController" id="item-OnlineAccountController" class="nav-item class global" onclick="goToLocation('OnlineAccountController.html');">
                 <a tabindex="1" href="javascript:void(0)">OnlineAccountController</a>
               </li>
-              <li title="OnlineAccountLoginController" id="item-OnlineAccountLoginController" class="nav-item class global" onclick="goToLocation('OnlineAccountLoginController.html');">
-                <a tabindex="1" href="javascript:void(0)">OnlineAccountLoginController</a>
-              </li>
-              <li title="OpenAccountController" id="item-OpenAccountController" class="nav-item class global" onclick="goToLocation('OpenAccountController.html');">
-                <a tabindex="1" href="javascript:void(0)">OpenAccountController</a>
+              <li title="OnlinePortalController" id="item-OnlinePortalController" class="nav-item class global" onclick="goToLocation('OnlinePortalController.html');">
+                <a tabindex="1" href="javascript:void(0)">OnlinePortalController</a>
               </li>
               <li title="AbstractController" id="item-AbstractController" class="nav-item class global" onclick="goToLocation('AbstractController.html');">
                 <a tabindex="1" href="javascript:void(0)">AbstractController</a>
               </li>
               <li title="AbstractDTO" id="item-AbstractDTO" class="nav-item class global" onclick="goToLocation('AbstractDTO.html');">
                 <a tabindex="1" href="javascript:void(0)">AbstractDTO</a>
-              </li>
-              <li title="UserAccountManagementController" id="item-UserAccountManagementController" class="nav-item class global" onclick="goToLocation('UserAccountManagementController.html');">
-                <a tabindex="1" href="javascript:void(0)">UserAccountManagementController</a>
               </li>
               <li title="DisplayImageController" id="item-DisplayImageController" class="nav-item class public" onclick="goToLocation('DisplayImageController.html');">
                 <a tabindex="1" href="javascript:void(0)">DisplayImageController</a>
@@ -127,11 +138,17 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="DocumentScanDTO" id="item-DocumentScanDTO" class="nav-item class global" onclick="goToLocation('DocumentScanDTO.html');">
-                <a tabindex="1" href="javascript:void(0)">DocumentScanDTO</a>
+              <li title="IdScanDueDiligenceDTO" id="item-IdScanDueDiligenceDTO" class="nav-item class global" onclick="goToLocation('IdScanDueDiligenceDTO.html');">
+                <a tabindex="1" href="javascript:void(0)">IdScanDueDiligenceDTO</a>
+              </li>
+              <li title="IdScanWrapper" id="item-IdScanWrapper" class="nav-item class global" onclick="goToLocation('IdScanWrapper.html');">
+                <a tabindex="1" href="javascript:void(0)">IdScanWrapper</a>
               </li>
               <li title="GeocodingDTO" id="item-GeocodingDTO" class="nav-item class global" onclick="goToLocation('GeocodingDTO.html');">
                 <a tabindex="1" href="javascript:void(0)">GeocodingDTO</a>
+              </li>
+              <li title="IdScanDTO" id="item-IdScanDTO" class="nav-item class global" onclick="goToLocation('IdScanDTO.html');">
+                <a tabindex="1" href="javascript:void(0)">IdScanDTO</a>
               </li>
               <li title="FileDTO" id="item-FileDTO" class="nav-item class global" onclick="goToLocation('FileDTO.html');">
                 <a tabindex="1" href="javascript:void(0)">FileDTO</a>
@@ -139,14 +156,11 @@
               <li title="PlaidTokenDTO" id="item-PlaidTokenDTO" class="nav-item class global" onclick="goToLocation('PlaidTokenDTO.html');">
                 <a tabindex="1" href="javascript:void(0)">PlaidTokenDTO</a>
               </li>
-              <li title="ApplicationSubmissionResponse" id="item-ApplicationSubmissionResponse" class="nav-item class global" onclick="goToLocation('ApplicationSubmissionResponse.html');">
-                <a tabindex="1" href="javascript:void(0)">ApplicationSubmissionResponse</a>
+              <li title="BuildSubmissionWrapper" id="item-BuildSubmissionWrapper" class="nav-item class global" onclick="goToLocation('BuildSubmissionWrapper.html');">
+                <a tabindex="1" href="javascript:void(0)">BuildSubmissionWrapper</a>
               </li>
-              <li title="BuildApplicationWrapper" id="item-BuildApplicationWrapper" class="nav-item class global" onclick="goToLocation('BuildApplicationWrapper.html');">
-                <a tabindex="1" href="javascript:void(0)">BuildApplicationWrapper</a>
-              </li>
-              <li title="BuildFundingWrapper" id="item-BuildFundingWrapper" class="nav-item class global" onclick="goToLocation('BuildFundingWrapper.html');">
-                <a tabindex="1" href="javascript:void(0)">BuildFundingWrapper</a>
+              <li title="SubmissionDTO" id="item-SubmissionDTO" class="nav-item class global" onclick="goToLocation('SubmissionDTO.html');">
+                <a tabindex="1" href="javascript:void(0)">SubmissionDTO</a>
               </li>
             </ul>
           </details>
@@ -173,6 +187,9 @@
             </summary>
             <ul>
               <!-- menu items -->
+              <li title="AfterCommitEventTriggerHandler" id="item-AfterCommitEventTriggerHandler" class="nav-item class public" onclick="goToLocation('AfterCommitEventTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">AfterCommitEventTriggerHandler</a>
+              </li>
               <li title="EmploymentTriggerHandler" id="item-EmploymentTriggerHandler" class="nav-item class public" onclick="goToLocation('EmploymentTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">EmploymentTriggerHandler</a>
               </li>
@@ -210,9 +227,6 @@
               <li title="DynamicLWCDataTableResponse" id="item-DynamicLWCDataTableResponse" class="nav-item class public" onclick="goToLocation('DynamicLWCDataTableResponse.html');">
                 <a tabindex="1" href="javascript:void(0)">DynamicLWCDataTableResponse</a>
               </li>
-              <li title="FundingSubmissionResponse" id="item-FundingSubmissionResponse" class="nav-item class global" onclick="goToLocation('FundingSubmissionResponse.html');">
-                <a tabindex="1" href="javascript:void(0)">FundingSubmissionResponse</a>
-              </li>
             </ul>
           </details>
           <details id="Provider" class="group-name">
@@ -221,6 +235,9 @@
             </summary>
             <ul>
               <!-- menu items -->
+              <li title="IdScanProvider" id="item-IdScanProvider" class="nav-item class global" onclick="goToLocation('IdScanProvider.html');">
+                <a tabindex="1" href="javascript:void(0)">IdScanProvider</a>
+              </li>
               <li title="TwillioProvider" id="item-TwillioProvider" class="nav-item class global" onclick="goToLocation('TwillioProvider.html');">
                 <a tabindex="1" href="javascript:void(0)">TwillioProvider</a>
               </li>
@@ -247,6 +264,9 @@
               <li title="ConsentRepository" id="item-ConsentRepository" class="nav-item class public" onclick="goToLocation('ConsentRepository.html');">
                 <a tabindex="1" href="javascript:void(0)">ConsentRepository</a>
               </li>
+              <li title="CustomerPortalRepository" id="item-CustomerPortalRepository" class="nav-item class global" onclick="goToLocation('CustomerPortalRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">CustomerPortalRepository</a>
+              </li>
               <li title="EmploymentRepository" id="item-EmploymentRepository" class="nav-item class global" onclick="goToLocation('EmploymentRepository.html');">
                 <a tabindex="1" href="javascript:void(0)">EmploymentRepository</a>
               </li>
@@ -259,8 +279,8 @@
               <li title="LwcCustomRepository" id="item-LwcCustomRepository" class="nav-item class global" onclick="goToLocation('LwcCustomRepository.html');">
                 <a tabindex="1" href="javascript:void(0)">LwcCustomRepository</a>
               </li>
-              <li title="NotificationRepository" id="item-NotificationRepository" class="nav-item class public" onclick="goToLocation('NotificationRepository.html');">
-                <a tabindex="1" href="javascript:void(0)">NotificationRepository</a>
+              <li title="ProductServiceRepository" id="item-ProductServiceRepository" class="nav-item class public" onclick="goToLocation('ProductServiceRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">ProductServiceRepository</a>
               </li>
               <li title="SearchRepository" id="item-SearchRepository" class="nav-item class public" onclick="goToLocation('SearchRepository.html');">
                 <a tabindex="1" href="javascript:void(0)">SearchRepository</a>
@@ -268,11 +288,8 @@
               <li title="SurveyRepository" id="item-SurveyRepository" class="nav-item class public" onclick="goToLocation('SurveyRepository.html');">
                 <a tabindex="1" href="javascript:void(0)">SurveyRepository</a>
               </li>
-              <li title="UserAccountManagementRepository" id="item-UserAccountManagementRepository" class="nav-item class global" onclick="goToLocation('UserAccountManagementRepository.html');">
-                <a tabindex="1" href="javascript:void(0)">UserAccountManagementRepository</a>
-              </li>
-              <li title="FinancialInstituteSiteRepository" id="item-FinancialInstituteSiteRepository" class="nav-item class public" onclick="goToLocation('FinancialInstituteSiteRepository.html');">
-                <a tabindex="1" href="javascript:void(0)">FinancialInstituteSiteRepository</a>
+              <li title="CommunitySiteRepository" id="item-CommunitySiteRepository" class="nav-item class global" onclick="goToLocation('CommunitySiteRepository.html');">
+                <a tabindex="1" href="javascript:void(0)">CommunitySiteRepository</a>
               </li>
               <li title="EmailNotificationRepository" id="item-EmailNotificationRepository" class="nav-item class public" onclick="goToLocation('EmailNotificationRepository.html');">
                 <a tabindex="1" href="javascript:void(0)">EmailNotificationRepository</a>
@@ -282,9 +299,6 @@
               </li>
               <li title="CommonRepository" id="item-CommonRepository" class="nav-item class global" onclick="goToLocation('CommonRepository.html');">
                 <a tabindex="1" href="javascript:void(0)">CommonRepository</a>
-              </li>
-              <li title="SystemSettingRepository" id="item-SystemSettingRepository" class="nav-item class global" onclick="goToLocation('SystemSettingRepository.html');">
-                <a tabindex="1" href="javascript:void(0)">SystemSettingRepository</a>
               </li>
               <li title="UtilsRepository" id="item-UtilsRepository" class="nav-item class global" onclick="goToLocation('UtilsRepository.html');">
                 <a tabindex="1" href="javascript:void(0)">UtilsRepository</a>
@@ -299,6 +313,9 @@
               <!-- menu items -->
               <li title="ConsentResolver" id="item-ConsentResolver" class="nav-item class global" onclick="goToLocation('ConsentResolver.html');">
                 <a tabindex="1" href="javascript:void(0)">ConsentResolver</a>
+              </li>
+              <li title="ProductServiceResolver" id="item-ProductServiceResolver" class="nav-item class global" onclick="goToLocation('ProductServiceResolver.html');">
+                <a tabindex="1" href="javascript:void(0)">ProductServiceResolver</a>
               </li>
               <li title="SurveyResolver" id="item-SurveyResolver" class="nav-item class global" onclick="goToLocation('SurveyResolver.html');">
                 <a tabindex="1" href="javascript:void(0)">SurveyResolver</a>
@@ -320,14 +337,14 @@
               <li title="ApplicationService" id="item-ApplicationService" class="nav-item class global" onclick="goToLocation('ApplicationService.html');">
                 <a tabindex="1" href="javascript:void(0)">ApplicationService</a>
               </li>
-              <li title="ApplicationSubmissionService" id="item-ApplicationSubmissionService" class="nav-item class global" onclick="goToLocation('ApplicationSubmissionService.html');">
-                <a tabindex="1" href="javascript:void(0)">ApplicationSubmissionService</a>
-              </li>
               <li title="AuthenticationService" id="item-AuthenticationService" class="nav-item class global" onclick="goToLocation('AuthenticationService.html');">
                 <a tabindex="1" href="javascript:void(0)">AuthenticationService</a>
               </li>
               <li title="CustomerEmailService" id="item-CustomerEmailService" class="nav-item class global" onclick="goToLocation('CustomerEmailService.html');">
                 <a tabindex="1" href="javascript:void(0)">CustomerEmailService</a>
+              </li>
+              <li title="CustomerPortalService" id="item-CustomerPortalService" class="nav-item class global" onclick="goToLocation('CustomerPortalService.html');">
+                <a tabindex="1" href="javascript:void(0)">CustomerPortalService</a>
               </li>
               <li title="EmploymentService" id="item-EmploymentService" class="nav-item class global" onclick="goToLocation('EmploymentService.html');">
                 <a tabindex="1" href="javascript:void(0)">EmploymentService</a>
@@ -338,9 +355,6 @@
               <li title="IdentityService" id="item-IdentityService" class="nav-item class global" onclick="goToLocation('IdentityService.html');">
                 <a tabindex="1" href="javascript:void(0)">IdentityService</a>
               </li>
-              <li title="KycReviewService" id="item-KycReviewService" class="nav-item class global" onclick="goToLocation('KycReviewService.html');">
-                <a tabindex="1" href="javascript:void(0)">KycReviewService</a>
-              </li>
               <li title="LwcCustomService" id="item-LwcCustomService" class="nav-item class global" onclick="goToLocation('LwcCustomService.html');">
                 <a tabindex="1" href="javascript:void(0)">LwcCustomService</a>
               </li>
@@ -350,8 +364,8 @@
               <li title="OAuthProvider" id="item-OAuthProvider" class="nav-item class global" onclick="goToLocation('OAuthProvider.html');">
                 <a tabindex="1" href="javascript:void(0)">OAuthProvider</a>
               </li>
-              <li title="ReviewInformationService" id="item-ReviewInformationService" class="nav-item class global" onclick="goToLocation('ReviewInformationService.html');">
-                <a tabindex="1" href="javascript:void(0)">ReviewInformationService</a>
+              <li title="ProductService" id="item-ProductService" class="nav-item class global" onclick="goToLocation('ProductService.html');">
+                <a tabindex="1" href="javascript:void(0)">ProductService</a>
               </li>
               <li title="SearchService" id="item-SearchService" class="nav-item class global" onclick="goToLocation('SearchService.html');">
                 <a tabindex="1" href="javascript:void(0)">SearchService</a>
@@ -359,17 +373,11 @@
               <li title="AbstractService" id="item-AbstractService" class="nav-item class global" onclick="goToLocation('AbstractService.html');">
                 <a tabindex="1" href="javascript:void(0)">AbstractService</a>
               </li>
-              <li title="FinInstAccountService" id="item-FinInstAccountService" class="nav-item class global" onclick="goToLocation('FinInstAccountService.html');">
-                <a tabindex="1" href="javascript:void(0)">FinInstAccountService</a>
-              </li>
               <li title="APINames" id="item-APINames" class="nav-item class global" onclick="goToLocation('APINames.html');">
                 <a tabindex="1" href="javascript:void(0)">APINames</a>
               </li>
               <li title="AuthenticationProvider" id="item-AuthenticationProvider" class="nav-item class global" onclick="goToLocation('AuthenticationProvider.html');">
                 <a tabindex="1" href="javascript:void(0)">AuthenticationProvider</a>
-              </li>
-              <li title="DocumentScanProvider" id="item-DocumentScanProvider" class="nav-item class global" onclick="goToLocation('DocumentScanProvider.html');">
-                <a tabindex="1" href="javascript:void(0)">DocumentScanProvider</a>
               </li>
               <li title="GeocodingProvider" id="item-GeocodingProvider" class="nav-item class global" onclick="goToLocation('GeocodingProvider.html');">
                 <a tabindex="1" href="javascript:void(0)">GeocodingProvider</a>
@@ -407,6 +415,9 @@
               <li title="NotificationBuilder" id="item-NotificationBuilder" class="nav-item class global" onclick="goToLocation('NotificationBuilder.html');">
                 <a tabindex="1" href="javascript:void(0)">NotificationBuilder</a>
               </li>
+              <li title="Scheduler" id="item-Scheduler" class="nav-item class public" onclick="goToLocation('Scheduler.html');">
+                <a tabindex="1" href="javascript:void(0)">Scheduler</a>
+              </li>
               <li title="NavigationLinkSetPickList" id="item-NavigationLinkSetPickList" class="nav-item class global" onclick="goToLocation('NavigationLinkSetPickList.html');">
                 <a tabindex="1" href="javascript:void(0)">NavigationLinkSetPickList</a>
               </li>
@@ -419,8 +430,11 @@
               <li title="RpaProcessService" id="item-RpaProcessService" class="nav-item class global" onclick="goToLocation('RpaProcessService.html');">
                 <a tabindex="1" href="javascript:void(0)">RpaProcessService</a>
               </li>
-              <li title="ContactPointAddressTriggerHandler" id="item-ContactPointAddressTriggerHandler" class="nav-item class public" onclick="goToLocation('ContactPointAddressTriggerHandler.html');">
-                <a tabindex="1" href="javascript:void(0)">ContactPointAddressTriggerHandler</a>
+              <li title="SubmitApplicationService" id="item-SubmitApplicationService" class="nav-item class global" onclick="goToLocation('SubmitApplicationService.html');">
+                <a tabindex="1" href="javascript:void(0)">SubmitApplicationService</a>
+              </li>
+              <li title="AddressTriggerHandler" id="item-AddressTriggerHandler" class="nav-item class public" onclick="goToLocation('AddressTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">AddressTriggerHandler</a>
               </li>
             </ul>
           </details>
@@ -588,14 +602,14 @@
               <h3 class="subsection-title methods">ApplicantController Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
-                  <li class="method public">
+                  <li class="method global">
                     <a class="methods-toc__entry " href="#ApplicantController.ApplicantController">
                       ApplicantController (controller)
                     </a>
 
                   </li>
                 </ul>
-                <div class="method public">
+                <div class="method global">
                   <h4 class="method-title " id="ApplicantController.ApplicantController">
                     <span>ApplicantController(controller)</span>
                   </h4>
@@ -604,7 +618,7 @@
                   </div>
 
                   <div class="method-signature">
-                    public ApplicantController(AbstractController controller)
+                    global ApplicantController(AbstractController controller)
                   </div>
                 </div>
               </div>
@@ -650,6 +664,12 @@
                     </div>
                   </li>
                   <li class="method global">
+                    <a class="methods-toc__entry " href="#ApplicantController.getBaseURL">
+                      getBaseURL (request)
+                    </a>
+
+                  </li>
+                  <li class="method global">
                     <a class="methods-toc__entry " href="#ApplicantController.readApplicantsWithChild">
                       readApplicantsWithChild (request)
                     </a>
@@ -677,12 +697,36 @@
                     </div>
                   </li>
                   <li class="method global">
+                    <a class="methods-toc__entry " href="#ApplicantController.validateAtomicFi">
+                      validateAtomicFi (request)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      validate atomic fi report has genreated
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApplicantController.validateExistingCustomer">
+                      validateExistingCustomer (request)
+                    </a>
+
+                  </li>
+                  <li class="method global">
                     <a class="methods-toc__entry " href="#ApplicantController.validateOTP">
                       validateOTP (request)
                     </a>
 
                     <div class="methods-toc__description">
                       validate otp for applicant
+                    </div>
+                  </li>
+                  <li class="method global">
+                    <a class="methods-toc__entry " href="#ApplicantController.verifyKYC">
+                      verifyKYC (request)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Fetch Accounts For Transaction
                     </div>
                   </li>
                 </ul>
@@ -807,6 +851,33 @@
                   </div>
                 </div>
                 <div class="method global">
+                  <h4 class="method-title " id="ApplicantController.getBaseURL">
+                    <span>getBaseURL(request)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@RemoteAction</div>
+                  <div class="method-signature">
+                    global static ApexResponse getBaseURL(ApexRequest request)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">ApexRequest</div>
+                  <div class="param-description">request</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexResponse
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 03-28-2022
+                  </div>
+                </div>
+                <div class="method global">
                   <h4 class="method-title " id="ApplicantController.readApplicantsWithChild">
                     <span>readApplicantsWithChild(request)</span>
                   </h4>
@@ -897,6 +968,63 @@
                   </div>
                 </div>
                 <div class="method global">
+                  <h4 class="method-title " id="ApplicantController.validateAtomicFi">
+                    <span>validateAtomicFi(request)</span>
+                  </h4>
+                  <div class="method-description">
+                    validate atomic fi report has genreated
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@RemoteAction</div>
+                  <div class="method-signature">
+                    global static ApexResponse validateAtomicFi(ApexRequest request)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">ApexRequest</div>
+                  <div class="param-description">request</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexResponse
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 03-16-2022
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApplicantController.validateExistingCustomer">
+                    <span>validateExistingCustomer(request)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@RemoteAction</div>
+                  <div class="method-signature">
+                    global static ApexResponse validateExistingCustomer(ApexRequest request)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">ApexRequest</div>
+                  <div class="param-description">request</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexResponse
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 03-28-2022
+                  </div>
+                </div>
+                <div class="method global">
                   <h4 class="method-title " id="ApplicantController.validateOTP">
                     <span>validateOTP(request)</span>
                   </h4>
@@ -924,6 +1052,36 @@
                   </div>
                   <div class="method-subtitle-description">
                     Digital Align Team | 11-05-2021
+                  </div>
+                </div>
+                <div class="method global">
+                  <h4 class="method-title " id="ApplicantController.verifyKYC">
+                    <span>verifyKYC(request)</span>
+                  </h4>
+                  <div class="method-description">
+                    Fetch Accounts For Transaction
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@RemoteAction</div>
+                  <div class="method-signature">
+                    global static ApexResponse verifyKYC(ApexRequest request)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">ApexRequest</div>
+                  <div class="param-description">request</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    ApexResponse
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 12-29-2021
                   </div>
                 </div>
               </div>

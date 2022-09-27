@@ -91,6 +91,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     newApplication.Status__c = ApplicationConstant.IN_PROGRESS;
     newApplication.CreatedChannel__c = oldApplication.LastUsedChannel__c = ch;
     newApplication.ApplicationType__c = selectedProductList[0].Type__c;
+    newApplication.UiRouting__c = selectedProductList[0].UiRouting__c;
     newApplication.IsExistingCustomer__c = true;
     newApplication.FlowState__c = 'Review';
     newApplication.FlowType__c = 'ApplicationFlow';
@@ -143,7 +144,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     List<IdentificationDocument__c> newIdentityDocs = new List<IdentificationDocument__c>();
     List<Employment__c> newEmployments = new List<Employment__c>();
-    List<ContactPointAddress> newAddreses = new List<ContactPointAddress>();
+    List<Address__c> newAddreses = new List<Address__c>();
     for (Applicant__c newApplicant : newApplicants) {
       //Identification Document
       for (IdentificationDocument__c oldIdentityDoc : newApplicant.IdentificationDocuments__r) {
@@ -158,8 +159,8 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         newEmployments.add(newEmployment);
       }
       // //Contact Point Address
-      for (ContactPointAddress oldAddress : newApplicant.ContactPointAddresses__r) {
-        ContactPointAddress newAddress = oldAddress.clone(false, true, false, false);
+      for (Address__c oldAddress : newApplicant.Addresses__r) {
+        Address__c newAddress = oldAddress.clone(false, true, false, false);
         newAddress.Applicant__c = newApplicant.Id;
         newAddreses.add(newAddress);
       }
@@ -179,17 +180,18 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
    **/
   global virtual Application__c cloneExistingApplication(Map<String, Object> params) {
     String applicationId = (String) params.get('applicationIdToClone');
-    String internalProductCode = (string) params.get('pid');
-    system.debug('product code::' + internalProductCode);
+    String pid = (string) params.get('pid');
     String ch = (string) params.get('ch');
+    log?.debug('Product Code::' + pid);
 
+    List<String> productCodes = String.isNotBlank(pid) ? pid?.split(',') : new List<String>();
     Application__c oldApplication = ApplicationRepository.readApplicationToClone(applicationId);
     List<Applicant__c> oldApplicants = ApplicationRepository.readPrimaryApplicantsToClone(oldApplication.Id);
-    FinancialProduct__c selectedProduct = FinancialAccountRepository.readFinancialProductByInternalCode(
-      internalProductCode
+    List<FinancialProduct__c> selectedProducts = FinancialAccountRepository.readFinancialProductsByMultipleCodes(
+      productCodes
     );
 
-    if (oldApplication == null || selectedProduct == null) {
+    if (oldApplication == null || selectedProducts.isEmpty()) {
       throw new CustomException('Something went wrong! Check application number and product');
     }
 
@@ -200,7 +202,8 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     newApplication.CreatedChannel__c = oldApplication.LastUsedChannel__c = String.isNotBlank(ch)
       ? ch
       : ApplicationConstant.CHANNEL_VIRTUAL;
-    newApplication.ApplicationType__c = selectedProduct.Type__c;
+    newApplication.ApplicationType__c = selectedProducts[0].Type__c;
+    newApplication.UiRouting__c = selectedProducts[0].UiRouting__c;
     newApplication.IsExistingCustomer__c = true;
     newApplication.FlowState__c = ApplicationConstant.PERSONAL_INFO;
     newApplication.FlowType__c = 'ApplicationFlow';
@@ -212,18 +215,22 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     ApexRequest.setApplicationId(newApplication.Id);
     //Financial Account
-    FinancialAccount__c financialAccount = new FinancialAccount__c();
-    financialAccount.FinancialProduct__c = selectedProduct.Id;
-    financialAccount.Ownership__c = oldApplicants.size() > 1 ? 'Joint' : 'Individual';
-    financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
-    financialAccount.Stage__c = 'Active';
-    financialAccount.isPrimary__c = true;
-    financialAccount.Application__c = newApplication.Id;
-    financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
-      FinancialAccount__c.SObjectType,
-      selectedProduct.Category__c
-    );
-    FinancialAccountRepository.upsertRecord(financialAccount);
+    List<FinancialAccount__c> financialAccountList = new List<FinancialAccount__c>();
+    for (FinancialProduct__c selectedProduct : selectedProducts) {
+      FinancialAccount__c financialAccount = new FinancialAccount__c();
+      financialAccount.FinancialProduct__c = selectedProduct.Id;
+      financialAccount.Ownership__c = oldApplicants.size() > 1 ? 'Joint' : 'Individual';
+      financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
+      financialAccount.Stage__c = 'Active';
+      financialAccount.Application__c = newApplication.Id;
+      financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
+        FinancialAccount__c.SObjectType,
+        selectedProduct.Category__c
+      );
+      financialAccountList.add(financialAccount);
+    }
+    financialAccountList[0].IsPrimary__c = true;
+    ApplicationRepository.upsertRecords(financialAccountList);
 
     //Applicants
     List<Applicant__c> newApplicants = new List<Applicant__c>();
@@ -250,7 +257,7 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
 
     List<IdentificationDocument__c> newIdentityDocs = new List<IdentificationDocument__c>();
     List<Employment__c> newEmployments = new List<Employment__c>();
-    List<ContactPointAddress> newAddreses = new List<ContactPointAddress>();
+    List<Address__c> newAddreses = new List<Address__c>();
     for (Applicant__c newApplicant : newApplicants) {
       //Identification Document
       for (IdentificationDocument__c oldIdentityDoc : newApplicant.IdentificationDocuments__r) {
@@ -265,8 +272,8 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
         newEmployments.add(newEmployment);
       }
       // //Contact Point Address
-      for (ContactPointAddress oldAddress : newApplicant.ContactPointAddresses__r) {
-        ContactPointAddress newAddress = oldAddress.clone(false, true, false, false);
+      for (Address__c oldAddress : newApplicant.Addresses__r) {
+        Address__c newAddress = oldAddress.clone(false, true, false, false);
         newAddress.Applicant__c = newApplicant.Id;
         newAddreses.add(newAddress);
       }
@@ -276,290 +283,5 @@ global virtual with sharing class ApplicationServiceHelper extends AbstractServi
     ApplicationRepository.upsertRecords(newAddreses);
 
     return newApplication;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 06-15-2022
-   * @param Application__c application
-   * @return Decimal
-   **/
-  public Decimal calculateLeadScore(Application__c application) {
-    Map<String, Object> mapData = new Map<String, Object>();
-    Map<String, String> mapFilter = new Map<String, String>();
-    String productId;
-    Decimal leadScore;
-
-    List<financialProduct__c> products = ProductServiceRepository.fetchProductWithFeatures(application.Id);
-    try {
-      if (products != null && products.size() > 0) {
-        //Calcuate Lead Score based on product and State weightage;
-        mapFilter.put('Type', 'State');
-        mapFilter.put('Value', application.mflow__FlowState__c);
-        mapData = calculateLeadBasedonState(mapfilter, mapData, products[0]);
-        if (mapData.containsKey('Product State') && (Decimal) mapData.get('Product State') > 0) {
-          //Calculate the lead score based on eligibility
-          mapFilter = new Map<String, String>();
-          mapFilter.put('Type', 'Eligibility');
-          mapFilter.put('Value', application.IsCountyEligible__c ? 'True' : 'False');
-          mapData = calculateLeadBasedonEligibility(mapfilter, mapData);
-          //Calculate the lead score based on KYC
-          mapFilter = new Map<String, String>();
-          mapFilter.put('Type', 'KYC');
-          mapFilter.put('Value', application.mflow__KYCStatus__c == 'Passed' ? 'True' : 'False');
-          mapData = calculateLeadBasedonKYC(mapfilter, mapData);
-
-          mapFilter = new Map<String, String>();
-          mapFilter.put('Type', 'KYCLeadScore');
-          mapData = calculateLeadBasedonKYCScore(mapfilter, mapData, application);
-
-          mapFilter = new Map<String, String>();
-          mapfilter.put('Type', 'Employment');
-          mapData = calculateLeadBasedonEmployment(mapfilter, mapData, application);
-          System.debug(' calculateLeadBasedonEmployment');
-
-          mapData = calculateLeadBasedonCustomerInterest(mapData, application);
-
-          leadScore = calculateTotalLeadScore(mapData);
-        }
-      }
-    } catch (exception ex) {
-      system.debug(' exception at : ' + ex.getLineNumber() + ex.getMessage());
-    }
-
-    return leadScore;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 06-15-2022
-   * @param Map<String String> mapFilter
-   * @param Map<String Object> mapData
-   * @param financialProduct__c product
-   * @return Map<String, Object>
-   **/
-  private Map<String, Object> calculateLeadBasedonState(
-    Map<String, String> mapFilter,
-    Map<String, Object> mapData,
-    financialProduct__c product
-  ) {
-    Decimal weightage;
-    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
-    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
-
-    if (leadConfigList != null && leadConfigList.size() > 0) {
-      weightage = leadConfigList[0].Weightage__c * product.Weightage__c;
-      mapData.put('Product State', weightage);
-    }
-    return mapData;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 06-15-2022
-   * @param Map<String String> mapFilter
-   * @param Map<String Object> mapData
-   * @return Map<String, Object>
-   **/
-  private Map<String, Object> calculateLeadBasedonEligibility(
-    Map<String, String> mapFilter,
-    Map<String, Object> mapData
-  ) {
-    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
-    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
-    if (leadConfigList.size() > 0) {
-      mapData.put('Eligibility Score', (Object) (leadConfigList[0].Weightage__c));
-    }
-    return mapdata;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 06-15-2022
-   * @param Map<String String> mapFilter
-   * @param Map<String Object> mapData
-   * @return Map<String, object>
-   **/
-  private Map<String, object> calculateLeadBasedonKYC(Map<String, String> mapFilter, Map<String, Object> mapData) {
-    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
-    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
-    if (leadConfigList.size() > 0) {
-      mapData.put('KYC Status Score', (Object) (leadConfigList[0].Weightage__c));
-    }
-    return mapdata;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 06-15-2022
-   * @param Map<String String> mapFilter
-   * @param Map<String Object> mapData
-   * @param Application__c application
-   * @return Map<String, object>
-   **/
-  private Map<String, object> calculateLeadBasedonKYCScore(
-    Map<String, String> mapFilter,
-    Map<String, Object> mapData,
-    Application__c application
-  ) {
-    Decimal creditScore = 0,
-      leadScore = 0,
-      calculatedLeadScore = 0,
-      totalScore = 0,
-      totalOOWScore = 0,
-      calculatedOOWScores = 0;
-    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
-    List<applicant__c> applicants = application.applicants__r;
-    Integer totalApplicants = 0;
-
-    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
-    for (applicant__c applicant : applicants) {
-      if (
-        applicant.mflow__ApplicantType__c.equalsignorecase('Joint') ||
-        applicant.mflow__ApplicantType__c.equalsignorecase('Primary')
-      ) {
-        creditScore = applicant.CreditScore__c;
-        for (LeadConfiguration__c leadConfig : leadConfigList) {
-          if (
-            leadConfig.Type__c == 'KYCLeadScore' &&
-            creditScore >= leadConfig.MinValue__c &&
-            creditScore <= leadConfig.MaxValue__c
-          ) {
-            leadScore = leadConfig.Weightage__c;
-            totalApplicants++;
-            totalScore = totalScore + leadScore;
-          }
-        }
-      }
-    }
-    //OOW calculations
-    mapFilter = new Map<String, String>();
-    mapFilter.put('Type', 'OOW');
-    totalApplicants = 0;
-    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
-    for (applicant__c applicant : applicants) {
-      if (
-        applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE ||
-        applicant.RecordType.Name == ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-      ) {
-        creditScore = applicant.CreditScore__c;
-        for (LeadConfiguration__c leadConfig : leadConfigList) {
-          if (leadConfig.Type__c == 'OOW' && applicant.OOWVerified__c) {
-            if (leadConfig.Value__c == 'Passed' && applicant.mflow__OOWStatus__c == 'Passed') {
-              totalOOWScore = totalOOWScore + leadConfig.Weightage__c;
-            }
-            if (leadConfig.Value__c == 'Failed' && applicant.mflow__OOWStatus__c == 'Failed') {
-              totalOOWScore = totalOOWScore + leadConfig.Weightage__c;
-            }
-            totalApplicants++;
-          }
-        }
-      }
-    }
-
-    if (totalApplicants > 0) {
-      calculatedLeadScore = totalScore / totalApplicants;
-      calculatedOOWScores = totalOOWScore / totalApplicants;
-
-      if (leadConfigList.size() > 0) {
-        mapData.put('KYC Score', (Object) (calculatedLeadScore));
-        mapData.put('OOW Score', (Object) (calculatedOOWScores));
-      }
-    }
-    return mapdata;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 06-15-2022
-   * @param Map<String String> mapFilter
-   * @param Map<String Object> mapData
-   * @param Application__c application
-   * @return Map<String, Object>
-   **/
-  private Map<String, Object> calculateLeadBasedonEmployment(
-    Map<String, String> mapFilter,
-    Map<String, Object> mapData,
-    Application__c application
-  ) {
-    Decimal creditScore = 0,
-      leadScore = 0,
-      calculatedLeadScore = 0,
-      totalScore = 0,
-      totalOOWScore = 0,
-      calculatedOOWScores = 0;
-    Boolean employmentVerified = false;
-    List<LeadConfiguration__c> leadConfigList = new List<LeadConfiguration__c>();
-    List<applicant__c> applicants = application.applicants__r;
-    Integer totalApplicants = 0;
-
-    leadConfigList = ApplicationRepository.fetchLeadConfiguration(mapFilter);
-    for (applicant__c applicant : applicants) {
-      if (!applicant.mflow__ApplicantType__c.equalsignorecase('Emergency Contact')) {
-        employmentVerified = applicant.mflow__IsEmploymentVerified__c;
-        system.debug('employmentVerified::' + employmentVerified);
-        for (LeadConfiguration__c leadConfig : leadConfigList) {
-          if (
-            leadConfig.Type__c == 'Employment' &&
-            leadConfig.Value__c == String.valueof(applicant.mflow__IsEmploymentVerified__c)
-          ) {
-            system.debug('leadConfig.Value__c ' + leadConfig.Value__c);
-            leadScore = leadConfig.Weightage__c;
-            totalApplicants++;
-            totalScore = totalScore + leadScore;
-          }
-        }
-      }
-    }
-    calculatedLeadScore = totalScore / totalApplicants;
-    mapData.put('Employment', (Object) (calculatedLeadScore));
-    return mapData;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 08-02-2022
-   * @param Map<String Object> mapData
-   * @param Application__c application
-   * @return Map<String, Object>
-   **/
-  private Map<String, Object> calculateLeadBasedonCustomerInterest(
-    Map<String, Object> mapData,
-    Application__c application
-  ) {
-    List<mflow__CustomerInterest__c> customerInterests = ApplicationRepository.readCustomerInterestbyApplication(
-      application.Id
-    );
-    if (customerInterests.size() > 0) {
-      mapData.put('Customer Interest', (object) 10);
-    } else {
-      mapData.put('Customer Interest', (object) 5);
-    }
-    system.debug('mapdata::' + mapData);
-    return mapData;
-  }
-
-  /**
-   * @description
-   * @author Digital Align Team | 06-15-2022
-   * @param Map<String Object> mapData
-   * @return Decimal
-   **/
-  private Decimal calculateTotalLeadScore(Map<String, Object> mapData) {
-    // final mapData {Customer Interest=10, Eligibility Score=10, Employment=5, KYC Score=5, KYC Status Score=10, OOW Score=5, Product State=10}
-    Decimal totalLeadScore = 0;
-    totalLeadScore =
-      totalLeadScore + (mapData.containsKey('Customer Interest') ? (decimal) mapData.get('Customer Interest') : 0.00);
-    totalLeadScore =
-      totalLeadScore + (mapData.containsKey('Eligibility Score') ? (Decimal) mapData.get('Eligibility Score') : 0.00);
-    totalLeadScore = totalLeadScore + (mapData.containsKey('Employment') ? (Decimal) mapData.get('Employment') : 0.00);
-    totalLeadScore = totalLeadScore + (mapData.containsKey('KYC Score') ? (Decimal) mapData.get('KYC Score') : 0.00);
-
-    totalLeadScore =
-      totalLeadScore + (mapData.containsKey('KYC Status Score') ? (Decimal) mapData.get('KYC Status Score') : 0.00);
-    totalLeadScore =
-      totalLeadScore + (mapData.containsKey('Product State') ? (Decimal) mapData.get('Product State') : 0.00);
-
-    return totalLeadScore;
   }
 }

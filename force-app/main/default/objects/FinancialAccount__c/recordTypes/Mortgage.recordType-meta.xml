@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mortgage</fullName>
+    <active>true</active>
+    <description>This record ID is for Home equity Loans</description>
+    <label>Mortgage</label>
+    <picklistValues>
+        <picklist>ClosureReason__c</picklist>
+        <values>
+            <fullName>Account Maintenance Fees</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Account no longer needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moved out of the country</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not able to maintain account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Others</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ownership__c</picklist>
+        <values>
+            <fullName>Individual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joint</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trust</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Purpose__c</picklist>
+        <values>
+            <fullName>Auto%2FRV Repairs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cash Rewards</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Debt Consolidation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entertainment%2FVacation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Family Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Home improvement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Household Goods</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ITIN Cash rewards</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ITIN Increase Limit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Increased Limit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medical%2FDental Expenses</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refinance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taxes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Abandoned</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Funding in Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Review In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submitted</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>VehicleType__c</picklist>
+        <values>
+            <fullName>Aerial tramway</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Airplane%2FAircraft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ambulance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Baby carriage %28US%29%2F Pram %28UK%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bicycle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Boat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bulldozer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bus</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Camper van</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Caravan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Carriage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cement mixer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Crane</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery van</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dump truck</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fire engine</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Forklift</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Helicopter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hot-air balloon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moped</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Motorcycle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mountain bike</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Police car</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rowboat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scooter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skateboard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Subway</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taxi%2Fcab</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tractor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Train</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tram %28UK%29%2F Streetcar %28US%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Truck</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Van</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

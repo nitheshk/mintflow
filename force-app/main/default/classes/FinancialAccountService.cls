@@ -138,102 +138,37 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
    * @return FinancialAccount__c
    **/
   global virtual List<FinancialAccount__c> createInitialFinancialAccount(Application__c application) {
-    FinancialProduct__c baseProduct = FinancialAccountRepository.readBaseProduct();
+    List<FinancialProduct__c> selectedProducts = new List<FinancialProduct__c>();
+    List<FinancialAccount__c> financialAccountList = new List<FinancialAccount__c>();
     String pid = PageUtils.getCurrentPageParameters('pid');
-    List<FinancialProduct__c> selectedProduct;
-    List<FinancialAccount__c> finAccountsList = new List<FinancialAccount__c>();
-
-    List<String> productCodes = pid.split(',');
     if (String.isNotBlank(pid)) {
-      selectedProduct = FinancialAccountRepository.readFinancialProductsByMultipleCodes(productCodes);
-    }
-    Integer prdIndex = 0;
-    if (selectedProduct != null && selectedProduct.size() > 0) {
-      application.ApplicationType__c = selectedProduct[0].Type__c; // to set first item type to the application
-      for (FinancialProduct__c productItem : selectedProduct) {
-        FinancialAccount__c financialAccount = new FinancialAccount__c();
-        financialAccount.FinancialProduct__c = productItem.Id;
-        financialAccount.Ownership__c = 'Individual';
-        if (prdIndex == 0) {
-          financialAccount.IsPrimary__c = true;
-        }
-        financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
-        financialAccount.Stage__c = 'Active';
-        financialAccount.Application__c = application.Id;
-        financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
-          FinancialAccount__c.SObjectType,
-          productItem.Category__c
-        );
-        finAccountsList.add(financialAccount);
-        prdIndex++;
-      }
+      List<String> productCodes = pid?.split(',');
+      selectedProducts = FinancialAccountRepository.readFinancialProductsByMultipleCodes(productCodes);
+    } else {
+      selectedProducts.add(FinancialAccountRepository.readBaseProduct());
     }
 
-    FinancialAccountRepository.upsertRecords(finAccountsList);
+    for (FinancialProduct__c selectedProduct : selectedProducts) {
+      FinancialAccount__c financialAccount = new FinancialAccount__c();
+      financialAccount.FinancialProduct__c = selectedProduct.Id;
+      financialAccount.Ownership__c = 'Individual';
+      financialAccount.Status__c = ApplicationConstant.IN_PROGRESS;
+      financialAccount.Stage__c = 'Active';
+      financialAccount.Application__c = application.Id;
+      financialAccount.RecordTypeId = SObjectUtils.recordTypeIdByName(
+        FinancialAccount__c.SObjectType,
+        selectedProduct.Category__c
+      );
+      financialAccountList.add(financialAccount);
+    }
+    application.ApplicationType__c = selectedProducts[0].Type__c;
+    application.UiRouting__c = selectedProducts[0].UiRouting__c;
+    financialAccountList[0].IsPrimary__c = true;
+
+    FinancialAccountRepository.upsertRecords(financialAccountList);
     FinancialAccountRepository.upsertRecord(application);
     log?.fine('financialAccount Created');
-    return finAccountsList;
-  }
-
-  /**
-   *  Only For Testing Purpose
-   *  Manual Approve Funding Data
-   **/
-  public void testApproveFundingSubmission(String applicationNumber) {
-    Application__c application = (new BuildSubmissionWrapper()).readApplicationWithChild(applicationNumber);
-
-    Map<String, Object> resultMap = new Map<String, Object>();
-    resultMap.put('ExternalApplicationNumber', String.valueOf(Integer.valueof((Math.random() * 100000))));
-    resultMap.put('ExternalApplicationStatus', 'Approved');
-    resultMap.put('MemberNumber', String.valueOf(Integer.valueof((Math.random() * 10000000))));
-    resultMap.put('ApplicationId', application.Id);
-    resultMap.put('IsExistingCustomer', false);
-
-    List<Object> applicants = new List<Object>();
-    for (Applicant__c applicant : application.Applicants__r) {
-      if (
-        applicant.RecordType.Name != ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE &&
-        applicant.RecordType.Name != ApplicationConstant.APPLICANT_JOINT_RECORDTYPE
-      ) {
-        continue;
-      }
-      applicants.add(
-        new Map<String, Object>{
-          'ApplicantId' => applicant.Id,
-          'CustomerNumber' => String.valueOf(Integer.valueof((Math.random() * 10000000)))
-        }
-      );
-    }
-    resultMap.put('Applicants', applicants);
-
-    List<Object> financialAccounts = new List<Object>();
-    for (FinancialAccount__c financialAccount : application.FinancialAccounts__r) {
-      if (financialAccount.FinancialAccountTransactions__r.isEmpty()) {
-        financialAccounts.add(
-          new Map<String, Object>{
-            'FinancialAccountId' => financialAccount.Id,
-            'AccountNumber' => String.valueOf(Integer.valueof((Math.random() * 1000000000)))
-          }
-        );
-      } else {
-        financialAccounts.add(
-          new Map<String, Object>{
-            'FinancialAccountId' => financialAccount.Id,
-            'AccountNumber' => String.valueOf(Integer.valueof((Math.random() * 1000000000))),
-            'FinancialApplicationTransaction' => new Map<String, Object>{
-              'FinancialAccountTransactionId' => financialAccount.FinancialAccountTransactions__r[0].Id,
-              'TransactionStatus' => 'Paid'
-            }
-          }
-        );
-      }
-    }
-    resultMap.put('FinancialAccounts', financialAccounts);
-
-    log?.debug('resultMap : ' + Json.serialize(resultMap));
-
-    application = (Application__c) SubmitApplicationService.getInstance()
-      .updateSubmissionInfo(Json.serialize(resultMap));
+    return financialAccountList;
   }
 
   /**
@@ -251,7 +186,7 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
         new Map<String, String>{
           'aplType' => ApexRequest.getApplicantType(),
           'flw' => ApplicationConstant.FLOW_TYPE_PAYMENT,
-          'urlSuffix' => '/savings/main-app/funding',
+          'urlSuffix' => '/other/funding/funding',
           'aplId' => currentApplicant.Id,
           'ch' => 'Virtual',
           'pageName' => '/CustomerAction',
@@ -272,5 +207,108 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
     // Send Email
     CustomerEmailService.getInstance().notifyToUpdateFunding(currentApplicant, link);
     return true;
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-23-2022
+   * @param Map<String object> params
+   * @return Object
+   **/
+  global virtual Object fetchVehicleDetails(Map<String, object> params) {
+    log?.debug('Inside fetchVehicleDetails');
+
+    List<object> matchedData = new List<object>();
+    String searchType = params.get('searchType') != null ? (String) params.get('searchType') : '';
+    String vin = params.get('vin') != null ? (String) params.get('vin') : '';
+    Integer year = params.get('year') != null ? Integer.valueOf(params.get('year')) : null;
+    String make = params.get('make') != null ? (String) params.get('make') : '';
+    String model = params.get('model') != null ? (String) params.get('model') : '';
+    List<Object> specList = new List<Object>();
+
+    switch on searchType {
+      when 'Vin' {
+        for (
+          VehicleSpecification__c vehicleSpec : (List<VehicleSpecification__c>) FinancialAccountRepository.readVehicleDetails(
+            searchType,
+            year,
+            make,
+            model,
+            vin
+          )
+        ) {
+          specList.add(
+            new Map<String, String>{
+              'yearName' => String.valueof(vehicleSpec.Year__c),
+              'yearValue' => String.valueof(vehicleSpec.Year__c),
+              'makeName' => vehicleSpec.Make__c,
+              'makeValue' => vehicleSpec.MakeCode__c,
+              'modelName' => vehicleSpec.Model__c,
+              'modelValue' => vehicleSpec.ModelCode__c,
+              'submodelName' => vehicleSpec.SubModel__c,
+              'submodelValue' => vehicleSpec.SubModelCode__c
+            }
+          );
+          break;
+        }
+        return specList;
+      }
+      when 'Make' {
+        Set<String> makeCode = new Set<String>();
+        for (
+          VehicleSpecification__c vehicleSpec : (List<VehicleSpecification__c>) FinancialAccountRepository.readVehicleDetails(
+            searchType,
+            year,
+            make,
+            model,
+            vin
+          )
+        ) {
+          if (makeCode.add(vehicleSpec.MakeCode__c)) {
+            specList.add(new Map<String, String>{ 'name' => vehicleSpec.Make__c, 'value' => vehicleSpec.MakeCode__c });
+          }
+        }
+        return specList;
+      }
+      when 'Model' {
+        Set<String> modelCode = new Set<String>();
+        for (
+          VehicleSpecification__c vehicleSpec : (List<VehicleSpecification__c>) FinancialAccountRepository.readVehicleDetails(
+            searchType,
+            year,
+            make,
+            model,
+            vin
+          )
+        ) {
+          if (modelCode.add(vehicleSpec.ModelCode__c)) {
+            specList.add(
+              new Map<String, String>{ 'name' => vehicleSpec.Model__c, 'value' => vehicleSpec.ModelCode__c }
+            );
+          }
+        }
+        return specList;
+      }
+      when 'SubModel' {
+        Set<String> submodelCode = new Set<String>();
+        for (
+          VehicleSpecification__c vehicleSpec : (List<VehicleSpecification__c>) FinancialAccountRepository.readVehicleDetails(
+            searchType,
+            year,
+            make,
+            model,
+            vin
+          )
+        ) {
+          if (submodelCode.add(vehicleSpec.SubModelCode__c)) {
+            specList.add(
+              new Map<String, String>{ 'name' => vehicleSpec.SubModel__c, 'value' => vehicleSpec.SubModelCode__c }
+            );
+          }
+        }
+        return specList;
+      }
+    }
+    return null;
   }
 }

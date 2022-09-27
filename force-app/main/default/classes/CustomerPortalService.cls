@@ -85,11 +85,11 @@ global virtual with sharing class CustomerPortalService extends AbstractService 
       Map<String, String> paramsEncrypt = new Map<String, String>();
       if (applicant.ApplicantType__c == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         paramsEncrypt.put('flw', 'ApplicationFlow');
-        paramsEncrypt.put('urlSuffix', '/savings/main-app/otp');
+        paramsEncrypt.put('urlSuffix', '/other/resume/otp');
         paramsEncrypt.put('aplType', ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE);
       } else {
         paramsEncrypt.put('flw', 'JointFlow');
-        paramsEncrypt.put('urlSuffix', '/savings/joint-app/otp');
+        paramsEncrypt.put('urlSuffix', '/other/resume/otp');
         paramsEncrypt.put('aplType', ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
       }
       paramsEncrypt.put('appId', applicant.application__c);

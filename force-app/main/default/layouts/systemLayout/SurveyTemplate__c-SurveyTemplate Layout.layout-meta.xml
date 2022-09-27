@@ -20,7 +20,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>isActive__c</field>
+                <field>IsActive__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -82,8 +82,9 @@
         <fields>QuestionNumber__c</fields>
         <fields>QuestionCode__c</fields>
         <fields>ParentQuestionCode__c</fields>
-        <fields>hasChild__c</fields>
+        <fields>HasChild__c</fields>
         <fields>Condition__c</fields>
+        <fields>Order__c</fields>
         <relatedList>SurveyQuestion__c.SurveyTemplate__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -92,7 +93,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0p000001QniD</masterLabel>
+        <masterLabel>00hN0000003PYr4</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

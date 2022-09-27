@@ -29,6 +29,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Citizenship__c</picklist>
+        <values>
+            <fullName>Non-Permanent Resident Alien</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Permanent Resident Alien</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>US Citizen</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>CreditScoreStatus__c</picklist>
         <values>
             <fullName>Not Verified</fullName>
@@ -40,6 +55,59 @@
         </values>
         <values>
             <fullName>Verified</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>DemographicCollectedThrough__c</picklist>
+        <values>
+            <fullName>Email or Internet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Face-to-Face Interview</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fax or Mail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telephone Interview</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>EthnicityTypeHispanicOrLatino__c</picklist>
+        <values>
+            <fullName>Cuban</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mexican</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Hispanic or Latino</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Puerto Rican</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ethnicity__c</picklist>
+        <values>
+            <fullName>Hispanic or Latino</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>I do not wish to provide this information</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Hispanic or Latino</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -62,6 +130,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>AssetAndLiability</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>BranchPassword</fullName>
             <default>false</default>
         </values>
@@ -75,6 +147,10 @@
         </values>
         <values>
             <fullName>CountyValidate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DemographicInfo</fullName>
             <default>false</default>
         </values>
         <values>
@@ -130,6 +206,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Property</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Questionary</fullName>
             <default>false</default>
         </values>
@@ -181,6 +261,25 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Gender__c</picklist>
+        <values>
+            <fullName>Female</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>I do not wish to provide this information</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Male</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mixed-gender</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>IdentityVerificationStatus__c</picklist>
         <values>
             <fullName>Accept</fullName>
@@ -211,6 +310,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>MaritalStatus__c</picklist>
+        <values>
+            <fullName>Married</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Separated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unmarried</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>OFAC__c</picklist>
         <values>
             <fullName>Accept</fullName>
@@ -222,6 +336,17 @@
         </values>
         <values>
             <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>OOWStatus__c</picklist>
+        <values>
+            <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Review</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -252,6 +377,83 @@
         </values>
         <values>
             <fullName>Passed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>RaceTypeAsian__c</picklist>
+        <values>
+            <fullName>Asian Indian</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chinese</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Filipino</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Japanese</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Korean</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Asian</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vietnamese</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>RaceTypeNativeHawaiianOrPacificIslander__c</picklist>
+        <values>
+            <fullName>Guamanian or Chamorro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Native Hawaiian</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Pacific Islander</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Samoan</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Race__c</picklist>
+        <values>
+            <fullName>American Indian or Alaska Native</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Asian</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Black or African American</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>I do not wish to provide this information</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Native Hawaiian or Other Pacific Islander</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>White</fullName>
             <default>false</default>
         </values>
     </picklistValues>

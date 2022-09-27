@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OwnershipShareType__c</fullName>
+    <description
+  >A share represents a unit of equity ownership in a company. Shareholders are entitled to any profits that the company may earn in the form of dividends</description>
+    <externalId>false</externalId>
+    <label>Ownership Share Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>LessThanShareValue</fullName>
+                <default>false</default>
+                <label>I have an ownership share of less than 25%</label>
+            </value>
+            <value>
+                <fullName>MoreThanShareValue</fullName>
+                <default>false</default>
+                <label>I have an ownership share of 25% or more</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

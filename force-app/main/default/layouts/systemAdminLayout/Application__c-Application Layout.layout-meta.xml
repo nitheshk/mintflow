@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>SubmittedBy__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UiRouting__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -217,7 +221,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>InterestProduct__c</fields>
-        <fields>isSelected__c</fields>
+        <fields>IsSelected__c</fields>
         <relatedList>CustomerInterest__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>

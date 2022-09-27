@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AccountType__c</fullName>
+    <description>Account Type of asset and liability</description>
+    <externalId>false</externalId>
+    <label>Account Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Checking</fullName>
+                <default>false</default>
+                <label>Checking</label>
+            </value>
+            <value>
+                <fullName>Savings</fullName>
+                <default>false</default>
+                <label>Savings</label>
+            </value>
+            <value>
+                <fullName>Money Market</fullName>
+                <default>false</default>
+                <label>Money Market</label>
+            </value>
+            <value>
+                <fullName>Certificate of Deposit</fullName>
+                <default>false</default>
+                <label>Certificate of Deposit</label>
+            </value>
+            <value>
+                <fullName>Mutual Fund</fullName>
+                <default>false</default>
+                <label>Mutual Fund</label>
+            </value>
+            <value>
+                <fullName>Stocks</fullName>
+                <default>false</default>
+                <label>Stocks</label>
+            </value>
+            <value>
+                <fullName>Stock Options</fullName>
+                <default>false</default>
+                <label>Stock Options</label>
+            </value>
+            <value>
+                <fullName>Bonds</fullName>
+                <default>false</default>
+                <label>Bonds</label>
+            </value>
+            <value>
+                <fullName>Retirement</fullName>
+                <default>false</default>
+                <label>Retirement</label>
+            </value>
+            <value>
+                <fullName>Bridge Loan Proceeds</fullName>
+                <default>false</default>
+                <label>Bridge Loan Proceeds</label>
+            </value>
+            <value>
+                <fullName>Individual Development Account</fullName>
+                <default>false</default>
+                <label>Individual Development Account</label>
+            </value>
+            <value>
+                <fullName>Trust Account</fullName>
+                <default>false</default>
+                <label>Trust Account</label>
+            </value>
+            <value>
+                <fullName>Cash Value of Life Insurance</fullName>
+                <default>false</default>
+                <label>Cash Value of Life Insurance</label>
+            </value>
+            <value>
+                <fullName>Revolving</fullName>
+                <default>false</default>
+                <label>Revolving</label>
+            </value>
+            <value>
+                <fullName>Installment</fullName>
+                <default>false</default>
+                <label>Installment</label>
+            </value>
+            <value>
+                <fullName>Open 30-Day</fullName>
+                <default>false</default>
+                <label>Open 30-Day</label>
+            </value>
+            <value>
+                <fullName>Lease</fullName>
+                <default>false</default>
+                <label>Lease</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -150,7 +150,6 @@ global virtual with sharing class AtomicFIProvider extends AbstractService {
     List<FileDTO> files = new List<FileDTO>();
     String sourceFileName = 'AtomicVerificationReport';
     PageReference pdfFile = new PageReference('/apex/' + sourceFileName + '?id=' + employerId);
-    System.debug('pdf file called' + employerId);
     files.add(new FileDTO('Employment Verification.pdf', pdfFile.getContent(), employerId, 'Employment', 'AtomicFI'));
     FileService.getInstance().createFiles(files);
   }

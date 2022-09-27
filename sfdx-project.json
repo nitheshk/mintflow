@@ -2,7 +2,7 @@
   "packageDirectories": [
     {
       "path": "force-app",
-      "package": "MFlowBetaV2",
+      "package": "MFlowV1",
       "versionName": "Version 1.0.0",
       "versionNumber": "1.0.0.NEXT",
       "ancestorVersion": "1.0.0.1",
@@ -22,7 +22,7 @@
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "51.0",
   "packageAliases": {
-    "MFlowBetaV2": "0Ho5g000000TNnACAW",
-    "MFlowBetaV2@1.0.0-1": "04t5g000000ESsyAAG"
+    "MFlowV1": "0Ho5g000000TNq4CAG",
+    "MFlowV1@1.0.0-1": "04t5g000000EobkAAC"
   }
 }

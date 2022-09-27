@@ -3,7 +3,7 @@
     <fullName>OOWTotalQuestionsToShow__c</fullName>
     <description>Number of questions to be displayed in UI</description>
     <externalId>false</externalId>
-    <label>OOWTotalQuestionsToShow</label>
+    <label>OOW Total Questions To Show</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>

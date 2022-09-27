@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RaceTypeNativeHawaiianOrPacificIslander__c</fullName>
+    <externalId>false</externalId>
+    <label>Race Type NativeHawaiian/PacificIslander</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Native Hawaiian</fullName>
+                <default>false</default>
+                <label>Native Hawaiian</label>
+            </value>
+            <value>
+                <fullName>Guamanian or Chamorro</fullName>
+                <default>false</default>
+                <label>Guamanian or Chamorro</label>
+            </value>
+            <value>
+                <fullName>Samoan</fullName>
+                <default>false</default>
+                <label>Samoan</label>
+            </value>
+            <value>
+                <fullName>Other Pacific Islander</fullName>
+                <default>false</default>
+                <label>Other Pacific Islander</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -44,7 +44,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     'hourly' => 'Hourly'
   };
 
-  public static final Map<String, String> EMPLOYEE_TYPE = new Map<String, String>{
+  public static final Map<String, String> JOB_TYPE = new Map<String, String>{
     'parttime' => 'Part Time',
     'fulltime' => 'Full Time',
     'weekly' => 'Weekly',
@@ -89,7 +89,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     atomObj.names = names;
     atomObj.applicantId = applicant.Id;
 
-    atomObj.addresses = mapApplicantAddress(applicant.ContactPointAddresses__r);
+    atomObj.addresses = mapApplicantAddress(applicant.Addresses__r);
 
     return atomObj;
   }
@@ -99,18 +99,18 @@ global virtual with sharing class AtomicFIService extends AbstractService {
    * @author Digital Align Team | 11/11/2021
    * @return  List<AtomicFIDTO.Address>
    **/
-  global virtual List<AtomicFIDTO.Address> mapApplicantAddress(List<ContactPointAddress> applicantAddress) {
+  global virtual List<AtomicFIDTO.Address> mapApplicantAddress(List<Address__c> applicantAddress) {
     AtomicFIDTO.address address;
     List<AtomicFIDTO.address> addresses = new List<AtomicFIDTO.address>();
 
-    for (ContactPointAddress contactadd : applicantAddress) {
+    for (Address__c addressObj : applicantAddress) {
       address = new AtomicFIDTO.address();
-      // Address applicantadd = contactadd.Address;
-      address.line1 = contactadd.Street;
-      address.city = contactadd.City;
-      address.state = contactadd.state;
-      address.zipcode = contactadd.PostalCode;
-      address.country = contactadd.Country;
+      // Address applicantadd = addressObj.Address;
+      address.line1 = addressObj.Street__c;
+      address.city = addressObj.City__c;
+      address.state = addressObj.state__c;
+      address.zipcode = addressObj.PostalCode__c;
+      address.country = addressObj.Country__c;
       addresses.add(address);
     }
     return addresses;
@@ -175,24 +175,23 @@ global virtual with sharing class AtomicFIService extends AbstractService {
    * @return  List<AtomicFIDTO.Address>
    **/
   global virtual String mapApplicantEmployment(AtomicFIDTO atomicObj) {
-    system.debug(json.serialize(atomicObj));
     Employment__c employmentObj = new Employment__c();
     employmentObj.Id = atomicObj.user.identifier;
     //method to fetch application and applicant id based on employer id ::TODO
     if (atomicObj.data.outputs.employmentStatus.equalsIgnoreCase('active')) {
-      employmentObj.EmploymentStatus__c = 'Employed';
-      employmentObj.mflow__EmploymentType__c = 'Current';
+      employmentObj.Status__c = 'Employed';
+      employmentObj.mflow__Type__c = 'Current';
     } else {
-      employmentObj.EmploymentStatus__c = 'Self-Employed';
-      employmentObj.mflow__EmploymentType__c = 'Previous';
+      employmentObj.Status__c = 'Self-Employed';
+      employmentObj.mflow__Type__c = 'Previous';
     }
 
-    employmentObj.mflow__EmploymentVerificationType__c = 'Auto';
+    employmentObj.mflow__VerificationType__c = 'Auto';
     employmentObj.Position__c = atomicObj.data.outputs.jobTitle;
     employmentObj.AnnualIncome__c = atomicObj.data.outputs.annualIncome;
     employmentObj.mflow__PayCycle__c = PAY_CYCLE.get(atomicObj.data.outputs.payCycle);
     employmentObj.mflow__IncomeType__c = INCOME_TYPE.get(atomicObj.data.outputs.incomeType);
-    employmentObj.mflow__EmployeeType__c = EMPLOYEE_TYPE.get(atomicObj.data.outputs.employeeType);
+    employmentObj.mflow__JobType__c = JOB_TYPE.get(atomicObj.data.outputs.employeeType);
     employmentObj.mflow__VerificationStatus__c = 'Review';
 
     EmploymentRepository.UpsertRecord(employmentObj);
@@ -224,7 +223,7 @@ global virtual with sharing class AtomicFIService extends AbstractService {
     Applicant__c applicant = ApplicantRepository.readApplicantById(applicantId);
     try {
       if (employmentObj != null) {
-        employmentObj.isDocumentGenerated__c = true;
+        employmentObj.IsDocumentGenerated__c = true;
         employmentObj.mflow__VerificationStatus__c = 'Verified';
         EmploymentRepository.UpsertRecord(employmentObj);
         log?.debug('Document Generated: True');

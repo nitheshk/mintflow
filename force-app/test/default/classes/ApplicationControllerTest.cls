@@ -10,7 +10,12 @@ public with sharing class ApplicationControllerTest {
     List<FinancialProduct__c> products = TestData.createProduct();
     insert products;
   }
-  //createApplicantDataWithChild
+  //makeLeadConfigutation
+  private static void makeLeadConfigutation() {
+    List<LeadConfiguration__c> leadConfigs = TestData.createLeadConfiguration();
+    insert leadConfigs;
+  }
+
   private static Applicant__c createApplicantDataWithChild(Application__c application) {
     Applicant__c applicant = Application.Applicants__r[0];
     SObjectConstructor construct = SObjectConstructor.getInstance(applicant);
@@ -21,7 +26,10 @@ public with sharing class ApplicationControllerTest {
     Employment__c employment = TestData.createEmployment(applicant.Id);
     insert employment;
 
-    ContactPointAddress address = TestData.createContactPointAddress(applicant.Id);
+    Income__c income = TestData.createIncome(applicant.Id);
+    insert income;
+
+    Address__c address = TestData.createAddress(applicant.Id);
     insert address;
 
     Survey__c survey = TestData.createSurvey(applicant);
@@ -29,7 +37,7 @@ public with sharing class ApplicationControllerTest {
 
     construct.addChildObject('mflow__IdentificationDocuments__r', identity);
     construct.addChildObject('mflow__Employments__r', employment);
-    construct.addChildObject('mflow__ContactPointAddresses__r', address);
+    construct.addChildObject('mflow__Addresses__r', address);
     construct.addChildObject('mflow__Surveys__r', survey);
 
     return (Applicant__c) construct.build();
@@ -182,13 +190,7 @@ public with sharing class ApplicationControllerTest {
     system.assertEquals(200, res.status, 'success');
     //200
     ApplicationService.getInstance().updateFlowState(application);
-    ApplicationService.getInstance().updateFlowState(application.Applicants__r);
-    ApplicationService.getInstance().updateFlowState(applicant);
-    ApplicationService.getInstance().updateFlowState(application.FinancialAccounts__r);
-
     ApexRequest.setApplicantType(ApplicationConstant.APPLICANT_JOINT_RECORDTYPE);
-    ApplicationService.getInstance().updateFlowState(applicant);
-
     //Exception
     ApexRequest.getRequest().currentPage = 'InvalidPage';
     ApplicationService.getInstance().updateFlowState(applicant);
@@ -227,7 +229,7 @@ public with sharing class ApplicationControllerTest {
     //200
     request = new ApexRequest();
     request.token = ApexRequest.getToken();
-    request.setHeader(new Map<String, object>{ 'recordId' => applicant.ContactPointAddresses__r[0].Id });
+    request.setHeader(new Map<String, object>{ 'recordId' => applicant.Addresses__r[0].Id });
     res = ApplicationController.deleteEntity(request);
     system.assertEquals(200, res.status, 'success');
 
@@ -546,11 +548,18 @@ public with sharing class ApplicationControllerTest {
   @isTest
   static void saveStateTest() {
     makeApplicationConfiguration();
+    makeLeadConfigutation();
+
     PageReference testPage = Page.error;
     Test.setCurrentPage(testPage);
     testPage.getParameters().put('pid', 'IC001');
     Application__c application = ApplicationService.getInstance().createApplication(new Map<String, String>());
     Applicant__c applicant = createApplicantDataWithChild(application);
+    applicant.OOWVerified__c = true;
+    applicant.OOWStatus__c = 'Failed';
+    applicant.IsEmploymentVerified__c = false;
+    applicant.CreditScore__c = 950;
+    update applicant;
 
     //200
     ApexRequest request = new ApexRequest();

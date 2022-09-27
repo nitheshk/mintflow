@@ -83,14 +83,12 @@ global virtual with sharing class SentiLinkProvider extends AbstractService {
     // application.lead_type = leadObj.LeadSource; // UserInfo.Channel__c
 
     //address mapping
-    ContactPointAddress address = applicant.ContactPointAddresses__r.isEmpty()
-      ? new ContactPointAddress()
-      : applicant.ContactPointAddresses__r[0];
-    application.address_line_1 = address.Street;
-    application.city = address.City;
+    Address__c address = applicant.Addresses__r.isEmpty() ? new Address__c() : applicant.Addresses__r[0];
+    application.address_line_1 = address.Street__c;
+    application.city = address.City__c;
     application.state_code = address.StateCode__c;
-    application.zipcode = address.PostalCode;
-    application.country_code = address.Country;
+    application.zipcode = address.PostalCode__c;
+    application.country_code = address.Country__c;
 
     for (String scoreName : HttpBuilder.getApiConstant('SentiLinkScoreNames').split(',')) {
       requestDTO.scores.add(new SentiLinkDTO.ReqScores(scoreName));

@@ -5,27 +5,25 @@
  * @reference
  * @description
  **/
+@SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class AlloyRepository extends DatabaseUtils {
   /**
    * @description read  applicant with child record
    * @author Digital Align Team | 10-26-2021
    * @param Applicant__c applicantId
    **/
-  global static Applicant__c readApplicantWithChild(Id applicantId) {
+  public static Applicant__c readApplicantWithChild(Id applicantId) {
     Query qry = Query.newInstance(Applicant__c.SObjectType)
       .addFields()
       .queryChild('mflow__IdentificationDocuments__r')
       .addFields()
-      .orderBy('mflow__Order__c')
+      .addLimit(1)
       .run()
-      .queryChild('mflow__ContactPointAddresses__r')
+      .queryChild('mflow__Addresses__r')
       .addFields()
-      .removeFields('Address')
-      .orderBy('mflow__Order__c')
-      .run()
-      .queryChild('mflow__Employments__r')
-      .addFields()
-      .orderBy('mflow__Order__c')
+      //.removeFields('Address')
+      .whereEq('mflow__IsPrimary__c', true)
+      .addLimit(1)
       .run()
       .whereEq('Id', applicantId);
     return (Applicant__c) DatabaseUtils.getRecord(qry.toString());
@@ -44,5 +42,27 @@ global with sharing class AlloyRepository extends DatabaseUtils {
       .toString();
     List<Document> l = (List<Document>) DatabaseUtils.getRecords(q);
     return l.isEmpty() ? null : l[0];
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-09-2022
+   * @param List<Id> contentDocumentIds
+   * @return ContentVersion
+   **/
+  public static ContentVersion fetchAlloyKycJson(List<Id> contentDocumentIds) {
+    return (ContentVersion) DatabaseUtils.getRecord(
+      Query.newInstance(ContentVersion.SObjectType)
+        .addFields()
+        .whereIn('ContentDocumentId', contentDocumentIds)
+        .andCon()
+        .whereEq('ContentType__c', 'KYC')
+        .andCon()
+        .whereEq('ContentSubType__c', 'Alloy')
+        .andCon()
+        .whereEq('Title', 'AlloyResponse.json')
+        .addLimit(1)
+        .toString()
+    );
   }
 }

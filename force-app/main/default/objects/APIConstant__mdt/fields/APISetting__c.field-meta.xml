@@ -4,7 +4,7 @@
     <description>API Setting name for which constant needs to be created</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <label>APISetting</label>
+    <label>API Setting</label>
     <referenceTo>APISetting__mdt</referenceTo>
     <relationshipLabel>APIConstants</relationshipLabel>
     <relationshipName>APIConstants</relationshipName>

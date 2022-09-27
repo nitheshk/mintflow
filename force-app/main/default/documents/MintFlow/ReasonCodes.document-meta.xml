@@ -2,5 +2,5 @@
 <Document xmlns="http://soap.sforce.com/2006/04/metadata">
     <internalUseOnly>false</internalUseOnly>
     <name>ReasonCodes</name>
-    <public>false</public>
+    <public>true</public>
 </Document>

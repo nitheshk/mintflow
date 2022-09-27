@@ -4,7 +4,8 @@
     <defaultValue>false</defaultValue>
     <description>True if he is an existing customer</description>
     <externalId>false</externalId>
-    <label>IsExistingCustomer</label>
+    <label>Is Existing Customer</label>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

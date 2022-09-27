@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GenderCollectedOnVisual__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Was the sex of the Borrower collected on the basis of visual observation or surname?</description>
+    <externalId>false</externalId>
+    <label>Gender Collected On Visual</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

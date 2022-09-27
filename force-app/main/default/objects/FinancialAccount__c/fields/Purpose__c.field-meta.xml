@@ -37,6 +37,66 @@
                 <default>false</default>
                 <label>Cash Rewards</label>
             </value>
+            <value>
+                <fullName>Refinance</fullName>
+                <default>false</default>
+                <label>Refinance</label>
+            </value>
+            <value>
+                <fullName>Entertainment/Vacation</fullName>
+                <default>false</default>
+                <label>Entertainment/Vacation</label>
+            </value>
+            <value>
+                <fullName>Family Event</fullName>
+                <default>false</default>
+                <label>Family Event</label>
+            </value>
+            <value>
+                <fullName>Home improvement</fullName>
+                <default>false</default>
+                <label>Home improvement</label>
+            </value>
+            <value>
+                <fullName>Household Goods</fullName>
+                <default>false</default>
+                <label>Household Goods</label>
+            </value>
+            <value>
+                <fullName>Medical/Dental Expenses</fullName>
+                <default>false</default>
+                <label>Medical/Dental Expenses</label>
+            </value>
+            <value>
+                <fullName>Taxes</fullName>
+                <default>false</default>
+                <label>Taxes</label>
+            </value>
+            <value>
+                <fullName>Auto/RV Repairs</fullName>
+                <default>false</default>
+                <label>Auto/RV Repairs</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Dealer Purchase</fullName>
+                <default>false</default>
+                <label>Dealer Purchase</label>
+            </value>
+            <value>
+                <fullName>Lease Buyout</fullName>
+                <default>false</default>
+                <label>Lease Buyout</label>
+            </value>
+            <value>
+                <fullName>Private Party</fullName>
+                <default>false</default>
+                <label>Private Party</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

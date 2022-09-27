@@ -30,6 +30,10 @@
                 <behavior>Edit</behavior>
                 <field>AllowedtoGroup__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UiRouting__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -47,7 +51,7 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SubCategory__c</field>
-            </layoutItems>  
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -116,7 +120,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>isActive__c</field>
+                <field>IsActive__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -133,7 +137,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>isActive__c</fields>
+        <fields>IsActive__c</fields>
         <fields>DisplayName__c</fields>
         <fields>Value__c</fields>
         <fields>Code__c</fields>
@@ -162,7 +166,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>ShowQuestions__c</fields>
         <relatedList>ProductService__c.FinancialProduct__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -170,7 +173,7 @@
         <fields>EventIdentifier__c</fields>
         <fields>ApplicantType__c</fields>
         <fields>Channel__c</fields>
-        <fields>isActive__c</fields>
+        <fields>IsActive__c</fields>
         <relatedList>SurveyTemplate__c.FinancialProduct__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

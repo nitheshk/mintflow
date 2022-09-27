@@ -17,7 +17,6 @@
     <navType>Console</navType>
     <tabs>standard-home</tabs>
     <tabs>FinancialInstituteAccount</tabs>
-    <tabs>LeadConfiguration__c</tabs>
     <tabs>ApplicationConfiguration</tabs>
     <tabs>Diagnostic__c</tabs>
     <tabs>FinancialProduct__c</tabs>
@@ -25,11 +24,12 @@
     <tabs>ProductService__c</tabs>
     <tabs>ProductFeature__c</tabs>
     <tabs>ConsentTemplate__c</tabs>
+    <tabs>LeadConfiguration__c</tabs>
     <tabs>SurveyTemplate__c</tabs>
     <tabs>Scheduler</tabs>
     <tabs>SchedulerEntry__c</tabs>
-    <tabs>Flow__c</tabs>
     <tabs>EligibleCounty__c</tabs>
+    <tabs>VehicleSpecification__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
@@ -53,9 +53,6 @@
             <tab>FinancialProduct__c</tab>
         </mappings>
         <mappings>
-            <tab>Flow__c</tab>
-        </mappings>
-        <mappings>
             <tab>LeadConfiguration__c</tab>
         </mappings>
         <mappings>
@@ -75,6 +72,9 @@
         </mappings>
         <mappings>
             <tab>SurveyTemplate__c</tab>
+        </mappings>
+        <mappings>
+            <tab>VehicleSpecification__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>

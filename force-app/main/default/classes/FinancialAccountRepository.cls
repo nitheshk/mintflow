@@ -43,7 +43,7 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
     return (List<Property__c>) DatabaseUtils.getRecords(
       Query.newInstance(Property__c.SObjectType)
         .addFields()
-        .queryChild('mflow__AssetAndLiabilities__r')
+        .queryChild('mflow__Liabilities__r')
         .addFields()
         .run()
         .whereIn('Id', properties)
@@ -138,7 +138,7 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         .whereEq('mflow__Type__c', ApplicationConstant.PRODUCT_FEATURE_TYPE_PRODUCT_CONFIG)
         .orderBy('mflow__Order__c')
         .run()
-        .whereEq('mflow__isActive__c', true)
+        .whereEq('mflow__IsActive__c', true)
         .andCon()
         .whereIn(
           'Id',
@@ -149,5 +149,62 @@ global with sharing class FinancialAccountRepository extends DatabaseUtils {
         )
         .toString()
     );
+  }
+
+  /**
+   * @description
+   * @author Digital Align Team | 09-26-2022
+   * @param String searchType
+   * @param Integer year
+   * @param String make
+   * @param String model
+   * @return List<VehicleSpecification__c>
+   **/
+  public static List<VehicleSpecification__c> readVehicleDetails(
+    String searchType,
+    Integer year,
+    String make,
+    String model,
+    String vin
+  ) {
+    switch on searchType {
+      when 'Vin' {
+        return getRecords(
+          Query.newInstance(VehicleSpecification__c.SObjectType)
+            .addFields()
+            .whereEq('mflow__Vin__c', vin)
+            .addLimit(1)
+            .toString()
+        );
+      }
+      when 'Make' {
+        return getRecords(
+          Query.newInstance(VehicleSpecification__c.SObjectType).addFields().whereEq('mflow__Year__c', year).toString()
+        );
+      }
+      when 'Model' {
+        return getRecords(
+          Query.newInstance(VehicleSpecification__c.SObjectType)
+            .addFields()
+            .whereEq('mflow__Year__c', year)
+            .andCon()
+            .whereEq('mflow__MakeCode__c', make)
+            .toString()
+        );
+      }
+      when 'SubModel' {
+        return getRecords(
+          Query.newInstance(VehicleSpecification__c.SObjectType)
+            .addFields()
+            .whereEq('mflow__Year__c', year)
+            .andCon()
+            .whereEq('mflow__MakeCode__c', make)
+            .andCon()
+            .whereEq('mflow__ModelCode__c', model)
+            .toString()
+        );
+      }
+    }
+    return null;
   }
 }

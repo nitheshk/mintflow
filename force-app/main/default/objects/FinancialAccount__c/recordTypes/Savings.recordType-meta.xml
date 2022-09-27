@@ -117,4 +117,139 @@
             <default>false</default>
         </values>
     </picklistValues>
+    <picklistValues>
+        <picklist>VehicleType__c</picklist>
+        <values>
+            <fullName>Aerial tramway</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Airplane%2FAircraft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ambulance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Baby carriage %28US%29%2F Pram %28UK%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bicycle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Boat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bulldozer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bus</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Camper van</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Caravan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Carriage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cement mixer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Crane</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery van</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dump truck</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fire engine</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Forklift</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Helicopter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hot-air balloon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moped</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Motorcycle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mountain bike</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Police car</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rowboat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scooter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Skateboard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Subway</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taxi%2Fcab</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tractor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Train</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tram %28UK%29%2F Streetcar %28US%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Truck</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Van</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>

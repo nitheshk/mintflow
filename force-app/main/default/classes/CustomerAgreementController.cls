@@ -46,7 +46,6 @@ global with sharing class CustomerAgreementController {
       if (applicant.RecordType.Name == ApplicationConstant.APPLICANT_PRIMARY_RECORDTYPE) {
         List<ContentVersion> cvs = FileService.getInstance()
           .fetchContentVersionByFileType(applicant.id, 'Identity', 'Signature', false);
-        system.debug('cvs :' + cvs);
         if (!cvs.isEmpty()) {
           //primarySignatureImg = cvs[0].ContentDocumentId;
           primarySignatureImg = 'data:image/png;charset=utf-8;base64, ' + EncodingUtil.base64Encode(cvs[0].versionData);
