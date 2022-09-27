@@ -55,7 +55,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF url(/sfsites/c/file-asset/mflow__TemplateBlue?v=1) center center /cover",
+                "background": "background: #FFFFFF url(/sfsites/c/file-asset/TemplateBlue?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(0, 0, 0, 0)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,
@@ -298,7 +298,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: rgba(255,255,255,0.51) url(/sfsites/c/file-asset/mflow__TemplateBlue?v=1) center center /cover",
+                "background": "background: rgba(255,255,255,0.51) url(/sfsites/c/file-asset/TemplateBlue?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(29, 31, 109, 0.3)",
                 "borderBottomColor": "rgba(17, 30, 50, 0.5)",
                 "centerAlignLogo": false,
@@ -551,7 +551,7 @@
           "components": [
             {
               "componentAttributes": {
-                "background": "background: #FFFFFF url(/sfsites/c/file-asset/mflow__TemplateBlue?v=1) center center /cover",
+                "background": "background: #FFFFFF url(/sfsites/c/file-asset/TemplateBlue?v=1) center center /cover",
                 "backgroundOverlayColor": "rgba(39, 78, 116, 0)",
                 "borderBottomColor": "rgba(0, 0, 0, 0.5)",
                 "centerAlignLogo": false,
