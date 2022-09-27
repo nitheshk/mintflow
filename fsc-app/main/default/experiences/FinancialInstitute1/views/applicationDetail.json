@@ -59,14 +59,6 @@
                           "tabName": "Application 360"
                         },
                         {
-                          "UUID": "bbd03790-8f60-462c-ab81-5e1a2af7eae8",
-                          "allowGuestUser": false,
-                          "locked": false,
-                          "seedComponents": [],
-                          "tabKey": "f69bf",
-                          "tabName": "Activity"
-                        },
-                        {
                           "UUID": "ceb78313-6fc8-4769-97aa-3b89c39ee002",
                           "allowGuestUser": false,
                           "locked": false,
@@ -104,24 +96,6 @@
                       "id": "60b9efad-4393-4a65-9e4b-a25b1cd9a3e8",
                       "regionLabel": "Application 360",
                       "regionName": "2",
-                      "renditionMap": {},
-                      "type": "region"
-                    },
-                    {
-                      "components": [
-                        {
-                          "componentAttributes": {
-                            "recordId": "{!recordId}"
-                          },
-                          "componentName": "forceCommunity:activityPanel",
-                          "id": "99037503-c41f-4328-bc84-a7ac79695fd5",
-                          "renditionMap": {},
-                          "type": "component"
-                        }
-                      ],
-                      "id": "bbd03790-8f60-462c-ab81-5e1a2af7eae8",
-                      "regionLabel": "Activity",
-                      "regionName": "f69bf",
                       "renditionMap": {},
                       "type": "region"
                     },
