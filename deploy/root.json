@@ -1,6 +1,6 @@
 {
   "sandboxes": {
-    "sandboxToDeploy": "mflowdemo",
+    "sandboxToDeploy": "mflowdev",
     "testorg": {
       "sandboxOrgName": "testorg",
       "sandboxUserName": "nithesh.k@digitalalign.com.testorg",
@@ -22,7 +22,7 @@
     "mflowdev": {
       "sandboxOrgName": "mflowdev",
       "sandboxUserName": "lakshmip@digitalalign.com.mflowdev",
-      "sandboxClientId": "3MVG9oZtFCVWuSwOvwwAVjUooDa9DeAdAPpRAecdwrzBMfbS2bD_9OfSnclDxLLyWaXLzmwY.NW4p4ZTZ70E1",
+      "sandboxClientId": "3MVG9oZtFCVWuSwOvwwAVjUooDWtWS2dHg5VuP7f68rb8Ds4rddtoh7bh_ZBei6jVDpu5yfaxwda_1YvKCKsf",
       "sandboxInstanceUrl": "https://test.salesforce.com",
       "jwtkeyfile": "jwt/server.key",
       "rootFolder": "./fsc-app",
