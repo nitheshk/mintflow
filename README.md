@@ -44,22 +44,9 @@ Step 2.4 : [Optional] Use **Cntr + Shift + B** and Select `UI 1,UI 2,UI 3 Tasks 
 
 `npm --prefix p1fcu-olbui/online-portal install`
 
-#### Step 5. Update your Devhub configuration detail under `deploy\devhub.json`, update json with following format with create connected app on previous step
-
-```
-{
-  "scratchOrgName": "mflow",
-  "devhubUserName": "nithesh.k@digitalalign.devhub1.com",
-  "devhubOrgName": "devhub",
-  "devhubClientId": "3MVG9fe4g9fhX0E471xtv1cWppRlsmb9rINlWTtGfR0e40vBuAYbbM_oOmSf6FyOeAAa1g0IKlQXi7510KPWT",
-  "devhubInstanceUrl": "https://login.salesforce.com",
-  "jwtkeyfile": "jwt/server.key"
-}
-```
-
 ## Step 3. Create Scratch Org
 
-Use **Cntr + Shift + B** and Select `SFDX: create new scratch org`
+Use **Cntr + Shift + B** and Select `SFDX: Setup New Sandbox`
 
 ### In Case of Failure while creating of scratch
 
