@@ -14,10 +14,8 @@
         <template for:each={record.mflow__FinancialAccounts__r} for:item="product">
           <lightning-tab key={product.Id} label={product.mflow__ProductName__c}>
             <c-record-detail-view
-              key={product.Id}
               record={product}
               s-object-name="mflow__FinancialAccount__C"
-              field-set-name="mflow__FinancialAccount"
               title-name="Product Details"
               hide-null-values="true"
             >
@@ -28,7 +26,6 @@
                   key={property.Id}
                   record={property}
                   s-object-name="mflow__Property__c"
-                  field-set-name="mflow__PropertyInformation"
                   title-name="Property Details"
                   hide-null-values="true"
                 >
@@ -47,13 +44,11 @@
             <lightning-tabset variant="scoped">
               <lightning-tab
                 label="Detail"
-                key={data.Id}
                 data-objectname="mflow__Applicant__c"
                 data-recordid={data.Id}
                 onactive={handleActive}
               >
                 <c-applicant-record-detail-view
-                  key={data.Id}
                   record={data}
                   s-object-name="mflow__Applicant__c"
                   title-name="Applicant Details"
@@ -67,7 +62,6 @@
                   onactive={handleActive}
                 >
                   <c-record-detail-view
-                    key={data.Id}
                     record={data.mflow__Addresses__r}
                     s-object-name="mflow__Address__c"
                     title-name="Address"
