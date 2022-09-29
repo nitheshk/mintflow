@@ -3,8 +3,8 @@
     {
       "path": "force-app",
       "package": "MFlowV1",
-      "versionName": "Version 1.1.0",
-      "versionNumber": "1.1.0.NEXT",
+      "versionName": "Version 1.2.0",
+      "versionNumber": "1.2.0.NEXT",
       "ancestorVersion": "1.1.0.1",
       "versionDescription": "Connected Devhuv : nithesh.k@digitalalign.devhub1.com , Managed package with namespace",
       "default": true
