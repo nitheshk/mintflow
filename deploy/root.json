@@ -31,7 +31,7 @@
     "mflowqa": {
       "sandboxOrgName": "mflowqa",
       "sandboxUserName": "lakshmip@digitalalign.com.mflowqa",
-      "sandboxClientId": "3MVG9oZtFCVWuSwOvwwAVjUooDbA2ACsN2tFZpRphzVmgyw9fIFi0OkO0hpKUdsDuRQ3eJXiv9d2Fk7ghSSKS",
+      "sandboxClientId": "3MVG9oZtFCVWuSwOvwwAVjUooDV9pOfzYBVWbg2zurUsSM50pc0UPeXq.YvUnHAnE9PeV3AnFMDn.emOK2.Hq",
       "sandboxInstanceUrl": "https://test.salesforce.com",
       "jwtkeyfile": "jwt/server.key",
       "rootFolder": "./fsc-app",
