@@ -3,9 +3,9 @@
     {
       "path": "force-app",
       "package": "MFlowV1",
-      "versionName": "Version 1.0.0",
-      "versionNumber": "1.0.0.NEXT",
-      "ancestorVersion": "1.0.0.1",
+      "versionName": "Version 1.2.0",
+      "versionNumber": "1.2.0.NEXT",
+      "ancestorVersion": "1.1.0.1",
       "versionDescription": "Connected Devhuv : nithesh.k@digitalalign.devhub1.com , Managed package with namespace",
       "default": true
     },
@@ -23,6 +23,7 @@
   "sourceApiVersion": "51.0",
   "packageAliases": {
     "MFlowV1": "0Ho5g000000TNq4CAG",
-    "MFlowV1@1.0.0-1": "04t5g000000EobkAAC"
+    "MFlowV1@1.0.0-1": "04t5g000000EobkAAC",
+    "MFlowV1@1.1.0-1": "04t5g000000EsDkAAK"
   }
 }
