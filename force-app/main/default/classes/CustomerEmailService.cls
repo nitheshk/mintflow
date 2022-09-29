@@ -351,7 +351,9 @@ global virtual with sharing class CustomerEmailService extends AbstractService {
   global virtual void documentRequestInitiated(Applicant__c applicant, DocumentRequest__c documentRequest) {
     EmailNotificationBuilder.newInstance('DocumentRequestInitiated', applicant.Id)
       .setToAddresses(applicant.Email__c)
-      .setSubstitute(new Map<String, String>{ '{url}' => SiteSetting__c.getInstance().OnlineSiteUrl__c });
+      .setSubstitute(
+        new Map<String, String>{ '{url}' => SiteSetting__c.getInstance().OnlineSiteUrl__c + '/OnlinePortal' }
+      );
     sendEmail();
   }
 

@@ -414,8 +414,6 @@
         </div>
       </apex:outputPanel>
       <div class="error__description">Please contact <b>support@digitalalign.com</b> for more information</div>
-      <button class="error__button error__button--active">LOGIN</button>
-      <button class="error__button">CONTACT</button>
     </div>
 
     <div class="astronaut">

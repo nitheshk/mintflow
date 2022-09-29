@@ -126,9 +126,9 @@
         <label>Agreements</label>
     </customValue>
     <customValue>
-        <fullName>oow</fullName>
+        <fullName>OOW</fullName>
         <default>false</default>
-        <label>oow</label>
+        <label>OOW</label>
     </customValue>
     <customValue>
         <fullName>DemographicInfo</fullName>
