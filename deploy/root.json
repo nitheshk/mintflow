@@ -1,6 +1,6 @@
 {
   "sandboxes": {
-    "sandboxToDeploy": "mflowdev",
+    "sandboxToDeploy": "mflowqa",
     "testorg": {
       "sandboxOrgName": "testorg",
       "sandboxUserName": "nithesh.k@digitalalign.com.testorg",
@@ -73,7 +73,7 @@
   },
 
   "dependentPackage": {
-    "MFlowPackage": "04t5g000000EobkAAC"
+    "MFlowPackage": "04t5g000000EsE4AAK"
   },
 
   "namespace": "mflow",

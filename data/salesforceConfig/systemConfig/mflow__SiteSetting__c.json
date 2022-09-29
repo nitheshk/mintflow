@@ -1,1 +1,12 @@
-{"records":[{"attributes":{"type":"mflow__SiteSetting__c","referenceId":"SiteRef_0"},"mflow__OnlineSiteUrl__c":"https://digitalalignfsc--mflowdev.sandbox.my.site.com/mintflow","mflow__FinancialInstituteSiteUrl__c":"https://digitalalignfsc--mflowdev.sandbox.my.site.com/mintflow","mflow__OnlineAccountOpeningUrl__c":"/OpenAccount?pid=IC003#/home","mflow__OnlineContentUrl__c":"https://ik.imagekit.io/disczlxo8kv/P1FCU/","mflow__OnlineSiteUrlPathPrefix__c":"mintflow"}]}
+{
+  "records": [
+    {
+      "attributes": { "type": "mflow__SiteSetting__c", "referenceId": "SiteRef_0" },
+      "mflow__OnlineSiteUrl__c": "https://digitalalignfsc--mflowqa.sandbox.my.site.com/mintflow",
+      "mflow__FinancialInstituteSiteUrl__c": "https://digitalalignfsc--mflowqa.sandbox.my.site.com/mintflow",
+      "mflow__OnlineAccountOpeningUrl__c": "/OpenAccount?pid=IC003#/home",
+      "mflow__OnlineContentUrl__c": "https://ik.imagekit.io/disczlxo8kv/P1FCU/",
+      "mflow__OnlineSiteUrlPathPrefix__c": "mintflow"
+    }
+  ]
+}
