@@ -585,218 +585,77 @@
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="ApplicationServiceHelper">
-              <span>ApplicationServiceHelper</span>
+            <h2 class="class-title top-level-type" id="LeadScoreResolver">
+              <span>LeadScoreResolver</span>
             </h2>
             <div class="class-container">
 
               <div class="class-description">
-                Copyright (c) 2021 Digital Align
+                Copyright (c) 2021 Digital Align Application service
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
               <div class="class-annotations">@SuppressWarnings('PMD.AvoidGlobalModifier')</div>
               <div class="class-signature">
-                global virtual with sharing class ApplicationServiceHelper extends AbstractService
+                global virtual with sharing class LeadScoreResolver extends AbstractService
               </div><br />Digital Align Team @reference
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">ApplicationServiceHelper Constructors</h3>
+              <h3 class="subsection-title methods">LeadScoreResolver Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#ApplicationServiceHelper.ApplicationServiceHelper">
-                      ApplicationServiceHelper ()
+                    <a class="methods-toc__entry " href="#LeadScoreResolver.LeadScoreResolver">
+                      LeadScoreResolver ()
                     </a>
 
                   </li>
                 </ul>
                 <div class="method public">
-                  <h4 class="method-title " id="ApplicationServiceHelper.ApplicationServiceHelper">
-                    <span>ApplicationServiceHelper()</span>
+                  <h4 class="method-title " id="LeadScoreResolver.LeadScoreResolver">
+                    <span>LeadScoreResolver()</span>
                   </h4>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public ApplicationServiceHelper()
+                    public LeadScoreResolver()
                   </div>
                 </div>
               </div>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">ApplicationServiceHelper Methods</h3>
+              <h3 class="subsection-title methods">LeadScoreResolver Methods</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method global">
-                    <a class="methods-toc__entry " href="#ApplicationServiceHelper.cloneExistingApplication">
-                      cloneExistingApplication (params)
+                    <a class="methods-toc__entry " href="#LeadScoreResolver.calculateLeadScore">
+                      calculateLeadScore (application)
                     </a>
 
-                  </li>
-                  <li class="method global">
-                    <a class="methods-toc__entry " href="#ApplicationServiceHelper.cloneReferralApplication">
-                      cloneReferralApplication (params)
-                    </a>
-
-                    <div class="methods-toc__description">
-                      Clone Application into new Application
-                    </div>
                   </li>
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#ApplicationServiceHelper.getInstance">
+                    <a class="methods-toc__entry " href="#LeadScoreResolver.getInstance">
                       getInstance ()
                     </a>
 
                     <div class="methods-toc__description">
-                      Provides a singleton instance of ApplicationServiceHelper from which all other class methods can be accessed.
-                    </div>
-                  </li>
-                  <li class="method global">
-                    <a class="methods-toc__entry " href="#ApplicationServiceHelper.getIpAddress">
-                      getIpAddress ()
-                    </a>
-
-                    <div class="methods-toc__description">
-                      get current ipaddress
-                    </div>
-                  </li>
-                  <li class="method global">
-                    <a class="methods-toc__entry " href="#ApplicationServiceHelper.resolveBranchLocation">
-                      resolveBranchLocation (application)
-                    </a>
-
-                    <div class="methods-toc__description">
-                      resolve branch location
+                      Provides a singleton instance of LeadScoreResolver from which all other class methods can be accessed.
                     </div>
                   </li>
                 </ul>
                 <div class="method global">
-                  <h4 class="method-title " id="ApplicationServiceHelper.cloneExistingApplication">
-                    <span>cloneExistingApplication(params)</span>
+                  <h4 class="method-title " id="LeadScoreResolver.calculateLeadScore">
+                    <span>calculateLeadScore(application)</span>
                   </h4>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    global virtual Application__c cloneExistingApplication(Map&lt;String, Object&gt; params)
-                  </div>
-                  <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">Map&lt;String</div>
-                  <div class="param-description">Object&gt; params</div>
-                  <div class="method-subtitle">
-                    Returns
-                  </div>
-                  <div class="method-subtitle-description">
-                    Application__c
-                  </div>
-                  <div class="method-subtitle">
-                    Author
-                  </div>
-                  <div class="method-subtitle-description">
-                    Digital Align Team | 06-30-2022
-                  </div>
-                </div>
-                <div class="method global">
-                  <h4 class="method-title " id="ApplicationServiceHelper.cloneReferralApplication">
-                    <span>cloneReferralApplication(params)</span>
-                  </h4>
-                  <div class="method-description">
-                    Clone Application into new Application
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    global virtual Application__c cloneReferralApplication(Map&lt;String, Object&gt; params)
-                  </div>
-                  <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">Map&lt;String</div>
-                  <div class="param-description">Object&gt; params</div>
-                  <div class="method-subtitle">
-                    Returns
-                  </div>
-                  <div class="method-subtitle-description">
-                    Application__c
-                  </div>
-                  <div class="method-subtitle">
-                    Author
-                  </div>
-                  <div class="method-subtitle-description">
-                    Digital Align Team | 03-18-2022
-                  </div>
-                </div>
-                <div class="method public">
-                  <h4 class="method-title " id="ApplicationServiceHelper.getInstance">
-                    <span>getInstance()</span>
-                  </h4>
-                  <div class="method-description">
-                    Provides a singleton instance of ApplicationServiceHelper from which all other class methods can be accessed.
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    public static ApplicationServiceHelper getInstance()
-                  </div>
-                  <div class="method-subtitle">
-                    Returns
-                  </div>
-                  <div class="method-subtitle-description">
-                    Object singleton
-                  </div>
-                  <div class="method-subtitle">
-                    Author
-                  </div>
-                  <div class="method-subtitle-description">
-                    Digital Align Team | 07-27-2021
-                  </div>
-                </div>
-                <div class="method global">
-                  <h4 class="method-title " id="ApplicationServiceHelper.getIpAddress">
-                    <span>getIpAddress()</span>
-                  </h4>
-                  <div class="method-description">
-                    get current ipaddress
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    global virtual String getIpAddress()
-                  </div>
-                  <div class="method-subtitle">
-                    Returns
-                  </div>
-                  <div class="method-subtitle-description">
-                    String
-                  </div>
-                  <div class="method-subtitle">
-                    Author
-                  </div>
-                  <div class="method-subtitle-description">
-                    Digital Align Team | 10-11-2021
-                  </div>
-                </div>
-                <div class="method global">
-                  <h4 class="method-title " id="ApplicationServiceHelper.resolveBranchLocation">
-                    <span>resolveBranchLocation(application)</span>
-                  </h4>
-                  <div class="method-description">
-                    resolve branch location
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    global virtual Application__c resolveBranchLocation(Application__c application)
+                    global virtual Application__c calculateLeadScore(Application__c application)
                   </div>
                   <div class="method-subtitle">Parameters</div>
                   <div class="param-name">Application__c</div>
@@ -811,7 +670,34 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    Digital Align Team | 12-03-2021
+                    Digital Align Team | 06-15-2022
+                  </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="LeadScoreResolver.getInstance">
+                    <span>getInstance()</span>
+                  </h4>
+                  <div class="method-description">
+                    Provides a singleton instance of LeadScoreResolver from which all other class methods can be accessed.
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static LeadScoreResolver getInstance()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    Object singleton
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Digital Align Team | 09/12/2022
                   </div>
                 </div>
               </div>
