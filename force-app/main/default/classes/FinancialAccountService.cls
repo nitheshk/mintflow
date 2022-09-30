@@ -238,15 +238,23 @@ global virtual with sharing class FinancialAccountService extends AbstractServic
           )
         ) {
           specList.add(
-            new Map<String, String>{
-              'yearName' => String.valueof(vehicleSpec.Year__c),
-              'yearValue' => String.valueof(vehicleSpec.Year__c),
-              'makeName' => vehicleSpec.Make__c,
-              'makeValue' => vehicleSpec.MakeCode__c,
-              'modelName' => vehicleSpec.Model__c,
-              'modelValue' => vehicleSpec.ModelCode__c,
-              'submodelName' => vehicleSpec.SubModel__c,
-              'submodelValue' => vehicleSpec.SubModelCode__c
+            new Map<String, Object>{
+              'year' => (new Map<String, String>{
+                'name' => String.valueof(vehicleSpec.Year__c),
+                'value' => String.valueof(vehicleSpec.Year__c)
+              }),
+              'make' => (new Map<String, String>{
+                'name' => String.valueof(vehicleSpec.Make__c),
+                'value' => String.valueof(vehicleSpec.MakeCode__c)
+              }),
+              'model' => (new Map<String, String>{
+                'name' => String.valueof(vehicleSpec.Model__c),
+                'value' => String.valueof(vehicleSpec.ModelCode__c)
+              }),
+              'submodel' => (new Map<String, String>{
+                'name' => String.valueof(vehicleSpec.SubModel__c),
+                'value' => String.valueof(vehicleSpec.SubModelCode__c)
+              })
             }
           );
           break;
