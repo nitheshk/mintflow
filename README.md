@@ -2,10 +2,11 @@
 
 1. https://developer.salesforce.com/tools/sfdxcli install SFDX Cli
 2. Java 8 and 11 JDK
-3. Salesforce extension pack and salesforce CLI integration Extensions
-4. Git Clone the pcu-olb project
-5. Signup for developer org -> https://developer.salesforce.com/signup
-6. Follow step 1.2 to setup devhub ( https://alignmoney.atlassian.net/wiki/spaces/DOT/pages/1204060213/Setup+Devhub ) and certification to uplaod , you find git folder under jwt folder.
+3. Install Node Js v17.3.0
+4. Salesforce extension pack and salesforce CLI integration Extensions
+5. Git Clone the pcu-olb project
+6. Signup for developer org -> https://developer.salesforce.com/signup
+7. Follow step 1.2 to setup devhub ( https://alignmoney.atlassian.net/wiki/spaces/DOT/pages/1204060213/Setup+Devhub ) and certification to uplaod , you find git folder under jwt folder.
 
 # Project Documentation
 
